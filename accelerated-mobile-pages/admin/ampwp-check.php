@@ -22,13 +22,13 @@ if ( ! class_exists( 'AmpWP_check' ) ) {
 		 * @since 1.0
 		 */
 		public function ampwp_detect_device() {
-			// ?mobile will render the selected non-touch mobile theme
-			// ?nomobile renders the standard selected WordPress theme
-			if ( isset( $_GET['mobile'] ) ) {
+			// ?amp will render the selected non-touch mobile theme
+			// ?noamp renders the standard selected WordPress theme
+			if ( isset( $_GET['amp'] ) ) {
 				$this->browser		= 'mobile';
 				$this->activated	= TRUE;
 				$this->theme		= 'default';
-			} else if ( isset( $_GET['nomobile'] ) ) {
+			} else if ( isset( $_GET['noamp'] ) ) {
 				$this->activated	= FALSE;
 			} else if ( $this->is_mobile( $_SERVER['HTTP_USER_AGENT'], $_SERVER['HTTP_ACCEPT'] ) ) {
 				if ( $this->is_bot( $_SERVER['HTTP_USER_AGENT'] ) ) {

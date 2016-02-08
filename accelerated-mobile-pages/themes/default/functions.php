@@ -135,13 +135,13 @@ function amp_custom_style() { ?>
         .clearfix{
             clear: both
         }
-        #pagination{
-            display: inline-block;
+        #pagination{ 
             width: 100%;
             margin-top: 5px;
         }
         #pagination .next{
-            float: right
+            float: right;
+            margin-bottom: 22px;
         }
         #pagination .prev{
             float: left
@@ -198,6 +198,9 @@ function amp_custom_style() { ?>
         img, iframe, object, video {
             max-width: 100%;
             height: auto;
+        }
+        .wp-caption {
+            max-width: 100% !important; 
         }
     @media screen and (min-width: 700px) {
      /*header, footer, main, footer {

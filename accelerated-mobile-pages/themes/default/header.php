@@ -32,7 +32,7 @@
 		?>
 	</title>
 
-	<link rel="canonical" href="<?php the_permalink(); ?>?nomobile">
+	<link rel="canonical" href="<?php the_permalink(); ?>?noamp">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
 
