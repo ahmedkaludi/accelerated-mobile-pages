@@ -3,9 +3,12 @@ Automatically add Accelerated Mobile Pages (AMP Project) functionality on your W
 https://wordpress.org/plugins/accelerated-mobile-pages/
 
 === Accelerated Mobile Pages ===
+
 Contributors: mohammed_kaludi, ahmedkaludi
+
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
+
 Tested up to: 4.4.2
 Stable tag: 0.2.5
 License: GPLv2 or later
