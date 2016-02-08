@@ -23,3 +23,4 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. You can access your amp enabled website by adding ?amp at the end of the url.
 
+ 
