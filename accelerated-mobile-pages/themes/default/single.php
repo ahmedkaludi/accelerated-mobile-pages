@@ -30,5 +30,47 @@
 		<?php endwhile; ?>
 		<?php endif;?>
  	</div>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "<?php the_permalink(); ?>"
+  },
+  "headline": "Article headline",
+  "image": {
+    "@type": "ImageObject",
 
+<?php
+$thumb_id = get_post_thumbnail_id();
+$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
+$thumb_url = $thumb_url_array[0];
+?>
+    "url": "<?php echo $thumb_url ?>",
+    "height": 1024,
+    "width": 1024
+  },
+  "datePublished": "<?php echo the_time('c'); ?>",
+  "dateModified": "<?php echo the_time('c'); ?>",
+  "author": {
+    "@type": "Person",
+    "name": "<?php the_author_meta( 'nickname', $author_id ); ?>"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "<?php echo get_bloginfo( 'name' ); ?>",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "<?php $site_logo = get_theme_mod('custom_logo'); echo wp_get_attachment_url($site_logo) ?>",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "A most wonderful article"
+}
+
+ 
+
+</script>
 <?php get_footer(); ?>

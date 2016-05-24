@@ -48,6 +48,7 @@
 <body id="<?php if ( !is_single() && !is_page() ) { ?>home<?php } ?>">
 
 <header class="container">
+    
     <div id="headerwrap">
         <div id="header">
             <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>

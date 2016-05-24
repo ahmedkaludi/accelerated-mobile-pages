@@ -195,13 +195,11 @@ function amp_custom_style() { ?>
         .single_img{
             text-align: center
         }
-        img, iframe, object, video {
+        amp-img, img,  object, video {
             max-width: 100%;
             height: auto;
         }
-        .wp-caption {
-            max-width: 100% !important; 
-        }
+         
     @media screen and (min-width: 700px) {
      /*header, footer, main, footer {
         margin: 0 10%;
@@ -272,5 +270,19 @@ function amp_custom_style() { ?>
 <?php }
 
 add_action('amp_custom_style','amp_custom_style');
+
+
+// amp_image_tag will convert all the img tags and will change it to amp-img to make it AMP compatible.
+function amp_image_tag($content) {
+
+    $replace = array (
+        '<img' => '<amp-img'
+    );
+    $content = strtr($content, $replace);
+    return $content;
+}
+
+add_filter('the_content','amp_image_tag');
+
 
 ?>
