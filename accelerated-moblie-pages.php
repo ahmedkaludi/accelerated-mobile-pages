@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Accelerated Mobile Pages
-Plugin URI: http://theskin.io/amp/
+Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: Accelerated Mobile Pages for WordPress
-Version: 0.5
+Version: 0.6 Beta
 Author: Mohammed Kaludi, Ahmed Kaludi
 Author URI: http://AhmedKaludi.com/
 License: GPL2
