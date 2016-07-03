@@ -69,7 +69,7 @@
       layout="nodisplay"
       side="right">
     <div class="toggle-navigationv2">
-        <div on='tap:sidebar.close' class="close-nav">X CLOSE</div>
+        <div on='tap:sidebar.close' class="close-nav">X</div>
         <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
     </div>
 </amp-sidebar>

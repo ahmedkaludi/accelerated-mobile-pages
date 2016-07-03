@@ -45,13 +45,21 @@ function amp_custom_style() {
     border-bottom: 1px solid #efefef;
         }
         .close-nav{
-            
-    font-size: 10px;
-    color: #555;
-    text-align: center;
-    padding: 10px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.25);
     letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 100px;
+    line-height: 8px;
+    margin: 14px;
+    left: 191px;
+    color: #fff;
         }
+        .close-nav:hover{
+    background: rgba(0, 0, 0, 0.45);
+        }
+
         .sticky_social{
 
     width: 100%;
