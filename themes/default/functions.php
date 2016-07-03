@@ -52,7 +52,20 @@ function amp_custom_style() {
     padding: 10px;
     letter-spacing: 1px;
         }
+        .sticky_social{
 
+    width: 100%;
+    bottom: 0;
+    display: block;
+    left: 0;
+    box-shadow: 0px 4px 7px #000;
+    background: #fff;
+    padding: 7px 0px 0px 0px;
+    position: fixed;
+    margin: 0;
+    z-index: 999;
+    text-align: center;
+        }
         
         body{
               font: 16px/1.4 Sans-serif;

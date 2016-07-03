@@ -12,6 +12,26 @@
 		</div>
 
 		<div class="post"> 
+  <div class="sticky_social">
+    <amp-social-share type="twitter"
+        width="50"
+        height="28"> </amp-social-share>
+    <amp-social-share type="gplus"
+        width="50"
+        height="28"></amp-social-share>
+    <amp-social-share type="email"
+        width="50"
+        height="28"></amp-social-share>
+    <amp-social-share type="pinterest"
+        width="50"
+        height="28"></amp-social-share>
+    <amp-social-share type="linkedin"
+        width="50"
+        height="28"></amp-social-share>
+    <amp-social-share type="facebook"
+        width="50"
+        height="28"></amp-social-share>
+  </div>
 
 			<?php the_content(); ?>
 			<?php wp_link_pages( 'before=<p>&after=</p>&next_or_number=number&pagelink=Page %' ); ?>
