@@ -6,8 +6,54 @@
  * https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#required-markup
 */
 
-function amp_custom_style() { ?>
-	<style amp-custom>
+function amp_custom_style() {
+/* Style Improvements:
+- Remove toggle-navigation style because it was replaced with toggle-navigationv2 */
+?>
+    <style amp-custom>
+        amp-sidebar {
+          width: 250px; 
+        }
+        .amp-sidebar-image {
+          line-height: 100px;
+          vertical-align:middle;
+        }
+        .amp-close-image {
+           top: 15px;
+           left: 225px;
+           cursor: pointer;
+        }
+        .toggle-navigationv2{
+            
+        }
+        .toggle-navigationv2 ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        } 
+        .toggle-navigationv2 ul ul li a  {
+            padding-left: 35px;
+            background: #fff;
+            display: inline-block
+        }
+        .toggle-navigationv2 ul li a{
+    padding: 15px 25px;
+    width: 100%;
+    display: inline-block;
+    background: #fafafa;
+    font-size: 14px;
+    border-bottom: 1px solid #efefef;
+        }
+        .close-nav{
+            
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    padding: 10px;
+    letter-spacing: 1px;
+        }
+
+        
         body{
               font: 16px/1.4 Sans-serif;
         }

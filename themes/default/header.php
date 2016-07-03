@@ -3,6 +3,7 @@
 
 <head>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 
 	<title>
 		<?php 
@@ -59,9 +60,17 @@
 </header>
 
 <nav>
-<div class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
-    <div class="toggle-navigation"><?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
+<div on='tap:sidebar.toggle' class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
+ 
+<amp-sidebar id='sidebar'
+      layout="nodisplay"
+      side="right">
+    <div class="toggle-navigationv2">
+        <div on='tap:sidebar.close' class="close-nav">X CLOSE</div>
+        <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
     </div>
+</amp-sidebar>
+
 </nav>
 
 <?php if ( is_single() ) {  
