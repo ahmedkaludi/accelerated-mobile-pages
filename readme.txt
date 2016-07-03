@@ -53,3 +53,6 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 = 0.5 =
 * Added AMP Markup for Google Structured data. This will fix the issues in Webmaster tools.
+
+= 0.6 =
+* Improved Navigation Menu, Search Console errors fixed, Social Sharing option, Pages support, Force redirection for mobile users removed and many other bug fixes
