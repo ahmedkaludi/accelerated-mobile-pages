@@ -7,7 +7,6 @@
 */
 
 function amp_custom_style() { ?>
-<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 	<style amp-custom>
         body{
               font: 16px/1.4 Sans-serif;
