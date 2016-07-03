@@ -59,8 +59,8 @@
 </header>
 
 <nav>
-     <a href="#" class="toggle-text">Navigate</a>
-    <div id="toggle-navigation"><?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
+<div class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
+    <div class="toggle-navigation"><?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
     </div>
 </nav>
 

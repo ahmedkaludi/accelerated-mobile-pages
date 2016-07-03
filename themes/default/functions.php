@@ -25,7 +25,7 @@ function amp_custom_style() { ?>
             line-height: 1;
             margin: 15px;
         }
-        nav{
+        .nav_container{
             padding: 15px;
             background: #312C7E;
             color: #fff;
@@ -92,7 +92,7 @@ function amp_custom_style() { ?>
         .subtitle{
             font-size: 12px;
         }
-        nav ul{
+        .toggle-navigation ul{
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -103,18 +103,25 @@ function amp_custom_style() { ?>
             content: "";
             clear: both
         }
-        nav ul li{
+        .toggle-navigation ul li{
             font-size: 13px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.11);
             padding: 11px 0px;
             width: 25%;
             float: left;
+            text-align: center;
+            margin-top: 6px
         }
-        nav ul ul{
+        .toggle-navigation ul ul{
             display: none
         }
-        nav ul li a{
-            color: #eee
+        .toggle-navigation ul li a{
+            color: #eee;
+            padding: 15px;
+        }
+        .toggle-navigation{
+            display: none;
+            background: #444;
         }
         .toggle-text{
             color: #DCDCDC;
@@ -131,6 +138,13 @@ function amp_custom_style() { ?>
             margin-left: -40px;
             letter-spacing: 1px;
         }
+        .nav_container:hover + .toggle-navigation,
+        .toggle-navigation:hover,
+        .toggle-navigation:active,
+        .toggle-navigation:focus{
+            display: inline-block;
+            width: 100%;
+        } 
         .clearfix{
             clear: both
         }
@@ -213,7 +227,7 @@ function amp_custom_style() { ?>
         main{
             padding: 25px 15% 25px 15%;      
         }
-        nav ul li{
+        .toggle-navigation ul li{
             width: 20%
         }
 
@@ -229,7 +243,7 @@ function amp_custom_style() { ?>
             main{
                 padding: 25px 18px 25px 18px;      
             }
-        nav ul li{
+        .toggle-navigation ul li{
             width: 50%
         }
         }
