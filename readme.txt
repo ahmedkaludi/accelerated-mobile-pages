@@ -11,7 +11,24 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 == Description ==
 
+** Demo & Full Features list coming soon **
+
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. This is the first AMP for WP plugin. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
+
+HOW TO TEST IF AMP IS WORKING OR NOT?
+After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
+
+HOW CAN I VIEW THE AMP VERSION OF MY SITE?
+To view the AMP version, add /?amp at the end of your url. An example would be http://Website.com/?amp .... and No, you don't have to worry about duplication of the content because that has been taken care of the canonical tag as suggested by Google.
+
+HOW DO I REPORT BUGS:
+<i>You</i> can report the bugs at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues
+
+WILL YOU ADD NEW FEATURES UPON MY REQUEST?
+Yes, Absolutely! I would suggest you to send your feature request by creating an issue in Github at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/ . It helps us organize the feedback easily.
+
+HOW DO I GET IN TOUCH?
+You can contact me using this url: http://ahmedkaludi.com/contact-me/
 
 == Installation ==
 
