@@ -1,4 +1,4 @@
-=== Accelerated Mobile Pages ===
+=== Accelerated Mobile Pages ( AMP ) ===
 Contributors: mohammed_kaludi, ahmedkaludi
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
