@@ -104,7 +104,15 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Added AMP Markup for Google Structured data. This will fix the issues in Webmaster tools.
 
 = 0.6 =
-* Improved Navigation Menu, Search Console errors fixed, Social Sharing option, Pages support, Force redirection for mobile users removed and many other bug fixes
+* Improved Navigation Menu
+* Search Console errors fixed
+* Social Sharing option
+* Pages support
+* Force redirection for mobile users removed and many other bug fixes
 
 = 0.7 =
-* Canonical Improved, Navigation Validation bug fixed, Two more validation bugs fixed ('role' and 'tabindex' attribute), Featured image automatically hides if it is not present, Validation issues in the images of the post's the_content
+* Canonical Improved
+* Navigation Validation bug fixed
+* Two more validation bugs fixed ('role' and 'tabindex' attribute)
+* Featured image automatically hides if it is not present
+* Validation issues in the images of the post's the_content

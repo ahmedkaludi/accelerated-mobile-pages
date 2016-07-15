@@ -111,4 +111,8 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Improved Navigation Menu, Search Console errors fixed, Social Sharing option, Pages support, Force redirection for mobile users removed and many other bug fixes
 
 = 0.7 =
-* Canonical Improved, Navigation Validation bug fixed, Two more validation bugs fixed ('role' and 'tabindex' attribute), Featured image automatically hides if it is not present, Validation issues in the images of the post's the_content
+* Canonical Improved
+* Navigation Validation bug fixed
+* Two more validation bugs fixed ('role' and 'tabindex' attribute)
+* Featured image automatically hides if it is not present
+* Validation issues in the images of the post's the_content
