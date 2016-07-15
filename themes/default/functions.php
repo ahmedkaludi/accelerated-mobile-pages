@@ -1,4 +1,10 @@
 <?php
+/* turnoff src set for validating images in the post's the_content */
+function amp_disable_srcset( $sources ) {
+    return false;
+}
+add_filter( 'wp_calculate_image_srcset', 'amp_disable_srcset' );
+
 /*
  * Added the style through the custom Hook called "amp_custom_style" and not used wp_enqueue, because of the strict rules of AMP.
  *
@@ -11,6 +17,7 @@ function amp_custom_style() {
 - Remove toggle-navigation style because it was replaced with toggle-navigationv2 */
 ?>
     <style amp-custom>
+ 
         amp-sidebar {
           width: 250px; 
         }

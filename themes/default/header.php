@@ -38,7 +38,7 @@
 		?>
 	</title>
 
-	<link rel="canonical" href="<?php the_permalink(); ?>?noamp">
+	<link rel="canonical" href="<?php the_permalink(); ?>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
 
@@ -62,20 +62,18 @@
     </div>
 </header>
 
-<nav>
-<div on='tap:sidebar.toggle' class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
+ 
+<div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
  
 <amp-sidebar id='sidebar'
       layout="nodisplay"
       side="right">
     <div class="toggle-navigationv2">
-        <div on='tap:sidebar.close' class="close-nav">X</div>
+        <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
         <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
     </div>
 </amp-sidebar>
-
-</nav>
-
+ 
 <?php if ( is_single() ) {  
     if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it. ?>
     <?php } 

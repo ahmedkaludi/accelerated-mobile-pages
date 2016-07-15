@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
 Tested up to: 4.5.2
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,4 +104,15 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Added AMP Markup for Google Structured data. This will fix the issues in Webmaster tools.
 
 = 0.6 =
-* Improved Navigation Menu, Search Console errors fixed, Social Sharing option, Pages support, Force redirection for mobile users removed and many other bug fixes
+* Improved Navigation Menu
+* Search Console errors fixed
+* Social Sharing option
+* Pages support
+* Force redirection for mobile users removed and many other bug fixes
+
+= 0.7 =
+* Canonical Improved
+* Navigation Validation bug fixed
+* Two more validation bugs fixed ('role' and 'tabindex' attribute)
+* Featured image automatically hides if it is not present
+* Validation issues in the images of the post's the_content

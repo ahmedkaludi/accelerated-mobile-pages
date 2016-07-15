@@ -24,7 +24,7 @@
 			$thumb_url = $thumb_url_array[0];            
 			?>   
 
-			<div class="post_image"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
+			<?php if ( has_post_thumbnail() ) { ?><div class="post_image"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div><?php } ?>
 
 
             <h2 class="title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" accesskey="<?php echo $access_key; $access_key++; ?>"><?php the_title(); ?></a></h2>
