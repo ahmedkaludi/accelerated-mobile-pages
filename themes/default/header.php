@@ -62,7 +62,7 @@
     </div>
 </header>
 
-<nav>
+ 
 <div on='tap:sidebar.toggle' class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
  
 <amp-sidebar id='sidebar'
@@ -74,8 +74,7 @@
     </div>
 </amp-sidebar>
 
-</nav>
-
+ 
 <?php if ( is_single() ) {  
     if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it. ?>
     <?php } 
