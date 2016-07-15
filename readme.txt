@@ -1,4 +1,4 @@
-=== Accelerated Mobile Pages ( AMP ) ===
+=== AMP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
@@ -11,24 +11,48 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 == Description ==
 
-** Demo & Full Features list coming soon **
+Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. This is the first AMP for WP plugin. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
+[View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
-HOW TO TEST IF AMP IS WORKING OR NOT?
+**Features:**
+
+* Automatically integrate AMP to your website
+* Supports Posts and Pages
+* Proper rel canonical tags which means that Google know the original page.
+* Overlay Navigation Menu bar
+* Social Sharing in the Single
+* Sexy Design
+* Separate WordPress Menu for AMP version
+
+
+**NOTE: Next Update of this plugin will be released on 4 August 2016.** [Here is the list of things](https://goo.gl/jDTPyg) that will be updated in the next update
+
+
+**How to test if AMP is working or not?** 
+
 After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
 
-HOW CAN I VIEW THE AMP VERSION OF MY SITE?
+
+**How can I view the AMP version of my site**
+
 To view the AMP version, add /?amp at the end of your url. An example would be http://Website.com/?amp .... and No, you don't have to worry about duplication of the content because that has been taken care of the canonical tag as suggested by Google.
 
-HOW DO I REPORT BUGS:
+
+**How do I Report Bugs and Suggest New Features**
+
 <i>You</i> can report the bugs at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues
 
-WILL YOU ADD NEW FEATURES UPON MY REQUEST?
+
+**Will you Add New features upon my request?**
+
 Yes, Absolutely! I would suggest you to send your feature request by creating an issue in Github at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/ . It helps us organize the feedback easily.
 
-HOW DO I GET IN TOUCH?
+
+**How do I get in touch?**
+
 You can contact me using this url: http://ahmedkaludi.com/contact-me/
+
 
 == Installation ==
 
@@ -45,7 +69,15 @@ Add /?amp at the end of your website url and you will get amp version of your we
 
 = I have addded /?amp at the end of the url and still I'm not able to see the AMP version of my site? =
 
-Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks
+Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks 
+
+
+== Screenshots ==
+1. AMP Homepage 
+2. AMP Single Post
+3. Post Navigation in Single
+4. Sticky Social sharing icons
+5. Overlay Navigation menu sidebar. 
 
 
 == Changelog ==
