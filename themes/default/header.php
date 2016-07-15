@@ -38,7 +38,7 @@
 		?>
 	</title>
 
-	<link rel="canonical" href="<?php the_permalink(); ?>?noamp">
+	<link rel="canonical" href="<?php the_permalink(); ?>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
 
