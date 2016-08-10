@@ -35,8 +35,10 @@ if ( class_exists( 'Ampwp_core' ) ) {
  * Add "amphtml" in the main theme to target it to the AMP page 
 */
 
-function add_rel_info() { ?>
-<link rel="amphtml" href="<?php the_permalink(); ?>/?amp" />
+function add_rel_info() { 
+	$amp_url = trailingslashit( get_permalink() );
+?>
+	<link rel="amphtml" href="<?php echo $amp_url; ?>?amp" />
 <?php }
 add_action( 'wp_head', 'add_rel_info' );
 
