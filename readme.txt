@@ -2,8 +2,8 @@
 Contributors: mohammed_kaludi, ahmedkaludi
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
-Tested up to: 4.5.2
-Stable tag: 0.7
+Tested up to: 4.5.3
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Separate WordPress Menu for AMP version
 
 
-**NOTE: Next Update of this plugin will be released on 4 August 2016.** [Here is the list of things](https://goo.gl/jDTPyg) that will be updated in the next update
+**NOTE: Next Big Update of this plugin will be released on 7th September 2016.
 
 
 **How to test if AMP is working or not?** 
@@ -116,3 +116,8 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Two more validation bugs fixed ('role' and 'tabindex' attribute)
 * Featured image automatically hides if it is not present
 * Validation issues in the images of the post's the_content
+
+= 0.7.1 =
+* Bug #24 (Github) fixed
+* Strip Style tags for faster & better validation
+* Bug #21 (Github) fixed

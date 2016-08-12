@@ -368,8 +368,20 @@ function amp_image_tag($content) {
     $content = strtr($content, $replace);
     return $content;
 }
-
 add_filter('the_content','amp_image_tag');
 
 
+// Strip the styles
+add_filter( 'the_content', 'the_content_filter', 20 );
+function the_content_filter( $content ) {
+    $content = preg_replace('#<p.*?>(.*?)</p>#i', '<p>\1</p>', $content);
+    $content = preg_replace('#<span.*?>(.*?)</span>#i', '<span>\1</span>', $content);
+    $content = preg_replace('#<ol.*?>(.*?)</ol>#i', '<ol>\1</ol>', $content);
+    $content = preg_replace('#<ul.*?>(.*?)</ul>#i', '<ul>\1</ul>', $content);
+    $content = preg_replace('#<li.*?>(.*?)</li>#i', '<li>\1</li>', $content);
+    $content = preg_replace('#<div.*?>(.*?)</div>#i', '<div>\1</div>', $content);
+    $content = preg_replace('#<td.*?>(.*?)</td>#i', '<td>\1</td>', $content);
+    $content = preg_replace('#<a style=".*?" href="(.*?)">(.*?)</a>#i', '<a href="\1">\1</a>', $content);
+    return $content;
+}
 ?>
