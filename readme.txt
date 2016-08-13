@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 0.7.1
+Stable tag: 0.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,12 +18,17 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 **Features:**
 
 * Automatically integrate AMP to your website
+* Google Analytics Support
+* User Friendly Theme Options Panel
+* Unlimited Color Scheme
+* Image Logo Upload
 * Supports Posts and Pages
 * Proper rel canonical tags which means that Google know the original page.
 * Overlay Navigation Menu bar
 * Social Sharing in the Single
 * Sexy Design
 * Separate WordPress Menu for AMP version
+* Great Support & Active Development
 
 
 **NOTE: Next Big Update of this plugin will be released on 7th September 2016.
@@ -63,6 +68,34 @@ You can contact me using this url: http://ahmedkaludi.com/contact-me/
 
 == Frequently Asked Questions ==
 
+= How to Setup Navigation Menu? =
+
+We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.
+
+= I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest? =
+
+After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.
+
+= The plugin supposed to redirect all mobile visitors to AMP version of site or not? =
+
+When you view the website from the mobile, it is not supposed to redirect you to the amp version, amp version is always ready for google in the backend, if Google wants to serve to the people, then it will get the amp version and serve to the customers.
+
+= I am worried that it will cause Duplicate content? =
+
+In the AMP version, we are using Canonical tag to solve this. I am 100% sure that using this plugin will not duplicate the content.
+
+= How do I know that my site is AMP enabled? =
+
+Add /?amp at the end of your website url and you will get amp version of your website.
+
+= I have addded /?amp at the end of the url and still I am not able to see the AMP version of my site? =
+
+Please check if you have "Pretty Permalinks" enabled. If not then activate it.
+
+= How do I report Bug reports? =
+
+Before you submit a new bug, please check if there already is an existing bug report for it. If so, it may be far more valuable to add to the existing one, than to create a new bug report. You can submit bug reports and feature requests at GitHub Issues Page.
+
 = How do I know that my site is AMP enabled? =
 
 Add /?amp at the end of your website url and you will get amp version of your website.
@@ -70,6 +103,7 @@ Add /?amp at the end of your website url and you will get amp version of your we
 = I have addded /?amp at the end of the url and still I'm not able to see the AMP version of my site? =
 
 Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks 
+
 
 
 == Screenshots ==
@@ -121,3 +155,11 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Bug #24 (Github) fixed
 * Strip Style tags for faster & better validation
 * Bug #21 (Github) fixed
+
+= 0.7.5 =
+* Google Analytics Support Added
+* Logo Support Added. If the logo is disabled, then the Title should be activated.
+* Color Scheme Feature Added
+* User friendly Options Panel Added
+* iFrame support Added
+* Few Minor Bugs Fixed

@@ -1,7 +1,6 @@
 <?php
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 if ( ! class_exists( 'AmpWP_check' ) ) {
 	/**
 	 * Class that does all the checks to determine if we are dealing with a Mobile browser

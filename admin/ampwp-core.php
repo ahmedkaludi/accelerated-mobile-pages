@@ -1,7 +1,6 @@
 <?php
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 if ( ! class_exists( 'Ampwp_core' ) ) {
 	/**
 	 * The core AmpWP class where the magic happens

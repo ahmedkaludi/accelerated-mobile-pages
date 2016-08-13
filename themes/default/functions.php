@@ -198,7 +198,7 @@ function amp_custom_style() {
             background: #444;
         }
         .toggle-text{
-            color: #DCDCDC;
+            color: #fff;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -266,6 +266,9 @@ function amp_custom_style() {
         #title h2{
             margin: 20px 0px 18px 0px;
             text-align: center;
+        }
+        .amp-logo{
+            margin: 15px 0px 10px 0px; 
         }
         .postmeta{
             font-size: 12px; 
@@ -352,6 +355,15 @@ function amp_custom_style() {
     #something:target {
       display: block;
     } 
+    /* Color Scheme start */
+        <?php global $redux_builder_amp; ?>
+        .nav_container{ 
+           <?php  echo 'background: ' . $redux_builder_amp['opt-color-rgba']['color'] .';';  ?>
+        }
+        a{ 
+            <?php echo 'color: ' . $redux_builder_amp['opt-color-rgba']['color'] .';';  ?>
+        }
+        <?php echo $redux_builder_amp['css_editor']; ?>        
 	</style>
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 <?php }
@@ -361,7 +373,6 @@ add_action('amp_custom_style','amp_custom_style');
 
 // amp_image_tag will convert all the img tags and will change it to amp-img to make it AMP compatible.
 function amp_image_tag($content) {
-
     $replace = array (
         '<img' => '<amp-img'
     );
@@ -369,6 +380,18 @@ function amp_image_tag($content) {
     return $content;
 }
 add_filter('the_content','amp_image_tag');
+
+
+// amp_iframe_tag will convert all the iframe tags and will change it to amp-iframe to make it AMP compatible.
+function amp_iframe_tag($content) {
+    $replace = array (
+        '<iframe' => '<amp-iframe',
+        '</iframe>' => '</amp-iframe>'        
+    );
+    $content = strtr($content, $replace);
+    return $content;
+}
+add_filter('the_content','amp_iframe_tag');
 
 
 // Strip the styles
@@ -381,6 +404,7 @@ function the_content_filter( $content ) {
     $content = preg_replace('#<li.*?>(.*?)</li>#i', '<li>\1</li>', $content);
     $content = preg_replace('#<div.*?>(.*?)</div>#i', '<div>\1</div>', $content);
     $content = preg_replace('#<td.*?>(.*?)</td>#i', '<td>\1</td>', $content);
+    $content = preg_replace('#<figure.*?>(.*?)</figure>#i', '<figure>\1</figure>', $content);
     $content = preg_replace('#<a style=".*?" href="(.*?)">(.*?)</a>#i', '<a href="\1">\1</a>', $content);
     return $content;
 }

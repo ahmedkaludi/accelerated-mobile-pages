@@ -4,10 +4,10 @@ https://wordpress.org/plugins/accelerated-mobile-pages/
 
 === AMP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
-Tags: accelerated mobile pages, amp, mobile, amp project, google amp, amp wp
+Tags: amp, accelerated mobile pages, mobile, amp project, google amp, amp wp
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 0.7.1
+Stable tag: 0.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,12 +22,17 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 **Features:**
 
 * Automatically integrate AMP to your website
+* Google Analytics Support
+* User Friendly Theme Options Panel
+* Unlimited Color Scheme
+* Image Logo Upload
 * Supports Posts and Pages
 * Proper rel canonical tags which means that Google know the original page.
 * Overlay Navigation Menu bar
 * Social Sharing in the Single
 * Sexy Design
 * Separate WordPress Menu for AMP version
+* Great Support & Active Development
 
 
 **NOTE: Next Big Update of this plugin will be released on 7th September 2016.
@@ -121,3 +126,11 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Bug #24 (Github) fixed
 * Strip Style tags for faster & better validation
 * Bug #21 (Github) fixed
+
+= 0.7.5 =
+* Google Analytics Support Added
+* Logo Support Added. If the logo is disabled, then the Title should be activated.
+* Color Scheme Feature Added
+* User friendly Options Panel Added
+* iFrame support Added
+* Few Minor Bugs Fixed
