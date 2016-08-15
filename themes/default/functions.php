@@ -289,6 +289,15 @@ function amp_custom_style() {
             max-width: 100%;
             height: auto;
         }
+        amp-ad{  }
+        .amp-ad-wrapper{
+            text-align: center
+        }
+        .amp-ad-1{ margin-top: -18px; margin-bottom: -18px; }
+        .ad-1-wrapper{ margin-top: 26px;}
+        .amp-ad-2{ margin-top: 10px; margin-bottom: -15px; }
+        .amp-ad-3{   }
+        .amp-ad-4{   }
          
     @media screen and (min-width: 700px) {
      /*header, footer, main, footer {

@@ -28,7 +28,7 @@
         'page_slug' => 'amp_options',
         'page_title' => 'Accelerated Mobile Pages Options',
         'update_notice' => false,
-        'intro_text' => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>',
+        'intro_text' => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Need Help? Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>',
         'footer_text' => '',
         'admin_bar' => TRUE,
         'menu_type' => 'menu',
@@ -188,21 +188,33 @@
     'url'      => true,
     'title'    => __('Logo', 'redux-framework-demo'),
     //'desc'     => __('', 'redux-framework-demo'),
-    'subtitle' => __('Upload a logo for the AMP version. Recommend logo size is: 190x36', 'redux-framework-demo'),
+    'desc' => __('Upload a logo for the AMP version. Recommend logo size is: 190x36', 'redux-framework-demo'),
 //    'default'  => array(
 //        'url'=>'http://s.wordpress.org/style/images/codeispoetry.png'
 //    ),
-),              
-            array(
-                'id'       => 'ga-feild',
-                'type'     => 'text', 
-                'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-                'subtitle' => __( '', 'redux-framework-demo' ),
-                'desc'     => __( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y.', 'redux-framework-demo' ),
-                'default'  => 'UA-XXXXX-Y',
-            ),
-
-       
+),
+            
+//$fields = array(
+//    'id'       => 'opt-switch',
+//    'type'     => 'switch', 
+//    'title'    => __('Switch On', 'redux-framework-demo'),
+//    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
+//    'default'  => true
+//),
+            
+ 
+//            
+//            
+        array(
+            'id'       => 'ga-feild',
+            'type'     => 'text', 
+            'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
+            'subtitle' => __( '', 'redux-framework-demo' ),
+            'desc'     => __( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y.', 'redux-framework-demo' ),
+            'default'  => 'UA-XXXXX-Y',
+        ),
+//
+//       
 
 array(
     'id'        => 'opt-color-rgba',
@@ -246,6 +258,193 @@ array(
         
     ) );
 
+// ADS SECTION
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Advertisement', 'redux-framework-demo' ),
+       'desc'       => __( 'The First and Only plugin to be the Adsense AMP-AD compatible!'),
+        'id'         => 'amp-ads',
+        'subsection' => true,
+        'fields'     => array(
+             array(
+              'id'=>'enable-amp-ads-1',
+              'type' => 'switch', 
+                'title' => __('AD #1', 'redux-framework-demo'),
+                "default" => 0,
+                'subtitle'     => __('Below the Header (SiteWide)', 'redux-framework-demo'),
+                'true' => 'Enabled',
+                'false' => 'Disabled',
+                ),	
+
+                array(
+                    'id'       => 'enable-amp-ads-select-1',
+                    'type'     => 'select',
+                    'title'    => __('AD Size', 'redux-framework-demo'), 
+                    'required' => array('enable-amp-ads-1', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => '300x250',
+                        '2' => '336x280',
+                        '3' => '728x90',
+                        '4' => '300x600',
+                        '5' => '320x100'
+                    ),
+                    'default'  => '2',
+                ),
+
+                array(
+                'id'=>'enable-amp-ads-text-feild-client-1',
+                'type' => 'text',  
+                'required' => array('enable-amp-ads-1', '=' , '1'),
+                'title' => __('Data AD Client', 'redux-framework-demo'),
+                'desc'=> __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
+                'default' 		=> ''
+                ),          
+                array(
+                    'id'       => 'enable-amp-ads-text-feild-slot-1',
+                    'type'     => 'text', 
+                    'title' => __('Data AD Slot', 'redux-framework-demo'),
+                    'desc'=> __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'default'  => '',
+                    'required' => array('enable-amp-ads-1', '=' , '1'),
+                ),
+            
+//2 ad start            
+             array(
+              'id'=>'enable-amp-ads-2',
+              'type' => 'switch', 
+                'title' => __('AD #2', 'redux-framework-demo'),
+                "default" => 0,
+                'subtitle'     => __('Below the Post title (Single Post)', 'redux-framework-demo'),
+                'true' => 'Enabled',
+                'false' => 'Disabled',
+                ),	
+
+                array(
+                    'id'       => 'enable-amp-ads-select-2',
+                    'type'     => 'select',
+                    'title'    => __('AD Size', 'redux-framework-demo'), 
+                    'required' => array('enable-amp-ads-2', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => '300x250',
+                        '2' => '336x280',
+                        '3' => '728x90',
+                        '4' => '300x600',
+                        '5' => '320x100'
+                    ),
+                    'default'  => '2',
+                ),
+
+                array(
+                'id'=>'enable-amp-ads-text-feild-client-2',
+                'type' => 'text',  
+                'required' => array('enable-amp-ads-2', '=' , '1'),
+                'title' => __('Data AD Client', 'redux-framework-demo'),
+                'desc'=> __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
+                'default' 		=> ''
+                ),          
+                array(
+                    'id'       => 'enable-amp-ads-text-feild-slot-2',
+                    'type'     => 'text', 
+                    'title' => __('Data AD Slot', 'redux-framework-demo'),
+                    'desc'=> __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'default'  => '',
+                    'required' => array('enable-amp-ads-2', '=' , '1'),
+                ),
+// 2 ad end
+//3 ad start            
+             array(
+              'id'=>'enable-amp-ads-3',
+              'type' => 'switch', 
+                'title' => __('AD #3', 'redux-framework-demo'),
+                "default" => 0,
+                'subtitle'     => __('Below the Post Content (Single Post)', 'redux-framework-demo'),
+                'true' => 'Enabled',
+                'false' => 'Disabled',
+                ),	
+
+                array(
+                    'id'       => 'enable-amp-ads-select-3',
+                    'type'     => 'select',
+                    'title'    => __('AD Size', 'redux-framework-demo'), 
+                    'required' => array('enable-amp-ads-3', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => '300x250',
+                        '2' => '336x280',
+                        '3' => '728x90',
+                        '4' => '300x600',
+                        '5' => '320x100'
+                    ),
+                    'default'  => '2',
+                ),
+
+                array(
+                'id'=>'enable-amp-ads-text-feild-client-3',
+                'type' => 'text',  
+                'required' => array('enable-amp-ads-3', '=' , '1'),
+                'title' => __('Data AD Client', 'redux-framework-demo'),
+                'desc'=> __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
+                'default' 		=> ''
+                ),          
+                array(
+                    'id'       => 'enable-amp-ads-text-feild-slot-3',
+                    'type'     => 'text', 
+                    'title' => __('Data AD Slot', 'redux-framework-demo'),
+                    'desc'=> __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'default'  => '',
+                    'required' => array('enable-amp-ads-3', '=' , '1'),
+                ),
+// 3 ad end
+//4 ad start            
+             array(
+              'id'=>'enable-amp-ads-4',
+              'type' => 'switch', 
+                'title' => __('AD #4', 'redux-framework-demo'),
+                "default" => 0,
+                'subtitle'     => __('Below the Footer (SiteWide)', 'redux-framework-demo'),
+                'true' => 'Enabled',
+                'false' => 'Disabled',
+                ),	
+
+                array(
+                    'id'       => 'enable-amp-ads-select-4',
+                    'type'     => 'select',
+                    'title'    => __('AD Size', 'redux-framework-demo'), 
+                    'required' => array('enable-amp-ads-4', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => '300x250',
+                        '2' => '336x280',
+                        '3' => '728x90',
+                        '4' => '300x600',
+                        '5' => '320x100'
+                    ),
+                    'default'  => '2',
+                ),
+
+                array(
+                'id'=>'enable-amp-ads-text-feild-client-4',
+                'type' => 'text',  
+                'required' => array('enable-amp-ads-4', '=' , '1'),
+                'title' => __('Data AD Client', 'redux-framework-demo'),
+                'desc'=> __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
+                'default' 		=> ''
+                ),          
+                array(
+                    'id'       => 'enable-amp-ads-text-feild-slot-4',
+                    'type'     => 'text', 
+                    'title' => __('Data AD Slot', 'redux-framework-demo'),
+                    'desc'=> __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'default'  => '',
+                    'required' => array('enable-amp-ads-4', '=' , '1'),
+                )
+// 3 ad end
+        ),
+      
+    ) );
+
+// CSS
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Custom CSS Editor', 'redux-framework-demo' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',

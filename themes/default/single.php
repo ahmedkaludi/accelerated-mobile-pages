@@ -3,7 +3,7 @@
 	<div id="contentwrap">
  		<?php if ( have_posts() ): while ( have_posts() ): the_post(); ?>
 
-        <div class="postmeta">
+        <div class="postmeta <?php if($redux_builder_amp['enable-amp-ads-1'] == true) : ?>ad-1-wrapper<?php endif ?>">
 			<p>By <a href="#"><?php the_author_meta( 'display_name' ); ?></a> on <?php the_time( get_option( 'date_format' ) ) ?>   <span>Posted in <?php the_category( ', ' ) ?></span></p>
 		</div>
         
@@ -12,6 +12,27 @@
 		</div>
 
 		<div class="post"> 
+<?php if($redux_builder_amp['enable-amp-ads-3'] == true) : ?>
+    <div class="amp-ad-wrapper">
+    <amp-ad class="amp-ad-3"
+    <?php if($redux_builder_amp['enable-amp-ads-select-3'] == 1) : ?>
+      width=300 height=250
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 2) :?>
+      width=336 height=280
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 3) :?>
+      width=728 height=90 
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 4) :?>
+      width=300 height=600
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 5) :?>
+      width=320 height=100
+    <?php endif?>
+      type="adsense"
+      data-ad-client="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-client-3']; ?>"
+      data-ad-slot="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-slot-3']; ?>">
+    </amp-ad>  
+    </div>
+<?php elseif ($redux_builder_amp['enable-amp-ads-3'] == false) : endif ?>
+            
   <div class="sticky_social">
     <amp-social-share type="twitter"
         width="50"
@@ -35,7 +56,29 @@
 
 			<?php the_content(); ?>
 			<?php wp_link_pages( 'before=<p>&after=</p>&next_or_number=number&pagelink=Page %' ); ?>
-		</div>
+
+<?php if($redux_builder_amp['enable-amp-ads-4'] == true) : ?>
+    <div class="amp-ad-wrapper">
+    <amp-ad class="amp-ad-4"
+    <?php if($redux_builder_amp['enable-amp-ads-select-4'] == 1) : ?>
+      width=300 height=250
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 2) :?>
+      width=336 height=280
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 3) :?>
+      width=728 height=90
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 4) :?>
+      width=300 height=600
+    <?php elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 5) :?>
+      width=320 height=100
+    <?php endif?>
+      type="adsense"
+      data-ad-client="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-client-4']; ?>"
+      data-ad-slot="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-slot-4']; ?>">
+    </amp-ad>    
+    </div>    
+<?php elseif ($redux_builder_amp['enable-amp-ads-4'] == false) : endif ?>            
+            
+        </div>
 		
 		<div id="posttags">
 			<p><?php the_tags( 'Tags: ', ', ' ); ?></p>

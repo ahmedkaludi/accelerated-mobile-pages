@@ -106,3 +106,37 @@
     margin-bottom: 5px;
     margin-top: 5px;
 }
+.redux-container-switch .cb-enable{
+    border-radius: 20px 0px 0px 20px !important;
+    padding: 5px 13px 5px 15px !important
+
+}
+.redux-container-switch .cb-disable{
+    border-radius: 0px 20px 20px 0px !important;
+    padding: 5px 17px 5px 10px !important;
+}
+.admin-color-fresh .redux-container-switch .cb-disable, .admin-color-fresh .redux-container-switch .cb-enable, .admin-color-fresh .ui-state-default, .admin-color-fresh .ui-widget-content .ui-state-default, .admin-color-fresh .ui-widget-header .ui-state-default, .wp-customizer .redux-container-switch .cb-disable, .wp-customizer .redux-container-switch .cb-enable, .wp-customizer .ui-state-default, .wp-customizer .ui-widget-content .ui-state-default, .wp-customizer .ui-widget-header .ui-state-default{
+    border: 0;
+    background: #f2f2f2 !important;
+    color: #777;
+}
+.redux-container-switch .switch-options{
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+}
+.admin-color-fresh .redux-container-switch .cb-enable.selected, .admin-color-fresh .redux-field-container .ui-buttonset .ui-state-active, .wp-customizer .redux-container-switch .cb-enable.selected, .wp-customizer .redux-field-container .ui-buttonset .ui-state-active {
+    background: #4452a7 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+.admin-color-fresh .redux-container-switch .cb-disable.selected{
+    background: #303f9f !important;
+    color: #fff;
+    box-shadow: none !important;
+    border: 0 !important;
+    
+}
+.wp-customizer .redux-container-switch .cb-disable.selected{
+    background: red !important
+}
