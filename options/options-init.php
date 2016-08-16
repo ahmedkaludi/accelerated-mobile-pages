@@ -257,11 +257,17 @@
             'type'     => 'select',
             'multi'    => true,
             'title'    => __('Hide AMP on Specific Posts', 'redux-framework-demo'),
-            'data' => 'post',
-            'args' => array(
+            'data'     => 'post',
+            'args'     => array(
                 'post_type' => 'post', 
                 'posts_per_page' => -1
             ),
+        ),
+        array(
+            'id'       => 'amp-footer-text',
+            'title'    => __('Footer', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'Copyright &copy; 2016'
         ),    
     )
 
