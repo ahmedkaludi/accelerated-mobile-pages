@@ -183,28 +183,25 @@
         'subsection' => true,
         'fields'     => array(
             $fields =  array(
-    'id'       => 'opt-media',
-    'type'     => 'media', 
-    'url'      => true,
-    'title'    => __('Logo', 'redux-framework-demo'),
-    //'desc'     => __('', 'redux-framework-demo'),
-    'desc' => __('Upload a logo for the AMP version. Recommend logo size is: 190x36', 'redux-framework-demo'),
-//    'default'  => array(
-//        'url'=>'http://s.wordpress.org/style/images/codeispoetry.png'
-//    ),
-),
+                'id'       => 'opt-media',
+                'type'     => 'media', 
+                'url'      => true,
+                'title'    => __('Logo', 'redux-framework-demo'),
+                //'desc'     => __('', 'redux-framework-demo'),
+                'desc' => __('Upload a logo for the AMP version. Recommend logo size is: 190x36', 'redux-framework-demo'),
+            //    'default'  => array(
+            //        'url'=>'http://s.wordpress.org/style/images/codeispoetry.png'
+            //    ),
+            ),
             
-//$fields = array(
-//    'id'       => 'opt-switch',
-//    'type'     => 'switch', 
-//    'title'    => __('Switch On', 'redux-framework-demo'),
-//    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
-//    'default'  => true
-//),
-            
- 
-//            
-//            
+            //$fields = array(
+            //    'id'       => 'opt-switch',
+            //    'type'     => 'switch', 
+            //    'title'    => __('Switch On', 'redux-framework-demo'),
+            //    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
+            //    'default'  => true
+            //),
+           
         array(
             'id'       => 'ga-feild',
             'type'     => 'text', 
@@ -213,46 +210,60 @@
             'desc'     => __( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y.', 'redux-framework-demo' ),
             'default'  => 'UA-XXXXX-Y',
         ),
-//
-//       
-
-array(
-    'id'        => 'opt-color-rgba',
-    'type'      => 'color_rgba',
-    'title'     => 'Color Scheme',
-    'subtitle'  => 'Set color and alpha channel',
-    'desc'      => 'Change the color scheme to your branding color',
- 
-    // See Notes below about these lines.
-    //'output'    => array('background-color' => '.site-header'),
-    //'compiler'  => array('color' => '.site-header, .site-footer', 'background-color' => '.nav-bar'),
-    'default'   => array(
-        'color'     => '#312C7E',
-        'alpha'     => 1
-    ),
- 
-    // These options display a fully functional color palette.  Omit this argument
-    // for the minimal color picker, and change as desired.
-    'options'       => array(
-        'show_input'                => true,
-        'show_initial'              => true,
-        'show_alpha'                => true,
-        'show_palette'              => true,
-        'show_palette_only'         => false,
-        'show_selection_palette'    => true,
-        'max_palette_size'          => 10,
-        'allow_empty'               => true,
-        'clickout_fires_change'     => false,
-        'choose_text'               => 'Choose',
-        'cancel_text'               => 'Cancel',
-        'show_buttons'              => true,
-        'use_extended_classes'      => true,
-        'palette'                   => null,  // show default
-        'input_text'                => 'Select Color'
-    )                        
-)          
-            
-        )
+        array(
+            'id'        => 'opt-color-rgba',
+            'type'      => 'color_rgba',
+            'title'     => 'Color Scheme',
+            'subtitle'  => 'Set color and alpha channel',
+            'desc'      => 'Change the color scheme to your branding color',
+         
+            // See Notes below about these lines.
+            //'output'    => array('background-color' => '.site-header'),
+            //'compiler'  => array('color' => '.site-header, .site-footer', 'background-color' => '.nav-bar'),
+            'default'   => array(
+                'color'     => '#312C7E',
+                'alpha'     => 1
+            ),
+         
+            // These options display a fully functional color palette.  Omit this argument
+            // for the minimal color picker, and change as desired.
+            'options'       => array(
+                'show_input'                => true,
+                'show_initial'              => true,
+                'show_alpha'                => true,
+                'show_palette'              => true,
+                'show_palette_only'         => false,
+                'show_selection_palette'    => true,
+                'max_palette_size'          => 10,
+                'allow_empty'               => true,
+                'clickout_fires_change'     => false,
+                'choose_text'               => 'Choose',
+                'cancel_text'               => 'Cancel',
+                'show_buttons'              => true,
+                'use_extended_classes'      => true,
+                'palette'                   => null,  // show default
+                'input_text'                => 'Select Color'
+            )                        
+        ),
+        array(
+            'id'       => 'amp-multi-select-pages',
+            'type'     => 'select',
+            'multi'    => true,
+            'title'    => __('Hide AMP on Specific Pages', 'redux-framework-demo'),
+            'data' => 'pages',
+        ),
+        array(
+            'id'       => 'amp-multi-select-posts',
+            'type'     => 'select',
+            'multi'    => true,
+            'title'    => __('Hide AMP on Specific Posts', 'redux-framework-demo'),
+            'data' => 'post',
+            'args' => array(
+                'post_type' => 'post', 
+                'posts_per_page' => -1
+            ),
+        ),    
+    )
 
      
         
