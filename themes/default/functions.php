@@ -425,4 +425,30 @@ function the_content_filter( $content ) {
     $content = preg_replace('/target[^>]*/', '', $content);
     return $content; 
 }
+
+// Check if Jetpack is active and remove unsupported features
+if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
+    ampwp_jetpack_disable_sharing();
+    ampwp_jetpack_disable_related_posts();
+}
+/**
+ * Remove JetPack Sharing 
+ *
+ **/
+function ampwp_jetpack_disable_sharing() {
+    add_filter( 'sharing_show', '__return_false', 100 );
+}
+
+/**
+ * Remove the Related Posts placeholder and headline that gets hooked into the_content
+ *
+ * That placeholder is useless since we can't ouput, and don't want to output Related Posts in AMP.
+ *
+ **/
+function ampwp_jetpack_disable_related_posts() {
+    if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+        $ampwp_jprp = Jetpack_RelatedPosts::init();
+        remove_filter( 'the_content', array( $ampwp_jprp, 'filter_add_target_to_dom' ), 40 );
+    }
+}
 ?>
