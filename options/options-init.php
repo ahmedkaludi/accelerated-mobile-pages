@@ -28,7 +28,7 @@
         'page_slug' => 'amp_options',
         'page_title' => 'Accelerated Mobile Pages Options',
         'update_notice' => false,
-        'intro_text' => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Need Help? Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>',
+        'intro_text' => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Need Help? Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>| <a href="https://www.paypal.me/Kaludi/5" target="_blank">Donate</a>',
         'footer_text' => '',
         'admin_bar' => TRUE,
         'menu_type' => 'menu',
@@ -138,7 +138,7 @@
     Redux::setSection( $opt_name, array(
         'title' => __( 'Welcome', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'Yoast SEO' ) . '</p>'
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/blog/amp-0-7-7/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
 			               . '<h2>' . __( 'Frequently Asked Questions', 'redux-framework-demo' ) . '</h2>'
 			               . '<p><strong>' . __( 'How to Setup Navigation Menu?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.', 'redux-framework-demo' ) . '</p>'
 			               . '<p><strong>' . __( 'I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.', 'redux-framework-demo' ) . '</p>'
@@ -153,12 +153,12 @@
 ', 'redux-framework-demo' ) . '</strong><br/>' . __( 'Add /?amp at the end of your website url and you will get amp version of your website.', 'redux-framework-demo' ) . '</p>'
                       
  			               . '<p><strong>' . sprintf( __( 'I have addded /?amp at the end of the url and still I am not able to see the AMP version of my site?
-', 'redux-framework-demo' ), 'Yoast SEO' ) . '</strong><br/>'
+', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</strong><br/>'
  	   					   . sprintf( __( 'Please check if you have "Pretty Permalinks" enabled. If not then activate it.', 'redux-framework-demo' ), '' )
 						   . '</p>'
                       
  			               . '<p><strong>' . sprintf( __( 'How do I report Bug reports?
-', 'redux-framework-demo' ), 'Yoast SEO' ) . '</strong><br/>'
+', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</strong><br/>'
  	   					   . sprintf( __( 'Before you submit a new bug, please check if there already is an existing bug report for it. If so, it may be far more valuable to add to the existing one, than to create a new bug report. You can submit bug reports and feature requests at
 
  %1$sGitHub Issues Page%2$s.
@@ -169,7 +169,7 @@
  	   					   . sprintf( __( ' 
 
                       <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
-                     ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages#postform' ) . '">', '</a>' )
+                     ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
 						   . '</p></div>'
                       
 				 , 'redux-framework-demo' ),

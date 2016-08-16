@@ -3,17 +3,17 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: amp, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 0.7.6
+Stable tag: 0.7.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+Supports AMP for WordPress out of the box. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
 
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.7.7?](http://ampforwp.com/blog/amp-0-7-7/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 **Features:**
 
@@ -168,3 +168,14 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 = 0.7.6 =
 * Google Adsense Support Added with AMP-Ad 
 * Wrong Homepage rel amphtml bug fixed
+
+= 0.7.7 =
+* Proper Details at http://ampforwp.com/blog/amp-0-7-7/
+* Big Validation Error fix Update 
+* Disable AMP support on specific Pages and Posts
+* Option to disable the Post meta from the Single
+* Footer Credits and Copyright Text Option
+* New options for Social Sharing Bar in Single
+* Jetpack Social & Related Sharing Issue fixed
+* Gaping in footer if the Sticky bar is enabled
+* Text domain added on few strings

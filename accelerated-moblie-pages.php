@@ -3,9 +3,9 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: Accelerated Mobile Pages for WordPress
-Version: 0.7.7 Beta
+Version: 0.7.7
 Author: Ahmed Kaludi, Mohammed Kaludi
-Author URI: http://AhmedKaludi.com/
+Author URI: http://ampforwp.com/
 License: GPL2
 */
 // Exit if accessed directly.
