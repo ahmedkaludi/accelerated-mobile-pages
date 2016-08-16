@@ -44,44 +44,42 @@ function amp_custom_style() {
             display: inline-block
         }
         .toggle-navigationv2 ul li a{
-    padding: 15px 25px;
-    width: 100%;
-    display: inline-block;
-    background: #fafafa;
-    font-size: 14px;
-    border-bottom: 1px solid #efefef;
+            padding: 15px 25px;
+            width: 100%;
+            display: inline-block;
+            background: #fafafa;
+            font-size: 14px;
+            border-bottom: 1px solid #efefef;
         }
         .close-nav{
-    font-size: 12px;
-    background: rgba(0, 0, 0, 0.25);
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 10px;
-    border-radius: 100px;
-    line-height: 8px;
-    margin: 14px;
-    left: 191px;
-    color: #fff;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 100px;
+            line-height: 8px;
+            margin: 14px;
+            left: 191px;
+            color: #fff;
         }
         .close-nav:hover{
-    background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.45);
         }
 
         .sticky_social{
-
-    width: 100%;
-    bottom: 0;
-    display: block;
-    left: 0;
-    box-shadow: 0px 4px 7px #000;
-    background: #fff;
-    padding: 7px 0px 0px 0px;
-    position: fixed;
-    margin: 0;
-    z-index: 999;
-    text-align: center;
+            width: 100%;
+            bottom: 0;
+            display: block;
+            left: 0;
+            box-shadow: 0px 4px 7px #000;
+            background: #fff;
+            padding: 7px 0px 0px 0px;
+            position: fixed;
+            margin: 0;
+            z-index: 999;
+            text-align: center;
         }
-        
         body{
               font: 16px/1.4 Sans-serif;
         }
@@ -258,6 +256,9 @@ function amp_custom_style() {
         }
         #footer p{
             margin: 0
+        }
+        .sticky-ad-enabled  footer {
+            padding-bottom: 41px;
         }
         .single_img img{
             width: 100%;
