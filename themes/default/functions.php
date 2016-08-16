@@ -384,7 +384,7 @@ add_action('amp_custom_style','amp_custom_style');
 // amp_image_tag will convert all the img tags and will change it to amp-img to make it AMP compatible.
 function amp_image_tag($content) {
     $replace = array (
-        '<img' => '<amp-img'
+   //     '<img' => '<amp-img'
     );
     $content = strtr($content, $replace);
     return $content;
@@ -396,53 +396,33 @@ add_filter('the_content','amp_image_tag');
 function amp_iframe_tag($content) {
     $replace = array (
         '<iframe' => '<amp-iframe',
-        '</iframe>' => '</amp-iframe>'        
+        '</iframe>' => '</amp-iframe>'
     );
     $content = strtr($content, $replace);
     return $content;
 }
-add_filter('the_content','amp_iframe_tag');
+add_filter('the_content','amp_iframe_tag', 20 );
 
-
+ 
 // Strip the styles
-add_filter( 'the_content', 'the_content_filter', 20 );
-function the_content_filter( $content ) {
-    $content = preg_replace('#<p.*?>(.*?)</p>#i', '<p>\1</p>', $content);
-    $content = preg_replace('#<span.*?>(.*?)</span>#i', '<span>\1</span>', $content);
-    $content = preg_replace('#<ol.*?>(.*?)</ol>#i', '<ol>\1</ol>', $content);
-    $content = preg_replace('#<ul.*?>(.*?)</ul>#i', '<ul>\1</ul>', $content);
-    $content = preg_replace('#<li.*?>(.*?)</li>#i', '<li>\1</li>', $content);
-    $content = preg_replace('#<div.*?>(.*?)</div>#i', '<div>\1</div>', $content);
-    $content = preg_replace('#<td.*?>(.*?)</td>#i', '<td>\1</td>', $content);
-    $content = preg_replace('#<figure.*?>(.*?)</figure>#i', '<figure>\1</figure>', $content);
-    $content = preg_replace('#<a style=".*?" href="(.*?)">(.*?)</a>#i', '<a href="\1">\1</a>', $content);
-    return $content;
+add_filter( 'the_content', 'the_content_filter', 20 ); 
+function the_content_filter( $content ) { 
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content); // This will replace all sequences of two or more spaces, tabs, and/or line breaks with a single space:
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
+    $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
+    $content = preg_replace('#<fb:like\b[^>]*>(.*?)</fb:like>#i', '', $content);
+    $content = preg_replace('#<fb:comments\b[^>]*>(.*?)</fb:comments>#i', '', $content);
+    $content = preg_replace('#<script .*?>(.*?)</script>#i', '', $content); 
+    $content = preg_replace('#<script type="text/javascript">.*?</script>#i', '', $content); 
+    $content = preg_replace('#<fb:like (.*?)></fb:like>#i', '', $content); 
+    $content = preg_replace('#<fb:comments .*?></fb:comments>#i', '', $content); 
+    $content = preg_replace('#<img (.*?)>#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('#<img (.*?) />#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('/style[^>]*/', '', $content);
+    $content = preg_replace('/onclick[^>]*/', '', $content);
+    $content = preg_replace('/onmouseover[^>]*/', '', $content);
+    $content = preg_replace('/onmouseout[^>]*/', '', $content);
+    $content = preg_replace('/target[^>]*/', '', $content);
+    return $content; 
 }
-
-// Check if Jetpack is active and remove unsupported features
-if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
-    ampwp_jetpack_disable_sharing();
-    ampwp_jetpack_disable_related_posts();
-}
-/**
- * Remove JetPack Sharing 
- *
- **/
-function ampwp_jetpack_disable_sharing() {
-    add_filter( 'sharing_show', '__return_false', 100 );
-}
-
-/**
- * Remove the Related Posts placeholder and headline that gets hooked into the_content
- *
- * That placeholder is useless since we can't ouput, and don't want to output Related Posts in AMP.
- *
- **/
-function ampwp_jetpack_disable_related_posts() {
-    if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
-        $ampwp_jprp = Jetpack_RelatedPosts::init();
-        remove_filter( 'the_content', array( $ampwp_jprp, 'filter_add_target_to_dom' ), 40 );
-    }
-}
-
 ?>

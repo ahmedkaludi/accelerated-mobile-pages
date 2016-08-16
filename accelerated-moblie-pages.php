@@ -84,4 +84,5 @@ if (! function_exists( 'register_amp_menu') ) {
 	add_action( 'init', 'register_amp_menu' );
 }
 require_once( dirname( __FILE__ ) . '/options/admin-init.php' );
+require_once( dirname( __FILE__ ) . '/admin/ampwp-newsletter.php' );
 ?>
