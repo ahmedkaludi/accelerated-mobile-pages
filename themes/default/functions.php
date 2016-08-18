@@ -402,9 +402,6 @@ function amp_iframe_tag($content) {
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
-
-// Fixed both Responsive and YouTube problems with code taken from the specification: https://ampbyexample.com/components/amp-iframe/
-
  
 // Strip the styles
 add_filter( 'the_content', 'the_content_filter', 20 ); 
