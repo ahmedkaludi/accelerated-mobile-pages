@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="post"> 
-<<<<<<< HEAD
+
   <div class="sticky_social">
     <amp-social-share type="twitter"
         width="50"
@@ -38,7 +38,7 @@
   </div>
   
   <?php echo isa_amp_featured_img(); ?>
-=======
+
       <?php if($redux_builder_amp['enable-amp-ads-3'] == true)  { ?>
         <div class="amp-ad-wrapper">
           <amp-ad class="amp-ad-3"
@@ -82,7 +82,7 @@
           <?php } ?>
         </div>
       <?php } ?>
->>>>>>> master
+
 
 			<?php the_content(); ?>
 			<?php wp_link_pages( 'before=<p>&after=</p>&next_or_number=number&pagelink=Page %' ); ?>
