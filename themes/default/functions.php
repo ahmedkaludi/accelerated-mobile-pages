@@ -5,6 +5,34 @@ function amp_disable_srcset( $sources ) {
 }
 add_filter( 'wp_calculate_image_srcset', 'amp_disable_srcset' );
 
+function amp_featured_img( $size = 'medium' ) {
+
+    global $post;
+
+    if ( has_post_thumbnail( $post->ID ) ) {
+
+        $thumb_id = get_post_thumbnail_id( $post->ID );
+        $img = wp_get_attachment_image_src( $thumb_id, $size );
+        $img_src = $img[0];
+        $w = $img[1];
+        $h = $img[2];
+
+        $alt = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+
+        if(empty($alt)) {
+            $attachment = get_post( $thumb_id );
+            $alt = trim(strip_tags( $attachment->post_title ) );
+        } ?>
+        <amp-img id="feat-img" layout="responsive" src="<?php echo esc_url( $img_src ); ?>" <?php
+        if ( $img_srcset = wp_get_attachment_image_srcset( $thumb_id, $size ) ) {
+            ?> srcset="<?php echo esc_attr( $img_srcset ); ?>" <?php
+        }
+        ?> alt="<?php echo esc_attr( $alt ); ?>" width="<?php echo $w; ?>" height="<?php echo $h; ?>">
+    </amp-img>
+        <?php
+    }
+}
+
 /*
  * Added the style through the custom Hook called "amp_custom_style" and not used wp_enqueue, because of the strict rules of AMP.
  *
@@ -383,6 +411,7 @@ add_action('amp_custom_style','amp_custom_style');
 
 // amp_image_tag will convert all the img tags and will change it to amp-img to make it AMP compatible.
 function amp_image_tag($content) {
+
     $replace = array (
    //     '<img' => '<amp-img'
     );
@@ -397,12 +426,66 @@ function amp_iframe_tag($content) {
     $replace = array (
         '<iframe' => '<amp-iframe',
         '</iframe>' => '</amp-iframe>'
+
+    $replace = array (
+   //     '<img' => '<amp-img'
+
+    );
+    $content = strtr($content, $replace);
+    return $content;
+}
+
+add_filter('the_content','amp_iframe_tag', 20 );
+
+ 
+// Strip the styles
+add_filter( 'the_content', 'the_content_filter', 20 ); 
+function the_content_filter( $content ) { 
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content); // This will replace all sequences of two or more spaces, tabs, and/or line breaks with a single space:
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
+    $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
+    $content = preg_replace('#<fb:like\b[^>]*>(.*?)</fb:like>#i', '', $content);
+    $content = preg_replace('#<fb:comments\b[^>]*>(.*?)</fb:comments>#i', '', $content);
+    $content = preg_replace('#<script .*?>(.*?)</script>#i', '', $content); 
+    $content = preg_replace('#<script type="text/javascript">.*?</script>#i', '', $content); 
+    $content = preg_replace('#<fb:like (.*?)></fb:like>#i', '', $content); 
+    $content = preg_replace('#<fb:comments .*?></fb:comments>#i', '', $content); 
+    $content = preg_replace('#<img (.*?)>#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('#<img (.*?) />#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('/style[^>]*/', '', $content);
+    $content = preg_replace('/onclick[^>]*/', '', $content);
+    $content = preg_replace('/onmouseover[^>]*/', '', $content);
+    $content = preg_replace('/onmouseout[^>]*/', '', $content);
+    $content = preg_replace('/target[^>]*/', '', $content);
+    return $content; 
+}
+
+add_filter('the_content','amp_image_tag');
+
+
+// Check if Jetpack is active and remove unsupported features
+if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
+    ampwp_jetpack_disable_sharing();
+    ampwp_jetpack_disable_related_posts();
+}
+/**
+ * Remove JetPack Sharing 
+ *
+ **/
+function ampwp_jetpack_disable_sharing() {
+    add_filter( 'sharing_show', '__return_false', 100 );
+}
+
+// amp_iframe_tag will convert all the iframe tags and will change it to amp-iframe to make it AMP compatible.
+function amp_iframe_tag($content) {
+    $replace = array (
+        '<iframe' => '<amp-iframe layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups"',
+        '</iframe>' => '</amp-iframe>'
     );
     $content = strtr($content, $replace);
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
-
  
 // Strip the styles
 add_filter( 'the_content', 'the_content_filter', 20 ); 
