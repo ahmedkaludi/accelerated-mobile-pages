@@ -395,14 +395,13 @@ add_filter('the_content','amp_image_tag');
 // amp_iframe_tag will convert all the iframe tags and will change it to amp-iframe to make it AMP compatible.
 function amp_iframe_tag($content) {
     $replace = array (
-        '<iframe' => '<amp-iframe',
+        '<iframe' => '<amp-iframe layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups"',
         '</iframe>' => '</amp-iframe>'
     );
     $content = strtr($content, $replace);
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
-
  
 // Strip the styles
 add_filter( 'the_content', 'the_content_filter', 20 ); 
