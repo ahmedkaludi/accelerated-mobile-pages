@@ -3,8 +3,9 @@
 
   <head>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    
+
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
     <?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
@@ -12,9 +13,10 @@
     <?php } ?>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-0.1.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<title>
-		<?php 
+		<?php
 			global $query_string;
 
 			if ( is_home() )
@@ -48,21 +50,23 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
 
     <?php
-    /* 
+    /*
      * Added the custom style through the custom Hook called "amp_custom_style" and not used wp_enqueue, because of the strict rules of AMP.
-     * 
+     *
     */
      do_action('amp_custom_style'); ?>
 
   </head>
 
-<body id="<?php if ( !is_single() && !is_page() ) { ?>home<?php } ?>" class="<?php if( is_single() 
+<body id="<?php if ( !is_single() && !is_page() ) { ?>home<?php } ?>" class="<?php if( is_single()
 && $redux_builder_amp['enable-single-social-icons'] == true )  { ?>sticky-ad-enabled <?php }?>">
 
-  <header class="container">    
+  <header class="container">
       <div id="headerwrap">
           <div id="header">
-              
+
+              <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">     <a href="#" class="toggle-text"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
+
             <?php global $redux_builder_amp; ?>
 
             <?php if (true == ($redux_builder_amp['opt-media']['url'])): ?>
@@ -78,9 +82,6 @@
       </div>
   </header>
 
-   
-  <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">     <a href="#" class="toggle-text">Navigate</a></div>
-   
   <amp-sidebar id='sidebar'
         layout="nodisplay"
         side="right">
@@ -89,14 +90,17 @@
           <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
       </div>
   </amp-sidebar>
-   
-  <?php if ( is_single() ) {  
+
+  <?php if ( is_single() ) {
       if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it. ?>
-      <?php } 
+      <?php }
   } ?>
   <main role="main">
       <?php if($redux_builder_amp['enable-amp-ads-1'] == true) : ?>
       <div class="amp-ad-wrapper">
+        <div class="disclosure-message">
+<p>ADVERTISEMENT</p>
+</div>
       <amp-ad class="amp-ad-1"
       <?php if($redux_builder_amp['enable-amp-ads-select-1'] == 1) : ?>
         width=300 height=250
@@ -108,10 +112,10 @@
         width=300 height=600
       <?php elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 5) :?>
         width=320 height=100
-      <?php endif?> 
+      <?php endif?>
         type="adsense"
         data-ad-client="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-client-1']; ?>"
         data-ad-slot="<?php echo $redux_builder_amp['enable-amp-ads-text-feild-slot-1']; ?>">
-      </amp-ad>  
+      </amp-ad>
       </div>
   <?php elseif ($redux_builder_amp['enable-amp-ads-1'] == false) : endif ?>

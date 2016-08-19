@@ -1,4 +1,5 @@
 <?php
+
 /* turnoff src set for validating images in the post's the_content */
 function amp_disable_srcset( $sources ) {
     return false;
@@ -11,15 +12,55 @@ add_filter( 'wp_calculate_image_srcset', 'amp_disable_srcset' );
  * Check the url for the STRICT Markup required
  * https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#required-markup
 */
+function isa_amp_featured_img( $size = 'medium' ) {
+
+    global $post;
+
+    if ( has_post_thumbnail( $post->ID ) ) {
+
+        $thumb_id = get_post_thumbnail_id( $post->ID );
+        $img = wp_get_attachment_image_src( $thumb_id, $size );
+        $img_src = $img[0];
+        $w = $img[1];
+        $h = $img[2];
+
+        $alt = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+
+        if(empty($alt)) {
+            $attachment = get_post( $thumb_id );
+            $alt = trim(strip_tags( $attachment->post_title ) );
+        } ?>
+        <amp-img id="feat-img" layout="responsive" src="<?php echo esc_url( $img_src ); ?>" <?php
+        if ( $img_srcset = wp_get_attachment_image_srcset( $thumb_id, $size ) ) {
+            ?> srcset="<?php echo esc_attr( $img_srcset ); ?>" <?php
+        }
+        ?> alt="<?php echo esc_attr( $alt ); ?>" width="<?php echo $w; ?>" height="<?php echo $h; ?>">
+    </amp-img>
+        <?php
+    }
+}
+
+/**
+ * Make AMP use your custom single.php.
+ */
+function my_amp_set_custom_template( $file, $type, $post ) {
+    if ( 'single' === $type ) {
+        $file =  get_stylesheet_directory() . '/amp/single.php';
+    }
+    return $file;
+}
+add_filter( 'amp_post_template_file', 'my_amp_set_custom_template', 10, 3 );
+
+
 
 function amp_custom_style() {
 /* Style Improvements:
 - Remove toggle-navigation style because it was replaced with toggle-navigationv2 */
 ?>
     <style amp-custom>
- 
+
         amp-sidebar {
-          width: 250px; 
+          width: 250px;
         }
         .amp-sidebar-image {
           line-height: 100px;
@@ -31,13 +72,13 @@ function amp_custom_style() {
            cursor: pointer;
         }
         .toggle-navigationv2{
-            
+
         }
         .toggle-navigationv2 ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-        } 
+        }
         .toggle-navigationv2 ul ul li a  {
             padding-left: 35px;
             background: #fff;
@@ -88,7 +129,7 @@ function amp_custom_style() {
         }
         a { color: #312C7E; text-decoration: none}
         #header{
-            text-align: center; 
+            text-align: center;
         }
         #header h1{
             text-align: center;
@@ -106,7 +147,7 @@ function amp_custom_style() {
         main{
             background: #f1f1f1;
             margin-top: 0;
-            padding: 25px 15% 25px 15%;      
+            padding: 25px 15% 25px 15%;
         }
         .post{
             margin-bottom: 12px;
@@ -117,7 +158,7 @@ function amp_custom_style() {
             -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
             -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
             box-shadow: 0 2px 3px rgba(0,0,0,.05);
-            padding: 15px;  
+            padding: 15px;
         }
         #home .post{
             margin-bottom: 12px;
@@ -128,7 +169,7 @@ function amp_custom_style() {
             -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
             -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
             box-shadow: 0 2px 3px rgba(0,0,0,.05);
-            padding: 15px; 
+            padding: 15px;
             min-height: 75px;
         }
         .post_image{
@@ -216,11 +257,11 @@ function amp_custom_style() {
         .toggle-navigation:focus{
             display: inline-block;
             width: 100%;
-        } 
+        }
         .clearfix{
             clear: both
         }
-        #pagination{ 
+        #pagination{
             width: 100%;
             margin-top: 5px;
         }
@@ -269,10 +310,10 @@ function amp_custom_style() {
             text-align: center;
         }
         .amp-logo{
-            margin: 15px 0px 10px 0px; 
+            margin: 15px 0px 10px 0px;
         }
         .postmeta{
-            font-size: 12px; 
+            font-size: 12px;
             padding-bottom: 10px;
             color: #555;
             border-bottom: 1px solid #DADADA;
@@ -299,7 +340,7 @@ function amp_custom_style() {
         .amp-ad-2{ margin-top: 10px; margin-bottom: -15px; }
         .amp-ad-3{   }
         .amp-ad-4{   }
-         
+
     @media screen and (min-width: 700px) {
      /*header, footer, main, footer {
         margin: 0 10%;
@@ -312,7 +353,7 @@ function amp_custom_style() {
             padding: 0
         }
         main{
-            padding: 25px 15% 25px 15%;      
+            padding: 25px 15% 25px 15%;
         }
         .toggle-navigation ul li{
             width: 20%
@@ -325,10 +366,10 @@ function amp_custom_style() {
             }
            #home .post p{
                display: none
-            } 
-        
+            }
+
             main{
-                padding: 25px 18px 25px 18px;      
+                padding: 25px 18px 25px 18px;
             }
         .toggle-navigation ul li{
             width: 50%
@@ -348,14 +389,14 @@ function amp_custom_style() {
         margin: 0 18%;
       }*/
         .container{
-            padding: 0 15%;      
-        } 
+            padding: 0 15%;
+        }
         main{
-            padding: 25px 15% 25px 15%;      
+            padding: 25px 15% 25px 15%;
         }
         header, footer{
             padding: 0
-        } 
+        }
     }
 
     #something {
@@ -364,16 +405,16 @@ function amp_custom_style() {
 
     #something:target {
       display: block;
-    } 
+    }
     /* Color Scheme start */
         <?php global $redux_builder_amp; ?>
-        .nav_container{ 
+        .nav_container{
            <?php  echo 'background: ' . $redux_builder_amp['opt-color-rgba']['color'] .';';  ?>
         }
-        a{ 
+        a{
             <?php echo 'color: ' . $redux_builder_amp['opt-color-rgba']['color'] .';';  ?>
         }
-        <?php echo $redux_builder_amp['css_editor']; ?>        
+        <?php echo $redux_builder_amp['css_editor']; ?>
 	</style>
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 <?php }
@@ -402,19 +443,20 @@ function amp_iframe_tag($content) {
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
- 
+
+
 // Strip the styles
-add_filter( 'the_content', 'the_content_filter', 20 ); 
-function the_content_filter( $content ) { 
+add_filter( 'the_content', 'the_content_filter', 20 );
+function the_content_filter( $content ) {
     $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content); // This will replace all sequences of two or more spaces, tabs, and/or line breaks with a single space:
     $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
     $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
     $content = preg_replace('#<fb:like\b[^>]*>(.*?)</fb:like>#i', '', $content);
     $content = preg_replace('#<fb:comments\b[^>]*>(.*?)</fb:comments>#i', '', $content);
-    $content = preg_replace('#<script .*?>(.*?)</script>#i', '', $content); 
-    $content = preg_replace('#<script type="text/javascript">.*?</script>#i', '', $content); 
-    $content = preg_replace('#<fb:like (.*?)></fb:like>#i', '', $content); 
-    $content = preg_replace('#<fb:comments .*?></fb:comments>#i', '', $content); 
+    $content = preg_replace('#<script .*?>(.*?)</script>#i', '', $content);
+    $content = preg_replace('#<script type="text/javascript">.*?</script>#i', '', $content);
+    $content = preg_replace('#<fb:like (.*?)></fb:like>#i', '', $content);
+    $content = preg_replace('#<fb:comments .*?></fb:comments>#i', '', $content);
     $content = preg_replace('#<img (.*?)>#i', '<amp-img layout="responsive" \1></amp-img>', $content);
     $content = preg_replace('#<img (.*?) />#i', '<amp-img layout="responsive" \1></amp-img>', $content);
     $content = preg_replace('/style[^>]*/', '', $content);
@@ -422,7 +464,7 @@ function the_content_filter( $content ) {
     $content = preg_replace('/onmouseover[^>]*/', '', $content);
     $content = preg_replace('/onmouseout[^>]*/', '', $content);
     $content = preg_replace('/target[^>]*/', '', $content);
-    return $content; 
+    return $content;
 }
 
 // Check if Jetpack is active and remove unsupported features
@@ -431,7 +473,7 @@ if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
     ampwp_jetpack_disable_related_posts();
 }
 /**
- * Remove JetPack Sharing 
+ * Remove JetPack Sharing
  *
  **/
 function ampwp_jetpack_disable_sharing() {
