@@ -37,7 +37,7 @@
         height="28"></amp-social-share>
   </div>
   
-  <?php echo isa_amp_featured_img(); ?>
+  <?php echo amp_featured_img(); ?>
 
       <?php if($redux_builder_amp['enable-amp-ads-3'] == true)  { ?>
         <div class="amp-ad-wrapper">
