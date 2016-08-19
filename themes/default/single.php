@@ -59,8 +59,6 @@
         </div>
       <?php } ?>
 
-	<?php echo amp_featured_img(); ?>
-
 			<?php the_content(); ?>
 			<?php wp_link_pages( 'before=<p>&after=</p>&next_or_number=number&pagelink=Page %' ); ?>
 
