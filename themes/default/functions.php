@@ -5,6 +5,7 @@ function amp_disable_srcset( $sources ) {
 }
 add_filter( 'wp_calculate_image_srcset', 'amp_disable_srcset' );
 
+<<<<<<< HEAD
 function amp_featured_img( $size = 'medium' ) {
 
     global $post;
@@ -33,6 +34,8 @@ function amp_featured_img( $size = 'medium' ) {
     }
 }
 
+=======
+>>>>>>> master
 /*
  * Added the style through the custom Hook called "amp_custom_style" and not used wp_enqueue, because of the strict rules of AMP.
  *
@@ -411,6 +414,7 @@ add_action('amp_custom_style','amp_custom_style');
 
 // amp_image_tag will convert all the img tags and will change it to amp-img to make it AMP compatible.
 function amp_image_tag($content) {
+<<<<<<< HEAD
     $replace = array (
    //     '<img' => '<amp-img'
     );
@@ -425,12 +429,68 @@ function amp_iframe_tag($content) {
     $replace = array (
         '<iframe' => '<amp-iframe',
         '</iframe>' => '</amp-iframe>'
+=======
+    $replace = array (
+   //     '<img' => '<amp-img'
+>>>>>>> master
+    );
+    $content = strtr($content, $replace);
+    return $content;
+}
+<<<<<<< HEAD
+add_filter('the_content','amp_iframe_tag', 20 );
+
+ 
+// Strip the styles
+add_filter( 'the_content', 'the_content_filter', 20 ); 
+function the_content_filter( $content ) { 
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content); // This will replace all sequences of two or more spaces, tabs, and/or line breaks with a single space:
+    $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
+    $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
+    $content = preg_replace('#<fb:like\b[^>]*>(.*?)</fb:like>#i', '', $content);
+    $content = preg_replace('#<fb:comments\b[^>]*>(.*?)</fb:comments>#i', '', $content);
+    $content = preg_replace('#<script .*?>(.*?)</script>#i', '', $content); 
+    $content = preg_replace('#<script type="text/javascript">.*?</script>#i', '', $content); 
+    $content = preg_replace('#<fb:like (.*?)></fb:like>#i', '', $content); 
+    $content = preg_replace('#<fb:comments .*?></fb:comments>#i', '', $content); 
+    $content = preg_replace('#<img (.*?)>#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('#<img (.*?) />#i', '<amp-img layout="responsive" \1></amp-img>', $content);
+    $content = preg_replace('/style[^>]*/', '', $content);
+    $content = preg_replace('/onclick[^>]*/', '', $content);
+    $content = preg_replace('/onmouseover[^>]*/', '', $content);
+    $content = preg_replace('/onmouseout[^>]*/', '', $content);
+    $content = preg_replace('/target[^>]*/', '', $content);
+    return $content; 
+}
+=======
+add_filter('the_content','amp_image_tag');
+>>>>>>> master
+
+// Check if Jetpack is active and remove unsupported features
+if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
+    ampwp_jetpack_disable_sharing();
+    ampwp_jetpack_disable_related_posts();
+}
+/**
+ * Remove JetPack Sharing 
+ *
+ **/
+function ampwp_jetpack_disable_sharing() {
+    add_filter( 'sharing_show', '__return_false', 100 );
+}
+
+<<<<<<< HEAD
+=======
+// amp_iframe_tag will convert all the iframe tags and will change it to amp-iframe to make it AMP compatible.
+function amp_iframe_tag($content) {
+    $replace = array (
+        '<iframe' => '<amp-iframe layout="responsive" sandbox="allow-scripts allow-same-origin allow-popups"',
+        '</iframe>' => '</amp-iframe>'
     );
     $content = strtr($content, $replace);
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
-
  
 // Strip the styles
 add_filter( 'the_content', 'the_content_filter', 20 ); 
@@ -467,6 +527,7 @@ function ampwp_jetpack_disable_sharing() {
     add_filter( 'sharing_show', '__return_false', 100 );
 }
 
+>>>>>>> master
 /**
  * Remove the Related Posts placeholder and headline that gets hooked into the_content
  *
