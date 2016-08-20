@@ -402,10 +402,6 @@ function amp_iframe_tag($content) {
     return $content;
 }
 add_filter('the_content','amp_iframe_tag', 20 );
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 612259a... Fixed responsive video problems and YouTube JS problems
  
 // Strip the styles
 add_filter( 'the_content', 'the_content_filter', 20 ); 
