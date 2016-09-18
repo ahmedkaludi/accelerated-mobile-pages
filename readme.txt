@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: amp, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 0.7.7
+Stable tag: 0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ AMP for WordPress Support out of the box. Automatically add Accelerated Mobile P
 
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.7.7?](http://ampforwp.com/blog/amp-0-7-7/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.8?](http://ampforwp.com/blog/the-change/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 **Features:**
 
@@ -117,57 +117,20 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 == Changelog ==
 
-= 0.1 =
-* Initial version
-
-= 0.2 =
-* White Screen of death issue fixed
-* Plugin URI updated
-
-= 0.2.5 =
-* Minor bugs fixed
-* ?mobile & ?nomobile is now ?amp & ?noamp
-
-= 0.3 =
-* Support of amp-img added in single posts
-* minor css bug fixed
-
-= 0.4 =
-* Support of Custom menu added for AMP enabled sites
-
-= 0.5 =
-* Added AMP Markup for Google Structured data. This will fix the issues in Webmaster tools.
-
-= 0.6 =
-* Improved Navigation Menu
-* Search Console errors fixed
-* Social Sharing option
-* Pages support
-* Force redirection for mobile users removed and many other bug fixes
-
-= 0.7 =
-* Canonical Improved
-* Navigation Validation bug fixed
-* Two more validation bugs fixed ('role' and 'tabindex' attribute)
-* Featured image automatically hides if it is not present
-* Validation issues in the images of the post's the_content
-
-= 0.7.1 =
-* Bug #24 (Github) fixed
-* Strip Style tags for faster & better validation
-* Bug #21 (Github) fixed
-
-= 0.7.5 =
-* Google Analytics Support Added
-* Logo Support Added. If the logo is disabled, then the Title should be activated.
-* Color Scheme Feature Added
-* User friendly Options Panel Added
-* iFrame support Added
-* Few Minor Bugs Fixed
-
-= 0.7.6 =
-* Google Adsense Support Added with AMP-Ad
-* Wrong Homepage rel amphtml bug fixed
+= 0.8 =
+* Proper Details at http://ampforwp.com/blog/the-change/
+* Plugin was re-written from scratch and is now built on top of default AMP plugin by Automattic but giving you the same features of the original plugin.
+* 99.5% Validation issues were fixed.
+* Page builder & Shortcodes Compatibility Support Added
+* Conflict with JSON API
+* Carousel support for Gallery
+* Better Image stretching and resizing
+* Youtube Video Embed Support
+* Vine Embed Support
+* Twitter oembed Support
+* Instagram Embed Support
+* Facebook Video Embed Support
+* Better Future Compatibility
 
 = 0.7.7 =
 * Proper Details at http://ampforwp.com/blog/amp-0-7-7/
@@ -179,3 +142,55 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Jetpack Social & Related Sharing Issue fixed
 * Gaping in footer if the Sticky bar is enabled
 * Text domain added on few strings
+
+= 0.7.6 =
+* Google Adsense Support Added with AMP-Ad
+* Wrong Homepage rel amphtml bug fixed
+
+= 0.7.5 =
+* Google Analytics Support Added
+* Logo Support Added. If the logo is disabled, then the Title should be activated.
+* Color Scheme Feature Added
+* User friendly Options Panel Added
+* iFrame support Added
+* Few Minor Bugs Fixed
+
+= 0.7.1 =
+* Bug #24 (Github) fixed
+* Strip Style tags for faster & better validation
+* Bug #21 (Github) fixed
+
+= 0.7 =
+* Canonical Improved
+* Navigation Validation bug fixed
+* Two more validation bugs fixed ('role' and 'tabindex' attribute)
+* Featured image automatically hides if it is not present
+* Validation issues in the images of the post's the_content
+
+= 0.6 =
+* Improved Navigation Menu
+* Search Console errors fixed
+* Social Sharing option
+* Pages support
+* Force redirection for mobile users removed and many other bug fixes
+
+= 0.5 =
+* Added AMP Markup for Google Structured data. This will fix the issues in Webmaster tools.
+
+= 0.4 =
+* Support of Custom menu added for AMP enabled sites
+
+= 0.3 =
+* Support of amp-img added in single posts
+* minor css bug fixed
+
+= 0.2.5 =
+* Minor bugs fixed
+* ?mobile & ?nomobile is now ?amp & ?noamp
+
+= 0.2 =
+* White Screen of death issue fixed
+* Plugin URI updated
+
+= 0.1 =
+* Initial version
