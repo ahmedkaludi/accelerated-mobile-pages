@@ -7,13 +7,13 @@ Stable tag: 0.7.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Supports AMP for WordPress out of the box. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+AMP for WordPress Support out of the box. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
 
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.7.7?](http://ampforwp.com/blog/amp-0-7-7/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.7.7?](http://ampforwp.com/blog/amp-0-7-7/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 **Features:**
 
@@ -32,10 +32,10 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Great Support & Active Development
 
 
-**NOTE: Next Big Update of this plugin will be released before 7th September 2016.
+**NOTE: Next Big Update of this plugin will be released by 23rd September 2016.
 
 
-**How to test if AMP is working or not?** 
+**How to test if AMP is working or not?**
 
 After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
 
@@ -103,16 +103,16 @@ Add /?amp at the end of your website url and you will get amp version of your we
 
 = I have addded /?amp at the end of the url and still I'm not able to see the AMP version of my site? =
 
-Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks 
+Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks
 
 
 
 == Screenshots ==
-1. AMP Homepage 
+1. AMP Homepage
 2. AMP Single Post
 3. Post Navigation in Single
 4. Sticky Social sharing icons
-5. Overlay Navigation menu sidebar. 
+5. Overlay Navigation menu sidebar.
 
 
 == Changelog ==
@@ -129,7 +129,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * ?mobile & ?nomobile is now ?amp & ?noamp
 
 = 0.3 =
-* Support of amp-img added in single posts 
+* Support of amp-img added in single posts
 * minor css bug fixed
 
 = 0.4 =
@@ -166,12 +166,12 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Few Minor Bugs Fixed
 
 = 0.7.6 =
-* Google Adsense Support Added with AMP-Ad 
+* Google Adsense Support Added with AMP-Ad
 * Wrong Homepage rel amphtml bug fixed
 
 = 0.7.7 =
 * Proper Details at http://ampforwp.com/blog/amp-0-7-7/
-* Big Validation Error fix Update 
+* Big Validation Error fix Update
 * Disable AMP support on specific Pages and Posts
 * Option to disable the Post meta from the Single
 * Footer Credits and Copyright Text Option
