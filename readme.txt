@@ -29,10 +29,18 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Social Sharing in the Single
 * Sexy Design
 * Separate WordPress Menu for AMP version
+* Page builder & Shortcodes Compatibility
+* Carousel support for Gallery
+* Better Image stretching and resizing
+* Youtube Video Embed Support
+* Vine Embed Support
+* Twitter oembed Support
+* Instagram Embed Support
+* Facebook Video Embed Support
 * Great Support & Active Development
 
 
-**NOTE: Next Big Update of this plugin will be released by 23rd September 2016.
+**NOTE: Next Big Update of this plugin will be released by 20th October 2016.
 
 
 **How to test if AMP is working or not?**
