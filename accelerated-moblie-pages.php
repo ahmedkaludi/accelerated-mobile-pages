@@ -56,3 +56,14 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
+
+/**/
+
+// Strip the styles
+add_filter( 'the_content', 'the_content_filter', 20 ); 
+function the_content_filter( $content ) { 
+     $content = preg_replace('/property[^>]*/', '', $content);
+     $content = preg_replace('/vocab[^>]*/', '', $content);
+    return $content; 
+}
+
