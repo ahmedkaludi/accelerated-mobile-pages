@@ -396,4 +396,3 @@ a,
 
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
-

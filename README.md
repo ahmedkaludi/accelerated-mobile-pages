@@ -7,7 +7,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8
+Stable tag: 0.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,11 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.1 =
+* Warning: Cannot modify header information error fixed
+* Validation issue fixed. KK Star Plugin compatible.
+* Gaping in the smaller screens fixed
+
 = 0.8 =
 * Proper Details at http://ampforwp.com/blog/the-change/
 * Plugin was re-written from scratch and is now built on top of default AMP plugin by Automattic but giving you the same features of the original plugin.
