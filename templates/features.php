@@ -46,6 +46,8 @@
 
 			if ( is_home() ){
 				$amp_url = home_url('/?amp');
+			} else if ( is_front_page() ){
+				$amp_url = home_url('/?amp');
 			} else {
 				$amp_url = trailingslashit( get_permalink().'amp' ); 
 			}
