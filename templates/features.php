@@ -27,7 +27,7 @@
 	}
 
 	function new_amp_maybe_add_actions() {
-		if ( is_home() || is_archive() ) { 
+		if ( is_home() || is_front_page() || is_archive() ) { 
 
 			$is_amp_endpoint = is_amp_endpoint();
 
