@@ -42,15 +42,13 @@
 
 	function ampforwp_home_archive_rel_canonical() {
 
-		if ( is_home() || is_archive() ) {
+		if ( is_home() || is_front_page() || is_archive() ) {
 
-			if ( is_home() ){
-				$amp_url = home_url('/?amp');
-			} else if ( is_front_page() ){
-				$amp_url = home_url('/?amp');
-			} else {
-				$amp_url = trailingslashit( get_permalink().'amp' ); 
-			}
+			if ( is_home() || is_front_page() ){
+  				$amp_url = home_url('/?amp');
+ 			} else {
+  				$amp_url = trailingslashit( get_permalink().'amp' ); 
+  			}
 
 			printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );	
 		}
