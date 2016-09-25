@@ -333,6 +333,12 @@ li.amp-wp-tax-category {
     font-size:13px;
 }
 
+/* Notifications */
+
+#amp-user-notification1 p {
+    display: inline-block;
+}
+
 /* Responsive */
 
     @media screen and (max-width: 767px) {
@@ -356,7 +362,6 @@ li.amp-wp-tax-category {
             line-height: 26px;
         } 
     }
-
  
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>

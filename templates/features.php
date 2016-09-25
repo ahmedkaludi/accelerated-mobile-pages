@@ -112,6 +112,9 @@
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
       		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		<?php } ?>
+		<?php if($redux_builder_amp['enable-notifications'] == true)  { ?>
+             <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+	    <?php } ?>
 		<!-- AMP Advertisement Script  -->
 		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
@@ -139,6 +142,13 @@
 	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
 	        </div>
 		</footer>
+
+   <?php if($redux_builder_amp['enable-notifications'] == true)  { ?>
+		<amp-user-notification layout=nodisplay id="amp-user-notification1">
+           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
+           <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
+        </amp-user-notification>
+	<?php } ?>
 
 
 	<?php }  
