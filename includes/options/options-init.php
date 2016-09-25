@@ -505,7 +505,7 @@
                'title'    => __('Facebook App ID', 'redux-framework-demo'),
                'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'type'     => 'text',  
-               'default'  => 'Copyright &copy; 2016'
+               'default'  => 'PLACE FACEBOOK APP ID HERE'
                 ),    
                 // Twitter ON/OFF
                 array(
