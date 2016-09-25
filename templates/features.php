@@ -344,7 +344,4 @@ function ampforwp_google_analytics() {  ?>
 		}
 		</script>
 	</amp-analytics>
-	<?php 
-}
-
-?> 
+<?php } ?>
