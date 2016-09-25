@@ -245,11 +245,31 @@
                 'input_text'                => 'Select Color'
             )                        
         ),
-        array(
+       array(
+                'id'       => 'app-favicon',
+                'type'     => 'media', 
+                'url'      => true,
+                'title'    => __('Favicon', 'redux-framework-demo'),
+                'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 48x48', 'redux-framework-demo'),
+            ),
+            array(
+                'id'       => 'app-icon',
+                'type'     => 'media', 
+                'url'      => true,
+                'title'    => __('Icon', 'redux-framework-demo'),
+                'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 512x512', 'redux-framework-demo'),
+            ),
+            array(
             'id'       => 'amp-manifest-file',
             'title'    => __('URL to your manifest file', 'redux-framework-demo'),
             'type'     => 'text',  
-            'default'  => 'https://example.com/manifest.json'
+            'default'  => '/manifest.json'
+        ),  
+         array(
+            'id'       => 'application name',
+            'title'    => __('The name of your application', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'A Blog'
         ),  
         array(
             'id'       => 'amp-multi-select-pages',
