@@ -697,7 +697,6 @@
             ),
         )
     ) );
-
-    /*
-     * <--- END SECTIONS
-     */
+/*
+* <--- END SECTIONS
+*/
