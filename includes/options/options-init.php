@@ -499,6 +499,14 @@
                     'title'     =>  __('Facebook', 'redux-framework-demo'),
                     'default'   =>  1,
                 ),
+                // Facebook app ID
+                array(
+               'id'       => 'facebook-app-id',
+               'title'    => __('Facebook App ID', 'redux-framework-demo'),
+               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
+               'type'     => 'text',  
+               'default'  => 'Copyright &copy; 2016'
+                ),    
                 // Twitter ON/OFF
                 array(
                     'id'        =>  'enable-single-twitter-share',
