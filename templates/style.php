@@ -360,13 +360,18 @@ li.amp-wp-tax-category {
  
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
+<?php $color_link =  $redux_builder_amp['opt-color-links-rgba']['color_link']; ?>
+<?php $color_text =  $redux_builder_amp['opt-color-text-rgba']['color_text']; ?>
 .amp-wp-tax-tag a,
 a,
 .amp-wp-author {
-    color: <?php echo $color ?>;
+    color: <?php echo $color_link ?>;
 }
 .nav_container {
     background:  <?php echo $color ?>;
+}
+.the_content p{
+    color: <?php echo $color_text ?>;
 }
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?> 
     .single-post footer {
