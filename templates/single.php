@@ -7,7 +7,7 @@
 		<link rel="manifest" href="<?php echo $redux_builder_amp['amp-manifest-file']; ?>">
 	<meta name="application-name" content="<?php echo $redux_builder_amp['app-name']; ?>">
     <link rel="icon" sizes="16x16 32x32 48x48" href="<?php echo $redux_builder_amp['app-favicon']['url']; ?>">
-    <link rel="icon" sizes="512x512" href="<?php echo $redux_builder_amp['app-favicon']['url']; ?>">
+    <link rel="icon" sizes="512x512" href="<?php echo $redux_builder_amp['app-icon']['url']; ?>">
 
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
