@@ -246,6 +246,12 @@
             )                        
         ),
         array(
+            'id'       => 'amp-manifest-file',
+            'title'    => __('URL to your manifest file', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'https://example.com/manifest.json'
+        ),  
+        array(
             'id'       => 'amp-multi-select-pages',
             'type'     => 'select',
             'multi'    => true,
