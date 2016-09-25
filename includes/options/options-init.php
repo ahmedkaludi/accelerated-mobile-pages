@@ -278,6 +278,108 @@
             )                        
         ),
         array(
+            'id'        => 'opt-color-header-rgba',
+            'type'      => 'color_rgba',
+            'title'     => 'Header Background color',
+            'subtitle'  => 'Set color and alpha channel',
+            'desc'      => 'Change the color scheme to your branding color',
+         
+            // See Notes below about these lines.
+            //'output'    => array('background-color' => '.site-header'),
+            //'compiler'  => array('color' => '.site-header, .site-footer', 'background-color' => '.nav-bar'),
+            'default'   => array(
+                'color'     => '#fff',
+                'alpha'     => 1
+            ),
+         
+            // These options display a fully functional color palette.  Omit this argument
+            // for the minimal color picker, and change as desired.
+            'options'       => array(
+                'show_input'                => true,
+                'show_initial'              => true,
+                'show_alpha'                => true,
+                'show_palette'              => true,
+                'show_palette_only'         => false,
+                'show_selection_palette'    => true,
+                'max_palette_size'          => 10,
+                'allow_empty'               => true,
+                'clickout_fires_change'     => false,
+                'choose_text'               => 'Choose',
+                'cancel_text'               => 'Cancel',
+                'show_buttons'              => true,
+                'use_extended_classes'      => true,
+                'palette'                   => null,  // show default
+                'input_text'                => 'Select Color'
+            )                        
+        ),
+         array(
+            'id'        => 'opt-color-footer-rgba',
+            'type'      => 'color_rgba',
+            'title'     => 'Footer Background color',
+            'subtitle'  => 'Set color and alpha channel',
+            'desc'      => 'Change the color scheme to your branding color',
+         
+            // See Notes below about these lines.
+            //'output'    => array('background-color' => '.site-header'),
+            //'compiler'  => array('color' => '.site-header, .site-footer', 'background-color' => '.nav-bar'),
+            'default'   => array(
+                'color'     => '#fff',
+                'alpha'     => 1
+            ),
+         
+            // These options display a fully functional color palette.  Omit this argument
+            // for the minimal color picker, and change as desired.
+            'options'       => array(
+                'show_input'                => true,
+                'show_initial'              => true,
+                'show_alpha'                => true,
+                'show_palette'              => true,
+                'show_palette_only'         => false,
+                'show_selection_palette'    => true,
+                'max_palette_size'          => 10,
+                'allow_empty'               => true,
+                'clickout_fires_change'     => false,
+                'choose_text'               => 'Choose',
+                'cancel_text'               => 'Cancel',
+                'show_buttons'              => true,
+                'use_extended_classes'      => true,
+                'palette'                   => null,  // show default
+                'input_text'                => 'Select Color'
+            )                        
+        ),
+        array(
+            'id'        => 'opt-color-text-rgba',
+            'type'      => 'color_rgba',
+            'title'     => 'Text color',
+            'subtitle'  => 'Set color and alpha channel',
+            'desc'      => 'Change the color of the text in AMP pages',
+         
+            'default'   => array(
+                'color'     => '#333',
+                'alpha'     => 1
+            ),
+         
+            // These options display a fully functional color palette.  Omit this argument
+            // for the minimal color picker, and change as desired.
+            'options'       => array(
+                'show_input'                => true,
+                'show_initial'              => true,
+                'show_alpha'                => true,
+                'show_palette'              => true,
+                'show_palette_only'         => false,
+                'show_selection_palette'    => true,
+                'max_palette_size'          => 10,
+                'allow_empty'               => true,
+                'clickout_fires_change'     => false,
+                'choose_text'               => 'Choose',
+                'cancel_text'               => 'Cancel',
+                'show_buttons'              => true,
+                'use_extended_classes'      => true,
+                'palette'                   => null,  // show default
+                'input_text'                => 'Select Color'
+            )                        
+        ),
+        array(
             'id'        => 'opt-color-link-rgba',
             'type'      => 'color_rgba',
             'title'     => 'Link color',
