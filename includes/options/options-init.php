@@ -562,7 +562,6 @@
             ),
         )
     ) );
-
-    /*
-     * <--- END SECTIONS
-     */
+/*
+* <--- END SECTIONS
+*/
