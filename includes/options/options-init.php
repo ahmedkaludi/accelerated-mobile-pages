@@ -594,7 +594,6 @@
             ),
         )
     ) );
-
-    /*
-     * <--- END SECTIONS
-     */
+/*
+* <--- END SECTIONS
+*/

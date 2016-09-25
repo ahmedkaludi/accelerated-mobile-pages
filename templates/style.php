@@ -321,7 +321,7 @@ li.amp-wp-tax-category {
 /* Single */
 .single-post main{
     padding:12px 15% 10px 15%
-}
+} 
 .the_content p{
     margin-top: 5px;
     color: #333;
@@ -340,7 +340,27 @@ li.amp-wp-tax-category {
 }
 
 /* Responsive */
+    @media screen and (max-width: 800px) { 
+        .single-post main{
+            padding: 12px 10px 10px 10px
+        }
+    }
+    @media screen and (max-width: 340px) {
+        .single-post main{
+            padding: 12px 0px 10px 0px
+        }
+        .the_content .amp-ad-wrapper{
+            text-align: center;
+            margin-left: -13px;
+        }
+    }
 
+@media screen and (max-width: 400px) { 
+    .amp-wp-title{
+        font-size: 19px;
+        margin: 21px 10px -1px 10px;
+    }
+}
     @media screen and (max-width: 767px) {
            .amp-wp-post-content p{
                  display: block
@@ -381,4 +401,3 @@ a,
 
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
-
