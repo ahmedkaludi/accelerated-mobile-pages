@@ -380,14 +380,23 @@ li.amp-wp-tax-category {
  
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
-.amp-wp-tax-tag a,
-a,
-.amp-wp-author {
-    color: <?php echo $color ?>;
+<?php $color_link =  $redux_builder_amp['opt-color-link-rgba']['color']; ?>
+<?php $color_text =  $redux_builder_amp['opt-color-text-rgba']['color']; ?>
+<?php $color_header =  $redux_builder_amp['opt-color-header-rgba']['color']; ?>
+<?php $color_footer =  $redux_builder_amp['opt-color-footer-rgba']['color']; ?>
+#headerwrap {
+    background:  <?php echo $color_header ?>;
 }
-.nav_container {
-    background:  <?php echo $color ?>;
+#footer {
+    background:  <?php echo $color_footer ?>;
 }
+.the_content p{
+    color: <?php echo $color_text ?>;
+}
+.amp-wp-tax-tag a, a, .amp-wp-author, .the_content a{
+    color: <?php echo $color_link ?>;
+}
+
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?> 
     .single-post footer {
         padding-bottom: 40px;
