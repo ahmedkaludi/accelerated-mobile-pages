@@ -263,6 +263,35 @@
                 'posts_per_page' => 500
             ),
         ),
+
+ 
+array(
+    'id'        =>'amp-frontpage-select-option',
+    'type'      => 'switch', 
+    'title'     => __('Front Page', 'redux-framework-demo'),
+    'default'   => 0,
+    'subtitle'  => __('', 'redux-framework-demo'),
+    'true'      => 'true',
+    'false'     => 'false', 
+),
+array(
+    'id'       => 'amp-frontpage-select-option-pages',
+    'type'     => 'select',
+    'title'    => __('Select Page', 'redux-framework-demo'), 
+    'required' => array('amp-frontpage-select-option', '=' , '1'),
+    // Must provide key => value pairs for select options
+    'data'     => 'page',
+    'args'     => array(
+        'post_type' => 'page', 
+        'posts_per_page' => 500
+    ), 
+
+    'default'  => '2',
+),
+
+            
+            
+            
         array(
             'id'       => 'amp-footer-text',
             'title'    => __('Footer', 'redux-framework-demo'),
