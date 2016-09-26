@@ -315,7 +315,7 @@ function ampforwp_google_analytics() {  ?>
 		<script type="application/json">
 		{
 		  "vars": {
-		    "account": "<?php echo $redux_builder_amp['ga-feild']; ?>" 
+		    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>" 
 		  },
 		  "triggers": {
 		    "trackPageview": { 
