@@ -121,7 +121,7 @@
 		global $redux_builder_amp; ?> 
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-		<?php if($redux_builder_amp['enable-notifications'] == true)  { ?>
+		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
              <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 	    <?php } ?>
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
@@ -155,7 +155,7 @@
 	        </div>
 		</footer>
 
-		<?php if($redux_builder_amp['enable-notifications'] == true)  { ?>
+		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 		<amp-user-notification layout=nodisplay id="amp-user-notification1">
            <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
            <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>

@@ -225,8 +225,6 @@ main .amp-wp-content{
     margin-top: 0px;
 }
 
-
-
 h2.amp-wp-title{
     line-height: 30px;
 }
@@ -260,8 +258,6 @@ h2.amp-wp-title , .amp-wp-post-content p{
 #footer p{
     margin: 0
 }
-
-
 
 /* Single */ 
 h1.amp-wp-title {
@@ -337,6 +333,20 @@ li.amp-wp-tax-category {
 
 #amp-user-notification1 p {
     display: inline-block;
+}
+amp-user-notification {
+    padding: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #fff;
+    border-top: 1px solid;
+}
+amp-user-notification button {
+    text-transform: uppercase;
+    padding: 8px;
+    background: #000;
+    color: #ddd;
+    margin-left: 5px;
 }
 
 /* Responsive */

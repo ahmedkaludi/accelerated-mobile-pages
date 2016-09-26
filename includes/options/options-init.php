@@ -263,8 +263,6 @@
                 'posts_per_page' => 500
             ),
         ),
-
- 
 array(
     'id'        =>'amp-frontpage-select-option',
     'type'      => 'switch', 
@@ -288,10 +286,6 @@ array(
 
     'default'  => '2',
 ),
-
-            
-            
-            
         array(
             'id'       => 'amp-footer-text',
             'title'    => __('Footer', 'redux-framework-demo'),
@@ -312,7 +306,7 @@ array(
         'subsection' => true,
         'fields'     => array(
             array(
-                'id'        =>'enable-notifications',
+                'id'        =>'amp-enable-notifications',
                 'type'      => 'switch', 
                 'title'     => __('Enable Notifications', 'redux-framework-demo'),
                 'default'   => 0,
