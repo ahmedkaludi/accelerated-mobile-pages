@@ -288,10 +288,7 @@ array(
 
     'default'  => '2',
 ),
-
-            
-            
-            
+   
         array(
             'id'       => 'amp-footer-text',
             'title'    => __('Footer', 'redux-framework-demo'),
@@ -312,7 +309,7 @@ array(
         'subsection' => true,
         'fields'     => array(
             array(
-                'id'        =>'enable-service-worker',
+                'id'        =>'amp-enable-service-worker',
                 'type'      => 'switch', 
                 'title'     => __('Service Worker', 'redux-framework-demo'),
                 'default'   => 0,
@@ -324,6 +321,7 @@ array(
             'id'        =>'amp-service-worker-url',
             'title'    => __('The URL for your Service Worker', 'redux-framework-demo'),
             'type'     => 'text',  
+            'required' => array('amp-enable-service-worker', '=' , '1'),
             'default'  => '/sw.js'
         ),  
            

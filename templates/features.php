@@ -124,7 +124,7 @@
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
       		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		<?php } ?>
-        <?php if( $redux_builder_amp['enable-service-worker'] == true )  { ?>
+        <?php if( $redux_builder_amp['amp-enable-service-worker'] == true )  { ?>
 		<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
 		<?php } ?>
 		<!-- AMP Advertisement Script  -->
@@ -155,7 +155,7 @@
 	        </div>
 		</footer>
 
-    <?php if( $redux_builder_amp['enable-service-worker'] == true )  { ?>
+    <?php if( $redux_builder_amp['amp-enable-service-worker'] == true )  { ?>
 	<amp-install-serviceworker
       src="<?php echo $redux_builder_amp['amp-service-worker-url']; ?>"
       data-iframe-src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/"
