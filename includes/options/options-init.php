@@ -504,7 +504,7 @@ array(
             // ), 
         // Post Meta ON/OFF
              array(
-                'id'        => 'enable-single-post-meta',
+                'id'        => 'amp-enable-single-post-meta',
                 'type'      => 'switch', 
                 'title'     => __('Post Meta Above Post Content', 'redux-framework-demo'),
                 'default'   => 1,
@@ -514,7 +514,7 @@ array(
             ),  
             // Tags ON/OFF
               array(
-                 'id'        => 'enable-single-tags',
+                 'id'        => 'amp-enable-single-tags',
                  'type'      => 'switch', 
                  'title'     => __('Show tags in posts', 'redux-framework-demo'),
                  'default'   => 1,

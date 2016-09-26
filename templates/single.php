@@ -40,10 +40,10 @@
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
-	   <?php if($redux_builder_amp['enable-single-tags'] == true)  { ?>
+	   <?php if($redux_builder_amp['amp-enable-single-tags'] == true)  { ?>
 		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
        <?php } ?>
-       <?php if($redux_builder_amp['enable-single-pagination'] == true)  { ?>
+       <?php if($redux_builder_amp['amp-enable-single-pagination'] == true)  { ?>
 		<div id="pagination">
 			<div class="next"><?php next_post_link(); ?></div>
 			<div class="prev"><?php previous_post_link(); ?></div>
