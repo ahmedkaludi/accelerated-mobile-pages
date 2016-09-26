@@ -304,6 +304,38 @@ array(
         
     ) );
 
+     // Notifications SECTION
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Notifications', 'redux-framework-demo' ),
+        'desc'       => __( 'Add notifications to your AMP pages'),
+        'id'         => 'amp-notifications',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+                'id'        =>'enable-notifications',
+                'type'      => 'switch', 
+                'title'     => __('Enable Notifications', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Show notifications on all of your AMP pages for cookie purposes, or anything else.', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),
+            array(
+            'id'       => 'amp-notification-text',
+            'title'    => __('Notification text', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'This website uses cookies.'
+            ),
+             array(
+            'id'       => 'amp-accept-button-text',
+            'title'    => __('Notification accept button text', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'Accept'
+            ),    
+        ),
+      
+    ) );
+
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
