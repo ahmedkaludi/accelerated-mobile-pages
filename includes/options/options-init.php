@@ -318,12 +318,14 @@ array(
             'id'       => 'amp-notification-text',
             'title'    => __('Notification text', 'redux-framework-demo'),
             'type'     => 'text',  
+            'required' => array('amp-enable-notifications', '=' , '1'),
             'default'  => 'This website uses cookies.'
             ),
              array(
             'id'       => 'amp-accept-button-text',
             'title'    => __('Notification accept button text', 'redux-framework-demo'),
             'type'     => 'text',  
+            'required' => array('amp-enable-notifications', '=' , '1'),
             'default'  => 'Accept'
             ),    
         ),
