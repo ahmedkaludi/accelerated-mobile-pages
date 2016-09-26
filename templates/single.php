@@ -53,7 +53,7 @@
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
 		<div class="sticky_social">          
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
-		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
+		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
 		    	<amp-social-share type="twitter"    width="50" height="28"></amp-social-share>

@@ -530,7 +530,7 @@ array(
                 ),
                 // Facebook app ID
                 array(
-               'id'       => 'facebook-app-id',
+               'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'redux-framework-demo'),
                'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'type'     => 'text',  
