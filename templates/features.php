@@ -15,6 +15,36 @@
 
 	global $redux_builder_amp;
 
+// Featured image code
+function single_post_amp_featured_img( $size = 'medium' ) {
+
+    global $post;
+
+    if ( has_post_thumbnail( $post->ID ) ) {
+
+        $thumb_id = get_post_thumbnail_id( $post->ID );
+        $img = wp_get_attachment_image_src( $thumb_id, $size );
+        $img_src = $img[0];
+        $w = $img[1];
+        $h = $img[2];
+
+        $alt = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+
+        if(empty($alt)) {
+            $attachment = get_post( $thumb_id );
+            $alt = trim(strip_tags( $attachment->post_title ) );
+        } ?>
+        <amp-img id="feat-img" layout="responsive" src="<?php echo esc_url( $img_src ); ?>" <?php
+        if ( $img_srcset = wp_get_attachment_image_srcset( $thumb_id, $size ) ) {
+            ?> srcset="<?php echo esc_attr( $img_srcset ); ?>" <?php
+        }
+        ?> alt="<?php echo esc_attr( $alt ); ?>" width="<?php echo $w; ?>" height="<?php echo $h; ?>">
+    </amp-img>
+        <?php
+    }
+}
+
+
 // Adding AMP-related things to the main theme 
 	
 	// 2. Add Home REL canonical

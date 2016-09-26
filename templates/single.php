@@ -33,6 +33,9 @@
 	</div>
 
 	<div class="amp-wp-content the_content">
+
+    <?php echo single_post_amp_featured_img(); ?>
+
 		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
 		
 		<?php echo $this->get( 'post_amp_content' ); // amphtml content; no kses ?>
