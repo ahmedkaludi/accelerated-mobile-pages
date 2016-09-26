@@ -17,21 +17,6 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 
-	<div class="amp-wp-content post-title-meta">
-		<?php if($redux_builder_amp['enable-single-post-meta'] == true) { ?>
-			<ul class="amp-wp-meta">
-				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
-
-				<li> <?php _e(' on ','ampforwp'); the_time( get_option( 'date_format' ) ) ?></li> 
-
-				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array('meta-taxonomy' ) ) ); ?>
-
-				<li class="cb"></li>
-			</ul>
-		<?php } ?>
-		<h1 class="amp-wp-title"><?php echo wp_kses_data( $this->get( 'post_title' ) ); ?></h1>
-	</div>
-
 	<div class="amp-wp-content the_content">
 		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
 
