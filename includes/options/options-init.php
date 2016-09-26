@@ -483,6 +483,26 @@
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),  
+         // Tags ON/OFF
+              array(
+                 'id'        => 'enable-single-tags',
+                 'type'      => 'switch', 
+                 'title'     => __('Show tags in posts', 'redux-framework-demo'),
+                 'default'   => 1,
+                 'subtitle'  => __('Enable tags in single posts', 'redux-framework-demo'),
+                 'true'      => 'Enabled',
+                 'false'     => 'Disabled',
+             ), 
+        // Pagination ON/OFF
+              array(
+                 'id'        => 'enable-single-pagination',
+                 'type'      => 'switch', 
+                 'title'     => __('Show pagination in posts', 'redux-framework-demo'),
+                 'default'   => 1,
+                 'subtitle'  => __('Enable pagination in single posts', 'redux-framework-demo'),
+                 'true'      => 'Enabled',
+                 'false'     => 'Disabled',
+             ), 
         // Social Icons ON/OFF
             array(
                 'id'        => 'enable-single-social-icons',
