@@ -205,14 +205,14 @@
         // App icons and Manifest
 
          array(
-                'id'       => 'app-favicon',
+                'id'       => 'amp-app-favicon',
                 'type'     => 'media', 
                 'url'      => true,
                 'title'    => __('Favicon', 'redux-framework-demo'),
                 'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 48x48', 'redux-framework-demo'),
             ),
             array(
-                'id'       => 'app-icon',
+                'id'       => 'amp-app-icon',
                 'type'     => 'media', 
                 'url'      => true,
                 'title'    => __('Icon', 'redux-framework-demo'),
@@ -225,7 +225,7 @@
             'default'  => '/manifest.json'
         ),  
          array(
-            'id'       => 'app-name',
+            'id'       => 'amp-app-name',
             'title'    => __('The name of your application', 'redux-framework-demo'),
             'type'     => 'text',  
             'default'  => 'A Blog'
