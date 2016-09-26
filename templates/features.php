@@ -62,11 +62,23 @@
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
 	   	// Custom Homepage and Archive file
-	    if ( is_home() || is_archive() ) {
-	    	if ( 'single' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/index.php';
-			}
-		}
+
+        global $redux_builder_amp;
+        if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
+            if ( is_home() || is_archive() ) {
+                if ( 'single' === $type ) {
+                    $file = AMPFORWP_PLUGIN_DIR . '/templates/index.php';
+                }
+            }
+        } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
+            if ( is_home() || is_archive() ) {
+                if ( 'single' === $type ) {
+                    $file = AMPFORWP_PLUGIN_DIR . '/templates/frontpage.php';
+                }
+            }
+        }        
+        
+        
 		// Custom Single file
 	    if ( is_single() ) {
 	    	if ( 'single' === $type ) {
