@@ -304,6 +304,33 @@ array(
         
     ) );
 
+    // Service Worker SECTION
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Service Worker', 'redux-framework-demo' ),
+        'desc'       => __( 'Enable service worker functionality in your AMP pages'),
+        'id'         => 'amp-sw',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+                'id'        =>'enable-service-worker',
+                'type'      => 'switch', 
+                'title'     => __('Service Worker', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Enable Service Worker sitewide', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),
+            array(
+            'id'        =>'amp-service-worker-url',
+            'title'    => __('The URL for your Service Worker', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => '/sw.js'
+        ),  
+           
+            ),
+      
+    ) );
+
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
