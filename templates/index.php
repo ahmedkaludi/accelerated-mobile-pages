@@ -4,6 +4,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="manifest" href="<?php echo $redux_builder_amp['amp-manifest-file']; ?>">
+	<meta name="application-name" content="<?php echo $redux_builder_amp['app-name']; ?>">
+    <link rel="icon" sizes="16x16 32x32 48x48" href="<?php echo $redux_builder_amp['app-favicon']['url']; ?>">
+    <link rel="icon" sizes="512x512" href="<?php echo $redux_builder_amp['app-icon']['url']; ?>">
+
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
 	<style amp-custom>
