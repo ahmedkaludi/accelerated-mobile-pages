@@ -344,6 +344,7 @@ array(
         ),
       
     ) );
+<<<<<<< HEAD
 
      // Service Worker SECTION
     Redux::setSection( $opt_name, array(
@@ -372,6 +373,8 @@ array(
             ),
       
     ) );
+=======
+>>>>>>> ahmedkaludi/master
 
     // ADS SECTION
     Redux::setSection( $opt_name, array(
