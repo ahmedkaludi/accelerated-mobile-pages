@@ -223,10 +223,7 @@ main .amp-wp-content{
 .amp-wp-title {
     margin-top: 0px;
 }
-
-
-
-h2.amp-wp-title{
+h2.amp-wp-title {
     line-height: 30px;
 }
 h2.amp-wp-title a{
@@ -319,8 +316,6 @@ li.amp-wp-tax-category {
 .amp-ad-wrapper {
     text-align: center
 }
-
-/* Single */
 .single-post main{
     padding:12px 15% 10px 15%
 } 
@@ -334,6 +329,16 @@ li.amp-wp-tax-category {
 .amp-wp-tax-tag{
     font-size:13px;
 }
+main .amp-wp-content.featured-image-content {
+	padding: 0px;
+	border: 0;
+	margin-bottom: 0;
+	box-shadow: none
+}
+.post-featured-img {
+	margin-left: -15px;
+	margin-right: -15px;
+}
 
 /* ADS */
 .amp_ad_1{
@@ -346,6 +351,28 @@ li.amp-wp-tax-category {
 .amp-ad-4{
     margin-top:10px;
 }
+
+/* Notifications */
+#amp-user-notification1 p {
+    display: inline-block;
+}
+amp-user-notification {
+    padding: 5px;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid;
+}
+amp-user-notification button {
+    padding: 8px 10px;
+    background: #000;
+    color: #fff;
+    margin-left: 5px;
+		border: 0;
+}
+amp-user-notification button:hover {
+	cursor: pointer
+}
+
 /* Responsive */
     @media screen and (max-width: 800px) { 
         .single-post main{
@@ -425,6 +452,12 @@ a,
 }
 .nav_container {
     background:  <?php echo $color ?>;
+}
+amp-user-notification  {
+	border-color:  <?php echo $color ?>;
+}
+amp-user-notification button {
+	background-color:  <?php echo $color ?>;
 }
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?> 
     .single-post footer {
