@@ -190,8 +190,14 @@
 	            } elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 5)  {
 		          	$advert_width  = '320';
 					$advert_height = '100';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 6)  {
+		          	$advert_width  = '200';
+					$advert_height = '50';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 7)  {
+		          	$advert_width  = '320';
+					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_1">';
 				$output	.=	'<amp-ad class="amp-ad-1"
 							type="adsense"
 							width='. $advert_width .' height='. $advert_height . ' 
@@ -225,6 +231,12 @@
 	            } elseif ($redux_builder_amp['enable-amp-ads-select-2'] == 5)  {
 		          	$advert_width  = '320';
 					$advert_height = '100';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-2'] == 6)  {
+		          	$advert_width  = '200';
+					$advert_height = '50';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-2'] == 7)  {
+		          	$advert_width  = '320';
+					$advert_height = '50';
 	      		}
 				$output = '<div class="amp-ad-wrapper">';
 				$output	.=	'<amp-ad class="amp-ad-2"
@@ -260,6 +272,12 @@
 	            } elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 5)  {
 		          	$advert_width  = '320';
 					$advert_height = '100';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 6)  {
+		          	$advert_width  = '200';
+					$advert_height = '50';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 7)  {
+		          	$advert_width  = '320';
+					$advert_height = '50';
 	      		}
 				$output = '<div class="amp-ad-wrapper">';
 				$output	.=	'<amp-ad class="amp-ad-3"
@@ -295,6 +313,12 @@
 	            } elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 5)  {
 		          	$advert_width  = '320';
 					$advert_height = '100';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 6)  {
+		          	$advert_width  = '200';
+					$advert_height = '50';
+	      		} elseif ($redux_builder_amp['enable-amp-ads-select-4'] == 7)  {
+		          	$advert_width  = '320';
+					$advert_height = '50';
 	      		}
 				$output = '<div class="amp-ad-wrapper">';
 				$output	.=	'<amp-ad class="amp-ad-4"

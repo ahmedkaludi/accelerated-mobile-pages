@@ -333,6 +333,14 @@ li.amp-wp-tax-category {
     font-size:13px;
 }
 
+/* ADS */
+.amp_ad_1{
+    margin-top: -15px;
+    margin-bottom:10px
+}
+.single-post .amp_ad_1{
+    margin-top:0
+}
 /* Responsive */
     @media screen and (max-width: 800px) { 
         .single-post main{
