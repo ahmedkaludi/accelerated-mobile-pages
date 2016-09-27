@@ -64,5 +64,6 @@ add_filter( 'the_content', 'the_content_filter', 20 );
 function the_content_filter( $content ) { 
      $content = preg_replace('/property[^>]*/', '', $content);
      $content = preg_replace('/vocab[^>]*/', '', $content);
+     $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
     return $content; 
 }
