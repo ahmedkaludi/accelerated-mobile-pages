@@ -270,14 +270,14 @@ array(
     'type'      => 'switch', 
     'title'     => __('Front Page', 'redux-framework-demo'),
     'default'   => 0,
-    'subtitle'  => __('', 'redux-framework-demo'),
+    'subtitle'  => __('Custom AMP frontpage', 'redux-framework-demo'),
     'true'      => 'true',
     'false'     => 'false', 
 ),
 array(
     'id'       => 'amp-frontpage-select-option-pages',
     'type'     => 'select',
-    'title'    => __('Select Page', 'redux-framework-demo'), 
+    'title'    => __('Select Page as Frontpage', 'redux-framework-demo'), 
     'required' => array('amp-frontpage-select-option', '=' , '1'),
     // Must provide key => value pairs for select options
     'data'     => 'page',
@@ -509,6 +509,16 @@ array(
                 'title'     => __('Post Meta Above Post Content', 'redux-framework-demo'),
                 'default'   => 1,
                 'subtitle'  => __('Enable Post Meta in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Single Featured ON/OFF
+             array(
+                'id'        => 'enable-single-featured-img',
+                'type'      => 'switch', 
+                'title'     => __('Featured Image', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enabling this will automatically display the featured image', 'redux-framework-demo'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),  
