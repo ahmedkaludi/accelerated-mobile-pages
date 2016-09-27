@@ -530,6 +530,16 @@ array(
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),  
+        // Next/Previous Pagination ON/OFF
+             array(
+                'id'        => 'enable-next-previous-pagination',
+                'type'      => 'switch', 
+                'title'     => __('Post Pagination', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
         // Social Icons ON/OFF
             array(
                 'id'        => 'enable-single-social-icons',
