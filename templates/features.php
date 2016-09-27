@@ -80,7 +80,7 @@
         
         
 		// Custom Single file
-	    if ( is_single() ) {
+	    if ( is_single() || is_page() ) {
 	    	if ( 'single' === $type ) {
 				$file = AMPFORWP_PLUGIN_DIR . '/templates/single.php';
 			}
