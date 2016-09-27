@@ -37,7 +37,7 @@
 		<?php } ?>
 		<h1 class="amp-wp-title"><?php echo wp_kses_data( $this->get( 'post_title' ) ); ?></h1>
 	</div>
-
+	<div class="amp-wp-content featured-image-content">
     <?php if($redux_builder_amp['enable-single-featured-img'] == true) {
         if ( has_post_thumbnail() ) { ?>
         <?php
@@ -47,6 +47,7 @@
         ?> 
         <div class="post-featured-img"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></a></div>
     <?php } } ?>
+	</div>
 	<div class="amp-wp-content the_content">
 
         <?php do_action( 'ampforwp_before_post_content', $this ); ?>
