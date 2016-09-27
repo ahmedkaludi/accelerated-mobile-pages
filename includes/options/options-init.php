@@ -298,7 +298,17 @@ array(
             'type'     => 'text',  
             'default'  => 'Copyright &copy; 2016'
         ),    
-    )
+ 
+        array(
+            'id'        =>'amp-rtl-select-option',
+            'type'      => 'switch', 
+            'title'     => __('RTL Support', 'redux-framework-demo'),
+            'default'   => 0,
+            'subtitle'  => __('Enable Right to Left language support?', 'redux-framework-demo'),
+            'true'      => 'true',
+            'false'     => 'false', 
+        ),
+        )
 
      
         
