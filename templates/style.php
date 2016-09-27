@@ -213,8 +213,7 @@ main .amp-wp-content{
     -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
     -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
     box-shadow: 0 2px 3px rgba(0,0,0,.05);
-    padding: 15px;
-    min-height: 75px;
+    padding: 15px; 
 }
 .home-post_image {
     float: right;
@@ -274,6 +273,9 @@ h1.amp-wp-title {
     background: none; 
     padding:  0;
     box-shadow:none
+}
+.post-pagination-meta{
+    min-height:75px
 }
 .post-pagination-meta .amp-wp-tax-category,
 .post-title-meta .amp-wp-tax-tag {
