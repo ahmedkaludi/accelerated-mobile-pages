@@ -25,7 +25,7 @@
 	<?php if ( have_posts() ) :
 		while ( have_posts() ) : the_post(); ?>
 
-		<div class="amp-wp-content">
+		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php
 				$thumb_id = get_post_thumbnail_id();
