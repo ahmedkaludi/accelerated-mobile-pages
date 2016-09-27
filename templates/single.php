@@ -32,22 +32,34 @@
 		<h1 class="amp-wp-title"><?php echo wp_kses_data( $this->get( 'post_title' ) ); ?></h1>
 	</div>
 
+    <?php if($redux_builder_amp['enable-single-featured-img'] == true) {
+        if ( has_post_thumbnail() ) { ?>
+        <?php
+        $thumb_id = get_post_thumbnail_id();
+        $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
+        $thumb_url = $thumb_url_array[0];            
+        ?> 
+        <div class="post-featured-img"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></a></div>
+    <?php } } ?>
 	<div class="amp-wp-content the_content">
-		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
+
+        <?php do_action( 'ampforwp_before_post_content', $this ); ?>
 		
 		<?php echo $this->get( 'post_amp_content' ); // amphtml content; no kses ?>
 		<?php do_action( 'ampforwp_after_post_content', $this ); ?>
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
-		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
+		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?> 
 
 
+    <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
 		<div id="pagination">
 			<div class="next"><?php next_post_link(); ?></div>
 			<div class="prev"><?php previous_post_link(); ?></div>
 			<div class="clearfix"></div>
 		</div>
+    <?php } ?>
 	</div>
 
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
