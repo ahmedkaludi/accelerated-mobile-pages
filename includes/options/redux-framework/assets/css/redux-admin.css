@@ -118,7 +118,7 @@
 .admin-color-fresh .redux-container-switch .cb-disable, .admin-color-fresh .redux-container-switch .cb-enable, .admin-color-fresh .ui-state-default, .admin-color-fresh .ui-widget-content .ui-state-default, .admin-color-fresh .ui-widget-header .ui-state-default, .wp-customizer .redux-container-switch .cb-disable, .wp-customizer .redux-container-switch .cb-enable, .wp-customizer .ui-state-default, .wp-customizer .ui-widget-content .ui-state-default, .wp-customizer .ui-widget-header .ui-state-default{
     border: 0;
     background: #f2f2f2 !important;
-    color: #777;
+    color: #999;
 }
 .redux-container-switch .switch-options{
     text-transform: uppercase;
