@@ -270,14 +270,14 @@ array(
     'type'      => 'switch', 
     'title'     => __('Front Page', 'redux-framework-demo'),
     'default'   => 0,
-    'subtitle'  => __('', 'redux-framework-demo'),
+    'subtitle'  => __('Custom AMP frontpage', 'redux-framework-demo'),
     'true'      => 'true',
     'false'     => 'false', 
 ),
 array(
     'id'       => 'amp-frontpage-select-option-pages',
     'type'     => 'select',
-    'title'    => __('Select Page', 'redux-framework-demo'), 
+    'title'    => __('Select Page as Frontpage', 'redux-framework-demo'), 
     'required' => array('amp-frontpage-select-option', '=' , '1'),
     // Must provide key => value pairs for select options
     'data'     => 'page',
@@ -295,7 +295,17 @@ array(
             'type'     => 'text',  
             'default'  => 'Copyright &copy; 2016'
         ),    
-    )
+ 
+        array(
+            'id'        =>'amp-rtl-select-option',
+            'type'      => 'switch', 
+            'title'     => __('RTL Support', 'redux-framework-demo'),
+            'default'   => 0,
+            'subtitle'  => __('Enable Right to Left language support?', 'redux-framework-demo'),
+            'true'      => 'true',
+            'false'     => 'false', 
+        ),
+        )
 
      
         
@@ -354,10 +364,12 @@ array(
                     // Must provide key => value pairs for select options
                     'options'  => array(
                         '1' => '300x250',
-                        '2' => '336x280',
+                        '2' => '336x280', 
                         '3' => '728x90',
                         '4' => '300x600',
-                        '5' => '320x100'
+                        '5' => '320x100',
+                        '6' => '200x50',
+                        '7' => '320x50'
                     ),
                     'default'  => '2',
                 ),
@@ -399,7 +411,9 @@ array(
                         '2' => '336x280',
                         '3' => '728x90',
                         '4' => '300x600',
-                        '5' => '320x100'
+                        '5' => '320x100',
+                        '6' => '200x50',
+                        '7' => '320x50'
                     ),
                     'default'  => '2',
                 ),
@@ -441,7 +455,9 @@ array(
                             '2'     => '336x280',
                             '3'     => '728x90',
                             '4'     => '300x600',
-                            '5'     => '320x100'
+                            '5' => '320x100',
+                            '6' => '200x50',
+                            '7' => '320x50'
                     ),
                     'default'  => '2',
                 ),
@@ -483,7 +499,9 @@ array(
                         '2' => '336x280',
                         '3' => '728x90',
                         '4' => '300x600',
-                        '5' => '320x100'
+                        '5' => '320x100',
+                        '6' => '200x50',
+                        '7' => '320x50'
                     ),
                     'default'  => '2',
                 ),
@@ -534,6 +552,26 @@ array(
                 'title'     => __('Post Meta Above Post Content', 'redux-framework-demo'),
                 'default'   => 1,
                 'subtitle'  => __('Enable Post Meta in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Single Featured ON/OFF
+             array(
+                'id'        => 'enable-single-featured-img',
+                'type'      => 'switch', 
+                'title'     => __('Featured Image', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enabling this will automatically display the featured image', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Next/Previous Pagination ON/OFF
+             array(
+                'id'        => 'enable-next-previous-pagination',
+                'type'      => 'switch', 
+                'title'     => __('Post Pagination', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),  
