@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.2
+Stable tag: 0.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,10 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.3 =
+* Prefix added in the Content filter
+* Extra space after quote in Ads
+
 = 0.8.2 =
 * Proper Details at http://ampforwp.com/blog/the-custom-frontpage/
 * Custom AMP FrontPage
