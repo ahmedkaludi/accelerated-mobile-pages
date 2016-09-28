@@ -45,7 +45,7 @@
         $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
         $thumb_url = $thumb_url_array[0];            
         ?> 
-        <div class="post-featured-img"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></a></div>
+        <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></div>
     <?php } } ?>
 	</div>
 	<div class="amp-wp-content the_content">

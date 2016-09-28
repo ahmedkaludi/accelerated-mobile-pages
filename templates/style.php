@@ -335,10 +335,6 @@ main .amp-wp-content.featured-image-content {
 	margin-bottom: 0;
 	box-shadow: none
 }
-.post-featured-img {
-	margin-left: -15px;
-	margin-right: -15px;
-}
 
 /* ADS */
 .amp_ad_1{
