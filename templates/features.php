@@ -214,7 +214,7 @@
 							type="adsense"
 							width='. $advert_width .' height='. $advert_height . ' 
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .' ">';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'">';
 				$output	.=	'</amp-ad>';
 				$output	.=   ' </div>';
 				echo $output;
@@ -255,7 +255,7 @@
 							type="adsense"
 							width='. $advert_width .' height='. $advert_height . ' 
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .' ">';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'">';
 				$output	.=	'</amp-ad>';
 				$output	.=   ' </div>';
 				echo $output;
@@ -296,7 +296,7 @@
 							type="adsense"
 							width='. $advert_width .' height='. $advert_height . ' 
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .' ">';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'">';
 				$output	.=	'</amp-ad>';
 				$output	.=   ' </div>';
 				echo $output;
@@ -337,7 +337,7 @@
 							type="adsense"
 							width='. $advert_width .' height='. $advert_height . ' 
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .' ">';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'">';
 				$output	.=	'</amp-ad>';
 				$output	.=   ' </div>';
 				echo $output;
