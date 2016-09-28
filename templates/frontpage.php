@@ -75,5 +75,28 @@ global $redux_demo;
 
 
 <?php do_action( 'amp_post_template_footer', $this ); ?>
+
+<!-- AMP Schema  -->
+
+<?php
+    $amp_logo_icon_url = $redux_builder_amp['app-favicon']['url'];            
+?> 
+
+<meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="<?php the_permalink(); ?>">
+    <span class="site-schema-hide" itemscope itemprop="publisher" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="<?php esc_attr( bloginfo( 'name' ) ); ?>">
+      <meta itemprop="url" content="<?php echo $amp_logo_icon_url ?>">
+       <span class="site-schema-hide" itemscope itemprop="logo" itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="<?php echo $amp_logo_icon_url ?>">
+<meta itemprop="headline " content="<?php the_title(); ?>">
+<?php if ( has_post_thumbnail( $cb_post_id ) ) { ?>
+  <?php $cb_featured_image = wp_get_attachment_image_src( get_post_thumbnail_id( $cb_post_id ), 'full' ); ?>
+    <span class="site-schema-hide" itemscope itemtype="http://schema.org/ImageObject" itemprop="image" >
+        <meta itemprop="url" content="<?php echo $thumb_url ?>">
+        <meta itemprop="width" content="512">
+        <meta itemprop="height" content="300">
+    </span>
+<?php } ?>
+
 </body>
 </html>
