@@ -2,56 +2,69 @@
 /*
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
-Description: Accelerated Mobile Pages for WordPress
-Version: 0.6
+Description: AMP Toolbox - Accelerated Mobile Pages for WordPress
+Version: 0.8.3
 Author: Ahmed Kaludi, Mohammed Kaludi
-Author URI: http://AhmedKaludi.com/
+Author URI: http://ampforwp.com/
 License: GPL2
 */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Load the core class
-require_once( dirname( __FILE__ ) . '/admin/ampwp-core.php' );
+// Rewrite the Endpoints after the plugin is activate, as priority is set to 11
+function ampforwp_add_custom_post_support() {
 
+	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
+	add_post_type_support( 'page', AMP_QUERY_VAR );
 
-if ( class_exists( 'Ampwp_core' ) ) {
-	// New AmpWP object
-	$ampwp_core = new Ampwp_core;
-
-	// Shut down the plugin on deactivation for old versions of WordPress
-	register_deactivation_hook( __FILE__, array( &$ampwp_core, 'ampwp_load_deactivation' ) );
- 
-	// Start a session if not started already
-	if ( ! session_id() ) {
-		@session_start();
-	}
-	// Initialize the AmpWP check logic and rendering
-	$ampwp_core->ampwp_load_site();
-	
 }
-/*
- * Add "amphtml" in the main theme to target it to the AMP page 
-*/
+add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
-function add_rel_info() { ?>
-<link rel="amphtml" href="<?php the_permalink(); ?>/?amp" />
-<?php }
-add_action( 'wp_head', 'add_rel_info' );
+define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 
-
-// Registering Custom AMP menu for this plugin
-if (! function_exists( 'register_amp_menu') ) {
-	function register_amp_menu() {
-        add_theme_support( 'custom-logo' );
-
-	  register_nav_menus(
-	    array(
-	      'amp-menu' => __( 'AMP Menu' ),
-	    )
-	  );
-	}
-	add_action( 'init', 'register_amp_menu' );
+/* 
+ * Load Files only in the backend 
+ * As we don't need plugin activation code to run everytime the site loads
+ */
+if ( is_admin()) {
+	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
 }
-?>
+
+if ( ! class_exists( 'Ampforwp_Init', false ) ) {
+	class Ampforwp_Init {
+
+		public function __construct(){
+
+			// Load Files required for the plugin to run 
+			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
+			new Ampforwp_Loader;	
+			
+		}
+	}
+}
+
+/* 
+ * Start the plugin.
+ * Gentlemen start your engines
+ */
+function ampforwp_plugin_init() {
+	if ( defined( 'AMP__FILE__' ) && defined('AMPFORWP_PLUGIN_DIR') ) {
+		new Ampforwp_Init;
+	}
+}
+add_action('init','ampforwp_plugin_init',9);
+
+/**/
+
+// Strip the styles
+add_filter( 'the_content', 'ampforwp_the_content_filter', 20 ); 
+function ampforwp_the_content_filter( $content ) { 
+     $content = preg_replace('/property[^>]*/', '', $content);
+     $content = preg_replace('/vocab[^>]*/', '', $content);
+     $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
+     $content = preg_replace('/href="javascript:void*/', ' ', $content);
+    return $content; 
+}
