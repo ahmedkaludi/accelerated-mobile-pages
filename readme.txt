@@ -1,23 +1,24 @@
-=== AMP - Accelerated Mobile Pages ===
+=== AMP Toolbox - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.1
+Stable tag: 0.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-AMP for WordPress Support out of the box. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.8?](http://ampforwp.com/blog/the-change/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.8.2?](http://ampforwp.com/blog/the-custom-frontpage/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 **Features:**
 
 * Automatically integrate AMP to your website. 
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability. 
+* 7 Advertisement sizes 
 * Google Analytics Support. 
 * User Friendly Theme Options Panel. 
 * Unlimited Color Scheme. 
@@ -36,10 +37,13 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Twitter oembed Support. 
 * Instagram Embed Support. 
 * Facebook Video Embed Support. 
+* RTL Support
+* Custom AMP FrontPage
+* Notifications
 * Great Support & Active Development. 
 
 
-**NOTE:** Next Big Update of this plugin will be released by 20th October 2016.
+**NOTE:** Next Update of this plugin will be released by mid October 2016.
 
 **How to test if AMP is working or not?**
 After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
@@ -103,6 +107,25 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.3 =
+* Prefix added in the Content filter
+* Extra space after quote in Ads
+
+= 0.8.2 =
+* Proper Details at http://ampforwp.com/blog/the-custom-frontpage/
+* Custom AMP FrontPage
+* Featured Image
+* New Mobile Friendly Advertisement sizes
+* Single Post Pagination Option
+* RTL Support
+* Notifications
+* Gaping if the Meta was turned off.
+* Analytics was not fetching the user id properly.
+* Page was not using the post template along with the AD support.
+* AMP Endpoint support for Paged when the front page is active.
+* UI improvement of Admin panel
+* Few Validation issues fixed
+
 = 0.8.1 =
 * Warning: Cannot modify header information error fixed
 * Validation issue fixed. KK Star Plugin compatible.

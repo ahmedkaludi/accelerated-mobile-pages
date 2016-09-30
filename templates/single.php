@@ -45,7 +45,7 @@
         $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
         $thumb_url = $thumb_url_array[0];            
         ?> 
-        <div class="post-featured-img"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></a></div>
+        <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></div>
     <?php } } ?>
 	</div>
 	<div class="amp-wp-content the_content">
@@ -72,7 +72,7 @@
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
 		<div class="sticky_social">          
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
-		    	<amp-social-share type="facebook"   width="50" height="28"></amp-social-share>
+		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
 		    	<amp-social-share type="twitter"    width="50" height="28"></amp-social-share>
