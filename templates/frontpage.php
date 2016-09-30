@@ -4,6 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+
+	<link rel="manifest" href="<?php echo $redux_builder_amp['amp-manifest-file']; ?>">
+	<meta name="application-name" content="<?php echo $redux_builder_amp['amp-app-name']; ?>">
+    <link rel="icon" sizes="16x16 32x32 48x48" href="<?php echo $redux_builder_amp['amp-app-favicon']['url']; ?>">
+    <link rel="icon" sizes="512x512" href="<?php echo $redux_builder_amp['amp-app-icon']['url']; ?>">
+
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
 	<style amp-custom>
@@ -69,5 +75,28 @@ global $redux_demo;
 
 
 <?php do_action( 'amp_post_template_footer', $this ); ?>
+
+<!-- AMP Schema  -->
+
+<?php
+    $amp_logo_icon_url = $redux_builder_amp['app-favicon']['url'];            
+?> 
+
+<meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="<?php the_permalink(); ?>">
+    <span class="site-schema-hide" itemscope itemprop="publisher" itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="<?php esc_attr( bloginfo( 'name' ) ); ?>">
+      <meta itemprop="url" content="<?php echo $amp_logo_icon_url ?>">
+       <span class="site-schema-hide" itemscope itemprop="logo" itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="<?php echo $amp_logo_icon_url ?>">
+<meta itemprop="headline " content="<?php the_title(); ?>">
+<?php if ( has_post_thumbnail( $cb_post_id ) ) { ?>
+  <?php $cb_featured_image = wp_get_attachment_image_src( get_post_thumbnail_id( $cb_post_id ), 'full' ); ?>
+    <span class="site-schema-hide" itemscope itemtype="http://schema.org/ImageObject" itemprop="image" >
+        <meta itemprop="url" content="<?php echo $thumb_url ?>">
+        <meta itemprop="width" content="512">
+        <meta itemprop="height" content="300">
+    </span>
+<?php } ?>
+
 </body>
 </html>
