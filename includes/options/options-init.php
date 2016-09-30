@@ -333,7 +333,7 @@ array(
          array(
                 'id'       => 'amp-app-favicon',
                 'type'     => 'media', 
-                'required' => array('amp-custom-icons', '=' , '1'),
+                'required' => array('enable-amp-custom-icons', '=' , '1'),
                 'url'      => true,
                 'title'    => __('Favicon', 'redux-framework-demo'),
                 'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 48x48', 'redux-framework-demo'),
@@ -341,7 +341,7 @@ array(
             array(
                 'id'       => 'amp-app-icon',
                 'type'     => 'media', 
-                'required' => array('amp-custom-icons', '=' , '1'),
+                'required' => array('enable-amp-custom-icons', '=' , '1'),
                 'url'      => true,
                 'title'    => __('Icon', 'redux-framework-demo'),
                 'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 512x512', 'redux-framework-demo'),
@@ -350,14 +350,14 @@ array(
             'id'       => 'amp-manifest-file',
             'title'    => __('URL to your manifest file', 'redux-framework-demo'),
             'type'     => 'text',  
-            'required' => array('amp-custom-icons', '=' , '1'),
+            'required' => array('enable-amp-custom-icons', '=' , '1'),
             'default'  => '/manifest.json'
         ),  
          array(
             'id'       => 'amp-app-name',
             'title'    => __('The name of your application', 'redux-framework-demo'),
             'type'     => 'text',  
-            'required' => array('amp-custom-icons', '=' , '1'),
+            'required' => array('enable-amp-custom-icons', '=' , '1'),
             'default'  => 'Enter your app name here.'
         ),
       ),
