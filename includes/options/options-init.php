@@ -606,7 +606,7 @@ array(
                     'type'      =>  'switch', 
                     'required'  => array('enable-single-social-icons', '=' , '1'),
                     'title'     =>  __('Facebook', 'redux-framework-demo'),
-                    'default'   =>  1,
+                    'default'   =>  0,
                 ),
                 // Facebook app ID
                 array(
@@ -615,7 +615,8 @@ array(
                'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'type'     => 'text',  
                'required'  => array('enable-single-facebook-share', '=' , '1'),
-               'default'  => 'PLACE FACEBOOK APP ID HERE'
+               'placeholder'  => 'Enter your facebook app id',
+               'default'  => ''
                 ),   
                 // Twitter ON/OFF
                 array(
