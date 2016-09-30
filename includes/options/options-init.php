@@ -360,7 +360,7 @@ array(
             'required' => array('amp-custom-icons', '=' , '1'),
             'default'  => 'Enter your app name here.'
         ),
-      
+      ),
     ) );
     
      // Notifications SECTION
