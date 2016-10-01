@@ -27,7 +27,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_front_page() || is_archive() ) { 
+		if ( is_home() || is_archive() ) { 
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -115,6 +115,7 @@
 	function ampforwp_register_additional_scripts() {  
 		global $redux_builder_amp; ?> 
     	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 			<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
@@ -365,6 +366,7 @@
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
+				 $content = preg_replace('/style=[^>]*/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				return $content; 
