@@ -201,7 +201,7 @@
             //    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
             //    'default'  => true
             //),
-           
+            
         array(
             'id'       => 'ga-feild',
             'type'     => 'text', 
@@ -313,6 +313,55 @@
 
      
         
+    ) );
+
+     // ICONS SECTION
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Icons', 'redux-framework-demo' ),
+        'desc'       => __( 'Add custom icons to your AMP pages'),
+        'id'         => 'amp-custom-icons',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+                'id'        =>'enable-amp-custom-icons',
+                'type'      => 'switch', 
+                'title'     => __('Enable custom icons', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Enable custom icons for structured data and for favicon/manifest', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),
+         array(
+                'id'       => 'amp-app-favicon',
+                'type'     => 'media', 
+                'required' => array('enable-amp-custom-icons', '=' , '1'),
+                'url'      => true,
+                'title'    => __('Favicon', 'redux-framework-demo'),
+                'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 48x48', 'redux-framework-demo'),
+            ),
+            array(
+                'id'       => 'amp-app-icon',
+                'type'     => 'media', 
+                'required' => array('enable-amp-custom-icons', '=' , '1'),
+                'url'      => true,
+                'title'    => __('Icon', 'redux-framework-demo'),
+                'desc' => __('Upload a favicon for the AMP version. Recommend logo size is: 512x512', 'redux-framework-demo'),
+            ),
+            array(
+            'id'       => 'amp-manifest-file',
+            'title'    => __('URL to your manifest file', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'required' => array('enable-amp-custom-icons', '=' , '1'),
+            'default'  => '/manifest.json'
+        ),  
+         array(
+            'id'       => 'amp-app-name',
+            'title'    => __('The name of your application', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'required' => array('enable-amp-custom-icons', '=' , '1'),
+            'default'  => 'Enter your app name here.'
+        ),
+      ),
     ) );
     
      // Notifications SECTION

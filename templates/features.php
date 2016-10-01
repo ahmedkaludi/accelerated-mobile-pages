@@ -378,9 +378,15 @@
 				global $redux_builder_amp;
 				$metadata['publisher']['logo'] = array(
 					'@type' => 'ImageObject',
-					'url' =>   $redux_builder_amp['opt-media']['url'],
-					'height' => 36,
-					'width' => 190,
+					'url' =>   $redux_builder_amp['amp-app-favicon']['url'],
+					'height' => 48,
+					'width' => 48,
+				);
+				$metadata[''] = array(
+					'@type' => 'ImageObject',
+					'url' =>   $thumb_url,
+					'height' => 512,
+					'width' => 300,
 				);
 				return $metadata;
 		}
