@@ -363,8 +363,8 @@
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 20 );
 		}
 		function ampforwp_the_content_filter( $content ) {
-				 $content = preg_replace('/property[^>]*/', '', $content);
-				 $content = preg_replace('/vocab[^>]*/', '', $content);
+				 $content = preg_replace('/property=[^>]*/', '', $content);
+				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				return $content; 

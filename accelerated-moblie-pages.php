@@ -45,7 +45,6 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 		}
 	}
 }
-
 /* 
  * Start the plugin.
  * Gentlemen start your engines
@@ -56,8 +55,3 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
-
-/**/
-
-// Strip the styles
- 
