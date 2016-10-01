@@ -6,7 +6,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.3
+Stable tag: 0.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pag
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.8.2?](http://ampforwp.com/blog/the-custom-frontpage/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.8.4?](http://ampforwp.com/blog/structured-data-validation/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 **Features:**
 
@@ -110,6 +110,15 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.4 =
+* Proper Details at http://ampforwp.com/blog/structured-data-validation/
+* Structured Data Validation
+* Navigation Text Change
+* Inline Style Validation
+* Form Validation
+* Frontpage shows the amphtml rel twice fixed
+* Facebook Sharing not working
+
 = 0.8.3 =
 * Prefix added in the Content filter
 * Extra space after quote in Ads
