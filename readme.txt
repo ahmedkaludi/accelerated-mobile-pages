@@ -14,6 +14,8 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 [What's New in Version 0.8.4?](http://ampforwp.com/blog/structured-data-validation/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+
 **Features:**
 
 * Automatically integrate AMP to your website. 
