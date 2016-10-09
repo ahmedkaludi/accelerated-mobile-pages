@@ -376,11 +376,18 @@
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
 		function ampforwp_update_metadata( $metadata, $post ) {
 				global $redux_builder_amp;
+				
+				$structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];;
+
+				if ($structured_data_logo) {
+						$structured_data_logo = $structured_data_logo;
+				} else {
+					$structured_data_logo = $redux_builder_amp['opt-media']['url'];
+				}
 				$metadata['publisher']['logo'] = array(
-					'@type' => 'ImageObject',
-					'url' =>   $redux_builder_amp['opt-media']['url'],
-					'height' => 36,
-					'width' => 190,
+					'@type' 	=> 'ImageObject',
+					'url' 		=>  $structured_data_logo ,
+					'height' 	=> 36,
+					'width' 	=> 190,
 				);
 				return $metadata;
-		}

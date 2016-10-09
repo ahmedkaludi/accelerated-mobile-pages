@@ -662,6 +662,24 @@
         ),
       
     ) );
+    
+    // Structured Data
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Structured Data', 'redux-framework-demo' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-structured-data',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+              'id'       => 'amp-structured-data-logo',
+              'type'     => 'media', 
+              'url'      => true,
+              'title'    => __('Structured Data Logo', 'redux-framework-demo'),
+              //'desc'     => __('', 'redux-framework-demo'),
+              'desc' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
+            ),
+        )
+    ) ); 
 
     // CSS
     Redux::setSection( $opt_name, array(
