@@ -675,9 +675,31 @@
               'type'     => 'media', 
               'url'      => true,
               'title'    => __('Structured Data Logo', 'redux-framework-demo'),
-              //'desc'     => __('', 'redux-framework-demo'),
               'desc' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
             ),
+            array(
+              'id'      => 'amp-structured-data-placeholder-image',
+              'type'    => 'media', 
+              'url'     => true,
+              'title'   => __('Post Placeholder Image', 'redux-framework-demo'),
+              'desc'    => __('Upload the Image you want to show as Placeholder Image, when there is no featured image set in the post.', 'redux-framework-demo'), 
+            ),
+            array(
+            'id'       => 'amp-structured-data-placeholder-image-width',
+            'title'    => __('Post Placeholder Image Width', 'redux-framework-demo'),
+            'type'     => 'text', 
+            'placeholder' => '550', 
+            'desc' => 'Please don\'t add "PX" in the image size.', 
+            'default'  => ''
+            ),  
+            array(
+              'id'       => 'amp-structured-data-placeholder-image-height',
+              'title'    => __('Post Placeholder Image Height', 'redux-framework-demo'),
+              'type'     => 'text',  
+              'placeholder' => '350',
+              'desc' => 'Please don\'t add "PX" in the image size.',
+              'default'  => ''
+             ),
         )
     ) ); 
 

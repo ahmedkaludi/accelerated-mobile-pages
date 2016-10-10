@@ -5,7 +5,7 @@
 2. Custom Design
 3. Custom Style files
 4. Custom Header files
-5.  Customize with Width of the site
+5. Customize with Width of the site
 6. Add required Javascripts for extra AMP features
 7. Footer for AMP Pages
 8. Add Main tag as a Wrapper
@@ -13,6 +13,7 @@
 10. Add Analytics to AMP Pages
 11. Strip unwanted codes and tags from the_content
 12. Add Logo URL in the structured metadata
+13. Add Custom Placeholder Image for Structured Data.
 */
 
 // Adding AMP-related things to the main theme 
@@ -377,7 +378,7 @@
 		function ampforwp_update_metadata( $metadata, $post ) {
 				global $redux_builder_amp;
 				
-				$structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];;
+				$structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];
 
 				if ($structured_data_logo) {
 						$structured_data_logo = $structured_data_logo;
@@ -391,3 +392,30 @@
 					'width' 	=> 190,
 				);
 				return $metadata;
+		}
+		
+		
+	// 13. Add Custom Placeholder Image for Structured Data.
+	// if there is no image in the post, then use this image to validate Structured Data.
+add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
+function ampforwp_update_metadata_featured_image( $metadata, $post ) {
+			global $redux_builder_amp;
+			$post_id = $post->ID;
+			$post_image_id = get_post_thumbnail_id( $post_id );
+			$structured_data_image = wp_get_attachment_image_src( $post_image_id, 'full' );
+			$post_image_check = $structured_data_image;
+			
+			if ( $post_image_check == false) {
+					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
+					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+			}
+			return $metadata;
+}
