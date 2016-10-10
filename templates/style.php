@@ -281,6 +281,9 @@ h1.amp-wp-title {
 .amp-wp-meta  {
     padding-left: 0;
 }
+.amp-wp-tax-category {
+    float:right
+}
 .amp-wp-tax-tag,
 .amp-wp-meta li {
     list-style: none;

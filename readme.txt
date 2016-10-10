@@ -3,7 +3,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.4
+Stable tag: 0.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pag
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.8.4?](http://ampforwp.com/blog/structured-data-validation/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.8.5?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
 
 [youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
@@ -60,7 +60,7 @@ To view the AMP version, add /?amp at the end of your url. An example would be h
 Yes, Absolutely! I would suggest you to send your feature request by creating an issue in Github at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/ . It helps us organize the feedback easily.
 
 **How do I get in touch?**
-You can contact me using this url: http://ahmedkaludi.com/contact-me/
+You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Installation ==
@@ -109,6 +109,13 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.5 =
+* Proper Details at http://ampforwp.com/the-0-4-compatibility/
+* AMP 0.4 Compatibility Check
+* Even better Structured Data Validation, Once in for all!
+* Structured Data Options to eliminate Validation errors
+* AMP Page Exclude option
+
 = 0.8.4 =
 * Proper Details at http://ampforwp.com/blog/structured-data-validation/
 * Structured Data Validation

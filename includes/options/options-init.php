@@ -138,7 +138,7 @@
     Redux::setSection( $opt_name, array(
         'title' => __( 'Welcome', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/blog/structured-data-validation/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
 			               . '<h2>' . __( 'Frequently Asked Questions', 'redux-framework-demo' ) . '</h2>'
 			               . '<p><strong>' . __( 'How to Setup Navigation Menu?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.', 'redux-framework-demo' ) . '</p>'
 			               . '<p><strong>' . __( 'I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.', 'redux-framework-demo' ) . '</p>'
@@ -656,19 +656,19 @@
               'id'       => 'amp-structured-data-logo',
               'type'     => 'media', 
               'url'      => true,
-              'title'    => __('Structured Data Logo', 'redux-framework-demo'),
+              'title'    => __('Default Structured Data Logo', 'redux-framework-demo'),
               'desc' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
             ),
             array(
               'id'      => 'amp-structured-data-placeholder-image',
               'type'    => 'media', 
               'url'     => true,
-              'title'   => __('Post Placeholder Image', 'redux-framework-demo'),
+              'title'   => __('Default Post Image', 'redux-framework-demo'),
               'desc'    => __('Upload the Image you want to show as Placeholder Image, when there is no featured image set in the post.', 'redux-framework-demo'), 
             ),
             array(
             'id'       => 'amp-structured-data-placeholder-image-width',
-            'title'    => __('Post Placeholder Image Width', 'redux-framework-demo'),
+            'title'    => __('Default Post Image Width', 'redux-framework-demo'),
             'type'     => 'text', 
             'placeholder' => '550', 
             'desc' => 'Please don\'t add "PX" in the image size.', 
@@ -676,7 +676,7 @@
             ),  
             array(
               'id'       => 'amp-structured-data-placeholder-image-height',
-              'title'    => __('Post Placeholder Image Height', 'redux-framework-demo'),
+              'title'    => __('Default Post Image Height', 'redux-framework-demo'),
               'type'     => 'text',  
               'placeholder' => '350',
               'desc' => 'Please don\'t add "PX" in the image size.',
