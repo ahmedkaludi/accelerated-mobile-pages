@@ -14,6 +14,7 @@
 11. Strip unwanted codes and tags from the_content
 12. Add Logo URL in the structured metadata
 13. Add Custom Placeholder Image for Structured Data.
+14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
 */
 
 // Adding AMP-related things to the main theme 
@@ -418,4 +419,71 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 					);
 			}
 			return $metadata;
+}
+
+// 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
+/**
+ * Adds a meta box to the post editing screen for AMP on-off on specific pages
+ */
+function ampforwp_title_custom_meta() {
+    add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
+	
+		add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+}
+add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
+
+/**
+ * Outputs the content of the meta box for AMP on-off on specific pages
+ */
+function ampforwp_title_callback( $post ) {
+    wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
+    $ampforwp_stored_meta = get_post_meta( $post->ID );
+    ?>
+    <p>
+        <div class="prfx-row-content">
+            <label for="meta-radio-one">
+                <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'default' ); ?>>
+                <?php _e( 'Show' )?>
+            </label>
+            <label for="meta-radio-two">
+                <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
+                <?php _e( 'Hide' )?>
+            </label>
+        </div>
+    </p>
+    <?php
+}
+
+/**
+ * Saves the custom meta input for AMP on-off on specific pages
+ */
+function ampforwp_title_meta_save( $post_id ) {
+ 
+    // Checks save status
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'ampforwp_title_nonce' ] ) && wp_verify_nonce( $_POST[ 'ampforwp_title_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+ 
+    // Exits script depending on save status
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
+    }
+ 
+    // Checks for radio buttons and saves if needed
+    if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
+        $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
+        update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
+    }
+ 
+}
+add_action( 'save_post', 'ampforwp_title_meta_save' );
+
+add_filter('amp_frontend_show_canonical','ampforwp_hide_amp_for_specific_pages');
+function ampforwp_hide_amp_for_specific_pages($input){
+		global $post;
+		$ampforwp_amp_status = get_post_meta($post->ID, 'ampforwp-amp-on-off', true);
+		if ( $ampforwp_amp_status == 'hide-amp' ) {
+			$input = false;
+		}
+		return $input;
 }

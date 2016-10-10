@@ -246,24 +246,6 @@
             )                        
         ),
         array(
-            'id'       => 'amp-multi-select-pages',
-            'type'     => 'select',
-            'multi'    => true,
-            'title'    => __('Hide AMP on Specific Pages', 'redux-framework-demo'),
-            'data' => 'pages',
-        ),
-        array(
-            'id'       => 'amp-multi-select-posts',
-            'type'     => 'select',
-            'multi'    => true,
-            'title'    => __('Hide AMP on Specific Posts', 'redux-framework-demo'),
-            'data'     => 'post',
-            'args'     => array(
-                'post_type' => 'post', 
-                'posts_per_page' => 500
-            ),
-        ),
-        array(
             'id'        =>'amp-frontpage-select-option',
             'type'      => 'switch', 
             'title'     => __('Front Page', 'redux-framework-demo'),
