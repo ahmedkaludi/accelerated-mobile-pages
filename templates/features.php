@@ -15,6 +15,7 @@
 12. Add Logo URL in the structured metadata
 13. Add Custom Placeholder Image for Structured Data.
 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
+15. Disable New Relic's extra script that its adds in AMP pages.  
 */
 
 // Adding AMP-related things to the main theme 
@@ -498,4 +499,18 @@ function ampforwp_hide_amp_for_specific_pages($input){
 			$input = false;
 		}
 		return $input;
+}
+
+// 15. Disable New Relic's extra script that its adds in AMP pages.
+add_action( 'amp_post_template_data', 'ampforwp_disable_new_relic_scripts' );
+if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
+		function ampforwp_disable_new_relic_scripts( $data ) {
+			if ( ! function_exists( 'newrelic_disable_autorum' ) ) {
+				return $data;
+			}
+			if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+				newrelic_disable_autorum();
+			}
+			return $data;
+		}
 }
