@@ -16,6 +16,7 @@
 13. Add Custom Placeholder Image for Structured Data.
 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
 15. Disable New Relic's extra script that its adds in AMP pages.  
+16. Remove Unwanted Scripts
 */
 
 // Adding AMP-related things to the main theme 
@@ -513,4 +514,12 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 			}
 			return $data;
 		}
+}
+
+// 16. Remove Unwanted Scripts
+if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+	add_action( 'wp_enqueue_scripts', 'ampforwp_remove_unwanted_scripts',20 );
+}
+function ampforwp_remove_unwanted_scripts() {
+  wp_dequeue_script('jquery'); 
 }
