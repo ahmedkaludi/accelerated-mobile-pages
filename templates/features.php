@@ -372,6 +372,7 @@
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/style=[^>]*/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
+				 $content = preg_replace('#<col.*?>#i', '', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				return $content; 
