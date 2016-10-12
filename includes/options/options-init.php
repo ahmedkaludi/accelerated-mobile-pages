@@ -574,6 +574,16 @@
                 'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
+            ), 
+        // Tags ON/OFF  
+             array(
+                'id'        => 'ampforwp-single-tags-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Tags', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Tags in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
             ),  
         // Social Icons ON/OFF
             array(
