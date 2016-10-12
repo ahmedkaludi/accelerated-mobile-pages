@@ -373,11 +373,12 @@
 				 $content = preg_replace('/style=[^>]*/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
+				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				return $content; 
 		}
-	
+
 
 	// 12. Add Logo URL in the structured metadata
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
