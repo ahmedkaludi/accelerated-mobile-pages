@@ -370,7 +370,13 @@
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
+				 $content = preg_replace('/time=[^>]*/', '', $content);
+				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
+				 $content = preg_replace('/security=[^>]*/', '', $content);
+				 $content = preg_replace('/deposit=[^>]*/', '', $content);
+				 $content = preg_replace('/for=[^>]*/', '', $content);
 				 $content = preg_replace('/style=[^>]*/', '', $content);
+				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
