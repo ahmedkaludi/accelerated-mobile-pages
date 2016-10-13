@@ -51,7 +51,10 @@
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
-		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?> 
+		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) { 
+				$this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) );
+				
+			} ?> 
 
 
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>

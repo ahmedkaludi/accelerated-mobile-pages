@@ -15,8 +15,12 @@
 12. Add Logo URL in the structured metadata
 13. Add Custom Placeholder Image for Structured Data.
 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
+15. Disable New Relic's extra script that its adds in AMP pages.  
+16. Remove Unwanted Scripts
+17. Archives Canonical in AMP version
+18. Custom Canonical for Homepage
+19. Remove Canonical tags
 */
-
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
 	
@@ -29,7 +33,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive() ) { 
+		if ( is_home() || is_archive() ) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -48,7 +52,13 @@
 
 			if ( is_home() || is_front_page() ){
 				$amp_url = home_url('/?amp');
-			} else {
+			}
+            elseif( is_archive()){
+                global $wp;
+                $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
+				$amp_url = $archive_current_url . '/?amp';
+            } 
+            else {
 				$amp_url = trailingslashit( get_permalink().'amp' ); 
 			}
 
@@ -368,12 +378,24 @@
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
+				 $content = preg_replace('/value=[^>]*/', '', $content);
+				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
+				 $content = preg_replace('/time=[^>]*/', '', $content);
+				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
+				 $content = preg_replace('/security=[^>]*/', '', $content);
+				 $content = preg_replace('/deposit=[^>]*/', '', $content);
+				 $content = preg_replace('/for=[^>]*/', '', $content);
 				 $content = preg_replace('/style=[^>]*/', '', $content);
+				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
+				 $content = preg_replace('#<col.*?>#i', '', $content);
+				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
+				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				return $content; 
 		}
-	
+
+
 	// 12. Add Logo URL in the structured metadata
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
 		function ampforwp_update_metadata( $metadata, $post ) {
@@ -487,3 +509,77 @@ function ampforwp_hide_amp_for_specific_pages($input){
 		}
 		return $input;
 }
+
+// 15. Disable New Relic's extra script that its adds in AMP pages.
+add_action( 'amp_post_template_data', 'ampforwp_disable_new_relic_scripts' );
+if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
+		function ampforwp_disable_new_relic_scripts( $data ) {
+			if ( ! function_exists( 'newrelic_disable_autorum' ) ) {
+				return $data;
+			}
+			if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+				newrelic_disable_autorum();
+			}
+			return $data;
+		}
+}
+
+// 16. Remove Unwanted Scripts
+if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+	add_action( 'wp_enqueue_scripts', 'ampforwp_remove_unwanted_scripts',20 );
+}
+function ampforwp_remove_unwanted_scripts() {
+  wp_dequeue_script('jquery'); 
+}
+// Remove Print Scripts and styles
+function ampforwp_remove_print_scripts() {
+    if ( is_amp_endpoint() ) {
+
+        function ampforwp_remove_all_scripts() {
+            global $wp_scripts;
+            $wp_scripts->queue = array();
+        }
+        add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
+        function ampforwp_remove_all_styles() {
+            global $wp_styles;
+            $wp_styles->queue = array();
+        }
+        add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100); 
+
+// Remove Print Emoji for Nextgen Gallery support
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' ); 
+                
+    }
+}
+add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
+
+
+// 17. Archives Canonical in AMP version
+function ampforwp_rel_canonical_archive() {
+    if ( !is_archive() )
+    return;
+global $wp;
+$current_archive_url = home_url( $wp->request );
+//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+    echo "<link rel='canonical' href='$current_archive_url' />\n";
+}
+add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
+
+// 18. Custom Canonical for Homepage
+function ampforwp_rel_canonical() {
+    if ( !is_home() || !is_front_page() ) 
+    return;
+//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+    $homelink = get_home_url();
+    echo "<link rel='canonical' href='$homelink' />\n";
+}
+add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
+
+// 19. Remove Canonical tags
+function ampforwp_amp_remove_actions() {
+    if ( is_home() || is_front_page() || is_archive() ) {
+        remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+    } 
+}
+add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
