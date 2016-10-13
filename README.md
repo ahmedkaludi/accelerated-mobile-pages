@@ -6,7 +6,7 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.5
+Stable tag: 0.8.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,6 +112,16 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.5.1 =
+* Validation issue fixed: 'Value' tag
+* Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
+* Validation issue fixed: Table markup 
+* Validation issue fixed: nowrap and misc tags
+* New Relic Support
+* Tags on off option
+* Canonical and correct AMP html Redirect issues Solved
+* NextGEN Gallery Validation Support Added
+
 = 0.8.5 =
 * Proper Details at http://ampforwp.com/the-0-4-compatibility/
 * AMP 0.4 Compatibility Check
