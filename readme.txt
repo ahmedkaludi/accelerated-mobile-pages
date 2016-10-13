@@ -109,6 +109,15 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.5.1 =
+* Validation issue fixed: 'Value' tag
+* Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
+* Validation issue fixed: Table markup 
+* Validation issue fixed: nowrap and misc tags
+* New Relic Support
+* Tags on off option
+* Canonical and correct AMP html Redirect issues Solved 
+
 = 0.8.5 =
 * Proper Details at http://ampforwp.com/the-0-4-compatibility/
 * AMP 0.4 Compatibility Check

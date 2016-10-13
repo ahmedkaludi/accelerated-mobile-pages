@@ -531,6 +531,29 @@ if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
 function ampforwp_remove_unwanted_scripts() {
   wp_dequeue_script('jquery'); 
 }
+// Remove Print Scripts and styles
+function ampforwp_remove_print_scripts() {
+    if ( is_amp_endpoint() ) {
+
+        function ampforwp_remove_all_scripts() {
+            global $wp_scripts;
+            $wp_scripts->queue = array();
+        }
+        add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
+        function ampforwp_remove_all_styles() {
+            global $wp_styles;
+            $wp_styles->queue = array();
+        }
+        add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100); 
+
+// Remove Print Emoji for Nextgen Gallery support
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' ); 
+                
+    }
+}
+add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
+
 
 // 17. Archives Canonical in AMP version
 function ampforwp_rel_canonical_archive() {
@@ -559,4 +582,4 @@ function ampforwp_amp_remove_actions() {
         remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
     } 
 }
-    add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
+add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
