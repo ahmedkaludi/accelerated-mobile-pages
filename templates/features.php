@@ -17,8 +17,10 @@
 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
 15. Disable New Relic's extra script that its adds in AMP pages.  
 16. Remove Unwanted Scripts
+17. Archives Canonical in AMP version
+18. Custom Canonical for Homepage
+19. Remove Canonical tags
 */
-
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
 	
@@ -31,7 +33,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive() ) { 
+		if ( is_home() || is_archive() ) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -50,7 +52,13 @@
 
 			if ( is_home() || is_front_page() ){
 				$amp_url = home_url('/?amp');
-			} else {
+			}
+            elseif( is_archive()){
+                global $wp;
+                $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
+				$amp_url = $archive_current_url . '/?amp';
+            } 
+            else {
 				$amp_url = trailingslashit( get_permalink().'amp' ); 
 			}
 
@@ -523,3 +531,32 @@ if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
 function ampforwp_remove_unwanted_scripts() {
   wp_dequeue_script('jquery'); 
 }
+
+// 17. Archives Canonical in AMP version
+function ampforwp_rel_canonical_archive() {
+    if ( !is_archive() )
+    return;
+global $wp;
+$current_archive_url = home_url( $wp->request );
+//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+    echo "<link rel='canonical' href='$current_archive_url' />\n";
+}
+add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
+
+// 18. Custom Canonical for Homepage
+function ampforwp_rel_canonical() {
+    if ( !is_home() || !is_front_page() ) 
+    return;
+//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+    $homelink = get_home_url();
+    echo "<link rel='canonical' href='$homelink' />\n";
+}
+add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
+
+// 19. Remove Canonical tags
+function ampforwp_amp_remove_actions() {
+    if ( is_home() || is_front_page() || is_archive() ) {
+        remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+    } 
+}
+    add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
