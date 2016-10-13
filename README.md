@@ -113,6 +113,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 == Changelog ==
 = 0.8.5.1 =
+* Proper Details at http://ampforwp.com/new/
 * Validation issue fixed: 'Value' tag
 * Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
 * Validation issue fixed: Table markup 
