@@ -1,12 +1,12 @@
-#AMP Toolbox - Accelerated Mobile Pages
+#AMP for WP - Accelerated Mobile Pages
 The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. More details on https://wordpress.org/plugins/accelerated-mobile-pages/ & http://AMPforWP.com
 
-=== AMP Toolbox - Accelerated Mobile Pages ===
+=== AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.5.1
+Stable tag: 0.8.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -112,6 +112,9 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.5.2 =
+* Canonical issue fixed for FrontPage
+
 = 0.8.5.1 =
 * Proper Details at http://ampforwp.com/new/
 * Validation issue fixed: 'Value' tag
