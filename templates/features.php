@@ -577,14 +577,14 @@ function ampforwp_rel_canonical() {
 add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
 
 // 18.5. Custom Canonical for Frontpage
-function ampforwp_rel_canonical_frontpage() {
-    if ( is_home() || is_front_page() ) 
-    return;
-//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-    $homelink = get_home_url();
-    echo "<link rel='canonical' href='$homelink' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
+//function ampforwp_rel_canonical_frontpage() {
+//    if ( is_home() || is_front_page() ) 
+//    return;
+////    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//    $homelink = get_home_url();
+//    echo "<link rel='canonical' href='$homelink' />\n";
+//}
+//add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
  
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
