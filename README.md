@@ -15,7 +15,7 @@ The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pag
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.8.5?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in Version 0.8.5?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) 
 
 [youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
