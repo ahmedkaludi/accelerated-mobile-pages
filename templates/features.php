@@ -5,6 +5,7 @@
 2. Custom Design
 3. Custom Style files
 4. Custom Header files
+4.5 Added hook to add more layout.
 5. Customize with Width of the site
 6. Add required Javascripts for extra AMP features
 7. Footer for AMP Pages
@@ -114,6 +115,9 @@
 			}
 			return $file;
 	}
+	
+	// 4.5 Added hook to add more layout.
+	do_action('ampforwp_after_features_include');
 
 
 	// 5.  Customize with Width of the site
