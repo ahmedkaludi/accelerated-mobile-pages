@@ -597,21 +597,3 @@ function ampforwp_amp_remove_actions() {
     } 
 }
 add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
-
-
-// 20. Comments Button
-add_action('ampforwp_after_post_content','ampforwp_after_post_comments_button');
-function ampforwp_after_post_comments_button() {
-//    global $redux_builder_amp;
-
-//    if($redux_builder_amp['enable-amp-ads-4'] == true) {
-//        if($redux_builder_amp['enable-amp-ads-select-4'] == 1)  {
-//            $advert_width  = '300';
-//            $advert_height = '250';
-//        } 
-        $output = '<div class="comment-button-wrapper">';
-        $output	.=   '<a href="' . get_permalink().'#comments">View Comments</a>';
-        $output	.=   ' </div>';
-        echo $output;
-//    }
-}

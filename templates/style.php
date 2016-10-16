@@ -261,18 +261,17 @@ h2.amp-wp-title , .amp-wp-post-content p{
 
 /* Single */
 .comment-button-wrapper{
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     margin-top: 25px;
     text-align:center
 }
 .comment-button-wrapper a{
-    color: #444;
-    background: #f6f7f9;
-    border: 1px solid #dfe0e4;
+    color: #fff;
+    background: #312c7e;
     font-size: 13px;
     padding: 10px 20px 10px 20px;
     box-shadow: 0 0px 3px rgba(0,0,0,.04);
-    border-radius: 1px;
+    border-radius: 80px;
 }
 h1.amp-wp-title {
     text-align: center;
@@ -345,6 +344,7 @@ li.amp-wp-tax-category {
 }
 .amp-wp-tax-tag{
     font-size:13px;
+    border:0
 }
 main .amp-wp-content.featured-image-content {
 	padding: 0px;
@@ -352,7 +352,109 @@ main .amp-wp-content.featured-image-content {
 	margin-bottom: 0;
 	box-shadow: none
 }
+/* Related Posts */
+.related_posts h3, .comments_list h3{
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    margin: 25px 0 10px 0;
+    color: #333;
+}
+.related_posts ol{
+    list-style-type:none;
+    margin:0;
+    padding:0
+}
+.related_posts ol li{
+    display:inline-block;
+    width:100%;
+    margin-bottom: 12px;
+    background: #fefefe;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    padding: 0px;
+}
+.related_posts .related_link{
+    margin-top:18px;
+    margin-bottom:10px;
+    margin-right:10px
+}
+.related_posts .related_link a{
+    font-weight: 300;
+    color: #000;
+    font-size: 18px;
+}
+.related_posts ol li amp-img{
+    width:100px;
+    float:left;
+    margin-right:15px
+}
+.related_posts ol li p{
+    font-size: 12px;
+    color: #999;
+    line-height: 1.2;
+    margin: 12px 0 0 0;
+}
+.no_related_thumbnail{
+    padding: 15px 18px;
+}
+.no_related_thumbnail .related_link{
+    margin: 16px 18px 20px 19px;
+}
 
+/* Comments */
+.comments_list div{
+    display:inline-block; 
+}
+.comments_list ul{
+    margin:0;
+    padding:0
+}
+.comments_list ul.children{
+    padding-bottom:10px;
+}
+.comments_list ul li p{
+    margin:0;
+    font-size:15px;
+    clear:both;
+    padding-top:16px;
+}
+.comments_list ul li{
+    font-size:13px;
+    list-style-type:none; 
+    margin-bottom: 12px;
+    background: #fefefe;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    box-shadow: 0 2px 3px rgba(0,0,0,.05);
+    padding: 0px;
+    max-width:900px
+}
+.comments_list ul li .comment-body{
+    padding: 25px;
+    width: 91%;
+}
+.comment-author{ float:left }
+.comment-meta{
+    float:right
+} 
+.comments_list li li{
+    margin: 20px 20px 10px 20px;
+    background: #f7f7f7;
+    box-shadow: none;
+    border: 1px solid #eee;
+}
+.comments_list li li li{
+    margin:20px 20px 10px 20px
+}
+ 
 /* ADS */
 .amp_ad_1{
     margin-top: -15px;
@@ -401,7 +503,36 @@ amp-user-notification button:hover {
             margin-left: -13px;
         }
     }
+@media screen and (max-width: 630px) { 
+        .related_posts ol li amp-img{
+            display:none
+        }
 
+    .related_link {
+        margin: 16px 18px 20px 19px;
+    }
+}
+@media screen and (max-width: 510px) {
+    .related_posts ol li p{
+        line-height: 1.6;
+        margin: 7px 0 0 0;    
+    }
+    .related_posts .related_link {
+        margin: 17px 18px 17px 19px;
+    }
+}
+@media screen and (max-width: 425px) { 
+    .related_posts .related_link p{
+        display:none
+    }
+    .related_posts .related_link {
+        margin: 13px 18px 14px 19px;
+    }
+    .related_posts .related_link a{
+        font-size: 18px;
+        line-height: 1.7;
+    }
+}
 @media screen and (max-width: 400px) { 
     .amp-wp-title{
         font-size: 19px;
@@ -463,7 +594,7 @@ a,
 .amp-wp-author {
     color: <?php echo $color ?>;
 }
-.nav_container {
+.nav_container, .comment-button-wrapper a {
     background:  <?php echo $color ?>;
 }
 amp-user-notification  {

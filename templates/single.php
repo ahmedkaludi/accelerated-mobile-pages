@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-
+	<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
@@ -89,6 +89,84 @@
 		</div>
 	<?php } ?>
 
+<div class="relatedpost">
+    <div class="related_posts">
+        <h3>Related Posts</h3>
+    <ol class="clearfix">
+    <?php $orig_post = $post;
+    global $post;
+    $categories = get_the_category($post->ID);
+    if ($categories) {
+    $category_ids = array();
+    foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+    $args=array(
+    'category__in' => $category_ids,
+    'post__not_in' => array($post->ID),
+    'posts_per_page'=> 2, // Number of related posts that will be shown.
+    'caller_get_posts'=>1
+    );
+    $my_query = new wp_query( $args );
+    if( $my_query->have_posts() ) {
+    while( $my_query->have_posts() ) {
+    $my_query->the_post();?>
+            <li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+            <?php
+            $thumb_id_2 = get_post_thumbnail_id();
+            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
+            $thumb_url_2 = $thumb_url_array_2[0];
+            ?>
+			<?php if ( has_post_thumbnail() ) { ?>
+            <amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img> <?php } ?>
+                <div class="related_link">
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    <?php $content = get_the_content();?>
+                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+                </div>
+            </li> 
+
+    <?php
+        }
+            echo '</ul></div>';
+        }
+        }
+        $post = $orig_post;
+        wp_reset_query();
+    ?>
+    </ol>
+    </div>
+</div>    
+        
+<!-- Comments -->
+<?php //if ( have_comments() ) : ?>
+<div class="comments_list">
+<?php if (get_comments_number()==0) {
+} else { ?>
+    <h3>View Comments</h3>
+<?php } ?>
+    <ul>
+        <?php
+    //            Gather comments for a specific page/post 
+                  $postID = get_the_ID();
+                 $comments = get_comments(array(
+                    'post_id' => $postID,
+                    'status' => 'approve' //Change this to the type of comments to be displayed
+                 ));
+    //            Display the list of comments
+                 wp_list_comments( array(
+                    'per_page' 					=> 10, //Allow comment pagination
+                    'style' 						=> 'li',
+                    'type'							=> 'comment',
+                    'max_depth'   			=> 0,
+                    'avatar_size'				=> 0,
+                    'reverse_top_level' => false //Show the latest comments at the top of the list
+                 ), $comments);
+            ?>
+    </ul>
+</div>
+
+<div class="comment-button-wrapper">
+    <a href="<?php echo get_permalink().'#commentform' ?>">Leave a Comment</a>
+</div>
 
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
