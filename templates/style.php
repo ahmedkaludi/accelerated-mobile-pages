@@ -260,8 +260,10 @@ h2.amp-wp-title , .amp-wp-post-content p{
 
 
 /* Single */
-.amp-ad-wrapper{
+.comment-button-wrapper{
     margin-bottom: 10px;
+    margin-top: 25px;
+    text-align:center
 }
 .comment-button-wrapper a{
     color: #444;
