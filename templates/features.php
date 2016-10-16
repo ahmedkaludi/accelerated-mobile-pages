@@ -1,23 +1,4 @@
-<?php 
-//// Load AMP version by default to All Visitors
-//function ampforwp_page_template_redirect_all_amp() {
-//    if ( is_amp_endpoint() )
-//    return;
-//    wp_redirect( get_permalink( $id ) . AMP_QUERY_VAR . '/', 301 );
-//    exit();
-//}
-//add_action( 'template_redirect', 'ampforwp_page_template_redirect_all_amp' );
-//
-// Load AMP version by default to Mobile Vistors
-//function ampforwp_page_template_redirect_all_amp_mobile() {
-//    if ( is_amp_endpoint() )
-//    return;
-//    wp_redirect( get_permalink( $id ) . AMP_QUERY_VAR . '/', 301 );
-//    exit();
-//}
-//if ( wp_is_mobile() ) {
-//    add_action( 'template_redirect', 'ampforwp_page_template_redirect_all_amp_mobile' );
-//}
+<?php
 /* This file will contain all the Extra FEATURES.
 
 1. Add Home REL canonical
