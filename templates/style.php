@@ -259,7 +259,19 @@ h2.amp-wp-title , .amp-wp-post-content p{
 
 
 
-/* Single */ 
+/* Single */
+.amp-ad-wrapper{
+    margin-bottom: 10px;
+}
+.comment-button-wrapper a{
+    color: #444;
+    background: #f6f7f9;
+    border: 1px solid #dfe0e4;
+    font-size: 13px;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 0 0px 3px rgba(0,0,0,.04);
+    border-radius: 1px;
+}
 h1.amp-wp-title {
     text-align: center;
     margin: 20px 0px 18px 0px;
