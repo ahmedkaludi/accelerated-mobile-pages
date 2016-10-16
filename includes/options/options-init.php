@@ -585,6 +585,26 @@
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),  
+        // Related Post  
+             array(
+                'id'        => 'ampforwp-single-related-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Related Post', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Related Posts in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Comments Post  
+             array(
+                'id'        => 'ampforwp-single-comments-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Comments', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Comments in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
         // Social Icons ON/OFF
             array(
                 'id'        => 'enable-single-social-icons',

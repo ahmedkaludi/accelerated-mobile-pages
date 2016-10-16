@@ -287,6 +287,9 @@ h1.amp-wp-title {
 .post-pagination-meta{
     min-height:75px
 }
+.single-post .post-pagination-meta{
+    min-height:auto
+}
 .post-pagination-meta .amp-wp-tax-category,
 .post-title-meta .amp-wp-tax-tag {
     display : none; 
@@ -520,6 +523,9 @@ amp-user-notification button:hover {
     .related_posts .related_link {
         margin: 17px 18px 17px 19px;
     }
+    .comments_list ul li .comment-body{
+        width:auto
+    }
 }
 @media screen and (max-width: 425px) { 
     .related_posts .related_link p{
@@ -533,7 +539,7 @@ amp-user-notification button:hover {
         line-height: 1.7;
     }
 }
-@media screen and (max-width: 400px) { 
+@media screen and (max-width: 400px) {
     .amp-wp-title{
         font-size: 19px;
         margin: 21px 10px -1px 10px;

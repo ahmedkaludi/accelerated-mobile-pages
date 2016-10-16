@@ -89,6 +89,7 @@
 		</div>
 	<?php } ?>
 
+<?php if($redux_builder_amp['ampforwp-single-related-on-off'] == true) { ?>
 <div class="relatedpost">
     <div class="related_posts">
         <h3>Related Posts</h3>
@@ -134,8 +135,11 @@
     ?>
     </ol>
     </div>
-</div>    
+</div>
+<?php } ?>
+
         
+<?php if($redux_builder_amp['ampforwp-single-comments-on-off'] == true) { ?>
 <!-- Comments -->
 <?php //if ( have_comments() ) : ?>
 <div class="comments_list">
@@ -163,10 +167,10 @@
             ?>
     </ul>
 </div>
-
 <div class="comment-button-wrapper">
     <a href="<?php echo get_permalink().'#commentform' ?>">Leave a Comment</a>
-</div>
+</div>    
+<?php } ?>
 
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
