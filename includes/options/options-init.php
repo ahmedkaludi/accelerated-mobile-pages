@@ -671,6 +671,13 @@
                     'title'     =>  __('LinkedIn', 'redux-framework-demo'),
                     'default'   =>  1,
                 ),
+                array(
+                    'id'        =>  'enable-single-whatsapp-share',
+                    'type'      =>  'switch', 
+                    'required'  => array('enable-single-social-icons', '=' , '1'),
+                    'title'     =>  __('WhatsApp', 'redux-framework-demo'),
+                    'default'   =>  1,
+                ),
         ),
       
     ) );

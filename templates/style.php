@@ -181,9 +181,15 @@ amp-sidebar {
     z-index: 999;
     text-align: center;
 }
-
-
-
+.whatsapp-share-icon {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    background: #5cbe4a;
+    padding: 4px 0px;
+    position: relative;
+    top: -4px;
+}
 /* Header */
 #header{
     background: #fff;

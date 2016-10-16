@@ -1,6 +1,7 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
+Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.6.1
 Stable tag: 0.8.5.3
