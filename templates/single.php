@@ -59,8 +59,8 @@
 
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
 		<div id="pagination">
-			<div class="next"><?php next_post_link(); ?></div>
-			<div class="prev"><?php previous_post_link(); ?></div>
+			<div class="next"><?php next_post_link('%link/amp/'); ?></div>
+			<div class="prev"><?php previous_post_link('%link/amp/'); ?></div>
 			<div class="clearfix"></div>
 		</div>
     <?php } ?>
@@ -110,7 +110,7 @@
     $args=array(
     'category__in' => $category_ids,
     'post__not_in' => array($post->ID),
-    'posts_per_page'=> 2, // Number of related posts that will be shown.
+    'posts_per_page'=> 3, // Number of related posts that will be shown.
     'caller_get_posts'=>1
     );
     $my_query = new wp_query( $args );
@@ -126,7 +126,7 @@
 			<?php if ( has_post_thumbnail() ) { ?>
             <amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img> <?php } ?>
                 <div class="related_link">
-                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    <a href="<?php the_permalink(); ?>/amp/"><?php the_title(); ?></a>
                     <?php $content = get_the_content();?>
                     <p><?php echo wp_trim_words( $content , '15' ); ?></p>
                 </div>
