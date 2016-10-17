@@ -21,6 +21,7 @@
 17. Archives Canonical in AMP version
 18. Custom Canonical for Homepage
 19. Remove Canonical tags
+20. Remove the default Google font for performance
 */
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
@@ -601,3 +602,8 @@ function ampforwp_amp_remove_actions() {
     } 
 }
 add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
+
+// 20. Remove the default Google font for performance
+add_action( 'amp_post_template_head', function() {
+    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+}, 9 );
