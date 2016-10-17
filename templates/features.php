@@ -397,9 +397,12 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content; 
 		}
 
+
+ 
 
 	// 12. Add Logo URL in the structured metadata
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
