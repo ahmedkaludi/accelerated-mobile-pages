@@ -383,6 +383,7 @@
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
+				 $content = preg_replace('/date=*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
