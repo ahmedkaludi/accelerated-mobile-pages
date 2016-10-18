@@ -161,8 +161,8 @@
 
 	    <footer class="container">
 	        <div id="footer">
-	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php if ( $ampforwp_backto_nonamp ) { ?>  |  
-	            	<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } ?>
+	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php if ( $ampforwp_backto_nonamp ) { ?>  <span class="nonamplink">|</span>  
+	            	<a class="nonamplink" href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } ?>
 	            </p>
 	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
 	        </div>
