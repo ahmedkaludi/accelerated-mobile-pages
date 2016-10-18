@@ -16,11 +16,12 @@ The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pag
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/) 
+[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/) 
 
 [youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
 **Features:**
+
 * NEW - Related posts below the post
 * NEW - Recent Comments list 
 * Automatically integrate AMP to your website. 
@@ -51,7 +52,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 **NOTE:** Next Update of this plugin will be released by end of October 2016.
 
-** [JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/): Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.  **
+**[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 **How to test if AMP is working or not?**
 After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
