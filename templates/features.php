@@ -22,6 +22,7 @@
 18. Custom Canonical for Homepage
 19. Remove Canonical tags
 20. Remove the default Google font for performance
+21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 */
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
@@ -161,8 +162,8 @@
 
 	    <footer class="container">
 	        <div id="footer">
-	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php if ( $ampforwp_backto_nonamp ) { ?>  <span class="nonamplink">|</span>  
-	            	<a class="nonamplink" href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } ?>
+	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php if ( $ampforwp_backto_nonamp ) { ?>  |  
+	            	<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } ?>
 	            </p>
 	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
 	        </div>
@@ -449,6 +450,33 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 						'width' 	=> $structured_data_width,
 					);
 			}
+			
+			// Custom Structured Data information for Archive, Categories and tag pages.
+			if ( is_archive() ) {
+					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
+					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					
+					$structured_data_archive_title 	= "Archived Posts";
+					$structured_data_author				=  get_userdata( 1 );
+							if ( $structured_data_author ) {
+								$structured_data_author 		= $structured_data_author->display_name ;
+							} else {
+								$structured_data_author 		= "admin";
+							}
+						
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					$metadata['author'] = array(
+						'@type' 	=> 'Person',
+						'name' 		=> $structured_data_author ,
+					);
+					$metadata['headline'] = $structured_data_archive_title;		
+			}	
 			return $metadata;
 }
 
@@ -607,3 +635,10 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 add_action( 'amp_post_template_head', function() {
     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 }, 9 );
+
+
+// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
+function ampforwp_remove_schema_data() {
+	remove_filter('the_content','display_rich_snippet');
+}

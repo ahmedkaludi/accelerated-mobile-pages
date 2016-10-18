@@ -361,7 +361,13 @@ main .amp-wp-content.featured-image-content {
 	margin-bottom: 0;
 	box-shadow: none
 }
+
 /* Related Posts */
+main .amp-wp-content.relatedpost {
+	background: none;
+	box-shadow: none;
+	max-width: 1030px;
+}
 .related_posts h3, .comments_list h3{
     font-size: 14px;
     font-weight: bold;
@@ -416,6 +422,11 @@ main .amp-wp-content.featured-image-content {
 }
 
 /* Comments */
+main .amp-wp-content.comments_list {
+	background: none;
+	box-shadow: none;
+	max-width: 1030px;
+}
 .comments_list div{
     display:inline-block; 
 }
@@ -444,15 +455,16 @@ main .amp-wp-content.featured-image-content {
     -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
     box-shadow: 0 2px 3px rgba(0,0,0,.05);
     padding: 0px;
-    max-width:900px
+    max-width: 1000px;
 }
 .comments_list ul li .comment-body{
     padding: 25px;
     width: 91%;
 }
 .comment-author{ float:left }
-.comment-meta{
-    float:right
+.single-post footer.comment-meta{
+    /* float:right */
+		padding-bottom: 0;
 } 
 .comments_list li li{
     margin: 20px 20px 10px 20px;
