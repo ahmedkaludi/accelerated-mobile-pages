@@ -21,6 +21,8 @@
 17. Archives Canonical in AMP version
 18. Custom Canonical for Homepage
 19. Remove Canonical tags
+20. Remove the default Google font for performance
+21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 */
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
@@ -383,6 +385,7 @@
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
+				 $content = preg_replace('/date=*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
@@ -396,9 +399,12 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content; 
 		}
 
+
+ 
 
 	// 12. Add Logo URL in the structured metadata
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
@@ -444,6 +450,33 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 						'width' 	=> $structured_data_width,
 					);
 			}
+			
+			// Custom Structured Data information for Archive, Categories and tag pages.
+			if ( is_archive() ) {
+					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
+					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
+					
+					$structured_data_archive_title 	= "Archived Posts";
+					$structured_data_author				=  get_userdata( 1 );
+							if ( $structured_data_author ) {
+								$structured_data_author 		= $structured_data_author->display_name ;
+							} else {
+								$structured_data_author 		= "admin";
+							}
+						
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					$metadata['author'] = array(
+						'@type' 	=> 'Person',
+						'name' 		=> $structured_data_author ,
+					);
+					$metadata['headline'] = $structured_data_archive_title;		
+			}	
 			return $metadata;
 }
 
@@ -597,3 +630,15 @@ function ampforwp_amp_remove_actions() {
     } 
 }
 add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
+
+// 20. Remove the default Google font for performance
+add_action( 'amp_post_template_head', function() {
+    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+}, 9 );
+
+
+// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
+function ampforwp_remove_schema_data() {
+	remove_filter('the_content','display_rich_snippet');
+}
