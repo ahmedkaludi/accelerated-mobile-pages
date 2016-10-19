@@ -385,7 +385,7 @@
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
-				 $content = preg_replace('/date=*/', '', $content);
+				 $content = preg_replace('/date=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
@@ -399,6 +399,18 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
+				return $content; 
+		}
+
+	// 11.5 Strip unwanted codes the_content of Frontpage
+    add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_frontpage');
+        function ampforwp_strip_invalid_content_frontpage(){
+            if ( is_front_page() || is_home() ) {
+			add_filter( 'the_content', 'ampforwp_the_content_filter_frontpage', 20 );
+            }
+		}
+		function ampforwp_the_content_filter_frontpage( $content ) {
 				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content; 
 		}
