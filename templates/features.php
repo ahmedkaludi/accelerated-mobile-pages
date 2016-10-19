@@ -23,6 +23,7 @@
 19. Remove Canonical tags
 20. Remove the default Google font for performance
 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+22. AMP Design Manager
 */
 // Adding AMP-related things to the main theme 
 	global $redux_builder_amp;
@@ -103,9 +104,12 @@
 	// 3. Custom Style files
 	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
 	function ampforwp_set_custom_style( $file, $type, $post ) {
+		if ( ! is_single() ) {
+		
 			if ( 'style' === $type ) {
 				$file = AMPFORWP_PLUGIN_DIR . '/templates/style.php';
 			}
+		}
 			return $file;
 	}
 
@@ -642,3 +646,8 @@ add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
 }
+
+
+// 22. AMP Design Manager
+require 'design-manager.php';
+// require 'customizer.php';
