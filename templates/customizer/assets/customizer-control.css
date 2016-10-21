@@ -1,0 +1,12 @@
+ul.fx-share-multicheck-sortable-list .fx-share-multicheck-sortable-handle{
+	float: right;
+	cursor: move;
+}
+ul.fx-share-multicheck-sortable-list li{
+	padding: 7px;
+	border: 1px solid #e5e5e5;
+	background: #fafafa;
+}
+.fx-share-hideme{
+	display: none !important;
+}
