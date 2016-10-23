@@ -24,5 +24,4 @@
 	
 // 3. Redux panel inclusion code
 	require_once( AMPFORWP_PLUGIN_DIR . '/includes/options/admin-init.php' );
-
 ?>

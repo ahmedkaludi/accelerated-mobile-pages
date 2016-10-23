@@ -138,7 +138,7 @@
     Redux::setSection( $opt_name, array(
         'title' => __( 'Welcome', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/blog/amp-0-7-7/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
 			               . '<h2>' . __( 'Frequently Asked Questions', 'redux-framework-demo' ) . '</h2>'
 			               . '<p><strong>' . __( 'How to Setup Navigation Menu?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.', 'redux-framework-demo' ) . '</p>'
 			               . '<p><strong>' . __( 'I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.', 'redux-framework-demo' ) . '</p>'
@@ -246,52 +246,29 @@
             )                        
         ),
         array(
-            'id'       => 'amp-multi-select-pages',
-            'type'     => 'select',
-            'multi'    => true,
-            'title'    => __('Hide AMP on Specific Pages', 'redux-framework-demo'),
-            'data' => 'pages',
+            'id'        =>'amp-frontpage-select-option',
+            'type'      => 'switch', 
+            'title'     => __('Front Page', 'redux-framework-demo'),
+            'default'   => 0,
+            'subtitle'  => __('Custom AMP frontpage', 'redux-framework-demo'),
+            'true'      => 'true',
+            'false'     => 'false', 
         ),
         array(
-            'id'       => 'amp-multi-select-posts',
+            'id'       => 'amp-frontpage-select-option-pages',
             'type'     => 'select',
-            'multi'    => true,
-            'title'    => __('Hide AMP on Specific Posts', 'redux-framework-demo'),
-            'data'     => 'post',
+            'title'    => __('Select Page as Frontpage', 'redux-framework-demo'), 
+            'required' => array('amp-frontpage-select-option', '=' , '1'),
+            // Must provide key => value pairs for select options
+            'data'     => 'page',
             'args'     => array(
-                'post_type' => 'post', 
+                'post_type' => 'page', 
                 'posts_per_page' => 500
-            ),
+            ), 
+
+            'default'  => '2',
         ),
-
- 
-array(
-    'id'        =>'amp-frontpage-select-option',
-    'type'      => 'switch', 
-    'title'     => __('Front Page', 'redux-framework-demo'),
-    'default'   => 0,
-    'subtitle'  => __('Custom AMP frontpage', 'redux-framework-demo'),
-    'true'      => 'true',
-    'false'     => 'false', 
-),
-array(
-    'id'       => 'amp-frontpage-select-option-pages',
-    'type'     => 'select',
-    'title'    => __('Select Page as Frontpage', 'redux-framework-demo'), 
-    'required' => array('amp-frontpage-select-option', '=' , '1'),
-    // Must provide key => value pairs for select options
-    'data'     => 'page',
-    'args'     => array(
-        'post_type' => 'page', 
-        'posts_per_page' => 500
-    ), 
-
-    'default'  => '2',
-),
-
-            
-            
-            
+        
         array(
             'id'       => 'amp-footer-text',
             'title'    => __('Footer', 'redux-framework-demo'),
@@ -308,7 +285,13 @@ array(
             'true'      => 'true',
             'false'     => 'false', 
         ),
-        )
+        array(
+            'id'       => 'amp-navigation-text',
+            'title'    => __('Navigation Text', 'redux-framework-demo'),
+            'type'     => 'text',  
+            'default'  => 'Navigate'
+        ),
+      )
 
      
         
@@ -387,16 +370,18 @@ array(
                     'type'      => 'text',  
                     'required'  => array('enable-amp-ads-1', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
-                    'default'   => ''
+                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'default'   => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),          
                 array(
                     'id'        => 'enable-amp-ads-text-feild-slot-1',
                     'type'      => 'text', 
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
                     'default'  => '',
                     'required' => array('enable-amp-ads-1', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 1 ends    
         // Ad 2 Starts
@@ -431,16 +416,18 @@ array(
                     'type'     => 'text',  
                     'required' => array('enable-amp-ads-2', '=' , '1'),
                     'title'    => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'     => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
-                    'default'  => ''
+                    'desc'     => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'default'  => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),          
                 array(
                     'id'       => 'enable-amp-ads-text-feild-slot-2',
                     'type'     => 'text', 
                     'title'    => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'     => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'desc'     => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
                     'default'  => '',
                     'required' => array('enable-amp-ads-2', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 2 ends
         // Ad 3 starts
@@ -475,16 +462,18 @@ array(
                     'type'      => 'text',  
                     'required'  => array('enable-amp-ads-3', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
-                    'default' 	=> ''
+                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'default' 	=> '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),          
                 array(
                     'id'        => 'enable-amp-ads-text-feild-slot-3',
                     'type'      => 'text', 
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
                     'default'   => '',
                     'required'  => array('enable-amp-ads-3', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 3 ends
         // Ad 4 Starts
@@ -519,16 +508,18 @@ array(
                     'type'      => 'text',  
                     'required'  => array('enable-amp-ads-4', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005682797531342', 'redux-framework-demo'),
-                    'default'   => ''
+                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'default'   => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),          
                 array(
                     'id'        => 'enable-amp-ads-text-feild-slot-4',
                     'type'      => 'text', 
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 7046626912', 'redux-framework-demo'),
+                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
                     'default'   => '',
                     'required'  => array('enable-amp-ads-4', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
                 )
         // Ad 4 ends
         ),
@@ -583,6 +574,36 @@ array(
                 'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
+            ), 
+        // Tags ON/OFF  
+             array(
+                'id'        => 'ampforwp-single-tags-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Tags', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Tags in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Related Post  
+             array(
+                'id'        => 'ampforwp-single-related-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Related Post', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Related Posts in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),  
+        // Comments Post  
+             array(
+                'id'        => 'ampforwp-single-comments-on-off',
+                'type'      => 'switch', 
+                'title'     => __('Comments', 'redux-framework-demo'),
+                'default'   => 1,
+                'subtitle'  => __('Enable / Disable Comments in the single post', 'redux-framework-demo'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
             ),  
         // Social Icons ON/OFF
             array(
@@ -598,8 +619,18 @@ array(
                     'type'      =>  'switch', 
                     'required'  => array('enable-single-social-icons', '=' , '1'),
                     'title'     =>  __('Facebook', 'redux-framework-demo'),
-                    'default'   =>  1,
+                    'default'   =>  0,
                 ),
+                // Facebook app ID
+                array(
+               'id'       => 'amp-facebook-app-id',
+               'title'    => __('Facebook App ID', 'redux-framework-demo'),
+               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
+               'type'     => 'text',  
+               'required'  => array('enable-single-facebook-share', '=' , '1'),
+               'placeholder'  => 'Enter your facebook app id',
+               'default'  => ''
+                ),   
                 // Twitter ON/OFF
                 array(
                     'id'        =>  'enable-single-twitter-share',
@@ -640,9 +671,56 @@ array(
                     'title'     =>  __('LinkedIn', 'redux-framework-demo'),
                     'default'   =>  1,
                 ),
+                array(
+                    'id'        =>  'enable-single-whatsapp-share',
+                    'type'      =>  'switch', 
+                    'required'  => array('enable-single-social-icons', '=' , '1'),
+                    'title'     =>  __('WhatsApp', 'redux-framework-demo'),
+                    'default'   =>  1,
+                ),
         ),
       
     ) );
+    
+    // Structured Data
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Structured Data', 'redux-framework-demo' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-structured-data',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+              'id'       => 'amp-structured-data-logo',
+              'type'     => 'media', 
+              'url'      => true,
+              'title'    => __('Default Structured Data Logo', 'redux-framework-demo'),
+              'desc' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
+            ),
+            array(
+              'id'      => 'amp-structured-data-placeholder-image',
+              'type'    => 'media', 
+              'url'     => true,
+              'title'   => __('Default Post Image', 'redux-framework-demo'),
+              'desc'    => __('Upload the Image you want to show as Placeholder Image, when there is no featured image set in the post.', 'redux-framework-demo'), 
+            ),
+            array(
+            'id'       => 'amp-structured-data-placeholder-image-width',
+            'title'    => __('Default Post Image Width', 'redux-framework-demo'),
+            'type'     => 'text', 
+            'placeholder' => '550', 
+            'desc' => 'Please don\'t add "PX" in the image size.', 
+            'default'  => ''
+            ),  
+            array(
+              'id'       => 'amp-structured-data-placeholder-image-height',
+              'title'    => __('Default Post Image Height', 'redux-framework-demo'),
+              'type'     => 'text',  
+              'placeholder' => '350',
+              'desc' => 'Please don\'t add "PX" in the image size.',
+              'default'  => ''
+             ),
+        )
+    ) ); 
 
     // CSS
     Redux::setSection( $opt_name, array(

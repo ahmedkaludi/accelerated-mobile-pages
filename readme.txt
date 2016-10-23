@@ -1,23 +1,29 @@
-=== AMP - Accelerated Mobile Pages ===
+=== AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
+Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.1
+Stable tag: 0.8.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-AMP for WordPress Support out of the box. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in Version 0.8?](http://ampforwp.com/blog/the-change/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo and Screenshot of the plugin](http://ahmedkaludi.com/accelerated-mobile-pages/)
+[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/) 
+
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
 **Features:**
 
+* NEW - Related posts below the post
+* NEW - Recent Comments list 
 * Automatically integrate AMP to your website. 
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability. 
+* 7 Advertisement sizes 
 * Google Analytics Support. 
 * User Friendly Theme Options Panel. 
 * Unlimited Color Scheme. 
@@ -36,10 +42,14 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Twitter oembed Support. 
 * Instagram Embed Support. 
 * Facebook Video Embed Support. 
+* RTL Support
+* Custom AMP FrontPage
+* Notifications
 * Great Support & Active Development. 
 
+**NOTE:** Next Update of this plugin will be released by end of October 2016.
 
-**NOTE:** Next Big Update of this plugin will be released by 20th October 2016.
+**[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 **How to test if AMP is working or not?**
 After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
@@ -54,7 +64,7 @@ To view the AMP version, add /?amp at the end of your url. An example would be h
 Yes, Absolutely! I would suggest you to send your feature request by creating an issue in Github at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/ . It helps us organize the feedback easily.
 
 **How do I get in touch?**
-You can contact me using this url: http://ahmedkaludi.com/contact-me/
+You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Installation ==
@@ -103,6 +113,75 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.6.1 =
+* Date Tag fix
+* Few validation issues after 0.8.6 were fixed (Frontpage amp-img strip issue fixed)
+
+= 0.8.6 =
+* Proper Details at http://ampforwp.com/amp-0-8-6-released-related-posts-comments/
+* Related Posts
+* Post Comments
+* WhatsApp sharing button – Your visitors can now easily share the content over the whatsapp.
+* Validation issue fixed by All In One Schema.org Rich Snippets plugin
+* Removed Google Fonts loading for Performance
+* New relic Support
+* Class added to ‘View Non-AMP Version’ text
+* Archives Structured Data issue fixed
+* Some instances img tags converted into amp-img automatically.
+
+
+= 0.8.5.3 =
+* Canonical issue fixed for Post
+
+= 0.8.5.2 =
+* Canonical issue fixed for FrontPage
+
+= 0.8.5.1 =
+* Proper Details at http://ampforwp.com/new/
+* Validation issue fixed: 'Value' tag
+* Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
+* Validation issue fixed: Table markup 
+* Validation issue fixed: nowrap and misc tags
+* New Relic Support
+* Tags on off option
+* Canonical and correct AMP html Redirect issues Solved
+* NextGEN Gallery Validation Support Added
+
+= 0.8.5 =
+* Proper Details at http://ampforwp.com/the-0-4-compatibility/
+* AMP 0.4 Compatibility Check
+* Even better Structured Data Validation, Once in for all!
+* Structured Data Options to eliminate Validation errors
+* AMP Page Exclude option
+
+= 0.8.4 =
+* Proper Details at http://ampforwp.com/blog/structured-data-validation/
+* Structured Data Validation
+* Navigation Text Change
+* Inline Style Validation
+* Form Validation
+* Frontpage shows the amphtml rel twice fixed
+* Facebook Sharing not working
+
+= 0.8.3 =
+* Prefix added in the Content filter
+* Extra space after quote in Ads
+
+= 0.8.2 =
+* Proper Details at http://ampforwp.com/blog/the-custom-frontpage/
+* Custom AMP FrontPage
+* Featured Image
+* New Mobile Friendly Advertisement sizes
+* Single Post Pagination Option
+* RTL Support
+* Notifications
+* Gaping if the Meta was turned off.
+* Analytics was not fetching the user id properly.
+* Page was not using the post template along with the AD support.
+* AMP Endpoint support for Paged when the front page is active.
+* UI improvement of Admin panel
+* Few Validation issues fixed
+
 = 0.8.1 =
 * Warning: Cannot modify header information error fixed
 * Validation issue fixed. KK Star Plugin compatible.
