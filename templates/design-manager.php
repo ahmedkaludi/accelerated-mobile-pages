@@ -1,36 +1,42 @@
 <?php
 
+if ( is_customize_preview() ) {
+	// Load all the elements in the customizer as we want all the elements in design-manager
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
+} 
+
 
 $data = get_option( 'fx_share' );
 //var_dump($data);
 //  $data =  array( 'services'=> 'facebook_1,google_plus_1,twitter_1' );
 // var_dump($data);
 	if( isset( $data['services'] ) || ! empty( $data['services'] ) ){
-		$options = explode( ',', $data['services'] );
-		
+			$options = explode( ',', $data['services'] );
 	};
 
 	if ($options): foreach ($options as $key=>$value) {
-		switch ($value) {
-				case 'twitter:1':
-					add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
-						break;
-				case 'facebook:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
-						break;
-				case 'google_plus:1':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
-						break;
-				case 'whatsapp:1':
-				
-				add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
-						break;
-		}	
-	 
+		if ( ! is_customize_preview() ) {
+			switch ($value) {
+					case 'title:1':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+							break;
+					case 'meta_info:1':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
+							break;
+					case 'featured_image:1':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
+							break;
+					case 'content:1':
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
+							break;
+			}
+		}
 	}
-	 
 	endif;
-
+	
 
 
 
