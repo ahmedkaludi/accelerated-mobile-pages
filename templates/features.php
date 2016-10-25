@@ -9,7 +9,7 @@
 5. Customize with Width of the site
 6. Add required Javascripts for extra AMP features
 7. Footer for AMP Pages
-8. Add Main tag as a Wrapper
+8. Add Main tag as a Wrapper ( code removed )
 9. Advertisement code
 10. Add Analytics to AMP Pages
 11. Strip unwanted codes and tags from the_content
@@ -102,7 +102,7 @@
 	}
 
 	// 3. Custom Style files
-	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
+	// add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
 	function ampforwp_set_custom_style( $file, $type, $post ) {
 		if ( ! is_single() ) {
 		
@@ -152,7 +152,6 @@
 
 
 	// 7. Footer for AMP Pages
-
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
 	function ampforwp_custom_footer( $file, $type, $post ) {
 			if ( 'footer' === $type ) {
@@ -163,15 +162,7 @@
 
 	add_action('amp_post_template_footer','ampforwp_footer');
 	function ampforwp_footer() {  
-			global $redux_builder_amp;
-			if ( is_home() ) {
-				$ampforwp_backto_nonamp = home_url();
-			} elseif ( is_single() ){
-				$ampforwp_backto_nonamp = get_permalink( $post->ID );
-			} else {
-				$ampforwp_backto_nonamp = '';
-			}
-			?>		
+			global $redux_builder_amp; ?>		
 		<!-- Cookie Notification Code 
 			added by @nicholasgriffintn in pull #121 -->
 		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
@@ -180,20 +171,18 @@
            		<button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
       		</amp-user-notification>
 	  	<?php } ?>
-
-
 	<?php }  
 
 	// 8. Add Main tag as a Wrapper
-	add_action('ampforwp_after_header','ampforwp_main_tag_begins');
-	function ampforwp_main_tag_begins() {
-		echo ' <main>';
-	}
+	// add_action('ampforwp_after_header','ampforwp_main_tag_begins');
+	// function ampforwp_main_tag_begins() {
+	// 	echo ' <main>';
+	// }
 
-	add_action('amp_post_template_footer','ampforwp_main_tag_ends',9);
-	function ampforwp_main_tag_ends() {
-		echo '</main>';
-	}	
+	// add_action('amp_post_template_footer','ampforwp_main_tag_ends',9);
+	// function ampforwp_main_tag_ends() {
+	// 	echo '</main>';
+	// }	
 
 	// 9. Advertisement code
 		// Below Header Global
