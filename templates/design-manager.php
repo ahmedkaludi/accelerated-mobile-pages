@@ -10,8 +10,8 @@ if ( is_customize_preview() ) {
 
 
 	$data = get_option( 'ampforwp_design' );
-	if( isset( $data['services'] ) || ! empty( $data['services'] ) ){
-		$options = explode( ',', $data['services'] );
+	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+		$options = explode( ',', $data['elements'] );
 	};
 
 	if ($options): foreach ($options as $key=>$value) {
