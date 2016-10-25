@@ -36,14 +36,14 @@
 					}
 						
 					// Default Settings for the customizer
-					var ampforwp_dm_settings =	wp.customize.instance( 'fx_share[services]' ).get() 
+					var ampforwp_dm_settings =	wp.customize.instance( 'ampforwp_design[elements]' ).get() 
 					ampforwp_dm_settings = ampforwp_dm_settings.split(',');
 						$.each(ampforwp_dm_settings, function (index, value) {
 								ampforwp_design_controller(value);
 						});					
 							
 					// Update the live settings
-					wp.customize( 'fx_share[services]', function( value ){
+					wp.customize( 'ampforwp_design[elements]', function( value ){
 						value.bind( function( to ) {
 							var result = to.split(',');
 							$.each(result, function (index, value) {

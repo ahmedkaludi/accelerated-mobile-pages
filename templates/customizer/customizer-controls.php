@@ -6,12 +6,12 @@
  * @copyright Copyright (c) 2015, Genbu Media
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
-class fx_Share_Customize_Control_Sortable_Checkboxes extends WP_Customize_Control {
+class AMPFORWP_Customize_Control_Sortable_Checkboxes extends WP_Customize_Control {
 
 	/**
 	 * Control Type
 	 */
-	public $type = 'fx-share-multicheck-sortable';
+	public $type = 'ampforwp-design-multicheck-sortable';
 
 	/**
 	 * Enqueue Scripts
@@ -70,103 +70,26 @@ class fx_Share_Customize_Control_Sortable_Checkboxes extends WP_Customize_Contro
 		}
 		?>
 
-		<ul class="fx-share-multicheck-sortable-list">
+		<ul class="ampforwp-design-multicheck-sortable-list">
 
 			<?php foreach ( $options as $key => $value ){ ?>
 
 				<li>
 					<label>
-						<input name="<?php echo esc_attr( $key ); ?>" class="fx-share-multicheck-sortable-item" type="checkbox" value="<?php echo esc_attr( $value ); ?>" <?php checked( $value ); ?> /> 
+						<input name="<?php echo esc_attr( $key ); ?>" class="ampforwp-design-multicheck-sortable-item" type="checkbox" value="<?php echo esc_attr( $value ); ?>" <?php checked( $value ); ?> /> 
 						<?php echo esc_html( $choices[$key] ); ?>
 					</label>
-					<i class="dashicons dashicons-menu fx-share-multicheck-sortable-handle"></i>
+					<i class="dashicons dashicons-menu ampforwp-design-multicheck-sortable-handle"></i>
 				</li>
 
 			<?php } // end choices. ?>
 
-				<li class="fx-share-hideme">
-					<input type="hidden" class="fx-share-multicheck-sortable" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
+				<li class="ampforwp-design-hideme">
+					<input type="hidden" class="ampforwp-design-multicheck-sortable" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
 				</li>
 
-		</ul><!-- .fx-share-multicheck-sortable-list -->
+		</ul><!-- .ampforwp-design-multicheck-sortable-list -->
 
-
-	<?php
-	}
-}
-
-/**
- * Multi check boxes custom control.
- * @since 0.1.0
- * @author David Chandra Purnama <david@genbu.me>
- * @copyright Copyright (c) 2015, Genbu Media
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- */
-class fx_Share_Customize_Control_Checkboxes extends WP_Customize_Control {
-
-	/**
-	 * Control Type
-	 */
-	public $type = 'fx-share-multicheck';
-
-	/**
-	 * Enqueue Scripts
-	 */
-	public function enqueue() {
-		wp_enqueue_style( 'fx-share-customize' );
-		wp_enqueue_script( 'fx-share-customize' );
-	}
-
-	/**
-	 * Render Settings
-	 */
-	public function render_content() {
-
-		/* if no choices, bail. */
-		if ( empty( $this->choices ) ){
-			return;
-		} ?>
-
-		<?php if ( !empty( $this->label ) ){ ?>
-			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-		<?php } // add label if needed. ?>
-
-		<?php if ( !empty( $this->description ) ){ ?>
-			<span class="description customize-control-description"><?php echo $this->description; ?></span>
-		<?php } // add desc if needed. ?>
-
-		<?php
-		/* Data */
-		$values = explode( ',', $this->value() );
-		$choices = $this->choices;
-
-		/* If values exist, use it. */
-		$options = array();
-
-		/* get individual post type */
-		foreach( $choices as $key => $label ){
-			$options[$key] = in_array( $key, $values ) ? '1' : '0';
-		}
-		?>
-
-		<ul class="fx-share-multicheck-list">
-
-			<?php foreach ( $choices as $key => $label ){ ?>
-
-				<li>
-					<label>
-						<input name="<?php echo esc_attr( $key ); ?>" class="fx-share-multicheck-item" type="checkbox" value="<?php echo esc_attr( $options[$key] ); ?>" <?php checked( $options[$key] ); ?> /> 
-						<?php echo esc_html( $label ); ?>
-					</label>
-				</li>
-
-			<?php } // end choices. ?>
-
-			<li class="fx-share-hideme">
-				<input type="hidden" class="fx-share-multicheck" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
-			</li>
-
-		</ul><!-- .fx-share-multicheck-list -->
 
 	<?php
 	}
