@@ -114,10 +114,10 @@
 	}
 
 	// 4. Custom Header files
-	add_filter( 'amp_post_template_file', 'mohammed_amp_set_custom_header', 10, 3 );
-	function mohammed_amp_set_custom_header( $file, $type, $post ) {
+	add_filter( 'amp_post_template_file', 'ampforwp_custom_header', 10, 3 );
+	function ampforwp_custom_header( $file, $type, $post ) {
 			if ( 'header-bar' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/header.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/header-bar.php';
 			}
 			return $file;
 	}
@@ -152,6 +152,15 @@
 
 
 	// 7. Footer for AMP Pages
+
+	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
+	function ampforwp_custom_footer( $file, $type, $post ) {
+			if ( 'footer' === $type ) {
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/footer.php';
+			}
+			return $file;
+	}
+
 	add_action('amp_post_template_footer','ampforwp_footer');
 	function ampforwp_footer() {  
 			global $redux_builder_amp;
@@ -162,25 +171,15 @@
 			} else {
 				$ampforwp_backto_nonamp = '';
 			}
-			?>
-
-	    <footer class="container">
-	        <div id="footer">
-	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php if ( $ampforwp_backto_nonamp ) { ?>  |  
-	            	<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } ?>
-	            </p>
-	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
-	        </div>
-		</footer>
-		
+			?>		
 		<!-- Cookie Notification Code 
 			added by @nicholasgriffintn in pull #121 -->
 		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 			<amp-user-notification layout=nodisplay id="amp-user-notification1">
-           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
-           <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
-      </amp-user-notification>
-	  <?php } ?>
+				<p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
+           		<button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
+      		</amp-user-notification>
+	  	<?php } ?>
 
 
 	<?php }  
