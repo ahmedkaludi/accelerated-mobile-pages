@@ -638,4 +638,5 @@ function ampforwp_remove_schema_data() {
 
 // 22. AMP Design Manager
 require 'design-manager.php';
+require 'design-manager/style.php';
 require 'customizer/customizer.php';

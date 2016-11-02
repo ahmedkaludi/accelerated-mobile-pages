@@ -101,7 +101,4 @@ function ampforwp_design_element_the_content( $file, $type, $post ) {
 	}
 	return $file;
 }
-
-
-
 ?>

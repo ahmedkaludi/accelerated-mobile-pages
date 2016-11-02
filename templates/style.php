@@ -633,5 +633,12 @@ amp-user-notification button {
     }
 <?php } ?>
 
+/* New V0.8.7(drag and drop) style */
+.amp-wp-article-content img {
+    max-width: 100%;
+}
+
+
+
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
