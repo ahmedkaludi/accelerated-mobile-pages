@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <header id="#top" class="amp-wp-header">
-  <div>
+  <div class="ampforwp-logo-area" >
     <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
       <?php $site_icon_url = $this->get( 'site_icon_url' );
         if ( $site_icon_url ) : ?>
@@ -9,10 +9,10 @@
       <?php echo esc_html( $this->get( 'blog_name' ) ); ?>
     </a>
   </div>
-  <!-- 
+   
   <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-    <a href="#" class="toggle-text"><?php // echo $redux_builder_amp['amp-navigation-text']; ?></a>
-  </div> -->
+    <a href="#" class="toggle-text"> <?php echo $redux_builder_amp['amp-navigation-text']; ?></a>
+  </div>
 
 </header>
 

@@ -6,6 +6,23 @@ function ampforwp_additional_style_input( $amp_template ) {
 	$get_customizer = new AMP_Post_Template( $post_id );
 	$text_color 	= $get_customizer->get_customizer_setting( 'text_color' );
 	?>
+	
+	/* Header */
+	.amp-wp-header {
+	
+	}
+	.amp-wp-header .nav_container {
+		
+	}
+	.toggle-text  { 
+		position: absolute;
+		right: 0;
+	}
+	.toggle-text span {
+		font-size: 80px;
+		position: absolute;
+		line-height: 0;
+	}
 
 	/* Homepage */
 	.ampforwp-custom-index .amp-wp-title a {
