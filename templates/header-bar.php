@@ -1,7 +1,7 @@
 <?php global $redux_builder_amp; ?>
 <header id="#top" class="amp-wp-header">
   <div>
-    <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
+    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
       <?php $site_icon_url = $this->get( 'site_icon_url' );
         if ( $site_icon_url ) : ?>
         <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>
