@@ -21,7 +21,7 @@
 17. Archives Canonical in AMP version
 18. Custom Canonical for Homepage
 19. Remove Canonical tags
-20. Remove the default Google font for performance
+20. Remove the default Google font for performance ( Code removed )
 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 22. AMP Design Manager
 */
@@ -624,9 +624,9 @@ function ampforwp_amp_remove_actions() {
 add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 
 // 20. Remove the default Google font for performance
-add_action( 'amp_post_template_head', function() {
-    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
-}, 9 );
+// add_action( 'amp_post_template_head', function() {
+//    // remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+// }, 9 );
 
 
 // 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
