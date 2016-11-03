@@ -153,6 +153,12 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 			'id'       => 'meta_taxonomy',
 			'label'    => __( 'Categories and Tags', 'ampforwp' ),
 		);
+
+		/* Meta Taxonomy */
+		$services['social_icons'] = array(
+			'id'       => 'social_icons',
+			'label'    => __( 'Social Icons', 'ampforwp' ),
+		);
 	
 		return apply_filters( 'ampforwp_controls', $services );
 	}

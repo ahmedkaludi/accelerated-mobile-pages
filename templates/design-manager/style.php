@@ -51,6 +51,17 @@ function ampforwp_additional_style_input( $amp_template ) {
 	.amp-wp-meta.amp-wp-tax-tag  {
 		display : initial
 	}
+	/* Social Icons */
+	.whatsapp-share-icon {
+	    width: 50px;
+	    height: 20px;
+	    display: inline-block;
+	    background: #5cbe4a;
+	    padding: 4px 0px;
+	    position: relative;
+	    top: -4px;
+	    text-align: center
+	}
 
 	<?php 
 }

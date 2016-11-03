@@ -24,6 +24,10 @@
 											$('.ampforwp-meta-taxonomy').show();
 											$('.ampforwp-meta-taxonomy').appendTo('.amp-wp-article');
 											break;
+									case 'social_icons:1':
+											$('.ampforwp-social-icons').show();
+											$('.ampforwp-social-icons').appendTo('.amp-wp-article');
+											break;
 									case 'title:0':
 											$('.ampforwp-title').hide();
 											break;
@@ -39,6 +43,10 @@
 									case 'meta_taxonomy:0':
 											$('.ampforwp-meta-taxonomy').hide();
 											break;
+									case 'social_icons:0':
+											$('.ampforwp-social-icons').hide();
+											break;
+
 							}
 					}
 						

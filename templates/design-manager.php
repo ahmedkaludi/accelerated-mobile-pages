@@ -7,6 +7,7 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 } 
 
 
@@ -32,6 +33,9 @@ if ( is_customize_preview() ) {
 						break;
 				case 'meta_taxonomy:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
+						break;
+				case 'social_icons:1':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 						break;
 			}
 		}
@@ -116,6 +120,20 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_taxonomy', 1
 function ampforwp_design_element_meta_taxonomy( $file, $type, $post ) {
 	if ( 'ampforwp-meta-taxonomy' === $type ) {
 		$file = DESIGN_MANAGER_FILE_PATH.'meta-taxonomy.php';
+	}
+	return $file;
+}
+
+// Social Icons 
+function ampforwp_add_element_social_icons( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-social-icons';
+	return $meta_parts;
+}
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_social_icons', 10, 3 );
+
+function ampforwp_design_element_social_icons( $file, $type, $post ) {
+	if ( 'ampforwp-social-icons' === $type ) {
+		$file = DESIGN_MANAGER_FILE_PATH.'social-icons.php';
 	}
 	return $file;
 }
