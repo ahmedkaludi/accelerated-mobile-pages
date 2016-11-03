@@ -147,6 +147,12 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 			'id'       => 'content',
 			'label'    => __( 'The Content', 'ampforwp' ),
 		);
+
+		/* Meta Taxonomy */
+		$services['meta_taxonomy'] = array(
+			'id'       => 'meta_taxonomy',
+			'label'    => __( 'Categories and Tags', 'ampforwp' ),
+		);
 	
 		return apply_filters( 'ampforwp_controls', $services );
 	}

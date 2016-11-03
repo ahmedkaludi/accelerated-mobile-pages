@@ -1,4 +1,4 @@
-<header class="amp-wp-article-header ampforwp-meta-info">
+<div class="amp-wp-article-header ampforwp-meta-info">
 
 	<?php $post_author = $this->get( 'post_author' ); ?>
 	<?php if ( $post_author ) : ?>
@@ -23,4 +23,4 @@
 			?>
 		</time>
 	</div>
-</header>
+</div>

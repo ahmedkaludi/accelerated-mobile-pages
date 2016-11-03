@@ -6,6 +6,7 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_featured_image' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
 } 
 
 
@@ -28,6 +29,9 @@ if ( is_customize_preview() ) {
 						break;
 				case 'content:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
+						break;
+				case 'meta_taxonomy:1':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
 						break;
 			}
 		}
@@ -101,4 +105,19 @@ function ampforwp_design_element_the_content( $file, $type, $post ) {
 	}
 	return $file;
 }
+
+// Meta Texonomy 
+function ampforwp_add_element_meta_taxonomy( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-meta-taxonomy';
+	return $meta_parts;
+}
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_meta_taxonomy', 10, 3 );
+
+function ampforwp_design_element_meta_taxonomy( $file, $type, $post ) {
+	if ( 'ampforwp-meta-taxonomy' === $type ) {
+		$file = DESIGN_MANAGER_FILE_PATH.'meta-taxonomy.php';
+	}
+	return $file;
+}
+
 ?>

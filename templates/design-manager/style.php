@@ -30,7 +30,6 @@ function ampforwp_additional_style_input( $amp_template ) {
 		text-decoration: none;
 		color: <?php echo sanitize_hex_color( $text_color ); ?>;
 	}
-
 	.amp-wp-meta {
 		display: flex;
 	}
@@ -44,6 +43,13 @@ function ampforwp_additional_style_input( $amp_template ) {
 	/* Single */
 	.amp-wp-article-content amp-img {
 		max-width : 100%;
+	}
+	.amp-wp-meta.amp-wp-tax-category,
+	.amp-wp-meta.amp-wp-tax-tag {
+		margin : 0
+	}
+	.amp-wp-meta.amp-wp-tax-tag  {
+		display : initial
 	}
 
 	<?php 

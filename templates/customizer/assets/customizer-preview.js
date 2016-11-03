@@ -20,6 +20,10 @@
 											$('.amp-wp-article-content').show();
 											$('.amp-wp-article-content').appendTo('.amp-wp-article');
 											break;
+									case 'meta_taxonomy:1':
+											$('.ampforwp-meta-taxonomy').show();
+											$('.ampforwp-meta-taxonomy').appendTo('.amp-wp-article');
+											break;
 									case 'title:0':
 											$('.ampforwp-title').hide();
 											break;
@@ -31,6 +35,9 @@
 											break;
 									case 'content:0':
 											$('.amp-wp-article-content').hide();
+											break;
+									case 'meta_taxonomy:0':
+											$('.ampforwp-meta-taxonomy').hide();
 											break;
 							}
 					}
