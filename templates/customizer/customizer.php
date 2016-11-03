@@ -154,10 +154,22 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 			'label'    => __( 'Categories and Tags', 'ampforwp' ),
 		);
 
-		/* Meta Taxonomy */
+		/* Social Icons */
 		$services['social_icons'] = array(
 			'id'       => 'social_icons',
 			'label'    => __( 'Social Icons', 'ampforwp' ),
+		);
+
+		/* Comments */
+		$services['comments'] = array(
+			'id'       => 'comments',
+			'label'    => __( 'Comments', 'ampforwp' ),
+		);
+
+		/* Related Posts */
+		$services['related_posts'] = array(
+			'id'       => 'related_posts',
+			'label'    => __( 'Related Posts', 'ampforwp' ),
 		);
 	
 		return apply_filters( 'ampforwp_controls', $services );

@@ -28,6 +28,14 @@
 											$('.ampforwp-social-icons').show();
 											$('.ampforwp-social-icons').appendTo('.amp-wp-article');
 											break;
+									case 'comments:1':
+											$('.ampforwp-comment-wrapper').show();
+											$('.ampforwp-comment-wrapper').appendTo('.amp-wp-article');
+											break;
+									case 'related_posts:1':
+											$('.amp-wp-content.relatedpost').show();
+											$('.amp-wp-content.relatedpost').appendTo('.amp-wp-article');
+											break;
 									case 'title:0':
 											$('.ampforwp-title').hide();
 											break;
@@ -46,6 +54,14 @@
 									case 'social_icons:0':
 											$('.ampforwp-social-icons').hide();
 											break;
+									case 'comments:0':
+											$('.ampforwp-comment-wrapper').hide();
+											break;
+									case 'related_posts:0':
+											$('.amp-wp-content.relatedpost').hide();
+											break;
+
+											
 
 							}
 					}

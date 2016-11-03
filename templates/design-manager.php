@@ -8,6 +8,8 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_content' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_taxonomy' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
+	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 } 
 
 
@@ -36,6 +38,12 @@ if ( is_customize_preview() ) {
 						break;
 				case 'social_icons:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
+						break;
+				case 'comments:1':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
+						break;
+				case 'related_posts:1':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 						break;
 			}
 		}
@@ -134,6 +142,35 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_social_icons', 10
 function ampforwp_design_element_social_icons( $file, $type, $post ) {
 	if ( 'ampforwp-social-icons' === $type ) {
 		$file = DESIGN_MANAGER_FILE_PATH.'social-icons.php';
+	}
+	return $file;
+}
+
+
+// Comments
+function ampforwp_add_element_comments( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-comments';
+	return $meta_parts;
+}
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_comments', 10, 3 );
+
+function ampforwp_design_element_comments( $file, $type, $post ) {
+	if ( 'ampforwp-comments' === $type ) {
+		$file = DESIGN_MANAGER_FILE_PATH.'comments.php';
+	}
+	return $file;
+}
+
+// Related Posts 
+function ampforwp_add_element_related_posts( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-related-posts';
+	return $meta_parts;
+}
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_related_posts', 10, 3 );
+
+function ampforwp_design_element_related_posts( $file, $type, $post ) {
+	if ( 'ampforwp-related-posts' === $type ) {
+		$file = DESIGN_MANAGER_FILE_PATH.'related-posts.php';
 	}
 	return $file;
 }
