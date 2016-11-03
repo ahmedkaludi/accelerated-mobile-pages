@@ -8,11 +8,12 @@ function ampforwp_additional_style_input( $amp_template ) {
 	?>
 	
 	/* Header */
-	.amp-wp-header {
-	
+	.amp-wp-header { 
 	}
 	.amp-wp-header .nav_container {
-		
+		float: right;
+    	top: -9px;
+    	line-height : 1
 	}
 	.toggle-text  { 
 		position: absolute;

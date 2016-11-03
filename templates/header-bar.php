@@ -8,10 +8,11 @@
       <?php endif; ?>
       <?php echo esc_html( $this->get( 'blog_name' ) ); ?>
     </a>
-  </div>
-   
+  
   <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-    <a href="#" class="toggle-text"> <?php echo $redux_builder_amp['amp-navigation-text']; ?></a>
+      <a href="#" class="toggle-text"> <?php echo $redux_builder_amp['amp-navigation-text']; ?></a>
+  </div>
+
   </div>
 
 </header>
