@@ -19,8 +19,8 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		$wp_customize->add_setting(
 			'ampforwp_design[elements]', /* option name */
 			array(
-				'default'          => self::ampforwp_controls_default(), // facebook:1,twitter:1,google_plus:1
-			//	'sanitize_callback' => 'ampforwp_sanitize_controller',
+				'default'          => self::ampforwp_controls_default(), 
+				// 'sanitize_callback' => 'ampforwp_sanitize_controller',
 				'transport'        	=> 'postMessage',
 				'type'             	=> 'option',
 				'capability'       	=> 'manage_options',
@@ -87,8 +87,8 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		$output = array();
 
 		/* Get valid services */
-		$valid_services = ampforwp_controls();
-		var_dump($valid_services);
+		$valid_services = self::ampforwp_controls();
+		// var_dump($valid_services);
 
 		/* Make array */
 		$services = explode( ',', $input );
@@ -192,7 +192,6 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 
 // Add New Contols and Settings in Customizer
  add_action( 'amp_init', array( 'AMPFORWP_Customizer_Design_Contols', 'init' ) );
-
 
  /* Register Customizer Scripts */
  add_action( 'customize_controls_enqueue_scripts', 'ampforwp_customize_register_scripts', 0 );
