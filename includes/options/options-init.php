@@ -526,11 +526,10 @@
       
     ) );
 
-
     // Single Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'redux-framework-demo' ),
-        'desc'       => __( 'Additional Options to control the look of Single', 'redux-framework-demo' ),
+        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url()) .'customize.php?autofocus[section]=amp_design&customize_amp=1"> Click here </a> ', 'redux-framework-demo' ),
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
