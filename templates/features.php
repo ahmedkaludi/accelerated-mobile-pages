@@ -442,9 +442,13 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 						'width' 	=> $structured_data_width,
 					);
 			}
+			if ( is_home()  ) {
+				$metadata['mainEntityOfPage']  = esc_url(home_url());
+				$metadata['headline']  = esc_attr(get_bloginfo('name'));
+			}
 			
 			// Custom Structured Data information for Archive, Categories and tag pages.
-			if ( is_archive() ) {
+			if ( is_archive()  ) {
 					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
