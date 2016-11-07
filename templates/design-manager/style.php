@@ -42,6 +42,14 @@ function ampforwp_additional_style_input( $amp_template ) {
 	.ampforwp-custom-index .amp-wp-content {
 		margin-bottom: 30px;
 	}
+		/* Home Pagination */
+		#pagination .next {
+			display: inline-block;
+			float: right
+		}
+		#pagination .prev {
+			display: inline-block;
+		}
 
 	/* Single */
 	.amp-wp-article-content amp-img {
