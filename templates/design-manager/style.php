@@ -294,5 +294,10 @@ function ampforwp_additional_style_input( $amp_template ) {
 			cursor: pointer
 		}
 	
+	/* Advertisement */
+		.amp-ad-wrapper {
+			text-align: center
+		}
+	
 	<?php 
 } ?>

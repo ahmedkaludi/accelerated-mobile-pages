@@ -186,7 +186,7 @@
 
 	// 9. Advertisement code
 		// Below Header Global
-		add_action('ampforwp_after_header','ampforwp_header_advert');
+		add_action('ampforwp_post_before_design_elements','ampforwp_header_advert');
 
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
@@ -227,7 +227,7 @@
 		}
 
 		// Above Footer Global
-		add_action('amp_post_template_footer','ampforwp_footer_advert',8);
+		add_action('ampforwp_post_after_design_elements','ampforwp_footer_advert');
 
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;

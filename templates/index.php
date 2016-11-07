@@ -15,40 +15,42 @@
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <article class="amp-wp-article ampforwp-custom-index">
-<?php 
- 
+	
+	<?php do_action('ampforwp_post_before_design_elements') ?>
+	
+			<?php 
+				if ( have_posts() ) :
+		    while ( have_posts() ) : the_post(); ?>
+	        <div class="amp-wp-content">
+	  
+	            <h1 class="amp-wp-title">
+	                <?php  $ampforwp_post_url = get_permalink(); ?>
+	                <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+	            </h1>
 
-if ( have_posts() ) :
-        while ( have_posts() ) : the_post(); ?>
+	            <div class="amp-wp-meta">
+	                <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
+	            </div>
+	            
+	            <?php $content = get_the_content();?>
+	                <p><?php echo wp_trim_words( $content , '50'); ?></p>
+	        </div>
+		    <?php endwhile;  ?>
 
-        <div class="amp-wp-content">
-             
+		    <div class="amp-wp-content pagination-holder">      
 
-            <h1 class="amp-wp-title">
-                <?php  $ampforwp_post_url = get_permalink(); ?>
-                <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
-            </h1>
+		        <div id="pagination">
+		            <div class="next"><?php next_posts_link( 'Next &raquo;', 0 ) ?></div>
+		            <div class="prev"><?php previous_posts_link( '&laquo; Previous' ); ?></div>
+		            <div class="clearfix"></div>
+		        </div>
 
-            <div class="amp-wp-meta">
-                <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-            </div>
-            
-            <?php $content = get_the_content();?>
-                <p><?php echo wp_trim_words( $content , '50'); ?></p>
-        </div>
-    <?php endwhile;  ?>
+		    </div>
 
-    <div class="amp-wp-content pagination-holder">      
+		<?php endif; ?>
 
-        <div id="pagination">
-            <div class="next"><?php next_posts_link( 'Next &raquo;', 0 ) ?></div>
-            <div class="prev"><?php previous_posts_link( '&laquo; Previous' ); ?></div>
-            <div class="clearfix"></div>
-        </div>
-
-    </div>
-
-<?php endif; ?>
+	<?php do_action('ampforwp_post_after_design_elements') ?>
+	
 </article>
 
  
