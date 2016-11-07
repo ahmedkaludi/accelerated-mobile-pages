@@ -21,7 +21,7 @@
 			<ul class="amp-wp-meta">
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
 
-				<li> <?php _e(' on ','ampforwp'); the_time( get_option( 'date_format' ) ) ?></li> 
+				<li> <?php _e(' on ','ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
 
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array('meta-taxonomy' ) ) ); ?>
 
@@ -36,24 +36,24 @@
         <?php
         $thumb_id = get_post_thumbnail_id();
         $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
-        $thumb_url = $thumb_url_array[0];            
-        ?> 
+        $thumb_url = $thumb_url_array[0];
+        ?>
         <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></div>
     <?php } } ?>
 	</div>
 	<div class="amp-wp-content the_content">
 
         <?php do_action( 'ampforwp_before_post_content', $this ); ?>
-		
+
 		<?php echo $this->get( 'post_amp_content' ); // amphtml content; no kses ?>
 		<?php do_action( 'ampforwp_after_post_content', $this ); ?>
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
-		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) { 
+		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) {
 				$this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) );
-				
-			} ?> 
+
+			} ?>
 
 
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
@@ -66,7 +66,7 @@
 	</div>
 
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
-		<div class="sticky_social">          
+		<div class="sticky_social">
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
@@ -95,24 +95,45 @@
 		</div>
 	<?php } ?>
 
-		<?php if($redux_builder_amp['ampforwp-single-related-on-off'] == true) { 
+		<?php
+		//related posts code starts here
 					$orig_post = $post;
 		    	global $post;
-			    $categories = get_the_category($post->ID);
-						if ($categories) {
-								$category_ids = array();
-								foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
-								$args=array(
-								    'category__in' => $category_ids,
-								    'post__not_in' => array($post->ID),
-								    'posts_per_page'=> 3, // Number of related posts that will be shown.
-								    'caller_get_posts'=>1
-								);
+
+					//code block for categories
+					if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
+				    $categories = get_the_category($post->ID);
+							if ($categories) {
+									$category_ids = array();
+									foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+									$args=array(
+									    'category__in' => $category_ids,
+									    'post__not_in' => array($post->ID),
+									    'posts_per_page'=> 3, 
+									    'caller_get_posts'=>1
+									);
+								}
+							}//end of block for categories
+
+					//code block for tags
+					if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
+						$ampforwp_tags = get_the_tags($post->ID);
+							if ($ampforwp_tags) {
+											$tag_ids = array();
+											foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+											$args=array(
+											   'tag__and' => $tag_ids,
+											    'post__not_in' => array($post->ID),
+											    'posts_per_page'=> 3,
+											    'caller_get_posts'=>1
+											);
+						}
+					}//end of block for tags
 								$my_query = new wp_query( $args );
 							if( $my_query->have_posts() ) { ?>
 								<div class="amp-wp-content relatedpost">
 								    <div class="related_posts">
-												<ol class="clearfix">								
+												<ol class="clearfix">
 														<h3>Related Posts</h3>
 														<?php
 												    while( $my_query->have_posts() ) {
@@ -123,7 +144,7 @@
 												            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
 												            $thumb_url_2 = $thumb_url_array_2[0];
 											            ?>
-																	
+
 																	<?php if ( has_post_thumbnail() ) { ?>
 											            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
 																	<?php } ?>
@@ -132,24 +153,25 @@
 										                    <?php $content = get_the_content();?>
 										                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 										                </div>
-										            </li> 
+										            </li>
 																<?php
 															}
-														}
+
 							        } ?>
 											</ol>
 								    </div>
 								</div>
-						<?php 
+						<?php
 				        $post = $orig_post;
 				        wp_reset_query();
-			} ?>
+//related posts code ends here
+		?>
 
-        
+
 		<?php if($redux_builder_amp['ampforwp-single-comments-on-off'] == true) { ?>
 		<!-- Comments -->
 			<?php
-					// Gather comments for a specific page/post 
+					// Gather comments for a specific page/post
 					$postID = get_the_ID();
 					$comments = get_comments(array(
 							'post_id' => $postID,
@@ -168,14 +190,14 @@
 				                  'max_depth'   			=> 0,
 				                  'avatar_size'				=> 0,
 				                  'reverse_top_level' => false //Show the latest comments at the top of the list
-				              ), $comments); 
-											
+				              ), $comments);
+
 										?>
 						    </ul>
 						</div>
 						<div class="comment-button-wrapper">
 						    <a href="<?php echo get_permalink().'#commentform' ?>">Leave a Comment</a>
-						</div><?php 
+						</div><?php
 				}
 			} ?>
 
