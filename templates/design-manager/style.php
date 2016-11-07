@@ -2,7 +2,7 @@
 add_action('amp_post_template_css', 'ampforwp_additional_style_input');
 
 function ampforwp_additional_style_input( $amp_template ) { 
-
+	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	$text_color 		= $get_customizer->get_customizer_setting( 'text_color' );
 	$link_color     = $get_customizer->get_customizer_setting( 'link_color' );
@@ -297,6 +297,34 @@ function ampforwp_additional_style_input( $amp_template ) {
 	/* Advertisement */
 		.amp-ad-wrapper {
 			text-align: center
+		}
+	/* Sticky Social bar in Single */
+		<?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
+			body {
+				padding-bottom: 43px;
+			}
+		<?php } ?>
+		.sticky_social{
+		    width: 100%;
+		    bottom: 0;
+		    display: block;
+		    left: 0;
+		    box-shadow: 0px 4px 7px #000;
+		    background: #fff;
+		    padding: 7px 0px 0px 0px;
+		    position: fixed;
+		    margin: 0;
+		    z-index: 999;
+		    text-align: center;
+		}
+		.whatsapp-share-icon {
+		    width: 50px;
+		    height: 20px;
+		    display: inline-block;
+		    background: #5cbe4a;
+		    padding: 4px 0px;
+		    position: relative;
+		    top: -4px;
 		}
 	
 	<?php 

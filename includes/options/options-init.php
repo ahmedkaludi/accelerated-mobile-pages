@@ -608,79 +608,81 @@
             array(
                 'id'        => 'enable-single-social-icons',
                 'type'      => 'switch', 
-                'title'     => __('Social Icons', 'redux-framework-demo'),
+                'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
                 'default'   => 1,
                 'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
-            ),
-                // Facebook ON/OFF
-                array(
-                    'id'        =>  'enable-single-facebook-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Facebook', 'redux-framework-demo'),
-                    'default'   =>  0,
-                ),
-                // Facebook app ID
-                array(
-               'id'       => 'amp-facebook-app-id',
-               'title'    => __('Facebook App ID', 'redux-framework-demo'),
-               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
-               'type'     => 'text',  
-               'required'  => array('enable-single-facebook-share', '=' , '1'),
-               'placeholder'  => 'Enter your facebook app id',
-               'default'  => ''
-                ),   
-                // Twitter ON/OFF
-                array(
-                    'id'        =>  'enable-single-twitter-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Twitter', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ), 
-                // GooglePlus ON/OFF
-                array(
-                    'id'        =>  'enable-single-gplus-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('GooglePlus', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ), 
-                // Email ON/OFF
-                array(
-                    'id'        =>  'enable-single-email-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Email', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ), 
-                // Pinterest ON/OFF
-                array(
-                    'id'        =>  'enable-single-pinterest-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Pinterest', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ), 
-                // LinkedIn ON/OFF
-                array(
-                    'id'        =>  'enable-single-linkedin-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('LinkedIn', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                array(
-                    'id'        =>  'enable-single-whatsapp-share',
-                    'type'      =>  'switch', 
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('WhatsApp', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
+            ),  
         ),
       
     ) );
-    
+    // Social Section
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Social', 'redux-framework-demo' ),
+        'id'         => 'amp-social',
+        'subsection' => true,
+        'fields'     => array(
+          // Facebook ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-share',
+              'type'      =>  'switch', 
+              //'required'  => array('enable-single-social-icons', '=' , '1'),
+              'title'     =>  __('Facebook', 'redux-framework-demo'),
+              'default'   =>  0,
+          ),
+          // Facebook app ID
+          array(
+         'id'       => 'amp-facebook-app-id',
+         'title'    => __('Facebook App ID', 'redux-framework-demo'),
+         'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
+         'type'     => 'text',  
+         'required'  => array('enable-single-facebook-share', '=' , '1'),
+         'placeholder'  => 'Enter your facebook app id',
+         'default'  => ''
+          ),   
+          // Twitter ON/OFF
+          array(
+              'id'        =>  'enable-single-twitter-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Twitter', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // GooglePlus ON/OFF
+          array(
+              'id'        =>  'enable-single-gplus-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('GooglePlus', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // Email ON/OFF
+          array(
+              'id'        =>  'enable-single-email-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Email', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // Pinterest ON/OFF
+          array(
+              'id'        =>  'enable-single-pinterest-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Pinterest', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // LinkedIn ON/OFF
+          array(
+              'id'        =>  'enable-single-linkedin-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('LinkedIn', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // WhatsApp
+          array(
+              'id'        =>  'enable-single-whatsapp-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('WhatsApp', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+        )
+    ) );
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'redux-framework-demo' ),
