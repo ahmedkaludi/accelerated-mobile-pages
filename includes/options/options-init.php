@@ -291,6 +291,14 @@
             'type'     => 'text',
             'default'  => 'Navigate'
         ),
+        // amp ON/OFF on tags and categories page
+            array(
+              'id'       => 'ampforwp-amp-on-off-catgs-tags',
+            'type'     => 'switch',
+            'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
+            'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
+            'true'      => 'true',
+            'false'     => 'false',),
       )
 
 
@@ -327,6 +335,7 @@
             'required' => array('amp-enable-notifications', '=' , '1'),
             'default'  => 'Accept'
             ),
+
         ),
 
     ) );
@@ -585,6 +594,7 @@
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),
+
           // Related Post
 	        //new related type posts field
 	        array(

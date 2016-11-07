@@ -37,7 +37,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive() ) {
+		if ( is_home() || is_archive()) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -51,25 +51,30 @@
 	}
 
 	function ampforwp_home_archive_rel_canonical() {
-
+		global $redux_builder_amp;
 		if ( is_home() || is_front_page() || is_archive() ) {
 
-			if ( is_home() || is_front_page() ){
+			if ( is_home() || is_front_page()  ){
 				$amp_url = home_url('/?amp');
 			}
-            elseif( is_archive()){
-                global $wp;
-                $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
-				$amp_url = $archive_current_url . '/?amp';
-            }
-            else {
-				$amp_url = trailingslashit( get_permalink().'amp' );
+	    elseif( is_archive()){
+	                global $wp;
+	                $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
+									$amp_url = $archive_current_url . '/?amp';
+	    }
+      else {
+								$amp_url = trailingslashit( get_permalink().'amp' );
 			}
 
-			printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+			//checking if the user wants amp page for archives or not
+			if( is_archive() && $redux_builder_amp['ampforwp-amp-on-off-catgs-tags']=='1') {
+				// Dont do anything :)
+			} else {
+				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+			}
+			// end of checking if the user wants amp page for archives or not
 		}
-	}
-
+	} //end of ampforwp_home_archive_rel_canonical()
 
 	// 2. Custom Design
 
