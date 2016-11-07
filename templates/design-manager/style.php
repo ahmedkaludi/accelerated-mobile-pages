@@ -4,7 +4,10 @@ add_action('amp_post_template_css', 'ampforwp_additional_style_input');
 function ampforwp_additional_style_input( $amp_template ) { 
 
 	$get_customizer = new AMP_Post_Template( $post_id );
-	$text_color 	= $get_customizer->get_customizer_setting( 'text_color' );
+	$text_color 		= $get_customizer->get_customizer_setting( 'text_color' );
+	$link_color     = $get_customizer->get_customizer_setting( 'link_color' );
+	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
+	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 	?>
 	
 	/* Header */
@@ -261,6 +264,27 @@ function ampforwp_additional_style_input( $amp_template ) {
 	    display: inline-block;
 	    width: 100%;
 	} 
+	
+	/* Notifications */
+		#amp-user-notification1 p {
+		    display: inline-block;
+		}
+		amp-user-notification {
+		    padding: 5px;
+		    text-align: center;
+		    background: #fff;
+		    border-top: 1px solid;
+		}
+		amp-user-notification button {
+		    padding: 8px 10px;
+		    background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;
+		    color: <?php echo sanitize_hex_color( $header_color ); ?>;
+		    margin-left: 5px;
+				border: 0;
+		}
+		amp-user-notification button:hover {
+			cursor: pointer
+		}
 	
 	<?php 
 } ?>
