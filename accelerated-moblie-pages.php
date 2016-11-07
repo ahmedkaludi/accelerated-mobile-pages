@@ -24,8 +24,8 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 
-/* 
- * Load Files only in the backend 
+/*
+ * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
  */
 if ( is_admin()) {
@@ -37,16 +37,16 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 		public function __construct(){
 
-			// Load Files required for the plugin to run 
+			// Load Files required for the plugin to run
 			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
-			new Ampforwp_Loader;	
-			
+			new Ampforwp_Loader;
+
 		}
 	}
 }
-/* 
+/*
  * Start the plugin.
  * Gentlemen start your engines
  */
@@ -56,3 +56,7 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
+
+//hooking the settings button from features.php @line:660 @task:22
+$plugin = plugin_basename(__FILE__);
+add_filter("plugin_action_links_$plugin", 'ampforwp_plugin_settings_link' );
