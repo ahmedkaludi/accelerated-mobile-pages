@@ -109,7 +109,7 @@
 									$args=array(
 									    'category__in' => $category_ids,
 									    'post__not_in' => array($post->ID),
-									    'posts_per_page'=> 3, 
+									    'posts_per_page'=> 3,
 									    'caller_get_posts'=>1
 									);
 								}
@@ -148,8 +148,14 @@
 																	<?php if ( has_post_thumbnail() ) { ?>
 											            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
 																	<?php } ?>
+
+<?php
+$related_post_permalink = get_permalink();
+$related_post_permalink = trailingslashit($related_post_permalink);
+?>
 										                <div class="related_link">
-										                    <a href="<?php the_permalink(); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
+										                    <a href="<?php
+																				echo $related_post_permalink . AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
 										                    <?php $content = get_the_content();?>
 										                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 										                </div>
