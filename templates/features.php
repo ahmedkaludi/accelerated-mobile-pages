@@ -669,3 +669,16 @@ function ampforwp_plugin_settings_link($links) {
 	return $links;
 }
 // this is hooked in accelarated-mobile-pages.php @line:60
+
+// 23. Removing author links from comments Issue #180
+if( ! function_exists( "disable_comment_author_links" ) ) {
+	function ampforwp_disable_comment_author_links( $author_link ){
+		$is_amp_endpoint = is_amp_endpoint();
+		if ( $is_amp_endpoint ) {
+				return strip_tags( $author_link );
+		} else {
+			return $author_link;
+		}
+	}
+	add_filter( 'get_comment_author_link', 'ampforwp_disable_comment_author_links' );
+}
