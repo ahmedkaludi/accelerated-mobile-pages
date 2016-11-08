@@ -201,14 +201,35 @@
             //    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
             //    'default'  => true
             //),
-
+            array(
+                'id'       => 'amp-analytics-select-option',
+                'type'     => 'select',
+                'title'    => __( 'Analytics', 'redux-framework-demo' ),
+                'subtitle' => __( '', 'redux-framework-demo' ),
+                'desc'     => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                'options'  => array(
+                    '1' => 'Google Analytics',
+                    '2' => 'Segment Analytics'
+                ),
+                'default'  => '1'
+            ),
         array(
             'id'       => 'ga-feild',
             'type'     => 'text',
             'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
             'subtitle' => __( '', 'redux-framework-demo' ),
+            'required' => array('amp-analytics-select-option', '=' , '1'),
             'desc'     => __( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y.', 'redux-framework-demo' ),
             'default'  => 'UA-XXXXX-Y',
+        ),
+        array(
+          'id'       => 'sa-feild',
+          'type'     => 'text',
+          'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
+          'subtitle' => __( '', 'redux-framework-demo' ),
+          'required' => array('amp-analytics-select-option', '=' , '2'),
+          'desc'     => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
+          'default'  => 'SEGMENT-WRITE-KEY',
         ),
         array(
             'id'        => 'opt-color-rgba',

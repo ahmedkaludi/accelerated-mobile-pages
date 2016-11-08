@@ -11,7 +11,8 @@
 7. Footer for AMP Pages
 8. Add Main tag as a Wrapper
 9. Advertisement code
-10. Add Analytics to AMP Pages
+10. Add Analytics to AMP Pages (Google Analytics)
+	10.1 support for Analytics from segment.com
 11. Strip unwanted codes and tags from the_content
 12. Add Logo URL in the structured metadata
 13. Add Custom Placeholder Image for Structured Data.
@@ -368,8 +369,10 @@
 		}
 
 	// 10. Add Analytics to AMP Pages
-		add_action('amp_post_template_footer','ampforwp_google_analytics',11);
-		function ampforwp_google_analytics() {  ?>
+		add_action('amp_post_template_footer','ampforwp_analytics',11);
+		function ampforwp_analytics() {  ?>
+			<?php global $redux_builder_amp;
+			if ( $redux_builder_amp['amp-analytics-select-option']=='1'){?>
 			<amp-analytics type="googleanalytics" id="analytics1">
 				<script type="application/json">
 				{
@@ -385,7 +388,25 @@
 				}
 				</script>
 			</amp-analytics>
-		<?php }
+			<?php
+		}
+			// 10.1 support for Analytics from segment.com
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='2') {
+			 ?>
+					<amp-analytics type="segment">
+					<script>
+					{
+					  "vars": {
+					    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
+							"name": "<?php echo the_title(); ?>"
+					  }
+					}
+					</script>
+					</amp-analytics>
+					<?php
+				}
+			}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
 		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content');
@@ -687,3 +708,6 @@ if( ! function_exists( "disable_comment_author_links" ) ) {
 	}
 	add_filter( 'get_comment_author_link', 'ampforwp_disable_comment_author_links' );
 }
+
+//24. Added a options button for switching on/off link to non amp page
+//code @line 175
