@@ -277,6 +277,16 @@
         ),
 
         array(
+            'id'       => 'amp-footer-link-non-amp-page',
+            'type'     => 'switch',
+            'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
+            'subtitle' => __('Switch On/Off Link to Non-AMP page in the footer', 'redux-framework-demo'),
+            'true'      => 'true',
+            'false'     => 'false',
+            'default'   => 1
+        ),
+
+        array(
             'id'        =>'amp-rtl-select-option',
             'type'      => 'switch',
             'title'     => __('RTL Support', 'redux-framework-demo'),
@@ -298,7 +308,7 @@
             'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
-            'false'     => 'false',),
+            'false'     => 'false'),
       )
 
 
