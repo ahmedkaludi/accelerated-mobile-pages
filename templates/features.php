@@ -27,6 +27,7 @@
 22. adding a button to our settings page on Plugin page
 23. Removing author links from comments Issue #180
 24. Added a options button for switching on/off link to non amp page
+25. adding Piwik support using amp pixel
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -371,41 +372,49 @@
 	// 10. Add Analytics to AMP Pages
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
 		function ampforwp_analytics() {  ?>
-			<?php global $redux_builder_amp;
-			if ( $redux_builder_amp['amp-analytics-select-option']=='1'){?>
-			<amp-analytics type="googleanalytics" id="analytics1">
-				<script type="application/json">
-				{
-				  "vars": {
-				    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>"
-				  },
-				  "triggers": {
-				    "trackPageview": {
-				      "on": "visible",
-				      "request": "pageview"
-				    }
-				  }
-				}
-				</script>
-			</amp-analytics>
 			<?php
-		}
-			// 10.1 support for Analytics from segment.com
-				global $redux_builder_amp;
-				if ( $redux_builder_amp['amp-analytics-select-option']=='2') {
-			 ?>
-					<amp-analytics type="segment">
-					<script>
-					{
-					  "vars": {
-					    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
-							"name": "<?php echo the_title(); ?>"
-					  }
-					}
-					</script>
-					</amp-analytics>
-					<?php
-				}
+				//Google Analytics
+						global $redux_builder_amp;
+							if ( $redux_builder_amp['amp-analytics-select-option']=='1'){?>
+								<amp-analytics type="googleanalytics" id="analytics1">
+									<script type="application/json">
+									{
+									  "vars": {
+									    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>"
+									  },
+									  "triggers": {
+									    "trackPageview": {
+									      "on": "visible",
+									      "request": "pageview"
+									    }
+									  }
+									}
+									</script>
+								</amp-analytics>
+								<?php
+							}//code ends for supporting Google Analytics
+
+				// 10.1 support for Analytics from segment.com
+						global $redux_builder_amp;
+							if ( $redux_builder_amp['amp-analytics-select-option']=='2') {?>
+								<amp-analytics type="segment">
+								<script>
+								{
+								  "vars": {
+								    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
+										"name": "<?php echo the_title(); ?>"
+								  }
+								}
+								</script>
+								</amp-analytics>
+								<?php
+							}//code ends for supporting segment Analytics
+
+				//piwik support
+						if($redux_builder_amp['amp-analytics-select-option']=='3'){?>
+							<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
+						<?php }//code for piwik support ends here
+
 			}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
@@ -709,5 +718,13 @@ if( ! function_exists( "disable_comment_author_links" ) ) {
 	add_filter( 'get_comment_author_link', 'ampforwp_disable_comment_author_links' );
 }
 
+//these line numbers can change
+
 //24. Added a options button for switching on/off link to non amp page
 //code @line 175
+
+//25. adding Piwik support using amp pixel
+//code @line 413
+
+//10.1  support for Analytics from segment.com
+//code @line 397

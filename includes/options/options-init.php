@@ -209,7 +209,8 @@
                 'desc'     => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
                 'options'  => array(
                     '1' => 'Google Analytics',
-                    '2' => 'Segment Analytics'
+                    '2' => 'Segment Analytics',
+                    '3' => 'Piwik Analytics'
                 ),
                 'default'  => '1'
             ),
@@ -230,6 +231,15 @@
           'required' => array('amp-analytics-select-option', '=' , '2'),
           'desc'     => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
           'default'  => 'SEGMENT-WRITE-KEY',
+        ),
+        array(
+            'id'       => 'pa-feild',
+            'type'     => 'text',
+            'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
+            'subtitle' => __( '', 'redux-framework-demo' ),
+            'required' => array('amp-analytics-select-option', '=' , '3'),
+            'desc'     => __( 'Enter your Piwik Analytics URL. Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM.', 'redux-framework-demo' ),
+            'default'  => '',
         ),
         array(
             'id'        => 'opt-color-rgba',
