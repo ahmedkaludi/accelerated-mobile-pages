@@ -285,7 +285,8 @@
             'title'    => __('Footer', 'redux-framework-demo'),
             'type'     => 'text',
             'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
-            'default'  => 'Copyright &copy; 2016'
+            'placeholder'  => 'Copyright &copy; 2016',
+            'default'  => 'Copyright &copy; 2016',
         ),
 
         array(
@@ -312,6 +313,7 @@
             'title'    => __('Navigation Text', 'redux-framework-demo'),
             'type'     => 'text',
             'subtitle' =>__('Enter text to appear on Navigation Button', 'redux-framework-demo'),
+            'placeholder'=>'Navigate',
             'default'  => 'Navigate'
         ),
             array(
@@ -374,20 +376,21 @@
                     'type'      => 'text',
                     'required'  => array('enable-amp-ads-1', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
-                    'default'   => '',
+                    'subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'redux-framework-demo'),
+                    'default' 	=> '',
                     'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),
                 array(
                     'id'        => 'enable-amp-ads-text-feild-slot-1',
                     'type'      => 'text',
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
-                    'default'  => '',
+                    'subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code.', 'redux-framework-demo'),
+                    'default' 	=> '',
                     'required' => array('enable-amp-ads-1', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 1 ends
+
         // Ad 2 Starts
              array(
                 'id'=>'enable-amp-ads-2',
@@ -420,20 +423,21 @@
                     'type'     => 'text',
                     'required' => array('enable-amp-ads-2', '=' , '1'),
                     'title'    => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'     => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
-                    'default'  => '',
+                    'subtitle'     => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'redux-framework-demo'),
+                    'default' 	=> '',
                     'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),
                 array(
                     'id'       => 'enable-amp-ads-text-feild-slot-2',
                     'type'     => 'text',
                     'title'    => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'     => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
-                    'default'  => '',
+                    'subtitle'     => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code.', 'redux-framework-demo'),
+                    'default' 	=> '',
                     'required' => array('enable-amp-ads-2', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 2 ends
+
         // Ad 3 starts
              array(
                     'id'        => 'enable-amp-ads-3',
@@ -466,7 +470,7 @@
                     'type'      => 'text',
                     'required'  => array('enable-amp-ads-3', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'redux-framework-demo'),
                     'default' 	=> '',
                     'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),
@@ -474,12 +478,13 @@
                     'id'        => 'enable-amp-ads-text-feild-slot-3',
                     'type'      => 'text',
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
+                    'subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code.', 'redux-framework-demo'),
                     'default'   => '',
                     'required'  => array('enable-amp-ads-3', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
                 ),
         // Ad 3 ends
+
         // Ad 4 Starts
             array(
                 'id'        => 'enable-amp-ads-4',
@@ -512,7 +517,7 @@
                     'type'      => 'text',
                     'required'  => array('enable-amp-ads-4', '=' , '1'),
                     'title'     => __('Data AD Client', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code. e.g. ca-pub-2005XXXXXXXXX342', 'redux-framework-demo'),
+                    'subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'redux-framework-demo'),
                     'default'   => '',
                     'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
                 ),
@@ -520,14 +525,13 @@
                     'id'        => 'enable-amp-ads-text-feild-slot-4',
                     'type'      => 'text',
                     'title'     => __('Data AD Slot', 'redux-framework-demo'),
-                    'desc'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. e.g. 70XXXXXX12', 'redux-framework-demo'),
+                    'subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'redux-framework-demo'),
                     'default'   => '',
                     'required'  => array('enable-amp-ads-4', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
                 )
         // Ad 4 ends
         ),
-
     ) );
 
 
