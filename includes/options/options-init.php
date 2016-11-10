@@ -648,6 +648,12 @@
 
           // Related Post
 	        //new related type posts field
+          array(
+		        'id'       => 'ampforwp-single-select-type-of-related-switch',
+		        'type'     => 'switch',
+		        'title'    => __('Switch ON/OFF Related Post', 'redux-framework-demo'),
+            'default'  => '1',
+	        ),
 	        array(
 		        'id'       => 'ampforwp-single-select-type-of-related',
 		        'type'     => 'select',
@@ -660,9 +666,9 @@
 		        'args'     => array(
 			        'post_type' => 'page',
 			        'posts_per_page' => 500
-		        ),
-
-		        'default'  => '1',
+		        ),// ampforwp-single-select-type-of-related-switch
+            'required' => array('ampforwp-single-select-type-of-related-switch', '=' , '1'),
+		        'default'  => '2',
 	        ),
         // Comments Post
              array(

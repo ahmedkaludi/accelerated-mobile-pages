@@ -99,8 +99,8 @@
 		//related posts code starts here
 					$orig_post = $post;
 		    	global $post;
-
-					//code block for categories
+// ampforwp-single-select-type-of-related-switch
+				if($redux_builder_amp['ampforwp-single-select-type-of-related-switch']==1){	//code block for categories
 					if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 				    $categories = get_the_category($post->ID);
 							if ($categories) {
@@ -129,7 +129,7 @@
 											);
 						}
 					}//end of block for tags
-								$my_query = new wp_query( $args );
+				}			$my_query = new wp_query( $args );
 							if( $my_query->have_posts() ) { ?>
 								<div class="amp-wp-content relatedpost">
 								    <div class="related_posts">
