@@ -599,7 +599,8 @@
           array(
 		        'id'       => 'ampforwp-single-select-type-of-related-switch',
 		        'type'     => 'switch',
-		        'title'    => __('Switch ON/OFF Related Post', 'redux-framework-demo'),
+		        'title'    => __('Related Post', 'redux-framework-demo'),
+            'subtitle'    =>  __('Enable / Disable Related Posts', 'redux-framework-demo'),
             'default'  => '1',
 	        ),
 	        array(
@@ -607,6 +608,7 @@
 		        'type'     => 'select',
 		        'title'    => __('Show Related Post from', 'redux-framework-demo'),
 		        'data'     => 'page',
+            'subtitle' => __('select the type of related posts', 'redux-framework-demo'),
 		        'options'  => array(
 			        '1' => 'Tags',
 			        '2' => 'Categories'
@@ -648,8 +650,9 @@
                 array(
                'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'redux-framework-demo'),
-               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
+               'subtitle' => __('In order to use Facebook share you need to register an app ID.', 'redux-framework-demo'),
                'type'     => 'text',
+               'desc'     =>__(' You can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => 'Enter your facebook app id',
                'default'  => ''
