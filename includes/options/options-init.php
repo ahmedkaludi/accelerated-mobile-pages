@@ -711,7 +711,6 @@
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'redux-framework-demo' ),
-       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
         'id'         => 'opt-structured-data',
         'subsection' => true,
         'fields'     => array(
@@ -720,21 +719,22 @@
               'type'     => 'media',
               'url'      => true,
               'title'    => __('Default Structured Data Logo', 'redux-framework-demo'),
-              'desc' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
+              'subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'redux-framework-demo'),
             ),
             array(
               'id'      => 'amp-structured-data-placeholder-image',
               'type'    => 'media',
               'url'     => true,
               'title'   => __('Default Post Image', 'redux-framework-demo'),
-              'desc'    => __('Upload the Image you want to show as Placeholder Image, when there is no featured image set in the post.', 'redux-framework-demo'),
+              'subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'redux-framework-demo'),
+              'placeholder'  => 'when there is no featured image set in the post',
             ),
             array(
             'id'       => 'amp-structured-data-placeholder-image-width',
             'title'    => __('Default Post Image Width', 'redux-framework-demo'),
             'type'     => 'text',
             'placeholder' => '550',
-            'desc' => 'Please don\'t add "PX" in the image size.',
+            'subtitle' => 'Please don\'t add "PX" in the image size.',
             'default'  => ''
             ),
             array(
@@ -742,7 +742,7 @@
               'title'    => __('Default Post Image Height', 'redux-framework-demo'),
               'type'     => 'text',
               'placeholder' => '350',
-              'desc' => 'Please don\'t add "PX" in the image size.',
+              'subtitle' => 'Please don\'t add "PX" in the image size.',
               'default'  => ''
              ),
         )
