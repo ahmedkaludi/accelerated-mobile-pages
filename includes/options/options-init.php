@@ -769,14 +769,16 @@
            'title'    => __('Notification text', 'redux-framework-demo'),
            'type'     => 'text',
            'required' => array('amp-enable-notifications', '=' , '1'),
-           'default'  => 'This website uses cookies.'
+           'default'  => 'This website uses cookies.',
+           'placeholder' => 'Enter Text here',
            ),
             array(
            'id'       => 'amp-accept-button-text',
            'title'    => __('Notification accept button text', 'redux-framework-demo'),
            'type'     => 'text',
            'required' => array('amp-enable-notifications', '=' , '1'),
-           'default'  => 'Accept'
+           'default'  => 'Accept',
+           'placeholder' => 'Enter Text here',
            ),
 
        ),
