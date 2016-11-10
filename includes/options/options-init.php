@@ -381,6 +381,16 @@
 
     ) );
 
+    // AMP Menu SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'AMP Menu', 'redux-framework-demo' ),
+       'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>'),
+       'id'         => 'amp-menus',
+       'subsection' => true)
+
+   ) ;
+
+
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
