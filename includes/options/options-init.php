@@ -187,30 +187,18 @@
                 'type'     => 'media',
                 'url'      => true,
                 'title'    => __('Logo', 'redux-framework-demo'),
-                //'desc'     => __('', 'redux-framework-demo'),
-                'desc' => __('Upload a logo for the AMP version. Recommend logo size is: 190x36', 'redux-framework-demo'),
-            //    'default'  => array(
-            //        'url'=>'http://s.wordpress.org/style/images/codeispoetry.png'
-            //    ),
+                'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
+                'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
-
-            //$fields = array(
-            //    'id'       => 'opt-switch',
-            //    'type'     => 'switch',
-            //    'title'    => __('Switch On', 'redux-framework-demo'),
-            //    'subtitle' => __('Look, it\'s on!', 'redux-framework-demo'),
-            //    'default'  => true
-            //),
             array(
                 'id'       => 'amp-analytics-select-option',
                 'type'     => 'select',
                 'title'    => __( 'Analytics', 'redux-framework-demo' ),
-                'subtitle' => __( '', 'redux-framework-demo' ),
-                'desc'     => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                'subtitle'     => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
                 'options'  => array(
-                    '1' => 'Google Analytics',
-                    '2' => 'Segment Analytics',
-                    '3' => 'Piwik Analytics'
+                    '1' => __('Google Analytics', 'redux-framework-demo' ),
+                    '2' => __('Segment Analytics', 'redux-framework-demo' ),
+                    '3' => __('Piwik Analytics', 'redux-framework-demo' )
                 ),
                 'default'  => '1'
             ),
@@ -218,44 +206,37 @@
             'id'       => 'ga-feild',
             'type'     => 'text',
             'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-            'subtitle' => __( '', 'redux-framework-demo' ),
             'required' => array('amp-analytics-select-option', '=' , '1'),
-            'desc'     => __( 'Enter your Google Analytics ID. Example: UA-XXXXX-Y.', 'redux-framework-demo' ),
+            'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
+            'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
             'default'  => 'UA-XXXXX-Y',
         ),
         array(
           'id'       => 'sa-feild',
           'type'     => 'text',
           'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
-          'subtitle' => __( '', 'redux-framework-demo' ),
+          'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
           'required' => array('amp-analytics-select-option', '=' , '2'),
-          'desc'     => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
           'default'  => 'SEGMENT-WRITE-KEY',
         ),
         array(
             'id'       => 'pa-feild',
             'type'     => 'text',
             'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-            'subtitle' => __( '', 'redux-framework-demo' ),
             'required' => array('amp-analytics-select-option', '=' , '3'),
-            'desc'     => __( 'Enter your Piwik Analytics URL. Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM.', 'redux-framework-demo' ),
-            'default'  => '',
+            'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
+            'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
+            'default'  => '#',
         ),
         array(
             'id'        => 'opt-color-rgba',
             'type'      => 'color_rgba',
             'title'     => 'Color Scheme',
-            'subtitle'  => 'Set color and alpha channel',
-            'desc'      => 'Change the color scheme to your branding color',
-
-            // See Notes below about these lines.
-            //'output'    => array('background-color' => '.site-header'),
-            //'compiler'  => array('color' => '.site-header, .site-footer', 'background-color' => '.nav-bar'),
+            'subtitle'  => __('Change the color scheme to your branding color','redux-framework-demo' ),
             'default'   => array(
                 'color'     => '#312C7E',
                 'alpha'     => 1
             ),
-
             // These options display a fully functional color palette.  Omit this argument
             // for the minimal color picker, and change as desired.
             'options'       => array(
@@ -281,14 +262,14 @@
             'type'      => 'switch',
             'title'     => __('Front Page', 'redux-framework-demo'),
             'default'   => 0,
-            'subtitle'  => __('Custom AMP frontpage', 'redux-framework-demo'),
+            'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
             'true'      => 'true',
             'false'     => 'false',
         ),
         array(
             'id'       => 'amp-frontpage-select-option-pages',
             'type'     => 'select',
-            'title'    => __('Select Page as Frontpage', 'redux-framework-demo'),
+            'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
             'required' => array('amp-frontpage-select-option', '=' , '1'),
             // Must provide key => value pairs for select options
             'data'     => 'page',
@@ -296,7 +277,6 @@
                 'post_type' => 'page',
                 'posts_per_page' => 500
             ),
-
             'default'  => '2',
         ),
 
@@ -304,6 +284,7 @@
             'id'       => 'amp-footer-text',
             'title'    => __('Footer', 'redux-framework-demo'),
             'type'     => 'text',
+            'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
             'default'  => 'Copyright &copy; 2016'
         ),
 
@@ -311,7 +292,7 @@
             'id'       => 'amp-footer-link-non-amp-page',
             'type'     => 'switch',
             'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
-            'subtitle' => __('Switch On/Off Link to Non-AMP page in the footer', 'redux-framework-demo'),
+            'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
             'true'      => 'true',
             'false'     => 'false',
             'default'   => 1
@@ -322,7 +303,7 @@
             'type'      => 'switch',
             'title'     => __('RTL Support', 'redux-framework-demo'),
             'default'   => 0,
-            'subtitle'  => __('Enable Right to Left language support?', 'redux-framework-demo'),
+            'subtitle'  => __('Enable Right to Left language support', 'redux-framework-demo'),
             'true'      => 'true',
             'false'     => 'false',
         ),
@@ -330,9 +311,9 @@
             'id'       => 'amp-navigation-text',
             'title'    => __('Navigation Text', 'redux-framework-demo'),
             'type'     => 'text',
+            'subtitle' =>__('Enter text to appear on Navigation Button', 'redux-framework-demo'),
             'default'  => 'Navigate'
         ),
-        // amp ON/OFF on tags and categories page
             array(
               'id'       => 'ampforwp-amp-on-off-catgs-tags',
             'type'     => 'switch',
@@ -341,45 +322,8 @@
             'true'      => 'true',
             'false'     => 'false'),
       )
+    ) );//END
 
-
-
-    ) );
-
-     // Notifications SECTION
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Notifications', 'redux-framework-demo' ),
-        'desc'       => __( 'Add notifications to your AMP pages'),
-        'id'         => 'amp-notifications',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'        =>'amp-enable-notifications',
-                'type'      => 'switch',
-                'title'     => __('Enable Notifications', 'redux-framework-demo'),
-                'default'   => '',
-                'subtitle'  => __('Show notifications on all of your AMP pages for cookie purposes, or anything else.', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-            array(
-            'id'       => 'amp-notification-text',
-            'title'    => __('Notification text', 'redux-framework-demo'),
-            'type'     => 'text',
-            'required' => array('amp-enable-notifications', '=' , '1'),
-            'default'  => 'This website uses cookies.'
-            ),
-             array(
-            'id'       => 'amp-accept-button-text',
-            'title'    => __('Notification accept button text', 'redux-framework-demo'),
-            'type'     => 'text',
-            'required' => array('amp-enable-notifications', '=' , '1'),
-            'default'  => 'Accept'
-            ),
-
-        ),
-
-    ) );
 
     // AMP Menu SECTION
    Redux::setSection( $opt_name, array(
@@ -796,6 +740,42 @@
              ),
         )
     ) );
+
+    // Notifications SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Notifications', 'redux-framework-demo' ),
+       'desc'       => __( 'Add notifications to your AMP pages'),
+       'id'         => 'amp-notifications',
+       'subsection' => true,
+       'fields'     => array(
+           array(
+               'id'        =>'amp-enable-notifications',
+               'type'      => 'switch',
+               'title'     => __('Enable Notifications', 'redux-framework-demo'),
+               'default'   => '',
+               'subtitle'  => __('Show notifications on all of your AMP pages for cookie purposes, or anything else.', 'redux-framework-demo'),
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           ),
+           array(
+           'id'       => 'amp-notification-text',
+           'title'    => __('Notification text', 'redux-framework-demo'),
+           'type'     => 'text',
+           'required' => array('amp-enable-notifications', '=' , '1'),
+           'default'  => 'This website uses cookies.'
+           ),
+            array(
+           'id'       => 'amp-accept-button-text',
+           'title'    => __('Notification accept button text', 'redux-framework-demo'),
+           'type'     => 'text',
+           'required' => array('amp-enable-notifications', '=' , '1'),
+           'default'  => 'Accept'
+           ),
+
+       ),
+
+   ) );
+
 
     // CSS
     Redux::setSection( $opt_name, array(
