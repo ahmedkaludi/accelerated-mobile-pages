@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP Toolbox - Accelerated Mobile Pages for WordPress
-Version: 0.8.6.1
+Version: 0.8.7
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: http://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
