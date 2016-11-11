@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.6.1
+Stable tag: 0.8.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,23 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.7 =
+* Proper Details at http://ampforwp.com/amp-0-8-7/
+* added option to enable/disable AMP on Archive pages (Ticket #188)
+* Solved 404 on Related Posts (Ticket #178 )
+* Related posts by either categories or Tags(Ticket #179)
+* added a link to menu Section from the AMP Options page(Ticket #190)
+* Added Support for Piwik Analytics(Ticket #163)
+* Added Support for Segment.com Analytics(Ticket #50)
+* Added a switch for hiding Non-Amp page link from Footer.( Ticket #189)
+* Added an Option that strips Users URL from Comments Section(Ticket #180)
+* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
+* UX Improved for every section of AMP Options page
+* Added Settings button on plugin page
+* Related posts switch added
+* Removed carousel.js
+
+
 = 0.8.6.1 =
 * Date Tag fix
 * Few validation issues after 0.8.6 were fixed (Frontpage amp-img strip issue fixed)

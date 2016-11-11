@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP Toolbox - Accelerated Mobile Pages for WordPress
-Version: 0.8.6.1
+Version: 0.8.7
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: http://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -24,29 +24,46 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 
-/* 
- * Load Files only in the backend 
+/*
+ * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
- */
-if ( is_admin()) {
-	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
-}
+*/
+if ( is_admin() ) {
+ 	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
+ 
+ // Add Settings Button in Plugin backend
+ 	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
+ 		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
+		
+ 		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
+ 			static $plugin;
+ 			if (!isset($plugin))
+ 				$plugin = plugin_basename(__FILE__);
+ 				if ($plugin == $plugin_file) {
+ 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a>');
+ 			  		$actions = array_merge( $actions, $settings );
+ 				}
+ 		return $actions;
+ 		}
+ 	}
+
+} // is_admin() closing
 
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
 
 		public function __construct(){
 
-			// Load Files required for the plugin to run 
+			// Load Files required for the plugin to run
 			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
-			new Ampforwp_Loader;	
-			
+			new Ampforwp_Loader;
+
 		}
 	}
 }
-/* 
+/*
  * Start the plugin.
  * Gentlemen start your engines
  */
