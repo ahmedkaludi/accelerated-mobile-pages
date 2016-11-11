@@ -27,10 +27,27 @@ define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
- */
-if ( is_admin()) {
-	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
-}
+*/
+if ( is_admin() ) {
+ 	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
+ 
+ // Add Settings Button in Plugin backend
+ 	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
+ 		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
+		
+ 		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
+ 			static $plugin;
+ 			if (!isset($plugin))
+ 				$plugin = plugin_basename(__FILE__);
+ 				if ($plugin == $plugin_file) {
+ 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a>');
+ 			  		$actions = array_merge( $actions, $settings );
+ 				}
+ 		return $actions;
+ 		}
+ 	}
+
+} // is_admin() closing
 
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
@@ -56,7 +73,3 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
-
-// Hooking the settings button from features.php @task:#22
-$plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$plugin", 'ampforwp_plugin_settings_link' );

@@ -26,8 +26,7 @@
 	19. Remove Canonical tags
 	20. Remove the default Google font for performance
 	21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
-	22. adding a button to our settings page on Plugin page
-	23. Removing author links from comments Issue #180
+	22. Removing author links from comments Issue #180
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -686,15 +685,7 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
 }
 
-// 22. Adding a button to our settings page on Plugin page
-function ampforwp_plugin_settings_link($links) {
-	$settings_link = '<a href="admin.php?page=amp_options">'.__("Settings","ampforwp").'</a>';
-	$links[] =  $settings_link;
-	return $links;
-}
-// ampforwp_plugin_settings_link function is added through filter plugin_action_links_$plugin in accelarated-mobile-pages.php @line:60
-
-// 23. Removing author links from comments Issue #180
+// 22. Removing author links from comments Issue #180
 if( ! function_exists( "disable_comment_author_links" ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$is_amp_endpoint = is_amp_endpoint();
