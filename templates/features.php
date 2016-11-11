@@ -1,33 +1,33 @@
 <?php
 /* This file will contain all the Extra FEATURES.
 
-1. Add Home REL canonical
-2. Custom Design
-3. Custom Style files
-4. Custom Header files
-4.5 Added hook to add more layout.
-5. Customize with Width of the site
-6. Add required Javascripts for extra AMP features
-7. Footer for AMP Pages
-8. Add Main tag as a Wrapper
-9. Advertisement code
-10. Add Analytics to AMP Pages (Google Analytics)
-	10.1 support for Analytics from segment.com
-11. Strip unwanted codes and tags from the_content
-12. Add Logo URL in the structured metadata
-13. Add Custom Placeholder Image for Structured Data.
-14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
-15. Disable New Relic's extra script that its adds in AMP pages.
-16. Remove Unwanted Scripts
-17. Archives Canonical in AMP version
-18. Custom Canonical for Homepage
-19. Remove Canonical tags
-20. Remove the default Google font for performance
-21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
-22. adding a button to our settings page on Plugin page
-23. Removing author links from comments Issue #180
-24. Added a options button for switching on/off link to non amp page
-25. adding Piwik support using amp pixel
+	1. Add Home REL canonical
+	2. Custom Design
+	3. Custom Style files
+	4. Custom Header files
+		4.5 Added hook to add more layout.
+	5. Customize with Width of the site
+	6. Add required Javascripts for extra AMP features
+	7. Footer for AMP Pages
+	8. Add Main tag as a Wrapper
+	9. Advertisement code
+	10. Analytics Area
+		10.1 Analytics Support added for Google Analytics
+		10.2 Analytics Support added for segment.com
+		10.3 Analytics Support added for Piwik
+	11. Strip unwanted codes and tags from the_content
+	12. Add Logo URL in the structured metadata
+	13. Add Custom Placeholder Image for Structured Data.
+	14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
+	15. Disable New Relic's extra script that its adds in AMP pages.
+	16. Remove Unwanted Scripts
+	17. Archives Canonical in AMP version
+	18. Custom Canonical for Homepage
+	19. Remove Canonical tags
+	20. Remove the default Google font for performance
+	21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+	22. adding a button to our settings page on Plugin page
+	23. Removing author links from comments Issue #180
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -36,7 +36,7 @@
 	// Add AMP rel-canonical for home and archive pages
 
 	add_action('amp_init','ampforwp_allow_homepage');
-	function ampforwp_allow_homepage(){
+	function ampforwp_allow_homepage() {
 		add_action( 'wp', 'ampforwp_add_endpoint_actions' );
 	}
 
@@ -173,26 +173,24 @@
 	    <footer class="container">
 	        <div id="footer">
 	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php
-//24. Added a options button for switching on/off link to non amp page
-							if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){if ( $ampforwp_backto_nonamp ) { ?>
+							//24. Added an options button for switching on/off link to non amp page
+							if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){ if ( $ampforwp_backto_nonamp ) { ?>
 								 |
 	            	<a href="?<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } }?>
 	            </p>
 	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
 	        </div>
-		</footer>
+			</footer>
 
-		<!-- Cookie Notification Code
-			added by @nicholasgriffintn in pull #121 -->
-		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
-			<amp-user-notification layout=nodisplay id="amp-user-notification1">
-           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
-           <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
-      </amp-user-notification>
-	  <?php } ?>
-
-
-	<?php }
+			<!-- Cookie Notification Code
+				added by @nicholasgriffintn in pull #121 -->
+			<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
+				<amp-user-notification layout=nodisplay id="amp-user-notification1">
+	           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
+	           <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
+	      </amp-user-notification>
+		  <?php } 
+	}
 
 	// 8. Add Main tag as a Wrapper
 	add_action('ampforwp_after_header','ampforwp_main_tag_begins');
@@ -368,58 +366,56 @@
 				echo $output;
 			}
 		}
-
-	// 10. Add Analytics to AMP Pages
+		
+	// 10. Analytics Area
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
-		function ampforwp_analytics() {  ?>
-			<?php
-				//Google Analytics
-						global $redux_builder_amp;
-							if ( $redux_builder_amp['amp-analytics-select-option']=='1'){?>
-								<amp-analytics type="googleanalytics" id="analytics1">
-									<script type="application/json">
-									{
-									  "vars": {
-									    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>"
-									  },
-									  "triggers": {
-									    "trackPageview": {
-									      "on": "visible",
-									      "request": "pageview"
-									    }
-									  }
-									}
-									</script>
-								</amp-analytics>
-								<?php
-							}//code ends for supporting Google Analytics
+		function ampforwp_analytics() {
+			
+		// 10.1 Analytics Support added for Google Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){ ?>
+						<amp-analytics type="googleanalytics" id="analytics1">
+							<script type="application/json">
+							{
+							  "vars": {
+							    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>"
+							  },
+							  "triggers": {
+							    "trackPageview": {
+							      "on": "visible",
+							      "request": "pageview"
+							    }
+							  }
+							}
+							</script>
+						</amp-analytics>
+						<?php
+					}//code ends for supporting Google Analytics
 
-				// 10.1 support for Analytics from segment.com
-						global $redux_builder_amp;
-							if ( $redux_builder_amp['amp-analytics-select-option']=='2') {?>
-								<amp-analytics type="segment">
-								<script>
-								{
-								  "vars": {
-								    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
-										"name": "<?php echo the_title(); ?>"
-								  }
-								}
-								</script>
-								</amp-analytics>
-								<?php
-							}//code ends for supporting segment Analytics
+		// 10.2 Analytics Support added for segment.com
+				if ( $redux_builder_amp['amp-analytics-select-option']=='2' ) { ?>
+						<amp-analytics type="segment">
+							<script>
+							{
+							  "vars": {
+							    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
+									"name": "<?php echo the_title(); ?>"
+							  }
+							}
+							</script>
+						</amp-analytics>
+						<?php
+					}
 
-				//piwik support
-						if($redux_builder_amp['amp-analytics-select-option']=='3'){?>
-							<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
-						<?php }//code for piwik support ends here
-
-			}//analytics function ends here
+		// 10.3 Analytics Support added for Piwik
+				if( $redux_builder_amp['amp-analytics-select-option']=='3' ) { ?>
+						<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
+				<?php }
+		}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
 		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content');
-		function ampforwp_strip_invalid_content(){
+		function ampforwp_strip_invalid_content() {
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 20 );
 		}
 		function ampforwp_the_content_filter( $content ) {
@@ -456,9 +452,6 @@
 				return $content;
 		}
 
-
-
-
 	// 12. Add Logo URL in the structured metadata
 		add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
 		function ampforwp_update_metadata( $metadata, $post ) {
@@ -483,8 +476,8 @@
 
 	// 13. Add Custom Placeholder Image for Structured Data.
 	// if there is no image in the post, then use this image to validate Structured Data.
-add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
-function ampforwp_update_metadata_featured_image( $metadata, $post ) {
+	add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
+	function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 			global $redux_builder_amp;
 			$post_id = $post->ID;
 			$post_image_id = get_post_thumbnail_id( $post_id );
@@ -503,7 +496,6 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 						'width' 	=> $structured_data_width,
 					);
 			}
-
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
 					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
@@ -531,16 +523,16 @@ function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 					$metadata['headline'] = $structured_data_archive_title;
 			}
 			return $metadata;
-}
+	}
 
 // 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
 /**
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
- */
+*/
 function ampforwp_title_custom_meta() {
-    add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
+  add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
 
-		add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+	add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
 }
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
@@ -623,36 +615,35 @@ function ampforwp_remove_unwanted_scripts() {
 }
 // Remove Print Scripts and styles
 function ampforwp_remove_print_scripts() {
-    if ( is_amp_endpoint() ) {
+		if ( is_amp_endpoint() ) {
+			
+		    function ampforwp_remove_all_scripts() {
+		        global $wp_scripts;
+		        $wp_scripts->queue = array();
+		    }
+		    add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
+		    function ampforwp_remove_all_styles() {
+		        global $wp_styles;
+		        $wp_styles->queue = array();
+		    }
+		    add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100);
 
-        function ampforwp_remove_all_scripts() {
-            global $wp_scripts;
-            $wp_scripts->queue = array();
-        }
-        add_action('wp_print_scripts', 'ampforwp_remove_all_scripts', 100);
-        function ampforwp_remove_all_styles() {
-            global $wp_styles;
-            $wp_styles->queue = array();
-        }
-        add_action('wp_print_styles', 'ampforwp_remove_all_styles', 100);
+				// Remove Print Emoji for Nextgen Gallery support
+				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+				remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-// Remove Print Emoji for Nextgen Gallery support
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-    }
+		}
 }
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
-
 
 // 17. Archives Canonical in AMP version
 function ampforwp_rel_canonical_archive() {
     if ( !is_archive() )
-    return;
-global $wp;
-$current_archive_url = home_url( $wp->request );
-//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-    echo "<link rel='canonical' href='$current_archive_url' />\n";
+    	return;
+			global $wp;
+			$current_archive_url = home_url( $wp->request );
+			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+  		echo "<link rel='canonical' href='$current_archive_url' />\n";
 }
 add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 
@@ -689,13 +680,11 @@ add_action( 'amp_post_template_head', function() {
     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 }, 9 );
 
-
 // 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
 }
-
 
 // 22. Adding a button to our settings page on Plugin page
 function ampforwp_plugin_settings_link($links) {
@@ -703,7 +692,7 @@ function ampforwp_plugin_settings_link($links) {
 	$links[] =  $settings_link;
 	return $links;
 }
-// this is hooked in accelarated-mobile-pages.php @line:60
+// ampforwp_plugin_settings_link function is added through filter plugin_action_links_$plugin in accelarated-mobile-pages.php @line:60
 
 // 23. Removing author links from comments Issue #180
 if( ! function_exists( "disable_comment_author_links" ) ) {
@@ -717,14 +706,3 @@ if( ! function_exists( "disable_comment_author_links" ) ) {
 	}
 	add_filter( 'get_comment_author_link', 'ampforwp_disable_comment_author_links' );
 }
-
-//these line numbers can change
-
-//24. Added a options button for switching on/off link to non amp page
-//code @line 175
-
-//25. adding Piwik support using amp pixel
-//code @line 413
-
-//10.1  support for Analytics from segment.com
-//code @line 397

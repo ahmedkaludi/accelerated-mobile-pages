@@ -57,6 +57,6 @@ function ampforwp_plugin_init() {
 }
 add_action('init','ampforwp_plugin_init',9);
 
-//hooking the settings button from features.php @line:660 @task:22
+// Hooking the settings button from features.php @task:#22
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'ampforwp_plugin_settings_link' );

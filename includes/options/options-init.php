@@ -193,8 +193,8 @@
             array(
                 'id'       => 'amp-analytics-select-option',
                 'type'     => 'select',
-                'title'    => __( 'Analytics', 'redux-framework-demo' ),
-                'subtitle'     => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
+                'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
                 'options'  => array(
                     '1' => __('Google Analytics', 'redux-framework-demo' ),
                     '2' => __('Segment Analytics', 'redux-framework-demo' ),
