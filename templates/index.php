@@ -17,7 +17,11 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 	<?php if ( have_posts() ) :
-		while ( have_posts() ) : the_post(); ?>
+		while ( have_posts() ) : the_post(); 
+		
+		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ;
+		
+		?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -26,12 +30,12 @@
 				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
 				$thumb_url = $thumb_url_array[0];            
 				?> 
-				<div class="home-post_image"><a href="<?php the_permalink(); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
+				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
 			<?php } ?>
 
 			<div class="amp-wp-post-content">
 
-				<h2 class="amp-wp-title"> <a href="<?php the_permalink();?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
 				<?php $content = get_the_content();?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>

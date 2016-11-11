@@ -52,16 +52,24 @@
 	<div class="amp-wp-content post-pagination-meta">
 		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) {
 				$this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) );
-
 			} ?>
-
-
+			
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
-		<div id="pagination">
-			<div class="next"><?php next_post_link(); ?></div>
-			<div class="prev"><?php previous_post_link(); ?></div>
-			<div class="clearfix"></div>
-		</div>
+				<div id="pagination">
+						<div class="next">
+							<?php $next_post = get_next_post();
+								if (!empty( $next_post )) { ?>
+										<a href="<?php echo get_permalink( $next_post->ID ) . AMP_QUERY_VAR; ?>"><?php echo $next_post->post_title; ?></a> <?php 
+									} ?>	
+						</div>
+						<div class="prev">
+								<?php $prev_post = get_previous_post();
+									 if (!empty( $prev_post )) { ?>
+									   <a href="<?php echo get_permalink( $prev_post->ID ). AMP_QUERY_VAR; ?>"><?php echo $prev_post->post_title ?></a> <?php 
+									 } ?>
+						</div>
+						<div class="clearfix"></div>
+				</div>
     <?php } ?>
 	</div>
 
@@ -137,8 +145,12 @@
 														<h3>Related Posts</h3>
 														<?php
 												    while( $my_query->have_posts() ) {
-														    $my_query->the_post();?>
-																<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+														    $my_query->the_post();
+																	$related_post_permalink = get_permalink();
+																	$related_post_permalink = trailingslashit($related_post_permalink);
+																	$related_post_permalink = $related_post_permalink . AMP_QUERY_VAR ;;
+																?>
+																<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>"><a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 											            <?php
 												            $thumb_id_2 = get_post_thumbnail_id();
 												            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
@@ -146,16 +158,10 @@
 											            ?>
 
 																	<?php if ( has_post_thumbnail() ) { ?>
-											            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
+											            	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="150" height="150" layout="responsive"></amp-img>
 																	<?php } ?>
-
-																<?php
-																$related_post_permalink = get_permalink();
-																$related_post_permalink = trailingslashit($related_post_permalink);
-																?>
 										                <div class="related_link">
-										                    <a href="<?php
-																				echo $related_post_permalink . AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
+										                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 										                    <?php $content = get_the_content();?>
 										                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 										                </div>
