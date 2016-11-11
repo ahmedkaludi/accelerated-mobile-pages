@@ -149,10 +149,10 @@
 											            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
 																	<?php } ?>
 
-<?php
-$related_post_permalink = get_permalink();
-$related_post_permalink = trailingslashit($related_post_permalink);
-?>
+																<?php
+																$related_post_permalink = get_permalink();
+																$related_post_permalink = trailingslashit($related_post_permalink);
+																?>
 										                <div class="related_link">
 										                    <a href="<?php
 																				echo $related_post_permalink . AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
