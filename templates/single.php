@@ -38,7 +38,9 @@
         $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
         $thumb_url = $thumb_url_array[0];
         ?>
-        <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?> width=512 height=300 layout=responsive></amp-img></div>
+        <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?>
+					width=<?php global $redux_builder_amp; echo $redux_builder_amp['enable-single-featured-img-width'] ?> 
+					height=<?php echo $redux_builder_amp['enable-single-featured-img-height']?> layout=responsive></amp-img></div>
     <?php } } ?>
 	</div>
 	<div class="amp-wp-content the_content">
@@ -53,19 +55,19 @@
 		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) {
 				$this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) );
 			} ?>
-			
+
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
 				<div id="pagination">
 						<div class="next">
 							<?php $next_post = get_next_post();
 								if (!empty( $next_post )) { ?>
-										<a href="<?php echo get_permalink( $next_post->ID ) . AMP_QUERY_VAR; ?>"><?php echo $next_post->post_title; ?></a> <?php 
-									} ?>	
+										<a href="<?php echo get_permalink( $next_post->ID ) . AMP_QUERY_VAR; ?>"><?php echo $next_post->post_title; ?></a> <?php
+									} ?>
 						</div>
 						<div class="prev">
 								<?php $prev_post = get_previous_post();
 									 if (!empty( $prev_post )) { ?>
-									   <a href="<?php echo get_permalink( $prev_post->ID ). AMP_QUERY_VAR; ?>"><?php echo $prev_post->post_title ?></a> <?php 
+									   <a href="<?php echo get_permalink( $prev_post->ID ). AMP_QUERY_VAR; ?>"><?php echo $prev_post->post_title ?></a> <?php
 									 } ?>
 						</div>
 						<div class="clearfix"></div>

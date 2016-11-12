@@ -573,6 +573,25 @@
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
             ),
+            // Width and Height of Image
+            array(
+               'id'        => 'enable-single-featured-img-width',
+               'type'      => 'text',
+               'title'     => __('Featured Image Width', 'redux-framework-demo'),
+               'default'   => 512,
+               'subtitle'  => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
+               'placeholder'=>'Width here',
+               'required'  => array('enable-single-featured-img', '=' , '1')
+           ),
+           array(
+              'id'        => 'enable-single-featured-img-height',
+              'type'      => 'text',
+              'title'     => __('Featured Image Height', 'redux-framework-demo'),
+              'default'   => 300,
+              'subtitle'  => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
+              'placeholder'=>'Height here',
+              'required'   => array('enable-single-featured-img', '=' , '1')
+          ),
         // Next/Previous Pagination ON/OFF
              array(
                 'id'        => 'enable-next-previous-pagination',
