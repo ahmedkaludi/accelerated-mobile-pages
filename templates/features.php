@@ -171,13 +171,14 @@
 
 	    <footer class="container">
 	        <div id="footer">
-	            <p><a href="#header"> <?php _e('Top','ampforwp');?></a> <?php
+	             <p><a href="#header"> <?php global $redux_builder_amp; _e($redux_builder_amp['amp-translator-top-text'].'','ampforwp');?></a> <?php
 							//24. Added an options button for switching on/off link to non amp page
 							if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){ if ( $ampforwp_backto_nonamp ) { ?>
 								 |
-	            	<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php _e('View Non-AMP Version','ampforwp');?></a> <?php  } }?>
+								 <a href="?<?php echo $ampforwp_backto_nonamp; ?>"><?php
+ 								global $redux_builder_amp; _e("".$redux_builder_amp['amp-translator-non-amp-page-text'],'ampforwp');?></a> <?php  } }?>
 	            </p>
-	            <p><?php echo $redux_builder_amp['amp-footer-text']; ?> </p>
+	            <p><?php echo $redux_builder_amp['amp-translator-footer-text']; ?> </p>
 	        </div>
 			</footer>
 
@@ -188,7 +189,7 @@
 	           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
 	           <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
 	      </amp-user-notification>
-		  <?php } 
+		  <?php }
 	}
 
 	// 8. Add Main tag as a Wrapper
@@ -365,11 +366,11 @@
 				echo $output;
 			}
 		}
-		
+
 	// 10. Analytics Area
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
 		function ampforwp_analytics() {
-			
+
 		// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
 				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){ ?>
@@ -615,7 +616,7 @@ function ampforwp_remove_unwanted_scripts() {
 // Remove Print Scripts and styles
 function ampforwp_remove_print_scripts() {
 		if ( is_amp_endpoint() ) {
-			
+
 		    function ampforwp_remove_all_scripts() {
 		        global $wp_scripts;
 		        $wp_scripts->queue = array();

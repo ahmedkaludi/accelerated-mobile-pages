@@ -280,14 +280,14 @@
             'default'  => '2',
         ),
 
-        array(
-            'id'       => 'amp-footer-text',
-            'title'    => __('Footer', 'redux-framework-demo'),
-            'type'     => 'text',
-            'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
-            'placeholder'  => 'Copyright &copy; 2016',
-            'default'  => 'Copyright &copy; 2016',
-        ),
+        // array(
+        //     'id'       => 'amp-footer-text',
+        //     'title'    => __('Footer', 'redux-framework-demo'),
+        //     'type'     => 'text',
+        //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
+        //     'placeholder'  => 'Copyright &copy; 2016',
+        //     'default'  => 'Copyright &copy; 2016',
+        // ),
 
         array(
             'id'       => 'amp-footer-link-non-amp-page',
@@ -308,14 +308,14 @@
             'true'      => 'true',
             'false'     => 'false',
         ),
-        array(
-            'id'       => 'amp-navigation-text',
-            'title'    => __('Navigation Text', 'redux-framework-demo'),
-            'type'     => 'text',
-            'subtitle' =>__('Enter text to appear on Navigation Button', 'redux-framework-demo'),
-            'placeholder'=>'Navigate',
-            'default'  => 'Navigate'
-        ),
+        // array(
+        //     'id'       => 'amp-navigation-text',
+        //     'title'    => __('Navigation Text', 'redux-framework-demo'),
+        //     'type'     => 'text',
+        //     'subtitle' =>__('Enter text to appear on Navigation Button', 'redux-framework-demo'),
+        //     'placeholder'=>'Navigate',
+        //     'default'  => 'Navigate'
+        // ),
             array(
               'id'       => 'ampforwp-amp-on-off-catgs-tags',
             'type'     => 'switch',
@@ -803,6 +803,93 @@
        ),
 
    ) );
+
+   // Translation Panel
+           Redux::setSection( $opt_name, array(
+               'title'      => __( 'Translation Panel', 'redux-framework-demo' ),
+               'desc'       => __( 'Please translate the following words of page accordingly else default content is in English Language', 'redux-framework-demo' ),
+               'id'         => 'amp-translator',
+               'subsection' => true,
+               'fields'     => array(
+                   array(
+                       'id'       => 'amp-translator-top-text',
+                       'type'     => 'text',
+                       'title'    => __('Top', 'redux-framework-demo'),
+                       'default'  => 'Top',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-non-amp-page-text',
+                       'type'     => 'text',
+                       'title'    => __('View Non-AMP Version', 'redux-framework-demo'),
+                       'default'  => 'View Non-AMP Version',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-related-text',
+                       'type'     => 'text',
+                       'title'    => __('Related Post', 'redux-framework-demo'),
+                       'default'  => 'Related Post',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-navigate-text',
+                       'type'     => 'text',
+                       'title'    => __('Navigate', 'redux-framework-demo'),
+                       'default'  => 'Navigate',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-on-text',
+                       'type'     => 'text',
+                       'title'    => __('On', 'redux-framework-demo'),
+                       'default'  => 'On',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-next-text',
+                       'type'     => 'text',
+                       'title'    => __('Next', 'redux-framework-demo'),
+                       'default'  => 'Next',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-previous-text',
+                       'type'     => 'text',
+                       'title'    => __('Previous', 'redux-framework-demo'),
+                       'default'  => 'Previous',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-footer-text',
+                       'type'     => 'text',
+                       'title'    => __('Footer', 'redux-framework-demo'),
+                       'default'  => 'Footer',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-categories-text',
+                       'type'     => 'text',
+                       'title'    => __('Categories', 'redux-framework-demo'),
+                       'default'  => 'Categories',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-tags-text',
+                       'type'     => 'text',
+                       'title'    => __('Tags', 'redux-framework-demo'),
+                       'default'  => 'Tags',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-by-text',
+                       'type'     => 'text',
+                       'title'    => __('By', 'redux-framework-demo'),
+                       'default'  => 'By',
+                       'placeholder'=>'write here'
+                   ),
+               )
+           ) );
 
 
     // CSS

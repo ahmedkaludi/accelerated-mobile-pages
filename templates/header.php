@@ -1,8 +1,8 @@
-<header class="container">    
+<header class="container">
   <div id="headerwrap">
       <div id="header">
-          
-        <?php global $redux_builder_amp; 
+
+        <?php global $redux_builder_amp;
           $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . '?' . AMP_QUERY_VAR;
         ?>
 
@@ -22,10 +22,10 @@
 
 
 <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-	<a href="#" class="toggle-text"><?php echo $redux_builder_amp['amp-navigation-text']; ?></a>
+	<a href="#" class="toggle-text"><?php echo $redux_builder_amp['amp-translator-navigate-text']; ?></a>
 </div>
 
-   
+
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="right">

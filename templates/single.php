@@ -21,7 +21,7 @@
 			<ul class="amp-wp-meta">
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
 
-				<li> <?php _e(' on ','ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
+				<li> <?php _e($redux_builder_amp['amp-translator-on-text']." ",'ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
 
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array('meta-taxonomy' ) ) ); ?>
 
@@ -39,7 +39,7 @@
         $thumb_url = $thumb_url_array[0];
         ?>
         <div class="post-featured-img"><amp-img src=<?php echo $thumb_url ?>
-					width=<?php global $redux_builder_amp; echo $redux_builder_amp['enable-single-featured-img-width'] ?> 
+					width=<?php global $redux_builder_amp; echo $redux_builder_amp['enable-single-featured-img-width'] ?>
 					height=<?php echo $redux_builder_amp['enable-single-featured-img-height']?> layout=responsive></amp-img></div>
     <?php } } ?>
 	</div>
@@ -144,7 +144,7 @@
 								<div class="amp-wp-content relatedpost">
 								    <div class="related_posts">
 												<ol class="clearfix">
-														<h3>Related Posts</h3>
+														<h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-related-text'] ?></h3>
 														<?php
 												    while( $my_query->have_posts() ) {
 														    $my_query->the_post();
