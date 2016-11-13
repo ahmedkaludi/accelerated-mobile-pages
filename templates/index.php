@@ -21,6 +21,8 @@
 
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ;
 
+		do_action('ampforwp_index_page_before_post');
+
 		?>
 
 		<div class="amp-wp-content amp-loop-list">
@@ -45,7 +47,9 @@
 
 		</div>
 
-	<?php endwhile;  ?>
+	<?php
+		do_action('ampforwp_index_page_after_post');
+		endwhile;  ?>
 
 
 	<div class="amp-wp-content pagination-holder">
