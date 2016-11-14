@@ -43,7 +43,17 @@ if ( is_admin() ) {
  				$plugin = plugin_basename(__FILE__);
  				if ($plugin == $plugin_file) {
  					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a>');
- 			  		$actions = array_merge( $actions, $settings );
+					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+					if ( is_plugin_active( 'amp/amp.php' ) ) {
+					    //if parent plugin is activated
+								$actions = array_merge( $actions, $settings );
+					} else{
+						activate_plugin('/amp/amp.php');
+						if(is_plugin_active( 'amp/amp.php' )){
+							$actions = array_merge( $actions, $settings );
+						}
+					}
+
  				}
  		return $actions;
  		}
