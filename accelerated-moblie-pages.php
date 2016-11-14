@@ -39,14 +39,12 @@ if ( is_admin() ) {
 
  		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
  			static $plugin;
-			if(is_plugin_active('AMP') || true){
  			if (!isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ($plugin == $plugin_file) {
  					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a>');
  			  		$actions = array_merge( $actions, $settings );
  				}
-			}
  		return $actions;
  		}
  	}
