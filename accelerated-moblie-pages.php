@@ -23,6 +23,7 @@ function ampforwp_add_custom_post_support() {
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images/amp-ads-retina.png');
 
 /*
  * Load Files only in the backend
@@ -30,11 +31,11 @@ define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 */
 if ( is_admin() ) {
  	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
- 
+
  // Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
  		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
-		
+
  		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
  			static $plugin;
  			if (!isset($plugin))
