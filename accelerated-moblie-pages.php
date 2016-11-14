@@ -1,4 +1,4 @@
-<?php
+	<?php
 /*
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
@@ -24,6 +24,7 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images/amp-ads-retina.png');
+define('AMPFORWP_VERSION','0.8.7');
 
 /*
  * Load Files only in the backend

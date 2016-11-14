@@ -181,9 +181,8 @@
 	            <p><?php echo $redux_builder_amp['amp-translator-footer-text']; ?> </p>
 	        </div>
 			</footer>
-
-			<!-- Cookie Notification Code
-				added by @nicholasgriffintn in pull #121 -->
+			<!--Plugin Verion :<?php echo (AMPFORWP_VERSION); ?> -->
+			<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
 			<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 				<amp-user-notification layout=nodisplay id="amp-user-notification1">
 	           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
