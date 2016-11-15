@@ -367,6 +367,7 @@ main .amp-wp-content.relatedpost {
 	background: none;
 	box-shadow: none;
 	max-width: 1030px;
+    padding:1px 0 0 0;
 }
 .related_posts h3, .comments_list h3{
     font-size: 14px;
