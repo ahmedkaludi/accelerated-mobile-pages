@@ -140,3 +140,7 @@
 .wp-customizer .redux-container-switch .cb-disable.selected{
     background: red !important
 }
+.ampforwp-ad-img-banner{
+    width: 560px;
+    height: 99px !important;    
+}

@@ -340,7 +340,7 @@ $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_me
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
-        'desc' => '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '"/></a>',
+        'desc' => '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '" width="560" height="85" /></a>',
         'id'         => 'amp-ads',
         'subsection' => true,
         'fields'     => array(
