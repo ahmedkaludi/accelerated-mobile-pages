@@ -647,5 +647,9 @@ amp-user-notification button {
 	text-align:center;
 	margin: 0 auto
 }
+
+.amp-wp-author:before{
+	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  "; 
+}
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
