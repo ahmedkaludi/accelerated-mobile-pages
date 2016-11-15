@@ -650,7 +650,17 @@ amp-user-notification button {
 }
 
 .amp-wp-author:before{
-	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  "; 
+	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  ";
 }
+
+.ampforwp-tax-category a:after,
+.ampforwp-tax-tag a:after {
+	content: ' , ';
+}
+.ampforwp-tax-category a:last-child:after,
+.ampforwp-tax-tag a:last-child:after  {
+	content: ' ';
+}
+
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>

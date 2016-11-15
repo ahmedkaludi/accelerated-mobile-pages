@@ -1,21 +1,27 @@
-<?php $categories = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'amp' ), '', $this->ID );
-var_dump($categories);
+<?php
+$ampforwp_categories = get_the_terms( $this->ID, 'category' );
+
  ?>
-<?php if ( $categories ) : ?>
-	<div class="amp-wp-meta amp-wp-tax-category">
-		<?php global $redux_builder_amp; printf( esc_html__($redux_builder_amp['amp-translator-categories-text'] .': %s', 'amp' ), $categories ); ?>
+
+<?php if ( $ampforwp_categories ) : ?>
+	<div class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category">
+		<?php global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .': ', 'amp' ));
+    foreach ($ampforwp_categories as $cat ) {
+      # code...
+    echo ('<a href="'.get_site_url().'/category/' . $cat->slug .'/?amp" >'.$cat->name .'</a>');
+    }
+?>
 	</div>
 <?php endif; ?>
 
 <?php
-$tags = get_the_tag_list(
-	'',
-	_x( ', ', 'Used between list items, there is a space after the comma.', 'amp' ),
-	'',
-	$this->ID
-); ?>
-<?php if ( $tags && ! is_wp_error( $tags ) ) : ?>
-	<div class="amp-wp-meta amp-wp-tax-tag">
-		<?php  global $redux_builder_amp; printf( esc_html__( $redux_builder_amp['amp-translator-tags-text'].': %s', 'amp' ), $tags ); ?>
+$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+ if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) : ?>
+	<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
+		<?php  global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .': ', 'amp' ));
+     foreach ($ampforwp_tags as $tag) {
+      # code...
+    echo ('<a href="'.get_site_url().'/tag/' . $tag->slug .'/?amp" >'.$tag->name .'</a>');
+    }  ?>
 	</div>
 <?php endif; ?>
