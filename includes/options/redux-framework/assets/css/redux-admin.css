@@ -142,5 +142,10 @@
 }
 .ampforwp-ad-img-banner{
     width: 560px;
-    height: 99px !important;    
+    height: 99px !important;
+}
+.ampforwp-extension-ad-img-banner{
+  width: 345px;
+  height: 450px !important;
+  margin-right:20px;
 }

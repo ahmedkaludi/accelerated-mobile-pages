@@ -23,7 +23,7 @@ function ampforwp_add_custom_post_support() {
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
-define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images/amp-ads-retina.png');
+define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.8.8-beta');
 
 /*
