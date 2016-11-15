@@ -51,7 +51,6 @@ if ( is_admin() ) {
 					    //if parent plugin is activated
 								$actions = array_merge( $actions, $settings );
 					} else{
-						activate_plugin('/amp/amp.php');
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}
