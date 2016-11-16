@@ -29,6 +29,8 @@
 	20. Remove the default Google font for performance
 	21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 	22. Removing author links from comments Issue #180
+	23. The analytics tag appears more than once in the document. This will soon be an error
+
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -104,7 +106,7 @@
         }
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
-	    	if ( 'single' === $type ) {
+	    	if ( 'single' === $type  ) {
 				$file = AMPFORWP_PLUGIN_DIR . '/templates/single.php';
 			}
 		}
@@ -450,6 +452,9 @@
 				 $content = preg_replace('/style=[^>]*/', '', $content);
 				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
+				 $content = preg_replace('#<time.*?>(.*?)</time>#i', '', $content);
+				 $content = preg_replace('#<badge.*?>(.*?)</badge>#i', '', $content);
+				 $content = preg_replace('#<plusone.*?>(.*?)</plusone>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
@@ -716,3 +721,6 @@ if( ! function_exists( "disable_comment_author_links" ) ) {
 	}
 	add_filter( 'get_comment_author_link', 'ampforwp_disable_comment_author_links' );
 }
+
+// 23. The analytics tag appears more than once in the document. This will soon be an error
+remove_action( 'amp_post_template_head', 'quads_amp_add_amp_ad_js');
