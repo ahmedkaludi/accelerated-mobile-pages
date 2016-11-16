@@ -509,6 +509,13 @@ amp-user-notification button {
 amp-user-notification button:hover {
 	cursor: pointer
 }
+.amp-wp-content blockquote {
+    background-color: #fff;
+    border-left: 3px solid;
+    margin: 0;
+    padding: 15px 20px 8px 24px;
+    background: #f3f3f3;
+}
 
 /* Responsive */
     @media screen and (max-width: 800px) {
@@ -619,6 +626,9 @@ a,
 .amp-wp-author {
     color: <?php echo $color ?>;
 }
+.amp-wp-content blockquote{
+	border-color:<?php echo $color ?>;
+}
 .nav_container, .comment-button-wrapper a {
     background:  <?php echo $color ?>;
 }
@@ -661,6 +671,8 @@ amp-user-notification button {
 .ampforwp-tax-tag a:last-child:after  {
 	content: ' ';
 }
+
+
 
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
