@@ -374,7 +374,7 @@ main .amp-wp-content.relatedpost {
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 0.4px;
-    margin: 25px 0 10px 0;
+    margin: 15px 0 10px 0;
     color: #333;
 }
 .related_posts ol{
@@ -428,6 +428,7 @@ main .amp-wp-content.comments_list {
 	background: none;
 	box-shadow: none;
 	max-width: 1030px;
+	padding:0
 }
 .comments_list div{
     display:inline-block;
@@ -524,20 +525,11 @@ amp-user-notification button:hover {
             padding: 12px 10px 10px 10px
         }
     }
-    @media screen and (max-width: 340px) {
 
-        .single-post main{
-            padding: 10px 5px 10px 5px
-        }
-        .the_content .amp-ad-wrapper{
-            text-align: center;
-            margin-left: -13px;
-        }
-    }
 @media screen and (max-width: 630px) {
-        .related_posts ol li amp-img{
-            display:none
-        }
+		.related_posts ol li p{
+			display:none
+		}
     .related_link {
         margin: 16px 18px 20px 19px;
     }
@@ -586,8 +578,44 @@ amp-user-notification button:hover {
 		.amp-meta-wrapper .amp-wp-meta-date{
 			display:none
 		}
+		.related_posts .related_link a {
+    	font-size: 17px;
+    	line-height: 1.5;
+		}
+}
+@media screen and (max-width: 375px) {
+	#pagination .next a, #pagination .prev a{
+		padding: 10px 6px;
+		font-size: 11px;
+		color: #666;
+	}
+	.related_posts h3, .comments_list h3{
+		margin-top:15px;
+	}
+	#pagination .next{
+		margin-bottom:15px;
+	}
+	.related_posts .related_link a {
+		font-size: 15px;
+    line-height: 1.6;
+	}
+}
+@media screen and (max-width: 340px) {
+	.related_posts .related_link a {
+			font-size: 15px;
+	}
+		.single-post main{
+				padding: 10px 5px 10px 5px
+		}
+		.the_content .amp-ad-wrapper{
+				text-align: center;
+				margin-left: -13px;
+		}
 }
 @media screen and (max-width: 320px) {
+	.related_posts .related_link a {
+    font-size: 13px;
+	}
 	h1.amp-wp-title{
 		font-size:17px;
 		padding:0px 4px
@@ -633,6 +661,9 @@ main .amp-loop-list {
     float:left;
     margin-left:0;
     margin-right:15px;
+}
+#pagination{
+	display:inline-block
 }
 #pagination .next{
     float:left
