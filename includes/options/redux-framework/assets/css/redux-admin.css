@@ -37,7 +37,7 @@
 .redux-container #redux-intro-text{
     text-align: right
 }
-.redux-container #redux-intro-text{    
+.redux-container #redux-intro-text{
     background: transparent;
     border: 0;
     margin-top: -1px;
@@ -65,7 +65,7 @@
     color: #444
 }
 .admin-color-fresh .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a, .wp-customizer .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a{
-    background: #fff; 
+    background: #fff;
     text-shadow: none !important;
     color: #444
 }
@@ -101,7 +101,7 @@
 .admin-color-fresh #redux-footer #redux-share a, .wp-customizer #redux-footer #redux-share a{
     color: #4452a7
 }
-.amp-faq strong{ 
+.amp-faq strong{
     color: #666;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -135,8 +135,17 @@
     color: #fff;
     box-shadow: none !important;
     border: 0 !important;
-    
+
 }
 .wp-customizer .redux-container-switch .cb-disable.selected{
     background: red !important
+}
+.ampforwp-ad-img-banner{
+    width: 560px;
+    height: 99px !important;
+}
+.ampforwp-extension-ad-img-banner{
+  width: 345px;
+  height: 450px !important;
+  margin-right:20px;
 }

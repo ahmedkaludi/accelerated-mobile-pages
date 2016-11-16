@@ -5,6 +5,8 @@
 	2. Custom Design
 	3. Custom Style files
 	4. Custom Header files
+		4.1 Custom Meta-Author files
+		4.2 Custom Meta-Taxonomy files
 		4.5 Added hook to add more layout.
 	5. Customize with Width of the site
 	6. Add required Javascripts for extra AMP features
@@ -127,6 +129,23 @@
 			return $file;
 	}
 
+	// 4.1 Custom Meta-Author files
+	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_author', 10, 3 );
+	function ampforwp_set_custom_meta_author( $file, $type, $post ) {
+			if ( 'meta-author' === $type ) {
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-author.php';
+			}
+			return $file;
+	}
+	// 4.2 Custom Meta-Taxonomy files
+	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_taxonomy', 10, 3 );
+	function ampforwp_set_custom_meta_taxonomy( $file, $type, $post ) {
+			if ( 'meta-taxonomy' === $type ) {
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-taxonomy.php';
+			}
+			return $file;
+	}
+
 	// 4.5 Added hook to add more layout.
 	do_action('ampforwp_after_features_include');
 
@@ -181,9 +200,8 @@
 	            <p><?php echo $redux_builder_amp['amp-translator-footer-text']; ?> </p>
 	        </div>
 			</footer>
-
-			<!-- Cookie Notification Code
-				added by @nicholasgriffintn in pull #121 -->
+			<!--Plugin Verion :<?php echo (AMPFORWP_VERSION); ?> -->
+			<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
 			<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 				<amp-user-notification layout=nodisplay id="amp-user-notification1">
 	           <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>

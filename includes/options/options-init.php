@@ -336,11 +336,11 @@
 
    ) ;
 
-
+$AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
-        'desc'       => __( 'The First and Only plugin to be the Adsense AMP-AD compatible!'),
+        'desc' => '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>',
         'id'         => 'amp-ads',
         'subsection' => true,
         'fields'     => array(
@@ -910,6 +910,18 @@
                 'default'  => "/******* Paste your Custom CSS in this Editor *******/"
             ),
         )
+    ) );
+
+// Extension Section
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Extensions', 'redux-framework-demo' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-go-premium',
+        'subsection' => false,
+        'desc' => '<a href=" http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab&utm_campaign=AMP%20Plugin "  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-extension.png" width="345" height="500" /></a>
+
+        <img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /> ',
+        'icon' => 'el el-info-circle',
     ) );
 /*
 * <--- END SECTIONS
