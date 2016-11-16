@@ -19,8 +19,10 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 **Features:**
 
-* NEW - Related posts below the post
-* NEW - Recent Comments list 
+* NEW - Translation Panel & RTL
+* NEW - Internal AMP linking - You can browse AMP pages internally
+* Related posts below the post
+* Recent Comments list 
 * Automatically integrate AMP to your website. 
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability. 
 * 7 Advertisement sizes 
@@ -45,6 +47,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * RTL Support
 * Custom AMP FrontPage
 * Notifications
+* Piwik & Segment.com Support
 * Great Support & Active Development. 
 
 **NOTE:** Next Update of this plugin will be released by end of October 2016.
@@ -113,6 +116,24 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.8 =
+* Proper Details at http://ampforwp.com/amp-0-8-7/
+* Translation Panel added. You can now easily translate the AMP version from the backend without any complications.
+* Badge Tag was throwing Validation error
+* Plusone tag validation error was fixed
+* Time tag was validation error was fixed
+* User experience for Mobile devices was improved
+* Meta info was messing up in smaller devices, it was fixed as well.
+* Internal AMP linking added for Categories and Tags
+* Future errors for AMP ads was fixed
+* Blockquote styling added
+* “Please Activate parent Plugin settings” added for better User Experience.
+* Related Post Ux improvement
+* Plugin version added in Footer source code for better debugging
+* Added Support for Default WordPress Image alignment
+* New action hooks added in index page
+* Featured Image Size options added
+
 = 0.8.7 =
 * Proper Details at http://ampforwp.com/amp-0-8-7/
 * added option to enable/disable AMP on Archive pages (Ticket #188)
