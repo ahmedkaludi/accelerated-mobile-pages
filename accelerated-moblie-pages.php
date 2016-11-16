@@ -1,4 +1,4 @@
-	<?php
+<?php
 /*
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
