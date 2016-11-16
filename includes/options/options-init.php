@@ -337,10 +337,14 @@
    ) ;
 
 $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
+$desc = '';
+if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
+  $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
+}
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
-        'desc' => '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>',
+        'desc' => $desc,
         'id'         => 'amp-ads',
         'subsection' => true,
         'fields'     => array(
