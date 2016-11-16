@@ -300,6 +300,9 @@ h1.amp-wp-title {
 .post-title-meta .amp-wp-tax-tag {
     display : none;
 }
+.amp-meta-wrapper{
+	border-bottom: 1px solid #DADADA;
+}
 .amp-wp-meta  {
     padding-left: 0;
 }
@@ -329,14 +332,12 @@ li.amp-wp-tax-category {
     color: #555;
 }
 .amp-wp-author{
-    margin-right: 5px;
+    margin-right: 1px;
 }
 .amp-wp-meta {
     font-size: 12px;
     padding-bottom: 10px;
     color: #555;
-    border-bottom: 1px solid #DADADA;
-
 }
 .amp-ad-wrapper {
     text-align: center
@@ -373,7 +374,7 @@ main .amp-wp-content.relatedpost {
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 0.4px;
-    margin: 25px 0 10px 0;
+    margin: 15px 0 10px 0;
     color: #333;
 }
 .related_posts ol{
@@ -427,6 +428,7 @@ main .amp-wp-content.comments_list {
 	background: none;
 	box-shadow: none;
 	max-width: 1030px;
+	padding:0
 }
 .comments_list div{
     display:inline-block;
@@ -509,6 +511,13 @@ amp-user-notification button {
 amp-user-notification button:hover {
 	cursor: pointer
 }
+.amp-wp-content blockquote {
+    background-color: #fff;
+    border-left: 3px solid;
+    margin: 0;
+    padding: 15px 20px 8px 24px;
+    background: #f3f3f3;
+}
 
 /* Responsive */
     @media screen and (max-width: 800px) {
@@ -516,26 +525,20 @@ amp-user-notification button:hover {
             padding: 12px 10px 10px 10px
         }
     }
-    @media screen and (max-width: 340px) {
-        .single-post main{
-            padding: 12px 0px 10px 0px
-        }
-        .the_content .amp-ad-wrapper{
-            text-align: center;
-            margin-left: -13px;
-        }
-    }
-@media screen and (max-width: 630px) {
-        .related_posts ol li amp-img{
-            display:none
-        }
 
+@media screen and (max-width: 630px) {
+		.related_posts ol li p{
+			display:none
+		}
     .related_link {
         margin: 16px 18px 20px 19px;
     }
 }
 @media screen and (max-width: 510px) {
-    .related_posts ol li p{
+				.ampforwp-tax-category span{
+					display:none
+				}
+	    .related_posts ol li p{
         line-height: 1.6;
         margin: 7px 0 0 0;
     }
@@ -557,6 +560,66 @@ amp-user-notification button:hover {
         font-size: 18px;
         line-height: 1.7;
     }
+		.amp-meta-wrapper{
+			display: inline-block;
+	    margin-bottom: 0px;
+	    margin-top: 8px;
+			width:100%
+		}
+		.ampforwp-tax-category{
+			padding-bottom:0
+		}
+		h1.amp-wp-title{
+			margin: 16px 0px 13px 0px;
+		}
+		.amp-wp-byline{
+			padding:0
+		}
+		.amp-meta-wrapper .amp-wp-meta-date{
+			display:none
+		}
+		.related_posts .related_link a {
+    	font-size: 17px;
+    	line-height: 1.5;
+		}
+}
+@media screen and (max-width: 375px) {
+	#pagination .next a, #pagination .prev a{
+		padding: 10px 6px;
+		font-size: 11px;
+		color: #666;
+	}
+	.related_posts h3, .comments_list h3{
+		margin-top:15px;
+	}
+	#pagination .next{
+		margin-bottom:15px;
+	}
+	.related_posts .related_link a {
+		font-size: 15px;
+    line-height: 1.6;
+	}
+}
+@media screen and (max-width: 340px) {
+	.related_posts .related_link a {
+			font-size: 15px;
+	}
+		.single-post main{
+				padding: 10px 5px 10px 5px
+		}
+		.the_content .amp-ad-wrapper{
+				text-align: center;
+				margin-left: -13px;
+		}
+}
+@media screen and (max-width: 320px) {
+	.related_posts .related_link a {
+    font-size: 13px;
+	}
+	h1.amp-wp-title{
+		font-size:17px;
+		padding:0px 4px
+	}
 }
 @media screen and (max-width: 400px) {
     .amp-wp-title{
@@ -599,6 +662,9 @@ main .amp-loop-list {
     margin-left:0;
     margin-right:15px;
 }
+#pagination{
+	display:inline-block
+}
 #pagination .next{
     float:left
 }
@@ -618,6 +684,9 @@ main .amp-loop-list {
 a,
 .amp-wp-author {
     color: <?php echo $color ?>;
+}
+.amp-wp-content blockquote{
+	border-color:<?php echo $color ?>;
 }
 .nav_container, .comment-button-wrapper a {
     background:  <?php echo $color ?>;
@@ -655,12 +724,14 @@ amp-user-notification button {
 
 .ampforwp-tax-category a:after,
 .ampforwp-tax-tag a:after {
-	content: ' , ';
+	content: ', ';
 }
 .ampforwp-tax-category a:last-child:after,
 .ampforwp-tax-tag a:last-child:after  {
 	content: ' ';
 }
+
+
 
 /* Custom Style Code */
 <?php echo $redux_builder_amp['css_editor']; ?>
