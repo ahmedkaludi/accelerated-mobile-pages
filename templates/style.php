@@ -300,6 +300,9 @@ h1.amp-wp-title {
 .post-title-meta .amp-wp-tax-tag {
     display : none;
 }
+.amp-meta-wrapper{
+	border-bottom: 1px solid #DADADA;
+}
 .amp-wp-meta  {
     padding-left: 0;
 }
@@ -329,14 +332,12 @@ li.amp-wp-tax-category {
     color: #555;
 }
 .amp-wp-author{
-    margin-right: 5px;
+    margin-right: 1px;
 }
 .amp-wp-meta {
     font-size: 12px;
     padding-bottom: 10px;
     color: #555;
-    border-bottom: 1px solid #DADADA;
-
 }
 .amp-ad-wrapper {
     text-align: center
@@ -524,8 +525,9 @@ amp-user-notification button:hover {
         }
     }
     @media screen and (max-width: 340px) {
+
         .single-post main{
-            padding: 12px 0px 10px 0px
+            padding: 10px 5px 10px 5px
         }
         .the_content .amp-ad-wrapper{
             text-align: center;
@@ -536,13 +538,15 @@ amp-user-notification button:hover {
         .related_posts ol li amp-img{
             display:none
         }
-
     .related_link {
         margin: 16px 18px 20px 19px;
     }
 }
 @media screen and (max-width: 510px) {
-    .related_posts ol li p{
+				.ampforwp-tax-category span{
+					display:none
+				}
+	    .related_posts ol li p{
         line-height: 1.6;
         margin: 7px 0 0 0;
     }
@@ -564,6 +568,30 @@ amp-user-notification button:hover {
         font-size: 18px;
         line-height: 1.7;
     }
+		.amp-meta-wrapper{
+			display: inline-block;
+	    margin-bottom: 0px;
+	    margin-top: 8px;
+			width:100%
+		}
+		.ampforwp-tax-category{
+			padding-bottom:0
+		}
+		h1.amp-wp-title{
+			margin: 16px 0px 13px 0px;
+		}
+		.amp-wp-byline{
+			padding:0
+		}
+		.amp-meta-wrapper .amp-wp-meta-date{
+			display:none
+		}
+}
+@media screen and (max-width: 320px) {
+	h1.amp-wp-title{
+		font-size:17px;
+		padding:0px 4px
+	}
 }
 @media screen and (max-width: 400px) {
     .amp-wp-title{
@@ -665,7 +693,7 @@ amp-user-notification button {
 
 .ampforwp-tax-category a:after,
 .ampforwp-tax-tag a:after {
-	content: ' , ';
+	content: ', ';
 }
 .ampforwp-tax-category a:last-child:after,
 .ampforwp-tax-tag a:last-child:after  {

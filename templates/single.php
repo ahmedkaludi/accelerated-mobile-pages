@@ -18,10 +18,9 @@
 
 	<div class="amp-wp-content post-title-meta">
 		<?php if($redux_builder_amp['enable-single-post-meta'] == true) { ?>
-			<ul class="amp-wp-meta">
+			<ul class="amp-wp-meta amp-meta-wrapper">
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
 
-				<li> <?php _e($redux_builder_amp['amp-translator-on-text']." ",'ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
 
 				<?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array('meta-taxonomy' ) ) ); ?>
 
@@ -53,7 +52,15 @@
 
 	<div class="amp-wp-content post-pagination-meta">
 		<?php if($redux_builder_amp['ampforwp-single-tags-on-off'] == true) {
-				$this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) );
+			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) : ?>
+				<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
+					<?php  global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .': ', 'amp' ));
+						foreach ($ampforwp_tags as $tag) {
+								echo ('<a href="'.get_site_url().'/tag/' . $tag->slug .'/?amp" >'.$tag->name .'</a>');
+						} ?>
+				</div>
+			<?php endif;
 			} ?>
 
     <?php if($redux_builder_amp['enable-next-previous-pagination'] == true) { ?>
