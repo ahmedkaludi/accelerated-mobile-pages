@@ -53,7 +53,9 @@ if ( is_admin() ) {
 					} else{
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
-						}
+						}else{
+						$actions = array_merge( $please_activate_parent_plugin,$actions );
+					}
 					}
 
  				}
