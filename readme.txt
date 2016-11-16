@@ -117,7 +117,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 == Changelog ==
 = 0.8.8 =
-* Proper Details at http://ampforwp.com/amp-0-8-7/
+* Proper Details at http://ampforwp.com/amp-0-8-8-released-translation-panel/
 * Translation Panel added. You can now easily translate the AMP version from the backend without any complications.
 * Badge Tag was throwing Validation error
 * Plusone tag validation error was fixed
