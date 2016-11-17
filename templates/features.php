@@ -493,6 +493,18 @@
 					'height' 	=> 36,
 					'width' 	=> 190,
 				);
+				
+				//code for adding 'description' meta from Yoast SEO
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+					$front = WPSEO_Frontend::get_instance();
+					$desc = $front->metadesc( false );
+					if ( $desc ) {
+						$metadata['description'] = $desc;
+					}
+				}
+				//End of code for adding 'description' meta from Yoast SEO
+
 				return $metadata;
 		}
 
