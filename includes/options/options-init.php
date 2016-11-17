@@ -892,6 +892,20 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'default'  => 'By',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id'       => 'amp-translator-view-comments-text',
+                       'type'     => 'text',
+                       'title'    => __('View Comments', 'redux-framework-demo'),
+                       'default'  => 'View Comments',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-leave-a-comment-text',
+                       'type'     => 'text',
+                       'title'    => __('Leave a Comment', 'redux-framework-demo'),
+                       'default'  => 'Leave a Comment',
+                       'placeholder'=>'write here'
+                   ),
                )
            ) );
 

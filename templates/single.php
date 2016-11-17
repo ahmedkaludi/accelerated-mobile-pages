@@ -200,7 +200,7 @@
 					));
 					if ( $comments ) { ?>
 						<div class="amp-wp-content comments_list">
-								<h3>View Comments</h3>
+								<h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
 						    <ul>
 						        <?php
 											// Display the list of comments
@@ -217,7 +217,7 @@
 						    </ul>
 						</div>
 						<div class="comment-button-wrapper">
-						    <a href="<?php echo get_permalink().'#commentform' ?>">Leave a Comment</a>
+						    <a href="<?php echo get_permalink().'#commentform' ?>"><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-leave-a-comment-text'];  ?></a>
 						</div><?php
 				}
 			} ?>
