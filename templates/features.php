@@ -196,7 +196,7 @@
 							//24. Added an options button for switching on/off link to non amp page
 							if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){ if ( $ampforwp_backto_nonamp ) { ?>
 								 |
-								 <a href="?<?php echo $ampforwp_backto_nonamp; ?>"><?php
+								 <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php
  								global $redux_builder_amp; _e("".$redux_builder_amp['amp-translator-non-amp-page-text'],'ampforwp');?></a> <?php  } }?>
 	            </p>
 	            <p><?php echo $redux_builder_amp['amp-translator-footer-text']; ?> </p>
@@ -493,7 +493,7 @@
 					'height' 	=> 36,
 					'width' 	=> 190,
 				);
-				
+
 				//code for adding 'description' meta from Yoast SEO
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
