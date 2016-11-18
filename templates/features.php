@@ -106,9 +106,16 @@
         }
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
-	    	if ( 'single' === $type  ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/single.php';
-			}
+
+			 if('single' === $type && !('product' === $post->post_type)) {
+				  // more code
+							$file = AMPFORWP_PLUGIN_DIR . '/templates/single.php';
+				}else if ( class_exists( 'WooCommerce' ) ) {
+					  // some code
+						if('single' === $type && 'product' === $post->post_type ){
+								$file = AMPFORWP_PLUGIN_DIR . '/templates/wc.php';
+						}
+					}
 		}
 	    return $file;
 	}
