@@ -60,9 +60,6 @@
 									case 'related_posts:0':
 											$('.amp-wp-content.relatedpost').hide();
 											break;
-
-											
-
 							}
 					}
 						

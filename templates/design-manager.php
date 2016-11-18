@@ -50,10 +50,17 @@ if ( is_customize_preview() ) {
 	}
 	endif;
 	
+// Design Selector 
+function ampforwp_design_selector() {
+	$design_type = 2;
+	return $design_type;
+}
 
 // File path
-define('DESIGN_MANAGER_FILE_PATH', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/');
+define('DESIGN_MANAGER_FILE_PATH', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/' );
 
+// Add StyleSheet
+require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() . '/style.php';
 
 // Post Title 
 function ampforwp_add_element_the_title( $meta_parts ) {

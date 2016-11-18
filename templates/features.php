@@ -82,34 +82,32 @@
         if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
             if ( is_home() || is_archive() ) {
                 if ( 'single' === $type ) {
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/index.php';
+                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
                 }
             }
         } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
             if ( is_home() || is_archive() ) {
                 if ( 'single' === $type ) {
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/frontpage.php';
+                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
                 }
             }
         }        
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
 	    	if ( 'single' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/single.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 			}
 		}
 	    return $file;
 	}
 
 	// 3. Custom Style files
-	// add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
 	function ampforwp_set_custom_style( $file, $type, $post ) {
-		if ( ! is_single() ) {
-		
+			
 			if ( 'style' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/style.php';
+				$file = '';
 			}
-		}
 			return $file;
 	}
 
@@ -117,7 +115,7 @@
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_header', 10, 3 );
 	function ampforwp_custom_header( $file, $type, $post ) {
 			if ( 'header-bar' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/header-bar.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/header-bar.php';
 			}
 			return $file;
 	}
@@ -155,7 +153,7 @@
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
 	function ampforwp_custom_footer( $file, $type, $post ) {
 			if ( 'footer' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/footer.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/footer.php';
 			}
 			return $file;
 	}
@@ -642,8 +640,8 @@ function ampforwp_remove_schema_data() {
 
 // 22. AMP Design Manager
 require 'design-manager.php';
-require 'design-manager/style.php';
 require 'customizer/customizer.php';
+
 
 // Single Social Icons
 // TO DO: we can directly call social-icons.php instead of below code
