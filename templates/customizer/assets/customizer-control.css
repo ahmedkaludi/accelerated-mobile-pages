@@ -1,0 +1,12 @@
+ul.ampforwp-design-multicheck-sortable-list .ampforwp-design-multicheck-sortable-handle{
+	float: right;
+	cursor: move;
+}
+ul.ampforwp-design-multicheck-sortable-list li{
+	padding: 7px;
+	border: 1px solid #e5e5e5;
+	background: #fafafa;
+}
+.ampforwp-design-hideme{
+	display: none !important;
+}

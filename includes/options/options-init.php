@@ -201,41 +201,41 @@
                 ),
                 'default'  => '1'
             ),
-        array(
-            'id'       => 'ga-feild',
-            'type'     => 'text',
-            'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-            'required' => array('amp-analytics-select-option', '=' , '1'),
-            'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
-            'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
-            'default'  => 'UA-XXXXX-Y',
-        ),
-        array(
-          'id'       => 'sa-feild',
-          'type'     => 'text',
-          'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
-          'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
-          'required' => array('amp-analytics-select-option', '=' , '2'),
-          'default'  => 'SEGMENT-WRITE-KEY',
-        ),
-        array(
-            'id'       => 'pa-feild',
-            'type'     => 'text',
-            'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-            'required' => array('amp-analytics-select-option', '=' , '3'),
-            'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
-            'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
-            'default'  => '#',
-        ),
-        array(
-            'id'        => 'opt-color-rgba',
-            'type'      => 'color_rgba',
-            'title'     => 'Color Scheme',
-            'subtitle'  => __('Change the color scheme to your branding color','redux-framework-demo' ),
-            'default'   => array(
-                'color'     => '#312C7E',
-                'alpha'     => 1
-            ),
+              array(
+                  'id'       => 'ga-feild',
+                  'type'     => 'text',
+                  'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
+                  'required' => array('amp-analytics-select-option', '=' , '1'),
+                  'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
+                  'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
+                  'default'  => 'UA-XXXXX-Y',
+              ),
+              array(
+                'id'       => 'sa-feild',
+                'type'     => 'text',
+                'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
+                'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
+                'required' => array('amp-analytics-select-option', '=' , '2'),
+                'default'  => 'SEGMENT-WRITE-KEY',
+              ),
+              array(
+                  'id'       => 'pa-feild',
+                  'type'     => 'text',
+                  'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
+                  'required' => array('amp-analytics-select-option', '=' , '3'),
+                  'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
+                  'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
+                  'default'  => '#',
+              ),
+              array(
+                  'id'        => 'opt-color-rgba',
+                  'type'      => 'color_rgba',
+                  'title'     => 'Color Scheme',
+                  'subtitle'  => __('Change the color scheme to your branding color','redux-framework-demo' ),
+                  'default'   => array(
+                      'color'     => '#312C7E',
+                      'alpha'     => 1
+                    ),
             // These options display a fully functional color palette.  Omit this argument
             // for the minimal color picker, and change as desired.
             'options'       => array(
@@ -321,7 +321,7 @@
             'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
-            'false'     => 'false'),
+            'false'     => 'false'), 
       )
     ) );//END
 
@@ -542,195 +542,132 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     // Single Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'redux-framework-demo' ),
-        'desc'       => __( 'Additional Options to control the look of Single', 'redux-framework-demo' ),
+        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'redux-framework-demo' ),
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
 
-        // Featured Image ON/OFF
-            //  array(
-            //     'id'        => 'enable-single-featured-image',
-            //     'type'      => 'switch',
-            //     'title'     => __('Featured Image Above Post Content', 'redux-framework-demo'),
-            //     'default'   => 0,
-            //     'subtitle'  => __('Enable Featured Image in the single post', 'redux-framework-demo'),
-            //     'true'      => 'Enabled',
-            //     'false'     => 'Disabled',
-            // ),
-        // Post Meta ON/OFF
-             array(
-                'id'        => 'enable-single-post-meta',
-                'type'      => 'switch',
-                'title'     => __('Post Meta Above Post Content', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Post Meta in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
         // Single Featured ON/OFF
-             array(
-                'id'        => 'enable-single-featured-img',
-                'type'      => 'switch',
-                'title'     => __('Featured Image', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enabling this will automatically display the featured image', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
             // Width and Height of Image
-            array(
-               'id'        => 'enable-single-featured-img-width',
-               'type'      => 'text',
-               'title'     => __('Featured Image Width', 'redux-framework-demo'),
-               'default'   => 512,
-               'subtitle'  => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-               'placeholder'=>'Width here',
-               'required'  => array('enable-single-featured-img', '=' , '1')
-           ),
-           array(
-              'id'        => 'enable-single-featured-img-height',
-              'type'      => 'text',
-              'title'     => __('Featured Image Height', 'redux-framework-demo'),
-              'default'   => 300,
-              'subtitle'  => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
-              'placeholder'=>'Height here',
-              'required'   => array('enable-single-featured-img', '=' , '1')
-          ),
-        // Next/Previous Pagination ON/OFF
-             array(
-                'id'        => 'enable-next-previous-pagination',
-                'type'      => 'switch',
-                'title'     => __('Post Pagination', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-        // Tags ON/OFF
-             array(
-                'id'        => 'ampforwp-single-tags-on-off',
-                'type'      => 'switch',
-                'title'     => __('Tags', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable / Disable Tags in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
+          array(
+             'id'        => 'enable-single-featured-img-width',
+             'type'      => 'text',
+             'title'     => __('Featured Image Width', 'redux-framework-demo'),
+             'default'   => 512,
+             'subtitle'  => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
+             'placeholder'=>'Width here',
+              
+         ),
+         array(
+            'id'        => 'enable-single-featured-img-height',
+            'type'      => 'text',
+            'title'     => __('Featured Image Height', 'redux-framework-demo'),
+            'default'   => 300,
+            'subtitle'  => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
+            'placeholder'=>'Height here',
+             
+        ),
 
           // Related Post
-	        //new related type posts field
-          array(
-		        'id'       => 'ampforwp-single-select-type-of-related-switch',
-		        'type'     => 'switch',
-		        'title'    => __('Related Post', 'redux-framework-demo'),
-            'subtitle'    =>  __('Enable / Disable Related Posts', 'redux-framework-demo'),
-            'default'  => '1',
-	        ),
+	        
 	        array(
-		        'id'       => 'ampforwp-single-select-type-of-related',
-		        'type'     => 'select',
-		        'title'    => __('Show Related Post from', 'redux-framework-demo'),
-		        'data'     => 'page',
-            'subtitle' => __('select the type of related posts', 'redux-framework-demo'),
-		        'options'  => array(
-			        '1' => 'Tags',
-			        '2' => 'Categories'
-		        ),
-		        'args'     => array(
-			        'post_type' => 'page',
-			        'posts_per_page' => 500
-		        ),// ampforwp-single-select-type-of-related-switch
-            'required' => array('ampforwp-single-select-type-of-related-switch', '=' , '1'),
-		        'default'  => '2',
+    		        'id'       => 'ampforwp-single-select-type-of-related',
+    		        'type'     => 'select',
+    		        'title'    => __('Show Related Post from', 'redux-framework-demo'),
+    		        'data'     => 'page',
+                'subtitle' => __('select the type of related posts', 'redux-framework-demo'),
+    		        'options'  => array(
+    			        '1' => 'Tags',
+    			        '2' => 'Categories'
+    		        ),
+    		        'args'     => array(
+    			        'post_type' => 'page',
+    			        'posts_per_page' => 500
+    		        ),// ampforwp-single-select-type-of-related-switch
+               'default'  => '2',
 	        ),
-        // Comments Post
-             array(
-                'id'        => 'ampforwp-single-comments-on-off',
-                'type'      => 'switch',
-                'title'     => __('Comments', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable / Disable Comments in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-        // Social Icons ON/OFF
+      
+          // Social Icons ON/OFF
             array(
                 'id'        => 'enable-single-social-icons',
-                'type'      => 'switch',
-                'title'     => __('Social Icons', 'redux-framework-demo'),
+                'type'      => 'switch', 
+                'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
                 'default'   => 1,
                 'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
-            ),
-                // Facebook ON/OFF
-                array(
-                    'id'        =>  'enable-single-facebook-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Facebook', 'redux-framework-demo'),
-                    'default'   =>  0,
-                ),
-                // Facebook app ID
-                array(
-               'id'       => 'amp-facebook-app-id',
-               'title'    => __('Facebook App ID', 'redux-framework-demo'),
-               'subtitle' => __('In order to use Facebook share you need to register an app ID.', 'redux-framework-demo'),
-               'type'     => 'text',
-               'desc'     =>__(' You can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
-               'required'  => array('enable-single-facebook-share', '=' , '1'),
-               'placeholder'  => 'Enter your facebook app id',
-               'default'  => ''
-                ),
-                // Twitter ON/OFF
-                array(
-                    'id'        =>  'enable-single-twitter-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Twitter', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // GooglePlus ON/OFF
-                array(
-                    'id'        =>  'enable-single-gplus-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('GooglePlus', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // Email ON/OFF
-                array(
-                    'id'        =>  'enable-single-email-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Email', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // Pinterest ON/OFF
-                array(
-                    'id'        =>  'enable-single-pinterest-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Pinterest', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // LinkedIn ON/OFF
-                array(
-                    'id'        =>  'enable-single-linkedin-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('LinkedIn', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                array(
-                    'id'        =>  'enable-single-whatsapp-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('WhatsApp', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
+            ), 
         ),
 
     ) );
-
+    
+    // Social Section
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Social', 'redux-framework-demo' ),
+        'id'         => 'amp-social',
+        'subsection' => true,
+        'fields'     => array(
+          // Facebook ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-share',
+              'type'      =>  'switch', 
+              //'required'  => array('enable-single-social-icons', '=' , '1'),
+              'title'     =>  __('Facebook', 'redux-framework-demo'),
+              'default'   =>  0,
+          ),
+          // Facebook app ID
+          array(
+               'id'       => 'amp-facebook-app-id',
+               'title'    => __('Facebook App ID', 'redux-framework-demo'),
+               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
+               'type'     => 'text',  
+               'required'  => array('enable-single-facebook-share', '=' , '1'),
+               'placeholder'  => 'Enter your facebook app id',
+               'default'  => ''
+          ),   
+          // Twitter ON/OFF
+          array(
+              'id'        =>  'enable-single-twitter-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Twitter', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // GooglePlus ON/OFF
+          array(
+              'id'        =>  'enable-single-gplus-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('GooglePlus', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // Email ON/OFF
+          array(
+              'id'        =>  'enable-single-email-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Email', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // Pinterest ON/OFF
+          array(
+              'id'        =>  'enable-single-pinterest-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('Pinterest', 'redux-framework-demo'),
+              'default'   =>  1,
+          ), 
+          // LinkedIn ON/OFF
+          array(
+              'id'        =>  'enable-single-linkedin-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('LinkedIn', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // WhatsApp
+          array(
+              'id'        =>  'enable-single-whatsapp-share',
+              'type'      =>  'switch', 
+              'title'     =>  __('WhatsApp', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+        )
+    ) );
+        
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'redux-framework-demo' ),
