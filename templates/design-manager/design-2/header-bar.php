@@ -19,10 +19,8 @@
 </header>
 
 
-
-
 <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-	<a href="#" class="toggle-text"><?php echo $redux_builder_amp['amp-translator-navigate-text']; ?></a>
+	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
 </div>
 
    

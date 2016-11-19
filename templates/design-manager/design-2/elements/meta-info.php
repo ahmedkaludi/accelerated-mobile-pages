@@ -2,7 +2,9 @@
 	<div class="amp-wp-content post-title-meta">
 
 			<ul class="amp-wp-meta">
-				<?php $post_author = $this->get( 'post_author' ); ?>
+				<?php 
+					global $redux_builder_amp;
+					$post_author = $this->get( 'post_author' ); ?>
 				<?php if ( $post_author ) : ?>
 					<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
 					<div class="amp-wp-meta amp-wp-byline">
@@ -14,12 +16,12 @@
 				<?php endif; ?>
 
 
-				<li> <?php _e(' on ','ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
+				<li> <?php echo esc_html( $redux_builder_amp['amp-translator-on-text'] ); the_time( get_option( 'date_format' ) ) ?></li>
 
-				<?php $categories = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'amp' ), '', $this->ID ); ?>
+				<?php $categories = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'ampforwp' ), '', $this->ID ); ?>
 				<?php if ( $categories ) : ?>
 					<div class="amp-wp-meta amp-wp-tax-category">
-						<?php printf( esc_html__( 'Categories: %s', 'amp' ), $categories ); ?>
+						<?php printf( esc_html__( $redux_builder_amp['amp-translator-categories-text'] . '%s', 'ampforwp' ), $categories ); ?>
 					</div>
 				<?php endif; ?>
 

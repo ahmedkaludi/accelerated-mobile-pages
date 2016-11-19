@@ -701,6 +701,8 @@ amp-carousel > amp-img > img {
 		    position: relative;
 		    top: -4px;
 		}
-	
+		.amp-wp-author:before{
+				content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  ";
+		}
 	<?php 
 } ?>

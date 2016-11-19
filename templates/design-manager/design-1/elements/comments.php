@@ -1,5 +1,6 @@
 <div class="ampforwp-comment-wrapper">
 <?php  
+	global $redux_builder_amp;
 	// Gather comments for a specific page/post 
 	$postID = get_the_ID();
 	$comments = get_comments(array(
@@ -8,7 +9,7 @@
 	));
 	if ( $comments ) { ?>
 		<div class="amp-wp-content comments_list">
-			<h3><?php _e('View Comments','ampforwp'); ?></h3>
+			<h3><?php esc_html_e( $redux_builder_amp['amp-translator-view-comments-text']  ); ?></h3>
 		    <ul>
 		        <?php
 		        // Display the list of comments
@@ -23,7 +24,7 @@
 		    </ul>
 		</div>
 		<div class="comment-button-wrapper">
-		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php _e('Leave a Comment','ampforwp'); ?></a>
+		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 		</div><?php 
 	}
 ?>

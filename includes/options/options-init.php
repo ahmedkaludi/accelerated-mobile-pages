@@ -805,14 +805,14 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'id'       => 'amp-translator-categories-text',
                        'type'     => 'text',
                        'title'    => __('Categories', 'redux-framework-demo'),
-                       'default'  => 'Categories',
+                       'default'  => 'Categories: ',
                        'placeholder'=>'write here'
                    ),
                    array(
                        'id'       => 'amp-translator-tags-text',
                        'type'     => 'text',
                        'title'    => __('Tags', 'redux-framework-demo'),
-                       'default'  => 'Tags',
+                       'default'  => 'Tags: ',
                        'placeholder'=>'write here'
                    ),
                    array(

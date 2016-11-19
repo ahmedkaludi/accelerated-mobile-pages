@@ -1,6 +1,7 @@
 <?php
 /* This file will contain all the Extra FEATURES.
-0.9. AMP Design Manager
+
+0.9. AMP Design Manager Files
 	1. Add Home REL canonical
 	2. Custom Design
 	3. Custom Style files
@@ -35,7 +36,7 @@
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 	
-	// 0.9. AMP Design Manager
+	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
 	require 'customizer/customizer.php';
 

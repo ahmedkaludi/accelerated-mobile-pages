@@ -342,7 +342,7 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	    display: none;
 	}
 	.amp-wp-author:before {
-	    content: "By ";
+	    content: "<?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?> ";
 	    color: #555;
 	}
 	.amp-wp-author{
