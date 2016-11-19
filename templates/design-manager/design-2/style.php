@@ -650,6 +650,30 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	    }
 	<?php } ?>
 	
+	.alignleft{
+	margin-right: 12px;
+	margin-bottom:5px;
+	float: left;
+	}
+	.alignright{
+		float:right;
+		margin-left: 12px;
+		margin-bottom:5px;
+	}
+	.aligncenter{
+		text-align:center;
+		margin: 0 auto
+	}
+
+	.ampforwp-tax-category a:after,
+	.ampforwp-tax-tag a:after {
+		content: ', ';
+	}
+	.ampforwp-tax-category a:last-child:after,
+	.ampforwp-tax-tag a:last-child:after  {
+		content: ' ';
+	}
+	
 	/* New V0.8.7(drag and drop) style */
 	.amp-wp-article-content img {
 	    max-width: 100%;
