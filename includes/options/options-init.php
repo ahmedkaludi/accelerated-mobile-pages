@@ -546,30 +546,32 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
-
-        // Single Featured ON/OFF
-            // Width and Height of Image
+          // Social Icons ON/OFF
           array(
-             'id'        => 'enable-single-featured-img-width',
-             'type'      => 'text',
-             'title'     => __('Featured Image Width', 'redux-framework-demo'),
-             'default'   => 512,
-             'subtitle'  => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-             'placeholder'=>'Width here',
-              
-         ),
-         array(
-            'id'        => 'enable-single-featured-img-height',
-            'type'      => 'text',
-            'title'     => __('Featured Image Height', 'redux-framework-demo'),
-            'default'   => 300,
-            'subtitle'  => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
-            'placeholder'=>'Height here',
-             
-        ),
-
+              'id'        => 'enable-single-social-icons',
+              'type'      => 'switch', 
+              'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
+              'default'   => 1,
+              'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
+          ),
+          // Width and Height of Image
+          array(
+             'id'           => 'enable-single-featured-img-width',
+             'type'         => 'text',
+             'title'        => __('Featured Image Width', 'redux-framework-demo'),
+             'default'      => 512,
+             'subtitle'     => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
+             'placeholder'  =>'Width here',    
+           ),
+           array(
+              'id'          => 'enable-single-featured-img-height',
+              'type'        => 'text',
+              'title'       => __('Featured Image Height', 'redux-framework-demo'),
+              'default'     => 300,
+              'subtitle'    => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
+              'placeholder' =>'Height here',
+          ),
           // Related Post
-	        
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
     		        'type'     => 'select',
@@ -583,18 +585,9 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     		        'args'     => array(
     			        'post_type' => 'page',
     			        'posts_per_page' => 500
-    		        ),// ampforwp-single-select-type-of-related-switch
+    		        ), 
                'default'  => '2',
 	        ),
-      
-          // Social Icons ON/OFF
-            array(
-                'id'        => 'enable-single-social-icons',
-                'type'      => 'switch', 
-                'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
-            ), 
         ),
 
     ) );

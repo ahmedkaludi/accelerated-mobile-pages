@@ -54,7 +54,6 @@ if ( is_customize_preview() ) {
 // Design Selector 
 function ampforwp_design_selector() {
 	$design_type = 2;
-	// var_dump( $design_type );
 	return $design_type;
 }
 
