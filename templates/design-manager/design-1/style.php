@@ -704,5 +704,13 @@ amp-carousel > amp-img > img {
 		.amp-wp-author:before{
 				content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  ";
 		}
+		.amp-wp-tax-category a:after,
+		.amp-wp-tax-tag a:after {
+			content: ', ';
+		}
+		.amp-wp-tax-category a:last-child:after,
+		.amp-wp-tax-tag a:last-child:after  {
+			content: ' ';
+		}
 	<?php 
 } ?>
