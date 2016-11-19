@@ -3,8 +3,8 @@
 	<div>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p> <?php echo $redux_builder_amp['amp-footer-text']; ?>
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'amp' ) ); ?>"><?php printf( __( 'Powered by %s', 'amp' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ampforwp' ) ); ?>"><?php printf( __( 'Powered by %s', 'ampforwp' ), 'WordPress' ); ?></a>
 		</p>
-		<a href="#top" class="back-to-top"><?php _e( 'Back to top', 'amp' ); ?></a>
+		<a href="#top" class="back-to-top"><?php echo esc_html( $redux_builder_amp['amp-translator-top-text'] ); ?></a>
 	</div>
 </footer>
