@@ -167,14 +167,13 @@ blockquote p:last-child {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin: 1.5em 16px 1.5em;
-}
-
+} 
 .amp-wp-title {
 	color: <?php echo sanitize_hex_color( $text_color ); ?>;
 	display: block;
 	flex: 1 0 100%;
 	font-weight: 900;
-	margin: 0 0 .625em;
+	margin: 0;
 	width: 100%;
 }
 
@@ -185,11 +184,13 @@ blockquote p:last-child {
 	display: inline-block;
 	flex: 2 1 50%;
 	font-size: .875em;
-	line-height: 1.5em;
+	line-height: 1.7em;
 	margin: 0;
 	padding: 0;
 }
-
+.ampforwp-meta-info{
+    margin-top: 0px;
+}
 .amp-wp-article-header .amp-wp-meta:last-of-type {
 	text-align: right;
 }
@@ -218,7 +219,7 @@ blockquote p:last-child {
 /* Featured image */
 
 .amp-wp-article-featured-image {
-	margin: 0 0 1em;
+	margin: 1.5em 16px 1.5em;
 }
 .amp-wp-article-featured-image amp-img {
 	margin: 0 auto;
@@ -228,7 +229,9 @@ blockquote p:last-child {
 }
 
 /* Article Content */
-
+.amp-wp-article a{
+    text-decoration:none
+}
 .amp-wp-article-content {
 	margin: 0 16px;
 }
@@ -264,7 +267,7 @@ blockquote p:last-child {
 	margin-left: 16px;
 }
 
-.wp-caption .wp-caption-text {
+.wp-caption-text {
 	border-bottom: 1px solid <?php echo sanitize_hex_color( $border_color ); ?>;
 	color: <?php echo sanitize_hex_color( $muted_text_color ); ?>;
 	font-size: .875em;
@@ -306,7 +309,9 @@ amp-carousel > amp-img > img {
 .amp-wp-article-footer .amp-wp-meta {
 	display: block;
 }
-
+.amp-wp-tax-category span{
+    margin-right:5px;
+}
 .amp-wp-tax-category,
 .amp-wp-tax-tag {
 	color: <?php echo sanitize_hex_color( $muted_text_color ); ?>;
@@ -389,20 +394,33 @@ amp-carousel > amp-img > img {
 	.amp-wp-header { 
 	}
 	.amp-wp-header .nav_container {
-		float: right;
-    	top: -9px;
-    	line-height : 1
+        float: right;
+        top: -11px;
+        line-height: 1;
+        right: 60px;
 	}
 	.toggle-text  { 
 		position: absolute;
 		right: 0;
+        height: 22px;
+        width: 28px;
 	}
-	.toggle-text span {
-		font-size: 80px;
-		position: absolute;
-		line-height: 0;
-	}
-
+	.toggle-text span  {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 25px;
+        background: #ffffff;
+        border-radius: 19px;
+        opacity: 1;
+        left: 0;
+    }
+	.toggle-text span:nth-child(2)  {
+        top: 9px;
+    }
+	.toggle-text span:nth-child(3)  {
+        top: 18px;
+    }
 	/* Homepage */
 	.ampforwp-custom-index .amp-wp-title a {
 		text-decoration: none;
@@ -438,6 +456,10 @@ amp-carousel > amp-img > img {
 		display : initial
 	}
 	/* Social Icons */
+    .ampforwp-social-icons{
+        margin: 1.5em 16px 1.5em;
+        height: 30px;
+    }
 	.whatsapp-share-icon {
 	    width: 50px;
 	    height: 20px;
@@ -446,10 +468,34 @@ amp-carousel > amp-img > img {
 	    padding: 4px 0px;
 	    position: relative;
 	    top: -4px;
-	    text-align: center
+	    text-align: center 
 	}
-	
+    .comment-button-wrapper a{
+        font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+        border-style: solid;
+        border-color: #c2c2c2;
+        border-width: 1px 1px 2px;
+        border-radius: 4px;
+        background-color: transparent;
+        color: #0a89c0;
+        cursor: pointer;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        text-align:center;
+        line-height: 18px;
+        margin: 0 auto;
+        max-width: 200px;
+        padding: 11px 16px;
+        text-decoration: none;
+        width: 50%;
+        -webkit-transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease;
+    }
 	/* Related Posts */
+    .relatedpost{
+        margin: 2em 16px 2em;
+    }
 	main .amp-wp-content.relatedpost {
 		background: none;
 		box-shadow: none;
@@ -465,28 +511,16 @@ amp-carousel > amp-img > img {
 	.related_posts ol{
 	    list-style-type:none;
 	    margin:0;
-	    padding:0
-	}
+	    padding:0;
+        font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif
+}
 	.related_posts ol li{
 	    display:inline-block;
 	    width:100%;
 	    margin-bottom: 12px;
-	    background: #fefefe;
-	    -moz-border-radius: 2px;
-	    -webkit-border-radius: 2px;
-	    border-radius: 2px;
-	    -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
-	    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
-	    box-shadow: 0 2px 3px rgba(0,0,0,.05);
 	    padding: 0px;
 	}
-	.related_posts .related_link{
-	    margin-top:18px;
-	    margin-bottom:10px;
-	    margin-right:10px
-	}
 	.related_posts .related_link a{
-	    font-weight: 300;
 	    color: #000;
 	    font-size: 18px;
 	}
@@ -503,12 +537,12 @@ amp-carousel > amp-img > img {
 	}
 	.no_related_thumbnail{
 	    padding: 15px 18px;
-	}
-	.no_related_thumbnail .related_link{
-	    margin: 16px 18px 20px 19px;
-	}
+	} 
 
 	/* Comments */
+    .comments_list{
+        margin: 2.5em 16px 2.5em
+    }
 	main .amp-wp-content.comments_list {
 		background: none;
 		box-shadow: none;
@@ -525,13 +559,14 @@ amp-carousel > amp-img > img {
 	    padding-bottom:10px;
 	}
 	.comments_list ul li p{
-	    margin:0;
-	    font-size:15px;
-	    clear:both;
-	    padding-top:16px;
+        margin: 0;
+        font-size: 14px;
+        clear: both;
+        padding-top: 5px;
 	}
 	.comments_list ul li{
-	    font-size:13px;
+        font-family:sans-serif;
+	    font-size:11px;
 	    list-style-type:none; 
 	    margin-bottom: 12px;
 	    background: #fefefe;
@@ -544,9 +579,14 @@ amp-carousel > amp-img > img {
 	    padding: 0px;
 	    max-width: 1000px;
 	}
+    .comments_list ul li .says{
+        margin-right: 4px;
+    }
+    .comments_list ul li p{
+    font-family:'Merriweather', 'Times New Roman', Times, Serif
+    }
 	.comments_list ul li .comment-body{
-	    padding: 25px;
-	    width: 91%;
+	    padding: 10px 0px 15px 0px; 
 	}
 	.comment-author{ float:left }
 	.single-post footer.comment-meta{
@@ -587,15 +627,17 @@ amp-carousel > amp-img > img {
 	    display: inline-block
 	}
 	.toggle-navigationv2 ul li a{
-	    padding: 15px 25px;
-	    width: 100%;
-	    display: inline-block;
-	    background: #fafafa;
-	    font-size: 14px;
-	    border-bottom: 1px solid #efefef;
+        padding: 10px 15px 10px 25px;
+        width: 88%;
+        display: inline-block;
+        text-decoration: none;
+        background: #fafafa;
+        font-size: 13px;
+        border-bottom: 1px solid #efefef;
 	}
 	.close-nav{
 	    font-size: 12px;
+        font-family: sans-serif;
 	    background: rgba(0, 0, 0, 0.25);
 	    letter-spacing: 1px;
 	    display: inline-block;
@@ -702,7 +744,6 @@ amp-carousel > amp-img > img {
 		    top: -4px;
 		}
 		.amp-wp-author:before{
-				content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  ";
 		}
 		.amp-wp-tax-category a:after,
 		.amp-wp-tax-tag a:after {

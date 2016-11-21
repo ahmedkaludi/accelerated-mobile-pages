@@ -10,14 +10,25 @@
       } ?>
     </a>
   
+
+    <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
+        <?php $site_icon_url = $this->get( 'site_icon_url' );
+            if ( $site_icon_url ) : ?>
+            <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>
+        <?php endif; ?>
+    </a>
+
   <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-      <a href="#" class="toggle-text"> <?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
+      <a href="#" class="toggle-text">
+          <span></span>
+          <span></span>
+          <span></span>          
+      </a>
   </div>
 
   </div>
 
-</header>
-
+</header> 
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="right">

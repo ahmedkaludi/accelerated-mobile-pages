@@ -1,6 +1,8 @@
 <?php
 
+
 if ( is_customize_preview() ) {
+    
 	// Load all the elements in the customizer as we want all the elements in design-manager
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
@@ -53,7 +55,7 @@ if ( is_customize_preview() ) {
 	
 // Design Selector 
 function ampforwp_design_selector() {
-	$design_type = 2;
+	$design_type = 1;
 	return $design_type;
 }
 
