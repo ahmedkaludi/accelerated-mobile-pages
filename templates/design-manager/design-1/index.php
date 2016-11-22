@@ -15,14 +15,14 @@
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<article class="amp-wp-article ampforwp-custom-index">
+<article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 	
 	<?php do_action('ampforwp_post_before_design_elements') ?>
 	
 			<?php 
 				if ( have_posts() ) :
 		    while ( have_posts() ) : the_post(); ?>
-	        <div class="amp-wp-content">
+	        <div class="amp-wp-content amp-wp-article-header">
 	  
 	            <h1 class="amp-wp-title">
 	                <?php  $ampforwp_post_url = get_permalink(); ?>

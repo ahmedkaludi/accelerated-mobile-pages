@@ -422,6 +422,9 @@ amp-carousel > amp-img > img {
         top: 18px;
     }
 	/* Homepage */
+    .amp-wp-home .amp-wp-meta{
+        margin:5px 0px
+    }
 	.ampforwp-custom-index .amp-wp-title a {
 		text-decoration: none;
 		color: <?php echo sanitize_hex_color( $text_color ); ?>;
@@ -436,6 +439,9 @@ amp-carousel > amp-img > img {
 		margin-bottom: 30px;
 	}
 		/* Home Pagination */
+        .pagination-holder{
+            margin: 1.5em 16px 1.5em
+        }
 		#pagination .next {
 			display: inline-block;
 			float: right
@@ -619,6 +625,7 @@ amp-carousel > amp-img > img {
 	.toggle-navigationv2 ul {
 	    list-style-type: none;
 	    margin: 0;
+        font-family:sans-serif;
 	    padding: 0;
 	} 
 	.toggle-navigationv2 ul ul li a  {
