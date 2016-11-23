@@ -227,35 +227,7 @@
                   'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
                   'default'  => '#',
               ),
-              array(
-                  'id'        => 'opt-color-rgba',
-                  'type'      => 'color_rgba',
-                  'title'     => 'Color Scheme',
-                  'subtitle'  => __('Change the color scheme to your branding color','redux-framework-demo' ),
-                  'default'   => array(
-                      'color'     => '#312C7E',
-                      'alpha'     => 1
-                    ),
-            // These options display a fully functional color palette.  Omit this argument
-            // for the minimal color picker, and change as desired.
-            'options'       => array(
-                'show_input'                => true,
-                'show_initial'              => true,
-                'show_alpha'                => true,
-                'show_palette'              => true,
-                'show_palette_only'         => false,
-                'show_selection_palette'    => true,
-                'max_palette_size'          => 10,
-                'allow_empty'               => true,
-                'clickout_fires_change'     => false,
-                'choose_text'               => 'Choose',
-                'cancel_text'               => 'Cancel',
-                'show_buttons'              => true,
-                'use_extended_classes'      => true,
-                'palette'                   => null,  // show default
-                'input_text'                => 'Select Color'
-            )
-        ),
+
         array(
             'id'        =>'amp-frontpage-select-option',
             'type'      => 'switch',
@@ -321,14 +293,61 @@
             'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
-            'false'     => 'false'), 
+            'false'     => 'false'
+            ),
+//            array(
+//                'id'       => 'amp-design-selector',
+//                'type'     => 'select',
+//                'title'    => __( 'Design Selector', 'redux-framework-demo' ),
+//                'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
+//                'options'  => array(
+//                    '1' => __('Design One', 'redux-framework-demo' ),
+//                    '2' => __('Design two', 'redux-framework-demo' )
+//                ),
+//                'default'  => '2'
+//            ),
+            
       )
     ) );//END
 
-
+    // AMP Design SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Design', 'redux-framework-demo' ),
+       'desc'       => __( '<b>Quick Links: <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'">AMP Page Builder & Color Settings</a></b>'),
+       'id'         => 'amp-design',
+       'subsection' => true,
+        'fields'     => array(
+            
+            $fields =  array(
+                'id'       => 'amp-design-selector',
+                'type'     => 'select',
+                'title'    => __( 'Design Selector', 'redux-framework-demo' ),
+                'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
+                'options'  => array(
+                    '1' => __('Design One', 'redux-framework-demo' ),
+                    '2' => __('Design two', 'redux-framework-demo' )
+                ),
+                'default'  => '2'
+            ),
+      
+        array(
+            'id'       => 'css_editor',
+            'type'     => 'ace_editor',
+            'title'    => __('Custom CSS', 'redux-framework-demo'),
+            'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
+            'mode'     => 'css',
+            'theme'    => 'monokai',
+            'desc'     => '',
+            'default'  => "/******* Paste your Custom CSS in this Editor *******/"
+        ),
+        )
+       
+   )
+                     
+   );
     // AMP Menu SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'AMP Menu', 'redux-framework-demo' ),
+       'title'      => __( 'Menu', 'redux-framework-demo' ),
        'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>'),
        'id'         => 'amp-menus',
        'subsection' => true)
@@ -840,26 +859,26 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
            ) );
 
 
-    // CSS
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Custom CSS Editor', 'redux-framework-demo' ),
-       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
-        'id'         => 'opt-css-editor',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'       => 'css_editor',
-                'type'     => 'ace_editor',
-                'title'    => __('Custom CSS', 'redux-framework-demo'),
-                'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
-                'mode'     => 'css',
-                'theme'    => 'monokai',
-                'desc'     => '',
-                'default'  => "/******* Paste your Custom CSS in this Editor *******/"
-            ),
-        )
-    ) );
-
+//    // CSS
+//    Redux::setSection( $opt_name, array(
+//        'title'      => __( 'Custom CSS Editor', 'redux-framework-demo' ),
+//       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+//        'id'         => 'opt-css-editor',
+//        'subsection' => true,
+//        'fields'     => array(
+//            array(
+//                'id'       => 'css_editor',
+//                'type'     => 'ace_editor',
+//                'title'    => __('Custom CSS', 'redux-framework-demo'),
+//                'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
+//                'mode'     => 'css',
+//                'theme'    => 'monokai',
+//                'desc'     => '',
+//                'default'  => "/******* Paste your Custom CSS in this Editor *******/"
+//            ),
+//        )
+//    ) );
+//
 // Extension Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Extensions', 'redux-framework-demo' ),
