@@ -306,7 +306,7 @@
 //                ),
 //                'default'  => '2'
 //            ),
-            
+
       )
     ) );//END
 
@@ -317,7 +317,7 @@
        'id'         => 'amp-design',
        'subsection' => true,
         'fields'     => array(
-            
+
             $fields =  array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'select',
@@ -329,7 +329,7 @@
                 ),
                 'default'  => '2'
             ),
-      
+
         array(
             'id'       => 'css_editor',
             'type'     => 'ace_editor',
@@ -341,9 +341,9 @@
             'default'  => "/******* Paste your Custom CSS in this Editor *******/"
         ),
         )
-       
+
    )
-                     
+
    );
     // AMP Menu SECTION
    Redux::setSection( $opt_name, array(
@@ -568,7 +568,7 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
           // Social Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
-              'type'      => 'switch', 
+              'type'      => 'switch',
               'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
@@ -580,7 +580,7 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
              'title'        => __('Featured Image Width', 'redux-framework-demo'),
              'default'      => 512,
              'subtitle'     => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-             'placeholder'  =>'Width here',    
+             'placeholder'  =>'Width here',
            ),
            array(
               'id'          => 'enable-single-featured-img-height',
@@ -604,13 +604,13 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     		        'args'     => array(
     			        'post_type' => 'page',
     			        'posts_per_page' => 500
-    		        ), 
+    		        ),
                'default'  => '2',
 	        ),
         ),
 
     ) );
-    
+
     // Social Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Social', 'redux-framework-demo' ),
@@ -620,7 +620,7 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               //'required'  => array('enable-single-social-icons', '=' , '1'),
               'title'     =>  __('Facebook', 'redux-framework-demo'),
               'default'   =>  0,
@@ -630,56 +630,56 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'redux-framework-demo'),
                'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
-               'type'     => 'text',  
+               'type'     => 'text',
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => 'Enter your facebook app id',
                'default'  => ''
-          ),   
+          ),
           // Twitter ON/OFF
           array(
               'id'        =>  'enable-single-twitter-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('Twitter', 'redux-framework-demo'),
               'default'   =>  1,
-          ), 
+          ),
           // GooglePlus ON/OFF
           array(
               'id'        =>  'enable-single-gplus-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('GooglePlus', 'redux-framework-demo'),
               'default'   =>  1,
-          ), 
+          ),
           // Email ON/OFF
           array(
               'id'        =>  'enable-single-email-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('Email', 'redux-framework-demo'),
               'default'   =>  1,
-          ), 
+          ),
           // Pinterest ON/OFF
           array(
               'id'        =>  'enable-single-pinterest-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('Pinterest', 'redux-framework-demo'),
               'default'   =>  1,
-          ), 
+          ),
           // LinkedIn ON/OFF
           array(
               'id'        =>  'enable-single-linkedin-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('LinkedIn', 'redux-framework-demo'),
               'default'   =>  1,
           ),
           // WhatsApp
           array(
               'id'        =>  'enable-single-whatsapp-share',
-              'type'      =>  'switch', 
+              'type'      =>  'switch',
               'title'     =>  __('WhatsApp', 'redux-framework-demo'),
               'default'   =>  1,
           ),
         )
     ) );
-        
+
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'redux-framework-demo' ),
@@ -853,6 +853,27 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'type'     => 'text',
                        'title'    => __('Leave a Comment', 'redux-framework-demo'),
                        'default'  => 'Leave a Comment',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-at-text',
+                       'type'     => 'text',
+                       'title'    => __('at', 'redux-framework-demo'),
+                       'default'  => 'at',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-says-text',
+                       'type'     => 'text',
+                       'title'    => __('says', 'redux-framework-demo'),
+                       'default'  => 'says',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-Edit-text',
+                       'type'     => 'text',
+                       'title'    => __('Edit', 'redux-framework-demo'),
+                       'default'  => 'Edit',
                        'placeholder'=>'write here'
                    ),
                )
