@@ -31,11 +31,11 @@
 	21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
 	22. Removing author links from comments Issue #180
 	23. The analytics tag appears more than once in the document. This will soon be an error
-	24. Seperate Sticky Single Social Icons 
+	24. Seperate Sticky Single Social Icons
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
-	
+
 
 	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
@@ -173,7 +173,7 @@
 	// 6. Add required Javascripts for extra AMP features
 	add_action('amp_post_template_head','ampforwp_register_additional_scripts');
 	function ampforwp_register_additional_scripts() {
-		global $redux_builder_amp; 
+		global $redux_builder_amp;
 		?>
     	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
       <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
@@ -182,8 +182,8 @@
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 	  <?php } ?>
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-			
-		
+
+
 			 ?>
 			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		<?php } ?>
@@ -201,9 +201,9 @@
 			}
 			return $file;
 	}
-	
+
 	add_action('ampforwp_global_after_footer','ampforwp_footer');
-	function ampforwp_footer() { 
+	function ampforwp_footer() {
 			global $redux_builder_amp; ?>
 		<!--Plugin Verion :<?php echo (AMPFORWP_VERSION); ?> -->
 	<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
@@ -212,7 +212,7 @@
 	       <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
 	       <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
 	  </amp-user-notification>
-	<?php } 
+	<?php }
 	}
 
 	// 8. Add Main tag as a Wrapper
@@ -454,6 +454,11 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 //for removing attributes within html tags
+				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
+
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
 		}
@@ -732,13 +737,13 @@ if( ! function_exists( "disable_comment_author_links" ) ) {
 // 23. The analytics tag appears more than once in the document. This will soon be an error
 remove_action( 'amp_post_template_head', 'quads_amp_add_amp_ad_js');
 
-// 24. Seperate Sticky Single Social Icons   
+// 24. Seperate Sticky Single Social Icons
 // TO DO: we can directly call social-icons.php instead of below code
 add_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
-		<div class="sticky_social">          
+		<div class="sticky_social">
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
@@ -762,20 +767,20 @@ function ampforwp_sticky_social_icons(){
 						<div class="whatsapp-share-icon">
 						    <amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgOTAgOTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDkwIDkwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggaWQ9IldoYXRzQXBwIiBkPSJNOTAsNDMuODQxYzAsMjQuMjEzLTE5Ljc3OSw0My44NDEtNDQuMTgyLDQzLjg0MWMtNy43NDcsMC0xNS4wMjUtMS45OC0yMS4zNTctNS40NTVMMCw5MGw3Ljk3NS0yMy41MjIgICBjLTQuMDIzLTYuNjA2LTYuMzQtMTQuMzU0LTYuMzQtMjIuNjM3QzEuNjM1LDE5LjYyOCwyMS40MTYsMCw0NS44MTgsMEM3MC4yMjMsMCw5MCwxOS42MjgsOTAsNDMuODQxeiBNNDUuODE4LDYuOTgyICAgYy0yMC40ODQsMC0zNy4xNDYsMTYuNTM1LTM3LjE0NiwzNi44NTljMCw4LjA2NSwyLjYyOSwxNS41MzQsNy4wNzYsMjEuNjFMMTEuMTA3LDc5LjE0bDE0LjI3NS00LjUzNyAgIGM1Ljg2NSwzLjg1MSwxMi44OTEsNi4wOTcsMjAuNDM3LDYuMDk3YzIwLjQ4MSwwLDM3LjE0Ni0xNi41MzMsMzcuMTQ2LTM2Ljg1N1M2Ni4zMDEsNi45ODIsNDUuODE4LDYuOTgyeiBNNjguMTI5LDUzLjkzOCAgIGMtMC4yNzMtMC40NDctMC45OTQtMC43MTctMi4wNzYtMS4yNTRjLTEuMDg0LTAuNTM3LTYuNDEtMy4xMzgtNy40LTMuNDk1Yy0wLjk5My0wLjM1OC0xLjcxNy0wLjUzOC0yLjQzOCwwLjUzNyAgIGMtMC43MjEsMS4wNzYtMi43OTcsMy40OTUtMy40Myw0LjIxMmMtMC42MzIsMC43MTktMS4yNjMsMC44MDktMi4zNDcsMC4yNzFjLTEuMDgyLTAuNTM3LTQuNTcxLTEuNjczLTguNzA4LTUuMzMzICAgYy0zLjIxOS0yLjg0OC01LjM5My02LjM2NC02LjAyNS03LjQ0MWMtMC42MzEtMS4wNzUtMC4wNjYtMS42NTYsMC40NzUtMi4xOTFjMC40ODgtMC40ODIsMS4wODQtMS4yNTUsMS42MjUtMS44ODIgICBjMC41NDMtMC42MjgsMC43MjMtMS4wNzUsMS4wODItMS43OTNjMC4zNjMtMC43MTcsMC4xODItMS4zNDQtMC4wOS0xLjg4M2MtMC4yNy0wLjUzNy0yLjQzOC01LjgyNS0zLjM0LTcuOTc3ICAgYy0wLjkwMi0yLjE1LTEuODAzLTEuNzkyLTIuNDM2LTEuNzkyYy0wLjYzMSwwLTEuMzU0LTAuMDktMi4wNzYtMC4wOWMtMC43MjIsMC0xLjg5NiwwLjI2OS0yLjg4OSwxLjM0NCAgIGMtMC45OTIsMS4wNzYtMy43ODksMy42NzYtMy43ODksOC45NjNjMCw1LjI4OCwzLjg3OSwxMC4zOTcsNC40MjIsMTEuMTEzYzAuNTQxLDAuNzE2LDcuNDksMTEuOTIsMTguNSwxNi4yMjMgICBDNTguMiw2NS43NzEsNTguMiw2NC4zMzYsNjAuMTg2LDY0LjE1NmMxLjk4NC0wLjE3OSw2LjQwNi0yLjU5OSw3LjMxMi01LjEwN0M2OC4zOTgsNTYuNTM3LDY4LjM5OCw1NC4zODYsNjguMTI5LDUzLjkzOHoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
 						    </div>
-							</a> 
+							</a>
         <?php } ?>
 		</div>
-	<?php } 
+	<?php }
 }
 // if ( $ampforwp_social_icons_enabled == true ) {
-// 
+//
 // }
 
 //	add_action('amp_post_template_head','ampforwp_register_social_sharing_script');
 
 function ampforwp_register_social_sharing_script() {
 
-	
+
 	 ?>
-		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script> <?php  
+		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script> <?php
 } ?>
