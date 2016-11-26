@@ -16,14 +16,14 @@
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
-	
+
 	<?php do_action('ampforwp_post_before_design_elements') ?>
-	
-			<?php 
+
+			<?php
 				if ( have_posts() ) :
 		    while ( have_posts() ) : the_post(); ?>
 	        <div class="amp-wp-content amp-wp-article-header">
-	  
+
 	            <h1 class="amp-wp-title">
 	                <?php  $ampforwp_post_url = get_permalink(); ?>
 	                <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
@@ -32,13 +32,19 @@
 	            <div class="amp-wp-meta">
 	                <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
 	            </div>
-	            
-	            <?php $content = get_the_content();?>
+
+	            <?php
+							if(has_excerpt()){
+								$content = the_excerpt();
+							}else{
+								$content = get_the_content();
+							}
+							?>
 	                <p><?php echo wp_trim_words( $content , '50'); ?></p>
 	        </div>
 		    <?php endwhile;  ?>
 
-		    <div class="amp-wp-content pagination-holder">      
+		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">
 		            <div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text']. ' &raquo;', 0 ) ?></div>
@@ -51,10 +57,10 @@
 		<?php endif; ?>
 
 	<?php do_action('ampforwp_post_after_design_elements') ?>
-	
+
 </article>
 
- 
+
 <?php $this->load_parts( array( 'footer' ) ); ?>
 
 <?php do_action( 'amp_post_template_footer', $this ); ?>

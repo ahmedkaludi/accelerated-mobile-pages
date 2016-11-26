@@ -1,7 +1,7 @@
 <?php
 		$orig_post = $post;
 		global $post, $redux_builder_amp;
-				
+
 		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 				$categories = get_the_category($post->ID);
 					if ($categories) {
@@ -28,8 +28,8 @@
 												'caller_get_posts'=>1
 										);
 					}
-			}//end of block for tags	
-			
+			}//end of block for tags
+
 			$my_query = new wp_query( $args );
 				if( $my_query->have_posts() ) { ?>
 					<div class="amp-wp-content relatedpost">
@@ -48,15 +48,21 @@
 										<?php } ?>
 						                <div class="related_link">
 						                    <a href="<?php the_permalink(); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
-						                    <?php $content = get_the_content();?>
+						                    <?php
+																if(has_excerpt()){
+																	$content = the_excerpt();
+																}else{
+																	$content = get_the_content();
+																}
+																?>
 						                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 						                </div>
-						            </li> 
+						            </li>
 										<?php
 								} ?>
 							</ol>
 						</div>
-					</div> <?php 
+					</div> <?php
 				}
 		$post = $orig_post;
 		wp_reset_postdata();

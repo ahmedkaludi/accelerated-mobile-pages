@@ -428,6 +428,10 @@ amp-carousel > amp-img > img {
     .amp-wp-home .amp-wp-meta{
         margin:5px 0px
     }
+		.amp-wp-home .amp-wp-content p {
+			display: inline-block;
+			width: 100%;
+		}
 	.ampforwp-custom-index .amp-wp-title a {
 		text-decoration: none;
 		color: <?php echo sanitize_hex_color( $text_color ); ?>;
