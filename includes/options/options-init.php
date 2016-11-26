@@ -228,47 +228,47 @@
                   'default'  => '#',
               ),
 
-        array(
-            'id'        =>'amp-frontpage-select-option',
-            'type'      => 'switch',
-            'title'     => __('Front Page', 'redux-framework-demo'),
-            'default'   => 0,
-            'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false',
-        ),
-        array(
-            'id'       => 'amp-frontpage-select-option-pages',
-            'type'     => 'select',
-            'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
-            'required' => array('amp-frontpage-select-option', '=' , '1'),
-            // Must provide key => value pairs for select options
-            'data'     => 'page',
-            'args'     => array(
-                'post_type' => 'page',
-                'posts_per_page' => 500
+            array(
+                'id'        =>'amp-frontpage-select-option',
+                'type'      => 'switch',
+                'title'     => __('Front Page', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
             ),
-            'default'  => '2',
-        ),
+            array(
+                'id'       => 'amp-frontpage-select-option-pages',
+                'type'     => 'select',
+                'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
+                'required' => array('amp-frontpage-select-option', '=' , '1'),
+                // Must provide key => value pairs for select options
+                'data'     => 'page',
+                'args'     => array(
+                    'post_type' => 'page',
+                    'posts_per_page' => 500
+                ),
+                'default'  => '2',
+            ),
 
-        // array(
-        //     'id'       => 'amp-footer-text',
-        //     'title'    => __('Footer', 'redux-framework-demo'),
-        //     'type'     => 'text',
-        //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
-        //     'placeholder'  => 'Copyright &copy; 2016',
-        //     'default'  => 'Copyright &copy; 2016',
-        // ),
+            // array(
+            //     'id'       => 'amp-footer-text',
+            //     'title'    => __('Footer', 'redux-framework-demo'),
+            //     'type'     => 'text',
+            //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
+            //     'placeholder'  => 'Copyright &copy; 2016',
+            //     'default'  => 'Copyright &copy; 2016',
+            // ),
 
-        array(
-            'id'       => 'amp-footer-link-non-amp-page',
-            'type'     => 'switch',
-            'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
-            'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false',
-            'default'   => 1
-        ),
+            array(
+                'id'       => 'amp-footer-link-non-amp-page',
+                'type'     => 'switch',
+                'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
+                'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
 
         array(
             'id'        =>'amp-rtl-select-option',
@@ -294,6 +294,13 @@
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
             'false'     => 'false'
+            ),
+            array(
+                'id'        =>'ampforwp-on-off-for-all-pages',
+                'type'      => 'switch',
+                'title'     => __('AMP on Pages', 'redux-framework-demo'),
+                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
+                'default'   => 0,
             ),
 //            array(
 //                'id'       => 'amp-design-selector',
@@ -345,6 +352,34 @@
    )
 
    );
+
+
+
+   // SEO SECTION
+  Redux::setSection( $opt_name, array(
+      'title'      => __( 'SEO', 'redux-framework-demo' ),
+      'desc'       => __( '', 'redux-framework-demo'),
+      'id'         => 'amp-seo',
+      'subsection' => true,
+       'fields'     => array(
+
+           array(
+               'id'       => 'amp-seo-meta',
+               'type'     => 'switch',
+               'title'    => __( 'Add Meta Tags', 'redux-framework-demo' ),
+               'default'  => '1'
+           ),
+           array(
+               'id'       => 'amp-seo-yoast-custom-exerpt',
+               'type'     => 'switch',
+               'title'    => __( 'Yoast Custom Exerpt for AMP', 'redux-framework-demo' ),
+               'default'  => '1'
+           ),
+       )
+
+  )
+
+  );
     // AMP Menu SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Menu', 'redux-framework-demo' ),

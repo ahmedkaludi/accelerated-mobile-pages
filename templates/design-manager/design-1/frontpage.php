@@ -11,7 +11,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post">
+<body class="single-post amp-wp-frontpage">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
@@ -20,14 +20,14 @@
 	<div class="amp-wp-content the_content">
 		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
 
-<?php 
+<?php
 global $redux_demo;
 //echo 'Multi Select value: '  . $redux_builder_amp['amp-frontpage-select-option-pages'];
-?>        
-        
+?>
+
 <?php $the_query = new WP_Query( 'page_id=' . $redux_builder_amp['amp-frontpage-select-option-pages'] . '' ); ?>
 <?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
-<?php the_content(); ?> 
+<?php the_content(); ?>
 <?php endwhile;?>
 
 <?php do_action( 'ampforwp_after_post_content', $this ); ?>
@@ -37,15 +37,11 @@ global $redux_demo;
 		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
 
 
-		<div id="pagination">
-			<div class="next"><?php next_post_link(); ?></div>
-			<div class="prev"><?php previous_post_link(); ?></div>
-			<div class="clearfix"></div>
-		</div>
+
 	</div>
 
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
-		<div class="sticky_social">          
+		<div class="sticky_social">
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 		    	<amp-social-share type="facebook"   width="50" height="28"></amp-social-share>
 		  	<?php } ?>
@@ -67,7 +63,7 @@ global $redux_demo;
 		</div>
 	<?php } ?>
 
-
-<?php do_action( 'amp_post_template_footer', $this ); ?>
+	<?php $this->load_parts( array( 'footer' ) ); ?>
+	<?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
 </html>

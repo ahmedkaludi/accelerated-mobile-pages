@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ampforwp_add_custom_post_support() {
 
 	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
-	add_post_type_support( 'page', AMP_QUERY_VAR );
-
+	global $redux_builder_amp;
+	if($redux_builder_amp['ampforwp-on-off-for-all-pages']){
+		add_post_type_support( 'page', AMP_QUERY_VAR );
+	}
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 

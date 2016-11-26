@@ -1,10 +1,10 @@
 <?php
 add_action('amp_post_template_css', 'ampforwp_additional_style_input');
 
-function ampforwp_additional_style_input( $amp_template ) { 
+function ampforwp_additional_style_input( $amp_template ) {
 	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
-	
+
 	// Get content width
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 
@@ -167,7 +167,7 @@ blockquote p:last-child {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin: 1.5em 16px 1.5em;
-} 
+}
 .amp-wp-title {
 	color: <?php echo sanitize_hex_color( $text_color ); ?>;
 	display: block;
@@ -227,7 +227,10 @@ blockquote p:last-child {
 .amp-wp-article-featured-image.wp-caption .wp-caption-text {
 	margin: 0 18px;
 }
-
+/* Front page */
+.amp-wp-frontpage .the_content {
+		padding: 10px;
+}
 /* Article Content */
 .amp-wp-article a{
     text-decoration:none
@@ -389,9 +392,9 @@ amp-carousel > amp-img > img {
 	right: 16px;
 }
 
-	
+
 	/* Header */
-	.amp-wp-header { 
+	.amp-wp-header {
 	}
 	.amp-wp-header .nav_container {
         float: right;
@@ -399,7 +402,7 @@ amp-carousel > amp-img > img {
         line-height: 1;
         right: 60px;
 	}
-	.toggle-text  { 
+	.toggle-text  {
 		position: absolute;
 		right: 0;
         height: 22px;
@@ -474,7 +477,7 @@ amp-carousel > amp-img > img {
 	    padding: 4px 0px;
 	    position: relative;
 	    top: -4px;
-	    text-align: center 
+	    text-align: center
 	}
     .comment-button-wrapper a{
         font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
@@ -543,7 +546,7 @@ amp-carousel > amp-img > img {
 	}
 	.no_related_thumbnail{
 	    padding: 15px 18px;
-	} 
+	}
 
 	/* Comments */
     .comments_list{
@@ -555,7 +558,7 @@ amp-carousel > amp-img > img {
 		max-width: 1030px;
 	}
 	.comments_list div{
-	    display:inline-block; 
+	    display:inline-block;
 	}
 	.comments_list ul{
 	    margin:0;
@@ -573,7 +576,7 @@ amp-carousel > amp-img > img {
 	.comments_list ul li{
         font-family:sans-serif;
 	    font-size:11px;
-	    list-style-type:none; 
+	    list-style-type:none;
 	    margin-bottom: 12px;
 	    background: #fefefe;
 	    -moz-border-radius: 2px;
@@ -592,13 +595,13 @@ amp-carousel > amp-img > img {
     font-family:'Merriweather', 'Times New Roman', Times, Serif
     }
 	.comments_list ul li .comment-body{
-	    padding: 10px 0px 15px 0px; 
+	    padding: 10px 0px 15px 0px;
 	}
 	.comment-author{ float:left }
 	.single-post footer.comment-meta{
 	    /* float:right */
 			padding-bottom: 0;
-	} 
+	}
 	.comments_list li li{
 	    margin: 20px 20px 10px 20px;
 	    background: #f7f7f7;
@@ -608,10 +611,10 @@ amp-carousel > amp-img > img {
 	.comments_list li li li{
 	    margin:20px 20px 10px 20px
 	}
-	
+
 	/* Slide Navigation code */
 	amp-sidebar {
-	  width: 250px; 
+	  width: 250px;
 	}
 	.amp-sidebar-image {
 	  line-height: 100px;
@@ -627,7 +630,7 @@ amp-carousel > amp-img > img {
 	    margin: 0;
         font-family:sans-serif;
 	    padding: 0;
-	} 
+	}
 	.toggle-navigationv2 ul ul li a  {
 	    padding-left: 35px;
 	    background: #fff;
@@ -695,8 +698,8 @@ amp-carousel > amp-img > img {
 	.toggle-navigation:focus{
 	    display: inline-block;
 	    width: 100%;
-	} 
-	
+	}
+
 	/* Notifications */
 		#amp-user-notification1 p {
 		    display: inline-block;
@@ -717,7 +720,7 @@ amp-carousel > amp-img > img {
 		amp-user-notification button:hover {
 			cursor: pointer
 		}
-	
+
 	/* Advertisement */
 		.amp-ad-wrapper {
 			text-align: center
@@ -760,5 +763,5 @@ amp-carousel > amp-img > img {
 		.amp-wp-tax-tag a:last-child:after  {
 			content: ' ';
 		}
-	<?php 
+	<?php
 } ?>
