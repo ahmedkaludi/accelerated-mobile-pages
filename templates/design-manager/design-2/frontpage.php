@@ -16,7 +16,7 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
-
+<main>
 	<div class="amp-wp-content the_content">
 		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
 
@@ -62,7 +62,7 @@ global $redux_demo;
 		  	<?php } ?>
 		</div>
 	<?php } ?>
-
+</main>
 	<?php $this->load_parts( array( 'footer' ) ); ?>
 	<?php do_action( 'amp_post_template_footer', $this ); ?>
 
