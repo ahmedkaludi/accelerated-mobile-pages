@@ -366,6 +366,7 @@
            array(
                'id'       => 'ampforwp-seo-yoast-meta',
                'type'     => 'switch',
+               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'redux-framework-demo'),
                'title'    => __( 'Add Meta Tags from Yoast', 'redux-framework-demo' ),
                'default'  => '1'
            ),

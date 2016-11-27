@@ -32,6 +32,7 @@
 	22. Removing author links from comments Issue #180
 	23. The analytics tag appears more than once in the document. This will soon be an error
 	24. Seperate Sticky Single Social Icons
+	25. Yoast meta Support
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -787,3 +788,24 @@ function ampforwp_register_social_sharing_script() {
 	 ?>
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script> <?php
 } ?>
+
+<?php
+//	25. Yoast meta Support
+function ampforwp_custom_yoast_meta(){
+	global $redux_builder_amp;
+	$is_amp_endpoint = is_amp_endpoint();
+	if ( $is_amp_endpoint && $redux_builder_amp['ampforwp-seo-yoast-meta']) {
+			$options = WPSEO_Options::get_option( 'wpseo_social' );
+			if ( $options['twitter'] === true ) {
+				WPSEO_Twitter::get_instance();
+			}
+			if ( $options['opengraph'] === true ) {
+				$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+			}
+			do_action( 'wpseo_opengraph' );
+			echo strip_tags(options['extra-head'], '<link><meta>' );
+	} else {
+		// Do nothing
+	}
+}
+add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
