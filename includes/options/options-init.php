@@ -364,15 +364,16 @@
        'fields'     => array(
 
            array(
-               'id'       => 'amp-seo-meta',
+               'id'       => 'ampforwp-seo-yoast-meta',
                'type'     => 'switch',
-               'title'    => __( 'Add Meta Tags', 'redux-framework-demo' ),
+               'title'    => __( 'Add Meta Tags from Yoast', 'redux-framework-demo' ),
                'default'  => '1'
            ),
            array(
-               'id'       => 'amp-seo-yoast-custom-exerpt',
+               'id'       => 'ampforwp-seo-yoast-custom-description',
                'type'     => 'switch',
-               'title'    => __( 'Yoast Custom Exerpt for AMP', 'redux-framework-demo' ),
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
+               'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
                'default'  => '1'
            ),
        )
