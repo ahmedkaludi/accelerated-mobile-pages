@@ -296,11 +296,11 @@
             'false'     => 'false'
             ),
             array(
-                'id'        =>'ampforwp-on-off-for-all-pages',
+                'id'        =>'amp-on-off-for-all-pages',
                 'type'      => 'switch',
                 'title'     => __('AMP on Pages', 'redux-framework-demo'),
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-                'default'   => 0,
+                'default'   => 1,
             ),
 //            array(
 //                'id'       => 'amp-design-selector',
@@ -377,6 +377,18 @@
                'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
                'default'  => '1'
            ),
+
+           array(
+               'id'       => 'ampforwp-seo-custom-additional-meta',
+               'type'     => 'ace_editor',
+               'title'    => __('Additional tags for Head section AMP page', 'redux-framework-demo'),
+               'subtitle' => __('Adds additional Meta to the head section', 'redux-framework-demo', 'redux-framework-demo'),
+               'mode'     => 'html',
+               'theme'    => 'monokai',
+               'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
+               'default'  => "<!-- Paste your Additional HTML to <head> </head>tag in this Editor -->"
+           ),
+
        )
 
   )

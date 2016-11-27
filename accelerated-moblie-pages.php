@@ -18,7 +18,7 @@ function ampforwp_add_custom_post_support() {
 
 	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
 	global $redux_builder_amp;
-	if($redux_builder_amp['ampforwp-on-off-for-all-pages']){
+	if($redux_builder_amp['amp-on-off-for-all-pages']){
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }

@@ -803,7 +803,7 @@ function ampforwp_custom_yoast_meta(){
 				$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
 			}
 			do_action( 'wpseo_opengraph' );
-			echo strip_tags(options['extra-head'], '<link><meta>' );
+			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
 	} else {
 		// Do nothing
 	}
