@@ -794,7 +794,7 @@ function ampforwp_register_social_sharing_script() {
 function ampforwp_custom_yoast_meta(){
 	global $redux_builder_amp;
 	$is_amp_endpoint = is_amp_endpoint();
-	if ( $is_amp_endpoint && $redux_builder_amp['ampforwp-seo-yoast-meta']) {
+	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
 			$options = WPSEO_Options::get_option( 'wpseo_social' );
 			if ( $options['twitter'] === true ) {
 				WPSEO_Twitter::get_instance();
@@ -804,8 +804,6 @@ function ampforwp_custom_yoast_meta(){
 			}
 			do_action( 'wpseo_opengraph' );
 			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-	} else {
-		// Do nothing
-	}
+	} 
 }
 add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
