@@ -2,7 +2,7 @@
 <?php
 add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
 
-function ampforwp_additional_style_input_2( $amp_template ) { 
+function ampforwp_additional_style_input_2( $amp_template ) {
 	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
@@ -16,7 +16,7 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 	?>
-	
+
 /* Global Styling */
 body{
 	background: #f1f1f1;
@@ -553,6 +553,9 @@ amp-user-notification button:hover {
     background: #f3f3f3;
 }
 
+pre {
+	    white-space: pre-wrap;
+}
 /* Responsive */
     @media screen and (max-width: 800px) {
         .single-post main{
@@ -772,9 +775,9 @@ amp-user-notification button {
 	.amp-wp-article-content img {
 	    max-width: 100%;
 	}
-	
-	
-	
+
+
+
 	/* Custom Style Code */
-	<?php echo $redux_builder_amp['css_editor'];  
+	<?php echo $redux_builder_amp['css_editor'];
 } ?>

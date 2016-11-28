@@ -767,5 +767,9 @@ amp-carousel > amp-img > img {
 		.amp-wp-tax-tag a:last-child:after  {
 			content: ' ';
 		}
+		
+		pre {
+			    white-space: pre-wrap;
+		}
 	<?php
 } ?>
