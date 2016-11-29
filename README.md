@@ -7,7 +7,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.8
+Stable tag: 0.8.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,8 +22,10 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 **Features:**
 
-* NEW - Design Manager Added
+* NEW - Drag & Drop Page builder Added
+* NEW - 2 Designs Added
 * NEW - 100% Yoast SEO support on AMP pages
+* NEW - AMP WooCommerce Support
 * NEW - Switch on/off Support for Pages on AMP
 * NEW - Translation Panel & RTL
 * NEW - Internal AMP linking - You can browse AMP pages internally
@@ -123,7 +125,8 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 == Changelog ==
 = 0.8.9 =
-* Design Manager Added : You can easily modify the look of the AMP page using this feature
+* Proper Details at http://ampforwp.com/amp-pagebuilder/
+* Drag & Drop Page builder Added: You can easily modify the look of the AMP page using this feature
 * 100% Yoast Compatible , Now no need to have additionally Glue Installed
 * 100% completed Translation panel, Now absolutely anything on page is translated
 * Added Option to turn on/off Page Support
@@ -134,6 +137,10 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Related Posts Now use Custom Excerpt if it Exists
 * Now AMP pages wont have Validation errors because of 'rel' attribute in 'div' Tag or 'onclick' attribute in 'a' Tag
 * <pre> Tag styling issue fixed for AMP pages
+* Frontpage (Homepage) Compatibility with AMP which means better validation of front page.
+* WooCommerce Support Added https://wordpress.org/plugins/amp-woocommerce/ (for E-Commerce)
+* 2 New Designs added
+* SEO Panel Added
 
 = 0.8.8 =
 * Proper Details at http://ampforwp.com/amp-0-8-8-released-translation-panel/
