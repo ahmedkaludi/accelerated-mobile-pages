@@ -16,42 +16,45 @@ The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pag
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
 
-[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/) 
+[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
 [youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
 **Features:**
 
+* NEW - Design Manager Added
+* NEW - 100% Yoast SEO support on AMP pages
+* NEW - Switch on/off Support for Pages on AMP
 * NEW - Translation Panel & RTL
 * NEW - Internal AMP linking - You can browse AMP pages internally
 * Related posts below the post
-* Recent Comments list 
-* Automatically integrate AMP to your website. 
-* Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability. 
-* 7 Advertisement sizes 
-* Google Analytics Support. 
-* User Friendly Theme Options Panel. 
-* Unlimited Color Scheme. 
-* Image Logo Upload. 
-* Supports Posts and Pages. 
-* Proper rel canonical tags which means that Google know the original page. 
-* Overlay Navigation Menu bar. 
-* Social Sharing in the Single. 
-* Sexy Design. 
-* Separate WordPress Menu for AMP version. 
-* Page builder & Shortcodes Compatibility. 
-* Carousel support for Gallery. 
-* Better Image stretching and resizing. 
-* Youtube Video Embed Support. 
-* Vine Embed Support. 
-* Twitter oembed Support. 
-* Instagram Embed Support. 
-* Facebook Video Embed Support. 
+* Recent Comments list
+* Automatically integrate AMP to your website.
+* Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability.
+* 7 Advertisement sizes
+* Google Analytics Support.
+* User Friendly Theme Options Panel.
+* Unlimited Color Scheme.
+* Image Logo Upload.
+* Supports Posts and Pages.
+* Proper rel canonical tags which means that Google know the original page.
+* Overlay Navigation Menu bar.
+* Social Sharing in the Single.
+* Sexy Design.
+* Separate WordPress Menu for AMP version.
+* Page builder & Shortcodes Compatibility.
+* Carousel support for Gallery.
+* Better Image stretching and resizing.
+* Youtube Video Embed Support.
+* Vine Embed Support.
+* Twitter oembed Support.
+* Instagram Embed Support.
+* Facebook Video Embed Support.
 * RTL Support
 * Custom AMP FrontPage
 * Notifications
 * Piwik & Segment.com Support
-* Great Support & Active Development. 
+* Great Support & Active Development.
 
 **NOTE:** Next Update of this plugin will be released by end of October 2016.
 
@@ -119,6 +122,19 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.8.9 =
+* Design Manager Added : You can easily modify the look of the AMP page using this feature
+* 100% Yoast Compatible , Now no need to have additionally Glue Installed
+* 100% completed Translation panel, Now absolutely anything on page is translated
+* Added Option to turn on/off Page Support
+* Styling for Tags was Corrected
+* Made changes to these sections to reflect in the new Design manager : Related Posts, Footer
+* Default Image alignment styling added
+* Added Option to turn on/off Page Support
+* Related Posts Now use Custom Excerpt if it Exists
+* Now AMP pages wont have Validation errors because of 'rel' attribute in 'div' Tag or 'onclick' attribute in 'a' Tag
+* <pre> Tag styling issue fixed for AMP pages
+
 = 0.8.8 =
 * Proper Details at http://ampforwp.com/amp-0-8-8-released-translation-panel/
 * Translation Panel added. You can now easily translate the AMP version from the backend without any complications.
@@ -181,7 +197,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Proper Details at http://ampforwp.com/new/
 * Validation issue fixed: 'Value' tag
 * Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
-* Validation issue fixed: Table markup 
+* Validation issue fixed: Table markup
 * Validation issue fixed: nowrap and misc tags
 * New Relic Support
 * Tags on off option
