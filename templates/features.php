@@ -787,14 +787,14 @@ function ampforwp_register_social_sharing_script() {
 
 	 ?>
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script> <?php
-} ?>
+}
 
-<?php
 //	25. Yoast meta Support
 function ampforwp_custom_yoast_meta(){
 	global $redux_builder_amp;
 	$is_amp_endpoint = is_amp_endpoint();
 	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
+//        if ( WPSEO_Options::grant_access() ) {
 			$options = WPSEO_Options::get_option( 'wpseo_social' );
 			if ( $options['twitter'] === true ) {
 				WPSEO_Twitter::get_instance();
@@ -804,6 +804,9 @@ function ampforwp_custom_yoast_meta(){
 			}
 			do_action( 'wpseo_opengraph' );
 			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+//        } 
 	} 
 }
-add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+    add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+}
