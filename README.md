@@ -7,7 +7,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 0.8.9
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,7 +124,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
-= 0.8.9 =
+= 0.9 =
 * Proper Details at http://ampforwp.com/amp-pagebuilder/
 * Drag & Drop Page builder Added: You can easily modify the look of the AMP page using this feature
 * 100% Yoast Compatible , Now no need to have additionally Glue Installed
