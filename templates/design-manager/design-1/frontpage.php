@@ -1,24 +1,17 @@
-<?php global $redux_builder_amp;  
-$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-$template = new AMP_Post_Template( $post_id );?>
+<?php global $redux_builder_amp;  ?>
 <!doctype html>
 <html amp>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-	<?php 	
-		$amp_component_scripts = $template->data['amp_component_scripts'];
-		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
-			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php	
-		} ?>
 
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post">
+<body class="single-post amp-wp-frontpage">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
@@ -26,14 +19,25 @@ $template = new AMP_Post_Template( $post_id );?>
 
 	<div class="amp-wp-content the_content">
 		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
-		<?php $ampforwp_post_content = $template->data['post_amp_content'];
-					echo $ampforwp_post_content ;
-		?> 
-		<?php do_action( 'ampforwp_after_post_content', $this ); ?>
+
+<?php
+global $redux_demo;
+//echo 'Multi Select value: '  . $redux_builder_amp['amp-frontpage-select-option-pages'];
+?>
+
+<?php $the_query = new WP_Query( 'page_id=' . $redux_builder_amp['amp-frontpage-select-option-pages'] . '' ); ?>
+<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
+<?php the_content(); ?>
+<?php endwhile;?>
+
+<?php do_action( 'ampforwp_after_post_content', $this ); ?>
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
 		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
+
+
+
 	</div>
 
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
@@ -59,7 +63,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		</div>
 	<?php } ?>
 
-
-<?php do_action( 'amp_post_template_footer', $this ); ?>
+	<?php $this->load_parts( array( 'footer' ) ); ?>
+	<?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
 </html>

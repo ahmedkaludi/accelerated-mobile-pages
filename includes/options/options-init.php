@@ -201,102 +201,74 @@
                 ),
                 'default'  => '1'
             ),
-        array(
-            'id'       => 'ga-feild',
-            'type'     => 'text',
-            'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-            'required' => array('amp-analytics-select-option', '=' , '1'),
-            'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
-            'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
-            'default'  => 'UA-XXXXX-Y',
-        ),
-        array(
-          'id'       => 'sa-feild',
-          'type'     => 'text',
-          'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
-          'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
-          'required' => array('amp-analytics-select-option', '=' , '2'),
-          'default'  => 'SEGMENT-WRITE-KEY',
-        ),
-        array(
-            'id'       => 'pa-feild',
-            'type'     => 'text',
-            'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-            'required' => array('amp-analytics-select-option', '=' , '3'),
-            'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
-            'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
-            'default'  => '#',
-        ),
-        array(
-            'id'        => 'opt-color-rgba',
-            'type'      => 'color_rgba',
-            'title'     => 'Color Scheme',
-            'subtitle'  => __('Change the color scheme to your branding color','redux-framework-demo' ),
-            'default'   => array(
-                'color'     => '#312C7E',
-                'alpha'     => 1
-            ),
-            // These options display a fully functional color palette.  Omit this argument
-            // for the minimal color picker, and change as desired.
-            'options'       => array(
-                'show_input'                => true,
-                'show_initial'              => true,
-                'show_alpha'                => true,
-                'show_palette'              => true,
-                'show_palette_only'         => false,
-                'show_selection_palette'    => true,
-                'max_palette_size'          => 10,
-                'allow_empty'               => true,
-                'clickout_fires_change'     => false,
-                'choose_text'               => 'Choose',
-                'cancel_text'               => 'Cancel',
-                'show_buttons'              => true,
-                'use_extended_classes'      => true,
-                'palette'                   => null,  // show default
-                'input_text'                => 'Select Color'
-            )
-        ),
-        array(
-            'id'        =>'amp-frontpage-select-option',
-            'type'      => 'switch',
-            'title'     => __('Front Page', 'redux-framework-demo'),
-            'default'   => 0,
-            'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false',
-        ),
-        array(
-            'id'       => 'amp-frontpage-select-option-pages',
-            'type'     => 'select',
-            'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
-            'required' => array('amp-frontpage-select-option', '=' , '1'),
-            // Must provide key => value pairs for select options
-            'data'     => 'page',
-            'args'     => array(
-                'post_type' => 'page',
-                'posts_per_page' => 500
-            ),
-            'default'  => '2',
-        ),
+              array(
+                  'id'       => 'ga-feild',
+                  'type'     => 'text',
+                  'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
+                  'required' => array('amp-analytics-select-option', '=' , '1'),
+                  'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
+                  'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
+                  'default'  => 'UA-XXXXX-Y',
+              ),
+              array(
+                'id'       => 'sa-feild',
+                'type'     => 'text',
+                'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
+                'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
+                'required' => array('amp-analytics-select-option', '=' , '2'),
+                'default'  => 'SEGMENT-WRITE-KEY',
+              ),
+              array(
+                  'id'       => 'pa-feild',
+                  'type'     => 'text',
+                  'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
+                  'required' => array('amp-analytics-select-option', '=' , '3'),
+                  'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
+                  'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
+                  'default'  => '#',
+              ),
 
-        // array(
-        //     'id'       => 'amp-footer-text',
-        //     'title'    => __('Footer', 'redux-framework-demo'),
-        //     'type'     => 'text',
-        //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
-        //     'placeholder'  => 'Copyright &copy; 2016',
-        //     'default'  => 'Copyright &copy; 2016',
-        // ),
+            array(
+                'id'        =>'amp-frontpage-select-option',
+                'type'      => 'switch',
+                'title'     => __('Front Page', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+            ),
+            array(
+                'id'       => 'amp-frontpage-select-option-pages',
+                'type'     => 'select',
+                'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
+                'required' => array('amp-frontpage-select-option', '=' , '1'),
+                // Must provide key => value pairs for select options
+                'data'     => 'page',
+                'args'     => array(
+                    'post_type' => 'page',
+                    'posts_per_page' => 500
+                ),
+                'default'  => '2',
+            ),
 
-        array(
-            'id'       => 'amp-footer-link-non-amp-page',
-            'type'     => 'switch',
-            'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
-            'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false',
-            'default'   => 1
-        ),
+            // array(
+            //     'id'       => 'amp-footer-text',
+            //     'title'    => __('Footer', 'redux-framework-demo'),
+            //     'type'     => 'text',
+            //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
+            //     'placeholder'  => 'Copyright &copy; 2016',
+            //     'default'  => 'Copyright &copy; 2016',
+            // ),
+
+            array(
+                'id'       => 'amp-footer-link-non-amp-page',
+                'type'     => 'switch',
+                'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
+                'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
 
         array(
             'id'        =>'amp-rtl-select-option',
@@ -321,14 +293,110 @@
             'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
-            'false'     => 'false'),
+            'false'     => 'false'
+            ),
+            array(
+                'id'        =>'amp-on-off-for-all-pages',
+                'type'      => 'switch',
+                'title'     => __('AMP on Pages', 'redux-framework-demo'),
+                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
+                'default'   => 1,
+            ),
+//            array(
+//                'id'       => 'amp-design-selector',
+//                'type'     => 'select',
+//                'title'    => __( 'Design Selector', 'redux-framework-demo' ),
+//                'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
+//                'options'  => array(
+//                    '1' => __('Design One', 'redux-framework-demo' ),
+//                    '2' => __('Design two', 'redux-framework-demo' )
+//                ),
+//                'default'  => '2'
+//            ),
+
       )
     ) );//END
 
+    // AMP Design SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Design', 'redux-framework-demo' ),
+       'desc'       => __( '<b>Quick Links: <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'">AMP Page Builder & Color Settings</a></b>'),
+       'id'         => 'amp-design',
+       'subsection' => true,
+        'fields'     => array(
 
+            $fields =  array(
+                'id'       => 'amp-design-selector',
+                'type'     => 'select',
+                'title'    => __( 'Design Selector', 'redux-framework-demo' ),
+                'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
+                'options'  => array(
+                    '1' => __('Design One', 'redux-framework-demo' ),
+                    '2' => __('Design two', 'redux-framework-demo' )
+                ),
+                'default'  => '2'
+            ),
+
+        array(
+            'id'       => 'css_editor',
+            'type'     => 'ace_editor',
+            'title'    => __('Custom CSS', 'redux-framework-demo'),
+            'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
+            'mode'     => 'css',
+            'theme'    => 'monokai',
+            'desc'     => '',
+            'default'  => "/******* Paste your Custom CSS in this Editor *******/"
+        ),
+        )
+
+   )
+
+   );
+
+
+
+   // SEO SECTION
+  Redux::setSection( $opt_name, array(
+      'title'      => __( 'SEO', 'redux-framework-demo' ),
+      'desc'       => __( '', 'redux-framework-demo'),
+      'id'         => 'amp-seo',
+      'subsection' => true,
+       'fields'     => array(
+
+           array(
+               'id'       => 'ampforwp-seo-yoast-meta',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'redux-framework-demo'),
+               'title'    => __( 'Add Meta Tags from Yoast', 'redux-framework-demo' ),
+               'default'  => '1'
+           ),
+           array(
+               'id'       => 'ampforwp-seo-yoast-custom-description',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
+               'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
+               'default'  => '1'
+           ),
+
+           array(
+               'id'       => 'ampforwp-seo-custom-additional-meta',
+               'type'     => 'ace_editor',
+               'title'    => __('Additional tags for Head section AMP page', 'redux-framework-demo'),
+               'subtitle' => __('Adds additional Meta to the head section', 'redux-framework-demo', 'redux-framework-demo'),
+               'mode'     => 'html',
+               'theme'    => 'monokai',
+               'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
+               'default'  => "<!-- Paste your Additional HTML to <head> </head>tag in this Editor -->"
+           ),
+
+       )
+
+  )
+
+  );
     // AMP Menu SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'AMP Menu', 'redux-framework-demo' ),
+       'title'      => __( 'Menu', 'redux-framework-demo' ),
        'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>'),
        'id'         => 'amp-menus',
        'subsection' => true)
@@ -542,193 +610,123 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     // Single Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'redux-framework-demo' ),
-        'desc'       => __( 'Additional Options to control the look of Single', 'redux-framework-demo' ),
+        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'redux-framework-demo' ),
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
-
-        // Featured Image ON/OFF
-            //  array(
-            //     'id'        => 'enable-single-featured-image',
-            //     'type'      => 'switch',
-            //     'title'     => __('Featured Image Above Post Content', 'redux-framework-demo'),
-            //     'default'   => 0,
-            //     'subtitle'  => __('Enable Featured Image in the single post', 'redux-framework-demo'),
-            //     'true'      => 'Enabled',
-            //     'false'     => 'Disabled',
-            // ),
-        // Post Meta ON/OFF
-             array(
-                'id'        => 'enable-single-post-meta',
-                'type'      => 'switch',
-                'title'     => __('Post Meta Above Post Content', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Post Meta in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-        // Single Featured ON/OFF
-             array(
-                'id'        => 'enable-single-featured-img',
-                'type'      => 'switch',
-                'title'     => __('Featured Image', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enabling this will automatically display the featured image', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-            // Width and Height of Image
-            array(
-               'id'        => 'enable-single-featured-img-width',
-               'type'      => 'text',
-               'title'     => __('Featured Image Width', 'redux-framework-demo'),
-               'default'   => 512,
-               'subtitle'  => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-               'placeholder'=>'Width here',
-               'required'  => array('enable-single-featured-img', '=' , '1')
+          // Social Icons ON/OFF
+          array(
+              'id'        => 'enable-single-social-icons',
+              'type'      => 'switch',
+              'title'     => __('Sticky Social Icons', 'redux-framework-demo'),
+              'default'   => 1,
+              'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
+          ),
+          // Width and Height of Image
+          array(
+             'id'           => 'enable-single-featured-img-width',
+             'type'         => 'text',
+             'title'        => __('Featured Image Width', 'redux-framework-demo'),
+             'default'      => 512,
+             'subtitle'     => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
+             'placeholder'  =>'Width here',
            ),
            array(
-              'id'        => 'enable-single-featured-img-height',
-              'type'      => 'text',
-              'title'     => __('Featured Image Height', 'redux-framework-demo'),
-              'default'   => 300,
-              'subtitle'  => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
-              'placeholder'=>'Height here',
-              'required'   => array('enable-single-featured-img', '=' , '1')
+              'id'          => 'enable-single-featured-img-height',
+              'type'        => 'text',
+              'title'       => __('Featured Image Height', 'redux-framework-demo'),
+              'default'     => 300,
+              'subtitle'    => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
+              'placeholder' =>'Height here',
           ),
-        // Next/Previous Pagination ON/OFF
-             array(
-                'id'        => 'enable-next-previous-pagination',
-                'type'      => 'switch',
-                'title'     => __('Post Pagination', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Next / Previous in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-        // Tags ON/OFF
-             array(
-                'id'        => 'ampforwp-single-tags-on-off',
-                'type'      => 'switch',
-                'title'     => __('Tags', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable / Disable Tags in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-
           // Related Post
-	        //new related type posts field
-          array(
-		        'id'       => 'ampforwp-single-select-type-of-related-switch',
-		        'type'     => 'switch',
-		        'title'    => __('Related Post', 'redux-framework-demo'),
-            'subtitle'    =>  __('Enable / Disable Related Posts', 'redux-framework-demo'),
-            'default'  => '1',
-	        ),
 	        array(
-		        'id'       => 'ampforwp-single-select-type-of-related',
-		        'type'     => 'select',
-		        'title'    => __('Show Related Post from', 'redux-framework-demo'),
-		        'data'     => 'page',
-            'subtitle' => __('select the type of related posts', 'redux-framework-demo'),
-		        'options'  => array(
-			        '1' => 'Tags',
-			        '2' => 'Categories'
-		        ),
-		        'args'     => array(
-			        'post_type' => 'page',
-			        'posts_per_page' => 500
-		        ),// ampforwp-single-select-type-of-related-switch
-            'required' => array('ampforwp-single-select-type-of-related-switch', '=' , '1'),
-		        'default'  => '2',
+    		        'id'       => 'ampforwp-single-select-type-of-related',
+    		        'type'     => 'select',
+    		        'title'    => __('Show Related Post from', 'redux-framework-demo'),
+    		        'data'     => 'page',
+                'subtitle' => __('select the type of related posts', 'redux-framework-demo'),
+    		        'options'  => array(
+    			        '1' => 'Tags',
+    			        '2' => 'Categories'
+    		        ),
+    		        'args'     => array(
+    			        'post_type' => 'page',
+    			        'posts_per_page' => 500
+    		        ),
+               'default'  => '2',
 	        ),
-        // Comments Post
-             array(
-                'id'        => 'ampforwp-single-comments-on-off',
-                'type'      => 'switch',
-                'title'     => __('Comments', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable / Disable Comments in the single post', 'redux-framework-demo'),
-                'true'      => 'Enabled',
-                'false'     => 'Disabled',
-            ),
-        // Social Icons ON/OFF
-            array(
-                'id'        => 'enable-single-social-icons',
-                'type'      => 'switch',
-                'title'     => __('Social Icons', 'redux-framework-demo'),
-                'default'   => 1,
-                'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
-            ),
-                // Facebook ON/OFF
-                array(
-                    'id'        =>  'enable-single-facebook-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Facebook', 'redux-framework-demo'),
-                    'default'   =>  0,
-                ),
-                // Facebook app ID
-                array(
+        ),
+
+    ) );
+
+    // Social Section
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Social', 'redux-framework-demo' ),
+        'id'         => 'amp-social',
+        'subsection' => true,
+        'fields'     => array(
+          // Facebook ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-share',
+              'type'      =>  'switch',
+              //'required'  => array('enable-single-social-icons', '=' , '1'),
+              'title'     =>  __('Facebook', 'redux-framework-demo'),
+              'default'   =>  0,
+          ),
+          // Facebook app ID
+          array(
                'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'redux-framework-demo'),
-               'subtitle' => __('In order to use Facebook share you need to register an app ID.', 'redux-framework-demo'),
+               'subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'type'     => 'text',
-               'desc'     =>__(' You can register one here: https://developers.facebook.com/apps.', 'redux-framework-demo'),
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => 'Enter your facebook app id',
                'default'  => ''
-                ),
-                // Twitter ON/OFF
-                array(
-                    'id'        =>  'enable-single-twitter-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Twitter', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // GooglePlus ON/OFF
-                array(
-                    'id'        =>  'enable-single-gplus-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('GooglePlus', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // Email ON/OFF
-                array(
-                    'id'        =>  'enable-single-email-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Email', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // Pinterest ON/OFF
-                array(
-                    'id'        =>  'enable-single-pinterest-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('Pinterest', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                // LinkedIn ON/OFF
-                array(
-                    'id'        =>  'enable-single-linkedin-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('LinkedIn', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-                array(
-                    'id'        =>  'enable-single-whatsapp-share',
-                    'type'      =>  'switch',
-                    'required'  => array('enable-single-social-icons', '=' , '1'),
-                    'title'     =>  __('WhatsApp', 'redux-framework-demo'),
-                    'default'   =>  1,
-                ),
-        ),
-
+          ),
+          // Twitter ON/OFF
+          array(
+              'id'        =>  'enable-single-twitter-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Twitter', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // GooglePlus ON/OFF
+          array(
+              'id'        =>  'enable-single-gplus-share',
+              'type'      =>  'switch',
+              'title'     =>  __('GooglePlus', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // Email ON/OFF
+          array(
+              'id'        =>  'enable-single-email-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Email', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // Pinterest ON/OFF
+          array(
+              'id'        =>  'enable-single-pinterest-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Pinterest', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // LinkedIn ON/OFF
+          array(
+              'id'        =>  'enable-single-linkedin-share',
+              'type'      =>  'switch',
+              'title'     =>  __('LinkedIn', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+          // WhatsApp
+          array(
+              'id'        =>  'enable-single-whatsapp-share',
+              'type'      =>  'switch',
+              'title'     =>  __('WhatsApp', 'redux-framework-demo'),
+              'default'   =>  1,
+          ),
+        )
     ) );
 
     // Structured Data
@@ -875,14 +873,14 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'id'       => 'amp-translator-categories-text',
                        'type'     => 'text',
                        'title'    => __('Categories', 'redux-framework-demo'),
-                       'default'  => 'Categories',
+                       'default'  => 'Categories: ',
                        'placeholder'=>'write here'
                    ),
                    array(
                        'id'       => 'amp-translator-tags-text',
                        'type'     => 'text',
                        'title'    => __('Tags', 'redux-framework-demo'),
-                       'default'  => 'Tags',
+                       'default'  => 'Tags: ',
                        'placeholder'=>'write here'
                    ),
                    array(
@@ -906,30 +904,51 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'default'  => 'Leave a Comment',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id'       => 'amp-translator-at-text',
+                       'type'     => 'text',
+                       'title'    => __('at', 'redux-framework-demo'),
+                       'default'  => 'at',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-says-text',
+                       'type'     => 'text',
+                       'title'    => __('says', 'redux-framework-demo'),
+                       'default'  => 'says',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-Edit-text',
+                       'type'     => 'text',
+                       'title'    => __('Edit', 'redux-framework-demo'),
+                       'default'  => 'Edit',
+                       'placeholder'=>'write here'
+                   ),
                )
            ) );
 
 
-    // CSS
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Custom CSS Editor', 'redux-framework-demo' ),
-       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
-        'id'         => 'opt-css-editor',
-        'subsection' => true,
-        'fields'     => array(
-            array(
-                'id'       => 'css_editor',
-                'type'     => 'ace_editor',
-                'title'    => __('Custom CSS', 'redux-framework-demo'),
-                'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
-                'mode'     => 'css',
-                'theme'    => 'monokai',
-                'desc'     => '',
-                'default'  => "/******* Paste your Custom CSS in this Editor *******/"
-            ),
-        )
-    ) );
-
+//    // CSS
+//    Redux::setSection( $opt_name, array(
+//        'title'      => __( 'Custom CSS Editor', 'redux-framework-demo' ),
+//       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+//        'id'         => 'opt-css-editor',
+//        'subsection' => true,
+//        'fields'     => array(
+//            array(
+//                'id'       => 'css_editor',
+//                'type'     => 'ace_editor',
+//                'title'    => __('Custom CSS', 'redux-framework-demo'),
+//                'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'redux-framework-demo'),
+//                'mode'     => 'css',
+//                'theme'    => 'monokai',
+//                'desc'     => '',
+//                'default'  => "/******* Paste your Custom CSS in this Editor *******/"
+//            ),
+//        )
+//    ) );
+//
 // Extension Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Extensions', 'redux-framework-demo' ),

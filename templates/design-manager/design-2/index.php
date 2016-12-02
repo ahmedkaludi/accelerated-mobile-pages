@@ -16,12 +16,12 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
+<main>
+
 	<?php if ( have_posts() ) :
 		while ( have_posts() ) : the_post();
 
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ;
-
-		do_action('ampforwp_index_page_before_post');
 
 		?>
 
@@ -39,7 +39,14 @@
 
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
-				<?php $content = get_the_content();?>
+				<?php
+
+				if(has_excerpt()){
+					$content = the_excerpt();
+				}else{
+					$content = get_the_content();
+				}
+				?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
 		    </div>
@@ -47,24 +54,23 @@
 
 		</div>
 
-	<?php
-		do_action('ampforwp_index_page_after_post');
-		endwhile;  ?>
+	<?php endwhile;  ?>
 
 
 	<div class="amp-wp-content pagination-holder">
 
 		<div id="pagination">
-			<div class="next"><?php global $redux_builder_amp; next_posts_link( $redux_builder_amp['amp-translator-next-text']." &raquo;", 0 ) ?></div>
-			<div class="prev"><?php previous_posts_link( '&laquo;'.$redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
+			<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+
 			<div class="clearfix"></div>
 		</div>
 
 	</div>
 
 	<?php endif; ?>
-
-
+</main>
+<?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
 </html>

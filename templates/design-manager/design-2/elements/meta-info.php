@@ -1,3 +1,7 @@
+<div class="amp-wp-article-header ampforwp-meta-info">
+	<div class="amp-wp-content post-title-meta">
+
+			<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
 	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
@@ -11,3 +15,18 @@
 
 	</div>
 <?php endif; ?>
+
+<?php
+  $ampforwp_categories = get_the_terms( $this->ID, 'category' );
+  if ( $ampforwp_categories ) : ?>
+  	<div class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category">
+  		<span><?php global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .': ', 'amp' )); ?></span>
+      <?php foreach ($ampforwp_categories as $cat ) {
+        echo ('<a href="'.get_category_link($cat->term_taxonomy_id).'?amp" >'.$cat->name .'</a>');
+      } ?>
+  	</div>
+  <?php endif; ?>
+
+			</ul>
+	</div>
+</div>
