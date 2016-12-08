@@ -864,9 +864,9 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                    ),
                    array(
                        'id'       => 'amp-translator-footer-text',
-                       'type'     => 'text',
+                       'type'     => 'textarea',
                        'title'    => __('Footer', 'redux-framework-demo'),
-                       'default'  => 'Footer',
+                       'default'  => '<a href="'.esc_url('https://wordpress.org/' ) . '">Powered By WordPress</a>',
                        'placeholder'=>'write here'
                    ),
                    array(

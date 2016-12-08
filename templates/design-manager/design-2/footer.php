@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;  
+<?php global $redux_builder_amp;
 if ( is_home() ) {
   $ampforwp_backto_nonamp = home_url();
 } elseif ( is_single() ){
@@ -15,7 +15,12 @@ if ( is_home() ) {
 					 |
         	<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  } }?>
         </p>
-        <p><?php echo esc_html( $redux_builder_amp['amp-translator-footer-text'] ); ?> </p>
+        <p>
+          <?php
+            global $allowed_html;
+            echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
+            ?>
+        </p>
     </div>
 </footer>
 <?php do_action('ampforwp_global_after_footer'); ?>
