@@ -767,9 +767,11 @@ amp-carousel > amp-img > img {
 		.amp-wp-tax-tag a:last-child:after  {
 			content: ' ';
 		}
-		
+
 		pre {
 			    white-space: pre-wrap;
 		}
-	<?php
-} ?>
+
+			/* Custom Style Code */
+			<?php echo $redux_builder_amp['css_editor'];
+		} ?>
