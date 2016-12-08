@@ -302,6 +302,13 @@
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                 'default'   => 1,
             ),
+            array(
+                'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                'type'      => 'switch',
+                'title'     => __('Non-AMP Home Page', 'redux-framework-demo'),
+                'subtitle'  => __('Enable or Disable Non-AMP on Home Page', 'redux-framework-demo'),
+                'default'   => 0,
+            ),
 //            array(
 //                'id'       => 'amp-design-selector',
 //                'type'     => 'select',
