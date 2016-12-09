@@ -35,12 +35,13 @@
 
 	            <?php
 							if(has_excerpt()){
-								$content = the_excerpt();
+								$content = get_the_excerpt();
 							}else{
 								$content = get_the_content();
 							}
-							?>
-	                <p><?php echo wp_trim_words( $content , '50'); ?></p>
+						?>
+	          <p><?php echo wp_trim_words( $content , '50'); ?></p>
+
 	        </div>
 		    <?php endwhile;  ?>
 
