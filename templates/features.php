@@ -106,11 +106,17 @@
                 }
             }
         } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-            if ( is_home() || is_archive() ) {
+            if ( is_home() ) {
                 if ( 'single' === $type ) {
                     $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
                 }
             }
+						if ( is_archive() ) {
+							if ( 'single' === $type ) {
+									$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+							}
+						}
+
         }
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
