@@ -50,9 +50,7 @@
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
 		    </div>
-		    <div class="cb"></div>
-
-		</div>
+	</div>
 
 	<?php endwhile;  ?>
 
