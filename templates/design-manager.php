@@ -2,7 +2,7 @@
 
 
 if ( is_customize_preview() ) {
-    
+
 	// Load all the elements in the customizer as we want all the elements in design-manager
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
@@ -12,15 +12,15 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
-} 
+}
 
 
 	$data = get_option( 'ampforwp_design' );
 
-	// Adding default Value 
+	// Adding default Value
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
-	} 
+	}
 
 	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
 		$options = explode( ',', $data['elements'] );
@@ -63,25 +63,31 @@ if ( is_customize_preview() ) {
 // Design Selector
 add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
-    
+
     global $redux_builder_amp;
     if ( $redux_builder_amp ) {
-        return $redux_builder_amp['amp-design-selector'];    
+        return $redux_builder_amp['amp-design-selector'];
     } else {
         return 2;
     }
-    
+
 }
 
 
 add_action('pre_amp_render_post','ampforwp_stylesheet_file_insertion', 12 );
 function ampforwp_stylesheet_file_insertion() {
+
+        if ( empty( ampforwp_design_selector() ) ) {
+          $ampforwp_design_selector   = 2;
+        } else {
+          $ampforwp_design_selector  = ampforwp_design_selector();
+        }
         
         // Add StyleSheet
-        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() . '/style.php';
-} 
+        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
+}
 
-// Post Title 
+// Post Title
 function ampforwp_add_element_the_title( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-the-title';
 	return $meta_parts;
@@ -144,7 +150,7 @@ function ampforwp_design_element_the_content( $file, $type, $post ) {
 	return $file;
 }
 
-// Meta Texonomy 
+// Meta Texonomy
 function ampforwp_add_element_meta_taxonomy( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-meta-taxonomy';
 	return $meta_parts;
@@ -158,7 +164,7 @@ function ampforwp_design_element_meta_taxonomy( $file, $type, $post ) {
 	return $file;
 }
 
-// Social Icons 
+// Social Icons
 function ampforwp_add_element_social_icons( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-social-icons';
 	return $meta_parts;
@@ -187,7 +193,7 @@ function ampforwp_design_element_comments( $file, $type, $post ) {
 	return $file;
 }
 
-// Related Posts 
+// Related Posts
 function ampforwp_add_element_related_posts( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-related-posts';
 	return $meta_parts;
@@ -201,7 +207,7 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	return $file;
 }
 
- 
+
 
 
 ?>
