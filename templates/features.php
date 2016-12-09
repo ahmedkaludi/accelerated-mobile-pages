@@ -33,6 +33,7 @@
 	23. The analytics tag appears more than once in the document. This will soon be an error
 	24. Seperate Sticky Single Social Icons
 	25. Yoast meta Support
+	26. Extending Title Tagand De-Hooking the Standard one from AMP
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -455,10 +456,16 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
+
+				 //removing scripts and rel="nofollow" from Body and from divs
+				 //issue #268
+				 $content = str_replace(' rel="nofollow"',"",$content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -804,9 +811,40 @@ function ampforwp_custom_yoast_meta(){
 			}
 			do_action( 'wpseo_opengraph' );
 			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-//        } 
-	} 
+//        }
+	}
 }
 if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
     add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+}
+
+//26. Extending Title Tagand De-Hooking the Standard one from AMP
+add_action('amp_post_template_include_single','remove_this');
+function remove_this(){
+	remove_action('amp_post_template_head','amp_post_template_add_title');
+	add_action('amp_post_template_head','ampforwp_custom_title_tag');
+
+	function ampforwp_custom_title_tag(){
+		global $post;
+		?>
+<title>
+	<?php
+	global $redux_builder_amp;
+	if(is_single()){
+	 global $post;
+	 $titl = $post->post_title;
+	 echo $titl;
+ }	elseif ($redux_builder_amp['amp-frontpage-select-option']==0 && (is_front_page() || is_archive())) {
+ 	echo bloginfo('name');
+	}elseif($redux_builder_amp['amp-frontpage-select-option']){
+		// global $post;
+		echo get_query_var('pagename');
+	}elseif (is_home()) {
+		echo get_query_var('pagename');
+	}
+	  ?>
+
+ </title>
+	 	<?php
+	}
 }
