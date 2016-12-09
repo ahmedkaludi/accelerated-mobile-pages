@@ -457,6 +457,15 @@ amp-carousel > amp-img > img {
 		#pagination .prev {
 			display: inline-block;
 		}
+		.amp-wp-home .amp-wp-content p {
+			display: inline;
+		}
+
+		.home-post-image {
+			float: right ;
+			margin: 0 0 10px 20px;
+
+		}
 
 	/* Single */
 	.amp-wp-article-content amp-img {
