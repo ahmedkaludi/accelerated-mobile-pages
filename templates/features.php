@@ -825,26 +825,35 @@ function remove_this(){
 	add_action('amp_post_template_head','ampforwp_custom_title_tag');
 
 	function ampforwp_custom_title_tag(){
-		global $post;
 		?>
-<title>
-	<?php
-	global $redux_builder_amp;
-	if(is_single()){
-	 global $post;
-	 $titl = $post->post_title;
-	 echo $titl;
- }	elseif ($redux_builder_amp['amp-frontpage-select-option']==0 && (is_front_page() || is_archive())) {
- 	echo bloginfo('name');
-	}elseif($redux_builder_amp['amp-frontpage-select-option']){
-		// global $post;
-		echo get_query_var('pagename');
-	}elseif (is_home()) {
-		echo get_query_var('pagename');
-	}
-	  ?>
+			<title>
+				<?php
+				global $redux_builder_amp;
 
- </title>
+			// title for a single post and single page
+			if( is_single() || is_page() ){
+				 global $post;
+				 $titl = $post->post_title;
+				 echo $titl;
+			 }
+			// title for archive pages
+			if ( is_archive() ) {
+					the_archive_title( '' );
+					the_archive_description( '' );
+			}
+			// title for Static front page
+			if  ( $redux_builder_amp['amp-frontpage-select-option']== 1 && ( is_front_page() ) ) {
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				echo get_the_title( $ID );
+
+				}
+			// title for index page
+			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
+						echo  bloginfo('name') ;
+				}
+				  ?>
+		 </title>
 	 	<?php
 	}
 }
+//End of 26
