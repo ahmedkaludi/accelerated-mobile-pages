@@ -277,6 +277,7 @@ blockquote p:last-child {
 	line-height: 1.5em;
 	margin: 0;
 	padding: .66em 10px .75em;
+	text-align: center;
 }
 
 /* AMP Media */
@@ -471,7 +472,6 @@ amp-carousel > amp-img > img {
 	/* Social Icons */
     .ampforwp-social-icons{
         margin: 1.5em 16px 1.5em;
-        height: 30px;
     }
 	.whatsapp-share-icon {
 	    width: 50px;
