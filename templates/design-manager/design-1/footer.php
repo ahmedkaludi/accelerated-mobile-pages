@@ -2,7 +2,7 @@
 global $redux_builder_amp;
   wp_reset_postdata();
 
-  $ampforwp_backto_nonamp = " Kuch bhi nahi hai";
+  $ampforwp_backto_nonamp = '';
   if ( is_home() ) {
     $ampforwp_backto_nonamp = home_url();
   }

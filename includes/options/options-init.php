@@ -629,6 +629,14 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'redux-framework-demo'),
           ),
+          //deselectable next previous links
+          array(
+              'id'        => 'enable-single-next-prev',
+              'type'      => 'switch',
+              'title'     => __('Next-Previous Links', 'redux-framework-demo'),
+              'default'   => 1,
+              'subtitle'  => __('Enable Next-Previous links in single', 'redux-framework-demo'),
+          ),
           // Width and Height of Image
           array(
              'id'           => 'enable-single-featured-img-width',
