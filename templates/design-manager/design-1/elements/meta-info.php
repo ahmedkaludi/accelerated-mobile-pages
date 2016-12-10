@@ -20,9 +20,10 @@
 	<div class="amp-wp-meta amp-wp-posted-on">
 		<time datetime="<?php echo esc_attr( date( 'c', $this->get( 'post_publish_timestamp' ) ) ); ?>">
 			<?php
+			global $redux_builder_amp;
 			echo esc_html(
 				sprintf(
-					_x( '%s ago', '%s = human-readable time difference', 'amp' ),
+					_x( '%s '.$redux_builder_amp['amp-translator-ago-date-text'], '%s = human-readable time difference', 'amp' ),
 					human_time_diff( $this->get( 'post_publish_timestamp' ), current_time( 'timestamp' ) )
 				)
 			);
