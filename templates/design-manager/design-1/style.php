@@ -780,6 +780,12 @@ amp-carousel > amp-img > img {
 		pre {
 			    white-space: pre-wrap;
 		}
+		
+		<?php if($redux_builder_amp['enable-single-social-icons']){ ?>
+			footer {
+				padding-bottom: 50px;
+			}
+		<?php } ?>
 
 			/* Custom Style Code */
 			<?php echo $redux_builder_amp['css_editor'];
