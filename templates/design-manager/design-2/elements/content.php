@@ -3,17 +3,11 @@
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
 
-		<!--Post before Content here-->
-		<?php do_action('ampforwp_before_post_content') ?>
-		<!--Post before Content here-->
+		<?php do_action('ampforwp_before_post_content') //Post before Content here ?>
 
-			<!--Post Actual Content here-->
 			<?php echo $this->get( 'post_amp_content' ); // amphtml content; no kses ?>
-			<!--Post Actual Content here-->
 
-		<!--Post After Content here-->
-		<?php do_action('ampforwp_after_post_content') ?>
-		<!--Post After Content here-->
+		<?php do_action('ampforwp_after_post_content') ; //Post After Content here ?>
 
 	</div>
 	<!--Post Content Ends here-->
