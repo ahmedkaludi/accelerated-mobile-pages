@@ -367,6 +367,7 @@
       'title'      => __( 'SEO', 'redux-framework-demo' ),
       'desc'       => __( '', 'redux-framework-demo'),
       'id'         => 'amp-seo',
+      'desc'       => '<strong>Note : <br/> This section only works if  Yoast SEO Plugin is Activated (Exception : Additional Meta Tags Section) </strong>',
       'subsection' => true,
        'fields'     => array(
 
@@ -387,13 +388,11 @@
 
            array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
-               'type'     => 'ace_editor',
+               'type'     => 'textarea',
                'title'    => __('Additional tags for Head section AMP page', 'redux-framework-demo'),
                'subtitle' => __('Adds additional Meta to the head section', 'redux-framework-demo', 'redux-framework-demo'),
-               'mode'     => 'html',
-               'theme'    => 'monokai',
                'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
-               'default'  => "<!-- Paste your Additional HTML to <head> </head>tag in this Editor -->"
+               'placeholder'  => "<!-- Paste your Additional HTML , that goes between <head> </head> tags -->"
            ),
 
        )
@@ -938,6 +937,13 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
                        'type'     => 'text',
                        'title'    => __('Edit', 'redux-framework-demo'),
                        'default'  => 'Edit',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-ago-date-text',
+                       'type'     => 'text',
+                       'title'    => __('ago', 'redux-framework-demo'),
+                       'default'  => 'ago',
                        'placeholder'=>'write here'
                    ),
                )

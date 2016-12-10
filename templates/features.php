@@ -511,8 +511,7 @@
 				//code for adding 'description' meta from Yoast SEO
 
 				if($redux_builder_amp['ampforwp-seo-yoast-custom-description']){
-					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-					if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+					if ( class_exists('WPSEO_Frontend') ) {
 						$front = WPSEO_Frontend::get_instance();
 						$desc = $front->metadesc( false );
 						if ( $desc ) {
@@ -805,9 +804,8 @@ function ampforwp_register_social_sharing_script() {
 //	25. Yoast meta Support
 function ampforwp_custom_yoast_meta(){
 	global $redux_builder_amp;
-	$is_amp_endpoint = is_amp_endpoint();
 	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
-//        if ( WPSEO_Options::grant_access() ) {
+			 if ( class_exists('WPSEO_Options')) {
 			$options = WPSEO_Options::get_option( 'wpseo_social' );
 			if ( $options['twitter'] === true ) {
 				WPSEO_Twitter::get_instance();
@@ -817,12 +815,14 @@ function ampforwp_custom_yoast_meta(){
 			}
 			do_action( 'wpseo_opengraph' );
 			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-//        }
-	}
+       }
+			} else {
+			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+			}
 }
-if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
-    add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
-}
+
+add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+
 
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
 add_action('amp_post_template_include_single','remove_this');
