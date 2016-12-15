@@ -13,108 +13,74 @@
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
 
-<?php $this->load_parts( array( 'header-bar' ) ); ?>
-
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
-<?php do_action('ampforwp_post_before_design_elements') ?>
+<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<!--Loop 1-->
-<!--Get all the posts here-->
-<?php
-$args = array( 'post_type' =>'post');
-$our_required_post_ids = array();
-$query_posts_before = new WP_Query($args);
+	<?php do_action('ampforwp_post_before_design_elements') ?>
 
- if ( $query_posts_before->have_posts() ) : while ( $query_posts_before->have_posts() ) : $query_posts_before->the_post(); ?>
+			<?php
+				if ( have_posts() ) :
+		    while ( have_posts() ) : the_post(); ?>
+	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		<?php array_push($our_required_post_ids,get_the_ID()) ;?>
+	        <h1 class="amp-wp-title">
+	            <?php  $ampforwp_post_url = get_permalink(); ?>
+	            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+	        </h1>
 
-<?php endwhile; wp_reset_postdata(); ?>
-<?php else : ?>
-		<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
-<?php endif; ?>
 
-<!--FIltering them here-->
-<?php
-$i=0;
-while($i<10){
-	$ID = $our_required_post_ids[$i];
-	$value = get_post_meta($ID);
 
-	if($value['ampforwp-amp-on-off'][0] === 'hide-amp'){
-		unset($our_required_post_ids[$i]);
-	}
-	$i++;
-}
- ?>
-<!--Filter Posts IDs here Ends-->
 
-<!--loop 2-->
-<!--Filter Posts from Query Starts here-->
-<?php
-$args = array( 'post_type' =>'post');
-$query_posts = new WP_Query($args);
-if($query_posts->have_posts()) : while($query_posts->have_posts()) : $query_posts->the_post(); ?>
+					<div class="amp-wp-content-loop">
+						<div class="amp-wp-meta">
+	              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
+	          </div>
 
-	<!--Main Business Logic lies here-->
-	<?php if(in_array(get_the_ID(),$our_required_post_ids)) { ?>
-			 			    <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-			 	        <h1 class="amp-wp-title">
-			 	            <?php  $ampforwp_post_url = get_permalink(); ?>
-			 	            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
-			 	        </h1>
+						<?php if ( has_post_thumbnail() ) { ?>
+							<?php
+							$thumb_id = get_post_thumbnail_id();
+							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+							$thumb_url = $thumb_url_array[0];
+							?>
+							<div class="home-post-image">
+								<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
+									<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
+								</a>
+							</div>
+						<?php } ?>
+						<?php
+							if(has_excerpt()){
+								$content = get_the_excerpt();
+							}else{
+								$content = get_the_content();
+							}
+						?>
+	          <p><?php echo wp_trim_words( $content , '50'); ?></p>
 
-			 					<div class="amp-wp-content-loop">
-			 						<div class="amp-wp-meta">
-			 	              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-			 	          </div>
+					</div>
 
-			 						<?php if ( has_post_thumbnail() ) { ?>
-			 							<?php
-			 							$thumb_id = get_post_thumbnail_id();
-			 							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-			 							$thumb_url = $thumb_url_array[0];
-			 							?>
-			 							<div class="home-post-image">
-			 								<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
-			 									<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
-			 								</a>
-			 							</div>
-			 						<?php } ?>
-
-			 					  <?php
-			 							if(has_excerpt()){
-			 								$content = get_the_excerpt();
-			 							}else{
-			 								$content = get_the_content();
-			 							}
-			 						?>
-
-			 	          <p><?php echo wp_trim_words( $content , '50'); ?></p>
-			 					</div>
-			 	      </div>
-	<?php } ?>
-	<!--Main Business Logic Ends here-->
-	<?php endwhile; wp_reset_postdata(); ?>
-	<!--Filter Posts from Query Starts here-->
-
-	<!--Finally adding pagination links here-->
-	    <div class="amp-wp-content pagination-holder">
-	        <div id="pagination">
-	            <div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text']. ' &raquo;', 0 ) ?></div>
-	            <div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
-	            <div class="clearfix"></div>
 	        </div>
-	    </div>
-	<!--Finally adding pagination links Ends here-->
-<?php endif; ?>
-<!--loop 2 Ends here-->
+		    <?php endwhile;  ?>
+
+		    <div class="amp-wp-content pagination-holder">
+
+		        <div id="pagination">
+		            <div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text']. ' &raquo;', 0 ) ?></div>
+		            <div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+		            <div class="clearfix"></div>
+		        </div>
+
+		    </div>
+
+		<?php endif; ?>
 
 	<?php do_action('ampforwp_post_after_design_elements') ?>
 
 </article>
+
+    
 
 <?php $this->load_parts( array( 'footer' ) ); ?>
 

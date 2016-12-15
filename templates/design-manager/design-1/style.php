@@ -358,6 +358,7 @@ amp-carousel > amp-img > img {
 .amp-wp-footer {
 	border-top: 1px solid <?php echo sanitize_hex_color( $border_color ); ?>;
 	margin: calc(1.5em - 1px) 0 0;
+    padding-bottom:25px;
 }
 
 .amp-wp-footer div {
@@ -377,21 +378,14 @@ amp-carousel > amp-img > img {
 	color: <?php echo sanitize_hex_color( $muted_text_color ); ?>;
 	font-size: .8em;
 	line-height: 1.5em;
-	margin: 0 85px 0 0;
+	margin: 0 15px 0 0;
 }
 
 .amp-wp-footer a {
 	text-decoration: none;
 }
-
-.back-to-top {
-	bottom: 1.275em;
-	font-size: .8em;
-	font-weight: 600;
-	line-height: 2em;
-	position: absolute;
-	right: 16px;
-}
+.copyright_txt{ float:left }
+.back-to-top { float:right }
 
 
 	/* Header */

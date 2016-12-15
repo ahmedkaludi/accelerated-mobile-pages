@@ -17,7 +17,7 @@ global $redux_builder_amp;
 <footer class="amp-wp-footer">
 	<div>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
-		<p>
+		<p class="copyright_txt">
 			<?php
 			global $allowed_html;
 			echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
