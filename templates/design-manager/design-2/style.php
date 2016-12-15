@@ -317,6 +317,9 @@ h1.amp-wp-title {
 .single-post .post-pagination-meta{
     min-height:auto
 }
+.single-post .ampforwp-social-icons{
+    display:inline-block
+}
 .post-pagination-meta .amp-wp-tax-category,
 .post-title-meta .amp-wp-tax-tag {
     display : none;
