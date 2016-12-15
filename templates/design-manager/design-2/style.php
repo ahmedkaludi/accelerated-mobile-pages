@@ -741,6 +741,7 @@ amp-user-notification button {
     .single-post footer {
         padding-bottom: 40px;
     }
+.amp-ad-2{ margin-bottom: 50px; margin-top: -25px; }
 <?php } ?>
 /**/
 .alignleft{
