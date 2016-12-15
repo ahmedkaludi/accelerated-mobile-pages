@@ -1,11 +1,14 @@
 <?php global $redux_builder_amp;
   wp_reset_postdata();
 
-  $ampforwp_backto_nonamp = " Kuch bhi nahi hai";
+  $ampforwp_backto_nonamp = " ";
   if ( is_home() ) {
     $ampforwp_backto_nonamp = home_url();
   }
   if ( is_single() ){
+    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+  }
+  if ( is_page() ){
     $ampforwp_backto_nonamp = get_permalink( $post->ID );
   }
   if( is_archive() ) {
