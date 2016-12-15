@@ -349,6 +349,15 @@ li.amp-wp-tax-category {
 .amp-wp-content amp-img {
     max-width: 100%;
 }
+figure{
+    margin: 0;
+}
+figcaption{
+    font-size: 11px;
+    margin-bottom: 11px;
+    background: #eee;
+    padding: 6px 8px;
+}
 .amp-wp-byline amp-img {
     display: none;
 }
