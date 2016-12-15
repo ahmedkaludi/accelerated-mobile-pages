@@ -526,12 +526,13 @@ main .amp-wp-content.comments_list {
 }
 
 /* ADS */
-.amp_ad_1{
-    margin-top: -15px;
-    margin-bottom:10px
+.amp_home_body .amp_ad_1{
+    margin-top: 10px;
+    margin-bottom: -20px;
 }
 .single-post .amp_ad_1{
-    margin-top:0
+    margin-top: 10px;
+    margin-bottom: -20px;
 }
 .amp-ad-4{
     margin-top:10px;

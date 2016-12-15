@@ -11,7 +11,7 @@
 		<?php do_action( 'amp_post_template_css', $this ); ?>
 		</style>
 	</head>
-	<body>
+	<body class="amp_home_body">
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 	<?php do_action( 'ampforwp_after_header', $this ); ?>
