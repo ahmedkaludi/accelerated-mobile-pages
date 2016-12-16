@@ -836,8 +836,8 @@ function remove_this(){
 			// title for a single post and single page
 			if( is_single() || is_page() ){
 				 global $post;
-				 $titl = $post->post_title;
-				 echo $titl;
+				 $title = $post->post_title;
+				 echo $title | get_bloginfo( 'description' ) ;
 			 }
 			// title for archive pages
 			if ( is_archive() ) {
@@ -847,12 +847,12 @@ function remove_this(){
 			// title for Static front page
 			if  ( $redux_builder_amp['amp-frontpage-select-option']== 1 && ( is_front_page() ) ) {
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				echo get_the_title( $ID );
+				echo get_the_title( $ID ) | get_bloginfo('name');
 
 				}
 			// title for index page
 			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
-						echo  bloginfo('name') ;
+						echo  bloginfo('name') | get_bloginfo( 'description' ) ;
 				}
 				  ?>
 		 </title>
