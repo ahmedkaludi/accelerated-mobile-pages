@@ -12,10 +12,10 @@
 </head>
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
-
-<article class="amp-wp-article ampforwp-custom-index amp-wp-home">
-
+	
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
+	
+<article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_design_elements') ?>
 
