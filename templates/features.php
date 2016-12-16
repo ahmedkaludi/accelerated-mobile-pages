@@ -33,6 +33,7 @@
 	23. The analytics tag appears more than once in the document. This will soon be an error
 	24. Seperate Sticky Single Social Icons
 	25. Yoast meta Support
+	26. Extending Title Tagand De-Hooking the Standard one from AMP
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -105,11 +106,17 @@
                 }
             }
         } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-            if ( is_home() || is_archive() ) {
+            if ( is_home() ) {
                 if ( 'single' === $type ) {
                     $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
                 }
             }
+						if ( is_archive() ) {
+							if ( 'single' === $type ) {
+									$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+							}
+						}
+
         }
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
@@ -117,11 +124,6 @@
 			 if('single' === $type && !('product' === $post->post_type )) {
 			 		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 }
-		  else if ( class_exists( 'WooCommerce' ) ) {
-						if('single' === $type && 'product' === $post->post_type ) {
-								$file = AMPFORWP_PLUGIN_DIR . '/templates/wc.php';
-						}
-					}
 		}
 	    return $file;
 	}
@@ -455,10 +457,16 @@
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
+
+				 //removing scripts and rel="nofollow" from Body and from divs
+				 //issue #268
+				 $content = str_replace(' rel="nofollow"',"",$content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -498,8 +506,7 @@
 				//code for adding 'description' meta from Yoast SEO
 
 				if($redux_builder_amp['ampforwp-seo-yoast-custom-description']){
-					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-					if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+					if ( class_exists('WPSEO_Frontend') ) {
 						$front = WPSEO_Frontend::get_instance();
 						$desc = $front->metadesc( false );
 						if ( $desc ) {
@@ -767,7 +774,7 @@ function ampforwp_sticky_social_icons(){
 		    	<amp-social-share type="linkedin" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-whatsapp-share'] == true)  { ?>
-						<a href="whatsapp://send">
+						<a href="whatsapp://send?text=<?php echo get_the_permalink();?>">
 						<div class="whatsapp-share-icon">
 						    <amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgOTAgOTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDkwIDkwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggaWQ9IldoYXRzQXBwIiBkPSJNOTAsNDMuODQxYzAsMjQuMjEzLTE5Ljc3OSw0My44NDEtNDQuMTgyLDQzLjg0MWMtNy43NDcsMC0xNS4wMjUtMS45OC0yMS4zNTctNS40NTVMMCw5MGw3Ljk3NS0yMy41MjIgICBjLTQuMDIzLTYuNjA2LTYuMzQtMTQuMzU0LTYuMzQtMjIuNjM3QzEuNjM1LDE5LjYyOCwyMS40MTYsMCw0NS44MTgsMEM3MC4yMjMsMCw5MCwxOS42MjgsOTAsNDMuODQxeiBNNDUuODE4LDYuOTgyICAgYy0yMC40ODQsMC0zNy4xNDYsMTYuNTM1LTM3LjE0NiwzNi44NTljMCw4LjA2NSwyLjYyOSwxNS41MzQsNy4wNzYsMjEuNjFMMTEuMTA3LDc5LjE0bDE0LjI3NS00LjUzNyAgIGM1Ljg2NSwzLjg1MSwxMi44OTEsNi4wOTcsMjAuNDM3LDYuMDk3YzIwLjQ4MSwwLDM3LjE0Ni0xNi41MzMsMzcuMTQ2LTM2Ljg1N1M2Ni4zMDEsNi45ODIsNDUuODE4LDYuOTgyeiBNNjguMTI5LDUzLjkzOCAgIGMtMC4yNzMtMC40NDctMC45OTQtMC43MTctMi4wNzYtMS4yNTRjLTEuMDg0LTAuNTM3LTYuNDEtMy4xMzgtNy40LTMuNDk1Yy0wLjk5My0wLjM1OC0xLjcxNy0wLjUzOC0yLjQzOCwwLjUzNyAgIGMtMC43MjEsMS4wNzYtMi43OTcsMy40OTUtMy40Myw0LjIxMmMtMC42MzIsMC43MTktMS4yNjMsMC44MDktMi4zNDcsMC4yNzFjLTEuMDgyLTAuNTM3LTQuNTcxLTEuNjczLTguNzA4LTUuMzMzICAgYy0zLjIxOS0yLjg0OC01LjM5My02LjM2NC02LjAyNS03LjQ0MWMtMC42MzEtMS4wNzUtMC4wNjYtMS42NTYsMC40NzUtMi4xOTFjMC40ODgtMC40ODIsMS4wODQtMS4yNTUsMS42MjUtMS44ODIgICBjMC41NDMtMC42MjgsMC43MjMtMS4wNzUsMS4wODItMS43OTNjMC4zNjMtMC43MTcsMC4xODItMS4zNDQtMC4wOS0xLjg4M2MtMC4yNy0wLjUzNy0yLjQzOC01LjgyNS0zLjM0LTcuOTc3ICAgYy0wLjkwMi0yLjE1LTEuODAzLTEuNzkyLTIuNDM2LTEuNzkyYy0wLjYzMSwwLTEuMzU0LTAuMDktMi4wNzYtMC4wOWMtMC43MjIsMC0xLjg5NiwwLjI2OS0yLjg4OSwxLjM0NCAgIGMtMC45OTIsMS4wNzYtMy43ODksMy42NzYtMy43ODksOC45NjNjMCw1LjI4OCwzLjg3OSwxMC4zOTcsNC40MjIsMTEuMTEzYzAuNTQxLDAuNzE2LDcuNDksMTEuOTIsMTguNSwxNi4yMjMgICBDNTguMiw2NS43NzEsNTguMiw2NC4zMzYsNjAuMTg2LDY0LjE1NmMxLjk4NC0wLjE3OSw2LjQwNi0yLjU5OSw3LjMxMi01LjEwN0M2OC4zOTgsNTYuNTM3LDY4LjM5OCw1NC4zODYsNjguMTI5LDUzLjkzOHoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
 						    </div>
@@ -792,21 +799,64 @@ function ampforwp_register_social_sharing_script() {
 //	25. Yoast meta Support
 function ampforwp_custom_yoast_meta(){
 	global $redux_builder_amp;
-	$is_amp_endpoint = is_amp_endpoint();
 	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
-//        if ( WPSEO_Options::grant_access() ) {
-			$options = WPSEO_Options::get_option( 'wpseo_social' );
-			if ( $options['twitter'] === true ) {
-				WPSEO_Twitter::get_instance();
-			}
-			if ( $options['opengraph'] === true ) {
-				$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
-			}
-			do_action( 'wpseo_opengraph' );
-			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-//        } 
-	} 
+		if(! class_exists('YoastSEO_AMP') ) {
+				if ( class_exists('WPSEO_Options')) {
+					$options = WPSEO_Options::get_option( 'wpseo_social' );
+					if ( $options['twitter'] === true ) {
+						WPSEO_Twitter::get_instance();
+					}
+					if ( $options['opengraph'] === true ) {
+						$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+					}
+					do_action( 'wpseo_opengraph' );
+				}
+		}//execute only if Glue is deactive
+	echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+	} else {
+		echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+	}
 }
-if ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
-    add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+
+add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+
+
+//26. Extending Title Tagand De-Hooking the Standard one from AMP
+add_action('amp_post_template_include_single','remove_this');
+function remove_this(){
+	remove_action('amp_post_template_head','amp_post_template_add_title');
+	add_action('amp_post_template_head','ampforwp_custom_title_tag');
+
+	function ampforwp_custom_title_tag(){
+		?>
+			<title>
+				<?php
+				global $redux_builder_amp;
+
+			// title for a single post and single page
+			if( is_single() || is_page() ){
+				 global $post;
+				 $titl = $post->post_title;
+				 echo $titl;
+			 }
+			// title for archive pages
+			if ( is_archive() ) {
+					the_archive_title( '' );
+					the_archive_description( '' );
+			}
+			// title for Static front page
+			if  ( $redux_builder_amp['amp-frontpage-select-option']== 1 && ( is_front_page() ) ) {
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				echo get_the_title( $ID );
+
+				}
+			// title for index page
+			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
+						echo  bloginfo('name') ;
+				}
+				  ?>
+		 </title>
+	 	<?php
+	}
 }
+//End of 26

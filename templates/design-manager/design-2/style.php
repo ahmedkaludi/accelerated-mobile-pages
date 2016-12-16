@@ -317,6 +317,9 @@ h1.amp-wp-title {
 .single-post .post-pagination-meta{
     min-height:auto
 }
+.single-post .ampforwp-social-icons{
+    display:inline-block
+}
 .post-pagination-meta .amp-wp-tax-category,
 .post-title-meta .amp-wp-tax-tag {
     display : none;
@@ -348,6 +351,15 @@ li.amp-wp-tax-category {
 
 .amp-wp-content amp-img {
     max-width: 100%;
+}
+figure{
+    margin: 0;
+}
+figcaption{
+    font-size: 11px;
+    margin-bottom: 11px;
+    background: #eee;
+    padding: 6px 8px;
 }
 .amp-wp-byline amp-img {
     display: none;
@@ -514,12 +526,13 @@ main .amp-wp-content.comments_list {
 }
 
 /* ADS */
-.amp_ad_1{
-    margin-top: -15px;
-    margin-bottom:10px
+.amp_home_body .amp_ad_1{
+    margin-top: 10px;
+    margin-bottom: -20px;
 }
 .single-post .amp_ad_1{
-    margin-top:0
+    margin-top: 10px;
+    margin-bottom: -20px;
 }
 .amp-ad-4{
     margin-top:10px;
@@ -741,6 +754,7 @@ amp-user-notification button {
     .single-post footer {
         padding-bottom: 40px;
     }
+.amp-ad-2{ margin-bottom: 50px; }
 <?php } ?>
 /**/
 .alignleft{

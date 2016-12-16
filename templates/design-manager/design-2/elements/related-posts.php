@@ -55,7 +55,7 @@
 								                <div class="related_link">
 								                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 								                    <?php if(has_excerpt()){
-																			$content = the_excerpt();
+																			$content = get_the_excerpt();
 																		}else{
 																			$content = get_the_content();
 																		}

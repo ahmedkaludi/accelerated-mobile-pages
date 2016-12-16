@@ -1,9 +1,14 @@
-<header class="container">    
+<header class="container">
   <div id="headerwrap">
       <div id="header">
-          
-        <?php global $redux_builder_amp; 
-          $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . '?' . AMP_QUERY_VAR;
+
+        <?php global $redux_builder_amp;
+
+          if ($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']) {
+            $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
+          }else{
+            $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . '?' . AMP_QUERY_VAR;
+          }
         ?>
 
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
@@ -23,7 +28,7 @@
 	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
 </div>
 
-   
+
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="right">

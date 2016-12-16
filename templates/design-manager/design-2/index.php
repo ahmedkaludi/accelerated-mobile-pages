@@ -11,7 +11,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body>
+<body class="amp_home_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
@@ -50,9 +50,8 @@
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
 		    </div>
-		    <div class="cb"></div>
-
-		</div>
+            <div class="cb"></div>
+	</div>
 
 	<?php endwhile;  ?>
 
@@ -65,7 +64,6 @@
 
 			<div class="clearfix"></div>
 		</div>
-
 	</div>
 
 	<?php endif; ?>
@@ -73,4 +71,5 @@
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
+
 </html>
