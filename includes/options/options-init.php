@@ -305,8 +305,8 @@
             array(
                 'id'        =>'amp-on-off-support-for-non-amp-home-page',
                 'type'      => 'switch',
-                'title'     => __('Non-AMP Home Page', 'redux-framework-demo'),
-                'subtitle'  => __('Enable or Disable Non-AMP on Home Page', 'redux-framework-demo'),
+                'title'     => __('Non-AMP HomePage link in Header', 'redux-framework-demo'),
+                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
             ),
 //            array(
