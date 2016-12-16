@@ -124,11 +124,6 @@
 			 if('single' === $type && !('product' === $post->post_type )) {
 			 		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 }
-		  else if ( class_exists( 'WooCommerce' ) ) {
-						if('single' === $type && 'product' === $post->post_type ) {
-								$file = AMPFORWP_PLUGIN_DIR . '/templates/wc.php';
-						}
-					}
 		}
 	    return $file;
 	}
