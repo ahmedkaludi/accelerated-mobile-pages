@@ -774,10 +774,10 @@ amp-carousel > amp-img > img {
 		pre {
 			    white-space: pre-wrap;
 		}
-		
+
 		<?php if($redux_builder_amp['enable-single-social-icons']){ ?>
-			footer {
-				padding-bottom: 50px;
+			.amp-wp-footer {
+				padding-bottom: 60px;
 			}
 		<?php } ?>
 
