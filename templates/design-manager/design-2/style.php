@@ -752,7 +752,7 @@ amp-user-notification button {
 }
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
     .single-post footer {
-        padding-bottom: 40px;
+        padding-bottom: 60px;
     }
 .amp-ad-2{ margin-bottom: 50px; }
 <?php } ?>
@@ -789,6 +789,7 @@ amp-user-notification button {
 	.amp-wp-article-content img {
 	    max-width: 100%;
 	}
+
 
 
 
