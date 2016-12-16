@@ -151,6 +151,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 * Footer ad with Sticky Social bar issue fix
 * Checked with WordPress 4.7
 * Ad #1 was messing up with the title, issue fixed.
+* Compatibility improved with AMP WooCommerce.
 
 = 0.9 =
 * Proper Details at http://ampforwp.com/amp-pagebuilder/
