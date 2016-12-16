@@ -122,6 +122,7 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 == Changelog ==
 = 0.9.1 [16th December 2016] =
+* Proper Details at http://ampforwp.com/new/
 * PHP7 Compatibility
 * Pagination URLs (Prev & Next) was going to 404 ( #244 | #251 )
 * Custom CSS not working in Design one (#249)
