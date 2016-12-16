@@ -6,8 +6,8 @@ Contributors: mohammed_kaludi, ahmedkaludi
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.6.1
-Stable tag: 0.9
+Tested up to: 4.7
+Stable tag: 0.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,34 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+= 0.9.1 =
+* PHP7 Compatibility
+* Pagination URLs (Prev & Next) was going to 404 ( #244 | #251 )
+* Custom CSS not working in Design one (#249)
+* Enhanced the translation panel by adding Textarea from Redux, which means that we're able to allow HTML in footer like before (#260)
+* How to remove “Powered by WordPress” from Design-1 of AMP ( #264 )
+* Non-amp Homepage support added (#267)
+* using get_avatar() (#259)
+* Validation issue fixed: The attribute 'rel' may not appear in tag 'div' (#268)
+* Validation Issue fixed: Script Tag removed from the content.
+* Featured image in Design 1 in single #261
+* After Fresh installation - a save is required Fixed
+* Excerpt length controlled
+* Design One has thumbnails on the Homepage
+* Non-AMP link goes to the wrong page, issue fixed.
+* Archive pages were broken, fixed.
+* Option to Enable & Disable the Next/Previous links in Single
+* WhatsApp sharing not working, issue fixed.
+* Category Taxonomy has extra ':' in the word.
+* The word 'Ago' is now translatable.
+* Yoast SEO with AMP compatibility issue fixed.
+* Several Minor Polishing in the code
+* Footer Ad gets covered by Sticky Social Icons (#269)
+* Smaller image size when “image caption” is used in Design-2 (#263)
+* Footer ad with Sticky Social bar issue fix
+* Checked with WordPress 4.7
+* Ad #1 was messing up with the title, issue fixed.
+
 = 0.9 =
 * Proper Details at http://ampforwp.com/amp-pagebuilder/
 * Drag & Drop Page builder Added: You can easily modify the look of the AMP page using this feature
