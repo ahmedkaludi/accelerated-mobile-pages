@@ -12,9 +12,9 @@
 </head>
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
-	
+
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-	
+
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_design_elements') ?>
@@ -57,7 +57,7 @@
 								$content = get_the_content();
 							}
 						?>
-	          <p><?php echo wp_trim_words( $content , '50'); ?></p>
+	          <p><?php echo wp_trim_words( $content , '20'); ?></p>
 
 					</div>
 
@@ -80,7 +80,7 @@
 
 </article>
 
-    
+
 
 <?php $this->load_parts( array( 'footer' ) ); ?>
 
