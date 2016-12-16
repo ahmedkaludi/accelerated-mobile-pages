@@ -77,7 +77,7 @@ function ampforwp_design_selector() {
 add_action('pre_amp_render_post','ampforwp_stylesheet_file_insertion', 12 );
 function ampforwp_stylesheet_file_insertion() {
 
-        if ( empty( ampforwp_design_selector() ) ) {
+        if ( ! ampforwp_design_selector() ) {
           $ampforwp_design_selector   = 2;
         } else {
           $ampforwp_design_selector  = ampforwp_design_selector();
