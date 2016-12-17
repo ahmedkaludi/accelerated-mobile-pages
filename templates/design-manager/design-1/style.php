@@ -781,6 +781,10 @@ amp-carousel > amp-img > img {
 			}
 		<?php } ?>
 
+		.amp-ad-wrapper.amp_ad_1 {
+			 padding-top : 20px;
+		}
+
 			/* Custom Style Code */
 			<?php echo $redux_builder_amp['css_editor'];
 		} ?>

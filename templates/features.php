@@ -224,6 +224,7 @@
 	// 9. Advertisement code
 		// Below Header Global
 		add_action('ampforwp_after_header','ampforwp_header_advert');
+		add_action('ampforwp_design_1_after_header','ampforwp_header_advert');
 
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
@@ -306,6 +307,7 @@
 
 		// Below Title Single
 		add_action('ampforwp_before_post_content','ampforwp_before_post_content_advert');
+		add_action('ampforwp_inside_post_content_before','ampforwp_before_post_content_advert');
 
 		function ampforwp_before_post_content_advert() {
 			global $redux_builder_amp;
@@ -346,7 +348,8 @@
 		}
 
 		// Below Content Single
-		add_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
+			add_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
+			add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
 

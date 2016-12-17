@@ -51,3 +51,7 @@
       <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
   </div>
 </amp-sidebar>
+
+<?php
+
+do_action('ampforwp_design_1_after_header');
