@@ -82,7 +82,7 @@
 			}
 
 			//checking if the user wants amp page for archives or not
-			if( is_archive() && $redux_builder_amp['ampforwp-amp-on-off-catgs-tags']=='1') {
+			if( is_archive() && $redux_builder_amp['ampforwp-amp-on-off-catgs-tags']=='0') {
 				// Dont do anything :)
 			} else {
 				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );

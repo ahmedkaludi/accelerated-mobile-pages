@@ -11,9 +11,9 @@
 
 				foreach ($ampforwp_tags as $tag) {
 					if($redux_builder_amp['ampforwp-amp-on-off-catgs-tags']){
-						echo ('<a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'">'.$tag->name .'</a>');
+						echo ('<a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'?amp" >'.$tag->name .'</a>');
 					} else {
-						 echo ('<a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'?amp" >'.$tag->name .'</a>');
+						echo ('<a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'">'.$tag->name .'</a>');
 					}
 				}
 
