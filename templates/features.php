@@ -450,7 +450,6 @@
 				 $content = preg_replace('/security=[^>]*/', '', $content);
 				 $content = preg_replace('/deposit=[^>]*/', '', $content);
 				 $content = preg_replace('/for=[^>]*/', '', $content);
-				 $content = preg_replace('/style=[^>]*/', '', $content);
 				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('#<time.*?>(.*?)</time>#i', '', $content);
@@ -463,6 +462,7 @@
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 
