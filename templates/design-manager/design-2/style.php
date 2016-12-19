@@ -401,6 +401,18 @@ main .amp-wp-content.featured-image-content {
 	margin-bottom: 0;
 	box-shadow: none
 }
+.amp-wp-content.post-pagination-meta{
+    max-width: 1030px;    
+}
+.single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper {
+    display: block;
+    margin: 2em auto 0.9em auto ;
+    max-width: 1030px;
+}
+.amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy {
+    margin: 10px auto;
+    max-width: 1030px;
+}
 
 /* Related Posts */
 main .amp-wp-content.relatedpost {
@@ -408,7 +420,7 @@ main .amp-wp-content.relatedpost {
 	box-shadow: none;
 	max-width: 1030px;
     padding:0px 0 0 0;
-    margin:1.8em 0px 1.5em 0px
+    margin:1.8em auto 1.5em auto
 }
 .related_posts h3, .comments_list h3{
     font-size: 14px;
