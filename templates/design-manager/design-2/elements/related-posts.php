@@ -22,7 +22,7 @@
 										$tag_ids = array();
 										foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
 										$args=array(
-										   'tag__and' => $tag_ids,
+										   'tag__in' => $tag_ids,
 										    'post__not_in' => array($post->ID),
 										    'posts_per_page'=> 3,
 										    'caller_get_posts'=>1

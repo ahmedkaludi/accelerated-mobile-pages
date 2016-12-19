@@ -14,7 +14,9 @@
 <body class="single-post amp-wp-frontpage">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<?php do_action( 'ampforwp_after_header', $this ); ?>
+<?php
+// do_action( 'ampforwp_after_header', $this ); 
+?>
 
 
 	<div class="amp-wp-content the_content">

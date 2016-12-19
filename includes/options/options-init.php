@@ -309,18 +309,18 @@
                 'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
             ),
-           array(
-               'id'       => 'amp-ad-places',
-               'type'     => 'select',
-               'title'    => __( 'Ads on Page', 'redux-framework-demo' ),
-               'subtitle' => __( 'select your preferece for Ads on Post Types', 'redux-framework-demo' ),
-               'options'  => array(
-                   '1' => __('Only on Posts', 'redux-framework-demo' ),
-                   '2' => __('Only on Pages', 'redux-framework-demo' ),
-                   '3' => __('on Both', 'redux-framework-demo' ),
-               ),
-               'default'  => '3'
-           ),
+          //  array(
+          //      'id'       => 'amp-ad-places',
+          //      'type'     => 'select',
+          //      'title'    => __( 'Ads on Page', 'redux-framework-demo' ),
+          //      'subtitle' => __( 'select your preferece for Ads on Post Types', 'redux-framework-demo' ),
+          //      'options'  => array(
+          //          '1' => __('Only on Posts', 'redux-framework-demo' ),
+          //          '2' => __('Only on Pages', 'redux-framework-demo' ),
+          //          '3' => __('on Both', 'redux-framework-demo' ),
+          //      ),
+          //      'default'  => '3'
+          //  ),
 
       )
     ) );//END
@@ -664,10 +664,6 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     		        'options'  => array(
     			        '1' => 'Tags',
     			        '2' => 'Categories'
-    		        ),
-    		        'args'     => array(
-    			        'post_type' => 'page',
-    			        'posts_per_page' => 500
     		        ),
                'default'  => '2',
 	        ),
