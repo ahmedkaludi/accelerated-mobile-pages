@@ -29,11 +29,7 @@
 				?>
 			</span>
       <?php foreach ($ampforwp_categories as $cat ) {
-				if($redux_builder_amp['ampforwp-amp-on-off-catgs-tags']){
 					echo ('<a href="'.trailingslashit(get_category_link($cat->term_taxonomy_id)).'?amp" >'.$cat->name .'</a>');
-				} else {
-					echo ('<a href="'.get_category_link($cat->term_taxonomy_id).'" >'.$cat->name .'</a>');
-				}
       }
 
 			//if RTL is ON
