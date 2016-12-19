@@ -25,7 +25,7 @@
 										   'tag__in' => $tag_ids,
 										    'post__not_in' => array($post->ID),
 										    'posts_per_page'=> 3,
-										    'caller_get_posts'=>1
+										    'caller_get_posts'=>1,
 										);
 					}
 			}//end of block for tags
