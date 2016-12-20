@@ -7,7 +7,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.1.2
+Stable tag: 0.9.1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,16 +18,26 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
-**Features:**
-* NEW - DoubleClick Support
-* NEW - Custom Post Type Support
-* NEW - Star Ratings 
-* NEW - Drag & Drop Page builder Added
-* NEW - 2 Designs Added
+> <strong>Extensions</strong><br>
+> Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
+>
+> <strong>Premium Support</strong><br>
+> We try our best to provide support on WordPress.org forums. However, One-on-one email support is available to people who bought the [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) only.
+>	
+> <strong>Bug Reports</strong><br>
+> Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages). Please note GitHub is _not_ a support forum, and issues that aren't properly qualified as bugs will be closed.
+
+
+= Features: =
+
+* NEW - DoubleClick Support 
+* NEW - Custom Post Type Support 
+* NEW - Star Ratings  
+* NEW - Drag & Drop Page builder Added 
+* NEW - 2 Designs Added 
 * NEW - 100% Yoast SEO support on AMP pages
-* AMP WooCommerce Support
+* AMP WooCommerce Support 
 * Switch on/off Support for Pages on AMP
 * Translation Panel & RTL
 * Internal AMP linking - You can browse AMP pages internally
@@ -60,7 +70,11 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Piwik & Segment.com Support
 * Great Support & Active Development.
 
-**NOTE:** Next Update of this plugin will be released by end of October 2016.
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+
+
+**NOTE:** Next Update of this plugin will be released by end of Dec 2016.
+
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
