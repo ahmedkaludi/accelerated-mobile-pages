@@ -437,7 +437,7 @@
 	// 11. Strip unwanted codes and tags from the_content
 		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content');
 		function ampforwp_strip_invalid_content() {
-			add_filter( 'the_content', 'ampforwp_the_content_filter', 20 );
+			add_filter( 'the_content', 'ampforwp_the_content_filter', 2 );
 		}
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
@@ -474,6 +474,17 @@
 
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
+		}
+
+
+	// 11.1 Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
+		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
+		function ampforwp_strip_invalid_content_footer() {
+			add_filter( 'wp_footer', 'ampforwp_the_content_filter_footer', 1 );
+		}
+		function ampforwp_the_content_filter_footer( $content ) {
+            remove_all_actions('wp_footer'); 
+				return $content; 
 		}
 
 	// 11.5 Strip unwanted codes the_content of Frontpage
