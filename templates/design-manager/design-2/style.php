@@ -1,5 +1,8 @@
 <?php global $redux_builder_amp; ?>
 <?php
+add_action( 'amp_post_template_head', function() {
+    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+}, 9 );
 add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
 
 function ampforwp_additional_style_input_2( $amp_template ) {
