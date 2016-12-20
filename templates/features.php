@@ -464,6 +464,7 @@
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 
 				 //removing scripts and rel="nofollow" from Body and from divs
