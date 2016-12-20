@@ -202,7 +202,7 @@ global $redux_builder_amp;
 	add_action('ampforwp_global_after_footer','ampforwp_footer');
 	function ampforwp_footer() {
 			global $redux_builder_amp; ?>
-		<!--Plugin Verion :<?php echo (AMPFORWP_VERSION); ?> -->
+		<!--Plugin Version :<?php echo (AMPFORWP_VERSION); ?> -->
 	<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 		<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
 	  <amp-user-notification layout=nodisplay id="amp-user-notification1">

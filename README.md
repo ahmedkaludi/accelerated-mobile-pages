@@ -7,7 +7,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.1
+Stable tag: 0.9.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,14 +21,16 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 [youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
 **Features:**
-
+* NEW - DoubleClick Support
+* NEW - Custom Post Type Support
+* NEW - Star Ratings 
 * NEW - Drag & Drop Page builder Added
 * NEW - 2 Designs Added
 * NEW - 100% Yoast SEO support on AMP pages
-* NEW - AMP WooCommerce Support
-* NEW - Switch on/off Support for Pages on AMP
-* NEW - Translation Panel & RTL
-* NEW - Internal AMP linking - You can browse AMP pages internally
+* AMP WooCommerce Support
+* Switch on/off Support for Pages on AMP
+* Translation Panel & RTL
+* Internal AMP linking - You can browse AMP pages internally
 * Related posts below the post
 * Recent Comments list
 * Automatically integrate AMP to your website.
@@ -124,6 +126,26 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+
+= 0.9.1.2 [20th December 2016] =
+* Proper Details at http://ampforwp.com/new/
+* DoubleClick Support
+* Custom Post Type Support
+* Ratings Support
+* Comments Gaping fix
+* Custom Excerpt code
+* Better Compatibility with Yoast SEO plugin
+* AMP Validation error in Design 1 Fixed
+* Proper Homepage title & Description with Yoast SEO plugin issue fixed
+* Design -1 Excerpt too big for mobile devices, Fixed
+* Advertisement support on Design 1
+* Link to Tags & Categories were having some issues.
+* AMP looking bad on big devices
+* AMP validation Improvement: Lightbox plugins compatibility
+* Huge Progress in AMP Validation Errors: Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
+* Page Performance: Removed default Google font loading
+* Page Performance: DNS Prefetch tag added for faster DNS Handshake
+
 = 0.9.1 [16th December 2016] =
 * Proper Details at http://ampforwp.com/new/
 * PHP7 Compatibility
