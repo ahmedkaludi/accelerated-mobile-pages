@@ -290,7 +290,7 @@
             array(
               'id'       => 'ampforwp-amp-on-off-catgs-tags',
             'type'     => 'switch',
-            'title'    => __('Hide AMP on Archive Pages', 'redux-framework-demo'),
+            'title'    => __('AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
             'true'      => 'true',
             'false'     => 'false'
