@@ -288,7 +288,7 @@
         //     'default'  => 'Navigate'
         // ),
             array(
-              'id'       => 'ampforwp-amp-on-off-catgs-tags',
+              'id'       => 'ampforwp-amp-archive-pages-on-off',
             'type'     => 'switch',
             'title'    => __('AMP on Archive Pages', 'redux-framework-demo'),
             'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
@@ -300,7 +300,7 @@
                 'type'      => 'switch',
                 'title'     => __('AMP on Pages', 'redux-framework-demo'),
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-                'default'   => 1,
+                'default'   => 0,
             ),
             array(
                 'id'        =>'amp-on-off-support-for-non-amp-home-page',

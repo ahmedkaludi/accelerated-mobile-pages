@@ -82,10 +82,10 @@
 			}
 
 			//checking if the user wants amp page for archives or not
-			if( is_archive() && $redux_builder_amp['ampforwp-amp-on-off-catgs-tags']=='1') {
-				// Dont do anything :)
-			} else {
+			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='1') {
 				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+			} else {
+				// Dont do anything :)
 			}
 			// end of checking if the user wants amp page for archives or not
 		}
