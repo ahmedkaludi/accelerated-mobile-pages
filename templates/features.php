@@ -173,30 +173,24 @@
 			return 1000;
 	}
 
-	// 6. Add required Javascripts for extra AMP features
-	add_action('amp_post_template_head','ampforwp_register_additional_scripts');
-	function ampforwp_register_additional_scripts() {
-		global $redux_builder_amp;
-		?>
-    	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-			<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
-			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
-	  <?php } ?>
-		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
+// 6. Add required Javascripts for extra AMP features
+add_action('amp_post_template_head','ampforwp_register_additional_scripts');
+function ampforwp_register_additional_scripts() {
+global $redux_builder_amp;
+?>
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
+<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+<?php } ?>
+<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
+<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+<?php } ?>
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<?php }
 
-
-			 ?>
-			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-		<?php } ?>
-			<!-- AMP Advertisement Script  -->
-			<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-
-	<?php }
-
-
-	// 7. Footer for AMP Pages
+// 7. Footer for AMP Pages
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
 	function ampforwp_custom_footer( $file, $type, $post ) {
 			if ( 'footer' === $type ) {
