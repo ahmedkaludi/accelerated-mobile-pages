@@ -77,7 +77,7 @@
 	            $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
 				$amp_url = $archive_current_url . '/?amp';
 			} else {
-				$amp_url = timezone_abbreviations_list()ngslashit( get_permalink().'amp' );
+				$amp_url = trailingslashit( get_permalink().'amp' );
 			}
 			//checking if the user wants amp page for archives or not
 			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='0') {			
