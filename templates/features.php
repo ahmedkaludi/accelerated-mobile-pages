@@ -72,21 +72,20 @@
 			if ( is_home() || is_front_page()  ){
 				$amp_url = home_url('/?amp');
 			}
-	    elseif( is_archive()){
-	                global $wp;
-	                $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
-									$amp_url = $archive_current_url . '/?amp';
-	    }
-      else {
-								$amp_url = trailingslashit( get_permalink().'amp' );
-			}
-
-			//checking if the user wants amp page for archives or not
-			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='1') {
-				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+		    elseif ( is_archive() ) {
+	            global $wp;
+	            $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
+				$amp_url = $archive_current_url . '/?amp';
 			} else {
-				// Dont do anything :)
+				$amp_url = timezone_abbreviations_list()ngslashit( get_permalink().'amp' );
 			}
+			//checking if the user wants amp page for archives or not
+			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='0') {			
+				return;
+			} else {
+				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+			}
+		
 			// end of checking if the user wants amp page for archives or not
 		}
 	} //end of ampforwp_home_archive_rel_canonical()
