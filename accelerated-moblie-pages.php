@@ -102,12 +102,14 @@ function ampforwp_page_template_redirect() {
 			    } else {
 			    	if ( is_home() ) {
 			    		wp_redirect( home_url('/') . AMP_QUERY_VAR . '/', 301 );
-			    	} else {
+			    	} elseif ( is_archive() ) {
+	            		return;
+					} else {
 			    		wp_redirect( get_permalink( $id ) . AMP_QUERY_VAR . '/', 301 );
 			    	}
 			    }
 			    exit();
+			}
 		}
-	}
 }
 add_action( 'template_redirect', 'ampforwp_page_template_redirect' );

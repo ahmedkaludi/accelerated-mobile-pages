@@ -182,13 +182,6 @@
         'subsection' => true,
         'fields'     => array(
              array(
-                'id'       => 'amp-mobile-redirection',
-                'type'     => 'switch',
-                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
-                'subtitle' => __('Enable / Disable mobile redirection', 'redux-framework-demo'),
-                'default' => 0,
-            ),
-             array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
                 'url'      => true,
@@ -316,6 +309,14 @@
                 'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
             ),
+            array(
+                'id'       => 'amp-mobile-redirection',
+                'type'     => 'switch',
+                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
+                'subtitle' => __('If enabled AMP site will be directly served as your Mobile site.','ampforwp'),
+                'default' => 0,
+            ),
+
           //  array(
           //      'id'       => 'amp-ad-places',
           //      'type'     => 'select',
