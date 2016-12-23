@@ -42,7 +42,8 @@
 															$related_post_permalink = trailingslashit($related_post_permalink);
 															$related_post_permalink = $related_post_permalink . AMP_QUERY_VAR ;;
 														?>
-														<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>"><a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+														<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+                                                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 									            <?php
 										            $thumb_id_2 = get_post_thumbnail_id();
 										            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
@@ -52,6 +53,7 @@
 															<?php if ( has_post_thumbnail() ) { ?>
 									            	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="150" height="150" layout="responsive"></amp-img>
 															<?php } ?>
+                                                              </a>  
 								                <div class="related_link">
 								                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 								                    <?php if(has_excerpt()){

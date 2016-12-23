@@ -39,13 +39,15 @@
 								<?php
 						    	while( $my_query->have_posts() ) {
 								    $my_query->the_post();?>
-									<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>"><a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+									<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+                                        <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( has_post_thumbnail() ) {
 								            $thumb_id_2 = get_post_thumbnail_id();
 								            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
 							            	$thumb_url_2 = $thumb_url_array_2[0];?>
 							            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
 										<?php } ?>
+                                        </a>
 						                <div class="related_link">
 						                    <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
 						                    <?php
