@@ -93,20 +93,21 @@ function ampforwp_plugin_init() {
 }
 add_action('init','ampforwp_plugin_init',9);
 
-
 function ampforwp_page_template_redirect() {
-	if ( wp_is_mobile() ) {		
-	    if ( is_amp_endpoint() ){
-	    	return;
-	    } else {
-	    	if ( is_home() ) {
-	    		wp_redirect( home_url('/') . AMP_QUERY_VAR . '/', 301 );
-	    	} else {
-	    		wp_redirect( get_permalink( $id ) . AMP_QUERY_VAR . '/', 301 );
-	    	}	    	
-	    }	    
-	    
-	    exit();
+	global $redux_builder_amp;
+		if($redux_builder_amp['amp-mobile-redirection']){
+			if ( wp_is_mobile() ) {
+			    if ( is_amp_endpoint() ){
+			    	return;
+			    } else {
+			    	if ( is_home() ) {
+			    		wp_redirect( home_url('/') . AMP_QUERY_VAR . '/', 301 );
+			    	} else {
+			    		wp_redirect( get_permalink( $id ) . AMP_QUERY_VAR . '/', 301 );
+			    	}
+			    }
+			    exit();
+		}
 	}
 }
 add_action( 'template_redirect', 'ampforwp_page_template_redirect' );

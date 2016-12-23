@@ -181,7 +181,14 @@
         'id'         => 'opt-text-subsection',
         'subsection' => true,
         'fields'     => array(
-            $fields =  array(
+             array(
+                'id'       => 'amp-mobile-redirection',
+                'type'     => 'switch',
+                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
+                'subtitle' => __('Enable / Disable mobile redirection', 'redux-framework-demo'),
+                'default' => 0,
+            ),
+             array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
                 'url'      => true,
@@ -996,7 +1003,7 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
         <a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-rating-extension.png" width="345" height="500" /></a>
 
- 
+
         <a href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_coming-soon&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /></a>',
         'icon' => 'el el-info-circle',
     ) );
