@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.1.2.1
+Stable tag: 0.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,12 +28,13 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * NEW - DoubleClick Support 
 * NEW - Custom Post Type Support 
 * NEW - Star Ratings  
 * NEW - Drag & Drop Page builder Added 
-* NEW - 2 Designs Added 
-* NEW - 100% Yoast SEO support on AMP pages
+* 2 Designs Added 
+* Yoast SEO support on AMP pages
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages on AMP
 * Translation Panel & RTL
@@ -137,6 +138,14 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+
+= 0.9.2 [23th December 2016] =
+* Proper Details at https://ampforwp.com/mobile-redirection/
+* AMP Mobile Redirection Feature added. It can be turned on from Dashboard > General and then Mobile Redirection. [New Feature]
+* Archive title and description added [Improvement]
+* Improved the Speed of the AMP version #321 [Improvement]
+* Anchor link was not closing fixed #328 [Bug Fix]
+* Typo in Trailingslashit function which resulted in some issues in the Homepage version [Bug Fix]
 
 = 0.9.1.2 [20th December 2016] =
 * Proper Details at http://ampforwp.com/new/
