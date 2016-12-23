@@ -190,6 +190,16 @@
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
             array(
+                'id'       => 'amp-mobile-redirection',
+                'type'     => 'switch',
+                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
+                'subtitle' => __('
+                Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','ampforwp'),
+                'default' => 0,
+
+            ),
+
+            array(
                 'id'       => 'amp-analytics-select-option',
                 'type'     => 'select',
                 'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
@@ -308,13 +318,6 @@
                 'title'     => __('Non-AMP HomePage link in Header', 'redux-framework-demo'),
                 'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
-            ),
-            array(
-                'id'       => 'amp-mobile-redirection',
-                'type'     => 'switch',
-                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
-                'subtitle' => __('If enabled AMP site will be directly served as your Mobile site.','ampforwp'),
-                'default' => 0,
             ),
 
           //  array(
