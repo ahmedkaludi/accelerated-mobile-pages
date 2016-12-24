@@ -104,11 +104,7 @@ function ampforwp_page_template_redirect() {
 					wp_redirect( trailingslashit( esc_url( home_url() ) ) .'?'. AMP_QUERY_VAR ,  301 );
 					exit();
 				} elseif ( is_archive() ) {
-					global $wp;
-					$archive_current_url = add_query_arg( '', '', home_url( $wp->request ) ); 
-					$archive_current_url  = trailingslashit($archive_current_url );
-					wp_redirect( esc_url( $archive_current_url ) . '?' .AMP_QUERY_VAR  , 301 );
-					exit();
+					return ;
 				} else {
 					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMP_QUERY_VAR , 301 );
 					exit();
@@ -118,4 +114,19 @@ function ampforwp_page_template_redirect() {
 	}
 }
 
-add_action( 'template_redirect', 'ampforwp_page_template_redirect' ); 
+add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 ); 
+add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 ); 
+
+function ampforwp_page_template_redirect_archive() {
+
+	if( is_archive() ) {
+		if ( is_amp_endpoint() ) {
+			global $wp;
+			$archive_current_url = add_query_arg( '', '', home_url( $wp->request ) ); 
+			$archive_current_url  = trailingslashit($archive_current_url );
+			wp_redirect( esc_url( $archive_current_url )  , 301 );
+			exit();
+		}
+	}  
+
+}

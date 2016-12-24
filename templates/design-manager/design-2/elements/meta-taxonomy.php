@@ -10,7 +10,7 @@
 							}
 
 				foreach ($ampforwp_tags as $tag) {
-						echo ('<a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'?amp" >'.$tag->name .'</a>');
+						echo  $tag->name . ' ';
 				}
 
 				//if RTL is ON

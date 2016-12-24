@@ -29,7 +29,7 @@
 				?>
 			</span>
       <?php foreach ($ampforwp_categories as $cat ) {
-					echo ('<a href="'.trailingslashit(get_category_link($cat->term_taxonomy_id)).'?amp" >'.$cat->name .'</a>');
+					echo  $cat->name . ' ';
       }
 
 			//if RTL is ON
