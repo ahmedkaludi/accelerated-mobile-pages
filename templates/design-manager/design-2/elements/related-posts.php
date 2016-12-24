@@ -71,8 +71,20 @@
 					        } ?>
 									</ol>
 						    </div>
-						</div> <?php
+						</div> 
+
+						<div class="amp-ad-wrapper">
+						<amp-ad class="amp-ad-4"
+							type="adsense"
+							width=336 height=280
+							data-ad-client="ca-pub-3514236063249617"
+							data-ad-slot="2198453170">';
+		                </amp-ad>
+				        </div>
+
+						<?php
 	      $post = $orig_post;
 	      wp_reset_postdata();
 //related posts code ends here
 		?>
+
