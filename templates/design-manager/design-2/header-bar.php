@@ -13,7 +13,7 @@
 
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>">
-              <amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo -amp-element -amp-layout-fixed -amp-layout-size-defined -amp-layout" id="AMP_1">
+              <amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
               </amp-img>
           </a>
         <?php } else { ?>
@@ -25,7 +25,7 @@
 </header>
 
 <amp-install-serviceworker
-       src="sw.js"
+       src="https://technutty.co.uk/sw.js"
        data-iframe-src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/"
        layout="nodisplay">
      </amp-install-serviceworker>
