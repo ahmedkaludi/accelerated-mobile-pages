@@ -549,6 +549,9 @@ main .amp-wp-content.comments_list {
     margin-top: 10px;
     margin-bottom: -20px;
 }
+html .single-post .ampforwp-incontent-ad-1 {
+    margin-bottom: 10px;
+}
 .amp-ad-4{
     margin-top:10px;
 }
