@@ -794,12 +794,16 @@ amp-user-notification button {
 	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  ";
 }
 
-.ampforwp-tax-category a:after,
-.ampforwp-tax-tag a:after {
+.ampforwp-tax-category span:first-child:after {
+    content: ' ';
+}
+
+.ampforwp-tax-category span:after,
+.ampforwp-tax-tag span:after {
 	content: ', ';
 }
-.ampforwp-tax-category a:last-child:after,
-.ampforwp-tax-tag a:last-child:after  {
+.ampforwp-tax-category span:last-child:after,
+.ampforwp-tax-tag span:last-child:after  {
 	content: ' ';
 }
 

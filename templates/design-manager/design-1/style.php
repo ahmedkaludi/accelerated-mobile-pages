@@ -762,12 +762,15 @@ amp-carousel > amp-img > img {
 		}
 		.amp-wp-author:before{
 		}
-		.amp-wp-tax-category a:after,
-		.amp-wp-tax-tag a:after {
+		.amp-wp-tax-category span:first-child:after {
+    		content: ' ';
+    	}
+		.amp-wp-tax-category span:after,
+		.amp-wp-tax-tag span:after {
 			content: ', ';
 		}
-		.amp-wp-tax-category a:last-child:after,
-		.amp-wp-tax-tag a:last-child:after  {
+		.amp-wp-tax-category span:last-child:after,
+		.amp-wp-tax-tag span:last-child:after  {
 			content: ' ';
 		}
 

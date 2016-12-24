@@ -28,8 +28,8 @@
 							}
 				?>
 			</span>
-      <?php foreach ($ampforwp_categories as $cat ) {
-					echo  $cat->name . ' ';
+      <?php foreach ($ampforwp_categories as $cat ) { 
+					echo '<span>'. $cat->name .'</span>';
       }
 
 			//if RTL is ON

@@ -10,7 +10,7 @@
 							}
 
 				foreach ($ampforwp_tags as $tag) {
-						echo  $tag->name . ' ';
+						echo '<span>'. $tag->name .'</span>';
 				}
 
 				//if RTL is ON
