@@ -7,7 +7,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.2
+Stable tag: 0.9.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -141,6 +141,13 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 
 
 == Changelog ==
+
+= 0.9.2.1 [24th December 2016] =
+* Proper Details at https://ampforwp.com/step-towards-fixing-amp-validation-errors/
+* Disabled the Tags and Categories support for AMP for better validation until we find a better solution.
+* Mobile redirection bug fixed, It was continuously redirecting to the same page [Bug fix]
+* trailingslashit added to make sure we have proper url for Mobile redirection [Bug fix]
+* In content AD overlapping the content issue fixed
 
 = 0.9.2 [23th December 2016] =
 * Proper Details at https://ampforwp.com/mobile-redirection/
