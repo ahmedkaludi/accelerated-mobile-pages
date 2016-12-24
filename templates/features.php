@@ -174,7 +174,13 @@
 add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 function ampforwp_register_additional_scripts() {
 global $redux_builder_amp;
-?><script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+?>
+<!-- Personal Changes  -->
+<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- End Personal Changes  -->
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 <?php if( is_page() ) { ?><script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script><?php } ?>
 <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 <?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>

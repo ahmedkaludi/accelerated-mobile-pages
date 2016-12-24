@@ -1,0 +1,502 @@
+#title h2 {
+    font-family: Merriweather Sans,sans-serif;
+    text-rendering: optimizeLegibility;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 0px;
+    font-size: 46px;
+    text-transform: inherit;
+    font-weight: 700;
+        line-height: 60px;
+    letter-spacing: -3px;
+}
+.nav_container {
+    display: none;
+}
+.amp-wp-content.the_content {
+    overflow: hidden;
+}
+.amp-wp-content blockquote {
+    float: left;
+    background-color: #fff;
+    border-left: 3px solid #000;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.single-comments {
+    background: #fff;
+        float: left;
+            width: 100%;
+}
+.comments_list h3 {
+    margin: 0px;
+    text-transform: uppercase;
+    border: none;
+    background: #000;
+    color: #fff;
+    margin-top: 0px;
+    float: left;
+    border-bottom: 1px solid;
+    width: 100%;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 10px;
+    padding-left: 15px;
+    margin-bottom: 0px;
+}
+.comment-button-wrapper {
+    margin: 0px;
+    text-align: left;
+}
+.comment-button-wrapper a {
+    margin: 0px;
+    text-transform: uppercase;
+    border: none;
+    background: #000;
+    color: #fff;
+    margin-top: 0px;
+    float: left;
+    border-bottom: 1px solid;
+    width: 100%;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 10px;
+    padding-left: 15px;
+    margin-bottom: 0px;
+    box-shadow: none;
+    border-radius: 0px;
+}
+.comment-meta.commentmetadata {
+    float: right;
+}
+.amp-wp-content.post-pagination-meta {
+    display: none;
+}
+.social_footer {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+.post-title-meta .sticky_social, main .sticky_social {
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    text-align: left;
+}
+main .sticky_social {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.amp-wp-meta.amp-wp-tax-category {
+    border-bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.amp-logo {
+    margin-top: 0px;
+    margin-bottom: 0px;
+        max-width: 600px;
+    margin: 0 auto;
+}
+.nav_container {
+    padding: 0px;
+    z-index: 999999999;
+}
+#header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.post-featured-img img {
+    height: auto;
+}
+.related_posts h3 {
+    float: left;
+    border-bottom: 1px solid;
+    width: 100%;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 10px;
+    padding-left: 0px;
+        margin-bottom: 0px;
+}
+.amp-wp-meta li:nth-child(2) {
+    margin-left: 10px;
+}
+.comments-button {
+    background: #fff;
+}
+.single-post main {
+    padding: 0px;
+}
+.amp-wp-meta {
+    font: 13px Segoe UI,sans-serif;
+    text-transform: uppercase;
+    transition: all .2s ease-in-out;
+    color: #999;
+    margin-bottom: 8px;
+}
+.amp-wp-meta li a {
+    color: #000;
+}
+.amp-wp-content .amp-ad-wrapper {
+    margin-top: 0px;
+}
+.amp-wp-title {
+    font: 700 46px Merriweather Sans,sans-serif;
+    text-rendering: optimizeLegibility;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 0;
+    text-transform: inherit;
+    display: inline-block;
+}
+amp-user-notification {
+    padding: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #fff;
+    border-top: 1px solid;
+}
+amp-user-notification button {
+    text-transform: uppercase;
+    padding: 8px;
+    background: #000;
+    color: #ddd;
+    margin-left: 5px;
+}
+.related_posts h3 {
+    border: none;
+    background: #000;
+    padding-left: 15px;
+    color: #fff;
+    margin-top: 0px;
+}
+#home #title h2 {
+    margin-left: 20px;
+}
+#footer li {
+    list-style: none;
+    float: left;
+    text-align: center;
+}
+.meta-social-footer {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+#footer li a {
+    width: auto;
+    float: none;
+        text-decoration: underline;
+}
+#footer {
+    border-top: 1px solid;
+}
+.social-link-footer .fa {
+    font-size: 40px;
+    text-align: center;
+}
+#footer li {
+    list-style: none;
+    float: left;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+main {
+    padding-top: 0px;
+}
+.postmeta {
+    font-size: 13px;
+    text-transform: uppercase;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    color: #999;
+    margin-bottom: 20px;
+    font-family: Segoe UI,sans-serif;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin-left: 5px;
+}
+.toggle-text {
+    color: #000;
+    font-size: 1.5em;
+    line-height: 1.6em;
+}
+.toggle-text:before {
+    display: none;
+}
+#contentwrap {
+    float: left;
+    width: 100%;
+    background: #fefefe;
+    padding-bottom: 10px;
+}
+.post {
+    border: none;
+    box-shadow: none;
+}
+#header {
+    position: relative;
+}
+##header {
+    background: #ddd;
+    border-bottom: 1px solid;
+}
+.nav_container {
+    background: transparent;
+    position: absolute;
+    color: #000;
+    height: 37px;
+    margin-left: 10px;
+}
+@media screen and (max-width: 767px) {
+main {
+    padding: 0px;
+}
+}
+.post p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    color: #484848;
+    font-family: 'Open Sans',sans-serif;
+    margin: 1.5rem 0rem;
+}
+.related-posts {
+    width: 100%;
+    background: #ddd;
+    margin: 0 0 0px 0;
+    float: left;
+    font-size: 12px;
+    position: relative;
+}
+html, body {
+    background: #f1f1f1;
+}
+.comments-button {
+    margin-left: -1px;
+}
+.related_posts ol li p {
+    display: none;
+}
+.related_posts ol li {
+    margin-bottom: 0px;
+}
+.amp-ad-wrapper {
+    float: left;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    background: #f1f1f1;
+}
+.related_posts .has_related_thumbnail a amp-img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    float: left;
+}
+.amp-ad-1 {
+    margin-top: 0px;
+}
+#footer {
+    float: left;
+    width: 100%;
+    padding-bottom: 80px;
+}
+.related-posts h3 {
+    font-size: 1.2em;
+    color: #ddd;
+    font-family: 'Open Sans',sans-serif;
+    padding: 7px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-left: -12px;
+    padding-left: 5px;
+    text-rendering: optimizeLegibility;
+    text-transform: uppercase;
+    text-align: left;
+    position: absolute;
+    background: #000;
+    z-index: 9999;
+    top: 0px;
+    margin-top: 0px;
+}
+#relatedposts {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+    position: relative;
+}
+.relatedhoverli {
+    width: 100%;
+    float: left;
+    border-bottom: 1px dashed #333;
+    margin-bottom: 10px;
+}
+.relatedhoverli a {
+    width: 32.333%;
+    float: left;
+    margin-left: 1%;
+}
+.relatedcontent {
+    width: 66.6%;
+    float: left;
+    margin-top: 10px;
+}
+#posttags {
+    width: 100%;
+    float: left;
+    background: #ddd;
+}
+#headerwrap {
+    background: #ddd;
+        border-bottom: 3px solid #000;
+}
+.amp-wp-content.the_content {
+    margin-bottom: 0px;
+        float: left;
+}
+main .amp-wp-content {
+    padding: 0px;
+}
+.amp-wp-content.post-title-meta {
+    padding: 15px;
+    margin-bottom: 0px;
+}
+#posttags a {
+    background: transparent;
+    border: 1px solid #161616;
+    padding: 8px;
+    -webkit-transition: 0.25s ease all;
+    transition: 0.25s ease all;
+    font-weight: 700;
+    font-size: 9px;
+    display: inline-block;
+       margin: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.relatedcontent a {
+    width: 98%;
+    font-size: 1.5em;
+    font-weight: 500;
+    font-family: Merriweather\ Sans,sans-serif;
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    padding: 0;
+    line-height: 1.5em;
+    color: #333;
+}
+.related-posts h3:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-top-color: #868686;
+    border-width: 0.75rem 0rem 0 0.75rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+.comments-button {
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    border: 1px solid #333;
+    float: left;
+    padding-bottom: 15px;
+        padding-top: 15px;
+    font-weight: 500;
+    color: #333;
+}
+.disclosure-message p {
+    text-align: center;
+    width: 100%;
+    float: left;
+    padding: 2px;
+    margin: 0px;
+    font-size: 0.4em;
+    margin-top: 10px;
+}
+.postmeta p {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+    color: #7a7a7a;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-align: left;
+}
+.postmeta span {
+    float: none;
+}
+.meta-footer li {
+    width: 25%;
+    float: left;
+    margin-bottom: 10px;
+}
+.social-footer, .meta-footer {
+    width: 100%;
+    float: left;
+}
+.social-link-footer {
+    width: 16.666%;
+}
+span.cb-itemprop {
+    width: 100%;
+    float: left;
+}
+.amp-wp-content .amp-wp-title {
+    text-align: left;
+        font-size: 32px;
+            margin-bottom: 10px;
+                color: #333;
+                margin-top: 0px;
+}
+.featured-image-content .amp-ad-wrapper {
+    margin-top: 0px;
+    padding-top: 10px;
+    background: transparent;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+.amp-wp-meta.amp-wp-tax-category {
+    margin-top: 10px;
+}
+.the_content p {
+    padding-left: 15px;
+    float: left;
+    padding-right: 15px;
+}
+ul.amp-wp-meta {
+    border-bottom: 0px;
+}
+.amp-wp-meta {
+    padding-bottom: 20px;
+}
+.amp-wp-tax-category {
+    width: 100%;
+    float: left;
+    display: inline-block;
+}
+.amp-wp-byline:before {
+    content: "by"
+}
+.amp-wp-meta.amp-wp-tax-category {
+    border-bottom: 0px;
+}
