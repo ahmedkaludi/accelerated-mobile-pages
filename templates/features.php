@@ -52,7 +52,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive()) {
+		if ( is_home() || is_archive() ) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -73,9 +73,7 @@
 				$amp_url = home_url('/?amp');
 			}
 		    elseif ( is_archive() ) {
-	            global $wp;
-	            $archive_current_url = add_query_arg( '', '', home_url( $wp->request ) );
-				$amp_url = $archive_current_url . '/?amp';
+	            return;
 			} else {
 				$amp_url = trailingslashit( get_permalink().'amp' );
 			}
