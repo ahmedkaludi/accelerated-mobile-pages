@@ -17,8 +17,6 @@
   }
   ?>
 
-  <?php do_action('ampforwp_global_after_footer'); ?>
-
 <footer class="container">
         <div id="footer">
           <a href="https://technutty.co.uk">
@@ -63,3 +61,5 @@
             																                       </div>
         </div>
     </footer>
+
+<?php do_action('ampforwp_global_after_footer'); ?>
