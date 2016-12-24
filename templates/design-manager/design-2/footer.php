@@ -22,7 +22,7 @@
 <footer class="container">
         <div id="footer">
           <a href="https://technutty.co.uk">
-<amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo -amp-element -amp-layout-fixed -amp-layout-size-defined -amp-layout" id="AMP_1">
+<amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
 
 </amp-img>
 </a>
