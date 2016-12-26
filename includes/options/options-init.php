@@ -1009,7 +1009,19 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
 
         <a href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_coming-soon&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /></a>',
-        'icon' => 'el el-info-circle',
+        'icon' => 'el el-puzzle',
+    ) );
+
+
+
+// Priority Support
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Fix AMP Errors', 'redux-framework-demo' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-go-premium-support',
+        'subsection' => false,
+        'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
+        'icon' => 'el el-hand-right',
     ) );
 /*
 * <--- END SECTIONS
