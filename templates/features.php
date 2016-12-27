@@ -181,8 +181,12 @@ global $redux_builder_amp;
 <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 <?php } ?>
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-<?php if( is_single() ) { ?><script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+<?php if( is_singular() ) { ?><script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 <?php }  } ?>
+<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
+<?php if( is_front_page() ) { ?>
+<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+<?php } } ?>
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 <?php }
 
