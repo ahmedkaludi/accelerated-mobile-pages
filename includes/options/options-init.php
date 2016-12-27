@@ -327,7 +327,7 @@
                 'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
                 'options'  => array(
                     '1' => __('Design One', 'redux-framework-demo' ),
-                    '2' => __('Design two', 'redux-framework-demo' )
+                    '2' => __('Design Two', 'redux-framework-demo' )
                 ),
                 'default'  => '2'
             ),
