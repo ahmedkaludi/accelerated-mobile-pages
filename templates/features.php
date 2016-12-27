@@ -78,7 +78,7 @@
 				$amp_url = trailingslashit( get_permalink().'amp' );
 			}
 			//checking if the user wants amp page for archives or not
-			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='0') {			
+			if( is_archive() ) {
 				return;
 			} else {
 				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );

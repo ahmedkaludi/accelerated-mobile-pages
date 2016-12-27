@@ -256,7 +256,7 @@
             array(
                 'id'       => 'amp-footer-link-non-amp-page',
                 'type'     => 'switch',
-                'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
+                'title'    => __('Link to Non-AMP page in Footer', 'redux-framework-demo'),
                 'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
                 'true'      => 'true',
                 'false'     => 'false',
@@ -280,20 +280,13 @@
         //     'placeholder'=>'Navigate',
         //     'default'  => 'Navigate'
         // ),
-            array(
-              'id'       => 'ampforwp-amp-archive-pages-on-off',
-            'type'     => 'switch',
-            'title'    => __('AMP on Archive Pages', 'redux-framework-demo'),
-            'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false'
-            ),
+
             array(
                 'id'        =>'amp-on-off-for-all-pages',
                 'type'      => 'switch',
                 'title'     => __('AMP on Pages', 'redux-framework-demo'),
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-                'default'   => 0,
+                'default'   => 1,
             ),
             array(
                 'id'        =>'amp-on-off-support-for-non-amp-home-page',
