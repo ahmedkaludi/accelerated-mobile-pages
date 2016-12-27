@@ -847,7 +847,7 @@ function remove_this(){
 			if( is_single() || is_page() ){
 				 global $post;
 				 $title = $post->post_title;
-				 echo $title . ' | ' . get_option( 'blogdescription' ) ;
+				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
 			// title for archive pages
 			if ( is_archive() ) {
