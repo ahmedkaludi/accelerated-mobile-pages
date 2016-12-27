@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.2.1
+Stable tag: 0.9.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,16 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.2.2 [27th December 2016] =
+* Proper Details at https://ampforwp.com/polishing-user-experience-improvements/
+* Made the Options panel user-friendly
+* Social Share on frontpage issue fixed.
+* Readme.txt made user-friendly.
+* Archive option removed and some UI improvements
+* Single was not displaying the Title
+* 'Type is not allowed' [Validation issue fixed]
+* noshade tag Validation issue fixed
 
 = 0.9.2.1 [24th December 2016] =
 * Proper Details at https://ampforwp.com/step-towards-fixing-amp-validation-errors/

@@ -7,24 +7,25 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.2.1
+Stable tag: 0.9.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
-Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP WP is a plugin that needs to no configuration, just activate it and you are done.
+Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP makes your website faster for Mobile visitors.
 
-[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](http://ampforwp.com/priority-support/) | [View Demo](http://ampforwp.com/demo/?amp) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
+[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
 
 > <strong>Extensions</strong><br>
-> Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
+> Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). 
 >
 > <strong>Premium Support</strong><br>
-> We try our best to provide support on WordPress.org forums. However, One-on-one email support is available to people who bought the [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) only.
->	
+> We try our best to provide support on WordPress.org forums. However, One-on-one email support is available to people who bought the [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) only. 
+>
 > <strong>Bug Reports</strong><br>
 > Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages). Please note GitHub is _not_ a support forum, and issues that aren't properly qualified as bugs will be closed.
 
@@ -71,20 +72,18 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Piwik & Segment.com Support
 * Great Support & Active Development.
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
-
-
 **NOTE:** Next Update of this plugin will be released by end of Dec 2016.
-
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
-**How to test if AMP is working or not?**
-After you install the plugin, Google will automatically index the amp pages using the amp tag and then show you the updates in the search console.
+= Getting Started: =
+**[1. User Documentation:](http://ampforwp.com/help/)** The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
+**[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
+**[3. Fixing AMP Validation Errors:](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin)** We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
+**[4. Community Support Forum:](https://ampforwp.com/help/#support-forum)** We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.
+**[5. Frequently Asked Questions:](http://ampforwp.com/faq/)** Some of the Frequently Asked questions.
 
-**How can I view the AMP version of my site**
-To view the AMP version, add /?amp at the end of your url. An example would be http://Website.com/?amp .... and No, you don't have to worry about duplication of the content because that has been taken care of the canonical tag as suggested by Google.
-
+= Issues & Bug Reports: =
 **How do I Report Bugs and Suggest New Features**
 <i>You</i> can report the bugs at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues
 
@@ -96,40 +95,15 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Installation ==
-1. Upload the folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. You can access your amp enabled website by adding ?amp at the end of the url.
+**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
+
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+
+**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
 
 
 == Frequently Asked Questions ==
-= How to Setup Navigation Menu? =
-We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.
-
-= I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest? =
-
-After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.
-
-= The plugin supposed to redirect all mobile visitors to AMP version of site or not? =
-When you view the website from the mobile, it is not supposed to redirect you to the amp version, amp version is always ready for google in the backend, if Google wants to serve to the people, then it will get the amp version and serve to the customers.
-
-= I am worried that it will cause Duplicate content? =
-In the AMP version, we are using Canonical tag to solve this. I am 100% sure that using this plugin will not duplicate the content.
-
-= How do I know that my site is AMP enabled? =
-Add /?amp at the end of your website url and you will get amp version of your website.
-
-= I have addded /?amp at the end of the url and still I am not able to see the AMP version of my site? =
-Please check if you have "Pretty Permalinks" enabled. If not then activate it.
-
-= How do I report Bug reports? =
-Before you submit a new bug, please check if there already is an existing bug report for it. If so, it may be far more valuable to add to the existing one, than to create a new bug report. You can submit bug reports and feature requests at GitHub Issues Page.
-
-= How do I know that my site is AMP enabled? =
-Add /?amp at the end of your website url and you will get amp version of your website.
-
-= I have addded /?amp at the end of the url and still I'm not able to see the AMP version of my site? =
-Please check if you have "Pretty Permalinks" enabled. If not then activate it. For more details about Pretty Permalinks check out this wonderful article https://codex.wordpress.org/Using_Permalinks
-
+**[View The Full FAQ at:](http://ampforwp.com/faq/)**
 
 
 == Screenshots ==
@@ -138,9 +112,25 @@ Please check if you have "Pretty Permalinks" enabled. If not then activate it. F
 3. Post Navigation in Single
 4. Sticky Social sharing icons
 5. Overlay Navigation menu sidebar.
+6. Page builder of the Single article. You can drag and drop any element.
+7. Single post of Design One
+8. GTMetrix Performance Report
+9. Google PageSpeed Insight report for AMP
+10. Homepage of Design One
+11. Pingdom Speed Report for AMP
 
 
 == Changelog ==
+
+= 0.9.2.2 [27th December 2016] =
+* Proper Details at https://ampforwp.com/polishing-user-experience-improvements/
+* Made the Options panel user-friendly
+* Social Share on frontpage issue fixed.
+* Readme.txt made user-friendly.
+* Archive option removed and some UI improvements
+* Single was not displaying the Title
+* 'Type is not allowed' [Validation issue fixed]
+* noshade tag Validation issue fixed
 
 = 0.9.2.1 [24th December 2016] =
 * Proper Details at https://ampforwp.com/step-towards-fixing-amp-validation-errors/
