@@ -92,9 +92,11 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Installation ==
-1. Upload the folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. You can access your amp enabled website by adding ?amp at the end of the url.
+**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
+
+[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+
+**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
 
 
 == Frequently Asked Questions ==
