@@ -38,9 +38,13 @@
 								<h3><?php echo esc_html( $redux_builder_amp['amp-translator-related-text'] ); ?></h3>
 								<?php
 						    	while( $my_query->have_posts() ) {
-								    $my_query->the_post();?>
+								    $my_query->the_post();
+										$related_post_permalink = get_permalink();
+										$related_post_permalink = trailingslashit($related_post_permalink);
+										$related_post_permalink = $related_post_permalink . AMP_QUERY_VAR
+										?>
 									<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
-                                        <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+                                        <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( has_post_thumbnail() ) {
 								            $thumb_id_2 = get_post_thumbnail_id();
 								            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
@@ -49,7 +53,7 @@
 										<?php } ?>
                                         </a>
 						                <div class="related_link">
-						                    <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
+						                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 						                    <?php
 																if(has_excerpt()){
 																	$content = get_the_excerpt();
