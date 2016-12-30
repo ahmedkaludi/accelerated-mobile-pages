@@ -43,6 +43,9 @@
 	require 'design-manager.php';
 	require 'customizer/customizer.php';
 
+	// Custom AMP Content
+	require 'custom-amp-content.php';
+
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
 
