@@ -33,7 +33,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
     if ( $amp_custom_content ) {
     	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
     	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
-    	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_scripts();
+    	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
     }
 
     return $data;
@@ -52,18 +52,18 @@ add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
 
 function amp_content_editor_title_callback( $post ) {
 
-  wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' ); 
+  wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
   $amp_content_on_off = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
   $amp_content_on_off = esc_attr($amp_content_on_off);
   ?>
-  <!--HTML content starts here-->    
+  <!--HTML content starts here-->
 
     <label for="meta-checkbox">
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
     		<?php _e( 'Use This Content as AMP Content' )?>   </p>
-    </label> 
-    
+    </label>
+
   <!--HTML content Ends here-->
   <?php
   $content 		= get_post_meta ( $post->ID, 'ampforwp_custom_content_editor', true );
