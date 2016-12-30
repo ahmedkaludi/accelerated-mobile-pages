@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;  
+<?php global $redux_builder_amp;
 $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
@@ -7,11 +7,11 @@ $template = new AMP_Post_Template( $post_id );?>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-	<?php 	
+	<?php
 		$amp_component_scripts = $template->data['amp_component_scripts'];
 		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
-			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php	
-		} ?>		
+			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
+		} ?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
@@ -23,12 +23,18 @@ $template = new AMP_Post_Template( $post_id );?>
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
-	<div class="amp-wp-content the_content"> <?php 
+	<div class="amp-wp-content the_content"> <?php
 
-		do_action( 'ampforwp_before_post_content', $this );
-		// Front Page Content
-		$ampforwp_post_content = $template->data['post_amp_content'];
-		echo $ampforwp_post_content;
+		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);
+
+
+		// Normal Front Page Content
+		if ( ! $amp_custom_content_enable ) {
+			echo $template->data['post_amp_content'];
+		} else {
+			// Custom/Alternative AMP content added through post meta
+			echo $template->data['ampforwp_amp_content'];
+		}	
 
 		do_action( 'ampforwp_after_post_content', $this ); ?>
 
