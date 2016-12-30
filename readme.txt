@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.2.2.1
+Stable tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,11 +29,11 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
-* NEW - DoubleClick Support 
 * NEW - Custom Post Type Support 
 * NEW - Star Ratings  
-* NEW - Drag & Drop Page builder Added 
+* Drag & Drop Page builder Added 
 * 2 Designs Added 
 * Yoast SEO support on AMP pages
 * AMP WooCommerce Support 
@@ -67,6 +67,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Custom AMP FrontPage
 * Notifications
 * Piwik & Segment.com Support
+* Incontent & DoubleClick Support
 * Great Support & Active Development.
 
 **NOTE:** Next Update of this plugin will be released by end of Dec 2016.
@@ -75,9 +76,13 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Getting Started: =
 **[1. User Documentation:](http://ampforwp.com/help/)** The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
+
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
+
 **[3. Fixing AMP Validation Errors:](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin)** We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
+
 **[4. Community Support Forum:](https://ampforwp.com/help/#support-forum)** We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.
+
 **[5. Frequently Asked Questions:](http://ampforwp.com/faq/)** Some of the Frequently Asked questions.
 
 = Issues & Bug Reports: =
@@ -118,6 +123,12 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.3 [31th December 2016] =
+* Proper Details at https://ampforwp.com/custom-amp-content-editor/
+* Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
+* FrontPage had some validation issues. [Bug fix]
+* Related posts in Design 1 we're redirecting to 404 fixed [Bug fix]
 
 = 0.9.2.2 [27th December 2016] =
 * Proper Details at https://ampforwp.com/polishing-user-experience-improvements/
