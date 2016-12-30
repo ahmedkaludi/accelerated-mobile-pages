@@ -25,11 +25,20 @@ $template = new AMP_Post_Template( $post_id );?>
 	<div class="amp-wp-content the_content"> <?php 
 
 		do_action( 'ampforwp_before_post_content', $this );
-		// Front Page Content
-		$ampforwp_post_content = $template->data['post_amp_content'];
-		echo $ampforwp_post_content;
 
-		do_action( 'ampforwp_after_post_content', $this ); ?>
+		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);
+
+
+		// Normal Front Page Content
+		if ( ! $amp_custom_content_enable ) {
+			echo $template->data['post_amp_content'];
+		} else {
+			// Custom/Alternative AMP content added through post meta  
+			echo $template->data['ampforwp_amp_content'];
+		}	
+
+		do_action( 'ampforwp_after_post_content', $this );
+		?>
 		 
 	</div>
 
