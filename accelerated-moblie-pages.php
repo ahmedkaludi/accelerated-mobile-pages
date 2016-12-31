@@ -101,7 +101,7 @@ if ( is_admin() ) {
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}else{
-						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('Please Activate Parent plugin', 'ampforwp') . '</a>');
+						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('Click here to activate parent plugin', 'ampforwp') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
 					}
 					}
