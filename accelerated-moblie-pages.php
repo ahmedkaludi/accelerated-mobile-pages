@@ -43,12 +43,14 @@ if ( is_admin() ) {
 
 				<div class="notice notice-error is-dismissible">
 					<strong>
-				        <p>	
+						<?php add_thickbox(); ?>
+				        <p>
 				        	<?php _e( 'AMP Plugin is Not Active', 'ampforwp' ); ?>
-				        	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="http://localhost/wordpress/wp-admin/plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Begin Installtion', 'ampforwp' ); ?></a> | <a href="" class="dismiss-n" target="_parent"> <?php _e( 'More Information', 'ampforwp' ); ?> </a></span>
+				        	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="http://localhost/wordpress/wp-admin/plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Begin Installtion', 'ampforwp' ); ?></a> | <a href="http://www.youtube.com/embed/9R-74bc2kEQ?TB_iframe=true" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.youtube.com/embed/9R-74bc2kEQ?TB_iframe=true']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
+				        	</span>
 				        </p>
 				    </strong>
-			    </div><?php
+				</div> <?php
 			}
 
 			add_action('admin_head','ampforwp_required_plugin_styling');
@@ -69,21 +71,19 @@ if ( is_admin() ) {
 					.plugin-card.plugin-card-amp .column-name a,
 					.plugin-card.plugin-card-amp .column-description a,					
 					.plugin-card.plugin-card-amp .column-description p {
-
 						color: #fff;
 					}
 					.plugin-card-amp .plugin-card-bottom {					
 						background: rgba(229, 255, 80, 0);
 					}
-				</style>
-			<?php }
+				</style> <?php
+			}
 		}
 		
 	}
 
- // Add Settings Button in Plugin backend
+ 	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
-
 
  		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
 
