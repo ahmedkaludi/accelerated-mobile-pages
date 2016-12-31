@@ -115,18 +115,20 @@ function ampforwp_page_template_redirect() {
 }
 
 add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 ); 
-add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 ); 
 
+add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 ); 
 function ampforwp_page_template_redirect_archive() {
 
-	if( is_archive() ) {
-		if ( is_amp_endpoint() ) {
+	if ( is_archive() || is_404() ) {
+		if( is_amp_endpoint() ) { 
 			global $wp;
-			$archive_current_url = add_query_arg( '', '', home_url( $wp->request ) ); 
-			$archive_current_url  = trailingslashit($archive_current_url );
+			$archive_current_url 	= add_query_arg( '', '', home_url( $wp->request ) ); 
+			$archive_current_url	= trailingslashit($archive_current_url );
+			if (is_404() ) {
+				$archive_current_url = dirname($archive_current_url);
+			}		
 			wp_redirect( esc_url( $archive_current_url )  , 301 );
 			exit();
 		}
-	}  
-
+	}
 }
