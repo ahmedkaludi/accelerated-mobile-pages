@@ -34,6 +34,52 @@ define('AMPFORWP_VERSION','0.9.3');
 */
 
 if ( is_admin() ) {
+	add_action('init','ampforwp_plugin_notice');
+	function  ampforwp_plugin_notice() {
+
+		if ( ! defined( 'AMP__FILE__' ) ) {	
+			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
+			function ampforwp_plugin_not_found_notice() { ?>	
+
+				<div class="notice notice-error is-dismissible">
+					<strong>
+				        <p>	
+				        	<?php _e( 'AMP Plugin is Not Active', 'ampforwp' ); ?>
+				        	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="http://localhost/wordpress/wp-admin/plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Begin Installtion', 'ampforwp' ); ?></a> | <a href="" class="dismiss-n" target="_parent"> <?php _e( 'More Information', 'ampforwp' ); ?> </a></span>
+				        </p>
+				    </strong>
+			    </div><?php
+			}
+
+			add_action('admin_head','ampforwp_required_plugin_styling');
+			function ampforwp_required_plugin_styling() { ?>
+				<style> 
+					.plugin-card.plugin-card-amp:before{
+						content: "Activate this plugin";
+						font-weight: bold;
+						left: 40%;
+						position: relative;
+						top: 5px; 
+						font-size: 18px;
+					}
+					.plugin-card.plugin-card-amp {
+						background: #0073aa;
+						color: #fff;
+					}
+					.plugin-card.plugin-card-amp .column-name a,
+					.plugin-card.plugin-card-amp .column-description a,					
+					.plugin-card.plugin-card-amp .column-description p {
+
+						color: #fff;
+					}
+					.plugin-card-amp .plugin-card-bottom {					
+						background: rgba(229, 255, 80, 0);
+					}
+				</style>
+			<?php }
+		}
+		
+	}
 
  // Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
@@ -130,4 +176,4 @@ function ampforwp_page_template_redirect_archive() {
 			exit();
 		}
 	}
-}
+} 
