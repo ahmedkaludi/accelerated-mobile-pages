@@ -55,7 +55,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive() ) {
+		// if ( is_home() ) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -65,31 +65,31 @@
 				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
 			}
 
-		}
+		// }
 	}
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		if ( is_home() || is_front_page() || is_archive() ) {
-
-			if ( is_home() || is_front_page()  ){
-				$amp_url = home_url('/?amp');
-			}
-		    elseif ( is_archive() ) {
-	            return;
-			} else {
-				$amp_url = trailingslashit( get_permalink().'amp' );
-			}
-			//checking if the user wants amp page for archives or not
-			if( is_archive() ) {
-				return;
-			} else {
-				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
-			}
-		
-			// end of checking if the user wants amp page for archives or not
+		if( is_archive() ) {
+			return;
 		}
+		if ( is_home() || is_front_page()  ){
+			$amp_url = home_url('/?amp');
+		}
+	    else {
+			$amp_url = amp_get_permalink( get_queried_object_id() );
+		}		
+		printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );	
 	} //end of ampforwp_home_archive_rel_canonical()
+
+
+	// Remove default wordpress rel canonical 
+	add_filter('amp_frontend_show_canonical','ampforwp_remove_default_canonical');
+	if (! function_exists('ampforwp_remove_default_canonical') ) {
+		function ampforwp_remove_default_canonical() {
+			return false;
+		}
+	}
 
 	// 2. Custom Design
 
