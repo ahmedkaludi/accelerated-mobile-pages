@@ -7,10 +7,9 @@
 			'post_id' => $postID,
 			'status' => 'approve' //Change this to the type of comments to be displayed
 	));
-
 	if ( $comments ) { ?>
 		<div class="amp-wp-content comments_list">
-				<h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
+				<h3><?php  echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
 				<ul>
 					<?php
 					// Display the list of comments
@@ -143,9 +142,9 @@
 				), $comments);  ?>
 		    </ul>
 		</div>
-		<div class="comment-button-wrapper">
-		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-		</div><?php
-	}
-?>
+		<?php
+	}?>
+	<div class="comment-button-wrapper">
+			<a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+	</div>
 </div>

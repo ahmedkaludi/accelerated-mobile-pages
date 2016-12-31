@@ -17,8 +17,12 @@
 
 <article class="amp-wp-article">
 	<?php do_action('ampforwp_post_before_design_elements') ?>
-	
+
 	<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
+
+	<div class="comment-button-wrapper">
+			<a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+	</div>
 
 	<?php do_action('ampforwp_post_after_design_elements') ?>
 </article>
