@@ -34,7 +34,6 @@ define('AMPFORWP_VERSION','0.9.3');
 */
 
 if ( is_admin() ) {
- 	require_once AMPFORWP_PLUGIN_DIR . '/classes/class-tgm-plugin-activation.php';
 
  // Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
