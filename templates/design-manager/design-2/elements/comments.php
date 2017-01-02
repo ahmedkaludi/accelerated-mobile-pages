@@ -142,9 +142,7 @@
 				), $comments);  ?>
 		    </ul>
 		</div>
-<div class="comment-button-wrapper">
-		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-		</div><?php
+<?php
 	}
 ?>
 </div>

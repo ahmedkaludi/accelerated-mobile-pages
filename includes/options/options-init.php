@@ -165,6 +165,13 @@
         'subsection' => true,
         'fields'     => array(
              array(
+                'id'       => 'ampforwp-static-comments-button',
+                'type'     => 'switch',
+                'title'    => __('Comments Button', 'redux-framework-demo'),
+                'subtitle' => __('Adds a static comments button on your posts which redirects your users to comments section of you actual website', 'redux-framework-demo'),
+                'default' => 0,
+            ),
+             array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
                 'url'      => true,
