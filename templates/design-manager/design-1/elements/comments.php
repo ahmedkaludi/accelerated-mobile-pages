@@ -9,8 +9,8 @@
 	));
 	if ( $comments ) { ?>
 		<div class="amp-wp-content comments_list">
-				<h3><?php  echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
-				<ul>
+            <h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
+            <ul>
 					<?php
 					// Display the list of comments
 				function ampforwp_custom_translated_comment($comment, $args, $depth){
@@ -142,9 +142,8 @@
 				), $comments);  ?>
 		    </ul>
 		</div>
-		<?php
-	}?>
-	<div class="comment-button-wrapper">
-			<a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-	</div>
+		<div class="comment-button-wrapper">
+		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+		</div>
+    <?php } ?>
 </div>
