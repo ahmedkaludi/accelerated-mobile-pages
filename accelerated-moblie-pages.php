@@ -42,14 +42,13 @@ if ( is_admin() ) {
 			function ampforwp_plugin_not_found_notice() { ?>	
 
 				<div class="notice notice-error is-dismissible">
-					<strong>
+					
 						<?php add_thickbox(); ?>
 				        <p>
-				        	<?php _e( 'AMP Plugin is Not Active', 'ampforwp' ); ?>
-				        	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="http://localhost/wordpress/wp-admin/plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Begin Installtion', 'ampforwp' ); ?></a> | <a href="http://www.youtube.com/embed/9R-74bc2kEQ?TB_iframe=true" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.youtube.com/embed/9R-74bc2kEQ?TB_iframe=true']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
-				        	</span>
+                        <strong><?php _e( 'AMP Installation requires one last step:', 'ampforwp' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'ampforwp' ); ?>
+				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
+                             </span> </strong>
 				        </p>
-				    </strong>
 				</div> <?php
 			}
 
@@ -57,15 +56,18 @@ if ( is_admin() ) {
 			function ampforwp_required_plugin_styling() { ?>
 				<style> 
 					.plugin-card.plugin-card-amp:before{
-						content: "Activate this plugin";
-						font-weight: bold;
-						left: 40%;
-						position: relative;
-						top: 5px; 
-						font-size: 18px;
+                        content: "Install & Activate this plugin ↓";
+                        font-weight: bold;
+                        left: 50%;
+                        position: relative;
+                        top: 9px;
+                        font-size: 16px;
 					}
+                    .plugin-action-buttons a{
+                        color: #fff
+                    }
 					.plugin-card.plugin-card-amp {
-						background: #0073aa;
+						background: rgb(0, 165, 92);
 						color: #fff;
 					}
 					.plugin-card.plugin-card-amp .column-name a,
@@ -101,7 +103,7 @@ if ( is_admin() ) {
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}else{
-						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('Click here to activate parent plugin', 'ampforwp') . '</a>');
+						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
 					}
 					}
