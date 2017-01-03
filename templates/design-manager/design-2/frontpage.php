@@ -22,7 +22,12 @@ $template = new AMP_Post_Template( $post_id );?>
 </head>
 <body class="single-post">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-
+<h1 id='title'>
+	<?php global  $redux_builder_amp;
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				echo get_the_title( $ID ) ;
+	?>
+</h1>
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
@@ -34,7 +39,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		} else {
 			// Custom/Alternative AMP content added through post meta
 			echo $template->data['ampforwp_amp_content'];
-		}	
+		}
 
 		do_action( 'ampforwp_after_post_content', $this ); ?>
 

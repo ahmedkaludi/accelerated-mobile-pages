@@ -405,7 +405,7 @@ main .amp-wp-content.featured-image-content {
 	box-shadow: none
 }
 .amp-wp-content.post-pagination-meta{
-    max-width: 1030px;    
+    max-width: 1030px;
 }
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper {
     display: block;
@@ -812,7 +812,10 @@ amp-user-notification button {
 	    max-width: 100%;
 	}
 
-
+/*title for Front page*/
+#title {
+  text-align: center;
+}
 
 
 	/* Custom Style Code */

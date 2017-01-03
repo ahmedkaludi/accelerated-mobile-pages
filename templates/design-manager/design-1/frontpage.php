@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;  
+<?php global $redux_builder_amp;
 $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
@@ -18,14 +18,22 @@ $template = new AMP_Post_Template( $post_id );?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
+	#title{
+		text-align: center;
+	}
 	</style>
 </head>
 <body class="single-post amp-wp-frontpage">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-
+	<h1 id='title'>
+		<?php global  $redux_builder_amp;
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					echo get_the_title( $ID ) ;
+		?>
+	</h1>
 	<?php do_action( 'ampforwp_after_header', $this );  ?>
 
-	<div class="amp-wp-content the_content"> <?php 
+	<div class="amp-wp-content the_content"> <?php
 
 		do_action( 'ampforwp_before_post_content', $this );
 
@@ -33,13 +41,13 @@ $template = new AMP_Post_Template( $post_id );?>
 		if ( ! $amp_custom_content_enable ) {
 			echo $template->data['post_amp_content'];
 		} else {
-			// Custom/Alternative AMP content added through post meta  
+			// Custom/Alternative AMP content added through post meta
 			echo $template->data['ampforwp_amp_content'];
-		}	
+		}
 
 		do_action( 'ampforwp_after_post_content', $this );
 		?>
-		 
+
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
