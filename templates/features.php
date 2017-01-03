@@ -78,12 +78,19 @@
 		}
 	    else {
 			$amp_url = amp_get_permalink( get_queried_object_id() );
-		}		
-		printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );	
+		}
+
+				global $post;
+				$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
+				if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+					//dont Echo anything
+				} else {
+					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+				}
 	} //end of ampforwp_home_archive_rel_canonical()
 
 
-	// Remove default wordpress rel canonical 
+	// Remove default wordpress rel canonical
 	add_filter('amp_frontend_show_canonical','ampforwp_remove_default_canonical');
 	if (! function_exists('ampforwp_remove_default_canonical') ) {
 		function ampforwp_remove_default_canonical() {
@@ -482,8 +489,8 @@ global $redux_builder_amp;
 			add_filter( 'wp_footer', 'ampforwp_the_content_filter_footer', 1 );
 		}
 		function ampforwp_the_content_filter_footer( $content ) {
-            remove_all_actions('wp_footer'); 
-				return $content; 
+            remove_all_actions('wp_footer');
+				return $content;
 		}
 
 	// 11.5 Strip unwanted codes the_content of Frontpage
@@ -697,35 +704,35 @@ function ampforwp_remove_print_scripts() {
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 17. Archives Canonical in AMP version
-function ampforwp_rel_canonical_archive() {
-    if ( !is_archive() )
-    	return;
-			global $wp;
-			$current_archive_url = home_url( $wp->request );
-			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-  		echo "<link rel='canonical' href='$current_archive_url' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
+// function ampforwp_rel_canonical_archive() {
+//     if ( !is_archive() )
+//     	return;
+// 			global $wp;
+// 			$current_archive_url = home_url( $wp->request );
+// 			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//   		echo "<link rel='canonical' href='$current_archive_url' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 
 // 18. Custom Canonical for Homepage
-function ampforwp_rel_canonical() {
-    if ( !is_home() )
-    return;
-//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-    $homelink = get_home_url();
-    echo "<link rel='canonical' href='$homelink' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
+// function ampforwp_rel_canonical() {
+//     if ( !is_home() )
+//     return;
+// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//     $homelink = get_home_url();
+//     echo "<link rel='canonical' href='$homelink' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
 
 // 18.5. Custom Canonical for Frontpage
-//function ampforwp_rel_canonical_frontpage() {
+// function ampforwp_rel_canonical_frontpage() {
 //    if ( is_home() || is_front_page() )
 //    return;
-////    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
 //    $homelink = get_home_url();
 //    echo "<link rel='canonical' href='$homelink' />\n";
-//}
-//add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
@@ -874,3 +881,15 @@ function remove_this(){
 	}
 }
 //End of 26
+
+
+// 27.
+add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
+
+function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
+	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
+	if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+		$skip = true;
+	}
+    return $skip;
+}
