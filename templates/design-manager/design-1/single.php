@@ -20,12 +20,6 @@
 
 	<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
 
-<?php global $redux_builder_amp; if ( $redux_builder_amp[ 'ampforwp-static-comments-button' ] ) { ?>
-	<div class="comment-button-wrapper">
-			<a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-	</div>
-<?php } ?>
-
 	<?php do_action('ampforwp_post_after_design_elements') ?>
 </article>
 
