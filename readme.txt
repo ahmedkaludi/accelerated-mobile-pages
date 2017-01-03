@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.3
+Stable tag: 0.9.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.31 [2nd Jan 2017] =
+* Proper Details at https://ampforwp.com/amp-0-9-31-released-installation-user-experience/
+* Proper Condition added for the scripts to load in Frontpage.php
+* Rel canonical properly added for front pages
+* 404 and Archive page Mobile redirection code refined
+* User Experience Improvement: Installation process was improved
 
 = 0.9.3 [31th December 2016] =
 * Proper Details at https://ampforwp.com/custom-amp-content-editor/

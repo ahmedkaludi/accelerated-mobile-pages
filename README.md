@@ -1,13 +1,10 @@
-#AMP for WP - Accelerated Mobile Pages
-The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. More details on https://wordpress.org/plugins/accelerated-mobile-pages/ & http://AMPforWP.com
-
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.3
+Stable tag: 0.9.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,11 +29,11 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
-* NEW - DoubleClick Support 
 * NEW - Custom Post Type Support 
 * NEW - Star Ratings  
-* NEW - Drag & Drop Page builder Added 
+* Drag & Drop Page builder Added 
 * 2 Designs Added 
 * Yoast SEO support on AMP pages
 * AMP WooCommerce Support 
@@ -70,6 +67,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Custom AMP FrontPage
 * Notifications
 * Piwik & Segment.com Support
+* Incontent & DoubleClick Support
 * Great Support & Active Development.
 
 **NOTE:** Next Update of this plugin will be released by end of Dec 2016.
@@ -125,6 +123,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.31 [2nd Jan 2017] =
+* Proper Details at https://ampforwp.com/amp-0-9-31-released-installation-user-experience/
+* Proper Condition added for the scripts to load in Frontpage.php
+* Rel canonical properly added for front pages
+* 404 and Archive page Mobile redirection code refined
+* User Experience Improvement: Installation process was improved
 
 = 0.9.3 [31th December 2016] =
 * Proper Details at https://ampforwp.com/custom-amp-content-editor/
