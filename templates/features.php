@@ -74,7 +74,9 @@
 			return;
 		}
 		if ( is_home() || is_front_page()  ){
-			$amp_url = home_url('/?amp');
+			global $wp;
+      $current_archive_url = home_url( $wp->request );
+			$amp_url = trailingslashit($current_archive_url).'?amp';
 		}
 	    else {
 			$amp_url = amp_get_permalink( get_queried_object_id() );
