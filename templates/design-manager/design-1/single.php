@@ -19,7 +19,21 @@
 	<?php do_action('ampforwp_post_before_design_elements') ?>
 
 	<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
+	<?php
+	global $redux_builder_amp;
 
+	$data = get_option( 'ampforwp_design' );
+	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+		$options = explode( ',', $data['elements'] );
+
+	}
+	$values = array_values($options );
+	if( in_array('comments:0',$values) ){
+	 ?>
+			<div class="comment-button-wrapper">
+			    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+			</div>
+	<?php } ?>
 	<?php do_action('ampforwp_post_after_design_elements') ?>
 </article>
 
