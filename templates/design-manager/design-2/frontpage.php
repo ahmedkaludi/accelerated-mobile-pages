@@ -25,7 +25,9 @@ $template = new AMP_Post_Template( $post_id );?>
 <h1 id='title'>
 	<?php global  $redux_builder_amp;
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				echo get_the_title( $ID ) ;
+				if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
+					echo get_the_title( $ID ) ;
+				}
 	?>
 </h1>
 <?php do_action( 'ampforwp_after_header', $this ); ?>
