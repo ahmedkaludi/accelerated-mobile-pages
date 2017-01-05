@@ -5,6 +5,9 @@ $template = new AMP_Post_Template( $post_id );?>
 <html amp>
 <head>
 	<meta charset="utf-8">
+	<link rel="canonical" href="<?php
+	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	echo get_permalink( $ID ) ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php

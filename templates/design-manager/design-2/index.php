@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+    <link rel="canonical" href="<?php echo get_bloginfo('url') ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
@@ -20,7 +21,7 @@
 <main>
 
 
- 	<?php if ( is_archive() ) { 
+ 	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} ?>
