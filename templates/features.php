@@ -479,6 +479,13 @@ global $redux_builder_amp;
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+/// simpy add more elements to simply strip tag but not the content as so
+/// Array ("p","font");
+$tags_to_strip = Array("thrive_headline" );
+foreach ($tags_to_strip as $tag)
+{
+   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
+}
 
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
