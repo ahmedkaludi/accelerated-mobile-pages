@@ -4,7 +4,14 @@
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-		<link rel="canonical" href="<?php echo get_bloginfo('url') ?>">
+<?php
+global $redux_builder_amp;
+if ( is_home() || is_front_page()  ){
+	global $wp;
+	$current_archive_url = home_url( $wp->request );
+	$amp_url = trailingslashit($current_archive_url);
+} ?>
+	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
