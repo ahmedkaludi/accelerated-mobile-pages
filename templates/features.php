@@ -706,15 +706,12 @@ function ampforwp_remove_print_scripts() {
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 17. Archives Canonical in AMP version
-function ampforwp_rel_canonical_archive() {
-    if ( !is_archive() )
-    	return;
-			global $wp;
-			$current_archive_url = home_url( $wp->request );
-			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-  		echo "<link rel='canonical' href='$current_archive_url' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
+// function ampforwp_rel_canonical_archive() {
+//
+// 			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//   		echo "<link rel='canonical' href='$current_archive_url' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 
 // 18. Custom Canonical for Homepage
 // function ampforwp_rel_canonical() {
@@ -727,14 +724,14 @@ add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 // add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
 
 // 18.5. Custom Canonical for Frontpage
-function ampforwp_rel_canonical_frontpage() {
-   if ( is_home() || is_front_page() )
-   return;
-//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-   $homelink = get_home_url();
-   echo "<link rel='canonical' href='$homelink' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
+// function ampforwp_rel_canonical_frontpage() {
+//    if ( is_home() || is_front_page() )
+//    return;
+// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//    $homelink = get_home_url();
+//    echo "<link rel='canonical' href='$homelink' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
@@ -782,7 +779,11 @@ function ampforwp_sticky_social_icons(){
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
-		    	<amp-social-share type="twitter"    width="50" height="28"></amp-social-share>
+		    	<amp-social-share type="twitter"
+		    										width="50"
+		    										height="28"
+														data-param-url="CANONICAL_URL"
+		    	></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 		    	<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
@@ -875,7 +876,7 @@ function remove_this(){
 				}
 			// title for index page
 			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
-						echo  bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
+						echo  get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
 				}
 				  ?>
 		 </title>
