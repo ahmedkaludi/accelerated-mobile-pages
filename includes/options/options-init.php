@@ -299,7 +299,7 @@
             array(
                 'id'        =>'amp-on-off-support-for-non-amp-home-page',
                 'type'      => 'switch',
-                'title'     => __('Non-AMP HomePage link in Header', 'redux-framework-demo'),
+                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
                 'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
             ),
@@ -661,6 +661,14 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     			        '2' => 'Categories'
     		        ),
                'default'  => '2',
+	        ),
+	        array(
+    		        'id'       => 'ampforwp-number-of-related-posts',
+    		        'type'     => 'text',
+    		        'title'    => __('Number of Related Post', 'redux-framework-demo'),
+                'subtitle' => __('Type the number of related posts you need, Eg : 2', 'redux-framework-demo'),
+    		        'validate' => 'numeric',
+                'default'  => '3',
 	        ),
         ),
 
