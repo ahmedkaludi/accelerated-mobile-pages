@@ -572,7 +572,9 @@ amp-carousel > amp-img > img {
 	    padding:0
 	}
 	.comments_list ul.children{
-	    padding-bottom:10px;
+	    padding-bottom:10px; 
+		margin-left: 4%;
+		width: 96%;
 	}
 	.comments_list ul li p{
         margin: 0;
@@ -594,6 +596,7 @@ amp-carousel > amp-img > img {
 	    box-shadow: 0 2px 3px rgba(0,0,0,.05);
 	    padding: 0px;
 	    max-width: 1000px;
+    	width:96%;
 	}
     .comments_list ul li .says{
         margin-right: 4px;
