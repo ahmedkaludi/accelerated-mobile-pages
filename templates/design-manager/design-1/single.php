@@ -28,8 +28,9 @@
 
 	}
 	$values = array_values($options );
-	if( in_array('comments:0',$values) ){
-	 ?>
+	global $post;
+	$comments_count = wp_count_comments($post->ID);
+	if( in_array('comments:0',$values) || $comments_count->approved == 0  ) { ?>
 			<div class="comment-button-wrapper">
 			    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 			</div>
