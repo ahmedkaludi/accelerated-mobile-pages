@@ -172,14 +172,7 @@
                 'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
-             array(
-                'id'       => 'ampforwp-title-on-front-page',
-                'type'     => 'switch',
-                'url'      => true,
-                'title'    => __('Title on Static Front Page', 'redux-framework-demo'),
-                'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
-                'default' => 0,
-            ),
+
             array(
                 'id'       => 'amp-mobile-redirection',
                 'type'     => 'switch',
@@ -251,6 +244,15 @@
                 ),
                 'default'  => '2',
             ),
+            array(
+               'id'       => 'ampforwp-title-on-front-page',
+               'type'     => 'switch',
+               'url'      => true,
+               'title'    => __('Title on Static Front Page', 'redux-framework-demo'),
+               'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
+               'default' => 0,
+               'required' => array('amp-frontpage-select-option', '=' , '1'),
+           ),
 
             // array(
             //     'id'       => 'amp-footer-text',

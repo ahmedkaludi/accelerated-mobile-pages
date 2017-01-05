@@ -815,11 +815,6 @@ amp-user-notification button {
 	    max-width: 100%;
 	}
 
-/*title for Front page*/
-#title {
-  text-align: center;
-}
-
 
 	/* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];

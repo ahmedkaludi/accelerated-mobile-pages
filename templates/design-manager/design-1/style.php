@@ -791,10 +791,6 @@ amp-carousel > amp-img > img {
 			 padding-top : 20px;
 		}
 
-		/*style for title of static front page*/
-		#title{
-			text-align: center;
-		}
 			/* Custom Style Code */
 			<?php echo $redux_builder_amp['css_editor'];
 		} ?>
