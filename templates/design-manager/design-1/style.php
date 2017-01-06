@@ -229,7 +229,10 @@ blockquote p:last-child {
 }
 /* Front page */
 .amp-wp-frontpage .the_content {
-		padding: 10px;
+	padding: 10px;
+}
+.amp-wp-frontpage .ampforwp-title {
+	margin-left:10px;
 }
 /* Article Content */
 .amp-wp-article a{
