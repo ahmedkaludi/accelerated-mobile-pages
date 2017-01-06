@@ -478,12 +478,15 @@ function ampforwp_register_additional_scripts() {
 				 $content = preg_replace('#<plusone.*?>(.*?)</plusone>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
-				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
+				 /* Removed So Inline style can work
+				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content); */
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
+				 /* Removed So Inline style can work
 				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
+				 */
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);

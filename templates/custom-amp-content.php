@@ -1,42 +1,54 @@
 <?php
 // Adding Custom meta Sanitizer to sanitize the custom content added throught tinymce post meta
+
 add_filter( 'amp_post_template_data', 'ampforwp_custom_post_content_sanitizer', 10, 2 );
+
 function ampforwp_custom_post_content_sanitizer( $data, $post ) {
+    global $redux_builder_amp;
 
-	$amp_custom_post_content_input 	= get_post_meta($post->ID, 'ampforwp_custom_content_editor', true);
+      if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 0 ){
+          return $data;
+      }    
 
-	if ( empty( $amp_custom_post_content_input ) ) {
-       $data['ampforwp_amp_content'] = false;
-       return $data;
-   }
+  
+    	$amp_custom_post_content_input 	= get_post_meta($post->ID, 'ampforwp_custom_content_editor', true);
+      $amp_custom_post_content_check  = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
 
-    $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
-        apply_filters( 'amp_content_embed_handlers', array(
-            'AMP_Twitter_Embed_Handler' => array(),
-            'AMP_YouTube_Embed_Handler' => array(),
-            'AMP_Instagram_Embed_Handler' => array(),
-            'AMP_Vine_Embed_Handler' => array(),
-            'AMP_Facebook_Embed_Handler' => array(),
-            'AMP_Gallery_Embed_Handler' => array(),
-        ) ),
-        apply_filters( 'amp_content_sanitizers', array(
-            'AMP_Blacklist_Sanitizer' => array(),
-            'AMP_Img_Sanitizer' => array(),
-            'AMP_Video_Sanitizer' => array(),
-            'AMP_Audio_Sanitizer' => array(),
-            'AMP_Iframe_Sanitizer' => array(
-                'add_placeholder' => true,
-            ),
-        ) )
-    );
+      	if ( empty( $amp_custom_post_content_input ) ) {
+            $data['ampforwp_amp_content'] = false;
+            return $data;
+        }
 
-    if ( $amp_custom_content ) {
-    	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
-    	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
-    	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
-    }
+        if ( $amp_custom_post_content_check === 'yes') { 
 
-    return $data;
+          $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
+              apply_filters( 'amp_content_embed_handlers', array(
+                  'AMP_Twitter_Embed_Handler' => array(),
+                  'AMP_YouTube_Embed_Handler' => array(),
+                  'AMP_Instagram_Embed_Handler' => array(),
+                  'AMP_Vine_Embed_Handler' => array(),
+                  'AMP_Facebook_Embed_Handler' => array(),
+                  'AMP_Gallery_Embed_Handler' => array(),
+              ) ),
+              apply_filters( 'amp_content_sanitizers', array(
+                  'AMP_Blacklist_Sanitizer' => array(),
+                  'AMP_Img_Sanitizer' => array(),
+                  'AMP_Video_Sanitizer' => array(),
+                  'AMP_Audio_Sanitizer' => array(),
+                  'AMP_Iframe_Sanitizer' => array(
+                      'add_placeholder' => true,
+                  ),
+              ) )
+          );
+
+          if ( $amp_custom_content ) {
+          	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
+          	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
+          	// $data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
+          }
+        }
+
+  return $data;
 }
 
 
