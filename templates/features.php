@@ -876,22 +876,15 @@ function remove_this(){
 				 $title = $post->post_title;
 				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
-			// title for archive pages
-			if ( is_archive() ) {
-					the_archive_title( '' );
-					the_archive_description( '' );
-			}
-			// title for Static front page
-			if  ( $redux_builder_amp['amp-frontpage-select-option']== 1 && ( is_front_page() ) ) {
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				echo get_the_title( $ID ) . ' | ' . get_option('blogname');
 
+			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
+			if ( is_home() ) {
+				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 				}
-			// title for index page
-			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
-						echo  get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
-				}
-				  ?>
+				echo  $site_title ;
+			} ?>
 		 </title>
 	 	<?php
 	}
