@@ -185,9 +185,17 @@
 // 6. Add required Javascripts for extra AMP features
 add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 function ampforwp_register_additional_scripts() {
-	global $redux_builder_amp; ?>
-	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-	<?php if( is_page() ) { ?>
+	global $redux_builder_amp;
+
+	if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
+		$yoast_glue_seo = get_option('wpseo_amp');
+	}
+	if ( empty( $yoast_glue_seo['analytics-extra'] ) ) { ?>
+		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<?php 
+	}
+	
+	if( is_page() ) { ?>
 		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<?php } ?>
 	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
