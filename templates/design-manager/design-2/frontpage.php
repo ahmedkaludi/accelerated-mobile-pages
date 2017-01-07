@@ -5,6 +5,9 @@ $template = new AMP_Post_Template( $post_id );?>
 <html amp>
 <head>
 	<meta charset="utf-8">
+	<link rel="canonical" href="<?php
+	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	echo get_permalink( $ID ) ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
@@ -23,6 +26,17 @@ $template = new AMP_Post_Template( $post_id );?>
 <body class="single-post">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+<header class="amp-wp-article-header ampforwp-title">
+	<h1 class="amp-wp-title">
+	<?php global  $redux_builder_amp;
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
+					echo get_the_title( $ID ) ;
+				}
+	?>
+</h1>
+</header>
+
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
@@ -34,7 +48,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		} else {
 			// Custom/Alternative AMP content added through post meta
 			echo $template->data['ampforwp_amp_content'];
-		}	
+		}
 
 		do_action( 'ampforwp_after_post_content', $this ); ?>
 
