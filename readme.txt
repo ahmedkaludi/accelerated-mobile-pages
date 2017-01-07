@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.31
+Stable tag: 0.9.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,8 +70,6 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 
-**NOTE:** Next Update of this plugin will be released by end of Dec 2016.
-
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
@@ -123,6 +121,25 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.32 [7th Jan 2017] =
+* Full details at https://ampforwp.com/first-wave-of-polishing-in-2017/
+* Rel=canonical issue fixed: AMP URL redirect to the normal URL #293 & #332.
+* Paginated pages on homepage redirect to homepage URL #335
+* Title of the page should be displayed on the FrontPage #358
+* Thrive Builder AMP Validation Compatibility, so it will be validated properly in AMP.
+* Twitter Sharing improved so it gets the data properly #341
+* Option to change the number of Related Posts #290
+* Validation errors due to rel="canonical" was missing on some pages
+* Comment button displays even if the comments are not available
+* Threaded comments were duplicating, so that issue is solved and added proper CSS for it.
+* Minor issue with Jetpack Comments fixed.
+* Missing amp-social-share.js on front page fixed #372
+* Minor improvements to Title and description tags.
+* Analytics Script was loading twice when Glue was active.
+* Page specific class added for better customization compatibility #377
+* Inline Style support added Fixed #356
+* Bugs fixed in Email notification pointer
 
 = 0.9.31 [2nd Jan 2017] =
 * Proper Details at https://ampforwp.com/amp-0-9-31-released-installation-user-experience/
