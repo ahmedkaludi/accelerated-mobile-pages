@@ -6,7 +6,7 @@ class ampforwp_pointers {
 	}
 	function admin_enqueue_scripts () {
 		$dismissed = explode (',', get_user_meta (wp_get_current_user ()->ID, 'dismissed_wp_pointers', true));
-		$do_tour = !in_array ('test_wp_pointer', $dismissed);
+		$do_tour = !in_array ('ampforwp_subscribe_pointer', $dismissed);
 		if ($do_tour) {
 			wp_enqueue_style ('wp-pointer');
 			wp_enqueue_script ('wp-pointer');
@@ -34,20 +34,26 @@ class ampforwp_pointers {
 			$show_pointer = true;
 			$file_error = true;
 			
-			$id = '#dashboard_right_now';  // Define ID used on page html element where we want to display pointer
+			$id = '#toplevel_page_amp_options';  // Define ID used on page html element where we want to display pointer
 			$content = '<h3>' . sprintf (__('You are awesome for using AMP!', 'ampforwp'), self::DISPLAY_VERSION) . '</h3>';
 			$content .= __('<p>Do you want the latest on <b>AMP update</b> before others and some best resources on AMP in a single email? - Free just for users of AMP!</p>', 'ampforwp');
             $content .= __('
             <!-- Begin MailChimp Signup Form -->
             <style type="text/css">
-            .wp-pointer-buttons{ padding:0 }
+            .wp-pointer-buttons{ padding:0; overflow: hidden; }
             .wp-pointer-content .button-secondary{  left: -25px;background: transparent;top: 5px; border: 0;position: relative; padding: 0; box-shadow: none;margin: 0;color: #bcbcbc;} .wp-pointer-content .button-primary{ display:none}	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
             </style>
             <div id="mc_embed_signup">
-            	<form action="//ampforwp.us14.list-manage.com/subscribe/post?u=a631df13442f19caede5a5baf&amp;id=c9a71edce6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            	<form action="//app.mailerlite.com/webforms/submit/d3w0e1" data-id="258182" data-code="d3w0e1" method="POST" target="_blank">
 	            	<div id="mc_embed_signup_scroll">
 	            	<div class="mc-field-group" style="    margin-left: 15px;    width: 175px;    float: left;"> 	
-	            		<input type="email" value="' . esc_attr( $current_user->user_email ) . '" name="EMAIL" class="required email" id="mce-EMAIL" style="      width: 168px;    padding: 6px 5px;">
+					<input type="text" name="fields[name]" class="form-control" placeholder="Name" hidden value="' . esc_attr( $current_user->display_name ) . '" style="display:none">
+
+					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="fields[email]" class="form-control" placeholder="Email*"  style="      width: 168px;    padding: 6px 5px;">
+
+					<input type="text" name="fields[company]" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_attr( get_home_url() ) . '">
+
+					<input type="hidden" name="ml-submit" value="1" />
 	            	</div> 
 	            	<div id="mce-responses">
 		            	<div class="response" id="mce-error-response" style="display:none"></div>
@@ -61,7 +67,7 @@ class ampforwp_pointers {
             </div>','ampforwp');
 			$options = array (
 				'content' => $content,
-				'position' => array ('edge' => 'top', 'align' => 'left')
+				'position' => array ('edge' => 'left', 'align' => 'left')
 				);
 		}
 		if ($show_pointer) {
@@ -80,15 +86,19 @@ class ampforwp_pointers {
 				var wp_pointers_tour_opts = <?php echo json_encode ($options); ?>, setup;
 				wp_pointers_tour_opts = $.extend (wp_pointers_tour_opts, {
 					buttons: function (event, t) {
-						button = jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo $button1; ?>' + '</a>');
+						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo $button1; ?>' + '</a>');
+						button_2= jQuery ('#pointer-close.button');
 						button.bind ('click.pointer', function () {
-							t.element.pointer ('close');
+							t.element.pointer ('close');							
 						});
+						button_2.on('click', function() {
+							t.element.pointer ('close');
+						} );
 						return button;
 					},
 					close: function () {
 						$.post (ajaxurl, {
-							pointer: 'test_wp_pointer',
+							pointer: 'ampforwp_subscribe_pointer',
 							action: 'dismiss-wp-pointer'
 						});
 					}
@@ -102,7 +112,7 @@ class ampforwp_pointers {
 						});
 						jQuery ('#pointer-close').click (function () {
 							$.post (ajaxurl, {
-								pointer: 'test_wp_pointer',
+								pointer: 'ampforwp_subscribe_pointer',
 								action: 'dismiss-wp-pointer'
 							});
 						})

@@ -3,7 +3,15 @@
 <html amp>
 <head>
 	<meta charset="utf-8">
-    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+  <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+	<?php
+	global $redux_builder_amp;
+	if ( is_home() || is_front_page()  ){
+		global $wp;
+		$current_archive_url = home_url( $wp->request );
+		$amp_url = trailingslashit($current_archive_url);
+	} ?>
+	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
@@ -20,7 +28,7 @@
 <main>
 
 
- 	<?php if ( is_archive() ) { 
+ 	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} ?>

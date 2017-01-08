@@ -7,7 +7,7 @@
 		<div class="amp-wp-meta amp-wp-tax-category">
 				<span><?php global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .' ', 'amp' )); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
-					echo  $cat->name . ' ';
+					echo '<span>'. $cat->name .'</span>';
 			} ?>
 		</div>
 	<?php endif; ?>
@@ -20,7 +20,7 @@
 					  		 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .' ', 'amp' ));
 							 		}
 						foreach ($ampforwp_tags as $tag) {								 
-								echo  $tag->name . ' ';
+								echo '<span>'. $tag->name .'</span>';
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
 						  		 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .' ', 'amp' ));

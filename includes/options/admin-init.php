@@ -1,10 +1,9 @@
 <?php
-
-    // Load the TGM init if it exists
-    if ( file_exists( dirname( __FILE__ ) . '/tgm/tgm-init.php' ) ) {
-        require_once dirname( __FILE__ ) . '/tgm/tgm-init.php';
-    }
-
+//    // Load the TGM init if it exists
+//    if ( file_exists( dirname( __FILE__ ) . '/tgm/tgm-init.php' ) ) {
+//        require_once dirname( __FILE__ ) . '/tgm/tgm-init.php';
+//    }
+//
     // Load the embedded Redux Framework
     if ( ! class_exists( 'ReduxFramework' )) {
       if ( file_exists( dirname( __FILE__ ).'/redux-framework/framework.php' ) ) {

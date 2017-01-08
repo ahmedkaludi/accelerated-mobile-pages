@@ -1,6 +1,8 @@
 <?php
 		$orig_post = $post;
 		global $post, $redux_builder_amp;
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
+			$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
 		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 				$categories = get_the_category($post->ID);
@@ -10,7 +12,7 @@
 							$args=array(
 									'category__in' => $category_ids,
 									'post__not_in' => array($post->ID),
-									'posts_per_page'=> 3,
+									'posts_per_page'=> $int_number_of_related_posts,
 									'caller_get_posts'=>1
 							);
 						}
@@ -24,7 +26,7 @@
 										$args=array(
 											 'tag__in' => $tag_ids,
 												'post__not_in' => array($post->ID),
-												'posts_per_page'=> 3,
+												'posts_per_page'=> $int_number_of_related_posts,
 												'caller_get_posts'=>1
 										);
 					}
@@ -38,9 +40,13 @@
 								<h3><?php echo esc_html( $redux_builder_amp['amp-translator-related-text'] ); ?></h3>
 								<?php
 						    	while( $my_query->have_posts() ) {
-								    $my_query->the_post();?>
+								    $my_query->the_post();
+										$related_post_permalink = get_permalink();
+										$related_post_permalink = trailingslashit($related_post_permalink);
+										$related_post_permalink = $related_post_permalink . AMP_QUERY_VAR
+										?>
 									<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
-                                        <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+                                        <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( has_post_thumbnail() ) {
 								            $thumb_id_2 = get_post_thumbnail_id();
 								            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
@@ -49,7 +55,7 @@
 										<?php } ?>
                                         </a>
 						                <div class="related_link">
-						                    <a href="<?php trailingslashit(the_permalink()); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
+						                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 						                    <?php
 																if(has_excerpt()){
 																	$content = get_the_excerpt();

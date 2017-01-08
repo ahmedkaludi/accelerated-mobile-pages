@@ -4,7 +4,11 @@
 		<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 	<?php } ?>
 	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
-		<amp-social-share type="twitter"    width="50" height="28"></amp-social-share>
+		<amp-social-share type="twitter"
+											width="50"
+											height="28"
+										  data-param-url="CANONICAL_URL"
+		></amp-social-share>
 	<?php } ?>
 	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 		<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
