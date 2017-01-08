@@ -192,9 +192,9 @@ function ampforwp_register_additional_scripts() {
 	}
 	if ( empty( $yoast_glue_seo['analytics-extra'] ) ) { ?>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php 
+		<?php
 	}
-	
+
 	if( is_page() ) { ?>
 		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<?php } ?>
@@ -205,14 +205,14 @@ function ampforwp_register_additional_scripts() {
 	<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 		<?php if( is_singular() ) { ?>
 			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-		<?php }  
+		<?php }
 	} ?>
 	<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
 		<?php if( is_home() ) { ?>
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		<?php }
 	} ?>
-	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php 
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php
 }
 
 // 7. Footer for AMP Pages
@@ -907,8 +907,8 @@ function remove_this(){
 add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
 
 function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
-	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
-	if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID , 'ampforwp-amp-on-off' , true );
+	if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 		$skip = true;
 	}
     return $skip;
