@@ -24,9 +24,6 @@
 
 </amp-img>
 </a>
-  <p>
-  <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a>
-  </p>
   <br>
   <div class="col-sm-4 meta-social-footer">
                                   <div class="social-footer">
@@ -42,21 +39,20 @@
                               </div>
                               <br>
 
-                              <p><a href="#header"> <?php _e('Top','ampwp');?></a> | <a href="?noamp"><?php _e('View Non-AMP Version','ampwp');?></a></p>
+                              <p><a href="#header"> <?php _e('Top','ampwp');?></a> | <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a>
+ </p>
 <br>
 
             <p>Version 4.3 | <a class="noamp" href="https://technutty.co.uk/version-history/">Version History Page</a></p>
 <br>
             <div class="meta-footer">
                                              <ul>
-                                             <li><a href="https://technutty.co.uk/about/">About Us</a></li>
-                                             <li><a href="http://status.technutty.co.uk/">Site Status</a></li>
-                                             <li><a href="https://technutty.co.uk/contact/">Contact</a></li>
-                                             <li><a href="http://technutty.userecho.com/">Feedback</a></li>
-                                             <li><a href="https://technutty.co.uk/terms-and-conditions/">Terms and Conditions</a></li>
-                                             <li><a href="https://technutty.co.uk/privacy-policy/">Privacy Policy</a></li>
-                                             <li><a href="https://technutty.co.uk/cookies-information-page/">Cookies Information Page</a></li>
-                                             </ul>
+<button onclick="window.location.href='https://technutty.co.uk/about/'" class="bttn-footer-link bttn-tn bttn-primary">About</button>
+<button onclick="window.location.href='https://technutty.co.uk/contact/'" class="bttn-footer-link bttn-tn bttn-primary">Contact</button>
+<button onclick="window.location.href='https://technutty.co.uk/newsletter/'" class="bttn-footer-link bttn-tn bttn-primary">Newsletter</button>
+<button onclick="window.location.href='https://technutty.co.uk/terms-and-conditions/'" class="bttn-footer-link bttn-tn bttn-primary">T&Cs</button>
+<button onclick="window.location.href='https://technutty.co.uk/privacy-policy/'" class="bttn-footer-link bttn-tn bttn-primary">Privacy Policy</button>
+                                               </ul>
 
             																                       </div>
         </div>
