@@ -39,14 +39,10 @@
                               </div>
                               <br>
 
-                              <p><a href="#header"> <?php _e('Top','ampwp');?></a> | <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a>
- </p>
-<br>
-
-            <p>Version 4.3 | <a class="noamp" href="https://technutty.co.uk/version-history/">Version History Page</a></p>
-<br>
             <div class="meta-footer">
                                              <ul>
+<button onclick="window.location.href='<?php echo $ampforwp_backto_nonamp; ?>'" class="bttn-footer-link bttn-tn bttn-non-amp">View the Non-AMP version</button>                                      
+<button onclick="window.location.href='#header'" class="bttn-footer-link bttn-tn bttn-primary">Top</button>
 <button onclick="window.location.href='https://technutty.co.uk/about/'" class="bttn-footer-link bttn-tn bttn-primary">About</button>
 <button onclick="window.location.href='https://technutty.co.uk/contact/'" class="bttn-footer-link bttn-tn bttn-primary">Contact</button>
 <button onclick="window.location.href='https://technutty.co.uk/newsletter/'" class="bttn-footer-link bttn-tn bttn-primary">Newsletter</button>
