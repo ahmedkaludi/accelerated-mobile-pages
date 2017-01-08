@@ -43,6 +43,9 @@
 	require 'design-manager.php';
 	require 'customizer/customizer.php';
 
+	// Custom AMP Content
+	require 'custom-amp-content.php';
+
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
 
@@ -52,7 +55,7 @@
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		if ( is_home() || is_archive() ) {
+		// if ( is_home() ) {
 
 			$is_amp_endpoint = is_amp_endpoint();
 
@@ -62,31 +65,40 @@
 				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
 			}
 
-		}
+		// }
 	}
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		if ( is_home() || is_front_page() || is_archive() ) {
-
-			if ( is_home() || is_front_page()  ){
-				$amp_url = home_url('/?amp');
-			}
-		    elseif ( is_archive() ) {
-	            return;
-			} else {
-				$amp_url = trailingslashit( get_permalink().'amp' );
-			}
-			//checking if the user wants amp page for archives or not
-			if( is_archive() && $redux_builder_amp['ampforwp-amp-archive-pages-on-off']=='0') {			
-				return;
-			} else {
-				printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
-			}
-		
-			// end of checking if the user wants amp page for archives or not
+		if( is_archive() ) {
+			return;
 		}
+		if ( is_home() || is_front_page()  ){
+			global $wp;
+      $current_archive_url = home_url( $wp->request );
+			$amp_url = trailingslashit($current_archive_url).'?amp';
+		}
+	    else {
+			$amp_url = amp_get_permalink( get_queried_object_id() );
+		}
+
+				global $post;
+				$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
+				if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+					//dont Echo anything
+				} else {
+					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+				}
 	} //end of ampforwp_home_archive_rel_canonical()
+
+
+	// Remove default wordpress rel canonical
+	add_filter('amp_frontend_show_canonical','ampforwp_remove_default_canonical');
+	if (! function_exists('ampforwp_remove_default_canonical') ) {
+		function ampforwp_remove_default_canonical() {
+			return false;
+		}
+	}
 
 	// 2. Custom Design
 
@@ -173,18 +185,35 @@
 // 6. Add required Javascripts for extra AMP features
 add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 function ampforwp_register_additional_scripts() {
-global $redux_builder_amp;
-?><script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-<?php if( is_page() ) { ?><script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script><?php } ?>
-<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
-<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
-<?php } ?>
-<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-<?php if( is_single() ) { ?><script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-<?php }  } ?>
-<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-<?php }
+	global $redux_builder_amp;
+
+	if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
+		$yoast_glue_seo = get_option('wpseo_amp');
+	}
+	if ( empty( $yoast_glue_seo['analytics-extra'] ) ) { ?>
+		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<?php 
+	}
+	
+	if( is_page() ) { ?>
+		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+	<?php } ?>
+	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+	<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
+		<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+	<?php } ?>
+	<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
+		<?php if( is_singular() ) { ?>
+			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+		<?php }  
+	} ?>
+	<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
+		<?php if( is_home() ) { ?>
+		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+		<?php }
+	} ?>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php 
+}
 
 // 7. Footer for AMP Pages
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
@@ -432,8 +461,10 @@ global $redux_builder_amp;
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
+				 $content = preg_replace('/type=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
 				 $content = preg_replace('/date=[^>]*/', '', $content);
+				 $content = preg_replace('/noshade=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
 				 $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
@@ -447,20 +478,31 @@ global $redux_builder_amp;
 				 $content = preg_replace('#<plusone.*?>(.*?)</plusone>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
 				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
-				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content);
+				 /* Removed So Inline style can work
+				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content); */
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
+				 /* Removed So Inline style can work
 				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
+				 */
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 
 				 //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+/// simpy add more elements to simply strip tag but not the content as so
+/// Array ("p","font");
+$tags_to_strip = Array("thrive_headline" );
+foreach ($tags_to_strip as $tag)
+{
+   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
+}
 
 //				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -473,8 +515,8 @@ global $redux_builder_amp;
 			add_filter( 'wp_footer', 'ampforwp_the_content_filter_footer', 1 );
 		}
 		function ampforwp_the_content_filter_footer( $content ) {
-            remove_all_actions('wp_footer'); 
-				return $content; 
+            remove_all_actions('wp_footer');
+				return $content;
 		}
 
 	// 11.5 Strip unwanted codes the_content of Frontpage
@@ -688,35 +730,32 @@ function ampforwp_remove_print_scripts() {
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 17. Archives Canonical in AMP version
-function ampforwp_rel_canonical_archive() {
-    if ( !is_archive() )
-    	return;
-			global $wp;
-			$current_archive_url = home_url( $wp->request );
-			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-  		echo "<link rel='canonical' href='$current_archive_url' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
+// function ampforwp_rel_canonical_archive() {
+//
+// 			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//   		echo "<link rel='canonical' href='$current_archive_url' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 
 // 18. Custom Canonical for Homepage
-function ampforwp_rel_canonical() {
-    if ( !is_home() )
-    return;
-//    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
-    $homelink = get_home_url();
-    echo "<link rel='canonical' href='$homelink' />\n";
-}
-add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
+// function ampforwp_rel_canonical() {
+//     if ( !is_home() )
+//     return;
+// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//     $homelink = get_home_url();
+//     echo "<link rel='canonical' href='$homelink' />\n";
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
 
 // 18.5. Custom Canonical for Frontpage
-//function ampforwp_rel_canonical_frontpage() {
+// function ampforwp_rel_canonical_frontpage() {
 //    if ( is_home() || is_front_page() )
 //    return;
-////    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
 //    $homelink = get_home_url();
 //    echo "<link rel='canonical' href='$homelink' />\n";
-//}
-//add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
+// }
+// add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
@@ -764,7 +803,11 @@ function ampforwp_sticky_social_icons(){
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
-		    	<amp-social-share type="twitter"    width="50" height="28"></amp-social-share>
+		    	<amp-social-share type="twitter"
+		    										width="50"
+		    										height="28"
+														data-param-url="CANONICAL_URL"
+		    	></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 		    	<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
@@ -842,26 +885,31 @@ function remove_this(){
 			if( is_single() || is_page() ){
 				 global $post;
 				 $title = $post->post_title;
-				 echo $title . ' | ' . get_option( 'blogdescription' ) ;
+				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
-			// title for archive pages
-			if ( is_archive() ) {
-					the_archive_title( '' );
-					the_archive_description( '' );
-			}
-			// title for Static front page
-			if  ( $redux_builder_amp['amp-frontpage-select-option']== 1 && ( is_front_page() ) ) {
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				echo get_the_title( $ID ) . ' | ' . get_option('blogname');
 
+			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
+			if ( is_home() ) {
+				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 				}
-			// title for index page
-			if	( is_front_page() && $redux_builder_amp['amp-frontpage-select-option']== 0 ) {
-						echo  bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
-				}
-				  ?>
+				echo  $site_title ;
+			} ?>
 		 </title>
 	 	<?php
 	}
 }
 //End of 26
+
+
+// 27.
+add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
+
+function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
+	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
+	if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+		$skip = true;
+	}
+    return $skip;
+}

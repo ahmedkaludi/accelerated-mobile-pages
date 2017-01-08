@@ -37,6 +37,6 @@ global $redux_builder_amp;
 				}//End of inner condition
 			}//End of outer condition?>
 		</p>
-
 	</div>
 </footer>
+<?php do_action('ampforwp_global_after_footer'); ?>

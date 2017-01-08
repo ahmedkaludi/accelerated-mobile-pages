@@ -1,11 +1,23 @@
-<?php global $redux_builder_amp;  ?>
+<?php global $redux_builder_amp;
+$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+$template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp>
 <head>
 	<meta charset="utf-8">
+	<link rel="canonical" href="<?php
+	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	echo get_permalink( $ID ) ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-
+	<?php
+		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);
+		if ( $amp_custom_content_enable ) {
+			$amp_component_scripts = $template->data['amp_component_scripts'];
+			foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
+				<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
+			}
+		}	 ?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
@@ -14,30 +26,36 @@
 <body class="single-post">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+<header class="amp-wp-article-header ampforwp-title">
+	<h1 class="amp-wp-title">
+	<?php global  $redux_builder_amp;
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
+					echo get_the_title( $ID ) ;
+				}
+	?>
+</h1>
+</header>
+
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
-	<div class="amp-wp-content the_content">
-		<?php do_action( 'ampforwp_before_post_content', $this ); ?>
+	<div class="amp-wp-content the_content"> <?php
 
-<?php
-global $redux_demo;
-//echo 'Multi Select value: '  . $redux_builder_amp['amp-frontpage-select-option-pages'];
-?>
+		// Normal Front Page Content
+		if ( ! $amp_custom_content_enable ) {
+			echo $template->data['post_amp_content'];
+		} else {
+			// Custom/Alternative AMP content added through post meta
+			echo $template->data['ampforwp_amp_content'];
+		}
 
-<?php $the_query = new WP_Query( 'page_id=' . $redux_builder_amp['amp-frontpage-select-option-pages'] . '' ); ?>
-<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
-<?php the_content(); ?>
-<?php endwhile;?>
+		do_action( 'ampforwp_after_post_content', $this ); ?>
 
-<?php do_action( 'ampforwp_after_post_content', $this ); ?>
 	</div>
 
 	<div class="amp-wp-content post-pagination-meta">
 		<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
-
-
-
 	</div>
 
 	<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>

@@ -135,38 +135,21 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title' => __( 'Welcome', 'redux-framework-demo' ),
+        'title' => __( 'Getting Started', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin.  <b> <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a></b>'. '<p>' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version. I have put togeather some frequently asked questions below.', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</p>'
-			               . '<h2>' . __( 'Frequently Asked Questions', 'redux-framework-demo' ) . '</h2>'
-			               . '<p><strong>' . __( 'How to Setup Navigation Menu?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'We have created a Seperate Navigation menu for AMP version which you can setup from the WordPress Menus, then navigate to Menu Locations, their you will notice AMP Menu. You can assign existing menus to this locations.', 'redux-framework-demo' ) . '</p>'
-			               . '<p><strong>' . __( 'I added /?amp on the end of one of my URLs and a minimalist version of my page appeared. It looks just like on one of your screenshots, so I guess its installed properly. Okay what now? Is it just enough to install it and the plugin will do the rest?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'After you see the minimalist view if you use the url with ?amp then it means that it has been installed properly. You dont need any extra steps to enable it.', 'redux-framework-demo' ) . '</p>'
-			               . '<p><strong>' . __( 'The plugin supposed to redirect all mobile visitors to AMP version of site or not? ', 'redux-framework-demo' ) . '</strong><br/>' . __( 'When you view the website from the mobile, it is not supposed to redirect you to the amp version, amp version is always ready for google in the backend, if Google wants to serve to the people, then it will get the amp version and serve to the customers.
-', 'redux-framework-demo' ) . '</p>'
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'redux-framework-demo' ), 'redux-framework-demo' ) . ' '
+			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'redux-framework-demo' ) . '</h2>'
+			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
+			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
+			               . '<p><strong>' . __( '3. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
+' ) . '</p>'
+			               . '<p><strong>' . __( '4. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
+			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
+			               . '<p><strong>' . __( '6. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
 
-                           . '<p><strong>' . __( 'I am worried that it will cause Duplicate content?', 'redux-framework-demo' ) . '</strong><br/>' . __( 'In the AMP version, we are using Canonical tag to solve this. I am 100% sure that using this plugin will not duplicate the content.
-', 'redux-framework-demo' ) . '</p>'
-
-
-                           . '<p><strong>' . __( 'How do I know that my site is AMP enabled?
-', 'redux-framework-demo' ) . '</strong><br/>' . __( 'Add /?amp at the end of your website url and you will get amp version of your website.', 'redux-framework-demo' ) . '</p>'
-
- 			               . '<p><strong>' . sprintf( __( 'I have addded /?amp at the end of the url and still I am not able to see the AMP version of my site?
-', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</strong><br/>'
- 	   					   . sprintf( __( 'Please check if you have "Pretty Permalinks" enabled. If not then activate it.', 'redux-framework-demo' ), '' )
-						   . '</p>'
-
- 			               . '<p><strong>' . sprintf( __( 'How do I report Bug reports?
-', 'redux-framework-demo' ), 'redux-framework-demo' ) . '</strong><br/>'
- 	   					   . sprintf( __( 'Before you submit a new bug, please check if there already is an existing bug report for it. If so, it may be far more valuable to add to the existing one, than to create a new bug report. You can submit bug reports and feature requests at
-
- %1$sGitHub Issues Page%2$s.
-
-                           ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues' ) . '">', '</a>' )
-						   . '</p>'
 
  	   					   . sprintf( __( '
-
+</br /></br />
                       <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
                      ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
 						   . '</p></div>'
@@ -189,6 +172,7 @@
                 'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
+
             array(
                 'id'       => 'amp-mobile-redirection',
                 'type'     => 'switch',
@@ -260,6 +244,15 @@
                 ),
                 'default'  => '2',
             ),
+            array(
+               'id'       => 'ampforwp-title-on-front-page',
+               'type'     => 'switch',
+               'url'      => true,
+               'title'    => __('Title on Static Front Page', 'redux-framework-demo'),
+               'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
+               'default' => 0,
+               'required' => array('amp-frontpage-select-option', '=' , '1'),
+           ),
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -273,7 +266,7 @@
             array(
                 'id'       => 'amp-footer-link-non-amp-page',
                 'type'     => 'switch',
-                'title'    => __('Link to Non-AMP page', 'redux-framework-demo'),
+                'title'    => __('Link to Non-AMP page in Footer', 'redux-framework-demo'),
                 'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
                 'true'      => 'true',
                 'false'     => 'false',
@@ -297,25 +290,18 @@
         //     'placeholder'=>'Navigate',
         //     'default'  => 'Navigate'
         // ),
-            array(
-              'id'       => 'ampforwp-amp-archive-pages-on-off',
-            'type'     => 'switch',
-            'title'    => __('AMP on Archive Pages', 'redux-framework-demo'),
-            'subtitle' => __('Enable / Disable AMP in the categories and tags pages', 'redux-framework-demo'),
-            'true'      => 'true',
-            'false'     => 'false'
-            ),
+
             array(
                 'id'        =>'amp-on-off-for-all-pages',
                 'type'      => 'switch',
                 'title'     => __('AMP on Pages', 'redux-framework-demo'),
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-                'default'   => 0,
+                'default'   => 1,
             ),
             array(
                 'id'        =>'amp-on-off-support-for-non-amp-home-page',
                 'type'      => 'switch',
-                'title'     => __('Non-AMP HomePage link in Header', 'redux-framework-demo'),
+                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
                 'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                 'default'   => 0,
             ),
@@ -351,7 +337,7 @@
                 'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
                 'options'  => array(
                     '1' => __('Design One', 'redux-framework-demo' ),
-                    '2' => __('Design two', 'redux-framework-demo' )
+                    '2' => __('Design Two', 'redux-framework-demo' )
                 ),
                 'default'  => '2'
             ),
@@ -677,6 +663,14 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
     			        '2' => 'Categories'
     		        ),
                'default'  => '2',
+	        ),
+	        array(
+    		        'id'       => 'ampforwp-number-of-related-posts',
+    		        'type'     => 'text',
+    		        'title'    => __('Number of Related Post', 'redux-framework-demo'),
+                'subtitle' => __('Type the number of related posts you need, Eg : 2', 'redux-framework-demo'),
+    		        'validate' => 'numeric',
+                'default'  => '3',
 	        ),
         ),
 
@@ -1009,7 +1003,19 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
 
         <a href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_coming-soon&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /></a>',
-        'icon' => 'el el-info-circle',
+        'icon' => 'el el-puzzle',
+    ) );
+
+
+
+// Priority Support
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Fix AMP Errors', 'redux-framework-demo' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-go-premium-support',
+        'subsection' => false,
+        'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
+        'icon' => 'el el-hand-right',
     ) );
 /*
 * <--- END SECTIONS
