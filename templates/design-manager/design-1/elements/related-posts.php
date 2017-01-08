@@ -1,8 +1,10 @@
 <?php
-		$orig_post = $post;
 		global $post, $redux_builder_amp;
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 			$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+
+		// declaring this variable here to prevent debug errors
+		$args = null;
 
 		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 				$categories = get_the_category($post->ID);
@@ -31,7 +33,6 @@
 										);
 					}
 			}//end of block for tags
-
 			$my_query = new wp_query( $args );
 				if( $my_query->have_posts() ) { ?>
 					<div class="amp-wp-content relatedpost">
@@ -72,6 +73,5 @@
 						</div>
 					</div> <?php
 				}
-		$post = $orig_post;
 		wp_reset_postdata();
 ?>
