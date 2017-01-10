@@ -34,6 +34,7 @@
 	24. Seperate Sticky Single Social Icons
 	25. Yoast meta Support
 	26. Extending Title Tagand De-Hooking the Standard one from AMP
+    27. Fixing the defer tag issue [Finally!]
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -903,7 +904,14 @@ function remove_this(){
 //End of 26
 
 
-// 27.
+// 27. Clean the Defer issue
+function ampforwp_clean_defer($ampforwp_buffer) {
+  return (str_replace("' defer='defer", "", $ampforwp_buffer));
+}
+ob_start("ampforwp_clean_defer");
+
+
+// 27. [AHMED: WHO ADDED THIS? WITHOUT DESCRIPTION?]
 add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
 
 function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
@@ -913,3 +921,4 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 	}
     return $skip;
 }
+
