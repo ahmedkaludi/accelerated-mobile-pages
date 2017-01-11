@@ -1143,15 +1143,21 @@
 
             public function field_default_values( $field ) {
                 // Detect what field types are being used
-                if ( ! isset ( $this->fields[ $field['type'] ][ $field['id'] ] ) ) {
-                    $this->fields[ $field['type'] ][ $field['id'] ] = 1;
-                } else {
-                    $this->fields[ $field['type'] ] = array( $field['id'] => 1 );
-                }
+                if( isset ( $field['type'] ) ) {// Line of code added by Khaled
+                  if ( ! isset ( $this->fields[ $field['type'] ][ $field['id'] ] ) ) {
+                      $this->fields[ $field['type'] ][ $field['id'] ] = 1;
+                  } else {
+                      $this->fields[ $field['type'] ] = array( $field['id'] => 1 );
+                  }
+                }// Line of code added by Khaled
+
                 if ( isset ( $field['default'] ) ) {
                     $this->options_defaults[ $field['id'] ] = apply_filters( "redux/{$this->args['opt_name']}/field/{$field['type']}/defaults", $field['default'], $field );
-                } elseif ( ( $field['type'] != "ace_editor" ) ) {
+
+                } elseif ( isset ( $field['type'] ) ) { // Line of code added by Khaled
                     // Sorter data filter
+                    if( $field['type'] != "ace_editor" ) {
+
 
                     if ( isset( $field['data'] ) && ! empty( $field['data'] ) ) {
                         if ( ! isset( $field['args'] ) ) {
@@ -1195,8 +1201,8 @@
                         }
                     }
                 }
-            }
-
+            } // Line of code added by Khaled
+          }
             /**
              * Get default options into an array suitable for the settings API
              *
@@ -1222,19 +1228,20 @@
                                 if ( empty ( $field['id'] ) && empty ( $field['type'] ) ) {
                                     continue;
                                 }
+                                if( isset ( $field['type'] ) ) { // Line of code added by Khaled
+                                  if (  in_array( $field['type'] , array( 'ace_editor' )  ) && isset ( $field['options'] ) ) {
+                                      $this->sections[ $sk ]['fields'][ $k ]['args'] = $field['options'];
+                                      unset ( $this->sections[ $sk ]['fields'][ $k ]['options'] );
+                                  }
 
-                                if ( in_array( $field['type'], array( 'ace_editor' ) ) && isset ( $field['options'] ) ) {
-                                    $this->sections[ $sk ]['fields'][ $k ]['args'] = $field['options'];
-                                    unset ( $this->sections[ $sk ]['fields'][ $k ]['options'] );
-                                }
-
-                                if ( $field['type'] == "section" && isset ( $field['indent'] ) && $field['indent'] == "true" ) {
-                                    $field['class'] = isset ( $field['class'] ) ? $field['class'] : '';
-                                    $field['class'] .= " redux-section-indent-start";
-                                    $this->sections[ $sk ]['fields'][ $k ] = $field;
-                                }
+                                  if ( $field['type'] == "section" && isset ( $field['indent'] ) && $field['indent'] == "true" ) {
+                                      $field['class'] = isset ( $field['class'] ) ? $field['class'] : '';
+                                      $field['class'] .= " redux-section-indent-start";
+                                      $this->sections[ $sk ]['fields'][ $k ] = $field;
+                                  }
+                                } // Line of code added by Khaled
                                 $this->field_default_values( $field );
-                            }
+                            }//end of foreach
                         }
                     }
                 }
@@ -1271,10 +1278,10 @@
                     }
                     $this->dev_mode_forced  = true;
                     $this->args['dev_mode'] = true;
-                    if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
-                        $this->dev_mode_forced  = false;
-                        $this->args['dev_mode'] = false;
-                    }
+                    // if ( isset( $this->args['forced_dev_mode_off'] ) && $this->args['forced_dev_mode_off'] == true ) {
+                    //     $this->dev_mode_forced  = false;
+                    //     $this->args['dev_mode'] = false;
+                    // }
                 }
 
                 // Auto create the page_slug appropriately
@@ -1739,7 +1746,7 @@
                     $hint_status = get_user_meta( $current_user->ID, 'ignore_hints' ) ? get_user_meta( $current_user->ID, 'ignore_hints', true ) : 'true';
 
                     // current page parameters
-                    $curPage = $_GET['page'];
+                    $curPage = esc_attr( $_GET['page'] );
 
                     $curTab = '0';
                     if ( isset ( $_GET['tab'] ) ) {
@@ -2950,6 +2957,10 @@
                                 }
                             }
 
+                            if ( isset( $this->extensions[ $field['type'] ] ) && method_exists( $this->extensions[ $field['type'] ], '_validate_values' ) ) {
+                                                            $plugin_options = $this->extensions[ $field['type'] ]->_validate_values( $plugin_options, $field, $sections );
+                                                        }
+
                             // Default 'not_empty 'flag to false.
                             $isNotEmpty = false;
 
@@ -2974,7 +2985,10 @@
                                 if ( ! $isNotEmpty ) {
 
                                     // Empty id and not checking for 'not_empty.  Bail out...
-                                    continue;
+                                    if (!isset($field['validate_callback'])) {
+                                        continue;
+                                    }
+                                    //continue;
                                 }
                             }
 
@@ -3054,10 +3068,14 @@
                                             }
                                         }
                                     } else {
-                                        if ( is_array( $plugin_options[ $field['id'] ] ) ) {
-                                            $pofi = $plugin_options[ $field['id'] ];
+                                        if ( isset( $plugin_options[ $field['id'] ] ) ) {
+                                          if ( is_array( $plugin_options[ $field['id'] ] ) ) {
+                                             $pofi = $plugin_options[ $field['id'] ];
+                                         } else {
+                                             $pofi = trim( $plugin_options[ $field['id'] ] );
+                                         }
                                         } else {
-                                            $pofi = trim( $plugin_options[ $field['id'] ] );
+                                            $pofi = null;
                                         }
 
                                         $validation                     = new $validate ( $this, $field, $pofi, $options[ $field['id'] ] );
