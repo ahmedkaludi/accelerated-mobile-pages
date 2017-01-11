@@ -3,7 +3,7 @@
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
-    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+    <link rel="preconnect" href="https://cdn.ampproject.org">
 <?php
 global $redux_builder_amp;
 if ( is_home() || is_front_page()  ){
