@@ -30,6 +30,7 @@ if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
 if( $options ) {
 	$values = array_values($options );
 	global $post;
+	if( comments_open() ) {
 	$comments_count = wp_count_comments($post->ID);
 	if( in_array('comments:0',$values) ) {
 		button_code();
@@ -38,6 +39,7 @@ if( $options ) {
 }
 if($count === 0 && $comments_count->approved == 0) {
 	button_code();
+	}
 }
 ?>
 		<?php do_action('ampforwp_post_after_design_elements') ?>
