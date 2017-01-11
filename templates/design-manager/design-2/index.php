@@ -3,7 +3,7 @@
 <html amp>
 <head>
 	<meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+  <link rel="preconnect" href="https://cdn.ampproject.org">
 	<?php
 	global $redux_builder_amp;
 	if ( is_home() || is_front_page()  ){
