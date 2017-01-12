@@ -27,7 +27,6 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.9.32');
-
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
@@ -37,12 +36,12 @@ if ( is_admin() ) {
 	add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
-		if ( ! defined( 'AMP__FILE__' ) ) {	
+		if ( ! defined( 'AMP__FILE__' ) ) {
 			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
-			function ampforwp_plugin_not_found_notice() { ?>	
+			function ampforwp_plugin_not_found_notice() { ?>
 
 				<div class="notice notice-error is-dismissible">
-					
+
 						<?php add_thickbox(); ?>
 				        <p>
                         <strong><?php _e( 'AMP Installation requires one last step:', 'ampforwp' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'ampforwp' ); ?>
@@ -54,7 +53,7 @@ if ( is_admin() ) {
 
 			add_action('admin_head','ampforwp_required_plugin_styling');
 			function ampforwp_required_plugin_styling() { ?>
-				<style> 
+				<style>
 					.plugin-card.plugin-card-amp:before{
                         content: "Install & Activate this plugin ↓";
                         font-weight: bold;
@@ -71,17 +70,17 @@ if ( is_admin() ) {
 						color: #fff;
 					}
 					.plugin-card.plugin-card-amp .column-name a,
-					.plugin-card.plugin-card-amp .column-description a,					
+					.plugin-card.plugin-card-amp .column-description a,
 					.plugin-card.plugin-card-amp .column-description p {
 						color: #fff;
 					}
-					.plugin-card-amp .plugin-card-bottom {					
+					.plugin-card-amp .plugin-card-bottom {
 						background: rgba(229, 255, 80, 0);
 					}
 				</style> <?php
 			}
 		}
-		
+
 	}
 
  	// Add Settings Button in Plugin backend
@@ -144,8 +143,8 @@ function ampforwp_page_template_redirect() {
 	global $redux_builder_amp;
 	if($redux_builder_amp['amp-mobile-redirection']){
 		if ( wp_is_mobile() ) {
-			if ( is_amp_endpoint() ) {
-				return; 
+			if ( ampforwp_is_amp_endpoint() ) {
+				return;
 			} else {
 				if ( is_home() ) {
 					wp_redirect( trailingslashit( esc_url( home_url() ) ) .'?'. AMP_QUERY_VAR ,  301 );
@@ -161,21 +160,25 @@ function ampforwp_page_template_redirect() {
 	}
 }
 
-add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 ); 
+add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 
-add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 ); 
+add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
 function ampforwp_page_template_redirect_archive() {
 
 	if ( is_archive() || is_404() ) {
-		if( is_amp_endpoint() ) { 
+		if( ampforwp_is_amp_endpoint() ) {
 			global $wp;
-			$archive_current_url 	= add_query_arg( '', '', home_url( $wp->request ) ); 
+			$archive_current_url 	= add_query_arg( '', '', home_url( $wp->request ) );
 			$archive_current_url	= trailingslashit($archive_current_url );
 			if (is_404() ) {
 				$archive_current_url = dirname($archive_current_url);
-			}		
+			}
 			wp_redirect( esc_url( $archive_current_url )  , 301 );
 			exit();
 		}
 	}
-} 
+}
+
+function ampforwp_ampforwp_is_amp_endpoint() {
+	return false !== get_query_var( AMP_QUERY_VAR, false );
+}

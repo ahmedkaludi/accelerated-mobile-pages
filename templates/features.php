@@ -58,9 +58,9 @@
 	function ampforwp_add_endpoint_actions() {
 		// if ( is_home() ) {
 
-			$is_amp_endpoint = is_amp_endpoint();
+			$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
-			if ( $is_amp_endpoint ) {
+			if ( $ampforwp_is_amp_endpoint ) {
 				amp_prepare_render();
 			} else {
 				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
@@ -693,7 +693,7 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 			if ( ! function_exists( 'newrelic_disable_autorum' ) ) {
 				return $data;
 			}
-			if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+			if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
 				newrelic_disable_autorum();
 			}
 			return $data;
@@ -701,7 +701,7 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 }
 
 // 16. Remove Unwanted Scripts
-if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
 	add_action( 'wp_enqueue_scripts', 'ampforwp_remove_unwanted_scripts',20 );
 }
 function ampforwp_remove_unwanted_scripts() {
@@ -709,7 +709,7 @@ function ampforwp_remove_unwanted_scripts() {
 }
 // Remove Print Scripts and styles
 function ampforwp_remove_print_scripts() {
-		if ( is_amp_endpoint() ) {
+		if ( ampforwp_is_amp_endpoint() ) {
 
 		    function ampforwp_remove_all_scripts() {
 		        global $wp_scripts;
@@ -780,8 +780,8 @@ function ampforwp_remove_schema_data() {
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( "disable_comment_author_links" ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
-		$is_amp_endpoint = is_amp_endpoint();
-		if ( $is_amp_endpoint ) {
+		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+		if ( $ampforwp_is_amp_endpoint ) {
 				return strip_tags( $author_link );
 		} else {
 			return $author_link;
