@@ -170,7 +170,7 @@ function ampforwp_empty_filter( $file, $type, $post ) {
 	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_author', 10, 3 );
 	function ampforwp_set_custom_meta_author( $file, $type, $post ) {
 			if ( 'meta-author' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-author.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
 			}
 			return $file;
 	}
@@ -178,7 +178,7 @@ function ampforwp_empty_filter( $file, $type, $post ) {
 	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_taxonomy', 10, 3 );
 	function ampforwp_set_custom_meta_taxonomy( $file, $type, $post ) {
 			if ( 'meta-taxonomy' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-taxonomy.php';
+				$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/empty-filter.php';
 			}
 			return $file;
 	}
