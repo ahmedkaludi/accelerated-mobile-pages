@@ -43,9 +43,11 @@
 	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
 	require 'customizer/customizer.php';
-
 	// Custom AMP Content
 	require 'custom-amp-content.php';
+
+//0.
+
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
@@ -147,6 +149,14 @@
 			return $file;
 	}
 
+//3.5
+add_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
+function ampforwp_empty_filter( $file, $type, $post ) {
+		if ( 'empty-filter' === $type ) {
+			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
+		}
+		return $file;
+}
 	// 4. Custom Header files
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_header', 10, 3 );
 	function ampforwp_custom_header( $file, $type, $post ) {

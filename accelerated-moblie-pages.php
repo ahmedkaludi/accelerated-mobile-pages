@@ -179,6 +179,6 @@ function ampforwp_page_template_redirect_archive() {
 	}
 }
 
-function ampforwp_ampforwp_is_amp_endpoint() {
-	return false !== get_query_var( AMP_QUERY_VAR, false );
+function ampforwp_is_amp_endpoint() {
+	return false !== get_query_var( 'amp', false );
 }
