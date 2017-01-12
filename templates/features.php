@@ -11,6 +11,7 @@
 		4.5 Added hook to add more layout.
 	5. Customize with Width of the site
 	6. Add required Javascripts for extra AMP features
+		6.1 Adding Analytics Scripts
 	7. Footer for AMP Pages
 	8. Add Main tag as a Wrapper ( removed in 0.8.9 )
 	9. Advertisement code
@@ -35,6 +36,8 @@
 	25. Yoast meta Support
 	26. Extending Title Tagand De-Hooking the Standard one from AMP
     27. Fixing the defer tag issue [Finally!]
+    28. Properly removes AMP if turned off from Post panel
+    29. Remove analytics code if Already added by Glue or Yoast SEO
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -197,15 +200,6 @@ function ampforwp_empty_filter( $file, $type, $post ) {
 add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 function ampforwp_register_additional_scripts() {
 	global $redux_builder_amp;
-
-	if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
-		$yoast_glue_seo = get_option('wpseo_amp');
-	}
-	if ( empty( $yoast_glue_seo['analytics-extra'] ) ) { ?>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php
-	}
-
 	if( is_page() ) { ?>
 		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<?php } ?>
@@ -225,6 +219,13 @@ function ampforwp_register_additional_scripts() {
 	} ?>
 	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php
 }
+	// 6.1 Adding Analytics Scripts
+	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+	function ampforwp_register_analytics_script(){ ?>
+			<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+			<?php
+		 
+	}
 
 // 7. Footer for AMP Pages
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
@@ -422,7 +423,7 @@ function ampforwp_register_additional_scripts() {
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
 		function ampforwp_analytics() {
 
-		// 10.1 Analytics Support added for Google Analytics
+			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
 				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){ ?>
 						<amp-analytics type="googleanalytics" id="analytics1">
@@ -443,7 +444,7 @@ function ampforwp_register_additional_scripts() {
 						<?php
 					}//code ends for supporting Google Analytics
 
-		// 10.2 Analytics Support added for segment.com
+			// 10.2 Analytics Support added for segment.com
 				if ( $redux_builder_amp['amp-analytics-select-option']=='2' ) { ?>
 						<amp-analytics type="segment">
 							<script>
@@ -458,7 +459,7 @@ function ampforwp_register_additional_scripts() {
 						<?php
 					}
 
-		// 10.3 Analytics Support added for Piwik
+			// 10.3 Analytics Support added for Piwik
 				if( $redux_builder_amp['amp-analytics-select-option']=='3' ) { ?>
 						<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 				<?php }
@@ -915,15 +916,15 @@ function remove_this(){
 
 
 // 27. Clean the Defer issue
-function ampforwp_clean_defer($ampforwp_buffer) {
-  return (str_replace("' defer='defer", "", $ampforwp_buffer));
-}
-ob_start("ampforwp_clean_defer");
+	// TODO : Get back to this issue. #407
+	function ampforwp_clean_defer($ampforwp_buffer) {
+	  return ( str_replace("' defer='defer", "", $ampforwp_buffer) );
+	}
+	ob_start('ampforwp_clean_defer');
 
 
-// 27. [AHMED: WHO ADDED THIS? WITHOUT DESCRIPTION?]
+// 28. Properly removes AMP if turned off from Post panel
 add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
-
 function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID , 'ampforwp-amp-on-off' , true );
 	if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
@@ -932,3 +933,23 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
     return $skip;
 }
 
+// 29. Remove analytics code if Already added by Glue or Yoast SEO (#370)
+	add_action('init','remove_analytics_code_if_available',20);
+	function remove_analytics_code_if_available(){
+		if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
+			$yoast_glue_seo = get_option('wpseo_amp');
+
+			if ( $yoast_glue_seo['analytics-extra'] ) {
+				remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+				remove_action('amp_post_template_footer','ampforwp_analytics',11);
+			}	
+
+			if ( class_exists('Yoast_GA_Options') ) {
+				$UA = Yoast_GA_Options::instance()->get_tracking_code();
+				if ( $UA ) {
+					remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+					remove_action('amp_post_template_footer','ampforwp_analytics',11);
+				}
+			}
+		}
+	}
