@@ -882,24 +882,21 @@ add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 
 
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
-add_action('amp_post_template_include_single','remove_this');
-function remove_this(){
+add_action('amp_post_template_include_single','ampforwp_remove_title_tags');
+function ampforwp_remove_title_tags(){
 	remove_action('amp_post_template_head','amp_post_template_add_title');
-	add_action('amp_post_template_head','ampforwp_custom_title_tag');
+	add_action('amp_post_template_head','ampforwp_add_custom_title_tag');
 
-	function ampforwp_custom_title_tag(){
-		?>
-			<title>
-				<?php
-				global $redux_builder_amp;
-
+	function ampforwp_add_custom_title_tag(){ 
+		global $redux_builder_amp; ?>
+		<title>				
+			<?php
 			// title for a single post and single page
 			if( is_single() || is_page() ){
 				 global $post;
 				 $title = $post->post_title;
 				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
-
 			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
 			if ( is_home() ) {
 				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
@@ -908,12 +905,10 @@ function remove_this(){
 				}
 				echo  $site_title ;
 			} ?>
-		 </title>
+		</title>
 	 	<?php
 	}
 }
-//End of 26
-
 
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
