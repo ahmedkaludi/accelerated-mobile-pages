@@ -224,7 +224,7 @@ function ampforwp_register_additional_scripts() {
 	function ampforwp_register_analytics_script(){ ?>
 			<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 			<?php
-		 
+
 	}
 
 // 7. Footer for AMP Pages
@@ -887,9 +887,9 @@ function ampforwp_remove_title_tags(){
 	remove_action('amp_post_template_head','amp_post_template_add_title');
 	add_action('amp_post_template_head','ampforwp_add_custom_title_tag');
 
-	function ampforwp_add_custom_title_tag(){ 
+	function ampforwp_add_custom_title_tag(){
 		global $redux_builder_amp; ?>
-		<title>				
+		<title>
 			<?php
 			// title for a single post and single page
 			if( is_single() || is_page() ){
@@ -937,7 +937,7 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 			if ( $yoast_glue_seo['analytics-extra'] ) {
 				remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
 				remove_action('amp_post_template_footer','ampforwp_analytics',11);
-			}	
+			}
 
 			if ( class_exists('Yoast_GA_Options') ) {
 				$UA = Yoast_GA_Options::instance()->get_tracking_code();
@@ -948,3 +948,8 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 			}
 		}
 	}
+
+//30. TagDiv menu issue removed
+if( class_exists( 'td_mobile_theme' ) ) {
+	remove_action('option_stylesheet', array('td_mobile_theme', 'mobile'));
+}
