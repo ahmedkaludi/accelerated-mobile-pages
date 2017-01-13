@@ -473,12 +473,12 @@ function ampforwp_register_additional_scripts() {
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/type=[^>]*/', '', $content);
+				//  $content = preg_replace('/type=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
-				 $content = preg_replace('/date=[^>]*/', '', $content);
+				//  $content = preg_replace('/date=[^>]*/', '', $content);
 				 $content = preg_replace('/noshade=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
-				 $content = preg_replace('/time=[^>]*/', '', $content);
+				//  $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
 				 $content = preg_replace('/security=[^>]*/', '', $content);
 				 $content = preg_replace('/deposit=[^>]*/', '', $content);
@@ -501,6 +501,8 @@ function ampforwp_register_additional_scripts() {
 				 */
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 
@@ -508,15 +510,15 @@ function ampforwp_register_additional_scripts() {
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
-/// simpy add more elements to simply strip tag but not the content as so
-/// Array ("p","font");
-$tags_to_strip = Array("thrive_headline" );
-foreach ($tags_to_strip as $tag)
-{
-   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
-}
+				/// simpy add more elements to simply strip tag but not the content as so
+				/// Array ("p","font");
+				$tags_to_strip = Array("thrive_headline","type","date","time" );
+				foreach ($tags_to_strip as $tag)
+				{
+				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
+				}
 
-//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
+				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
 		}
 
