@@ -179,9 +179,6 @@ function ampforwp_page_template_redirect_archive() {
 	}
 }
 
-function ampforwp_is_amp_endpoint() {
-	return false !== get_query_var( 'amp', false );
-}
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     add_rewrite_rule(
@@ -191,3 +188,8 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+
+
+function ampforwp_is_amp_endpoint() {
+	return false !== get_query_var( 'amp', false );
+}

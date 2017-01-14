@@ -648,8 +648,35 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
  */
 function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID );
-    ?>
+    $ampforwp_stored_meta = get_post_meta( $post->ID ); 	
+    
+    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save() 
+    	// This code needs a rewrite.
+		if ( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {					
+				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_post_value[] = $post->ID;
+					update_option('ampforwp_exclude_post', $exclude_post_value);
+				}
+			}
+		} else {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );			
+					update_option('ampforwp_exclude_post', $exclude_ids);
+				}
+			}
+			
+		}
+        ?>
     <p>
         <div class="prfx-row-content">
             <label for="meta-radio-one">
