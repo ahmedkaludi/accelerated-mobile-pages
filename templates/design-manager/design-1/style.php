@@ -754,7 +754,7 @@ amp-carousel > amp-img > img {
 		    padding: 7px 0px 0px 0px;
 		    position: fixed;
 		    margin: 0;
-		    z-index: 999;
+		    z-index: 10;
 		    text-align: center;
 		}
 		.whatsapp-share-icon {

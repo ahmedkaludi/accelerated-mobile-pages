@@ -1,8 +1,5 @@
 <?php
-
-
 if ( is_customize_preview() ) {
-
 	// Load all the elements in the customizer as we want all the elements in design-manager
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
@@ -13,7 +10,6 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 }
-
 
 	$data = get_option( 'ampforwp_design' );
 
@@ -206,8 +202,4 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	}
 	return $file;
 }
-
-
-
-
 ?>

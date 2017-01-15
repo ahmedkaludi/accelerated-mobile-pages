@@ -6,9 +6,11 @@
     $ampforwp_backto_nonamp = home_url();
   }
   if ( is_single() ){
+    global $post;
     $ampforwp_backto_nonamp = get_permalink( $post->ID );
   }
   if ( is_page() ){
+    global $post;
     $ampforwp_backto_nonamp = get_permalink( $post->ID );
   }
   if( is_archive() ) {

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.32
+Stable tag: 0.9.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,23 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.33 [15th Jan 2017] =
+* Full details at https://ampforwp.com/debug-errors-shortcodes/
+* Mobile was not working with Newspaper theme by Tagdiv [Bugfix]
+* Debug errors fixed, Code is now much cleaner.
+* New rewrite rules for homepage pagination. It had some paginated URLs with wrong amphtml tag.
+* Extra analytics file was loading. Better compatibility with Yoast & Monster analytics.
+* Properly removes AMP if turned off from Post panel
+* z-index position improved on Sticky Social bar
+* Better compatibility with shortcodes.
+* Divi Standard Layouts Compatibility
+* Properly Hide AMP posts if excluded. #367
+* Mobile redirection was causing loop issues which are now fixed.
+* Some plugins were loading in core AMP js file, which was causing the issues, which is now fixed. [Better Validation]
+* onclick was getting added in the links on AMP version. Issue fixed. [Better Validation]
+* thrive_headline tag was getting added in the Title tag which was causing validation issues. Fixed. [Better Validation]
+* Some interactive plugins were using place, state, city and imap tags which are now fixed. [Better Validation]
 
 = 0.9.32 [7th Jan 2017] =
 * Full details at https://ampforwp.com/first-wave-of-polishing-in-2017/

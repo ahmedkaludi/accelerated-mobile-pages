@@ -27,18 +27,33 @@
 
 <main>
 
+	<?php
+		if ( get_query_var( 'paged' ) ) {
+	        $paged = get_query_var('paged');
+	    } elseif ( get_query_var( 'page' ) ) {
+	        $paged = get_query_var('page');
+	    } else {
+	        $paged = 1;
+	    }
+
+	    $exclude_ids = get_option('ampforwp_exclude_post'); 
+
+		$q = new WP_Query( array(
+			'post_type'           => 'post',
+			'orderby'             => 'date',  
+			'offset'              => esc_attr($fn_offset),
+			'ignore_sticky_posts' => 1,
+			'paged'               => esc_attr($paged),
+			'post__not_in' 		  => $exclude_ids
+		) ); ?>
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} ?>
 
-	<?php if ( have_posts() ) :
-		while ( have_posts() ) : the_post();
-
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ;
-
-		?>
+	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); 
+		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -55,12 +70,11 @@
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
 				<?php
-
-				if(has_excerpt()){
-					$content = get_the_excerpt();
-				}else{
-					$content = get_the_content();
-				}
+					if(has_excerpt()){
+						$content = get_the_excerpt();
+					}else{
+						$content = get_the_content();
+					}
 				?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
@@ -69,7 +83,6 @@
 	</div>
 
 	<?php endwhile;  ?>
-
 
 	<div class="amp-wp-content pagination-holder">
 
@@ -82,6 +95,7 @@
 	</div>
 
 	<?php endif; ?>
+	<?php wp_reset_postdata(); ?>
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>

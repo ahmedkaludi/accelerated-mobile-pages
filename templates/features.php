@@ -1,6 +1,5 @@
 <?php
 /* This file will contain all the Extra FEATURES.
-
 0.9. AMP Design Manager Files
 	1. Add Home REL canonical
 	2. Custom Design
@@ -11,6 +10,7 @@
 		4.5 Added hook to add more layout.
 	5. Customize with Width of the site
 	6. Add required Javascripts for extra AMP features
+		6.1 Adding Analytics Scripts
 	7. Footer for AMP Pages
 	8. Add Main tag as a Wrapper ( removed in 0.8.9 )
 	9. Advertisement code
@@ -34,6 +34,9 @@
 	24. Seperate Sticky Single Social Icons
 	25. Yoast meta Support
 	26. Extending Title Tagand De-Hooking the Standard one from AMP
+    27. Fixing the defer tag issue [Finally!]
+    28. Properly removes AMP if turned off from Post panel
+    29. Remove analytics code if Already added by Glue or Yoast SEO
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -42,9 +45,11 @@
 	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
 	require 'customizer/customizer.php';
-
 	// Custom AMP Content
 	require 'custom-amp-content.php';
+
+//0.
+
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
@@ -57,9 +62,9 @@
 	function ampforwp_add_endpoint_actions() {
 		// if ( is_home() ) {
 
-			$is_amp_endpoint = is_amp_endpoint();
+			$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
-			if ( $is_amp_endpoint ) {
+			if ( $ampforwp_is_amp_endpoint ) {
 				amp_prepare_render();
 			} else {
 				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
@@ -146,6 +151,14 @@
 			return $file;
 	}
 
+//3.5
+add_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
+function ampforwp_empty_filter( $file, $type, $post ) {
+		if ( 'empty-filter' === $type ) {
+			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
+		}
+		return $file;
+}
 	// 4. Custom Header files
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_header', 10, 3 );
 	function ampforwp_custom_header( $file, $type, $post ) {
@@ -159,7 +172,7 @@
 	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_author', 10, 3 );
 	function ampforwp_set_custom_meta_author( $file, $type, $post ) {
 			if ( 'meta-author' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-author.php';
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
 			}
 			return $file;
 	}
@@ -167,7 +180,7 @@
 	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_taxonomy', 10, 3 );
 	function ampforwp_set_custom_meta_taxonomy( $file, $type, $post ) {
 			if ( 'meta-taxonomy' === $type ) {
-				$file = AMPFORWP_PLUGIN_DIR . '/templates/meta-taxonomy.php';
+				$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/empty-filter.php';
 			}
 			return $file;
 	}
@@ -186,15 +199,6 @@
 add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 function ampforwp_register_additional_scripts() {
 	global $redux_builder_amp;
-
-	if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
-		$yoast_glue_seo = get_option('wpseo_amp');
-	}
-	if ( empty( $yoast_glue_seo['analytics-extra'] ) ) { ?>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php 
-	}
-	
 	if( is_page() ) { ?>
 		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<?php } ?>
@@ -205,15 +209,22 @@ function ampforwp_register_additional_scripts() {
 	<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 		<?php if( is_singular() ) { ?>
 			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-		<?php }  
+		<?php }
 	} ?>
 	<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
 		<?php if( is_home() ) { ?>
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		<?php }
 	} ?>
-	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php 
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php
 }
+	// 6.1 Adding Analytics Scripts
+	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+	function ampforwp_register_analytics_script(){ ?>
+			<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+			<?php
+
+	}
 
 // 7. Footer for AMP Pages
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
@@ -411,7 +422,7 @@ function ampforwp_register_additional_scripts() {
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
 		function ampforwp_analytics() {
 
-		// 10.1 Analytics Support added for Google Analytics
+			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
 				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){ ?>
 						<amp-analytics type="googleanalytics" id="analytics1">
@@ -432,7 +443,7 @@ function ampforwp_register_additional_scripts() {
 						<?php
 					}//code ends for supporting Google Analytics
 
-		// 10.2 Analytics Support added for segment.com
+			// 10.2 Analytics Support added for segment.com
 				if ( $redux_builder_amp['amp-analytics-select-option']=='2' ) { ?>
 						<amp-analytics type="segment">
 							<script>
@@ -447,7 +458,7 @@ function ampforwp_register_additional_scripts() {
 						<?php
 					}
 
-		// 10.3 Analytics Support added for Piwik
+			// 10.3 Analytics Support added for Piwik
 				if( $redux_builder_amp['amp-analytics-select-option']=='3' ) { ?>
 						<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 				<?php }
@@ -461,12 +472,12 @@ function ampforwp_register_additional_scripts() {
 		function ampforwp_the_content_filter( $content ) {
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/type=[^>]*/', '', $content);
+				//  $content = preg_replace('/type=[^>]*/', '', $content);
 				 $content = preg_replace('/value=[^>]*/', '', $content);
-				 $content = preg_replace('/date=[^>]*/', '', $content);
+				//  $content = preg_replace('/date=[^>]*/', '', $content);
 				 $content = preg_replace('/noshade=[^>]*/', '', $content);
 				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
-				 $content = preg_replace('/time=[^>]*/', '', $content);
+				//  $content = preg_replace('/time=[^>]*/', '', $content);
 				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
 				 $content = preg_replace('/security=[^>]*/', '', $content);
 				 $content = preg_replace('/deposit=[^>]*/', '', $content);
@@ -489,6 +500,9 @@ function ampforwp_register_additional_scripts() {
 				 */
 				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) imap=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 
@@ -496,15 +510,15 @@ function ampforwp_register_additional_scripts() {
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
-/// simpy add more elements to simply strip tag but not the content as so
-/// Array ("p","font");
-$tags_to_strip = Array("thrive_headline" );
-foreach ($tags_to_strip as $tag)
-{
-   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
-}
+				/// simpy add more elements to simply strip tag but not the content as so
+				/// Array ("p","font");
+				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
+				foreach ($tags_to_strip as $tag)
+				{
+				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
+				}
 
-//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
+				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
 		}
 
@@ -634,8 +648,35 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
  */
 function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID );
-    ?>
+    $ampforwp_stored_meta = get_post_meta( $post->ID ); 	
+    
+    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save() 
+    	// This code needs a rewrite.
+		if ( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {					
+				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_post_value[] = $post->ID;
+					update_option('ampforwp_exclude_post', $exclude_post_value);
+				}
+			}
+		} else {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );			
+					update_option('ampforwp_exclude_post', $exclude_ids);
+				}
+			}
+			
+		}
+        ?>
     <p>
         <div class="prfx-row-content">
             <label for="meta-radio-one">
@@ -692,7 +733,7 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 			if ( ! function_exists( 'newrelic_disable_autorum' ) ) {
 				return $data;
 			}
-			if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+			if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
 				newrelic_disable_autorum();
 			}
 			return $data;
@@ -700,7 +741,7 @@ if ( ! function_exists('ampforwp_disable_new_relic_scripts') ) {
 }
 
 // 16. Remove Unwanted Scripts
-if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
 	add_action( 'wp_enqueue_scripts', 'ampforwp_remove_unwanted_scripts',20 );
 }
 function ampforwp_remove_unwanted_scripts() {
@@ -708,7 +749,7 @@ function ampforwp_remove_unwanted_scripts() {
 }
 // Remove Print Scripts and styles
 function ampforwp_remove_print_scripts() {
-		if ( is_amp_endpoint() ) {
+		if ( ampforwp_is_amp_endpoint() ) {
 
 		    function ampforwp_remove_all_scripts() {
 		        global $wp_scripts;
@@ -779,8 +820,8 @@ function ampforwp_remove_schema_data() {
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( "disable_comment_author_links" ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
-		$is_amp_endpoint = is_amp_endpoint();
-		if ( $is_amp_endpoint ) {
+		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+		if ( $ampforwp_is_amp_endpoint ) {
 				return strip_tags( $author_link );
 		} else {
 			return $author_link;
@@ -870,24 +911,21 @@ add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 
 
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
-add_action('amp_post_template_include_single','remove_this');
-function remove_this(){
+add_action('amp_post_template_include_single','ampforwp_remove_title_tags');
+function ampforwp_remove_title_tags(){
 	remove_action('amp_post_template_head','amp_post_template_add_title');
-	add_action('amp_post_template_head','ampforwp_custom_title_tag');
+	add_action('amp_post_template_head','ampforwp_add_custom_title_tag');
 
-	function ampforwp_custom_title_tag(){
-		?>
-			<title>
-				<?php
-				global $redux_builder_amp;
-
+	function ampforwp_add_custom_title_tag(){
+		global $redux_builder_amp; ?>
+		<title>
+			<?php
 			// title for a single post and single page
 			if( is_single() || is_page() ){
 				 global $post;
 				 $title = $post->post_title;
 				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
-
 			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
 			if ( is_home() ) {
 				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
@@ -896,20 +934,55 @@ function remove_this(){
 				}
 				echo  $site_title ;
 			} ?>
-		 </title>
+		</title>
 	 	<?php
 	}
 }
-//End of 26
+
+// 27. Clean the Defer issue
+	// TODO : Get back to this issue. #407
+		function ampforwp_the_content_filter_full( $content_buffer ) {
+				 $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
+				 $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
+                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
+				return $content_buffer;
+		}
+	   ob_start('ampforwp_the_content_filter_full');
 
 
-// 27.
+
+// 28. Properly removes AMP if turned off from Post panel
 add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
-
 function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
-	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
-	if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID , 'ampforwp-amp-on-off' , true );
+	if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 		$skip = true;
 	}
     return $skip;
+}
+
+// 29. Remove analytics code if Already added by Glue or Yoast SEO (#370)
+	add_action('init','remove_analytics_code_if_available',20);
+	function remove_analytics_code_if_available(){
+		if ( class_exists('WPSEO_Options') && class_exists('YoastSEO_AMP') ) {
+			$yoast_glue_seo = get_option('wpseo_amp');
+
+			if ( $yoast_glue_seo['analytics-extra'] ) {
+				remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+				remove_action('amp_post_template_footer','ampforwp_analytics',11);
+			}
+
+			if ( class_exists('Yoast_GA_Options') ) {
+				$UA = Yoast_GA_Options::instance()->get_tracking_code();
+				if ( $UA ) {
+					remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+					remove_action('amp_post_template_footer','ampforwp_analytics',11);
+				}
+			}
+		}
+	}
+
+//30. TagDiv menu issue removed
+if( class_exists( 'td_mobile_theme' ) ) {
+	remove_action('option_stylesheet', array('td_mobile_theme', 'mobile'));
 }
