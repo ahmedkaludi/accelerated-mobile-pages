@@ -1,6 +1,5 @@
 <?php
 /* This file will contain all the Extra FEATURES.
-
 0.9. AMP Design Manager Files
 	1. Add Home REL canonical
 	2. Custom Design
