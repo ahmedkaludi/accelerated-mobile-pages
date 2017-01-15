@@ -460,7 +460,7 @@ function ampforwp_register_additional_scripts() {
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 2 );
 		}
 		function ampforwp_the_content_filter( $content ) {
-				 $content = preg_replace('/\[[\/]?vc_(.*?)\]/', '', $content);
+				 $content = do_shortcode($content);
 				 $content = preg_replace('/property=[^>]*/', '', $content);
 				 $content = preg_replace('/vocab=[^>]*/', '', $content);
 				 $content = preg_replace('/type=[^>]*/', '', $content);
