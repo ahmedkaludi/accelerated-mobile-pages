@@ -941,10 +941,57 @@ function ampforwp_remove_title_tags(){
 
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
-	function ampforwp_clean_defer($ampforwp_buffer) {
-	  return ( str_replace("' defer='defer", "", $ampforwp_buffer) );
-	}
-	ob_start('ampforwp_clean_defer');
+//	function ampforwp_clean_defer($ampforwp_buffer) {
+//	  return ( str_replace("' defer='defer", "", $ampforwp_buffer) );
+//	}
+//	ob_start('ampforwp_clean_defer');
+
+
+
+//		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_full');
+//		function ampforwp_strip_invalid_content_full() {
+//			add_filter( 'the_content', 'ampforwp_the_content_filter_full', 2 );
+//		}
+		function ampforwp_the_content_filter_full( $content_buffer ) {
+				 $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
+				 $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
+                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
+				return $content_buffer;
+		}
+	   ob_start('ampforwp_the_content_filter_full');
+
+
+
+//
+///**
+// * Output Buffering
+// *
+// * Buffers the entire WP process, capturing the final output for manipulation.
+// */
+//
+//ob_start();
+//
+//add_action('shutdown', function() {
+//    $final = '';
+//
+//    // We'll need to get the number of ob levels we're in, so that we can iterate over each, collecting
+//    // that buffer's output into the final output.
+//    $levels = ob_get_level();
+//
+//    for ($i = 0; $i < $levels; $i++)
+//    {
+//        $final .= ob_get_clean();
+//    }
+//
+//    // Apply any filters to the final output
+//    echo apply_filters('final_output', $final);
+//}, 0);
+//
+//add_filter('final_output', function($output) {
+//    return str_replace("' defer='defer", "", $output);
+//});
+//
+//
 
 
 // 28. Properly removes AMP if turned off from Post panel
