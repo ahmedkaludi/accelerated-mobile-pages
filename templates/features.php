@@ -503,6 +503,7 @@ function ampforwp_register_additional_scripts() {
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+) imap=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 
@@ -512,7 +513,7 @@ function ampforwp_register_additional_scripts() {
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
-				$tags_to_strip = Array("thrive_headline","type","date","time" );
+				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
 				foreach ($tags_to_strip as $tag)
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
