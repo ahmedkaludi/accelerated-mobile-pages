@@ -941,16 +941,16 @@ function ampforwp_remove_title_tags(){
 
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
-    function ampforwp_the_content_filter_full( $content_buffer ) {
-        $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-        if ( $ampforwp_is_amp_endpoint ) {
-             $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
-             $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
-             $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
+		function ampforwp_the_content_filter_full( $content_buffer ) {
+            $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+			if ( $ampforwp_is_amp_endpoint ) {
+				 $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
+				 $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
+                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
+            }
             return $content_buffer;
-        }
-    }
-   ob_start('ampforwp_the_content_filter_full');
+		}
+	   ob_start('ampforwp_the_content_filter_full');
 
 
 
