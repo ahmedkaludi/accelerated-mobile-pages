@@ -983,6 +983,9 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 	}
 
 //30. TagDiv menu issue removed
-if( class_exists( 'td_mobile_theme' ) ) {
-	remove_action('option_stylesheet', array('td_mobile_theme', 'mobile'));
-}
+	add_action('init','ampforwp_remove_tagdiv_mobile_menu');
+	function ampforwp_remove_tagdiv_mobile_menu() {
+		if( class_exists( 'Mobile_Detect' )) {
+			remove_action('option_stylesheet', array('td_mobile_theme', 'mobile'));
+		}
+	}
