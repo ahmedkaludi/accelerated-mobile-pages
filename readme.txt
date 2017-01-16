@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.33
+Stable tag: 0.9.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,9 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.34 =
+* Newspaper theme by Tagdiv was having issues, we have fixed this one. 
 
 = 0.9.33 [15th Jan 2017] =
 * Full details at https://ampforwp.com/debug-errors-shortcodes/
