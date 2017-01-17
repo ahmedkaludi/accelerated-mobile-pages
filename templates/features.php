@@ -519,7 +519,9 @@ function ampforwp_register_additional_scripts() {
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
 				}
-
+				// regex on steroids from here on
+				 // issue #420
+				 $content = preg_replace("/<div\s(class=.*?)(href=((".'"|'."'".')(.*?)("|'."'".')))\s(width=("|'."'".')(.*?)("|'."'"."))>(.*)<\/div>/i", '<div $1>$11</div>', $content);
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
 		}
