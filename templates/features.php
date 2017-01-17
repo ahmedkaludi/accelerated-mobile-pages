@@ -80,6 +80,11 @@
 		if( is_archive() ) {
 			return;
 		}
+    if( is_page() ) {
+      if( !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+        return;
+      }
+    }
 		if ( is_home() || is_front_page()  ){
 			global $wp;
       $current_archive_url = home_url( $wp->request );
@@ -645,8 +650,11 @@ function ampforwp_register_additional_scripts() {
 */
 function ampforwp_title_custom_meta() {
   add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
+  global $redux_builder_amp;
 
-	add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+	if($redux_builder_amp['amp-on-off-for-all-pages']) {
+		add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+	}
 }
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
