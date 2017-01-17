@@ -180,14 +180,23 @@ function ampforwp_page_template_redirect_archive() {
 }
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
-function ampforwp_add_custom_rewrite_rules() {
-    add_rewrite_rule(
-        'amp/page/([0-9]{1,})/?$', 
-        'index.php?amp&paged=$matches[1]',
-        'top'
-    );
-}
-add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+//function ampforwp_add_custom_rewrite_rules() {
+//    add_rewrite_rule(
+//        'amp/page/([0-9]{1,})/?$', 
+//        'index.php?amp&paged=$matches[1]',
+//        'top'
+//    );
+//}
+//add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+
+add_filter('get_pagenum_link', function($url) {
+	$pos = strripos($url,'/amp/page/2/');
+	if ($pos){
+		$url = preg_replace('/amp\//','',$url);
+		$url = $url.'?amp';
+	}
+	return $url;
+});
 
 
 function ampforwp_is_amp_endpoint() {
