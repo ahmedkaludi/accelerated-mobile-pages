@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp>
+<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
@@ -36,11 +36,11 @@
 	        $paged = 1;
 	    }
 
-	    $exclude_ids = get_option('ampforwp_exclude_post'); 
+	    $exclude_ids = get_option('ampforwp_exclude_post');
 
 		$q = new WP_Query( array(
 			'post_type'           => 'post',
-			'orderby'             => 'date',  
+			'orderby'             => 'date',
 			'offset'              => esc_attr($fn_offset),
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
@@ -52,7 +52,7 @@
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} ?>
 
-	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); 
+	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
