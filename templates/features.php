@@ -77,7 +77,7 @@
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		if( is_archive() ) {
+		if( is_archive() || is_attachment() ) {
 			return;
 		}
     if( is_page() ) {
