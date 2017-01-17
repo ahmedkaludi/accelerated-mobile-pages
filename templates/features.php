@@ -523,6 +523,7 @@ function ampforwp_register_additional_scripts() {
 				 // issue #420
 				 $content = preg_replace("/<div\s(class=.*?)(href=((".'"|'."'".')(.*?)("|'."'".')))\s(width=("|'."'".')(.*?)("|'."'"."))>(.*)<\/div>/i", '<div $1>$11</div>', $content);
 				 $content = preg_replace('/<like\s(href=(("|'."'".')(.*?)("|'."'".')))\s(showfaces=("|'."'".')(.*?)("|'."'".'))>(.*)<\/like>/i', '', $content);
+				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
