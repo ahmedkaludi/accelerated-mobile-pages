@@ -536,7 +536,9 @@ function ampforwp_register_additional_scripts() {
 
 
 	// 11.1 Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
-		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
+		if ( ! is_customize_preview() ) { 
+			add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
+		}
 		function ampforwp_strip_invalid_content_footer() {
 			add_filter( 'wp_footer', 'ampforwp_the_content_filter_footer', 1 );
 		}
