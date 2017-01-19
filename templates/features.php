@@ -1025,8 +1025,8 @@ function ampforwp_remove_js_script_cleantalk() {
 
 //32. removing bj loading for amp
 function ampforwp_remove_bj_load() {
- 	if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+ 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
  		add_filter( 'bjll/enabled', '__return_false' );
  	}
- }
- add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
+}
+add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
