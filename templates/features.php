@@ -39,6 +39,7 @@
     29. Remove analytics code if Already added by Glue or Yoast SEO
     30. TagDiv menu issue removed
     31. removing scripts added by cleantalk
+    32. removing bj loading for amp
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1020,3 +1021,11 @@ add_action('amp_init','ampforwp_remove_js_script_cleantalk');
 function ampforwp_remove_js_script_cleantalk() {
     remove_action('wp_loaded', 'ct_add_nocache_script', 1);
 }
+
+//32. removing bj loading for amp
+function ampforwp_remove_bj_load() {
+ 	if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+ 		add_filter( 'bjll/enabled', '__return_false' );
+ 	}
+ }
+ add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
