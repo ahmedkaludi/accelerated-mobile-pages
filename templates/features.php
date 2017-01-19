@@ -536,7 +536,7 @@ function ampforwp_register_additional_scripts() {
 
 
 	// 11.1 Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
-		if ( ! is_customize_preview() ) { 
+		if ( ! is_customize_preview() ) {
 			add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
 		}
 		function ampforwp_strip_invalid_content_footer() {
@@ -643,6 +643,9 @@ function ampforwp_register_additional_scripts() {
 					);
 					$metadata['headline'] = $structured_data_archive_title;
 			}
+			if ( $metadata['image']['width'] < 696 ) {
+ +				$metadata['image']['width'] = 700;
+ +    }
 			return $metadata;
 	}
 
