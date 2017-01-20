@@ -415,7 +415,6 @@ if(!is_plugin_active( 'amp-ads-google-adsense/amptoolkit-incontent-ads.php' ) ){
   $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
 }
 
-if(!is_plugin_active( 'amp-ads-google-adsense/amptoolkit-incontent-ads.php' ) ) {
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
