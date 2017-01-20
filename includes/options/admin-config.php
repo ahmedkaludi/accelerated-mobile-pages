@@ -391,7 +391,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
         $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
-        
+        }
         // ADS SECTION
         Redux::setSection( $opt_name, array(
             'title'      => __( 'Advertisement', 'redux-framework-demo' ),
@@ -588,7 +588,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             // Ad 4 ends
             ),
         ) );
-    }
+    
 
     // Single Section
     Redux::setSection( $opt_name, array(
