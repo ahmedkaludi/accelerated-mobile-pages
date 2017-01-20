@@ -413,7 +413,6 @@ $desc = '';
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
   $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
-}
     // ADS SECTION
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Advertisement', 'redux-framework-demo' ),
@@ -610,7 +609,7 @@ if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
         // Ad 4 ends
         ),
     ) );
-
+}
 
     // Single Section
     Redux::setSection( $opt_name, array(
