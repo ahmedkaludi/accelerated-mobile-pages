@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.35
+Stable tag: 0.9.36
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 * NEW - Star Ratings  
 * Drag & Drop Page builder Added 
 * 2 Designs Added 
-* Yoast SEO support on AMP pages
+* Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages on AMP
 * Translation Panel & RTL
@@ -121,6 +121,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.36 =
+* Full details at https://ampforwp.com/0-9-36-released-stability-update-43rd-update/
+* Redux Core Update. Better compatibility with the Salient theme and Themeforest themes & plugins using redux framework in their core, which makes the plugin much stable. [Huge Improvements]
+* Hide advertisement section if advance ads plugin is active. [Better User experience]
+* Ultimate Social Media PLUS Plugin Compatibility (Link) [3rd Party plugin Compatibility & Better Validation]
+* Launch Post Builder button added. One of the important feature called ‘Post Builder’, that is drag and drop post builder was somewhere hidden in the customizer, so positioned it for better visibility from users. [Better UX]
 
 = 0.9.35 =
 * Full details at https://ampforwp.com/page-builder-realtime-preview-3rd-party-plugins-compatibility/
