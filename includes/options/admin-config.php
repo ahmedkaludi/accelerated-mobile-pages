@@ -301,7 +301,9 @@ Redux::setArgs( "redux_builder_amp", $args );
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
-       'desc'       => __( '<b>Quick Links: <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'">AMP Page Builder & Color Settings</a></b>'),
+       'desc'       => __( '
+       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a> 
+       '),
        'id'         => 'amp-design',
        'subsection' => true,
         'fields'     => array(
