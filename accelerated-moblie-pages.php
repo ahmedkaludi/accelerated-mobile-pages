@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.34
+Version: 0.9.35
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: http://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -15,10 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
-
-	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
 	global $redux_builder_amp;
-	if($redux_builder_amp['amp-on-off-for-all-pages']){
+	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }
@@ -26,7 +25,7 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.34');
+define('AMPFORWP_VERSION','0.9.35');
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
@@ -182,7 +181,7 @@ function ampforwp_page_template_redirect_archive() {
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     add_rewrite_rule(
-        'amp/page/([0-9]{1,})/?$', 
+        'amp/page/([0-9]{1,})/?$',
         'index.php?amp&paged=$matches[1]',
         'top'
     );

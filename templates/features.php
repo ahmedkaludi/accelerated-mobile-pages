@@ -37,6 +37,9 @@
     27. Fixing the defer tag issue [Finally!]
     28. Properly removes AMP if turned off from Post panel
     29. Remove analytics code if Already added by Glue or Yoast SEO
+    30. TagDiv menu issue removed
+    31. removing scripts added by cleantalk
+    32. removing bj loading for amp
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -75,9 +78,14 @@
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		if( is_archive() ) {
+		if( is_archive() || is_attachment() ) {
 			return;
 		}
+    if( is_page() ) {
+      if( !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+        return;
+      }
+    }
 		if ( is_home() || is_front_page()  ){
 			global $wp;
       $current_archive_url = home_url( $wp->request );
@@ -517,6 +525,12 @@ function ampforwp_register_additional_scripts() {
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
 				}
+				// regex on steroids from here on
+				 // issue #420
+				 $content = preg_replace("/<div\s(class=.*?)(href=((".'"|'."'".')(.*?)("|'."'".')))\s(width=("|'."'".')(.*?)("|'."'"."))>(.*)<\/div>/i", '<div $1>$11</div>', $content);
+				 $content = preg_replace('/<like\s(.*?)>(.*)<\/like>/i', '', $content);
+				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
+				 $content = preg_replace('/imageanchor="1"/i', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -524,7 +538,9 @@ function ampforwp_register_additional_scripts() {
 
 
 	// 11.1 Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
-		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
+		if ( ! is_customize_preview() ) {
+			add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
+		}
 		function ampforwp_strip_invalid_content_footer() {
 			add_filter( 'wp_footer', 'ampforwp_the_content_filter_footer', 1 );
 		}
@@ -629,6 +645,11 @@ function ampforwp_register_additional_scripts() {
 					);
 					$metadata['headline'] = $structured_data_archive_title;
 			}
+
+			if ( $metadata['image']['width'] < 696 ) {
+	 			$metadata['image']['width'] = 700 ;
+     	}
+
 			return $metadata;
 	}
 
@@ -638,8 +659,11 @@ function ampforwp_register_additional_scripts() {
 */
 function ampforwp_title_custom_meta() {
   add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
+  global $redux_builder_amp;
 
-	add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+	if($redux_builder_amp['amp-on-off-for-all-pages']) {
+		add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
+	}
 }
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
@@ -648,16 +672,16 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
  */
 function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID ); 	
-    
-    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save() 
+    $ampforwp_stored_meta = get_post_meta( $post->ID );
+
+    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
     	// This code needs a rewrite.
 		if ( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
 			$exclude_post_value = get_option('ampforwp_exclude_post');
 			if ( $exclude_post_value == null ) {
 				$exclude_post_value[] = 0;
 			}
-			if ( $exclude_post_value ) {					
+			if ( $exclude_post_value ) {
 				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
 					$exclude_post_value[] = $post->ID;
 					update_option('ampforwp_exclude_post', $exclude_post_value);
@@ -670,11 +694,11 @@ function ampforwp_title_callback( $post ) {
 			}
 			if ( $exclude_post_value ) {
 				if ( in_array( $post->ID, $exclude_post_value ) ) {
-					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );			
+					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
 					update_option('ampforwp_exclude_post', $exclude_ids);
 				}
 			}
-			
+
 		}
         ?>
     <p>
@@ -992,3 +1016,17 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 			remove_action('option_stylesheet', array('td_mobile_theme', 'mobile'));
 		}
 	}
+
+//31. removing scripts added by cleantalk
+add_action('amp_init','ampforwp_remove_js_script_cleantalk');
+function ampforwp_remove_js_script_cleantalk() {
+    remove_action('wp_loaded', 'ct_add_nocache_script', 1);
+}
+
+//32. removing bj loading for amp
+function ampforwp_remove_bj_load() {
+ 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+ 		add_filter( 'bjll/enabled', '__return_false' );
+ 	}
+}
+add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
