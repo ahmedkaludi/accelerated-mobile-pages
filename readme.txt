@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.34
+Stable tag: 0.9.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,23 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.35 =
+* Full details at https://ampforwp.com/page-builder-realtime-preview-3rd-party-plugins-compatibility/
+* Customizer page builder (Design Manager) was not showing real-time preview, we have fixed this issue properly [Bug fix]
+* Attachment page was having the wrong endpoint. [Bug fix]
+* Fb:like div has href, showfaces, send and action tag, which was against validation [Validation Improvement]
+* A plugin (Spam Protection by CleanTalk, no Captcha Anti-Spam) was forcefully adding script into the AMP version. [3rd party Compatibility]
+* Lang attributes were added [Enhancement]
+* The tag like was disallowed in the AMP [Validation Improvement]
+* We did some more testing with Visual Composer & AMP [3rd party Compatibility]
+* AMP on Pages option was not working in some cases. [Bug fix]
+* Disable comment button when comments were disabled. This was fixed by @lofesa and was sent as a pull request. Thank you Lofesa!
+* g:plusone tag was not getting removed properly. [Validation Improvement]
+* Thrive headline optimizer was having issues in AMP version. [Validation Improvement]
+* Structured Data Image width issue solved [Enhancement]
+* BJ Lazy Load was having issues, we have added a fix which will make this plugin compatible with the AMP. [3rd party Compatibility & Validation Improvement]
+* imageanchor=”1″ was getting added by some 3rd party plugin, this was fixed.[Validation Improvement]
 
 = 0.9.34 =
 * Newspaper theme by Tagdiv was having issues, we have fixed this one. 
