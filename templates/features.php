@@ -839,6 +839,10 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
+    	// Ultimate Social Media PLUS Compatiblity Added
+	remove_filter('the_content','sfsi_plus_beforaftereposts');
+	remove_filter('the_content','sfsi_plus_beforeafterblogposts');
+
 }
 
 // 22. Removing author links from comments Issue #180
