@@ -1,8 +1,5 @@
 <?php
-
-
 if ( is_customize_preview() ) {
-
 	// Load all the elements in the customizer as we want all the elements in design-manager
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_meta_info' );
@@ -12,8 +9,8 @@ if ( is_customize_preview() ) {
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_social_icons' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_comments' );
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
+	// add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
 }
-
 
 	$data = get_option( 'ampforwp_design' );
 
@@ -54,6 +51,9 @@ if ( is_customize_preview() ) {
 				case 'related_posts:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 						break;
+				case 'comments:0':
+						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
+						break;
 			}
 		}
 	}
@@ -82,7 +82,7 @@ function ampforwp_stylesheet_file_insertion() {
         } else {
           $ampforwp_design_selector  = ampforwp_design_selector();
         }
-        
+
         // Add StyleSheet
         require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
 }
@@ -193,6 +193,20 @@ function ampforwp_design_element_comments( $file, $type, $post ) {
 	return $file;
 }
 
+// simple comment button
+function ampforwp_add_element_simple_comment_button( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-simple-comment-button';
+	return $meta_parts;
+}
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_simple_comment_button', 10, 3 );
+
+function ampforwp_design_element_simple_comment_button( $file, $type, $post ) {
+	if ( 'ampforwp-simple-comment-button' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/simple-comment-button.php';
+	}
+	return $file;
+}
+
 // Related Posts
 function ampforwp_add_element_related_posts( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-related-posts';
@@ -206,8 +220,4 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	}
 	return $file;
 }
-
-
-
-
 ?>
