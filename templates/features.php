@@ -514,10 +514,18 @@ function ampforwp_register_additional_scripts() {
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 
-				 //removing scripts and rel="nofollow" from Body and from divs
+				 //removing defer onload
+				 //issue #431
+				 $content = str_replace(' onload=""',"",$content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+				 $content = str_replace(' defer',"",$content);
+				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+
+				  //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
 				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
