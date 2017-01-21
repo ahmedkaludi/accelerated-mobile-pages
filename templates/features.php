@@ -96,8 +96,7 @@
 		}
 
 				global $post;
-				$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID );
-				if( $ampforwp_amp_post_on_off_meta['ampforwp-amp-on-off'][0] === 'hide-amp' ) {
+				$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID ,'ampforwp-amp-on-off',true); if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 					//dont Echo anything
 				} else {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
