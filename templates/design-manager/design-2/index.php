@@ -41,7 +41,6 @@
 		$q = new WP_Query( array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
-			'offset'              => esc_attr($fn_offset),
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids
