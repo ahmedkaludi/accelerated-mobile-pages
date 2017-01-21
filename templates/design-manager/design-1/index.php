@@ -37,12 +37,11 @@ if ( is_home() || is_front_page()  ){
 		        $paged = 1;
 		    }
 
-		    $exclude_ids = get_option('ampforwp_exclude_post'); 
+		    $exclude_ids = get_option('ampforwp_exclude_post');
 
 			$q = new WP_Query( array(
 				'post_type'           => 'post',
-				'orderby'             => 'date',  
-				'offset'              => esc_attr($fn_offset),
+				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids
@@ -72,7 +71,7 @@ if ( is_home() || is_front_page()  ){
 									<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
 								</a>
 							</div>
-						<?php } 
+						<?php }
 							if(has_excerpt()){
 								$content = get_the_excerpt();
 							}else{
