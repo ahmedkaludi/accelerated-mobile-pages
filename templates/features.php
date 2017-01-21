@@ -517,9 +517,7 @@ function ampforwp_register_additional_scripts() {
 				 //removing defer onload
 				 //issue #431
 				 $content = str_replace(' onload=""',"",$content);
-				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 $content = str_replace(' defer',"",$content);
-				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 
 				  //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
