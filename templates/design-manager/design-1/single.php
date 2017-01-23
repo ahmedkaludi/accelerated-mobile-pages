@@ -15,6 +15,8 @@
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+ 
+
 <article class="amp-wp-article">
 	<?php do_action('ampforwp_post_before_design_elements') ?>
 
