@@ -78,30 +78,37 @@
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		if( is_archive() || is_attachment() ) {
-			return;
-		}
+    if( is_attachment() ) {
+        return;
+    }
     if( is_page() ) {
       if( !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
         return;
       }
     }
-		if ( is_home() || is_front_page()  ){
-			global $wp;
-      $current_archive_url = home_url( $wp->request );
-			$amp_url = trailingslashit($current_archive_url).'?amp';
-		}
-	    else {
-			$amp_url = amp_get_permalink( get_queried_object_id() );
-		}
+    if( is_archive() ) {
+      if( ! $redux_builder_amp['ampforwp-archive-support'] ) {
+        //dont do anything
+        return;
+      }
+    }
+    if ( is_home() || is_front_page() || is_archive() ){
+        global $wp;
+        $current_archive_url = home_url( $wp->request );
+        $amp_url = trailingslashit($current_archive_url).'?amp';
 
-				global $post;
-				$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID ,'ampforwp-amp-on-off',true); if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
-					//dont Echo anything
-				} else {
-					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
-				}
-	} //end of ampforwp_home_archive_rel_canonical()
+    } else {
+      $amp_url = amp_get_permalink( get_queried_object_id() );
+    }
+
+        global $post;
+        $ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
+        if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
+          //dont Echo anything
+        } else {
+          printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+        }
+  } //end of ampforwp_home_archive_rel_canonical()
 
 
 	// Remove default wordpress rel canonical
