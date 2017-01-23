@@ -8,7 +8,7 @@
       <?php
     }else{
       ?>
-      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
+      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
 
     <?php }?>
 
@@ -24,7 +24,7 @@
     ?>
     <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
     <?php }else{ ?>
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
+    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
     <?php } ?>
         <?php $site_icon_url = $this->get( 'site_icon_url' );
             if ( $site_icon_url ) : ?>
