@@ -991,7 +991,9 @@ function ampforwp_remove_title_tags(){
                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
                 // Remove Extra styling added by other Themes/ Plugins
                	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
-               	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+               	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);                
+                $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
+				$content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
             }
             return $content_buffer;
 		}
