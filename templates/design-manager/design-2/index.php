@@ -77,7 +77,7 @@
 					}
 				?>
 				
-				<p><?php echo wp_trim_words( strip_shortcodes(strip_tags( $content , '15' ) ); ?></p>
+				<p><?php echo wp_trim_words( strip_shortcodes(strip_tags( $content , '15' ) ) ); ?></p>
 
 
 		    </div>
