@@ -130,7 +130,11 @@
         if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
             if ( is_home() || is_archive() ) {
                 if ( 'single' === $type ) {
+                  if(is_archive()){
+                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
+                  }else {
                     $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+                  }
                 }
             }
         } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
@@ -139,11 +143,8 @@
                     $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
                 }
             }
-						if ( is_archive() ) {
-							if ( 'single' === $type ) {
-									$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-							}
-						}
+
+
 
         }
 		// Custom Single file
