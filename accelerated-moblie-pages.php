@@ -27,13 +27,13 @@ define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.9.36');
 
-// Redux panel inclusion code 
+// Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
 	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	
+
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
@@ -152,11 +152,15 @@ function ampforwp_page_template_redirect() {
 			if ( ampforwp_is_amp_endpoint() ) {
 				return;
 			} else {
-				if ( is_home() ) {
-					wp_redirect( trailingslashit( esc_url( home_url() ) ) .'?'. AMP_QUERY_VAR ,  301 );
+        if ( is_home() ) {
+					wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
 					exit();
-				} elseif ( is_archive() ) {
-					return ;
+				}
+        elseif ( is_archive() ) {
+          global $wp;
+          $current_archive_url = home_url( $wp->request );
+          wp_redirect( trailingslashit( esc_url( $current_archive_url ) ) . AMP_QUERY_VAR , 301 );
+          exit();
 				} else {
 					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMP_QUERY_VAR , 301 );
 					exit();
@@ -171,15 +175,13 @@ add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
 function ampforwp_page_template_redirect_archive() {
 
-	if ( is_archive() || is_404() ) {
+	if ( is_404() ) {
 		if( ampforwp_is_amp_endpoint() ) {
 			global $wp;
-			$archive_current_url 	= add_query_arg( '', '', home_url( $wp->request ) );
-			$archive_current_url	= trailingslashit($archive_current_url );
-			if (is_404() ) {
-				$archive_current_url = dirname($archive_current_url);
-			}
-			wp_redirect( esc_url( $archive_current_url )  , 301 );
+			$ampforwp_404_url 	= add_query_arg( '', '', home_url( $wp->request ) );
+			$ampforwp_404_url	= trailingslashit($ampforwp_404_url );
+				$ampforwp_404_url = dirname($ampforwp_404_url);
+			wp_redirect( esc_url( $ampforwp_404_url )  , 301 );
 			exit();
 		}
 	}
