@@ -79,7 +79,7 @@ if ( is_home() || is_front_page()  ){
 								$content = get_the_content();
 							} ?>
 
-				<p><?php echo wp_trim_words( strip_shortcodes(strip_tags( $content , '15' ) ); ?></p>
+				<p><?php echo wp_trim_words( strip_shortcodes(strip_tags( $content , '15' ) ) ); ?></p>
 
 
 					</div>
