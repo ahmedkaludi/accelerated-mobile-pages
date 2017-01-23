@@ -27,6 +27,10 @@ if ( is_home() || is_front_page() || is_archive() ){
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_design_elements') ?>
+		<?php if ( is_archive() ) {
+ 			the_archive_title( '<h3 class="page-title">', '</h3>' );
+ 			the_archive_description( '<div class="taxonomy-description">', '</div>' );
+ 		} ?>
 
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
