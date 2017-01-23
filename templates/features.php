@@ -608,6 +608,7 @@ function ampforwp_register_additional_scripts() {
 	add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
 	function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 			global $redux_builder_amp;
+			global $post;
 			$post_id = $post->ID;
 			$post_image_id = get_post_thumbnail_id( $post_id );
 			$structured_data_image = wp_get_attachment_image_src( $post_image_id, 'full' );
