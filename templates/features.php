@@ -953,6 +953,12 @@ function ampforwp_remove_title_tags(){
 				 $title = $post->post_title;
 				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
+			 // title for archive pages
+			 if ( is_archive() ) {
+					 the_archive_title( '' );
+					 the_archive_description( '' );
+			 }
+
 			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
 			if ( is_home() ) {
 				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
