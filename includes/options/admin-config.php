@@ -11,16 +11,16 @@ $opt_name = "redux_builder_amp";
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 
-$args = array( 
+$args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
     'display_name'          =>  __( 'Accelerated Mobile Pages Options','ampforwp' ), // Name that appears at the top of your panel
     'menu_type'             => 'menu', //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
     'allow_sub_menu'        => true, // Show the sections below the admin menu item or not
     'menu_title'            => __( 'AMP', 'ampforwp' ),
-    'page_title'            => 'Accelerated Mobile Pages Options', 
+    'page_title'            => 'Accelerated Mobile Pages Options',
     'display_version'       => AMPFORWP_VERSION,
-    'update_notice'         => false,    
+    'update_notice'         => false,
     'intro_text'            => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Need Help? Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>| <a href="https://www.paypal.me/Kaludi/5" target="_blank">Donate</a>',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
@@ -139,6 +139,13 @@ Redux::setArgs( "redux_builder_amp", $args );
         'id'         => 'opt-text-subsection',
         'subsection' => true,
         'fields'     => array(
+             array(
+                'id'       => 'ampforwp-archive-support',
+                'type'     => 'switch',
+                'title'    => __('Switch on/off support for Archive pages', 'redux-framework-demo'),
+                'subtitle' => __('Enable/Disable Archove pages using this switch.', 'redux-framework-demo'),
+                'default'  => '0'
+            ),
              array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
@@ -302,7 +309,7 @@ Redux::setArgs( "redux_builder_amp", $args );
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
        'desc'       => __( '
-       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a> 
+       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>
        '),
        'id'         => 'amp-design',
        'subsection' => true,
@@ -588,7 +595,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             // Ad 4 ends
             ),
         ) );
-    
+
 
     // Single Section
     Redux::setSection( $opt_name, array(
