@@ -120,6 +120,11 @@ if ( is_admin() ) {
 
 } // is_admin() closing
 
+	// AMP endpoint Verifier
+	function ampforwp_is_amp_endpoint() {
+		return false !== get_query_var( 'amp', false );
+	}
+
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
 

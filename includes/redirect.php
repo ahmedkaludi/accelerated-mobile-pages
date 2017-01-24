@@ -83,9 +83,3 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
-
-
-
-function ampforwp_is_amp_endpoint() {
-	return false !== get_query_var( 'amp', false );
-}
