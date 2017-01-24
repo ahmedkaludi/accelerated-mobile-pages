@@ -92,7 +92,15 @@
         return;
       }
     }
-    if ( is_home() || is_front_page() || is_archive() ){
+    
+    if( is_home() ) {
+      if( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+        //dont do anything
+        return;
+      }
+    }
+
+    if ( is_home()  || is_front_page() || is_archive() ){
         global $wp;
         $current_archive_url = home_url( $wp->request );
         $amp_url = trailingslashit($current_archive_url).'amp';
