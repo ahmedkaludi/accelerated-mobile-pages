@@ -92,7 +92,7 @@
         return;
       }
     }
-    
+
     if( is_home() ) {
       if( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         //dont do anything
@@ -1000,6 +1000,9 @@ function ampforwp_remove_title_tags(){
                 // Remove Extra styling added by other Themes/ Plugins
                	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/','<!doctype html>',$content_buffer);
                	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
+                $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
+                $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
+
             }
             return $content_buffer;
 		}
