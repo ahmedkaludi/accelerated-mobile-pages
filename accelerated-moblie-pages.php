@@ -128,6 +128,9 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 			// Load Files required for the plugin to run
 			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 
+			// Redirection Code added
+			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
+
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
 			new Ampforwp_Loader;
 
@@ -144,6 +147,3 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
-
-
-require trailingslashit(AMPFORWP_PLUGIN_DIR).'includes/redirect.php';
