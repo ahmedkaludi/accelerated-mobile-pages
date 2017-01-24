@@ -489,7 +489,7 @@ main .amp-wp-content.comments_list {
     padding:0
 }
 .comments_list ul.children{
-    padding-bottom:10px;    
+    padding-bottom:10px;
     margin-left: 4%;
     width: 96%;
 }
@@ -669,7 +669,7 @@ pre {
 		}
 		.the_content .amp-ad-wrapper{
 				text-align: center;
-				margin-left: -13px;
+				margin-left: -24px;
 		}
 }
 @media screen and (max-width: 320px) {
