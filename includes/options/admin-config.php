@@ -140,10 +140,17 @@ Redux::setArgs( "redux_builder_amp", $args );
         'subsection' => true,
         'fields'     => array(
              array(
+                'id'       => 'ampforwp-homepage-on-off-support',
+                'type'     => 'switch',
+                'title'    => __('Switch on/off support for Home page', 'redux-framework-demo'),
+                'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
+                'default'  => '1'
+            ),
+             array(
                 'id'       => 'ampforwp-archive-support',
                 'type'     => 'switch',
                 'title'    => __('Switch on/off support for Archive pages', 'redux-framework-demo'),
-                'subtitle' => __('Enable/Disable Archove pages using this switch.', 'redux-framework-demo'),
+                'subtitle' => __('Enable/Disable Archive pages using this switch.', 'redux-framework-demo'),
                 'default'  => '0'
             ),
              array(
