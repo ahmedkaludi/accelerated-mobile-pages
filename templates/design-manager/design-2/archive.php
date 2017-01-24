@@ -27,19 +27,6 @@
 
 <main>
 
-	<?php
-		if ( get_query_var( 'paged' ) ) {
-	        $paged = get_query_var('paged');
-	    } elseif ( get_query_var( 'page' ) ) {
-	        $paged = get_query_var('page');
-	    } else {
-	        $paged = 1;
-	    }
-
-	    $exclude_ids = get_option('ampforwp_exclude_post');
-
- ?>
-
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
@@ -73,22 +60,21 @@
 
 		    </div>
             <div class="cb"></div>
-	</div>
+		</div>
 
 	<?php endwhile;  ?>
 
-	<div class="amp-wp-content pagination-holder">
+		<div class="amp-wp-content pagination-holder">
 
-		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
-			<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+			<div id="pagination">
+				<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
+				<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
 
-			<div class="clearfix"></div>
+				<div class="clearfix"></div>
+			</div>
 		</div>
-	</div>
 
 	<?php endif; ?>
-	<?php wp_reset_postdata(); ?>
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
