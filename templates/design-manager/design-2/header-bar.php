@@ -7,7 +7,7 @@
           if ($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']) {
             $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?isAMPforWPmobileRedirectLogout=1';
           }else{
-            $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . '?' . AMP_QUERY_VAR;
+            $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . AMP_QUERY_VAR;
           }
         ?>
 

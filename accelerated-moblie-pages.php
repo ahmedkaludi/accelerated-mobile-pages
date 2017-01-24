@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT | EP_ALL );
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }
@@ -201,15 +201,35 @@ function ampforwp_page_template_redirect_archive() {
 	}
 }
 
-// Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
+// Add Custom Rewrite Rule to make sure pagination & redirection is working correctly 
 function ampforwp_add_custom_rewrite_rules() {
+	// For Homepage with Pagination
     add_rewrite_rule(
         'amp/page/([0-9]{1,})/?$',
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+    // For Homepage  
+    add_rewrite_rule(
+        'amp/?$',
+        'index.php?amp',
+        'top'
+    );
+    // For category pages
+    add_rewrite_rule(
+        'category\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+        'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+        'top'
+    );
+    // For tag pages
+    add_rewrite_rule(
+        'tag\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+        'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+        'top'
+    );
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+
 
 
 function ampforwp_is_amp_endpoint() {
