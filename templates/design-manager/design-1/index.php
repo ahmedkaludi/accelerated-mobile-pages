@@ -6,7 +6,7 @@
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 <?php
 global $redux_builder_amp;
-if ( is_home() || is_front_page() || is_archive() ){
+if ( is_home() || is_front_page() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
 	global $wp;
 	$current_archive_url = home_url( $wp->request );
 	$amp_url = trailingslashit($current_archive_url);

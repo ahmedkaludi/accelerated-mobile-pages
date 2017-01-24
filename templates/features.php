@@ -128,7 +128,7 @@
 
         global $redux_builder_amp;
         if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
-            if ( is_home() || is_archive() ) {
+            if ( is_home() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ) {
                 if ( 'single' === $type ) {
                   if(is_archive()){
                     $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
@@ -963,7 +963,7 @@ function ampforwp_remove_title_tags(){
 				 echo $title . ' | ' . get_option( 'blogname' ) ;
 			 }
 			 // title for archive pages
-			 if ( is_archive() ) {
+			 if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
 					 the_archive_title( '' );
 					 the_archive_description( '' );
 			 }
