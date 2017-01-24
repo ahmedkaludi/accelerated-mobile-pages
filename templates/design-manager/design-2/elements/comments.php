@@ -65,7 +65,7 @@ if (!comments_open()) {
 		    </ul>
 		</div>
 		<div class="comment-button-wrapper">
-		    <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+		    <a href="<?php echo get_permalink().'?isAMPforWPmobileRedirectLogout=1'.'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 		</div><?php
 	} else {
     global $redux_builder_amp ;
@@ -73,7 +73,7 @@ if (!comments_open()) {
       return;
     } ?>
     <div class="comment-button-wrapper">
-       <a href="<?php echo get_permalink().'#commentform' ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+       <a href="<?php echo get_permalink().'?isAMPforWPmobileRedirectLogout=1'.'#commentform'  ?>"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
      </div>
 <?php } ?>
 </div>

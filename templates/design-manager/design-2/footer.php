@@ -3,19 +3,19 @@
 
   $ampforwp_backto_nonamp = " ";
   if ( is_home() ) {
-    $ampforwp_backto_nonamp = home_url();
+    $ampforwp_backto_nonamp = untrailingslashit(home_url()).'?isAMPforWPmobileRedirectLogout=1';
   }
   if ( is_single() ){
     global $post;
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?isAMPforWPmobileRedirectLogout=1';
   }
   if ( is_page() ){
     global $post;
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?isAMPforWPmobileRedirectLogout=1';
   }
   if( is_archive() ) {
     global $wp;
-    $ampforwp_backto_nonamp = esc_url( home_url( $wp->request ) );
+    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?isAMPforWPmobileRedirectLogout=1' );
   }
   ?>
   <footer class="container">
