@@ -18,34 +18,32 @@ function ampforwp_page_template_redirect() {
     }
 
 	  if ( wp_is_mobile() ) {
-
-      $_SESSION['ampforwp_amp_mode']='mobile-on';
 			if ( ampforwp_is_amp_endpoint() ) {
 				return;
 			} else {
-        if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ){
-        $_SESSION['ampforwp_amp_mode']='mobile-on';
-        if ( is_home() ) {
-					wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
-					exit();
-				}
-        elseif ( is_archive() ) {
-          global $wp;
-          $current_archive_url = home_url( $wp->request );
-          wp_redirect( trailingslashit( esc_url( $current_archive_url ) ) . AMP_QUERY_VAR , 301 );
-          exit();
-				} else {
-					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMP_QUERY_VAR , 301 );
-					exit();
-				}
-			}
+        if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ) {
+          $_SESSION['ampforwp_amp_mode']='mobile-on';
+          if ( is_home() ) {
+  					wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
+  					exit();
+  				}
+          elseif ( is_archive() ) {
+            global $wp;
+            $current_archive_url = home_url( $wp->request );
+            wp_redirect( trailingslashit( esc_url( $current_archive_url ) ) . AMP_QUERY_VAR , 301 );
+            exit();
+  				} else {
+  					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMP_QUERY_VAR , 301 );
+  					exit();
+  				}
+			  }
       }
 		}
 
 	}
 }
-
 add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+
 
 add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
 function ampforwp_page_template_redirect_archive() {
