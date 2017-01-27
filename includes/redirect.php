@@ -62,29 +62,42 @@ function ampforwp_page_template_redirect_archive() {
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
-	// For Homepage with Pagination
+
+    // For Homepage
+    add_rewrite_rule(
+      'amp/?$',
+      'index.php?amp',
+      'top'
+    );
+	  // For Homepage with Pagination
     add_rewrite_rule(
         'amp/page/([0-9]{1,})/?$',
         'index.php?amp&paged=$matches[1]',
         'top'
     );
-    // For Homepage
-    add_rewrite_rule(
-        'amp/?$',
-        'index.php?amp',
-        'top'
-    );
     // For category pages
     add_rewrite_rule(
-        'category\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-        'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
-        'top'
+      'category\/(.+?)\/amp/?$',
+      'index.php?amp&category_name=$matches[1]',
+      'top'
+    );
+    // For category pages with Pagination
+    add_rewrite_rule(
+      'category\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+      'top'
     );
     // For tag pages
     add_rewrite_rule(
-        'tag\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-        'index.php?amp&tag=$matches[1]&paged=$matches[2]',
-        'top'
+      'tag\/(.+?)\/amp/?$',
+      'index.php?amp&tag=$matches[1]',
+      'top'
+    );
+    // For tag pages with Pagination
+    add_rewrite_rule(
+      'tag\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+      'top'
     );
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
