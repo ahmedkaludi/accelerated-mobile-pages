@@ -172,44 +172,6 @@ Redux::setArgs( "redux_builder_amp", $args );
 
             ),
 
-            array(
-                'id'       => 'amp-analytics-select-option',
-                'type'     => 'select',
-                'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
-                'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
-                'options'  => array(
-                    '1' => __('Google Analytics', 'redux-framework-demo' ),
-                    '2' => __('Segment Analytics', 'redux-framework-demo' ),
-                    '3' => __('Piwik Analytics', 'redux-framework-demo' )
-                ),
-                'default'  => '1'
-            ),
-              array(
-                  'id'       => 'ga-feild',
-                  'type'     => 'text',
-                  'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-                  'required' => array('amp-analytics-select-option', '=' , '1'),
-                  'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
-                  'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
-                  'default'  => 'UA-XXXXX-Y',
-              ),
-              array(
-                'id'       => 'sa-feild',
-                'type'     => 'text',
-                'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
-                'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
-                'required' => array('amp-analytics-select-option', '=' , '2'),
-                'default'  => 'SEGMENT-WRITE-KEY',
-              ),
-              array(
-                  'id'       => 'pa-feild',
-                  'type'     => 'text',
-                  'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-                  'required' => array('amp-analytics-select-option', '=' , '3'),
-                  'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
-                  'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
-                  'default'  => '#',
-              ),
 
             array(
                 'id'        =>'amp-frontpage-select-option',
@@ -355,16 +317,25 @@ Redux::setArgs( "redux_builder_amp", $args );
    Redux::setSection( $opt_name,    array(
       	        'title' => __('Google Tag Manager'),
       	        // 'icon' => 'el el-th-large',
-      			    'desc'  => '',
+      			    'desc'  => 'At a time you can either use Google Tag Manager or any other Analytics Provider',
                 'subsection' => true,
       	        'fields' =>
       	        	array(
+                    array(
+                      'id'        	=>'amp-other-analytics-code',
+                      'type'      	=> 'switch',
+                      'desc'        => 'Enable swith to use other Analytics Otpions',
+                      'title'     	=> __('Other Analytics Options'),
+                      'default'   	=> 0,
+                    ),
               					array(
               						'id'        	=>'amp-gtm-id',
               						'type'      	=> 'text',
               						'title'     	=> __('Tag Manager ID'),
               						'default'   	=> 'googleanalytics',
               						'placeholder'	=> 'GTM-5XXXXXP',
+                          'required' => array('amp-other-analytics-code', '=' , '0'),
+
               					),
               					array(
               						'id'        	=>'amp-gtm-analytics-type',
@@ -372,6 +343,8 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'title'     	=> __('Analytics Type'),
               						'default'   	=> '',
               						'placeholder'	=> 'googleanalytics',
+                          'required' => array('amp-other-analytics-code', '=' , '0'),
+
               					),
               					array(
               						'id'        	=>'amp-gtm-analytics-code',
@@ -379,7 +352,59 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'title'     	=> __('Analytics ID'),
               						'default'   	=> '',
               						'placeholder'	=> 'UA-XXXXXX-Y',
+                          'required' => array('amp-other-analytics-code', '=' , '0'),
+
               					),
+
+                        array(
+                            'id'       => 'amp-analytics-select-option',
+                            'type'     => 'select',
+                            'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => __('Google Analytics', 'redux-framework-demo' ),
+                                '2' => __('Segment Analytics', 'redux-framework-demo' ),
+                                '3' => __('Piwik Analytics', 'redux-framework-demo' )
+                            ),
+                            'default'  => '1',
+                            'required' => array('amp-other-analytics-code', '=' , '1'),
+                        ),
+                          array(
+                              'id'       => 'ga-feild',
+                              'type'     => 'text',
+                              'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
+                              'required' => array(
+                                          array('amp-analytics-select-option', '=' , '1'),
+                                          array('amp-other-analytics-code', '=' , '1')
+                                        ),
+                              'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
+                              'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
+                              'default'  => 'UA-XXXXX-Y',
+                          ),
+                          array(
+                            'id'       => 'sa-feild',
+                            'type'     => 'text',
+                            'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
+                            'required' =>array(
+                                        array('amp-analytics-select-option', '=' , '2'),
+                                        array('amp-other-analytics-code', '=' , '1')
+                                      ),
+                            'default'  => 'SEGMENT-WRITE-KEY',
+                          ),
+                          array(
+                              'id'       => 'pa-feild',
+                              'type'     => 'text',
+                              'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
+                              'required' => array(
+                                          array('amp-analytics-select-option', '=' , '3'),
+                                          array('amp-other-analytics-code', '=' , '1')
+                                        ),
+                              'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
+                              'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
+                              'default'  => '#',
+                          ),
+
       				    )
           	)
 
