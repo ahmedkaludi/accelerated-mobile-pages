@@ -1,13 +1,14 @@
 <?php
 function ampforwp_page_template_redirect() {
-	global $redux_builder_amp;
-	if($redux_builder_amp['amp-mobile-redirection']){
+  global $redux_builder_amp;
 
+  if($redux_builder_amp['amp-mobile-redirection']){
 
-if( $_SESSION['isAMPforWPmobileRedirectON']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
-  return;
-}
-    if( wp_is_mobile() && $_SESSION['isAMPforWPmobileRedirectON']=='mobile-on' && $_GET['isAMPforWPmobileRedirectLogout']==1){
+    session_start();
+    if( $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
+      return;
+    }
+    if( wp_is_mobile() && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_GET['nonamp']==1){
       // non mobile session variable creation
       session_start();
       $_SESSION['ampforwp_mobile']='exit';
@@ -16,14 +17,14 @@ if( $_SESSION['isAMPforWPmobileRedirectON']=='mobile-on' && $_SESSION['ampforwp_
       }
     }
 
-		if ( wp_is_mobile()) {
+	  if ( wp_is_mobile() ) {
 
-      $_SESSION['isAMPforWPmobileRedirectON']='mobile-on';
+      $_SESSION['ampforwp_amp_mode']='mobile-on';
 			if ( ampforwp_is_amp_endpoint() ) {
 				return;
 			} else {
-        if( !isset($_SESSION['isAMPforWPmobileRedirectON']) || !isset($_GET['isAMPforWPmobileRedirectLogout']) ){
-        $_SESSION['isAMPforWPmobileRedirectON']='mobile-on';
+        if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ){
+        $_SESSION['ampforwp_amp_mode']='mobile-on';
         if ( is_home() ) {
 					wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
 					exit();
@@ -39,7 +40,8 @@ if( $_SESSION['isAMPforWPmobileRedirectON']=='mobile-on' && $_SESSION['ampforwp_
 				}
 			}
       }
-		} 
+		}
+
 	}
 }
 

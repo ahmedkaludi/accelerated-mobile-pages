@@ -4,7 +4,7 @@
     <?php
     if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
     ?>
-      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?isAMPforWPmobileRedirectLogout=1'); ?>">
+      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>">
       <?php
     }else{
       ?>

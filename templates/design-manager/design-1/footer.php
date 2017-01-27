@@ -4,15 +4,15 @@ global $redux_builder_amp;
 
   $ampforwp_backto_nonamp = '';
   if ( is_home() ) {
-    $ampforwp_backto_nonamp = untrailingslashit(home_url()).'?isAMPforWPmobileRedirectLogout=1' ;
+    $ampforwp_backto_nonamp = untrailingslashit(home_url()).'?nonamp=1' ;
   }
   if ( is_single() ){
     global $post;
-    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?isAMPforWPmobileRedirectLogout=1' ;
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
   }
   if( is_archive() ) {
     global $wp;
-    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?isAMPforWPmobileRedirectLogout=1'  );
+    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
   }
   ?>
 <footer class="amp-wp-footer">
