@@ -27,10 +27,14 @@
 
 <main>
 
- 	<?php if ( is_archive() ) {
+ 	<?php if ( is_archive() ) { ?>
+ 		<div class="amp-wp-content amp-archive-heading">
+ 			<?php 
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
- 			the_archive_description( '<div class="taxonomy-description">', '</div>' );
- 		} ?>
+ 			the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
+ 		</div>
+ 		<?php 
+ 	} ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>

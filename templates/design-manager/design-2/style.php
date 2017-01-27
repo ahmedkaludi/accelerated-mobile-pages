@@ -270,6 +270,11 @@ h2.amp-wp-title , .amp-wp-post-content p{
     line-height: 20px;
     margin: 3px 0 0 5px;
 }
+main .amp-archive-heading {
+    background : none;
+    box-shadow: none;
+    padding: 5px;
+}
 /* Footer */
 #footer{
     background : #fff;
