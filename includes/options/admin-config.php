@@ -351,6 +351,41 @@ Redux::setArgs( "redux_builder_amp", $args );
    );
 
 
+    // AMP GTM SECTION
+   Redux::setSection( $opt_name,    array(
+      	        'title' => __('Google Tag Manager'),
+      	        // 'icon' => 'el el-th-large',
+      			    'desc'  => '',
+                'subsection' => true,
+      	        'fields' =>
+      	        	array(
+              					array(
+              						'id'        	=>'amp-gtm-id',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Tag Manager ID'),
+              						'default'   	=> 'googleanalytics',
+              						'placeholder'	=> 'GTM-5XXXXXP',
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-type',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics Type'),
+              						'default'   	=> '',
+              						'placeholder'	=> 'googleanalytics',
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-code',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics ID'),
+              						'default'   	=> '',
+              						'placeholder'	=> 'UA-XXXXXX-Y',
+              					),
+      				    )
+          	)
+
+   );
+
+
 
    // SEO SECTION
   Redux::setSection( $opt_name, array(
