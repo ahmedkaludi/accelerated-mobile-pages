@@ -85,9 +85,22 @@ if ( is_admin() ) {
 					}
 				</style> <?php
 			}
+		} else {
+			// add_action('admin_notices', 'ampforwp_permalink_update_notice');
 		}
 
 	}
+
+	// display custom admin notice
+	function ampforwp_permalink_update_notice() { ?>
+		<div class="notice notice-warning is-dismissible">
+			<p>
+		        <?php _e( 'Congratulation, your site is fully AMP enabled. Update your permalink setting once and you are done.', 'ampforwp' ); ?>
+		         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="<?php echo admin_url( 'options-permalink.php'); ?>"><?php _e( 'Update Permalink', 'ampforwp' ); ?></a> | <a href="#"><?php _e( 'Dismiss', 'ampforwp' ); ?></a>
+	             </span> </strong>
+	        </p>
+		</div>
+	<?php }
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
