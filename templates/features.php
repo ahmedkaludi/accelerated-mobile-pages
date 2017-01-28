@@ -154,8 +154,8 @@
 
         // Archive Pages
         if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
-		 
-            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';   
+
+            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
         }
 
 		// Custom Single file
@@ -185,7 +185,7 @@
 		}
 		return $file;
 	}
-	
+
 	// 4. Custom Header files
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_header', 10, 3 );
 	function ampforwp_custom_header( $file, $type, $post ) {
@@ -999,6 +999,7 @@ function ampforwp_remove_title_tags(){
             $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 			if ( $ampforwp_is_amp_endpoint ) {
 				$content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
+				$content_buffer = preg_replace("/' defer onload='/", "", $content_buffer);
 				$content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
                 // Remove Extra styling added by other Themes/ Plugins
@@ -1007,7 +1008,6 @@ function ampforwp_remove_title_tags(){
                 $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
-                $content_buffer = preg_replace('/ defer onload=\'/', '', $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
             }
