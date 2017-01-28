@@ -29,6 +29,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Page, Category & Tags Support Added
 * NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * NEW - Custom Post Type Support 
