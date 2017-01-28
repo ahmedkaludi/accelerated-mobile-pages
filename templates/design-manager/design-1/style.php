@@ -305,6 +305,9 @@ amp-carousel > amp-img > img {
 	-webkit-transition: background-color 0.2s ease;
 	transition: background-color 0.2s ease;
 }
+.page-title {
+	margin: 0 15px;
+}
 /* AMP Footer */
 .amp-wp-footer {
 	border-top: 1px solid <?php echo sanitize_hex_color( $border_color ); ?>;

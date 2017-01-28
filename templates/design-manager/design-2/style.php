@@ -270,6 +270,11 @@ h2.amp-wp-title , .amp-wp-post-content p{
     line-height: 20px;
     margin: 3px 0 0 5px;
 }
+main .amp-archive-heading {
+    background : none;
+    box-shadow: none;
+    padding: 5px;
+}
 /* Footer */
 #footer{
     background : #fff;
@@ -489,7 +494,7 @@ main .amp-wp-content.comments_list {
     padding:0
 }
 .comments_list ul.children{
-    padding-bottom:10px;    
+    padding-bottom:10px;
     margin-left: 4%;
     width: 96%;
 }
@@ -710,6 +715,7 @@ pre {
     }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
+.amp-wp-meta{ padding-right: 0; }
 .nav_container, .toggle-navigationv2, .amp-loop-list, #pagination, #footer, .amp-wp-meta, .amp-wp-title, .single-post .the_content, .amp-wp-tax-tag, .sticky_social{
     direction:rtl
 }

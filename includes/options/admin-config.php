@@ -11,16 +11,16 @@ $opt_name = "redux_builder_amp";
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 
-$args = array( 
+$args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
     'display_name'          =>  __( 'Accelerated Mobile Pages Options','ampforwp' ), // Name that appears at the top of your panel
     'menu_type'             => 'menu', //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
     'allow_sub_menu'        => true, // Show the sections below the admin menu item or not
     'menu_title'            => __( 'AMP', 'ampforwp' ),
-    'page_title'            => 'Accelerated Mobile Pages Options', 
+    'page_title'            => 'Accelerated Mobile Pages Options',
     'display_version'       => AMPFORWP_VERSION,
-    'update_notice'         => false,    
+    'update_notice'         => false,
     'intro_text'            => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Need Help? Support Forum</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">FAQ</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">Change Log</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">Reviews</a>| <a href="https://www.paypal.me/Kaludi/5" target="_blank">Donate</a>',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
@@ -139,6 +139,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         'id'         => 'opt-text-subsection',
         'subsection' => true,
         'fields'     => array(
+             
              array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
@@ -146,16 +147,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __('Logo', 'redux-framework-demo'),
                 'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
-            ),
-
-            array(
-                'id'       => 'amp-mobile-redirection',
-                'type'     => 'switch',
-                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
-                'subtitle' => __('
-                Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','ampforwp'),
-                'default' => 0,
-
             ),
 
             array(
@@ -168,13 +159,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                     '2' => __('Segment Analytics', 'redux-framework-demo' ),
                     '3' => __('Piwik Analytics', 'redux-framework-demo' )
                 ),
-                'default'  => '1'
+                'default'  => '1',
             ),
               array(
                   'id'       => 'ga-feild',
                   'type'     => 'text',
                   'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-                  'required' => array('amp-analytics-select-option', '=' , '1'),
+                  'required' =>  array('amp-analytics-select-option', '=' , '1'),
                   'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
                   'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
                   'default'  => 'UA-XXXXX-Y',
@@ -191,12 +182,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'id'       => 'pa-feild',
                   'type'     => 'text',
                   'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-                  'required' => array('amp-analytics-select-option', '=' , '3'),
+                  'required' =>array('amp-analytics-select-option', '=' , '3'),
                   'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
                   'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
                   'default'  => '#',
               ),
-
             array(
                 'id'        =>'amp-frontpage-select-option',
                 'type'      => 'switch',
@@ -248,15 +238,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'   => 1
             ),
 
-            array(
-                'id'        =>'amp-rtl-select-option',
-                'type'      => 'switch',
-                'title'     => __('RTL Support', 'redux-framework-demo'),
-                'default'   => 0,
-                'subtitle'  => __('Enable Right to Left language support', 'redux-framework-demo'),
-                'true'      => 'true',
-                'false'     => 'false',
-            ),
         // array(
         //     'id'       => 'amp-navigation-text',
         //     'title'    => __('Navigation Text', 'redux-framework-demo'),
@@ -273,13 +254,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                 'default'   => 1,
                 'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
-            ),
-            array(
-                'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                'type'      => 'switch',
-                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-                'default'   => 0,
             ),
 
           //  array(
@@ -302,7 +276,7 @@ Redux::setArgs( "redux_builder_amp", $args );
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
        'desc'       => __( '
-       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a> 
+       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>
        '),
        'id'         => 'amp-design',
        'subsection' => true,
@@ -335,8 +309,6 @@ Redux::setArgs( "redux_builder_amp", $args );
    )
 
    );
-
-
 
    // SEO SECTION
   Redux::setSection( $opt_name, array(
@@ -588,7 +560,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             // Ad 4 ends
             ),
         ) );
-    
+
 
     // Single Section
     Redux::setSection( $opt_name, array(
@@ -751,7 +723,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             'type'     => 'text',
             'placeholder' => '550',
             'subtitle' => 'Please don\'t add "PX" in the image size.',
-            'default'  => ''
+            'default'  => '700'
             ),
             array(
               'id'       => 'amp-structured-data-placeholder-image-height',
@@ -759,7 +731,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'type'     => 'text',
               'placeholder' => '350',
               'subtitle' => 'Please don\'t add "PX" in the image size.',
-              'default'  => ''
+              'default'  => '550'
              ),
         )
     ) );
@@ -953,18 +925,59 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
-// // Advance Settings SECTION
-// Redux::setSection( $opt_name, array(
-//    'title'      => __( 'Advance Settings', 'redux-framework-demo' ),
-//    'desc'       => __( 'This section has Advance settings'),
-//    'id'         => 'amp-advance',
-//    'subsection' => true,
-//    'fields'     => array(
-//
-//    ),
-//
-// ) );
-//
+    // Advance Settings SECTION
+    Redux::setSection( $opt_name, array(
+       'title'      => __( 'Advanced', 'redux-framework-demo' ),
+       'desc'       => __( 'This section has Advance settings'),
+       'id'         => 'amp-advance',
+       'subsection' => true,
+       'fields'     => array(
+
+            array(
+                'id'       => 'ampforwp-homepage-on-off-support',
+                'type'     => 'switch',
+                'title'    => __('Homepage Support', 'redux-framework-demo'),
+                'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
+                'default'  => '1'
+            ),
+             array(
+                'id'       => 'ampforwp-archive-support',
+                'type'     => 'switch',
+                'title'    => __('Archive page Support', 'redux-framework-demo'),
+                'subtitle' => __('Enable/Disable Archive pages using this switch.', 'redux-framework-demo'),
+                'default'  => '0'
+            ),
+
+            array(
+                'id'       => 'amp-mobile-redirection',
+                'type'     => 'switch',
+                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
+                'subtitle' => __('
+                Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','ampforwp'),
+                'default' => 0,
+
+            ),
+            array(
+                'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                'type'      => 'switch',
+                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+                'default'   => 0,
+            ),
+            array(
+                'id'        =>'amp-rtl-select-option',
+                'type'      => 'switch',
+                'title'     => __('RTL Support', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Enable Right to Left language support', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+            ),
+
+       ),
+
+    ) );
+
 
 // Extension Section
     Redux::setSection( $opt_name, array(

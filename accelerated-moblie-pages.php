@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.36.1
+Version: 0.9.37
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: http://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT );
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT | EP_ALL );
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }
@@ -25,15 +25,15 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.36');
+define('AMPFORWP_VERSION','0.9.37');
 
-// Redux panel inclusion code 
+// Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
 	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	
+
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
@@ -85,9 +85,22 @@ if ( is_admin() ) {
 					}
 				</style> <?php
 			}
+		} else {
+			// add_action('admin_notices', 'ampforwp_permalink_update_notice');
 		}
 
 	}
+
+	// display custom admin notice
+	function ampforwp_permalink_update_notice() { ?>
+		<div class="notice notice-warning is-dismissible">
+			<p>
+		        <?php _e( 'Congratulation, your site is fully AMP enabled. Update your permalink setting once and you are done.', 'ampforwp' ); ?>
+		         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="<?php echo admin_url( 'options-permalink.php'); ?>"><?php _e( 'Update Permalink', 'ampforwp' ); ?></a> | <a href="#"><?php _e( 'Dismiss', 'ampforwp' ); ?></a>
+	             </span> </strong>
+	        </p>
+		</div>
+	<?php }
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
@@ -120,6 +133,11 @@ if ( is_admin() ) {
 
 } // is_admin() closing
 
+	// AMP endpoint Verifier
+	function ampforwp_is_amp_endpoint() {
+		return false !== get_query_var( 'amp', false );
+	}
+
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
 
@@ -127,6 +145,9 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 			// Load Files required for the plugin to run
 			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+
+			// Redirection Code added
+			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
 
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
 			new Ampforwp_Loader;
@@ -144,59 +165,3 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
-
-function ampforwp_page_template_redirect() {
-	global $redux_builder_amp;
-	if($redux_builder_amp['amp-mobile-redirection']){
-		if ( wp_is_mobile() ) {
-			if ( ampforwp_is_amp_endpoint() ) {
-				return;
-			} else {
-				if ( is_home() ) {
-					wp_redirect( trailingslashit( esc_url( home_url() ) ) .'?'. AMP_QUERY_VAR ,  301 );
-					exit();
-				} elseif ( is_archive() ) {
-					return ;
-				} else {
-					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMP_QUERY_VAR , 301 );
-					exit();
-				}
-			}
-		}
-	}
-}
-
-add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
-
-add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
-function ampforwp_page_template_redirect_archive() {
-
-	if ( is_archive() || is_404() ) {
-		if( ampforwp_is_amp_endpoint() ) {
-			global $wp;
-			$archive_current_url 	= add_query_arg( '', '', home_url( $wp->request ) );
-			$archive_current_url	= trailingslashit($archive_current_url );
-			if (is_404() ) {
-				$archive_current_url = dirname($archive_current_url);
-			}
-			wp_redirect( esc_url( $archive_current_url )  , 301 );
-			exit();
-		}
-	}
-}
-
-// Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
-function ampforwp_add_custom_rewrite_rules() {
-    add_rewrite_rule(
-        'amp/page/([0-9]{1,})/?$',
-        'index.php?amp&paged=$matches[1]',
-        'top'
-    );
-}
-add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
-
-
-function ampforwp_is_amp_endpoint() {
-	return false !== get_query_var( 'amp', false );
-}
-

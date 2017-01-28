@@ -6,7 +6,7 @@
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php
 	global $redux_builder_amp;
-	if ( is_home() || is_front_page()  || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+	if ( is_home() || is_front_page()  || is_archive() ){
 		global $wp;
 		$current_archive_url = home_url( $wp->request );
 		$amp_url = trailingslashit($current_archive_url);
@@ -27,31 +27,16 @@
 
 <main>
 
-	<?php
-		if ( get_query_var( 'paged' ) ) {
-	        $paged = get_query_var('paged');
-	    } elseif ( get_query_var( 'page' ) ) {
-	        $paged = get_query_var('page');
-	    } else {
-	        $paged = 1;
-	    }
-
-	    $exclude_ids = get_option('ampforwp_exclude_post');
-
-		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'orderby'             => 'date',
-			'ignore_sticky_posts' => 1,
-			'paged'               => esc_attr($paged),
-			'post__not_in' 		  => $exclude_ids
-		) ); ?>
-
- 	<?php if ( is_archive() ) {
+ 	<?php if ( is_archive() ) { ?>
+ 		<div class="amp-wp-content amp-archive-heading">
+ 			<?php 
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
- 			the_archive_description( '<div class="taxonomy-description">', '</div>' );
- 		} ?>
+ 			the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
+ 		</div>
+ 		<?php 
+ 	} ?>
 
-	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
@@ -75,26 +60,25 @@
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15'  ); ?></p>
+		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
 		    </div>
             <div class="cb"></div>
-	</div>
+		</div>
 
 	<?php endwhile;  ?>
 
-	<div class="amp-wp-content pagination-holder">
+		<div class="amp-wp-content pagination-holder">
 
-		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
-			<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+			<div id="pagination">
+				<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
+				<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
 
-			<div class="clearfix"></div>
+				<div class="clearfix"></div>
+			</div>
 		</div>
-	</div>
 
 	<?php endif; ?>
-	<?php wp_reset_postdata(); ?>
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>

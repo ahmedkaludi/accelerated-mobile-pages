@@ -8,9 +8,9 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
       if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 0 ){
           return $data;
-      }    
+      }
 
-  
+      global $post;
     	$amp_custom_post_content_input 	= get_post_meta($post->ID, 'ampforwp_custom_content_editor', true);
       $amp_custom_post_content_check  = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
 
@@ -19,7 +19,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
             return $data;
         }
 
-        if ( $amp_custom_post_content_check === 'yes') { 
+        if ( $amp_custom_post_content_check === 'yes') {
 
           $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
               apply_filters( 'amp_content_embed_handlers', array(
