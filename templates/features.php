@@ -136,15 +136,11 @@
 	   	// Custom Homepage and Archive file
 
         global $redux_builder_amp;
-
+        // Homepage and FrontPage
         if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
-            if ( is_home() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ) {
+            if ( is_home() ) {
                 if ( 'single' === $type ) {
-                  if(is_archive()){
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
-                  }else {
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-                  }
+                	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
                 }
             }
         } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
@@ -155,6 +151,13 @@
             }
 
         }
+
+        // Archive Pages
+        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
+		 
+            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';   
+        }
+
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
 
