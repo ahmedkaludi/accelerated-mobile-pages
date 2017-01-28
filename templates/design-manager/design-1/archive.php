@@ -26,7 +26,7 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
-<main>
+<article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
@@ -39,34 +39,36 @@
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
+<div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		<div class="amp-wp-content amp-loop-list">
-			<?php if ( has_post_thumbnail() ) { ?>
+      <h2 class="amp-wp-title">
+        <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a>
+      </h2>
+
+  <div class="amp-wp-content-loop">
+      <?php if ( has_post_thumbnail() ) { ?>
 				<?php
 				$thumb_id = get_post_thumbnail_id();
 				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
-				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
-			<?php } ?>
+				<div class="home-post_image">
+          <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+            <amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
+          </a>
+        </div>
 
-			<div class="amp-wp-post-content">
-
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
-
-				<?php
+				<?php }
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
-
-		    </div>
-            <div class="cb"></div>
-		</div>
-
+        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+        <div class="cb"></div>
+	</div>
+</div>
 	<?php endwhile;  ?>
 
 		<div class="amp-wp-content pagination-holder">
@@ -80,7 +82,10 @@
 		</div>
 
 	<?php endif; ?>
-</main>
+
+	<?php do_action('ampforwp_post_after_design_elements') ?>
+</article>
+
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
