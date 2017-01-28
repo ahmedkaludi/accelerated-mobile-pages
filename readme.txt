@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7
-Stable tag: 0.9.36.1
+Stable tag: 0.9.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,29 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.37 =
+* View full details at https://ampforwp.com/category-tags-archive-support-added/
+* Debug issues solved [Bug fix]
+* Remove Extra styling added by other Themes/ Plugins [3rd party themes and plugin Support]
+* Category, Tags & Archive Support with titles added [Enchancement]
+* Archive Title support added [Enchancement]
+* There were some issues with attachments [Bug fix]
+* removed ? from amp url's [Improvement]
+* Mobile redirection for Archives added and 404 redirections removed for archives [Improvement]
+* View non-amp version now properly redirects to the normal version. #415 [Bug fix]
+* Added an option to turn off AMP support for Homepage. [Enchancement]
+* Too many redirects issue on homepage is fixed #435 [Improvement]
+* Spell check and G tags are removed for thrive & Spell check compatibility [Better Validation]
+* If image is not available in gravatar fixed, it was throwing an error #365 #327 [Improvement]
+* Comment anchor link changed for simplecomment button files in both designs [Improvement]
+* Redirection Loop issue fixed [Bug fix]
+* Shortcodes were visible in excerpt, it's fixed now. [Improvement]
+* Defer onload by other plugins was causing issues #431 [Better Validation & 3rd party support]
+* Improved Sessions [Improvement]
+* Advnaced Settings panel was created for better user experience. [Improvement]
+* Spell check tag was causing validation issues. [Better Validation & 3rd party support]
+* RTL issue fixed #454 [Bug fixed]
 
 = 0.9.36 =
 * Full details at https://ampforwp.com/0-9-36-released-stability-update-43rd-update/
