@@ -674,7 +674,7 @@ pre {
 		}
 		.the_content .amp-ad-wrapper{
 				text-align: center;
-				margin-left: -24px;
+				margin-left: -13px;
 		}
 }
 @media screen and (max-width: 320px) {
