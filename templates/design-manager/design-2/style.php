@@ -715,6 +715,7 @@ pre {
     }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
+.amp-wp-meta{ padding-right: 0; }
 .nav_container, .toggle-navigationv2, .amp-loop-list, #pagination, #footer, .amp-wp-meta, .amp-wp-title, .single-post .the_content, .amp-wp-tax-tag, .sticky_social{
     direction:rtl
 }
