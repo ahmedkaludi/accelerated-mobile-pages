@@ -10,6 +10,7 @@
 		global $wp;
 		$current_archive_url = home_url( $wp->request );
 		$amp_url = trailingslashit($current_archive_url);
+		$amp_url = dirname($amp_url);
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
@@ -29,11 +30,11 @@
 
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
- 			<?php 
+ 			<?php
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
  		</div>
- 		<?php 
+ 		<?php
  	} ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
