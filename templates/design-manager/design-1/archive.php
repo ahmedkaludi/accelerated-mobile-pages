@@ -42,11 +42,7 @@ if ( is_home() || is_front_page() || is_archive() ){
 		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
 		        </h1>
 
-				<div class="amp-wp-content-loop">
-					<div class="amp-wp-meta">
-		              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-		          	</div>
-
+				<div class="amp-wp-content-loop"> 
 
 					<?php if ( has_post_thumbnail() ) { ?>
 						<?php
