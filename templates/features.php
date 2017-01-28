@@ -1003,6 +1003,7 @@ function ampforwp_remove_title_tags(){
                	$content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
                 $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
+                $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
                 $content_buffer = preg_replace('/ defer onload=\'/', '', $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
