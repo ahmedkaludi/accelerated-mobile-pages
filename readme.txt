@@ -8,7 +8,7 @@ Stable tag: 0.9.37.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+AMP for WP is the most recommended AMP plugin by the community. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
 Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP makes your website faster for Mobile visitors.

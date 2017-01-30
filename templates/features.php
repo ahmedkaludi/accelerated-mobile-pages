@@ -40,6 +40,7 @@
     30. TagDiv menu issue removed
     31. removing scripts added by cleantalk
     32. removing bj loading for amp
+    33. Google tag manager support added
 
 */
 // Adding AMP-related things to the main theme
@@ -985,7 +986,15 @@ function ampforwp_remove_title_tags(){
 				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
 					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 					$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
-				}
+				} else {
+        	global $wp;
+          $current_archive_url = home_url( $wp->request );
+          $current_url_in_pieces = explode('/',$current_archive_url);
+          $cnt = count($current_url_in_pieces);
+          if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
+            $site_title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+          }
+        }
 				echo  $site_title ;
 			} ?>
 		</title>
@@ -1069,3 +1078,48 @@ function ampforwp_remove_bj_load() {
  	}
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
+
+//33. Google tag manager support added
+// Remove any old scripts that have been loaded by other Plugins
+add_action('init', 'amp_gtm_remove_analytics_code');
+function amp_gtm_remove_analytics_code() {
+  global $redux_builder_amp;
+  if( $redux_builder_amp['amp-use-gtm-option'] ) {
+    remove_action('amp_post_template_footer','ampforwp_analytics',11);
+  	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+  } else {
+    remove_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
+
+  }
+}
+
+// Create GTM support
+add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
+function amp_gtm_add_gtm_support( $analytics ) {
+	global $redux_builder_amp;
+	if ( ! is_array( $analytics ) ) {
+		$analytics = array();
+	}
+
+	$analytics['amp-gtm-googleanalytics'] = array(
+		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
+		'attributes' => array(
+			'data-credentials' 	=> 'include',
+			'config'			=> 'https://www.googletagmanager.com/amp.json?id='. $redux_builder_amp['amp-gtm-id'] .'&gtm.url=SOURCE_URL'
+		),
+		'config_data' => array(
+			'vars' => array(
+				'account' =>  $redux_builder_amp['amp-gtm-analytics-code']
+			),
+			'triggers' => array(
+				'trackPageview' => array(
+					'on' => 'visible',
+					'request' => 'pageview',
+				),
+			),
+		),
+	);
+
+	return $analytics;
+}
+
