@@ -4,13 +4,12 @@
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-<?php
-global $redux_builder_amp;
-if ( is_home() || is_front_page()  ){
-	global $wp;
-	$current_archive_url = home_url( $wp->request );
-	$amp_url = trailingslashit($current_archive_url);
-} ?>
+	<?php global $redux_builder_amp;
+		if ( is_home() || is_front_page() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+			global $wp;
+			$current_archive_url = home_url( $wp->request );
+			$amp_url = trailingslashit($current_archive_url);
+		} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
@@ -28,23 +27,36 @@ if ( is_home() || is_front_page()  ){
 
 	<?php do_action('ampforwp_post_before_design_elements') ?>
 
-			<?php
-				if ( have_posts() ) :
-		    while ( have_posts() ) : the_post(); ?>
-	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
+		<?php
+			if ( get_query_var( 'paged' ) ) {
+		        $paged = get_query_var('paged');
+		    } elseif ( get_query_var( 'page' ) ) {
+		        $paged = get_query_var('page');
+		    } else {
+		        $paged = 1;
+		    }
 
-	        <h1 class="amp-wp-title">
-	            <?php  $ampforwp_post_url = get_permalink(); ?>
-	            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
-	        </h1>
+		    $exclude_ids = get_option('ampforwp_exclude_post');
 
+			$q = new WP_Query( array(
+				'post_type'           => 'post',
+				'orderby'             => 'date',
+				'ignore_sticky_posts' => 1,
+				'paged'               => esc_attr($paged),
+				'post__not_in' 		  => $exclude_ids
+			) ); ?>
+			<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
+		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-
+			        <h1 class="amp-wp-title">
+			            <?php  $ampforwp_post_url = get_permalink(); ?>
+			            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+			        </h1>
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-	              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-	          </div>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
+			          	</div>
 
 
 						<?php if ( has_post_thumbnail() ) { ?>
@@ -58,19 +70,15 @@ if ( is_home() || is_front_page()  ){
 									<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
 								</a>
 							</div>
-						<?php } ?>
-						<?php
+						<?php }
 							if(has_excerpt()){
 								$content = get_the_excerpt();
 							}else{
 								$content = get_the_content();
-							}
-						?>
-	          <p><?php echo wp_trim_words( $content , '20'); ?></p>
-
+							} ?>
+						<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20' ); ?></p>
 					</div>
-
-	        </div>
+		        </div>
 		    <?php endwhile;  ?>
 
 		    <div class="amp-wp-content pagination-holder">

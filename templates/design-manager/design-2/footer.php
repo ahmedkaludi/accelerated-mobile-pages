@@ -3,17 +3,19 @@
 
   $ampforwp_backto_nonamp = " ";
   if ( is_home() ) {
-    $ampforwp_backto_nonamp = home_url();
+    $ampforwp_backto_nonamp = untrailingslashit(home_url()).'?nonamp=1';
   }
   if ( is_single() ){
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    global $post;
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1';
   }
   if ( is_page() ){
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    global $post;
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1';
   }
   if( is_archive() ) {
     global $wp;
-    $ampforwp_backto_nonamp = esc_url( home_url( $wp->request ) );
+    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1' );
   }
   ?>
 
@@ -55,3 +57,4 @@
     </footer>
 
 <?php do_action('ampforwp_global_after_footer'); ?>
+

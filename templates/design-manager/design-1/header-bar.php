@@ -4,11 +4,11 @@
     <?php
     if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
     ?>
-      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ); ?>">
+      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>">
       <?php
     }else{
       ?>
-      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
+      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMP_QUERY_VAR; ?>">
 
     <?php }?>
 
@@ -24,7 +24,7 @@
     ?>
     <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
     <?php }else{ ?>
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . '?' .AMP_QUERY_VAR; ?>">
+    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
     <?php } ?>
         <?php $site_icon_url = $this->get( 'site_icon_url' );
             if ( $site_icon_url ) : ?>
@@ -53,5 +53,4 @@
 </amp-sidebar>
 
 <?php
-
 do_action('ampforwp_design_1_after_header');
