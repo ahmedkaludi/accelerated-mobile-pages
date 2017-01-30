@@ -281,13 +281,7 @@ Redux::setArgs( "redux_builder_amp", $args );
       	        'fields' =>
       	        	array(
 
-                    array(
-                        'id'       => 'amp-use-gtm-option',
-                        'type'     => 'switch',
-                        'title'    => __( 'Use Google Tag Manager', 'redux-framework-demo' ),
-                        'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
-                        'default'  => '0',
-                    ),
+
                     array(
                         'id'       => 'amp-analytics-select-option',
                         'type'     => 'select',
@@ -338,11 +332,19 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
                           'default'  => '#',
                       ),
-              					array(
+
+                        array(
+                            'id'       => 'amp-use-gtm-option',
+                            'type'     => 'switch',
+                            'title'    => __( 'Use Google Tag Manager', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                            'default'  => 0,
+                        ),
+                        array(
               						'id'        	=>'amp-gtm-id',
               						'type'      	=> 'text',
               						'title'     	=> __('Tag Manager ID'),
-              						'default'   	=> 'googleanalytics',
+              						'default'   	=> '',
               						'placeholder'	=> 'GTM-5XXXXXP',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
@@ -365,8 +367,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'default'   	=> '',
       						        'placeholder'	=> 'UA-XXXXXX-Y',
                           'required' => array(
-                          array('amp-use-gtm-option', '=' , '1')
-                        ),
+                          array('amp-use-gtm-option', '=' , '1')),
               					),
       				    )
           	)
