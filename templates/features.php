@@ -983,7 +983,15 @@ function ampforwp_remove_title_tags(){
 				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
 					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 					$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
-				}
+				} else {
+        	global $wp;
+          $current_archive_url = home_url( $wp->request );
+          $current_url_in_pieces = explode('/',$current_archive_url);
+          $cnt = count($current_url_in_pieces);
+          if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
+            $site_title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+          }
+        }
 				echo  $site_title ;
 			} ?>
 		</title>
