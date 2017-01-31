@@ -1008,6 +1008,13 @@ Redux::setSection( $opt_name, array(
                         'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
                     ),
+                    array(
+                            'id'        =>'ampforwp-amp-on-off-catgs-tags',
+                            'type'      => 'switch',
+                            'title'     => __('Non-AMP links on Meta Archives', 'redux-framework-demo'),
+                            'default'   => 0,
+                            'subtitle'  => __('Disable/Enable AMP links on Archives Meta', 'redux-framework-demo'),
+                        ),
                      array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
