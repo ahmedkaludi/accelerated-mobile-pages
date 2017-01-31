@@ -38,13 +38,15 @@
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
-		$q = new WP_Query( array(
+		$args = array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids
-		) ); ?>
+		);
+		$filtered_args = apply_filters('ampforwp_query_args', $args);
+		$q = new WP_Query( $filtered_args ); ?>
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );

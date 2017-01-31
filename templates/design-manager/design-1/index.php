@@ -38,13 +38,16 @@
 
 		    $exclude_ids = get_option('ampforwp_exclude_post');
 
-			$q = new WP_Query( array(
+			$args = array(
 				'post_type'           => 'post',
 				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids
-			) ); ?>
+			);
+			$filtered_args = apply_filters('ampforwp_query_args', $args);
+			$q = new WP_Query( $filtered_args ); ?>
+
 			<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
