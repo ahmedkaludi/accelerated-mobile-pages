@@ -6,7 +6,13 @@
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
+	<?php
+  global $redux_builder_amp;
+  if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
+  ?>
 	<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+	<?php } ?>
+
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
@@ -24,6 +30,10 @@
 		<?php do_action('ampforwp_post_after_design_elements') ?>
 	</article>
 </main>
+<?php
+global $redux_builder_amp;
+if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
+?>
 <!--
 official Disqus doc : https://github.com/disqus/disqus-install-examples/tree/master/google-amp
 real comments implementation : https://labs.tomasino.org/disqus-in-amp/
@@ -37,12 +47,14 @@ this guy is using this URL : https://comments.tomasino.org/
 		frameborder="0"
     <?php global $post;
     $post_slug=$post->post_name;
-?>
-		src="<?php echo "https://ampforwp.com/goto/".AMPFORWP_DISQUS_URL.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name=https://khaled-mohammed-2.disqus.com/embed.js'
+    global $redux_builder_amp;
+    ?>
+		src="<?php echo "https://ampforwp.com/goto/".AMPFORWP_DISQUS_URL.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='.$redux_builder_amp['ampforwp-disqus-comments-name'].'/embed.js'
     ?>">
 		<div overflow tabindex="0" role="button" aria-label="Read more">Read more!</div>
 	</amp-iframe>
 </section>
+<?php } ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
