@@ -995,6 +995,20 @@ Redux::setSection( $opt_name, array(
    'subsection' => true,
    'fields'     => array(
                      array(
+                        'id'       => 'ampforwp-disqus-comments-support',
+                        'type'     => 'switch',
+                        'title'    => __('Disqus comments Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'redux-framework-demo'),
+                        'default'  => 0
+                    ),
+                     array(
+                        'id'       => 'ampforwp-disqus-comments-name',
+                        'type'     => 'text',
+                        'title'    => __('Disqus Name', 'redux-framework-demo'),
+                        'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
+                        'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                    ),
+                     array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
