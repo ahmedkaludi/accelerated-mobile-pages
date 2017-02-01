@@ -139,7 +139,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         'id'         => 'opt-text-subsection',
         'subsection' => true,
         'fields'     => array(
-             
+
              array(
                 'id'       => 'opt-media',
                 'type'     => 'media',
@@ -149,44 +149,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
 
-            array(
-                'id'       => 'amp-analytics-select-option',
-                'type'     => 'select',
-                'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
-                'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
-                'options'  => array(
-                    '1' => __('Google Analytics', 'redux-framework-demo' ),
-                    '2' => __('Segment Analytics', 'redux-framework-demo' ),
-                    '3' => __('Piwik Analytics', 'redux-framework-demo' )
-                ),
-                'default'  => '1',
-            ),
-              array(
-                  'id'       => 'ga-feild',
-                  'type'     => 'text',
-                  'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
-                  'required' =>  array('amp-analytics-select-option', '=' , '1'),
-                  'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
-                  'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
-                  'default'  => 'UA-XXXXX-Y',
-              ),
-              array(
-                'id'       => 'sa-feild',
-                'type'     => 'text',
-                'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
-                'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
-                'required' => array('amp-analytics-select-option', '=' , '2'),
-                'default'  => 'SEGMENT-WRITE-KEY',
-              ),
-              array(
-                  'id'       => 'pa-feild',
-                  'type'     => 'text',
-                  'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
-                  'required' =>array('amp-analytics-select-option', '=' , '3'),
-                  'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
-                  'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
-                  'default'  => '#',
-              ),
+
             array(
                 'id'        =>'amp-frontpage-select-option',
                 'type'      => 'switch',
@@ -218,6 +181,21 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default' => 0,
                'required' => array('amp-frontpage-select-option', '=' , '1'),
            ),
+           array(
+               'id'        =>'amp-on-off-for-all-pages',
+               'type'      => 'switch',
+               'title'     => __('AMP on Pages', 'redux-framework-demo'),
+               'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
+               'default'   => 1,
+               'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
+           ),
+           array(
+               'id'        =>'amp-on-off-support-for-non-amp-home-page',
+               'type'      => 'switch',
+               'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+               'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+               'default'   => 0,
+           ),
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -228,15 +206,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             //     'default'  => 'Copyright &copy; 2016',
             // ),
 
-            array(
-                'id'       => 'amp-footer-link-non-amp-page',
-                'type'     => 'switch',
-                'title'    => __('Link to Non-AMP page in Footer', 'redux-framework-demo'),
-                'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
-                'true'      => 'true',
-                'false'     => 'false',
-                'default'   => 1
-            ),
+
 
         // array(
         //     'id'       => 'amp-navigation-text',
@@ -246,15 +216,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         //     'placeholder'=>'Navigate',
         //     'default'  => 'Navigate'
         // ),
-
-            array(
-                'id'        =>'amp-on-off-for-all-pages',
-                'type'      => 'switch',
-                'title'     => __('AMP on Pages', 'redux-framework-demo'),
-                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-                'default'   => 1,
-                'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
-            ),
 
           //  array(
           //      'id'       => 'amp-ad-places',
@@ -271,6 +232,107 @@ Redux::setArgs( "redux_builder_amp", $args );
 
       )
     ) );//END
+
+    // AMP GTM SECTION
+   Redux::setSection( $opt_name,    array(
+      	        'title' => __('Analytics'),
+      	        // 'icon' => 'el el-th-large',
+      			    'desc'  => 'You can either use Google Tag Manager or Other Analytics Providers',
+                'subsection' => true,
+      	        'fields' =>
+      	        	array(
+
+
+                    array(
+                        'id'       => 'amp-analytics-select-option',
+                        'type'     => 'select',
+                        'title'    => __( 'Analytics Type', 'redux-framework-demo' ),
+                        'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                        'options'  => array(
+                            '1' => __('Google Analytics', 'redux-framework-demo' ),
+                            '2' => __('Segment Analytics', 'redux-framework-demo' ),
+                            '3' => __('Piwik Analytics', 'redux-framework-demo' )
+                        ),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                        'default'  => '1',
+                    ),
+                      array(
+                          'id'       => 'ga-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Google Analytics', 'redux-framework-demo' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '1')
+                          ),
+                          'subtitle' => __( 'Enter your Google Analytics ID.', 'redux-framework-demo' ),
+                          'desc'     => __('Example: UA-XXXXX-Y', 'redux-framework-demo' ),
+                          'default'  => 'UA-XXXXX-Y',
+                      ),
+                      array(
+                        'id'       => 'sa-feild',
+                        'type'     => 'text',
+                        'title'    => __( 'Segment Analytics', 'redux-framework-demo' ),
+                        'subtitle' => __( 'Enter your Segment Analytics Key.', 'redux-framework-demo' ),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                          array('amp-analytics-select-option', '=' , '2')
+                        ),
+                        'default'  => 'SEGMENT-WRITE-KEY',
+                      ),
+                      array(
+                          'id'       => 'pa-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Piwik Analytics', 'redux-framework-demo' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '3')
+                          ),
+                          'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'redux-framework-demo' ),
+                          'subtitle' => __('Enter your Piwik Analytics URL.', 'redux-framework-demo' ),
+                          'default'  => '#',
+                      ),
+
+                        array(
+                            'id'       => 'amp-use-gtm-option',
+                            'type'     => 'switch',
+                            'title'    => __( 'Use Google Tag Manager', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Select your Analytics provider.', 'redux-framework-demo' ),
+                            'default'  => 0,
+                        ),
+                        array(
+              						'id'        	=>'amp-gtm-id',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Tag Manager ID'),
+              						'default'   	=> '',
+              						'placeholder'	=> 'GTM-5XXXXXP',
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '1')
+                          ),
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-type',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics Type'),
+              						'default'   	=> '',
+              						'placeholder'	=> 'googleanalytics',
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '1')
+                          ),
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-code',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics ID'),
+              						'default'   	=> '',
+      						        'placeholder'	=> 'UA-XXXXXX-Y',
+                          'required' => array(
+                          array('amp-use-gtm-option', '=' , '1')),
+              					),
+      				    )
+          	)
+   );
 
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
@@ -925,58 +987,59 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
-    // Advance Settings SECTION
-    Redux::setSection( $opt_name, array(
-       'title'      => __( 'Advanced', 'redux-framework-demo' ),
-       'desc'       => __( 'This section has Advance settings'),
-       'id'         => 'amp-advance',
-       'subsection' => true,
-       'fields'     => array(
+// Advance Settings SECTION
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Advance Settings', 'redux-framework-demo' ),
+   'desc'       => __( 'This section has Advance settings'),
+   'id'         => 'amp-advance',
+   'subsection' => true,
+   'fields'     => array(
+                     array(
+                        'id'       => 'ampforwp-homepage-on-off-support',
+                        'type'     => 'switch',
+                        'title'    => __('Homepage Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
+                        'default'  => '1'
+                    ),
+                     array(
+                        'id'       => 'ampforwp-archive-support',
+                        'type'     => 'switch',
+                        'title'    => __('Archive page Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Archive pages using this switch.', 'redux-framework-demo'),
+                        'default'  => '0'
+                    ),
+                    array(
+                        'id'       => 'amp-mobile-redirection',
+                        'type'     => 'switch',
+                        'title'    => __('Mobile Redirection', 'redux-framework-demo'),
+                        'subtitle' => __('
+                        Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','ampforwp'),
+                        'default' => 0,
 
-            array(
-                'id'       => 'ampforwp-homepage-on-off-support',
-                'type'     => 'switch',
-                'title'    => __('Homepage Support', 'redux-framework-demo'),
-                'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
-                'default'  => '1'
-            ),
-             array(
-                'id'       => 'ampforwp-archive-support',
-                'type'     => 'switch',
-                'title'    => __('Archive page Support', 'redux-framework-demo'),
-                'subtitle' => __('Enable/Disable Archive pages using this switch.', 'redux-framework-demo'),
-                'default'  => '0'
-            ),
+                    ),
 
-            array(
-                'id'       => 'amp-mobile-redirection',
-                'type'     => 'switch',
-                'title'    => __('Mobile Redirection', 'redux-framework-demo'),
-                'subtitle' => __('
-                Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','ampforwp'),
-                'default' => 0,
+                    array(
+                        'id'        =>'amp-rtl-select-option',
+                        'type'      => 'switch',
+                        'title'     => __('RTL Support', 'redux-framework-demo'),
+                        'default'   => 0,
+                        'subtitle'  => __('Enable Right to Left language support', 'redux-framework-demo'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                    ),
+                    array(
+                        'id'       => 'amp-footer-link-non-amp-page',
+                        'type'     => 'switch',
+                        'title'    => __('Link to Non-AMP page in Footer', 'redux-framework-demo'),
+                        'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'redux-framework-demo'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 1
+                    ),
 
-            ),
-            array(
-                'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                'type'      => 'switch',
-                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-                'default'   => 0,
-            ),
-            array(
-                'id'        =>'amp-rtl-select-option',
-                'type'      => 'switch',
-                'title'     => __('RTL Support', 'redux-framework-demo'),
-                'default'   => 0,
-                'subtitle'  => __('Enable Right to Left language support', 'redux-framework-demo'),
-                'true'      => 'true',
-                'false'     => 'false',
-            ),
+   ),
 
-       ),
-
-    ) );
+) );
 
 
 // Extension Section

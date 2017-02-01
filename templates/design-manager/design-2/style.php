@@ -32,6 +32,7 @@ a {
 .clearfix, .cb{
     clear: both
 }
+amp-iframe { max-width: 100%; margin-bottom : 20px; }
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {

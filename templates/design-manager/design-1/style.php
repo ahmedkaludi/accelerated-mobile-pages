@@ -39,6 +39,7 @@ function ampforwp_additional_style_input( $amp_template ) {
 	/** Force the image into a box of fixed dimensions and use object-fit to scale. **/
 	object-fit: contain;
 }
+amp-iframe { max-width: 100%; margin-bottom : 20px; }
 /* Template Styles */
 .amp-wp-content,
 .amp-wp-title-bar div {

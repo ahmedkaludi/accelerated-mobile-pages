@@ -4,14 +4,14 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.37.5
+Stable tag: 0.9.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+AMP for WP is the most recommended AMP plugin by the community. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
-Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP makes your website faster for Mobile visitors.
+AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
@@ -29,6 +29,7 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Google Tag Manager Support
 * NEW - Page, Category & Tags Support Added
 * NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
@@ -122,6 +123,12 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.38 =
+* View full details at https://ampforwp.com/google-tag-manager-for-amp/
+* Google Tag manager included [New feature]
+* Iframe max-width added [Improvement]
+* Paginated pages have different titles now. [Bug fix]
 
 = 0.9.37 =
 * View full details at https://ampforwp.com/category-tags-archive-support-added/

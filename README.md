@@ -3,15 +3,15 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7
-Stable tag: 0.9.34
+Tested up to: 4.7.2
+Stable tag: 0.9.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Must have AMP plugin for WordPress. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
+AMP for WP is the most recommended AMP plugin by the community. Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site.
 
 == Description ==
-Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on your WordPress site. AMP makes your website faster for Mobile visitors.
+AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
@@ -29,13 +29,15 @@ Automatically add Accelerated Mobile Pages (Google AMP Project) functionality on
 
 = Features: =
 
+* NEW - Google Tag Manager Support
+* NEW - Page, Category & Tags Support Added
 * NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * NEW - Custom Post Type Support 
 * NEW - Star Ratings  
 * Drag & Drop Page builder Added 
 * 2 Designs Added 
-* Yoast SEO support on AMP pages
+* Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages on AMP
 * Translation Panel & RTL
@@ -121,6 +123,59 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.37 =
+* View full details at https://ampforwp.com/category-tags-archive-support-added/
+* Google Tag manager included [New feature]
+* Iframe max-width added [Improvement]
+* Paginated pages have different titles now. [Bug fix]
+
+= 0.9.37 =
+* View full details at https://ampforwp.com/category-tags-archive-support-added/
+* Debug issues solved [Bug fix]
+* Remove Extra styling added by other Themes/ Plugins [3rd party themes and plugin Support]
+* Category, Tags & Archive Support with titles added [Enchancement]
+* Archive Title support added [Enchancement]
+* There were some issues with attachments [Bug fix]
+* removed ? from amp url's [Improvement]
+* Mobile redirection for Archives added and 404 redirections removed for archives [Improvement]
+* View non-amp version now properly redirects to the normal version. #415 [Bug fix]
+* Added an option to turn off AMP support for Homepage. [Enchancement]
+* Too many redirects issue on homepage is fixed #435 [Improvement]
+* Spell check and G tags are removed for thrive & Spell check compatibility [Better Validation]
+* If image is not available in gravatar fixed, it was throwing an error #365 #327 [Improvement]
+* Comment anchor link changed for simplecomment button files in both designs [Improvement]
+* Redirection Loop issue fixed [Bug fix]
+* Shortcodes were visible in excerpt, it's fixed now. [Improvement]
+* Defer onload by other plugins was causing issues #431 [Better Validation & 3rd party support]
+* Improved Sessions [Improvement]
+* Advnaced Settings panel was created for better user experience. [Improvement]
+* Spell check tag was causing validation issues. [Better Validation & 3rd party support]
+* RTL issue fixed #454 [Bug fixed]
+
+= 0.9.36 =
+* Full details at https://ampforwp.com/0-9-36-released-stability-update-43rd-update/
+* Redux Core Update. Better compatibility with the Salient theme and Themeforest themes & plugins using redux framework in their core, which makes the plugin much stable. [Huge Improvements]
+* Hide advertisement section if advance ads plugin is active. [Better User experience]
+* Ultimate Social Media PLUS Plugin Compatibility (Link) [3rd Party plugin Compatibility & Better Validation]
+* Launch Post Builder button added. One of the important feature called ‘Post Builder’, that is drag and drop post builder was somewhere hidden in the customizer, so positioned it for better visibility from users. [Better UX]
+
+= 0.9.35 =
+* Full details at https://ampforwp.com/page-builder-realtime-preview-3rd-party-plugins-compatibility/
+* Customizer page builder (Design Manager) was not showing real-time preview, we have fixed this issue properly [Bug fix]
+* Attachment page was having the wrong endpoint. [Bug fix]
+* Fb:like div has href, showfaces, send and action tag, which was against validation [Validation Improvement]
+* A plugin (Spam Protection by CleanTalk, no Captcha Anti-Spam) was forcefully adding script into the AMP version. [3rd party Compatibility]
+* Lang attributes were added [Enhancement]
+* The tag like was disallowed in the AMP [Validation Improvement]
+* We did some more testing with Visual Composer & AMP [3rd party Compatibility]
+* AMP on Pages option was not working in some cases. [Bug fix]
+* Disable comment button when comments were disabled. This was fixed by @lofesa and was sent as a pull request. Thank you Lofesa!
+* g:plusone tag was not getting removed properly. [Validation Improvement]
+* Thrive headline optimizer was having issues in AMP version. [Validation Improvement]
+* Structured Data Image width issue solved [Enhancement]
+* BJ Lazy Load was having issues, we have added a fix which will make this plugin compatible with the AMP. [3rd party Compatibility & Validation Improvement]
+* imageanchor=”1″ was getting added by some 3rd party plugin, this was fixed.[Validation Improvement]
 
 = 0.9.34 =
 * Newspaper theme by Tagdiv was having issues, we have fixed this one. 
