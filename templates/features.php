@@ -42,7 +42,7 @@
     32. removing bj loading for amp
     33. Google tag manager support added
     34. social share boost compatibility Ticket #387
-
+	35. Disqus Comments Support
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1134,7 +1134,6 @@ add_action('amp_init','social_sharing_removal_code', 9);
 
 //35. Disqus Comments Support
 add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
-
 function ampforwp_add_disqus_support() {
 
 	global $redux_builder_amp;
@@ -1150,7 +1149,6 @@ function ampforwp_add_disqus_support() {
 
 		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
 		?>
-	
 		<section class="post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 			<amp-iframe
 				height="350"
@@ -1158,9 +1156,17 @@ function ampforwp_add_disqus_support() {
 				resizable
 				frameborder="0"
 				src="<?php echo $disqus_url ?>" >
-				<div overflow tabindex="0" role="button" aria-label="Read more">Read more!</div>
+				<div overflow tabindex="0" role="button" aria-label="Read more"> Disqus Comments Loading...</div>
 			</amp-iframe>
 		</section>
 	<?php 
 	}  
+}
+
+add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+function ampforwp_add_disqus_scripts( $data ) {
+	if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+	}
+	return $data;
 }
