@@ -13,6 +13,11 @@ License: GPL2
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
+define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
+define('AMPFORWP_VERSION','0.9.38');
+
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
@@ -23,10 +28,16 @@ function ampforwp_add_custom_post_support() {
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
-define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
-define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
-define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.38');
+register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
+function ampforwp_rewrite_activation() {
+    ampforwp_add_custom_post_support();
+    flush_rewrite_rules();
+}
+
+register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
+function ampforwp_rewrite_deactivate() {
+	flush_rewrite_rules();
+}
 
 // Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
