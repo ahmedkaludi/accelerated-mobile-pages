@@ -1130,3 +1130,37 @@ function social_sharing_removal_code() {
     remove_filter('the_content','ssb_in_content');
 }
 add_action('amp_init','social_sharing_removal_code', 9);
+
+
+//35. Disqus Comments Support
+add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
+
+function ampforwp_add_disqus_support() {
+
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
+
+		global $post; $post_slug=$post->post_name; 
+
+		$disqus_script_host_url = "https://ampforwp.com/goto/". AMPFORWP_DISQUS_URL;
+
+		if( $redux_builder_amp['ampforwp-disqus-host-position'] == 0 ) {
+			$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
+		}
+
+		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
+		?>
+	
+		<section class="post-comments amp-wp-article-content amp-disqus-comments" id="comments">
+			<amp-iframe
+				height="350"
+				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+				resizable
+				frameborder="0"
+				src="<?php echo $disqus_url ?>" >
+				<div overflow tabindex="0" role="button" aria-label="Read more">Read more!</div>
+			</amp-iframe>
+		</section>
+	<?php 
+	}  
+}

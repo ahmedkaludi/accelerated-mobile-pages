@@ -220,6 +220,13 @@ blockquote p:last-child {
 .amp-wp-article-content amp-img.alignleft {
 	margin: 0 16px 1em 0;
 }
+/* Disqus */
+.amp-disqus-comments {
+	padding: 15px;
+}
+.amp-disqus-comments amp-iframe{
+	background: none;
+}
 /* Captions */
 .wp-caption {
 	padding: 0;
