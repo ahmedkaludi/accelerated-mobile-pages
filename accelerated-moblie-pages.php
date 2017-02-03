@@ -14,7 +14,6 @@ License: GPL2
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
-define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.9.38');
 
@@ -28,10 +27,55 @@ function ampforwp_add_custom_post_support() {
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
+// Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
+function ampforwp_add_custom_rewrite_rules() {
+    // For Homepage
+    add_rewrite_rule(
+      'amp/?$',
+      'index.php?amp',
+      'top'
+    );
+	  // For Homepage with Pagination
+    add_rewrite_rule(
+        'amp/page/([0-9]{1,})/?$',
+        'index.php?amp&paged=$matches[1]',
+        'top'
+    );
+    // For category pages
+    add_rewrite_rule(
+      'category\/(.+?)\/amp/?$',
+      'index.php?amp&category_name=$matches[1]',
+      'top'
+    );
+    // For category pages with Pagination
+    add_rewrite_rule(
+      'category\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+      'top'
+    );
+    // For tag pages
+    add_rewrite_rule(
+      'tag\/(.+?)\/amp/?$',
+      'index.php?amp&tag=$matches[1]',
+      'top'
+    );
+    // For tag pages with Pagination
+    add_rewrite_rule(
+      'tag\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+      'top'
+    );
+
+}
+add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
+
     ampforwp_add_custom_post_support();
+    ampforwp_add_custom_rewrite_rules();
     flush_rewrite_rules();
+   
 }
 
 register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
