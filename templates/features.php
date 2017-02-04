@@ -84,23 +84,17 @@
 	    if( is_attachment() ) {
 	        return;
 	    }
-	    if( is_page() ) {
-	      if( !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-	        return;
-	      }
-	    }
-	    if( is_archive() ) {
-	        if( ! $redux_builder_amp['ampforwp-archive-support'] ) {
-		        //dont do anything
-		        return;
-	      	}
-	    }
 
-	    if( is_home() ) {
-	        if( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-		        //dont do anything
-		        return;
-	      	}
+	    if ( is_page() || is_archive() || is_home() ) {
+	      if( ! $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+	        return;
+	      } elseif ( ! $redux_builder_amp['ampforwp-archive-support'] ) {
+					//dont do anything
+					return;
+				} elseif( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+					//dont do anything
+					return;
+				}
 	    }
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
@@ -117,7 +111,20 @@
 	        if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 	          //dont Echo anything
 	        } else {
-	          printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+						$supported_types = array('post','page');
+						if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+							foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
+								$supported_types[] = $custom_post;
+							}
+						}
+
+						$type = get_post_type();
+						$val = in_array( $type , $supported_types );
+
+					if( $val ) {
+						printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+					}
+
 	        }
 	} //end of ampforwp_home_archive_rel_canonical()
 
@@ -1139,7 +1146,7 @@ function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
 
-		global $post; $post_slug=$post->post_name; 
+		global $post; $post_slug=$post->post_name;
 
 		$disqus_script_host_url = "https://ampforwp.com/goto/". AMPFORWP_DISQUS_URL;
 
@@ -1159,8 +1166,8 @@ function ampforwp_add_disqus_support() {
 				<div overflow tabindex="0" role="button" aria-label="Read more"> Disqus Comments Loading...</div>
 			</amp-iframe>
 		</section>
-	<?php 
-	}  
+	<?php
+	}
 }
 
 add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
