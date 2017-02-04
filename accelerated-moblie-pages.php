@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.38
+Version: 0.9.40
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.38');
+define('AMPFORWP_VERSION','0.9.40');
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
@@ -187,7 +187,7 @@ if ( is_admin() ) {
  			if (!isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ($plugin == $plugin_file) {
- 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a> | <a href="admin.php?page=amp_options&tab=14">' . __('Premium Support', 'ampforwp') . '</a>');
+ 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'ampforwp') . '</a>');
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if ( is_plugin_active( 'amp/amp.php' ) ) {
 					    //if parent plugin is activated
