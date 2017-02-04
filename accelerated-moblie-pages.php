@@ -41,27 +41,42 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+
     // For category pages
+    $rewrite_category = get_option('category_base');
+    if (! empty($rewrite_category)) {
+    	$rewrite_category = get_option('category_base');
+    } else {
+    	$rewrite_category = 'category';
+    }
+    
     add_rewrite_rule(
-      'category\/(.+?)\/amp/?$',
+      $rewrite_category.'\/(.+?)\/amp/?$',
       'index.php?amp&category_name=$matches[1]',
       'top'
     );
     // For category pages with Pagination
     add_rewrite_rule(
-      'category\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      $rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
       'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
       'top'
     );
-    // For tag pages
+
+    // For tag pages    
+	$rewrite_tag = get_option('tag_base');
+    if (! empty($rewrite_tag)) {
+    	$rewrite_tag = get_option('tag_base');
+    } else {
+    	$rewrite_tag = 'tag';
+    }    
     add_rewrite_rule(
-      'tag\/(.+?)\/amp/?$',
+      $rewrite_tag.'\/(.+?)\/amp/?$',
       'index.php?amp&tag=$matches[1]',
       'top'
     );
     // For tag pages with Pagination
     add_rewrite_rule(
-      'tag\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      $rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
@@ -73,13 +88,17 @@ function ampforwp_rewrite_activation() {
 
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
-    flush_rewrite_rules();
+    // Flushing rewrite urls ONLY on activation
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
    
 }
 
 register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
 function ampforwp_rewrite_deactivate() {
-	flush_rewrite_rules();
+	// Flushing rewrite urls ONLY on deactivation
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
 }
 
 // Redux panel inclusion code
