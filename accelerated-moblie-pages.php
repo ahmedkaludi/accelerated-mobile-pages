@@ -21,7 +21,7 @@ define('AMPFORWP_VERSION','0.9.38');
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT | EP_ALL_ARCHIVES | EP_CATEGORIES | EP_TAGS | EP_AUTHORS | EP_SEARCH );
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }
@@ -65,7 +65,6 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
-
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
