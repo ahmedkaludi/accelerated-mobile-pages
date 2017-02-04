@@ -1159,7 +1159,7 @@ add_action('amp_init','social_sharing_removal_code', 9);
 
 
 //35. Disqus Comments Support
-add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
+// add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 
 	global $redux_builder_amp;
@@ -1189,7 +1189,7 @@ function ampforwp_add_disqus_support() {
 	}
 }
 
-add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+// add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
