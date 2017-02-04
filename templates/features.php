@@ -84,18 +84,17 @@
 	    if( is_attachment() ) {
 	        return;
 	    }
-
-	    if ( is_page() || is_archive() || is_home() ) {
-	      if( ! $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-	        return;
-	      } elseif ( ! $redux_builder_amp['ampforwp-archive-support'] ) {
-					//dont do anything
-					return;
-				} elseif( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-					//dont do anything
-					return;
-				}
-	    }
+      if( is_home() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+        return;
+      }
+      if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
+				//dont do anything
+				return;
+			}
+      if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+				//dont do anything
+				return;
+			}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
