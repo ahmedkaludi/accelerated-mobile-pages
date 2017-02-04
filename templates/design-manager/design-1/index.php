@@ -8,7 +8,7 @@
 		if ( is_home() || is_front_page() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
 			global $wp;
 			$current_archive_url = home_url( $wp->request );
-			$amp_url = trailingslashit($current_archive_url);
+			$amp_url = trailingslashit($current_archive_url); 
 		} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">

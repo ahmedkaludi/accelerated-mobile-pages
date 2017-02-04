@@ -35,7 +35,7 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp',
       'top'
     );
-	  // For Homepage with Pagination
+	// For Homepage with Pagination
     add_rewrite_rule(
         'amp/page/([0-9]{1,})/?$',
         'index.php?amp&paged=$matches[1]',
@@ -80,6 +80,7 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
+    
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
