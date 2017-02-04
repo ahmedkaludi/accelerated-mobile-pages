@@ -51,8 +51,10 @@ function ampforwp_page_template_redirect() {
         if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ) {
           $_SESSION['ampforwp_amp_mode']='mobile-on';
           if ( is_home() ) {
-  					wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
-  					exit();
+            if ( $redux_builder_amp['ampforwp-homepage-on-off-support'] == 1 ) {
+              wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMP_QUERY_VAR ,  301 );
+              exit();
+            }
   				}
           elseif ( is_archive() ) {
             global $wp;
@@ -86,4 +88,3 @@ function ampforwp_page_template_redirect_archive() {
 		}
 	}
 }
- 
