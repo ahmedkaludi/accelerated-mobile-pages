@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;  ?>
+<?php global $redux_builder_amp;?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -15,16 +15,16 @@
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
-<main>
-	<article class="amp-wp-article">
-		<?php do_action('ampforwp_post_before_design_elements') ?>
+	<main>
+		<article class="amp-wp-article">
+			<?php do_action('ampforwp_post_before_design_elements') ?>
 
-		<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
-		<?php do_action('ampforwp_post_after_design_elements') ?>
-	</article>
-</main>
+			<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
+			<?php do_action('ampforwp_post_after_design_elements') ?>
+		</article>
+	</main>
+	
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
 </html>
-

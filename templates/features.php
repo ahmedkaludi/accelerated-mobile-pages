@@ -41,7 +41,8 @@
     31. removing scripts added by cleantalk
     32. removing bj loading for amp
     33. Google tag manager support added
-
+    34. social share boost compatibility Ticket #387
+	35. Disqus Comments Support
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -83,24 +84,21 @@
 	    if( is_attachment() ) {
 	        return;
 	    }
-	    if( is_page() ) {
-	      if( !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+	    if( is_home() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 	        return;
-	      }
 	    }
-	    if( is_archive() ) {
-	        if( ! $redux_builder_amp['ampforwp-archive-support'] ) {
-		        //dont do anything
-		        return;
-	      	}
+	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+	        return;
 	    }
-
-	    if( is_home() ) {
-	        if( ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-		        //dont do anything
-		        return;
-	      	}
-	    }
+	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
+			return;
+		}
+      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
+      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}       
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
@@ -116,7 +114,36 @@
 	        if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 	          //dont Echo anything
 	        } else {
-	          printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+				$supported_types = array('post','page');
+				if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+					foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
+						$supported_types[] = $custom_post;
+					}
+				}
+
+				$type = get_post_type();
+				$supported_amp_post_types = in_array( $type , $supported_types );
+
+				if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
+					$new_url =  home_url('/');
+					$new_url = $new_url . AMP_QUERY_VAR . '/' . $wp->request ;
+					$amp_url = $new_url ;
+				}
+				if ( is_archive() && $wp->query_vars['paged'] >= '2' ) {
+					$new_url 		=  home_url('/');
+				 	$category_path 	= $wp->request;
+				 	$explode_path  	= explode("/",$category_path);
+				 	$inserted 		= array(AMP_QUERY_VAR);
+					array_splice( $explode_path, -2, 0, $inserted );
+					$impode_url = implode('/', $explode_path);
+
+					$amp_url = $new_url . $impode_url ;			
+				}
+
+				if( $supported_amp_post_types ) {
+					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+				}
+
 	        }
 	} //end of ampforwp_home_archive_rel_canonical()
 
@@ -551,6 +578,7 @@
 				 $content = preg_replace('/<like\s(.*?)>(.*)<\/like>/i', '', $content);
 				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
 				 $content = preg_replace('/imageanchor="1"/i', '', $content);
+				 $content = preg_replace('/<plusone\s(.*?)>(.*?)<\/plusone>/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -1123,3 +1151,48 @@ function amp_gtm_add_gtm_support( $analytics ) {
 	return $analytics;
 }
 
+//34. social share boost compatibility Ticket #387
+function social_sharing_removal_code() {
+    remove_filter('the_content','ssb_in_content');
+}
+add_action('amp_init','social_sharing_removal_code', 9);
+
+
+//35. Disqus Comments Support
+// add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
+function ampforwp_add_disqus_support() {
+
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
+
+		global $post; $post_slug=$post->post_name;
+
+		$disqus_script_host_url = "https://ampforwp.com/goto/". AMPFORWP_DISQUS_URL;
+
+		if( $redux_builder_amp['ampforwp-disqus-host-position'] == 0 ) {
+			$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
+		}
+
+		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
+		?>
+		<section class="post-comments amp-wp-article-content amp-disqus-comments" id="comments">
+			<amp-iframe
+				height="350"
+				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+				resizable
+				frameborder="0"
+				src="<?php echo $disqus_url ?>" >
+				<div overflow tabindex="0" role="button" aria-label="Read more"> Disqus Comments Loading...</div>
+			</amp-iframe>
+		</section>
+	<?php
+	}
+}
+
+// add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+function ampforwp_add_disqus_scripts( $data ) {
+	if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+	}
+	return $data;
+}

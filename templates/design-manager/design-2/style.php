@@ -220,7 +220,7 @@ amp-sidebar {
     background: #fff;
     text-align: center;
 }
-#header h1{
+#header h3{
     text-align: center;
     font-size: 20px;
     font-weight: bold;

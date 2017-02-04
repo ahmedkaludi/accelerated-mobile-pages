@@ -5,9 +5,7 @@ $template = new AMP_Post_Template( $post_id );?>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
-	<link rel="canonical" href="<?php
-	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	echo get_permalink( $ID ) ?>">
+	<link rel="canonical" href="<?php echo home_url('/');?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
@@ -26,16 +24,14 @@ $template = new AMP_Post_Template( $post_id );?>
 <body class="single-post">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<header class="amp-wp-article-header ampforwp-title">
-	<h1 class="amp-wp-title">
-	<?php global  $redux_builder_amp;
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
-					echo get_the_title( $ID ) ;
-				}
-	?>
-</h1>
-</header>
+	<?php global  $redux_builder_amp; if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
+		<header class="amp-wp-article-header ampforwp-title">
+			<h1 class="amp-wp-title">
+				<?php $ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+							echo get_the_title( $ID ) ; ?>
+			</h1>
+		</header>
+<?php } ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 

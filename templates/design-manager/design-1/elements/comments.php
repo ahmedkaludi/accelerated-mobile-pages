@@ -1,5 +1,6 @@
 <?php
-if (!comments_open()) {
+global $redux_builder_amp;
+if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) {
   return;
 }
 ?>

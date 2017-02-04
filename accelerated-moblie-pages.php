@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.38
+Version: 0.9.40
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -13,19 +13,94 @@ License: GPL2
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
+define('AMPFORWP_VERSION','0.9.40');
+
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK | EP_PAGES | EP_ROOT | EP_ALL_ARCHIVES | EP_CATEGORIES | EP_TAGS | EP_AUTHORS | EP_SEARCH );
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
 		add_post_type_support( 'page', AMP_QUERY_VAR );
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
-define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
-define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.38');
+// Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
+function ampforwp_add_custom_rewrite_rules() {
+    // For Homepage
+    add_rewrite_rule(
+      'amp/?$',
+      'index.php?amp',
+      'top'
+    );
+	// For Homepage with Pagination
+    add_rewrite_rule(
+        'amp/page/([0-9]{1,})/?$',
+        'index.php?amp&paged=$matches[1]',
+        'top'
+    );
+
+    // For category pages
+    $rewrite_category = get_option('category_base');
+    if (! empty($rewrite_category)) {
+    	$rewrite_category = get_option('category_base');
+    } else {
+    	$rewrite_category = 'category';
+    }
+    
+    add_rewrite_rule(
+      $rewrite_category.'\/(.+?)\/amp/?$',
+      'index.php?amp&category_name=$matches[1]',
+      'top'
+    );
+    // For category pages with Pagination
+    add_rewrite_rule(
+      $rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+      'top'
+    );
+
+    // For tag pages    
+	$rewrite_tag = get_option('tag_base');
+    if (! empty($rewrite_tag)) {
+    	$rewrite_tag = get_option('tag_base');
+    } else {
+    	$rewrite_tag = 'tag';
+    }    
+    add_rewrite_rule(
+      $rewrite_tag.'\/(.+?)\/amp/?$',
+      'index.php?amp&tag=$matches[1]',
+      'top'
+    );
+    // For tag pages with Pagination
+    add_rewrite_rule(
+      $rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+      'top'
+    );
+    
+}
+add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+
+register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
+function ampforwp_rewrite_activation() {
+
+    ampforwp_add_custom_post_support();
+    ampforwp_add_custom_rewrite_rules();
+    // Flushing rewrite urls ONLY on activation
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+   
+}
+
+register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
+function ampforwp_rewrite_deactivate() {
+	// Flushing rewrite urls ONLY on deactivation
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+}
 
 // Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
@@ -112,7 +187,7 @@ if ( is_admin() ) {
  			if (!isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ($plugin == $plugin_file) {
- 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a> | <a href="admin.php?page=amp_options&tab=14">' . __('Premium Support', 'ampforwp') . '</a>');
+ 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'ampforwp') . '</a>');
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if ( is_plugin_active( 'amp/amp.php' ) ) {
 					    //if parent plugin is activated

@@ -9,7 +9,9 @@
 	if ( is_home() || is_front_page()  || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
 		global $wp;
 		$current_archive_url = home_url( $wp->request );
-		$amp_url = trailingslashit($current_archive_url);
+		$amp_url 	= trailingslashit($current_archive_url);
+		$remove 	= '/'. AMP_QUERY_VAR;
+		$amp_url 	= str_replace($remove, '', $amp_url) ;
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
@@ -38,13 +40,15 @@
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
-		$q = new WP_Query( array(
+		$args = array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids
-		) ); ?>
+		);
+		$filtered_args = apply_filters('ampforwp_query_args', $args);
+		$q = new WP_Query( $filtered_args ); ?>
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
