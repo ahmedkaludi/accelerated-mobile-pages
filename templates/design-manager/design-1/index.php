@@ -64,6 +64,7 @@
 						<div class="amp-wp-meta">
 			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
 			              <time> <?php
+                          printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
                                 human_time_diff( get_the_time( 'U' ),
                                 current_time( 'timestamp' ) ) ); ?>
                     </time>
