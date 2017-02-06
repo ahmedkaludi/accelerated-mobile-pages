@@ -720,6 +720,14 @@ Redux::setArgs( "redux_builder_amp", $args );
               'title'     =>  __('Twitter', 'redux-framework-demo'),
               'default'   =>  1,
           ),
+          array(
+              'id'        =>  'enable-single-twitter-share-handle',
+              'type'      =>  'text',
+              'title'     =>  __('Twitter Handle', 'redux-framework-demo'),
+              'required'  => array('enable-single-twitter-share', '=' , '1'),
+              'placeholder'  => 'Eg: @xyx',
+              'default'   =>  '',
+          ),
           // GooglePlus ON/OFF
           array(
               'id'        =>  'enable-single-gplus-share',
