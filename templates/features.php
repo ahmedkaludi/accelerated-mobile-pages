@@ -98,7 +98,7 @@
 		}
       	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
 			return;
-		}       
+		}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
@@ -120,6 +120,13 @@
 						$supported_types[] = $custom_post;
 					}
 				}
+				
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) ) {
+					if( !in_array("product", $supported_types) ){
+						$supported_types[]= 'product';
+					}
+				}
 
 				$type = get_post_type();
 				$supported_amp_post_types = in_array( $type , $supported_types );
@@ -137,7 +144,7 @@
 					array_splice( $explode_path, -2, 0, $inserted );
 					$impode_url = implode('/', $explode_path);
 
-					$amp_url = $new_url . $impode_url ;			
+					$amp_url = $new_url . $impode_url ;
 				}
 
 				if( $supported_amp_post_types ) {
