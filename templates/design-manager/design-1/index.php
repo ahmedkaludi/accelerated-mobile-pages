@@ -62,8 +62,12 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-			          	</div>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <time> <?php
+                                human_time_diff( get_the_time( 'U' ),
+                                current_time( 'timestamp' ) ) ); ?>
+                    </time>
+			  </div>
 
 
 						<?php if ( has_post_thumbnail() ) { ?>
