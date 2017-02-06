@@ -805,6 +805,28 @@ amp-user-notification button {
 	.amp-wp-article-content img {
 	    max-width: 100%;
 	}
+
+  <?php //style for RTL
+  if( is_rtl() ) { ?>
+    /* stlye for RTL languages */
+    .amp-wp-header .amp-wp-site-icon{
+        position: relative;
+        float: left;
+    }
+
+    .amp-wp-header .nav_container{
+        float: left;
+        right: initial;
+        left: -11px;
+    }
+
+    .amp-wp-header .amp-wp-site-icon{
+        top: -3px;
+        right: initial;
+        left: -11px;
+    }
+  <?php } ?>
+
 	/* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];
 } ?>
