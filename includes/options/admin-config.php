@@ -334,6 +334,23 @@ Redux::setArgs( "redux_builder_amp", $args );
           	)
    );
 
+
+//code for fetching ctegories to show as a list in redux settings
+   $categories = get_categories( array(
+                                      'orderby' => 'name',
+                                      'order'   => 'ASC'
+                                      ) );
+  $categories_array = array();
+   if ( $categories ) :
+   foreach ($categories as $cat ) {
+     $cat_id = $cat->cat_ID;
+     $key = "".$cat_id;
+     //building assosiative array of ID-cat_name
+     $categories_array[ $key ] = $cat->name;
+    }
+    endif;
+    //End of code for fetching ctegories to show as a list in redux settings
+
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
@@ -355,6 +372,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                     '3' => __('Design Three', 'redux-framework-demo' )
                 ),
                 'default'  => '3'
+            ),
+
+             array(
+                'id'       => 'amp-design-3-category-selector',
+                'type'     => 'select',
+                'title'    => __( 'Select category for carousel', 'redux-framework-demo' ),
+                'options'  => $categories_array,
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
             ),
 
         array(
