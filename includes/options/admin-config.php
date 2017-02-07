@@ -879,6 +879,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
+                       'id'       => 'amp-translator-show-more-posts-text',
+                       'type'     => 'text',
+                       'title'    => __('Show more Posts', 'redux-framework-demo'),
+                       'default'  => 'Show more Posts',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-show-previous-posts-text',
+                       'type'     => 'text',
+                       'title'    => __('Show previous Posts', 'redux-framework-demo'),
+                       'default'  => 'Show previous Posts',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
                        'id'       => 'amp-translator-top-text',
                        'type'     => 'text',
                        'title'    => __('Top', 'redux-framework-demo'),

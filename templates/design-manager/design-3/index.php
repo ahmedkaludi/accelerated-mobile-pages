@@ -143,9 +143,9 @@
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] , 0 ) ?></div>
+			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
 <?php if ( $paged > 1 ) { ?>
-			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
 <?php } ?>
 			<div class="clearfix"></div>
 		</div>
