@@ -45,7 +45,9 @@
 				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($paged),
-				'post__not_in' 		  => $exclude_ids
+				'post__not_in' 		  => $exclude_ids,
+        'has_password' => false ,
+        'post_status'=> 'publish'
 			);
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
 			$q = new WP_Query( $filtered_args ); ?>
@@ -60,8 +62,13 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-			          	</div>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <time> <?php
+                          printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                                human_time_diff( get_the_time( 'U' ),
+                                current_time( 'timestamp' ) ) ); ?>
+                    </time>
+			  </div>
 
 
 						<?php if ( has_post_thumbnail() ) { ?>

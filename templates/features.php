@@ -98,7 +98,7 @@
 		}
       	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
 			return;
-		}       
+		}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
@@ -121,6 +121,13 @@
 					}
 				}
 
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) ) {
+					if( !in_array("product", $supported_types) ){
+						$supported_types[]= 'product';
+					}
+				}
+
 				$type = get_post_type();
 				$supported_amp_post_types = in_array( $type , $supported_types );
 
@@ -137,7 +144,7 @@
 					array_splice( $explode_path, -2, 0, $inserted );
 					$impode_url = implode('/', $explode_path);
 
-					$amp_url = $new_url . $impode_url ;			
+					$amp_url = $new_url . $impode_url ;
 				}
 
 				if( $supported_amp_post_types ) {
@@ -920,12 +927,14 @@ function ampforwp_sticky_social_icons(){
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
-		    	<amp-social-share type="twitter"
-		    										width="50"
-		    										height="28"
-														data-param-url="CANONICAL_URL"
-		    	></amp-social-share>
+		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
+          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
+          <amp-social-share type="twitter"
+                            width="50"
+                            height="28"
+                            data-param-url="CANONICAL_URL"
+                            data-param-text=<?php echo $data_param_data ?>
+          ></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 		    	<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
@@ -1195,4 +1204,12 @@ function ampforwp_add_disqus_scripts( $data ) {
 		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 	}
 	return $data;
+}
+
+//ref https://ethitter.com/2013/07/disable-jetpacks-photon-module-in-specific-situations/
+add_action('amp_init','ampforwp_photon_remove');
+function ampforwp_photon_remove(){
+	if ( class_exists( 'Jetpack_Photon' ) ) {
+		$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
+	}
 }
