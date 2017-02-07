@@ -28,14 +28,18 @@
 <div class="amp-featured-wrapper">
 <div class="amp-featured-area">
   <amp-carousel width="450"
-      height="270" 
+      height="270"
       type="slides" autoplay
       delay="2000">
 <?php
-   $args = array('cat' => 33756, 'posts_per_page' => 3);
+   $args = array(
+                  'posts_per_page' => 10,
+                  'has_password' => false ,
+                  'post_status'=> 'publish'
+                );
    $category_posts = new WP_Query($args);
-   if($category_posts->have_posts()) : 
-      while($category_posts->have_posts()) : 
+   if($category_posts->have_posts()) :
+      while($category_posts->have_posts()) :
          $category_posts->the_post();
 ?>
       <div>
@@ -45,18 +49,18 @@
 				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
-				 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img> 
+				 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 			<?php } ?>
         <div class="featured_title">
             <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
-            <h1><?php the_title() ?></h1>   
- 
+            <h1><?php the_title() ?></h1>
+
         </div>
       </div>
 <?php endwhile; else: ?><?php endif; ?>
   </amp-carousel>
-</div> 
-</div> 
+</div>
+</div>
 <main>
 	<?php
 		if ( get_query_var( 'paged' ) ) {
@@ -75,7 +79,9 @@
 			'offset'              => esc_attr($fn_offset),
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
-			'post__not_in' 		  => $exclude_ids
+			'post__not_in' 		  => $exclude_ids,
+			'has_password' => false ,
+			'post_status'=> 'publish'
 		) ); ?>
 
  	<?php if ( is_archive() ) {
@@ -97,7 +103,7 @@
 			<?php } ?>
 
 			<div class="amp-wp-post-content">
-                <ul class="amp-wp-tags"> 
+                <ul class="amp-wp-tags">
 <?php foreach((get_the_category()) as $category) { ?>
              <li><?php echo $category->cat_name ?></li>
 <?php } ?>
@@ -123,7 +129,7 @@
 
 	<div class="amp-wp-content pagination-holder">
 
-        
+
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] , 0 ) ?></div>
 <?php if ( $paged > 1 ) { ?>

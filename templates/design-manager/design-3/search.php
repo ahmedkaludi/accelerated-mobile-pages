@@ -25,7 +25,7 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
- 
+
 
 <main>
 	<?php
@@ -46,6 +46,8 @@
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
+			'has_password' => false ,
+			'post_status'=> 'publish'
 		) ); ?>
 
 
@@ -68,7 +70,7 @@
 			<?php } ?>
 
 			<div class="amp-wp-post-content">
-                <ul class="amp-wp-tags"> 
+                <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { ?>
              			<li><?php echo $category->cat_name ?></li>
 					<?php } ?>
@@ -94,7 +96,7 @@
 
 	<div class="amp-wp-content pagination-holder">
 
-        
+
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] , 0 ) ?></div>
 			<?php if ( $paged > 1 ) { ?>
