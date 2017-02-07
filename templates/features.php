@@ -1209,5 +1209,7 @@ function ampforwp_add_disqus_scripts( $data ) {
 //ref https://ethitter.com/2013/07/disable-jetpacks-photon-module-in-specific-situations/
 add_action('amp_init','ampforwp_photon_remove');
 function ampforwp_photon_remove(){
-$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
+	if ( class_exists( 'Jetpack_Photon' ) ) {
+		$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
+	}
 }
