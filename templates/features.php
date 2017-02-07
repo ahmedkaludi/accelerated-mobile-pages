@@ -96,9 +96,6 @@
       	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
 			return;
 		}
-      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-			return;
-		}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
