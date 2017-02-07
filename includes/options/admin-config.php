@@ -728,7 +728,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
     // Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Social', 'redux-framework-demo' ),
+        'title'      => __( 'Social Share', 'redux-framework-demo' ),
         'id'         => 'amp-social',
         'subsection' => true,
         'fields'     => array(
