@@ -927,7 +927,7 @@ function ampforwp_sticky_social_icons(){
 			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { 
+		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
           $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
           <amp-social-share type="twitter"
                             width="50"
@@ -1204,4 +1204,10 @@ function ampforwp_add_disqus_scripts( $data ) {
 		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 	}
 	return $data;
+}
+
+//ref https://ethitter.com/2013/07/disable-jetpacks-photon-module-in-specific-situations/
+add_action('amp_init','ampforwp_photon_remove');
+function ampforwp_photon_remove(){
+$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
 }
