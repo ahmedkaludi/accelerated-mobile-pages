@@ -32,11 +32,23 @@
       type="slides" autoplay
       delay="2000">
 <?php
-   $args = array(
-                  'posts_per_page' => 10,
-                  'has_password' => false ,
-                  'post_status'=> 'publish'
-                );
+  global $redux_builder_amp;
+  if( $redux_builder_amp['amp-design-3-category-selector'] ){
+    $args = array(
+                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
+                   'posts_per_page' => 10,
+                   'has_password' => false ,
+                   'post_status'=> 'publish'
+                 );
+  } else {
+    //if user does not give a category
+    $args = array(
+                   'posts_per_page' => 10,
+                   'has_password' => false ,
+                   'post_status'=> 'publish'
+                 );
+  }
+
    $category_posts = new WP_Query($args);
    if($category_posts->have_posts()) :
       while($category_posts->have_posts()) :
