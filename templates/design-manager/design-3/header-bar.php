@@ -3,7 +3,7 @@
     side="left">
     <?php global $redux_builder_amp; ?>
     <div class="toggle-navigationv2">
-      <div class="navigation_heading"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></div> 
+      <div class="navigation_heading"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></div>
       <?php
           wp_nav_menu( array(
               'theme_location' => 'amp-menu',
@@ -11,18 +11,18 @@
           ) ); ?>
           <div class="social_icons">
             <ul>
-                <li class="icon-twitter"></li>  
-                <li class="icon-facebook"></li>  
-                <li class="icon-pinterest"></li>  
-                <li class="icon-google-plus"></li>  
-                <li class="icon-linkedin"></li>  
-                <li class="icon-youtube-play"></li>  
-                <li class="icon-instagram"></li>  
-                <li class="icon-tumblr"></li>  
-                <li class="icon-vk"></li>  
-                <li class="icon-whatsapp"></li>  
-                <li class="icon-reddit-alien"></li>  
-                <li class="icon-snapchat-ghost"></li>  
+                <li class="icon-twitter"></li>
+                <li class="icon-facebook"></li>
+                <li class="icon-pinterest"></li>
+                <li class="icon-google-plus"></li>
+                <li class="icon-linkedin"></li>
+                <li class="icon-youtube-play"></li>
+                <li class="icon-instagram"></li>
+                <li class="icon-tumblr"></li>
+                <li class="icon-vk"></li>
+                <li class="icon-whatsapp"></li>
+                <li class="icon-reddit-alien"></li>
+                <li class="icon-snapchat-ghost"></li>
             </ul>
           </div>
   </div>
@@ -51,7 +51,9 @@
           <h1><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h1>
         <?php } ?>
         </div>
+        <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
         <div class="searchmenu"><button on="tap:search-icon"><i class="icono-search"></i></button>          </div>
+        <?php } ?>
       </div>
   </div>
 </header>

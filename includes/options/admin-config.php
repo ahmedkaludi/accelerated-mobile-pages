@@ -383,6 +383,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                   array('amp-design-selector', '=' , '3')
                 ),
             ),
+             array(
+                'id'       => 'amp-design-3-search-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Enable/Disable Search Box', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '1'
+            ),
 
         array(
             'id'       => 'css_editor',
