@@ -25,9 +25,19 @@
 <body class="amp_home_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<?php do_action( 'ampforwp_after_header', $this ); ?>
+<?php do_action( 'ampforwp_after_header', $this );
 
-<?php global $redux_builder_amp; if( !$redux_builder_amp['amp-design-3-hide-carousel'] ) { ?>
+if ( get_query_var( 'paged' ) ) {
+      $paged = get_query_var('paged');
+  } elseif ( get_query_var( 'page' ) ) {
+      $paged = get_query_var('page');
+  } else {
+      $paged = 1;
+  }
+
+ ?>
+
+<?php global $redux_builder_amp; if( !$redux_builder_amp['amp-design-3-hide-carousel'] && $paged ===1 ) { ?>
 		<div class="amp-featured-wrapper">
 		<div class="amp-featured-area">
 		  <amp-carousel width="450"
@@ -80,13 +90,6 @@
 
 <main>
 	<?php
-		if ( get_query_var( 'paged' ) ) {
-	        $paged = get_query_var('paged');
-	    } elseif ( get_query_var( 'page' ) ) {
-	        $paged = get_query_var('page');
-	    } else {
-	        $paged = 1;
-	    }
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
