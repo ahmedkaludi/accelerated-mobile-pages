@@ -21,6 +21,8 @@
 
 <footer class="container">
         <div id="footer">
+        <a class="non-amp-link full-footer-link" href="<?php echo $ampforwp_backto_nonamp; ?>"></a>
+        <a class="to-top-link full-footer-link" href="#header"></a>
           <a href="https://technutty.co.uk">
 <amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
 
@@ -42,6 +44,7 @@
                               <br>
 
             <div class="meta-footer">
+            <a href="https://technutty.co.uk/about/'">About</a> / <a href="https://technutty.co.uk/contact/'">Contact</a> / <a href="https://technutty.co.uk/terms-and-conditions/'">Terms and Conditions</a> / <a href="https://technutty.co.uk/privacy-policy/'">Privacy Policy</a> 
                                              <ul>
 <button onclick="window.location.href='<?php echo $ampforwp_backto_nonamp; ?>'" class="bttn-footer-link bttn-tn bttn-non-amp">View the Non-AMP version</button>                                      
 <button onclick="window.location.href='#header'" class="bttn-footer-link bttn-tn bttn-primary">Top</button>
