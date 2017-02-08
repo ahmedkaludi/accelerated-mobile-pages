@@ -143,8 +143,10 @@ function ampforwp_register_additional_scripts_designthree() { ?>
 <?php if( has_nav_menu( 'amp-menu' ) ) { ?>
 <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
 <?php } ?>
-
-<?php if( is_home() ) { ?><script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<?php  global $redux_builder_amp; if( is_home() ) { ?>
+  <?php  if ( !$redux_builder_amp['amp-design-3-hide-carousel'] ) { ?>
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+  <?php } ?>
 
   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 
