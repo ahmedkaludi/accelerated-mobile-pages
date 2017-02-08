@@ -4,14 +4,15 @@
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-<?php
-global $redux_builder_amp;
-if ( is_home() || is_front_page() || is_archive() ){
-	global $wp;
-	$current_archive_url = home_url( $wp->request );
-	$amp_url = trailingslashit($current_archive_url);
-	$amp_url = dirname($amp_url);
-} ?>
+	<?php
+	global $redux_builder_amp;
+	if ( is_home() || is_front_page() || is_archive() ){
+		global $wp;
+		$current_archive_url 	= home_url( $wp->request );
+		$amp_url 				= trailingslashit($current_archive_url);
+		$remove 				= '/'. AMP_QUERY_VAR;
+		$amp_url 				= str_replace($remove, '', $amp_url) ;
+	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
@@ -42,7 +43,15 @@ if ( is_home() || is_front_page() || is_archive() ){
 		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
 		        </h1>
 
-				<div class="amp-wp-content-loop"> 
+				<div class="amp-wp-content-loop">
+
+          <div class="amp-wp-meta">
+              <time> <?php
+                    printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                          human_time_diff( get_the_time( 'U' ),
+                          current_time( 'timestamp' ) ) ); ?>
+              </time>
+          </div>
 
 					<?php if ( has_post_thumbnail() ) { ?>
 						<?php

@@ -1,5 +1,6 @@
 <?php
-if (!comments_open()) {
+global $redux_builder_amp;
+if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) {
   return;
 }
 ?>
@@ -43,7 +44,12 @@ if (!comments_open()) {
 											</footer>
 												<!-- .comment-meta -->
 											<div class="comment-content">
-												<p><?php echo get_comment_text(); ?></p>
+                        <p><?php
+                          $pattern = "~[^a-zA-Z0-9_ !@#$%^&*();\\\/|<>\"'+.,:?=-]~";
+                          $emoji_content = get_comment_text();
+                          $emoji_free_comments = preg_replace($pattern,'',$emoji_content);
+                          echo $emoji_free_comments; ?>
+                        </p>
 											</div>
 												<!-- .comment-content -->
 										</article>

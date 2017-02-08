@@ -220,6 +220,13 @@ blockquote p:last-child {
 .amp-wp-article-content amp-img.alignleft {
 	margin: 0 16px 1em 0;
 }
+/* Disqus */
+.amp-disqus-comments {
+	padding: 15px;
+}
+.amp-disqus-comments amp-iframe{
+	background: none;
+}
 /* Captions */
 .wp-caption {
 	padding: 0;
@@ -517,7 +524,7 @@ amp-carousel > amp-img > img {
 	    padding:0
 	}
 	.comments_list ul.children{
-	    padding-bottom:10px; 
+	    padding-bottom:10px;
 		margin-left: 4%;
 		width: 96%;
 	}
@@ -729,6 +736,28 @@ amp-carousel > amp-img > img {
 		.amp-ad-wrapper.amp_ad_1 {
 			 padding-top : 20px;
 		}
+
+		<?php //style for RTL
+		if( is_rtl() ) { ?>
+			/* stlye for RTL languages */
+			.amp-wp-header .amp-wp-site-icon{
+			    position: relative;
+			    float: left;
+			}
+
+			.amp-wp-header .nav_container{
+			    float: left;
+			    right: initial;
+			    left: -11px;
+			}
+
+			.amp-wp-header .amp-wp-site-icon{
+			    top: -3px;
+			    right: initial;
+			    left: -11px;
+			}
+		<?php } ?>
+
 		/* Custom Style Code */
 			<?php echo $redux_builder_amp['css_editor'];
 		} ?>

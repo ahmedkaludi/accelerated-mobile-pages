@@ -8,7 +8,9 @@
 		if ( is_home() || is_front_page() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
 			global $wp;
 			$current_archive_url = home_url( $wp->request );
-			$amp_url = trailingslashit($current_archive_url);
+			$amp_url 	= trailingslashit($current_archive_url);
+			$remove 	= '/'. AMP_QUERY_VAR;
+			$amp_url 	= str_replace($remove, '', $amp_url) ;
 		} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
@@ -38,13 +40,18 @@
 
 		    $exclude_ids = get_option('ampforwp_exclude_post');
 
-			$q = new WP_Query( array(
+			$args = array(
 				'post_type'           => 'post',
 				'orderby'             => 'date',
 				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($paged),
-				'post__not_in' 		  => $exclude_ids
-			) ); ?>
+				'post__not_in' 		  => $exclude_ids,
+        'has_password' => false ,
+        'post_status'=> 'publish'
+			);
+			$filtered_args = apply_filters('ampforwp_query_args', $args);
+			$q = new WP_Query( $filtered_args ); ?>
+
 			<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
@@ -55,8 +62,13 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author', 'meta-time' ) ) ); ?>
-			          	</div>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <time> <?php
+                          printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                                human_time_diff( get_the_time( 'U' ),
+                                current_time( 'timestamp' ) ) ); ?>
+                    </time>
+			  </div>
 
 
 						<?php if ( has_post_thumbnail() ) { ?>

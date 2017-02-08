@@ -10,7 +10,11 @@
 							}
 
 				foreach ($ampforwp_tags as $tag) {
-						echo '<span>'. $tag->name .'</span>';
+            if($redux_builder_amp['ampforwp-amp-on-off-catgs-tags']){
+            echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'">'.$tag->name .'</a></span>');
+          } else {
+             echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp" >'.$tag->name .'</a></span>');
+          }
 				}
 
 				//if RTL is ON

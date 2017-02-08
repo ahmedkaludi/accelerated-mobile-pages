@@ -13,11 +13,13 @@
 
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>">
-              <amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
+            <span class="header-logo-center">
+              <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="220" height="35" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
               </amp-img>
+            </spam>
           </a>
         <?php } else { ?>
-          <h1><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h1>
+          <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h3>
         <?php } ?>
 
       </div>

@@ -720,6 +720,14 @@ Redux::setArgs( "redux_builder_amp", $args );
               'title'     =>  __('Twitter', 'redux-framework-demo'),
               'default'   =>  1,
           ),
+          array(
+              'id'        =>  'enable-single-twitter-share-handle',
+              'type'      =>  'text',
+              'title'     =>  __('Twitter Handle', 'redux-framework-demo'),
+              'required'  => array('enable-single-twitter-share', '=' , '1'),
+              'placeholder'  => 'Eg: @xyx',
+              'default'   =>  '',
+          ),
           // GooglePlus ON/OFF
           array(
               'id'        =>  'enable-single-gplus-share',
@@ -987,6 +995,50 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
+// Disqus Comments
+// Redux::setSection( $opt_name, array(
+//    'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
+//    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
+//    'id'         => 'disqus-comments',
+//    'subsection' => true,
+//    'fields'     => array(
+//                     array(
+//                         'id'       => 'ampforwp-disqus-comments-support',
+//                         'type'     => 'switch',
+//                         'title'    => __('Disqus comments Support', 'redux-framework-demo'),
+//                         'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'redux-framework-demo'),
+//                         'default'  => 0
+//                     ),
+//                     array(
+//                         'id'       => 'ampforwp-disqus-comments-name',
+//                         'type'     => 'text',
+//                         'title'    => __('Disqus Name', 'redux-framework-demo'),
+//                         'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
+//                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+//                     ),
+
+//                     array(
+//                         'id'       => 'ampforwp-disqus-host-position',
+//                         'type'     => 'switch',
+//                         'title'    => __('Host Disqus Comments through AMPforWP Servers', 'redux-framework-demo'),
+//                         'subtitle' => __('Use AMPforWP secure servers to serve Comments file. Recommended if your site is non HTTPS', 'redux-framework-demo'),
+//                         'default'  => 1,
+//                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+//                     ),
+
+//                     array(
+//                         'id'       => 'ampforwp-disqus-host-file',
+//                         'type'     => 'text',
+//                         'title'    => __('Disqus Host File', 'redux-framework-demo'),
+//                         'subtitle' => __('<a href="#"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
+//                         'placeholder' => 'https://comments.example.com/disqus.php',
+//                         'required' => array('ampforwp-disqus-host-position', '=' , '0'),
+//                     ),
+//                 )
+// ) );
+
+
+
 // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
    'title'      => __( 'Advance Settings', 'redux-framework-demo' ),
@@ -994,14 +1046,21 @@ Redux::setSection( $opt_name, array(
    'id'         => 'amp-advance',
    'subsection' => true,
    'fields'     => array(
-                     array(
+                    array(
+                          'id'        =>'ampforwp-amp-on-off-catgs-tags',
+                          'type'      => 'switch',
+                          'title'     => __('Non-AMP links on Meta Archives', 'redux-framework-demo'),
+                          'default'   => 0,
+                          'subtitle'  => __('Disable/Enable AMP links on Archives Meta', 'redux-framework-demo'),
+                        ),
+                    array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
                     ),
-                     array(
+                    array(
                         'id'       => 'ampforwp-archive-support',
                         'type'     => 'switch',
                         'title'    => __('Archive page Support', 'redux-framework-demo'),

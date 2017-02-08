@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.38
+Stable tag: 0.9.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,23 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.40 =
+* View more details at https://ampforwp.com/0-9-40-released-biggest-stability-update/
+* Proper endpoints added [Improvement]
+* Flush Rewrites properly [Improvement]
+* REL Canonical properly getting added. [Improvement]
+* Proper Frontpage Canonical added [Improvement]
+* Added Base name support for categories and tags [Improvement]
+* Redirection of excluded post solved. [Bug fix]
+* Archives properly redirecting to the right URL [Bug fix]
+* Homepage redirection solved [Bug fix]
+* Plusone tag is stripped properly. [Validation Issue fixed]
+* Archives are now clickable. [Improvements]
+* WP_Query filter added for better customizability of Homepage loop. [Better Customizations]
+* Social share boost plugin compatibility. [3rd party Customizations]
+* Removed H1 from the frontpage even if it is not available. [Improvement]
+* H3 instead of H1 for Site title. So there is only one H1 per page. [SEO Improvement]
 
 = 0.9.38 =
 * View full details at https://ampforwp.com/google-tag-manager-for-amp/
@@ -342,14 +359,14 @@ You can contact me using this url: http://ampforwp.com/contact/
 = 0.8.7 =
 * Proper Details at http://ampforwp.com/amp-0-8-7/
 * added option to enable/disable AMP on Archive pages (Ticket #188)
-* Solved 404 on Related Posts (Ticket #178 )
+* Solved 404 on Related Posts (Ticket #178 )
 * Related posts by either categories or Tags(Ticket #179)
 * added a link to menu Section from the AMP Options page(Ticket #190)
 * Added Support for Piwik Analytics(Ticket #163)
 * Added Support for Segment.com Analytics(Ticket #50)
 * Added a switch for hiding Non-Amp page link from Footer.( Ticket #189)
 * Added an Option that strips Users URL from Comments Section(Ticket #180)
-* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
+* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
 * UX Improved for every section of AMP Options page
 * Added Settings button on plugin page
 * Related posts switch added

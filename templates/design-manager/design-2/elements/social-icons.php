@@ -3,12 +3,14 @@
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
+		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
+			$data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
 			<amp-social-share type="twitter"
-			    							width="50"
- 		    							  height="28"
-												data-param-url="CANONICAL_URL"
-				></amp-social-share>
+												width="50"
+												height="28"
+											  data-param-url="CANONICAL_URL"
+											  data-param-text=<?php echo $data_param_data ?>
+			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 			<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
