@@ -800,6 +800,234 @@ Redux::setArgs( "redux_builder_amp", $args );
               'title'     =>  __('WhatsApp', 'redux-framework-demo'),
               'default'   =>  1,
           ),
+          //#1
+          array(
+              'id'        =>  'enable-single-twittter-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Twittter profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-twittter-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Twittter URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-twittter-profile', '=' , '1')
+              ),
+          ),
+          //#2
+          array(
+              'id'        =>  'enable-single-facebook-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Facebook profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-facebook-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Facebook URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-facebook-profile', '=' , '1')
+              ),
+          ),
+          //#3
+          array(
+              'id'        =>  'enable-single-pintrest-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Pintrest profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-pintrest-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Pintrest URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-pintrest-profile', '=' , '1')
+              ),
+          ),
+          //#4
+          array(
+              'id'        =>  'enable-single-google-plus-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Google Plus profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-google-plus-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Google Plus URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-google-plus-profile', '=' , '1')
+              ),
+          ),
+          //#5
+          array(
+              'id'        =>  'enable-single-linkdin-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Linkdin profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-linkdin-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Linkdin URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-linkdin-profile', '=' , '1')
+              ),
+          ),
+          //#6
+          array(
+              'id'        =>  'enable-single-youtube-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Youtube profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-youtube-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Youtube URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-youtube-profile', '=' , '1')
+              ),
+          ),
+          //#7
+          array(
+              'id'        =>  'enable-single-instagram-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Instagram profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-instagram-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Instagram URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-instagram-profile', '=' , '1')
+              ),
+          ),
+          //#8
+          array(
+              'id'        =>  'enable-single-VKontakte-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('VKontakte profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-VKontakte-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('VKontakte URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-VKontakte-profile', '=' , '1')
+              ),
+          ),
+          //#9
+          array(
+              'id'        =>  'enable-single-whatsapp-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('WhatsApp profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-whatsapp-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('WhatsApp URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-whatsapp-profile', '=' , '1')
+              ),
+          ),
+          //#10
+          array(
+              'id'        =>  'enable-single-reddit-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Reddit', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-reddit-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Reddit URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-reddit-profile', '=' , '1')
+              ),
+          ),
+          //#11
+          array(
+              'id'        =>  'enable-single-snapchat-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Snapchat profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-snapchat-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Snapchat URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-snapchat-profile', '=' , '1')
+              ),
+          ),
+          //#12
+          array(
+              'id'        =>  'enable-single-Tumblr-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Tumblr profile On/Off', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-Tumblr-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Tumblr URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-Tumblr-profile', '=' , '1')
+              ),
+          ),
         )
     ) );
 
