@@ -379,7 +379,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'     => 'Header Color Picker',
                 'subtitle'  => 'Set color for Header here',
                 'default'   => array(
-                    'color'     => '#007bb5',
+                    'color'     => '#26519e',
                 ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
@@ -391,7 +391,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'title'     => 'font Color Picker',
                     'subtitle'  => 'Set color for fonts here',
                     'default'   => array(
-                        'color'     => '#ffffff',
+                        'color'     => '#fff',
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '3')

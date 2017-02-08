@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp; 
+<?php global $redux_builder_amp;
 class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 	protected $accordion_started = FALSE;
 	protected $accordion_childs_started = FALSE;
@@ -44,7 +44,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 
 		}
 
-	}  
+	}
 
 
 	public function end_el( &$output, $item, $depth = 0, $args = array() ) {
@@ -87,7 +87,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 
 		return $this->make_anchor_tag( $item, $args, $depth );
 	}
- 
+
 	protected function make_anchor_tag( $item, $args, $depth ) {
 
 		$atts           = array();
@@ -95,7 +95,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 		$atts['target'] = ! empty( $item->target ) ? $item->target : '';
 		$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 		$atts['href']   = ! empty( $item->url ) ? $item->url : '';
- 
+
 		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 
 		$attributes = '';
@@ -155,7 +155,7 @@ function ampforwp_get_search_form() {
                     <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
                 </div>
             </form>';
-    return $form;        
+    return $form;
 }
 function ampforwp_the_search_form() {
     echo ampforwp_get_search_form();
@@ -178,7 +178,7 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	?>
 
 /* Global Styling */
-body{ 
+body{
     font: 16px/1.4 Sans-serif;
 }
 a {
@@ -264,15 +264,15 @@ amp-accordion>section[expanded]>:nth-child(n) li{
     padding: 0;
 }
 .toggle-navigationv2 ul li a{
-    padding: 10px 15px 10px 20px; 
-    display: inline-block; 
-    font-size: 14px; 
+    padding: 10px 15px 10px 20px;
+    display: inline-block;
+    font-size: 14px;
     color:#eee;
     width:100%
 }
 amp-accordion>section[expanded] li a{
-    padding: 8px 15px 8px 20px;  
-    font-size: 14px; 
+    padding: 8px 15px 8px 20px;
+    font-size: 14px;
 }
 amp-accordion>section[expanded] li a:before{
     content: "\25b8";
@@ -310,7 +310,7 @@ amp-accordion>section[expanded] li a:before{
 }
 .toggle-navigationv2 section[expanded] h6 a:after{
     content: '\25be';
-    font-size: 13px; 
+    font-size: 13px;
     transform:rotate(0);
     transition: 1s all;
     color:#ccc
@@ -318,17 +318,17 @@ amp-accordion>section[expanded] li a:before{
 .toggle-navigationv2 section[expanded] h6{
     transition: 1s all;
     background:#666
-} 
+}
 .toggle-navigationv2 .social_icons{
     margin-top: 25px;
     border-top: 1px solid #555;
     padding: 25px 0px;
     color: #fff;
-} 
+}
 .menu-all-pages-container:after{
     content: "";
     clear: both
-} 
+}
 .toggle-text{
     color: #fff;
     font-size: 12px;
@@ -402,7 +402,7 @@ amp-accordion>section[expanded] li a:before{
     background: #5cbe4a;
     margin: 0;
 }
- 
+
 .sticky_social .whatsapp-share-icon {
     padding: 4px 0px 14px 0px;
     height: 10px;
@@ -434,7 +434,7 @@ header{
     margin: 0;
     text-transform: uppercase;
 }
- 
+
 main .amp-wp-content{
     font-size: 18px;
     line-height: 29px;
@@ -459,21 +459,21 @@ main .amp-wp-content h6{
 .amp-wp-title {
     margin-top: 0px;
 }
-h2.amp-wp-title {  
+h2.amp-wp-title {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 7px;
     line-height: 1.3;
 }
-h2.amp-wp-title a{ 
-    color: #000; 
+h2.amp-wp-title a{
+    color: #000;
 }
 .amp-wp-tags{     list-style-type: none;
     padding: 0;
     margin: 0 0 9px 0;
     display: inline-flex; }
-.amp-wp-tags li{ 
+.amp-wp-tags li{
     display: inline;
     background: #d4d4d4;
     color: #fff;
@@ -488,9 +488,9 @@ h2.amp-wp-title a{
     width: 65%;
 }
 .amp-loop-list .featured_time{
-    color:#b3b3b3; 
+    color:#b3b3b3;
     padding-left:0
-}  
+}
 .amp-wp-post-content p{
     color: grey;
     line-height: 1.5;
@@ -498,7 +498,7 @@ h2.amp-wp-title a{
     margin: 8px 0 10px;
     font-family:'PT Serif', serif
 }
-/* Footer */  
+/* Footer */
 #footer{
     background: #151515;
     color: #eee;
@@ -525,10 +525,10 @@ h2.amp-wp-title a{
     color:#999
 }
 .poweredby{ padding-top:10px;
-font-size:10px;  
-} 
+font-size:10px;
+}
 #footer .poweredby a{
-color:#666 
+color:#666
 }
 .footer_menu ul{
     list-style-type: none;
@@ -646,7 +646,7 @@ h1.amp-wp-title {
 .amp-wp-tax-tag {
     list-style: none;
     display: inline-block;
-} 
+}
 figure{
     margin: 0;
 }
@@ -678,7 +678,7 @@ figcaption{
     text-align: center
 }
 .the_content p{
-    margin-top: 0px; 
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 .amp-wp-tax-tag{
@@ -752,7 +752,7 @@ main .amp-wp-content.relatedpost {
 }
 main .amp-wp-content.comments_list {
 	background: none;
-	box-shadow: none; 
+	box-shadow: none;
 	padding:0
 }
 .comments_list div{
@@ -763,7 +763,7 @@ main .amp-wp-content.comments_list {
     padding:0
 }
 .comments_list ul.children{
-    padding-bottom:10px;    
+    padding-bottom:10px;
     margin-left: 3%;
     width: 96%;
 }
@@ -888,15 +888,15 @@ pre {
         font-size: 18px;
         line-height: 1.7;
     }
- 
+
 		.ampforwp-tax-category{
 			padding-bottom:0
 		}
- 
+
 		.amp-wp-byline{
 			padding:0
 		}
- 
+
 		.related_posts .related_link a {
     	font-size: 17px;
     	line-height: 1.5;
@@ -932,7 +932,7 @@ pre {
 	.related_posts .related_link a {
     font-size: 13px;
 	}
- 
+
 }
 @media screen and (max-width: 400px) {
     .amp-wp-title{
@@ -941,7 +941,7 @@ pre {
     }
 }
     @media screen and (max-width: 768px) {
- 
+
         .toggle-navigation ul li{
             width: 50%
         }
@@ -1182,11 +1182,11 @@ amp-user-notification button {
     content: '';
     pointer-events: none;
 }
-.icono-search {   
+.icono-search {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%)
-} 
+}
 .icono-share {
     height: 9px;
     position: relative;
@@ -1231,7 +1231,7 @@ amp-user-notification button {
     left: 50%;
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
-     transform: rotate(270deg); 
+     transform: rotate(270deg);
     width: 2px;
     height: 9px;
     box-shadow: inset 0 0 0 32px;
@@ -1253,7 +1253,7 @@ amp-user-notification button {
     top: 12px;
     right: 20px;
     outline:none
-} 
+}
 amp-lightbox{
     background: rgba(0, 0, 0,0.85);
 }
@@ -1290,7 +1290,7 @@ amp-lightbox{
 #searchsubmit{display:none}
 
 /* AMP carousel */
-.amp-carousel-button-prev, 
+.amp-carousel-button-prev,
 .amp-carousel-button-next{
     top:30px;border-radius:60px;
 }
@@ -1357,14 +1357,14 @@ amp-lightbox{
     url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff?b9qrme') format('woff'),
     url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg?b9qrme#icomoon') format('svg');
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
-  font-weight: normal; 
+  font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
@@ -1436,6 +1436,13 @@ amp-lightbox{
     text-align: center;
 }
 #ampsomething { display: none; }
+
+#header, .nav_container, .comment-button-wrapper a , #pagination .next a, #pagination .prev a{
+    background: <?php echo $redux_builder_amp['amp-opt-color-rgba-header']['color']; ?> ;
+}
+.headerlogo a, #pagination .next a, #pagination .prev a , #pagination .next a, #pagination .prev a , .comment-button-wrapper a {
+    color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-font']['color']; ?> ;
+}
 /* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];
 } ?>
