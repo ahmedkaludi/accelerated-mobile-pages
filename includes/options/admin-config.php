@@ -1353,13 +1353,7 @@ Redux::setSection( $opt_name, array(
    'id'         => 'amp-advance',
    'subsection' => true,
    'fields'     => array(
-                    array(
-                          'id'        =>'ampforwp-amp-on-off-catgs-tags',
-                          'type'      => 'switch',
-                          'title'     => __('Non-AMP links on Meta Archives', 'redux-framework-demo'),
-                          'default'   => 0,
-                          'subtitle'  => __('Disable/Enable AMP links on Archives Meta', 'redux-framework-demo'),
-                        ),
+
                     array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
