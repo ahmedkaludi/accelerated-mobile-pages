@@ -14,7 +14,7 @@
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>">
             <span class="header-logo-center">
-              <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="220" height="35" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
+              <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="300" height="68" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
               </amp-img>
             </spam>
           </a>
