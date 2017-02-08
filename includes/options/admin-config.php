@@ -392,6 +392,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '1'
             ),
+             array(
+                'id'       => 'amp-design-3-power-by-ampforwp-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Hide powered by AMPforWP', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '0'
+            ),
 
         array(
             'id'       => 'css_editor',
