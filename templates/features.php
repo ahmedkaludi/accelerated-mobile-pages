@@ -43,6 +43,7 @@
     33. Google tag manager support added
     34. social share boost compatibility Ticket #387
 	35. Disqus Comments Support
+	36. remove photon support in AMP
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1203,10 +1204,14 @@ function ampforwp_add_disqus_scripts( $data ) {
 	return $data;
 }
 
-//ref https://ethitter.com/2013/07/disable-jetpacks-photon-module-in-specific-situations/
+//36. remove photon support in AMP
 add_action('amp_init','ampforwp_photon_remove');
 function ampforwp_photon_remove(){
-	if ( class_exists( 'Jetpack_Photon' ) ) {
-		$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
+	if ( class_exists( 'Jetpack' ) ) {
+		add_filter( 'jetpack_photon_development_mode', 'ampforwp_diable_photon' );
 	}
+}
+
+function ampforwp_diable_photon() {
+	return true;
 }
