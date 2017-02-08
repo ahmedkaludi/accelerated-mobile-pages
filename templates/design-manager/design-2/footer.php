@@ -29,6 +29,9 @@
 </amp-img>
 </a>
   <br>
+              <div class="meta-footer">
+            <a href="https://technutty.co.uk/about/'">About</a> / <a href="https://technutty.co.uk/contact/'">Contact</a> / <a href="https://technutty.co.uk/terms-and-conditions/'">Terms and Conditions</a> / <a href="https://technutty.co.uk/privacy-policy/'">Privacy Policy</a> 
+   																                       </div>
   <div class="col-sm-4 meta-social-footer">
                                   <div class="social-footer">
                                      <ul>
@@ -43,11 +46,6 @@
                               </div>
                               <br>
 
-            <div class="meta-footer">
-            <a href="https://technutty.co.uk/about/'">About</a> / <a href="https://technutty.co.uk/contact/'">Contact</a> / <a href="https://technutty.co.uk/terms-and-conditions/'">Terms and Conditions</a> / <a href="https://technutty.co.uk/privacy-policy/'">Privacy Policy</a> 
-                                             
-
-            																                       </div>
         </div>
     </footer>
 
