@@ -3,12 +3,17 @@
     side="left">
     <?php global $redux_builder_amp; ?>
     <div class="toggle-navigationv2">
-      <div class="navigation_heading"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></div>
+
       <?php
-          wp_nav_menu( array(
-              'theme_location' => 'amp-menu',
-              'walker' => new AMPforWP_Menu_Walker()
-          ) ); ?>
+      if( has_nav_menu( 'amp-menu' ) ) { ?>
+        <div class="navigation_heading"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></div>
+      <?php
+        wp_nav_menu( array(
+            'theme_location' => 'amp-menu',
+            'walker' => new AMPforWP_Menu_Walker()
+        ) );
+      }
+           ?>
           <div class="social_icons">
             <ul>
 

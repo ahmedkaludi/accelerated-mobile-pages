@@ -1443,6 +1443,11 @@ amp-lightbox{
 .headerlogo a, #pagination .next a, #pagination .prev a , #pagination .next a, #pagination .prev a , .comment-button-wrapper a {
     color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-font']['color']; ?> ;
 }
+<?php if( !has_nav_menu( 'amp-menu' ) ) { ?>
+.toggle-navigationv2 .social_icons {
+	border-top: 0px;
+}
+<?php } ?>
 /* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];
 } ?>
