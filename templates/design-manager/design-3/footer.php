@@ -25,18 +25,68 @@
           </div>
           <div class="social_icons">
             <ul>
-              <li class="icon-twitter"></li>  
-              <li class="icon-facebook"></li>  
-              <li class="icon-pinterest"></li>  
-              <li class="icon-google-plus"></li>  
-              <li class="icon-linkedin"></li>  
-              <li class="icon-youtube-play"></li>  
-              <li class="icon-instagram"></li>  
-              <li class="icon-tumblr"></li>  
-              <li class="icon-vk"></li>  
-              <li class="icon-whatsapp"></li>  
-              <li class="icon-reddit-alien"></li>  
-              <li class="icon-snapchat-ghost"></li>  
+
+
+            <?php global $redux_builder_amp;
+            if( $redux_builder_amp['enable-single-twittter-profile'] && $redux_builder_amp['enable-single-twittter-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-twittter-profile-url']; ?>" target ="_blank"><li class="icon-twitter"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-facebook-profile']  && $redux_builder_amp['enable-single-facebook-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-facebook-profile-url']; ?>" target ="_blank"><li class="icon-facebook"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-pintrest-profile']  && $redux_builder_amp['enable-single-pintrest-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-pintrest-profile-url']; ?>" target ="_blank"><li class="icon-pinterest"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-google-plus-profile']  && $redux_builder_amp['enable-single-google-plus-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-google-plus-profile-url']; ?>" target ="_blank"><li class="icon-google-plus"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-linkdin-profile']  && $redux_builder_amp['enable-single-linkdin-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-linkdin-profile-url']; ?>" target ="_blank"><li class="icon-linkedin"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-youtube-profile']  && $redux_builder_amp['enable-single-youtube-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-youtube-profile-url']; ?>" target ="_blank"><li class="icon-youtube-play"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-instagram-profile']  && $redux_builder_amp['enable-single-instagram-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-instagram-profile-url']; ?>" target ="_blank">  <li class="icon-instagram"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-reddit-profile']  && $redux_builder_amp['enable-single-reddit-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-reddit-profile-url']; ?>" target ="_blank"><li class="icon-reddit-alien"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-VKontakte-profile']  && $redux_builder_amp['enable-single-VKontakte-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-VKontakte-profile-url']; ?>" target ="_blank"><li class="icon-vk"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-whatsapp-profile']  && $redux_builder_amp['enable-single-whatsapp-profile-url'] !== '') { ?>
+              <a data-rel="external" href="<?php echo 'tel:'.$redux_builder_amp['enable-single-whatsapp-profile-url']; ?>" target ="_blank"><li class="icon-whatsapp"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-snapchat-profile']  && $redux_builder_amp['enable-single-snapchat-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-snapchat-profile-url']; ?>" target ="_blank"><li class="icon-snapchat-ghost"></li></a>
+              <?php } ?>
+
+              <?php global $redux_builder_amp;
+              if( $redux_builder_amp['enable-single-Tumblr-profile']   && $redux_builder_amp['enable-single-Tumblr-profile-url'] !== '') { ?>
+              <a href="<?php echo $redux_builder_amp['enable-single-Tumblr-profile-url']; ?>" target ="_blank"><li class="icon-tumblr"></li></a>
+              <?php } ?>
+
             </ul>
           </div>
           <p class="rightslink">
