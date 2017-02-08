@@ -191,6 +191,13 @@
             $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
         }
 
+        if ( $redux_builder_amp['amp-design-selector'] == 3) {
+        	if ( is_search() && $redux_builder_amp['amp-design-3-search-feature'] )  {
+
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
+	        }
+        }       
+
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
 
