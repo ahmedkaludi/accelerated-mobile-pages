@@ -62,10 +62,6 @@
                             <a href="<?php echo $redux_builder_amp['enable-single-VKontakte-profile-url']; ?>" target ="_blank"><li class="icon-vk"></li></a>
                             <?php } ?>
 
-                            <?php global $redux_builder_amp;
-                            if( $redux_builder_amp['enable-single-whatsapp-profile']  && $redux_builder_amp['enable-single-whatsapp-profile-url'] !== '') { ?>
-                            <a data-rel="external" href="<?php echo 'whatsapp://send?text='.get_permalink().'!&phone='.$redux_builder_amp['enable-single-whatsapp-profile-url']; ?>" target ="_blank"><li class="icon-whatsapp"></li></a>
-                            <?php } ?>
 
                             <?php global $redux_builder_amp;
                             if( $redux_builder_amp['enable-single-snapchat-profile']  && $redux_builder_amp['enable-single-snapchat-profile-url'] !== '') { ?>

@@ -1008,26 +1008,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               ),
           ),
           //#9
-          array(
-              'id'        =>  'enable-single-whatsapp-profile',
-              'type'      =>  'switch',
-              'title'     =>  __('WhatsApp ', 'redux-framework-demo'),
-              'default'   =>  0,
-              'required' => array(
-                array('amp-design-selector', '=' , '3')
-              ),
-          ),
-          array(
-              'id'        =>  'enable-single-whatsapp-profile-url',
-              'type'      =>  'text',
-              'title'     =>  __('WhatsApp Number', 'redux-framework-demo'),
-              'default'   =>  '',
-              'desc'     =>  __('Eg: +1123456789', 'redux-framework-demo'),
-              'required' => array(
-                array('amp-design-selector', '=' , '3'),
-                array('enable-single-whatsapp-profile', '=' , '1')
-              ),
-          ),
+          //removed whatsapp
           //#10
           array(
               'id'        =>  'enable-single-reddit-profile',
