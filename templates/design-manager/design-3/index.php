@@ -27,54 +27,57 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
-<div class="amp-featured-wrapper">
-<div class="amp-featured-area">
-  <amp-carousel width="450"
-      height="270"
-      type="slides" autoplay
-      delay="2000">
-<?php
-  global $redux_builder_amp;
-  if( $redux_builder_amp['amp-design-3-category-selector'] ){
-    $args = array(
-                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
-                   'posts_per_page' => 10,
-                   'has_password' => false ,
-                   'post_status'=> 'publish'
-                 );
-  } else {
-    //if user does not give a category
-    $args = array(
-                   'posts_per_page' => 10,
-                   'has_password' => false ,
-                   'post_status'=> 'publish'
-                 );
-  }
+<?php global $redux_builder_amp; if( !$redux_builder_amp['amp-design-3-hide-carousel'] ) { ?>
+		<div class="amp-featured-wrapper">
+		<div class="amp-featured-area">
+		  <amp-carousel width="450"
+		      height="270"
+		      type="slides" autoplay
+		      delay="2000">
+		<?php
+		  global $redux_builder_amp;
+		  if( $redux_builder_amp['amp-design-3-category-selector'] ){
+		    $args = array(
+		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
+		                   'posts_per_page' => 10,
+		                   'has_password' => false ,
+		                   'post_status'=> 'publish'
+		                 );
+		  } else {
+		    //if user does not give a category
+		    $args = array(
+		                   'posts_per_page' => 10,
+		                   'has_password' => false ,
+		                   'post_status'=> 'publish'
+		                 );
+		  }
 
-   $category_posts = new WP_Query($args);
-   if($category_posts->have_posts()) :
-      while($category_posts->have_posts()) :
-         $category_posts->the_post();
-?>
-      <div>
-			<?php if ( has_post_thumbnail() ) { ?>
-				<?php
-				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
-				$thumb_url = $thumb_url_array[0];
-				?>
-				 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
-			<?php } ?>
-        <div class="featured_title">
-            <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
-            <h1><?php the_title() ?></h1>
+		   $category_posts = new WP_Query($args);
+		   if($category_posts->have_posts()) :
+		      while($category_posts->have_posts()) :
+		         $category_posts->the_post();
+		?>
+		      <div>
+					<?php if ( has_post_thumbnail() ) { ?>
+						<?php
+						$thumb_id = get_post_thumbnail_id();
+						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
+						$thumb_url = $thumb_url_array[0];
+						?>
+						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
+					<?php } ?>
+		        <div class="featured_title">
+		            <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+		            <h1><?php the_title() ?></h1>
 
-        </div>
-      </div>
-<?php endwhile; else: ?><?php endif; ?>
-  </amp-carousel>
-</div>
-</div>
+		        </div>
+		      </div>
+		<?php endwhile; else: ?><?php endif; ?>
+		  </amp-carousel>
+		</div>
+		</div>
+<?php } ?>
+
 <main>
 	<?php
 		if ( get_query_var( 'paged' ) ) {

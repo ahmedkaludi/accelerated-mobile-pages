@@ -424,6 +424,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             array(
+                'id'       => 'amp-design-3-hide-carousel',
+                'type'     => 'switch',
+                'title'    => __( 'Hide Carousel on Home Page', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '0'
+            ),
 
         array(
             'id'       => 'css_editor',
