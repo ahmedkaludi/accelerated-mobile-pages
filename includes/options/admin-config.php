@@ -373,7 +373,30 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '3'
             ),
-
+            array(
+                'id'        => 'amp-opt-color-rgba-header',
+                'type'      => 'color_rgba',
+                'title'     => 'Header Color Picker',
+                'subtitle'  => 'Set color for Header here',
+                'default'   => array(
+                    'color'     => '#007bb5',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-font',
+                    'type'      => 'color_rgba',
+                    'title'     => 'font Color Picker',
+                    'subtitle'  => 'Set color for fonts here',
+                    'default'   => array(
+                        'color'     => '#ffffff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+                  ),
              array(
                 'id'       => 'amp-design-3-category-selector',
                 'type'     => 'select',
