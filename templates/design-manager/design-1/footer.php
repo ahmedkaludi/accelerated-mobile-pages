@@ -13,6 +13,7 @@ global $redux_builder_amp;
   if( is_archive() ) {
     global $wp;
     $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
+    $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','?nonamp=1',$ampforwp_backto_nonamp);
   }
   ?>
 <footer class="amp-wp-footer">
