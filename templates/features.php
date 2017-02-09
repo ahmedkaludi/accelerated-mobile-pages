@@ -56,38 +56,6 @@
 
 //0.
 
-// share custom_tn
-function my_amp_social_share( $return = false ) {
-    $url            = get_permalink();
-    $title          = get_the_title();
-    $encoded_url    = urlencode( $url );
- 
-    $media = has_post_thumbnail() ? wp_get_attachment_url( get_post_thumbnail_id() ) : '';
- 
-    $out = '<div class="amp-share">';
- 
-    // Twitter
-    $out .= '<a href="https://twitter.com/share?text=' . urlencode( $title ) . '&amp;url=' . $encoded_url . '" target="_blank" class="as-twitter" title="Tweet">Tweet</a> ';
- 
-    // Facebook
-    $out .= '<a target="_blank" href="http://www.facebook.com/sharer.php?u=' . $encoded_url . '" class="as-facebook" title="Share on Facebook">Share</a> ';
- 
-    // Google+
-    $out .= '<a target="_blank" href="https://plus.google.com/share?url=' . $encoded_url . '" class="as-gplus" title="Share on G+" rel="nofollow">G+ Share</a> ';
- 
-    // Pinterest
-    $out .= '<a href="http://www.pinterest.com/pin/create/button/?url=' . $encoded_url . '&media=' . $media . '&description=' . urlencode( $title . ' - ' . $url ) . '" class="as-pinterest" target="_blank" rel="nofollow">Pin It</a> ';
- 
-    $out .= '</div>';
- 
-    if ( $return ) {
-        return wp_kses_post( $out );
-    } else {
-        echo wp_kses_post( $out );
-    }
-}
-
-
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
 
@@ -295,11 +263,7 @@ function my_amp_social_share( $return = false ) {
 	<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 		<?php } ?>
-		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-			<?php if( is_singular() ) { ?>
-				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-			<?php }
-		} ?>
+
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
 			<?php if( is_home() ) { ?>
 			<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
