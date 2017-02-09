@@ -10,6 +10,10 @@ global $redux_builder_amp;
     global $post;
     $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
   }
+  if ( is_page() ){
+    global $post;
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1';
+  }
   if( is_archive() ) {
     global $wp;
     $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
