@@ -44,6 +44,7 @@
     34. social share boost compatibility Ticket #387
 	35. Disqus Comments Support
 	36. remove photon support in AMP
+	37. compatibility with wp-html-compression
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -196,7 +197,7 @@
 
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
-        }       
+        }
 
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
@@ -1222,3 +1223,11 @@ function ampforwp_photon_remove(){
 function ampforwp_diable_photon() {
 	return true;
 }
+
+//37. compatibility with wp-html-compression
+function ampforwp_copat_wp_html_compression() {
+	remove_action('template_redirect', 'wp_html_compression_start', -1);
+	remove_action('get_header', 'wp_html_compression_start');
+}
+add_action('amp_init','ampforwp_copat_wp_html_compression');
+
