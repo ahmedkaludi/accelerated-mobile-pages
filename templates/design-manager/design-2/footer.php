@@ -23,9 +23,11 @@
         <div id="footer">
         <a class="non-amp-link full-footer-link" href="<?php echo $ampforwp_backto_nonamp; ?>">View the original article</a>
         <a class="to-top-link full-footer-link" href="#header">Go back to the top</a>
-          <a href="https://technutty.co.uk">
-<amp-img src="https://technutty.co.uk/TechNuttyAmpLogo.png" width="600" height="60" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
-
+          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>">
+<span class="footer-logo-center">
+              <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="300" height="68" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
+              </amp-img>
+            </spam>
 </amp-img>
 </a>
   <br>
