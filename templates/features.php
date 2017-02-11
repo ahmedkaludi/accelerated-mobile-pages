@@ -146,7 +146,12 @@
 					$amp_url = $new_url . $impode_url ;
 				}
 
-				if( $supported_amp_post_types ) {
+        if( is_search() ) {
+          $current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
+          $amp_url = untrailingslashit($current_search_url);
+        }
+
+				if( $supported_amp_post_types) {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
 				}
 
