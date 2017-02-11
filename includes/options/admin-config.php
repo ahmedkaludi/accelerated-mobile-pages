@@ -1163,6 +1163,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
+                       'id'       => 'amp-translator-search-text',
+                       'type'     => 'text',
+                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
+                       'default'  => ' You searched for: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'redux-framework-demo'),

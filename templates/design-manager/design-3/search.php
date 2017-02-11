@@ -52,7 +52,8 @@
 
 
 	<div class="amp-wp-content">
- 		<h3 class="page-title"> You searched for: <?php echo  get_search_query();?>  </h3>
+    <?php global $redux_builder_amp; ?>
+ 		<h3 class="page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
  	</div>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
