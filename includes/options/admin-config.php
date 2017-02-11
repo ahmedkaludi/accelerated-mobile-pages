@@ -1319,46 +1319,46 @@ Redux::setArgs( "redux_builder_amp", $args );
 
 
 // Disqus Comments
-// Redux::setSection( $opt_name, array(
-//    'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
-//    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
-//    'id'         => 'disqus-comments',
-//    'subsection' => true,
-//    'fields'     => array(
-//                     array(
-//                         'id'       => 'ampforwp-disqus-comments-support',
-//                         'type'     => 'switch',
-//                         'title'    => __('Disqus comments Support', 'redux-framework-demo'),
-//                         'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'redux-framework-demo'),
-//                         'default'  => 0
-//                     ),
-//                     array(
-//                         'id'       => 'ampforwp-disqus-comments-name',
-//                         'type'     => 'text',
-//                         'title'    => __('Disqus Name', 'redux-framework-demo'),
-//                         'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
-//                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
-//                     ),
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
+   'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
+   'id'         => 'disqus-comments',
+   'subsection' => true,
+   'fields'     => array(
+                    array(
+                        'id'       => 'ampforwp-disqus-comments-support',
+                        'type'     => 'switch',
+                        'title'    => __('Disqus comments Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'redux-framework-demo'),
+                        'default'  => 0
+                    ),
+                    array(
+                        'id'       => 'ampforwp-disqus-comments-name',
+                        'type'     => 'text',
+                        'title'    => __('Disqus Name', 'redux-framework-demo'),
+                        'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
+                        'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                    ),
 
-//                     array(
-//                         'id'       => 'ampforwp-disqus-host-position',
-//                         'type'     => 'switch',
-//                         'title'    => __('Host Disqus Comments through AMPforWP Servers', 'redux-framework-demo'),
-//                         'subtitle' => __('Use AMPforWP secure servers to serve Comments file. Recommended if your site is non HTTPS', 'redux-framework-demo'),
-//                         'default'  => 1,
-//                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
-//                     ),
+                    array(
+                        'id'       => 'ampforwp-disqus-host-position',
+                        'type'     => 'switch',
+                        'title'    => __('Host Disqus Comments through AMPforWP Servers', 'redux-framework-demo'),
+                        'subtitle' => __('Use AMPforWP secure servers to serve Comments file. Recommended if your site is non HTTPS', 'redux-framework-demo'),
+                        'default'  => 1,
+                        'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                    ),
 
-//                     array(
-//                         'id'       => 'ampforwp-disqus-host-file',
-//                         'type'     => 'text',
-//                         'title'    => __('Disqus Host File', 'redux-framework-demo'),
-//                         'subtitle' => __('<a href="#"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
-//                         'placeholder' => 'https://comments.example.com/disqus.php',
-//                         'required' => array('ampforwp-disqus-host-position', '=' , '0'),
-//                     ),
-//                 )
-// ) );
+                    array(
+                        'id'       => 'ampforwp-disqus-host-file',
+                        'type'     => 'text',
+                        'title'    => __('Disqus Host File', 'redux-framework-demo'),
+                        'subtitle' => __('<a href="#"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
+                        'placeholder' => 'https://comments.example.com/disqus.php',
+                        'required' => array('ampforwp-disqus-host-position', '=' , '0'),
+                    ),
+                )
+) );
 
 
 

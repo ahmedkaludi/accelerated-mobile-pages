@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.9.40');
+define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
@@ -49,7 +50,7 @@ function ampforwp_add_custom_rewrite_rules() {
     } else {
     	$rewrite_category = 'category';
     }
-    
+
     add_rewrite_rule(
       $rewrite_category.'\/(.+?)\/amp/?$',
       'index.php?amp&category_name=$matches[1]',
@@ -62,13 +63,13 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 
-    // For tag pages    
+    // For tag pages
 	$rewrite_tag = get_option('tag_base');
     if (! empty($rewrite_tag)) {
     	$rewrite_tag = get_option('tag_base');
     } else {
     	$rewrite_tag = 'tag';
-    }    
+    }
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp/?$',
       'index.php?amp&tag=$matches[1]',
@@ -80,7 +81,7 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
-    
+
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
@@ -92,7 +93,7 @@ function ampforwp_rewrite_activation() {
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
-   
+
 }
 
 register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
