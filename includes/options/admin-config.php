@@ -391,13 +391,24 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array('amp-design-selector', '=' , '3')
                     )
                   ),
+
+          array(
+                     'id'       => 'amp-design-3-hide-carousel',
+                     'type'     => 'switch',
+                     'title'    => __( 'Hide Carousel on Home Page', 'redux-framework-demo' ),
+                     'required' => array(
+                       array('amp-design-selector', '=' , '3')
+                     ),
+                     'default'  => '0'
+                 ),
              array(
                 'id'       => 'amp-design-3-category-selector',
                 'type'     => 'select',
                 'title'    => __( 'Select category for carousel', 'redux-framework-demo' ),
                 'options'  => $categories_array,
                 'required' => array(
-                  array('amp-design-selector', '=' , '3')
+                  array('amp-design-selector', '=' , '3'),
+                  array('amp-design-3-hide-carousel', '=' , '1')
                 ),
             ),
              array(
@@ -418,15 +429,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
-             array(
-                'id'       => 'amp-design-3-hide-carousel',
-                'type'     => 'switch',
-                'title'    => __( 'Hide Carousel on Home Page', 'redux-framework-demo' ),
-                'required' => array(
-                  array('amp-design-selector', '=' , '3')
-                ),
-                'default'  => '0'
-            ),
+
 
         array(
             'id'       => 'css_editor',
