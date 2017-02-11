@@ -891,7 +891,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
-    if ( is_home() || is_front_page() || is_archive() ) {
+    if ( is_home() || is_front_page() || is_archive() || is_search() ) {
         remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
     }
 }
