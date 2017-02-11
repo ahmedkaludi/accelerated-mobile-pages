@@ -189,13 +189,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
            ),
-           array(
-               'id'        =>'amp-on-off-support-for-non-amp-home-page',
-               'type'      => 'switch',
-               'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-               'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-               'default'   => 0,
-           ),
+
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -1382,6 +1376,13 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
+                    ),
+                    array(
+                        'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                        'type'      => 'switch',
+                        'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+                        'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+                        'default'   => 0,
                     ),
                     array(
                         'id'       => 'ampforwp-archive-support',
