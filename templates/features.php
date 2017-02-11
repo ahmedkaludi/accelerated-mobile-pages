@@ -45,6 +45,7 @@
 	35. Disqus Comments Support
 	36. remove photon support in AMP
 	37. compatibility with wp-html-compression
+	38. Extra Design Specific Features 
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1236,3 +1237,12 @@ function ampforwp_copat_wp_html_compression() {
 }
 add_action('amp_init','ampforwp_copat_wp_html_compression');
 
+//38. Extra Design Specific Features 
+add_action('pre_amp_render_post','ampforwp_add_extra_functions',12);
+function ampforwp_add_extra_functions(){
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['amp-design-selector'] == 3) {
+
+		require AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/functions.php';
+	}
+}

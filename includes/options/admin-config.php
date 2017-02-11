@@ -846,7 +846,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
-       'title' => __('Social Media Profiles', 'redux-framework-demo'),
+       'title' => __('Social Media Profiles (Design #3)', 'redux-framework-demo'),
        'subtitle' => __('Please enter your personal/organizational social media profiles here', 'redux-framework-demo'),
        'indent' => true
      ),
