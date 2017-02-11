@@ -1,5 +1,6 @@
 <?php
 global $redux_builder_amp;
+// Slide in Menu
 class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 	protected $accordion_started = FALSE;
 	protected $accordion_childs_started = FALSE;
@@ -117,20 +118,20 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 	}
 }
 
-
 add_image_size( 'amp_design3_thumb', 450, 270 );
-add_action( 'amp_post_template_head', function() {
-    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
-}, 9 );
 
-add_action( 'amp_post_template_head', 'ampforwp_add_head' );
-function ampforwp_add_head( $amp_template ) {
-    ?>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|PT+Serif:400,700">
-    <?php
+// Add required Fonts for Design 3
+add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_fonts' );
+function ampforwp_add_design3_required_fonts( $data ) {
+
+	$data['font_urls']['roboto_slab_pt_serif'] = 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|PT+Serif:400,700';
+	unset($data['font_urls']['merriweather']);
+
+	return $data;
+
 }
 
-// 6. Add required Javascripts for Design 3
+// Add required Javascripts for Design 3
 add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts' );
 function ampforwp_add_design3_required_scripts( $data ) {
 	global $redux_builder_amp;
