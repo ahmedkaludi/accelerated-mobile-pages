@@ -14,7 +14,9 @@
 							    'category__in' => $category_ids,
 							    'post__not_in' => array($post->ID),
 							    'posts_per_page'=> $int_number_of_related_posts,
-							    'ignore_sticky_posts'=>1
+							    'ignore_sticky_posts'=>1,
+									'has_password' => false ,
+									'post_status'=> 'publish'
 							);
 						}
 			} //end of block for categories
