@@ -7,8 +7,8 @@
 	<?php
 	global $redux_builder_amp;
 	if ( is_home() || is_front_page() || is_search() ){
-		$current_archive_url =trailingslashit(get_home_url())."?s=".get_search_query();
-		$amp_url = untrailingslashit($current_archive_url);
+		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
+		$amp_url = untrailingslashit($current_search_url);
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
