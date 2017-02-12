@@ -90,7 +90,7 @@
               echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
               ?>
           </p>
-          <?php global $redux_builder_amp; if( !$redux_builder_amp['amp-design-3-power-by-ampforwp-feature'] ) { ?>
+          <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
           <p class="poweredby">
               <a href="https://ampforwp.com">Powered by AMPforWP</a>
           <p>

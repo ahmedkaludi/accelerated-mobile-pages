@@ -419,13 +419,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => '1'
             ),
              array(
-                'id'       => 'amp-design-3-power-by-ampforwp-feature',
+                'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
                 'title'    => __( 'Credit link', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
-                'default'  => '0'
+                'default'  => '1'
             ),
 
 
