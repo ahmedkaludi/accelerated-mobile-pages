@@ -37,7 +37,7 @@ if ( get_query_var( 'paged' ) ) {
 
  ?>
 
-<?php global $redux_builder_amp; if( !$redux_builder_amp['amp-design-3-hide-carousel'] && $paged ===1 ) { ?>
+<?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-featured-slider'] == 1 && $paged === 1 ) { ?>
 		<div class="amp-featured-wrapper">
 		<div class="amp-featured-area">
 		  <amp-carousel width="450"

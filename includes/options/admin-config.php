@@ -370,8 +370,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-color-rgba-header',
                 'type'      => 'color_rgba',
-                'title'     => 'Header Color Picker',
-                'subtitle'  => 'Set color for Header here',
+                'title'     => 'Header Color',
                 'default'   => array(
                     'color'     => '#26519e',
                 ),
@@ -382,8 +381,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => 'font Color Picker',
-                    'subtitle'  => 'Set color for fonts here',
+                    'title'     => 'Font Color', 
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -393,28 +391,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                   ),
 
           array(
-                     'id'       => 'amp-design-3-hide-carousel',
+                     'id'       => 'amp-design-3-featured-slider',
                      'type'     => 'switch',
-                     'title'    => __( 'Hide Carousel on Home Page', 'redux-framework-demo' ),
+                     'title'    => __( 'Featured Slider', 'redux-framework-demo' ),
                      'required' => array(
-                       array('amp-design-selector', '=' , '3')
+                        array('amp-design-selector', '=' , '3')
                      ),
-                     'default'  => '0'
+                     'default'  => '1'
                  ),
              array(
                 'id'       => 'amp-design-3-category-selector',
                 'type'     => 'select',
-                'title'    => __( 'Select category for carousel', 'redux-framework-demo' ),
+                'title'    => __( 'Featured Slider Category', 'redux-framework-demo' ),
                 'options'  => $categories_array,
                 'required' => array(
                   array('amp-design-selector', '=' , '3'),
-                  array('amp-design-3-hide-carousel', '=' , '1')
+                  array('amp-design-3-featured-slider', '=' , '1')
                 ),
             ),
              array(
                 'id'       => 'amp-design-3-search-feature',
                 'type'     => 'switch',
-                'title'    => __( 'Enable/Disable Search Box', 'redux-framework-demo' ),
+                'title'    => __( 'Search', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
@@ -423,7 +421,7 @@ Redux::setArgs( "redux_builder_amp", $args );
              array(
                 'id'       => 'amp-design-3-power-by-ampforwp-feature',
                 'type'     => 'switch',
-                'title'    => __( 'Hide powered by AMPforWP', 'redux-framework-demo' ),
+                'title'    => __( 'Credit link', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
