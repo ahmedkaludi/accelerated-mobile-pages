@@ -365,7 +365,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     '2' => __('Design Two', 'redux-framework-demo' ),
                     '3' => __('Design Three', 'redux-framework-demo' )
                 ),
-                'default'  => '3'
+                'default'  => '2'
             ),
             array(
                 'id'        => 'amp-opt-color-rgba-header',
