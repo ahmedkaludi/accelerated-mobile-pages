@@ -49,14 +49,14 @@ if ( get_query_var( 'paged' ) ) {
 		  if( $redux_builder_amp['amp-design-3-category-selector'] ){
 		    $args = array(
 		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
-		                   'posts_per_page' => 10,
+		                   'posts_per_page' => 4,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
 		                 );
 		  } else {
 		    //if user does not give a category
 		    $args = array(
-		                   'posts_per_page' => 10,
+		                   'posts_per_page' => 4,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
 		                 );
@@ -76,11 +76,12 @@ if ( get_query_var( 'paged' ) ) {
 						?>
 						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 					<?php } ?>
-		        <div class="featured_title">
+                  <a href="<?php the_permalink(); ?>/amp">
+                  <div class="featured_title">
 		            <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
 		            <h1><?php the_title() ?></h1>
-
 		        </div>
+                  </a>
 		      </div>
 		<?php endwhile; else: ?><?php endif; ?>
 		  </amp-carousel>
