@@ -1210,7 +1210,7 @@ function ampforwp_add_disqus_support() {
 	}
 }
 
-add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+ add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 		$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
