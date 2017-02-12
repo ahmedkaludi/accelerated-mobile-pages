@@ -41,7 +41,7 @@ if ( get_query_var( 'paged' ) ) {
 		<div class="amp-featured-wrapper">
 		<div class="amp-featured-area">
 		  <amp-carousel width="450"
-		      height="270"
+		      height="270" layout="responsive"
 		      type="slides" autoplay
 		      delay="2000">
 		<?php
@@ -71,7 +71,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php if ( has_post_thumbnail() ) { ?>
 						<?php
 						$thumb_id = get_post_thumbnail_id();
-						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
+						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium_large', true);
 						$thumb_url = $thumb_url_array[0];
 						?>
 						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
@@ -101,7 +101,7 @@ if ( get_query_var( 'paged' ) ) {
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
+			'has_password' => false,
 			'post_status'=> 'publish'
 		) ); ?>
 
@@ -117,7 +117,7 @@ if ( get_query_var( 'paged' ) ) {
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php
 				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
+				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img layout="responsive" src=<?php echo $thumb_url ?> width=450 height=270 ></amp-img></a></div>

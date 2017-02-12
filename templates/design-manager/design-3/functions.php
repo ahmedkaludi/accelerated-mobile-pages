@@ -118,6 +118,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 	}
 }
 
+// TODO: AHMED NEEDS TO CHNAGE THIS PROPERLy
 add_image_size( 'amp_design3_thumb', 450, 270 );
 
 // Add required Fonts for Design 3
