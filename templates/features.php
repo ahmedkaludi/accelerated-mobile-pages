@@ -43,6 +43,10 @@
     33. Google tag manager support added
     34. social share boost compatibility Ticket #387
 	35. Disqus Comments Support
+	36. remove photon support in AMP
+	37. compatibility with wp-html-compression
+	38. Extra Design Specific Features
+  39. #529 editable archives
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -144,7 +148,12 @@
 					$amp_url = $new_url . $impode_url ;
 				}
 
-				if( $supported_amp_post_types ) {
+        if( is_search() ) {
+          $current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
+          $amp_url = untrailingslashit($current_search_url);
+        }
+
+				if( $supported_amp_post_types) {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
 				}
 
@@ -188,6 +197,13 @@
         if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
 
             $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
+        }
+
+        if ( $redux_builder_amp['amp-design-selector'] == 3) {
+        	if ( is_search() && $redux_builder_amp['amp-design-3-search-feature'] )  {
+
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
+	        }
         }
 
 		// Custom Single file
@@ -355,6 +371,10 @@
 
 		// Above Footer Global
 		add_action('amp_post_template_footer','ampforwp_footer_advert',8);
+		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
+        if ( $redux_builder_amp['amp-design-selector'] == 3) {
+          remove_action('amp_post_template_footer','ampforwp_footer_advert',8);  
+        }
 
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
@@ -877,7 +897,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
-    if ( is_home() || is_front_page() || is_archive() ) {
+    if ( is_home() || is_front_page() || is_archive() || is_search() ) {
         remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
     }
 }
@@ -1165,7 +1185,7 @@ add_action('amp_init','social_sharing_removal_code', 9);
 
 
 //35. Disqus Comments Support
- add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
+add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 
 	global $redux_builder_amp;
@@ -1181,7 +1201,7 @@ function ampforwp_add_disqus_support() {
 
 		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
 		?>
-		<section class="post-comments amp-wp-article-content amp-disqus-comments" id="comments">
+		<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 			<amp-iframe
 				height="350"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
@@ -1203,10 +1223,43 @@ function ampforwp_add_disqus_scripts( $data ) {
 	return $data;
 }
 
-//ref https://ethitter.com/2013/07/disable-jetpacks-photon-module-in-specific-situations/
-add_action('amp_init','ampforwp_photon_remove');
-function ampforwp_photon_remove(){
-	if ( class_exists( 'Jetpack_Photon' ) ) {
-		$photon_removed = remove_filter( 'image_downsize', array( Jetpack_Photon::instance(), 'filter_image_downsize' ) );
+//36. remove photon support in AMP
+//add_action('amp_init','ampforwp_photon_remove');
+//function ampforwp_photon_remove(){
+//	if ( class_exists( 'Jetpack' ) ) {
+//		add_filter( 'jetpack_photon_development_mode', 'ampforwp_diable_photon' );
+//	}
+//}
+//
+//function ampforwp_diable_photon() {
+//	return true;
+//}
+
+//37. compatibility with wp-html-compression
+function ampforwp_copat_wp_html_compression() {
+	remove_action('template_redirect', 'wp_html_compression_start', -1);
+	remove_action('get_header', 'wp_html_compression_start');
+}
+add_action('amp_init','ampforwp_copat_wp_html_compression');
+
+//38. Extra Design Specific Features
+add_action('pre_amp_render_post','ampforwp_add_extra_functions',12);
+function ampforwp_add_extra_functions(){
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['amp-design-selector'] == 3) {
+
+		require AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/functions.php';
 	}
+}
+
+//39. #529 editable archives
+add_filter( 'get_the_archive_title', 'ampforwp_editable_archvies_title' );
+function ampforwp_editable_archvies_title($title) {
+	global $redux_builder_amp;
+    if ( is_category() ) {
+            $title = single_cat_title( $redux_builder_amp['amp-translator-archive-cat-text'], false );
+        } elseif ( is_tag() ) {
+            $title = single_tag_title( $redux_builder_amp['amp-translator-archive-tag-text'], false );
+        }
+    return $title;
 }

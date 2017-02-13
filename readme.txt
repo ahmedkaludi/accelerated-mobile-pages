@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.41
+Stable tag: 0.9.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,11 +29,12 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * NEW - Disqus Comments Support
 * NEW - Google Tag Manager Support
 * NEW - Page, Category & Tags Support Added
 * NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
-* NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
+* Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * Custom Post Type Support 
 * Star Ratings
 * Drag & Drop Page builder Added 
@@ -124,6 +125,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.42 = 
+* View more details at https://ampforwp.com/design-three-update/
+* Design 3 was released – Video Overview  along with new options and features. View the video overview at: https://www.youtube.com/watch?v=ub1pwskt3Rc [Major Feature]
+* Ticket #517 – Added Upload field into Redux core [3rd party Compatiblity]
+* Ticket#529 Controls for archive titles added [Improvement]
+* Ticket #548 Jetpack photon code removed
 
 = 0.9.41 = 
 * View more details at https://ampforwp.com/disqus-comments-in-amp/

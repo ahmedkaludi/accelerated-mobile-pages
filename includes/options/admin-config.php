@@ -189,13 +189,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
            ),
-           array(
-               'id'        =>'amp-on-off-support-for-non-amp-home-page',
-               'type'      => 'switch',
-               'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-               'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-               'default'   => 0,
-           ),
+
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -334,6 +328,23 @@ Redux::setArgs( "redux_builder_amp", $args );
           	)
    );
 
+
+//code for fetching ctegories to show as a list in redux settings
+   $categories = get_categories( array(
+                                      'orderby' => 'name',
+                                      'order'   => 'ASC'
+                                      ) );
+  $categories_array = array();
+   if ( $categories ) :
+   foreach ($categories as $cat ) {
+     $cat_id = $cat->cat_ID;
+     $key = "".$cat_id;
+     //building assosiative array of ID-cat_name
+     $categories_array[ $key ] = $cat->name;
+    }
+    endif;
+    //End of code for fetching ctegories to show as a list in redux settings
+
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
@@ -351,10 +362,83 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle' => __( 'Select your design.', 'redux-framework-demo' ),
                 'options'  => array(
                     '1' => __('Design One', 'redux-framework-demo' ),
-                    '2' => __('Design Two', 'redux-framework-demo' )
+                    '2' => __('Design Two', 'redux-framework-demo' ),
+                    '3' => __('Design Three', 'redux-framework-demo' )
                 ),
                 'default'  => '2'
             ),
+            array(
+                'id'        => 'amp-opt-color-rgba-colorscheme',
+                'type'      => 'color_rgba',
+                'title'     => 'Color Scheme',
+                'default'   => array(
+                    'color'     => '#F42F42',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+            array(
+                'id'        => 'amp-opt-color-rgba-headercolor',
+                'type'      => 'color_rgba',
+                'title'     => 'Header Color',
+                'default'   => array(
+                    'color'     => '#FFFFFF',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-font',
+                    'type'      => 'color_rgba',
+                    'title'     => 'Color Scheme Font Color', 
+                    'default'   => array(
+                        'color'     => '#fff',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+                  ),
+
+          array(
+                     'id'       => 'amp-design-3-featured-slider',
+                     'type'     => 'switch',
+                     'title'    => __( 'Featured Slider', 'redux-framework-demo' ),
+                     'required' => array(
+                        array('amp-design-selector', '=' , '3')
+                     ),
+                     'default'  => '1'
+                 ),
+             array(
+                'id'       => 'amp-design-3-category-selector',
+                'type'     => 'select',
+                'title'    => __( 'Featured Slider Category', 'redux-framework-demo' ),
+                'options'  => $categories_array,
+                'required' => array(
+                  array('amp-design-selector', '=' , '3'),
+                  array('amp-design-3-featured-slider', '=' , '1')
+                ),
+            ),
+             array(
+                'id'       => 'amp-design-3-search-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Search', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '0'
+            ),
+             array(
+                'id'       => 'amp-design-3-credit-link',
+                'type'     => 'switch',
+                'title'    => __( 'Credit link', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '1'
+            ),
+
 
         array(
             'id'       => 'css_editor',
@@ -691,10 +775,18 @@ Redux::setArgs( "redux_builder_amp", $args );
 
     // Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Social', 'redux-framework-demo' ),
+        'title'      => __( 'Social Share', 'redux-framework-demo' ),
         'id'         => 'amp-social',
+        'desc'      => 'enable social share and your social profiels here',
         'subsection' => true,
         'fields'     => array(
+          array(
+               'id' => 'social-media-share-subsection',
+               'type' => 'section',
+               'title' => __('Social Media Share', 'redux-framework-demo'),
+               'subtitle' => __('Please enable shocial media companies for share here', 'redux-framework-demo'),
+               'indent' => true
+             ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
@@ -762,6 +854,235 @@ Redux::setArgs( "redux_builder_amp", $args );
               'type'      =>  'switch',
               'title'     =>  __('WhatsApp', 'redux-framework-demo'),
               'default'   =>  1,
+          ),
+          array(
+       'id' => 'social-media-profiles-subsection',
+       'type' => 'section',
+       'title' => __('Social Media Profiles (Design #3)', 'redux-framework-demo'),
+       'subtitle' => __('Please enter your personal/organizational social media profiles here', 'redux-framework-demo'),
+       'indent' => true
+     ),
+          //#1
+          array(
+              'id'        =>  'enable-single-twittter-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Twittter ', 'redux-framework-demo'),
+              'default'   =>  1,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-twittter-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Twittter URL', 'redux-framework-demo'),
+              'default'   =>  '#',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-twittter-profile', '=' , '1')
+              ),
+          ),
+          //#2
+          array(
+              'id'        =>  'enable-single-facebook-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Facebook ', 'redux-framework-demo'),
+              'default'   =>  1,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-facebook-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Facebook URL', 'redux-framework-demo'),
+              'default'   =>  '#',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-facebook-profile', '=' , '1')
+              ),
+          ),
+          //#3
+          array(
+              'id'        =>  'enable-single-pintrest-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Pintrest ', 'redux-framework-demo'),
+              'default'   =>  1,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-pintrest-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Pintrest URL', 'redux-framework-demo'),
+              'default'   =>  '#',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-pintrest-profile', '=' , '1')
+              ),
+          ),
+          //#4
+          array(
+              'id'        =>  'enable-single-google-plus-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Google Plus ', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-google-plus-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Google Plus URL', 'redux-framework-demo'),
+              'default'   =>  '',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-google-plus-profile', '=' , '1')
+              ),
+          ),
+          //#5
+          array(
+              'id'        =>  'enable-single-linkdin-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Linkdin ', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-linkdin-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Linkdin URL', 'redux-framework-demo'),
+              'default'   =>  '',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-linkdin-profile', '=' , '1')
+              ),
+          ),
+          //#6
+          array(
+              'id'        =>  'enable-single-youtube-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Youtube ', 'redux-framework-demo'),
+              'default'   =>  1,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-youtube-profile-url',
+              'type'      =>  'text',
+              'default'   =>  '#',
+              'title'     =>  __('Youtube URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-youtube-profile', '=' , '1')
+              ),
+          ),
+          //#7
+          array(
+              'id'        =>  'enable-single-instagram-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Instagram ', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-instagram-profile-url',
+              'type'      =>  'text',
+              'default'   =>  '',
+              'title'     =>  __('Instagram URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-instagram-profile', '=' , '1')
+              ),
+          ),
+          //#8
+          array(
+              'id'        =>  'enable-single-VKontakte-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('VKontakte ', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-VKontakte-profile-url',
+              'type'      =>  'text',
+              'default'   =>  '',
+              'title'     =>  __('VKontakte URL', 'redux-framework-demo'),
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-VKontakte-profile', '=' , '1')
+              ),
+          ),
+          //#9
+          //removed whatsapp
+          //#10
+          array(
+              'id'        =>  'enable-single-reddit-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Reddit', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-reddit-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Reddit URL', 'redux-framework-demo'),
+              'default'   =>  '',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-reddit-profile', '=' , '1')
+              ),
+          ),
+          //#11
+          array(
+              'id'        =>  'enable-single-snapchat-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Snapchat ', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-snapchat-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Snapchat URL', 'redux-framework-demo'),
+              'default'   =>  '',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-snapchat-profile', '=' , '1')
+              ),
+          ),
+          //#12
+          array(
+              'id'        =>  'enable-single-Tumblr-profile',
+              'type'      =>  'switch',
+              'title'     =>  __('Tumblr', 'redux-framework-demo'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '3')
+              ),
+          ),
+          array(
+              'id'        =>  'enable-single-Tumblr-profile-url',
+              'type'      =>  'text',
+              'title'     =>  __('Tumblr URL', 'redux-framework-demo'),
+              'default'   =>  '',
+              'required' => array(
+                array('amp-design-selector', '=' , '3'),
+                array('enable-single-Tumblr-profile', '=' , '1')
+              ),
           ),
         )
     ) );
@@ -851,6 +1172,27 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
+                       'id'       => 'amp-translator-search-text',
+                       'type'     => 'text',
+                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
+                       'default'  => ' You searched for: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-show-more-posts-text',
+                       'type'     => 'text',
+                       'title'    => __('Show more Posts', 'redux-framework-demo'),
+                       'default'  => 'Show more Posts',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-show-previous-posts-text',
+                       'type'     => 'text',
+                       'title'    => __('Show previous Posts', 'redux-framework-demo'),
+                       'default'  => 'Show previous Posts',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
                        'id'       => 'amp-translator-top-text',
                        'type'     => 'text',
                        'title'    => __('Top', 'redux-framework-demo'),
@@ -928,6 +1270,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'placeholder'=>'write here'
                    ),
                    array(
+                       'id'       => 'amp-translator-published-by',
+                       'type'     => 'text',
+                       'title'    => __('Published by', 'redux-framework-demo'),
+                       'default'  => 'Published by',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-in-designthree',
+                       'type'     => 'text',
+                       'title'    => __('in', 'redux-framework-demo'),
+                       'default'  => 'in',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
                        'id'       => 'amp-translator-view-comments-text',
                        'type'     => 'text',
                        'title'    => __('View Comments', 'redux-framework-demo'),
@@ -967,6 +1323,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('ago', 'redux-framework-demo'),
                        'default'  => 'ago',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-archive-cat-text',
+                       'type'     => 'text',
+                       'title'    => __('Category (archive title)', 'redux-framework-demo'),
+                       'default'  => 'Category: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-archive-tag-text',
+                       'type'     => 'text',
+                       'title'    => __('Tag (archive title)', 'redux-framework-demo'),
+                       'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
                )
@@ -1038,7 +1408,6 @@ Redux::setArgs( "redux_builder_amp", $args );
  ) );
 
 
-
 // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
    'title'      => __( 'Advance Settings', 'redux-framework-demo' ),
@@ -1046,19 +1415,20 @@ Redux::setSection( $opt_name, array(
    'id'         => 'amp-advance',
    'subsection' => true,
    'fields'     => array(
-                    array(
-                          'id'        =>'ampforwp-amp-on-off-catgs-tags',
-                          'type'      => 'switch',
-                          'title'     => __('Non-AMP links on Meta Archives', 'redux-framework-demo'),
-                          'default'   => 0,
-                          'subtitle'  => __('Disable/Enable AMP links on Archives Meta', 'redux-framework-demo'),
-                        ),
+
                     array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
+                    ),
+                    array(
+                        'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                        'type'      => 'switch',
+                        'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+                        'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+                        'default'   => 0,
                     ),
                     array(
                         'id'       => 'ampforwp-archive-support',
