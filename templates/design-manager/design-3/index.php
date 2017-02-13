@@ -43,7 +43,7 @@ if ( get_query_var( 'paged' ) ) {
 		  <amp-carousel width="450"
 		      height="270" layout="responsive"
 		      type="slides" autoplay
-		      delay="2000">
+		      delay="4000">
 		<?php
 		  global $redux_builder_amp;
 		  if( $redux_builder_amp['amp-design-3-category-selector'] ){
