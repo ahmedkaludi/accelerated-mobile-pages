@@ -653,19 +653,22 @@ main .amp-wp-content.comments_list {
     margin:20px 20px 10px 20px
 }
 /* ADS */
-.amp_home_body .amp_ad_1{
-    margin-top: 10px;
-    margin-bottom: -20px;
+.amp_ad_1{
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 .single-post .amp_ad_1{
-    margin-top: 10px;
-    margin-bottom: -20px;
+    margin-bottom: -15px;
 }
+.amp-ad-2{ margin-bottom: -5px;    margin-top: 20px; }
 html .single-post .ampforwp-incontent-ad-1 {
     margin-bottom: 10px;
 }
+.amp-ad-3{
+    margin-bottom:10px;
+}
 .amp-ad-4{
-    margin-top:10px;
+    margin-top:2px;
 }
 /* Notifications */
 #amp-user-notification1 p {
@@ -1023,6 +1026,11 @@ amp-lightbox{
 
 /* Responsive */
 
+@media screen and (min-width:1034px){
+    .single-post figcaption{
+        margin: -17px 17px 0 -17px;
+    }
+}
 @media screen and (max-width: 768px) {
     .ampforwp-title{ margin-top: 30px; }
     .amp-wp-meta{ margin:10px 0px 15px 0px }
@@ -1193,7 +1201,6 @@ amp-user-notification button {
     .single-post footer {
         padding-bottom: 41px;
     }
-.amp-ad-2{ margin-bottom: 50px; }
 <?php } ?>
 /**/
 .single-post amp-img.alignleft{

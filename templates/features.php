@@ -371,6 +371,10 @@
 
 		// Above Footer Global
 		add_action('amp_post_template_footer','ampforwp_footer_advert',8);
+		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
+        if ( $redux_builder_amp['amp-design-selector'] == 3) {
+          remove_action('amp_post_template_footer','ampforwp_footer_advert',8);  
+        }
 
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
