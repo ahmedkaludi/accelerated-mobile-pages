@@ -61,7 +61,7 @@
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php
 				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'amp_design3_thumb', true);
+				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img layout="responsive" src=<?php echo $thumb_url ?> width=450 height=270 ></amp-img></a></div>
