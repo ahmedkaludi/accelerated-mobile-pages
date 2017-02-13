@@ -1224,16 +1224,16 @@ function ampforwp_add_disqus_scripts( $data ) {
 }
 
 //36. remove photon support in AMP
-add_action('amp_init','ampforwp_photon_remove');
-function ampforwp_photon_remove(){
-	if ( class_exists( 'Jetpack' ) ) {
-		add_filter( 'jetpack_photon_development_mode', 'ampforwp_diable_photon' );
-	}
-}
-
-function ampforwp_diable_photon() {
-	return true;
-}
+//add_action('amp_init','ampforwp_photon_remove');
+//function ampforwp_photon_remove(){
+//	if ( class_exists( 'Jetpack' ) ) {
+//		add_filter( 'jetpack_photon_development_mode', 'ampforwp_diable_photon' );
+//	}
+//}
+//
+//function ampforwp_diable_photon() {
+//	return true;
+//}
 
 //37. compatibility with wp-html-compression
 function ampforwp_copat_wp_html_compression() {
