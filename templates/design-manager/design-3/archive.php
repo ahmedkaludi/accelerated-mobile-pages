@@ -55,7 +55,7 @@ if ( get_query_var( 'paged' ) ) {
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
- 			the_archive_description( '<div class="taxonomy-description">', '</div>' );
+ 			the_archive_description( '<div class="amp-wp-content taxonomy-description">', '</div>' );
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();

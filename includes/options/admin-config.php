@@ -424,7 +424,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'amp-design-3-search-feature',
                 'type'     => 'switch',
                 'title'    => __( 'Search', 'redux-framework-demo' ),
-                'subtitle'    => __( 'HTTPS Only because of strict AMP Validation', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
@@ -1330,14 +1329,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'id'       => 'amp-translator-archive-cat-text',
                        'type'     => 'text',
                        'title'    => __('Category (archive title)', 'redux-framework-demo'),
-                       'default'  => 'Category:',
+                       'default'  => 'Category: ',
                        'placeholder'=>'write here'
                    ),
                    array(
                        'id'       => 'amp-translator-archive-tag-text',
                        'type'     => 'text',
                        'title'    => __('Tag (archive title)', 'redux-framework-demo'),
-                       'default'  => 'Tag:',
+                       'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
                )
