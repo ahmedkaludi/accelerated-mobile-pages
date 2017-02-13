@@ -1196,7 +1196,7 @@ function ampforwp_add_disqus_support() {
 
 		$disqus_url = $disqus_script_host_url.'?disqus_title='.$post_slug.'&url='.get_permalink().'&disqus_name='. esc_url( $redux_builder_amp['ampforwp-disqus-comments-name'] ) ."/embed.js"  ;
 		?>
-		<section class="post-comments amp-wp-article-content amp-disqus-comments" id="comments">
+		<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 			<amp-iframe
 				height="350"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
