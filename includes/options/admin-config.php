@@ -381,7 +381,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => 'Font Color', 
+                    'title'     => 'Font Color',
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -1298,6 +1298,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('ago', 'redux-framework-demo'),
                        'default'  => 'ago',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-archive-cat-text',
+                       'type'     => 'text',
+                       'title'    => __('Category (archive title)', 'redux-framework-demo'),
+                       'default'  => 'Category:',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-archive-tag-text',
+                       'type'     => 'text',
+                       'title'    => __('Tag (archive title)', 'redux-framework-demo'),
+                       'default'  => 'Tag:',
                        'placeholder'=>'write here'
                    ),
                )
