@@ -19,7 +19,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body">
+<body class="amp_home_body archives_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
@@ -51,11 +51,9 @@
 
 
 
-	<div class="amp-wp-content">
-    <?php global $redux_builder_amp; ?>
- 		<h3 class="page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
- 	</div>
-
+     <?php global $redux_builder_amp; ?>
+ 		<h3 class="amp-wp-content page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
+ 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
 
@@ -98,10 +96,10 @@
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] , 0 ) ?></div>
-			<?php if ( $paged > 1 ) { ?>
-				<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
-			<?php } ?>
+			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
+<?php if ( $paged > 1 ) { ?>
+			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>

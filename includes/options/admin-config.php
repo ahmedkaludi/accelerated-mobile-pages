@@ -368,11 +368,22 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => '2'
             ),
             array(
-                'id'        => 'amp-opt-color-rgba-header',
+                'id'        => 'amp-opt-color-rgba-colorscheme',
+                'type'      => 'color_rgba',
+                'title'     => 'Color Scheme',
+                'default'   => array(
+                    'color'     => '#F42F42',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+            array(
+                'id'        => 'amp-opt-color-rgba-headercolor',
                 'type'      => 'color_rgba',
                 'title'     => 'Header Color',
                 'default'   => array(
-                    'color'     => '#26519e',
+                    'color'     => '#FFFFFF',
                 ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
@@ -381,7 +392,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => 'Font Color',
+                    'title'     => 'Color Scheme Font Color', 
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -856,7 +867,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-twittter-profile',
               'type'      =>  'switch',
               'title'     =>  __('Twittter ', 'redux-framework-demo'),
-              'default'   =>  0,
+              'default'   =>  1,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
               ),
@@ -865,7 +876,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-twittter-profile-url',
               'type'      =>  'text',
               'title'     =>  __('Twittter URL', 'redux-framework-demo'),
-              'default'   =>  '',
+              'default'   =>  '#',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-twittter-profile', '=' , '1')
@@ -876,7 +887,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-facebook-profile',
               'type'      =>  'switch',
               'title'     =>  __('Facebook ', 'redux-framework-demo'),
-              'default'   =>  0,
+              'default'   =>  1,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
               ),
@@ -885,7 +896,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-facebook-profile-url',
               'type'      =>  'text',
               'title'     =>  __('Facebook URL', 'redux-framework-demo'),
-              'default'   =>  '',
+              'default'   =>  '#',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-facebook-profile', '=' , '1')
@@ -896,7 +907,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-pintrest-profile',
               'type'      =>  'switch',
               'title'     =>  __('Pintrest ', 'redux-framework-demo'),
-              'default'   =>  0,
+              'default'   =>  1,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
               ),
@@ -905,7 +916,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-pintrest-profile-url',
               'type'      =>  'text',
               'title'     =>  __('Pintrest URL', 'redux-framework-demo'),
-              'default'   =>  '',
+              'default'   =>  '#',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
                 array('enable-single-pintrest-profile', '=' , '1')
@@ -956,7 +967,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-youtube-profile',
               'type'      =>  'switch',
               'title'     =>  __('Youtube ', 'redux-framework-demo'),
-              'default'   =>  0,
+              'default'   =>  1,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
               ),
@@ -964,7 +975,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
               'id'        =>  'enable-single-youtube-profile-url',
               'type'      =>  'text',
-              'default'   =>  '',
+              'default'   =>  '#',
               'title'     =>  __('Youtube URL', 'redux-framework-demo'),
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
@@ -1256,6 +1267,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('By', 'redux-framework-demo'),
                        'default'  => 'By',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-published-by',
+                       'type'     => 'text',
+                       'title'    => __('Published by', 'redux-framework-demo'),
+                       'default'  => 'Published by',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-in-designthree',
+                       'type'     => 'text',
+                       'title'    => __('in', 'redux-framework-demo'),
+                       'default'  => 'in',
                        'placeholder'=>'write here'
                    ),
                    array(

@@ -14,7 +14,7 @@
             <?php global $redux_builder_amp;
             //if RTL is OFF
             if(!$redux_builder_amp['amp-rtl-select-option']) {
-            global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .' ', 'amp' )); } ?>
+            global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-in-designthree'] .' ', 'amp' )); } ?>
       <?php foreach ($ampforwp_categories as $cat ) {
         if($redux_builder_amp['ampforwp-archive-support']){
             echo ('<span><a href="'.trailingslashit(get_category_link($cat->term_taxonomy_id)).'amp" >'.$cat->name .'</a></span>');
