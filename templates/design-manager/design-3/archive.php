@@ -88,7 +88,13 @@ if ( get_query_var( 'paged' ) ) {
 					}
 				?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
-                <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+                <div class="featured_time">
+                  <?php
+                       printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                             human_time_diff( get_the_time( 'U' ),
+                             current_time( 'timestamp' ) ) );
+                  ?>
+                </div>
 
 		    </div>
             <div class="cb"></div>
