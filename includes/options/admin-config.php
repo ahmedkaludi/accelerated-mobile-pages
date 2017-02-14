@@ -392,7 +392,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => 'Color Scheme Font Color', 
+                    'title'     => 'Color Scheme Font Color',
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -1464,6 +1464,23 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1
+                    ),
+                    array(
+                        'id'       => 'amp-header-text-area-for-html',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Header', 'redux-framework-demo'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
+                        'default'   => ''
+                    ),
+                    array(
+                        'id'       => 'amp-footer-text-area-for-html',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Footer', 'redux-framework-demo'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/',
+                        'redux-framework-demo'),
+                        'default'   => ''
                     ),
 
    ),

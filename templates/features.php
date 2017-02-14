@@ -47,6 +47,7 @@
 	37. compatibility with wp-html-compression
 	38. Extra Design Specific Features
   39. #529 editable archives
+  40. #560 Header and Footer Editable html enabled script area
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1260,7 +1261,7 @@ function ampforwp_editable_archvies_title($title) {
 //32. various lazy loading plugins Support
 add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
 function ampforwp_lazy_loading_plugins_compatibility() {
-  
+
    //WP Rocket
    add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
    add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
@@ -1284,3 +1285,20 @@ function ampforwp_remove_bj_load() {
  	}
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
+
+//33. #560 Header and Footer Editable html enabled script area
+add_action('amp_post_template_footer','ampforwp_footer_html_output',11);
+function ampforwp_footer_html_output() {
+  global $redux_builder_amp;
+  if( $redux_builder_amp['amp-footer-text-area-for-html'] ) {
+    echo $redux_builder_amp['amp-footer-text-area-for-html'] ;
+  }
+}
+
+add_action('amp_post_template_head','ampforwp_header_html_output',11);
+function ampforwp_header_html_output() {
+  global $redux_builder_amp;
+  if( $redux_builder_amp['amp-header-text-area-for-html'] ) {
+    echo $redux_builder_amp['amp-header-text-area-for-html'] ;
+  }
+}
