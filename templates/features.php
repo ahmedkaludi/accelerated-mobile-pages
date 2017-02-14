@@ -39,7 +39,7 @@
     29. Remove analytics code if Already added by Glue or Yoast SEO
     30. TagDiv menu issue removed
     31. removing scripts added by cleantalk
-    32. removing bj loading for amp
+    32. various lazy loading plugins Support
     33. Google tag manager support added
     34. social share boost compatibility Ticket #387
 	35. Disqus Comments Support
@@ -1125,13 +1125,6 @@ function ampforwp_remove_js_script_cleantalk() {
     remove_action('wp_loaded', 'ct_add_nocache_script', 1);
 }
 
-//32. removing bj loading for amp
-function ampforwp_remove_bj_load() {
- 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
- 		add_filter( 'bjll/enabled', '__return_false' );
- 	}
-}
-add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
 //33. Google tag manager support added
 // Remove any old scripts that have been loaded by other Plugins
@@ -1263,3 +1256,31 @@ function ampforwp_editable_archvies_title($title) {
         }
     return $title;
 }
+
+//32. various lazy loading plugins Support
+add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
+function ampforwp_lazy_loading_plugins_compatibility() {
+  
+   //WP Rocket
+   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
+   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
+
+    //Lazy Load XT
+		global $lazyloadxt;
+		remove_filter( 'the_content', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'widget_text', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'post_thumbnail_html', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'get_avatar', array( $lazyloadxt, 'filter_html' ) );
+
+    // Lazy Load
+		add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
+
+}
+
+//Removing bj loading for amp
+function ampforwp_remove_bj_load() {
+ 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+ 		add_filter( 'bjll/enabled', '__return_false' );
+ 	}
+}
+add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
