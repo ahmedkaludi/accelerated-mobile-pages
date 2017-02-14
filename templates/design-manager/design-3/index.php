@@ -98,7 +98,6 @@ if ( get_query_var( 'paged' ) ) {
 			'post_type'           => 'post',
 			'orderby'             => 'date',
 			'offset'              => esc_attr($fn_offset),
-			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' => false,

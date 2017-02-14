@@ -43,7 +43,6 @@
 			$args = array(
 				'post_type'           => 'post',
 				'orderby'             => 'date',
-				'ignore_sticky_posts' => 1,
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids,
         'has_password' => false ,
