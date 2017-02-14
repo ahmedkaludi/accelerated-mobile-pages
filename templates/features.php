@@ -373,7 +373,7 @@
 		add_action('amp_post_template_footer','ampforwp_footer_advert',8);
 		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
         if ( $redux_builder_amp['amp-design-selector'] == 3) {
-          remove_action('amp_post_template_footer','ampforwp_footer_advert',8);  
+          remove_action('amp_post_template_footer','ampforwp_footer_advert',8);
         }
 
 		function ampforwp_footer_advert() {
@@ -1257,9 +1257,9 @@ add_filter( 'get_the_archive_title', 'ampforwp_editable_archvies_title' );
 function ampforwp_editable_archvies_title($title) {
 	global $redux_builder_amp;
     if ( is_category() ) {
-            $title = single_cat_title( $redux_builder_amp['amp-translator-archive-cat-text'], false );
+            $title = single_cat_title( $redux_builder_amp['amp-translator-archive-cat-text'].' ', false );
         } elseif ( is_tag() ) {
-            $title = single_tag_title( $redux_builder_amp['amp-translator-archive-tag-text'], false );
+            $title = single_tag_title( $redux_builder_amp['amp-translator-archive-tag-text'].' ', false );
         }
     return $title;
 }
