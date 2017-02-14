@@ -1032,8 +1032,9 @@ function ampforwp_remove_title_tags(){
 			 }
 			 // title for archive pages
 			 if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
-					 the_archive_title( '' );
-					 the_archive_description( '' );
+					 echo strip_tags(get_the_archive_title( '' ));
+           echo ' | ';
+					 echo strip_tags(get_the_archive_description( '' ));
 			 }
 
 			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
