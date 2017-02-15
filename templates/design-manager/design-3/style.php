@@ -1327,6 +1327,7 @@ amp-user-notification button {
 }
 .amp-wp-article-featured-image amp-img {
 	margin: 0 auto;
+    max-width: 100%;
 }
 .amp-wp-article-featured-image.wp-caption .wp-caption-text {
 	margin: 0 18px;
