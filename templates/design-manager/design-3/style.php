@@ -1321,17 +1321,6 @@ amp-user-notification button {
 	color:#fff;
 }
 <?php } ?>
-/* Featured image */
-.amp-wp-article-featured-image {
-	margin: 1.5em 16px 1.5em;
-}
-.amp-wp-article-featured-image amp-img {
-	margin: 0 auto;
-    max-width: 100%;
-}
-.amp-wp-article-featured-image.wp-caption .wp-caption-text {
-	margin: 0 18px;
-}
 /* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];
 } ?>

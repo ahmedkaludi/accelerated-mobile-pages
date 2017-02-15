@@ -1,3 +1,4 @@
+<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 <?php
 $featured_image = $this->get( 'featured_image' );
 
@@ -16,3 +17,4 @@ $caption = $featured_image['caption'];
 		</p>
 	<?php endif; ?>
 </figure>
+</div>
