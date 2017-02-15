@@ -780,13 +780,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         'desc'      => 'enable social share and your social profiels here',
         'subsection' => true,
         'fields'     => array(
-          array(
-               'id' => 'social-media-share-subsection',
-               'type' => 'section',
-               'title' => __('Social Media Share', 'redux-framework-demo'),
-               'subtitle' => __('Please enable shocial media companies for share here', 'redux-framework-demo'),
-               'indent' => true
-             ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
