@@ -69,7 +69,7 @@
 																			$content = get_the_content();
 																		}
 																		?>
-								                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+								                    <p><?php echo wp_trim_words( strip_shortcodes($content) , '15' ); ?></p>
 								                </div>
 								            </li>
 														<?php
