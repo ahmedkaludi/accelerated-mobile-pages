@@ -731,23 +731,6 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Next-Previous links in single', 'redux-framework-demo'),
           ),
-          // Width and Height of Image
-          array(
-             'id'           => 'enable-single-featured-img-width',
-             'type'         => 'text',
-             'title'        => __('Featured Image Width', 'redux-framework-demo'),
-             'default'      => 512,
-             'subtitle'     => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-             'placeholder'  =>'Width here',
-           ),
-           array(
-              'id'          => 'enable-single-featured-img-height',
-              'type'        => 'text',
-              'title'       => __('Featured Image Height', 'redux-framework-demo'),
-              'default'     => 300,
-              'subtitle'    => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
-              'placeholder' =>'Height here',
-          ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
