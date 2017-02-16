@@ -19,7 +19,15 @@
   }?>
 
       <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
-        <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
+        <?php if( $redux_builder_amp['opt-media-width'] !== '' && $redux_builder_amp['opt-media-height'] !== '' ) { ?>
+
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="logo" class="amp-logo"></amp-img>
+
+          <?php } else { ?>
+
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
+
+          <?php } ?>
       <?php } else {
         echo esc_html( $this->get( 'blog_name' ) );
       } ?>
