@@ -10,6 +10,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
           return $data;
       }
 
+      global $post;
     	$amp_custom_post_content_input 	= get_post_meta($post->ID, 'ampforwp_custom_content_editor', true);
       $amp_custom_post_content_check  = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
 
