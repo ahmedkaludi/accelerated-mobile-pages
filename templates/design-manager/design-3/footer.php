@@ -97,7 +97,7 @@
           </p>
           <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
           <p class="poweredby">
-              <a href="https://ampforwp.com">Powered by AMPforWP</a>
+              <a href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>
           <p>
             <?php } ?>
       </div>
