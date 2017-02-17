@@ -201,7 +201,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'title'     => __('AMP on Pages', 'redux-framework-demo'),
                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                'default'   => 1,
-               'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
+               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
            ),
 
 
