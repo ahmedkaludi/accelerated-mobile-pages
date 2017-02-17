@@ -77,7 +77,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php } ?>
                   <a href="<?php the_permalink(); ?>/amp">
                   <div class="featured_title">
-		            <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+		            <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. $redux_builder_amp['amp-translator-ago-date-text']; ?></div>
 		            <h1><?php the_title() ?></h1>
 		        </div>
                   </a>
@@ -137,7 +137,7 @@ if ( get_query_var( 'paged' ) ) {
 					}
 				?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
-                <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+                <div class="featured_time"><?php global $redux_builder_amp ; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. $redux_builder_amp['amp-translator-ago-date-text']; ?></div>
 
 		    </div>
             <div class="cb"></div>
