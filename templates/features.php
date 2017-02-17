@@ -1306,3 +1306,47 @@ function ampforwp_header_html_output() {
     echo $redux_builder_amp['amp-header-text-area-for-html'] ;
   }
 }
+
+
+//34. meta robots
+add_action('amp_post_template_head' , 'ampforwp_talking_to_robots');
+function ampforwp_talking_to_robots() {
+
+  global $redux_builder_amp;
+  $message_to_robots = '<meta name="robots" content="noindex,follow"/>';
+  $talk_to_robots=false;
+
+   //author arhives  index/noindex
+   if( is_author() && !$redux_builder_amp['ampforwp-robots-archive-author-pages'] ) {
+  	$talk_to_robots = true;
+   }
+
+  //date ke archives index/noindex
+  if( is_date() && !$redux_builder_amp['ampforwp-robots-archive-date-pages'] ) {
+    $talk_to_robots = true;
+  }
+
+  //category and tag index/noindex
+  if( ( is_tag() || is_category() ) && !$redux_builder_amp['ampforwp-robots-archive-taxonomy-pages'] ) {
+    $talk_to_robots = true;
+  }
+
+  if( is_archive() ) {
+    if ( get_query_var( 'paged' ) ) {
+          $paged = get_query_var('paged');
+      } elseif ( get_query_var( 'page' ) ) {
+          $paged = get_query_var('page');
+      } else {
+          $paged = 1;
+      }
+      //sitewide archives sub pages index/noindex  ie page 2 onwards
+      if( $paged >= 2 && !$redux_builder_amp['ampforwp-robots-archive-aub-pages-sitewide'] ) {
+      	$talk_to_robots = true;
+      }
+    }
+
+    if( $talk_to_robots ) {
+      	echo $message_to_robots;
+    }
+
+}
