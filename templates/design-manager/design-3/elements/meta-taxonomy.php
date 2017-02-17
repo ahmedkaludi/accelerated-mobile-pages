@@ -13,6 +13,8 @@
 		</div>
 <?php endif;?>
 </div>
+
+<?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-author-description'] ) { ?>
 <div class="amp-wp-content amp_author_area ampforwp-meta-taxonomy">
     <div class="amp-wp-content amp_author_area_wrapper">
         <?php $post_author = $this->get( 'post_author' );
@@ -24,6 +26,8 @@
                     <?php
                 } ?>
                 <strong><?php echo esc_html( $post_author->display_name ); ?></strong>: <?php echo esc_html( $post_author->description ); ?>
+                
         <?php } ?>
     </div>
 </div>
+<?php } ?>
