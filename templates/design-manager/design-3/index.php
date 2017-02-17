@@ -96,7 +96,6 @@ if ( get_query_var( 'paged' ) ) {
 		$q = new WP_Query( array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
-			'offset'              => esc_attr($fn_offset),
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' => false,
