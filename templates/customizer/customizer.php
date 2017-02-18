@@ -26,13 +26,24 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 				'capability'       	=> 'manage_options',
 				'priority'			=> 10,
 			)
-		);		
+		);	
+
+		// $wp_customize->add_setting(
+		// 	'ampforwp_design[amp_design_type]', /* option name */
+		// 	array(
+		// 		'default'         	=> '3',  
+		// 		'transport'        	=> 'postMessage',
+		// 		'type'             	=> 'option',
+		// 		'capability'       	=> 'manage_options',
+		// 		'priority'			=> 10,
+		// 	)
+		// );	
 		
 	}
 
 	public function register_customizer_ui( $wp_customize ) {
 		/* Load custom controls */
-	require_once( AMPFORWP_PLUGIN_DIR . 'templates/customizer/customizer-controls.php' );
+		require_once( AMPFORWP_PLUGIN_DIR . 'templates/customizer/customizer-controls.php' );
 	
 		/* Add Control for the settings. */
 		$choices = array();
@@ -53,16 +64,30 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 				)
 			)
 		);	
+
+		// Current AMP Design
+		// $wp_customize->add_control( 'ampforwp_design[amp_design_type]', array(
+		// 	'settings'   => 'ampforwp_design[amp_design_type]',
+		// 	'label'      => __( 'Current AMP Design', 'ampforwp' ),
+		// 	'section'    => 'amp_design',
+		// 	'type'       => 'select',
+		// 	'priority'   => 30,
+		// 	'choices'    => array(
+		// 		'1' => 'one',
+		// 		'2' => 'two',
+		// 		'3' => 'three' ),
+		// ));
 	}
 
 	public static function enqueue_customizer_preview_scripts() {
-		wp_enqueue_script(
-			'ampforwp-customizer-design-preview',
-			plugin_dir_url( __FILE__ ) . 'assets/customizer-preview.js' ,
-			array( 'amp-customizer' ),
-			false,
-			true
-		);
+
+		wp_register_script( 'ampforwp-customizer-design-preview', plugin_dir_url( __FILE__ ) . 'assets/customizer-preview.js', array( 'amp-customizer' ), false, true );
+  		global $redux_builder_amp;
+		$ampforwp_customizer_settings = array( 'design_type' => $redux_builder_amp['amp-design-selector'] );
+
+		wp_localize_script( 'ampforwp-customizer-design-preview', 'ampforwp_customizer_settings', $ampforwp_customizer_settings );
+		
+		wp_enqueue_script( 'ampforwp-customizer-design-preview' );
 	}
 
 	public static function append_settings( $settings ) {
@@ -73,7 +98,8 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		$theme_colors = self::get_colors_for_color_scheme( $settings['color_scheme'] );
 
 		return array_merge( $settings, $theme_colors, array(
-			'link_color' => $settings['header_background_color'],
+			'link_color' 		=> $settings['header_background_color'],
+			// 'amp_design_type' 	=> $settings['ampforwp_design[amp_design_type]'],
 		) );
 	}
 	
@@ -206,6 +232,11 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 	 /* CSS */
 	 wp_register_style( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.css' );
  
-	 /* JS */
-	 wp_register_script( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.js', array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ) );
+	/* JS */
+	wp_register_script( 'ampforwp-share-customize', AMPFORWP_SHARE_URL . 'assets/customizer-control.js', array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ) );
+
+  	global $redux_builder_amp;
+	$ampforwp_customizer_settings = array( 'design_type' => $redux_builder_amp['amp-design-selector'] );
+
+	wp_localize_script( 'ampforwp-share-customize', 'ampforwp_customizer_settings', $ampforwp_customizer_settings );
  }

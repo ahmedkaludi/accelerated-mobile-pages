@@ -8,9 +8,15 @@
       <?php
     }else{
       ?>
-      <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMP_QUERY_VAR; ?>">
+      <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMP_QUERY_VAR; ?>">
 
-    <?php }?>
+        <?php } else { ?>
+
+        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>">
+
+    <?php }
+  }?>
 
       <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
         <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
@@ -24,8 +30,17 @@
     ?>
     <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
     <?php }else{ ?>
+
+    <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+
     <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
-    <?php } ?>
+
+    <?php } else {?>
+
+    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) .'?nonamp=1'); ?>">
+
+    <?php }
+    } ?>
         <?php $site_icon_url = $this->get( 'site_icon_url' );
             if ( $site_icon_url ) : ?>
             <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>

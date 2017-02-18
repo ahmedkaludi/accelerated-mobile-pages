@@ -6,8 +6,11 @@
 
           if ($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']) {
             $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?nonamp=1';
-          }else{
-            $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . AMP_QUERY_VAR;
+            }else{ global $redux_builder_amp;   if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
+              $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . AMP_QUERY_VAR;
+            } else {
+              $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) .'?nonamp=1';
+            }
           }
         ?>
 

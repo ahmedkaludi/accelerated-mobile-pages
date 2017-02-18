@@ -10,10 +10,10 @@
 							}
 
 				foreach ($ampforwp_tags as $tag) {
-            if($redux_builder_amp['ampforwp-amp-on-off-catgs-tags']){
-            echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'">'.$tag->name .'</a></span>');
+            if($redux_builder_amp['ampforwp-archive-support']){
+							   echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp" >'.$tag->name .'</a></span>');
           } else {
-             echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp" >'.$tag->name .'</a></span>');
+                      echo ('<span>'.$tag->name .'</span>');
           }
 				}
 
