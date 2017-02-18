@@ -1370,6 +1370,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
+                    array(
+                       'id'       => 'amp-translator-next-read-text',
+                       'type'     => 'text',
+                       'title'    => __('Next Read', 'redux-framework-demo'),
+                       'default'  => 'Next Read: ',
+                       'placeholder'=>'write here'
+                   ),
                )
            ) );
 
