@@ -511,33 +511,47 @@ Redux::setArgs( "redux_builder_amp", $args );
                'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
                'placeholder'  => "<!-- Paste your Additional HTML , that goes between <head> </head> tags -->"
            ),
+
+           array(
+                  'id' => 'ampforwp-seo-index-noindex-sub-section',
+                  'type' => 'section',
+                  'title' => __('Advanced Index & No Index Options', 'redux-framework-demo'),
+                  'indent' => true
+              ),
            array(
                'id'       => 'ampforwp-robots-archive-aub-pages-sitewide',
                'type'     => 'switch',
                'title'    => __('Archive subpages(sitewide) index/noindex', 'redux-framework-demo'),
                'default' => 1,
-               
+               'on' => 'index',
+               'off' => 'noindex'
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
                'type'     => 'switch',
                'title'    => __('Author Archive pages index/noindex', 'redux-framework-demo'),
                'default' => 1,
-               
+               'on' => 'index',
+               'off' => 'noindex'
+
            ),
            array(
                'id'       => 'ampforwp-robots-archive-date-page1',
                'type'     => 'switch',
                'title'    => __('Date Archive pages index/noindex', 'redux-framework-demo'),
                'default' => 1,
-               
+               'on' => 'index',
+               'off' => 'noindex'
+
            ),
            array(
                'id'       => 'ampforwp-robots-archive-taxonomy-pages',
                'type'     => 'switch',
                'title'    => __('Categories and Tags index/noindex', 'redux-framework-demo'),
                'default' => 1,
-               
+               'on' => 'index',
+               'off' => 'noindex'
+
            ),
 
 
