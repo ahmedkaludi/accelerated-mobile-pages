@@ -465,7 +465,7 @@ Redux::setArgs( "redux_builder_amp", $args );
              array(
                 'id'       => 'amp-design-3-author-description',
                 'type'     => 'switch',
-                'title'    => __( 'Author meta data Enable/Diable', 'redux-framework-demo' ),
+                'title'    => __( 'Author Bio in Single', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
