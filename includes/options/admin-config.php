@@ -148,19 +148,29 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
+            array(
+                'id'       => 'ampforwp-custom-logo-dimensions',
+                'title'    => __('Custom Logo Size', 'redux-framework-demo'),
+                'type'     => 'switch',
+                'default'  => 0,
+            ),
              array(
                 'id'       => 'opt-media-width',
                 'type'     => 'text',
                 'title'    => __('Logo Width', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo'),
-                'deafult' => ''
+                'deafult' => '',
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+
             ),
              array(
                 'id'       => 'opt-media-height',
                 'type'     => 'text',
                 'title'    => __('Logo Height', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo'),
-                'deafult' => ''
+                'deafult' => '',
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+
             ),
 
 
