@@ -1325,67 +1325,76 @@ amp-user-notification button {
 <?php
 // Table press support
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
- 
+
 // check for plugin using plugin name
 if ( is_plugin_active( 'tablepress/tablepress.php' ) ) { ?>
 
-/* Table description */
-.tablepress-table-description {
-    clear: both;
-    display: block;
-}
 
-.tablepress {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    margin-bottom: 1em;
-    border: none;
-}
+	/* Table description */
+	.tablepress-table-description {
+		clear: both;
+		display: block;
+	}
 
-.tablepress th,
-.tablepress td {
-    padding: 8px;
-    border: none;
-    background: none;
-    text-align: left;
-}
-.tablepress tbody td {
-    vertical-align: top;
-}
+	.tablepress {
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		margin-bottom: 1em;
+		border: none;
+	}
 
-/* Horizontal borders */
-.tablepress tbody td,
-.tablepress tfoot th {
-    border-top: 1px solid #dddddd;
-}
-.tablepress tbody tr:first-child td {
-    border-top: 0;
-}
-.tablepress thead th {
-    border-bottom: 1px solid #dddddd;
-}
+	.tablepress th,
+	.tablepress td {
+		padding: 8px;
+		border: none;
+		background: none;
+		text-align: left;
+	}
+	.tablepress tbody td {
+		vertical-align: top;
+	}
 
-/* Row background colors */
-.tablepress thead th,
-.tablepress tfoot th {
-    background-color: #d9edf7;
-    font-weight: bold;
-    vertical-align: middle;
-}
-.tablepress .odd td {
-    background-color: #f9f9f9;
-}
-.tablepress .even td {
-    background-color: #ffffff;
-}
-.tablepress .row-hover tr:hover td {
-    background-color: #f3f3f3;
-}
-.tablepress {
-  display: inline-block;
-  overflow-x: scroll;
-}
+	/* Horizontal borders */
+	.tablepress tbody td,
+	.tablepress tfoot th {
+		border-top: 1px solid #dddddd;
+	}
+	.tablepress tbody tr:first-child td {
+		border-top: 0;
+	}
+	.tablepress thead th {
+		border-bottom: 1px solid #dddddd;
+	}
+
+	/* Row background colors */
+	.tablepress thead th,
+	.tablepress tfoot th {
+		background-color: #d9edf7;
+		font-weight: bold;
+		vertical-align: middle;
+	}
+	.tablepress .odd td {
+		background-color: #f9f9f9;
+	}
+	.tablepress .even td {
+		background-color: #ffffff;
+	}
+	.tablepress .row-hover tr:hover td {
+		background-color: #f3f3f3;
+	}
+
+	@media (min-width: 768px) and (max-width: 1600px) {
+	.tablepress{
+	    overflow-x: none;
+	}
+	}
+	@media (min-width: 320px) and (max-width: 767px) {
+	.tablepress{
+	  display: inline-block;
+	  overflow-x: scroll;
+	}
+	}
 
 <?php }  ?>
 
