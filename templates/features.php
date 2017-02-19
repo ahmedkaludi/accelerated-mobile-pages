@@ -1188,7 +1188,7 @@ function ampforwp_add_disqus_support() {
 
 		global $post; $post_slug=$post->post_name;
 
-		$disqus_script_host_url = "https://1-dot-amp-new.appspot.com/?api=". AMPFORWP_DISQUS_URL;
+		$disqus_script_host_url = "https://ampforwp.appspot.com/?api=". AMPFORWP_DISQUS_URL;
 
 		if( $redux_builder_amp['ampforwp-disqus-host-position'] == 0 ) {
 			$disqus_script_host_url = esc_url( $redux_builder_amp['ampforwp-disqus-host-file'] );
