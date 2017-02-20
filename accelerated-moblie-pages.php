@@ -122,7 +122,7 @@ if ( is_admin() ) {
 			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
 			function ampforwp_plugin_not_found_notice() { ?>
 
-				<div class="notice notice-error is-dismissible">
+				<div class="notice notice-error is-dismissible ampinstallation">
 
 						<?php add_thickbox(); ?>
 				        <p>
@@ -136,13 +136,15 @@ if ( is_admin() ) {
 			add_action('admin_head','ampforwp_required_plugin_styling');
 			function ampforwp_required_plugin_styling() { ?>
 				<style>
+                    .notice, .notice-error, .is-dismissible, .ampinstallation{display: none} 
 					.plugin-card.plugin-card-amp:before{
-                        content: "Install & Activate this plugin ↓";
+                        content: "FINISH INSTALLATION: Install & Activate this plugin ↓";
                         font-weight: bold;
-                        left: 50%;
+                        float: right;
                         position: relative;
-                        top: 9px;
-                        font-size: 16px;
+                        color: #dc3232;
+                        top: -28px;
+                        font-size: 18px;
 					}
                     .plugin-action-buttons a{
                         color: #fff
