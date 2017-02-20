@@ -917,6 +917,12 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
 	remove_filter('the_content','sfsi_plus_beforeafterblogposts');
 
+	// Thrive Content Builder
+	$amp_custom_content_enable = get_post_meta( get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
+	if ($amp_custom_content_enable == 'yes') {
+		remove_filter( 'the_content', 'tve_editor_content', 10 );
+	}
+
 }
 
 // 22. Removing author links from comments Issue #180
