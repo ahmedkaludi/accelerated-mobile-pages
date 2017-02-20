@@ -288,9 +288,9 @@
 			<?php }
 		} ?>
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( is_home() ) { ?>
+			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {  if( is_home() ) { ?> 
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-			<?php }
+			<?php } }
 		} ?>
 <?php if( $redux_builder_amp['enable-amp-ads-1'] == true || $redux_builder_amp['enable-amp-ads-2'] == true || $redux_builder_amp['enable-amp-ads-3'] == true || $redux_builder_amp['enable-amp-ads-4'] == true ) { ?>
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -986,15 +986,10 @@ function ampforwp_sticky_social_icons(){
 // if ( $ampforwp_social_icons_enabled == true ) {
 //
 // }
-
 //	add_action('amp_post_template_head','ampforwp_register_social_sharing_script');
-
-function ampforwp_register_social_sharing_script() {
-
-
-	 ?>
-		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script> <?php
-}
+function ampforwp_register_social_sharing_script() { ?>
+<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+<?php }
 
 //	25. Yoast meta Support
 function ampforwp_custom_yoast_meta(){
