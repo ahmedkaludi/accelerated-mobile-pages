@@ -158,8 +158,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'opt-media-width',
                 'type'     => 'text',
                 'title'    => __('Logo Width', 'redux-framework-demo'),
-                'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo'),
-                'deafult' => '',
+                'desc'    => __('Default width is 190 pixels', 'redux-framework-demo'),
+                'default' => '190',
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
             ),
@@ -167,8 +167,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'opt-media-height',
                 'type'     => 'text',
                 'title'    => __('Logo Height', 'redux-framework-demo'),
-                'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo'),
-                'deafult' => '',
+                'desc'    => __('Default height is 36 pixels', 'redux-framework-demo'),
+                'default' => '36',
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
             ),
