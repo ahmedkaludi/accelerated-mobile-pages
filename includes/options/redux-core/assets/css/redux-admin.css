@@ -175,3 +175,6 @@
 img.ampforwp-post-builder-img{
     height: 72px
 }
+.redux-main .form-table-section-indented{
+    margin-left: 0 !important
+}

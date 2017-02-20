@@ -1337,7 +1337,7 @@ function ampforwp_talking_to_robots() {
     $talk_to_robots = true;
   }
 
-  if( is_archive() ) {
+  if( is_archive() || is_home ) {
     if ( get_query_var( 'paged' ) ) {
           $paged = get_query_var('paged');
       } elseif ( get_query_var( 'page' ) ) {
@@ -1346,7 +1346,7 @@ function ampforwp_talking_to_robots() {
           $paged = 1;
       }
       //sitewide archives sub pages index/noindex  ie page 2 onwards
-      if( $paged >= 2 && !$redux_builder_amp['ampforwp-robots-archive-aub-pages-sitewide'] ) {
+      if( $paged >= 2 && !$redux_builder_amp['ampforwp-robots-archive-sub-pages-sitewide'] ) {
       	$talk_to_robots = true;
       }
     }

@@ -529,17 +529,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'indent' => true
               ),
            array(
-               'id'       => 'ampforwp-robots-archive-aub-pages-sitewide',
+               'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
-               'title'    => __('Archive subpages(sitewide) index/noindex', 'redux-framework-demo'),
-               'default' => 1,
+               'title'    => __('Archive subpages (sitewide)', 'redux-framework-demo'),
+               'desc'  => "Such as /page/2 so on and so forth",
+               'default' => 0,
                'on' => 'index',
                'off' => 'noindex'
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
                'type'     => 'switch',
-               'title'    => __('Author Archive pages index/noindex', 'redux-framework-demo'),
+               'title'    => __('Author Archive pages', 'redux-framework-demo'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -548,7 +549,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-date-page1',
                'type'     => 'switch',
-               'title'    => __('Date Archive pages index/noindex', 'redux-framework-demo'),
+               'title'    => __('Date Archive pages', 'redux-framework-demo'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -557,7 +558,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-taxonomy-pages',
                'type'     => 'switch',
-               'title'    => __('Categories and Tags index/noindex', 'redux-framework-demo'),
+               'title'    => __('Categories & Tags', 'redux-framework-demo'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
