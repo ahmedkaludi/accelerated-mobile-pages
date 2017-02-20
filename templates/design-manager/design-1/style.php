@@ -760,10 +760,7 @@ amp-carousel > amp-img > img {
 
 <?php
 // Table press support
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-// check for plugin using plugin name
-if ( is_plugin_active( 'tablepress/tablepress.php' ) ) { ?>
+if ( class_exists('TablePress') ) { ?>
 
 	/* Table description */
 	.tablepress-table-description {
