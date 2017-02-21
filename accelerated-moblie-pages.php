@@ -115,12 +115,21 @@ function ampforwp_rewrite_deactivate() {
  * As we don't need plugin activation code to run everytime the site loads
 */
 if ( is_admin() ) {
-	add_action('init','ampforwp_plugin_notice');
+    
+    add_action('init','ampforwp_plugin_notice');
+     
+
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
 			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
-			function ampforwp_plugin_not_found_notice() { ?>
+			function ampforwp_plugin_not_found_notice() { 
+
+            $current_screen = get_current_screen();
+
+            if( $current_screen ->id == "plugin-install" ) {
+                return;
+            } ?>
 
 				<div class="notice notice-error is-dismissible ampinstallation">
 
@@ -136,7 +145,7 @@ if ( is_admin() ) {
 			add_action('admin_head','ampforwp_required_plugin_styling');
 			function ampforwp_required_plugin_styling() { ?>
 				<style>
-                    .notice, .notice-error, .is-dismissible, .ampinstallation{display: none} 
+                    .notice, .notice-error, .is-dismissible, .ampinstallation{} 
 					.plugin-card.plugin-card-amp:before{
                         content: "FINISH INSTALLATION: Install & Activate this plugin ↓";
                         font-weight: bold;
