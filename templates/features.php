@@ -1259,4 +1259,3 @@ function ampforwp_editable_archvies_title($title) {
         }
     return $title;
 }
-

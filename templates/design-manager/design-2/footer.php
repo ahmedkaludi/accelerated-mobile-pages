@@ -19,7 +19,7 @@
     $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','?nonamp=1',$ampforwp_backto_nonamp);
   }
   ?>
-
+  
 <footer class="container">
         <div id="footer">
         <a class="non-amp-link full-footer-link" href="<?php echo $ampforwp_backto_nonamp; ?>">View the original article</a>
@@ -51,7 +51,6 @@
 
         </div>
     </footer>
-
 
 <?php do_action('ampforwp_global_after_footer'); ?>
 
