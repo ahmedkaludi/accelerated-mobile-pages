@@ -8,7 +8,7 @@
       <?php
     }else{
       ?>
-      <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+      <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
         <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMP_QUERY_VAR; ?>">
 
         <?php } else { ?>
@@ -39,7 +39,7 @@
     <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
     <?php }else{ ?>
 
-    <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+    <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
     <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
 
