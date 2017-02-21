@@ -1013,7 +1013,63 @@ function ampforwp_custom_yoast_meta(){
 	}
 }
 
-add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+function ampforwp_custom_yoast_meta_homepage(){
+	global $redux_builder_amp;
+	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
+		if(! class_exists('YoastSEO_AMP') ) {
+				if ( class_exists('WPSEO_Options')) {
+					$options = WPSEO_Options::get_option( 'wpseo_social' );
+					if ( $options['twitter'] === true ) {
+						WPSEO_Twitter::get_instance();
+					}
+					if ( $options['opengraph'] === true ) {
+						$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+					}
+				}
+				do_action( 'wpseo_opengraph' );
+
+		}//execute only if Glue is deactive
+	echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+	}
+}
+
+function ampforwp_add_proper_post_meta(){
+	$check_custom_front_page = get_option('show_on_front');
+	if ( $check_custom_front_page == 'page' ) {
+		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
+		
+		add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
+		add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+
+		add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
+		add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
+
+		add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+
+		add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
+		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
+	} else {
+		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
+	}
+}
+add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
+
+
+function custom_twitter_title_homepage() {
+	return  esc_attr( get_bloginfo( 'name' ) );
+}
+function custom_twitter_description_homepage() {
+	return  esc_attr( get_bloginfo( 'description' ) );
+}
+function custom_og_url_homepage() {
+	return esc_url( get_bloginfo( 'url' ) );
+}
+function custom_og_image_homepage() {
+	if ( class_exists('WPSEO_Options') ) {
+		$options = WPSEO_Options::get_option( 'wpseo_social' );
+		return  $options['og_default_image'] ;
+	}
+}
 
 
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
