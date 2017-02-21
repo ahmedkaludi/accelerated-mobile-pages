@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.38
+Stable tag: 0.9.43.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,14 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
+* NEW - Disqus Comments Support
 * NEW - Google Tag Manager Support
 * NEW - Page, Category & Tags Support Added
 * NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
-* NEW - Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
-* NEW - Custom Post Type Support 
-* NEW - Star Ratings  
+* Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
+* Custom Post Type Support 
+* Star Ratings
 * Drag & Drop Page builder Added 
 * 2 Designs Added 
 * Yoast SEO support on AMP pages and other SEO plugins
@@ -124,8 +126,56 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
-= 0.9.37 =
-* View full details at https://ampforwp.com/category-tags-archive-support-added/
+= 0.9.43.1 = 
+* View more details at https://ampforwp.com/0-9-43-1-released-stability-sprint-1-49th-update/
+* Emoji in comments leads to AMP errors
+* Design 1 showing time on archives
+* Added some space between the archive label.
+* Lazy loading plugins compatibility #544
+* Custom header and footer areas
+* Sticky posts now come on top #564
+* Footer non-amplink added in design 3 #562
+* HTML <p> tag is shown in the title in category! #518
+
+= 0.9.42 = 
+* View more details at https://ampforwp.com/design-three-update/
+* Design 3 was released – Video Overview  along with new options and features. View the video overview at: https://www.youtube.com/watch?v=ub1pwskt3Rc [Major Feature]
+* Ticket #517 – Added Upload field into Redux core [3rd party Compatiblity]
+* Ticket#529 Controls for archive titles added [Improvement]
+* Ticket #548 Jetpack photon code removed
+
+= 0.9.41 = 
+* View more details at https://ampforwp.com/disqus-comments-in-amp/
+* Disqus Comments in AMP Support Added [New Feature] - This feature can be enabled from Dashboard > AMP Options > Disqus Comments
+* AMP WooCommerce supported tag was missing after the last update. [Bug fix]
+* Homepage & Related Posts was displaying private and protected posts, which is now fixed [Bug fix]
+* Next previous links added in Design 1 [Enhancement]
+* Invalid Post Time displaying in the homepage of Design 1 [Bug fix]
+* Twitter share now includes the twitter handle of the author with setting in options [Enhancement]
+* Emoji in comments leads to AMP errors was fixed [Bug fix]
+* Date are now displayed on archives in Design 1 [Enhancement]
+* When RTL enabled logo merges with nav bar was fixed  [Bug fix]
+* Jetpack Photon compatibility added  [3rd Party Compatibility]
+
+= 0.9.40 =
+* View more details at https://ampforwp.com/0-9-40-released-biggest-stability-update/
+* Proper endpoints added [Improvement]
+* Flush Rewrites properly [Improvement]
+* REL Canonical properly getting added. [Improvement]
+* Proper Frontpage Canonical added [Improvement]
+* Added Base name support for categories and tags [Improvement]
+* Redirection of excluded post solved. [Bug fix]
+* Archives properly redirecting to the right URL [Bug fix]
+* Homepage redirection solved [Bug fix]
+* Plusone tag is stripped properly. [Validation Issue fixed]
+* Archives are now clickable. [Improvements]
+* WP_Query filter added for better customizability of Homepage loop. [Better Customizations]
+* Social share boost plugin compatibility. [3rd party Customizations]
+* Removed H1 from the frontpage even if it is not available. [Improvement]
+* H3 instead of H1 for Site title. So there is only one H1 per page. [SEO Improvement]
+
+= 0.9.38 =
+* View full details at https://ampforwp.com/google-tag-manager-for-amp/
 * Google Tag manager included [New feature]
 * Iframe max-width added [Improvement]
 * Paginated pages have different titles now. [Bug fix]

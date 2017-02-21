@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.42
+Stable tag: 0.9.43.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,44 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.43.5 = 
+* View more details at https://ampforwp.com/stability-sprint-2-50th-update/
+* Fixed shortcodes issue in related posts #543
+* Iframe Scripts Added properly
+* Proper conditions added for the social section of Design 3
+* Featured Image issue stretched in Design 2 & 3
+* Removed extra global $redux_builder_amp;
+* Custom Logo Dimensions option added #479
+* Index & NoIndex options added for SEO section. #558
+* Added URL for rewrite flushing rules in Options
+* Option to enable and disable the Author area in Design 3#577
+* Rel Nofollow added in credit link
+* debug issue solved: fn_offset not defined
+* debug issue solved: global $post not declared
+* The word 'ago' is now translatable in design 3
+* The word 'read next' is translatable now
+* Tablepress compatibility added #392
+* Secure API server is now serving through Google Cloud Manager.
+* Thrive Content builder was displaying twice when the Custom AMP content was on. It was a complex issue which has been solved now.
+* amp-ad extension.js script was loading if the Ads are not enabled. #598
+* Social Share Extension Included on Homepage even if we didn't have social icons #599
+* Installation UX improvement #593
+* Removed duplicate global variable
+* Proper OG tags added #588
+* Proper instructions added for Custom AMP content #471
+
+
+= 0.9.43.1 = 
+* View more details at https://ampforwp.com/0-9-43-1-released-stability-sprint-1-49th-update/
+* Emoji in comments leads to AMP errors
+* Design 1 showing time on archives
+* Added some space between the archive label.
+* Lazy loading plugins compatibility #544
+* Custom header and footer areas
+* Sticky posts now come on top #564
+* Footer non-amplink added in design 3 #562
+* HTML <p> tag is shown in the title in category! #518
 
 = 0.9.42 = 
 * View more details at https://ampforwp.com/design-three-update/

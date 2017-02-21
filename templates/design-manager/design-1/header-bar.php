@@ -8,7 +8,7 @@
       <?php
     }else{
       ?>
-      <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+      <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
         <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMP_QUERY_VAR; ?>">
 
         <?php } else { ?>
@@ -19,7 +19,15 @@
   }?>
 
       <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
-        <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
+            <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>
+
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="logo" class="amp-logo"></amp-img>
+
+          <?php } else { ?>
+
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
+
+          <?php } ?>
       <?php } else {
         echo esc_html( $this->get( 'blog_name' ) );
       } ?>
@@ -31,7 +39,7 @@
     <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
     <?php }else{ ?>
 
-    <?php global $redux_builder_amp; if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+    <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
     <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMP_QUERY_VAR; ?>">
 

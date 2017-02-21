@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.42
+Version: 0.9.43.5
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.42');
+define('AMPFORWP_VERSION','0.9.43.5');
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
@@ -115,14 +115,23 @@ function ampforwp_rewrite_deactivate() {
  * As we don't need plugin activation code to run everytime the site loads
 */
 if ( is_admin() ) {
-	add_action('init','ampforwp_plugin_notice');
+    
+    add_action('init','ampforwp_plugin_notice');
+     
+
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
 			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
-			function ampforwp_plugin_not_found_notice() { ?>
+			function ampforwp_plugin_not_found_notice() { 
 
-				<div class="notice notice-error is-dismissible">
+            $current_screen = get_current_screen();
+
+            if( $current_screen ->id == "plugin-install" ) {
+                return;
+            } ?>
+
+				<div class="notice notice-error is-dismissible ampinstallation">
 
 						<?php add_thickbox(); ?>
 				        <p>
@@ -136,13 +145,15 @@ if ( is_admin() ) {
 			add_action('admin_head','ampforwp_required_plugin_styling');
 			function ampforwp_required_plugin_styling() { ?>
 				<style>
+                    .notice, .notice-error, .is-dismissible, .ampinstallation{} 
 					.plugin-card.plugin-card-amp:before{
-                        content: "Install & Activate this plugin ↓";
+                        content: "FINISH INSTALLATION: Install & Activate this plugin ↓";
                         font-weight: bold;
-                        left: 50%;
+                        float: right;
                         position: relative;
-                        top: 9px;
-                        font-size: 16px;
+                        color: #dc3232;
+                        top: -28px;
+                        font-size: 18px;
 					}
                     .plugin-action-buttons a{
                         color: #fff
