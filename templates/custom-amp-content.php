@@ -73,7 +73,7 @@ function amp_content_editor_title_callback( $post ) {
     <label for="meta-checkbox">
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
-    		<?php _e( 'Use This Content as AMP Content' )?>   </p>
+    		<?php _e( 'Use This Content as AMP Content' )?>   </p><p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>
     </label>
 
   <!--HTML content Ends here-->
