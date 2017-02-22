@@ -733,12 +733,30 @@
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
 */
 function ampforwp_title_custom_meta() {
-  add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'post','side' );
   global $redux_builder_amp;
+    $args = array(
+       'public'   => true,
+    );
 
-	if($redux_builder_amp['amp-on-off-for-all-pages']) {
-		add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', 'page','side' );
-	}
+    $output = 'names'; // 'names' or 'objects' (default: 'names')
+    $operator = 'and'; // 'and' or 'or' (default: 'and')
+
+    $post_types = get_post_types( $args, $output, $operator );
+
+    if ( $post_types ) { // If there are any custom public post types.
+
+        foreach ( $post_types  as $post_type ) {
+
+          if( $post_type !== 'page' ) {
+            add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', $post_type,'side' );
+          }
+
+          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+              add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback','page','side' );
+          }
+          
+        }
+    }
 }
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
@@ -1408,3 +1426,4 @@ function ampforwp_talking_to_robots() {
     }
 
 }
+
