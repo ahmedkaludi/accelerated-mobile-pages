@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.43.5
+Stable tag: 0.9.43.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,6 +126,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
+= 0.9.43.6 =
+* View more details at https://ampforwp.com/stability-sprint-3-51st-update/
+* Typo in the is_home() function fixed
+* Option to hide/show AMP on all custom post types #587
+* False detection by Windows defender tool fixed
+* Conditional tags were not compatible with Advanced AMP ads which were causing some conflicts but is now fixed.
+
 = 0.9.43.5 = 
 * View more details at https://ampforwp.com/stability-sprint-2-50th-update/
 * Fixed shortcodes issue in related posts #543
@@ -162,7 +169,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * Custom header and footer areas
 * Sticky posts now come on top #564
 * Footer non-amplink added in design 3 #562
-* HTML <p> tag is shown in the title in category! #518
+* HTML Paragraph tag is shown in the title in category! #518
 
 = 0.9.42 = 
 * View more details at https://ampforwp.com/design-three-update/
@@ -426,7 +433,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * Added Support for Segment.com Analytics(Ticket #50)
 * Added a switch for hiding Non-Amp page link from Footer.( Ticket #189)
 * Added an Option that strips Users URL from Comments Section(Ticket #180)
-* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
+* Fixed stripping  <date> tags from the content , Since it was preventing validation – amp-img issues fixed
 * UX Improved for every section of AMP Options page
 * Added Settings button on plugin page
 * Related posts switch added
