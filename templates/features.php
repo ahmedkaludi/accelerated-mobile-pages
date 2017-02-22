@@ -288,7 +288,7 @@
 			<?php }
 		} ?>
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {  if( is_home() ) { ?> 
+			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {  if( is_home() ) { ?>
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 			<?php } }
 		} ?>
@@ -1037,7 +1037,7 @@ function ampforwp_add_proper_post_meta(){
 	$check_custom_front_page = get_option('show_on_front');
 	if ( $check_custom_front_page == 'page' ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
-		
+
 		add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
 		add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
 
@@ -1389,7 +1389,7 @@ function ampforwp_talking_to_robots() {
     $talk_to_robots = true;
   }
 
-  if( is_archive() || is_home ) {
+  if( is_archive() || is_home() ) {
     if ( get_query_var( 'paged' ) ) {
           $paged = get_query_var('paged');
       } elseif ( get_query_var( 'page' ) ) {
