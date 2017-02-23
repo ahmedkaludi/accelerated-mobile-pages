@@ -1274,6 +1274,8 @@ function ampforwp_add_disqus_scripts( $data ) {
 			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 		}
 	}
+	// remove direction attribute from the AMP HTMl #541
+	unset( $data['html_tag_attributes']['dir'] );
 	return $data;
 }
 
