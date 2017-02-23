@@ -5,8 +5,6 @@
 	2. Custom Design
 	3. Custom Style files
 	4. Custom Header files
-		4.1 Custom Meta-Author files
-		4.2 Custom Meta-Taxonomy files
 		4.5 Added hook to add more layout.
 	5. Customize with Width of the site
 	6. Add required Javascripts for extra AMP features
@@ -240,23 +238,6 @@
 	function ampforwp_custom_header( $file, $type, $post ) {
 		if ( 'header-bar' === $type ) {
 			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/header-bar.php';
-		}
-		return $file;
-	}
-
-	// 4.1 Custom Meta-Author files
-	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_author', 10, 3 );
-	function ampforwp_set_custom_meta_author( $file, $type, $post ) {
-		if ( 'meta-author' === $type ) {
-			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/empty-filter.php';
-		}
-		return $file;
-	}
-	// 4.2 Custom Meta-Taxonomy files
-	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_meta_taxonomy', 10, 3 );
-	function ampforwp_set_custom_meta_taxonomy( $file, $type, $post ) {
-		if ( 'meta-taxonomy' === $type ) {
-			$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/empty-filter.php';
 		}
 		return $file;
 	}
