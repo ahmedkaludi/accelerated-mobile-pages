@@ -106,7 +106,7 @@
 
 <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
 <amp-lightbox id="search-icon" layout="nodisplay">
-    <?php ampforwp_the_search_form() ?>
+    <?php do_action('ampforwp_search_form'); ?>
     <button on="tap:search-icon.close" class="closebutton">X</button>
     <i class="icono-cross"></i>
 </amp-lightbox>

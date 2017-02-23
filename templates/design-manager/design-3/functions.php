@@ -143,32 +143,35 @@ function ampforwp_add_design3_required_scripts( $data ) {
 			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
 		}
 	}
-	// Add Scripts only when AMP Menu is Enabled	
-	if( has_nav_menu( 'amp-menu' ) ) { 
+	// Add Scripts only when AMP Menu is Enabled
+	if( has_nav_menu( 'amp-menu' ) ) {
 		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
 			$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
-		}	
+		}
 	}
 	// Add Scripts only when Homepage AMP Featured Slider is Enabled
-	if( is_home() ) { 
+	if( is_home() ) {
 
 		if ( $redux_builder_amp['amp-design-3-featured-slider'] == 1 ) {
-			
+
 			if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
 				$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
 			}
-    	} 
+    	}
     }
 	return $data;
 }
 
 // Search Form
 function ampforwp_get_search_form() {
+	global $redux_builder_amp;
+	$label = $redux_builder_amp['ampforwp-design-3-search-label'];
+	$placeholder = $redux_builder_amp['ampforwp-design-3-search-placeholder'];
     $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
                 <div>
-                    <label class="screen-reader-text" for="s">' . _x( 'Type your search query and hit enter:', 'label' ) . '</label>
+                    <label class="screen-reader-text" for="s">' . $label . '</label>
                     <input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
-                    <input type="text" placeholder="Type here" value="' . get_search_query() . '" name="s" id="s" />
+                    <input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
                     <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
                 </div>
             </form>';
@@ -177,3 +180,4 @@ function ampforwp_get_search_form() {
 function ampforwp_the_search_form() {
     echo ampforwp_get_search_form();
 }
+add_action('ampforwp_search_form','ampforwp_the_search_form');

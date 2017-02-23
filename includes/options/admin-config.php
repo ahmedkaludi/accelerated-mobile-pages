@@ -1402,6 +1402,37 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Next Read: ',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id' => 'design-3-search-subsection',
+                       'type' => 'section',
+                       'title' => __('Search bar Translation Text', 'redux-framework-demo'),
+                       'indent' => true,
+                       'required' => array(
+                         array('amp-design-selector', '=' , '3')
+                       )
+                   ),
+                   array(
+                      'id'       => 'ampforwp-design-3-search-placeholder',
+                      'type'     => 'text',
+                      'title'    => __('Type Here', 'redux-framework-demo'),
+                      'default'  => 'Type Here',
+                      'desc' => 'This is the text that gets shown in for Search Box',
+                      'placeholder'=>'write here',
+                      'required' => array(
+                        array('amp-design-selector', '=' , '3')
+                      )
+                  ),
+                  array(
+                     'id'       => 'ampforwp-design-3-search-label',
+                     'type'     => 'text',
+                     'title'    => __('Type your search query and hit enter', 'redux-framework-demo'),
+                     'desc' => 'This is the text that gets shown above Search Box',
+                     'default'  => 'Type your search query and hit enter: ',
+                     'placeholder'=>'write here',
+                     'required' => array(
+                       array('amp-design-selector', '=' , '3')
+                     )
+                 ),
                )
            ) );
 
