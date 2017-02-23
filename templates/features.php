@@ -293,7 +293,7 @@
 			<?php } }
 		} ?>
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-<?php } 
+<?php }
 	// 6.1 Adding Analytics Scripts
 	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
 	function ampforwp_register_analytics_script(){ ?>
@@ -753,7 +753,7 @@ function ampforwp_title_custom_meta() {
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
               add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback','page','side' );
           }
-          
+
         }
     }
 }
@@ -1401,8 +1401,13 @@ function ampforwp_talking_to_robots() {
     $talk_to_robots = true;
   }
 
-  //category and tag index/noindex
-  if( ( is_tag() || is_category() ) && !$redux_builder_amp['ampforwp-robots-archive-taxonomy-pages'] ) {
+  //categorys index/noindex
+  if( is_category()  && !$redux_builder_amp['ampforwp-robots-archive-category-pages'] ) {
+    $talk_to_robots = true;
+  }
+
+  //categorys index/noindex
+  if( is_tag() && !$redux_builder_amp['ampforwp-robots-archive-tag-pages'] ) {
     $talk_to_robots = true;
   }
 

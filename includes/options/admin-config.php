@@ -556,13 +556,20 @@ Redux::setArgs( "redux_builder_amp", $args );
 
            ),
            array(
-               'id'       => 'ampforwp-robots-archive-taxonomy-pages',
+               'id'       => 'ampforwp-robots-archive-category-pages',
                'type'     => 'switch',
-               'title'    => __('Categories & Tags', 'redux-framework-demo'),
+               'title'    => __('Categories', 'redux-framework-demo'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
-
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-tag-pages',
+               'type'     => 'switch',
+               'title'    => __('Tags', 'redux-framework-demo'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
            ),
 
 
