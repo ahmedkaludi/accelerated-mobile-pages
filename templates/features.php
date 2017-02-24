@@ -1123,6 +1123,7 @@ function ampforwp_remove_title_tags(){
 			if ( $ampforwp_is_amp_endpoint ) {
 				$content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
 				$content_buffer = preg_replace("/' defer onload='/", "", $content_buffer);
+				$content_buffer = preg_replace("/' defer /", "", $content_buffer);
 				$content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
                 $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
                 // Remove Extra styling added by other Themes/ Plugins
