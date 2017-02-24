@@ -43,9 +43,10 @@
 	35. Disqus Comments Support
 	36. remove photon support in AMP
 	37. compatibility with wp-html-compression
-	38. Extra Design Specific Features
-  39. #529 editable archives
-  40. #560 Header and Footer Editable html enabled script area
+	38. #529 editable archives
+  	39. #560 Header and Footer Editable html enabled script area
+  	40. Meta Robots
+  	41. Rewrite URL only on save #511
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1186,6 +1187,33 @@ function ampforwp_remove_js_script_cleantalk() {
     remove_action('wp_loaded', 'ct_add_nocache_script', 1);
 }
 
+//32. various lazy loading plugins Support
+add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
+function ampforwp_lazy_loading_plugins_compatibility() {
+
+   //WP Rocket
+   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
+   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
+
+    //Lazy Load XT
+		global $lazyloadxt;
+		remove_filter( 'the_content', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'widget_text', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'post_thumbnail_html', array( $lazyloadxt, 'filter_html' ) );
+		remove_filter( 'get_avatar', array( $lazyloadxt, 'filter_html' ) );
+
+    // Lazy Load
+		add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
+
+}
+
+//Removing bj loading for amp
+function ampforwp_remove_bj_load() {
+ 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+ 		add_filter( 'bjll/enabled', '__return_false' );
+ 	}
+}
+add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
 //33. Google tag manager support added
 // Remove any old scripts that have been loaded by other Plugins
@@ -1311,7 +1339,7 @@ function ampforwp_add_extra_functions(){
 	}
 }
 
-//39. #529 editable archives
+//38. #529 editable archives
 add_filter( 'get_the_archive_title', 'ampforwp_editable_archvies_title' );
 function ampforwp_editable_archvies_title($title) {
 	global $redux_builder_amp;
@@ -1323,35 +1351,7 @@ function ampforwp_editable_archvies_title($title) {
     return $title;
 }
 
-//32. various lazy loading plugins Support
-add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
-function ampforwp_lazy_loading_plugins_compatibility() {
-
-   //WP Rocket
-   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
-   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
-
-    //Lazy Load XT
-		global $lazyloadxt;
-		remove_filter( 'the_content', array( $lazyloadxt, 'filter_html' ) );
-		remove_filter( 'widget_text', array( $lazyloadxt, 'filter_html' ) );
-		remove_filter( 'post_thumbnail_html', array( $lazyloadxt, 'filter_html' ) );
-		remove_filter( 'get_avatar', array( $lazyloadxt, 'filter_html' ) );
-
-    // Lazy Load
-		add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
-
-}
-
-//Removing bj loading for amp
-function ampforwp_remove_bj_load() {
- 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
- 		add_filter( 'bjll/enabled', '__return_false' );
- 	}
-}
-add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
-
-//33. #560 Header and Footer Editable html enabled script area
+//39. #560 Header and Footer Editable html enabled script area
 add_action('amp_post_template_footer','ampforwp_footer_html_output',11);
 function ampforwp_footer_html_output() {
   global $redux_builder_amp;
@@ -1369,7 +1369,7 @@ function ampforwp_header_html_output() {
 }
 
 
-//34. meta robots
+//40. Meta Robots
 add_action('amp_post_template_head' , 'ampforwp_talking_to_robots');
 function ampforwp_talking_to_robots() {
 
