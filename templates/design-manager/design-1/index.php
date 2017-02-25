@@ -25,6 +25,9 @@
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+
+<?php do_action('ampforwp_area_above_loop'); ?>
+
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_design_elements') ?>
@@ -105,6 +108,9 @@
 		<?php endif; ?>
 
 	<?php do_action('ampforwp_post_after_design_elements') ?>
+
+
+	<?php do_action('ampforwp_area_below_loop'); ?>
 
 </article>
 

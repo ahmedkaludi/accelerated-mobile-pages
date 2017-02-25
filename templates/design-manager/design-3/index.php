@@ -24,6 +24,9 @@
 <body class="amp_home_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+
+	<?php do_action('ampforwp_area_above_loop'); ?>
+
 <?php do_action( 'ampforwp_after_header', $this );
 
 if ( get_query_var( 'paged' ) ) {
@@ -159,6 +162,9 @@ if ( get_query_var( 'paged' ) ) {
 
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
+
+		<?php do_action('ampforwp_area_below_loop'); ?>
+
 </main>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>

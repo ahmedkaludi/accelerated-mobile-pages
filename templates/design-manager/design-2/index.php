@@ -25,6 +25,9 @@
 <body class="amp_home_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
+
+<?php do_action('ampforwp_area_above_loop'); ?>
+
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
@@ -100,6 +103,9 @@
 
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
+
+	<?php do_action('ampforwp_area_below_loop'); ?>
+
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
