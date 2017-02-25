@@ -1457,7 +1457,7 @@ if (function_exists('register_sidebar')) {
 add_action( 'ampforwp_area_above_loop' , 'ampforwp_output_widget_content_above_loop' );
 function ampforwp_output_widget_content_above_loop() { ?>
 
-	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+	<div id="primary-sidebar-above" class="primary-sidebar widget-area" role="complementary">
 		<?php dynamic_sidebar( 'ampforwp-above-loop' ); ?>
 	</div><!-- #primary-sidebar -->
 
@@ -1467,8 +1467,8 @@ function ampforwp_output_widget_content_above_loop() { ?>
 add_action( 'ampforwp_area_below_loop' , 'ampforwp_output_widget_content_below_loop' );
 function ampforwp_output_widget_content_below_loop() { ?>
 
-	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
-		<?php dynamic_sidebar( 'ampforwp-above-loop' ); ?>
+	<div id="primary-sidebar-below" class="primary-sidebar widget-area" role="complementary">
+		<?php dynamic_sidebar( 'ampforwp-below-loop' ); ?>
 	</div><!-- #primary-sidebar -->
 
 <?php }
