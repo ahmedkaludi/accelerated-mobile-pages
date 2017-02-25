@@ -1491,3 +1491,23 @@ function ampforwp_output_widget_content_below_loop() { ?>
 	</div><!-- #primary-sidebar -->
 
 <?php }
+ 
+add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
+function ampforwp_auto_add_amp_menu_link_insert() {
+	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
+}
+
+function ampforwp_auto_add_amp_in_link_check() {
+	global $redux_builder_amp;  
+	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+
+	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
+		add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
+	}   
+}
+
+function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
+    
+    $atts['href'] = trailingslashit( $atts['href'] ) . AMP_QUERY_VAR;
+    return $atts;
+}

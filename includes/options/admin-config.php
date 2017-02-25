@@ -1567,6 +1567,15 @@ Redux::setSection( $opt_name, array(
                         'default'   => 1
                     ),
                     array(
+                        'id'       => 'ampforwp-auto-amp-menu-link',
+                        'type'     => 'switch',
+                        'title'    => __('Auto Add AMP in Menu URL', 'redux-framework-demo'),
+                        'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'redux-framework-demo'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0
+                    ),
+                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Header', 'redux-framework-demo'),
