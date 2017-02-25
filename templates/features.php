@@ -270,13 +270,13 @@
 			<?php }
 		} ?>
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {  
+			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
 				if( is_home() ) { ?>
 					<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-				<?php } 
+				<?php }
 			}
 		} ?>
-		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php 
+		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php
 	}
 	// 6.1 Adding Analytics Scripts
 	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
@@ -1418,10 +1418,37 @@ function ampforwp_talking_to_robots() {
 }
 
 // 41. Rewrite URL only on save #511
-function ampforwp_auto_flush_on_save($redux_builder_amp) { 
+function ampforwp_auto_flush_on_save($redux_builder_amp) {
 	if ( $redux_builder_amp['amp-on-off-for-all-pages'] == 1 || $redux_builder_amp['ampforwp-archive-support'] == 1 ) {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}
 }
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
+
+
+if (function_exists('register_sidebar')) {
+
+	register_sidebar(array(
+		'name' => 'AMP Above Loop',
+		'id'   => 'ampforwp-above-loop',
+		'description'   => 'Widget area for above the Loop Output',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>'
+	));
+	register_sidebar(array(
+		'name' => 'AMP Below Loop',
+		'id'   => 'ampforwp-below-loop',
+		'description'   => 'Widget area for below the Loop Output',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>'
+	));
+
+}
+
+
+
