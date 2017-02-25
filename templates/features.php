@@ -47,6 +47,8 @@
   	39. #560 Header and Footer Editable html enabled script area
   	40. Meta Robots
   	41. Rewrite URL only on save #511
+		42. registeing AMP sidebars
+		43. custom actions for widgets output
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1426,7 +1428,7 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 }
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
 
-
+// 42. registeing AMP sidebars
 if (function_exists('register_sidebar')) {
 
 	register_sidebar(array(
@@ -1450,5 +1452,23 @@ if (function_exists('register_sidebar')) {
 
 }
 
+// 43. custom actions for widgets output
+
+add_action( 'ampforwp_area_above_loop' , 'ampforwp_output_widget_content_above_loop' );
+function ampforwp_output_widget_content_above_loop() { ?>
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+		<?php dynamic_sidebar( 'ampforwp-above-loop' ); ?>
+	</div><!-- #primary-sidebar -->
+
+<?php }
 
 
+add_action( 'ampforwp_area_below_loop' , 'ampforwp_output_widget_content_below_loop' );
+function ampforwp_output_widget_content_below_loop() { ?>
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+		<?php dynamic_sidebar( 'ampforwp-above-loop' ); ?>
+	</div><!-- #primary-sidebar -->
+
+<?php }
