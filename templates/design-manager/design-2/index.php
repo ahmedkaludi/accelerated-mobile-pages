@@ -26,11 +26,11 @@
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 
-<?php do_action('ampforwp_area_above_loop'); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
+	<?php do_action('ampforwp_area_above_loop'); ?>
 
 	<?php
 		if ( get_query_var( 'paged' ) ) {

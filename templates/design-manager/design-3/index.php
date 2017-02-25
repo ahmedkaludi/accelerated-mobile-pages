@@ -24,8 +24,9 @@
 <body class="amp_home_body">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-
+<div class="amp-wp-content">
 	<?php do_action('ampforwp_area_above_loop'); ?>
+</div>
 
 <?php do_action( 'ampforwp_after_header', $this );
 
