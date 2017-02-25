@@ -1454,7 +1454,7 @@ if (function_exists('register_sidebar')) {
 
 // 43. custom actions for widgets output
 
-add_action( 'ampforwp_area_above_loop' , 'ampforwp_output_widget_content_above_loop' );
+add_action( 'ampforwp_post_before_loop' , 'ampforwp_output_widget_content_above_loop' );
 function ampforwp_output_widget_content_above_loop() { ?>
 
 	<div id="primary-sidebar-above" class="primary-sidebar widget-area" role="complementary">
@@ -1464,7 +1464,7 @@ function ampforwp_output_widget_content_above_loop() { ?>
 <?php }
 
 
-add_action( 'ampforwp_area_below_loop' , 'ampforwp_output_widget_content_below_loop' );
+add_action( 'ampforwp_post_after_loop' , 'ampforwp_output_widget_content_below_loop' );
 function ampforwp_output_widget_content_below_loop() { ?>
 
 	<div id="primary-sidebar-below" class="primary-sidebar widget-area" role="complementary">
