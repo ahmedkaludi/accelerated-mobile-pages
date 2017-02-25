@@ -36,11 +36,16 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     <p><strong>Show Button:</strong> <?php echo $show_button ?></p>
 
     <?php
-    if($slected_cat_id==''){return;}
+
+    $exclude_ids = get_option('ampforwp_exclude_post');
+
     $args = array(
         'cat'      => $slected_cat_id,
         'order'    => 'ASC',
-        'posts_per_page' => ''.$count
+        'posts_per_page' => ''.$count,
+        'post__not_in' 		  => $exclude_ids,
+        'has_password' => false ,
+        'post_status'=> 'publish'
     );
     // The Query
     $the_query = new WP_Query( $args );
@@ -49,8 +54,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     if ( $the_query->have_posts() ) {
         echo '<ul>';
         while ( $the_query->have_posts() ) {
-            $the_query->the_post();
-            echo '<li>' . get_the_title() . '</li>';
+          $the_query->the_post();
+          echo '<li>' . get_the_title() . '</li>';
         }
         echo '</ul>';
     } else {
@@ -64,59 +69,61 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
 
   // Create the admin area widget settings form.
   public function form( $instance ) {
-    // Declarations for all the values tobe stored
-    $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
+
+    // Declarations for all the values to be stored
+    $title = ! empty( $instance['title'] ) ? $instance['title'] : 'title';
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
-    $count = ! empty( $instance['count'] ) ? $instance['count'] : '';
-    $radio_buttons = esc_attr($instance['showButton']);
+    $count = ! empty( $instance['count'] ) ? $instance['count'] : '5';
+    $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
+
     ?>
-<!-- Form Ends Here -->
-    <p>
-    <!-- text Start Here -->
-      <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:
-      <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" />
-      </label><br>
-    <!-- text End Here -->
+    <!-- Form Ends Here -->
+        <p>
+        <!-- text Start Here -->
+          <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:
+          <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" />
+          </label><br>
+        <!-- text End Here -->
 
-    <!-- select Start Here -->
-      <label  for="<?php echo $this->get_field_id( '
+        <!-- select Start Here -->
+          <label  for="<?php echo $this->get_field_id( '
 
-      2' ); ?>">Category:
-      <select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" value>
-        <?php
-          $categories = get_categories( array(
-              'orderby' => 'name',
-              'order'   => 'ASC'
-          ) );
+          2' ); ?>">Category:
+          <select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" value>
+            <?php
 
- echo '<option selected value="none">Select One </option>';
+              $categories = get_categories( array(
+                  'orderby' => 'name',
+                  'order'   => 'ASC'
+              ) );
 
-          foreach( $categories as $category ) {
-             echo '<option '. selected( $instance['category'], $category->term_id) . ' value="'. $category->term_id . '">' . $category->name . '</option>';
-           } ?>
-      </select>
-      </label><br>
-    <!-- select End Here -->
+              echo '<option selected value="none">Recent Posts </option>';
+              foreach( $categories as $category ) {
+                 echo '<option '. selected( $instance['category'], $category->term_id) . ' value="'. $category->term_id . '">' . $category->name . '</option>';
+               } ?>
+          </select>
+          </label><br>
+        <!-- select End Here -->
 
-    <!-- text starts Here -->
-      <label for="<?php echo $this->get_field_id( 'count' ); ?>">Number of Posts:
-      <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" value="<?php echo esc_attr( $count ); ?>" />
-      </label><br>
-    <!-- text End Here -->
+        <!-- text starts Here -->
+          <label for="<?php echo $this->get_field_id( 'count' ); ?>">Number of Posts:
+          <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" value="<?php echo esc_attr( $count ); ?>" />
+          </label><br>
+        <!-- text End Here -->
 
-    <!-- radio buttons starts Here -->
-      <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $title );?>">Show View more Button:</label><br>
-      <label for="<?php echo $this->get_field_id('showButton'); ?>">
-          <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="YES" <?php if($radio_buttons === 'YES'){ echo 'checked="checked"'; } ?> />
-          <?php _e(' Yes'); ?>
-      </label><br>
-      <label for="<?php echo $this->get_field_id('showButton'); ?>">
-          <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="NO" <?php if($radio_buttons === 'NO'){ echo 'checked="checked"'; } ?> />
-          <?php _e(' No'); ?>
-      </label><br>
-    <!-- radio buttons Ends Here -->
-    </p>
-<!-- Form Ends Here -->
+        <!-- radio buttons starts Here -->
+          <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $title );?>">Show View more Button:</label><br>
+          <label for="<?php echo $this->get_field_id('showButton'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> />
+              <?php _e(' Yes'); ?>
+          </label><br>
+          <label for="<?php echo $this->get_field_id('showButton'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> />
+              <?php _e(' No'); ?>
+          </label><br>
+        <!-- radio buttons Ends Here -->
+        </p>
+    <!-- Form Ends Here -->
 
     <?php
   }
