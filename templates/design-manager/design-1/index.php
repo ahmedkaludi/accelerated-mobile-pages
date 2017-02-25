@@ -28,9 +28,8 @@
 
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
-	<?php do_action('ampforwp_area_above_loop'); ?>
 
-	<?php do_action('ampforwp_post_before_design_elements') ?>
+	<?php do_action('ampforwp_post_before_loop') ?>
 
 		<?php
 			if ( get_query_var( 'paged' ) ) {
@@ -107,13 +106,9 @@
 
 		<?php endif; ?>
 
-	<?php do_action('ampforwp_post_after_design_elements') ?>
-
-
-	<?php do_action('ampforwp_area_below_loop'); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 
 </article>
-
 
 
 <?php $this->load_parts( array( 'footer' ) ); ?>

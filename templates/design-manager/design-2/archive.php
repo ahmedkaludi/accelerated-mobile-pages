@@ -28,6 +28,7 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
+	<?php do_action('ampforwp_post_before_loop') ?>
 
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
@@ -81,6 +82,7 @@
 		</div>
 
 	<?php endif; ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>

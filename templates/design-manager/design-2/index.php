@@ -30,7 +30,7 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 
 <main>
-	<?php do_action('ampforwp_area_above_loop'); ?>
+	<?php do_action('ampforwp_post_before_loop') ?>
 
 	<?php
 		if ( get_query_var( 'paged' ) ) {
@@ -104,7 +104,7 @@
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
 
-	<?php do_action('ampforwp_area_below_loop'); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 
 </main>
 <?php $this->load_parts( array( 'footer' ) ); ?>

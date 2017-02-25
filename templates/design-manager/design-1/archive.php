@@ -28,12 +28,12 @@
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
-	<?php do_action('ampforwp_post_before_design_elements') ?>
+	<?php do_action('ampforwp_post_before_loop') ?>
 
-  <?php if ( is_archive() ) {
-    the_archive_title( '<h3 class="page-title">', '</h3>' );
-    the_archive_description( '<div class="taxonomy-description">', '</div>' );
-  } ?>
+	  <?php if ( is_archive() ) {
+	    the_archive_title( '<h3 class="page-title">', '</h3>' );
+	    the_archive_description( '<div class="taxonomy-description">', '</div>' );
+	  } ?>
 
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
@@ -85,7 +85,7 @@
 		    </div>
 		<?php endif; ?>
 
-	<?php do_action('ampforwp_post_after_design_elements') ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 
 </article>
 

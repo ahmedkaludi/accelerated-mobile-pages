@@ -27,6 +27,7 @@
 
 
 <main>
+	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php
 		if ( get_query_var( 'paged' ) ) {
 	        $paged = get_query_var('paged');
@@ -97,9 +98,9 @@
 
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
-<?php if ( $paged > 1 ) { ?>
-			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
-<?php } ?>
+				<?php if ( $paged > 1 ) { ?>
+					<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+				<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -110,6 +111,7 @@
 
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>

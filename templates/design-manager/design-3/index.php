@@ -93,6 +93,7 @@ if ( get_query_var( 'paged' ) ) {
 <?php } ?>
 
 <main>
+	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
@@ -105,11 +106,6 @@ if ( get_query_var( 'paged' ) ) {
 			'has_password' => false,
 			'post_status'=> 'publish'
 		) ); ?>
-
- 	<?php if ( is_archive() ) {
- 			the_archive_title( '<h3 class="page-title">', '</h3>' );
- 			the_archive_description( '<div class="taxonomy-description">', '</div>' );
- 		} ?>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
@@ -126,9 +122,9 @@ if ( get_query_var( 'paged' ) ) {
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
-<?php foreach((get_the_category()) as $category) { ?>
-             <li><?php echo $category->cat_name ?></li>
-<?php } ?>
+					<?php foreach((get_the_category()) as $category) { ?>
+					    <li><?php echo $category->cat_name ?></li>
+					<?php } ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
@@ -151,12 +147,11 @@ if ( get_query_var( 'paged' ) ) {
 
 	<div class="amp-wp-content pagination-holder">
 
-
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
-<?php if ( $paged > 1 ) { ?>
-			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
-<?php } ?>
+					<?php if ( $paged > 1 ) { ?>
+						<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+					<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -164,7 +159,7 @@ if ( get_query_var( 'paged' ) ) {
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
 
-		<?php do_action('ampforwp_area_below_loop'); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 
 </main>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
