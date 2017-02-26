@@ -27,6 +27,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     $count = apply_filters( 'post_count', $instance[ 'count' ] );
     $slected_cat_id = apply_filters( 'selected_category', $instance[ 'category' ] );
     $show_button = apply_filters( 'show_button', $instance[ 'showButton' ] );
+    $clr_txt = apply_filters( 'color_background', $instance[ 'colorBackground' ] );
+    $clr_bckgrnd = apply_filters( 'color_text', $instance[ 'colorText' ] );
 
 
     echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title']; ?>
@@ -34,6 +36,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     <p><strong>Count:</strong> <?php echo $count ?></p>
     <p><strong>Selected Category ID:</strong> <?php echo $slected_cat_id ?></p>
     <p><strong>Show Button:</strong> <?php echo $show_button ?></p>
+    <p><strong>Text Color:</strong> <?php echo $clr_txt ?></p>
+    <p><strong>Background Color:</strong> <?php echo $clr_bckgrnd ?></p>
 
     <?php
 
@@ -75,6 +79,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
     $count = ! empty( $instance['count'] ) ? $instance['count'] : '5';
     $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
+    $color_text = ! empty( $instance['colorText'] ) ? $instance['colorText'] : '000000';
+    $color_background = ! empty( $instance['colorBackground'] ) ? $instance['colorBackground'] : '000000';
 
     ?>
     <!-- Form Ends Here -->
@@ -122,6 +128,17 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               <?php _e(' No'); ?>
           </label><br>
         <!-- radio buttons Ends Here -->
+
+        <!-- Color Picker for Title and show more background Starts Here -->
+          <label for="<?php echo $this->get_field_id( 'colorText' ); ?>">Text Color:
+            <input class="widefat" type="color" id="<?php echo $this->get_field_id( 'colorText' ); ?>"
+            name="<?php echo $this->get_field_name( 'colorText' ); ?>" value="<?php echo esc_attr( $color_text ); ?>" >
+          </label><br>
+          <label for="<?php echo $this->get_field_id( 'colorBackground' ); ?>">Text Color:
+            <input class="widefat" type="color" id="<?php echo $this->get_field_id( 'colorBackground' ); ?>"
+            name="<?php echo $this->get_field_name( 'colorBackground' ); ?>" value="<?php echo esc_attr( $color_background ); ?>" >
+          </label><br>
+        <!-- Color Picker for Title and show more background Ends Here -->
         </p>
     <!-- Form Ends Here -->
 
@@ -143,6 +160,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
       $instance[ 'category' ] = '';
     }
     $instance['showButton'] = strip_tags($new_instance['showButton']);
+    $instance['colorBackground'] = strip_tags($new_instance['colorBackground']);
+    $instance['colorText'] = strip_tags($new_instance['colorText']);
     return $instance;
   }
 
