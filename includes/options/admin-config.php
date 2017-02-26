@@ -1525,11 +1525,67 @@ Redux::setSection( $opt_name, array(
                         'default'  => '1'
                     ),
                     array(
+                        'id'       => 'ampforwp-homepage-posts-image-modify-size',
+                        'type'     => 'switch',
+                        'title'    => __('Modify Default Image sizes ?', 'redux-framework-demo'),
+                        'default'  => 0,
+                        'required' => array(
+                          array('ampforwp-homepage-on-off-support','=',1)
+                        )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-homepage-posts-design-1-2-width',
+                        'type'     => 'text',
+                        'title'    => __('Image Width', 'redux-framework-demo'),
+                        'subtitle' => __('Defaults to 100', 'redux-framework-demo'),
+                        'default'  => 100,
+                        'required' => array(
+                          array('amp-design-selector','!=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-homepage-posts-design-1-2-height',
+                        'type'     => 'text',
+                        'title'    => __('Image Height', 'redux-framework-demo'),
+                        'subtitle' => __('Defaults to 75', 'redux-framework-demo'),
+                        'default'  => 75,
+                        'required' => array(
+                          array('amp-design-selector','!=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-homepage-posts-design-3-width',
+                        'type'     => 'text',
+                        'title'    => __('Image Width', 'redux-framework-demo'),
+                        'subtitle' => __('Defaults to 450', 'redux-framework-demo'),
+                        'default'  => 450,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                    ),
+                    array(
+                        'id'       => 'ampforwp-homepage-posts-design-3-height',
+                        'type'     => 'text',
+                        'title'    => __('Image Height', 'redux-framework-demo'),
+                        'subtitle' => __('Defaults to 270', 'redux-framework-demo'),
+                        'default'  => 270,
+                        'required' => array(
+                          array('amp-design-selector','=',3),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                    ),
+                    array(
                         'id'        =>'amp-on-off-support-for-non-amp-home-page',
                         'type'      => 'switch',
                         'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
                         'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                         'default'   => 0,
+                        'required' => array(
+                          array('ampforwp-homepage-on-off-support','=',1)
+                        )
                     ),
                     array(
                         'id'       => 'ampforwp-archive-support',
