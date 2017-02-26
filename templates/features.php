@@ -590,6 +590,7 @@
 				 $content = preg_replace('/(<[^>]+) imap=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
+				 $content = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content);
 
 				 //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
@@ -1491,23 +1492,23 @@ function ampforwp_output_widget_content_below_loop() { ?>
 	</div><!-- #primary-sidebar -->
 
 <?php }
- 
+
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
 	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
 }
 
 function ampforwp_auto_add_amp_in_link_check() {
-	global $redux_builder_amp;  
+	global $redux_builder_amp;
 	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
 	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
 		add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
-	}   
+	}
 }
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
-    
+
     $atts['href'] = trailingslashit( $atts['href'] ) . AMP_QUERY_VAR;
     return $atts;
 }
