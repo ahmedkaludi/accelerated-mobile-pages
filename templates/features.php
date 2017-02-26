@@ -296,8 +296,24 @@
 					<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 				<?php }
 			}
-		} ?>
-		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script><?php
+		}
+		// Check if any of the ads are enabled then only load ads script
+		if (
+			$redux_builder_amp['enable-amp-ads-1'] || 
+			$redux_builder_amp['enable-amp-ads-2'] || 
+			$redux_builder_amp['enable-amp-ads-3'] || 
+			$redux_builder_amp['enable-amp-ads-4'] || 
+			$redux_builder_amp['ampforwp-incontent-ad-1'] ||
+			$redux_builder_amp['ampforwp-incontent-ad-2'] ||
+			$redux_builder_amp['ampforwp-incontent-ad-3'] ||
+			$redux_builder_amp['ampforwp-standard-ads-1'] ||
+			$redux_builder_amp['ampforwp-standard-ads-2'] ||
+			$redux_builder_amp['ampforwp-standard-ads-3'] ||
+			$redux_builder_amp['ampforwp-standard-ads-4'] ||
+			$redux_builder_amp['ampforwp-sticky-ad'] ) 
+		{ ?>
+			<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> <?php 
+		}
 	}
 	// 6.1 Adding Analytics Scripts
 	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
