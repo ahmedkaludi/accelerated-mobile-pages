@@ -80,7 +80,11 @@
 							?>
 							<div class="home-post-image">
 								<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
-									<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
+									<amp-img
+										src=<?php echo $thumb_url ?>
+										width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
+										height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
+										></amp-img>
 								</a>
 							</div>
 						<?php }

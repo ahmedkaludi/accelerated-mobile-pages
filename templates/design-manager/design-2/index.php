@@ -69,7 +69,14 @@
 				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
-				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
+				<div class="home-post_image">
+					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+						<amp-img src=<?php echo $thumb_url ?>
+										 width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
+										 height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
+						></amp-img>
+					</a>
+			</div>
 			<?php } ?>
 
 			<div class="amp-wp-post-content">
