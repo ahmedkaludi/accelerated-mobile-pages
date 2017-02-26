@@ -109,6 +109,8 @@ function ampforwp_rewrite_deactivate() {
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+	require_once  AMPFORWP_PLUGIN_DIR .'templates/report-bugs.php' ;
+
 
 /*
  * Load Files only in the backend
