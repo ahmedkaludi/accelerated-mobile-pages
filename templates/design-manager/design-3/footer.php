@@ -21,7 +21,13 @@
   <footer class="footer_wrapper container">
       <div id="footer">
           <div class="footer_menu">
-              <?php wp_nav_menu( array( 'theme_location' => 'amp-footer-menu' ) ); ?>
+              <?php
+                if ( has_nav_menu( 'amp-footer-menu' ) ) {
+                    wp_nav_menu( array(
+                        'theme_location' => 'amp-footer-menu',
+                    ) );
+                }
+              ?>
           </div>
           <div class="social_icons">
             <ul>
