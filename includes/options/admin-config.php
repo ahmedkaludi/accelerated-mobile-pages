@@ -1402,6 +1402,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id'       => 'amp-translator-show-more-text',
+                       'type'     => 'text',
+                       'title'    => __('Show More (Widget Button)', 'redux-framework-demo'),
+                       'default'  => 'Show More!',
+                       'placeholder'=>'write here'
+                   ),
                     array(
                        'id'       => 'amp-translator-next-read-text',
                        'type'     => 'text',

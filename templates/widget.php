@@ -62,6 +62,13 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
           echo '<li>' . get_the_title() . '</li>';
         }
         echo '</ul>';
+
+        //show more
+        if( $show_button === 'yes' && $slected_cat_id !== '' ) {
+          global $redux_builder_amp;
+          echo '<a href="'.trailingslashit(get_category_link($slected_cat_id)).'amp'.'"><button type="button">'.$redux_builder_amp['amp-translator-show-more-text'].'</button></a>';
+        }
+
     } else {
         // no posts found
     }
