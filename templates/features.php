@@ -1330,9 +1330,10 @@ function ampforwp_add_disqus_support() {
 		?>
 		<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 			<amp-iframe
-				height="350"
+				height=200
+				width=300
+				layout="responsive"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-				resizable
 				frameborder="0"
 				src="<?php echo $disqus_url ?>" >
 				<div overflow tabindex="0" role="button" aria-label="Read more"> Disqus Comments Loading...</div>
