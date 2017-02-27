@@ -51,6 +51,8 @@
   	41. Rewrite URL only on save #511
 		42. registeing AMP sidebars
 		43. custom actions for widgets output
+		44. auto adding /amp for the menu
+		45. frontpage structured data
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -299,10 +301,10 @@
 		}
 		// Check if any of the ads are enabled then only load ads script
 		if (
-			$redux_builder_amp['enable-amp-ads-1'] || 
-			$redux_builder_amp['enable-amp-ads-2'] || 
-			$redux_builder_amp['enable-amp-ads-3'] || 
-			$redux_builder_amp['enable-amp-ads-4'] || 
+			$redux_builder_amp['enable-amp-ads-1'] ||
+			$redux_builder_amp['enable-amp-ads-2'] ||
+			$redux_builder_amp['enable-amp-ads-3'] ||
+			$redux_builder_amp['enable-amp-ads-4'] ||
 			$redux_builder_amp['ampforwp-incontent-ad-1'] ||
 			$redux_builder_amp['ampforwp-incontent-ad-2'] ||
 			$redux_builder_amp['ampforwp-incontent-ad-3'] ||
@@ -310,9 +312,9 @@
 			$redux_builder_amp['ampforwp-standard-ads-2'] ||
 			$redux_builder_amp['ampforwp-standard-ads-3'] ||
 			$redux_builder_amp['ampforwp-standard-ads-4'] ||
-			$redux_builder_amp['ampforwp-sticky-ad'] ) 
+			$redux_builder_amp['ampforwp-sticky-ad'] )
 		{ ?>
-			<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> <?php 
+			<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> <?php
 		}
 	}
 	// 6.1 Adding Analytics Scripts
@@ -1517,6 +1519,8 @@ function ampforwp_output_widget_content_below_loop() { ?>
 
 <?php }
 
+
+// 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
 	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
@@ -1537,6 +1541,52 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
     return $atts;
 }
 
+// 45. frontpage structured data
+add_filter( 'amp_post_template_metadata', 'ampforwp_frontpage_metadata', 10, 2 );
+function ampforwp_frontpage_metadata( $metadata, $post ) {
+		global $redux_builder_amp;
+
+		if( is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+
+			global $wp;
+		  $current_home_url = home_url( $wp->request );
+			$metadata['mainEntityOfPage'] = $current_home_url; // proper URL added
+
+			$metadata['headline'] = get_bloginfo('name'); // proper headline added
+
+			$ID = $redux_builder_amp['amp-frontpage-select-option-pages']; // ID of slected front page
+			$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
+			$static_page_data = get_post( $ID );
+
+			$metadata['datePublished'] = $static_page_data->post_date; // proper published date added
+			$metadata['dateModified'] = $static_page_data->post_modified; // proper modified date
+
+			$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ) ); // Featured Image structured Data
+			if ( $featured_image_array ) {
+
+				// Featured Image area
+				$metadata['image']['url'] = $featured_image_array[0]; //  Featured Image URL
+				$metadata['image']['width'] = $featured_image_array[1]; //  Featured Image width
+				$metadata['image']['height'] = $featured_image_array[2]; //  Featured Image height
+
+			} else {
+
+				// placeholder Image area
+				$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url']; //  Placeholder Image URL
+				$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
+				$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
+
+				$metadata['image'] = array(
+					'@type' 	=> 'ImageObject',
+					'url' 		=> $structured_data_image ,
+					'height' 	=> $structured_data_height,
+					'width' 	=> $structured_data_width,
+				);
+			}
+
+	return $metadata;
+	}
+}
 add_action('ampforwp_global_after_footer','amp_lightbox');
 function amp_lightbox(){
 	  global $redux_builder_amp; if( $redux_builder_amp['amp-design-1-search-feature']||$redux_builder_amp['amp-design-2-search-feature']||$redux_builder_amp['amp-design-3-search-feature'] ) { ?>
