@@ -131,7 +131,6 @@ function ampforwp_add_design3_required_fonts( $data ) {
 
 // Add required Javascripts for Design 3
 add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts' );
-add_filter( 'amp_post_template_data', 'ampforwp_add_design_required_scripts' );
 function ampforwp_add_design3_required_scripts( $data ) {
 	global $redux_builder_amp;
 
@@ -154,4 +153,3 @@ function ampforwp_add_design3_required_scripts( $data ) {
 	return $data;
 }
 
-add_action('ampforwp_search_form','ampforwp_the_search_form');
