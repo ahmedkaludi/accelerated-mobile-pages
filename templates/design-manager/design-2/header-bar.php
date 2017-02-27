@@ -31,6 +31,7 @@
         <?php } else { ?>
           <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h3>
         <?php } ?>
+          <?php do_action('ampforwp_header_search'); ?>
 
       </div>
   </div>
@@ -41,12 +42,12 @@
 	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
 </div>
 
-
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
       <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
+
   </div>
 </amp-sidebar>

@@ -131,18 +131,10 @@ function ampforwp_add_design3_required_fonts( $data ) {
 
 // Add required Javascripts for Design 3
 add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_design_required_scripts' );
 function ampforwp_add_design3_required_scripts( $data ) {
 	global $redux_builder_amp;
 
-	// Add Scripts only when Search is Enabled
-	if( $redux_builder_amp['amp-design-3-search-feature'] ) {
-		if ( empty( $data['amp_component_scripts']['amp-lightbox'] ) ) {
-			$data['amp_component_scripts']['amp-lightbox'] = 'https://cdn.ampproject.org/v0/amp-lightbox-0.1.js';
-		}
-		if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
-			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-		}
-	}
 	// Add Scripts only when AMP Menu is Enabled
 	if( has_nav_menu( 'amp-menu' ) ) {
 		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
@@ -162,22 +154,4 @@ function ampforwp_add_design3_required_scripts( $data ) {
 	return $data;
 }
 
-// Search Form
-function ampforwp_get_search_form() {
-	global $redux_builder_amp;
-	$label = $redux_builder_amp['ampforwp-design-3-search-label'];
-	$placeholder = $redux_builder_amp['ampforwp-design-3-search-placeholder'];
-    $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
-                <div>
-                    <label class="screen-reader-text" for="s">' . $label . '</label>
-                    <input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
-                    <input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
-                    <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
-                </div>
-            </form>';
-    return $form;
-}
-function ampforwp_the_search_form() {
-    echo ampforwp_get_search_form();
-}
 add_action('ampforwp_search_form','ampforwp_the_search_form');

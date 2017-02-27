@@ -154,7 +154,115 @@ amp-sidebar {
     width: 100%;
 }
 
+.searchmenu{
+    margin-right: 15px;
+    margin-top: 11px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.searchmenu button{
+    background:transparent;
+    border:none
+}    
+ 
+.closebutton{
+    background: transparent;
+    border: 0;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    text-align: center;
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    outline:none
+}
+amp-lightbox{
+    background: rgba(0, 0, 0,0.85);
+}
+/* CSS3 icon */
 
+[class*=icono-]:after, [class*=icono-]:before {
+    content: '';
+    pointer-events: none;
+}
+.icono-search:before{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+     transform: rotate(270deg);
+    width: 2px;
+    height: 9px;
+    box-shadow: inset 0 0 0 32px;
+    top: 0px;
+    border-radius: 0 0 1px 1px;
+    left: 14px;
+} 
+[class*=icono-] {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-style: normal;
+    color: #f42;
+    text-align: left;
+    text-indent: -9999px;
+    direction: ltr
+}
+
+.icono-search {
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.icono-search {
+    border: 1px solid;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin: 4px 4px 8px 8px;
+}
+.searchform label{
+    color: #f7f7f7;
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.3px;
+    line-height: 0;
+    opacity:0.6
+}
+.searchform{
+    background: transparent;
+    left: 20%;
+    position: absolute;
+    top: 35%;
+    width: 60%;
+    max-width: 100%;
+    transition-delay: 0.5s;
+}
+.searchform input{
+    background: transparent;
+    border: 1px solid #666;
+    color: #f7f7f7;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.3px;
+    text-transform: capitalize;
+    padding: 20px 0px 20px 30px;
+    margin-top: 15px;
+    width: 100%;
+}
+#searchsubmit{display:none}
+.hide{display:none}
+.headerlogo a, [class*=icono-]{ color: #F42F42 }
 /* Pagination */
 .amp-wp-content.pagination-holder {
     background: none;
@@ -748,7 +856,7 @@ main .amp-loop-list {
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
 .amp-wp-tax-tag a,
 a,
-.amp-wp-author {
+.amp-wp-author, .headerlogo a, [class*=icono-] {
     color: <?php echo sanitize_hex_color( $header_background_color ); ?>;;
 }
 .amp-wp-content blockquote{

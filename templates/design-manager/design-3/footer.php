@@ -110,11 +110,5 @@
   </footer>
 </div><!--Design3 Ends-->
 
-<?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
-<amp-lightbox id="search-icon" layout="nodisplay">
-    <?php do_action('ampforwp_search_form'); ?>
-    <button on="tap:search-icon.close" class="closebutton">X</button>
-    <i class="icono-cross"></i>
-</amp-lightbox>
-<?php } ?>
-<?php do_action('ampforwp_global_after_footer'); ?>
+ <?php 
+ do_action('ampforwp_global_after_footer'); ?> 

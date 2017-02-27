@@ -114,9 +114,7 @@
           <h1><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h1>
         <?php } ?>
         </div>
-        <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
-        <div class="searchmenu"><button on="tap:search-icon"><i class="icono-search"></i></button>          </div>
-        <?php } ?>
+        <?php do_action('ampforwp_header_search'); ?>
       </div>
   </div>
 </header>

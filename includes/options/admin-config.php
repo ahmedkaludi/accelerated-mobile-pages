@@ -499,6 +499,27 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+
+             array(
+                'id'       => 'amp-design-2-search-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Search', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '2')
+                ),
+                'default'  => '0'
+            ),
+
+             array(
+                'id'       => 'amp-design-1-search-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Search', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '1')
+                ),
+                'default'  => '0'
+            ),
+
              array(
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
@@ -1472,26 +1493,22 @@ Redux::setArgs( "redux_builder_amp", $args );
                        )
                    ),
                    array(
-                      'id'       => 'ampforwp-design-3-search-placeholder',
+                      'id'       => 'ampforwp-search-placeholder',
                       'type'     => 'text',
                       'title'    => __('Type Here', 'redux-framework-demo'),
                       'default'  => 'Type Here',
                       'desc' => 'This is the text that gets shown in for Search Box',
                       'placeholder'=>'write here',
-                      'required' => array(
-                        array('amp-design-selector', '=' , '3')
-                      )
+                      
                   ),
                   array(
-                     'id'       => 'ampforwp-design-3-search-label',
+                     'id'       => 'ampforwp-search-label',
                      'type'     => 'text',
                      'title'    => __('Type your search query and hit enter', 'redux-framework-demo'),
                      'desc' => 'This is the text that gets shown above Search Box',
                      'default'  => 'Type your search query and hit enter: ',
                      'placeholder'=>'write here',
-                     'required' => array(
-                       array('amp-design-selector', '=' , '3')
-                     )
+
                  ),
                )
            ) );

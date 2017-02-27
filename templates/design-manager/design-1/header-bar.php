@@ -61,10 +61,10 @@
           <span></span>
           <span></span>
       </a>
+      <?php do_action('ampforwp_header_search'); ?>
   </div>
 
   </div>
-
 </header>
 <amp-sidebar id='sidebar'
     layout="nodisplay"
