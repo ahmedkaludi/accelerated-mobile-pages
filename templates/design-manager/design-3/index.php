@@ -120,7 +120,11 @@ if ( get_query_var( 'paged' ) ) {
 				<div class="home-post_image">
 					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img
-							layout="responsive"
+							<?php
+							global $redux_builder_amp;
+							 if( !$redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {
+								echo 'layout="responsive"';
+							} ?>
 							src=<?php echo $thumb_url ?>
 							width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-width'] ?>
 							height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-height'] ?>
