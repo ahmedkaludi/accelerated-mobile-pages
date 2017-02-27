@@ -126,8 +126,13 @@ if ( get_query_var( 'paged' ) ) {
 								echo 'layout="responsive"';
 							} ?>
 							src=<?php echo $thumb_url ?>
-							width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-width'] ?>
-							height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-height'] ?>
+							<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
+								width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-width'] ?>
+								height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-height'] ?>
+							<?php } else { ?>
+								width=450
+								height=270
+							<?php } ?>
 						></amp-img>
 					</a>
 				</div>

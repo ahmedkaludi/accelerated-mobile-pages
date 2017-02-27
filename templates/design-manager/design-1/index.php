@@ -82,9 +82,14 @@
 								<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
 									<amp-img
 										src=<?php echo $thumb_url ?>
-										width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
-										height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
-										></amp-img>
+										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
+											width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
+											height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
+										<?php } else { ?>
+											width=100
+											height=75
+										<?php } ?>
+									></amp-img>
 								</a>
 							</div>
 						<?php }
