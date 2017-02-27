@@ -161,7 +161,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'desc'    => __('Default width is 190 pixels', 'redux-framework-demo'),
                 'default' => '190',
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
-
             ),
              array(
                 'id'       => 'opt-media-height',
@@ -172,8 +171,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
             ),
-
-
             array(
                 'id'        =>'amp-frontpage-select-option',
                 'type'      => 'switch',
@@ -216,7 +213,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-homepage-posts-image-modify-size',
                'type'     => 'switch',
-               'title'    => __('Override Loop Tumbnails Size ?', 'redux-framework-demo'),
+               'title'    => __('Override Loop Tumbnails Size', 'redux-framework-demo'),
                'default'  => 0,
            ),
            array(
