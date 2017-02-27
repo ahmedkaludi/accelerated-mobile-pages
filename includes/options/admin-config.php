@@ -213,7 +213,56 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
            ),
-
+           array(
+               'id'       => 'ampforwp-homepage-posts-image-modify-size',
+               'type'     => 'switch',
+               'title'    => __('Override Loop Tumbnails Size ?', 'redux-framework-demo'),
+               'default'  => 0,
+           ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-1-2-width',
+               'type'     => 'text',
+               'title'    => __('Image Width', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 100', 'redux-framework-demo'),
+               'default'  => 100,
+               'required' => array(
+                 array('amp-design-selector','!=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+           ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-1-2-height',
+               'type'     => 'text',
+               'title'    => __('Image Height', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 75', 'redux-framework-demo'),
+               'default'  => 75,
+               'required' => array(
+                 array('amp-design-selector','!=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+           ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-3-width',
+               'type'     => 'text',
+               'title'    => __('Image Width', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 450', 'redux-framework-demo'),
+               'default'  => 450,
+               'required' => array(
+                 array('amp-design-selector','=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+           ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-3-height',
+               'type'     => 'text',
+               'title'    => __('Image Height', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 270', 'redux-framework-demo'),
+               'default'  => 270,
+               'required' => array(
+                 array('amp-design-selector','=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+           )
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -1530,59 +1579,6 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
-                    ),
-                    array(
-                        'id'       => 'ampforwp-homepage-posts-image-modify-size',
-                        'type'     => 'switch',
-                        'title'    => __('Modify Default Image sizes ?', 'redux-framework-demo'),
-                        'default'  => 0,
-                        'required' => array(
-                          array('ampforwp-homepage-on-off-support','=',1)
-                        )
-                    ),
-                    array(
-                        'id'       => 'ampforwp-homepage-posts-design-1-2-width',
-                        'type'     => 'text',
-                        'title'    => __('Image Width', 'redux-framework-demo'),
-                        'subtitle' => __('Defaults to 100', 'redux-framework-demo'),
-                        'default'  => 100,
-                        'required' => array(
-                          array('amp-design-selector','!=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
-                    ),
-                    array(
-                        'id'       => 'ampforwp-homepage-posts-design-1-2-height',
-                        'type'     => 'text',
-                        'title'    => __('Image Height', 'redux-framework-demo'),
-                        'subtitle' => __('Defaults to 75', 'redux-framework-demo'),
-                        'default'  => 75,
-                        'required' => array(
-                          array('amp-design-selector','!=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
-                    ),
-                    array(
-                        'id'       => 'ampforwp-homepage-posts-design-3-width',
-                        'type'     => 'text',
-                        'title'    => __('Image Width', 'redux-framework-demo'),
-                        'subtitle' => __('Defaults to 450', 'redux-framework-demo'),
-                        'default'  => 450,
-                        'required' => array(
-                          array('amp-design-selector','=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
-                    ),
-                    array(
-                        'id'       => 'ampforwp-homepage-posts-design-3-height',
-                        'type'     => 'text',
-                        'title'    => __('Image Height', 'redux-framework-demo'),
-                        'subtitle' => __('Defaults to 270', 'redux-framework-demo'),
-                        'default'  => 270,
-                        'required' => array(
-                          array('amp-design-selector','=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
                     ),
                     array(
                         'id'        =>'amp-on-off-support-for-non-amp-home-page',
