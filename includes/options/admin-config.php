@@ -1488,9 +1488,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type' => 'section',
                        'title' => __('Search bar Translation Text', 'redux-framework-demo'),
                        'indent' => true,
-                       'required' => array(
-                         array('amp-design-selector', '=' , '3')
-                       )
                    ),
                    array(
                       'id'       => 'ampforwp-search-placeholder',
@@ -1499,7 +1496,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       'default'  => 'Type Here',
                       'desc' => 'This is the text that gets shown in for Search Box',
                       'placeholder'=>'write here',
-                      
+
                   ),
                   array(
                      'id'       => 'ampforwp-search-label',
