@@ -205,12 +205,12 @@
             $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
         }
 
-    
+
         	if ( is_search() && $redux_builder_amp['amp-design-1-search-feature']||is_search() && $redux_builder_amp['amp-design-2-search-feature']||is_search() && $redux_builder_amp['amp-design-3-search-feature'] )  {
 
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
-    	
+
 
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
@@ -1583,9 +1583,8 @@ function ampforwp_frontpage_metadata( $metadata, $post ) {
 					'width' 	=> $structured_data_width,
 				);
 			}
-
-	return $metadata;
 	}
+	return $metadata;
 }
 add_action('ampforwp_global_after_footer','amp_lightbox');
 function amp_lightbox(){
@@ -1595,8 +1594,8 @@ function amp_lightbox(){
     <button on="tap:search-icon.close" class="closebutton">X</button>
     <i class="icono-cross"></i>
 </amp-lightbox>
-<?php } 
-} 
+<?php }
+}
 
 add_action('ampforwp_header_search','amp_header_search');
 function amp_header_search(){
