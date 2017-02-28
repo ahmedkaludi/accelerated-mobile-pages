@@ -1630,3 +1630,36 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 			return false;
 	}
 }
+
+
+// 45. Search page structured data
+add_filter( 'amp_post_template_metadata', 'ampforwp_search_metadata', 10, 2 );
+function ampforwp_search_metadata( $metadata, $post ) {
+		global $redux_builder_amp;
+
+		if( is_search() ) {
+			$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
+			$amp_search_url = untrailingslashit($current_search_url);
+			$metadata['mainEntityOfPage'] = $amp_search_url; // proper URL added
+
+			$metadata['headline'] = 'Search Results for '.'"'.get_search_query().'"'; // proper headline added
+
+			// To DO : check the time suff please, line : 1645 - 1647
+			$metadata['datePublished'] = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) - 2 ); // proper published date added
+			// time difference is 2 minute between published and modified date
+			$metadata['dateModified'] = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ); // proper modified date
+
+			// placeholder Image area
+			$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url']; //  Placeholder Image URL
+			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
+			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
+
+			$metadata['image'] = array(
+				'@type' 	=> 'ImageObject',
+				'url' 		=> $structured_data_image ,
+				'height' 	=> $structured_data_height,
+				'width' 	=> $structured_data_width,
+			);
+	}
+	return $metadata;
+}
