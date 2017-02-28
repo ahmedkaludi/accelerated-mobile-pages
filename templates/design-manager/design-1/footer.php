@@ -38,7 +38,7 @@ global $redux_builder_amp;
 			if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){
 				if ( $ampforwp_backto_nonamp ) { ?>
 				  |
-					<a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?>
+					<a href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?>
 					</a> <?php
 				}//End of inner condition
 			}//End of outer condition?>

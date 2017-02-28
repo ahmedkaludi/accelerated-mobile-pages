@@ -4,7 +4,7 @@
     <?php
     if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
     ?>
-      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>">
+      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
       <?php
     }else{
       ?>
@@ -13,7 +13,7 @@
 
         <?php } else { ?>
 
-        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>">
+        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
 
     <?php }
   }?>
@@ -45,7 +45,7 @@
 
     <?php } else {?>
 
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) .'?nonamp=1'); ?>">
+    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) .'?nonamp=1'); ?>" rel="nofollow">
 
     <?php }
     } ?>
