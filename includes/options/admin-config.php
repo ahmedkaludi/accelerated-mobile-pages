@@ -171,37 +171,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
             ),
-            array(
-                'id'        =>'amp-frontpage-select-option',
-                'type'      => 'switch',
-                'title'     => __('Front Page', 'redux-framework-demo'),
-                'default'   => 0,
-                'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
-                'true'      => 'true',
-                'false'     => 'false',
-            ),
-            array(
-                'id'       => 'amp-frontpage-select-option-pages',
-                'type'     => 'select',
-                'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
-                'required' => array('amp-frontpage-select-option', '=' , '1'),
-                // Must provide key => value pairs for select options
-                'data'     => 'page',
-                'args'     => array(
-                    'post_type' => 'page',
-                    'posts_per_page' => 500
-                ),
-                'default'  => '2',
-            ),
-            array(
-               'id'       => 'ampforwp-title-on-front-page',
-               'type'     => 'switch',
-               'url'      => true,
-               'title'    => __('Title on Static Front Page', 'redux-framework-demo'),
-               'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
-               'default' => 0,
-               'required' => array('amp-frontpage-select-option', '=' , '1'),
-           ),
            array(
                'id'        =>'amp-on-off-for-all-pages',
                'type'      => 'switch',
@@ -209,13 +178,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
-           ),
+            ),
            array(
                'id'       => 'ampforwp-homepage-posts-image-modify-size',
                'type'     => 'switch',
                'title'    => __('Override Loop Tumbnails Size', 'redux-framework-demo'),
                'default'  => 0,
-           ),
+            ),
            array(
                'id'       => 'ampforwp-homepage-posts-design-1-2-width',
                'type'     => 'text',
@@ -226,7 +195,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','!=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
-           ),
+            ),
            array(
                'id'       => 'ampforwp-homepage-posts-design-1-2-height',
                'type'     => 'text',
@@ -237,7 +206,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','!=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
-           ),
+            ),
            array(
                'id'       => 'ampforwp-homepage-posts-design-3-width',
                'type'     => 'text',
@@ -248,7 +217,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
-           ),
+            ),
            array(
                'id'       => 'ampforwp-homepage-posts-design-3-height',
                'type'     => 'text',
@@ -259,7 +228,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
-           )
+            )
 
             // array(
             //     'id'       => 'amp-footer-text',
@@ -296,6 +265,55 @@ Redux::setArgs( "redux_builder_amp", $args );
 
       )
     ) );//END
+    // Homepage Section
+   Redux::setSection( $opt_name, array(
+                'title'      => __( 'Homepage', 'redux-framework-demo' ),
+        'id'         => 'amp-homepage-settings',
+        'subsection' => true,
+        'fields'     => array(
+              array(
+                        'id'       => 'ampforwp-homepage-on-off-support',
+                        'type'     => 'switch',
+                        'title'    => __('Homepage Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
+                        'default'  => '1'
+            ),
+            array(
+                'id'        =>'amp-frontpage-select-option',
+                'type'      => 'switch',
+                'title'     => __('Front Page', 'redux-framework-demo'),
+                'default'   => 0,
+                'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'required'  => array('ampforwp-homepage-on-off-support','=','1'),
+            ),
+            array(
+                'id'       => 'amp-frontpage-select-option-pages',
+                'type'     => 'select',
+                'title'    => __('Select Page as Front Page', 'redux-framework-demo'),
+                'required' => array('amp-frontpage-select-option', '=' , '1'),
+                // Must provide key => value pairs for select options
+                'data'     => 'page',
+                'args'     => array(
+                    'post_type' => 'page',
+                    'posts_per_page' => 500
+                ),
+                'default'  => '2',
+            ),
+            array(
+               'id'       => 'ampforwp-title-on-front-page',
+               'type'     => 'switch',
+               'url'      => true,
+               'title'    => __('Title on Static Front Page', 'redux-framework-demo'),
+               'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
+               'default' => 0,
+               'required' => array('amp-frontpage-select-option', '=' , '1'),
+            ),
+          )
+        )
+      );
+
 
     // AMP GTM SECTION
    Redux::setSection( $opt_name,    array(
@@ -1595,13 +1613,13 @@ Redux::setSection( $opt_name, array(
    'subsection' => true,
    'fields'     => array(
 
-                    array(
+                   /* array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
-                    ),
+                    ),*/
                     array(
                         'id'        =>'amp-on-off-support-for-non-amp-home-page',
                         'type'      => 'switch',
