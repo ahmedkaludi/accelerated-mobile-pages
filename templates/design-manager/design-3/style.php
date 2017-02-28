@@ -1305,11 +1305,14 @@ amp-user-notification button {
     text-align: center;
 }
 #ampsomething { display: none; }
-#header{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
-.nav_container, .comment-button-wrapper a , #pagination .next a, #pagination .prev a, .toast:after, .toast:before, .toast span{
+#header, .headerlogo a{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
+.nav_container, .comment-button-wrapper a , #pagination .next a, #pagination .prev a{
     background: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> ;
 }
- .headerlogo a, [class*=icono-]{ color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
+.toast:after, .toast:before, .toast span{
+    background: <?php echo $redux_builder_amp['amp-opt-color-rgba-headerelements']['color']; ?> ;
+}
+ [class*=icono-], .headerlogo a{ color: <?php echo $redux_builder_amp['amp-opt-color-rgba-headerelements']['color']; ?> }
 #pagination .next a, #pagination .prev a , #pagination .next a, #pagination .prev a , .comment-button-wrapper a {
     color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-font']['color']; ?> ;
 }

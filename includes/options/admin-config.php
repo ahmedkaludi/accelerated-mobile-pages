@@ -475,6 +475,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'type'      => 'color_rgba',
                     'title'     => 'Header Elements Color',
                     'default'   => array(
+                        'color'     => '#333',
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '3')
