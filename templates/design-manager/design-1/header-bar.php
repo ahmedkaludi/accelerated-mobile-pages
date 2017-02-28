@@ -54,15 +54,17 @@
             <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>
         <?php endif; ?>
     </a>
-
-  <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-      <a href="#" class="toggle-text">
-          <span></span>
-          <span></span>
-          <span></span>
-      </a>
-      <?php do_action('ampforwp_header_search'); ?>
-  </div>
+   
+    <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
+        <a href="#" class="toggle-text">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </div>
+    <?php do_action('ampforwp_header_search'); ?>
+   
+  
 
   </div>
 </header>

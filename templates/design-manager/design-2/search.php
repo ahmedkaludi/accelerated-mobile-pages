@@ -73,7 +73,7 @@
 		    </div>
             <div class="cb"></div>
 		</div>
-	<?php endwhile;  ?>
+		<?php endwhile; ?>
 		<div class="amp-wp-content pagination-holder">
 
 			<div id="pagination">
@@ -83,7 +83,13 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-
+	<?php else: ?>	
+		<div class="amp-wp-content amp-loop-list">
+			<div class="amp-wp-post-content">
+				 <?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.' ); ?> 
+		    </div>
+            <div class="cb"></div>
+		</div>
 	<?php endif; ?>
 	 <?php wp_reset_postdata(); ?>
 	<?php do_action('ampforwp_post_after_loop') ?>

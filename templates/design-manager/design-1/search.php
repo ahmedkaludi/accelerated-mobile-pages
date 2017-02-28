@@ -59,17 +59,10 @@
 		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
 		        </h1>
 
-
-
-
 				<div class="amp-wp-content-loop">
 
 		          <div class="amp-wp-meta">
-									<time> <?php
-												printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
-															human_time_diff( get_the_time( 'U' ),
-															current_time( 'timestamp' ) ) ); ?>
-									</time>
+						<time> <?php printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) ); ?> </time>
 		          </div>
 
 					<?php if ( has_post_thumbnail() ) { ?>
@@ -102,6 +95,11 @@
 		        </div>
 
 		    </div>
+		<?php else: ?>	
+			<div class="amp-wp-content amp-wp-article-header amp-loop-list">
+				<?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.' ); ?> 
+				<div class="cb"></div>
+			</div>
 		<?php endif; ?> <?php wp_reset_postdata(); ?>
 
 	<?php do_action('ampforwp_post_after_loop') ?>

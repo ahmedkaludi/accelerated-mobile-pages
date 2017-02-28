@@ -105,7 +105,7 @@
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			Sorry No posts Found for <?php echo get_search_query(); ?>
+ 			<?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.' ); ?> 
  		</div>
 
 	<?php endif; ?>
