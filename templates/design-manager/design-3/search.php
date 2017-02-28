@@ -39,14 +39,12 @@
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
 		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'orderby'             => 'date',
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
+			'has_password' 		  => false ,
+			'post_status'		  => 'publish'
 		) ); ?>
 
 
