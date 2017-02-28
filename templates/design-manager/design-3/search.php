@@ -4,10 +4,16 @@
 <head>
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-	<?php
-	if ( is_home() || is_front_page() || is_search() ){
-		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
-		$amp_url = untrailingslashit($current_search_url);
+	<?php $paged = get_query_var( 'paged' );
+	$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
+	$amp_url = untrailingslashit($current_search_url);
+	if ($paged > 1 ) {
+		global $wp;
+		$current_archive_url 	= home_url( $wp->request );
+		$amp_url 				= trailingslashit($current_archive_url);
+		$remove 				= '/'. AMP_QUERY_VAR;
+		$amp_url				= str_replace($remove, '', $amp_url) ;
+		$amp_url 				= $amp_url ."?s=".get_search_query();
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">

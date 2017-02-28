@@ -93,6 +93,7 @@
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
+		global $wp;
 	    if( is_attachment() ) {
 	        return;
 	    }
@@ -156,10 +157,13 @@
 					$amp_url = $new_url . $impode_url ;
 				}
 
-        if( is_search() ) {
-          $current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
-          $amp_url = untrailingslashit($current_search_url);
-        }
+		        if( is_search() ) {
+		          $current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
+			          if ( $wp->query_vars['paged'] >= '2' ) {
+			          	$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
+			          }
+		          $amp_url = untrailingslashit($current_search_url);
+		        }
 
 				if( $supported_amp_post_types) {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
