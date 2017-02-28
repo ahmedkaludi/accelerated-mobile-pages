@@ -451,7 +451,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-color-rgba-headercolor',
                 'type'      => 'color_rgba',
-                'title'     => 'Header Color',
+                'title'     => 'Header Background Color',
                 'default'   => array(
                     'color'     => '#FFFFFF',
                 ),
@@ -468,8 +468,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '3')
-                    )
-                  ),
+                 )
+              ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-headerelements',
+                    'type'      => 'color_rgba',
+                    'title'     => 'Header Elements Color',
+                    'default'   => array(
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                 )
+             ),
 
           array(
                      'id'       => 'amp-design-3-featured-slider',
