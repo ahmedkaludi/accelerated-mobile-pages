@@ -1167,6 +1167,10 @@ function ampforwp_remove_title_tags(){
           }
         }
 				echo  $site_title ;
+			}
+
+			if( is_search() ) {
+				echo 'Search Results for '.'"'.get_search_query().'"';
 			} ?>
 		</title>
 	 	<?php
