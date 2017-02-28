@@ -54,6 +54,7 @@
 		44. auto adding /amp for the menu
 		45. frontpage structured data
 		46. search search search everywhere #615
+		47. social js properly adding when required
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -293,17 +294,21 @@
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 		<?php } ?>
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-			<?php if( is_singular() ) { ?>
+			<?php if( is_singular() ) {
+							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
 				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-			<?php }
+			<?php   }
+						}
 		} ?>
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
 			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-				if( is_home() ) { ?>
-					<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-				<?php }
-			}
-		}
+							if( is_home() ) {
+								if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
+								<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+					<?php }
+							}
+						}
+					}
 		// Check if any of the ads are enabled then only load ads script
 		if (
 			$redux_builder_amp['enable-amp-ads-1'] ||
@@ -1033,9 +1038,11 @@ function ampforwp_sticky_social_icons(){
 //
 // }
 //	add_action('amp_post_template_head','ampforwp_register_social_sharing_script');
-function ampforwp_register_social_sharing_script() { ?>
-<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+function ampforwp_register_social_sharing_script() {
+			if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
+				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 <?php }
+}
 
 //	25. Yoast meta Support
 function ampforwp_custom_yoast_meta(){
@@ -1586,3 +1593,32 @@ function ampforwp_frontpage_metadata( $metadata, $post ) {
 
 // 46. search search search everywhere #615
 require 'search-functions.php';
+
+// 47. social js properly adding when required
+if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
+	function is_socialshare_or_socialsticky_enabled_in_ampforwp() {
+		global $redux_builder_amp;
+		if(  $redux_builder_amp['enable-single-facebook-share'] ||
+				 $redux_builder_amp['enable-single-twitter-share']  ||
+				 $redux_builder_amp['enable-single-gplus-share']  ||
+				 $redux_builder_amp['enable-single-email-share'] ||
+				 $redux_builder_amp['enable-single-pinterest-share']  ||
+				 $redux_builder_amp['enable-single-linkedin-share'] ||
+				 $redux_builder_amp['enable-single-whatsapp-share'] ||
+				 $redux_builder_amp['enable-single-twittter-profile'] ||
+				 $redux_builder_amp['enable-single-facebook-profile'] ||
+				 $redux_builder_amp['enable-single-pintrest-profile'] ||
+				 $redux_builder_amp['enable-single-google-plus-profile'] ||
+				 $redux_builder_amp['enable-single-linkdin-profile'] ||
+				 $redux_builder_amp['enable-single-youtube-profile'] ||
+				 $redux_builder_amp['enable-single-instagram-profile'] ||
+				 $redux_builder_amp['enable-single-VKontakte-profile'] ||
+				 $redux_builder_amp['enable-single-reddit-profile'] ||
+				 $redux_builder_amp['enable-single-snapchat-profile'] ||
+				 $redux_builder_amp['enable-single-Tumblr-profile']
+	 			 ) {
+					return true;
+				}
+			return false;
+	}
+}
