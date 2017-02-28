@@ -1572,9 +1572,6 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$headline = 'Search Results for '.'"'.get_search_query().'"';
 			}
 
-			$metadata['mainEntityOfPage'] = $current_url; // proper URL added
-			$metadata['headline'] = $headline; // proper headline added
-
 			// placeholder Image area
 			$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url']; //  Placeholder Image URL
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
@@ -1582,7 +1579,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 
 			if( is_front_page() ) {
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages']; // ID of slected front page
-				$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
+				$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 				$static_page_data = get_post( $ID );
 
 				$datePublished = $static_page_data->post_date;
@@ -1609,6 +1606,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				'height' 	=> $structured_data_height,
 				'width' 	=> $structured_data_width,
 			);
+
+			$metadata['mainEntityOfPage'] = $current_url; // proper URL added
+			$metadata['headline'] = $headline; // proper headline added
 	}
 	return $metadata;
 }
