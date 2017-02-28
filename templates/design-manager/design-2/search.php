@@ -86,7 +86,7 @@
 	<?php else: ?>	
 		<div class="amp-wp-content amp-loop-list">
 			<div class="amp-wp-post-content">
-				 <?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.' ); ?> 
+				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
 		    </div>
             <div class="cb"></div>
 		</div>

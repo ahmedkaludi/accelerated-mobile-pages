@@ -1331,13 +1331,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
-                       'id'       => 'amp-translator-search-text',
-                       'type'     => 'text',
-                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
-                       'default'  => ' You searched for: ',
-                       'placeholder'=>'write here'
-                   ),
-                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'redux-framework-demo'),
@@ -1510,6 +1503,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('Next Read', 'redux-framework-demo'),
                        'default'  => 'Next Read: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-search-text',
+                       'type'     => 'text',
+                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
+                       'default'  => ' You searched for: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-search-no-found',
+                       'type'     => 'text',
+                       'title'    => __(' It seems we can\'t find what you\'re looking for. ', 'redux-framework-demo'),
+                       'default'  => ' It seems we can\'t find what you\'re looking for. ',
                        'placeholder'=>'write here'
                    ),
                    array(

@@ -97,7 +97,7 @@
 		    </div>
 		<?php else: ?>	
 			<div class="amp-wp-content amp-wp-article-header amp-loop-list">
-				<?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.' ); ?> 
+				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?> 
 				<div class="cb"></div>
 			</div>
 		<?php endif; ?> <?php wp_reset_postdata(); ?>
