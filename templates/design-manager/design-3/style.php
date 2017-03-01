@@ -330,7 +330,7 @@ h2.amp-wp-title a{
 .amp-loop-list{ position:relative;     border-bottom: 1px solid #ededed;
     padding: 25px 15px 25px 15px }
 body .amp-loop-list-noimg .amp-wp-post-content{
-    width:100% 
+    width:100%
 }
 .amp-loop-list .amp-wp-post-content{
     float: left;
@@ -369,7 +369,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{
 #footer p{
     margin: 0
 }
-.rightslink{
+.rightslink, #footer .rightslink a{
     font-size:13px;
     color:#999
 }
@@ -772,7 +772,7 @@ pre {
     margin-top:6px
 }
 .headerlogo a{
-    color:#F42; 
+    color:#F42;
 }
 /*Navigation Menu*/
 .toast {
@@ -1039,7 +1039,7 @@ amp-lightbox{
     .amp-loop-list .featured_time{line-height:1}
     .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;}
 }
- 
+
 @media screen and (max-width: 600px) {
 .amp-loop-list .amp-wp-tags{display:none}
 }
@@ -1096,7 +1096,7 @@ amp-lightbox{
     .icono-share{display:none}
     .ampforwp-social-icons amp-social-share{ margin-right: 3px;}
     main .amp-wp-content{ font-size: 16px; line-height: 26px;}
-    .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} 
+    .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;}
 }
 @media screen and (max-width: 400px) {
     .amp-wp-title{
@@ -1153,7 +1153,7 @@ amp-lightbox{
 }
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
-/* RTL Start */ 
+/* RTL Start */
 /* RTL End */
 <?php } ?>
 
@@ -1321,6 +1321,78 @@ amp-user-notification button {
 	color:#fff;
 }
 <?php } ?>
+
+<?php
+// Table press support
+if ( class_exists('TablePress') ) { ?>
+	/* Table description */
+	.tablepress-table-description {
+		clear: both;
+		display: block;
+	}
+
+	.tablepress {
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		margin-bottom: 1em;
+		border: none;
+	}
+
+	.tablepress th,
+	.tablepress td {
+		padding: 8px;
+		border: none;
+		background: none;
+		text-align: left;
+	}
+	.tablepress tbody td {
+		vertical-align: top;
+	}
+
+	/* Horizontal borders */
+	.tablepress tbody td,
+	.tablepress tfoot th {
+		border-top: 1px solid #dddddd;
+	}
+	.tablepress tbody tr:first-child td {
+		border-top: 0;
+	}
+	.tablepress thead th {
+		border-bottom: 1px solid #dddddd;
+	}
+
+	/* Row background colors */
+	.tablepress thead th,
+	.tablepress tfoot th {
+		background-color: #d9edf7;
+		font-weight: bold;
+		vertical-align: middle;
+	}
+	.tablepress .odd td {
+		background-color: #f9f9f9;
+	}
+	.tablepress .even td {
+		background-color: #ffffff;
+	}
+	.tablepress .row-hover tr:hover td {
+		background-color: #f3f3f3;
+	}
+
+	@media (min-width: 768px) and (max-width: 1600px) {
+	.tablepress{
+	    overflow-x: none;
+	}
+	}
+	@media (min-width: 320px) and (max-width: 767px) {
+	.tablepress{
+	  display: inline-block;
+	  overflow-x: scroll;
+	}
+	}
+
+<?php }  ?>
+
 /* Custom Style Code */
 	<?php echo $redux_builder_amp['css_editor'];
 } ?>

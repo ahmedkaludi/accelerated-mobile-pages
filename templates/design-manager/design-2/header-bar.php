@@ -19,7 +19,7 @@
             <span class="header-logo-center">
               <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="300" height="68" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
               </amp-img>
-            </spam>
+            </span>
           </a>
         <?php } else { ?>
           <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"><?php bloginfo('name'); ?></a></h3>

@@ -89,10 +89,15 @@
               global $allowed_html;
               echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
               ?>
+              <?php
+              //24. Added an options button for switching on/off link to non amp page
+              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
+                if ( $ampforwp_backto_nonamp ) { ?> | <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+              } ?>
           </p>
           <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
           <p class="poweredby">
-              <a href="https://ampforwp.com">Powered by AMPforWP</a>
+              <a href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>
           <p>
             <?php } ?>
       </div>

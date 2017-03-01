@@ -148,6 +148,30 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle' => __('Upload a logo for the AMP version.', 'redux-framework-demo'),
                 'desc'    => __('Recommend logo size is: 190x36', 'redux-framework-demo')
             ),
+            array(
+                'id'       => 'ampforwp-custom-logo-dimensions',
+                'title'    => __('Custom Logo Size', 'redux-framework-demo'),
+                'type'     => 'switch',
+                'default'  => 0,
+            ),
+             array(
+                'id'       => 'opt-media-width',
+                'type'     => 'text',
+                'title'    => __('Logo Width', 'redux-framework-demo'),
+                'desc'    => __('Default width is 190 pixels', 'redux-framework-demo'),
+                'default' => '190',
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+
+            ),
+             array(
+                'id'       => 'opt-media-height',
+                'type'     => 'text',
+                'title'    => __('Logo Height', 'redux-framework-demo'),
+                'desc'    => __('Default height is 36 pixels', 'redux-framework-demo'),
+                'default' => '36',
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+
+            ),
 
 
             array(
@@ -187,7 +211,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'title'     => __('AMP on Pages', 'redux-framework-demo'),
                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                'default'   => 1,
-               'desc'      => __( 'Re-Save permalink if you make changes in this option', 'redux-framework-demo' ),
+               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
            ),
 
 
@@ -392,7 +416,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                     'id'        => 'amp-opt-color-rgba-font',
                     'type'      => 'color_rgba',
-                    'title'     => 'Color Scheme Font Color', 
+                    'title'     => 'Color Scheme Font Color',
                     'default'   => array(
                         'color'     => '#fff',
                     ),
@@ -433,6 +457,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
                 'title'    => __( 'Credit link', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'default'  => '1'
+            ),
+             array(
+                'id'       => 'amp-design-3-author-description',
+                'type'     => 'switch',
+                'title'    => __( 'Author Bio in Single', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
@@ -488,6 +521,50 @@ Redux::setArgs( "redux_builder_amp", $args );
                'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
                'placeholder'  => "<!-- Paste your Additional HTML , that goes between <head> </head> tags -->"
            ),
+
+           array(
+                  'id' => 'ampforwp-seo-index-noindex-sub-section',
+                  'type' => 'section',
+                  'title' => __('Advanced Index & No Index Options', 'redux-framework-demo'),
+                  'indent' => true
+              ),
+           array(
+               'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
+               'type'     => 'switch',
+               'title'    => __('Archive subpages (sitewide)', 'redux-framework-demo'),
+               'desc'  => "Such as /page/2 so on and so forth",
+               'default' => 0,
+               'on' => 'index',
+               'off' => 'noindex'
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-author-pages',
+               'type'     => 'switch',
+               'title'    => __('Author Archive pages', 'redux-framework-demo'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-date-page1',
+               'type'     => 'switch',
+               'title'    => __('Date Archive pages', 'redux-framework-demo'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-taxonomy-pages',
+               'type'     => 'switch',
+               'title'    => __('Categories & Tags', 'redux-framework-demo'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+
+           ),
+
 
        )
 
@@ -731,23 +808,6 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Next-Previous links in single', 'redux-framework-demo'),
           ),
-          // Width and Height of Image
-          array(
-             'id'           => 'enable-single-featured-img-width',
-             'type'         => 'text',
-             'title'        => __('Featured Image Width', 'redux-framework-demo'),
-             'default'      => 512,
-             'subtitle'     => __('Custom featured image width in Units : Px', 'redux-framework-demo'),
-             'placeholder'  =>'Width here',
-           ),
-           array(
-              'id'          => 'enable-single-featured-img-height',
-              'type'        => 'text',
-              'title'       => __('Featured Image Height', 'redux-framework-demo'),
-              'default'     => 300,
-              'subtitle'    => __('Custom featured image height in Units : Px', 'redux-framework-demo'),
-              'placeholder' =>'Height here',
-          ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
@@ -780,13 +840,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         'desc'      => 'enable social share and your social profiels here',
         'subsection' => true,
         'fields'     => array(
-          array(
-               'id' => 'social-media-share-subsection',
-               'type' => 'section',
-               'title' => __('Social Media Share', 'redux-framework-demo'),
-               'subtitle' => __('Please enable shocial media companies for share here', 'redux-framework-demo'),
-               'indent' => true
-             ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
@@ -860,7 +913,10 @@ Redux::setArgs( "redux_builder_amp", $args );
        'type' => 'section',
        'title' => __('Social Media Profiles (Design #3)', 'redux-framework-demo'),
        'subtitle' => __('Please enter your personal/organizational social media profiles here', 'redux-framework-demo'),
-       'indent' => true
+       'indent' => true,
+       'required' => array(
+                array('amp-design-selector', '=' , '3')
+        ),
      ),
           //#1
           array(
@@ -1339,6 +1395,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
+                    array(
+                       'id'       => 'amp-translator-next-read-text',
+                       'type'     => 'text',
+                       'title'    => __('Next Read', 'redux-framework-demo'),
+                       'default'  => 'Next Read: ',
+                       'placeholder'=>'write here'
+                   ),
                )
            ) );
 
@@ -1464,6 +1527,23 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1
+                    ),
+                    array(
+                        'id'       => 'amp-header-text-area-for-html',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Header', 'redux-framework-demo'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
+                        'default'   => ''
+                    ),
+                    array(
+                        'id'       => 'amp-footer-text-area-for-html',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Footer', 'redux-framework-demo'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/',
+                        'redux-framework-demo'),
+                        'default'   => ''
                     ),
 
    ),

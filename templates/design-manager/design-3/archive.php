@@ -45,7 +45,6 @@ if ( get_query_var( 'paged' ) ) {
 		$q = new WP_Query( array(
 			'post_type'           => 'post',
 			'orderby'             => 'date',
-			'offset'              => esc_attr($fn_offset),
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
@@ -88,7 +87,13 @@ if ( get_query_var( 'paged' ) ) {
 					}
 				?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
-                <div class="featured_time"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></div>
+                <div class="featured_time">
+                  <?php
+                       printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                             human_time_diff( get_the_time( 'U' ),
+                             current_time( 'timestamp' ) ) );
+                  ?>
+                </div>
 
 		    </div>
             <div class="cb"></div>
