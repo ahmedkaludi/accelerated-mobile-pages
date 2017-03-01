@@ -1434,7 +1434,7 @@ add_action('amp_post_template_head' , 'ampforwp_talking_to_robots');
 function ampforwp_talking_to_robots() {
 
   global $redux_builder_amp;
-  $message_to_robots = '<meta name="robots" content="noindex,follow"/>';
+  $message_to_robots = '<meta name="robots" content="noindex,nofollow"/>';
   $talk_to_robots=false;
 
    //author arhives  index/noindex
