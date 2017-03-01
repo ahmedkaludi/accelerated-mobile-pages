@@ -29,7 +29,6 @@
               <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="300" height="68" alt="logo" class="amp-logo" layout=responsive id="AMP_1">
               </amp-img>
             </span>
-</amp-img>
 </a>
   <br>
               <div class="meta-footer">
