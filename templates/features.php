@@ -1632,19 +1632,7 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
 				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] ||
-				 $redux_builder_amp['enable-single-twittter-profile'] ||
-				 $redux_builder_amp['enable-single-facebook-profile'] ||
-				 $redux_builder_amp['enable-single-pintrest-profile'] ||
-				 $redux_builder_amp['enable-single-google-plus-profile'] ||
-				 $redux_builder_amp['enable-single-linkdin-profile'] ||
-				 $redux_builder_amp['enable-single-youtube-profile'] ||
-				 $redux_builder_amp['enable-single-instagram-profile'] ||
-				 $redux_builder_amp['enable-single-VKontakte-profile'] ||
-				 $redux_builder_amp['enable-single-reddit-profile'] ||
-				 $redux_builder_amp['enable-single-snapchat-profile'] ||
-				 $redux_builder_amp['enable-single-Tumblr-profile']
-	 			 ) {
+				 $redux_builder_amp['enable-single-whatsapp-share'] )  {
 					return true;
 				}
 			return false;
