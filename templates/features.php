@@ -1170,7 +1170,7 @@ function ampforwp_remove_title_tags(){
 			}
 
 			if( is_search() ) {
-				echo 'Search Results for '.'"'.get_search_query().'"';
+				echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
 			} ?>
 		</title>
 	 	<?php
@@ -1358,7 +1358,7 @@ function ampforwp_add_disqus_support() {
 	}
 }
 
- add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
@@ -1565,11 +1565,11 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				global $wp;
 				$current_url = home_url( $wp->request );
 				$current_url = dirname( $current_url );
-				$headline =  get_bloginfo('name') . ' | ' . get_option( 'blogdescription' );
+				$headline 	 =  get_bloginfo('name') . ' | ' . get_option( 'blogdescription' );
 			} else {
-				$current_url =trailingslashit(get_home_url())."?s=".get_search_query();
-				$current_url = untrailingslashit( $current_url );
-				$headline = 'Search Results for '.'"'.get_search_query().'"';
+				$current_url 	= trailingslashit(get_home_url())."?s=".get_search_query();
+				$current_url 	= untrailingslashit( $current_url );
+				$headline 		=  $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
 			}
 
 			// placeholder Image area
