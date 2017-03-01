@@ -21,7 +21,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body">
+<body class="amp_home_body design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <div class="amp-wp-content">
@@ -91,7 +91,7 @@ if ( get_query_var( 'paged' ) ) {
 		</div>
 		</div>
 <?php } ?>
-
+<?php do_action('ampforwp_home_above_loop') ?>
 <main>
 	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php
@@ -180,6 +180,7 @@ if ( get_query_var( 'paged' ) ) {
 	<?php do_action('ampforwp_post_after_loop') ?>
 
 </main>
+<?php do_action('ampforwp_home_below_loop') ?>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>

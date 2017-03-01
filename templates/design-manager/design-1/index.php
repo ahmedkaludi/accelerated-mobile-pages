@@ -21,11 +21,12 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 
+<?php do_action('ampforwp_home_above_loop') ?>
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
@@ -47,8 +48,8 @@
 				'orderby'             => 'date',
 				'paged'               => esc_attr($paged),
 				'post__not_in' 		  => $exclude_ids,
-        'has_password' => false ,
-        'post_status'=> 'publish'
+                'has_password' => false ,
+                'post_status'=> 'publish'
 			);
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
 			$q = new WP_Query( $filtered_args ); ?>
@@ -119,6 +120,7 @@
 
 </article>
 
+<?php do_action('ampforwp_home_below_loop') ?>
 
 <?php $this->load_parts( array( 'footer' ) ); ?>
 

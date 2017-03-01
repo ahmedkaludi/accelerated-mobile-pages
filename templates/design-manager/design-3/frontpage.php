@@ -23,7 +23,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post">
+<body class="single-post design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <header class="amp-wp-article-header ampforwp-title">

@@ -21,7 +21,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post">
+<body class="single-post design_2_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 	<?php global  $redux_builder_amp; if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>

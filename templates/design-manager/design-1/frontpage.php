@@ -21,7 +21,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post amp-wp-frontpage">
+<body class="single-post amp-wp-frontpage design_1_wrapper">
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 	<article class="amp-wp-article">

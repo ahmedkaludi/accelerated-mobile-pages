@@ -22,7 +22,7 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
 
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 

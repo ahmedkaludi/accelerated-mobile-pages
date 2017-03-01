@@ -22,7 +22,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body">
+<body class="amp_home_body design_2_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>

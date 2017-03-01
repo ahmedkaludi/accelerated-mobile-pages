@@ -23,7 +23,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body">
+<body class="amp_home_body design_2_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 <main>
@@ -46,7 +46,7 @@
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' 		  => false ,
+			'has_password' 		  => false,
 			'post_status'		  => 'publish'
 		) ); ?>
 		<div class="amp-wp-content amp-archive-heading">
@@ -66,13 +66,11 @@
 			<div class="amp-wp-post-content">
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
-				<?php
-					if(has_excerpt()){
+				<?php if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
 						$content = get_the_content();
-					}
-				?>
+					} ?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 
 		    </div>

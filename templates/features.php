@@ -1499,16 +1499,16 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Above Loop',
 		'id'   => 'ampforwp-above-loop',
 		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '<div>',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h4>',
+		'before_title'  => '<h4>', 
 		'after_title'   => '</h4>'
 	));
 	register_sidebar(array(
 		'name' => 'AMP Below Loop',
 		'id'   => 'ampforwp-below-loop',
 		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '<div>',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
@@ -1517,26 +1517,15 @@ if (function_exists('register_sidebar')) {
 }
 
 // 43. custom actions for widgets output
+add_action( 'ampforwp_home_above_loop' , 'ampforwp_output_widget_content_above_loop' );
+function ampforwp_output_widget_content_above_loop() { 
+    dynamic_sidebar( 'ampforwp-above-loop' );
+} 
 
-add_action( 'ampforwp_post_before_loop' , 'ampforwp_output_widget_content_above_loop' );
-function ampforwp_output_widget_content_above_loop() { ?>
-
-	<div id="primary-sidebar-above" class="primary-sidebar widget-area" role="complementary">
-		<?php dynamic_sidebar( 'ampforwp-above-loop' ); ?>
-	</div><!-- #primary-sidebar -->
-
-<?php }
-
-
-add_action( 'ampforwp_post_after_loop' , 'ampforwp_output_widget_content_below_loop' );
-function ampforwp_output_widget_content_below_loop() { ?>
-
-	<div id="primary-sidebar-below" class="primary-sidebar widget-area" role="complementary">
-		<?php dynamic_sidebar( 'ampforwp-below-loop' ); ?>
-	</div><!-- #primary-sidebar -->
-
-<?php }
-
+add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
+function ampforwp_output_widget_content_below_loop() {
+    dynamic_sidebar( 'ampforwp-below-loop' );
+}
 
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');

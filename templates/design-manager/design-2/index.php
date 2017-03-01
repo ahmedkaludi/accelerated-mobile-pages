@@ -22,13 +22,10 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body">
+<body class="amp_home_body design_2_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-
-
-
 <?php do_action( 'ampforwp_after_header', $this ); ?>
-
+<?php do_action('ampforwp_home_above_loop') ?>
 <main>
 	<?php do_action('ampforwp_post_before_loop') ?>
 
@@ -119,6 +116,7 @@
 	<?php do_action('ampforwp_post_after_loop') ?>
 
 </main>
+<?php do_action('ampforwp_home_below_loop') ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>

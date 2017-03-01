@@ -15,7 +15,7 @@
           'before_title'  => '<h4 class="widgettitle">',
           'after_title'   => '</h4>',
           'before_widget' => '<div class="widget-wrap">',
-          'after_widget'  => '</div></div>'
+          'after_widget'  => '</div>'
       );
 
 // Create the widget output.
@@ -26,48 +26,56 @@
     $ampforwp_category_link = apply_filters( 'show_button', $instance[ 'showButton' ] );
 
 
-    echo $args['before_widget'] . $args['before_title'] . $ampforwp_title . $args['after_title']; ?>
-    <p><strong>Title:</strong> <?php echo $ampforwp_title ?></p>
-    <p><strong>Count:</strong> <?php echo $ampforwp_category_count ?></p>
-    <p><strong>Selected Category ID:</strong> <?php echo $ampforwp_category_id ?></p>
-    <p><strong>Show Button:</strong> <?php echo $ampforwp_category_link ?></p>
-    <p><strong>Background Color:</strong> <?php echo $ampforwp_category_widget_bg ?></p>
+ //   echo . $args['before_title'] .  . $args['after_title']; ?>
 
     <?php
     $exclude_ids = get_option('ampforwp_exclude_post');
 
     $args = array(
-        'cat'      => $ampforwp_category_id,
-        'order'    => 'ASC',
-        'posts_per_page' => ''.$ampforwp_category_count,
-        'post__not_in' 		  => $exclude_ids,
-        'has_password' => false ,
+        'cat' => $ampforwp_category_id,
+        'order' => 'ASC',
+        'posts_per_page' => $ampforwp_category_count,
+        'post__not_in' => $exclude_ids,
+        'has_password' => false,
         'post_status'=> 'publish'
     );
     // The Query
     $the_query = new WP_Query( $args );
 
     // The Loop
+      
     if ( $the_query->have_posts() ) {
-        echo '<ul>';
+        echo '<div class="amp-category-block"><ul>';
+        echo '<div class="amp-category-block-title">'.$ampforwp_title .'</div>';
         while ( $the_query->have_posts() ) {
-          $the_query->the_post();
-          echo '<li>' . get_the_title() . '</li>';
+            $the_query->the_post();
+            $ampforwp_post_url = get_permalink(); ?>
+<?php if ( has_post_thumbnail() ) { ?>
+    <?php
+    $thumb_id = get_post_thumbnail_id();
+    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+    $thumb_url = $thumb_url_array[0];
+    ?>
+<div class="amp-category-post">
+<a href="<?php echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+<?php echo get_the_title(); ?>
+</div>
+<?php }
         }
-        echo '</ul>';
 
         //show more
         if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
           global $redux_builder_amp;
-          echo '<a href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'"><button type="button">'.$redux_builder_amp['amp-translator-show-more-text'].'</button></a>';
+          echo '<a href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
         }
+        echo '</ul></div>';
 
     } else {
         // no posts found
     }
     /* Restore original Post Data */
     wp_reset_postdata();
-   echo $args['after_widget'];
+//   echo $args['after_widget'];
   }
 
 
@@ -77,7 +85,7 @@
     // Declarations for all the values to be stored
     $ampforwp_title = ! empty( $instance['title'] ) ? $instance['title'] : 'Category Title';
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
-    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : '5';
+    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : '4';
     $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
 
     ?>
@@ -132,7 +140,6 @@
 
     <?php
   }
-
 
 
 
