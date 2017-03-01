@@ -1447,6 +1447,11 @@ function ampforwp_talking_to_robots() {
     $talk_to_robots = true;
   }
 
+  //Search pages noindexing by default
+  if( is_search() ) {
+    $talk_to_robots = true;
+  }
+
   //categorys index/noindex
   if( is_category()  && !$redux_builder_amp['ampforwp-robots-archive-category-pages'] ) {
     $talk_to_robots = true;
