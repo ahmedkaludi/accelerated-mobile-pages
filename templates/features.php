@@ -49,12 +49,13 @@
   	39. #560 Header and Footer Editable html enabled script area
   	40. Meta Robots
   	41. Rewrite URL only on save #511
-		42. registeing AMP sidebars
-		43. custom actions for widgets output
-		44. auto adding /amp for the menu
-		45. search,frontpage,homepage structured data
-		46. search search search everywhere #615
-		47. social js properly adding when required
+	42. registeing AMP sidebars
+	43. custom actions for widgets output
+	44. auto adding /amp for the menu
+	45. search,frontpage,homepage structured data
+	46. search search search everywhere #615
+	47. social js properly adding when required
+	48. Remove all unwanted scripts on search pages
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1639,3 +1640,12 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 	}
 }
 
+// 48. Remove all unwanted scripts on search pages
+add_filter( 'amp_post_template_data', 'ampforwp_remove_scripts_search_page' );
+function ampforwp_remove_scripts_search_page( $data ) {
+	if( is_search() ) {
+		// Remove all unwanted scripts on search pages 
+		unset( $data['amp_component_scripts']);
+	}
+	return $data;
+}
