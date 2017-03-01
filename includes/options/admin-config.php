@@ -643,7 +643,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
            ),
            array(
-               'id'       => 'ampforwp-robots-archive-date-page1',
+               'id'       => 'ampforwp-robots-archive-date-pages',
                'type'     => 'switch',
                'title'    => __('Date Archive pages', 'redux-framework-demo'),
                'default' => 1,
