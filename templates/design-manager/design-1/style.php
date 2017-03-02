@@ -52,8 +52,8 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .searchmenu button{
     background:transparent;
     border:none
-}    
- 
+}
+
 .closebutton{
     background: transparent;
     border: 0;
@@ -90,7 +90,7 @@ amp-lightbox{
     top: 0px;
     border-radius: 0 0 1px 1px;
     left: 14px;
-} 
+}
 [class*=icono-] {
     display: inline-block;
     vertical-align: middle;
@@ -152,7 +152,7 @@ amp-lightbox{
 .amp-wp-header .ampforwp-search-nav-wrapper {
     padding: 0;
 }
- 
+
 .ampforwp-search-nav-wrapper .searchmenu {
     margin-top: 20px;
 }
@@ -160,7 +160,7 @@ amp-lightbox{
     top:0;
 }
 .amp-wp-header a, .headerlogo a, [class*=icono-] {color: <?php echo sanitize_hex_color( $header_color ); ?>;text-decoration: none;}
-<?php if($redux_builder_amp['enable-single-social-icons']){ ?> .amp-wp-footer{padding-bottom: 60px;}<?php } ?>
+<?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 60px;}<?php } ?>
 <?php if( is_rtl() ) { ?>
 .amp-wp-header .amp-wp-site-icon,.amp-wp-header .nav_container{float:left;right:initial;left:-11px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
 <?php } ?>

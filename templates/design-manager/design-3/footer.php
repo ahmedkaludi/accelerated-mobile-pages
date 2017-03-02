@@ -19,20 +19,44 @@
     $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','?nonamp=1',$ampforwp_backto_nonamp);
   }
   ?>
+  <?php
+
+  if( !function_exists('ampforwp_checking_any_social_profiles') ) {
+    function ampforwp_checking_any_social_profiles() {
+      if(  $redux_builder_amp['enable-single-twittter-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-facebook-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-pintrest-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-google-plus-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-linkdin-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-youtube-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-instagram-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-VKontakte-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-reddit-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-snapchat-profile-url'] !== '' ||
+           $redux_builder_amp['enable-single-Tumblr-profile-url'] !== ''
+     ) {
+        return false;
+      }
+      return true;
+    }
+  }
+
+   ?>
   <footer class="footer_wrapper container">
       <div id="footer">
+        <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
           <div class="footer_menu">
               <?php
-                if ( has_nav_menu( 'amp-footer-menu' ) ) {
                     wp_nav_menu( array(
                         'theme_location' => 'amp-footer-menu',
                     ) );
-                }
               ?>
           </div>
+        <?php } ?>
+
+        <?php if( ampforwp_checking_any_social_profiles() ) { ?>
           <div class="social_icons">
             <ul>
-
 
             <?php global $redux_builder_amp;
             if( $redux_builder_amp['enable-single-twittter-profile'] && $redux_builder_amp['enable-single-twittter-profile-url'] !== '') { ?>
@@ -91,6 +115,7 @@
 
             </ul>
           </div>
+          <?php } ?>
           <p class="rightslink">
             <?php
               global $allowed_html;
@@ -112,4 +137,6 @@
 </div><!--Design3 Ends-->
 
  <?php
- do_action('ampforwp_global_after_footer'); ?>
+ do_action('ampforwp_global_after_footer');
+
+ ?>

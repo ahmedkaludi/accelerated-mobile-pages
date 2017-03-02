@@ -1177,7 +1177,7 @@ amp-user-notification  {
 amp-user-notification button {
 	background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
 }
-<?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
+<?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
     .single-post footer {
         padding-bottom: 41px;
     }

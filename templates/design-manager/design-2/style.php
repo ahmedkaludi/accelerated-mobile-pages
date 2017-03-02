@@ -164,8 +164,8 @@ amp-sidebar {
 .searchmenu button{
     background:transparent;
     border:none
-}    
- 
+}
+
 .closebutton{
     background: transparent;
     border: 0;
@@ -202,7 +202,7 @@ amp-lightbox{
     top: 0px;
     border-radius: 0 0 1px 1px;
     left: 14px;
-} 
+}
 [class*=icono-] {
     display: inline-block;
     vertical-align: middle;
@@ -874,9 +874,9 @@ amp-user-notification  {
 amp-user-notification button {
 	background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
 }
-<?php if( $redux_builder_amp['enable-single-social-icons'] == true )  { ?>
+<?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
     .single-post footer {
-        padding-bottom: 60px;
+        padding-bottom: 40px;
     }
 .amp-ad-2{ margin-bottom: 50px; }
 <?php } ?>
