@@ -33,7 +33,6 @@
 
     $args = array(
         'cat' => $ampforwp_category_id,
-        'order' => 'ASC',
         'posts_per_page' => $ampforwp_category_count,
         'post__not_in' => $exclude_ids,
         'has_password' => false,
@@ -46,7 +45,7 @@
       
     if ( $the_query->have_posts() ) {
         echo '<div class="amp-category-block"><ul>';
-        echo '<div class="amp-category-block-title">'.$ampforwp_title .'</div>';
+        echo '<li class="amp-category-block-title">'.$ampforwp_title .'</li>';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
             $ampforwp_post_url = get_permalink(); ?>
@@ -56,10 +55,12 @@
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
     $thumb_url = $thumb_url_array[0];
     ?>
-<div class="amp-category-post">
+<li class="amp-category-post">
 <a href="<?php echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
-<?php echo get_the_title(); ?>
-</div>
+<a href="<?php echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
+    <?php echo get_the_title(); ?>
+</a>
+</li>
 <?php }
         }
 
@@ -85,7 +86,7 @@
     // Declarations for all the values to be stored
     $ampforwp_title = ! empty( $instance['title'] ) ? $instance['title'] : 'Category Title';
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
-    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : '4';
+    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : '3';
     $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
 
     ?>

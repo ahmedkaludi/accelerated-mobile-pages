@@ -36,11 +36,36 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
     max-width: 840px;
     margin: 1.5em auto;
 }
+.amp-category-block-title{
+    border-bottom: double #ddd;
+    margin-bottom: 12px;
+    padding-bottom: 1px;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666; 
+}
 .amp-category-block ul{
-    margin: 1.5em 16px 1.5em;
+    margin: 1.5em 26px 3.5em;
 }
 .amp-category-post{
-
+    width: 32%;
+    display:inline-table;
+}
+.amp-category-post a{ color:#555; text-decoration:none}
+.amp-category-post amp-img{
+    margin-bottom:5px;
+}
+.amp-category-block li:nth-child(3){
+    margin: 0 1%;
+}
+@media screen and (max-width: 530px) {
+    .amp-category-post {line-height: 1.45;font-size: 14px; }
+    .amp-category-block li:nth-child(3) {margin:0 0.6%}
+} 
+@media screen and (max-width: 375px) { 
+    .amp-category-post {line-height: 1.45;font-size: 12px; }
+    .amp-category-block li:nth-child(3) {margin:0%}
 }
 .searchmenu{
     margin-right: 15px;

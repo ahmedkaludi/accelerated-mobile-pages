@@ -153,7 +153,36 @@ amp-sidebar {
     display: inline-block;
     width: 100%;
 }
-
+/* Category 2 */
+.amp-category-block ul{
+    list-style-type:none
+}
+.design_1_wrapper .amp-category-block{
+    max-width: 840px;
+    margin: 1.5em auto;
+}
+.amp-category-block-title{
+    border-bottom: double #ddd;
+    margin-bottom: 12px;
+    padding-bottom: 1px;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666; 
+}
+.amp-category-block ul{
+    padding:30px 15% 10px 15%
+}
+.amp-category-post{
+    width: 32%;
+    display:inline-table;
+}
+.amp-category-post amp-img{
+    margin-bottom:5px;
+}
+.amp-category-block li:nth-child(3){
+    margin: 0 1%;
+}
 .searchmenu{
     margin-right: 15px;
     margin-top: 11px;
@@ -701,27 +730,16 @@ pre {
         }
     }
 @media screen and (max-width: 630px) {
-		.related_posts ol li p{
-			display:none
-		}
-    .related_link {
-        margin: 16px 18px 20px 19px;
-    }
+    .related_posts ol li p{ display:none }
+    .related_link { margin: 16px 18px 20px 19px; }
+    .amp-category-post {line-height: 1.45;font-size: 14px; }
+    .amp-category-block li:nth-child(3) {margin:0 0.6%}
 }
 @media screen and (max-width: 510px) {
-				.ampforwp-tax-category span{
-					display:none
-				}
-	    .related_posts ol li p{
-        line-height: 1.6;
-        margin: 7px 0 0 0;
-    }
-    .related_posts .related_link {
-        margin: 17px 18px 17px 19px;
-    }
-    .comments_list ul li .comment-body{
-        width:auto
-    }
+    .ampforwp-tax-category span{ display:none }
+    .related_posts ol li p{ line-height: 1.6; margin: 7px 0 0 0; }
+    .related_posts .related_link { margin: 17px 18px 17px 19px; }
+    .comments_list ul li .comment-body{ width:auto }
 }
 @media screen and (max-width: 425px) {
     .related_posts .related_link p{
@@ -775,16 +793,11 @@ pre {
 	}
 }
 @media screen and (max-width: 340px) {
-	.related_posts .related_link a {
-			font-size: 15px;
-	}
-		.single-post main{
-				padding: 10px 5px 10px 5px
-		}
-		.the_content .amp-ad-wrapper{
-				text-align: center;
-				margin-left: -13px;
-		}
+	.related_posts .related_link a { font-size: 15px; }
+    .single-post main{ padding: 10px 5px 10px 5px }
+    .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; }
+    .amp-category-post {line-height: 1.45;font-size: 12px; }
+    .amp-category-block li:nth-child(3) {margin:0%}
 }
 @media screen and (max-width: 320px) {
 	.related_posts .related_link a {
@@ -802,25 +815,13 @@ pre {
     }
 }
     @media screen and (max-width: 767px) {
-           .amp-wp-post-content p{
-                 display: block
-            }
-           .amp-wp-post-content p{
-               display: none
-            }
-
-            main{
-                padding: 25px 18px 25px 18px;
-            }
-        .toggle-navigation ul li{
-            width: 50%
-        }
-        }
-    @media screen and (max-width: 495px) {
-        h2.amp-wp-title a{
-            font-size: 17px;
-            line-height: 26px;
-        }
+       .amp-wp-post-content p{ display: block }
+       .amp-wp-post-content p{ display: none }
+       main, .amp-category-block ul{ padding: 15px 18px 0px 18px; }
+       .toggle-navigation ul li{ width: 50% }
+    }
+    @media screen and (max-width: 495px) { 
+        h2.amp-wp-title a{ font-size: 17px; line-height: 26px;}
     }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
