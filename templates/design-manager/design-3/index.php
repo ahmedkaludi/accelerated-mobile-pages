@@ -120,19 +120,10 @@ if ( get_query_var( 'paged' ) ) {
 				<div class="home-post_image">
 					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img
-							<?php
-							global $redux_builder_amp;
-							 if( !$redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {
-								echo 'layout="responsive"';
-							} ?>
+							layout="responsive"
 							src=<?php echo $thumb_url ?>
-							<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
-								width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-width'] ?>
-								height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-3-height'] ?>
-							<?php } else { ?>
-								width=450
-								height=270
-							<?php } ?>
+							width=450
+							height=270
 						></amp-img>
 					</a>
 				</div>
