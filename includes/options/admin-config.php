@@ -250,6 +250,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'    => __('Override Homepage Thumbnail Size', 'redux-framework-demo'),
                'default'  => 0,
+               'required' => array(
+                 array('amp-design-selector','!=',3)
+               )
             ),
            array(
                'id'       => 'ampforwp-homepage-posts-design-1-2-width',
