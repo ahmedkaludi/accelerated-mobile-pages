@@ -101,6 +101,9 @@ function ampforwp_rewrite_deactivate() {
 	// Flushing rewrite urls ONLY on deactivation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
+
+	// Set transient for Welcome page
+	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 }
 
 // Redux panel inclusion code
@@ -118,9 +121,10 @@ function ampforwp_rewrite_deactivate() {
 */
 if ( is_admin() ) {
 
+	// Include Welcome page only on Admin pages
+	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
+
     add_action('init','ampforwp_plugin_notice');
-
-
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
@@ -129,7 +133,7 @@ if ( is_admin() ) {
 
             $current_screen = get_current_screen();
 
-            if( $current_screen ->id == "plugin-install" ) {
+            if( $current_screen ->id !== "toplevel_page_amp_options" ) {
                 return;
             } ?>
 
@@ -138,14 +142,31 @@ if ( is_admin() ) {
 						<?php add_thickbox(); ?>
 				        <p>
                         <strong><?php _e( 'AMP Installation requires one last step:', 'ampforwp' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'ampforwp' ); ?>
-				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
+				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
                              </span> </strong>
 				        </p>
 				</div> <?php
 			}
 
 			add_action('admin_head','ampforwp_required_plugin_styling');
-			function ampforwp_required_plugin_styling() { ?>
+			function ampforwp_required_plugin_styling() { 
+				if ( ! defined( 'AMP__FILE__' ) ) { ?> 
+					<style>
+						#toplevel_page_amp_options a .wp-menu-name:after {
+							content: "1";
+							background-color: #d54e21;
+							color: #fff;
+							border-radius: 10px;
+							font-size: 9px;
+						    line-height: 17px;
+						    font-weight: 600;
+						    padding: 3px 7px;
+						    margin-left: 5px; 
+						}
+					</style>
+					<?php
+				}
+				?>
 				<style>
                     .notice, .notice-error, .is-dismissible, .ampinstallation{}
 					.plugin-card.plugin-card-amp:before{
@@ -174,22 +195,8 @@ if ( is_admin() ) {
 					}
 				</style> <?php
 			}
-		} else {
-			// add_action('admin_notices', 'ampforwp_permalink_update_notice');
 		}
-
 	}
-
-	// display custom admin notice
-	function ampforwp_permalink_update_notice() { ?>
-		<div class="notice notice-warning is-dismissible">
-			<p>
-		        <?php _e( 'Congratulation, your site is fully AMP enabled. Update your permalink setting once and you are done.', 'ampforwp' ); ?>
-		         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="<?php echo admin_url( 'options-permalink.php'); ?>"><?php _e( 'Update Permalink', 'ampforwp' ); ?></a> | <a href="#"><?php _e( 'Dismiss', 'ampforwp' ); ?></a>
-	             </span> </strong>
-	        </p>
-		</div>
-	<?php }
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
@@ -210,7 +217,7 @@ if ( is_admin() ) {
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}else{
-						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
+						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'index.php?page=ampforwp-welcome-page">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
 					}
 					}

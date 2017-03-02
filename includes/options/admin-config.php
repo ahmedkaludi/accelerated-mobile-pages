@@ -87,6 +87,14 @@ Redux::setArgs( "redux_builder_amp", $args );
      * <--- END HELP TABS
      */
 
+    function ampforwp_plugin_activation_notice() {
+      $output ='';
+      include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+      if ( is_plugin_inactive( 'amp/amp.php' ) ) {
+         $output = '<a href="index.php?page=ampforwp-welcome-page"> <img src="http://previews.123rf.com/images/chrisdorney/chrisdorney1408/chrisdorney140800002/30426041-ACTION-REQUIRED-red-Rubber-Stamp-over-a-white-background--Stock-Photo.jpg" alt=""> </a>';
+      }  
+      return $output ;
+    }
 
     /*
      *
@@ -112,22 +120,19 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setSection( $opt_name, array(
         'title' => __( 'Getting Started', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'redux-framework-demo' ), 'redux-framework-demo' ) . ' '
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'redux-framework-demo' ), 'redux-framework-demo' ) . ampforwp_plugin_activation_notice()
 			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'redux-framework-demo' ) . '</h2>'
 			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
 			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
-			               . '<p><strong>' . __( '3. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
-' ) . '</p>'
+			               . '<p><strong>' . __( '3. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
 			               . '<p><strong>' . __( '4. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
 			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
 			               . '<p><strong>' . __( '6. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
 
-
- 	   					   . sprintf( __( '
-</br /></br />
-                      <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
-                     ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
-						   . '</p></div>'
+ 	   					       . sprintf( __( ' </br /></br />
+                          <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
+                         ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
+						         . '</p></div>'
 
 				 , 'redux-framework-demo' ),
         'icon'  => 'el el-home'
