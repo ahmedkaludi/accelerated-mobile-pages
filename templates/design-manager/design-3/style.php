@@ -491,6 +491,9 @@ h1.amp-wp-title {
 figure{
     margin: 0 0 20px 0;
 }
+figure amp-img{
+    max-width:100%;
+}
 figcaption{
     font-size: 11px;
     margin-bottom: 11px;
