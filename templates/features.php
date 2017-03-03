@@ -127,9 +127,13 @@
 	          //dont Echo anything
 	        } else {
 				$supported_types = array('post','page');
-				if ( $redux_builder_amp['ampforwp-custom-type'] ) {
-					foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
-						$supported_types[] = $custom_post;
+
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if( is_plugin_active( 'AMP-Custom-Post-Type/amp-custom-post-type.php' ) ) {
+					if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+						foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
+							$supported_types[] = $custom_post;
+						}
 					}
 				}
 
