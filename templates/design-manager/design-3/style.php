@@ -995,7 +995,7 @@ amp-lightbox{
     margin-top: 15px;
     width: 100%;
 }
-#searchsubmit{display:none}
+#searchsubmit{opacity:0}
 
 /* AMP carousel */
 .amp-carousel-button-prev,

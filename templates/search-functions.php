@@ -74,13 +74,13 @@ function ampforwp_get_search_form() {
 		$label = $redux_builder_amp['ampforwp-search-label'];
 		$placeholder = $redux_builder_amp['ampforwp-search-placeholder'];
 	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
-	                <div>
-	                    <label class="screen-reader-text" for="s">' . $label . '</label>
-	                    <input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
-	                    <input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
-	                    <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
-	                </div>
-	            </form>';
+<div>
+<label class="screen-reader-text" for="s">' . $label . '</label>
+<input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
+<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+</div>
+</form>';
 	    return $form;
 		}
 }
