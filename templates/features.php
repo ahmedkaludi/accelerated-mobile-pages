@@ -56,6 +56,7 @@
 	46. search search search everywhere #615
 	47. social js properly adding when required
 	48. Remove all unwanted scripts on search pages
+	49. Properly adding ad Script the AMP way
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -315,22 +316,7 @@
 						}
 					}
 		// Check if any of the ads are enabled then only load ads script
-		if (
-			$redux_builder_amp['enable-amp-ads-1'] ||
-			$redux_builder_amp['enable-amp-ads-2'] ||
-			$redux_builder_amp['enable-amp-ads-3'] ||
-			$redux_builder_amp['enable-amp-ads-4'] ||
-			$redux_builder_amp['ampforwp-incontent-ad-1'] ||
-			$redux_builder_amp['ampforwp-incontent-ad-2'] ||
-			$redux_builder_amp['ampforwp-incontent-ad-3'] ||
-			$redux_builder_amp['ampforwp-standard-ads-1'] ||
-			$redux_builder_amp['ampforwp-standard-ads-2'] ||
-			$redux_builder_amp['ampforwp-standard-ads-3'] ||
-			$redux_builder_amp['ampforwp-standard-ads-4'] ||
-			$redux_builder_amp['ampforwp-sticky-ad'] )
-		{ ?>
-			<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> <?php
-		}
+		//	moved this code to its own function and done the AMP way
 	}
 	// 6.1 Adding Analytics Scripts
 	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
@@ -1501,7 +1487,7 @@ if (function_exists('register_sidebar')) {
 		'description'   => 'Widget area for above the Loop Output',
 		'before_widget' => '<div>',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h4>', 
+		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
 	register_sidebar(array(
@@ -1518,9 +1504,9 @@ if (function_exists('register_sidebar')) {
 
 // 43. custom actions for widgets output
 add_action( 'ampforwp_home_above_loop' , 'ampforwp_output_widget_content_above_loop' );
-function ampforwp_output_widget_content_above_loop() { 
+function ampforwp_output_widget_content_above_loop() {
     dynamic_sidebar( 'ampforwp-above-loop' );
-} 
+}
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
 function ampforwp_output_widget_content_below_loop() {
@@ -1633,8 +1619,25 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 add_filter( 'amp_post_template_data', 'ampforwp_remove_scripts_search_page' );
 function ampforwp_remove_scripts_search_page( $data ) {
 	if( is_search() ) {
-		// Remove all unwanted scripts on search pages 
+		// Remove all unwanted scripts on search pages
 		unset( $data['amp_component_scripts']);
 	}
+	return $data;
+}
+
+// 49. Properly adding ad Script the AMP way
+add_filter( 'amp_post_template_data', 'ampforwp_add_ads_scripts' );
+function ampforwp_add_ads_scripts( $data ) {
+	global $redux_builder_amp;
+
+	if (	$redux_builder_amp['enable-amp-ads-1'] ||
+				$redux_builder_amp['enable-amp-ads-2'] ||
+				$redux_builder_amp['enable-amp-ads-3'] ||
+				$redux_builder_amp['enable-amp-ads-4'] ) {
+					if ( empty( $data['amp_component_scripts']['amp-ad'] ) ) {
+						$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
+					}
+	}
+
 	return $data;
 }
