@@ -149,14 +149,14 @@
 
 				if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
 					$new_url =  home_url('/');
-					$new_url = $new_url . AMP_QUERY_VAR . '/' . $wp->request ;
+					$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
 					$amp_url = $new_url ;
 				}
 				if ( is_archive() && $wp->query_vars['paged'] >= '2' ) {
 					$new_url 		=  home_url('/');
 				 	$category_path 	= $wp->request;
 				 	$explode_path  	= explode("/",$category_path);
-				 	$inserted 		= array(AMP_QUERY_VAR);
+				 	$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
 					array_splice( $explode_path, -2, 0, $inserted );
 					$impode_url = implode('/', $explode_path);
 
@@ -918,7 +918,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 // 17. Archives Canonical in AMP version
 // function ampforwp_rel_canonical_archive() {
 //
-// 			//    $archivelink = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+// 			//    $archivelink = esc_url( get_permalink( $id ) . AMPFORWP_AMP_QUERY_VAR . '/' );
 //   		echo "<link rel='canonical' href='$current_archive_url' />\n";
 // }
 // add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
@@ -927,7 +927,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 // function ampforwp_rel_canonical() {
 //     if ( !is_home() )
 //     return;
-// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+// //    $link = esc_url( get_permalink( $id ) . AMPFORWP_AMP_QUERY_VAR . '/' );
 //     $homelink = get_home_url();
 //     echo "<link rel='canonical' href='$homelink' />\n";
 // }
@@ -937,7 +937,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 // function ampforwp_rel_canonical_frontpage() {
 //    if ( is_home() || is_front_page() )
 //    return;
-// //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+// //    $link = esc_url( get_permalink( $id ) . AMPFORWP_AMP_QUERY_VAR . '/' );
 //    $homelink = get_home_url();
 //    echo "<link rel='canonical' href='$homelink' />\n";
 // }
@@ -1534,7 +1534,7 @@ function ampforwp_auto_add_amp_in_link_check() {
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 
-    $atts['href'] = trailingslashit( $atts['href'] ) . AMP_QUERY_VAR;
+    $atts['href'] = trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR;
     return $atts;
 }
 

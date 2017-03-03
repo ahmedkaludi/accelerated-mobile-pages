@@ -11,7 +11,7 @@
 			global $wp;
 			$current_archive_url 	= home_url( $wp->request );
 			$amp_url 				= trailingslashit($current_archive_url);
-			$remove 				= '/'. AMP_QUERY_VAR;
+			$remove 				= '/'. AMPFORWP_AMP_QUERY_VAR;
 			$amp_url				= str_replace($remove, '', $amp_url) ;
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} ?>
@@ -53,7 +53,7 @@
 		<h3 class="page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
  		</div>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
+		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php

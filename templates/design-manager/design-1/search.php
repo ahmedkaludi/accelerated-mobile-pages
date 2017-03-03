@@ -11,7 +11,7 @@
 			global $wp;
 			$current_archive_url 	= home_url( $wp->request );
 			$amp_url 				= trailingslashit($current_archive_url);
-			$remove 				= '/'. AMP_QUERY_VAR;
+			$remove 				= '/'. AMPFORWP_AMP_QUERY_VAR;
 			$amp_url				= str_replace($remove, '', $amp_url) ;
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} ?>
@@ -54,13 +54,13 @@
  		<h3 class="amp-wp-content page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
 
  		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
+		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 		        <h1 class="amp-wp-title">
 		            <?php  $ampforwp_post_url = get_permalink(); ?>
-		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
 		        </h1>
 
 				<div class="amp-wp-content-loop">
@@ -76,7 +76,7 @@
 						$thumb_url = $thumb_url_array[0];
 						?>
 						<div class="home-post-image">
-							<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
+							<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
 								<amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img>
 							</a>
 						</div>

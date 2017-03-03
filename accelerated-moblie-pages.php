@@ -17,13 +17,15 @@ define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_VERSION','0.9.43.6');
+// any changes to AMP_QUERY_VAR should be refelected here
+define('AMPFORWP_AMP_QUERY_VAR','amp');
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
-		add_post_type_support( 'page', AMP_QUERY_VAR );
+		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
+		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
@@ -149,8 +151,8 @@ if ( is_admin() ) {
 			}
 
 			add_action('admin_head','ampforwp_required_plugin_styling');
-			function ampforwp_required_plugin_styling() { 
-				if ( ! defined( 'AMP__FILE__' ) ) { ?> 
+			function ampforwp_required_plugin_styling() {
+				if ( ! defined( 'AMP__FILE__' ) ) { ?>
 					<style>
 						#toplevel_page_amp_options a .wp-menu-name:after {
 							content: "1";
@@ -161,7 +163,7 @@ if ( is_admin() ) {
 						    line-height: 17px;
 						    font-weight: 600;
 						    padding: 3px 7px;
-						    margin-left: 5px; 
+						    margin-left: 5px;
 						}
 					</style>
 					<?php

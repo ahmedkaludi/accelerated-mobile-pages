@@ -56,8 +56,8 @@
     $thumb_url = $thumb_url_array[0];
     ?>
 <li class="amp-category-post">
-<a href="<?php echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
-<a href="<?php echo trailingslashit($ampforwp_post_url) . AMP_QUERY_VAR ;?>">
+<a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+<a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
     <?php echo get_the_title(); ?>
 </a>
 </li>
