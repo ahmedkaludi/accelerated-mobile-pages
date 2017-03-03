@@ -19,7 +19,7 @@
       );
 
 // Create the widget output.
-  public function widget( $args, $instance ) { 
+  public function widget( $args, $instance ) {
     $ampforwp_title = apply_filters( 'widget_title', $instance[ 'title' ] );
     $ampforwp_category_count = apply_filters( 'post_count', $instance[ 'count' ] );
     $ampforwp_category_id = apply_filters( 'selected_category', $instance[ 'category' ] );
@@ -42,7 +42,7 @@
     $the_query = new WP_Query( $args );
 
     // The Loop
-      
+
     if ( $the_query->have_posts() ) {
         echo '<div class="amp-category-block"><ul>';
         echo '<li class="amp-category-block-title">'.$ampforwp_title .'</li>';
@@ -86,7 +86,7 @@
     // Declarations for all the values to be stored
     $ampforwp_title = ! empty( $instance['title'] ) ? $instance['title'] : 'Category Title';
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
-    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : '3';
+    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : 3 ;
     $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
 
     ?>
@@ -117,7 +117,7 @@
           </label>
          </p>
         <!-- select End Here -->
-         
+
         <p>
         <!-- text starts Here -->
           <label for="<?php echo $this->get_field_id( 'count' ); ?>">Number of Posts:
@@ -129,11 +129,11 @@
         <!-- radio buttons starts Here -->
           <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show View more Button:</label><br>
           <label for="<?php echo $this->get_field_id('show_button_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?> 
-          </label>  
+              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+          </label>
            <label for="<?php echo $this->get_field_id('show_button_2'); ?>">
               <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
-          </label> 
+          </label>
         <!-- radio buttons Ends Here -->
 
 </p>
