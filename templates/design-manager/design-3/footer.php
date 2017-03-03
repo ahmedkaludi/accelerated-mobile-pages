@@ -23,6 +23,7 @@
 
   if( !function_exists('ampforwp_checking_any_social_profiles') ) {
     function ampforwp_checking_any_social_profiles() {
+      global $redux_builder_amp;
       if(  $redux_builder_amp['enable-single-twittter-profile-url'] !== '' ||
            $redux_builder_amp['enable-single-facebook-profile-url'] !== '' ||
            $redux_builder_amp['enable-single-pintrest-profile-url'] !== '' ||
