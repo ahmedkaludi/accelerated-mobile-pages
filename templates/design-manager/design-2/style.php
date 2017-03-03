@@ -289,7 +289,7 @@ amp-lightbox{
     margin-top: 15px;
     width: 100%;
 }
-#searchsubmit{display:none}
+#searchsubmit{opacity:0}
 .hide{display:none}
 .headerlogo a, [class*=icono-]{ color: #F42F42 }
 /* Pagination */
