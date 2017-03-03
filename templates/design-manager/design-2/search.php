@@ -40,8 +40,6 @@
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
 		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'orderby'             => 'date',
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
@@ -52,8 +50,8 @@
 		<div class="amp-wp-content amp-archive-heading">
 		<h3 class="page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
  		</div>
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php
