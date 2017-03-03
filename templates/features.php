@@ -705,7 +705,7 @@
 	function ampforwp_update_metadata_featured_image( $metadata, $post ) {
 			global $redux_builder_amp;
 			global $post;
-			$post_id = $post->ID;
+			$post_id = get_the_ID() ;
 			$post_image_id = get_post_thumbnail_id( $post_id );
 			$structured_data_image = wp_get_attachment_image_src( $post_image_id, 'full' );
 			$post_image_check = $structured_data_image;
