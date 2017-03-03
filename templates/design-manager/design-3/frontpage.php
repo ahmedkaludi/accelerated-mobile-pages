@@ -26,7 +26,7 @@ $template = new AMP_Post_Template( $post_id );?>
 <body class="single-post design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<header class="amp-wp-article-header ampforwp-title">
+<header class="amp-wp-article-header ampforwp-title amp-wp-content">
 	<h1 class="amp-wp-title">
 	<?php global  $redux_builder_amp;
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
