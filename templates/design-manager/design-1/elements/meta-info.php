@@ -4,7 +4,9 @@
 	<?php
 	if ( $post_author ) : ?>
 		<div class="amp-wp-meta amp-wp-byline">
-			<?php if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  ?>
+			<?php
+			$author_image = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); 
+			 if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  ?>
 				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php }?>
 
