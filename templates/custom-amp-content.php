@@ -11,7 +11,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
       }
 
       global $post;
-      $amp_current_post_id = $post->ID;
+      $amp_current_post_id = get_the_ID() ;
       if ( $redux_builder_amp['amp-frontpage-select-option'] ) {
         $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
       }
@@ -68,11 +68,12 @@ add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
 
 function amp_content_editor_title_callback( $post ) {
   global $post;
+  global $redux_builder_amp;
   $amp_current_post_id = $post->ID;
   if ( $redux_builder_amp['amp-frontpage-select-option'] ) {
     $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
   }
-  
+
   wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
   $amp_content_on_off = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
   $amp_content_on_off = esc_attr($amp_content_on_off);
