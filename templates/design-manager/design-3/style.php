@@ -410,7 +410,8 @@ color:#666
 }
 .ampforwp-title{
     padding: 0px 0px 0px 0px;
-    margin-top: 50px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 .comment-button-wrapper{
     margin-bottom: 50px;
@@ -521,7 +522,7 @@ figcaption{
 .amp-wp-meta, .amp-wp-meta a {
     font-size: 13px;
     color: #acacac;
-    margin: 20px 0px 45px 0px;
+    margin: 20px 0px 20px 0px;
     padding: 0;
 }
 .amp-ad-wrapper {
@@ -1064,7 +1065,6 @@ amp-lightbox{
     }
 }
 @media screen and (max-width: 768px) {
-    .ampforwp-title{ margin-top: 30px; }
     .amp-wp-meta{ margin:10px 0px 15px 0px }
     .home-post_image{ width: 40%; }
     .amp-loop-list .amp-wp-post-content{ width: 58%; }
@@ -1119,7 +1119,6 @@ amp-lightbox{
         font-size: 17px;
         line-height: 1.5;
     }
-    .ampforwp-title{ margin-top: 24px; }
     .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;}
     .icono-share{display:none}
     .ampforwp-social-icons amp-social-share{ margin-right: 3px;}
