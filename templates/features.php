@@ -1645,3 +1645,25 @@ function ampforwp_add_ads_scripts( $data ) {
 
 	return $data;
 }
+
+// internal function for checing if social profiles have been set
+if( !function_exists('ampforwp_checking_any_social_profiles') ) {
+	function ampforwp_checking_any_social_profiles() {
+		global $redux_builder_amp;
+		if(  $redux_builder_amp['enable-single-twittter-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-facebook-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-pintrest-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-google-plus-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-linkdin-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-youtube-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-instagram-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-VKontakte-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-reddit-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-snapchat-profile-url'] !== '' ||
+				 $redux_builder_amp['enable-single-Tumblr-profile-url'] !== ''
+	 ) {
+			return false;
+		}
+		return true;
+	}
+}
