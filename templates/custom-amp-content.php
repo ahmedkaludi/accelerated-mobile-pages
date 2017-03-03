@@ -24,31 +24,31 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         }
 
         if ( $amp_custom_post_content_check === 'yes') {
-
           $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
               apply_filters( 'amp_content_embed_handlers', array(
-                  'AMP_Twitter_Embed_Handler' => array(),
-                  'AMP_YouTube_Embed_Handler' => array(),
-                  'AMP_Instagram_Embed_Handler' => array(),
-                  'AMP_Vine_Embed_Handler' => array(),
-                  'AMP_Facebook_Embed_Handler' => array(),
-                  'AMP_Gallery_Embed_Handler' => array(),
+          				'AMP_Twitter_Embed_Handler' => array(),
+          				'AMP_YouTube_Embed_Handler' => array(),
+          				'AMP_Instagram_Embed_Handler' => array(),
+          				'AMP_Vine_Embed_Handler' => array(),
+          				'AMP_Facebook_Embed_Handler' => array(),
+          				'AMP_Gallery_Embed_Handler' => array(),
               ) ),
-              apply_filters( 'amp_content_sanitizers', array(
-                  'AMP_Blacklist_Sanitizer' => array(),
-                  'AMP_Img_Sanitizer' => array(),
-                  'AMP_Video_Sanitizer' => array(),
-                  'AMP_Audio_Sanitizer' => array(),
-                  'AMP_Iframe_Sanitizer' => array(
-                      'add_placeholder' => true,
-                  ),
-              ) )
+              apply_filters(  'amp_content_sanitizers', array(
+          				 'AMP_Style_Sanitizer' => array(),
+          				 'AMP_Blacklist_Sanitizer' => array(),
+          				 'AMP_Img_Sanitizer' => array(),
+          				 'AMP_Video_Sanitizer' => array(),
+          				 'AMP_Audio_Sanitizer' => array(),
+          				 'AMP_Iframe_Sanitizer' => array(
+          					 'add_placeholder' => true,
+          				 ),
+              )  )
           );
 
           if ( $amp_custom_content ) {
           	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
           	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
-          	// $data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
+          	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
           }
         }
 
