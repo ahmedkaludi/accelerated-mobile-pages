@@ -28,7 +28,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
 		if ( $this->has_children ) {
-			add_theme_support('ampforwp-has-nav-child', true);
+			set_transient( 'ampforwp_has_nav_child', true, 3 );
 
 			$this->start_accordion( $output, $depth );
 
@@ -130,12 +130,13 @@ function ampforwp_add_design3_required_fonts( $data ) {
 }
 
 // Add required Javascripts for Design 3
-add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts', 100 );
 function ampforwp_add_design3_required_scripts( $data ) {
 	global $redux_builder_amp;
+	$amp_menu_has_child = get_transient( 'ampforwp_has_nav_child' );
 
 	// Add Scripts only when AMP Menu is Enabled
-	if( has_nav_menu( 'amp-menu' ) ) {
+	if( has_nav_menu( 'amp-menu' ) && $amp_menu_has_child ) {
 		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
 			$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
 		}
