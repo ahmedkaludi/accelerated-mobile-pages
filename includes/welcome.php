@@ -37,6 +37,10 @@ function ampforwp_welcome_screen_content() {
     <h2>Welcome To AMPforWP plugin Screen</h2>
 
     <?php echo ampforwp_plugin_parent_activation(); ?>
+
+    <div class="clear"></div>
+    
+    <p> This is some example paragraph.</p>
   </div>
   <?php
 }
@@ -76,6 +80,7 @@ function ampforwp_plugin_parent_activation() {
 	<form id="plugin-filter">
     
 		<div class="wrap">
+		
 		<style>
 			.ampforwp-plugin-action-buttons {
 				text-align:right;
@@ -271,11 +276,17 @@ function ampforwp_plugin_parent_activation() {
 					</div>
 				</div>
 				<?php
-				}
-				?>
+				} ?>
 
 		     	</div>	
-			</div>       
+			</div>  
+			<?php if ($status['activation'] == 'activated') { ?>
+				<style>
+					.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted{
+						display: none;
+					}
+				</style>
+			<?php } ?>
 		</div>    
 	</form>   
     

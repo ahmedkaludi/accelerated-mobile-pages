@@ -407,8 +407,8 @@
                     add_action( "wp_ajax_" . $this->args['opt_name'] . '_ajax_save', array( $this, "ajax_save" ) );
 
                     if ( $this->args['dev_mode'] == true || Redux_Helpers::isLocalHost() == true ) {
-                        require_once 'core/dashboard.php';
-                        new reduxDashboardWidget( $this );
+                       //  require_once 'core/dashboard.php';
+                        // new reduxDashboardWidget( $this );
 
 //                        if ( ! isset ( $GLOBALS['redux_notice_check'] ) ) {
 //                            require_once 'core/newsflash.php';
