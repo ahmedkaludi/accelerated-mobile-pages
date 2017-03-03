@@ -265,17 +265,7 @@ header{
     z-index:1000;
     width: 100%;
 }
-#header h1{
-    text-align: center;
-    font-size: 16px;
-    left: -20px;
-    position: relative;
-    font-weight: bold;
-    line-height: 53px;
-    padding: 0;
-    margin: 0;
-    text-transform: uppercase;
-}
+#header h1{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 53px; padding: 0; margin: 0; text-transform: uppercase }
 
 main .amp-wp-content{
     font-size: 18px;
@@ -799,7 +789,9 @@ pre {
     border:none
 }
 .headerlogo{
-    text-align:center
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
 }
 .headerlogo amp-img{
     margin-top:6px
