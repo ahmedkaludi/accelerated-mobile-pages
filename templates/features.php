@@ -679,12 +679,17 @@
 		function ampforwp_update_metadata( $metadata, $post ) {
 				global $redux_builder_amp;
 
-				$structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];
+				if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
+					$structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
+				}
 
-				if ($structured_data_logo) {
-						$structured_data_logo = $structured_data_logo;
+				if (! empty( $redux_builder_amp['amp-structured-data-logo']['url'] ) ) {
+					$structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];
+				}
+				if ( $structured_data_logo ) {
+					$structured_data_logo = $structured_data_logo;
 				} else {
-					$structured_data_logo = $redux_builder_amp['opt-media']['url'];
+					$structured_data_logo = $structured_data_main_logo;
 				}
 				$metadata['publisher']['logo'] = array(
 					'@type' 	=> 'ImageObject',
@@ -722,7 +727,10 @@
 			$post_image_check = $structured_data_image;
 
 			if ( $post_image_check == false) {
-					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+				if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
+					$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+				}
+					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
 
@@ -1570,7 +1578,10 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			}
 
 			// placeholder Image area
-			$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url']; //  Placeholder Image URL
+			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
+				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+			}
+			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
 
