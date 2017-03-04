@@ -1624,7 +1624,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'id'       => 'ampforwp-disqus-host-file',
                          'type'     => 'text',
                          'title'    => __('Disqus Host File', 'redux-framework-demo'),
-                         'subtitle' => __('<a href="#"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
+                         'subtitle' => __('<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
                          'placeholder' => 'https://comments.example.com/disqus.php',
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
                      ),
