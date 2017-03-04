@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.9.43.6
+Stable tag: 0.9.44
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Native AMP Search functionality.
 * NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * NEW - Disqus Comments Support
 * NEW - Google Tag Manager Support
@@ -125,6 +126,49 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.44 (5 March 2017) =
+* View more details at https://ampforwp.com/user-experience-52nd-update/
+* Added Welcome Screen for better User experience. [Enhancement]
+* Undefined Index debug error resolved [Bug fix]
+* All in one SEO Support support tested [3rd party compatibility]
+* Frontpage title in Design 3 is out of the container #644 [Bug fix]
+* Default Table markup in AMP #643 [Enhancement]
+* AMP carousel is not working on Frontpage #641 [Bug fix]
+* Social share .js was getting added even when it was not required #638 [Bug fix]
+* Search Feature added for Design 1 & Design 2 [Major Improvement]
+* Accordion script loading issue in Design 3 #634 [Bug fix]
+* ?nonamp=1 links should be nofollow #622 [Bug fix]
+* Same Header and Color Scheme are making header elements invisible #629 [Enhancement]
+* In Search AMP rel canonical was different #631 [Bug fix]
+* Non-AMP link in Design 3 was not working when mobile redirection was enabled #632 [Bug fix]
+* Search form text strings are now added in the translation panel #607 [Bug fix]
+* Load AMP-ads conditionally only if ads are available #609 [Bug fix]
+* Added compatibility with Custom post type extension. Option to hide/show AMP on all custom post types #587 [Bug fix]
+* Report a Bug & Request feature links added [Enhancement]
+* If there was no menu set in Design 3 then all pages were getting displayed. #613 [Bug fix]
+* The tag Font is disallowed #616 [Validation Improved]
+* index/noindex separately added for Tags and also for Categories #606 [Enhancement]
+* Use of undefined constant AMP_QUERY_VAR #596 [Bug fixed]
+* Logo is not centered in Design 3 #586 [Bug fixed]
+* Remove defer, a very rare type of defer was getting added #589 [Validation Improved]
+* Disqus comments iframe had scrolling issues #566 [Bug fixed]
+* Left side blank gap in the RTL in design 2 #541 [Bug fixed]
+* Inline Styles not working correctly in Custom AMP Editor #533 [Bug fixed]
+* Re-save permalinks issues. Flushing rewrites with options saved. #511 [Improvement]
+* Code review and cleaning of the customizer #404 [Code Cleaning]
+* Google Search iframe had some header alignment issues in Design 3. #624 - Thank you Leo Osa @leoosa for the contribution! [Bug fixed]
+* AMP Frontpage + Override AMP Content = Blank page #604 [Bug fixed]
+* Widget area added on the homepage with an 'AMP Category Blocks' widget. It means you can display multiple category blocks the homepage. This allows you to display complex layouts, even on AMP. [Major Improvement]
+* Auto-append /amp at the end of internal links in Menu with an option in the Menu section of the options panel #531 [Major Improvement]
+Reformatting and Minifying of stylesheet [Code Cleaning]
+* Created a new section for Homepage and moved some controls from other areas to the home section for the better user experience. [User Experience]
+* Override Homepage Thumbnail size option added. It will give you more control over your thumbnails. [Major Improvement]
+* New color picker added to change the color of the header elements in the Design 3 to give you better control over the design. [Enhancement]
+* Extra amp-carousel script loading is now fixed. [Bug fixed]
+* Crafting of layout code in design 2 and design 3, especially with social icons area. [Code Cleaning]
+* Design of search form was not clickable in iOS devices #621 [Bug fixed]
+* Disqus iframe was loading even when there was no disqus name was added in the option. We found that many users might be enabling it without knowing the output and then they seem to forget, which was causing them validation warnings. [Bug fixed]
 
 = 0.9.43.6 =
 * View more details at https://ampforwp.com/stability-sprint-3-51st-update/
