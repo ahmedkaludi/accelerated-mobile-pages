@@ -34,8 +34,6 @@ function ampforwp_welcome_screen_pages() {
 function ampforwp_welcome_screen_content() {
   ?>
   	<div class="wrap">
-	    <h2>Thank you for installing AMPforWP plugin.</h2>
-
 	    <?php echo ampforwp_plugin_parent_activation(); ?>
 
 	    <div class="clear"></div>
@@ -46,8 +44,8 @@ function ampforwp_welcome_screen_content() {
 			<p style=" font-family: georgia; font-size: 20px; font-style: italic; margin-bottom: 3px; line-height: 1.5; color: #666;">Thank you so much for installing the AMPforWP plugin!</p>
 			<p style="font-family: georgia;font-size: 20px;margin-top: 4px;font-style: italic;line-height: 1.5;color: #666;">Our team works really hard to deliver good user experience to you.</p>
 		     
-		    <p>
-			    <b>Here are some links to help you Get Started</b>
+		    <div class="getstarted_wrapper"></div><p>
+			    <b>Links to help you started:</b>
 				<ul class="getstarted_ul">
 					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank">Getting Started with AMP</a></li>
 					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank">Adding Navigation Menu</a></li>
@@ -55,8 +53,8 @@ function ampforwp_welcome_screen_content() {
 					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank">View all Tutorials</a> 
 				</ul>
 		    </p>
-		    <h1 style=" color: #388E3C; font-weight: 500; margin-top: 38px;">
-		    	<i class="dashicons dashicons-editor-help" style=" font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
+		    <h1 style=" color: #3F51B5; font-weight: 500; margin-top: 38px;">
+		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
 		    </h1> 
 			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
 
@@ -115,6 +113,7 @@ function ampforwp_plugin_parent_activation() {
 			</div>
 
             <style>
+            .ampforwp-post-installtion-instructions, .ampforwp-pre-installtion-instructions{ margin-left: 15px;}
             .getstarted_ul li{  list-style-type: decimal; list-style-position: inside; } 
             a.getstarted_btn{ background: #43A047; color: #fff; padding: 7px 15px 8px 15px; font-size: 11px; line-height: 1;  text-decoration: none; margin-top: 8px; display: inline-block;}
             .dashicons-warning, .dashicons-yes{
