@@ -538,6 +538,7 @@ Redux::setArgs( "redux_builder_amp", $args );
              array(
                 'id'       => 'amp-design-3-search-feature',
                 'type'     => 'switch',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
                 'title'    => __( 'Search', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
@@ -548,6 +549,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
              array(
                 'id'       => 'amp-design-2-search-feature',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
                 'type'     => 'switch',
                 'title'    => __( 'Search', 'redux-framework-demo' ),
                 'required' => array(
@@ -559,6 +561,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
              array(
                 'id'       => 'amp-design-1-search-feature',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
                 'type'     => 'switch',
                 'title'    => __( 'Search', 'redux-framework-demo' ),
                 'required' => array(

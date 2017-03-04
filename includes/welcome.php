@@ -63,28 +63,42 @@ function ampforwp_welcome_screen_content() {
 		    <h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i>AMP is now Installed!</h1> 
 			<p style=" font-family: georgia; font-size: 20px; font-style: italic; margin-bottom: 3px; line-height: 1.5; color: #666;">Thank you so much for installing the AMPforWP plugin!</p>
 			<p style="font-family: georgia;font-size: 20px;margin-top: 4px;font-style: italic;line-height: 1.5;color: #666;">Our team works really hard to deliver good user experience to you.</p>
+<div class="install_options">
+    <div class="install_options_left">
+        <p style="margin-top:0;margin-bottom:0;font-size: 15px;line-height: 1;"><b>Head Over to Settings</b></p> 
+        <p style="margin-top: 8px;margin-bottom:0px;">Time to customize the your AMP!</p>        
+    </div>
+    <div class="install_options_right">
+        <a href="<?php echo esc_url( admin_url('admin.php?page=amp_options') );?>">AMP Options Panel</a>
+    </div>
+    <div class="clear"></div>
+</div>
+
 		     
-		    <div class="getstarted_wrapper"></div><p>
-			    <b>Links to help you started:</b>
+
+		    <h1 style="color: #303F9F;font-weight: 500;margin-top: 48px;">
+		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
+		    </h1> 
+			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
+		    <div class="getstarted_wrapper">
+            <div class="getstarted_options">
+            <p><b>Links to help you started:</b>
 				<ul class="getstarted_ul">
 					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank">Getting Started with AMP</a></li>
 					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank">Adding Navigation Menu</a></li>
 					<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank">Adding Google Analtyics</a></li>
 					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank">View all Tutorials</a> 
-				</ul>
-		    </p>
-		    <h1 style=" color: #3F51B5; font-weight: 500; margin-top: 38px;">
-		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
-		    </h1> 
-			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
-
-			<p><b>There are 3 ways to get help:</b></p>
-
+				</ul> </p>
+            </div>
+            <div class="getstarted_links">
+            <p><b>There are 3 ways to get help:</b></p>
 			<ul class="getstarted_ul">
 				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Support Forum</a></li>
 				<li><a href="https://ampforwp.com/chat/" target="_blank">Live Chat with Our Team</a></li>
 				<li><a href="https://ampforwp.com/help" target="_blank">View Documentation</a></li>
 			</ul>
+            </div><div class="clear"></div>
+            </div>
 
 		</div>
 
@@ -134,9 +148,39 @@ function ampforwp_plugin_parent_activation() {
 			</div>
 
             <style>
+            .install_options{     max-width: 550px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 25px 27px 25px 26px;
+    border-radius: 2px;
+    margin-top: 19px;}
+            .install_options_left{float:left}
+            .install_options_right{float:right} 
+                .install_options_right a{
+background: #4CAF50;
+    padding: 11px 20px 12px 20px;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 1px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;}
+            .getstarted_wrapper{ 
+    max-width: 510px;
+    margin-top: 20px; }
+            .getstarted_options{ float: left}
+            .getstarted_options{float: left; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
+            .getstarted_links{float: right; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
             .ampforwp-post-installtion-instructions, .ampforwp-pre-installtion-instructions{ margin-left: 15px;}
             .getstarted_ul li{  list-style-type: decimal; list-style-position: inside; } 
-            a.getstarted_btn{ background: #43A047; color: #fff; padding: 7px 15px 8px 15px; font-size: 11px; line-height: 1;  text-decoration: none; margin-top: 8px; display: inline-block;}
+            a.getstarted_btn{     background: #666;
+    color: #fff;
+    padding: 9px 35px 9px 35px;
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    margin-top: 8px;
+    display: inline-block;}
             .dashicons-warning, .dashicons-yes{
                 font-family: dashicons;
                 font-style: normal;
@@ -362,7 +406,7 @@ function ampforwp_offline_admin_notice() {
 	<script>
 		const statusContainer = document.getElementById('ampforwp-network-status');
 		if(! navigator.onLine) {
-			statusContainer.innerHTML = "<h1> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
+			statusContainer.innerHTML = "<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
         } else {
         	statusContainer.innerHTML =  "";
         }
