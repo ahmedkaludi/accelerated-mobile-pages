@@ -139,7 +139,7 @@ if ( is_admin() ) {
 
             $current_screen = get_current_screen();
 
-            if( $current_screen ->id !== "toplevel_page_amp_options" ) {
+            if( $current_screen ->id == "plugin-install" ) {
                 return;
             } ?>
 
