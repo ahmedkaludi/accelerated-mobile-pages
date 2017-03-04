@@ -421,6 +421,15 @@ Redux::setArgs( "redux_builder_amp", $args );
     endif;
     //End of code for fetching ctegories to show as a list in redux settings
 
+    function ampforwp_get_element_default_color() {
+        $default_value = get_option('redux_builder_amp', true);
+        $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
+        if ( empty( $default_value ) ) { 
+          $default_value = '#333'; 
+        }
+      return $default_value;
+    }
+
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
@@ -481,12 +490,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'type'      => 'color_rgba',
                     'title'     => 'Header Elements Color',
                     'default'   => array(
-                        'color'     => '#333',
+                        'color'     => ampforwp_get_element_default_color(),
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '3')
                  )
              ),
+            
 
           array(
                      'id'       => 'amp-design-3-featured-slider',
