@@ -1591,7 +1591,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 // Disqus Comments
  Redux::setSection( $opt_name, array(
     'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
-    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
+//    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
