@@ -92,7 +92,7 @@ Redux::setArgs( "redux_builder_amp", $args );
       include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
       if ( is_plugin_inactive( 'amp/amp.php' ) ) {
          $output = '<a href="index.php?page=ampforwp-welcome-page"> <img src="http://previews.123rf.com/images/chrisdorney/chrisdorney1408/chrisdorney140800002/30426041-ACTION-REQUIRED-red-Rubber-Stamp-over-a-white-background--Stock-Photo.jpg" alt=""> </a>';
-      }  
+      }
       return $output ;
     }
 
@@ -1580,6 +1580,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'title'    => __('Disqus Name', 'redux-framework-demo'),
                          'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
                          'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                         'default'  => ''
                      ),
 
                      array(
