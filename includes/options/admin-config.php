@@ -703,7 +703,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'id'         => 'amp-menus',
        'subsection' => true,
        'fields' => array(
-        
+
             array(
                 'id'       => 'ampforwp-auto-amp-menu-link',
                 'type'     => 'switch',
@@ -1529,8 +1529,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                    array(
                        'id'       => 'amp-translator-show-more-text',
                        'type'     => 'text',
-                       'title'    => __('Show More (Widget Button)', 'redux-framework-demo'),
-                       'default'  => 'Show More!',
+                       'title'    => __('View More Posts (Widget Button)', 'redux-framework-demo'),
+                       'default'  => 'View More Posts',
                        'placeholder'=>'write here'
                    ),
                     array(

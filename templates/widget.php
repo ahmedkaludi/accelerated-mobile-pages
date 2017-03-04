@@ -21,10 +21,9 @@
 // Create the widget output.
   public function widget( $args, $instance ) {
     $ampforwp_title = apply_filters( 'widget_title', $instance[ 'title' ] );
-    $ampforwp_category_count = apply_filters( 'post_count', $instance[ 'count' ] );
-    $ampforwp_category_id = apply_filters( 'selected_category', $instance[ 'category' ] );
-    $ampforwp_category_link = apply_filters( 'show_button', $instance[ 'showButton' ] );
-
+    $ampforwp_category_count = $instance[ 'count' ];
+    $ampforwp_category_id = $instance[ 'category' ];
+    $ampforwp_category_link = $instance[ 'showButton' ];
 
  //   echo . $args['before_title'] .  . $args['after_title']; ?>
 
@@ -68,7 +67,7 @@
         //show more
         if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
           global $redux_builder_amp;
-          echo '<a href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
+          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
         }
         echo '</ul></div>';
 
