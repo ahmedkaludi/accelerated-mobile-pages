@@ -3,29 +3,38 @@
 
   $ampforwp_backto_nonamp = " ";
   if ( is_home() ) {
-    $ampforwp_backto_nonamp = home_url();
+    $ampforwp_backto_nonamp = untrailingslashit(home_url()).'?nonamp=1';
   }
   if ( is_single() ){
     global $post;
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1';
   }
   if ( is_page() ){
     global $post;
-    $ampforwp_backto_nonamp = get_permalink( $post->ID );
+    $ampforwp_backto_nonamp = untrailingslashit(get_permalink( $post->ID )).'?nonamp=1';
   }
   if( is_archive() ) {
     global $wp;
-    $ampforwp_backto_nonamp = esc_url( home_url( $wp->request ) );
+    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1' );
+    $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','?nonamp=1',$ampforwp_backto_nonamp);
   }
   ?>
+
   <footer class="footer_wrapper container">
       <div id="footer">
+        <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
           <div class="footer_menu">
-              <?php wp_nav_menu( array( 'theme_location' => 'amp-footer-menu' ) ); ?>
+              <?php
+                    wp_nav_menu( array(
+                        'theme_location' => 'amp-footer-menu',
+                    ) );
+              ?>
           </div>
+        <?php } ?>
+
+        <?php if( ampforwp_checking_any_social_profiles() ) { ?>
           <div class="social_icons">
             <ul>
-
 
             <?php global $redux_builder_amp;
             if( $redux_builder_amp['enable-single-twittter-profile'] && $redux_builder_amp['enable-single-twittter-profile-url'] !== '') { ?>
@@ -84,6 +93,7 @@
 
             </ul>
           </div>
+          <?php } ?>
           <p class="rightslink">
             <?php
               global $allowed_html;
@@ -92,7 +102,7 @@
               <?php
               //24. Added an options button for switching on/off link to non amp page
               if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
-                if ( $ampforwp_backto_nonamp ) { ?> | <a href="<?php echo $ampforwp_backto_nonamp; ?>"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+                if ( $ampforwp_backto_nonamp ) { ?> | <a href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
               } ?>
           </p>
           <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
@@ -104,11 +114,7 @@
   </footer>
 </div><!--Design3 Ends-->
 
-<?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-search-feature'] ) { ?>
-<amp-lightbox id="search-icon" layout="nodisplay">
-    <?php ampforwp_the_search_form() ?>
-    <button on="tap:search-icon.close" class="closebutton">X</button>
-    <i class="icono-cross"></i>
-</amp-lightbox>
-<?php } ?>
-<?php do_action('ampforwp_global_after_footer'); ?>
+ <?php
+ do_action('ampforwp_global_after_footer');
+
+ ?>

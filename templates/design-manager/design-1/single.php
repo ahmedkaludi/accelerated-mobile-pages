@@ -11,7 +11,7 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> single-post <?php if(is_page()){ echo'amp-single-page'; };?>">
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> single-post <?php if(is_page()){ echo'amp-single-page'; };?> design_1_wrapper">
 
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 

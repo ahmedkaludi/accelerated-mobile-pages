@@ -1,4 +1,5 @@
 <?php global $redux_builder_amp;  ?>
+<?php if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
@@ -10,7 +11,7 @@
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
 			<amp-social-share type="gplus" width="40" height="40"></amp-social-share>
-		<?php } ?> 
+		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
 			<amp-social-share type="email" width="40" height="40"></amp-social-share>
 		<?php } ?>
@@ -28,3 +29,4 @@
 			</a>
 		<?php } ?>
 </div>
+<?php } ?>

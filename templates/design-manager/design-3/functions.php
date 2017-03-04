@@ -28,7 +28,7 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
 		if ( $this->has_children ) {
-			add_theme_support('ampforwp-has-nav-child', true);
+			set_transient( 'ampforwp_has_nav_child', true, 3 );
 
 			$this->start_accordion( $output, $depth );
 
@@ -130,50 +130,27 @@ function ampforwp_add_design3_required_fonts( $data ) {
 }
 
 // Add required Javascripts for Design 3
-add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_scripts', 100 );
 function ampforwp_add_design3_required_scripts( $data ) {
 	global $redux_builder_amp;
+	$amp_menu_has_child = get_transient( 'ampforwp_has_nav_child' );
 
-	// Add Scripts only when Search is Enabled
-	if( $redux_builder_amp['amp-design-3-search-feature'] ) {
-		if ( empty( $data['amp_component_scripts']['amp-lightbox'] ) ) {
-			$data['amp_component_scripts']['amp-lightbox'] = 'https://cdn.ampproject.org/v0/amp-lightbox-0.1.js';
-		}
-		if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
-			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-		}
-	}
-	// Add Scripts only when AMP Menu is Enabled	
-	if( has_nav_menu( 'amp-menu' ) ) { 
+	// Add Scripts only when AMP Menu is Enabled
+	if( has_nav_menu( 'amp-menu' ) ) {
 		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
 			$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
-		}	
+		}
 	}
 	// Add Scripts only when Homepage AMP Featured Slider is Enabled
-	if( is_home() ) { 
+	if( is_home() ) {
 
-		if ( $redux_builder_amp['amp-design-3-featured-slider'] == 1 ) {
-			
+		if ( $redux_builder_amp['amp-design-3-featured-slider'] == 1 && $redux_builder_amp['amp-design-selector'] == 3 && $redux_builder_amp['amp-frontpage-select-option'] == 0 ) {
+
 			if ( empty( $data['amp_component_scripts']['amp-carousel'] ) ) {
 				$data['amp_component_scripts']['amp-carousel'] = 'https://cdn.ampproject.org/v0/amp-carousel-0.1.js';
 			}
-    	} 
+    	}
     }
 	return $data;
 }
 
-// Search Form
-function ampforwp_get_search_form() {
-    $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
-                <div>
-                    <label class="screen-reader-text" for="s">' . _x( 'Type your search query and hit enter:', 'label' ) . '</label>
-                    <input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
-                    <input type="text" placeholder="Type here" value="' . get_search_query() . '" name="s" id="s" />
-                    <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
-                </div>
-            </form>';
-    return $form;
-}
-function ampforwp_the_search_form() {
-    echo ampforwp_get_search_form();
-}

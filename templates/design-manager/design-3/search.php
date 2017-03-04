@@ -4,11 +4,16 @@
 <head>
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-	<?php
-	global $redux_builder_amp;
-	if ( is_home() || is_front_page() || is_search() ){
-		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
-		$amp_url = untrailingslashit($current_search_url);
+	<?php $paged = get_query_var( 'paged' );
+	$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
+	$amp_url = untrailingslashit($current_search_url);
+	if ($paged > 1 ) {
+		global $wp;
+		$current_archive_url 	= home_url( $wp->request );
+		$amp_url 				= trailingslashit($current_archive_url);
+		$remove 				= '/'. AMPFORWP_AMP_QUERY_VAR;
+		$amp_url				= str_replace($remove, '', $amp_url) ;
+		$amp_url 				= $amp_url ."?s=".get_search_query();
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
@@ -19,7 +24,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body">
+<body class="amp_home_body archives_body design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
@@ -27,6 +32,7 @@
 
 
 <main>
+	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php
 		if ( get_query_var( 'paged' ) ) {
 	        $paged = get_query_var('paged');
@@ -39,14 +45,12 @@
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
 		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'orderby'             => 'date',
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
+			'has_password' 		  => false ,
+			'post_status'		  => 'publish'
 		) ); ?>
 
 
@@ -55,7 +59,7 @@
  		<h3 class="amp-wp-content page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
  
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
+		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -97,19 +101,20 @@
 
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
-<?php if ( $paged > 1 ) { ?>
-			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
-<?php } ?>
+				<?php if ( $paged > 1 ) { ?>
+					<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+				<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			Sorry No posts Found for <?php echo get_search_query(); ?>
+ 			<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?> 
  		</div>
 
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>

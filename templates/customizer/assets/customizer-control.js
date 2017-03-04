@@ -42,17 +42,4 @@ jQuery( document ).ready( function($) {
 		$( this ).parents( 'ul.ampforwp-design-multicheck-list' ).find( 'input.ampforwp-design-multicheck' ).val( this_checkboxes_values ).trigger( 'change' );
 
 	});
-
-	var current_active_design = ampforwp_customizer_settings.design_type;
-	if ( current_active_design == 1 ) {
-
-		$('#customize-control-amp_header_color').show();
-		$('#customize-control-amp_header_background_color').show();
-		$('#customize-control-amp_color_scheme').show();
-
-	} else {
-		$('#customize-control-amp_header_color').hide();
-		$('#customize-control-amp_header_background_color').hide();
-		$('#customize-control-amp_color_scheme').hide();
-	}
 });

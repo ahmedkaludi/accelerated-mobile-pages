@@ -87,6 +87,31 @@ Redux::setArgs( "redux_builder_amp", $args );
      * <--- END HELP TABS
      */
 
+    function ampforwp_plugin_activation_notice() {
+      $output ='';
+      include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+      if ( is_plugin_inactive( 'amp/amp.php' ) ) {
+         $output = '<h1 style="    color: #388E3C;
+    font-weight: 500;
+    margin-top: 38px;"><i class="dashicons dashicons-editor-help" style="
+    font-size: 36px;
+    margin-right: 20px;
+    margin-top: -1px;"></i>Need Help?</h1> 
+<p style="
+    font-family: georgia;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 3px;
+    line-height: 1.5;
+    margin-top: 11px;
+    color: #666;">Were bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
+
+ 
+         
+         ';
+      }
+      return $output ;
+    }
 
     /*
      *
@@ -112,22 +137,20 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setSection( $opt_name, array(
         'title' => __( 'Getting Started', 'redux-framework-demo' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'redux-framework-demo' ), 'redux-framework-demo' ) . ' '
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'redux-framework-demo' ), 'redux-framework-demo' ) . ampforwp_plugin_activation_notice()
 			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'redux-framework-demo' ) . '</h2>'
 			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
-			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
-			               . '<p><strong>' . __( '3. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.
-' ) . '</p>'
-			               . '<p><strong>' . __( '4. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
-			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
-			               . '<p><strong>' . __( '6. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
+			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/chat/" target="_blank">Chat with Team AMP</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!' ) . '</p>'
+			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
+			               . '<p><strong>' . __( '4. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
+			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
+			               . '<p><strong>' . __( '6. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
+			               . '<p><strong>' . __( '7. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'redux-framework-demo' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
 
-
- 	   					   . sprintf( __( '
-</br /></br />
-                      <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
-                     ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
-						   . '</p></div>'
+ 	   					       . sprintf( __( ' </br /></br />
+                          <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
+                         ', 'redux-framework-demo' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
+						         . '</p></div>'
 
 				 , 'redux-framework-demo' ),
         'icon'  => 'el el-home'
@@ -161,7 +184,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'desc'    => __('Default width is 190 pixels', 'redux-framework-demo'),
                 'default' => '190',
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
-
             ),
              array(
                 'id'       => 'opt-media-height',
@@ -172,8 +194,43 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
             ),
+           array(
+               'id'        =>'amp-on-off-for-all-pages',
+               'type'      => 'switch',
+               'title'     => __('AMP on Pages', 'redux-framework-demo'),
+               'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
+               'default'   => 1,
+               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
+            ),
 
+          //  array(
+          //      'id'       => 'amp-ad-places',
+          //      'type'     => 'select',
+          //      'title'    => __( 'Ads on Page', 'redux-framework-demo' ),
+          //      'subtitle' => __( 'select your preferece for Ads on Post Types', 'redux-framework-demo' ),
+          //      'options'  => array(
+          //          '1' => __('Only on Posts', 'redux-framework-demo' ),
+          //          '2' => __('Only on Pages', 'redux-framework-demo' ),
+          //          '3' => __('on Both', 'redux-framework-demo' ),
+          //      ),
+          //      'default'  => '3'
+          //  ),
 
+      )
+    ) );//END
+    // Homepage Section
+   Redux::setSection( $opt_name, array(
+                'title'      => __( 'Homepage', 'redux-framework-demo' ),
+        'id'         => 'amp-homepage-settings',
+        'subsection' => true,
+        'fields'     => array(
+              array(
+                        'id'       => 'ampforwp-homepage-on-off-support',
+                        'type'     => 'switch',
+                        'title'    => __('Homepage Support', 'redux-framework-demo'),
+                        'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
+                        'default'  => '1'
+            ),
             array(
                 'id'        =>'amp-frontpage-select-option',
                 'type'      => 'switch',
@@ -182,6 +239,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle'  => __('Custom AMP front page', 'redux-framework-demo'),
                 'true'      => 'true',
                 'false'     => 'false',
+                'required'  => array('ampforwp-homepage-on-off-support','=','1'),
             ),
             array(
                 'id'       => 'amp-frontpage-select-option-pages',
@@ -204,52 +262,64 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'redux-framework-demo'),
                'default' => 0,
                'required' => array('amp-frontpage-select-option', '=' , '1'),
-           ),
+            ),
+            array(
+               'id'       => 'ampforwp-homepage-posts-image-modify-size',
+               'type'     => 'switch',
+               'title'    => __('Override Homepage Thumbnail Size', 'redux-framework-demo'),
+               'default'  => 0,
+               'required' => array(
+                 array('amp-design-selector','!=',3)
+               )
+            ),
            array(
-               'id'        =>'amp-on-off-for-all-pages',
-               'type'      => 'switch',
-               'title'     => __('AMP on Pages', 'redux-framework-demo'),
-               'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
-               'default'   => 1,
-               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
-           ),
+               'id'       => 'ampforwp-homepage-posts-design-1-2-width',
+               'type'     => 'text',
+               'title'    => __('Image Width', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 100', 'redux-framework-demo'),
+               'default'  => 100,
+               'required' => array(
+                 array('amp-design-selector','!=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+            ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-1-2-height',
+               'type'     => 'text',
+               'title'    => __('Image Height', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 75', 'redux-framework-demo'),
+               'default'  => 75,
+               'required' => array(
+                 array('amp-design-selector','!=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+            ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-3-width',
+               'type'     => 'text',
+               'title'    => __('Image Width', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 450', 'redux-framework-demo'),
+               'default'  => 330,
+               'required' => array(
+                 array('amp-design-selector','=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+            ),
+           array(
+               'id'       => 'ampforwp-homepage-posts-design-3-height',
+               'type'     => 'text',
+               'title'    => __('Image Height', 'redux-framework-demo'),
+               'subtitle' => __('Defaults to 270', 'redux-framework-demo'),
+               'default'  => 198,
+               'required' => array(
+                 array('amp-design-selector','=',3),
+                 array('ampforwp-homepage-posts-image-modify-size','=',1)
+               )
+            )
+          )
+        )
+      );
 
-
-            // array(
-            //     'id'       => 'amp-footer-text',
-            //     'title'    => __('Footer', 'redux-framework-demo'),
-            //     'type'     => 'text',
-            //     'subtitle'  => __('Enter Footer text', 'redux-framework-demo'),
-            //     'placeholder'  => 'Copyright &copy; 2016',
-            //     'default'  => 'Copyright &copy; 2016',
-            // ),
-
-
-
-        // array(
-        //     'id'       => 'amp-navigation-text',
-        //     'title'    => __('Navigation Text', 'redux-framework-demo'),
-        //     'type'     => 'text',
-        //     'subtitle' =>__('Enter text to appear on Navigation Button', 'redux-framework-demo'),
-        //     'placeholder'=>'Navigate',
-        //     'default'  => 'Navigate'
-        // ),
-
-          //  array(
-          //      'id'       => 'amp-ad-places',
-          //      'type'     => 'select',
-          //      'title'    => __( 'Ads on Page', 'redux-framework-demo' ),
-          //      'subtitle' => __( 'select your preferece for Ads on Post Types', 'redux-framework-demo' ),
-          //      'options'  => array(
-          //          '1' => __('Only on Posts', 'redux-framework-demo' ),
-          //          '2' => __('Only on Pages', 'redux-framework-demo' ),
-          //          '3' => __('on Both', 'redux-framework-demo' ),
-          //      ),
-          //      'default'  => '3'
-          //  ),
-
-      )
-    ) );//END
 
     // AMP GTM SECTION
    Redux::setSection( $opt_name,    array(
@@ -369,6 +439,15 @@ Redux::setArgs( "redux_builder_amp", $args );
     endif;
     //End of code for fetching ctegories to show as a list in redux settings
 
+    function ampforwp_get_element_default_color() {
+        $default_value = get_option('redux_builder_amp', true);
+        $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
+        if ( empty( $default_value ) ) { 
+          $default_value = '#333'; 
+        }
+      return $default_value;
+    }
+
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'redux-framework-demo' ),
@@ -405,7 +484,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-color-rgba-headercolor',
                 'type'      => 'color_rgba',
-                'title'     => 'Header Color',
+                'title'     => 'Header Background Color',
                 'default'   => array(
                     'color'     => '#FFFFFF',
                 ),
@@ -422,8 +501,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                     ),
                     'required' => array(
                       array('amp-design-selector', '=' , '3')
-                    )
-                  ),
+                 )
+              ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-headerelements',
+                    'type'      => 'color_rgba',
+                    'title'     => 'Header Elements Color',
+                    'default'   => array(
+                        'color'     => ampforwp_get_element_default_color(),
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                 )
+             ),
+            
 
           array(
                      'id'       => 'amp-design-3-featured-slider',
@@ -447,12 +538,39 @@ Redux::setArgs( "redux_builder_amp", $args );
              array(
                 'id'       => 'amp-design-3-search-feature',
                 'type'     => 'switch',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
                 'title'    => __( 'Search', 'redux-framework-demo' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
+                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'redux-framework-demo' ),
                 'default'  => '0'
             ),
+
+             array(
+                'id'       => 'amp-design-2-search-feature',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
+                'type'     => 'switch',
+                'title'    => __( 'Search', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '2')
+                ),
+                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'redux-framework-demo' ),
+                'default'  => '0'
+            ),
+
+             array(
+                'id'       => 'amp-design-1-search-feature',
+                'subtitle' => __('HTTPS is mandatory for Search', 'redux-framework-demo'),
+                'type'     => 'switch',
+                'title'    => __( 'Search', 'redux-framework-demo' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '1')
+                ),
+                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'redux-framework-demo' ),
+                'default'  => '0'
+            ),
+
              array(
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
@@ -547,7 +665,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
            ),
            array(
-               'id'       => 'ampforwp-robots-archive-date-page1',
+               'id'       => 'ampforwp-robots-archive-date-pages',
                'type'     => 'switch',
                'title'    => __('Date Archive pages', 'redux-framework-demo'),
                'default' => 1,
@@ -556,13 +674,20 @@ Redux::setArgs( "redux_builder_amp", $args );
 
            ),
            array(
-               'id'       => 'ampforwp-robots-archive-taxonomy-pages',
+               'id'       => 'ampforwp-robots-archive-category-pages',
                'type'     => 'switch',
-               'title'    => __('Categories & Tags', 'redux-framework-demo'),
+               'title'    => __('Categories', 'redux-framework-demo'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
-
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-tag-pages',
+               'type'     => 'switch',
+               'title'    => __('Tags', 'redux-framework-demo'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
            ),
 
 
@@ -576,7 +701,20 @@ Redux::setArgs( "redux_builder_amp", $args );
        'title'      => __( 'Menu', 'redux-framework-demo' ),
        'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>'),
        'id'         => 'amp-menus',
-       'subsection' => true)
+       'subsection' => true,
+       'fields' => array(
+
+            array(
+                'id'       => 'ampforwp-auto-amp-menu-link',
+                'type'     => 'switch',
+                'title'    => __('Auto Add AMP in Menu URL', 'redux-framework-demo'),
+                'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0
+            ),
+        )
+       )
 
    ) ;
 
@@ -1228,13 +1366,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
-                       'id'       => 'amp-translator-search-text',
-                       'type'     => 'text',
-                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
-                       'default'  => ' You searched for: ',
-                       'placeholder'=>'write here'
-                   ),
-                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'redux-framework-demo'),
@@ -1395,6 +1526,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Tag: ',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id'       => 'amp-translator-show-more-text',
+                       'type'     => 'text',
+                       'title'    => __('View More Posts (Widget Button)', 'redux-framework-demo'),
+                       'default'  => 'View More Posts',
+                       'placeholder'=>'write here'
+                   ),
                     array(
                        'id'       => 'amp-translator-next-read-text',
                        'type'     => 'text',
@@ -1402,6 +1540,44 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => 'Next Read: ',
                        'placeholder'=>'write here'
                    ),
+                   array(
+                       'id'       => 'amp-translator-search-text',
+                       'type'     => 'text',
+                       'title'    => __(' You searched for: ', 'redux-framework-demo'),
+                       'default'  => ' You searched for: ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id'       => 'amp-translator-search-no-found',
+                       'type'     => 'text',
+                       'title'    => __(' It seems we can\'t find what you\'re looking for. ', 'redux-framework-demo'),
+                       'default'  => ' It seems we can\'t find what you\'re looking for. ',
+                       'placeholder'=>'write here'
+                   ),
+                   array(
+                       'id' => 'design-3-search-subsection',
+                       'type' => 'section',
+                       'title' => __('Search bar Translation Text', 'redux-framework-demo'),
+                       'indent' => true,
+                   ),
+                   array(
+                      'id'       => 'ampforwp-search-placeholder',
+                      'type'     => 'text',
+                      'title'    => __('Type Here', 'redux-framework-demo'),
+                      'default'  => 'Type Here',
+                      'desc' => 'This is the text that gets shown in for Search Box',
+                      'placeholder'=>'write here',
+
+                  ),
+                  array(
+                     'id'       => 'ampforwp-search-label',
+                     'type'     => 'text',
+                     'title'    => __('Type your search query and hit enter', 'redux-framework-demo'),
+                     'desc' => 'This is the text that gets shown above Search Box',
+                     'default'  => 'Type your search query and hit enter: ',
+                     'placeholder'=>'write here',
+
+                 ),
                )
            ) );
 
@@ -1431,7 +1607,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 // Disqus Comments
  Redux::setSection( $opt_name, array(
     'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
-    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
+//    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
@@ -1448,6 +1624,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'title'    => __('Disqus Name', 'redux-framework-demo'),
                          'subtitle' => __('Eg: https://xyz.disqus.com', 'redux-framework-demo'),
                          'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                         'default'  => ''
                      ),
 
                      array(
@@ -1463,7 +1640,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'id'       => 'ampforwp-disqus-host-file',
                          'type'     => 'text',
                          'title'    => __('Disqus Host File', 'redux-framework-demo'),
-                         'subtitle' => __('<a href="#"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
+                         'subtitle' => __('<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
                          'placeholder' => 'https://comments.example.com/disqus.php',
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
                      ),
@@ -1479,19 +1656,22 @@ Redux::setSection( $opt_name, array(
    'subsection' => true,
    'fields'     => array(
 
-                    array(
+                   /* array(
                         'id'       => 'ampforwp-homepage-on-off-support',
                         'type'     => 'switch',
                         'title'    => __('Homepage Support', 'redux-framework-demo'),
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
-                    ),
+                    ),*/
                     array(
                         'id'        =>'amp-on-off-support-for-non-amp-home-page',
                         'type'      => 'switch',
                         'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
                         'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
                         'default'   => 0,
+                        'required' => array(
+                          array('ampforwp-homepage-on-off-support','=',1)
+                        )
                     ),
                     array(
                         'id'       => 'ampforwp-archive-support',

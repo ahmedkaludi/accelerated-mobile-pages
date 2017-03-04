@@ -10,7 +10,7 @@
 		global $wp;
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
-		$remove 	= '/'. AMP_QUERY_VAR;
+		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
 		$amp_url 	= str_replace($remove, '', $amp_url) ;
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
@@ -22,7 +22,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body">
+<body class="amp_home_body archives_body design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this );
@@ -38,6 +38,7 @@ if ( get_query_var( 'paged' ) ) {
  ?>
 
 <main>
+	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
@@ -58,7 +59,7 @@ if ( get_query_var( 'paged' ) ) {
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMP_QUERY_VAR ; ?>
+  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -67,14 +68,23 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
 				$thumb_url = $thumb_url_array[0];
 				?>
-				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img layout="responsive" src=<?php echo $thumb_url ?> width=450 height=270 ></amp-img></a></div>
+				<div class="home-post_image">
+					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+						<amp-img
+						layout="responsive"
+						src=<?php echo $thumb_url ?>
+						width=450
+						height=270
+					></amp-img>
+				</a>
+			</div>
 			<?php } ?>
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
-<?php foreach((get_the_category()) as $category) { ?>
-             <li><?php echo $category->cat_name ?></li>
-<?php } ?>
+					<?php foreach((get_the_category()) as $category) { ?>
+					    <li><?php echo $category->cat_name ?></li>
+					<?php } ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
@@ -106,15 +116,16 @@ if ( get_query_var( 'paged' ) ) {
 
 		<div id="pagination">
 			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
-<?php if ( $paged > 1 ) { ?>
-			<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
-<?php } ?>
+					<?php if ( $paged > 1 ) { ?>
+						<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+					<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
 
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
+	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
 <?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
