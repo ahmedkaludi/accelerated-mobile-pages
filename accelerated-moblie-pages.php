@@ -96,6 +96,9 @@ function ampforwp_rewrite_activation() {
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
+    
+    // Set transient for Welcome page
+	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
 }
 
@@ -105,8 +108,8 @@ function ampforwp_rewrite_deactivate() {
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
 
-	// Set transient for Welcome page
-	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
+	// Remove transient for Welcome page
+	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
 
 // Redux panel inclusion code
