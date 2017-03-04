@@ -24,7 +24,7 @@ add_action('admin_menu', 'ampforwp_welcome_screen_pages');
 function ampforwp_welcome_screen_pages() {
   add_dashboard_page(
     'Welcome To AMPforWP plugin',
-    'AMPforWP plugin',
+    'Welcome to AMP',
     'read',
     'ampforwp-welcome-page',
     'ampforwp_welcome_screen_content'
