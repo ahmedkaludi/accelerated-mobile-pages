@@ -111,6 +111,17 @@ function ampforwp_rewrite_deactivate() {
 	// Remove transient for Welcome page
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
+ 
+add_action( 'admin_init','ampforwp_parent_plugin_check');
+function ampforwp_parent_plugin_check() {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
+	if ( $amp_plugin_activation_check ) {
+		// set_transient( 'ampforwp_parent_plugin_check', true, 30 );
+	} else {
+		delete_option( 'ampforwp_parent_plugin_check');
+	}
+}
 
 // Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
@@ -145,7 +156,7 @@ if ( is_admin() ) {
 
             ?>
 
-				<div class="notice notice-error is-dismissible ampinstallation">
+				<div class="notice notice-warning is-dismissible ampinstallation">
 
 						<?php add_thickbox(); ?>
 				        <p>

@@ -14,9 +14,29 @@ function ampforwp_welcome_screen_do_activation_redirect() {
     return;
   }
 
-  // Redirect to about page
+  // Redirect to welcome page
   wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'index.php' ) ) );
+}
 
+add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );
+function ampforwp_welcome_screen_do_activation_redirect_parent() {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );	
+	
+	// Bail if option is already set or plugin is deactivated
+	if ( get_option( 'ampforwp_parent_plugin_check' ) || $amp_plugin_activation_check == false ) {
+		return;
+	}
+
+	// Bail if activating from network, or bulk
+	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
+		return;
+	}
+
+	// Redirect to welcome page
+	wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'index.php' ) ) );
+
+ 	update_option( 'ampforwp_parent_plugin_check', true );
 }
 
 add_action('admin_menu', 'ampforwp_welcome_screen_pages');
@@ -110,6 +130,7 @@ function ampforwp_plugin_parent_activation() {
 				<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i>Almost done. One last step remaining.</h1> 
 				<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>            
 				<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the 'Finish Installation' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>
+				<div id="ampforwp-network-status"></div>
 			</div>
 
             <style>
@@ -314,20 +335,37 @@ function ampforwp_plugin_parent_activation() {
 
 		     	</div>	
 			</div>  
-			<?php if ($status['activation'] == 'activated') { ?>
-				<style>
-					.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted, 
-					.ampforwp-pre-installtion-instructions{
-						display: none;
-					} 
-				</style>
-			<?php } else { ?>
-				<style>
-					.ampforwp-post-installtion-instructions{ display: none; } 
-				</style>
-			<?php } ?>
 		</div>    
 	</form>   
     
 	<?php 
-} 
+}
+
+add_action('admin_footer','ampforwp_offline_admin_notice');
+function ampforwp_offline_admin_notice() { 
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
+
+	if ( $amp_plugin_activation_check ) { ?>
+		<style>
+			.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted, 
+			.ampforwp-pre-installtion-instructions{
+				display: none;
+			} 
+		</style>
+	<?php } else { ?>
+		<style>
+			.ampforwp-post-installtion-instructions{ display: none; } 
+		</style>
+	<?php } ?>	
+	<script>
+		const statusContainer = document.getElementById('ampforwp-network-status');
+		if(! navigator.onLine) {
+			statusContainer.innerHTML = "<h1> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
+        } else {
+        	statusContainer.innerHTML =  "";
+        }
+	</script>
+	<?php
+}
