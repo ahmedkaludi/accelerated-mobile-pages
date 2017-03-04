@@ -1651,20 +1651,21 @@ function ampforwp_add_ads_scripts( $data ) {
 if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 	function ampforwp_checking_any_social_profiles() {
 		global $redux_builder_amp;
-		if(  $redux_builder_amp['enable-single-twittter-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-facebook-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-pintrest-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-google-plus-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-linkdin-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-youtube-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-instagram-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-VKontakte-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-reddit-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-snapchat-profile-url'] !== '' ||
-				 $redux_builder_amp['enable-single-Tumblr-profile-url'] !== ''
-	 ) {
-			return false;
+		if(  
+			$redux_builder_amp['enable-single-twittter-profile'] 	 ||
+			$redux_builder_amp['enable-single-facebook-profile'] 	 ||
+			$redux_builder_amp['enable-single-pintrest-profile'] 	 ||
+			$redux_builder_amp['enable-single-google-plus-profile']	 ||
+			$redux_builder_amp['enable-single-linkdin-profile'] 	 ||
+			$redux_builder_amp['enable-single-youtube-profile'] 	 ||
+			$redux_builder_amp['enable-single-instagram-profile'] 	 ||
+			$redux_builder_amp['enable-single-VKontakte-profile'] 	 ||
+			$redux_builder_amp['enable-single-reddit-profile'] 		 ||
+			$redux_builder_amp['enable-single-snapchat-profile'] 	 ||
+			$redux_builder_amp['enable-single-Tumblr-profile'] 		
+	 	) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 }
