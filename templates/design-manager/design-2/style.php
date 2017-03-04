@@ -154,32 +154,13 @@ amp-sidebar {
     width: 100%;
 }
 /* Category 2 */
-.amp-category-block ul{
-    list-style-type:none
-}
-.design_1_wrapper .amp-category-block{
-    max-width: 840px;
-    margin: 1.5em auto;
-}
-.amp-category-block-title{
-    border-bottom: double #ddd;
-    margin-bottom: 12px;
-    padding-bottom: 1px;
-    text-align: center;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #666; 
-}
-.amp-category-block ul{
-    padding:30px 15% 10px 15%
-}
-.amp-category-post{
-    width: 32%;
-    display:inline-table;
-}
-.amp-category-post amp-img{
-    margin-bottom:5px;
-}
+.amp-category-block, .category-widget-wrapper{ padding:30px 15% 10px 15% }
+.amp-category-block ul{ list-style-type:none;padding:0 }
+.category-widget-gutter h4{ margin-bottom: 0px;}
+.category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
+.amp-category-block-title{ border-bottom: double #ddd; margin-bottom: 12px; padding-bottom: 1px; text-align: center; font-size: 12px; text-transform: uppercase; color: #666; }
+.amp-category-post{ width: 32%; display:inline-table; }
+.amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){
     margin: 0 1%;
 }
@@ -836,7 +817,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
     @media screen and (max-width: 767px) {
        .amp-wp-post-content p{ display: block }
        .amp-wp-post-content p{ display: none }
-       main, .amp-category-block ul{ padding: 15px 18px 0px 18px; }
+       main, .amp-category-block, .category-widget-wrapper{ padding: 15px 18px 0px 18px; }
        .toggle-navigation ul li{ width: 50% }
     }
     @media screen and (max-width: 495px) { 

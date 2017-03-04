@@ -748,11 +748,13 @@ pre {
     position:relative;
     z-index: 9999;
 }
-/* Category 1 */
+/* Category 3 */
 .amp-category-block{ margin: 30px 0px 10px 0px }
 .amp-category-block a{ color:#666}
 .amp-category-block ul{ list-style-type:none}
-.design_1_wrapper .amp-category-block{
+.category-widget-gutter h4{ margin-bottom: 0px;}
+.category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
+.design_2_wrapper .amp-category-block{
     max-width: 840px;
     margin: 1.5em auto;
 }
@@ -765,7 +767,7 @@ pre {
     text-transform: uppercase;
     color: #666; 
 }
-.amp-category-block ul{
+.amp-category-block ul, .category-widget-wrapper{
     max-width: 1000px;
     margin: 0 auto;
     padding:0px 15px 5px 15px
