@@ -139,9 +139,11 @@ if ( is_admin() ) {
 
             $current_screen = get_current_screen();
 
-            if( $current_screen ->id == "plugin-install" ) {
+            if( $current_screen ->id == "plugin-install" || $current_screen ->id == "dashboard_page_ampforwp-welcome-page" || $current_screen ->id == "ampforwp-welcome-page" ) {
                 return;
-            } ?>
+            }
+
+            ?>
 
 				<div class="notice notice-error is-dismissible ampinstallation">
 

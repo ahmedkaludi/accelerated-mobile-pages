@@ -33,61 +33,44 @@ function ampforwp_welcome_screen_pages() {
 
 function ampforwp_welcome_screen_content() {
   ?>
-  <div class="wrap">
-    <h2>Thank you for installing AMPforWP plugin.</h2>
+  	<div class="wrap">
+	    <h2>Thank you for installing AMPforWP plugin.</h2>
 
-    <?php echo ampforwp_plugin_parent_activation(); ?>
+	    <?php echo ampforwp_plugin_parent_activation(); ?>
 
-    <div class="clear"></div>
-    
-<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i>AMP is now Installed!</h1> 
-<p style="
-    font-family: georgia;
-    font-size: 20px;
-    font-style: italic;
-    margin-bottom: 3px;
-    line-height: 1.5;
-    color: #666;">Thank you so much for installing the AMPforWP plugin!</p> <p style="
-    font-family: georgia;
-    font-size: 20px;
-    margin-top: 4px;
-    font-style: italic;
-    line-height: 1.5;
-    color: #666;">Our team works really hard to deliver good user experience to you.</p>
-      <p>
-    <b>Here are some links to help you Get Started</b>
-<ul class="getstarted_ul">
-<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank">Getting Started with AMP</a></li>
-<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank">Adding Navigation Menu</a></li>
-<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank">Adding Google Analtyics</a></li>
- <a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank">View all Tutorials</a> 
-</ul>
-      </p>
+	    <div class="clear"></div>
 
-<h1 style="    color: #388E3C;
-    font-weight: 500;
-    margin-top: 38px;"><i class="dashicons dashicons-editor-help" style="
-    font-size: 36px;
-    margin-right: 20px;
-    margin-top: -1px;"></i>Need Help?</h1> 
-<p style="
-    font-family: georgia;
-    font-size: 20px;
-    font-style: italic;
-    margin-bottom: 3px;
-    line-height: 1.5;
-    margin-top: 11px;
-    color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
-<p><b>There are 3 ways to get help:</b></p>
+	    <div class="ampforwp-post-installtion-instructions">
 
-<ul class="getstarted_ul">
-<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Support Forum</a></li>
-<li><a href="https://ampforwp.com/chat/" target="_blank">Live Chat with Our Team</a></li>
-<li><a href="https://ampforwp.com/help" target="_blank">View Documentation</a></li>
-</ul>
+		    <h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i>AMP is now Installed!</h1> 
+			<p style=" font-family: georgia; font-size: 20px; font-style: italic; margin-bottom: 3px; line-height: 1.5; color: #666;">Thank you so much for installing the AMPforWP plugin!</p>
+			<p style="font-family: georgia;font-size: 20px;margin-top: 4px;font-style: italic;line-height: 1.5;color: #666;">Our team works really hard to deliver good user experience to you.</p>
+		     
+		    <p>
+			    <b>Here are some links to help you Get Started</b>
+				<ul class="getstarted_ul">
+					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank">Getting Started with AMP</a></li>
+					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank">Adding Navigation Menu</a></li>
+					<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank">Adding Google Analtyics</a></li>
+					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank">View all Tutorials</a> 
+				</ul>
+		    </p>
+		    <h1 style=" color: #388E3C; font-weight: 500; margin-top: 38px;">
+		    	<i class="dashicons dashicons-editor-help" style=" font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
+		    </h1> 
+			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
 
-</div>
-  <?php
+			<p><b>There are 3 ways to get help:</b></p>
+
+			<ul class="getstarted_ul">
+				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Support Forum</a></li>
+				<li><a href="https://ampforwp.com/chat/" target="_blank">Live Chat with Our Team</a></li>
+				<li><a href="https://ampforwp.com/help" target="_blank">View Documentation</a></li>
+			</ul>
+
+		</div>
+
+	</div> <?php
 }
 
 function ampforwp_plugin_parent_activation() {
@@ -125,20 +108,15 @@ function ampforwp_plugin_parent_activation() {
 	<form id="plugin-filter">
     
 		<div class="wrap"> 
-<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i>Almost done. One last step remaining.</h1> 
-<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>            
-<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the 'Finish Installation' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>
-            <style> .getstarted_ul li{ 
-    list-style-type: decimal;
-                list-style-position: inside; } a.getstarted_btn{
-    background: #43A047;
-    color: #fff;
-    padding: 7px 15px 8px 15px;
-    font-size: 11px;
-    line-height: 1; 
-    text-decoration: none;
-    margin-top: 8px;
-    display: inline-block;}
+			<div class="ampforwp-pre-installtion-instructions">
+				<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i>Almost done. One last step remaining.</h1> 
+				<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>            
+				<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the 'Finish Installation' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>
+			</div>
+
+            <style>
+            .getstarted_ul li{  list-style-type: decimal; list-style-position: inside; } 
+            a.getstarted_btn{ background: #43A047; color: #fff; padding: 7px 15px 8px 15px; font-size: 11px; line-height: 1;  text-decoration: none; margin-top: 8px; display: inline-block;}
             .dashicons-warning, .dashicons-yes{
                 font-family: dashicons;
                 font-style: normal;
@@ -206,13 +184,7 @@ function ampforwp_plugin_parent_activation() {
 			    position:absolute; 
 			    z-index:-2;
             } .authors{font-style: italic}
-            .ampforwp-custom-btn a{ 
-    font-size: 18px !important;
-    background: #388E3C !important;
-    border: 0px !IMPORTANT;
-    border-radius: 2px !important;
-    box-shadow: none !important;
-    padding: 8px 20px !important; height: auto !important}
+            .ampforwp-custom-btn a{  font-size: 18px !important; background: #388E3C !important; border: 0px !important; border-radius: 2px !important; box-shadow: none !important; padding: 8px 20px !important; height: auto !important}
             .plugin-card-top h4{margin-top: 10px;}
 		</style> 
 		    
@@ -345,9 +317,14 @@ function ampforwp_plugin_parent_activation() {
 			</div>  
 			<?php if ($status['activation'] == 'activated') { ?>
 				<style>
-					.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted{
+					.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted, 
+					.ampforwp-pre-installtion-instructions{
 						display: none;
-					}
+					} 
+				</style>
+			<?php } else { ?>
+				<style>
+					.ampforwp-post-installtion-instructions{ display: none; } 
 				</style>
 			<?php } ?>
 		</div>    
