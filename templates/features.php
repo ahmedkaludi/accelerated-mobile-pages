@@ -330,7 +330,7 @@
 
 	}
 
-	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts' );
+	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
 	function ampforwp_add_amp_related_scripts( $data ) {
 		global $redux_builder_amp;
 		// Adding Sidebar Script
