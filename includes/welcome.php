@@ -34,13 +34,13 @@ function ampforwp_welcome_screen_pages() {
 function ampforwp_welcome_screen_content() {
   ?>
   <div class="wrap">
-    <h2>Welcome To AMPforWP plugin Screen</h2>
+    <h2>Thank you for installing AMPforWP plugin.</h2>
 
     <?php echo ampforwp_plugin_parent_activation(); ?>
 
     <div class="clear"></div>
     
-    <p> This is some example paragraph.</p>
+<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i>AMP is now Installed!</h1> 
   </div>
   <?php
 }
@@ -79,9 +79,30 @@ function ampforwp_plugin_parent_activation() {
 	?>
 	<form id="plugin-filter">
     
-		<div class="wrap">
-		
+		<div class="wrap"> 
+<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i>Almost done. One last step remaining.</h1> 
+<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>            
+<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the 'Finish Installation' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>
 		<style>
+            .dashicons-warning, .dashicons-yes{
+                font-family: dashicons;
+                font-style: normal;
+                position: relative;
+                top: 1px;
+                font-size: 32px;
+                margin-right: 18px;    
+            } 
+            .dashicons-yes{
+                margin-right: 25px;
+            }
+            .dashicons-yes:before {
+                content: "\f147";
+                background: #388e3c;
+                color: #fff;
+                border-radius: 40px;
+                padding-right: 3px;
+                padding-top: 1px;
+            }
 			.ampforwp-plugin-action-buttons {
 				text-align:right;
 				margin-top: 0;
@@ -129,7 +150,15 @@ function ampforwp_plugin_parent_activation() {
 			    content:"";
 			    position:absolute; 
 			    z-index:-2;
-			}
+            } .authors{font-style: italic}
+            .ampforwp-custom-btn a{ 
+    font-size: 18px !important;
+    background: #388E3C !important;
+    border: 0px !IMPORTANT;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    padding: 8px 20px !important; height: auto !important}
+            .plugin-card-top h4{margin-top: 10px;}
 		</style> 
 		    
 		<div style="margin-top:30px;" class="wp-list-table widefat plugin-install">
@@ -198,7 +227,7 @@ function ampforwp_plugin_parent_activation() {
 								break;
 							case 'latest_installed':
 								if ( $status['activation'] == 'not_activated') {
-									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $activation_link . '" aria-label="' . esc_attr( sprintf( __( 'Activate %s ' ), $name ) ) . '">' . __( 'Click here to finish installation' ) . '</a>';
+									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $activation_link . '" aria-label="' . esc_attr( sprintf( __( 'Activate %s ' ), $name ) ) . '">' . __( 'Activate' ) . '</a>';
 								}
 								break;
 							case 'newer_installed':
@@ -234,45 +263,24 @@ function ampforwp_plugin_parent_activation() {
 					$action_links = apply_filters( 'plugin_install_action_links', $action_links, $plugin );
 				?>
 				<div class="plugin-card drop-shadow lifted" >
-					<div class="plugin-card-top" style="min-height: 160px !important;">
+					<div class="plugin-card-top" style="min-height: 135px !important;">
 		            <?php if ( isset( $plugin["slug"] ) && $plugin["slug"] == 'easy-media-gallery' ) {echo '<div class="most_popular"></div>';} ?>
-						<a href="<?php echo esc_url( $details_link ); ?>" class="thickbox plugin-icon"><img width="128" height="128" src="<?php echo esc_attr( $plugin_icon_url ) ?>" /></a>
+						<span href="<?php echo esc_url( $details_link ); ?>" class="thickbox plugin-icon"><img width="128" height="128" src="<?php echo esc_attr( $plugin_icon_url ) ?>" /></span>
 						<div class="name column-name" style="margin-right: 20px !important;">
-							<h4><a href="<?php echo esc_url( $details_link ); ?>" class="thickbox"><?php echo $title; ?></a></h4>
+							<h4><?php echo $title; ?></h4>
 						</div>
 						<div class="desc column-description" style="margin-right: 20px !important;">
 							<p><?php echo $description; ?></p>
-							<p class="authors"><?php echo $author; ?></p>			
+							<p class="authors">by Automattic</p>			
 						</div>
 					</div>
 					<div class="ampforwp-button-con">
 						<?php
 							if ( $action_links ) {
-								echo '<ul class="ampforwp-plugin-action-buttons">';
+								echo '<ul class="ampforwp-plugin-action-buttons ampforwp-custom-btn">';
 									echo '<li>' . $action_links[0] . '</li>';					 
 								echo '</ul>';
 							} ?>
-					</div>
-					<div class="plugin-card-bottom">
-						<div class="column-updated">
-							<strong><?php _e( 'Last Updated:' ); ?></strong> <span title="<?php echo esc_attr( $plugin['last_updated'] ); ?>">
-								<?php printf( __( '%s ago' ), human_time_diff( strtotime( $plugin['last_updated'] ) ) ); ?>
-							</span>
-						</div>
-						<div class="column-downloaded">
-							<?php echo sprintf( _n( '%s download', '%s downloads', $plugin['downloaded'] ), number_format_i18n( $plugin['downloaded'] ) ); ?>
-						</div>
-						<div class="column-compatibility">
-							<?php
-							if ( ! empty( $plugin['tested'] ) && version_compare( substr( $GLOBALS['wp_version'], 0, strlen( $plugin['tested'] ) ), $plugin['tested'], '>' ) ) {
-								echo '<span class="compatibility-untested">' . __( 'Untested with your version of WordPress' ) . '</span>';
-							} elseif ( ! empty( $plugin['requires'] ) && version_compare( substr( $GLOBALS['wp_version'], 0, strlen( $plugin['requires'] ) ), $plugin['requires'], '<' ) ) {
-								echo '<span class="compatibility-incompatible">' . __( '<strong>Incompatible</strong> with your version of WordPress' ) . '</span>';
-							} else {
-								echo '<span class="compatibility-compatible">' . __( '<strong>Compatible</strong> with your version of WordPress' ) . '</span>';
-							}
-							?>
-						</div>
 					</div>
 				</div>
 				<?php
