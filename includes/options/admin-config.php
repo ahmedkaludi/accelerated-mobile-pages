@@ -701,7 +701,20 @@ Redux::setArgs( "redux_builder_amp", $args );
        'title'      => __( 'Menu', 'redux-framework-demo' ),
        'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>'),
        'id'         => 'amp-menus',
-       'subsection' => true)
+       'subsection' => true,
+       'fields' => array(
+        
+            array(
+                'id'       => 'ampforwp-auto-amp-menu-link',
+                'type'     => 'switch',
+                'title'    => __('Auto Add AMP in Menu URL', 'redux-framework-demo'),
+                'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0
+            ),
+        )
+       )
 
    ) ;
 
@@ -1694,15 +1707,6 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1
-                    ),
-                    array(
-                        'id'       => 'ampforwp-auto-amp-menu-link',
-                        'type'     => 'switch',
-                        'title'    => __('Auto Add AMP in Menu URL', 'redux-framework-demo'),
-                        'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'redux-framework-demo'),
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'default'   => 0
                     ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
