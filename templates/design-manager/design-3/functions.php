@@ -136,7 +136,7 @@ function ampforwp_add_design3_required_scripts( $data ) {
 	$amp_menu_has_child = get_transient( 'ampforwp_has_nav_child' );
 
 	// Add Scripts only when AMP Menu is Enabled
-	if( has_nav_menu( 'amp-menu' ) && $amp_menu_has_child ) {
+	if( has_nav_menu( 'amp-menu' ) ) {
 		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
 			$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
 		}
