@@ -49,19 +49,20 @@
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
             $ampforwp_post_url = get_permalink(); ?>
-<?php if ( has_post_thumbnail() ) { ?>
-    <?php
-    $thumb_id = get_post_thumbnail_id();
-    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-    $thumb_url = $thumb_url_array[0];
-    ?>
-<li class="amp-category-post">
-<a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
-<a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
-    <?php echo get_the_title(); ?>
-</a>
-</li>
-<?php }
+            <li class="amp-category-post">
+              <?php if ( has_post_thumbnail() ) { ?>
+                  <?php
+                  $thumb_id = get_post_thumbnail_id();
+                  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+                  $thumb_url = $thumb_url_array[0];
+                  ?>
+                  <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+              <?php } ?>
+
+              <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
+                  <?php echo get_the_title(); ?>
+              </a>
+            </li> <?php
         }
 
         //show more
