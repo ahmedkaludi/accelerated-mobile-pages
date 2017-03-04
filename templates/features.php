@@ -299,7 +299,7 @@
 		if( is_page() ) { ?>
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } ?>
-			<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+
 		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 		<?php } ?>
@@ -328,6 +328,17 @@
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<?php
 
+	}
+
+	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts' );
+	function ampforwp_add_amp_related_scripts( $data ) {
+		global $redux_builder_amp;
+		// Adding Sidebar Script
+		if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
+			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+		}
+
+		return $data;
 	}
 
 	// 7. Footer for AMP Pages
