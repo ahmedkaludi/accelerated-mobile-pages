@@ -791,6 +791,10 @@ function ampforwp_title_custom_meta() {
 
         foreach ( $post_types  as $post_type ) {
 
+          if( $post_type == 'amp-cta' ) {
+							continue;
+          }
+					
           if( $post_type !== 'page' ) {
             add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', $post_type,'side' );
           }
