@@ -300,9 +300,6 @@
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } ?>
 
-		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
-			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
-		<?php } ?>
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 			<?php if( is_singular() ) {
 							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
@@ -1281,9 +1278,9 @@ function ampforwp_cache_compatible_activator(){
     add_action('template_redirect','ampforwp_cache_plugin_compatible');
 }
 function ampforwp_cache_plugin_compatible(){
-    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();    
+    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
     if ( ! $ampforwp_is_amp_endpoint ) {
-        return; 
+        return;
     }
     /**
      * W3 total cache
@@ -1688,7 +1685,7 @@ function ampforwp_add_ads_scripts( $data ) {
 if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 	function ampforwp_checking_any_social_profiles() {
 		global $redux_builder_amp;
-		if(  
+		if(
 			$redux_builder_amp['enable-single-twittter-profile'] 	 ||
 			$redux_builder_amp['enable-single-facebook-profile'] 	 ||
 			$redux_builder_amp['enable-single-pintrest-profile'] 	 ||
@@ -1699,10 +1696,24 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 			$redux_builder_amp['enable-single-VKontakte-profile'] 	 ||
 			$redux_builder_amp['enable-single-reddit-profile'] 		 ||
 			$redux_builder_amp['enable-single-snapchat-profile'] 	 ||
-			$redux_builder_amp['enable-single-Tumblr-profile'] 		
+			$redux_builder_amp['enable-single-Tumblr-profile']
 	 	) {
 			return true;
 		}
 		return false;
 	}
+}
+
+// 50. Properly adding noditification Scritps the AMP way
+add_filter( 'amp_post_template_data', 'ampforwp_add_notification_scripts' );
+function ampforwp_add_notification_scripts( $data ) {
+	global $redux_builder_amp;
+
+	if ( $redux_builder_amp['amp-enable-notifications'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-user-notification'] ) ) {
+						$data['amp_component_scripts']['amp-user-notification'] = 'https://cdn.ampproject.org/v0/amp-user-notification-0.1.js';
+					}
+	}
+
+	return $data;
 }
