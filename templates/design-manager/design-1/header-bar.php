@@ -2,21 +2,23 @@
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php
-    if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
-    ?>
-      <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
-      <?php
-    }else{
-      ?>
-      <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
-        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR; ?>">
-
-        <?php } else { ?>
-
-        <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
-
-    <?php }
-  }?>
+    if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
+            if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
+              <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+            <?php } else { ?>
+              <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ) ); ?>">
+            <?php }
+    } else { ?>
+            <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+                <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR; ?>">
+            <?php } else {
+            if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
+              <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+            <?php } else { ?>
+              <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ) ); ?>" >
+            <?php }
+            }
+      } ?>
 
       <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
             <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>
@@ -54,7 +56,7 @@
             <amp-img src="<?php echo esc_url( $site_icon_url ); ?>" width="32" height="32" class="amp-wp-site-icon"></amp-img>
         <?php endif; ?>
     </a>
-   
+
     <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
         <a href="#" class="toggle-text">
             <span></span>
@@ -63,8 +65,8 @@
         </a>
     </div>
     <?php do_action('ampforwp_header_search'); ?>
-   
-  
+
+
 
   </div>
 </header>
