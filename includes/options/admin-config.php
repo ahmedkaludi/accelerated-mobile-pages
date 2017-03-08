@@ -96,7 +96,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     margin-top: 38px;"><i class="dashicons dashicons-editor-help" style="
     font-size: 36px;
     margin-right: 20px;
-    margin-top: -1px;"></i>Need Help?</h1> 
+    margin-top: -1px;"></i>Need Help?</h1>
 <p style="
     font-family: georgia;
     font-size: 20px;
@@ -106,8 +106,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     margin-top: 11px;
     color: #666;">Were bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
 
- 
-         
+
+
          ';
       }
       return $output ;
@@ -315,6 +315,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
+            ),
+            array(
+                'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                'type'      => 'switch',
+                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+                'default'   => 0,
             )
           )
         )
@@ -442,8 +449,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     function ampforwp_get_element_default_color() {
         $default_value = get_option('redux_builder_amp', true);
         $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
-        if ( empty( $default_value ) ) { 
-          $default_value = '#333'; 
+        if ( empty( $default_value ) ) {
+          $default_value = '#333';
         }
       return $default_value;
     }
@@ -514,7 +521,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array('amp-design-selector', '=' , '3')
                  )
              ),
-            
+
 
           array(
                      'id'       => 'amp-design-3-featured-slider',
@@ -1663,16 +1670,6 @@ Redux::setSection( $opt_name, array(
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
                     ),*/
-                    array(
-                        'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                        'type'      => 'switch',
-                        'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-                        'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-                        'default'   => 0,
-                        'required' => array(
-                          array('ampforwp-homepage-on-off-support','=',1)
-                        )
-                    ),
                     array(
                         'id'       => 'ampforwp-archive-support',
                         'type'     => 'switch',
