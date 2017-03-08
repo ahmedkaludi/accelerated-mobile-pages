@@ -1710,7 +1710,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Header', 'redux-framework-demo'),
                         'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
-                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between HEAD tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
                         'default'   => ''
                     ),
                     array(
