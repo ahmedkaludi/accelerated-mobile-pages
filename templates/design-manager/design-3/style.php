@@ -588,6 +588,11 @@ main .amp-wp-content.relatedpost {
     margin: 16px 18px 20px 19px;
 }
 /* Comments */
+.page-numbers{
+    padding: 9px 10px;
+    background: #fff;
+    font-size: 14px;
+}
 .comment-body .comment-content{
     font-family:'PT Serif', serif;
     margin-top: 2px;
