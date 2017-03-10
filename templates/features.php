@@ -19,6 +19,7 @@
 		10.2 Analytics Support added for segment.com
 		10.3 Analytics Support added for Piwik
 		10.4 Analytics Support added for quantcast
+		10.5 Analytics Support added for comscore
 	11. Strip unwanted codes and tags from the_content
 	12. Add Logo URL in the structured metadata
 	13. Add Custom Placeholder Image for Structured Data.
@@ -588,6 +589,21 @@
 								  "vars": {
 								    "pcode": "<?php echo $redux_builder_amp['amp-quantcast-analytics-code']; ?>",
 										"labels": [ "AMPProject" ]
+								  }
+								}
+								</script>
+							</amp-analytics>
+							<?php
+						}
+
+				// 10.5 Analytics Support added for comscore
+					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
+							<amp-analytics type="comscore">
+								<script>
+								{
+								  "vars": {
+								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
+								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
 								  }
 								}
 								</script>

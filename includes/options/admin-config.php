@@ -399,6 +399,22 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'required' => array(
                         array('amp-analytics-select-option', '=' , '4')),
                       ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c1',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C1'),
+                        'default'   	=> 1,
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c2',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C2'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
 
                       //GTM
                         array(
