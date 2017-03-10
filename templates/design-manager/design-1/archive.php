@@ -79,7 +79,7 @@
 						}else{
 							$content = get_the_content();
 						} ?>
-					<p><?php echo wp_trim_words( $content , '20'); ?></p>
+					<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20'); ?></p>
 				</div>
 	        </div>
 	    <?php endwhile;  ?>

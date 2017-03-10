@@ -57,7 +57,7 @@
 
      <?php global $redux_builder_amp; ?>
  		<h3 class="amp-wp-content page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
- 
+
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
@@ -87,7 +87,7 @@
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
                 <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. $redux_builder_amp['amp-translator-ago-date-text']; ?></div>
 
 		    </div>
@@ -109,7 +109,7 @@
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?> 
+ 			<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
  		</div>
 
 	<?php endif; ?>
