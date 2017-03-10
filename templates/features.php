@@ -584,7 +584,7 @@
 				// 10.4 Analytics Support added for quantcast
 					if ( $redux_builder_amp['amp-analytics-select-option']=='4' ) { ?>
 							<amp-analytics type="quantcast">
-								<script>
+								<script type="application/json">
 								{
 								  "vars": {
 								    "pcode": "<?php echo $redux_builder_amp['amp-quantcast-analytics-code']; ?>",
@@ -599,7 +599,7 @@
 				// 10.5 Analytics Support added for comscore
 					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
 							<amp-analytics type="comscore">
-								<script>
+								<script type="application/json">
 								{
 								  "vars": {
 								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
