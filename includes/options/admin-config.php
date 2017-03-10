@@ -346,7 +346,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'options'  => array(
                             '1' => __('Google Analytics', 'redux-framework-demo' ),
                             '2' => __('Segment Analytics', 'redux-framework-demo' ),
-                            '3' => __('Piwik Analytics', 'redux-framework-demo' )
+                            '3' => __('Piwik Analytics', 'redux-framework-demo' ),
+                            '4' => __('Quantcast Measurement', 'redux-framework-demo' ),
+                            '5' => __('comScore', 'redux-framework-demo' ),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -389,6 +391,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'default'  => '#',
                       ),
 
+                      array(
+                        'id'        	=>'amp-quantcast-analytics-code',
+                        'type'      	=> 'text',
+                        'title'     	=> __('p-code'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '4')),
+                      ),
+
+                      //GTM
                         array(
                             'id'       => 'amp-use-gtm-option',
                             'type'     => 'switch',
@@ -425,6 +437,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'required' => array(
                           array('amp-use-gtm-option', '=' , '1')),
               					),
+
       				    )
           	)
    );

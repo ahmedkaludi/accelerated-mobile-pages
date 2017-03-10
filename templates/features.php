@@ -18,6 +18,7 @@
 		10.1 Analytics Support added for Google Analytics
 		10.2 Analytics Support added for segment.com
 		10.3 Analytics Support added for Piwik
+		10.4 Analytics Support added for quantcast
 	11. Strip unwanted codes and tags from the_content
 	12. Add Logo URL in the structured metadata
 	13. Add Custom Placeholder Image for Structured Data.
@@ -578,6 +579,23 @@
 				if( $redux_builder_amp['amp-analytics-select-option']=='3' ) { ?>
 						<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 				<?php }
+
+				// 10.4 Analytics Support added for quantcast
+					if ( $redux_builder_amp['amp-analytics-select-option']=='4' ) { ?>
+							<amp-analytics type="quantcast">
+								<script>
+								{
+								  "vars": {
+								    "pcode": "<?php echo $redux_builder_amp['amp-quantcast-analytics-code']; ?>",
+										"labels": [ "AMPProject" ]
+								  }
+								}
+								</script>
+							</amp-analytics>
+							<?php
+						}
+
+
 		}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
