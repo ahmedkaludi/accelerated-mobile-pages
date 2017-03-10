@@ -924,6 +924,8 @@ amp-user-notification button {
   <?php //style for RTL
   if( is_rtl() ) { ?>
     /* stlye for RTL languages */
+    header, amp-sidebar, article, footer{
+    direction: rtl;}
     .amp-wp-header .amp-wp-site-icon{
         position: relative;
         float: left;
@@ -940,6 +942,11 @@ amp-user-notification button {
         right: initial;
         left: -11px;
     }
+    .amp-wp-byline, .amp-wp-posted-on{float:right}
+    .amp-wp-tax-category{float:left}
+    .related_posts ol li amp-img{float:right; margin-right:0px; margin-left:15px}
+    main .amp-archive-heading{direction:rtl}
+
   <?php } ?>
 
 <?php
