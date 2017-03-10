@@ -794,7 +794,7 @@ function ampforwp_title_custom_meta() {
           if( $post_type == 'amp-cta' ) {
 							continue;
           }
-					
+
           if( $post_type !== 'page' ) {
             add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', $post_type,'side' );
           }
@@ -1389,8 +1389,10 @@ add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
-		if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
-			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
+			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+			}
 		}
 	}
 	// remove direction attribute from the AMP HTMl #541
