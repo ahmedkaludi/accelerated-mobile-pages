@@ -184,9 +184,30 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
     top:0;
 }
 .amp-wp-header a, .headerlogo a, [class*=icono-] {color: <?php echo sanitize_hex_color( $header_color ); ?>;text-decoration: none;}
+
+/* RTL Styling 
+header, amp-sidebar, article, footer{
+    direction: rtl;
+}
+.home-post-image{
+    float:left;
+    margin: 0 10px 10px 20px;
+}
+.amp-wp-header{
+    text-align: right;
+}
+.toggle-text{
+    left: 40px;
+    right: initial;
+}
+
+.amp-wp-header .amp-wp-site-icon, .amp-wp-header .nav_container{
+    right:0px;
+    left: 18px;
+}*/
 <?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 60px;}<?php } ?>
 <?php if( is_rtl() ) { ?>
-.amp-wp-header .amp-wp-site-icon,.amp-wp-header .nav_container{float:left;right:initial;left:-11px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
+.amp-wp-header .amp-wp-site-icon,.amp-wp-header .nav_container{float:left;right:0;left:18px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
 <?php } ?>
 <?php
 if ( class_exists('TablePress') ) { ?>

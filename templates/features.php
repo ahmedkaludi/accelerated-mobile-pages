@@ -1580,11 +1580,13 @@ if (function_exists('register_sidebar')) {
 
 // 43. custom actions for widgets output
 add_action( 'ampforwp_home_above_loop' , 'ampforwp_output_widget_content_above_loop' );
+add_action( 'ampforwp_frontpage_above_loop' , 'ampforwp_output_widget_content_above_loop' );
 function ampforwp_output_widget_content_above_loop() {
     dynamic_sidebar( 'ampforwp-above-loop' );
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
+add_action( 'ampforwp_frontpage_below_loop' , 'ampforwp_output_widget_content_below_loop' );
 function ampforwp_output_widget_content_below_loop() {
     dynamic_sidebar( 'ampforwp-below-loop' );
 }

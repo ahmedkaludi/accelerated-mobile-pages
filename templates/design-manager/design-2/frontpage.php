@@ -34,6 +34,7 @@ $template = new AMP_Post_Template( $post_id );?>
 <?php } ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
+<?php do_action('ampforwp_frontpage_above_loop') ?>
 
 <main>
 	<div class="amp-wp-content the_content"> <?php
@@ -205,6 +206,8 @@ $template = new AMP_Post_Template( $post_id );?>
 		</div>
 	<?php } ?>
 </main>
+	<?php do_action('ampforwp_frontpage_below_loop') ?>
+
 	<?php $this->load_parts( array( 'footer' ) ); ?>
 	<?php do_action( 'amp_post_template_footer', $this ); ?>
 

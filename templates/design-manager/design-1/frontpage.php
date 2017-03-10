@@ -23,7 +23,7 @@ $template = new AMP_Post_Template( $post_id );?>
 </head>
 <body class="single-post amp-wp-frontpage design_1_wrapper">
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
-
+	<?php do_action('ampforwp_frontpage_above_loop') ?>
 	<article class="amp-wp-article">
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
@@ -208,6 +208,7 @@ $template = new AMP_Post_Template( $post_id );?>
 			</div>
 		<?php } ?>
 	</article>
+	<?php do_action('ampforwp_frontpage_below_loop') ?>
 	<?php $this->load_parts( array( 'footer' ) ); ?>
 	<?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
