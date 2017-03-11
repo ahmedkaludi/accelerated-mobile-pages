@@ -946,9 +946,10 @@ amp-user-notification button {
     .amp-wp-tax-category{float:left}
     .related_posts ol li amp-img{float:right; margin-right:0px; margin-left:15px}
     main .amp-archive-heading{direction:rtl}
-
+    .searchform{direction:rtl}
+    .closebutton{right:0; left:20px}
   <?php } ?>
-
+/*RTL ends*/
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>

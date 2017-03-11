@@ -218,6 +218,8 @@ header, amp-sidebar, article, footer{
 .related_posts ol li amp-img{float:right; margin-left:15px; margin-right:0px}
 .amp-wp-header .amp-wp-site-icon,.amp-wp-header .nav_container{float:left;right:0;left:18px}.amp-wp-header .amp-wp-site-icon{position:relative;top:-3px}
 .toggle-navigationv2 ul li a{width:100%}
+.searchform{direction:rtl}
+.closebutton{right:0; left:20px;}
 /* RTL ends */
 <?php } ?>
 <?php
