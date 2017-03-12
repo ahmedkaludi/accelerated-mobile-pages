@@ -50,7 +50,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		do_action( 'ampforwp_after_post_content', $this ); ?>
 
 	</div>
-	
+
 	<?php $data = get_option( 'ampforwp_design' );
 		$enable_comments = false;
 
@@ -70,7 +70,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	if ( $enable_comments ) { ?>
 		<div class="ampforwp-comment-wrapper">
 			<?php
-			// TODO : Create a separate  function and add the comment code that and use DRY method instead of repeating the code. #682 
+			// TODO : Create a separate  function and add the comment code that and use DRY method instead of repeating the code. #682
 				global $redux_builder_amp;
 				// Gather comments for a specific page/post
 				$postID = get_the_ID();
@@ -84,16 +84,15 @@ $template = new AMP_Post_Template( $post_id );?>
 				    <h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
 				    <ul>
 				    <?php
-						define('AMPFORWP_COMMENTS_PER_PAGE',5);
 						$page = (get_query_var('page')) ? get_query_var('page') : 1;
-						$total_comments = get_comments( array( 
-							'orderby' 	=> 'post_date' , 
+						$total_comments = get_comments( array(
+							'orderby' 	=> 'post_date' ,
 							'order' 	=> 'DESC',
 							'post_id'	=> $postID,
 							'status' 	=> 'approve',
 							'parent'	=>0 )
 						);
-						$pages = ceil(count($total_comments)/AMPFORWP_COMMENTS_PER_PAGE);			
+						$pages = ceil(count($total_comments)/AMPFORWP_COMMENTS_PER_PAGE);
 					    $pagination_args = array(
 							'base'         =>  @add_query_arg('page','%#%'),
 							'format'       => '?page=%#%',
@@ -156,7 +155,7 @@ $template = new AMP_Post_Template( $post_id );?>
 						  'avatar_size'			=> 0,
 							'callback'				=> 'ampforwp_custom_translated_comment',
 						  'reverse_top_level' 	=> false //Show the latest comments at the top of the list
-						), $comments); 
+						), $comments);
 						echo paginate_links( $pagination_args );?>
 				    </ul>
 				</div>
@@ -171,7 +170,7 @@ $template = new AMP_Post_Template( $post_id );?>
 			       <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 			    </div>
 			<?php } ?>
-		</div> <?php 
+		</div> <?php
 	} ?>
 
 	<div class="amp-wp-content post-pagination-meta">

@@ -72,6 +72,7 @@
 
 //0.
 
+define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages

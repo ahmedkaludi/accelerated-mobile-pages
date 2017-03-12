@@ -60,7 +60,7 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 								}// end of ampforwp_custom_translated_comment()
 
 				wp_list_comments( array(
-				  'per_page' 			=> 10, //Allow comment pagination
+				  'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , //Allow comment pagination
 				  'style' 				=> 'li',
 				  'type'				=> 'comment',
 				  'max_depth'   		=> 5,
