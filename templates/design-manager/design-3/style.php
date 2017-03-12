@@ -1200,6 +1200,103 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
+            .amp-carousel-slide h1{
+                direction: rtl;
+            }
+            .featured_time{
+                text-align: right;
+                padding-right: 20px;
+            }
+            main .amp-wp-content{
+                direction: rtl;
+            }
+
+            .home-post_image {
+            float: right;
+            padding-right: 0%;
+            padding-left: 2%;
+            margin-right: 0%;
+            }
+           
+             .searchmenu {
+             margin-right: 15px;
+             margin-top: 11px;
+             position: absolute;
+             top: 0;
+             right: inherit;
+            }
+
+            .searchform label{
+            
+            text-align: right;
+            right: -30px;
+            position: relative;
+            
+            }
+
+            .searchform input{
+
+            text-align: right;
+            padding: 15px;
+
+            }
+
+            .closebutton{
+            left:20px;
+            }
+
+            .hamburgermenu {
+                float: right;
+                }
+            .toast {
+                display: block;
+                position: relative;
+                height: 50px;
+                padding-left: 20px;
+                padding-right: 15px;
+                width: 60px;
+                background: none;
+                border: 0;
+}
+
+
+/* RTL single */
+
+    .related_posts ol li amp-img{
+
+        float: right;
+        margin-left: 15px;
+        }
+    .single-post .amp_author_area amp-img {
+
+        float: right;   
+        margin-left: 12px;
+        }
+
+    .amp-wp-article, .footer_wrapper container {
+
+        direction: rtl;
+        }
+
+    .single-post .post-pagination-meta span{
+
+        float: right;
+    }
+
+    .amp-wp-article-tags span {
+
+        background: #eeeeee;
+        margin-right: 10px;
+        padding: 5px 12px 5px 12px;
+        border-radius: 3px;
+        display: inline-block;
+        margin: 5px;
+}
+    .amp_author_area_wrapper strong{
+
+        float: right;
+    }
+
 /* RTL End */
 <?php } ?>
 
