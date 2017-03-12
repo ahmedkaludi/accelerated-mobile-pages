@@ -830,33 +830,19 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
         h2.amp-wp-title a{ font-size: 17px; line-height: 26px;}
     }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
-/* RTL Start */
-.amp-wp-meta{ padding-right: 0; }
-.nav_container, .toggle-navigationv2, .amp-loop-list, #pagination, #footer, .amp-wp-meta, .amp-wp-title, .single-post .the_content, .amp-wp-tax-tag, .sticky_social{
-    direction:rtl
-}
-main .amp-loop-list {
-    padding-right:20px
-}
-.amp-loop-list .home-post_image{
-    float:left;
-    margin-left:0;
-    margin-right:15px;
-}
-#pagination{
-	display:inline-block
-}
-#pagination .next{
-    float:left
-}
-#pagination .prev,
-.amp-wp-tax-tag{
-    float:right
-}
-.toggle-text:before{
-    padding-left:5px;
-}
-/* RTL End */
+header, amp-sidebar, article, footer, main{direction: rtl;}
+.amp-wp-header .amp-wp-site-icon{position: relative;float: left; }
+.amp-wp-header .nav_container{float: left;right: initial;left: -11px;}
+.amp-wp-header .amp-wp-site-icon{top: -3px;right: initial;left: -11px;}
+.amp-wp-byline, .amp-wp-posted-on{float:right}
+.amp-wp-tax-category{float:left}
+.related_posts ol li amp-img{float:right; margin-right:0px; margin-left:15px}
+main .amp-archive-heading{direction:rtl}
+.searchform{direction:rtl}
+.closebutton{right:0; left:20px}
+.amp-meta-wrapper{padding-right:0}
+.comment-author{float:right; margin-left:5px; }
+
 <?php } ?>
 
 /* Style Modifer */
@@ -921,35 +907,7 @@ amp-user-notification button {
 	    max-width: 100%;
 	}
 
-  <?php //style for RTL
-  if( is_rtl() ) { ?>
-    /* stlye for RTL languages */
-    header, amp-sidebar, article, footer{
-    direction: rtl;}
-    .amp-wp-header .amp-wp-site-icon{
-        position: relative;
-        float: left;
-    }
-
-    .amp-wp-header .nav_container{
-        float: left;
-        right: initial;
-        left: -11px;
-    }
-
-    .amp-wp-header .amp-wp-site-icon{
-        top: -3px;
-        right: initial;
-        left: -11px;
-    }
-    .amp-wp-byline, .amp-wp-posted-on{float:right}
-    .amp-wp-tax-category{float:left}
-    .related_posts ol li amp-img{float:right; margin-right:0px; margin-left:15px}
-    main .amp-archive-heading{direction:rtl}
-    .searchform{direction:rtl}
-    .closebutton{right:0; left:20px}
-  <?php } ?>
-/*RTL ends*/
+  
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>
