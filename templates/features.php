@@ -305,28 +305,15 @@
 <?php if( $redux_builder_amp['enable-amp-ads-1'] == true || $redux_builder_amp['enable-amp-ads-2'] == true || $redux_builder_amp['enable-amp-ads-3'] == true || $redux_builder_amp['enable-amp-ads-4'] == true ) { ?>
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 <?php } else { } }
-
-<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 	// 6.1 Adding Analytics Scripts
 	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
 	function ampforwp_register_analytics_script(){ ?>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php
+			<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<?php 
+}
 
-	}
-
-	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
-	function ampforwp_add_amp_related_scripts( $data ) {
-		global $redux_builder_amp;
-		// Adding Sidebar Script
-		if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
-			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
-		}
-
-		return $data;
-	}
 
 	// 7. Footer for AMP Pages
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
