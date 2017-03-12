@@ -1640,9 +1640,9 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
-// Disqus Comments
+// Comments
  Redux::setSection( $opt_name, array(
-    'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
+    'title'      => __( 'Comments', 'redux-framework-demo' ),
 //    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
     'id'         => 'disqus-comments',
     'subsection' => true,
@@ -1679,6 +1679,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'subtitle' => __('<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'redux-framework-demo'),
                          'placeholder' => 'https://comments.example.com/disqus.php',
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
+                     ),
+                     array(
+                         'id'       => 'ampforwp-number-of-comments',
+                         'type'     => 'text',
+                         'desc'     => 'This refers to the normal comments',
+                         'title'    => __('No of Comments', 'redux-framework-demo'),
+                         'default'  => 10,
+                         'required' => array('ampforwp-disqus-comments-support' , '=' , 0)
                      ),
                  )
  ) );
