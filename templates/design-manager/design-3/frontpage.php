@@ -12,7 +12,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
 		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);
-		if ( $amp_custom_content_enable ) {
+		if ( ! $amp_custom_content_enable ) {
 			$amp_component_scripts = $template->data['amp_component_scripts'];
 			foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
 				<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
@@ -23,10 +23,10 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post">
+<body class="single-post design_3_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<header class="amp-wp-article-header ampforwp-title">
+<header class="amp-wp-article-header ampforwp-title amp-wp-content">
 	<h1 class="amp-wp-title">
 	<?php global  $redux_builder_amp;
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];

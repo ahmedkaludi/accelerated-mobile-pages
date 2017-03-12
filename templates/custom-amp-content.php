@@ -11,8 +11,12 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
       }
 
       global $post;
-    	$amp_custom_post_content_input 	= get_post_meta($post->ID, 'ampforwp_custom_content_editor', true);
-      $amp_custom_post_content_check  = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
+      $amp_current_post_id = get_the_ID() ;
+      if ( $redux_builder_amp['amp-frontpage-select-option'] ) {
+        $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+      }
+    	$amp_custom_post_content_input 	= get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
+      $amp_custom_post_content_check  = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
 
       	if ( empty( $amp_custom_post_content_input ) ) {
             $data['ampforwp_amp_content'] = false;
@@ -20,31 +24,31 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         }
 
         if ( $amp_custom_post_content_check === 'yes') {
-
           $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
               apply_filters( 'amp_content_embed_handlers', array(
-                  'AMP_Twitter_Embed_Handler' => array(),
-                  'AMP_YouTube_Embed_Handler' => array(),
-                  'AMP_Instagram_Embed_Handler' => array(),
-                  'AMP_Vine_Embed_Handler' => array(),
-                  'AMP_Facebook_Embed_Handler' => array(),
-                  'AMP_Gallery_Embed_Handler' => array(),
+          				'AMP_Twitter_Embed_Handler' => array(),
+          				'AMP_YouTube_Embed_Handler' => array(),
+          				'AMP_Instagram_Embed_Handler' => array(),
+          				'AMP_Vine_Embed_Handler' => array(),
+          				'AMP_Facebook_Embed_Handler' => array(),
+          				'AMP_Gallery_Embed_Handler' => array(),
               ) ),
-              apply_filters( 'amp_content_sanitizers', array(
-                  'AMP_Blacklist_Sanitizer' => array(),
-                  'AMP_Img_Sanitizer' => array(),
-                  'AMP_Video_Sanitizer' => array(),
-                  'AMP_Audio_Sanitizer' => array(),
-                  'AMP_Iframe_Sanitizer' => array(
-                      'add_placeholder' => true,
-                  ),
-              ) )
+              apply_filters(  'amp_content_sanitizers', array(
+          				 'AMP_Style_Sanitizer' => array(),
+          				 'AMP_Blacklist_Sanitizer' => array(),
+          				 'AMP_Img_Sanitizer' => array(),
+          				 'AMP_Video_Sanitizer' => array(),
+          				 'AMP_Audio_Sanitizer' => array(),
+          				 'AMP_Iframe_Sanitizer' => array(
+          					 'add_placeholder' => true,
+          				 ),
+              )  )
           );
 
           if ( $amp_custom_content ) {
           	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
           	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
-          	// $data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
+          	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
           }
         }
 
@@ -63,9 +67,15 @@ add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
 
 
 function amp_content_editor_title_callback( $post ) {
+  global $post;
+  global $redux_builder_amp;
+  $amp_current_post_id = $post->ID;
+  if ( $redux_builder_amp['amp-frontpage-select-option'] ) {
+    $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+  }
 
   wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
-  $amp_content_on_off = get_post_meta($post->ID, 'ampforwp_custom_content_editor_checkbox', true);
+  $amp_content_on_off = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
   $amp_content_on_off = esc_attr($amp_content_on_off);
   ?>
   <!--HTML content starts here-->
@@ -78,7 +88,7 @@ function amp_content_editor_title_callback( $post ) {
 
   <!--HTML content Ends here-->
   <?php
-  $content 		= get_post_meta ( $post->ID, 'ampforwp_custom_content_editor', true );
+  $content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
   $editor_id 	= 'ampforwp_custom_content_editor';
   wp_editor( $content, $editor_id );
 }

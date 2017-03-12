@@ -22,8 +22,8 @@
   
 <footer class="container">
         <div id="footer">
-        <a class="non-amp-link full-footer-link" href="<?php echo $ampforwp_backto_nonamp; ?>">View the original article</a>
-        <a class="to-top-link full-footer-link" href="#header">Go back to the top</a>
+        <a class="non-amp-link full-footer-link" href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow">View the original article</a>
+        <a class="to-top-link full-footer-link" href="#header" rel="nofollow">Go back to the top</a>
           <a href="https://technutty.co.uk/">
 <span class="footer-logo-center">
               <amp-img src="https://technutty.co.uk/wp-content/assets/TechNuttyLogo.svg" width="300" height="68" alt="logo" class="amp-logo" layout=responsive id="AMP_1">

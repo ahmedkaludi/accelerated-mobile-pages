@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages - TechNutty Varient
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.43.5.tn.3.8
+Version: 0.9.44.5.tn.3.8
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -16,14 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.43.5');
+define('AMPFORWP_VERSION','0.9.44');
+// any changes to AMP_QUERY_VAR should be refelected here
+define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
-		add_post_type_support( 'page', AMP_QUERY_VAR );
+		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
+		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
@@ -93,6 +96,9 @@ function ampforwp_rewrite_activation() {
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
+    
+    // Set transient for Welcome page
+	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
 }
 
@@ -101,6 +107,20 @@ function ampforwp_rewrite_deactivate() {
 	// Flushing rewrite urls ONLY on deactivation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
+
+	// Remove transient for Welcome page
+	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
+}
+ 
+add_action( 'admin_init','ampforwp_parent_plugin_check');
+function ampforwp_parent_plugin_check() {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
+	if ( $amp_plugin_activation_check ) {
+		// set_transient( 'ampforwp_parent_plugin_check', true, 30 );
+	} else {
+		delete_option( 'ampforwp_parent_plugin_check');
+	}
 }
 
 // Redux panel inclusion code
@@ -109,43 +129,65 @@ function ampforwp_rewrite_deactivate() {
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+	require_once  AMPFORWP_PLUGIN_DIR .'templates/report-bugs.php' ;
+
 
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
 */
 if ( is_admin() ) {
-    
-    add_action('init','ampforwp_plugin_notice');
-     
 
+	// Include Welcome page only on Admin pages
+	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
+
+    add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
 			add_action( 'admin_notices', 'ampforwp_plugin_not_found_notice' );
-			function ampforwp_plugin_not_found_notice() { 
+			function ampforwp_plugin_not_found_notice() {
 
             $current_screen = get_current_screen();
 
-            if( $current_screen ->id == "plugin-install" ) {
+            if( $current_screen ->id == "plugin-install" || $current_screen ->id == "dashboard_page_ampforwp-welcome-page" || $current_screen ->id == "ampforwp-welcome-page" ) {
                 return;
-            } ?>
+            }
 
-				<div class="notice notice-error is-dismissible ampinstallation">
+            ?>
+
+				<div class="notice notice-warning is-dismissible ampinstallation">
 
 						<?php add_thickbox(); ?>
 				        <p>
                         <strong><?php _e( 'AMP Installation requires one last step:', 'ampforwp' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'ampforwp' ); ?>
-				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="plugin-install.php?s=amp&tab=search&type=term"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
+				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
                              </span> </strong>
 				        </p>
 				</div> <?php
 			}
 
 			add_action('admin_head','ampforwp_required_plugin_styling');
-			function ampforwp_required_plugin_styling() { ?>
+			function ampforwp_required_plugin_styling() {
+				if ( ! defined( 'AMP__FILE__' ) ) { ?>
+					<style>
+						#toplevel_page_amp_options a .wp-menu-name:after {
+							content: "1";
+							background-color: #d54e21;
+							color: #fff;
+							border-radius: 10px;
+							font-size: 9px;
+						    line-height: 17px;
+						    font-weight: 600;
+						    padding: 3px 7px;
+						    margin-left: 5px;
+						}
+					</style>
+					<?php
+				}
+				?>
 				<style>
-                    .notice, .notice-error, .is-dismissible, .ampinstallation{} 
+                    .notice, .notice-error, .is-dismissible, .ampinstallation{}
 					.plugin-card.plugin-card-amp:before{
                         content: "FINISH INSTALLATION: Install & Activate this plugin ↓";
                         font-weight: bold;
@@ -172,22 +214,8 @@ if ( is_admin() ) {
 					}
 				</style> <?php
 			}
-		} else {
-			// add_action('admin_notices', 'ampforwp_permalink_update_notice');
 		}
-
 	}
-
-	// display custom admin notice
-	function ampforwp_permalink_update_notice() { ?>
-		<div class="notice notice-warning is-dismissible">
-			<p>
-		        <?php _e( 'Congratulation, your site is fully AMP enabled. Update your permalink setting once and you are done.', 'ampforwp' ); ?>
-		         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="<?php echo admin_url( 'options-permalink.php'); ?>"><?php _e( 'Update Permalink', 'ampforwp' ); ?></a> | <a href="#"><?php _e( 'Dismiss', 'ampforwp' ); ?></a>
-	             </span> </strong>
-	        </p>
-		</div>
-	<?php }
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
@@ -208,7 +236,7 @@ if ( is_admin() ) {
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}else{
-						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'plugin-install.php?s=amp&tab=search&type=term">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
+						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'index.php?page=ampforwp-welcome-page">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
 					}
 					}
@@ -252,3 +280,9 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
+
+/*
+* customized output widget
+* to be used be used in before or after Loop
+*/
+require AMPFORWP_PLUGIN_DIR.'/templates/widget.php';
