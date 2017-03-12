@@ -299,7 +299,13 @@
 		if( is_page() ) { ?>
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } ?>
-
+        
+		// Adding script to add in JW Player should the user enable it.
+		
+		<?php if($redux_builder_amp['amp-enable-jwplayer'] == true)  { ?>
+			<script async custom-element="amp-jwplayer" src="https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js"></script>
+		<?php } ?>
+		
 		<?php if($redux_builder_amp['amp-enable-notifications'] == true)  { ?>
 			<script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
 		<?php } ?>
