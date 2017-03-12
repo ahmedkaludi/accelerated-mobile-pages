@@ -597,74 +597,20 @@ main .amp-wp-content.relatedpost {
     margin: 16px 18px 20px 19px;
 }
 /* Comments */
-.page-numbers{
-    padding: 9px 10px;
-    background: #fff;
-    font-size: 14px;
-}
-.ampforwp-comment-wrapper{
-    margin:1.8em 0px 1.5em 0px
-}
-main .amp-wp-content.comments_list {
-	background: none;
-	box-shadow: none;
-	max-width: 1030px;
-	padding:0
-}
-.comments_list div{
-    display:inline-block;
-}
-.comments_list ul{
-    margin:0;
-    padding:0
-}
-.comments_list ul.children{
-    padding-bottom:10px;
-    margin-left: 4%;
-    width: 96%;
-}
-.comments_list ul li p{
-    margin:0;
-    font-size:15px;
-    clear:both;
-    padding-top:16px;
-}
-.comments_list ul li{
-    font-size:13px;
-    list-style-type:none;
-    margin-bottom: 12px;
-    background: #fefefe;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05);
-    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05);
-    box-shadow: 0 2px 3px rgba(0,0,0,.05);
-    padding: 0px;
-    max-width: 1000px;
-    width:96%;
-}
-.comments_list ul li .comment-body{
-    padding: 25px;
-    width: 91%;
-}
-.comments_list ul li .comment-body .comment-author{
-    margin-right:5px
-}
+.page-numbers{padding: 9px 10px;background: #fff;font-size: 14px}
+.ampforwp-comment-wrapper{margin:1.8em 0px 1.5em 0px}
+main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width: 1030px;padding:0}
+.comments_list div{display:inline-block;}
+.comments_list ul{margin:0;padding:0}
+.comments_list ul.children{padding-bottom:10px;margin-left: 4%;width: 96%;}
+.comments_list ul li p{margin:0;font-size:15px;clear:both;padding-top:16px;}
+.comments_list ul li{ font-size:13px;list-style-type:none; margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);padding: 0px;max-width: 1000px;width:100%;}
+.comments_list ul li .comment-body{padding: 25px;width: 91%;}
+.comments_list ul li .comment-body .comment-author{margin-right:5px}
 .comment-author{ float:left }
-.single-post footer.comment-meta{
-    /* float:right */
-		padding-bottom: 0;
-}
-.comments_list li li{
-    margin: 20px 20px 10px 20px;
-    background: #f7f7f7;
-    box-shadow: none;
-    border: 1px solid #eee;
-}
-.comments_list li li li{
-    margin:20px 20px 10px 20px
-}
+.single-post footer.comment-meta{padding-bottom: 0;}
+.comments_list li li{margin: 20px 20px 10px 20px;background: #f7f7f7;box-shadow: none;border: 1px solid #eee;}
+.comments_list li li li{margin:20px 20px 10px 20px}
 /* ADS */
 .amp_home_body .amp_ad_1{
     margin-top: 10px;
