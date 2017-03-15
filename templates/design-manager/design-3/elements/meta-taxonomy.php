@@ -25,8 +25,8 @@
                     <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
                     <?php
                 } ?>
-                <strong><?php echo esc_html( $post_author->display_name ); ?></strong>: <?php echo esc_html( $post_author->description ); ?>
-                
+                <strong><?php echo esc_html( $post_author->display_name ); ?></strong>: <?php echo  $post_author->description ; ?>
+
         <?php } ?>
     </div>
 </div>
