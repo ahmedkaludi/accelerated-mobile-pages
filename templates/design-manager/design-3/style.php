@@ -6,11 +6,6 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	// Get content width
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 	// Get template colors
-	$theme_color             = $get_customizer->get_customizer_setting( 'theme_color' );
-	$text_color              = $get_customizer->get_customizer_setting( 'text_color' );
-	$muted_text_color        = $get_customizer->get_customizer_setting( 'muted_text_color' );
-	$border_color            = $get_customizer->get_customizer_setting( 'border_color' );
-	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 	?>
@@ -769,7 +764,7 @@ pre {
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;
-    color: #666; 
+    color: #666;
 }
 .amp-category-block ul, .category-widget-wrapper{
     max-width: 1000px;
@@ -1217,7 +1212,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
             padding-left: 2%;
             margin-right: 0%;
             }
-           
+
              .searchmenu {
              margin-right: 15px;
              margin-top: 11px;
@@ -1227,11 +1222,11 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
             }
 
             .searchform label{
-            
+
             text-align: right;
             right: -30px;
             position: relative;
-            
+
             }
 
             .searchform input{
@@ -1269,7 +1264,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
         }
     .single-post .amp_author_area amp-img {
 
-        float: right;   
+        float: right;
         margin-left: 12px;
         }
 
