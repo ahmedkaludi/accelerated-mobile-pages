@@ -32,7 +32,12 @@
 
 	  <?php if ( is_archive() ) {
 	    the_archive_title( '<h3 class="page-title">', '</h3>' );
-	    the_archive_description( '<div class="taxonomy-description">', '</div>' );
+			$arch_desc = ampforwp_sanitize_archive_description();
+			if( $arch_desc ) {  ?>
+				<div class="amp-wp-content taxonomy-description">
+					<?php echo $arch_desc ; ?>
+			  </div> <?php
+			}
 	  } ?>
 
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
