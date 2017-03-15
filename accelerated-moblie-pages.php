@@ -96,7 +96,7 @@ function ampforwp_rewrite_activation() {
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
-    
+
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
@@ -111,7 +111,7 @@ function ampforwp_rewrite_deactivate() {
 	// Remove transient for Welcome page
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
- 
+
 add_action( 'admin_init','ampforwp_parent_plugin_check');
 function ampforwp_parent_plugin_check() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -136,7 +136,14 @@ function ampforwp_parent_plugin_check() {
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
 */
-if ( is_admin() ) {
+require ABSPATH .'wp-includes/pluggable.php';
+function ampforwp_get_user_role( $user = null ) {
+	$user = $user ? new WP_User( $user ) : wp_get_current_user();
+	return $user->roles ? $user->roles[0] : false;
+}
+$user_role = ampforwp_get_user_role();
+
+if ( $user_role === 'administrator' ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
