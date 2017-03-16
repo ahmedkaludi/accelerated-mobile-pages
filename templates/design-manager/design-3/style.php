@@ -4,6 +4,10 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
+      $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
+      $headercolor =  $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
+      $font_color =  $redux_builder_amp['amp-opt-color-rgba-font']['color'];
+      $headerelements =  $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 	// Get template colors
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
@@ -31,12 +35,7 @@ a {
 }
 
 /* Slide Navigation code */
-.nav_container{
-    padding: 18px 15px;
-    background: #312C7E;
-    color: #fff;
-    text-align: center
-}
+
 amp-sidebar {
     width: 280px;
     background: #131313;
@@ -183,7 +182,6 @@ amp-accordion>section[expanded] li a:before{
     position: relative;
     padding-right: 10px;
 }
-.nav_container:hover + .toggle-navigation,
 .toggle-navigation:hover,
 .toggle-navigation:active,
 .toggle-navigation:focus{
@@ -1297,63 +1295,20 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
-a {
-    color: <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.amp-wp-content blockquote{
-	border-color:<?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.nav_container, .comment-button-wrapper a {
-    background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.nav_container a{
-    color:<?php echo sanitize_hex_color( $header_color ); ?>
-}
-amp-user-notification  {
-	border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-amp-user-notification button {
-	background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
+a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
+.amp-wp-content blockquote { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
+amp-user-notification { border-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
+amp-user-notification button { background-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
-    .single-post footer {
-        padding-bottom: 41px;
-    }
+.single-post footer { padding-bottom: 41px;}
 <?php } ?>
-/**/
-.single-post amp-img.alignleft{
-	margin-right: 15px;
-	margin-bottom:5px;
-	float: left;
-}
-.single-post amp-img.alignright{
-	float:right;
-	margin-left: 15px;
-	margin-bottom:5px;
-}
-.single-post amp-img.aligncenter{
-	text-align:center;
-	margin: 0 auto
-}
-.amp-wp-author:before{
-	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-published-by']; ?>  ";
-}
-.ampforwp-tax-category span:last-child:after {
-    content: ' ';
-}
-.ampforwp-tax-category span:after{
-	content: ', ';
-}
-
-.amp-wp-article-content img {
-    max-width: 100%;
-}
-
-
-
-
-
-
+.single-post amp-img.alignleft{ margin-right: 15px; margin-bottom:5px; float: left;}
+.single-post amp-img.alignright{ float:right; margin-left: 15px; margin-bottom:5px;}
+.single-post amp-img.aligncenter{ text-align:center; margin: 0 auto}
+.amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-published-by'];?>  ";}
+.ampforwp-tax-category span:last-child:after { content: ' ';}
+.ampforwp-tax-category span:after{ content: ', ';}
+.amp-wp-article-content img { max-width: 100%;}
 /* Social icons */
 @font-face {
   font-family: 'icomoon';
@@ -1444,7 +1399,7 @@ amp-user-notification button {
 }
 #ampsomething { display: none; }
 #header, .headerlogo a{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
-.nav_container, .comment-button-wrapper a , #pagination .next a, #pagination .prev a{
+.comment-button-wrapper a , #pagination .next a, #pagination .prev a{
     background: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> ;
 }
 .toast:after, .toast:before, .toast span{
