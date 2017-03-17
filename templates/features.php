@@ -1867,7 +1867,7 @@ Examples:
 						$content .= '</div>';
 						$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
 						$content .= '</a>';
-						if ( ! function_exists( 'get_price_html' )) {
+						if (  class_exists( 'WooCommerce' )  ) {
 							$content .= '<div class="ampforwp-wc-price">';
 							global $woocommerce;
 							$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
