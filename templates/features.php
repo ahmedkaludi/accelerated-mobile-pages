@@ -59,6 +59,10 @@
 	47. social js properly adding when required
 	48. Remove all unwanted scripts on search pages
 	49. Properly adding ad Script the AMP way
+	50. Properly adding noditification Scritps the AMP way
+	51. Adding Digg Digg compatibility with AMP
+	52. Adding a generalized sanitizer function for purifiying normal html to amp-html
+	53. Adding the Markup for AMP Woocommerce latest Products
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1767,7 +1771,7 @@ function ampforwp_add_notification_scripts( $data ) {
 }
 
 
-//60. Adding Digg Digg compatibility with AMP
+//51. Adding Digg Digg compatibility with AMP
 function ampforwp_dd_exclude_from_amp() {
 if(ampforwp_is_amp_endpoint()) {
       remove_filter('the_excerpt', 'dd_hook_wp_content');
@@ -1776,6 +1780,7 @@ if(ampforwp_is_amp_endpoint()) {
 }
 add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
 
+//52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 function ampforwp_sanitize_archive_description() {
 	$amp_custom_post_content_input = get_the_archive_description();
 	if ( !empty( $amp_custom_post_content_input ) ) {
@@ -1809,3 +1814,94 @@ function ampforwp_sanitize_archive_description() {
 		return '';
 	}
 }
+
+
+//53. Adding the Markup for AMP Woocommerce latest Products
+/*******************************
+Examples:
+
+[amp-woocommerce num=5]
+[amp-woocommerce num=5 link=noamp]
+[amp-woocommerce num=5 link=amp]
+*******************************/
+	 function get_amp_latest_prodcuts_markup( $atts ) {
+		 // initializing these to avoid debug errors
+		 global $post;
+
+		 $atts[] = shortcode_atts( array(
+				 'num' => get_permalink($atts['num']),
+				 'link' => get_permalink($atts['link'])
+		 ), $atts );
+
+		 $exclude_ids = get_option('ampforwp_exclude_post');
+		 $number_of_latest_prcts = $atts['num'] ;
+
+			$q = new WP_Query( array(
+			 'post_type'           => 'product',
+			 'orderby'             => 'date',
+			 'paged'               => esc_attr($paged),
+			 'post__not_in' 		  => $exclude_ids,
+			 'has_password' => false,
+			 'post_status'=> 'publish',
+			 'posts_per_page' => $number_of_latest_prcts
+			) );
+
+			$content = '';
+
+		  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+				if( $atts['link'] === 'amp' ) {
+					$ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+				} else {
+					$ampforwp_post_url = trailingslashit( get_permalink() ) ;
+				}
+						$content .= '<a href="'.$ampforwp_post_url.'">';
+						global $redux_builder_amp;
+						$content .= '<div class="amp-wp-content ampforwp-wc-parent"><div class="amp-wp-content featured-image-content">';
+						if ( has_post_thumbnail() ) {
+							$thumb_id = get_post_thumbnail_id();
+							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+							$thumb_url = $thumb_url_array[0];
+
+							$content .= '<div class="post-featured-img"><amp-img src='.$thumb_url.' width="150" height="150" ></amp-img></div>' ;
+						}
+						$content .= '</div>';
+						$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
+						$content .= '</a>';
+						if ( ! function_exists( 'get_price_html' )) {
+							$content .= '<div class="ampforwp-wc-price">';
+							global $woocommerce;
+							$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
+							$context = '';
+							$allowed_tags 		= wp_kses_allowed_html( $context );
+
+							if ( $amp_product_price ) {
+								$content .= 'Price: ' .  wp_kses( $amp_product_price,  $allowed_tags  )  ;
+							} else {
+								$content .= "Sorry, this item is not for sale at the moment, please check out more products <a href=" . esc_url( home_url('/shop') ) . "> Here </a> " ;
+							}
+						}
+						$content .= '</div></div>'; ?>
+					<?php endwhile;  ?>
+			<?php endif; ?>
+			<?php wp_reset_postdata();
+
+			 // Add AMP Woocommerce latest Products only on AMP Endpoint
+			 $endpoint_check = is_amp_endpoint();
+			 if ( $endpoint_check ) {
+				 return $content;
+			 }
+	 }
+
+	 // Generating Short code for AMP Woocommerce latest Products
+	 function ampforwp_latest_products_register_shortcodes() {
+		 add_shortcode('amp-woocommerce', 'get_amp_latest_prodcuts_markup');
+	 }
+	 add_action( 'amp_init', 'ampforwp_latest_products_register_shortcodes');
+
+	 // Adding the styling for AMP Woocommerce latest Products
+   add_action('amp_post_template_css','amp_latest_products_styling');
+   function amp_latest_products_styling() {
+		 // all the styling goes here between these comments ?>
+
+       <?php // all the styling goes here between these comments
+   }
