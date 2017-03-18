@@ -1399,7 +1399,7 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 }
 #ampsomething { display: none; }
 #header, .headerlogo a{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
-.comment-button-wrapper a , #pagination .next a, #pagination .prev a{
+.comment-button-wrapper a, #pagination .next a, #pagination .prev a{
     background: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> ;
 }
 .toast:after, .toast:before, .toast span{
@@ -1410,14 +1410,9 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
     color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-font']['color']; ?> ;
 }
 <?php if( !has_nav_menu( 'amp-menu' ) ) { ?>
-.toggle-navigationv2 .social_icons {
-	border-top: 0px;
-}
-.toggle-navigationv2 a {
-	color:#fff;
-}
+.toggle-navigationv2 .social_icons { border-top: 0px; }
+.toggle-navigationv2 a { color:#fff; }
 <?php } ?>
-
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>

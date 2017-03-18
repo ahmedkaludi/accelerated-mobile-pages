@@ -38,7 +38,7 @@ $args = array(
     'save_defaults'         => true, // On load save the defaults to DB before user clicks save or not
     'default_show'          => false, // If true, shows the default value next to each field that is not the default value.
     'default_mark'          => '', // What to print by the field's title if the value shown is default. Suggested: *
-    'admin_bar'             => true,
+    'admin_bar'             => false,
     'admin_bar_icon'        => 'dashicons-admin-generic',
     // CAREFUL -> These options are for advanced use only
     'output'                => false, // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output

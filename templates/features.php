@@ -1307,22 +1307,22 @@ add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
 function ampforwp_lazy_loading_plugins_compatibility() {
 
    //WP Rocket
-	   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
-	   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
-			 if ( ! defined( 'DONOTMINIFYCSS' ) ) {
-						define( 'DONOTMINIFYCSS', TRUE );
-			}
-			if ( ! defined( 'DONOTMINIFYJS' ) ) {
-				define( 'DONOTMINIFYJS', TRUE );
-			}
-			// Disable HTTP protocol removing on script, link, img, srcset and form tags.
-			remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
-			remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
-			// Disable Concatenate Google Fonts
-			add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
-			// Disable CSS & JS magnification
-			add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
-			add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
+    add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
+    add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
+     if ( ! defined( 'DONOTMINIFYCSS' ) ) {
+                define( 'DONOTMINIFYCSS', TRUE );
+    }
+    if ( ! defined( 'DONOTMINIFYJS' ) ) {
+        define( 'DONOTMINIFYJS', TRUE );
+    }
+    // Disable HTTP protocol removing on script, link, img, srcset and form tags.
+    remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
+    remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
+    // Disable Concatenate Google Fonts
+    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
+    // Disable CSS & JS magnification
+    add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
+    add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
 
     //Lazy Load XT
 		global $lazyloadxt;
@@ -1788,8 +1788,8 @@ function ampforwp_add_notification_scripts( $data ) {
 //51. Adding Digg Digg compatibility with AMP
 function ampforwp_dd_exclude_from_amp() {
 if(ampforwp_is_amp_endpoint()) {
-      remove_filter('the_excerpt', 'dd_hook_wp_content');
-    	remove_filter('the_content', 'dd_hook_wp_content');
+    remove_filter('the_excerpt', 'dd_hook_wp_content');
+    remove_filter('the_content', 'dd_hook_wp_content');
 	}
 }
 add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
