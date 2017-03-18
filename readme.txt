@@ -29,12 +29,13 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Comments Forms in AMP.
 * NEW - Native AMP Search functionality.
 * NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * NEW - Disqus Comments Support
 * NEW - Google Tag Manager Support
 * NEW - Page, Category & Tags Support Added
-* NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
+* Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * Custom Post Type Support 
 * Star Ratings
@@ -74,6 +75,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 * Piwik & Segment.com Support
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
+* Widgets & WooCommerce 
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
@@ -126,6 +128,38 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.45 (18 March 2017) =
+* View more details at https://ampforwp.com/0-9-45-released-compatibility-rtl-53rd-update/
+* W3Total cache compatibility added
+* RTL Support added for Right-to-Left language websites.
+* Comments Pagination feature added
+* WP-Rocket Compatibility added
+* WPML Compatibility added
+* Quantcast analytics support added
+* ComScore support added
+* Custom Yoast title support added #685
+* WooCommerce Shortcode: Allows you to display WooCommerce Products.  [amp-woocommerce num=6] will display the 6 products from WooCommerce.  [amp-woocommerce num=6 link=noamp] will display 6 products but they will go to non-amp website, if you want to link to AMP version of the page then use [amp-woocommerce num=6 link=amp]
+* Admin area UX improvements
+* Adding notifications script in the correct way
+* Comments now display on frontpage as well.
+* Re-positioned non-amp Header link control to the right section.
+* ?nonamp=1 only displays when the Mobile redirection is on
+* Properly adding iFrame js.
+* Custom Post type incompatibility fixed
+* Widgets added to the Custom Frontpage.
+* Stripping shortcodes from excerpts.
+* Custom content on static frontpage had over riding issue #687
+* Option added for controlling number of comments
+* Welcome page should be shown only if user is “administrator” #696
+* Digg Digg social share compatibility #694
+* Removed unnecessary lines from Design 3
+* Sanitized Archive Description to amp Compatible #659
+* Author box now displays HTML properly #645
+* Date added Design-3 in meta #583
+* Options link was removed from wp-admin tool bar after a feedback from a user.
+* Footer sub menus layout compatibility.
+
 
 = 0.9.44 (5 March 2017) =
 * View more details at https://ampforwp.com/user-experience-52nd-update/
