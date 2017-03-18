@@ -1307,8 +1307,22 @@ add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
 function ampforwp_lazy_loading_plugins_compatibility() {
 
    //WP Rocket
-   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
-   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
+	   add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
+	   add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
+			 if ( ! defined( 'DONOTMINIFYCSS' ) ) {
+						define( 'DONOTMINIFYCSS', TRUE );
+			}
+			if ( ! defined( 'DONOTMINIFYJS' ) ) {
+				define( 'DONOTMINIFYJS', TRUE );
+			}
+			// Disable HTTP protocol removing on script, link, img, srcset and form tags.
+			remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
+			remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
+			// Disable Concatenate Google Fonts
+			add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
+			// Disable CSS & JS magnification
+			add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
+			add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
 
     //Lazy Load XT
 		global $lazyloadxt;
