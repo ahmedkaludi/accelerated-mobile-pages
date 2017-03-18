@@ -381,6 +381,7 @@ color:#666
 .footer_menu ul li:last-child{
     margin-right:0
 }
+.footer_menu ul ul{ display:none }
 /* Single */
 .single-post main{
     margin: 20px 17px 17px 17px;
