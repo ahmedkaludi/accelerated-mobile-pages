@@ -625,7 +625,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '1'
             ),
-
+            array(
+               'id'       => 'amp-design-3-date-feature',
+               'type'     => 'switch',
+               'title'    => __( 'Display Date on Single', 'redux-framework-demo' ),
+               'required' => array(
+                 array('amp-design-selector', '=' , '3')
+               ),
+               'desc'     => __('Display date along with author and category', 'redux-framework-demo' ),
+               'default'  => '0'
+           ),
 
         array(
             'id'       => 'css_editor',
