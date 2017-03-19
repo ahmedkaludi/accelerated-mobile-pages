@@ -129,6 +129,9 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
+= 0.9.45.1 (19 March 2017) =
+* Post 0.9.45 bugs fixed and released as an urgent update.
+
 = 0.9.45 (18 March 2017) =
 * View more details at https://ampforwp.com/0-9-45-released-compatibility-rtl-53rd-update/
 * W3Total cache compatibility added
