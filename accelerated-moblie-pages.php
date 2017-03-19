@@ -136,18 +136,11 @@ function ampforwp_parent_plugin_check() {
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
 */
-require ABSPATH .'wp-includes/pluggable.php';
-function ampforwp_get_user_role( $user = null ) {
-	$user = $user ? new WP_User( $user ) : wp_get_current_user();
-	return $user->roles ? $user->roles[0] : false;
-}
-$user_role = ampforwp_get_user_role();
-
-if ( $user_role === 'administrator' ) {
+if ( is_admin() ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
-
+    
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
