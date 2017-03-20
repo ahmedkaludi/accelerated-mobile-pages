@@ -309,7 +309,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
         
 		// Adding script to add in JW Player should the user enable it.
 		
-                <?php if ( $redux_builder_amp['amp-enable-notifications'] == true ) {
+                <?php if ( $redux_builder_amp['amp-enable-jwplayer'] == true ) {
 					if ( empty( $data['amp_component_scripts']['amp-jwplayer'] ) ) {
 						$data['amp_component_scripts']['amp-jwplayer'] = 'https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js';
 					}
