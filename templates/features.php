@@ -309,9 +309,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
         
 		// Adding script to add in JW Player should the user enable it.
 		
-		<?php if($redux_builder_amp['amp-enable-jwplayer'] == true)  { ?>
-			<script async custom-element="amp-jwplayer" src="https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js"></script>
-		<?php } ?>
+                <?php if ( $redux_builder_amp['amp-enable-notifications'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-jwplayer'] ) ) {
+						$data['amp_component_scripts']['amp-jwplayer'] = 'https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js';
+					}
+	        } ?>
 
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 			<?php if( is_singular() ) {
