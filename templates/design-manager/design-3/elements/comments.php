@@ -60,7 +60,7 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 								}// end of ampforwp_custom_translated_comment()
 
 				wp_list_comments( array(
-				  'per_page' 			=> 10, //Allow comment pagination
+				  'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , //Allow comment pagination
 				  'style' 				=> 'li',
 				  'type'				=> 'comment',
 				  'max_depth'   		=> 5,
@@ -70,16 +70,23 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 				), $comments);  ?>
 		    </ul>
 		</div>
-		<div class="comment-button-wrapper">
-		   <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-		</div><?php
+    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
+  		<div class="comment-button-wrapper">
+  		   <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+  		</div>
+    <?php } ?>
+    <?php
 	} else {
     global $redux_builder_amp ;
     if (!comments_open()) {
       return;
     } ?>
-    <div class="comment-button-wrapper">
-	       <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
-     </div>
+    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
+      <div class="comment-button-wrapper">
+  	       <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+       </div>
+     <?php } ?>
 <?php } ?>
 </div>

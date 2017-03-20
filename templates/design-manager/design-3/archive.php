@@ -55,7 +55,13 @@ if ( get_query_var( 'paged' ) ) {
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
- 			the_archive_description( '<div class="amp-wp-content taxonomy-description">', '</div>' );
+
+			$arch_desc = ampforwp_sanitize_archive_description();
+			if( $arch_desc ) {  ?>
+				<div class="amp-wp-content taxonomy-description">
+					<?php echo $arch_desc ; ?>
+			  </div> <?php
+			}
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -96,7 +102,7 @@ if ( get_query_var( 'paged' ) ) {
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+		        <p><?php echo wp_trim_words( strip_shortcodes(  $content ) , '15' ); ?></p>
                 <div class="featured_time">
                   <?php
                        printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),

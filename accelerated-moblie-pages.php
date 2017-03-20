@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.44
+Version: 0.9.45.1
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.44');
+define('AMPFORWP_VERSION','0.9.45.1');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -96,7 +96,7 @@ function ampforwp_rewrite_activation() {
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
-    
+
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
@@ -111,7 +111,7 @@ function ampforwp_rewrite_deactivate() {
 	// Remove transient for Welcome page
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
- 
+
 add_action( 'admin_init','ampforwp_parent_plugin_check');
 function ampforwp_parent_plugin_check() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -140,7 +140,7 @@ if ( is_admin() ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
-
+    
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 

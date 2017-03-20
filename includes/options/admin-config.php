@@ -38,7 +38,7 @@ $args = array(
     'save_defaults'         => true, // On load save the defaults to DB before user clicks save or not
     'default_show'          => false, // If true, shows the default value next to each field that is not the default value.
     'default_mark'          => '', // What to print by the field's title if the value shown is default. Suggested: *
-    'admin_bar'             => true,
+    'admin_bar'             => false,
     'admin_bar_icon'        => 'dashicons-admin-generic',
     // CAREFUL -> These options are for advanced use only
     'output'                => false, // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
@@ -96,7 +96,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     margin-top: 38px;"><i class="dashicons dashicons-editor-help" style="
     font-size: 36px;
     margin-right: 20px;
-    margin-top: -1px;"></i>Need Help?</h1> 
+    margin-top: -1px;"></i>Need Help?</h1>
 <p style="
     font-family: georgia;
     font-size: 20px;
@@ -106,8 +106,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     margin-top: 11px;
     color: #666;">Were bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
 
- 
-         
+
+
          ';
       }
       return $output ;
@@ -315,6 +315,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                  array('amp-design-selector','=',3),
                  array('ampforwp-homepage-posts-image-modify-size','=',1)
                )
+            ),
+            array(
+                'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                'type'      => 'switch',
+                'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
+                'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
+                'default'   => 0,
             )
           )
         )
@@ -339,7 +346,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'options'  => array(
                             '1' => __('Google Analytics', 'redux-framework-demo' ),
                             '2' => __('Segment Analytics', 'redux-framework-demo' ),
-                            '3' => __('Piwik Analytics', 'redux-framework-demo' )
+                            '3' => __('Piwik Analytics', 'redux-framework-demo' ),
+                            '4' => __('Quantcast Measurement', 'redux-framework-demo' ),
+                            '5' => __('comScore', 'redux-framework-demo' ),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -382,6 +391,32 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'default'  => '#',
                       ),
 
+                      array(
+                        'id'        	=>'amp-quantcast-analytics-code',
+                        'type'      	=> 'text',
+                        'title'     	=> __('p-code'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '4')),
+                      ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c1',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C1'),
+                        'default'   	=> 1,
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c2',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C2'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
+
+                      //GTM
                         array(
                             'id'       => 'amp-use-gtm-option',
                             'type'     => 'switch',
@@ -418,6 +453,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'required' => array(
                           array('amp-use-gtm-option', '=' , '1')),
               					),
+
       				    )
           	)
    );
@@ -442,8 +478,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     function ampforwp_get_element_default_color() {
         $default_value = get_option('redux_builder_amp', true);
         $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
-        if ( empty( $default_value ) ) { 
-          $default_value = '#333'; 
+        if ( empty( $default_value ) ) {
+          $default_value = '#333';
         }
       return $default_value;
     }
@@ -514,7 +550,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array('amp-design-selector', '=' , '3')
                  )
              ),
-            
+
 
           array(
                      'id'       => 'amp-design-3-featured-slider',
@@ -589,7 +625,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '1'
             ),
-
+            array(
+               'id'       => 'amp-design-3-date-feature',
+               'type'     => 'switch',
+               'title'    => __( 'Display Date on Single', 'redux-framework-demo' ),
+               'required' => array(
+                 array('amp-design-selector', '=' , '3')
+               ),
+               'desc'     => __('Display date along with author and category', 'redux-framework-demo' ),
+               'default'  => '0'
+           ),
 
         array(
             'id'       => 'css_editor',
@@ -1604,9 +1649,9 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
-// Disqus Comments
+// Comments
  Redux::setSection( $opt_name, array(
-    'title'      => __( 'Disqus Comments', 'redux-framework-demo' ),
+    'title'      => __( 'Comments', 'redux-framework-demo' ),
 //    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
     'id'         => 'disqus-comments',
     'subsection' => true,
@@ -1644,6 +1689,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'placeholder' => 'https://comments.example.com/disqus.php',
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
                      ),
+                     array(
+                         'id'       => 'ampforwp-number-of-comments',
+                         'type'     => 'text',
+                         'desc'     => 'This refers to the normal comments',
+                         'title'    => __('No of Comments', 'redux-framework-demo'),
+                         'default'  => 10,
+                         'required' => array('ampforwp-disqus-comments-support' , '=' , 0)
+                     ),
                  )
  ) );
 
@@ -1669,16 +1722,6 @@ Redux::setSection( $opt_name, array(
                         'title'     => __('Enable JW Player', 'redux-framework-demo'),
                         'subtitle'  => __('If you need JW Player Support then hit this switch.', 'redux-framework-demo'),
                         'default'   => 0,
-                    ),
-                    array(
-                        'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                        'type'      => 'switch',
-                        'title'     => __('Non-AMP HomePage link in Header and Logo', 'redux-framework-demo'),
-                        'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'redux-framework-demo'),
-                        'default'   => 0,
-                        'required' => array(
-                          array('ampforwp-homepage-on-off-support','=',1)
-                        )
                     ),
                     array(
                         'id'       => 'ampforwp-archive-support',
@@ -1720,7 +1763,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Header', 'redux-framework-demo'),
                         'subtitle' => __('please enter markup that is AMP validated', 'redux-framework-demo'),
-                        'desc' => __('check your markup here (enter markup between BODY tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
+                        'desc' => __('check your markup here (enter markup between HEAD tag) : https://validator.ampproject.org/', 'redux-framework-demo'),
                         'default'   => ''
                     ),
                     array(
