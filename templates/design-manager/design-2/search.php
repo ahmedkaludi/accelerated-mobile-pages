@@ -69,7 +69,7 @@
 					}else{
 						$content = get_the_content();
 					} ?>
-		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
+		        <p><?php echo wp_trim_words( strip_shortcodes(  $content ) , '15' ); ?></p>
 
 		    </div>
             <div class="cb"></div>
@@ -84,7 +84,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-	<?php else: ?>	
+	<?php else: ?>
 		<div class="amp-wp-content amp-loop-list">
 			<div class="amp-wp-post-content">
 				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>

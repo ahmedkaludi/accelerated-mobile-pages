@@ -86,7 +86,7 @@
 						}else{
 							$content = get_the_content();
 						} ?>
-					<p><?php echo wp_trim_words( $content , '20'); ?></p>
+					<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20'); ?></p>
 				</div>
 	        </div>
 	    <?php endwhile;  ?>
@@ -99,9 +99,9 @@
 		        </div>
 
 		    </div>
-		<?php else: ?>	
+		<?php else: ?>
 			<div class="amp-wp-content amp-wp-article-header amp-loop-list">
-				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?> 
+				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
 				<div class="cb"></div>
 			</div>
 		<?php endif; ?> <?php wp_reset_postdata(); ?>
