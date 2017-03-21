@@ -4,13 +4,12 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
+      $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
+      $headercolor =  $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
+      $font_color =  $redux_builder_amp['amp-opt-color-rgba-font']['color'];
+      $headerelements =  $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 	// Get template colors
-	$theme_color             = $get_customizer->get_customizer_setting( 'theme_color' );
-	$text_color              = $get_customizer->get_customizer_setting( 'text_color' );
-	$muted_text_color        = $get_customizer->get_customizer_setting( 'muted_text_color' );
-	$border_color            = $get_customizer->get_customizer_setting( 'border_color' );
-	$link_color              = $get_customizer->get_customizer_setting( 'link_color' );
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 	?>
@@ -36,12 +35,7 @@ a {
 }
 
 /* Slide Navigation code */
-.nav_container{
-    padding: 18px 15px;
-    background: #312C7E;
-    color: #fff;
-    text-align: center
-}
+
 amp-sidebar {
     width: 280px;
     background: #131313;
@@ -188,7 +182,6 @@ amp-accordion>section[expanded] li a:before{
     position: relative;
     padding-right: 10px;
 }
-.nav_container:hover + .toggle-navigation,
 .toggle-navigation:hover,
 .toggle-navigation:active,
 .toggle-navigation:focus{
@@ -388,6 +381,7 @@ color:#666
 .footer_menu ul li:last-child{
     margin-right:0
 }
+.footer_menu ul ul{ display:none }
 /* Single */
 .single-post main{
     margin: 20px 17px 17px 17px;
@@ -588,6 +582,11 @@ main .amp-wp-content.relatedpost {
     margin: 16px 18px 20px 19px;
 }
 /* Comments */
+.page-numbers{
+    padding: 9px 10px;
+    background: #fff;
+    font-size: 14px;
+}
 .comment-body .comment-content{
     font-family:'PT Serif', serif;
     margin-top: 2px;
@@ -764,7 +763,7 @@ pre {
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;
-    color: #666; 
+    color: #666;
 }
 .amp-category-block ul, .category-widget-wrapper{
     max-width: 1000px;
@@ -1195,68 +1194,122 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
+            .amp-carousel-slide h1{
+                direction: rtl;
+            }
+            .featured_time{
+                text-align: right;
+                padding-right: 20px;
+            }
+            main .amp-wp-content{
+                direction: rtl;
+            }
+
+            .home-post_image {
+            float: right;
+            padding-right: 0%;
+            padding-left: 2%;
+            margin-right: 0%;
+            }
+
+             .searchmenu {
+             margin-right: 15px;
+             margin-top: 11px;
+             position: absolute;
+             top: 0;
+             right: inherit;
+            }
+
+            .searchform label{
+
+            text-align: right;
+            right: -30px;
+            position: relative;
+
+            }
+
+            .searchform input{
+
+            text-align: right;
+            padding: 15px;
+
+            }
+
+            .closebutton{
+            left:20px;
+            }
+
+            .hamburgermenu {
+                float: right;
+                }
+            .toast {
+                display: block;
+                position: relative;
+                height: 50px;
+                padding-left: 20px;
+                padding-right: 15px;
+                width: 60px;
+                background: none;
+                border: 0;
+}
+
+
+/* RTL single */
+
+    .related_posts ol li amp-img{
+
+        float: right;
+        margin-left: 15px;
+        }
+    .single-post .amp_author_area amp-img {
+
+        float: right;
+        margin-left: 12px;
+        }
+
+    .amp-wp-article, .footer_wrapper container {
+
+        direction: rtl;
+        }
+
+    .single-post .post-pagination-meta span{
+
+        float: right;
+    }
+
+    .amp-wp-article-tags span {
+
+        background: #eeeeee;
+        margin-right: 10px;
+        padding: 5px 12px 5px 12px;
+        border-radius: 3px;
+        display: inline-block;
+        margin: 5px;
+}
+    .amp_author_area_wrapper strong{
+
+        float: right;
+    }
+
 /* RTL End */
 <?php } ?>
 
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
-a {
-    color: <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.amp-wp-content blockquote{
-	border-color:<?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.nav_container, .comment-button-wrapper a {
-    background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-.nav_container a{
-    color:<?php echo sanitize_hex_color( $header_color ); ?>
-}
-amp-user-notification  {
-	border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
-amp-user-notification button {
-	background-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>;;
-}
+a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
+.amp-wp-content blockquote { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
+amp-user-notification { border-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
+amp-user-notification button { background-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
-    .single-post footer {
-        padding-bottom: 41px;
-    }
+.single-post footer { padding-bottom: 41px;}
 <?php } ?>
-/**/
-.single-post amp-img.alignleft{
-	margin-right: 15px;
-	margin-bottom:5px;
-	float: left;
-}
-.single-post amp-img.alignright{
-	float:right;
-	margin-left: 15px;
-	margin-bottom:5px;
-}
-.single-post amp-img.aligncenter{
-	text-align:center;
-	margin: 0 auto
-}
-.amp-wp-author:before{
-	content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-published-by']; ?>  ";
-}
-.ampforwp-tax-category span:last-child:after {
-    content: ' ';
-}
-.ampforwp-tax-category span:after{
-	content: ', ';
-}
-
-.amp-wp-article-content img {
-    max-width: 100%;
-}
-
-
-
-
-
-
+.single-post amp-img.alignleft{ margin-right: 15px; margin-bottom:5px; float: left;}
+.single-post amp-img.alignright{ float:right; margin-left: 15px; margin-bottom:5px;}
+.single-post amp-img.aligncenter{ text-align:center; margin: 0 auto}
+.amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-published-by'];?>  ";}
+.ampforwp-tax-category span:last-child:after { content: ' ';}
+.ampforwp-tax-category span:after{ content: ', ';}
+.amp-wp-article-content img { max-width: 100%;}
 /* Social icons */
 @font-face {
   font-family: 'icomoon';
@@ -1347,7 +1400,7 @@ amp-user-notification button {
 }
 #ampsomething { display: none; }
 #header, .headerlogo a{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
-.nav_container, .comment-button-wrapper a , #pagination .next a, #pagination .prev a{
+.comment-button-wrapper a, #pagination .next a, #pagination .prev a{
     background: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> ;
 }
 .toast:after, .toast:before, .toast span{
@@ -1358,14 +1411,9 @@ amp-user-notification button {
     color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-font']['color']; ?> ;
 }
 <?php if( !has_nav_menu( 'amp-menu' ) ) { ?>
-.toggle-navigationv2 .social_icons {
-	border-top: 0px;
-}
-.toggle-navigationv2 a {
-	color:#fff;
-}
+.toggle-navigationv2 .social_icons { border-top: 0px; }
+.toggle-navigationv2 a { color:#fff; }
 <?php } ?>
-
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>
