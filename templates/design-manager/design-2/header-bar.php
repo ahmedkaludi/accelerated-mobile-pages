@@ -47,7 +47,8 @@
        layout="nodisplay">
      </amp-install-serviceworker>
 
-<!-- <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
+<?php if($redux_builder_amp['ampforwp-amp-menu-on-off'] == true)  { ?>
+<div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
 	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
 </div>
 
@@ -59,4 +60,5 @@
       <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
 
   </div>
-</amp-sidebar> -->
+</amp-sidebar>
+<?php } ?>
