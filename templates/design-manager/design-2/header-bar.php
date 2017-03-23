@@ -49,7 +49,7 @@
   </div>
 </header>
 
-
+<?php if($redux_builder_amp['ampforwp-amp-menu-on-off'] == true)  { ?>
 <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
 	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
 </div>
@@ -63,3 +63,4 @@
 
   </div>
 </amp-sidebar>
+<?php } ?>
