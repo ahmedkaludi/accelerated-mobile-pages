@@ -63,6 +63,7 @@
 	51. Adding Digg Digg compatibility with AMP
 	52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 	53. Adding the Markup for AMP Woocommerce latest Products
+	54. Adding sidebar script
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -332,17 +333,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<?php
 
-	}
-
-	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
-	function ampforwp_add_amp_related_scripts( $data ) {
-		global $redux_builder_amp;
-		// Adding Sidebar Script
-		if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
-			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
-		}
-
-		return $data;
 	}
 
 	// 7. Footer for AMP Pages
@@ -1784,7 +1774,6 @@ function ampforwp_add_notification_scripts( $data ) {
 	return $data;
 }
 
-
 //51. Adding Digg Digg compatibility with AMP
 function ampforwp_dd_exclude_from_amp() {
 if(ampforwp_is_amp_endpoint()) {
@@ -1919,3 +1908,17 @@ Examples:
 .ampforwp-wc-title{ margin: 10px 0px; }
 .ampforwp-wc-price{ color:#444 }
     <?php }
+
+	// 54. Properly adding sidebar script
+add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_scripts' );
+function ampforwp_add_sidebar_scripts( $data ) {
+	global $redux_builder_amp;
+
+	if ( $redux_builder_amp['ampforwp-amp-menu-on-off'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
+						$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+					}
+	}
+
+	return $data;
+}
