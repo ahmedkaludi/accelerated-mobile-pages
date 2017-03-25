@@ -402,16 +402,22 @@ function ampforwp_offline_admin_notice() {
 		<style>
 			.ampforwp-post-installtion-instructions{ display: none; }
 		</style>
-	<?php } ?>
-	<script>
-		const statusContainer = document.getElementById('ampforwp-network-status');
-		if(! navigator.onLine) {
-			statusContainer.innerHTML = "<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
-        } else {
-          if( statusContainer ) {
-        	statusContainer.innerHTML =  "";
-          }
-        }
-	</script>
+	<?php }
+    $current_screen = get_current_screen();
+     if( $current_screen ->id === "dashboard_page_ampforwp-welcome-page" ) {?>
+    	<script>
+      (function(){
+        const statusContainer = document.getElementById('ampforwp-network-status');
+    		if(! navigator.onLine) {
+    			statusContainer.innerHTML = "<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
+            } else {
+              if( statusContainer ) {
+            	statusContainer.innerHTML =  "";
+              }
+            }
+      })();
+
+    	</script>
+  <?php } ?>
 	<?php
 }
