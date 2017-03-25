@@ -1319,10 +1319,10 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
     // Disable Concatenate Google Fonts
-    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
     // Disable CSS & JS magnification
-    add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
-    add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
 
     //Lazy Load XT
 		global $lazyloadxt;
