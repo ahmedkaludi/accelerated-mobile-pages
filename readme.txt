@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7.2
-Stable tag: 0.9.45.5
+Tested up to: 4.7.3
+Stable tag: 0.9.45.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,11 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.45.6 (31 March 2017) =
+* Installation Process from welcome page was not working after WP Plugin DIR API change was fixed.
+* WP Rocket Minifcation and Concatenation was not working, its fixed now.
+* WP Rocket was tested properly to make sure everything is working fine.
 
 = 0.9.45.5 (25 March 2017) =
 * WP rocket conflict solved  
