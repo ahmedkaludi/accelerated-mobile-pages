@@ -112,19 +112,19 @@ function ampforwp_plugin_parent_activation() {
 	include( ABSPATH . "wp-admin/includes/plugin-install.php" );
 	global $tabs, $tab, $paged, $type, $term;
 	$tabs = array();
-	$tab = "search";
+	$tab = "slug";
 	$per_page = 1;
 	$args = array
-	(
-		"search"	=> "amp",
+    (
+        "slug"      => "amp",
 		"page" 		=> $paged,
 		"per_page" 	=> $per_page,
-		"fields" 	=> array( "last_updated" => true, "downloaded" => true, "icons" => true ),
-		"locale" 	=> get_locale(),
+		"fields" 	=> array( "last_updated" => true, "short_description" => true,  "downloaded" => false, "icons" => true ),
+		//"locale" 	=> get_locale(),
 	);
 	$args = apply_filters( "install_plugins_table_api_args_$tab", $args );
-	$api = plugins_api( "query_plugins", $args );
-	$item = $api->plugins;
+    $api = plugins_api( "plugin_information", $args );
+	$item = $api;
 
 	$plugins_allowedtags = array(
 		'a' => array( 'href' => array(), 'title' => array(), 'target' => array() ),
@@ -265,7 +265,8 @@ background: #4CAF50;
 				    return $activateUrl;
 				}
 
-				foreach ( (array) $item as $plugin ) {
+//				foreach ( (array) $item as $plugin ) {
+                    $plugin = $item;
 					if ( is_object( $plugin ) ) {
 						$plugin = (array) $plugin;
 					}
@@ -375,7 +376,7 @@ background: #4CAF50;
 					</div>
 				</div>
 				<?php
-				} ?>
+//				} ?>
 
 		     	</div>
 			</div>
