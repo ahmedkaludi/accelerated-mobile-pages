@@ -1306,23 +1306,14 @@ function ampforwp_remove_js_script_cleantalk() {
 add_filter( 'amp_init', 'ampforwp_lazy_loading_plugins_compatibility' );
 function ampforwp_lazy_loading_plugins_compatibility() {
 
-   //WP Rocket
-    add_filter( 'do_rocket_lazyload', '__return_false', PHP_INT_MAX );
-    add_filter( 'do_rocket_lazyload_iframes', '__return_false', PHP_INT_MAX );
-     if ( ! defined( 'DONOTMINIFYCSS' ) ) {
-                define( 'DONOTMINIFYCSS', TRUE );
-    }
-    if ( ! defined( 'DONOTMINIFYJS' ) ) {
-        define( 'DONOTMINIFYJS', TRUE );
-    }
     // Disable HTTP protocol removing on script, link, img, srcset and form tags.
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
     // Disable Concatenate Google Fonts
-    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
     // Disable CSS & JS magnification
-    add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
-    add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_js', '__return_false', PHP_INT_MAX );
+//    add_filter( 'get_rocket_option_minify_css', '__return_false', PHP_INT_MAX );
 
     //Lazy Load XT
 		global $lazyloadxt;
@@ -1334,22 +1325,24 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     // Lazy Load
 		add_filter( 'lazyload_is_enabled', '__return_false', PHP_INT_MAX );
 }
-
-add_action('amp_init','ampforwp_cache_compatible_activator');
-function ampforwp_cache_compatible_activator(){
-    add_action('template_redirect','ampforwp_cache_plugin_compatible');
-}
-function ampforwp_cache_plugin_compatible(){
-    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-    if ( ! $ampforwp_is_amp_endpoint ) {
-        return;
-    }
-    /**
-     * W3 total cache
-     */
-    add_filter( 'w3tc_minify_js_enable', array( $this, '_return_false' ) );
-    add_filter( 'w3tc_minify_css_enable', array( $this, '_return_false' ) );
-}
+//
+// This Caused issue, Please see: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/713
+//
+//add_action('amp_init','ampforwp_cache_compatible_activator');
+//function ampforwp_cache_compatible_activator(){
+//    add_action('template_redirect','ampforwp_cache_plugin_compatible');
+//}
+//function ampforwp_cache_plugin_compatible(){
+//    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+//    if ( ! $ampforwp_is_amp_endpoint ) {
+//        return;
+//    }
+//    /**
+//     * W3 total cache
+//     */
+//    add_filter( 'w3tc_minify_js_enable', array( $this, '_return_false' ) );
+//    add_filter( 'w3tc_minify_css_enable', array( $this, '_return_false' ) );
+//}
 
 //Removing bj loading for amp
 function ampforwp_remove_bj_load() {
