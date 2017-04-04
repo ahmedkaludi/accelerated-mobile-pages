@@ -306,6 +306,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		if( is_page() ) { ?>
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } ?>
+        
+		// Adding script to add in JW Player should the user enable it.
+		
+                <?php if ( $redux_builder_amp['amp-enable-jwplayer'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-jwplayer'] ) ) {
+						$data['amp_component_scripts']['amp-jwplayer'] = 'https://cdn.ampproject.org/v0/amp-jwplayer-0.1.js';
+					}
+	        } ?>
 
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 			<?php if( is_singular() ) {

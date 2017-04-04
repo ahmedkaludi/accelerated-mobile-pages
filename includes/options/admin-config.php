@@ -1716,6 +1716,13 @@ Redux::setSection( $opt_name, array(
                         'subtitle' => __('Enable/Disable Home page using this switch.', 'redux-framework-demo'),
                         'default'  => '1'
                     ),*/
+                     array(
+                        'id'        =>'amp-enable-jwplayer',
+                        'type'      => 'switch',
+                        'title'     => __('Enable JW Player', 'redux-framework-demo'),
+                        'subtitle'  => __('If you need JW Player Support then hit this switch.', 'redux-framework-demo'),
+                        'default'   => 0,
+                    ),
                     array(
                         'id'       => 'ampforwp-archive-support',
                         'type'     => 'switch',
