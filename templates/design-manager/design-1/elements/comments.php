@@ -45,10 +45,8 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 												<!-- .comment-meta -->
 											<div class="comment-content">
                         <p><?php
-                          // $pattern = "~[^a-zA-Z0-9_ !@#$%^&*();\\\/|<>\"'+.,:?=-]~";
-                          $emoji_content = get_comment_text();
-                          // $emoji_free_comments = preg_replace($pattern,'',$emoji_content);
-                          echo $emoji_content; ?>
+                          $comment_content = get_comment_text();
+                          echo ampforwp_content_sanitizer( $comment_content ); ?>
                         </p>
 											</div>
 												<!-- .comment-content -->
