@@ -58,8 +58,11 @@
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
-      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
-      <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
+      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
+          $menu = wp_nav_menu( array(
+                                    'theme_location' => 'amp-menu' ,
+                                    'echo' => false) );
+          echo strip_tags( $menu , '<ul><li><a>'); ?>
 
   </div>
 </amp-sidebar>

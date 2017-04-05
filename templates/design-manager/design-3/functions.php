@@ -18,35 +18,25 @@ class AMPforWP_Menu_Walker extends Walker_Nav_Menu {
 
 	}
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+			 $args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
+			 $classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+			 $classes[] = 'menu-item-' . $item->ID;
+			 $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+			 $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
-		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
-
-		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
-		$classes[] = 'menu-item-' . $item->ID;
-
-		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-		if ( $this->has_children ) {
-			set_transient( 'ampforwp_has_nav_child', true, 3 );
-
-			$this->start_accordion( $output, $depth );
-
-			$output .= '<h6 ' . $class_names . '>';
-			$output .= $this->get_anchor_tag( $item, $depth, $args, $id );
-			$output .= '</h6>';
-
-			$this->start_accordion_child_wrapper( $output, $depth );
-
-		} else {
-
-			$output .= '<li ' . $class_names . '>';
-			$output .= $this->get_anchor_tag( $item, $depth, $args, $id );
-			$output .= '</li>';
-
-		}
-
-	}
+			 if ( $this->has_children ) {
+				 set_transient( 'ampforwp_has_nav_child', true, 3 );
+				 $this->start_accordion( $output, $depth );
+				 $output .= '<h6 ' . $class_names . '>';
+				 $output .= strip_tags( $this->get_anchor_tag( $item, $depth, $args, $id ) , '<a>');
+				 $output .= '</h6>';
+				 $this->start_accordion_child_wrapper( $output, $depth );
+			 } else {
+				 $output .= '<li ' . $class_names . '>';
+				 $output .= strip_tags( $this->get_anchor_tag( $item, $depth, $args, $id ) , '<a>');
+				 $output .= '</li>';
+			 }
+		 }
 
 
 	public function end_el( &$output, $item, $depth = 0, $args = array() ) {
