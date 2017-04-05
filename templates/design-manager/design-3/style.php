@@ -98,7 +98,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
 /* Single */
-.single-post main{ margin: 20px 17px 17px 17px; }
+.single-post main{ margin: 20px 17px 17px 17px; layout:responsive; }
 .amp-wp-article-content{ font-family:'PT Serif', serif; }
 .single-post .post-featured-img, .single-post .amp-wp-article-content amp-img{ margin:0 -17px 17px -17px }
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
@@ -109,7 +109,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .single-post .post-pagination-meta{ font-size:15px; font-family:sans-serif; min-height:auto; margin-top:-5px; line-height:26px; }
 .single-post .post-pagination-meta span{ font-weight:bold }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 16px; color:#333; font-family: sans-serif; }
-.single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; layout:responsive; }
+.single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .amp-wp-article-tags .ampforwp-tax-tag, .amp-wp-article-tags .ampforwp-tax-tag a{ font-size: 12px; color: #555; font-family: sans-serif; margin: 20px 0 0 0; }
 .amp-wp-article-tags span{ background: #eeeee e; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
 .ampforwp-social-icons{ margin-bottom: 28px; margin-top: 25px; height: 40px; }
