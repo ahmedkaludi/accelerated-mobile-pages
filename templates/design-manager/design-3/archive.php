@@ -56,7 +56,8 @@ if ( get_query_var( 'paged' ) ) {
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
 
-			$arch_desc = ampforwp_sanitize_archive_description();
+			$description = get_the_archive_description();
+			$arch_desc = ampforwp_content_sanitizer( $description );
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>

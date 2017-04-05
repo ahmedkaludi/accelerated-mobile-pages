@@ -34,7 +34,8 @@
  		<div class="amp-wp-content amp-archive-heading">
  			<?php
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
-			$arch_desc = ampforwp_sanitize_archive_description();
+			$description = get_the_archive_description();
+			$arch_desc = ampforwp_content_sanitizer( $description );
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>

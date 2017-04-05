@@ -1832,8 +1832,8 @@ if(ampforwp_is_amp_endpoint()) {
 add_action('template_redirect', 'ampforwp_dd_exclude_from_amp');
 
 //52. Adding a generalized sanitizer function for purifiying normal html to amp-html
-function ampforwp_sanitize_archive_description() {
-	$amp_custom_post_content_input = get_the_archive_description();
+function ampforwp_content_sanitizer( $content ) {
+	$amp_custom_post_content_input = $content;
 	if ( !empty( $amp_custom_post_content_input ) ) {
 		$amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
 				apply_filters( 'amp_content_embed_handlers', array(
