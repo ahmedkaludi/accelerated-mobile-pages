@@ -1950,9 +1950,9 @@ Examples:
 	 // Adding the styling for AMP Woocommerce latest Products
    add_action('amp_post_template_css','amp_latest_products_styling',PHP_INT_MAX);
    function amp_latest_products_styling() { ?>
-.ampforwp_wc_shortcode{padding:0}
-.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
-.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-.ampforwp-wc-title{ margin: 10px 0px; }
-.ampforwp-wc-price{ color:#444 }
-    <?php }
+		.ampforwp_wc_shortcode{padding:0}
+		.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
+		.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
+		.ampforwp-wc-title{ margin: 10px 0px; }
+		.ampforwp-wc-price{ color:#444 } <?php
+   }
