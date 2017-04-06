@@ -283,8 +283,7 @@ main .amp-wp-content{ direction: rtl; }
 .closebutton{ left:20px; }
 .hamburgermenu{ float: right; }
 .toast{ display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 60px; background: none; border: 0; }
-
-
+.amp-ad-wrapper{ direction: ltr; }
 /* RTL single */
 
 .related_posts ol li amp-img{ float: right; margin-left: 15px; }

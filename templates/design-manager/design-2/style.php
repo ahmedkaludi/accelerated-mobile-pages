@@ -226,7 +226,7 @@ main .amp-archive-heading { direction:rtl }
 .closebutton { right:0; left:20px }
 .amp-meta-wrapper { padding-right:0 }
 .comment-author { float:right; margin-left:5px; }
-
+.amp-ad-wrapper{ direction: ltr; }
 <?php } ?>
 
 /* Style Modifer */

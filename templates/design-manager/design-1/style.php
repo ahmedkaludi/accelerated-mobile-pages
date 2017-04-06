@@ -109,6 +109,7 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .closebutton{right:0; left:20px;}
 .amp-wp-byline amp-img{ margin:0px 0px 0px 6px;}
 .comment-author{float: right;}
+.amp-ad-wrapper{ direction: ltr; }
 /* RTL ends */
 <?php } ?>
 <?php
