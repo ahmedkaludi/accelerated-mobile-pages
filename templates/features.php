@@ -1956,3 +1956,24 @@ Examples:
 		.ampforwp-wc-title{ margin: 10px 0px; }
 		.ampforwp-wc-price{ color:#444 } <?php
    }
+
+// Change the default values of post meta for AMP pages.
+add_action('pre_amp_render_post','ampforwp_change_default_amp_page_meta');
+function ampforwp_change_default_amp_page_meta() {
+	$check 		= get_option('ampforwp_default_pages_to');
+
+	if ( $check === 'show' ) {
+		return;
+	}
+
+	$pages = get_pages(array(
+	    //'meta_key' 		=> 'ampforwp-amp-on-off',
+	));
+	foreach($pages as $page){
+	    // echo $page->ID.'<br />';
+	    update_post_meta($page->ID,'ampforwp-amp-on-off','default');
+	}
+
+	update_option('ampforwp_default_pages_to','show');
+	return ;
+}
