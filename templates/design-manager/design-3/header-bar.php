@@ -104,7 +104,7 @@
                           $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?nonamp=1';
                           $set_rel_to_noamp = true;
                          } else {
-                          $ampforwp_home_url = untrailingslashit( get_bloginfo('url') );
+                          $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
                          }
                 }
           }?>
