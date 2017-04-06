@@ -14,7 +14,7 @@
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
-                    $ampforwp_home_url = trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR;
+                    $ampforwp_home_url = trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
                           $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?nonamp=1';
