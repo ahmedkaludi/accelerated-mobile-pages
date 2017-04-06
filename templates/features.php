@@ -1074,7 +1074,7 @@ function ampforwp_sticky_social_icons(){
           <amp-social-share type="twitter"
                             width="50"
                             height="28"
-                            data-param-url="CANONICAL_URL"
+                            data-param-url="<?php echo wp_get_shortlink() ?>"
                             data-param-text="<?php echo $data_param_data ?> TITLE"
           ></amp-social-share>
 		  	<?php } ?>

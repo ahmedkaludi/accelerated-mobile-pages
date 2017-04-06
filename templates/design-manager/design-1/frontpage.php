@@ -188,7 +188,7 @@ $template = new AMP_Post_Template( $post_id );?>
 						<amp-social-share type="twitter"
 															width="50"
 															height="28"
-															data-param-url="CANONICAL_URL"
+															data-param-url="<?php echo wp_get_shortlink() ?>"
 															data-param-text="<?php echo $data_param_data ?> TITLE"
 						></amp-social-share>
 			  	<?php } ?>
