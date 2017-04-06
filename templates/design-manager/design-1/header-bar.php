@@ -10,7 +10,7 @@
             <?php }
     } else { ?>
             <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
-                <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR; ?>">
+                <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>">
             <?php } else {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
               <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
@@ -43,7 +43,7 @@
 
     <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR; ?>">
+    <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
 
     <?php } else {?>
 
