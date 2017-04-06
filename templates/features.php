@@ -1075,7 +1075,7 @@ function ampforwp_sticky_social_icons(){
                             width="50"
                             height="28"
                             data-param-url="CANONICAL_URL"
-                            data-param-text=<?php echo $data_param_data ?>
+                            data-param-text="<?php echo $data_param_data ?> TITLE"
           ></amp-social-share>
 		  	<?php } ?>
 		  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
