@@ -1959,7 +1959,7 @@ Examples:
    }
 
 // 54. Change the default values of post meta for AMP pages. #746
-add_action('pre_amp_render_post','ampforwp_change_default_amp_page_meta');
+add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
 	global $redux_builder_amp;
 	$check_meta 		= get_option('ampforwp_default_pages_to');
