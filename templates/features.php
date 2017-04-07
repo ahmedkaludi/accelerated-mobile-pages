@@ -1913,23 +1913,36 @@ Examples:
 							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
 							$thumb_url = $thumb_url_array[0];
 
-							$content .= '<amp-img src='.$thumb_url.' width="150" height="150" ></amp-img>' ;
+							$content .= '<amp-img src='.$thumb_url.' width="150" height="150" layout="responsive"></amp-img>' ;
 						}
 //						$content .= '</div>';
-						$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
-						if (  class_exists( 'WooCommerce' )  ) {
-//							$content .= '<div class="ampforwp-wc-price">';
-							global $woocommerce;
-							$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
-							$context = '';
-							$allowed_tags 		= wp_kses_allowed_html( $context );
+							$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
+							if (  class_exists( 'WooCommerce' )  ) {
+	//							$content .= '<div class="ampforwp-wc-price">';
+								global $woocommerce;
+								$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
+								$context = '';
+								$allowed_tags 		= wp_kses_allowed_html( $context );
 
-							if ( $amp_product_price ) {
-								$content .= '<div class="ampforwp-wc-price">' .  wp_kses( $amp_product_price,  $allowed_tags  ) .'</div>' ;
-							} else {
-//								$content .= "Sorry, this item is not for sale at the moment, please check out more products <a href=" . esc_url( home_url('/shop') ) . "> Here </a> " ;
+								global $product;
+								$stock_status = $product->is_in_stock() ? 'InStock' : 'OutOfStock' ;
+								if ( $amp_product_price && $stock_status = 'InStock' ) {
+									$content .= '<div class="ampforwp-wc-price">' .  wp_kses( $amp_product_price,  $allowed_tags  ) . '</div>' ;
+								} else {
+									if( $stock_status = 'InStock' ) {
+										$content .= "<a href=" . esc_url( home_url('/shop') ) . ">InStock but not for sale Check Here for more products</a> " ;
+									} else {
+										$content .= "<a href=" . esc_url( home_url('/shop') ) . ">OutOfStock Check Here for more products</a> " ;
+									}
+								}
+								$rating = $product->get_average_rating();
+								if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' ) {
+									$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
+									$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
+									$content .= '</div>';
+								}
+
 							}
-						}
                         $content .= '</a></li>';  ?>
 					<?php endwhile;  $content .= '</ul>'; ?>
 			<?php endif; ?>
@@ -1987,6 +2000,7 @@ function ampforwp_change_default_amp_page_meta() {
 }
 
 
+// Adding the meta="description" from yoast or from the content
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
  global $redux_builder_amp;
