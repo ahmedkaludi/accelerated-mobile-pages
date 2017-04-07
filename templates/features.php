@@ -1874,7 +1874,8 @@ Examples:
 
 [amp-woocommerce num=5]
 [amp-woocommerce num=5 link=noamp]
-[amp-woocommerce num=5 link=amp]
+[amp-woocommerce num=5 link=amp review=yes]
+[amp-woocommerce num=5 link=amp review=no]
 *******************************/
 	 function get_amp_latest_prodcuts_markup( $atts ) {
 		 // initializing these to avoid debug errors
@@ -1882,7 +1883,8 @@ Examples:
 
 		 $atts[] = shortcode_atts( array(
 				 'num' => get_permalink($atts['num']),
-				 'link' => get_permalink($atts['link'])
+				 'link' => get_permalink($atts['link']),
+				 'review' => $atts['review']
 		 ), $atts );
 
 		 $exclude_ids = get_option('ampforwp_exclude_post');
@@ -1936,7 +1938,7 @@ Examples:
 									}
 								}
 								$rating = $product->get_average_rating();
-								if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' ) {
+								if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $atts['review'] == "yes" ) {
 									$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
 									$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
 									$content .= '</div>';
@@ -1982,7 +1984,7 @@ function ampforwp_change_default_amp_page_meta() {
 
 	if ( $control  === 'hide' ) {
 		$checker				= 'hide';
-		$meta_value_to_upate 	= 'hide-amp';	
+		$meta_value_to_upate 	= 'hide-amp';
 	}
 
 	// Check and Run only if the value has been changed, else return
