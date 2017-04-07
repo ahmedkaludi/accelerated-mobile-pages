@@ -201,7 +201,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle'  => __('Enable or Disable AMP on all Pages', 'redux-framework-demo'),
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
-            ),
+            ),       
+          array(
+               'id'       => 'amp-pages-meta-default',
+               'type'     => 'select',
+               'title'    => __( 'Default value of AMP Metabox in pages', 'redux-framework-demo' ),
+               'subtitle' => __( 'This option will change the  Default value of AMP metabox in Pages', 'redux-framework-demo' ),
+               'options'  => array(
+                   'show' => __('Show by Default', 'redux-framework-demo' ),
+                   'hide' => __('Hide by default', 'redux-framework-demo' ),
+               ),
+               'default'  => 'show',
+               'required'=>array('amp-on-off-for-all-pages','=','1'),
+          ),
+
 
           //  array(
           //      'id'       => 'amp-ad-places',

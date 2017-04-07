@@ -63,6 +63,7 @@
 	51. Adding Digg Digg compatibility with AMP
 	52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 	53. Adding the Markup for AMP Woocommerce latest Products
+	54. Change the default values of post meta for AMP pages.
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1957,23 +1958,30 @@ Examples:
 		.ampforwp-wc-price{ color:#444 } <?php
    }
 
-// Change the default values of post meta for AMP pages.
+// 54. Change the default values of post meta for AMP pages. #746
 add_action('pre_amp_render_post','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
-	$check 		= get_option('ampforwp_default_pages_to');
+	global $redux_builder_amp;
+	$check_meta 		= get_option('ampforwp_default_pages_to');
+	$checker			= 'show';
+	$control			= $redux_builder_amp['amp-pages-meta-default'];
+	$meta_value_to_upate = 'default';
 
-	if ( $check === 'show' ) {
+	if ( $control  === 'hide' ) {
+		$checker				= 'hide';
+		$meta_value_to_upate 	= 'hide-amp';	
+	}
+
+	// Check and Run only if the value has been changed, else return
+	if ( $check_meta === $checker ) {
 		return;
 	}
-
-	$pages = get_pages(array(
-	    //'meta_key' 		=> 'ampforwp-amp-on-off',
-	));
+	// Get all the pages and update the post meta
+	$pages = get_pages(array());
 	foreach($pages as $page){
-	    // echo $page->ID.'<br />';
-	    update_post_meta($page->ID,'ampforwp-amp-on-off','default');
+	    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
 	}
-
-	update_option('ampforwp_default_pages_to','show');
+	// Update the option as the process has been done and update an option
+	update_option('ampforwp_default_pages_to', $checker);
 	return ;
 }
