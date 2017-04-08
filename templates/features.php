@@ -738,7 +738,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 	        //code for adding 'description' meta from Yoast SEO
 
-	        if($redux_builder_amp['ampforwp-seo-yoast-custom-description']){
+	        if($redux_builder_amp['ampforwp-seo-yoast-description']){
 	         if ( class_exists('WPSEO_Frontend') ) {
 	           $front = WPSEO_Frontend::get_instance();
 	           $desc = $front->metadesc( false );
@@ -2007,7 +2007,7 @@ function ampforwp_meta_description() {
  global $post;
  $desc = "" ;
 
- if($redux_builder_amp['ampforwp-seo-yoast-custom-description']){
+ if($redux_builder_amp['ampforwp-seo-yoast-description']){
 		if ( class_exists('WPSEO_Frontend') ) {
 			// general Description of everywhere
 			$front = WPSEO_Frontend::get_instance();
