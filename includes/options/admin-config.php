@@ -441,9 +441,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                         array(
               						'id'        	=>'amp-gtm-id',
               						'type'      	=> 'text',
-              						'title'     	=> __('Tag Manager ID'),
+              						'title'     	=> __('Tag Manager ID (Container ID)'),
               						'default'   	=> '',
-              						'placeholder'	=> 'GTM-5XXXXXP',
+              						'desc'	=> 'Eg: GTM-5XXXXXP',
+                          'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
                           ),
@@ -453,7 +454,8 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Analytics Type'),
               						'default'   	=> '',
-              						'placeholder'	=> 'googleanalytics',
+              						'desc'	=> 'Eg: googleanalytics',
+                          'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
                           ),
@@ -463,7 +465,8 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Analytics ID'),
               						'default'   	=> '',
-      						        'placeholder'	=> 'UA-XXXXXX-Y',
+      						        'desc'	=> 'Eg: UA-XXXXXX-Y',
+                          'validate' => 'not_empty',
                           'required' => array(
                           array('amp-use-gtm-option', '=' , '1')),
               					),
