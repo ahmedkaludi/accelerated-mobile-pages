@@ -358,6 +358,41 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 .toggle-navigationv2 .social_icons { border-top: 0px; }
 .toggle-navigationv2 a { color:#fff; }
 <?php } ?>
+/*Call Now Styling*/
+.callnow{
+    margin-right: 23px;
+    margin-top: 27px;
+    position: absolute;
+    top: 0;
+    right: 23px;
+    z-index: 1;
+  }
+.callnow a:before {
+    margin: -8px 0 0;
+    background: #c55500;
+      content: "";
+    position: absolute;
+    top: 50%;
+    right:0px;
+    width: 4px;
+    height: 8px;
+    border-width: 5px 0 5px 2px;
+    border-style: solid;
+    border-color: #c55500;
+    background: transparent;
+    -webkit-border-top-left-radius: 3px 5px;
+    -webkit-border-bottom-left-radius: 3px 5px;
+    -moz-border-radius-topleft: 3px 5px;
+    -moz-border-radius-bottomleft: 3px 5px;
+    border-top-left-radius: 3px 5px;
+    border-bottom-left-radius: 3px 5px;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    box-sizing: initial;
+}
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>
