@@ -64,6 +64,7 @@
 	52. Adding a generalized sanitizer function for purifiying normal html to amp-html
 	53. Adding the Markup for AMP Woocommerce latest Products
 	54. Change the default values of post meta for AMP pages.
+	55. Call Now Button Feature added
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -2060,3 +2061,14 @@ function ampforwp_meta_description() {
 }
  echo '<meta name="description" content="'. $desc .'"/>';
 }
+// Call Feature
+add_action('ampforwp_call_button','ampforwp_call_button_html_output');
+function ampforwp_call_button_html_output(){
+	global $redux_builder_amp;
+	if ($redux_builder_amp['ampforwp-callnow-button']) {
+		?>
+			<div class="callnow">
+				 <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>">Call</a>
+			</div>
+	<?php }
+ }

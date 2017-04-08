@@ -44,7 +44,6 @@
           <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){echo ' rel="nofollow"';} ?>  ><?php bloginfo('name'); ?></a></h3>
         <?php } ?>
           <?php do_action('ampforwp_header_search'); ?>
-
       </div>
   </div>
 </header>

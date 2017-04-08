@@ -65,6 +65,7 @@
         </a>
     </div>
     <?php do_action('ampforwp_header_search'); ?>
+    <?php do_action('ampforwp_call_button'); ?>
 
 
 

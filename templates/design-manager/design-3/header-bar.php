@@ -127,7 +127,9 @@
           <h1><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a></h1>
         <?php } ?>
         </div>
+        <?php do_action('ampforwp_call_button'); ?>
         <?php do_action('ampforwp_header_search'); ?>
+
       </div>
   </div>
 </header>
