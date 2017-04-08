@@ -248,6 +248,43 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .ampforwp-tax-category span:last-child:after, .ampforwp-tax-tag span:last-child:after { content: ' '; }
     /* New V0.8.7(drag and drop) style */
 	.amp-wp-article-content img { max-width: 100%; }
+
+/*Call Now Styling*/
+.callnow{
+    margin-right: 23px;
+    margin-top: 27px;
+    position: absolute;
+    top: 0;
+    right: 23px;
+    z-index: 1;
+    
+  }
+.single-post .container .callnow a:before {
+    margin: -8px 0 0;
+    background: #c55500;
+      content: "";
+    position: absolute;
+    top: 50%;
+    right:0px;
+    width: 4px;
+    height: 8px;
+    border-width: 5px 0 5px 2px;
+    border-style: solid;
+    border-color: #c55500;
+    background: transparent;
+    -webkit-border-top-left-radius: 3px 5px;
+    -webkit-border-bottom-left-radius: 3px 5px;
+    -moz-border-radius-topleft: 3px 5px;
+    -moz-border-radius-bottomleft: 3px 5px;
+    border-top-left-radius: 3px 5px;
+    border-bottom-left-radius: 3px 5px;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    box-sizing: initial;
+}
 <?php
 // Table press support
 if ( class_exists('TablePress') ) { ?>

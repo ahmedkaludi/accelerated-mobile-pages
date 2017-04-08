@@ -2068,7 +2068,7 @@ function ampforwp_call_button_html_output(){
 	if ($redux_builder_amp['ampforwp-callnow-button']) {
 		?>
 			<div class="callnow">
-				 <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>">Call</a>
+				 <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>"></a>
 			</div>
 	<?php }
  }
