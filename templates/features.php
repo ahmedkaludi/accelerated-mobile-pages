@@ -1875,17 +1875,15 @@ Examples:
 
 [amp-woocommerce num=5]
 [amp-woocommerce num=5 link=noamp]
-[amp-woocommerce num=5 link=amp review=yes]
-[amp-woocommerce num=5 link=amp review=no]
 *******************************/
 	 function get_amp_latest_prodcuts_markup( $atts ) {
 		 // initializing these to avoid debug errors
-		 global $post;
+		 global $redux_builder_amp;
+		 global $woocommerce;
 
 		 $atts[] = shortcode_atts( array(
 				 'num' => get_permalink($atts['num']),
-				 'link' => get_permalink($atts['link']),
-				 'review' => $atts['review']
+				 'link' => get_permalink($atts['link'])
 		 ), $atts );
 
 		 $exclude_ids = get_option('ampforwp_exclude_post');
@@ -1903,13 +1901,15 @@ Examples:
 
 		  if ( $q->have_posts() ) :  $content .= '<ul class="ampforwp_wc_shortcode">';
             while ( $q->have_posts() ) : $q->the_post();
-				if( $atts['link'] === 'amp' ) {
-					$ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
-				} else {
-					$ampforwp_post_url = trailingslashit( get_permalink() ) ;
-				}
+						global $post;
+						global $product;
+						if( $atts['link'] === 'amp' ) {
+							$ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+						} else {
+							$ampforwp_post_url = trailingslashit( get_permalink() ) ;
+						}
 						$content .= '<li class="ampforwp_wc_shortcode_child"><a href="'.$ampforwp_post_url.'">';
-						global $redux_builder_amp;
+
 //						$content .= '<div class="amp-wp-content ampforwp-wc-parent"><div class="amp-wp-content featured-image-content">';
 						if ( has_post_thumbnail() ) {
 							$thumb_id = get_post_thumbnail_id();
@@ -1918,32 +1918,29 @@ Examples:
 
 							$content .= '<amp-img src='.$thumb_url.' width="150" height="150" layout="responsive"></amp-img>' ;
 						}
+							if ( $product->is_on_sale() ) {
+								$content .=  '<span class="onsale">' . 'Sale!' . '</span>';
+							}
 //						$content .= '</div>';
 							$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
 							if (  class_exists( 'WooCommerce' )  ) {
 	//							$content .= '<div class="ampforwp-wc-price">';
-								global $woocommerce;
 								$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
 								$context = '';
 								$allowed_tags 		= wp_kses_allowed_html( $context );
 
-								global $product;
-								$stock_status = $product->is_in_stock() ? 'InStock' : 'OutOfStock' ;
-								if ( $amp_product_price && $stock_status = 'InStock' ) {
-									$content .= '<div class="ampforwp-wc-price">' .  wp_kses( $amp_product_price,  $allowed_tags  ) . '</div>' ;
-								} else {
-									if( $stock_status = 'InStock' ) {
-										$content .= "<a href=" . esc_url( home_url('/shop') ) . ">InStock but not for sale Check Here for more products</a> " ;
-									} else {
-										$content .= "<a href=" . esc_url( home_url('/shop') ) . ">OutOfStock Check Here for more products</a> " ;
-									}
-								}
-								$rating = $product->get_average_rating();
-								if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $atts['review'] == "yes" ) {
-									$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
-									$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
-									$content .= '</div>';
-								}
+							$stock_status = $product->is_in_stock() ? 'InStock' : 'OutOfStock' ;
+							if ( $amp_product_price && $stock_status = 'InStock' ) {
+								$content .= '<div class="ampforwp-wc-price">' .  wp_kses( $amp_product_price ,  $allowed_tags  ) . '</div>' ;
+							}
+
+							$rating_count = $product->get_rating_count();
+							$rating = $product->get_average_rating();
+							if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $rating_count ) {
+								$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
+								$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
+								$content .= '</div>';
+							}
 
 							}
                         $content .= '</a></li>';  ?>
