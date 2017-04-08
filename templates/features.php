@@ -1889,6 +1889,10 @@ Examples:
 		 // initializing these to avoid debug errors
 		 global $redux_builder_amp;
 		 global $woocommerce;
+		 
+		 if( !class_exists( 'WooCommerce' ) ){
+			 return;
+		 }
 
 		 $atts[] = shortcode_atts( array(
 				 'num' => get_permalink($atts['num']),
