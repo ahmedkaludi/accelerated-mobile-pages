@@ -802,6 +802,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'     => __('Enter your Mobile Number', 'redux-framework-demo'),
                         'default'   => '',
         ),
+              array(
+                'id'        => 'amp-opt-color-rgba-colorscheme-call',
+                'type'      => 'color_rgba',
+                'title'     => 'Call Button Color',
+                'default'   => array(
+                    'color'     => '#c55500',
+                ),
+                'required' => array(
+                  array('ampforwp-callnow-button', '=' , '1')
+                )
+              ),
        )
        )
    ) ;

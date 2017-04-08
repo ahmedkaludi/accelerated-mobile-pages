@@ -270,7 +270,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
     height: 8px;
     border-width: 5px 0 5px 2px;
     border-style: solid;
-    border-color: #c55500;
+    border-color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>;
     background: transparent;
     -webkit-border-top-left-radius: 3px 5px;
     -webkit-border-bottom-left-radius: 3px 5px;
