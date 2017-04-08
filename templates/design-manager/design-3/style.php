@@ -18,6 +18,9 @@ function ampforwp_additional_style_input_2( $amp_template ) {
 body{ font: 16px/1.4 Sans-serif; }
 a{ color: #312C7E; text-decoration: none }
 .clearfix, .cb{ clear: both }
+.alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
+.alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
+.aligncenter{ text-align:center; margin: 0 auto }
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
@@ -415,6 +418,8 @@ if ( class_exists('TablePress') ) { ?>
 
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
+
+p.wp-caption-text{ text-align: center}
 
 <?php }  ?>
 
