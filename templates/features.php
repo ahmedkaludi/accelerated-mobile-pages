@@ -1563,6 +1563,7 @@ add_action('amp_post_template_head' , 'ampforwp_talking_to_robots');
 function ampforwp_talking_to_robots() {
 
   global $redux_builder_amp;
+  global $wp;
   $message_to_robots = '<meta name="robots" content="noindex,nofollow"/>';
   $talk_to_robots=false;
 
@@ -1605,9 +1606,14 @@ function ampforwp_talking_to_robots() {
       }
     }
 
-    if( $talk_to_robots ) {
-      	echo $message_to_robots;
-    }
+	$page = $wp->query_vars['page'];
+	if ( $redux_builder_amp['amp-frontpage-select-option'] && $page >= '2') {
+		$talk_to_robots = true;
+	}
+
+  if( $talk_to_robots ) {
+    	echo $message_to_robots;
+  }
 
 }
 
