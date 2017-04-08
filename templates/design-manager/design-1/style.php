@@ -112,6 +112,41 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .amp-ad-wrapper{ direction: ltr; }
 /* RTL ends */
 <?php } ?>
+/*Call Now Styling*/
+.callnow{
+    margin-right: 23px;
+    margin-top: 27px;
+    position: absolute;
+    top: 2px;
+    right: 90px;
+    z-index: 1; 
+  }
+.callnow a:before {
+    margin: -8px 0 0;
+    background: #c55500;
+      content: "";
+    position: absolute;
+    top: 50%;
+    right:23px;
+    width: 4px;
+    height: 8px;
+    border-width: 5px 0 5px 2px;
+    border-style: solid;
+    border-color: #c55500;
+    background: transparent;
+    -webkit-border-top-left-radius: 3px 5px;
+    -webkit-border-bottom-left-radius: 3px 5px;
+    -moz-border-radius-topleft: 3px 5px;
+    -moz-border-radius-bottomleft: 3px 5px;
+    border-top-left-radius: 3px 5px;
+    border-bottom-left-radius: 3px 5px;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    box-sizing: initial;
+}
 <?php
 if ( class_exists('TablePress') ) { ?>
 .tablepress-table-description{clear:both;display:block}.tablepress{border-collapse:collapse;border-spacing:0;width:100%;margin-bottom:1em;border:none}.tablepress td,.tablepress th{padding:8px;border:none;background:0 0;text-align:left}.tablepress tbody td{vertical-align:top}.tablepress tbody td,.tablepress tfoot th{border-top:1px solid #ddd}.tablepress tbody tr:first-child td{border-top:0}.tablepress thead th{border-bottom:1px solid #ddd}.tablepress tfoot th,.tablepress thead th{background-color:#d9edf7;font-weight:700;vertical-align:middle}.tablepress .odd td{background-color:#f9f9f9}.tablepress .even td{background-color:#fff}.tablepress .row-hover tr:hover td{background-color:#f3f3f3}@media (min-width:768px) and (max-width:1600px){.tablepress{overflow-x:none}}@media (min-width:320px) and (max-width:767px){.tablepress{display:inline-block;overflow-x:scroll}}
