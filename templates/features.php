@@ -106,23 +106,23 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		global $redux_builder_amp;
 		global $wp;
 	    if( is_attachment() ) {
-	        return;
+        return;
 	    }
 	    if( is_home() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-	        return;
+        return;
 	    }
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-	        return;
+        return;
 	    }
 	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
-			return;
-		}
+				return;
+			}
       if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-			return;
-		}
-			if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
-			return;
-		}
+				return;
+			}
+			if( is_front_page() &&  $wp->query_vars['cpage'] >= '1' ) {
+				return;
+			}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
