@@ -123,6 +123,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			if( is_front_page() &&  $wp->query_vars['cpage'] >= '1' ) {
 				return;
 			}
+			if( is_singular() &&  $wp->query_vars['cpage'] >= '1' ) {
+				return;
+			}
 
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
