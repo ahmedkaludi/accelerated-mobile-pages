@@ -1229,7 +1229,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
               'id'        =>  'enable-single-linkdin-profile',
               'type'      =>  'switch',
-              'title'     =>  __('Linkdin ', 'redux-framework-demo'),
+              'title'     =>  __('LinkedIn ', 'redux-framework-demo'),
               'default'   =>  0,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
