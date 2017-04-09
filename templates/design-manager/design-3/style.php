@@ -369,68 +369,26 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 .toggle-navigationv2 .social_icons { border-top: 0px; }
 .toggle-navigationv2 a { color:#fff; }
 <?php } ?>
-/*Call Now Styling*/
-.callnow{
-    margin-right: 23px;
-    margin-top: 27px;
-    position: absolute;
-    top: 0;
-    right: 23px;
-    z-index: 1;
-  }
-.callnow a:before {
-    margin: -8px 0 0;
-    background: #c55500;
-      content: "";
-    position: absolute;
-    top: 50%;
-    right:0px;
-    width: 4px;
-    height: 8px;
-    border-width: 5px 0 5px 2px;
-    border-style: solid;
-    border-color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>;
-    background: transparent;
-    -webkit-border-top-left-radius: 3px 5px;
-    -webkit-border-bottom-left-radius: 3px 5px;
-    -moz-border-radius-topleft: 3px 5px;
-    -moz-border-radius-bottomleft: 3px 5px;
-    border-top-left-radius: 3px 5px;
-    border-bottom-left-radius: 3px 5px;
-    -webkit-transform: rotate(-30deg);
-    -moz-transform: rotate(-30deg);
-    -ms-transform: rotate(-30deg);
-    -o-transform: rotate(-30deg);
-    transform: rotate(-30deg);
-    box-sizing: initial;
-}
+<?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
+.callnow{ position: relative; top: -37px; right: 39px }
+.callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
+<?php } ?>
 <?php
-// Table press support
 if ( class_exists('TablePress') ) { ?>
-	/* Table description */
 .tablepress-table-description{ clear: both; display: block; }
 .tablepress{ border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 1em; border: none;	}
 .tablepress th, .tablepress td{ padding: 8px; border: none; background: none; text-align: left; }
 .tablepress tbody td{ vertical-align: top; }
-
-	/* Horizontal borders */
 .tablepress tbody td, .tablepress tfoot th{ border-top: 1px solid #dddddd; }
 .tablepress tbody tr:first-child td{ border-top: 0; }
 .tablepress thead th{ border-bottom: 1px solid #dddddd; }
-
-	/* Row background colors */
 .tablepress thead th, .tablepress tfoot th{ background-color: #d9edf7; font-weight: bold; vertical-align: middle; }
 .tablepress .odd td{ background-color: #f9f9f9; }
 .tablepress .even td{ background-color: #ffffff; }
 .tablepress .row-hover tr:hover td{ background-color: #f3f3f3; }
-
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
-
-p.wp-caption-text{ text-align: center}
-
 <?php }  ?>
+p.wp-caption-text{ text-align: center }
 
-/* Custom Style Code */
-	<?php echo $redux_builder_amp['css_editor'];
-} ?>
+<?php echo $redux_builder_amp['css_editor']; } ?>

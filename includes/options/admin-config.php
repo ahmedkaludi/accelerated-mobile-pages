@@ -623,7 +623,34 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'desc'     => __('HTTPS is required for search to work on AMP pages.', 'redux-framework-demo' ),
                 'default'  => '0'
             ),
-
+    // Call Now button
+    array(
+        'id'       => 'ampforwp-callnow-button',
+        'type'     => 'switch',
+        'title'    => __('Call Now Button', 'redux-framework-demo'),
+        'true'      => 'true',
+        'false'     => 'false',
+        'default'   => 0
+    ),
+    array(
+        'id'        =>'enable-amp-call-numberfield',
+        'type'      => 'text',
+        'required'  => array('ampforwp-callnow-button', '=' , '1'),
+        'title'     => __('Enter Phone Number', 'redux-framework-demo'),
+        'default'   => '',
+    ),
+    array(
+        'id'        => 'amp-opt-color-rgba-colorscheme-call',
+        'type'      => 'color_rgba',
+        'title'     => 'Call Button Color',
+        'default'   => array(
+            'color'     => '#0a89c0',
+        ),
+        'required' => array(
+          array('ampforwp-callnow-button', '=' , '1')
+        )
+    ),
+            
              array(
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
@@ -778,43 +805,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         )
        )
 
-   ) ;
-   //Call Now Button section
-   Redux::setSection( $opt_name, array(
-       'title'      => __( 'Call Now Button', 'redux-framework-demo' ),
-       'desc'       => __( 'Enable/Disable Call feature'),
-       'id'         => 'ampforwp-call',
-       'subsection' => true,
-       'fields' => array(
-
-            array(
-                'id'       => 'ampforwp-callnow-button',
-                'type'     => 'switch',
-                'title'    => __('Auto Add Call Now Button in the Header', 'redux-framework-demo'),
-                'true'      => 'true',
-                'false'     => 'false',
-                'default'   => 0
-            ),
-              array(
-                        'id'        =>'enable-amp-call-numberfield',
-                        'type'      => 'text',
-                        'required'  => array('ampforwp-callnow-button', '=' , '1'),
-                        'title'     => __('Enter your Mobile Number', 'redux-framework-demo'),
-                        'default'   => '',
-        ),
-              array(
-                'id'        => 'amp-opt-color-rgba-colorscheme-call',
-                'type'      => 'color_rgba',
-                'title'     => 'Call Button Color',
-                'default'   => array(
-                    'color'     => '#c55500',
-                ),
-                'required' => array(
-                  array('ampforwp-callnow-button', '=' , '1')
-                )
-              ),
-       )
-       )
    ) ;
 
     $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
