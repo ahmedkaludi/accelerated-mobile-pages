@@ -202,6 +202,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'redux-framework-demo' ),
             ),
+          array(
+               'id'       => 'amp-pages-meta-default',
+               'type'     => 'select',
+               'title'    => __( 'Individual AMP Page (Bulk Edit)', 'redux-framework-demo' ),
+               'subtitle' => __( 'Allows you to Show or Hide AMP from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'redux-framework-demo' ),
+               'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'redux-framework-demo' ),
+               'options'  => array(
+                   'show' => __('Show by Default', 'redux-framework-demo' ),
+                   'hide' => __('Hide by default', 'redux-framework-demo' ),
+               ),
+               'default'  => 'show',
+               'required'=>array('amp-on-off-for-all-pages','=','1'),
+          ),
+
 
           //  array(
           //      'id'       => 'amp-ad-places',
@@ -427,9 +441,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                         array(
               						'id'        	=>'amp-gtm-id',
               						'type'      	=> 'text',
-              						'title'     	=> __('Tag Manager ID'),
+              						'title'     	=> __('Tag Manager ID (Container ID)'),
               						'default'   	=> '',
-              						'placeholder'	=> 'GTM-5XXXXXP',
+              						'desc'	=> 'Eg: GTM-5XXXXXP',
+                        //  'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
                           ),
@@ -439,7 +454,8 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Analytics Type'),
               						'default'   	=> '',
-              						'placeholder'	=> 'googleanalytics',
+              						'desc'	=> 'Eg: googleanalytics',
+                         // 'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
                           ),
@@ -449,7 +465,8 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Analytics ID'),
               						'default'   	=> '',
-      						        'placeholder'	=> 'UA-XXXXXX-Y',
+      						        'desc'	=> 'Eg: UA-XXXXXX-Y',
+                          // 'validate' => 'not_empty',
                           'required' => array(
                           array('amp-use-gtm-option', '=' , '1')),
               					),
@@ -606,7 +623,34 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'desc'     => __('HTTPS is required for search to work on AMP pages.', 'redux-framework-demo' ),
                 'default'  => '0'
             ),
-
+    // Call Now button
+    array(
+        'id'       => 'ampforwp-callnow-button',
+        'type'     => 'switch',
+        'title'    => __('Call Now Button', 'redux-framework-demo'),
+        'true'      => 'true',
+        'false'     => 'false',
+        'default'   => 0
+    ),
+    array(
+        'id'        =>'enable-amp-call-numberfield',
+        'type'      => 'text',
+        'required'  => array('ampforwp-callnow-button', '=' , '1'),
+        'title'     => __('Enter Phone Number', 'redux-framework-demo'),
+        'default'   => '',
+    ),
+    array(
+        'id'        => 'amp-opt-color-rgba-colorscheme-call',
+        'type'      => 'color_rgba',
+        'title'     => 'Call Button Color',
+        'default'   => array(
+            'color'     => '#0a89c0',
+        ),
+        'required' => array(
+          array('ampforwp-callnow-button', '=' , '1')
+        )
+    ),
+            
              array(
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
@@ -669,11 +713,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'  => '1'
            ),
            array(
-               'id'       => 'ampforwp-seo-yoast-custom-description',
+               'id'       => 'ampforwp-seo-yoast-description',
                'type'     => 'switch',
-               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page and also meta="description"', 'redux-framework-demo'),
                'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
-               'default'  => '1'
+               'default'  => 0
            ),
 
            array(

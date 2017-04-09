@@ -10,7 +10,7 @@
             <?php }
     } else { ?>
             <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
-                <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR; ?>">
+                <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>">
             <?php } else {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
               <a href="<?php echo esc_url( untrailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
@@ -43,7 +43,7 @@
 
     <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR; ?>">
+    <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
 
     <?php } else {?>
 
@@ -65,6 +65,7 @@
         </a>
     </div>
     <?php do_action('ampforwp_header_search'); ?>
+    <?php do_action('ampforwp_call_button'); ?>
 
 
 
@@ -74,8 +75,11 @@
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
-      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
-      <?php wp_nav_menu( array( 'theme_location' => 'amp-menu' ) ); ?>
+      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
+        $menu = wp_nav_menu( array(
+                                  'theme_location' => 'amp-menu' ,
+                                  'echo' => false) );
+        echo strip_tags( $menu , '<ul><li><a>'); ?>
   </div>
 </amp-sidebar>
 
