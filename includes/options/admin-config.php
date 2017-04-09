@@ -205,8 +205,8 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
                'id'       => 'amp-pages-meta-default',
                'type'     => 'select',
-               'title'    => __( 'Default value of AMP Metabox in pages', 'redux-framework-demo' ),
-               'subtitle' => __( 'This option will change the  Default value of AMP metabox in Pages', 'redux-framework-demo' ),
+               'title'    => __( 'Individual AMP Page (Bulk Edit)', 'redux-framework-demo' ),
+               'subtitle' => __( 'Allows you to Show or Hide AMP from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'redux-framework-demo' ),
                'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'redux-framework-demo' ),
                'options'  => array(
                    'show' => __('Show by Default', 'redux-framework-demo' ),
