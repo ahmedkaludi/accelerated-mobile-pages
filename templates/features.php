@@ -1892,7 +1892,7 @@ Examples:
 		 // initializing these to avoid debug errors
 		 global $redux_builder_amp;
 		 global $woocommerce;
-		 
+
 		 if( !class_exists( 'WooCommerce' ) ){
 			 return;
 		 }
@@ -2027,29 +2027,29 @@ function ampforwp_meta_description() {
 		if ( class_exists('WPSEO_Frontend') ) {
 			// general Description of everywhere
 			$front = WPSEO_Frontend::get_instance();
-			$desc = $front->metadesc( false );
+			$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
 
 			// Static front page
 			// Code for Custom Frontpage Yoast SEO Description
 			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			if ( class_exists('WPSEO_Meta') ) {
 				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-					$desc = WPSEO_Meta::get_value('metadesc', $post_id );
+					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
 				}
 			}
 		}
 		// for search
 		if( is_search() ) {
-			$desc = $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
+			$desc = addslashes( $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query() );
 		}
 	} else {
 		if( is_home() ) {
 			// normal home page
-			$desc= get_bloginfo( 'description' );
+			$desc= addslashes( strip_tags( get_bloginfo( 'description' ) ) );
 		}
 
 		if( is_archive() ) {
-			$desc= get_the_archive_description();
+			$desc= addslashes( strip_tags( get_the_archive_description() ) );
 		}
 
 		if( is_single() || is_page() ) {
@@ -2060,19 +2060,26 @@ function ampforwp_meta_description() {
 					$id = $post->ID;
 					$desc = get_post($id)->post_content;
 				}
-				$desc = wp_trim_words( strip_tags( strip_shortcodes( $desc ) ) , '15'  );
+				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
 		}
 
 		if( is_search() ) {
-			$desc = $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query();
+			$desc = addslashes( $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query() );
 		}
 
 		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$post_id = get_the_excerpt( $redux_builder_amp['amp-frontpage-select-option-pages'] );
-			$desc = strip_shortcodes( strip_tags( get_post_field('post_content', $post_id) ) );
+			$desc = addslashes( strip_tags( get_post_field('post_content', $post_id) ) );
 		}
-}
- echo '<meta name="description" content="'. $desc .'"/>';
+	}
+
+	// strip_shortcodes  strategy not working here so had to do this way
+	// strips shortcodes
+	$desc= preg_replace('/\[(.*)?\]/','',$desc);
+
+	if( $desc ) {
+		echo '<meta name="description" content="'. $desc .'"/>';
+	}
 }
 // Call Feature
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
