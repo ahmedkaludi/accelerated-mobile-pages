@@ -59,7 +59,7 @@
 
 			        <h1 class="amp-wp-title">
 			            <?php  $ampforwp_post_url = get_permalink(); ?>
-			            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+			            <a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>"><?php the_title() ?></a>
 			        </h1>
 
 					<div class="amp-wp-content-loop">
@@ -80,7 +80,7 @@
 							$thumb_url = $thumb_url_array[0];
 							?>
 							<div class="home-post-image">
-								<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
+								<a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
 									<amp-img
 										src=<?php echo $thumb_url ?>
 										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>

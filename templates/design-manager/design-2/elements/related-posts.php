@@ -46,8 +46,8 @@
 										    while( $my_query->have_posts() ) {
 												    $my_query->the_post();
 															$related_post_permalink = get_permalink();
-															$related_post_permalink = trailingslashit($related_post_permalink);
-															$related_post_permalink = $related_post_permalink . AMPFORWP_AMP_QUERY_VAR ;;
+															$related_post_permalink = trailingslashit( $related_post_permalink );
+															$related_post_permalink = trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR ) ;
 														?>
 														<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
                                                             <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">

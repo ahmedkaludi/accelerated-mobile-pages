@@ -24,6 +24,7 @@
     $ampforwp_category_count = $instance[ 'count' ];
     $ampforwp_category_id = $instance[ 'category' ];
     $ampforwp_category_link = $instance[ 'showButton' ];
+    $ampforwp_show_excerpt = $instance[ 'showExcerpt' ];
 
  //   echo . $args['before_title'] .  . $args['after_title']; ?>
 
@@ -55,12 +56,24 @@
                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
                   $thumb_url = $thumb_url_array[0];
                   ?>
-                  <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+                  <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
               <?php } ?>
 
-              <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
+              <a class="ampforwp_wc_shortcode_title" href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
                   <?php echo get_the_title(); ?>
-              </a>
+              </a> <?php
+
+              if( $ampforwp_show_excerpt == 'yes' ) { ?>
+                <div class="ampforwp_wc_shortcode_excerpt"> <?php
+                  if( has_excerpt() ) {
+                    $content = get_the_excerpt();
+                  } else {
+                    $content = get_the_content();
+                  } ?>
+                  <p class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></p>
+                </div> <?php
+              } ?>
+
             </li> <?php
         }
 
@@ -88,6 +101,7 @@
     $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
     $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : 3 ;
     $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
+    $excerpt_buttons = ! empty( $instance['showExcerpt'] ) ? $instance['showExcerpt'] : 'yes';
 
     ?>
     <!-- Form Ends Here -->
@@ -135,8 +149,19 @@
               <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
           </label>
         <!-- radio buttons Ends Here -->
+        </p>
 
-</p>
+        <p>
+          <!-- Excerpt related code starts Here -->
+            <label for="<?php echo $this->get_field_id( 'showExcerpt' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show Excerpt:</label><br>
+            <label for="<?php echo $this->get_field_id('show_button_3'); ?>">
+                <input class="widefat" id="<?php echo $this->get_field_id('show_button_3'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="yes" <?php if($excerpt_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+            </label>
+             <label for="<?php echo $this->get_field_id('show_button_4'); ?>">
+                <input class="widefat" id="<?php echo $this->get_field_id('show_button_4'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="no" <?php if($excerpt_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+            </label>
+          <!-- Excerpt related code Ends Here -->
+        </p>
     <!-- Form Ends Here -->
 
     <?php
@@ -156,6 +181,7 @@
       $instance[ 'category' ] = '';
     }
     $instance['showButton'] = strip_tags($new_instance['showButton']);
+    $instance['showExcerpt'] = strip_tags($new_instance['showExcerpt']);
     return $instance;
   }
 

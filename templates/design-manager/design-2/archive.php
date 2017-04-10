@@ -34,7 +34,8 @@
  		<div class="amp-wp-content amp-archive-heading">
  			<?php
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
-			$arch_desc = ampforwp_sanitize_archive_description();
+			$description = get_the_archive_description();
+			$arch_desc = ampforwp_content_sanitizer( $description );
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>
@@ -45,7 +46,7 @@
  	} ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+		$ampforwp_amp_post_url = trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
