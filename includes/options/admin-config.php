@@ -716,7 +716,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-seo-yoast-description',
                'type'     => 'switch',
                'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
-               'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
+               'title'    => __( 'Yoast Description in ld+json', 'redux-framework-demo' ),
                'default'  => 0
            ),
            array(
