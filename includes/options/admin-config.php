@@ -708,7 +708,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-seo-meta-description',
                'type'     => 'switch',
                'title'     => __('Meta Description', 'redux-framework-demo'),
-               'subtitle'     => __('The meta tag thay displays in head', 'redux-framework-demo'),
+               'subtitle'     => __('The meta tag that displays in head', 'redux-framework-demo'),
                'default'  => 0
            ),
 
