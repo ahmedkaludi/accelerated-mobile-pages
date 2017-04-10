@@ -2068,8 +2068,8 @@ function ampforwp_meta_description() {
 		}
 
 		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-			$post_id = get_the_excerpt( $redux_builder_amp['amp-frontpage-select-option-pages'] );
-			$desc = addslashes( strip_tags( get_post_field('post_content', $post_id) ) );
+			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'] ;
+			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
 	}
 
