@@ -129,7 +129,7 @@ function ampforwp_parent_plugin_check() {
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	require_once AMPFORWP_PLUGIN_DIR .'templates/report-bugs.php';
+	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
 
 
 /*
@@ -140,7 +140,7 @@ if ( is_admin() ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
-    
+
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
