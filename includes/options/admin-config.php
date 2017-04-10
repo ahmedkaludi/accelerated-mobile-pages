@@ -701,29 +701,14 @@ Redux::setArgs( "redux_builder_amp", $args );
       'title'      => __( 'SEO', 'redux-framework-demo' ),
       'desc'       => __( '', 'redux-framework-demo'),
       'id'         => 'amp-seo',
-      'desc'       => '<strong>Note : <br/> This section only works if  Yoast SEO Plugin is Activated (Exception : Additional Meta Tags Section) </strong>',
       'subsection' => true,
        'fields'     => array(
 
            array(
-               'id'       => 'ampforwp-seo-yoast-meta',
-               'type'     => 'switch',
-               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'redux-framework-demo'),
-               'title'    => __( 'Add Meta Tags from Yoast', 'redux-framework-demo' ),
-               'default'  => '1'
-           ),
-           array(
-               'id'       => 'ampforwp-seo-yoast-description',
-               'type'     => 'switch',
-               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
-               'title'    => __( 'Yoast Description in ld+json', 'redux-framework-demo' ),
-               'default'  => 0
-           ),
-           array(
                'id'       => 'ampforwp-seo-meta-description',
                'type'     => 'switch',
-               'title'     => __('Add meta="description"', 'redux-framework-demo'),
-               'subtitle'     => __('Adds Description fron Yoast when active or adds the standard Description', 'redux-framework-demo'),
+               'title'     => __('Meta Description', 'redux-framework-demo'),
+               'subtitle'     => __('The meta tag thay displays in head', 'redux-framework-demo'),
                'default'  => 0
            ),
 
@@ -734,6 +719,29 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Adds additional Meta to the head section', 'redux-framework-demo', 'redux-framework-demo'),
                'desc' => __('Only link and meta tags allowed', 'redux-framework-demo'),
                'placeholder'  => "<!-- Paste your Additional HTML , that goes between <head> </head> tags -->"
+           ),
+
+
+           array(
+                  'id' => 'ampforwp-yoast-seo-sub-section',
+                  'type' => 'section',
+                  'title' => __('Yoast SEO Options', 'redux-framework-demo'),
+                  'indent' => true
+              ),
+
+           array(
+               'id'       => 'ampforwp-seo-yoast-meta',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'redux-framework-demo'),
+               'title'    => __( 'Meta Tags from Yoast', 'redux-framework-demo' ),
+               'default'  => '1'
+           ),
+           array(
+               'id'       => 'ampforwp-seo-yoast-description',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
+               'title'    => __( 'Yoast Description in ld+json', 'redux-framework-demo' ),
+               'default'  => 0
            ),
 
            array(
