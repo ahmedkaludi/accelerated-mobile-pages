@@ -2020,6 +2020,10 @@ function ampforwp_change_default_amp_page_meta() {
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
  global $redux_builder_amp;
+ if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
+	 return;
+ }
+ 
  global $post;
  $desc = "" ;
 

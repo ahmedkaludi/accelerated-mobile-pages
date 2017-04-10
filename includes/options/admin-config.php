@@ -650,7 +650,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array('ampforwp-callnow-button', '=' , '1')
         )
     ),
-            
+
              array(
                 'id'       => 'amp-design-3-credit-link',
                 'type'     => 'switch',
@@ -715,8 +715,15 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-seo-yoast-description',
                'type'     => 'switch',
-               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page and also meta="description"', 'redux-framework-demo'),
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'redux-framework-demo'),
                'title'    => __( 'Yoast Custom Description for AMP page', 'redux-framework-demo' ),
+               'default'  => 0
+           ),
+           array(
+               'id'       => 'ampforwp-seo-meta-description',
+               'type'     => 'switch',
+               'title'     => __('Add meta="description"', 'redux-framework-demo'),
+               'subtitle'     => __('Adds Description fron Yoast when active or adds the standard Description', 'redux-framework-demo'),
                'default'  => 0
            ),
 
