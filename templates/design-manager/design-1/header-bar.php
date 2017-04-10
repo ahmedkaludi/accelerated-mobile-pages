@@ -57,6 +57,7 @@
         <?php endif; ?>
     </a>
 
+    <?php if($redux_builder_amp['ampforwp-amp-menu-on-off'] == true)  { ?>
     <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
         <a href="#" class="toggle-text">
             <span></span>
@@ -64,6 +65,7 @@
             <span></span>
         </a>
     </div>
+    <?php } ?>
     <?php do_action('ampforwp_header_search'); ?>
     <?php do_action('ampforwp_call_button'); ?>
 
@@ -71,6 +73,7 @@
 
   </div>
 </header>
+<?php if($redux_builder_amp['ampforwp-amp-menu-on-off'] == true)  { ?>
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="right">
@@ -82,6 +85,7 @@
         echo strip_tags( $menu , '<ul><li><a>'); ?>
   </div>
 </amp-sidebar>
+ <?php } ?>
 
 <?php
 do_action('ampforwp_design_1_after_header');

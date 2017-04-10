@@ -793,6 +793,16 @@ Redux::setArgs( "redux_builder_amp", $args );
        'subsection' => true,
        'fields' => array(
 
+           array(
+                'id'       => 'ampforwp-amp-menu-on-off',
+                'type'     => 'switch',
+                'title'    => __('Turn AMP menu on/off', 'redux-framework-demo'),
+                'subtitle' => __('Switching this off will remove the AMP menu from all designs.', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
+
             array(
                 'id'       => 'ampforwp-auto-amp-menu-link',
                 'type'     => 'switch',
@@ -800,6 +810,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'redux-framework-demo'),
                 'true'      => 'true',
                 'false'     => 'false',
+                 'required' => array(
+                 array('ampforwp-amp-menu-on-off', '=' , '1')
+               ),
                 'default'   => 0
             ),
         )
