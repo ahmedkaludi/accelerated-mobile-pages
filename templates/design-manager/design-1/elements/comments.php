@@ -46,7 +46,7 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 											<div class="comment-content">
                         <p><?php
                           $comment_content = get_comment_text();
-                          echo ampforwp_content_sanitizer( $comment_content ); ?>
+                          echo $comment_content; ?>
                         </p>
 											</div>
 												<!-- .comment-content -->
