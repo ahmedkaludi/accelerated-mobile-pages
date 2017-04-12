@@ -38,9 +38,9 @@ class AMPFORWP_Content {
 		$content = $this->content;
 
 		// // First, embeds + the_content filter
-		// $embed_handlers = $this->register_embed_handlers();
-		// $content = apply_filters( 'the_content', $content );
-		// $this->unregister_embed_handlers( $embed_handlers );
+		$embed_handlers = $this->register_embed_handlers();
+		$content = apply_filters( 'ampforwp_the_content', $content );
+		$this->unregister_embed_handlers( $embed_handlers );
 
 		// Then, sanitize to strip and/or convert non-amp content
 		$content = $this->sanitize( $content );
