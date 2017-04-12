@@ -66,12 +66,14 @@ if ( get_query_var( 'paged' ) ) {
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; 
+  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
   		$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
 
-  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
-  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp'; 
-  		}?>
+			if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
+	  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
+	  		}
+			}?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
