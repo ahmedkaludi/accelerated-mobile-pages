@@ -7,20 +7,20 @@
 
         if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
                 if( $redux_builder_amp['amp-mobile-redirection'] ) {
-                  $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?nonamp=1';
+                  $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
                   $set_rel_to_noamp = true;
                   } else {
-                    $ampforwp_home_url = untrailingslashit( get_bloginfo('url') );
+                    $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
                     $ampforwp_home_url = trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
-                          $ampforwp_home_url = untrailingslashit( get_bloginfo('url') ).'?nonamp=1';
+                          $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
                           $set_rel_to_noamp = true;
                          } else {
-                          $ampforwp_home_url = untrailingslashit( get_bloginfo('url') );
+                          $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
                          }
                 }
           }?>
