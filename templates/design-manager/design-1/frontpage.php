@@ -5,7 +5,13 @@ $template = new AMP_Post_Template( $post_id );?>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8"> <?php
-	$page = $wp->query_vars['page'];
+	$page = '';
+	$query_array = $wp->query_vars;
+
+	if( array_key_exists( "page" , $query_array ) ){
+		$page = $wp->query_vars['page'];
+	}
+
 	if ( $page >= '2') { ?>
 		<link rel="canonical" href="<?php
 		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
