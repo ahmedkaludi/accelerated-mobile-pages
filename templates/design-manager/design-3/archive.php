@@ -66,7 +66,12 @@ if ( get_query_var( 'paged' ) ) {
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; 
+  		$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+
+  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp'; 
+  		}?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -76,7 +81,7 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image">
-					<a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img
 						layout="responsive"
 						src=<?php echo $thumb_url ?>
@@ -93,7 +98,7 @@ if ( get_query_var( 'paged' ) ) {
 					    <li><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php

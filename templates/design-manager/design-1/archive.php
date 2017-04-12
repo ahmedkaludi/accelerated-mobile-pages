@@ -42,12 +42,19 @@
 			}
 	  } ?>
 
-		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+			$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; 
+			
+			$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+
+	  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp'; 
+	  		} ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 		        <h1 class="amp-wp-title">
-		            <?php  $ampforwp_post_url = get_permalink(); ?>
-		            <a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>"><?php the_title() ?></a>
+		            <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a>
 		        </h1>
 
 				<div class="amp-wp-content-loop">
@@ -67,7 +74,7 @@
 						$thumb_url = $thumb_url_array[0];
 						?>
 						<div class="home-post-image">
-							<a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
+							<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 								<amp-img
 									src=<?php echo $thumb_url ?>
 									<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
