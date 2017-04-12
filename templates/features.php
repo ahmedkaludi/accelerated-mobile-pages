@@ -75,7 +75,8 @@
 	require 'customizer/customizer.php';
 	// Custom AMP Content
 	require 'custom-amp-content.php';
-
+	// Custom AMPFORWP Sanitizers
+ 	require 'custom-sanitizer.php';
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
@@ -2023,7 +2024,7 @@ function ampforwp_meta_description() {
  if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
 	 return;
  }
- 
+
  global $post;
  $desc = "" ;
 
@@ -2094,3 +2095,4 @@ if ($redux_builder_amp['ampforwp-callnow-button']) {
 <div class="callnow"><a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>"></a></div>
 <?php }
  }
+
