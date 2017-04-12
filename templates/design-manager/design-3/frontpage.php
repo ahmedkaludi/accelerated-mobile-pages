@@ -8,7 +8,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	<meta charset="utf-8"> <?php
 	$query_arg_array = $wp->query_vars;
   $page = '' ;
-  if( in_array( "page" , $query_arg_array ) ) {
+  if( array_key_exists( "page" , $query_arg_array  ) ) {
 	   $page = $wp->query_vars['page'];
   }
 
