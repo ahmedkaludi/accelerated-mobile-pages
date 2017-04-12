@@ -186,6 +186,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			          }
 		          $amp_url = untrailingslashit($current_search_url);
 		        }
+		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 				if( $supported_amp_post_types) {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
