@@ -5,7 +5,7 @@ $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
-	<meta charset="utf-8"> <?php 
+	<meta charset="utf-8"> <?php
 	$page = $wp->query_vars['page'];
 	if ( $page >= '2') { ?>
 		<link rel="canonical" href="<?php
@@ -171,14 +171,14 @@ $template = new AMP_Post_Template( $post_id );?>
 				    </ul>
 				</div>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 				</div><?php
 			} else {
 			    if ( !comments_open() ) {
 			      return;
 				} ?>
 			    <div class="comment-button-wrapper">
-			       <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
 			    </div>
 			<?php } ?>
 		</div> <?php
