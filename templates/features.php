@@ -1178,51 +1178,57 @@ function custom_og_image_homepage() {
 	}
 }
 
-/**
- * PR by Sybre Waaijer:
- * 1. Removes unused code.
- * 2. Keeps legacy function in place.
- * 3. No longer replaces the title tag.
- * 4. Instead, filters the title tag.
- * 5. Therefore, it works with all SEO plugins.
- * 6. Removed Yoast Compat -- It's no longer needed.
- * 7. Cleaned up code.
- */
+
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
-add_action( 'amp_post_template_include_single', 'ampforwp_remove_title_tags' );
-function ampforwp_remove_title_tags() {
-	return ampforwp_replace_title_tags();
-}
-function ampforwp_replace_title_tags() {
+add_action('amp_post_template_include_single','ampforwp_remove_title_tags');
+function ampforwp_remove_title_tags(){
+	remove_action('amp_post_template_head','amp_post_template_add_title');
+	add_action('amp_post_template_head','ampforwp_add_custom_title_tag');
 
-	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 10 );
-	add_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
-
-	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
-		global $redux_builder_amp;
-
-		$site_title = get_bloginfo( 'name' ) . ' | ' . get_option( 'blogdescription' );
-
-		if ( is_home() ) {
-			if ( 1 == $redux_builder_amp['amp-frontpage-select-option'] ) {
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				$site_title = get_the_title( $ID ) . ' | ' . get_option( 'blogname' );
-			} else {
-				global $wp;
-				$current_archive_url = home_url( $wp->request );
-				$current_url_in_pieces = explode( '/', $current_archive_url );
-				$cnt = count( $current_url_in_pieces );
-				if ( is_numeric( $current_url_in_pieces[ $cnt - 1 ] ) ) {
-					$site_title .= ' | Page ' . $current_url_in_pieces[ $cnt - 1 ];
-				}
+	function ampforwp_add_custom_title_tag(){
+		global $redux_builder_amp; ?>
+		<title>
+			<?php
+			// title for a single post and single page
+			if( is_single() || is_page() ){
+				 global $post;
+				 $title = $post->post_title;
+				 $site_title =  $title . ' | ' . get_option( 'blogname' ) ;
+			 }
+			 // title for archive pages
+			 if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
+					  $site_title = strip_tags(get_the_archive_title( '' ))
+            . ' | ' .
+					  strip_tags(get_the_archive_description( '' ));
+			 }
+			$site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
+			if ( is_home() ) {
+				if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
+				} else {
+        	global $wp;
+          $current_archive_url = home_url( $wp->request );
+          $current_url_in_pieces = explode('/',$current_archive_url);
+          $cnt = count($current_url_in_pieces);
+          if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
+            $site_title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+          }
+        }
 			}
-		}
-
-		if ( is_search() ) {
-			$site_title = $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
-		}
-
-		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
+			if( is_search() ) {
+				$site_title =  $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
+			} ?>
+			<?php
+			if ( class_exists('WPSEO_Frontend') ) {
+				$front = WPSEO_Frontend::get_instance();
+				$title = $front->title($site_title);
+				echo $title;
+			} else {
+				echo $site_title;
+			} ?>
+		</title>
+	 	<?php
 	}
 }
 
@@ -1881,7 +1887,7 @@ Examples:
 						}
                         $content .= '</a></li>';  ?>
 					<?php endwhile;  $content .= '</ul>'; ?>
-			<?php endif; ?>
+			<?php endif; ?> 
 			<?php wp_reset_postdata();
 
 			 // Add AMP Woocommerce latest Products only on AMP Endpoint
