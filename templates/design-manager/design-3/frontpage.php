@@ -1,13 +1,21 @@
 <?php global $redux_builder_amp;
+ global $wp;
 $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
-	<meta charset="utf-8">
-	<link rel="canonical" href="<?php
-	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	echo get_permalink( $ID ) ?>">
+	<meta charset="utf-8"> <?php 
+	$page = $wp->query_vars['page'];
+	if ( $page >= '2') { ?>
+		<link rel="canonical" href="<?php
+		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		echo trailingslashit( get_permalink( $ID ) ) . '?page=' . $page ?>"> <?php
+	} else { ?>
+		<link rel="canonical" href="<?php
+		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		echo get_permalink( $ID ) ?>"> <?php
+	} ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
@@ -124,7 +132,7 @@ $template = new AMP_Post_Template( $post_id );?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
-											<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+											<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) )?>">
 												<?php
 												printf(__('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), get_comment_date(),  get_comment_time())
 												?>

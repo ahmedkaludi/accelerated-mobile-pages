@@ -23,12 +23,12 @@
   <footer class="footer_wrapper container">
       <div id="footer">
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
-          <div class="footer_menu">
-              <?php
-                    wp_nav_menu( array(
-                        'theme_location' => 'amp-footer-menu',
-                    ) );
-              ?>
+          <div class="footer_menu"> <?php
+              $menu = wp_nav_menu( array(
+                  'theme_location' => 'amp-footer-menu',
+                  'echo' => false
+              ) );
+              echo strip_tags( $menu , '<ul><li><a>'); ?>
           </div>
         <?php } ?>
 

@@ -56,7 +56,8 @@ if ( get_query_var( 'paged' ) ) {
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
 
-			$arch_desc = ampforwp_sanitize_archive_description();
+			$description = get_the_archive_description();
+			$arch_desc = ampforwp_content_sanitizer( $description );
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>
@@ -75,7 +76,7 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image">
-					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
+					<a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>">
 						<amp-img
 						layout="responsive"
 						src=<?php echo $thumb_url ?>
@@ -92,7 +93,7 @@ if ( get_query_var( 'paged' ) ) {
 					    <li><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php

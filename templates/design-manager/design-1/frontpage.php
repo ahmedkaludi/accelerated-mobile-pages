@@ -1,11 +1,20 @@
-<?php global $redux_builder_amp;
+<?php global $redux_builder_amp,$wp;
 $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
-	<meta charset="utf-8">
-	<link rel="canonical" href="<?php echo home_url('/');?>">
+	<meta charset="utf-8"> <?php
+	$page = $wp->query_vars['page'];
+	if ( $page >= '2') { ?>
+		<link rel="canonical" href="<?php
+		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		echo trailingslashit( get_permalink( $ID ) ) . '?page=' . $page ?>"> <?php
+	} else { ?>
+		<link rel="canonical" href="<?php
+		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		echo get_permalink( $ID ) ?>"> <?php
+	} ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
@@ -122,7 +131,7 @@ $template = new AMP_Post_Template( $post_id );?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
-											<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+											<a href="<?php echo trailingslashit( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ) ?>">
 												<?php
 												printf(__('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), get_comment_date(),  get_comment_time())
 												?>
@@ -188,8 +197,8 @@ $template = new AMP_Post_Template( $post_id );?>
 						<amp-social-share type="twitter"
 															width="50"
 															height="28"
-															data-param-url="CANONICAL_URL"
-															data-param-text=<?php echo $data_param_data ?>
+															data-param-url="<?php echo wp_get_shortlink() ?>"
+															data-param-text="<?php echo $data_param_data ?> TITLE"
 						></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
