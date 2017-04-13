@@ -167,30 +167,34 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				$type = get_post_type();
 				$supported_amp_post_types = in_array( $type , $supported_types );
 
-				if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
-					$new_url =  home_url('/');
-					$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
-					$amp_url = $new_url ;
-				}
-				if ( is_archive() && $wp->query_vars['paged'] >= '2' ) {
-					$new_url 		=  home_url('/');
-				 	$category_path 	= $wp->request;
-				 	$explode_path  	= explode("/",$category_path);
-				 	$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
-					array_splice( $explode_path, -2, 0, $inserted );
-					$impode_url = implode('/', $explode_path);
+				$query_arg_array = $wp->query_vars;
+				if( array_key_exists( '' , $query_arg_array ) ) {
+					if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
+						$new_url =  home_url('/');
+						$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
+						$amp_url = $new_url ;
+					}
+					if ( is_archive() && $wp->query_vars['paged'] >= '2' ) {
+						$new_url 		=  home_url('/');
+						$category_path 	= $wp->request;
+						$explode_path  	= explode("/",$category_path);
+						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
+						array_splice( $explode_path, -2, 0, $inserted );
+						$impode_url = implode('/', $explode_path);
 
-					$amp_url = $new_url . $impode_url ;
+						$amp_url = $new_url . $impode_url ;
+					}
+					if( is_search() && $wp->query_vars['paged'] >= '2' ) {
+						$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
+					}
 				}
 
-		        if( is_search() ) {
-		          $current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
-			          if ( $wp->query_vars['paged'] >= '2' ) {
-			          	$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
-			          }
-		          $amp_url = untrailingslashit($current_search_url);
-		        }
-		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
+				if( is_search() ) {
+					$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
+					$amp_url = untrailingslashit($current_search_url);
+				}
+
+        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 				if( $supported_amp_post_types) {
 					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
