@@ -6,7 +6,6 @@
 			<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
-	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
 	<div class="amp-wp-meta amp-wp-byline">
 	<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
 
