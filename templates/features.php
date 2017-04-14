@@ -1724,6 +1724,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$headline 		=  $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
 			}
 
+			// creating this to prevent errors
+			$structured_data_image_url = '';
 			// placeholder Image area
 			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
 				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
