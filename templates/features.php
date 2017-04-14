@@ -2105,13 +2105,25 @@ function ampforwp_meta_description() {
 		echo '<meta name="description" content="'. $desc .'"/>';
 	}
 }
+
 // Call Feature
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
 function ampforwp_call_button_html_output(){
-global $redux_builder_amp;
-if ($redux_builder_amp['ampforwp-callnow-button']) {
-?>
-<div class="callnow"><a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>"></a></div>
-<?php }
- }
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
+		<div class="callnow">
+			<a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>"></a>
+		</div> <?php
+  }
+}
 
+// multi translation feature
+function ampforwp_translation( $redux_style_translation , $pot_style_translation ) {
+ global $redux_builder_amp;
+ $single_translation_enabled = $redux_builder_amp['amp-use-pot'];
+   if ( !$single_translation_enabled ) {
+     return $redux_style_translation;
+   } else {
+     return $pot_style_translation;
+   }
+}
