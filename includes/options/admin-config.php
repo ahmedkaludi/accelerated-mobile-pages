@@ -699,7 +699,6 @@ Redux::setArgs( "redux_builder_amp", $args );
    // SEO SECTION
   Redux::setSection( $opt_name, array(
       'title'      => __( 'SEO', 'redux-framework-demo' ),
-      'desc'       => __( '', 'redux-framework-demo'),
       'id'         => 'amp-seo',
       'subsection' => true,
        'fields'     => array(
@@ -1470,199 +1469,235 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subsection' => true,
                'fields'     => array(
                    array(
+                       'id'       => 'amp-use-pot',
+                       'type'     => 'switch',
+                       'title'    => __('Use POT file method of Translation', 'redux-framework-demo'),
+                       'subtitle' => __('Else you can use normal translation method', 'redux-framework-demo'),
+                       'desc'     => __('Use this if you want Multilingual Translations', 'redux-framework-demo'),
+                       'default'  => 0
+                   ),
+                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'redux-framework-demo'),
                        'default'  => 'Show more Posts',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-show-previous-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show previous Posts', 'redux-framework-demo'),
                        'default'  => 'Show previous Posts',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-top-text',
                        'type'     => 'text',
                        'title'    => __('Top', 'redux-framework-demo'),
                        'default'  => 'Top',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-non-amp-page-text',
                        'type'     => 'text',
                        'title'    => __('View Non-AMP Version', 'redux-framework-demo'),
                        'default'  => 'View Non-AMP Version',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-related-text',
                        'type'     => 'text',
                        'title'    => __('Related Post', 'redux-framework-demo'),
                        'default'  => 'Related Post',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-navigate-text',
                        'type'     => 'text',
                        'title'    => __('Navigate', 'redux-framework-demo'),
                        'default'  => 'Navigate',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-on-text',
                        'type'     => 'text',
                        'title'    => __('On', 'redux-framework-demo'),
                        'default'  => 'On',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-next-text',
                        'type'     => 'text',
                        'title'    => __('Next', 'redux-framework-demo'),
                        'default'  => 'Next',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-previous-text',
                        'type'     => 'text',
                        'title'    => __('Previous', 'redux-framework-demo'),
                        'default'  => 'Previous',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-footer-text',
                        'type'     => 'textarea',
                        'title'    => __('Footer', 'redux-framework-demo'),
                        'default'  => 'All Rights Reserved',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-categories-text',
                        'type'     => 'text',
                        'title'    => __('Categories', 'redux-framework-demo'),
                        'default'  => 'Categories: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-tags-text',
                        'type'     => 'text',
                        'title'    => __('Tags', 'redux-framework-demo'),
                        'default'  => 'Tags: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-by-text',
                        'type'     => 'text',
                        'title'    => __('By', 'redux-framework-demo'),
                        'default'  => 'By',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-published-by',
                        'type'     => 'text',
                        'title'    => __('Published by', 'redux-framework-demo'),
                        'default'  => 'Published by',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-in-designthree',
                        'type'     => 'text',
                        'title'    => __('in', 'redux-framework-demo'),
                        'default'  => 'in',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-view-comments-text',
                        'type'     => 'text',
                        'title'    => __('View Comments', 'redux-framework-demo'),
                        'default'  => 'View Comments',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-leave-a-comment-text',
                        'type'     => 'text',
                        'title'    => __('Leave a Comment', 'redux-framework-demo'),
                        'default'  => 'Leave a Comment',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-at-text',
                        'type'     => 'text',
                        'title'    => __('at', 'redux-framework-demo'),
                        'default'  => 'at',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-says-text',
                        'type'     => 'text',
                        'title'    => __('says', 'redux-framework-demo'),
                        'default'  => 'says',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-Edit-text',
                        'type'     => 'text',
                        'title'    => __('Edit', 'redux-framework-demo'),
                        'default'  => 'Edit',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-ago-date-text',
                        'type'     => 'text',
                        'title'    => __('ago', 'redux-framework-demo'),
                        'default'  => 'ago',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-archive-cat-text',
                        'type'     => 'text',
                        'title'    => __('Category (archive title)', 'redux-framework-demo'),
                        'default'  => 'Category: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-archive-tag-text',
                        'type'     => 'text',
                        'title'    => __('Tag (archive title)', 'redux-framework-demo'),
                        'default'  => 'Tag: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-show-more-text',
                        'type'     => 'text',
                        'title'    => __('View More Posts (Widget Button)', 'redux-framework-demo'),
                        'default'  => 'View More Posts',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                     array(
                        'id'       => 'amp-translator-next-read-text',
                        'type'     => 'text',
                        'title'    => __('Next Read', 'redux-framework-demo'),
                        'default'  => 'Next Read: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-search-text',
                        'type'     => 'text',
                        'title'    => __(' You searched for: ', 'redux-framework-demo'),
                        'default'  => ' You searched for: ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-search-no-found',
                        'type'     => 'text',
                        'title'    => __(' It seems we can\'t find what you\'re looking for. ', 'redux-framework-demo'),
                        'default'  => ' It seems we can\'t find what you\'re looking for. ',
-                       'placeholder'=>'write here'
+                       'placeholder'=>'write here',
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id' => 'design-3-search-subsection',
                        'type' => 'section',
                        'title' => __('Search bar Translation Text', 'redux-framework-demo'),
                        'indent' => true,
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                       'id'       => 'ampforwp-search-placeholder',
@@ -1671,6 +1706,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       'default'  => 'Type Here',
                       'desc' => 'This is the text that gets shown in for Search Box',
                       'placeholder'=>'write here',
+                      'required' => array( 'amp-use-pot', '=' , 0 )
 
                   ),
                   array(
@@ -1680,6 +1716,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                      'desc' => 'This is the text that gets shown above Search Box',
                      'default'  => 'Type your search query and hit enter: ',
                      'placeholder'=>'write here',
+                     'required' => array( 'amp-use-pot', '=' , 0 )
 
                  ),
                )
