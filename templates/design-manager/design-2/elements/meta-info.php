@@ -11,7 +11,7 @@
 		<?php endif; ?>
 		<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
 
-		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp;  _e($redux_builder_amp['amp-translator-on-text']." ",'ampforwp'); the_time( get_option( 'date_format' ) ) ?></li>
+		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp;  _e($redux_builder_amp['amp-translator-on-text']." ",'ampforwp'); the_modified_date( get_option( 'date_format' ) ) ?></li>
 
 	</div>
 <?php endif; ?>
