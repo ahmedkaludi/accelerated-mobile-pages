@@ -1188,7 +1188,8 @@ function ampforwp_add_proper_post_meta(){
 
 		add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
 
-		add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
+		// This is causing the 2nd debug issue reported in #740
+		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
 		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
