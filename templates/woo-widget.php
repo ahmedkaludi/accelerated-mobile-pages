@@ -20,91 +20,103 @@
 
 // Create the widget output.
   public function widget( $args, $instance ) {
-    $ampforwp_title = apply_filters( 'widget_title', $instance[ 'title' ] );
-    $ampforwp_category_count = $instance[ 'count' ];
-    $ampforwp_category_id = $instance[ 'category' ];
-    $ampforwp_category_link = $instance[ 'showButton' ];
-    $ampforwp_show_excerpt = $instance[ 'showExcerpt' ];
+    // initializing these to avoid debug errors
+    global $redux_builder_amp;
+    global $woocommerce;
 
- //   echo . $args['before_title'] .  . $args['after_title']; ?>
+    if( !class_exists( 'WooCommerce' ) ){
+      return;
+    }
 
-    <?php
+    $ampforwp_title = apply_filters( 'widget_wc_title', $instance[ 'title' ] );
+    $ampforwp_enable_ratings = $instance[ 'ratings' ];
+    $on_sale_logo_on_product = $instance[ 'on_sale' ];
+    $ampforwp_procts_page_link = $instance[ 'link' ];
+    $ampforwp_number_of_products = $instance[ 'num_of_products' ];
+    $ampforwp_show_price = $instance[ 'show_price' ];
+
     $exclude_ids = get_option('ampforwp_exclude_post');
 
-    $args = array(
-        'cat' => $ampforwp_category_id,
-        'posts_per_page' => $ampforwp_category_count,
-        'post__not_in' => $exclude_ids,
-        'has_password' => false,
-        'post_status'=> 'publish'
-    );
-    // The Query
-    $the_query = new WP_Query( $args );
+     $q = new WP_Query( array(
+      'post_type'           => 'product',
+      'orderby'             => 'date',
+      'post__not_in' 		  => $exclude_ids,
+      'has_password' => false,
+      'post_status'=> 'publish',
+      'posts_per_page' => $ampforwp_number_of_products
+     ) );
 
-    // The Loop
+    echo $args['before_title'] . $ampforwp_title . $args['after_title'];
+    echo $args['before_widget'] ;
 
-    if ( $the_query->have_posts() ) {
-        echo '<div class="amp-category-block"><ul>';
-        echo '<li class="amp-category-block-title">'.$ampforwp_title .'</li>';
-        while ( $the_query->have_posts() ) {
-            $the_query->the_post();
-            $ampforwp_post_url = get_permalink(); ?>
-            <li class="amp-category-post">
-              <?php if ( has_post_thumbnail() ) { ?>
-                  <?php
-                  $thumb_id = get_post_thumbnail_id();
-                  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-                  $thumb_url = $thumb_url_array[0];
-                  ?>
-                  <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
-              <?php } ?>
+     if ( $q->have_posts() ) : ?>
+          <ul class="ampforwp_wc_shortcode"> <?php
+           while ( $q->have_posts() ) : $q->the_post();
+           global $post;
+           global $product;
+           if( $ampforwp_procts_page_link === 'amp' ) {
+             $ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+           } else {
+             $ampforwp_post_url = trailingslashit( get_permalink() ) ;
+           } ?>
+           <li class="ampforwp_wc_shortcode_child"><a href="<?php echo $ampforwp_post_url ?>"> <?php
 
-              <a class="ampforwp_wc_shortcode_title" href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
-                  <?php echo get_the_title(); ?>
-              </a> <?php
+           if ( has_post_thumbnail() ) {
+             $thumb_id = get_post_thumbnail_id();
+             $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+             $thumb_url = $thumb_url_array[0]; ?>
 
-              if( $ampforwp_show_excerpt == 'yes' ) { ?>
-                <div class="ampforwp_wc_shortcode_excerpt"> <?php
-                  if( has_excerpt() ) {
-                    $content = get_the_excerpt();
-                  } else {
-                    $content = get_the_content();
-                  } ?>
-                  <p class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></p>
-                </div> <?php
-              } ?>
+             <amp-img src='<?php echo $thumb_url ?>' width="150" height="150" layout="responsive"></amp-img> <?php
+           }
 
-            </li> <?php
-        }
+           if ( $product->is_on_sale() && $on_sale_logo_on_product=='yes' ) { ?>
+             <span class="onsale"> <?php echo 'Sale!' ?> </span> <?php
+           } ?>
 
-        //show more
-        if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
-          global $redux_builder_amp;
-          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
-        }
-        echo '</ul></div>';
+             <div class="ampforwp-wc-title"> <?php get_the_title() ?> </div> <?php
+           if (  class_exists( 'WooCommerce' )  ) {
+             $amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
+             $context = '';
+             $allowed_tags 		= wp_kses_allowed_html( $context );
 
-    } else {
-        // no posts found
-    }
-    /* Restore original Post Data */
-    wp_reset_postdata();
-//   echo $args['after_widget'];
-  }
+             $stock_status = $product->is_in_stock() ? 'InStock' : 'OutOfStock' ;
+             if ( $amp_product_price && $stock_status == 'InStock' && $ampforwp_show_price=='yes' ) { ?>
+               <div class="ampforwp-wc-price"><?php echo wp_kses( $amp_product_price ,  $allowed_tags  ) ?> </div> <?php
+             }
+
+             $rating_count = $product->get_rating_count();
+             $rating = $product->get_average_rating();
+             if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $rating_count  &&  $ampforwp_enable_ratings=='yes' ) {
+               $content = '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
+               $content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
+               $content .= '</div>';
+               echo $content;
+             }
+
+           }  ?>
+           </a></li>
+         <?php endwhile; ?>
+         </ul>
+     <?php endif; ?><?php
+
+     echo $args['after_widget'] ;
+     /* Restore original Post Data */
+     wp_reset_postdata();
+}
 
 
   // Create the admin area widget settings form.
   public function form( $instance ) {
 
     // Declarations for all the values to be stored
-    $ampforwp_title = ! empty( $instance['title'] ) ? $instance['title'] : 'Category Title';
-    $selected_category = ! empty( $instance['category'] ) ? $instance['category'] : '';
-    $ampforwp_category_count = ! empty( $instance['count'] ) ? $instance['count'] : 3 ;
-    $radio_buttons = ! empty( $instance['showButton'] ) ? $instance['showButton'] : 'yes';
-    $excerpt_buttons = ! empty( $instance['showExcerpt'] ) ? $instance['showExcerpt'] : 'yes';
-
+    $ampforwp_title =  ! empty( $instance['title'] ) ? $instance['title'] : 'Wocommerce Title';
+    $ampforwp_enable_ratings = ! empty( $instance['ratings'] ) ? $instance['ratings'] : 'yes';
+    $on_sale_logo_on_product = ! empty( $instance['on_sale'] ) ? $instance['on_sale'] : 'yes';
+    $ampforwp_show_price =! empty( $instance['show_price'] ) ? $instance['show_price'] : 'yes';
+    $ampforwp_procts_page_link = ! empty( $instance['link'] ) ? $instance['link'] : 'noamp';
+    $ampforwp_number_of_products =  ! empty( $instance['num_of_products'] ) ? $instance['num_of_products'] : 5;
     ?>
-    <!-- Form Ends Here -->
+    <!-- Form Starts Here -->
         <p>
         <!-- text Start Here -->
           <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:
@@ -112,56 +124,63 @@
           </label><br>
         <!-- text End Here -->
         </p>
-        <!-- select Start Here -->
-         <p>
-          <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>">Category:
-          <select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" value>
-            <?php
 
-              $categories = get_categories( array(
-                  'orderby' => 'name',
-                  'order'   => 'ASC'
-              ) );
-
-              echo '<option selected value="none">Recent Posts </option>';
-              foreach( $categories as $category ) {
-                 echo '<option '. selected( $instance['category'], $category->term_id) . ' value="'. $category->term_id . '">' . $category->name . '</option>';
-               } ?>
-          </select>
-          </label>
-         </p>
-        <!-- select End Here -->
-
+        <!-- number input starts Here -->
         <p>
-        <!-- text starts Here -->
-          <label for="<?php echo $this->get_field_id( 'count' ); ?>">Number of Posts:
-          <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" value="<?php echo esc_attr( $ampforwp_category_count ); ?>" />
+          <label for="<?php echo $this->get_field_id( 'num_of_products' ); ?>">Number of Products:
+          <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'num_of_products' ); ?>" name="<?php echo $this->get_field_name( 'num_of_products' ); ?>" value="<?php echo esc_attr( $ampforwp_number_of_products ); ?>" />
           </label>
         </p>
-        <!-- text End Here -->
+        <!-- number input End Here -->
+
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show View more Button:</label><br>
-          <label for="<?php echo $this->get_field_id('show_button_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+          <label for="<?php echo $this->get_field_id( 'ratings' ); ?>" value="<?php  echo esc_attr( $ampforwp_enable_ratings );?>">Enable Ratings:</label><br>
+          <label for="<?php echo $this->get_field_id('ratings_1'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('ratings_1'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="yes" <?php if($ampforwp_enable_ratings === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
           </label>
-           <label for="<?php echo $this->get_field_id('show_button_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+           <label for="<?php echo $this->get_field_id('ratings_2'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('ratings_2'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="no" <?php if($ampforwp_enable_ratings === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
 
         <p>
-          <!-- Excerpt related code starts Here -->
-            <label for="<?php echo $this->get_field_id( 'showExcerpt' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show Excerpt:</label><br>
-            <label for="<?php echo $this->get_field_id('show_button_3'); ?>">
-                <input class="widefat" id="<?php echo $this->get_field_id('show_button_3'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="yes" <?php if($excerpt_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
-            </label>
-             <label for="<?php echo $this->get_field_id('show_button_4'); ?>">
-                <input class="widefat" id="<?php echo $this->get_field_id('show_button_4'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="no" <?php if($excerpt_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
-            </label>
-          <!-- Excerpt related code Ends Here -->
+        <!-- radio buttons starts Here -->
+          <label for="<?php echo $this->get_field_id( 'on_sale' ); ?>" value="<?php  echo esc_attr( $on_sale_logo_on_product );?>">Show On Sale:</label><br>
+          <label for="<?php echo $this->get_field_id('on_sale_1'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_1'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="yes" <?php if($on_sale_logo_on_product === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+          </label>
+           <label for="<?php echo $this->get_field_id('on_sale_2'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_2'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="no" <?php if($on_sale_logo_on_product === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+          </label>
+        <!-- radio buttons Ends Here -->
         </p>
+
+        <p>
+        <!-- radio buttons starts Here -->
+          <label for="<?php echo $this->get_field_id( 'show_price' ); ?>" value="<?php  echo esc_attr( $ampforwp_show_price );?>">Show Price:</label><br>
+          <label for="<?php echo $this->get_field_id('show_price_1'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('show_price_1'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="yes" <?php if($ampforwp_show_price === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+          </label>
+           <label for="<?php echo $this->get_field_id('show_price_2'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('show_price_2'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="no" <?php if($ampforwp_show_price === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+          </label>
+        <!-- radio buttons Ends Here -->
+        </p>
+        <p>
+        <!-- radio buttons starts Here -->
+          <label for="<?php echo $this->get_field_id( 'link' ); ?>" value="<?php  echo esc_attr( $ampforwp_procts_page_link );?>">Show View more Button:</label><br>
+          <label for="<?php echo $this->get_field_id('link_1'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('link_1'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="amp" <?php if($ampforwp_procts_page_link === 'amp'){ echo 'checked="checked"'; } ?> /><?php _e('AMP '); ?>
+          </label>
+           <label for="<?php echo $this->get_field_id('link_2'); ?>">
+              <input class="widefat" id="<?php echo $this->get_field_id('link_2'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="noamp" <?php if($ampforwp_procts_page_link === 'noamp'){ echo 'checked="checked"'; } ?> /><?php _e(' Non AMP'); ?>
+          </label>
+        <!-- radio buttons Ends Here -->
+        </p>
+
+
     <!-- Form Ends Here -->
 
     <?php
@@ -173,15 +192,12 @@
   public function update( $new_instance, $old_instance ) {
     $instance = $old_instance;
     $instance[ 'title' ] = strip_tags( $new_instance[ 'title' ] );
-    $instance[ 'count' ] = strip_tags( $new_instance[ 'count' ] );
+    $instance[ 'num_of_products' ] = strip_tags( $new_instance[ 'num_of_products' ] );
+    $instance['link'] = strip_tags($new_instance['link']);
+    $instance['show_price'] = strip_tags($new_instance['show_price']);
+    $instance['on_sale'] = strip_tags($new_instance['on_sale']);
+    $instance['ratings'] = strip_tags($new_instance['ratings']);
 
-    if( strip_tags( $new_instance[ 'category' ] ) !== 'none' ) {
-      $instance[ 'category' ] = strip_tags( $new_instance[ 'category' ] );
-    } else {
-      $instance[ 'category' ] = '';
-    }
-    $instance['showButton'] = strip_tags($new_instance['showButton']);
-    $instance['showExcerpt'] = strip_tags($new_instance['showExcerpt']);
     return $instance;
   }
 
