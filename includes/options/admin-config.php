@@ -1516,7 +1516,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'title'    => __('Navigate', 'accelerated-mobile-pages'),
                        'default'  => __('Navigate','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
-                       'required' => array( 'amp-use-pot','accelerated-mobile-pages'), '=' , 0 )
+                       'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-on-text',
@@ -1713,7 +1713,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                      'required' => array( 'amp-use-pot', '=' , 0 )
 
                  )
-               );
+              ) );
 
 
 //    // CSS

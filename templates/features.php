@@ -2137,6 +2137,6 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
    if ( !$single_translation_enabled ) {
      return $redux_style_translation;
    } else {
-     return $pot_style_translation;
+     return __($pot_style_translation,'accelerated-mobile-pages');
    }
 }
