@@ -57,8 +57,8 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 				array(
 					'section'     	=> 'amp_design',
 					'settings'    	=> 'ampforwp_design[elements]',
-					'label'       	=> __( 'Design Manager', 'ampforwp' ),
-					'description' 	=> __( 'Enable and reorder Design Elements.', 'ampforwp' ),
+					'label'       	=> __( 'Design Manager', 'accelerated-mobile-pages' ),
+					'description' 	=> __( 'Enable and reorder Design Elements.', 'accelerated-mobile-pages' ),
 					'choices'     	=> $choices,
 					'priority'		=> 9,
 				)
@@ -153,49 +153,49 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		/* Meta info */
 		$services['meta_info'] = array(
 			'id'       => 'meta_info',
-			'label'    => __( 'Meta info', 'ampforwp' ),
+			'label'    => __( 'Meta info', 'accelerated-mobile-pages' ),
 		);
 
 		/* title */
 		$services['title'] = array(
 			'id'       => 'title',
-			'label'    => __( 'Title', 'ampforwp' ),
+			'label'    => __( 'Title', 'accelerated-mobile-pages' ),
 		);
 
 		/* Featured Image */
 		$services['featured_image'] = array(
 			'id'       => 'featured_image',
-			'label'    => __( 'Featured Image', 'ampforwp' ),
+			'label'    => __( 'Featured Image', 'accelerated-mobile-pages' ),
 		);
 
 		/* The Content */
 		$services['content'] = array(
 			'id'       => 'content',
-			'label'    => __( 'The Content', 'ampforwp' ),
+			'label'    => __( 'The Content', 'accelerated-mobile-pages' ),
 		);
 
 		/* Meta Taxonomy */
 		$services['meta_taxonomy'] = array(
 			'id'       => 'meta_taxonomy',
-			'label'    => __( 'Categories and Tags', 'ampforwp' ),
+			'label'    => __( 'Categories and Tags', 'accelerated-mobile-pages'),
 		);
 
 		/* Social Icons */
 		$services['social_icons'] = array(
 			'id'       => 'social_icons',
-			'label'    => __( 'Social Icons', 'ampforwp' ),
+			'label'    => __( 'Social Icons', 'accelerated-mobile-pages' ),
 		);
 
 		/* Comments */
 		$services['comments'] = array(
 			'id'       => 'comments',
-			'label'    => __( 'Comments', 'ampforwp' ),
+			'label'    => __( 'Comments', 'accelerated-mobile-pages' ),
 		);
 
 		/* Related Posts */
 		$services['related_posts'] = array(
 			'id'       => 'related_posts',
-			'label'    => __( 'Related Posts', 'ampforwp' ),
+			'label'    => __( 'Related Posts', 'accelerated-mobile-pages' ),
 		);
 
 		return apply_filters( 'ampforwp_controls', $services );
