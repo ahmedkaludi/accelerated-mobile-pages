@@ -12,7 +12,7 @@
 		function ampforwp_menu() {
 		  register_nav_menus(
 		    array(
-		      'amp-menu' => __( 'AMP Menu','ampforwp' ),
+		      'amp-menu' => __( 'AMP Menu','accelerated-mobile-pages' ),
 		    )
 		  );
 		}
@@ -23,12 +23,12 @@
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['amp-design-selector'] == 3) {
 	 	add_action( 'init', 'ampforwp_design_3_footermenu' );
-	} 
+	}
 	if (! function_exists( 'ampforwp_design_3_footermenu') ) {
 		function ampforwp_design_3_footermenu() {
 		  register_nav_menus(
 		    array(
-		      'amp-footer-menu' => __( 'AMP Footer Menu','ampforwp' ),
+		      'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
 		    )
 		  );
 		}
