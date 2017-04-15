@@ -4,9 +4,9 @@
   public function __construct() {
     $widget_options = array(
       'classname' => 'AMPFORWP_Woo_Widget',
-       'description' => 'This Widget adds Woocommerce Products where necessary in AMP Pages'
+       'description' => __('This Widget adds Woocommerce Products where necessary in AMP Pages','accelerated-mobile-pages')
      );
-    parent::__construct( 'AMPFORWP_Woo_Widget', 'AMP WooCommerce', $widget_options );
+    parent::__construct( 'AMPFORWP_Woo_Widget', __('AMP WooCommerce','accelerated-mobile-pages'), $widget_options );
   }
 
 
@@ -70,7 +70,7 @@
            }
 
            if ( $product->is_on_sale() && $on_sale_logo_on_product=='yes' ) { ?>
-             <span class="onsale"> <?php echo 'Sale!' ?> </span> <?php
+             <span class="onsale"> <?php echo __('Sale!','accelerated-mobile-pages') ?> </span> <?php
            } ?>
 
              <div class="ampforwp-wc-title"> <?php get_the_title() ?> </div> <?php
@@ -88,7 +88,7 @@
              $rating = $product->get_average_rating();
              if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $rating_count  &&  $ampforwp_enable_ratings=='yes' ) {
                $content = '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
-               $content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
+               $content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.__(' out of 5 </span>','accelerated-mobile-pages');
                $content .= '</div>';
                echo $content;
              }
@@ -119,7 +119,7 @@
     <!-- Form Starts Here -->
         <p>
         <!-- text Start Here -->
-          <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:
+          <label for="<?php echo $this->get_field_id( 'title' ); ?>"> <?php echo __('Title:','accelerated-mobile-pages') ?>
           <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $ampforwp_title ); ?>" />
           </label><br>
         <!-- text End Here -->
@@ -127,7 +127,7 @@
 
         <!-- number input starts Here -->
         <p>
-          <label for="<?php echo $this->get_field_id( 'num_of_products' ); ?>">Number of Products:
+          <label for="<?php echo $this->get_field_id( 'num_of_products' ); ?>"><?php echo __('Number of Products:','accelerated-mobile-pages') ?>
           <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'num_of_products' ); ?>" name="<?php echo $this->get_field_name( 'num_of_products' ); ?>" value="<?php echo esc_attr( $ampforwp_number_of_products ); ?>" />
           </label>
         </p>
@@ -135,47 +135,47 @@
 
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'ratings' ); ?>" value="<?php  echo esc_attr( $ampforwp_enable_ratings );?>">Enable Ratings:</label><br>
+          <label for="<?php echo $this->get_field_id( 'ratings' ); ?>" value="<?php  echo esc_attr( $ampforwp_enable_ratings );?>"><?php echo __('Enable Ratings:','accelerated-mobile-pages') ?> </label><br>
           <label for="<?php echo $this->get_field_id('ratings_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('ratings_1'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="yes" <?php if($ampforwp_enable_ratings === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('ratings_1'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="yes" <?php if($ampforwp_enable_ratings === 'yes'){ echo 'checked="checked"'; } ?> /><?php __('Yes ','accelerated-mobile-pages'); ?>
           </label>
            <label for="<?php echo $this->get_field_id('ratings_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('ratings_2'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="no" <?php if($ampforwp_enable_ratings === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('ratings_2'); ?>" name="<?php echo $this->get_field_name('ratings'); ?>" type="radio" value="no" <?php if($ampforwp_enable_ratings === 'no'){ echo 'checked="checked"'; } ?> /><?php __(' No','accelerated-mobile-pages'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
 
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'on_sale' ); ?>" value="<?php  echo esc_attr( $on_sale_logo_on_product );?>">Show On Sale:</label><br>
+          <label for="<?php echo $this->get_field_id( 'on_sale' ); ?>" value="<?php  echo esc_attr( $on_sale_logo_on_product );?>"><?php echo __('Show On Sale:','accelerated-mobile-pages') ?> </label><br>
           <label for="<?php echo $this->get_field_id('on_sale_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_1'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="yes" <?php if($on_sale_logo_on_product === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_1'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="yes" <?php if($on_sale_logo_on_product === 'yes'){ echo 'checked="checked"'; } ?> /><?php __('Yes ','accelerated-mobile-pages'); ?>
           </label>
            <label for="<?php echo $this->get_field_id('on_sale_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_2'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="no" <?php if($on_sale_logo_on_product === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('on_sale_2'); ?>" name="<?php echo $this->get_field_name('on_sale'); ?>" type="radio" value="no" <?php if($on_sale_logo_on_product === 'no'){ echo 'checked="checked"'; } ?> /><?php __(' No','accelerated-mobile-pages'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
 
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'show_price' ); ?>" value="<?php  echo esc_attr( $ampforwp_show_price );?>">Show Price:</label><br>
+          <label for="<?php echo $this->get_field_id( 'show_price' ); ?>" value="<?php  echo esc_attr( $ampforwp_show_price );?>"> <?php echo __('Show Price:','accelerated-mobile-pages') ?></label><br>
           <label for="<?php echo $this->get_field_id('show_price_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_price_1'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="yes" <?php if($ampforwp_show_price === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('show_price_1'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="yes" <?php if($ampforwp_show_price === 'yes'){ echo 'checked="checked"'; } ?> /><?php __('Yes ','accelerated-mobile-pages'); ?>
           </label>
            <label for="<?php echo $this->get_field_id('show_price_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_price_2'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="no" <?php if($ampforwp_show_price === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('show_price_2'); ?>" name="<?php echo $this->get_field_name('show_price'); ?>" type="radio" value="no" <?php if($ampforwp_show_price === 'no'){ echo 'checked="checked"'; } ?> /><?php __(' No','accelerated-mobile-pages'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'link' ); ?>" value="<?php  echo esc_attr( $ampforwp_procts_page_link );?>">Show View more Button:</label><br>
+          <label for="<?php echo $this->get_field_id( 'link' ); ?>" value="<?php  echo esc_attr( $ampforwp_procts_page_link );?>"><?php echo __('Show View more Button:','accelerated-mobile-pages') ?> </label><br>
           <label for="<?php echo $this->get_field_id('link_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('link_1'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="amp" <?php if($ampforwp_procts_page_link === 'amp'){ echo 'checked="checked"'; } ?> /><?php _e('AMP '); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('link_1'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="amp" <?php if($ampforwp_procts_page_link === 'amp'){ echo 'checked="checked"'; } ?> /><?php __('AMP ','accelerated-mobile-pages'); ?>
           </label>
            <label for="<?php echo $this->get_field_id('link_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('link_2'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="noamp" <?php if($ampforwp_procts_page_link === 'noamp'){ echo 'checked="checked"'; } ?> /><?php _e(' Non AMP'); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('link_2'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="radio" value="noamp" <?php if($ampforwp_procts_page_link === 'noamp'){ echo 'checked="checked"'; } ?> /><?php __(' Non AMP','accelerated-mobile-pages'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
