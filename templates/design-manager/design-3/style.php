@@ -392,12 +392,4 @@ if ( class_exists('TablePress') ) { ?>
 <?php }  ?>
 p.wp-caption-text{ text-align: center }
 
-<?php if(is_home()) { //woocommerce styling - START ?>
-.ampforwp_wc_shortcode{padding:0}
-.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
-.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-.ampforwp-wc-title{ margin: 10px 0px; }
-.ampforwp-wc-price{ color:#444 }
-<?php } //woocommerce styling - END ?>
-
 <?php echo $redux_builder_amp['css_editor']; } ?>

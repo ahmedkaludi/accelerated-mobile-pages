@@ -119,13 +119,4 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 if ( class_exists('TablePress') ) { ?>
 .tablepress-table-description{clear:both;display:block}.tablepress{border-collapse:collapse;border-spacing:0;width:100%;margin-bottom:1em;border:none}.tablepress td,.tablepress th{padding:8px;border:none;background:0 0;text-align:left}.tablepress tbody td{vertical-align:top}.tablepress tbody td,.tablepress tfoot th{border-top:1px solid #ddd}.tablepress tbody tr:first-child td{border-top:0}.tablepress thead th{border-bottom:1px solid #ddd}.tablepress tfoot th,.tablepress thead th{background-color:#d9edf7;font-weight:700;vertical-align:middle}.tablepress .odd td{background-color:#f9f9f9}.tablepress .even td{background-color:#fff}.tablepress .row-hover tr:hover td{background-color:#f3f3f3}@media (min-width:768px) and (max-width:1600px){.tablepress{overflow-x:none}}@media (min-width:320px) and (max-width:767px){.tablepress{display:inline-block;overflow-x:scroll}}
 <?php }  ?>
-
-<?php if(is_home()) { //woocommerce styling - START ?>
-.ampforwp_wc_shortcode{padding:0}
-.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
-.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-.ampforwp-wc-title{ margin: 10px 0px; }
-.ampforwp-wc-price{ color:#444 }
-<?php } //woocommerce styling - END ?>
-
 <?php echo $redux_builder_amp['css_editor']; } ?>
