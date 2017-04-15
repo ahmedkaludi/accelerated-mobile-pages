@@ -268,4 +268,12 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 @media (min-width: 320px) and (max-width: 767px) {.tablepress { display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
 
+<?php if(is_home()) { //woocommerce styling - START ?>
+.ampforwp_wc_shortcode{padding:0}
+.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
+.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
+.ampforwp-wc-title{ margin: 10px 0px; }
+.ampforwp-wc-price{ color:#444 }
+<?php } //woocommerce styling - END ?>
+
 <?php echo $redux_builder_amp['css_editor']; } ?>

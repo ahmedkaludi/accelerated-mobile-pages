@@ -2010,16 +2010,6 @@ Examples:
 	 }
 	 add_action( 'amp_init', 'ampforwp_latest_products_register_shortcodes');
 
-	 // Adding the styling for AMP Woocommerce latest Products
-   add_action('amp_post_template_css','amp_latest_products_styling',PHP_INT_MAX);
-   function amp_latest_products_styling() { ?>
-		.ampforwp_wc_shortcode{padding:0}
-		.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
-		.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-		.ampforwp-wc-title{ margin: 10px 0px; }
-		.ampforwp-wc-price{ color:#444 } <?php
-   }
-
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
