@@ -433,8 +433,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 		// Above Footer Global
 		add_action('amp_post_template_footer','ampforwp_footer_advert',8);
-		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
         if ( $redux_builder_amp['amp-design-selector'] == 3) {
+					add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
           remove_action('amp_post_template_footer','ampforwp_footer_advert',8);
         }
 
