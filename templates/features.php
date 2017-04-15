@@ -870,11 +870,11 @@ function ampforwp_title_custom_meta() {
           }
 
           if( $post_type !== 'page' ) {
-            add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback', $post_type,'side' );
+            add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );
           }
 
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-              add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ), 'ampforwp_title_callback','page','side' );
+              add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
 
         }
@@ -1247,7 +1247,7 @@ function ampforwp_remove_title_tags(){
           $current_url_in_pieces = explode('/',$current_archive_url);
           $cnt = count($current_url_in_pieces);
           if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
-            $site_title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+            $site_title .= ' | '.__('Page ','accelerated-mobile-pages') . $current_url_in_pieces[$cnt-1];
           }
         }
       }
@@ -1300,7 +1300,7 @@ function ampforwp_remove_title_tags(){
 						$current_url_in_pieces = explode('/',$current_home_url);
 						$cnt = count($current_url_in_pieces);
 						if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
-							$title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+							$title .= ' | ' . __('Page ','accelerated-mobile-pages') . $current_url_in_pieces[$cnt-1];
 						}
 				}
 
@@ -1508,7 +1508,7 @@ function ampforwp_add_disqus_support() {
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 					frameborder="0"
 					src="<?php echo $disqus_url ?>" >
-					<div overflow tabindex="0" role="button" aria-label="Read more"> Disqus Comments Loading...</div>
+					<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo __('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 				</amp-iframe>
 			</section>
 		<?php
@@ -1987,7 +1987,7 @@ Examples:
 							$rating = $product->get_average_rating();
 							if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $rating_count ) {
 								$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
-								$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.' out of 5 </span>';
+								$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.__(' out of 5 </span>','accelerated-mobile-pages');
 								$content .= '</div>';
 							}
 
