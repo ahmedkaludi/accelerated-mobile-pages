@@ -23,9 +23,9 @@
 		<?php do_action('ampforwp_post_after_design_elements') ?>
 	</article>
 
+	<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 	<?php $this->load_parts( array( 'footer' ) ); ?>
-
-<?php do_action( 'amp_post_template_footer', $this ); ?>
+	<?php do_action( 'amp_post_template_footer', $this ); ?>
 
 </body>
 </html>

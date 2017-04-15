@@ -223,6 +223,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		<?php } ?>
 	</article>
 	<?php do_action('ampforwp_frontpage_below_loop') ?>
+	<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 	<?php $this->load_parts( array( 'footer' ) ); ?>
 	<?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
