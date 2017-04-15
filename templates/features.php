@@ -1930,10 +1930,17 @@ Examples:
 			 return;
 		 }
 
-		 $atts[] = shortcode_atts( array(
-				 'num' => get_permalink($atts['num']),
-				 'link' => get_permalink($atts['link'])
-		 ), $atts );
+		 if( array_key_exists( 'link' , $atts ) ) {
+			 $atts[] = shortcode_atts( array(
+  				 'num' => get_permalink($atts['num']),
+  				 'link' => get_permalink($atts['link'])
+  		 ), $atts );
+		 } else {
+			 $atts[] = shortcode_atts( array(
+					 'num' => get_permalink($atts['num']),
+			 ), $atts );
+			 $atts['link'] = 'noamp';
+		 }
 
 		 $exclude_ids = get_option('ampforwp_exclude_post');
 		 $number_of_latest_prcts = $atts['num'] ;
@@ -1941,14 +1948,13 @@ Examples:
 			$q = new WP_Query( array(
 			 'post_type'           => 'product',
 			 'orderby'             => 'date',
-			 'paged'               => esc_attr($paged),
 			 'post__not_in' 		  => $exclude_ids,
 			 'has_password' => false,
 			 'post_status'=> 'publish',
 			 'posts_per_page' => $number_of_latest_prcts
 			) );
 
-		  if ( $q->have_posts() ) :  $content .= '<ul class="ampforwp_wc_shortcode">';
+		  if ( $q->have_posts() ) :  $content = '<ul class="ampforwp_wc_shortcode">';
             while ( $q->have_posts() ) : $q->the_post();
 						global $post;
 						global $product;
