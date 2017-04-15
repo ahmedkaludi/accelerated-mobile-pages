@@ -1291,6 +1291,19 @@ function ampforwp_remove_title_tags(){
           }
         }
 
+				//this overrides title when frontpage set on normal website
+				if( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] ){
+						global $wp;
+						$title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
+
+						$current_home_url = home_url( $wp->request );
+						$current_url_in_pieces = explode('/',$current_home_url);
+						$cnt = count($current_url_in_pieces);
+						if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
+							$title .= ' | Page '.$current_url_in_pieces[$cnt-1];
+						}
+				}
+
         echo $title;
       } else {
         echo $site_title;
@@ -1979,7 +1992,7 @@ Examples:
 							}
 
 							}
-                        $content .= '</a></li>';  ?>
+              $content .= '</a></li>';  ?>
 					<?php endwhile;  $content .= '</ul>'; ?>
 			<?php endif; ?>
 			<?php wp_reset_postdata();
