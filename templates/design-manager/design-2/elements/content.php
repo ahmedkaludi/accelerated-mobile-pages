@@ -1,9 +1,13 @@
 <div class="amp-wp-article-content">
-
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
-
-		<?php do_action('ampforwp_before_post_content') //Post before Content here ?>
+		<?php if(has_excerpt()){ ?>
+			<div class="ampforwp_single_excerpt"> 
+				<?php $content = get_the_excerpt();
+				echo $content; ?>
+			</div>
+		<?php }
+		do_action('ampforwp_before_post_content') //Post before Content here ?>
 
 			<?php
 			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
