@@ -95,6 +95,7 @@
 	 <?php wp_reset_postdata(); ?>
 	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
+<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
