@@ -41,7 +41,7 @@ class ampforwp_pointers {
             <!-- Begin MailChimp Signup Form -->
             <style type="text/css">
             .wp-pointer-buttons{ padding:0; overflow: hidden; }
-            .wp-pointer-content .button-secondary{  left: -25px;background: transparent;top: 5px; border: 0;position: relative; padding: 0; box-shadow: none;margin: 0;color: #bcbcbc;} .wp-pointer-content .button-primary{ display:none}	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+            .wp-pointer-content .button-secondary{  left: -25px;background: transparent;top: 5px; border: 0;position: relative; padding: 0; box-shadow: none;margin: 0;color: #0085ba;} .wp-pointer-content .button-primary{ display:none}	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
             </style>
             <div id="mc_embed_signup">
             	<form action="//app.mailerlite.com/webforms/submit/d3w0e1" data-id="258182" data-code="d3w0e1" method="POST" target="_blank">
@@ -61,7 +61,7 @@ class ampforwp_pointers {
 	            	</div>    
 		            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 		            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a631df13442f19caede5a5baf_c9a71edce6" tabindex="-1" value=""></div>
-	            		<input type="submit" value="Sure, Thanks!" name="subscribe" id="pointer-close" class="button mc-newsletter-sent" style=" background: #0085ba; border-color: #006799; padding: 0px 16px; text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799; height: 30px; margin-top: 1px; color: #fff; box-shadow: 0 1px 0 #006799;">
+	            		<input type="submit" value="Subscribe" name="subscribe" id="pointer-close" class="button mc-newsletter-sent" style=" background: #0085ba; border-color: #006799; padding: 0px 16px; text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799; height: 30px; margin-top: 1px; color: #fff; box-shadow: 0 1px 0 #006799;">
             		</div>
             	</form>
             </div>','ampforwp');
@@ -71,7 +71,7 @@ class ampforwp_pointers {
 				);
 		}
 		if ($show_pointer) {
-			$this->ampforwp_pointer_script ($id, $options, __('Dismiss', 'ampforwp'), $button2, $function);
+			$this->ampforwp_pointer_script ($id, $options, __('No Thanks', 'ampforwp'), $button2, $function);
 		}
 	}
 	function get_admin_url($page, $tab) {
