@@ -101,7 +101,7 @@
 		<div class="amp-wp-content pagination-holder">
 
 			<div id="pagination">
-				<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
+				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] . ' &raquo;' , 'Next' ) , 0 ) ?></div>
 				<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
 
 				<div class="clearfix"></div>
