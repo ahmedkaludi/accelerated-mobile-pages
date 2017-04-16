@@ -116,7 +116,7 @@ $template = new AMP_Post_Template( $post_id );?>
 							'end_size'     => 1,
 							'mid_size'     => 2,
 							'prev_next'    => True,
-							'prev_text'    => $redux_builder_amp['amp-translator-previous-text'],
+							'prev_text'    => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous')
 							'next_text'    => ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next')
 							'type'         => 'plain'
 						);
