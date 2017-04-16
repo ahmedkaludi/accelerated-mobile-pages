@@ -51,7 +51,7 @@
 
 
 <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
-	<a href="#" class="toggle-text"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></a>
+	<a href="#" class="toggle-text"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'], 'Navigate' ); ?></a>
 </div>
 
 <amp-sidebar id='sidebar'

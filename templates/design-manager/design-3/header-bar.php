@@ -6,7 +6,7 @@
 
       <?php
       if( has_nav_menu( 'amp-menu' ) ) { ?>
-        <div class="navigation_heading"><?php echo esc_html( $redux_builder_amp['amp-translator-navigate-text'] ); ?></div>
+        <div class="navigation_heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'] , 'Navigate' ); ?></div>
       <?php
         wp_nav_menu( array(
             'theme_location' => 'amp-menu',
