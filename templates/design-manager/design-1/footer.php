@@ -25,7 +25,7 @@ global $redux_builder_amp;
 		<p class="copyright_txt">
 			<?php
 			global $allowed_html;
-			echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
+			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer' ) , $allowed_html) ;
  		?>
 		</p>
 
