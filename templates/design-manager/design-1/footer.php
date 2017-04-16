@@ -30,7 +30,7 @@ global $redux_builder_amp;
 		</p>
 
 		<p class="back-to-top">
-			<a href="#top"> <?php echo esc_html( $redux_builder_amp['amp-translator-top-text'] ); ?>
+			<a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
 			</a>
 			<?php
 			//24. Added an options button for switching on/off link to non amp page
