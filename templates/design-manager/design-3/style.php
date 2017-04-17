@@ -116,7 +116,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 16px; color:#333; font-family: sans-serif; }
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .amp-wp-article-tags .ampforwp-tax-tag, .amp-wp-article-tags .ampforwp-tax-tag a{ font-size: 12px; color: #555; font-family: sans-serif; margin: 20px 0 0 0; }
-.amp-wp-article-tags span{ background: #eeeee e; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
+.amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
 .ampforwp-social-icons{ margin-bottom: 28px; margin-top: 25px; height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
 .ampforwp-social-icons-wrapper .whatsapp-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height: 20px; border-radius: 60px; }
@@ -302,7 +302,7 @@ main .amp-wp-content{ direction: rtl; }
 .single-post .amp_author_area amp-img{ float: right; margin-left: 12px; }
 .amp-wp-article, .footer_wrapper container{ direction: rtl; }
 .single-post .post-pagination-meta span{ float: right; }
-.amp-wp-article-tags span{ background: #eeeeee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
+.amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .amp_author_area_wrapper strong{ float: right; }
 
 /* RTL End */
