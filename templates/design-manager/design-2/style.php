@@ -243,7 +243,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .amp-ad-2{ margin-bottom: 50px; }
 <?php } ?>
 /**/
-.amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-by-text']; ?>  "; }
+.amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'By '); ?>  "; }
 .ampforwp-tax-category span:first-child:after { content: ' '; }
 .ampforwp-tax-category span:after,.ampforwp-tax-tag span:after { content: ', '; }
 .ampforwp-tax-category span:last-child:after, .ampforwp-tax-tag span:last-child:after { content: ' '; }
