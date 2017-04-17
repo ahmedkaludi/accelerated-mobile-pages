@@ -683,7 +683,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             'mode'     => 'css',
             'theme'    => 'monokai',
             'desc'     => '',
-            'default'  => '/******* '.__('Paste your Custom CSS in this Editor','accelerated-mobile-pages') .'*******/'
+            'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages') 
         ),
         )
 
