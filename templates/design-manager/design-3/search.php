@@ -88,7 +88,7 @@
 					}
 				?>
 		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-                <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. $redux_builder_amp['amp-translator-ago-date-text']; ?></div>
+                <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ); ?></div>
 
 		    </div>
             <div class="cb"></div>
