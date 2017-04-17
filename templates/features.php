@@ -1567,7 +1567,7 @@ function ampforwp_editable_archvies_title($title) {
     if ( is_category() ) {
             $title = single_cat_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-cat-text'], 'Category (archive title)').' ', false );
         } elseif ( is_tag() ) {
-            $title = single_tag_title( $redux_builder_amp['amp-translator-archive-tag-text'].' ', false );
+            $title = single_tag_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-tag-text'], 'Tag (archive title)').' ', false );
         }
     return $title;
 }
