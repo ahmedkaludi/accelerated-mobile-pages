@@ -80,7 +80,7 @@
         //show more
         if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
           global $redux_builder_amp;
-          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
+          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         }
         echo '</ul></div>';
 
