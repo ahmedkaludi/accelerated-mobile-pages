@@ -34,9 +34,6 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support']) 
 												<!-- .comment-author -->
 												<div class="comment-metadata">
 													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
-														<?php
-														printf(__('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), get_comment_date(),  get_comment_time())
-														?>
 													</a>
 													<?php edit_comment_link(__('('.$redux_builder_amp['amp-translator-Edit-text'].')'),'  ','') ?>
 												</div>

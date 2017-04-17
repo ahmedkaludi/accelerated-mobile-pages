@@ -138,9 +138,7 @@ $template = new AMP_Post_Template( $post_id );?>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
 											<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) )?>">
-												<?php
-												printf(__('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), get_comment_date(),  get_comment_time())
-												?>
+												<?php printf( ampforwp_translation( ('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link(__('('.$redux_builder_amp['amp-translator-Edit-text'].')'),'  ','') ?>
 										</div>
