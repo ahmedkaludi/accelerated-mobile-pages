@@ -1254,7 +1254,7 @@ function ampforwp_remove_title_tags(){
       }
 
       if( is_search() ) {
-        $site_title =  $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
+        $site_title =  ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();
       }
 
       if ( class_exists('WPSEO_Frontend') ) {
@@ -1735,7 +1735,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			} else {
 				$current_url 	= trailingslashit(get_home_url())."?s=".get_search_query();
 				$current_url 	= untrailingslashit( $current_url );
-				$headline 		=  $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();
+				$headline 		= ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();
 			}
 
 			// creating this to prevent errors
@@ -2084,7 +2084,7 @@ function ampforwp_meta_description() {
 		}
 		// for search
 		if( is_search() ) {
-			$desc = addslashes( $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query() );
+			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
 		}
 	} else {
 		if( is_home() ) {
@@ -2108,7 +2108,7 @@ function ampforwp_meta_description() {
 		}
 
 		if( is_search() ) {
-			$desc = addslashes( $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query() );
+			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
 
 		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
