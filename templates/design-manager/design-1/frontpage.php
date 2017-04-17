@@ -118,8 +118,8 @@ $template = new AMP_Post_Template( $post_id );?>
 							'end_size'     => 1,
 							'mid_size'     => 2,
 							'prev_next'    => True,
-							'prev_text'    => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous')
-							'next_text'    => ampforwp_translation( $redux_builder_amp['amp-translator-next-text'], 'Next')
+							'prev_text'    => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous'),
+							'next_text'    => ampforwp_translation( $redux_builder_amp['amp-translator-next-text'], 'Next'),
 							'type'         => 'plain'
 						);
 
@@ -174,14 +174,14 @@ $template = new AMP_Post_Template( $post_id );?>
 				    </ul>
 				</div>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 			} else {
 			    if ( !comments_open() ) {
 			      return;
 				} ?>
 			    <div class="comment-button-wrapper">
-			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
+			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
 			    </div>
 			<?php } ?>
 		</div> <?php
