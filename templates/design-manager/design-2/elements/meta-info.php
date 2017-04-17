@@ -24,7 +24,7 @@
 				<?php global $redux_builder_amp;
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .' ', 'amp' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' ));
 							}
 				?>
 			</span>
@@ -38,7 +38,7 @@
 
 			//if RTL is ON
 			if($redux_builder_amp['amp-rtl-select-option']) {
-					 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-categories-text'] .' ', 'amp' ));
+					 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' ));
 						}
 			 ?>
   	</div>
