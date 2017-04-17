@@ -109,7 +109,7 @@
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
+ 			<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. '); ?>
  		</div>
 
 	<?php endif; ?>

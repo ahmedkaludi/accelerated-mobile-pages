@@ -101,7 +101,7 @@
 		    </div>
 		<?php else: ?>
 			<div class="amp-wp-content amp-wp-article-header amp-loop-list">
-				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
+				<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. '); ?>
 				<div class="cb"></div>
 			</div>
 		<?php endif; ?> <?php wp_reset_postdata(); ?>
