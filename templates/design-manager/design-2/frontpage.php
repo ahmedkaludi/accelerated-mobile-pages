@@ -95,7 +95,7 @@ $template = new AMP_Post_Template( $post_id );?>
 				));
 			if ( $comments ) { ?>
 				<div class="amp-wp-content comments_list">
-				    <h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
+				    <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></h3>
 				    <ul>
 				    <?php
 						$page = (get_query_var('page')) ? get_query_var('page') : 1;
