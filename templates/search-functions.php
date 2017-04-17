@@ -71,7 +71,7 @@ function ampforwp_the_search_form() {
 function ampforwp_get_search_form() {
 	if ( is_search_enabled_in_ampforwp() ) {
 		global $redux_builder_amp;
-		$label = $redux_builder_amp['ampforwp-search-label'];
+		$label = ampforwp_translation($redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
 	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
 <div>
