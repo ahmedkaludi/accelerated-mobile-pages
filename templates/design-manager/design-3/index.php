@@ -97,15 +97,19 @@ if ( get_query_var( 'paged' ) ) {
 	<?php
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
+			$args_new =  array(
+				'post_type'           => 'post',
+				'orderby'             => 'date',
+				'paged'               => esc_attr($paged),
+				'post__not_in' 		  => $exclude_ids,
+				'has_password' => false,
+				'post_status'=> 'publish'
+			);
 
-		$q = new WP_Query( array(
-			'post_type'           => 'post',
-			'orderby'             => 'date',
-			'paged'               => esc_attr($paged),
-			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false,
-			'post_status'=> 'publish'
-		) ); ?>
+			$filtered_args = apply_filters('ampforwp_query_args', $args_new);
+
+
+		$q = new WP_Query( $filtered_args ); ?>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
