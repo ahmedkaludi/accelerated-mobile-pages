@@ -559,6 +559,50 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			}
 		}
 
+		// Above Related post
+
+		add_action('ampforwp_above_related_post','ampforwp_above_related_post_advert');
+
+
+		function ampforwp_above_related_post_advert() {
+			global $redux_builder_amp;
+
+			if($redux_builder_amp['enable-amp-ads-5'] == true) {
+				if($redux_builder_amp['enable-amp-ads-select-5'] == 1)  {
+					$advert_width  = '300';
+					$advert_height = '250';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 2) {
+								$advert_width  = '336';
+					$advert_height = '280';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 3)  {
+								$advert_width  = '728';
+					$advert_height = '90';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 4)  {
+								$advert_width  = '300';
+					$advert_height = '600';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 5)  {
+								$advert_width  = '320';
+					$advert_height = '100';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 6)  {
+								$advert_width  = '200';
+					$advert_height = '50';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-5'] == 7)  {
+								$advert_width  = '320';
+					$advert_height = '50';
+						}
+				$output = '<div class="amp-ad-wrapper">';
+				$output	.=	'<amp-ad class="amp-ad-5"
+							type="adsense"
+							width='. $advert_width .' height='. $advert_height . '
+							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'">';
+				$output	.=	'</amp-ad>';
+				$output	.=   ' </div>';
+				echo $output;
+			}
+		}
+
+
 	// 10. Analytics Area
 		add_action('amp_post_template_footer','ampforwp_analytics',11);
 		function ampforwp_analytics() {

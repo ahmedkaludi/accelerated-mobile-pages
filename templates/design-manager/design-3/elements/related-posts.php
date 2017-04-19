@@ -1,4 +1,7 @@
 <?php
+
+		do_action('ampforwp_above_related_post'); //Above Related Posts
+
 		global $post,  $redux_builder_amp;
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 

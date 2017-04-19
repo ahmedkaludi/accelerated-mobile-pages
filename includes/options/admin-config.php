@@ -1014,8 +1014,56 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'default'   => '',
                         'required'  => array('enable-amp-ads-4', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
-                    )
+                    ),
             // Ad 4 ends
+
+            //Ad 5 Starts
+            array(
+                'id'        => 'enable-amp-ads-5',
+                'type'      => 'switch',
+                'title'     => __('AD #5', 'accelerated-mobile-pages'),
+                'default'   => 0,
+                'subtitle'  => __('Above the Related Posts', 'accelerated-mobile-pages'),
+                'true'      => 'Enabled',
+                'false'     => 'Disabled',
+            ),
+                array(
+                    'id'       => 'enable-amp-ads-select-5',
+                    'type'     => 'select',
+                    'title'    => __('AD Size', 'accelerated-mobile-pages'),
+                    'required' => array('enable-amp-ads-5', '=' , '1'),
+                    // Must provide key => value pairs for select options
+                    'options'  => array(
+                        '1' => __('300x250','accelerated-mobile-pages'),
+                        '2' => __('336x280','accelerated-mobile-pages'),
+                        '3' => __('728x90','accelerated-mobile-pages'),
+                        '4' => __('300x600','accelerated-mobile-pages'),
+                        '5' => __('320x100','accelerated-mobile-pages'),
+                        '6' => __('200x50','accelerated-mobile-pages'),
+                        '7' => __('320x50','accelerated-mobile-pages')
+                    ),
+                    'default'  => '2',
+                ),
+                array(
+                    'id'        =>'enable-amp-ads-text-feild-client-5',
+                    'type'      => 'text',
+                    'required'  => array('enable-amp-ads-5', '=' , '1'),
+                    'title'     => __('Data AD Client', 'accelerated-mobile-pages'),
+                    'subtitle'      => __('Enter the Data Ad Client (data-ad-client) from the adsense ad code.', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'placeholder'=> 'ca-pub-2005XXXXXXXXX342'
+                ),
+                array(
+                    'id'        => 'enable-amp-ads-text-feild-slot-5',
+                    'type'      => 'text',
+                    'title'     => __('Data AD Slot', 'accelerated-mobile-pages'),
+                    'subtitle'      => __('Enter the Data Ad Slot (data-ad-slot) from the adsense ad code. ', 'accelerated-mobile-pages'),
+                    'default'   => '',
+                    'required'  => array('enable-amp-ads-5', '=' , '1'),
+                    'placeholder'=> '70XXXXXX12'
+                )
+
+
             ),
         ) );
 
