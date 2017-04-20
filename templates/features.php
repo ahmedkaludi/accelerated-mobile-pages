@@ -909,7 +909,7 @@ function ampforwp_title_custom_meta() {
 
         foreach ( $post_types  as $post_type ) {
 
-          if( $post_type == 'amp-cta' ) {
+          if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
 							continue;
           }
 
