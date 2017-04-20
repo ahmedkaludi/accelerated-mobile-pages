@@ -559,12 +559,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			}
 		}
 
-		// Above Related post
+		// Below The Title
 
-		add_action('ampforwp_above_related_post','ampforwp_above_related_post_advert');
+		add_action('ampforwp_below_the_title','ampforwp_below_the_title_advert');
 
 
-		function ampforwp_above_related_post_advert() {
+		function ampforwp_below_the_title_advert() {
 			global $redux_builder_amp;
 
 			if($redux_builder_amp['enable-amp-ads-5'] == true) {
@@ -596,6 +596,50 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'">';
+				$output	.=	'</amp-ad>';
+				$output	.=   ' </div>';
+				echo $output;
+			}
+		}
+
+
+		// Above Related post
+
+		add_action('ampforwp_above_related_post','ampforwp_above_related_post_advert');
+
+
+		function ampforwp_above_related_post_advert() {
+			global $redux_builder_amp;
+
+			if($redux_builder_amp['enable-amp-ads-6'] == true) {
+				if($redux_builder_amp['enable-amp-ads-select-6'] == 1)  {
+					$advert_width  = '300';
+					$advert_height = '250';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 2) {
+								$advert_width  = '336';
+					$advert_height = '280';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 3)  {
+								$advert_width  = '728';
+					$advert_height = '90';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 4)  {
+								$advert_width  = '300';
+					$advert_height = '600';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 5)  {
+								$advert_width  = '320';
+					$advert_height = '100';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 6)  {
+								$advert_width  = '200';
+					$advert_height = '50';
+				} elseif ($redux_builder_amp['enable-amp-ads-select-6'] == 7)  {
+								$advert_width  = '320';
+					$advert_height = '50';
+						}
+				$output = '<div class="amp-ad-wrapper">';
+				$output	.=	'<amp-ad class="amp-ad-6"
+							type="adsense"
+							width='. $advert_width .' height='. $advert_height . '
+							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'">';
 				$output	.=	'</amp-ad>';
 				$output	.=   ' </div>';
 				echo $output;
