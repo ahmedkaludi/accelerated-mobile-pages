@@ -120,10 +120,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
       if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
 				return;
 			}
-			if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
+			$cpage = isset( $wp->query_vars['cpage'] ) ? $wp->query_vars['cpage'] : 0;
+			if( is_front_page() &&  $cpage >= '2' ) {
 				return;
 			}
-			if( is_singular() &&  $wp->query_vars['cpage'] >= '2' ) {
+			if( is_singular() &&  $cpage >= '2' ) {
 				return;
 			}
 
