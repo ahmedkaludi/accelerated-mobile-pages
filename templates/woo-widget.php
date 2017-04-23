@@ -205,7 +205,9 @@
 
 // Register the widget.
 function ampforwp_register_woo_widget() {
-  register_widget( 'AMPFORWP_Woo_Widget' );
+    if ( class_exists( 'WooCommerce' ) ) {
+        register_widget( 'AMPFORWP_Woo_Widget' );
+    }
 }
 add_action( 'widgets_init', 'ampforwp_register_woo_widget' );
 
