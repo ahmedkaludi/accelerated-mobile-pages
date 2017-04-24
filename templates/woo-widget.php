@@ -72,7 +72,7 @@
              <span class="onsale"> <?php echo __('Sale!','accelerated-mobile-pages') ?> </span> <?php
            } ?>
 
-             <div class="ampforwp-wc-title"> <?php get_the_title() ?> </div> <?php
+             <div class="ampforwp-wc-title"> <?php echo get_the_title() ?> </div> <?php
            if (  class_exists( 'WooCommerce' )  ) {
              $amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
              $context = '';
