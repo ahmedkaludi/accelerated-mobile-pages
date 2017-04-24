@@ -20,14 +20,18 @@
 
 	<div class="ampforwp-last-modified-date">
 		<p> <?php	global $redux_builder_amp;
-					echo esc_html(
-						sprintf(
-							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-							date( "F j, Y, g:i a" , $this->get( 'post_modified_timestamp' ) )
-						)
-					); ?>
-			</p>
-	</div>
+
+			if( $this->get( 'post_modified_timestamp' ) - $this->get( 'post_publish_timestamp' ) ){
+				echo esc_html(
+					sprintf(
+						_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
+						date( "F j, Y, g:i a" , $this->get( 'post_modified_timestamp' ) )
+					)
+				);
+			} ?>
+			
+		</p>
+</div>
 
 	<!--Post Next-Previous Links-->
 	<?php global $redux_builder_amp;

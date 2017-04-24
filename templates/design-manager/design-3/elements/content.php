@@ -3,7 +3,7 @@
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
 		<?php if(has_excerpt()){ ?>
-			<div class="ampforwp_single_excerpt"> 
+			<div class="ampforwp_single_excerpt">
 				<?php $content = get_the_excerpt();
 				echo $content; ?>
 			</div>
@@ -25,6 +25,21 @@
 			?>
 
 		<?php do_action('ampforwp_after_post_content') ; //Post After Content here ?>
+
+		<div class="ampforwp-last-modified-date">
+			<p> <?php	global $redux_builder_amp;
+
+				if( $this->get( 'post_modified_timestamp' ) - $this->get( 'post_publish_timestamp' ) ){
+					echo esc_html(
+						sprintf(
+							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
+							date( "F j, Y, g:i a" , $this->get( 'post_modified_timestamp' ) )
+						)
+					);
+				} ?>
+
+			</p>
+	</div>
 
 	</div>
 	<!--Post Content Ends here-->
