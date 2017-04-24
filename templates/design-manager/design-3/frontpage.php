@@ -12,14 +12,12 @@ $template = new AMP_Post_Template( $post_id );?>
 	   $page = $wp->query_vars['page'];
   }
 
-	if ( $page >= '2') { ?>
+  if ( $page >= '2') { ?>
 		<link rel="canonical" href="<?php
-		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		echo trailingslashit( get_permalink( $ID ) ) . '?page=' . $page ?>"> <?php
+		echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
 	} else { ?>
 		<link rel="canonical" href="<?php
-		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		echo get_permalink( $ID ) ?>"> <?php
+		echo  trailingslashit( home_url() ) ?>"> <?php
 	} ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
