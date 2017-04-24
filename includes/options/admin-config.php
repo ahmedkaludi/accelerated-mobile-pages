@@ -683,7 +683,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             'mode'     => 'css',
             'theme'    => 'monokai',
             'desc'     => '',
-            'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages') 
+            'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
         ),
         )
 
@@ -1061,7 +1061,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'default'   => '',
                     'required'  => array('enable-amp-ads-5', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
-                ),        
+                ),
 
             //Ad 6 Starts
             array(
@@ -1729,6 +1729,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('ago', 'accelerated-mobile-pages'),
                        'default'  => __('ago','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-modified-date-text',
+                       'type'     => 'text',
+                       'title'    => __('This post was last modified on ', 'accelerated-mobile-pages'),
+                       'default'  => __('This post was last modified on ','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),

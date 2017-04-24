@@ -1,10 +1,10 @@
-<div class="amp-wp-article-content"> 
+<div class="amp-wp-article-content">
 	<?php if(has_excerpt()){ ?>
-		<div class="ampforwp_single_excerpt"> 
+		<div class="ampforwp_single_excerpt">
 			<?php $content = get_the_excerpt();
 			echo $content; ?>
 		</div>
-	<?php } 
+	<?php }
 	do_action('ampforwp_inside_post_content_before');
 		$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 
@@ -17,6 +17,17 @@
 		}
 
 	do_action('ampforwp_inside_post_content_after') ?>
+
+	<div class="ampforwp-last-modified-date">
+		<p> <?php	global $redux_builder_amp;
+					echo esc_html(
+						sprintf(
+							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
+							date( "F j, Y, g:i a" , $this->get( 'post_modified_timestamp' ) )
+						)
+					); ?>
+			</p>
+	</div>
 
 	<!--Post Next-Previous Links-->
 	<?php global $redux_builder_amp;

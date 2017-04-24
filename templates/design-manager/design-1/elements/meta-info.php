@@ -21,7 +21,7 @@
 			echo esc_html(
 				sprintf(
 					_x( '%s '.ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-					human_time_diff( $this->get( 'post_modified_timestamp' ), current_time( 'timestamp' ) )
+					human_time_diff( $this->get( 'post_publish_timestamp' ), current_time( 'timestamp' ) )
 				)
 			);
 			?>
