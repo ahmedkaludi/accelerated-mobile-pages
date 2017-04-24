@@ -2112,7 +2112,8 @@ Examples:
 		.ampforwp_wc_shortcode li{ font-size:12px; line-height: 1; float: left;max-width: 150px;list-style-type: none;margin: 10px;}
 		.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
 		.ampforwp-wc-title{ margin: 10px 0px; }
-		.ampforwp-wc-price{ color:#444 } <?php
+		.ampforwp-wc-price{ color:#444 }
+		.widgettitle{ text-align:center; } <?php
    }
 
 // 54. Change the default values of post meta for AMP pages. #746

@@ -19,7 +19,7 @@
       );
 
 // Create the widget output.
-  public function widget( $args, $instance ) {
+  public function widget( $args,$instance ) {
     // initializing these to avoid debug errors
     global $redux_builder_amp;
     global $woocommerce;
@@ -27,7 +27,6 @@
     if( !class_exists( 'WooCommerce' ) ){
       return;
     }
-
     $ampforwp_title = apply_filters( 'widget_wc_title', $instance[ 'title' ] );
     $ampforwp_enable_ratings = $instance[ 'ratings' ];
     $on_sale_logo_on_product = $instance[ 'on_sale' ];
@@ -46,8 +45,8 @@
       'posts_per_page' => $ampforwp_number_of_products
      ) );
 
-    echo $args['before_title'] . $ampforwp_title . $args['after_title'];
-    echo $args['before_widget'] ;
+    echo '<h4 class="widgettitle">' . $ampforwp_title . '</h4>';
+    echo '<div class="widget-wrap">' ;
 
      if ( $q->have_posts() ) : ?>
           <ul class="ampforwp_wc_shortcode"> <?php
@@ -99,7 +98,7 @@
          </ul>
      <?php endif; ?><?php
 
-     echo $args['after_widget'] ;
+     echo '</div>' ;
      /* Restore original Post Data */
      wp_reset_postdata();
 }
