@@ -16,22 +16,7 @@
 			echo $this->get( 'ampforwp_amp_content' );
 		}
 
-	do_action('ampforwp_inside_post_content_after') ?>
-
-	<div class="ampforwp-last-modified-date">
-		<p> <?php	global $redux_builder_amp;
-
-			if( $this->get( 'post_modified_timestamp' ) - $this->get( 'post_publish_timestamp' ) ){
-				echo esc_html(
-					sprintf(
-						_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-						date( "F j, Y, g:i a" , $this->get( 'post_modified_timestamp' ) )
-					)
-				);
-			} ?>
-			
-		</p>
-</div>
+	do_action('ampforwp_after_post_content') ?>
 
 	<!--Post Next-Previous Links-->
 	<?php global $redux_builder_amp;

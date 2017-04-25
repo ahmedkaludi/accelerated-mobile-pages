@@ -1137,6 +1137,14 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Next-Previous links in single', 'accelerated-mobile-pages'),
           ),
+          // Post Modified Date
+          array(
+              'id'        => 'post-modified-date',
+              'type'      => 'switch',
+              'title'     => __('Show Post Modified Date', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+          ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',

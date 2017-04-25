@@ -65,6 +65,8 @@
 	53. Adding the Markup for AMP Woocommerce latest Products
 	54. Change the default values of post meta for AMP pages.
 	55. Call Now Button Feature added
+	56. Multi Translation Feature #540
+	57. Adding Updated date at in the Content
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -516,7 +518,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 		// Below Content Single
 			add_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
-			add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');
+			// Hook updated 
+		//	add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
 
@@ -2144,15 +2147,15 @@ function ampforwp_change_default_amp_page_meta() {
 // Adding the meta="description" from yoast or from the content
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
- global $redux_builder_amp;
- if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
-	 return;
- }
+	global $redux_builder_amp;
+	if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
+		return;
+	}
 
- global $post;
- $desc = "" ;
+	global $post;
+	$desc = "" ;
 
- if($redux_builder_amp['ampforwp-seo-yoast-description']){
+	if($redux_builder_amp['ampforwp-seo-yoast-description']){
 		if ( class_exists('WPSEO_Frontend') ) {
 			// general Description of everywhere
 			$front = WPSEO_Frontend::get_instance();
@@ -2211,7 +2214,7 @@ function ampforwp_meta_description() {
 	}
 }
 
-// Call Feature
+// 55. Call Now Button Feature added
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
 function ampforwp_call_button_html_output(){
 	global $redux_builder_amp;
@@ -2222,7 +2225,7 @@ function ampforwp_call_button_html_output(){
   }
 }
 
-// multi translation feature
+// 56. Multi Translation Feature #540
 function ampforwp_translation( $redux_style_translation , $pot_style_translation ) {
  global $redux_builder_amp;
  $single_translation_enabled = $redux_builder_amp['amp-use-pot'];
@@ -2231,4 +2234,25 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
    } else {
      return __($pot_style_translation,'accelerated-mobile-pages');
    }
+}
+
+// 57. Adding Updated date at in the Content
+add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
+function ampforwp_add_modified_date($post_id){ 
+	global $redux_builder_amp; 
+	if ( is_single() && $redux_builder_amp['post-modified-date'] ) { ?>
+		<div class="ampforwp-last-modified-date">
+			<p> <?php 
+				$post_object = new AMP_Post_Template($post_id);
+				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
+					echo esc_html(
+						sprintf(
+							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
+							date( "F j, Y, g:i a" , $post_object->get( 'post_modified_timestamp' ) )
+						)
+					);
+				} ?>
+			</p>
+		</div> <?php 
+	}
 }
