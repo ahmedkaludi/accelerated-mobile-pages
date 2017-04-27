@@ -12,7 +12,7 @@
 
 // args for the output of the form
   public $args = array(
-          'before_title'  => '<h4 class="widgettitle">',
+          'before_title'  => '<h4 class="wc_widgettitle">',
           'after_title'   => '</h4>',
           'before_widget' => '<div class="widget-wrap">',
           'after_widget'  => '</div>'
@@ -45,8 +45,8 @@
       'posts_per_page' => $ampforwp_number_of_products
      ) );
 
-    echo '<h4 class="widgettitle">' . $ampforwp_title . '</h4>';
-    echo '<div class="widget-wrap">' ;
+    echo '<h4 class="wc_widgettitle">' . $ampforwp_title . '</h4>';
+    echo '<div class="widget-wrap amp-wp-content">' ;
 
      if ( $q->have_posts() ) : ?>
           <ul class="ampforwp_wc_shortcode"> <?php
@@ -108,12 +108,12 @@
   public function form( $instance ) {
 
     // Declarations for all the values to be stored
-    $ampforwp_title =  ! empty( $instance['title'] ) ? $instance['title'] : 'Wocommerce Title';
+    $ampforwp_title =  ! empty( $instance['title'] ) ? $instance['title'] : 'Woocommerce Title';
     $ampforwp_enable_ratings = ! empty( $instance['ratings'] ) ? $instance['ratings'] : 'yes';
     $on_sale_logo_on_product = ! empty( $instance['on_sale'] ) ? $instance['on_sale'] : 'yes';
     $ampforwp_show_price =! empty( $instance['show_price'] ) ? $instance['show_price'] : 'yes';
     $ampforwp_procts_page_link = ! empty( $instance['link'] ) ? $instance['link'] : 'noamp';
-    $ampforwp_number_of_products =  ! empty( $instance['num_of_products'] ) ? $instance['num_of_products'] : 5;
+    $ampforwp_number_of_products =  ! empty( $instance['num_of_products'] ) ? $instance['num_of_products'] : 3;
     ?>
     <!-- Form Starts Here -->
         <p>
@@ -209,5 +209,4 @@ function ampforwp_register_woo_widget() {
     }
 }
 add_action( 'widgets_init', 'ampforwp_register_woo_widget' );
-
 ?>
