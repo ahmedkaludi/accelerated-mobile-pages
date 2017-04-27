@@ -1302,102 +1302,69 @@ function custom_og_image_homepage() {
 }
 
 
+/**
+ * PR by Sybre Waaijer:
+ * @link https://github.com/ahmedkaludi/accelerated-mobile-pages/pull/761
+ *
+ * @since version 0.9.48 :
+ *   1. Removes unused code.
+ *   2. Cleaned up code.
+ *   3. Keeps legacy action in place.
+ *   4. No longer replaces the title tag.
+ *   5. Instead, filters the title tag.
+ *   6. Therefore, it works with all SEO plugins.
+ *   7. Removed direct Yoast SEO compat -- It's no longer needed.
+ *   8. Removed unwanted spaces.
+ *   9. Improved performance.
+ *   10. Improved security.
+ *   11. Added support for CPT and attachment pages.
+ */
 //26. Extending Title Tagand De-Hooking the Standard one from AMP
-add_action('amp_post_template_include_single','ampforwp_remove_title_tags');
-function ampforwp_remove_title_tags(){
-  remove_action('amp_post_template_head','amp_post_template_add_title');
-  add_action('amp_post_template_head','ampforwp_add_custom_title_tag');
+add_action( 'amp_post_template_include_single', 'ampforwp_remove_title_tags' );
+function ampforwp_remove_title_tags() {
+	return ampforwp_replace_title_tags();
+}
+function ampforwp_replace_title_tags() {
 
-  function ampforwp_add_custom_title_tag(){
-    global $redux_builder_amp; ?>
-    <title> <?php
+	add_filter( 'pre_get_document_title', 'ampforwp_add_custom_title_tag', 10 );
+	add_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
 
-      // title for a single post and single page
-      if( is_single() || is_page() ){
-        global $post;
-        $title = $post->post_title;
-        $site_title =  $title . ' | ' . get_option( 'blogname' ) ;
-      }
+	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
+		global $redux_builder_amp;
 
-      // title for archive pages
-      if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
-        $site_title = strip_tags(get_the_archive_title( '' )) . ' | ' . strip_tags(get_the_archive_description( '' ));
-      }
+		//* We can filter this later if needed:
+		$sep = ' | ';
 
-      if ( is_home() ) {
-        $site_title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
-        if  ( $redux_builder_amp['amp-frontpage-select-option']== 1) {
-          $ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-          $site_title =  get_the_title( $ID ) . ' | ' . get_option('blogname');
-        } else {
-          global $wp;
-          $current_archive_url = home_url( $wp->request );
-          $current_url_in_pieces = explode('/',$current_archive_url);
-          $cnt = count($current_url_in_pieces);
-          if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
-            $site_title .= ' | '.__('Page ','accelerated-mobile-pages') . $current_url_in_pieces[$cnt-1];
-          }
-        }
-      }
+		if ( is_singular() ) {
+			global $post;
+			$title = ! empty( $post->post_title ) ? $post->post_title : $title;
+			$site_title = $title . $sep . get_option( 'blogname' );
+		} elseif ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
+			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_the_archive_description( '' ) );
+		}
 
-      if( is_search() ) {
-        $site_title =  ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();
-      }
+		if ( is_home() ) {
+			if ( 1 == $redux_builder_amp['amp-frontpage-select-option'] ) {
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+			} else {
+				$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 
-      if ( class_exists('WPSEO_Frontend') ) {
-        $front = WPSEO_Frontend::get_instance();
-        $title = $front->title( $site_title );
-
-        // Code for Custom Frontpage Yoast SEO Title
-        if ( class_exists('WPSEO_Meta') ) {
-
-          // Yoast SEO Title
-          $yaost_title = WPSEO_Options::get_option( 'wpseo' );
-          if ( $yaost_title['website_name']) {
-            $site_title  = $yaost_title['website_name'];
-          } else {
-            $site_title  =  get_bloginfo('name');
-          }
-
-          // Yoast SEO Title Seperator
-          $wpseo_titles = WPSEO_Options::get_option( 'wpseo_titles' );
-          $seperator_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
-          if ( $wpseo_titles['separator'] ) {
-            $seperator = $seperator_options[ $wpseo_titles['separator'] ];
-          } else {
-            $seperator = ' - ';
-          }
-
-          $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-          $custom_fp_title = WPSEO_Meta::get_value('title', $post_id );
-          if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-            if ( $custom_fp_title ) {
-              $title = $custom_fp_title;
-            } else {
-              $title = get_the_title($post_id) .' '. $seperator .' '. $site_title ;
-            }
-          }
-        }
-
-				//this overrides title when frontpage set on normal website
-				if( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] ){
-						global $wp;
-						$title = get_bloginfo('name') . ' | ' . get_option( 'blogdescription' ) ;
-
-						$current_home_url = home_url( $wp->request );
-						$current_url_in_pieces = explode('/',$current_home_url);
-						$cnt = count($current_url_in_pieces);
-						if( is_numeric( $current_url_in_pieces[  $cnt-1 ] ) ) {
-							$title .= ' | ' . __('Page ','accelerated-mobile-pages') . $current_url_in_pieces[$cnt-1];
-						}
+				$current_archive_url = home_url( $GLOBALS['wp']->request );
+				$current_url_in_pieces = explode( '/', $current_archive_url );
+				$cnt = count( $current_url_in_pieces );
+				if ( is_numeric( $current_url_in_pieces[ $cnt - 1 ] ) ) {
+					$site_title .= $sep . 'Page ' . $current_url_in_pieces[ $cnt - 1 ];
 				}
+			}
+		}
 
-        echo $title;
-      } else {
-        echo $site_title;
-      } ?>
-    </title> <?php
-  }
+		if ( is_search() ) {
+			$site_title = $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query();
+		}
+
+		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
+	}
 }
 
 // 27. Clean the Defer issue
