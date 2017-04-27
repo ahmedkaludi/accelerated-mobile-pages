@@ -5,16 +5,19 @@ $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
-	<meta charset="utf-8"> <?php 
-	$page = $wp->query_vars['page'];
-	if ( $page >= '2') { ?>
+	<meta charset="utf-8"> <?php
+	$query_arg_array = $wp->query_vars;
+  $page = '' ;
+  if( array_key_exists( "page" , $query_arg_array  ) ) {
+	   $page = $wp->query_vars['page'];
+  }
+
+  if ( $page >= '2') { ?>
 		<link rel="canonical" href="<?php
-		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		echo trailingslashit( get_permalink( $ID ) ) . '?page=' . $page ?>"> <?php
+		echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
 	} else { ?>
 		<link rel="canonical" href="<?php
-		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		echo get_permalink( $ID ) ?>"> <?php
+		echo  trailingslashit( home_url() ) ?>"> <?php
 	} ?>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
@@ -92,7 +95,7 @@ $template = new AMP_Post_Template( $post_id );?>
 				));
 			if ( $comments ) { ?>
 				<div class="amp-wp-content comments_list">
-				    <h3><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-view-comments-text'] ?></h3>
+				    <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' ) ?></h3>
 				    <ul>
 				    <?php
 						$page = (get_query_var('page')) ? get_query_var('page') : 1;
@@ -113,8 +116,8 @@ $template = new AMP_Post_Template( $post_id );?>
 							'end_size'     => 1,
 							'mid_size'     => 2,
 							'prev_next'    => True,
-							'prev_text'    => $redux_builder_amp['amp-translator-previous-text'],
-							'next_text'    => $redux_builder_amp['amp-translator-next-text'],
+							'prev_text'    => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous'),
+							'next_text'    => ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next'),
 							'type'         => 'plain'
 						);
 
@@ -128,16 +131,14 @@ $template = new AMP_Post_Template( $post_id );?>
 									<footer class="comment-meta">
 										<div class="comment-author vcard">
 											<?php
-											printf(__('<b class="fn">%s</b> <span class="says">'.$redux_builder_amp['amp-translator-says-text'].':</span>'), get_comment_author_link()) ?>
+											printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
 											<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) )?>">
-												<?php
-												printf(__('%1$s '.$redux_builder_amp['amp-translator-at-text'].' %2$s'), get_comment_date(),  get_comment_time())
-												?>
+												<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 											</a>
-											<?php edit_comment_link(__('('.$redux_builder_amp['amp-translator-Edit-text'].')'),'  ','') ?>
+											<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )   ) ?>
 										</div>
 										<!-- .comment-metadata -->
 									</footer>
@@ -171,14 +172,14 @@ $template = new AMP_Post_Template( $post_id );?>
 				    </ul>
 				</div>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 			} else {
 			    if ( !comments_open() ) {
 			      return;
 				} ?>
 			    <div class="comment-button-wrapper">
-			       <a href="<?php echo get_permalink().'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php esc_html_e( $redux_builder_amp['amp-translator-leave-a-comment-text']  ); ?></a>
+			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 			    </div>
 			<?php } ?>
 		</div> <?php

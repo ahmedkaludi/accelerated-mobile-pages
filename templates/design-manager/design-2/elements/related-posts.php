@@ -1,4 +1,5 @@
 <?php
+		do_action('ampforwp_above_related_post'); //Above Related Posts
 		global $post,  $redux_builder_amp;
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
@@ -41,7 +42,7 @@
 						<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
 										<ol class="clearfix">
-												<h3><?php echo esc_html( $redux_builder_amp['amp-translator-related-text'] ); ?></h3>
+												<h3><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></h3>
 												<?php
 										    while( $my_query->have_posts() ) {
 												    $my_query->the_post();

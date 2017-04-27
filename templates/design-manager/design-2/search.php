@@ -48,7 +48,7 @@
 			'post_status'		  => 'publish'
 		) ); ?>
 		<div class="amp-wp-content amp-archive-heading">
-		<h3 class="page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
+		<h3 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h3>
  		</div>
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			$ampforwp_amp_post_url = trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>
@@ -78,8 +78,8 @@
 		<div class="amp-wp-content pagination-holder">
 
 			<div id="pagination">
-				<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text'] . ' &raquo;', 0 ) ?></div>
-				<div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] . ' &raquo;' ,'Next' ), 0 ) ?></div>
+				<div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous') ); ?></div>
 
 				<div class="clearfix"></div>
 			</div>
@@ -87,7 +87,8 @@
 	<?php else: ?>
 		<div class="amp-wp-content amp-loop-list">
 			<div class="amp-wp-post-content">
-				<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
+				<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 
+				'It seems we can\'t find what you\'re looking for. '); ?>
 		    </div>
             <div class="cb"></div>
 		</div>
@@ -95,6 +96,7 @@
 	 <?php wp_reset_postdata(); ?>
 	<?php do_action('ampforwp_post_after_loop') ?>
 </main>
+<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>

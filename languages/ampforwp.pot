@@ -1,0 +1,3755 @@
+# WordPress Blank Pot
+# Copyright (C) 2014 ...
+# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: "
+"Accelerated Mobile Pages "
+"v0.9.47.1\n"
+"POT-Creation-Date: 2017-04-14 "
+"22:52+0530\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Your Name "
+"<you@example.com>\n"
+"Language-Team: Ahmed Kaludi "
+"<team@magazine3.com>\n"
+"Report-Msgid-Bugs-To: "
+"Translator Name "
+"<translations@example.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; "
+"charset=UTF-8\n"
+"Content-Transfer-Encoding: "
+"8bit\n"
+"Plural-Forms: nplurals=2; "
+"plural=n != 1;\n"
+"X-Textdomain-Support: yesX-"
+"Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;"
+"esc_html_e;esc_html_x:1,2c;"
+"esc_html__;esc_attr_e;"
+"esc_attr_x:1,2c;esc_attr__;"
+"_ex:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_x:1,2c;_n:1,2;"
+"_n_noop:1,2;__ngettext:1,2;"
+"__ngettext_noop:1,2;_c,"
+"_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"Language: en_US\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: accelerated-moblie-pages.php:164
+msgid ""
+"AMP Installation requires one "
+"last step:"
+msgstr ""
+
+#: accelerated-moblie-pages.php:164
+msgid ""
+"AMP by Automattic plugin is "
+"not active"
+msgstr ""
+
+#: accelerated-moblie-pages.php:165
+msgid "Continue Installation"
+msgstr ""
+
+#: accelerated-moblie-pages.php:165
+msgid "More Information"
+msgstr ""
+
+#: accelerated-moblie-pages.php:231
+msgid "Settings"
+msgstr ""
+
+#: accelerated-moblie-pages.php:231
+msgid "Premium Support"
+msgstr ""
+
+#: accelerated-moblie-pages.php:240
+msgid ""
+"<span style=\"color:"
+"#b30000\">Action Required: "
+"Continue Installation</span>"
+msgstr ""
+
+#: includes/includes.php:15
+msgid "AMP Menu"
+msgstr ""
+
+#: includes/includes.php:31
+msgid "AMP Footer Menu"
+msgstr ""
+
+#: includes/newsletter.php:38
+msgid ""
+"You are awesome for using AMP!"
+msgstr ""
+
+#: includes/newsletter.php:39
+msgid ""
+"<p>Do you want the latest on "
+"<b>AMP update</b> before "
+"others and some best resources "
+"on AMP in a single email? - "
+"Free just for users of AMP!</p>"
+msgstr ""
+
+#: includes/newsletter.php:40
+msgid ""
+"\n"
+"            <!-- Begin "
+"MailChimp Signup Form -->\n"
+"            <style type=\"text/"
+"css\">\n"
+"            .wp-pointer-"
+"buttons{ padding:0; overflow: "
+"hidden; }\n"
+"            .wp-pointer-"
+"content .button-"
+"secondary{  left: -25px;"
+"background: transparent;top: "
+"5px; border: 0;position: "
+"relative; padding: 0; box-"
+"shadow: none;margin: 0;color: "
+"#bcbcbc;} .wp-pointer-content ."
+"button-primary{ display:"
+"none}\t#mc_embed_signup{background:"
+"#fff; clear:left; font:14px "
+"Helvetica,Arial,sans-serif; }\n"
+"            </style>\n"
+"            <div id="
+"\"mc_embed_signup\">\n"
+"            \t<form action=\"//"
+"app.mailerlite.com/webforms/"
+"submit/d3w0e1\" data-id="
+"\"258182\" data-code="
+"\"d3w0e1\" method=\"POST\" "
+"target=\"_blank\">\n"
+"\t            \t<div id="
+"\"mc_embed_signup_scroll\">\n"
+"\t            \t<div class="
+"\"mc-field-group\" style=\"    "
+"margin-left: 15px;    width: "
+"175px;    float: left;\"> \t\n"
+"\t\t\t\t\t<input type=\"text\" "
+"name=\"fields[name]\" class="
+"\"form-control\" placeholder="
+"\"Name\" hidden value=\""
+msgstr ""
+
+#: includes/newsletter.php:74
+#: includes/options/redux-core/inc/class.redux_admin_notices.php:97
+msgid "Dismiss"
+msgstr ""
+
+#: includes/options/admin-config.php:17
+msgid ""
+"Accelerated Mobile Pages "
+"Options"
+msgstr ""
+
+#: includes/options/admin-config.php:20
+msgid "AMP"
+msgstr ""
+
+#: includes/options/admin-config.php:70
+msgid "Theme Information 1"
+msgstr ""
+
+#: includes/options/admin-config.php:71
+#: includes/options/admin-config.php:76
+msgid ""
+"<p>This is the tab content, "
+"HTML is allowed.</p>"
+msgstr ""
+
+#: includes/options/admin-config.php:75
+msgid "Theme Information 2"
+msgstr ""
+
+#: includes/options/admin-config.php:82
+msgid ""
+"<p>This is the sidebar "
+"content, HTML is allowed.</p>"
+msgstr ""
+
+#: includes/options/admin-config.php:123
+msgid "Basic Field"
+msgstr ""
+
+#: includes/options/admin-config.php:125
+msgid ""
+"Basic field with no "
+"subsections."
+msgstr ""
+
+#: includes/options/admin-config.php:130
+msgid "Example Text"
+msgstr ""
+
+#: includes/options/admin-config.php:131
+msgid "Example description."
+msgstr ""
+
+#: includes/options/admin-config.php:132
+msgid "Example subtitle."
+msgstr ""
+
+#: includes/options/admin-config.php:138
+#: includes/options/redux-core/inc/tracking.php:152
+msgid "Getting Started"
+msgstr ""
+
+#: includes/options/admin-config.php:140
+msgid ""
+"We are actively working on "
+"updating the plugin. We have "
+"built user friendly options "
+"which allows you to make "
+"changes on your AMP version."
+msgstr ""
+
+#: includes/options/admin-config.php:141
+msgid ""
+"Here are some quick links to "
+"help you get started:"
+msgstr ""
+
+#: includes/options/admin-config.php:142
+msgid ""
+"1. <a href=\"http://ampforwp."
+"com/help/\" target=\"_blank"
+"\">User Documentation</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:142
+msgid ""
+"The AMP for WP plugin is easy "
+"to setup but we have some "
+"tutorials and guides prepared "
+"for you which will help you "
+"dive deep with the plugin."
+msgstr ""
+
+#: includes/options/admin-config.php:143
+msgid ""
+"2. <a href=\"https://ampforwp."
+"com/chat/\" target=\"_blank"
+"\">Chat with Team AMP</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:143
+msgid ""
+"We’re bunch of passionate "
+"people that are dedicated "
+"towards helping our users. We "
+"will be happy to help you!"
+msgstr ""
+
+#: includes/options/admin-config.php:144
+msgid ""
+"3. <a href=\"https://ampforwp."
+"com/help/#extend\" target="
+"\"_blank\">Developer Docs</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:144
+msgid ""
+"We have created special "
+"documentations for developers "
+"and semi technical users who "
+"are willing to modify the "
+"plugin according to their own "
+"needs."
+msgstr ""
+
+#: includes/options/admin-config.php:145
+msgid ""
+"4. <a href=\"admin.php?"
+"page=amp_options&tab=14\" "
+"target=\"_blank\">Fixing AMP "
+"Validation Errors</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:145
+msgid ""
+"We will personally take care "
+"that your website’s AMP "
+"version is perfectly "
+"validated. We will make sure "
+"that your AMP version gets "
+"approved and indexed by Google "
+"Webmaster Tools properly and "
+"we will even keep an eye on "
+"AMP updates from Google and "
+"implement them into your "
+"website."
+msgstr ""
+
+#: includes/options/admin-config.php:146
+msgid ""
+"5. <a href=\"https://ampforwp."
+"com/help/#support-forum\" "
+"target=\"_blank\">Community "
+"Support Forum</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:146
+msgid ""
+"We have a special community "
+"support forum where you can "
+"ask us questions and get help "
+"about your AMP related "
+"questions. Delivering a good "
+"user experience means alot to "
+"us and so we try our best to "
+"reply each and every question "
+"that gets asked."
+msgstr ""
+
+#: includes/options/admin-config.php:147
+msgid ""
+"6. <a href=\"https://ampforwp."
+"com/help/#contact\" target="
+"\"_blank\">Hire Us / Other "
+"queries</a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:147
+msgid ""
+"We try to answer each and "
+"every email, so remember to "
+"give us some time. For any "
+"other queries, please use the "
+"contact form. Please be "
+"descriptive as possible."
+msgstr ""
+
+#: includes/options/admin-config.php:148
+msgid ""
+"7. <a href=\"http://ampforwp."
+"com/new/\" target=\"_blank\"> "
+"What's New in this Version?</"
+"a>: "
+msgstr ""
+
+#: includes/options/admin-config.php:148
+msgid ""
+"If you want to know whats new "
+"in the latest version of the "
+"plugin, then please use this "
+"link. "
+msgstr ""
+
+#: includes/options/admin-config.php:150
+#, php-format
+msgid ""
+" </br /></br />\n"
+"                          <h2>"
+"%1$sLike this plugin? Support "
+"us by leaving a 5 Star Rating"
+"%2$s</h2><br />\n"
+"                         "
+msgstr ""
+
+#: includes/options/admin-config.php:140
+msgid ""
+"<div class=\"amp-faq\">Thank "
+"you for using Accelerated "
+"Mobile Pages plugin.  "
+msgstr ""
+
+#: includes/options/admin-config.php:160
+msgid "General"
+msgstr ""
+
+#: includes/options/admin-config.php:170
+msgid "Logo"
+msgstr ""
+
+#: includes/options/admin-config.php:171
+msgid ""
+"Upload a logo for the AMP "
+"version."
+msgstr ""
+
+#: includes/options/admin-config.php:172
+msgid ""
+"Recommend logo size is: 190x36"
+msgstr ""
+
+#: includes/options/admin-config.php:176
+msgid "Custom Logo Size"
+msgstr ""
+
+#: includes/options/admin-config.php:183
+msgid "Logo Width"
+msgstr ""
+
+#: includes/options/admin-config.php:184
+msgid ""
+"Default width is 190 pixels"
+msgstr ""
+
+#: includes/options/admin-config.php:191
+msgid "Logo Height"
+msgstr ""
+
+#: includes/options/admin-config.php:192
+msgid ""
+"Default height is 36 pixels"
+msgstr ""
+
+#: includes/options/admin-config.php:200
+msgid "AMP on Pages"
+msgstr ""
+
+#: includes/options/admin-config.php:201
+msgid ""
+"Enable or Disable AMP on all "
+"Pages"
+msgstr ""
+
+#: includes/options/admin-config.php:203
+msgid ""
+"Re-Save permalink if you make "
+"changes in this option, please "
+"have a look <a href=\"https://"
+"ampforwp.com/flush-rewrite-"
+"urls/\">here</a> on how to do "
+"it"
+msgstr ""
+
+#: includes/options/admin-config.php:208
+msgid ""
+"Individual AMP Page (Bulk Edit)"
+msgstr ""
+
+#: includes/options/admin-config.php:209
+msgid ""
+"Allows you to Show or Hide AMP "
+"from All pages, so it can be "
+"changed individually later. "
+"This option will change the  "
+"Default value of AMP metabox "
+"in Pages"
+msgstr ""
+
+#: includes/options/admin-config.php:210
+msgid ""
+"NOTE: Changes will overwrite "
+"the previous settings."
+msgstr ""
+
+#: includes/options/admin-config.php:212
+msgid "Show by Default"
+msgstr ""
+
+#: includes/options/admin-config.php:213
+msgid "Hide by default"
+msgstr ""
+
+#: includes/options/admin-config.php:237
+msgid "Homepage"
+msgstr ""
+
+#: includes/options/admin-config.php:244
+msgid "Homepage Support"
+msgstr ""
+
+#: includes/options/admin-config.php:245
+msgid ""
+"Enable/Disable Home page using "
+"this switch."
+msgstr ""
+
+#: includes/options/admin-config.php:251
+#: includes/options/redux-core/inc/welcome/views/status_report.php:185
+msgid "Front Page"
+msgstr ""
+
+#: includes/options/admin-config.php:253
+msgid "Custom AMP front page"
+msgstr ""
+
+#: includes/options/admin-config.php:261
+msgid "Select Page as Front Page"
+msgstr ""
+
+#: includes/options/admin-config.php:275
+msgid ""
+"Title on Static Front Page"
+msgstr ""
+
+#: includes/options/admin-config.php:276
+msgid ""
+"Enable/Disable display of "
+"title on the Static Front Page."
+msgstr ""
+
+#: includes/options/admin-config.php:283
+msgid ""
+"Override Homepage Thumbnail "
+"Size"
+msgstr ""
+
+#: includes/options/admin-config.php:292
+#: includes/options/admin-config.php:314
+msgid "Image Width"
+msgstr ""
+
+#: includes/options/admin-config.php:293
+msgid "Defaults to 100"
+msgstr ""
+
+#: includes/options/admin-config.php:303
+#: includes/options/admin-config.php:325
+msgid "Image Height"
+msgstr ""
+
+#: includes/options/admin-config.php:304
+msgid "Defaults to 75"
+msgstr ""
+
+#: includes/options/admin-config.php:315
+msgid "Defaults to 450"
+msgstr ""
+
+#: includes/options/admin-config.php:326
+msgid "Defaults to 270"
+msgstr ""
+
+#: includes/options/admin-config.php:336
+msgid ""
+"Non-AMP HomePage link in "
+"Header and Logo"
+msgstr ""
+
+#: includes/options/admin-config.php:337
+msgid ""
+"If you want users in header to "
+"go to non-AMP website from the "
+"Header, then you can enable "
+"this option"
+msgstr ""
+
+#: includes/options/admin-config.php:347
+msgid "Analytics"
+msgstr ""
+
+#: includes/options/admin-config.php:358
+#: includes/options/admin-config.php:455
+msgid "Analytics Type"
+msgstr ""
+
+#: includes/options/admin-config.php:359
+#: includes/options/admin-config.php:438
+msgid ""
+"Select your Analytics provider."
+msgstr ""
+
+#: includes/options/admin-config.php:361
+#: includes/options/admin-config.php:375
+msgid "Google Analytics"
+msgstr ""
+
+#: includes/options/admin-config.php:362
+#: includes/options/admin-config.php:387
+msgid "Segment Analytics"
+msgstr ""
+
+#: includes/options/admin-config.php:363
+#: includes/options/admin-config.php:398
+msgid "Piwik Analytics"
+msgstr ""
+
+#: includes/options/admin-config.php:364
+msgid "Quantcast Measurement"
+msgstr ""
+
+#: includes/options/admin-config.php:365
+msgid "comScore"
+msgstr ""
+
+#: includes/options/admin-config.php:380
+msgid ""
+"Enter your Google Analytics ID."
+msgstr ""
+
+#: includes/options/admin-config.php:381
+msgid "Example: UA-XXXXX-Y"
+msgstr ""
+
+#: includes/options/admin-config.php:388
+msgid ""
+"Enter your Segment Analytics "
+"Key."
+msgstr ""
+
+#: includes/options/admin-config.php:403
+msgid ""
+"Example: https://piwik.example."
+"org/piwik.php?"
+"idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM"
+msgstr ""
+
+#: includes/options/admin-config.php:404
+msgid ""
+"Enter your Piwik Analytics URL."
+msgstr ""
+
+#: includes/options/admin-config.php:411
+msgid "p-code"
+msgstr ""
+
+#: includes/options/admin-config.php:419
+msgid "C1"
+msgstr ""
+
+#: includes/options/admin-config.php:427
+msgid "C2"
+msgstr ""
+
+#: includes/options/admin-config.php:437
+msgid "Use Google Tag Manager"
+msgstr ""
+
+#: includes/options/admin-config.php:444
+msgid ""
+"Tag Manager ID (Container ID)"
+msgstr ""
+
+#: includes/options/admin-config.php:466
+msgid "Analytics ID"
+msgstr ""
+
+#: includes/options/admin-config.php:506
+msgid "Design"
+msgstr ""
+
+#: includes/options/admin-config.php:507
+msgid ""
+"\n"
+"       <br /><a href=\""
+msgstr ""
+
+#: includes/options/admin-config.php:517
+msgid "Design Selector"
+msgstr ""
+
+#: includes/options/admin-config.php:518
+msgid "Select your design."
+msgstr ""
+
+#: includes/options/admin-config.php:520
+msgid "Design One"
+msgstr ""
+
+#: includes/options/admin-config.php:521
+msgid "Design Two"
+msgstr ""
+
+#: includes/options/admin-config.php:522
+msgid "Design Three"
+msgstr ""
+
+#: includes/options/admin-config.php:575
+msgid "Featured Slider"
+msgstr ""
+
+#: includes/options/admin-config.php:584
+msgid "Featured Slider Category"
+msgstr ""
+
+#: includes/options/admin-config.php:594
+#: includes/options/admin-config.php:605
+#: includes/options/admin-config.php:617
+msgid ""
+"HTTPS is mandatory for Search"
+msgstr ""
+
+#: includes/options/admin-config.php:595
+#: includes/options/admin-config.php:607
+#: includes/options/admin-config.php:619
+msgid "Search"
+msgstr ""
+
+#: includes/options/admin-config.php:599
+#: includes/options/admin-config.php:611
+#: includes/options/admin-config.php:623
+msgid ""
+"HTTPS is required for search "
+"to work on AMP pages."
+msgstr ""
+
+#: includes/options/admin-config.php:630
+msgid "Call Now Button"
+msgstr ""
+
+#: includes/options/admin-config.php:639
+msgid "Enter Phone Number"
+msgstr ""
+
+#: includes/options/admin-config.php:657
+msgid "Credit link"
+msgstr ""
+
+#: includes/options/admin-config.php:666
+msgid "Author Bio in Single"
+msgstr ""
+
+#: includes/options/admin-config.php:675
+msgid "Display Date on Single"
+msgstr ""
+
+#: includes/options/admin-config.php:679
+msgid ""
+"Display date along with author "
+"and category"
+msgstr ""
+
+#: includes/options/admin-config.php:686
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/options/admin-config.php:687
+msgid ""
+"You can customize the "
+"Stylesheet of the AMP version "
+"by using this option."
+msgstr ""
+
+#: includes/options/admin-config.php:701
+msgid "SEO"
+msgstr ""
+
+#: includes/options/admin-config.php:709
+msgid "Meta Description"
+msgstr ""
+
+#: includes/options/admin-config.php:710
+msgid ""
+"The meta tag that displays in "
+"head"
+msgstr ""
+
+#: includes/options/admin-config.php:717
+msgid ""
+"Additional tags for Head "
+"section AMP page"
+msgstr ""
+
+#: includes/options/admin-config.php:718
+msgid ""
+"Adds additional Meta to the "
+"head section"
+msgstr ""
+
+#: includes/options/admin-config.php:719
+msgid ""
+"Only link and meta tags allowed"
+msgstr ""
+
+#: includes/options/admin-config.php:727
+msgid "Yoast SEO Options"
+msgstr ""
+
+#: includes/options/admin-config.php:734
+msgid ""
+"Adds Social and Open Graph "
+"Meta Tags from Yoast"
+msgstr ""
+
+#: includes/options/admin-config.php:735
+msgid "Meta Tags from Yoast"
+msgstr ""
+
+#: includes/options/admin-config.php:741
+msgid ""
+"Adds Yoast Custom description "
+"to ld+json for AMP page"
+msgstr ""
+
+#: includes/options/admin-config.php:742
+msgid ""
+"Yoast Description in ld+json"
+msgstr ""
+
+#: includes/options/admin-config.php:749
+msgid ""
+"Advanced Index & No Index "
+"Options"
+msgstr ""
+
+#: includes/options/admin-config.php:755
+msgid ""
+"Archive subpages (sitewide)"
+msgstr ""
+
+#: includes/options/admin-config.php:764
+msgid "Author Archive pages"
+msgstr ""
+
+#: includes/options/admin-config.php:773
+msgid "Date Archive pages"
+msgstr ""
+
+#: includes/options/admin-config.php:782
+#: includes/options/admin-config.php:1562
+msgid "Categories"
+msgstr ""
+
+#: includes/options/admin-config.php:790
+#: includes/options/admin-config.php:1570
+msgid "Tags"
+msgstr ""
+
+#: includes/options/admin-config.php:804
+msgid "Menu"
+msgstr ""
+
+#: includes/options/admin-config.php:805
+msgid ""
+"Add Menus to your AMP pages by "
+"clicking on this <a href=\""
+msgstr ""
+
+#: includes/options/admin-config.php:813
+msgid "Auto Add AMP in Menu URL"
+msgstr ""
+
+#: includes/options/admin-config.php:814
+msgid ""
+"Automatically add <code>AMP</"
+"code> at the end of menu url"
+msgstr ""
+
+#: includes/options/admin-config.php:833
+msgid "Advertisement"
+msgstr ""
+
+#: includes/options/admin-config.php:842
+msgid "AD #1"
+msgstr ""
+
+#: includes/options/admin-config.php:844
+msgid ""
+"Below the Header (SiteWide)"
+msgstr ""
+
+#: includes/options/admin-config.php:851
+#: includes/options/admin-config.php:898
+#: includes/options/admin-config.php:945
+#: includes/options/admin-config.php:992
+msgid "AD Size"
+msgstr ""
+
+#: includes/options/admin-config.php:869
+#: includes/options/admin-config.php:916
+#: includes/options/admin-config.php:963
+#: includes/options/admin-config.php:1010
+msgid "Data AD Client"
+msgstr ""
+
+#: includes/options/admin-config.php:870
+#: includes/options/admin-config.php:917
+#: includes/options/admin-config.php:964
+#: includes/options/admin-config.php:1011
+msgid ""
+"Enter the Data Ad Client (data-"
+"ad-client) from the adsense ad "
+"code."
+msgstr ""
+
+#: includes/options/admin-config.php:877
+#: includes/options/admin-config.php:924
+#: includes/options/admin-config.php:971
+#: includes/options/admin-config.php:1018
+msgid "Data AD Slot"
+msgstr ""
+
+#: includes/options/admin-config.php:878
+#: includes/options/admin-config.php:925
+#: includes/options/admin-config.php:972
+msgid ""
+"Enter the Data Ad Slot (data-"
+"ad-slot) from the adsense ad "
+"code."
+msgstr ""
+
+#: includes/options/admin-config.php:889
+msgid "AD #2"
+msgstr ""
+
+#: includes/options/admin-config.php:891
+msgid ""
+"Below the Footer (SiteWide)"
+msgstr ""
+
+#: includes/options/admin-config.php:936
+msgid "AD #3"
+msgstr ""
+
+#: includes/options/admin-config.php:938
+msgid ""
+"Above the Post Content (Single "
+"Post)"
+msgstr ""
+
+#: includes/options/admin-config.php:983
+msgid "AD #4"
+msgstr ""
+
+#: includes/options/admin-config.php:985
+msgid ""
+"Below the Post Content (Single "
+"Post)"
+msgstr ""
+
+#: includes/options/admin-config.php:1019
+msgid ""
+"Enter the Data Ad Slot (data-"
+"ad-slot) from the adsense ad "
+"code. "
+msgstr ""
+
+#: includes/options/admin-config.php:1031
+msgid "Single"
+msgstr ""
+
+#: includes/options/admin-config.php:1032
+msgid ""
+"Additional Options to control "
+"the look of Single  <a href=\""
+msgstr ""
+
+#: includes/options/admin-config.php:1040
+msgid "Sticky Social Icons"
+msgstr ""
+
+#: includes/options/admin-config.php:1042
+msgid ""
+"Enable Social Icons in single"
+msgstr ""
+
+#: includes/options/admin-config.php:1048
+msgid "Next-Previous Links"
+msgstr ""
+
+#: includes/options/admin-config.php:1050
+msgid ""
+"Enable Next-Previous links in "
+"single"
+msgstr ""
+
+#: includes/options/admin-config.php:1056
+msgid "Show Related Post from"
+msgstr ""
+
+#: includes/options/admin-config.php:1058
+msgid ""
+"select the type of related "
+"posts"
+msgstr ""
+
+#: includes/options/admin-config.php:1068
+msgid "Number of Related Post"
+msgstr ""
+
+#: includes/options/admin-config.php:1069
+msgid ""
+"Type the number of related "
+"posts you need, Eg : 2"
+msgstr ""
+
+#: includes/options/admin-config.php:1079
+msgid "Social Share"
+msgstr ""
+
+#: includes/options/admin-config.php:1089
+msgid "Facebook"
+msgstr ""
+
+#: includes/options/admin-config.php:1095
+msgid "Facebook App ID"
+msgstr ""
+
+#: includes/options/admin-config.php:1096
+msgid ""
+"In order to use Facebook share "
+"you need to register an app "
+"ID, you can register one here: "
+"https://developers.facebook."
+"com/apps."
+msgstr ""
+
+#: includes/options/admin-config.php:1106
+msgid "Twitter"
+msgstr ""
+
+#: includes/options/admin-config.php:1112
+msgid "Twitter Handle"
+msgstr ""
+
+#: includes/options/admin-config.php:1121
+msgid "GooglePlus"
+msgstr ""
+
+#: includes/options/admin-config.php:1128
+msgid "Email"
+msgstr ""
+
+#: includes/options/admin-config.php:1135
+msgid "Pinterest"
+msgstr ""
+
+#: includes/options/admin-config.php:1142
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/options/admin-config.php:1149
+msgid "WhatsApp"
+msgstr ""
+
+#: includes/options/admin-config.php:1155
+msgid ""
+"Social Media Profiles (Design "
+"#3)"
+msgstr ""
+
+#: includes/options/admin-config.php:1156
+msgid ""
+"Please enter your personal/"
+"organizational social media "
+"profiles here"
+msgstr ""
+
+#: includes/options/admin-config.php:1166
+msgid "Twittter "
+msgstr ""
+
+#: includes/options/admin-config.php:1175
+msgid "Twittter URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1186
+msgid "Facebook "
+msgstr ""
+
+#: includes/options/admin-config.php:1195
+msgid "Facebook URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1206
+msgid "Pintrest "
+msgstr ""
+
+#: includes/options/admin-config.php:1215
+msgid "Pintrest URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1226
+msgid "Google Plus "
+msgstr ""
+
+#: includes/options/admin-config.php:1235
+msgid "Google Plus URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1246
+msgid "Linkdin "
+msgstr ""
+
+#: includes/options/admin-config.php:1255
+msgid "Linkdin URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1266
+msgid "Youtube "
+msgstr ""
+
+#: includes/options/admin-config.php:1276
+msgid "Youtube URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1286
+msgid "Instagram "
+msgstr ""
+
+#: includes/options/admin-config.php:1296
+msgid "Instagram URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1306
+msgid "VKontakte "
+msgstr ""
+
+#: includes/options/admin-config.php:1316
+msgid "VKontakte URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1328
+msgid "Reddit"
+msgstr ""
+
+#: includes/options/admin-config.php:1337
+msgid "Reddit URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1348
+msgid "Snapchat "
+msgstr ""
+
+#: includes/options/admin-config.php:1357
+msgid "Snapchat URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1368
+msgid "Tumblr"
+msgstr ""
+
+#: includes/options/admin-config.php:1377
+msgid "Tumblr URL"
+msgstr ""
+
+#: includes/options/admin-config.php:1389
+msgid "Structured Data"
+msgstr ""
+
+#: includes/options/admin-config.php:1397
+msgid ""
+"Default Structured Data Logo"
+msgstr ""
+
+#: includes/options/admin-config.php:1398
+msgid ""
+"Upload the logo you want to "
+"show in Google Structured "
+"Data. "
+msgstr ""
+
+#: includes/options/admin-config.php:1404
+msgid "Default Post Image"
+msgstr ""
+
+#: includes/options/admin-config.php:1405
+msgid ""
+"Upload the Image you want to "
+"show as Placeholder Image."
+msgstr ""
+
+#: includes/options/admin-config.php:1410
+msgid "Default Post Image Width"
+msgstr ""
+
+#: includes/options/admin-config.php:1418
+msgid "Default Post Image Height"
+msgstr ""
+
+#: includes/options/admin-config.php:1429
+msgid "Notifications"
+msgstr ""
+
+#: includes/options/admin-config.php:1430
+msgid ""
+"Add notifications to your AMP "
+"pages"
+msgstr ""
+
+#: includes/options/admin-config.php:1437
+msgid "Enable Notifications"
+msgstr ""
+
+#: includes/options/admin-config.php:1439
+msgid ""
+"Show notifications on all of "
+"your AMP pages for cookie "
+"purposes, or anything else."
+msgstr ""
+
+#: includes/options/admin-config.php:1445
+msgid "Notification text"
+msgstr ""
+
+#: includes/options/admin-config.php:1453
+msgid ""
+"Notification accept button text"
+msgstr ""
+
+#: includes/options/admin-config.php:1466
+msgid "Translation Panel"
+msgstr ""
+
+#: includes/options/admin-config.php:1467
+msgid ""
+"Please translate the following "
+"words of page accordingly else "
+"default content is in English "
+"Language"
+msgstr ""
+
+#: includes/options/admin-config.php:1474
+msgid ""
+"Use POT file method of "
+"Translation"
+msgstr ""
+
+#: includes/options/admin-config.php:1475
+msgid ""
+"Else you can use normal "
+"translation method"
+msgstr ""
+
+#: includes/options/admin-config.php:1476
+msgid ""
+"Use this if you want "
+"Multilingual Translations"
+msgstr ""
+
+#: includes/options/admin-config.php:1482
+#: templates/design-manager/design-3/index.php:163
+msgid "Show more Posts"
+msgstr ""
+
+#: includes/options/admin-config.php:1490
+msgid "Show previous Posts"
+msgstr ""
+
+#: includes/options/admin-config.php:1498
+#: includes/options/redux-core/inc/fields/border/field_border.php:138
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:215
+msgid "Top"
+msgstr ""
+
+#: includes/options/admin-config.php:1506
+msgid "View Non-AMP Version"
+msgstr ""
+
+#: includes/options/admin-config.php:1514
+msgid "Related Post"
+msgstr ""
+
+#: includes/options/admin-config.php:1522
+msgid "Navigate"
+msgstr ""
+
+#: includes/options/admin-config.php:1530
+#: includes/options/redux-core/inc/fields/switch/field_switch.php:41
+msgid "On"
+msgstr ""
+
+#: includes/options/admin-config.php:1538
+msgid "Next"
+msgstr ""
+
+#: includes/options/admin-config.php:1546
+msgid "Previous"
+msgstr ""
+
+#: includes/options/admin-config.php:1554
+msgid "Footer"
+msgstr ""
+
+#: includes/options/admin-config.php:1578
+msgid "By"
+msgstr ""
+
+#: includes/options/admin-config.php:1586
+msgid "Published by"
+msgstr ""
+
+#: includes/options/admin-config.php:1594
+msgid "in"
+msgstr ""
+
+#: includes/options/admin-config.php:1602
+msgid "View Comments"
+msgstr ""
+
+#: includes/options/admin-config.php:1610
+msgid "Leave a Comment"
+msgstr ""
+
+#: includes/options/admin-config.php:1618
+msgid "at"
+msgstr ""
+
+#: includes/options/admin-config.php:1626
+msgid "says"
+msgstr ""
+
+#: includes/options/admin-config.php:1634
+msgid "Edit"
+msgstr ""
+
+#: includes/options/admin-config.php:1642
+msgid "ago"
+msgstr ""
+
+#: includes/options/admin-config.php:1650
+msgid "Category (archive title)"
+msgstr ""
+
+#: includes/options/admin-config.php:1658
+msgid "Tag (archive title)"
+msgstr ""
+
+#: includes/options/admin-config.php:1666
+msgid ""
+"View More Posts (Widget Button)"
+msgstr ""
+
+#: includes/options/admin-config.php:1674
+msgid "Next Read"
+msgstr ""
+
+#: includes/options/admin-config.php:1682
+msgid " You searched for: "
+msgstr ""
+
+#: includes/options/admin-config.php:1690
+msgid ""
+" It seems we can't find what "
+"you're looking for. "
+msgstr ""
+
+#: includes/options/admin-config.php:1698
+msgid ""
+"Search bar Translation Text"
+msgstr ""
+
+#: includes/options/admin-config.php:1705
+msgid "Type Here"
+msgstr ""
+
+#: includes/options/admin-config.php:1715
+msgid ""
+"Type your search query and hit "
+"enter"
+msgstr ""
+
+#: includes/options/admin-config.php:1750
+#: templates/customizer/customizer.php:192
+msgid "Comments"
+msgstr ""
+
+#: includes/options/admin-config.php:1758
+msgid "Disqus comments Support"
+msgstr ""
+
+#: includes/options/admin-config.php:1759
+msgid ""
+"Enable/Disable Disqus comments "
+"using this switch."
+msgstr ""
+
+#: includes/options/admin-config.php:1765
+msgid "Disqus Name"
+msgstr ""
+
+#: includes/options/admin-config.php:1766
+msgid ""
+"Eg: https://xyz.disqus.com"
+msgstr ""
+
+#: includes/options/admin-config.php:1774
+msgid ""
+"Host Disqus Comments through "
+"AMPforWP Servers"
+msgstr ""
+
+#: includes/options/admin-config.php:1775
+msgid ""
+"Use AMPforWP secure servers to "
+"serve Comments file. "
+"Recommended if your site is "
+"non HTTPS"
+msgstr ""
+
+#: includes/options/admin-config.php:1783
+msgid "Disqus Host File"
+msgstr ""
+
+#: includes/options/admin-config.php:1784
+msgid ""
+"<a href=\"https://ampforwp.com/"
+"host-disqus-comments/\"> Click "
+"here to know, How to Setup "
+"Disqus Host file on your "
+"servers </a>"
+msgstr ""
+
+#: includes/options/admin-config.php:1792
+msgid "No of Comments"
+msgstr ""
+
+#: includes/options/admin-config.php:1802
+msgid "Advance Settings"
+msgstr ""
+
+#: includes/options/admin-config.php:1803
+msgid ""
+"This section has Advance "
+"settings"
+msgstr ""
+
+#: includes/options/admin-config.php:1818
+msgid "Archive page Support"
+msgstr ""
+
+#: includes/options/admin-config.php:1819
+msgid ""
+"Enable/Disable Archive pages "
+"using this switch."
+msgstr ""
+
+#: includes/options/admin-config.php:1825
+msgid "Mobile Redirection"
+msgstr ""
+
+#: includes/options/admin-config.php:1826
+msgid ""
+"\n"
+"                        Enable "
+"AMP for your mobile users. "
+"Give your visitors a Faster "
+"mobile User Experience."
+msgstr ""
+
+#: includes/options/admin-config.php:1835
+msgid "RTL Support"
+msgstr ""
+
+#: includes/options/admin-config.php:1837
+msgid ""
+"Enable Right to Left language "
+"support"
+msgstr ""
+
+#: includes/options/admin-config.php:1844
+msgid ""
+"Link to Non-AMP page in Footer"
+msgstr ""
+
+#: includes/options/admin-config.php:1845
+msgid ""
+"Enable / Disable Link to Non-"
+"AMP page in the footer"
+msgstr ""
+
+#: includes/options/admin-config.php:1853
+msgid "Enter HTML in Header"
+msgstr ""
+
+#: includes/options/admin-config.php:1854
+#: includes/options/admin-config.php:1862
+msgid ""
+"please enter markup that is "
+"AMP validated"
+msgstr ""
+
+#: includes/options/admin-config.php:1855
+msgid ""
+"check your markup here (enter "
+"markup between HEAD tag) : "
+"https://validator.ampproject."
+"org/"
+msgstr ""
+
+#: includes/options/admin-config.php:1861
+msgid "Enter HTML in Footer"
+msgstr ""
+
+#: includes/options/admin-config.php:1863
+msgid ""
+"check your markup here (enter "
+"markup between BODY tag) : "
+"https://validator.ampproject."
+"org/"
+msgstr ""
+
+#: includes/options/admin-config.php:1875
+#: includes/options/redux-core/inc/welcome/welcome.php:349
+msgid "Extensions"
+msgstr ""
+
+#: includes/options/admin-config.php:1896
+msgid "Fix AMP Errors"
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:452
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:685
+msgid ""
+"You have changes that are not "
+"saved. Would you like to save "
+"them now?"
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:460
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:686
+msgid ""
+"Are you sure? Resetting will "
+"lose all custom values."
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:468
+msgid ""
+"Are you sure? Resetting will "
+"lose all custom values in this "
+"section."
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:476
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:687
+msgid ""
+"Your current options will be "
+"replaced with the values of "
+"this preset. Would you like to "
+"proceed?"
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:483
+msgid "Please Wait"
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:494
+msgid ""
+"There was an error saving. "
+"Here is the result of your "
+"action:"
+msgstr ""
+
+#: includes/options/redux-core/core/enqueue.php:495
+msgid ""
+"There was a problem with your "
+"action. Please try again or "
+"reload the page."
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:65
+msgid ""
+"Warning- This options panel "
+"will not work properly without "
+"javascript!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:141
+msgid "Settings Imported!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:156
+msgid "All Defaults Restored!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:170
+msgid ""
+"Section Defaults Restored!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:184
+msgid "Settings Saved!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:204
+msgid ""
+"Settings have changed, you "
+"should save them!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:212
+msgid "error(s) were found!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:220
+msgid "warning(s) were found!"
+msgstr ""
+
+#: includes/options/redux-core/core/panel.php:312
+msgid ""
+"<strong>Your panel has bundled "
+"outdated copies of Redux "
+"Framework template files</"
+"strong> &#8211; if you "
+"encounter functionality issues "
+"this could be the reason. "
+"Ensure you update or remove "
+"them."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:220
+#, php-format
+msgid ""
+"Options panel created using "
+"%1$s"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:220
+#: includes/options/redux-core/inc/welcome/welcome.php:205
+msgid "Redux Framework"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:224
+#: includes/options/redux-core/framework.php:228
+msgid "Options"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1754
+msgid "Enable"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1759
+msgid "Disable"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1765
+msgid "moving the mouse over"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1767
+msgid "clicking"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1771
+#, php-format
+msgid ""
+"Hints are tooltips that popup "
+"when %d the hint icon, "
+"offering addition information "
+"about the field in which they "
+"appear.  They can be %d d by "
+"using the link below."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1776
+msgid "Hints"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:1903
+msgid "Default"
+msgstr ""
+
+#: includes/options/redux-core/framework.php:2781
+msgid ""
+"Invalid security credential.  "
+"Please reload the page and try "
+"again."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:2790
+msgid ""
+"Invalid user capability.  "
+"Please reload the page and try "
+"again."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:2870
+msgid ""
+"Your panel has no fields. "
+"Nothing to save."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:3985
+msgid ""
+"<strong>Redux Framework "
+"Notice: </strong>There are "
+"references to the Redux "
+"Framework support site in your "
+"config's "
+"<code>admin_bar_links</code> "
+"argument.  This is sample "
+"data.  Please change or remove "
+"this data before shipping your "
+"product."
+msgstr ""
+
+#: includes/options/redux-core/framework.php:4000
+msgid ""
+"<strong>Redux Framework "
+"Notice: </strong>There are "
+"references to the Redux "
+"Framework support site in your "
+"config's <code>share_icons</"
+"code> argument.  This is "
+"sample data.  Please change or "
+"remove this data before "
+"shipping your product."
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_cdn.php:74
+msgid ""
+"Please wait a few minutes, "
+"then try refreshing the page. "
+"Unable to load some remotely "
+"hosted scripts."
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_cdn.php:76
+#, php-format
+msgid ""
+"If you are developing offline, "
+"please download and install "
+"the <a href=\"%s\" target="
+"\"_blank\">Redux Vendor "
+"Support</a> plugin/extension "
+"to bypass the our CDN and "
+"avoid this warning"
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_cdn.php:81
+msgid "Redux Framework Warning"
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_cdn.php:81
+#, php-format
+msgid ""
+"%s CDN unavailable.  Some "
+"controls may not render "
+"properly."
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_cdn.php:113
+#, php-format
+msgid ""
+"The <a href=\"%s\">Vendor "
+"Support plugin</a> (or "
+"extension) is either not "
+"installed or not activated and "
+"thus, some controls may not "
+"render properly.  Please "
+"ensure that it is installed "
+"and <a href=\"%s\">activated</"
+"a>"
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_filesystem.php:31
+#: includes/options/redux-core/inc/class.redux_filesystem.php:60
+#: includes/options/redux-core/inc/class.redux_filesystem.php:271
+msgid "File Permission Issues"
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_filesystem.php:31
+#, php-format
+msgid ""
+"We were unable to modify "
+"required files. Please check "
+"your permissions, or modify "
+"your wp-config.php file to "
+"contain your FTP login "
+"credentials as <a href=\"%s\" "
+"target=\"_blank\">outlined "
+"here</a>."
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_filesystem.php:60
+#: includes/options/redux-core/inc/class.redux_filesystem.php:271
+#, php-format
+msgid ""
+"We were unable to modify "
+"required files. Please ensure "
+"that <code>%1s</code> has the "
+"proper read-write permissions, "
+"or modify your wp-config.php "
+"file to contain your FTP login "
+"credentials as <a href=\"%2s\" "
+"target=\"_blank\">outlined "
+"here</a>."
+msgstr ""
+
+#: includes/options/redux-core/inc/class.redux_helpers.php:610
+#, php-format
+msgid ""
+"<code>%s</code> version "
+"<strong style=\"color:red\">"
+"%s</strong> is out of date. "
+"The core version is %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:720
+msgid ""
+"You have changes that are not "
+"saved.  Would you like to save "
+"them now?"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:721
+msgid ""
+"Are you sure?  Resetting will "
+"lose all custom values."
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/extension_customizer.php:722
+msgid ""
+"Your current options will be "
+"replaced with the values of "
+"this preset.  Would you like "
+"to proceed?"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_panel.php:89
+msgid ""
+"Press return or enter to open "
+"this panel"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_panel.php:114
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_panel.php:142
+#, php-format
+msgid "You are customizing %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_panel.php:138
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_section.php:79
+msgid "Back"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_panel.php:146
+msgid "Help"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_section.php:72
+msgid ""
+"Press return or enter to open"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/customizer/inc/customizer_section.php:122
+msgid ""
+"Press return or enter to expand"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/extension_import_export.php:120
+msgid "Import / Export"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:91
+msgid "Import Options"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:95
+msgid "Import from File"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:98
+msgid "Import from URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:104
+msgid ""
+"Input your backup file below "
+"and hit Import to restore your "
+"sites options from a backup."
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:111
+msgid ""
+"Input the URL to another sites "
+"options set and hit Import to "
+"load the options from that "
+"site."
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:116
+msgid "Import"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:116
+msgid ""
+"WARNING! This will overwrite "
+"all existing option values, "
+"please proceed with caution!"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:120
+msgid "Export Options"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:124
+msgid ""
+"Here you can copy/download "
+"your current option settings. "
+"Keep this safe as you can use "
+"it as a backup should anything "
+"go wrong, or you can use it to "
+"restore your settings on this "
+"site (or any other site)."
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:132
+msgid "Copy Data"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:133
+msgid "Download Data File"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/import_export/import_export/field_import_export.php:134
+msgid "Copy Export URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/options_object/extension_options_object.php:82
+#: includes/options/redux-core/inc/extensions/options_object/options_object/field_options_object.php:104
+msgid "Options Object"
+msgstr ""
+
+#: includes/options/redux-core/inc/extensions/options_object/options_object/field_options_object.php:107
+msgid ""
+"Show Object in Javascript "
+"Console Object"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:124
+#: includes/options/redux-core/inc/fields/color/field_color.php:73
+#: includes/options/redux-core/inc/fields/color_gradient/field_color_gradient.php:79
+#: includes/options/redux-core/inc/fields/color_gradient/field_color_gradient.php:91
+msgid "Transparent"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:141
+msgid "Background Repeat"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:157
+msgid "Background Clip"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:173
+msgid "Background Origin"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:188
+msgid "Background Size"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:203
+msgid "Background Attachment"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:223
+msgid "Background Position"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:277
+#: includes/options/redux-core/inc/fields/media/field_media.php:149
+msgid "No media selected"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:314
+#: includes/options/redux-core/inc/fields/media/field_media.php:198
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:126
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:188
+#: includes/options/redux-core/inc/fields/upload/field_upload.php:30
+msgid "Upload"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/background/field_background.php:321
+#: includes/options/redux-core/inc/fields/media/field_media.php:205
+#: includes/options/redux-core/inc/fields/multi_text/field_multi_text.php:69
+#: includes/options/redux-core/inc/fields/multi_text/field_multi_text.php:73
+#: includes/options/redux-core/inc/fields/multi_text/field_multi_text.php:76
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:133
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:190
+msgid "Remove"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/border/field_border.php:125
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:191
+msgid "All"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/border/field_border.php:145
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:222
+msgid "Right"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/border/field_border.php:152
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:229
+msgid "Bottom"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/border/field_border.php:159
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:236
+msgid "Left"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/border/field_border.php:174
+msgid "Border style"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/color_gradient/field_color_gradient.php:68
+msgid "From "
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/color_gradient/field_color_gradient.php:82
+msgid "To "
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/dimensions/field_dimensions.php:162
+msgid "Width"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/dimensions/field_dimensions.php:178
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:442
+msgid "Height"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/dimensions/field_dimensions.php:189
+#: includes/options/redux-core/inc/fields/dimensions/field_dimensions.php:190
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:245
+#: includes/options/redux-core/inc/fields/spacing/field_spacing.php:246
+msgid "Units"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/gallery/field_gallery.php:73
+msgid "Add/Edit Gallery"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/gallery/field_gallery.php:74
+msgid "Clear Gallery"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/link_color/field_link_color.php:88
+msgid "Regular"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/link_color/field_link_color.php:92
+msgid "Hover"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/link_color/field_link_color.php:96
+msgid "Visited"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/link_color/field_link_color.php:100
+msgid "Active"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/multi_text/field_multi_text.php:61
+msgid "Add More"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/password/field_password.php:62
+msgid "Password"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/password/field_password.php:63
+msgid "Username"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/select/field_select.php:83
+#: includes/options/redux-core/inc/fields/select_image/field_select_image.php:63
+msgid "Select an item"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/select/field_select.php:134
+#: includes/options/redux-core/inc/fields/select_image/field_select_image.php:144
+msgid ""
+"No items of this type were "
+"found."
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:68
+msgid "Slide"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:73
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:174
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:145
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:200
+#: templates/customizer/customizer.php:162
+msgid "Title"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:149
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:204
+msgid "Description"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:153
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:207
+msgid "URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:167
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:220
+msgid "Delete"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/slides/field_slides.php:223
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/switch/field_switch.php:44
+msgid "Off"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:231
+msgid "Font Family"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:232
+msgid "Font family"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:258
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:259
+msgid "Backup Font Family"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:273
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:281
+msgid "Font style"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:274
+msgid "Font Weight &amp; Style"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:281
+msgid "Style"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:321
+msgid "Font subsets"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:323
+msgid "Font Subsets"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:325
+msgid "Subsets"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:325
+msgid "Font script"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:342
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:343
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:344
+msgid "Text Align"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:365
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:366
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:367
+msgid "Text Transform"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:388
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:389
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:390
+msgid "Font Variant"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:408
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:409
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:410
+msgid "Text Decoration"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:432
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:433
+msgid "Font Size"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:433
+msgid "Size"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:441
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:442
+msgid "Line Height"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:450
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:451
+msgid "Word Spacing"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:459
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:460
+msgid "Letter Spacing"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:478
+msgid "Font Color"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:480
+msgid "Font color"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:890
+msgid "Standard Fonts"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/typography/field_typography.php:991
+msgid "Google Webfonts"
+msgstr ""
+
+#: includes/options/redux-core/inc/fields/upload/field_upload.php:31
+msgid "Remove Upload"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/embedded.php:15
+#, php-format
+msgid ""
+"<span class=\"tc-lead tc-"
+"recommended\">RECOMMENDED</"
+"span>: If you are submitting "
+"to WordPress.org Theme "
+"Repository, it is "
+"<strong>strongly</strong> "
+"suggested that you read <a "
+"href=\"%s\" target=\"_blank"
+"\">this document</a>, or your "
+"theme will be rejected because "
+"of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/embedded.php:24
+#, php-format
+msgid ""
+"<span class=\"tc-lead tc-"
+"required\">REQUIRED</span>: "
+"You MUST delete <strong> %s </"
+"strong>, or your theme will be "
+"rejected by WP.org theme "
+"submission because of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/embedded.php:38
+msgid "Optional"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/embedded.php:40
+msgid ""
+"<span class=\"tc-lead tc-"
+"recommended\">RECOMMENDED</"
+"span>: The following arguments "
+"MUST be used for WP.org "
+"submissions, or you will be "
+"rejected because of your Redux "
+"configuration."
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:16
+msgid ""
+"Redux localization utilities"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:17
+msgid "Redux Resting Diles"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:18
+msgid "Redux Code Styles"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:19
+msgid "Redux Unit Testing"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:20
+msgid "Redux Plugin File"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:21
+msgid "Redux Boostrap Tests"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:22
+msgid "CI Testing FIle"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:23
+msgid "PHP Unit Testing"
+msgstr ""
+
+#: includes/options/redux-core/inc/themecheck/checks/full_package.php:36
+msgid ""
+"It appears that you have "
+"embedded the full Redux "
+"package inside your theme. You "
+"need only embed the "
+"<strong>ReduxCore</strong> "
+"folder. Embedding anything "
+"else will get your rejected "
+"from theme submission. "
+"Suspected Redux package "
+"file(s):"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:129
+msgid "Help improve Our Panel"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:130
+msgid ""
+"Please helps us improve our "
+"panel by allowing us to gather "
+"anonymous usage stats so we "
+"know which configurations, "
+"plugins and themes to test to "
+"ensure compatibility."
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:135
+msgid "Allow tracking"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:140
+msgid "Do not allow tracking"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:151
+msgid ""
+"Welcome to the Redux Demo Panel"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:152
+#, php-format
+msgid ""
+"This panel demonstrates the "
+"many features of Redux.  "
+"Before digging in, we suggest "
+"you get up to speed by "
+"reviewing %1$s."
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:152
+msgid "our documentation"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:153
+msgid "Redux Generator"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:153
+#, php-format
+msgid ""
+"Want to get a head start? Use "
+"the %1$s. It will create a "
+"customized boilerplate theme "
+"or a standalone admin folder "
+"complete with all things Redux "
+"(with the help of Underscores "
+"and TGM). Save yourself a "
+"headache and try it today."
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:154
+#: includes/options/redux-core/inc/welcome/welcome.php:229
+msgid "Redux Extensions"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:154
+#, php-format
+msgid ""
+"Did you know we have "
+"extensions, which greatly "
+"enhance the features of "
+"Redux?  Visit our %1$s to "
+"learn more!"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:154
+msgid "extensions directory"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:155
+msgid "Like Redux?"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:155
+#, php-format
+msgid ""
+"If so, please %1$s and "
+"consider making a %2$s to keep "
+"development of Redux moving "
+"forward."
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:155
+msgid ""
+"leave us a favorable review on "
+"WordPress.org"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:155
+msgid "donation"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:156
+msgid "Newsletter"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:156
+msgid ""
+"If you'd like to keep up to "
+"with all things Redux, please "
+"subscribe to our newsletter"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:157
+msgid "Email address"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:157
+msgid "Subscribe"
+msgstr ""
+
+#: includes/options/redux-core/inc/tracking.php:166
+msgid "Close"
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/color/validation_color.php:15
+#: includes/options/redux-core/inc/validation/color_rgba/validation_color_rgba.php:14
+#: includes/options/redux-core/inc/validation/colorrgba/validation_colorrgba.php:16
+msgid ""
+"This field must be a valid "
+"color value."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/comma_numeric/validation_comma_numeric.php:16
+msgid ""
+"You must provide a comma "
+"separated list of numerical "
+"values for this option."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/css/validation_css.php:39
+msgid ""
+"Unsafe strings were found in "
+"your CSS and have been "
+"filtered out."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/date/validation_date.php:16
+msgid ""
+"This field must be a valid "
+"date."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/email/validation_email.php:16
+#: includes/options/redux-core/inc/validation/email_not_empty/validation_email_not_empty.php:16
+msgid ""
+"You must provide a valid email "
+"for this option."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/no_html/validation_no_html.php:15
+msgid ""
+"You must not enter any HTML in "
+"this field, all HTML tags have "
+"been removed."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/no_special_chars/validation_no_special_chars.php:16
+msgid ""
+"You must not enter any special "
+"characters in this field, all "
+"special characters have been "
+"removed."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/not_empty/validation_not_empty.php:16
+msgid ""
+"This field cannot be empty. "
+"Please provide a value."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/numeric/validation_numeric.php:16
+#: includes/options/redux-core/inc/validation/numeric_not_empty/validation_numeric_not_empty.php:16
+msgid ""
+"You must provide a numerical "
+"value for this option."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/unique_slug/validation_unique_slug.php:16
+#, php-format
+msgid ""
+"That URL slug is in use, "
+"please choose another. <code>"
+"%s</code> is open for use."
+msgstr ""
+
+#: includes/options/redux-core/inc/validation/url/validation_url.php:16
+msgid ""
+"You must provide a valid URL "
+"for this option."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:2
+#, php-format
+msgid ""
+"Welcome to Redux Framework %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:5
+#, php-format
+msgid ""
+"Thank you for updating to the "
+"latest version! Redux "
+"Framework %s is a huge step "
+"forward in Redux Development. "
+"Look at all that's new."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:8
+#: includes/options/redux-core/inc/welcome/views/changelog.php:10
+#: includes/options/redux-core/inc/welcome/views/credits.php:10
+#: includes/options/redux-core/inc/welcome/views/extensions.php:81
+#: includes/options/redux-core/inc/welcome/views/status_report.php:34
+#: includes/options/redux-core/inc/welcome/views/support.php:8
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:15
+msgid "What is Redux Framework?"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:17
+msgid ""
+"Redux Framework is the core of "
+"many products on the web. It "
+"is an option framework which "
+"developers use to\n"
+"            enhance their "
+"products."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:22
+msgid "Learn More"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/about.php:28
+msgid "New in this Release"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/changelog.php:2
+msgid ""
+"Redux Framework - Changelog"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/changelog.php:5
+#: includes/options/redux-core/inc/welcome/views/status_report.php:30
+msgid ""
+"Our core mantra at Redux is "
+"backwards compatibility. With "
+"hundreds of thousands of "
+"instances worldwide, you can "
+"be assured that we will take "
+"care of you and your clients."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/credits.php:2
+msgid ""
+"Redux Framework - A Community "
+"Effort"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/credits.php:5
+msgid ""
+"We recognize we are nothing "
+"without our community. We "
+"would like to thank all of "
+"those who help Redux to be "
+"what it is. Thank you for your "
+"involvement."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/credits.php:18
+#, php-format
+msgid ""
+"Redux is created by a "
+"community of developers world "
+"wide. Want to have your name "
+"listed too? <a href=\"%d\" "
+"target=\"_blank\">Contribute "
+"to Redux</a>."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/extensions.php:73
+msgid ""
+"Redux Framework - Extensions"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/extensions.php:76
+msgid ""
+"Supercharge your Redux "
+"experience. Our extensions "
+"provide you with features that "
+"will take your products to the "
+"next level."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/extensions.php:89
+msgid ""
+"While some are built "
+"specificially for developers, "
+"extensions such as Custom "
+"Fonts are sure to make any "
+"user happy."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:26
+msgid ""
+"Redux Framework - System Status"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:43
+msgid ""
+"Please copy and paste this "
+"information in your ticket "
+"when contacting support:"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:48
+msgid "Get System Report"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:53
+msgid ""
+"Understanding the Status Report"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:62
+msgid "Copied!"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:63
+msgid "Copy for Support"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:73
+msgid "WordPress Environment"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:80
+msgid "Home URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:83
+msgid ""
+"The URL of your site's "
+"homepage."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:89
+msgid "Site URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:92
+msgid ""
+"The root URL of your site."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:100
+msgid "Redux Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:103
+msgid ""
+"The version of Redux Framework "
+"installed on your site."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:111
+msgid ""
+"Redux Data Directory Writable"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:114
+msgid ""
+"Redux and its extensions write "
+"data to the <code>uploads</"
+"code> directory. This "
+"directory must be writable."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:120
+#, php-format
+msgid ""
+"To allow data saving, make "
+"<code>%s</code> writable."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:126
+msgid "WP Content URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:129
+msgid ""
+"The location of Wordpress's "
+"content URL."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:137
+msgid "WP Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:140
+msgid ""
+"The version of WordPress "
+"installed on your site."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:148
+msgid "WP Multisite"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:151
+msgid ""
+"Whether or not you have "
+"WordPress Multisite enabled."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:162
+msgid "Permalink Structure"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:165
+msgid ""
+"The current permalink "
+"structure as defined in "
+"Wordpress Settings->Permalinks."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:174
+msgid "Front Page Display"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:176
+msgid ""
+"The current Reading mode of "
+"Wordpress."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:188
+msgid ""
+"The currently selected page "
+"which acts as the site's Front "
+"Page."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:196
+msgid "Posts Page"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:199
+msgid ""
+"The currently selected page in "
+"where blog posts are displayed."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:210
+msgid "WP Memory Limit"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:213
+msgid ""
+"The maximum amount of memory "
+"(RAM) that your site can use "
+"at one time."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:220
+#, php-format
+msgid ""
+"%s - We recommend setting "
+"memory to at least 40MB. See: "
+"<a href=\"%s\" target=\"_blank"
+"\">Increasing memory allocated "
+"to PHP</a>"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:229
+msgid "Database Table Prefix"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:232
+msgid ""
+"The prefix structure of the "
+"current Wordpress database."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:240
+msgid "WP Debug Mode"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:243
+msgid ""
+"Displays whether or not "
+"WordPress is in Debug Mode."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:255
+msgid "Language"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:258
+msgid ""
+"The current language used by "
+"WordPress. Default = English"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:270
+msgid "Browser"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:277
+msgid "Browser Info"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:280
+msgid ""
+"Information about web browser "
+"current in use."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:297
+msgid "Server Environment"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:304
+msgid "Server Info"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:307
+msgid ""
+"Information about the web "
+"server that is currently "
+"hosting your site."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:315
+msgid "Localhost Environment"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:318
+msgid ""
+"Is the server running in a "
+"localhost environment."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:332
+msgid "PHP Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:335
+msgid ""
+"The version of PHP installed "
+"on your hosting server."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:343
+msgid "ABSPATH"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:346
+msgid ""
+"The ABSPATH variable on the "
+"server."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:355
+msgid "PHP Memory Limit"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:356
+#: includes/options/redux-core/inc/welcome/views/status_report.php:361
+msgid ""
+"The largest filesize that can "
+"be contained in one post."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:360
+msgid "PHP Post Max Size"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:365
+msgid "PHP Time Limit"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:366
+msgid ""
+"The amount of time (in "
+"seconds) that your site will "
+"spend on a single operation "
+"before timing out (to avoid "
+"server lockups)"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:370
+msgid "PHP Max Input Vars"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:371
+msgid ""
+"The maximum number of "
+"variables your server can use "
+"for a single function to avoid "
+"overloads."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:375
+msgid "PHP Display Errors"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:376
+msgid ""
+"Determines if PHP will display "
+"errors within the browser."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:387
+msgid "SUHOSIN Installed"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:388
+msgid ""
+"Suhosin is an advanced "
+"protection system for PHP "
+"installations. It was designed "
+"to protect your servers on the "
+"one hand against a number of "
+"well known problems in PHP "
+"applications and on the other "
+"hand against potential unknown "
+"vulnerabilities within these "
+"applications or the PHP core "
+"itself.  If enabled on your "
+"server, Suhosin may need to be "
+"configured to increase its "
+"data submission limits."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:399
+msgid "MySQL Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:400
+msgid ""
+"The version of MySQL installed "
+"on your hosting server."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:404
+msgid "Max Upload Size"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:405
+msgid ""
+"The largest filesize that can "
+"be uploaded to your WordPress "
+"installation."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:410
+msgid "Default Timezone is UTC"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:412
+msgid ""
+"The default timezone for your "
+"server."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:416
+#, php-format
+msgid ""
+"Default timezone is %s - it "
+"should be UTC"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:428
+msgid ""
+"Used when communicating with "
+"remote services with PHP."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:434
+msgid ""
+"Your server does not have "
+"fsockopen or cURL enabled - "
+"cURL is used to communicate "
+"with other servers. Please "
+"contact your hosting provider."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:473
+msgid "Remote Post"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:474
+msgid ""
+"Used to send data to remote "
+"servers."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:479
+msgid ""
+"wp_remote_post() failed. Many "
+"advanced features may not "
+"function. Contact your hosting "
+"provider."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:482
+#: includes/options/redux-core/inc/welcome/views/status_report.php:497
+#, php-format
+msgid "Error: %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:489
+msgid "Remote Get"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:490
+msgid ""
+"Used to grab information from "
+"remote servers for updates "
+"updates."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:495
+msgid ""
+"wp_remote_get() failed. This "
+"is needed to get information "
+"from remote servers. Contact "
+"your hosting provider."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:531
+msgid "Active Plugins"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:546
+msgid "Visit plugin homepage"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:553
+#, php-format
+msgctxt "by author"
+msgid "by %s"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:572
+msgid "Redux Instance: "
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:579
+msgid ""
+"The opt_name argument for this "
+"instance of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:587
+msgid ""
+"The global_variable argument "
+"for this instance of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:595
+msgid ""
+"Indicates if developer mode is "
+"enabled for this instance of "
+"Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:600
+msgid ""
+"Indicates if ajax based saving "
+"is enabled for this instance "
+"of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:605
+msgid ""
+"The page slug denotes the "
+"string used for the options "
+"panel page for this instance "
+"of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:610
+msgid ""
+"The page permissions variable "
+"sets the permission level "
+"required to access the options "
+"panel for this instance of "
+"Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:615
+msgid ""
+"This variable set whether or "
+"not the menu is displayed as "
+"an admin menu item for this "
+"instance of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:620
+msgid ""
+"The page parent variable sets "
+"where the options menu will be "
+"placed on the WordPress admin "
+"sidebar for this instance of "
+"Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:626
+msgid ""
+"Indicates if the compiler flag "
+"is enabled for this instance "
+"of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:631
+msgid ""
+"Indicates if output flag for "
+"globally shutting off all CSS "
+"output is enabled for this "
+"instance of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:636
+msgid ""
+"The output_tag variable sets "
+"whether or not dynamic CSS "
+"will be generated for the "
+"customizer and Google fonts "
+"for this instance of Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:645
+msgid ""
+"The specified template path "
+"containing custom template "
+"files for this instance of "
+"Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:650
+msgid ""
+"List of template files "
+"overriding the default Redux "
+"template files."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:676
+msgid ""
+"Indicates the installed Redux "
+"extensions and their version "
+"numbers."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:705
+msgid "Theme"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:710
+msgid "Name"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:711
+msgid ""
+"The name of the current active "
+"theme."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:715
+msgid "Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:716
+msgid ""
+"The installed version of the "
+"current active theme."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:722
+msgid "is available"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:728
+msgid "Author URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:729
+msgid "The theme developers URL."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:733
+msgid "Child Theme"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:734
+msgid ""
+"Displays whether or not the "
+"current theme is a child theme."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:737
+#, php-format
+msgid ""
+"If you're modifying Redux "
+"Framework or a parent theme "
+"you didn't build personally, "
+"we recommend using a child "
+"theme. See: <a href=\"%s\" "
+"target=\"_blank\">How to "
+"create a child theme</a>"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:745
+msgid "Parent Theme Name"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:747
+msgid ""
+"The name of the parent theme."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:752
+msgid "Parent Theme Version"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:754
+msgid ""
+"The installed version of the "
+"parent theme."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:759
+msgid "Parent Theme Author URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/status_report.php:761
+msgid ""
+"The parent theme developers "
+"URL."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:2
+msgid "Redux Framework - Support"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:4
+msgid ""
+"We are an open source project "
+"used by developers to make "
+"powerful control panels."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:19
+#: includes/options/redux-core/inc/welcome/views/support.php:40
+msgid "Generate a Support URL"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:20
+msgid "Select Support Type"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:21
+#: includes/options/redux-core/inc/welcome/views/support.php:87
+msgid "How to Get Support"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:27
+msgid "Submit a Support Request"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:31
+msgid ""
+"To get started, we will need "
+"to generate a support hash."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:35
+#, php-format
+msgid ""
+"This will provide to your "
+"developer all the information "
+"they may need to remedy your "
+"issue. This action WILL send "
+"information securely to a "
+"remote server. To see the type "
+"of information sent, please "
+"look at the  <a href=\"%s"
+"\">Status tab</a>."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:52
+msgid "Select Your Support Type"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:56
+msgid ""
+"What type of user are you?"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:63
+msgid "User"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:65
+msgid ""
+"I am a user, using a pre-built "
+"product."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:70
+msgid "Developer"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:72
+msgid ""
+"I am a developer, building a "
+"product using Redux."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:92
+msgid ""
+"Please proceed to the Redux "
+"Framework issue tracker and "
+"supply us with your support "
+"URL below. Please also provide "
+"any information that will help "
+"us to reproduce your issue."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:101
+msgid ""
+"Listed below are the Wordpress "
+"plugins and/or theme installed "
+"on your site that utilize "
+"Redux Framework. We do not "
+"directly support products "
+"created with our framework.  "
+"It is the responsibility of "
+"the plugin or theme developer "
+"to support their work. You "
+"will need to contact the "
+"author(s) of the products "
+"listed below with your support "
+"questions."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:105
+msgid ""
+"Please be sure to include for "
+"your developer - via cut and "
+"paste - the Support URL in the "
+"box below."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/views/support.php:134
+#, php-format
+msgid ""
+"Should the developer not be "
+"responsive, read the <a href="
+"\"%s\" target=\"_blank"
+"\">following article</a> "
+"before asking for support from "
+"us directly."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:106
+msgid ""
+"If you like <strong>Redux</"
+"strong> please leave us a <a "
+"href=\"https://wordpress.org/"
+"support/view/plugin-reviews/"
+"redux-framework?"
+"filter=5#postform\" target="
+"\"_blank\" class=\"redux-"
+"rating-link\" data-rated="
+"\"Thanks :)\">&#9733;&#9733;"
+"&#9733;&#9733;&#9733;</a> "
+"rating. A huge thank you from "
+"Redux in advance!"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:183
+msgid ""
+"Support hash could not be "
+"generated. Please try again "
+"later."
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:205
+msgid ""
+"Welcome to Redux Framework"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:213
+msgid "Redux Framework Changelog"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:221
+msgid "Get Support"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:238
+msgid ""
+"The people that develop Redux "
+"Framework"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:246
+msgid "Redux Framework Status"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:346
+msgid "What's New"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:352
+msgid "Changelog"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:355
+msgid "Credits"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:358
+msgid "Support"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:361
+msgid "Status"
+msgstr ""
+
+#: includes/options/redux-core/inc/welcome/welcome.php:521
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/footer.tpl.php:57
+#: includes/options/redux-core/templates/panel/header_stickybar.tpl.php:33
+#: includes/options/templates/footer.tpl.php:17
+#: includes/options/templates/header_stickybar.tpl.php:16
+msgid "Save Changes"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/footer.tpl.php:61
+#: includes/options/redux-core/templates/panel/header_stickybar.tpl.php:37
+#: includes/options/templates/footer.tpl.php:24
+#: includes/options/templates/header_stickybar.tpl.php:22
+msgid "Reset Section"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/footer.tpl.php:62
+#: includes/options/redux-core/templates/panel/header_stickybar.tpl.php:38
+#: includes/options/templates/footer.tpl.php:25
+#: includes/options/templates/header_stickybar.tpl.php:23
+msgid "Reset All"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/footer.tpl.php:67
+#: includes/options/redux-core/templates/panel/header_stickybar.tpl.php:41
+#: includes/options/templates/footer.tpl.php:30
+#: includes/options/templates/header_stickybar.tpl.php:26
+msgid "Working..."
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:11
+#: includes/options/redux-core/templates/panel/header.tpl.php:50
+#: includes/options/templates/header.tpl.php:11
+msgid "Developer Mode Enabled"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:20
+#: includes/options/templates/header.tpl.php:20
+msgid "WP_DEBUG is enabled"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:26
+#: includes/options/templates/header.tpl.php:26
+msgid ""
+"you are working in a localhost "
+"environment"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:31
+#: includes/options/templates/header.tpl.php:31
+msgid "and"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:34
+#: includes/options/templates/header.tpl.php:34
+msgid ""
+"This has been automatically "
+"enabled because"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:36
+#: includes/options/templates/header.tpl.php:36
+msgid ""
+"If you are not a developer, "
+"your theme/plugin author "
+"shipped with developer mode "
+"enabled. Contact them directly "
+"to fix it."
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header.tpl.php:59
+msgid ""
+"FORCED DEV MODE OFF ENABLED"
+msgstr ""
+
+#: includes/options/redux-core/templates/panel/header_stickybar.tpl.php:15
+msgid "Expand"
+msgstr ""
+
+#: includes/options/templates/header.tpl.php:56
+msgid ""
+"20+ awesome widgets, more "
+"widgets styling, premium "
+"support"
+msgstr ""
+
+#: includes/options/templates/header.tpl.php:56
+msgid "upgrade Now!"
+msgstr ""
+
+#: includes/options/templates/header.tpl.php:58
+msgid "Support Request"
+msgstr ""
+
+#: includes/welcome.php:283
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: includes/welcome.php:309
+#, php-format
+msgid "Install %s now"
+msgstr ""
+
+#: includes/welcome.php:309
+msgid "Install Now"
+msgstr ""
+
+#: includes/welcome.php:316
+#, php-format
+msgid "Update %s now"
+msgstr ""
+
+#: includes/welcome.php:316
+msgid "Update Now"
+msgstr ""
+
+#: includes/welcome.php:322
+#, php-format
+msgid "Activate %s "
+msgstr ""
+
+#: includes/welcome.php:322
+msgid "Activate"
+msgstr ""
+
+#: includes/welcome.php:326
+msgid ""
+"This plugin is already "
+"installed and is up to date"
+msgstr ""
+
+#: includes/welcome.php:326
+msgctxt "plugin"
+msgid "Installed"
+msgstr ""
+
+#: includes/welcome.php:335
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: includes/welcome.php:335
+msgid "More Details"
+msgstr ""
+
+#: templates/custom-amp-content.php:61
+#: templates/custom-amp-content.php:63
+msgid "Custom AMP Editor"
+msgstr ""
+
+#: templates/custom-amp-content.php:86
+msgid ""
+"Use This Content as AMP Content"
+msgstr ""
+
+#: templates/custom-sanitizer.php:66
+#, php-format
+msgid ""
+"Embed Handler (%s) must extend "
+"`AMP_Embed_Handler`"
+msgstr ""
+
+#: templates/custom-sanitizer.php:102
+#, php-format
+msgid ""
+"Sanitizer (%s) class does not "
+"exist"
+msgstr ""
+
+#: templates/custom-sanitizer.php:109
+#, php-format
+msgid ""
+"Sanitizer (%s) must extend "
+"`AMP_Base_Sanitizer`"
+msgstr ""
+
+#: templates/customizer/customizer.php:60
+msgid "Design Manager"
+msgstr ""
+
+#: templates/customizer/customizer.php:61
+msgid ""
+"Enable and reorder Design "
+"Elements."
+msgstr ""
+
+#: templates/customizer/customizer.php:156
+msgid "Meta info"
+msgstr ""
+
+#: templates/customizer/customizer.php:168
+msgid "Featured Image"
+msgstr ""
+
+#: templates/customizer/customizer.php:174
+msgid "The Content"
+msgstr ""
+
+#: templates/customizer/customizer.php:180
+msgid "Categories and Tags"
+msgstr ""
+
+#: templates/customizer/customizer.php:186
+msgid "Social Icons"
+msgstr ""
+
+#: templates/customizer/customizer.php:198
+msgid "Related Posts"
+msgstr ""
+
+#: templates/design-manager/design-1/archive.php:66
+#: templates/design-manager/design-1/index.php:69
+#: templates/design-manager/design-1/search.php:69
+#: templates/design-manager/design-3/archive.php:116
+#, php-format
+msgctxt ""
+"%2$s = human-readable time "
+"difference"
+msgid "%1$s "
+msgstr ""
+
+#: templates/design-manager/design-1/elements/comments.php:32
+#: templates/design-manager/design-1/frontpage.php:136
+#: templates/design-manager/design-2/elements/comments.php:32
+#: templates/design-manager/design-2/frontpage.php:134
+#: templates/design-manager/design-3/elements/comments.php:32
+#: templates/design-manager/design-3/frontpage.php:136
+#, php-format
+msgid ""
+"<b class=\"fn\">%s</b> <span "
+"class=\"says\">"
+msgstr ""
+
+#: templates/design-manager/design-1/elements/comments.php:38
+#: templates/design-manager/design-1/frontpage.php:142
+#: templates/design-manager/design-2/elements/comments.php:38
+#: templates/design-manager/design-2/frontpage.php:140
+#: templates/design-manager/design-3/elements/comments.php:38
+#: templates/design-manager/design-3/frontpage.php:142
+#, php-format
+msgid "%1$s "
+msgstr ""
+
+#: templates/design-manager/design-1/elements/comments.php:41
+#: templates/design-manager/design-1/frontpage.php:145
+#: templates/design-manager/design-2/elements/comments.php:41
+#: templates/design-manager/design-2/frontpage.php:143
+#: templates/design-manager/design-3/elements/comments.php:41
+#: templates/design-manager/design-3/frontpage.php:145
+msgid "("
+msgstr ""
+
+#: templates/design-manager/design-1/elements/meta-info.php:23
+#, php-format
+msgctxt ""
+"%s = human-readable time "
+"difference"
+msgid "%s "
+msgstr ""
+
+#: templates/design-manager/design-1/elements/meta-taxonomy.php:8
+#: templates/design-manager/design-1/elements/meta-taxonomy.php:24
+#: templates/design-manager/design-1/elements/meta-taxonomy.php:35
+#: templates/design-manager/design-2/elements/meta-info.php:14
+#: templates/design-manager/design-2/elements/meta-info.php:27
+#: templates/design-manager/design-2/elements/meta-info.php:41
+#: templates/design-manager/design-2/elements/meta-taxonomy.php:9
+#: templates/design-manager/design-2/elements/meta-taxonomy.php:22
+#: templates/design-manager/design-3/elements/meta-info.php:18
+#: templates/design-manager/design-3/elements/meta-info.php:28
+msgid " "
+msgstr ""
+
+#: templates/design-manager/design-3/elements/meta-info.php:33
+msgid "on please die"
+msgstr ""
+
+#: templates/design-manager/design-3/index.php:161
+msgctxt ""
+"accelerated-mobile-pages"
+msgid "angrezi"
+msgstr ""
+
+#: templates/features.php:873
+#: templates/features.php:877
+msgid ""
+"Show AMP for Current Page?"
+msgstr ""
+
+#: templates/features.php:923
+msgid "Show"
+msgstr ""
+
+#: templates/features.php:927
+msgid "Hide"
+msgstr ""
+
+#: templates/report-bugs.php:6
+msgid ""
+"Report an Issue /<br> Request "
+"a Feature"
+msgstr ""
+
+#: templates/search-functions.php:81
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: templates/widget.php:146
+#: templates/widget.php:158
+msgid "Yes "
+msgstr ""
+
+#: templates/widget.php:149
+#: templates/widget.php:161
+msgid " No"
+msgstr ""

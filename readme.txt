@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.3
-Stable tag: 0.9.47
+Stable tag: 0.9.47.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,14 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.47.2 (12 April 2017) =
+* Design-3 Slider URL redirecting to non-AMP page #758
+* Ads showing in comments #768
+
+= 0.9.47.1 (11 April 2017) =
+* Meta description option improved in SEO section #766
+* Fatal error: require_once report-bugs.php #747
 
 = 0.9.47 (10 April 2017) =
 * View more details at https://ampforwp.com/0-9-47-released-54th-update/
