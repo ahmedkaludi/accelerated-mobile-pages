@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.47
+Version: 0.9.47.2
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/5
@@ -16,10 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.47');
+define('AMPFORWP_VERSION','0.9.47.2');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
+load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
@@ -129,7 +130,7 @@ function ampforwp_parent_plugin_check() {
 	}
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	require_once AMPFORWP_PLUGIN_DIR .'templates/report-bugs.php';
+	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
 
 
 /*
@@ -140,7 +141,7 @@ if ( is_admin() ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
-    
+
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
@@ -160,8 +161,8 @@ if ( is_admin() ) {
 
 						<?php add_thickbox(); ?>
 				        <p>
-                        <strong><?php _e( 'AMP Installation requires one last step:', 'ampforwp' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'ampforwp' ); ?>
-				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php _e( 'Continue Installation', 'ampforwp' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php _e( 'More Information', 'ampforwp' ); ?></a>
+                        <strong><?php __( 'AMP Installation requires one last step:','accelerated-mobile-pages' ); ?></strong> <?php __( 'AMP by Automattic plugin is not active', 'accelerated-mobile-pages' ); ?>
+				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php __( 'Continue Installation', 'accelerated-mobile-pages' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php __( 'More Information', 'accelerated-mobile-pages' ); ?></a>
                              </span> </strong>
 				        </p>
 				</div> <?php
@@ -189,7 +190,7 @@ if ( is_admin() ) {
 				<style>
                     .notice, .notice-error, .is-dismissible, .ampinstallation{}
 					.plugin-card.plugin-card-amp:before{
-                        content: "FINISH INSTALLATION: Install & Activate this plugin ↓";
+                        content: __("FINISH INSTALLATION: Install & Activate this plugin ↓",'accelerated-mobile-pages');
                         font-weight: bold;
                         float: right;
                         position: relative;
@@ -227,7 +228,7 @@ if ( is_admin() ) {
  			if (!isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ($plugin == $plugin_file) {
- 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'ampforwp') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'ampforwp') . '</a>');
+ 					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'accelerated-mobile-pages') . '</a>');
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if ( is_plugin_active( 'amp/amp.php' ) ) {
 					    //if parent plugin is activated
@@ -236,7 +237,7 @@ if ( is_admin() ) {
 						if(is_plugin_active( 'amp/amp.php' )){
 							$actions = array_merge( $actions, $settings );
 						}else{
-						$please_activate_parent_plugin = array('Please Activate Parent plugin' => '<a href="'.get_admin_url() .'index.php?page=ampforwp-welcome-page">' . __('<span style="color:#b30000">Action Required: Continue Installation</span>', 'ampforwp') . '</a>');
+						$please_activate_parent_plugin = array(__('Please Activate Parent plugin','accelerated-mobile-pages') => '<a href="'.get_admin_url() .'index.php?page=ampforwp-welcome-page">' . __('<span style="color:#b30000">'.__('Action Required: Continue Installation','accelerated-mobile-pages').'</span>', 'accelerated-mobile-pages') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
 					}
 					}
@@ -285,4 +286,5 @@ add_action('init','ampforwp_plugin_init',9);
 * customized output widget
 * to be used be used in before or after Loop
 */
-require AMPFORWP_PLUGIN_DIR.'/templates/widget.php';
+require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
+require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';

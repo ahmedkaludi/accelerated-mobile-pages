@@ -56,7 +56,7 @@
 
 
      <?php global $redux_builder_amp; ?>
- 		<h3 class="amp-wp-content page-title"><?php echo $redux_builder_amp['amp-translator-search-text'] . '  ' . get_search_query();?>  </h3>
+ 		<h3 class="amp-wp-content page-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?>  </h3>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
@@ -88,7 +88,7 @@
 					}
 				?>
 		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-                <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. $redux_builder_amp['amp-translator-ago-date-text']; ?></div>
+                <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ); ?></div>
 
 		    </div>
             <div class="cb"></div>
@@ -100,16 +100,16 @@
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
+			<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), 0 ) ?></div>
 				<?php if ( $paged > 1 ) { ?>
-					<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+					<div class="prev"><?php previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ); ?></div>
 				<?php } ?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			<?php echo $redux_builder_amp['amp-translator-search-no-found']; ?>
+ 			<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. '); ?>
  		</div>
 
 	<?php endif; ?>

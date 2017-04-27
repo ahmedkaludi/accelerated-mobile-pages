@@ -66,7 +66,7 @@
 						<div class="amp-wp-meta">
 			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
 			              <time> <?php
-                          printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                          printf( _x( '%1$s '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%2$s = human-readable time difference', 'accelerated-mobile-pages' ),
                                 human_time_diff( get_the_time( 'U' ),
                                 current_time( 'timestamp' ) ) ); ?>
                     </time>
@@ -107,8 +107,8 @@
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">
-		            <div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text']. ' &raquo;', 0 ) ?></div>
-		            <div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+		            <div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text']. ' &raquo;', 'Next'), 0 ) ?></div>
+		            <div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ) ); ?></div>
 		            <div class="clearfix"></div>
 		        </div>
 
@@ -121,9 +121,8 @@
 </article>
 
 <?php do_action('ampforwp_home_below_loop') ?>
-
+<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
-
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 
 </body>

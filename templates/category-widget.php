@@ -4,9 +4,9 @@
   public function __construct() {
     $widget_options = array(
       'classname' => 'ampforwp_categories_widget',
-       'description' => 'This Widget adds categories where necessary in AMP Pages'
+       'description' => __('This Widget adds categories where necessary in AMP Pages','accelerated-mobile-pages')
      );
-    parent::__construct( 'ampforwp_categories_widget', 'AMP Categories', $widget_options );
+    parent::__construct( 'ampforwp_categories_widget', __('AMP Categories','accelerated-mobile-pages'), $widget_options );
   }
 
 
@@ -80,7 +80,7 @@
         //show more
         if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
           global $redux_builder_amp;
-          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'.$redux_builder_amp['amp-translator-show-more-text'].'</a>';
+          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         }
         echo '</ul></div>';
 
@@ -107,14 +107,14 @@
     <!-- Form Ends Here -->
         <p>
         <!-- text Start Here -->
-          <label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:
+          <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo __('Title:','accelerated-mobile-pages') ?>
           <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $ampforwp_title ); ?>" />
           </label><br>
         <!-- text End Here -->
         </p>
         <!-- select Start Here -->
          <p>
-          <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>">Category:
+          <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"><?php echo __('Category:','accelerated-mobile-pages') ?>
           <select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" value>
             <?php
 
@@ -134,31 +134,31 @@
 
         <p>
         <!-- text starts Here -->
-          <label for="<?php echo $this->get_field_id( 'count' ); ?>">Number of Posts:
+          <label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php echo __('Number of Posts:','accelerated-mobile-pages') ?>
           <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" value="<?php echo esc_attr( $ampforwp_category_count ); ?>" />
           </label>
         </p>
         <!-- text End Here -->
         <p>
         <!-- radio buttons starts Here -->
-          <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show View more Button:</label><br>
+          <label for="<?php echo $this->get_field_id( 'showButton' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>"><?php echo __('Show View more Button:','accelerated-mobile-pages') ?></label><br>
           <label for="<?php echo $this->get_field_id('show_button_1'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('show_button_1'); ?>" name="<?php echo $this->get_field_name('sho) ?>wButton'); ?>" type="radio" value="yes" <?php if($radio_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php echo __('Yes ','accelerated-mobile-pages'); ?>
           </label>
            <label for="<?php echo $this->get_field_id('show_button_2'); ?>">
-              <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+              <input class="widefat" id="<?php echo $this->get_field_id('show_button_2'); ?>" name="<?php echo $this->get_field_name('showButton'); ?>" type="radio" value="no" <?php if($radio_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php echo __(' No','accelerated-mobile-pages'); ?>
           </label>
         <!-- radio buttons Ends Here -->
         </p>
 
         <p>
           <!-- Excerpt related code starts Here -->
-            <label for="<?php echo $this->get_field_id( 'showExcerpt' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>">Show Excerpt:</label><br>
+            <label for="<?php echo $this->get_field_id( 'showExcerpt' ); ?>" value="<?php  echo esc_attr( $ampforwp_title );?>"> <?php echo __('Show Excerpt:','accelerated-mobile-pages') ?></label><br>
             <label for="<?php echo $this->get_field_id('show_button_3'); ?>">
-                <input class="widefat" id="<?php echo $this->get_field_id('show_button_3'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="yes" <?php if($excerpt_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php _e('Yes '); ?>
+                <input class="widefat" id="<?php echo $this->get_field_id('show_button_3'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="yes" <?php if($excerpt_buttons === 'yes'){ echo 'checked="checked"'; } ?> /><?php echo __('Yes ','accelerated-mobile-pages'); ?>
             </label>
              <label for="<?php echo $this->get_field_id('show_button_4'); ?>">
-                <input class="widefat" id="<?php echo $this->get_field_id('show_button_4'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="no" <?php if($excerpt_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php _e(' No'); ?>
+                <input class="widefat" id="<?php echo $this->get_field_id('show_button_4'); ?>" name="<?php echo $this->get_field_name('showExcerpt'); ?>" type="radio" value="no" <?php if($excerpt_buttons === 'no'){ echo 'checked="checked"'; } ?> /><?php echo __(' No','accelerated-mobile-pages'); ?>
             </label>
           <!-- Excerpt related code Ends Here -->
         </p>

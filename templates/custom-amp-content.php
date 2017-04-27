@@ -58,9 +58,9 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
 function ampforwp_custom_content_meta_register() {
 
-  add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
+  add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
 
-  add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
+  add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
 
 }
 add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
@@ -83,7 +83,8 @@ function amp_content_editor_title_callback( $post ) {
     <label for="meta-checkbox">
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
-    		<?php _e( 'Use This Content as AMP Content' )?>   </p><p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>
+    		<?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
+        <?php echo __('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
     </label>
 
   <!--HTML content Ends here-->

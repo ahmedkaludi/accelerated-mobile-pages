@@ -43,8 +43,8 @@ add_action('admin_menu', 'ampforwp_welcome_screen_pages');
 
 function ampforwp_welcome_screen_pages() {
   add_dashboard_page(
-    'Welcome To AMPforWP plugin',
-    'Welcome to AMP',
+    __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
+    __('Welcome to AMP','accelerated-mobile-pages'),
     'read',
     'ampforwp-welcome-page',
     'ampforwp_welcome_screen_content'
@@ -60,16 +60,16 @@ function ampforwp_welcome_screen_content() {
 
 	    <div class="ampforwp-post-installtion-instructions">
 
-		    <h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i>AMP is now Installed!</h1>
-			<p style=" font-family: georgia; font-size: 20px; font-style: italic; margin-bottom: 3px; line-height: 1.5; color: #666;">Thank you so much for installing the AMPforWP plugin!</p>
-			<p style="font-family: georgia;font-size: 20px;margin-top: 4px;font-style: italic;line-height: 1.5;color: #666;">Our team works really hard to deliver good user experience to you.</p>
+		    <h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-yes"></i><?php echo __('AMP is now Installed!','accelerated-mobile-pages') ?></h1>
+			<p style=" font-family: georgia; font-size: 20px; font-style: italic; margin-bottom: 3px; line-height: 1.5; color: #666;"><?php echo __('Thank you so much for installing the AMPforWP plugin!','accelerated-mobile-pages') ?></p>
+			<p style="font-family: georgia;font-size: 20px;margin-top: 4px;font-style: italic;line-height: 1.5;color: #666;"><?php echo __('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p>
 <div class="install_options">
     <div class="install_options_left">
-        <p style="margin-top:0;margin-bottom:0;font-size: 15px;line-height: 1;"><b>Head Over to Settings</b></p>
-        <p style="margin-top: 8px;margin-bottom:0px;">Time to customize the your AMP!</p>
+        <p style="margin-top:0;margin-bottom:0;font-size: 15px;line-height: 1;"><b><?php echo __('Head Over to Settings','accelerated-mobile-pages') ?></b></p>
+        <p style="margin-top: 8px;margin-bottom:0px;"><?php echo __('Time to customize the your AMP!','accelerated-mobile-pages') ?></p>
     </div>
     <div class="install_options_right">
-        <a href="<?php echo esc_url( admin_url('admin.php?page=amp_options') );?>">AMP Options Panel</a>
+        <a href="<?php echo esc_url( admin_url('admin.php?page=amp_options') );?>"><?php echo __('AMP Options Panel','accelerated-mobile-pages') ?></a>
     </div>
     <div class="clear"></div>
 </div>
@@ -77,25 +77,25 @@ function ampforwp_welcome_screen_content() {
 
 
 		    <h1 style="color: #303F9F;font-weight: 500;margin-top: 48px;">
-		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i>Need Help?
+		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
-			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;">We're bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!</p>
+			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;"><?php echo __('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p>
 		    <div class="getstarted_wrapper">
             <div class="getstarted_options">
-            <p><b>Links to help you started:</b>
+            <p><b><?php echo __('Links to help you started:','accelerated-mobile-pages') ?></b>
 				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank">Getting Started with AMP</a></li>
-					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank">Adding Navigation Menu</a></li>
-					<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank">Adding Google Analtyics</a></li>
-					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank">View all Tutorials</a>
+					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank"><?php echo __('Getting Started with AMP','accelerated-mobile-pages') ?></a></li>
+					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank"><?php echo __('Adding Navigation Menu','accelerated-mobile-pages') ?></a></li>
+					<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank"><?php echo __('Adding Google Analtyics','accelerated-mobile-pages') ?></a></li>
+					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank"><?php echo __('View all Tutorials','accelerated-mobile-pages') ?></a>
 				</ul> </p>
             </div>
             <div class="getstarted_links">
-            <p><b>There are 3 ways to get help:</b></p>
+            <p><b><?php echo __('There are 3 ways to get help:','accelerated-mobile-pages') ?></b></p>
 			<ul class="getstarted_ul">
-				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">Support Forum</a></li>
-				<li><a href="https://ampforwp.com/chat/" target="_blank">Live Chat with Our Team</a></li>
-				<li><a href="https://ampforwp.com/help" target="_blank">View Documentation</a></li>
+				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank"><?php echo __('Support Forum','accelerated-mobile-pages') ?></a></li>
+				<li><a href="https://ampforwp.com/chat/" target="_blank"><?php echo __('Live Chat with Our Team','accelerated-mobile-pages') ?></a></li>
+				<li><a href="https://ampforwp.com/help" target="_blank"><?php echo __('View Documentation','accelerated-mobile-pages') ?></a></li>
 			</ul>
             </div><div class="clear"></div>
             </div>
@@ -141,9 +141,9 @@ function ampforwp_plugin_parent_activation() {
 
 		<div class="wrap">
 			<div class="ampforwp-pre-installtion-instructions">
-				<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i>Almost done. One last step remaining.</h1>
+				<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i><?php echo __('Almost done. One last step remaining.</h1>
 				<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>
-				<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the 'Finish Installation' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>
+				<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the \'Finish Installation\' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>','accelerated-mobile-pages') ?>
 				<div id="ampforwp-network-status"></div>
 			</div>
 
@@ -306,24 +306,24 @@ background: #4CAF50;
 							case 'install':
 								if ( $status['url'] ) {
 									/* translators: 1: Plugin name and version. */
-									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Install %s now' ), $name ) ) . '">' . __( 'Install Now' ) . '</a>';
+									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Install %s now','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Install Now','accelerated-mobile-pages' ) . '</a>';
 								}
 
 								break;
 							case 'update_available':
 								if ( $status['url'] ) {
 									/* translators: 1: Plugin name and version */
-									$action_links[] = '<a class="button ampforwp-button-update" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Update %s now' ), $name ) ) . '">' . __( 'Update Now' ) . '</a>';
+									$action_links[] = '<a class="button ampforwp-button-update" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Update %s now','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Update Now','accelerated-mobile-pages' ) . '</a>';
 								}
 
 								break;
 							case 'latest_installed':
 								if ( $status['activation'] == 'not_activated') {
-									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $activation_link . '" aria-label="' . esc_attr( sprintf( __( 'Activate %s ' ), $name ) ) . '">' . __( 'Activate' ) . '</a>';
+									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $activation_link . '" aria-label="' . esc_attr( sprintf( __( 'Activate %s ','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Activate','accelerated-mobile-pages' ) . '</a>';
 								}
 								break;
 							case 'newer_installed':
-								$action_links[] = '<span class="button button-disabled" title="' . esc_attr__( 'This plugin is already installed and is up to date' ) . ' ">' . _x( 'Installed', 'plugin' ) . '</span>';
+								$action_links[] = '<span class="button button-disabled" title="' . esc_attr__( 'This plugin is already installed and is up to date','accelerated-mobile-pages' ) . ' ">' . _x( 'Installed', 'plugin','accelerated-mobile-pages' ) . '</span>';
 								break;
 						}
 					}
@@ -332,7 +332,7 @@ background: #4CAF50;
 										'&amp;TB_iframe=true&amp;width=750&amp;height=550' );
 
 					/* translators: 1: Plugin name and version. */
-					$action_links[] = '<a href="' . esc_url( $details_link ) . '" class="thickbox" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '">' . __( 'More Details' ) . '</a>';
+					$action_links[] = '<a href="' . esc_url( $details_link ) . '" class="thickbox" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '">' . __( 'More Details','accelerated-mobile-pages' ) . '</a>';
 
 					if ( !empty( $plugin['icons']['svg'] ) ) {
 						$plugin_icon_url = $plugin['icons']['svg'];
@@ -363,7 +363,7 @@ background: #4CAF50;
 						</div>
 						<div class="desc column-description" style="margin-right: 20px !important;">
 							<p><?php echo $description; ?></p>
-							<p class="authors">by Automattic</p>
+							<p class="authors"><?php echo __('by Automattic','accelerated-mobile-pages') ?></p>
 						</div>
 					</div>
 					<div class="ampforwp-button-con">
@@ -410,7 +410,7 @@ function ampforwp_offline_admin_notice() {
       (function(){
         const statusContainer = document.getElementById('ampforwp-network-status');
     		if(! navigator.onLine) {
-    			statusContainer.innerHTML = "<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>";
+    			statusContainer.innerHTML = __("<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>",'accelerated-mobile-pages');
             } else {
               if( statusContainer ) {
             	statusContainer.innerHTML =  "";

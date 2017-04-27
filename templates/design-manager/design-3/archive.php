@@ -55,9 +55,9 @@ if ( get_query_var( 'paged' ) ) {
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
-
-			$description = get_the_archive_description();
-			$arch_desc = ampforwp_content_sanitizer( $description );
+			$description 	= get_the_archive_description();
+			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>
@@ -66,7 +66,14 @@ if ( get_query_var( 'paged' ) ) {
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+  		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+  		$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+
+			if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
+	  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
+	  		}
+			}?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( has_post_thumbnail() ) { ?>
@@ -76,7 +83,7 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image">
-					<a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img
 						layout="responsive"
 						src=<?php echo $thumb_url ?>
@@ -93,7 +100,7 @@ if ( get_query_var( 'paged' ) ) {
 					    <li><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php
@@ -106,7 +113,7 @@ if ( get_query_var( 'paged' ) ) {
 		        <p><?php echo wp_trim_words( strip_shortcodes(  $content ) , '15' ); ?></p>
                 <div class="featured_time">
                   <?php
-                       printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+                       printf( _x( '%1$s '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%2$s = human-readable time difference', 'accelerated-mobile-pages' ),
                              human_time_diff( get_the_time( 'U' ),
                              current_time( 'timestamp' ) ) );
                   ?>
@@ -122,9 +129,9 @@ if ( get_query_var( 'paged' ) ) {
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-show-more-posts-text'] , 0 ) ?></div>
+			<div class="next"><?php next_posts_link( ampforwp_translation ($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts') ,0 ) ?></div>
 					<?php if ( $paged > 1 ) { ?>
-						<div class="prev"><?php previous_posts_link( $redux_builder_amp['amp-translator-show-previous-posts-text'] ); ?></div>
+						<div class="prev"><?php previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts') ); ?></div>
 					<?php } ?>
 			<div class="clearfix"></div>
 		</div>
