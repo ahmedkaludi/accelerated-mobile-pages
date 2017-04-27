@@ -7,6 +7,101 @@ if ( ! class_exists( 'Redux' ) ) {
 
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
+$comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
+$comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
+$cta_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
+$extension_listing = '
+<div class="extension_listing">
+<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
+<ul>
+    <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
+        <div class="extension_desc">
+        <h2>Advanced AMP ADS</h2>
+        <p>Add Advertisement directly in the content</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
+        <div class="extension_desc">
+        <h2>Email Opt-in Forms</h2>
+        <p>Capture Leads with Email Subscription.</p>
+        <div class="extension_btn">From: $79</div>
+        </div>
+    </a></li>
+    <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
+        <div class="extension_desc">
+        <h2>Call To Action (CTA)</h2>
+        <p>Higher Visibility & More Conversions</p>
+        <div class="extension_btn">From: $29</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="extension_desc">
+        <h2>Custom Post Type</h2>
+        <p>Enable Custom Post type support in AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+
+    <li class="first"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
+        <div class="extension_desc">
+        <h2>Advanced Custom Fields</h2>
+        <p>Easily add ACF support in AMP.</p>
+        <div class="extension_btn">From: $29</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
+        <div class="extension_desc">
+        <h2>DoubleClick For Publishers</h2>
+        <p>Enable DFP Support for AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+
+
+    <li class="first"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
+        <div class="extension_desc">
+        <h2>Star Ratings</h2>
+        <p>Star Review Ratings for AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
+        <div class="extension_desc">
+        <h2>AMP WooCommerce</h2>
+        <p>Add WooCommerce in AMP in two clicks.</p>
+        <div class="extension_btn">FREE</div>
+        </div>
+    </a></li>
+
+    <li class="first"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
+        <div class="extension_desc">
+        <h2>Category Base Removal</h2>
+        <p>Remove Category Base Support in AMP</p>
+        <div class="extension_btn">FREE</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="https://ampforwp.com/extensions/" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="extension_desc">
+        <h2>More Coming Soon</h2>
+        <p>Improvements in progress.</p>
+        </div>
+    </a></li>
+
+
+</ul>
+</div>
+';
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
@@ -21,7 +116,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank">'.__('Need Help? Support Forum','accelerated-mobile-pages').'</a> | <a href="https://wordpress.org/plugins/accelerated-mobile-pages/faq/" target="_blank">'.__('FAQ','accelerated-mobile-pages').'</a> |  <a href="https://wordpress.org/plugins/accelerated-mobile-pages/changelog/" target="_blank">'.__('Change Log','accelerated-mobile-pages').'</a> | <a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages" target="_blank">'.__('Reviews','accelerated-mobile-pages').'</a>| <a href="https://www.paypal.me/Kaludi/5" target="_blank">'.__('Donate','accelerated-mobile-pages').'</a>',
+    'intro_text'            => '<a href="https://ampforwp.com/extensions/" target="_blank">'.__('Take AMP to the NEXT LEVEL with Extensions','accelerated-mobile-pages').'</a> | <a href="https://ampforwp.com/help/" target="_blank">'.__('Help','accelerated-mobile-pages').'</a> | <a href="https://ampforwp.com/help/" target="_blank">'.__('Tutorials','accelerated-mobile-pages').'</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
@@ -136,7 +231,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' ) . ampforwp_plugin_activation_notice()
 			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'accelerated-mobile-pages' ) . '</h2>'
 			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
-			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/chat/" target="_blank">Chat with Team AMP</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!' ) . '</p>'
+			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/tutorials/" target="_blank">Tutorials</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We have prepared bunch of tutorials for you' ) . '</p>'
 			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
 			               . '<p><strong>' . __( '4. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
 			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
@@ -1166,6 +1261,26 @@ Redux::setArgs( "redux_builder_amp", $args );
     		        'validate' => 'numeric',
                 'default'  => '3',
 	        ),
+            
+            
+ 
+//             array(
+//                  'id' => 'ampforwp-comments-banner',
+//                  'type' => 'select',
+//                   'desc' =>  $comment_desc,
+//                  'title' => __(' df', 'accelerated-mobile-pages'),
+//                 'class'    => 'new-class',
+//                
+//                //  'desc'       => ' <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
+//              ),
+//            
+            
+    $fields = array(
+    'id'   => 'info_normal',
+    'type' => 'info',
+    'class' => 'extension_banner_bg',
+    'desc' => $extension_listing )
+
         ),
 
     ) );
@@ -1523,7 +1638,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Notifications', 'accelerated-mobile-pages' ),
-       'desc'       => __( 'Add notifications to your AMP pages','accelerated-mobile-pages'),
+          'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
        'subsection' => true,
        'fields'     => array(
@@ -1848,10 +1963,11 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
+
 // Comments
  Redux::setSection( $opt_name, array(
     'title'      => __( 'Comments', 'accelerated-mobile-pages' ),
-//    'desc'       => '<a href="https://github.com/disqus/disqus-install-examples/tree/master/google-amp"> Link to Official Disqus documentation. </a>',
+    'desc' => $comment_desc,
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
@@ -1979,17 +2095,18 @@ Redux::setSection( $opt_name, array(
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
         'id'         => 'opt-go-premium',
         'subsection' => false,
-        'desc' => '<a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-extension.png" width="345" height="500" /></a>
-
-        <a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-custom-post-type-extension.png" width="345" height="500" /></a>
-
-        <a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-DoubleClick-extensions.png" width="345" height="500" /></a>
-
-        <a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-rating-extension.png" width="345" height="500" /></a>
-
-
-        <a href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_coming-soon&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /></a>',
-        'icon' => 'el el-puzzle',
+        'desc' => $extension_listing,
+//        'desc' => '<a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-extension.png" width="345" height="500" /></a>
+//
+//        <a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-custom-post-type-extension.png" width="345" height="500" /></a>
+//
+//        <a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-DoubleClick-extensions.png" width="345" height="500" /></a>
+//
+//        <a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-rating-extension.png" width="345" height="500" /></a>
+//
+//
+//        <a href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_coming-soon&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-extension-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/extension-coming-soon.png" width="345" height="500" /></a>',
+//        'icon' => 'el el-puzzle',
     ) );
 
 
