@@ -8,8 +8,9 @@ if ( ! class_exists( 'Redux' ) ) {
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
+$cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
-$cta_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
+$cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
 $extension_listing = '
 <div class="extension_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
@@ -90,7 +91,7 @@ $extension_listing = '
         <div class="extension_btn">FREE</div>
         </div>
     </a></li>
-    <li class="second"><a href="https://ampforwp.com/extensions/" target="_blank">
+    <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
         <h2>More Coming Soon</h2>
@@ -103,20 +104,151 @@ $extension_listing = '
 </div>
 ';
 
+
+$gettingstarted_extension_listing = '
+<div class="extension_listing getting_started_listing">
+<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
+<ul>
+    <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
+        <div class="extension_desc">
+        <h2>Advanced AMP ADS</h2>
+        <p>Add Advertisement directly in the content</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
+        <div class="extension_desc">
+        <h2>Email Opt-in Forms</h2>
+        <p>Capture Leads with Email Subscription.</p>
+        <div class="extension_btn">From: $79</div>
+        </div>
+    </a></li>
+    <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=gettingstarted_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
+        <div class="extension_desc">
+        <h2>Call To Action (CTA)</h2>
+        <p>Higher Visibility & More Conversions</p>
+        <div class="extension_btn">From: $29</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=gettingstarted_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="extension_desc">
+        <h2>Custom Post Type</h2>
+        <p>Enable Custom Post type support in AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+
+    <li class="first"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=gettingstarted_acf&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
+        <div class="extension_desc">
+        <h2>Advanced Custom Fields</h2>
+        <p>Easily add ACF support in AMP.</p>
+        <div class="extension_btn">From: $29</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=gettingstarted_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
+        <div class="extension_desc">
+        <h2>DoubleClick For Publishers</h2>
+        <p>Enable DFP Support for AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+
+
+    <li class="first"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=gettingstarted_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
+        <div class="extension_desc">
+        <h2>Star Ratings</h2>
+        <p>Star Review Ratings for AMP.</p>
+        <div class="extension_btn">From: $19</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
+        <div class="extension_desc">
+        <h2>AMP WooCommerce</h2>
+        <p>Add WooCommerce in AMP in two clicks.</p>
+        <div class="extension_btn">FREE</div>
+        </div>
+    </a></li>
+
+    <li class="first"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=gettingstarted_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
+        <div class="extension_desc">
+        <h2>Category Base Removal</h2>
+        <p>Remove Category Base Support in AMP</p>
+        <div class="extension_btn">FREE</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=gettingstarted_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
+        <div class="extension_desc">
+        <h2>More Coming Soon</h2>
+        <p>Improvements in progress.</p>
+        </div>
+    </a></li>
+
+
+</ul>
+</div>
+';
+
+
+
+
+
+
+$single_extension_listing = '
+<div class="extension_listing single_ex_listing">
+<h3>Increase the Revenue, Leads and Conversation with these Handpicked extensions</h3>
+<ul>
+    <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
+        <div class="extension_desc">
+        <h2>Advanced AMP ADS</h2> 
+        <p>Add Advertisement directly in the content</p>
+        <div class="extension_btn">View Details</div>
+        </div>
+    </a></li>
+    <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
+        <div class="extension_desc">
+        <h2>Email Opt-in Forms</h2>
+        <p>Capture Leads with Email Subscription.</p>
+        <div class="extension_btn">View Details</div>
+        </div>
+    </a></li>
+    <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=gettingstarted_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
+        <div class="extension_desc">
+        <h2>Call To Action (CTA)</h2>
+        <p>Higher Visibility & More Conversions</p>
+        <div class="extension_btn">View Details</div>
+        </div>
+    </a></li>
+ </ul>
+</div>
+';
+
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
-    'display_name'          =>  __( 'Accelerated Mobile Pages Options','accelerated-mobile-pages' ), // Name that appears at the top of your panel
+    'display_name'          =>  __( 'AMPforWP Options','accelerated-mobile-pages' ), // Name that appears at the top of your panel
     'menu_type'             => 'menu', //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
     'allow_sub_menu'        => true, // Show the sections below the admin menu item or not
     'menu_title'            => __( 'AMP', 'accelerated-mobile-pages' ),
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a href="https://ampforwp.com/extensions/" target="_blank">'.__('Take AMP to the NEXT LEVEL with Extensions','accelerated-mobile-pages').'</a> | <a href="https://ampforwp.com/help/" target="_blank">'.__('Help','accelerated-mobile-pages').'</a> | <a href="https://ampforwp.com/help/" target="_blank">'.__('Tutorials','accelerated-mobile-pages').'</a> ',
+    'intro_text'            => '<a href="https://ampforwp.com/help/#utm_source=options-panel&utm_medium=help_link&utm_campaign=AMP%20Plugin" target="_blank">'.__('Help','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Tutorials','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=view_premium_features_btn&utm_campaign=AMP%20Plugin">VIEW PREMIUM FEATURES</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
@@ -228,7 +360,14 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setSection( $opt_name, array(
         'title' => __( 'Getting Started', 'accelerated-mobile-pages' ),
         'id'    => 'basic',
-        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' . sprintf( __( 'We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' ) . ampforwp_plugin_activation_notice()
+        'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
+                      
+                      sprintf( __( '  <h2 style="    width: 150px;
+    float: right;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    line-height: 20px;"><a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? Support us by leaving a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' ) . ampforwp_plugin_activation_notice()
 			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'accelerated-mobile-pages' ) . '</h2>'
 			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
 			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/tutorials/" target="_blank">Tutorials</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We have prepared bunch of tutorials for you' ) . '</p>'
@@ -238,10 +377,9 @@ Redux::setArgs( "redux_builder_amp", $args );
 			               . '<p><strong>' . __( '6. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
 			               . '<p><strong>' . __( '7. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
 
- 	   					       . sprintf( __( ' </br /></br />
-                          <h2>%1$sLike this plugin? Support us by leaving a 5 Star Rating%2$s</h2><br />
-                         ', 'accelerated-mobile-pages' ), '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform' ) . '">', '</a>' )
-						         . '</p></div>'
+						         . '</p></div>
+                                 <br /><p><h3>Take AMP to the Next Level with Premium Extensions</h3></p>
+                                 ' .$gettingstarted_extension_listing
 
 				 , 'accelerated-mobile-pages' ),
         'icon'  => 'el el-home'
@@ -1212,7 +1350,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     // Single Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'accelerated-mobile-pages' ),
-        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
+//        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
@@ -1279,7 +1417,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     'id'   => 'info_normal',
     'type' => 'info',
     'class' => 'extension_banner_bg',
-    'desc' => $extension_listing )
+    'desc' => $single_extension_listing )
 
         ),
 
