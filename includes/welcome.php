@@ -94,7 +94,7 @@ function ampforwp_welcome_screen_content() {
             <p><b><?php echo __('There are 3 ways to get help:','accelerated-mobile-pages') ?></b></p>
 			<ul class="getstarted_ul">
 				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank"><?php echo __('Support Forum','accelerated-mobile-pages') ?></a></li>
-				<li><a href="https://ampforwp.com/chat/" target="_blank"><?php echo __('Live Chat with Our Team','accelerated-mobile-pages') ?></a></li>
+				<li><a href="https://ampforwp.com/tutorials/" target="_blank"><?php echo __('Tutorials','accelerated-mobile-pages') ?></a></li>
 				<li><a href="https://ampforwp.com/help" target="_blank"><?php echo __('View Documentation','accelerated-mobile-pages') ?></a></li>
 			</ul>
             </div><div class="clear"></div>
