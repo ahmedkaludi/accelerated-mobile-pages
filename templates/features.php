@@ -1919,3 +1919,17 @@ Examples:
 .ampforwp-wc-title{ margin: 10px 0px; }
 .ampforwp-wc-price{ color:#444 }
     <?php }
+
+	// 54. Adding sidebar script
+add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_scripts' );
+function ampforwp_add_sidebar_scripts( $data ) {
+	global $redux_builder_amp;
+
+	if ( $redux_builder_amp['ampforwp-amp-menu-on-off'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
+						$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+					}
+	}
+
+	return $data;
+}
