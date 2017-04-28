@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7.3
-Stable tag: 0.9.47.2
+Tested up to: 4.7.4
+Stable tag: 0.9.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,15 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Email Opt-in Subscription form support in AMP added 
+* NEW - Call to Action boxes and notification bars 
+* NEW - 9 Advertisement sizes - 2 More AD slots added recently
 * NEW - Comments Forms in AMP.
 * NEW - Native AMP Search functionality.
 * NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
-* NEW - Disqus Comments Support
-* NEW - Google Tag Manager Support
-* NEW - Page, Category & Tags Support Added
+* Disqus Comments Support
+* Google Tag Manager Support
+* Page, Category & Tags Support Added
 * Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * Custom Post Type Support 
@@ -50,7 +53,6 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 * Recent Comments list
 * Automatically integrate AMP to your website.
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability.
-* 7 Advertisement sizes
 * Google Analytics Support.
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
@@ -128,6 +130,38 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.48 (28 April 2017) =
+* View more details on: https://ampforwp.com/0-9-48-released-step-towards-multilingual-support-55th-update/
+* The default translation method of WordPress added. (Option in Translation panel to switch between * Translation panel and POT file #540)
+* A new Advertisement slot added above the related posts in the Single. It not only gives better options for people to display ads but this ad slot is also very handy if you are using ad companies like Taboola and RevContent.
+* Another Advertisement slot added below the post title in the Single post.
+* Fatal error: require_once report-bugs.php #747 fixed
+* Add / for codes in Meta Description #766 fixed
+* Controls re-adjusted & Renamed title of yoast description control in Options panel
+* Design-3 Slider URL redirecting to non-AMP page #758
+* Added new sanitizer For HTML to AMP-HTML conversion
+* Sanitized Archive descriptions so that it would convert to AMP
+* Comments sanitized with new sanitizer so that HTML tags automatically become AMP compatible.
+* 301 redirects on non-pretty internal links #767
+* Create a filter to modify the value of rel="amphtml" #778
+* Max-width added for images in comments
+* If in WooCommerce ?amp endpoint set then update href.
+* Undefined Variable (Debug) #733 and many other debug issues were fixed
+* Show last updated Post instead of published date #575
+* WooCommerce Widget added to display latest products on homepage. #763
+* add amp_post_template_above_footer hook global in all the designs #779
+* Excerpt on top of the content in Single #665
+* Subscribe box has been improved for the UX needs #712
+* Notice warnings since 0.4.2 update #740
+* AMP Comments Form Integration with the extension
+* Filter added on the loop in Homepage of the Design 3 so that it can be modified with an external plugin.
+* 404 on paged home page #781
+* Twitter handle should be at the end of the tweet not in the beginning #787
+* Wrong Rel Canonical for AMP Custom Frontpage #799
+* Merged a pull request #761 that will improve the title and description output that is much more stable and flexible for future enhancement and use. It was contributed by Sybre Waaijer - Thanks mate for the contribution, we (our team and users) really appreciate your hard work done on this code.
+* Extension page user experienced improved.
+* Removed old Youtube installation video and replaced with new one.
 
 = 0.9.47.2 (12 April 2017) =
 * Design-3 Slider URL redirecting to non-AMP page #758
