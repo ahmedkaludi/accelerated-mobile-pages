@@ -46,10 +46,10 @@ class ampforwp_pointers {
             <div id="mc_embed_signup">
             	<form action="//app.mailerlite.com/webforms/submit/d3w0e1" data-id="258182" data-code="d3w0e1" method="POST" target="_blank">
 	            	<div id="mc_embed_signup_scroll">
-	            	<div class="mc-field-group" style="    margin-left: 15px;    width: 175px;    float: left;">
+	            	<div class="mc-field-group" style="    margin-left: 15px;    width: 195px;    float: left;">
 					<input type="text" name="fields[name]" class="form-control" placeholder="Name" hidden value="' . esc_attr( $current_user->display_name ) . '" style="display:none">
 
-					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="fields[email]" class="form-control" placeholder="Email*"  style="      width: 168px;    padding: 6px 5px;">
+					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="fields[email]" class="form-control" placeholder="Email*"  style="      width: 180px;    padding: 6px 5px;">
 
 					<input type="text" name="fields[company]" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_attr( get_home_url() ) . '">
 
