@@ -66,7 +66,7 @@ amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: 
 
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .whatsapp-share-icon{ height: 40px; display: inline-block; background: #5cbe4a; margin: 0; }
-.sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
+.sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 10px; top: -4px; position: relative; }
 /* Header */
 #header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15); }
 header{ padding-bottom:50px; }
@@ -119,7 +119,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
 .ampforwp-social-icons{ margin-bottom: 28px; margin-top: 25px; height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
-.ampforwp-social-icons-wrapper .whatsapp-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height: 40px; border-radius: 60px; }
+.ampforwp-social-icons-wrapper .whatsapp-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height: 20px; border-radius: 60px; }
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
