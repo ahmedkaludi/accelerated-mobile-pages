@@ -5,8 +5,11 @@
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="40" height="40"></amp-social-share>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  { ?>
-			<amp-social-share type="twitter" width="40" height="40" data-param-url="CANONICAL_URL"
+		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
+      $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle']; ?>
+			<amp-social-share type="twitter" width="40" height="40"
+                        data-param-url="<?php echo wp_get_shortlink() ?>"
+                        data-param-text="TITLE <?php echo $data_param_data ?>"
 				></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

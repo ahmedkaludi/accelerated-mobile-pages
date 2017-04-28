@@ -6,12 +6,12 @@
 				<?php
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .' ', 'amp' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
 							}
 
 				foreach ($ampforwp_tags as $tag) {
             if($redux_builder_amp['ampforwp-archive-support']){
-							   echo ('<span><a href="'.trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp" >'.$tag->name .'</a></span>');
+							   echo ('<span><a href="'.trailingslashit( trailingslashit( get_tag_link( $tag->term_taxonomy_id ) ) . 'amp' ) . '" >'.$tag->name .'</a></span>');
           } else {
                       echo ('<span>'.$tag->name .'</span>');
           }
@@ -19,7 +19,7 @@
 
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( __($redux_builder_amp['amp-translator-tags-text'] .' ', 'amp' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
 							}
 				?>
 

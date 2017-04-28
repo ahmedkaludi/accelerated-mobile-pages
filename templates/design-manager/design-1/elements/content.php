@@ -1,5 +1,10 @@
-<div class="amp-wp-article-content"> <?php
-
+<div class="amp-wp-article-content">
+	<?php if(has_excerpt()){ ?>
+		<div class="ampforwp_single_excerpt">
+			<?php $content = get_the_excerpt();
+			echo $content; ?>
+		</div>
+	<?php }
 	do_action('ampforwp_inside_post_content_before');
 		$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 
@@ -11,7 +16,7 @@
 			echo $this->get( 'ampforwp_amp_content' );
 		}
 
-	do_action('ampforwp_inside_post_content_after') ?>
+	do_action('ampforwp_after_post_content') ?>
 
 	<!--Post Next-Previous Links-->
 	<?php global $redux_builder_amp;
@@ -26,7 +31,7 @@
 							if (!empty( $next_post )) {
 								$next_text = $next_post->post_title;
 								?>
-									<a href="<?php echo trailingslashit(get_permalink( $next_post->ID )) . AMPFORWP_AMP_QUERY_VAR; ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+									<a href="<?php echo trailingslashit( trailingslashit( get_permalink( $next_post->ID ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 								} ?>
 					</div>
 					<!--Next Link code-->
@@ -37,7 +42,7 @@
 								 if (!empty( $prev_post )) {
 									 $prev_text = $prev_post->post_title;
 									  ?>
-								   <a href="<?php echo trailingslashit(get_permalink( $prev_post->ID )). AMPFORWP_AMP_QUERY_VAR; ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+								   <a href="<?php echo trailingslashit( trailingslashit( get_permalink( $prev_post->ID ) ). AMPFORWP_AMP_QUERY_VAR ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 								 } ?>
 					</div>
 					<!--Prev Link code-->

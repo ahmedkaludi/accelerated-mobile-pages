@@ -1,10 +1,10 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7.2
-Stable tag: 0.9.45.1
+Tested up to: 4.7.3
+Stable tag: 0.9.47.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+[youtube https://www.youtube.com/watch?v=jglJGmlZyos]
 
 > <strong>Extensions</strong><br>
 > Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). 
@@ -128,6 +128,51 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.47.2 (12 April 2017) =
+* Design-3 Slider URL redirecting to non-AMP page #758
+* Ads showing in comments #768
+
+= 0.9.47.1 (11 April 2017) =
+* Meta description option improved in SEO section #766
+* Fatal error: require_once report-bugs.php #747
+
+= 0.9.47 (10 April 2017) =
+* View more details at https://ampforwp.com/0-9-47-released-54th-update/
+* Meta saving method updated for customAMP content editor checkbox was causing some conflict.
+* Wrong Yoast title and structured data in Custom Frontpage fixed
+* CSS minification all 3 designs
+* Polylang flags in menu was causing validation issue, is now resolved
+* WPML flags in menu was causing validation issue, is now resolved
+* Standardized function created for content sanitization.
+* Archive description now displays AMP compatible markup
+* Comments markup sanitized for AMP
+* Design 3 images not aligned properly, fixed
+* Images are aligned to center in Design 1.
+* carousel ending with //amp instead of /amp – fixed #753
+* Title of the Post along with Post link when shared in twitter #683
+* Ads were cutting in half in RTL, fixed
+* Add / at the end of AMP links with in the AMP pages (Internal links) #668
+* Rendering the wrong URLs in front page if paged #742
+* Option to turn off AMP on all pages, so people can turn on only for specific pages #746
+* Need Meta Description on amp pages #741
+* Woocommerce Loop shortcode updated
+* Call Now Button added in header #563
+* Post images are not centered in Design 3 #695
+* UX of GTM settings done, since users were getting confused #700
+* Front page amphtml fixed for paginated pages
+
+= 0.9.45.6 (31 March 2017) =
+* Installation Process from welcome page was not working after WP Plugin DIR API change was fixed.
+* WP Rocket Minifcation and Concatenation was not working, its fixed now.
+* WP Rocket was tested properly to make sure everything is working fine.
+
+= 0.9.45.5 (25 March 2017) =
+* WP rocket conflict solved  
+* Cannot set property ‘innerHTML’ of null issue fixed
+
+= 0.9.45.3 (21 March 2017) =
+* Post 0.9.45 bugs fixed and released as an urgent update.
 
 = 0.9.45.1 (19 March 2017) =
 * Post 0.9.45 bugs fixed and released as an urgent update.

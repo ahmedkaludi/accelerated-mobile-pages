@@ -58,9 +58,9 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
 function ampforwp_custom_content_meta_register() {
 
-  add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
+  add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
 
-  add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
+  add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
 
 }
 add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
@@ -83,7 +83,8 @@ function amp_content_editor_title_callback( $post ) {
     <label for="meta-checkbox">
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
-    		<?php _e( 'Use This Content as AMP Content' )?>   </p><p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>
+    		<?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
+        <?php echo __('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
     </label>
 
   <!--HTML content Ends here-->
@@ -106,34 +107,14 @@ function amp_content_editor_meta_save ( $post_id ) {
     }
 
     //if there is data to be saved to DB
+    // Save data of Custom AMP Editor
     if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
       update_post_meta($post_id, 'ampforwp_custom_content_editor', $_POST[ 'ampforwp_custom_content_editor' ] );
+    }
+    // Save data of Custom AMP Editor CheckBox
+    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
+        update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $_POST[ 'ampforwp_custom_content_editor_checkbox' ] );
     }
 }
 
 add_action ( 'save_post' , 'amp_content_editor_meta_save' );
-
-// Save Rating Meta Field function
-function amp_checkbox_meta_save ( $post_id ) {
-  // Checks save status
-    $is_autosave    = wp_is_post_autosave( $post_id );
-    $is_revision    = wp_is_post_revision( $post_id );
-    $is_valid_nonce = ( isset( $_POST[ 'amp_content_editor_nonce' ] ) && wp_verify_nonce( $_POST[ 'amp_content_editor_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
-
-    // Exits script depending on save status
-    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
-        return;
-    }
-
-    //if there is data to be saved to DB
-    if ( isset( $_POST['ampforwp_custom_content_editor_checkbox'] ) ) {
-      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $_POST[ 'ampforwp_custom_content_editor_checkbox' ] );
-    } else {
-    	 update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', '');
-    }
-}
-
-add_action ( 'save_post' , 'amp_checkbox_meta_save' );
-
-
-?>

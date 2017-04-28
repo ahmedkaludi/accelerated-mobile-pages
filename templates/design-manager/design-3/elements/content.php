@@ -2,8 +2,13 @@
 
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
-
-		<?php do_action('ampforwp_before_post_content') //Post before Content here ?>
+		<?php if(has_excerpt()){ ?>
+			<div class="ampforwp_single_excerpt">
+				<?php $content = get_the_excerpt();
+				echo $content; ?>
+			</div>
+		<?php }
+		do_action('ampforwp_before_post_content') //Post before Content here ?>
 
 			<?php
 			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
@@ -15,7 +20,7 @@
 				// Custom/Alternative AMP content added through post meta
 				echo $this->get( 'ampforwp_amp_content' );
 			}
-			
+
 			// echo $this->get( 'post_amp_content' ); // amphtml content; no kses
 			?>
 
@@ -31,11 +36,11 @@
 				<div id="pagination">
                 <?php $next_post = get_next_post();
                     if (!empty( $next_post )) { ?>
-                    <span><?php global $redux_builder_amp; echo $redux_builder_amp['amp-translator-next-read-text']; ?></span> <a href="<?php echo trailingslashit(get_permalink( $next_post->ID )) . AMPFORWP_AMP_QUERY_VAR; ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
+                    <span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-next-read-text'], 'Next Read' ); ?></span> <a href="<?php echo trailingslashit( trailingslashit(get_permalink( $next_post->ID )) . AMPFORWP_AMP_QUERY_VAR) ; ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
                     } ?>
 				</div>
 			</div>
 		<?php } ?>
 	<!--Post Next-Previous Links End here-->
-    
+
 </div>

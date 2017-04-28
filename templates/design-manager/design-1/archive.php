@@ -32,7 +32,9 @@
 
 	  <?php if ( is_archive() ) {
 	    the_archive_title( '<h3 class="page-title">', '</h3>' );
-			$arch_desc = ampforwp_sanitize_archive_description();
+			$description 	= get_the_archive_description();
+			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
 					<?php echo $arch_desc ; ?>
@@ -40,19 +42,28 @@
 			}
 	  } ?>
 
-		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+			$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+
+			$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+
+				if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
+					if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+		  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
+		  		}
+				} ?>
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 		        <h1 class="amp-wp-title">
-		            <?php  $ampforwp_post_url = get_permalink(); ?>
-		            <a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><?php the_title() ?></a>
+		            <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title() ?></a>
 		        </h1>
 
 				<div class="amp-wp-content-loop">
 
           <div class="amp-wp-meta">
 							<time> <?php
-										printf( _x( '%1$s '. $redux_builder_amp['amp-translator-ago-date-text'], '%2$s = human-readable time difference', 'wpdocs_textdomain' ),
+										printf( __( '%1$s '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%2$s = human-readable time difference', 'accelerated-mobile-pages' ),
 													human_time_diff( get_the_time( 'U' ),
 													current_time( 'timestamp' ) ) ); ?>
 							</time>
@@ -65,7 +76,7 @@
 						$thumb_url = $thumb_url_array[0];
 						?>
 						<div class="home-post-image">
-							<a href="<?php  echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
+							<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 								<amp-img
 									src=<?php echo $thumb_url ?>
 									<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
@@ -91,8 +102,8 @@
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">
-		            <div class="next"><?php next_posts_link( $redux_builder_amp['amp-translator-next-text']. ' &raquo;', 0 ) ?></div>
-		            <div class="prev"><?php previous_posts_link( '&laquo; '. $redux_builder_amp['amp-translator-previous-text'] ); ?></div>
+		            <div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text']. ' &raquo;' , 'Next'), 0 ) ?></div>
+		            <div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ) ); ?></div>
 		            <div class="clearfix"></div>
 		        </div>
 
@@ -103,8 +114,8 @@
 
 </article>
 
+<?php do_action( 'amp_post_template_above_footer', $this ); ?>
 <?php $this->load_parts( array( 'footer' ) ); ?>
-
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 
 </body>
