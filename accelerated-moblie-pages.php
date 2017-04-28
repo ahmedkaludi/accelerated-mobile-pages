@@ -161,8 +161,8 @@ if ( is_admin() ) {
 
 						<?php add_thickbox(); ?>
 				        <p>
-                        <strong><?php __( 'AMP Installation requires one last step:','accelerated-mobile-pages' ); ?></strong> <?php __( 'AMP by Automattic plugin is not active', 'accelerated-mobile-pages' ); ?>
-				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php __( 'Continue Installation', 'accelerated-mobile-pages' ); ?></a> | <a href="https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','https://www.youtube.com/embed/zzRy6Q_VGGc?TB_iframe=true&?rel=0&?autoplay=1']);" class="thickbox"><?php __( 'More Information', 'accelerated-mobile-pages' ); ?></a>
+                        <strong><?php _e( 'AMP Installation requires one last step:','accelerated-mobile-pages' ); ?></strong> <?php _e( 'AMP by Automattic plugin is not active', 'accelerated-mobile-pages' ); ?>
+				         <strong>	<span style="display: block; margin: 0.5em 0.5em 0 0; clear: both;"><a href="index.php?page=ampforwp-welcome-page"><?php _e( 'Continue Installation', 'accelerated-mobile-pages' ); ?></a>
                              </span> </strong>
 				        </p>
 				</div> <?php

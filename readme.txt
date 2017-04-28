@@ -1,6 +1,6 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.3
@@ -15,7 +15,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+[youtube https://www.youtube.com/watch?v=jglJGmlZyos]
 
 > <strong>Extensions</strong><br>
 > Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). 
