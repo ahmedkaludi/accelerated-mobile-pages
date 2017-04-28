@@ -9,7 +9,7 @@
       $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle']; ?>
 			<amp-social-share type="twitter" width="40" height="40"
                         data-param-url="<?php echo wp_get_shortlink() ?>"
-                        data-param-text="<?php echo $data_param_data ?> TITLE"
+                        data-param-text="TITLE <?php echo $data_param_data ?>"
 				></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

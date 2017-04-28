@@ -9,7 +9,7 @@
 												width="50"
 												height="28"
 												data-param-url="<?php echo wp_get_shortlink() ?>"
-												data-param-text="<?php echo $data_param_data ?> TITLE"
+												data-param-text="TITLE <?php echo $data_param_data ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
