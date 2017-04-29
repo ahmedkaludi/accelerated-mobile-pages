@@ -86,6 +86,7 @@ $template = new AMP_Post_Template( $post_id );?>
 			<?php
 			// TODO : Create a separate  function and add the comment code that and use DRY method instead of repeating the code. #682
 				global $redux_builder_amp;
+				$comment_button_url = "";
 				// Gather comments for a specific page/post
 				$postID = get_the_ID();
 				$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
@@ -93,6 +94,8 @@ $template = new AMP_Post_Template( $post_id );?>
 						'post_id' => $postID,
 						'status' => 'approve' //Change this to the type of comments to be displayed
 				));
+				$comment_button_url = get_permalink( $post_id );
+				$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
 				<div class="amp-wp-content comments_list">
 				    <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )?></h3>
@@ -172,14 +175,14 @@ $template = new AMP_Post_Template( $post_id );?>
 				    </ul>
 				</div>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 			} else {
 			    if ( !comments_open() ) {
 			      return;
 				} ?>
 			    <div class="comment-button-wrapper">
-			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
+			       <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
 			    </div>
 			<?php } ?>
 		</div> <?php
