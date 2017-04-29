@@ -51,9 +51,9 @@ if ( is_customize_preview() ) {
 				case 'related_posts:1':
 						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_related_posts' );
 						break;
-				case 'comments:0':
-						add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
-						break;
+				// case 'comments:0':
+				// 		add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_simple_comment_button' );
+				// 		break;
 			}
 		}
 	}
@@ -198,7 +198,7 @@ function ampforwp_add_element_simple_comment_button( $meta_parts ) {
 	$meta_parts[] = 'ampforwp-simple-comment-button';
 	return $meta_parts;
 }
-add_filter( 'amp_post_template_file', 'ampforwp_design_element_simple_comment_button', 10, 3 );
+// add_filter( 'amp_post_template_file', 'ampforwp_design_element_simple_comment_button', 10, 3 );
 
 function ampforwp_design_element_simple_comment_button( $file, $type, $post ) {
 	if ( 'ampforwp-simple-comment-button' === $type ) {
