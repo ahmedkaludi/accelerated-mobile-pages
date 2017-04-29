@@ -888,25 +888,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '1'
             ),
-             array(
-                'id'       => 'amp-design-3-author-description',
-                'type'     => 'switch',
-                'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
-                'required' => array(
-                  array('amp-design-selector', '=' , '3')
-                ),
-                'default'  => '1'
-            ),
-            array(
-               'id'       => 'amp-design-3-date-feature',
-               'type'     => 'switch',
-               'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
-               'required' => array(
-                 array('amp-design-selector', '=' , '3')
-               ),
-               'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
-               'default'  => '0'
-           ),
 
         array(
             'id'       => 'css_editor',
@@ -1355,6 +1336,25 @@ Redux::setArgs( "redux_builder_amp", $args );
         'subsection' => true,
         'fields'     => array(
           // Social Icons ON/OFF
+          array(
+             'id'       => 'amp-design-3-author-description',
+             'type'     => 'switch',
+             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
+             'required' => array(
+               array('amp-design-selector', '=' , '3')
+             ),
+             'default'  => '1',
+         ),
+         array(
+            'id'       => 'amp-design-3-date-feature',
+            'type'     => 'switch',
+            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
+            'required' => array(
+              array('amp-design-selector', '=' , '3')
+            ),
+            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+            'default'  => '0'
+        ),
           array(
               'id'        => 'enable-single-social-icons',
               'type'      => 'switch',
