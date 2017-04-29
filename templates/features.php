@@ -774,6 +774,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
 				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
+				$tags_to_strip = apply_filters('ampforwp_strip_bad_tags', $tags_to_strip);
 				foreach ($tags_to_strip as $tag)
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
