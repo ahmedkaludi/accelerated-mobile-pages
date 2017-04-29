@@ -113,7 +113,7 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .amp-ad-wrapper{ direction: ltr; }
 <?php } ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
-.callnow{ position: relative; top: -26px; right: 79px; }
+.callnow{ position: relative; top: -23px; right: 95px; }
 .callnow a:before { content: ""; position: absolute; right: 23px; width: 5px; height: 11px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 <?php
