@@ -210,7 +210,7 @@ $single_extension_listing = '
     <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
         <div class="extension_desc">
-        <h2>Advanced AMP ADS</h2> 
+        <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
         <div class="extension_btn">View Details</div>
         </div>
@@ -361,7 +361,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         'title' => __( 'Getting Started', 'accelerated-mobile-pages' ),
         'id'    => 'basic',
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
-                      
+
                       sprintf( __( '  <h2 style="    width: 150px;
     float: right;
     padding: 15px 20px;
@@ -1362,6 +1362,13 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          array(
+              'id'        => 'enable-excerpt-single',
+              'type'      => 'switch',
+              'title'     => __('Excerpt in single', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Enable feature to add Excerpt above Content in single', 'accelerated-mobile-pages'),
+          ),
           //deselectable next previous links
           array(
               'id'        => 'enable-single-next-prev',
@@ -1399,20 +1406,20 @@ Redux::setArgs( "redux_builder_amp", $args );
     		        'validate' => 'numeric',
                 'default'  => '3',
 	        ),
-            
-            
- 
+
+
+
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
 //                  'type' => 'select',
 //                   'desc' =>  $comment_desc,
 //                  'title' => __(' df', 'accelerated-mobile-pages'),
 //                 'class'    => 'new-class',
-//                
+//
 //                //  'desc'       => ' <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
 //              ),
-//            
-            
+//
+
     $fields = array(
     'id'   => 'info_normal',
     'type' => 'info',
