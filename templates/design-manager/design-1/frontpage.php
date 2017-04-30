@@ -190,9 +190,11 @@ $template = new AMP_Post_Template( $post_id );?>
 
 		<div class="amp-wp-content post-pagination-meta">
 			<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
-		</div>
+		</div> <?php
 
-		<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
+	
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if( $redux_builder_amp['enable-single-social-icons'] == true && !is_plugin_active( 'amp-cta/amp-cta.php' ) )  { ?>
 			<div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"   width="50" height="28"></amp-social-share>
