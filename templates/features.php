@@ -767,10 +767,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 $content = preg_replace('/(<[^>]+) spellcheck/', '$1', $content);
 				 $content = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content);
 
-				 //removing scripts and rel="nofollow" from Body and from divs
+				 //removing defer onload
+				 //issue #431
+				 $content = str_replace(' onload=""',"",$content);
+				 $content = str_replace(' defer',"",$content);
+
+				  //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
 				 $content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
+
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
 				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
