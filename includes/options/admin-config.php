@@ -1337,12 +1337,9 @@ Redux::setArgs( "redux_builder_amp", $args );
         'fields'     => array(
           // Social Icons ON/OFF
           array(
-             'id'       => 'amp-design-3-author-description',
+             'id'       => 'amp-author-description',
              'type'     => 'switch',
              'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
-             'required' => array(
-               array('amp-design-selector', '=' , '3')
-             ),
              'default'  => '1',
          ),
          array(
