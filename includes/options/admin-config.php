@@ -592,6 +592,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '3' => __('Piwik Analytics', 'accelerated-mobile-pages' ),
                             '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
+                            '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -631,6 +632,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                           ),
                           'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
                           'subtitle' => __('Enter your Piwik Analytics URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'eam-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '6')
+                          ),
+                          'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your Effective Measure URL.', 'accelerated-mobile-pages' ),
                           'default'  => '#',
                       ),
 

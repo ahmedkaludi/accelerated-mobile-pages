@@ -721,6 +721,30 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 							<?php
 						}
 
+				// 10.5 Analytics Support added for comscore
+					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
+							<amp-analytics type="comscore">
+								<script type="application/json">
+								{
+								  "vars": {
+								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
+								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
+								  }
+								}
+								</script>
+							</amp-analytics>
+							<?php
+						}
+
+
+			// 10.6 Analytics Support added for Effective Measure
+				if( $redux_builder_amp['amp-analytics-select-option']=='6' ) { ?>
+					<!-- BEGIN EFFECTIVE MEASURE CODE -->
+					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
+					<!--END EFFECTIVE MEASURE CODE -->
+				<?php }
+
+
 
 		}//analytics function ends here
 
