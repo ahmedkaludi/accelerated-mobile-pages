@@ -5,7 +5,7 @@
 		<div class="amp-wp-meta amp-wp-content ampforwp-tax-tag">
 				<?php foreach ($ampforwp_tags as $tag) {
           if($redux_builder_amp['ampforwp-archive-support']){
-              echo ('<span><a href="'.trailingslashit( trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp') .'" >'. $tag->name  .'</a></span>');
+              echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'.trailingslashit( trailingslashit(get_tag_link($tag->term_taxonomy_id)).'amp') .'" >'. $tag->name  .'</a></span>');
         } else {
           echo '<span>'. $tag->name .'</span>';
         }
@@ -13,7 +13,7 @@
 		</div>
 <?php endif;?>
 </div>
-<?php 
+<?php
 
 if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) ) {
 	if( $redux_builder_amp['amp-author-description'] ) { ?>
