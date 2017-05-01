@@ -8,8 +8,8 @@
 		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
       $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle']; ?>
 			<amp-social-share type="twitter" width="40" height="40"
-                        data-param-url="<?php echo wp_get_shortlink() ?>"
-                        data-param-text="TITLE <?php echo $data_param_data ?>"
+                        data-param-url=""
+                        data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 				></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

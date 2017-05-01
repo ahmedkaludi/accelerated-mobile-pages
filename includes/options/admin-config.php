@@ -2037,6 +2037,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
+                    array(
+                       'id'       => 'amp-translator-via-text',
+                       'type'     => 'text',
+                       'title'    => __('via', 'accelerated-mobile-pages'),
+                       'default'  => __('via','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
                    array(
                        'id'       => 'amp-translator-search-text',
                        'type'     => 'text',

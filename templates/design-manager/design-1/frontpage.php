@@ -204,8 +204,8 @@ $template = new AMP_Post_Template( $post_id );?>
 						<amp-social-share type="twitter"
 															width="50"
 															height="28"
-															data-param-url="<?php echo wp_get_shortlink() ?>"
-															data-param-text="<?php echo $data_param_data ?> TITLE"
+															data-param-url=""
+                        									data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 						></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
