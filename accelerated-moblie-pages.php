@@ -46,6 +46,15 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+	// For Homepage with Pagination
+	if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
+	    add_rewrite_rule(
+	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
+	        'index.php?amp&paged=$matches[1]',
+	        'top'
+	    );
+	}
+
 
     // For category pages
     $rewrite_category = get_option('category_base');

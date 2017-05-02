@@ -214,6 +214,18 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		}
 	}
 
+
+	function ampforwp_name_blog_page() {
+		$page_for_posts  =  get_option( 'page_for_posts' );
+		$post = get_post($page_for_posts); 
+		$slug = $post->post_name;
+		return $slug;
+
+	}
+	function ampforwp_custom_post_page() {
+		$front_page_type  =  get_option( 'show_on_front' );
+		return $front_page_type;
+	}
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
@@ -222,21 +234,35 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	   	// Custom Homepage and Archive file
 
         global $redux_builder_amp;
-        // Homepage and FrontPage
-        if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
-            if ( is_home() ) {
-                if ( 'single' === $type ) {
-                	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-                }
-            }
-        } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-            if ( is_home() ) {
-                if ( 'single' === $type ) {
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-                }
-            }
+		$slug = array();
+		$current_url_in_pieces = array();
 
-        }
+		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
+		        
+        // Homepage and FrontPage
+        if ( is_home() ) {
+        	if ( 'single' === $type ) {
+
+        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+
+		       if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
+		           
+		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+	            }           
+        	
+
+		        if ( $ampforwp_custom_post_page == "page" && ampforwp_name_blog_page() ) {
+					$current_url = home_url( $GLOBALS['wp']->request );
+					$current_url_in_pieces = explode( '/', $current_url );
+				
+					if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
+						 $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+					}  
+				}
+			}	
+		}
+
+
 
         // Archive Pages
         if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {

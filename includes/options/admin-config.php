@@ -483,6 +483,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'true'      => 'true',
                 'false'     => 'false',
                 'required'  => array('ampforwp-homepage-on-off-support','=','1'),
+                'desc'      => __( 'Re-Save permalink if front page or custom post page\'s pagination is not working. Please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
             ),
             array(
                 'id'       => 'amp-frontpage-select-option-pages',
