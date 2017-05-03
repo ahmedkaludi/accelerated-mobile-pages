@@ -1188,7 +1188,7 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 //     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 // }, 9 );
 
-// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin 
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
@@ -1201,6 +1201,9 @@ function ampforwp_remove_schema_data() {
 	if ($amp_custom_content_enable == 'yes') {
 		remove_filter( 'the_content', 'tve_editor_content', 10 );
 	}
+
+	// Removed GTranslate Flags from AMP pages #819
+	remove_filter('wp_nav_menu_items', 'gtranslate_menu_item', 10, 2);
 
 }
 
