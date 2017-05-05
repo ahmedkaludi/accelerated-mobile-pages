@@ -770,6 +770,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 					<!--END EFFECTIVE MEASURE CODE -->
 				<?php }
 
+			//	10.7 Analytics Support added for StatCounter
+				if( $redux_builder_amp['amp-analytics-select-option']=='7' ) { ?>
+					<!-- BEGIN StatCounter CODE -->
+					<div id="statcounter">
+					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
+					</amp-pixel> 
+					</div>
+					<!--END StatCounter CODE -->
+				<?php }
+
 
 
 		}//analytics function ends here

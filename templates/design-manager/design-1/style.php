@@ -11,6 +11,7 @@ function ampforwp_additional_style_input( $amp_template ) {
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
+ #statcounter{width: 1px;height:1px;} 
 .alignright{ float: right; }
 .alignleft{ float: left; }
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }

@@ -594,6 +594,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
                             '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
+                            '7' => __('StatCounter', 'accelerated-mobile-pages' ),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -645,6 +646,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                           ),
                           'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
                           'subtitle' => __('Enter your Effective Measure URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'sc-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '7')
+                          ),
+                          'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your StatCounter URL.', 'accelerated-mobile-pages' ),
                           'default'  => '#',
                       ),
 
