@@ -1,5 +1,6 @@
-<?php global $redux_builder_amp;  ?>
-<div class="amp-wp-content post-pagination-meta ampforwp-social-icons-wrapper ampforwp-social-icons">
+<?php global $redux_builder_amp;  
+if ( is_single() ) { ?>
+	<div class="amp-wp-content post-pagination-meta ampforwp-social-icons-wrapper ampforwp-social-icons">
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>
@@ -31,4 +32,5 @@
 			    </div>
 			</a>
 		<?php } ?>
-</div>
+	</div>
+<?php } ?>

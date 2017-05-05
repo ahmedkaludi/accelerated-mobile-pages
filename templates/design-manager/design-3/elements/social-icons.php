@@ -1,5 +1,5 @@
 <?php global $redux_builder_amp;  ?>
-<?php if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
+<?php if( is_socialshare_or_socialsticky_enabled_in_ampforwp() && is_single() ) { ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
