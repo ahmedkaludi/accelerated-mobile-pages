@@ -1,4 +1,4 @@
-<header class="amp-wp-article-header ampforwp-title">
+<header class="amp-wp-content amp-wp-article-header ampforwp-title">
 	<h1 class="amp-wp-title"> <?php 
 		$ampforwp_title = $this->get( 'post_title' ) ;
 		$ampforwp_title =  apply_filters('ampforwp_filter_single_title', $ampforwp_title);
