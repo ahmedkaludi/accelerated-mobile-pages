@@ -1273,6 +1273,13 @@ function ampforwp_sticky_social_icons(){
 							    </div>
 								</a>
 	        <?php } ?>
+	        <?php if($redux_builder_amp['enable-single-line-share'] == true)  { ?>
+			<a href="http://line.me/R/msg/text/?<?php echo get_the_permalink(); ?>">
+				<div class="line-share-icon">
+				<!-- Logo should be added here -->
+				</div>
+			</a>
+		<?php } ?>
 			</div>
 	<?php }
 		}
@@ -1919,7 +1926,8 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
 				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] )  {
+				 $redux_builder_amp['enable-single-whatsapp-share'] ||
+				 $redux_builder_amp['enable-single-line-share'] )  {
 					return true;
 				}
 			return false;

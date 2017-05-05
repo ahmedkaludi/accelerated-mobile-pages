@@ -1529,6 +1529,13 @@ Redux::setArgs( "redux_builder_amp", $args );
               'title'     =>  __('WhatsApp', 'accelerated-mobile-pages'),
               'default'   =>  1,
           ),
+          // LINE
+          array(
+              'id'        =>  'enable-single-line-share',
+              'type'      =>  'switch',
+              'title'     =>  __('LINE', 'accelerated-mobile-pages'),
+              'default'   =>  1,
+          ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',

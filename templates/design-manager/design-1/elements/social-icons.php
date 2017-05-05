@@ -32,5 +32,12 @@
 			    </div>
 			</a>
 		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-line-share'] == true)  { ?>
+			<a href="http://line.me/R/msg/text/?<?php echo get_the_permalink(); ?>">
+				<div class="line-share-icon">
+					<!-- Logo should be added here -->
+				</div>
+			</a>
+		<?php } ?>
 	</div>
 <?php } ?>
