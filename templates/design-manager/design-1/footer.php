@@ -20,7 +20,16 @@ global $redux_builder_amp;
     $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
   } ?>
 <footer class="amp-wp-footer">
-	<div>
+	<div id="footer">
+		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
+          <div class="footer_menu"> <?php
+              $menu = wp_nav_menu( array(
+                  'theme_location' => 'amp-footer-menu',
+                  'echo' => false
+              ) );
+              echo strip_tags( $menu , '<ul><li><a>'); ?>
+          </div>
+        <?php } ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
 			<?php

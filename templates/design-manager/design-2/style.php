@@ -111,6 +111,11 @@ main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 #footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer p{ margin: 0 }
+.footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
+.footer_menu ul li{ display:inline; margin:0 10px; }
+.footer_menu ul li:first-child{ margin-left:0 }
+.footer_menu ul li:last-child{ margin-right:0 }
+.footer_menu ul ul{ display:none }
 /* Single */
 .comment-button-wrapper{ margin-bottom: 40px; margin-top: 25px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 13px; padding: 10px 20px 10px 20px; box-shadow: 0 0px 3px rgba(0,0,0,.04); border-radius: 80px; }

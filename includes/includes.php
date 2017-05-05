@@ -2,7 +2,8 @@
 /* This file will contain all the extra code that works like a supporting.
 1. Register AMP menu
 	1.1 AMP Header menu
-	1.2 Design 3 Footer Menu
+	1.2 Footer Menu
+
 2. Newsletter code
 */
 // 1. AMP menu code
@@ -19,13 +20,15 @@
 		add_action( 'init', 'ampforwp_menu' );
 	}
 
-	// 1.2 Design 3 Footer Menu
+	// 1.2 Footer Menu
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['amp-design-selector'] == 3) {
-	 	add_action( 'init', 'ampforwp_design_3_footermenu' );
+	if ( $redux_builder_amp['amp-design-selector'] == 1 ||
+		 $redux_builder_amp['amp-design-selector'] == 2 || 
+		 $redux_builder_amp['amp-design-selector'] == 3) {
+	 	add_action( 'init', 'ampforwp_footermenu' );
 	}
-	if (! function_exists( 'ampforwp_design_3_footermenu') ) {
-		function ampforwp_design_3_footermenu() {
+	if (! function_exists( 'ampforwp_footermenu') ) {
+		function ampforwp_footermenu() {
 		  register_nav_menus(
 		    array(
 		      'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
