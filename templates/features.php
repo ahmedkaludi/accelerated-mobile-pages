@@ -1153,6 +1153,7 @@ function ampforwp_remove_print_scripts() {
 				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 				remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
+
 		}
 }
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
@@ -1560,6 +1561,8 @@ function ampforwp_remove_bj_load() {
  	}
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
+// Disable Crazy Lazy for amp
+remove_action( 'wp', array( 'CrazyLazy', 'instance' ) );
 
 //33. Google tag manager support added
 // Remove any old scripts that have been loaded by other Plugins
