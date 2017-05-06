@@ -74,7 +74,7 @@
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { ?>
-             			<li><?php echo $category->cat_name ?></li>
+             			<li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
