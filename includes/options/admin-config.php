@@ -1364,22 +1364,6 @@ Redux::setArgs( "redux_builder_amp", $args );
         'fields'     => array(
           // Social Icons ON/OFF
           array(
-             'id'       => 'amp-author-description',
-             'type'     => 'switch',
-             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
-             'default'  => '1',
-         ),
-         array(
-            'id'       => 'amp-design-3-date-feature',
-            'type'     => 'switch',
-            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
-            'required' => array(
-              array('amp-design-selector', '=' , '3')
-            ),
-            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
-            'default'  => '0'
-        ),
-          array(
               'id'        => 'enable-single-social-icons',
               'type'      => 'switch',
               'title'     => __('Sticky Social Icons', 'accelerated-mobile-pages'),
@@ -1409,6 +1393,24 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 0,
               'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
           ),
+          // Author Bio
+         array(
+             'id'       => 'amp-author-description',
+             'type'     => 'switch',
+             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+         ),
+         // Date on Single
+         array(
+            'id'       => 'amp-design-3-date-feature',
+            'type'     => 'switch',
+            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
+            'required' => array(
+              array('amp-design-selector', '=' , '3')
+            ),
+            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+            'default'  => '0'
+        ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
