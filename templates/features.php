@@ -1442,6 +1442,21 @@ function ampforwp_replace_title_tags() {
 	}
 }
 
+
+add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpage');
+function ampforwp_update_title_for_frontpage() {
+	$check_custom_front_page = get_option('show_on_front');
+	if ( $check_custom_front_page == 'page' && is_home() ) {
+
+		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
+		add_action('amp_post_template_head','ampforwp_title_markup');
+	}
+}
+
+function ampforwp_title_markup () { ?>
+	<title><?php echo esc_html( ampforwp_add_custom_title_tag() ); ?></title> <?php
+}
+
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
 		function ampforwp_the_content_filter_full( $content_buffer ) {
