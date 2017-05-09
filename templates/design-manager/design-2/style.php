@@ -94,6 +94,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .ampforwp-social-icons-wrapper{ margin: 0.65em 0px 0.65em 0px; height: 28px; }
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .whatsapp-share-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a; padding: 4px 0px; position: relative; top: -4px; }
+.line-share-icon{ width: 50px; height: 28px; display: inline-block; background: #00b900; padding: 4px 0px; position: relative; top: -4px; }
 /* Header */
 #header{ background: #fff; text-align: center; }
 #header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
@@ -117,7 +118,7 @@ main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
 /* Single */
-.comment-button-wrapper{ margin-bottom: 40px; margin-top: 25px; text-align:center }
+.comment-button-wrapper{ margin-bottom: 0px; margin-top: 60px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 13px; padding: 10px 20px 10px 20px; box-shadow: 0 0px 3px rgba(0,0,0,.04); border-radius: 80px; }
 h1.amp-wp-title{ text-align: center; margin: 0.7em 0px 0.6em 0px; font-size: 1.5em; }
 .amp-wp-content.post-title-meta, .amp-wp-content.post-pagination-meta{ background: none; padding:  0; box-shadow:none }
