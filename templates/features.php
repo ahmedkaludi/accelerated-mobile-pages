@@ -1563,6 +1563,13 @@ function ampforwp_remove_bj_load() {
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
+//Disable Crazy Lazy for AMP
+function ampforwp_remove_czlz(){
+if(ampforwp_is_amp_endpoint()){
+	remove_action( 'wp', array( 'CrazyLazy', 'instance' ) );
+}
+}
+add_action('wp','ampforwp_remove_czlz',9);
 //33. Google tag manager support added
 // Remove any old scripts that have been loaded by other Plugins
 add_action('init', 'amp_gtm_remove_analytics_code');
