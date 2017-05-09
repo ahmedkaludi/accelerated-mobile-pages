@@ -1458,6 +1458,7 @@ function ampforwp_replace_title_tags() {
                 $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
+                $content_buffer = preg_replace("/about:blank/", "#", $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
             }
