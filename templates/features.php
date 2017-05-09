@@ -2278,7 +2278,7 @@ function ampforwp_meta_description() {
 	$desc= preg_replace('/\[(.*)?\]/','',$desc);
 
 	if( $desc ) {
-		echo '<meta name="description" content="'. $desc .'"/>';
+		echo '<meta name="description" content="'. esc_html( convert_chars( wptexturize ( $desc ) ) )  .'"/>';
 	}
 }
 
