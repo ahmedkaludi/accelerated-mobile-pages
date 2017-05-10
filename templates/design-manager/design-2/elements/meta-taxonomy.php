@@ -32,7 +32,7 @@
 if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_single() ) {
 	if( $redux_builder_amp['amp-author-description'] ) { ?>
 	<div class="amp-wp-content amp_author_area ampforwp-meta-taxonomy">
-	    <div class="amp-wp-content amp_author_area_wrapper">
+	    <div class="amp_author_area_wrapper">
 	        <?php $post_author = $this->get( 'post_author' );
 	            if ( $post_author ) {
 
