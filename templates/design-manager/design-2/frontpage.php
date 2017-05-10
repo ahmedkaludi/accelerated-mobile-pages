@@ -49,7 +49,22 @@ $template = new AMP_Post_Template( $post_id );?>
 <?php do_action('ampforwp_frontpage_above_loop') ?>
 
 <main>
-	<div class="amp-wp-content the_content"> <?php
+	<div class="amp-wp-content the_content"> 
+
+	<?php if (has_post_thumbnail( $post_id ) ):  ?>
+		<figure class="amp-wp-article-featured-image wp-caption"> <?php  
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' ); 
+			$caption = get_the_post_thumbnail_caption( $post_id ); ?>
+			<amp-img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" layout=responsive alt="<?php echo get_the_title( $post_id ) ?>" >  </amp-img>	
+			<?php if ( $caption ) : ?>
+				<p class="wp-caption-text">
+					<?php echo wp_kses_data( $caption ); ?>
+				</p>
+			<?php endif; ?>
+		</figure>
+	<?php endif; ?>	
+
+	<?php
 
 		// Normal Front Page Content
 		if ( ! $amp_custom_content_enable ) {
