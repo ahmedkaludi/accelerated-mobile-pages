@@ -271,6 +271,7 @@ table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 
 /* Responsive */
+@media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (min-width:1034px){
 .single-post .amp-wp-article-content amp-img{ margin:0 -17px 17px -17px }
 }

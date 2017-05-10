@@ -207,6 +207,7 @@ table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 
 /* Responsive */
+@media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (max-width: 800px) { .single-post main{ padding: 12px 10px 10px 10px } }
 @media screen and (max-width: 630px) { .related_posts ol li p{ display:none } .related_link { margin: 16px 18px 20px 19px; } .amp-category-post {line-height: 1.45;font-size: 14px; } .amp-category-block li:nth-child(3) {margin:0 0.6%} }
 @media screen and (max-width: 510px) { .ampforwp-tax-category span{ display:none }
