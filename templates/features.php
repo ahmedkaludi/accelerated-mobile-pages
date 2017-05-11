@@ -213,19 +213,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			return false;
 		}
 	}
-
-
-	function ampforwp_name_blog_page() {
-		$page_for_posts  =  get_option( 'page_for_posts' );
-		$post = get_post($page_for_posts); 
-		$slug = $post->post_name;
-		return $slug;
-
-	}
-	function ampforwp_custom_post_page() {
-		$front_page_type  =  get_option( 'show_on_front' );
-		return $front_page_type;
-	}
+	
 	// 2. Custom Design
 
 	// Add Homepage AMP file code

@@ -32,6 +32,18 @@ function ampforwp_add_custom_post_support() {
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
+// Frontpage and Blog page check from reading settings.
+function ampforwp_name_blog_page() {
+	$page_for_posts  =  get_option( 'page_for_posts' );
+	$post = get_post($page_for_posts); 
+	$slug = $post->post_name;
+	return $slug;
+}
+function ampforwp_custom_post_page() {
+	$front_page_type  =  get_option( 'show_on_front' );
+	return $front_page_type;
+}
+
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     // For Homepage
