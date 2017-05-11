@@ -213,7 +213,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			return false;
 		}
 	}
-	
+
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
@@ -1434,15 +1434,27 @@ function ampforwp_replace_title_tags() {
 add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpage');
 function ampforwp_update_title_for_frontpage() {
 	$check_custom_front_page = get_option('show_on_front');
+
 	if ( $check_custom_front_page == 'page' && is_home() ) {
 
 		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
-		add_action('amp_post_template_head','ampforwp_title_markup');
+		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
+
+		add_filter('aioseop_title','ampforwp_aioseop_front_page_title');
 	}
 }
+// Custom Frontpage title for ALL in one SEO.
+function ampforwp_aioseop_front_page_title() {
+	$sep = ' | ';
+	return $site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
+}
 
-function ampforwp_title_markup () { ?>
-	<title><?php echo esc_html( ampforwp_add_custom_title_tag() ); ?></title> <?php
+function ampforwp_frontpage_title_markup () { 
+	$front_page_title = ampforwp_add_custom_title_tag();
+	$front_page_title = apply_filters('ampforwp_frontpage_title_filter', $front_page_title);  
+	?>
+
+	<title> <?php echo esc_html( $front_page_title ); ?> </title> <?php
 }
 
 // 27. Clean the Defer issue
