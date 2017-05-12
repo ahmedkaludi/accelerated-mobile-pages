@@ -66,8 +66,9 @@ amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: 
 /* Sticky Social bar in Single */
 
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.whatsapp-share-icon{ height: 40px; display: inline-block; background: #5cbe4a; margin: 0; }
-.line-share-icon{ height: 40px; display: inline-block; background: #00b900; margin: 0; }
+.custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
+.custom-amp-socialsharing-icon amp-img{ top: 4px; }
+.custom-amp-socialsharing-line{background:#00b900}
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 /* Header */
@@ -122,8 +123,8 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
 .ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
-.ampforwp-social-icons-wrapper .whatsapp-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height: inherit; border-radius: 60px; }
-.ampforwp-social-icons-wrapper .line-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height:inherit; border-radius: 60px; }
+.custom-amp-socialsharing-icon-rounded{margin-right:6px;padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; background: #5cbe4a; display: inline-block; height: inherit; border-radius: 60px; }
+.custom-amp-socialsharing-line{background:#00b900}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
