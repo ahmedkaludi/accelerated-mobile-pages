@@ -93,9 +93,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 /* Sticky Social bar in Single */
 .ampforwp-social-icons-wrapper{ margin: 0.65em 0px 0.65em 0px; height: 28px; }
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.whatsapp-share-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
-.whatsapp-share-icon amp-img{ top: 4px; }
-.line-share-icon{ width: 50px; height: 28px; display: inline-block; background: #00b900; padding: 4px 0px; position: relative; top: -4px; }
+.custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
+.custom-amp-socialsharing-icon amp-img{ top: 4px; }
 /* Header */
 #header{ background: #fff; text-align: center; }
 #header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
