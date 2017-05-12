@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.4
-Stable tag: 0.9.48
+Stable tag: 0.9.49
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 [youtube https://www.youtube.com/watch?v=jglJGmlZyos]
 
 > <strong>Extensions</strong><br>
-> Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). 
+> Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
 >
 > <strong>Premium Support</strong><br>
 > We try our best to provide support on WordPress.org forums. However, One-on-one email support is available to people who bought the [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) only. 
@@ -74,7 +74,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 * RTL Support
 * Custom AMP FrontPage
 * Notifications
-* Piwik & Segment.com Support
+* Piwik & Segment.com, StatCounter (NEW) & Effective Measure (NEW) Support 
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
@@ -130,6 +130,38 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.48 (12 May 2017) =
+* View more details on https://ampforwp.com/0-9-49-released-small-important-bugs-fixed-56th-update/
+* Option added to display the excerpt in Single #806
+* Ability to add new invalid tags to filter out from AMP pages #809
+* In frontpage, comment button is pointing to wrong URL #812
+* Call now button and search is overlapping in Design-1 #784
+* Sticky Social Icons should be off if the CTA notification bar is on #788
+* Author bio in Design 1 and 2 #732
+* Styling in Taxonomy description causing validation issues #798
+* Twitter share(handle, url positions fixed) #815
+* Tables responsiveness in ALL Designs #726
+* Output all the categories and tags with their own ID’s in the div classes #750
+* Social Share Icons Overlap with Leave A Comment in Design 3 #716
+* Effective Measure Support on AMP #297
+* Custom AMP editor on pages should only be shown when page support is ON #756
+* AMP on website.com/blog without need of separate installation #775
+* GTranslate Compatible #819
+* Images and amp-anim styling added #725
+* Filter to make the title in a post to a link #727
+* Author Bio and Social Share button must not come in Pages #770
+* StatCounter is now compatible with AMP #361
+* Line Social media support #500
+* Footer menus for Design 1 & Design 2 #623
+* Strip out src=”about:blank” When Gravity Forms used #804
+* Add Compatibility with Crazy Lazy load plugin #751
+* Meta Titles and Description issues fixed with Yoast, All in one SEO and The SEO Framework #813
+* Double quotes in the Excerpt of the meta description is making AMP Invalidated #818
+* Missing featured image on static front page #824
+* Fatal error while activation: see the video 0.9.49 Beta #827
+* Review this code in archive.php in all 3 designs. #826
+
 
 = 0.9.48 (28 April 2017) =
 * View more details on: https://ampforwp.com/0-9-48-released-step-towards-multilingual-support-55th-update/
