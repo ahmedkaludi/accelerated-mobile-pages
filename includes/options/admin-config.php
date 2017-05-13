@@ -1460,7 +1460,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Social Share', 'accelerated-mobile-pages' ),
         'id'         => 'amp-social',
-        'desc'      => __('enable social share and your social profiels here','accelerated-mobile-pages'),
+        'desc'      => __('enable social share and add your social profiles here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
           // Facebook ON/OFF
