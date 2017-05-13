@@ -34,7 +34,8 @@
  			<?php
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
 			$description 	= get_the_archive_description();
-			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+			$sanitizer = new AMPFORWP_Content( $description, array(), 
+				apply_filters( 'ampforwp_content_sanitizers',array( 'AMP_Img_Sanitizer' => array(),'AMP_Style_Sanitizer' => array() ) ) );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">

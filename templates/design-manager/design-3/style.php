@@ -21,6 +21,7 @@ a{ color: #312C7E; text-decoration: none }
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
 .alignright{ float:right; margin-left: 12px; margin-bottom:5px; }
 .aligncenter{ text-align:center; margin: 0 auto }
+#statcounter{width: 1px;height:1px;}
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
@@ -65,8 +66,11 @@ amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: 
 /* Sticky Social bar in Single */
 
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.whatsapp-share-icon{ height: 40px; display: inline-block; background: #5cbe4a; margin: 0; }
-.sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 10px; top: -4px; position: relative; }
+.custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
+.custom-amp-socialsharing-icon amp-img{ top: 4px; }
+.custom-amp-socialsharing-line{background:#00b900}
+.sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
+.sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 /* Header */
 #header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15); }
 header{ padding-bottom:50px; }
@@ -117,9 +121,10 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .amp-wp-article-tags .ampforwp-tax-tag, .amp-wp-article-tags .ampforwp-tax-tag a{ font-size: 12px; color: #555; font-family: sans-serif; margin: 20px 0 0 0; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; }
-.ampforwp-social-icons{ margin-bottom: 28px; margin-top: 25px; height: 40px; }
+.ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
-.ampforwp-social-icons-wrapper .whatsapp-share-icon{ padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height:1; height: 20px; border-radius: 60px; }
+.custom-amp-socialsharing-icon-rounded{margin-right:6px;padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; background: #5cbe4a; display: inline-block; height: inherit; border-radius: 60px; }
+.custom-amp-socialsharing-line{background:#00b900}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
@@ -252,7 +257,7 @@ table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap
 table a:link { color: #666; font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
-table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 95%; }
+table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 100%; }
 table th { padding: 21px 25px 22px 25px; border-top: 1px solid #fafafa; border-bottom: 1px solid #e0e0e0; background: #ededed; background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb)); background: -moz-linear-gradient(top, #ededed, #ebebeb); }
 table th:first-child { text-align: left; padding-left: 20px; }
 table tr:first-child th:first-child { -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
@@ -267,11 +272,12 @@ table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 
 /* Responsive */
+@media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (min-width:1034px){
 .single-post .amp-wp-article-content amp-img{ margin:0 -17px 17px -17px }
 }
 @media screen and (max-width: 1033px){
-.single-post figcaption{ margin: -17px 17px 17px -17px }
+.single-post figcaption{ margin: -7px 0px 17px 0px }
 }
 @media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;} }
 @media screen and (max-width: 600px){ .amp-loop-list .amp-wp-tags{display:none} }
@@ -281,7 +287,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 @media screen and (max-width: 375px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 24px;} .home-post_image{ height: 79px; } .amp-carousel-slide h1{ font-size: 28px; line-height: 32px; } #pagination .next a, #pagination .prev a{ color: #666; font-size: 14px; padding: 15px 0px; margin-top: -5px; } .related_posts h3, .comments_list h3{ margin-top:15px; } #pagination .next{ margin-bottom:15px; } .related_posts .related_link a{ font-size: 15px; line-height: 1.6; } }
 @media screen and (max-width: 340px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 22px;} .amp-loop-list{ padding: 20px 15px 18px 15px; } h2.amp-wp-title{ line-height: 1.31578947; font-size: 17px; } .related_posts .related_link a{ font-size: 15px; } .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; } }
 @media screen and (max-width: 320px){ .related_posts .related_link a{ font-size: 13px; } .ampforwp-social-icons amp-social-share{ margin-right: 1px; } }
-
+.entry-content amp-anim{display:table-cell;}
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 /* RTL Start */
 

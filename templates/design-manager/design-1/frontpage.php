@@ -49,7 +49,21 @@ $template = new AMP_Post_Template( $post_id );?>
 
 		<?php do_action( 'ampforwp_after_header', $this );  ?>
 
-		<div class="amp-wp-content the_content"> <?php
+		<div class="amp-wp-content the_content">
+
+			<?php if (has_post_thumbnail( $post_id ) ):  ?>
+				<figure class="amp-wp-article-featured-image wp-caption"> <?php  
+					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'medium' ); 
+					$caption = get_the_post_thumbnail_caption( $post_id ); ?>
+					<amp-img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" layout=responsive alt="<?php echo get_the_title( $post_id ) ?>" >  </amp-img>	
+					<?php if ( $caption ) : ?>
+						<p class="wp-caption-text">
+							<?php echo wp_kses_data( $caption ); ?>
+						</p>
+					<?php endif; ?>
+				</figure>
+			<?php endif; ?>
+		 <?php
 
 			do_action( 'ampforwp_before_post_content', $this );
 
@@ -86,6 +100,7 @@ $template = new AMP_Post_Template( $post_id );?>
 			<?php
 			// TODO : Create a separate  function and add the comment code that and use DRY method instead of repeating the code. #682
 				global $redux_builder_amp;
+				$comment_button_url = "";
 				// Gather comments for a specific page/post
 				$postID = get_the_ID();
 				$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
@@ -93,6 +108,8 @@ $template = new AMP_Post_Template( $post_id );?>
 						'post_id' => $postID,
 						'status' => 'approve' //Change this to the type of comments to be displayed
 				));
+				$comment_button_url = get_permalink( $post_id );
+				$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
 			if ( $comments ) { ?>
 				<div class="amp-wp-content comments_list">
 				    <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )?></h3>
@@ -172,14 +189,14 @@ $template = new AMP_Post_Template( $post_id );?>
 				    </ul>
 				</div>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 			} else {
 			    if ( !comments_open() ) {
 			      return;
 				} ?>
 			    <div class="comment-button-wrapper">
-			       <a href="<?php echo trailingslashit( get_permalink() ).'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
+			       <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
 			    </div>
 			<?php } ?>
 		</div> <?php
@@ -187,9 +204,11 @@ $template = new AMP_Post_Template( $post_id );?>
 
 		<div class="amp-wp-content post-pagination-meta">
 			<?php $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
-		</div>
+		</div> <?php
 
-		<?php if($redux_builder_amp['enable-single-social-icons'] == true)  { ?>
+	
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if( $redux_builder_amp['enable-single-social-icons'] == true && !is_plugin_active( 'amp-cta/amp-cta.php' ) )  { ?>
 			<div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"   width="50" height="28"></amp-social-share>
@@ -199,8 +218,8 @@ $template = new AMP_Post_Template( $post_id );?>
 						<amp-social-share type="twitter"
 															width="50"
 															height="28"
-															data-param-url="<?php echo wp_get_shortlink() ?>"
-															data-param-text="<?php echo $data_param_data ?> TITLE"
+															data-param-url=""
+                        									data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 						></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

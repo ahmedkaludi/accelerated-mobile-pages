@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.48
+Version: 0.9.49
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.48');
+define('AMPFORWP_VERSION','0.9.49');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -32,6 +32,18 @@ function ampforwp_add_custom_post_support() {
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
+// Frontpage and Blog page check from reading settings.
+function ampforwp_name_blog_page() {
+	$page_for_posts  =  get_option( 'page_for_posts' );
+	$post = get_post($page_for_posts); 
+	$slug = $post->post_name;
+	return $slug;
+}
+function ampforwp_custom_post_page() {
+	$front_page_type  =  get_option( 'show_on_front' );
+	return $front_page_type;
+}
+
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     // For Homepage
@@ -46,6 +58,15 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+	// For Homepage with Pagination
+	if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
+	    add_rewrite_rule(
+	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
+	        'index.php?amp&paged=$matches[1]',
+	        'top'
+	    );
+	}
+
 
     // For category pages
     $rewrite_category = get_option('category_base');

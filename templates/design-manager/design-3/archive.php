@@ -56,7 +56,7 @@ if ( get_query_var( 'paged' ) ) {
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
 			$description 	= get_the_archive_description();
-			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array() ) ) );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
@@ -97,7 +97,7 @@ if ( get_query_var( 'paged' ) ) {
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { ?>
-					    <li><?php echo $category->cat_name ?></li>
+					    <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>

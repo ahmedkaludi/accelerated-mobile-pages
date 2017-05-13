@@ -210,7 +210,7 @@ $single_extension_listing = '
     <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
         <div class="extension_desc">
-        <h2>Advanced AMP ADS</h2> 
+        <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
         <div class="extension_btn">View Details</div>
         </div>
@@ -361,7 +361,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         'title' => __( 'Getting Started', 'accelerated-mobile-pages' ),
         'id'    => 'basic',
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
-                      
+
                       sprintf( __( '  <h2 style="    width: 150px;
     float: right;
     padding: 15px 20px;
@@ -483,6 +483,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'true'      => 'true',
                 'false'     => 'false',
                 'required'  => array('ampforwp-homepage-on-off-support','=','1'),
+                'desc'      => __( 'Re-Save permalink if front page or custom post page\'s pagination is not working. Please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
             ),
             array(
                 'id'       => 'amp-frontpage-select-option-pages',
@@ -592,6 +593,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '3' => __('Piwik Analytics', 'accelerated-mobile-pages' ),
                             '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
+                            '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
+                            '7' => __('StatCounter', 'accelerated-mobile-pages' ),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -631,6 +634,30 @@ Redux::setArgs( "redux_builder_amp", $args );
                           ),
                           'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
                           'subtitle' => __('Enter your Piwik Analytics URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'eam-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '6')
+                          ),
+                          'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your Effective Measure URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'sc-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '7')
+                          ),
+                          'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your StatCounter URL.', 'accelerated-mobile-pages' ),
                           'default'  => '#',
                       ),
 
@@ -888,25 +915,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '1'
             ),
-             array(
-                'id'       => 'amp-design-3-author-description',
-                'type'     => 'switch',
-                'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
-                'required' => array(
-                  array('amp-design-selector', '=' , '3')
-                ),
-                'default'  => '1'
-            ),
-            array(
-               'id'       => 'amp-design-3-date-feature',
-               'type'     => 'switch',
-               'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
-               'required' => array(
-                 array('amp-design-selector', '=' , '3')
-               ),
-               'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
-               'default'  => '0'
-           ),
 
         array(
             'id'       => 'css_editor',
@@ -1362,6 +1370,13 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          array(
+              'id'        => 'enable-excerpt-single',
+              'type'      => 'switch',
+              'title'     => __('Excerpt in single', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Enable feature to add Excerpt above Content in single', 'accelerated-mobile-pages'),
+          ),
           //deselectable next previous links
           array(
               'id'        => 'enable-single-next-prev',
@@ -1378,6 +1393,24 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 0,
               'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
           ),
+          // Author Bio
+         array(
+             'id'       => 'amp-author-description',
+             'type'     => 'switch',
+             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+         ),
+         // Date on Single
+         array(
+            'id'       => 'amp-design-3-date-feature',
+            'type'     => 'switch',
+            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
+            'required' => array(
+              array('amp-design-selector', '=' , '3')
+            ),
+            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+            'default'  => '0'
+        ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
@@ -1399,20 +1432,20 @@ Redux::setArgs( "redux_builder_amp", $args );
     		        'validate' => 'numeric',
                 'default'  => '3',
 	        ),
-            
-            
- 
+
+
+
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
 //                  'type' => 'select',
 //                   'desc' =>  $comment_desc,
 //                  'title' => __(' df', 'accelerated-mobile-pages'),
 //                 'class'    => 'new-class',
-//                
+//
 //                //  'desc'       => ' <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
 //              ),
-//            
-            
+//
+
     $fields = array(
     'id'   => 'info_normal',
     'type' => 'info',
@@ -1496,6 +1529,13 @@ Redux::setArgs( "redux_builder_amp", $args );
               'id'        =>  'enable-single-whatsapp-share',
               'type'      =>  'switch',
               'title'     =>  __('WhatsApp', 'accelerated-mobile-pages'),
+              'default'   =>  1,
+          ),
+          // LINE
+          array(
+              'id'        =>  'enable-single-line-share',
+              'type'      =>  'switch',
+              'title'     =>  __('LINE', 'accelerated-mobile-pages'),
               'default'   =>  1,
           ),
           array(
@@ -2030,6 +2070,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type'     => 'text',
                        'title'    => __('Next Read', 'accelerated-mobile-pages'),
                        'default'  => __('Next Read: ','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                    array(
+                       'id'       => 'amp-translator-via-text',
+                       'type'     => 'text',
+                       'title'    => __('via', 'accelerated-mobile-pages'),
+                       'default'  => __('via','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
