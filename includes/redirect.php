@@ -87,3 +87,24 @@ function ampforwp_page_template_redirect_archive() {
 		}
 	}
 }
+
+add_action( 'template_redirect', 'ampforwp_page_template_redirect_non_amp', 10 );
+function ampforwp_page_template_redirect_non_amp() {
+
+  if ( (is_home() || is_front_page() || is_archive()) && $_GET['nonamp']==1 ){
+          global $wp;
+          $current_view_nonamp_url = add_query_arg( '', '', home_url( $wp->request ) );
+          $current_view_nonamp_url = trailingslashit($current_view_nonamp_url);
+      wp_redirect( esc_url( $current_view_nonamp_url )  , 301 );
+      exit();
+  }
+
+  elseif ( is_singular() && $_GET['nonamp']==1 ) {
+
+      global $wp;
+      $current_view_nonamp_url   = add_query_arg( '', '', get_permalink() );
+      $current_view_nonamp_url = trailingslashit($current_view_nonamp_url );
+      wp_redirect( esc_url( $current_view_nonamp_url) , 301 );
+      exit();
+  }
+}
