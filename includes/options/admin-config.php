@@ -2157,11 +2157,23 @@ Redux::setArgs( "redux_builder_amp", $args );
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
+                    array(
+                         'id'       => 'ampforwp-number-of-comments',
+                         'type'     => 'text',
+                         'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
+                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
+                         'default'  => 10,
+                         'required' => array(
+                                            array('ampforwp-disqus-comments-support' , '=' , 0),
+                                            array('ampforwp-facebook-comments-support' , '=' , 0)
+                                        ),
+                     ),
                      array(
                          'id'       => 'ampforwp-disqus-comments-support',
                          'type'     => 'switch',
                          'title'    => __('Disqus comments Support', 'accelerated-mobile-pages'),
                          'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
+                         'required' => array('ampforwp-facebook-comments-support', '=' , '0'),
                          'default'  => 0
                      ),
                      array(
@@ -2191,13 +2203,24 @@ Redux::setArgs( "redux_builder_amp", $args );
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
                      ),
                      array(
-                         'id'       => 'ampforwp-number-of-comments',
+                         'id'       => 'ampforwp-facebook-comments-support',
+                         'type'     => 'switch',
+                         'title'    => __('Facebook comments Support', 'accelerated-mobile-pages'),
+                         'subtitle' => __('Enable/Disable Facebook comments using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 0,
+                     ),
+                     array(
+                         'id'       => 'ampforwp-number-of-fb-no-of-comments',
                          'type'     => 'text',
-                         'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
+                         'desc'     => __('Enter the number of comments','accelerated-mobile-pages'),
                          'title'    => __('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
-                         'required' => array('ampforwp-disqus-comments-support' , '=' , 0)
+                         'required' => array(
+                                        array('ampforwp-facebook-comments-support', '=' , 1),
+
+
                      ),
+                         )
                  )
  ) );
 
