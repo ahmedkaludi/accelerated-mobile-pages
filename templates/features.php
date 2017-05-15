@@ -67,6 +67,7 @@
 	55. Call Now Button Feature added
 	56. Multi Translation Feature #540
 	57. Adding Updated date at in the Content
+	58. YouTube Shortcode compatablity with AMP #557
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -2323,5 +2324,34 @@ function ampforwp_add_modified_date($post_id){
 				} ?>
 			</p>
 		</div> <?php
+	}
+}
+
+// 58. YouTube Shortcode compatablity with AMP #557 
+if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+
+	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+		$str = '';
+
+		$youtube_url = 'https://www.youtube.com/watch?v=';
+		$parsed_url = parse_url( $params['id'] );
+		$server = 'www.youtube.com';
+
+		if ( in_array( $server, $parsed_url ) === false ) {
+			$new_url  = $youtube_url .  $params['id'] ;
+			$params['id'] = $new_url;
+		}
+
+		if ( $old_format_support && isset( $params[0] ) ) {
+			$str = ltrim( $params[0], '=' );
+		} elseif ( is_array( $params ) ) {
+			foreach ( array_keys( $params ) as $key ) {
+			  if ( ! is_numeric( $key ) ) {
+			    $str = $key . '=' . $params[ $key ];
+			  }
+			}
+		}
+
+	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
 	}
 }
