@@ -1690,22 +1690,35 @@ function ampforwp_add_disqus_scripts( $data ) {
 
 add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
 function ampforwp_facebook_comments_support() {
+	echo ampforwp_facebook_comments_markup();
+}
+function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { ?>
-	<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">
-		<amp-facebook-comments width=486 height=657
-    		layout="responsive"
-    		data-numposts="<?php echo $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']  ?>"
-    		data-href="<?php echo get_permalink(); ?>">
-		</amp-facebook-comments>
-	<?php }
+	$facebook_comments_markup = '';
+	if ( !comments_open() ){
+		return;
+	}
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+
+		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
+		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=657
+	    		layout="responsive" data-numposts=';
+		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
+
+		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+	    $facebook_comments_markup .= '></amp-facebook-comments>';
+
+		return $facebook_comments_markup;
+	}
 }
 
 add_filter( 'amp_post_template_data', 'ampforwp_add_fbcomments_scripts' );
 function ampforwp_add_fbcomments_scripts( $data ) {
+
+	$facebook_comments_check = ampforwp_facebook_comments_markup();
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
