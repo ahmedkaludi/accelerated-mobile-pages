@@ -107,6 +107,38 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 
+
+
+
+$args = array(
+  'public'   => true,
+  '_builtin' => false
+  
+); 
+$output = 'names'; // or objects
+$operator = 'and'; // 'and' or 'or'
+$taxonomies = get_taxonomies( $args, $output, $operator ); 
+if ( $taxonomies ) {
+  foreach ( $taxonomies  as $taxonomy ) {
+   
+    add_rewrite_rule(
+      $taxonomy.'\/(.+?)\/amp/?$',
+      'index.php?amp&'.$taxonomy.'=$matches[1]',
+      'top'
+    );
+    // For tag pages with Pagination
+    add_rewrite_rule(
+      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+      'top'
+    );
+
+
+
+  }
+}
+
+
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
