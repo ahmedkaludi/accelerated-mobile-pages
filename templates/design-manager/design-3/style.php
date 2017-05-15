@@ -365,7 +365,7 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 .social_icons{ font-size: 15px; display: inline-block; }
 .social_icons ul{ list-style-type:none; padding:0;margin:0; text-align:center }
 .social_icons li{ box-sizing: initial; display:inline-block; margin:5px; }
-.social_icons li:before{ color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
+.social_icons li:before{ box-sizing: initial; color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
 #ampsomething { display: none; }
 #header, .headerlogo a{ background:<?php echo $redux_builder_amp['amp-opt-color-rgba-headercolor']['color']; ?>  }
 .comment-button-wrapper a, #pagination .next a, #pagination .prev a{ background: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> ; }
