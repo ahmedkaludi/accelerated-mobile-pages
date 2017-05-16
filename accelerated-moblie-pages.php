@@ -108,7 +108,7 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 
 
-
+//Rewrite rule for custom Taxonomies
 
 $args = array(
   'public'   => true,
@@ -126,7 +126,7 @@ if ( $taxonomies ) {
       'index.php?amp&'.$taxonomy.'=$matches[1]',
       'top'
     );
-    // For tag pages with Pagination
+    // For  Custom Taxonomies with pages
     add_rewrite_rule(
       $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
       'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
