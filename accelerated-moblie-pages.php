@@ -176,6 +176,8 @@ function ampforwp_parent_plugin_check() {
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
 
+	// Modules 
+	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
 
 /*
  * Load Files only in the backend
@@ -185,8 +187,6 @@ if ( is_admin() ) {
 
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
-
-	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
 
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
