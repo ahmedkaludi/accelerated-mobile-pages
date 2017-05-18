@@ -178,6 +178,8 @@ function ampforwp_parent_plugin_check() {
 
 	// Modules 
 	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
+
 
 /*
  * Load Files only in the backend
