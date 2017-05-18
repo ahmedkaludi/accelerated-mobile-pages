@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
     var count = 0;
 
- 
+ //For Blurb Module
     jQuery(".ampforwp-blurb-add").live('click', function(e) {
         console.log('click');
 
@@ -23,6 +23,29 @@ jQuery(document).ready(function($) {
         jQuery(this).parent().parent().parent().remove();
     }); 
 
+//For Text Module
+
+
+    jQuery(".ampforwp-text-add").live('click', function(e) {
+        console.log('click');
+
+        event.preventDefault();
+        var additional = $(this).parent().parent().find('.ampforwp-text-additional');
+        var container = $(this).parent().parent().parent().parent();
+        var container_class = container.attr('id');
+        var container_class_array = container_class.split("ampforwp-text-").reverse();
+        var instance = container_class_array[0];
+        var add = $(this).parent().parent().find('.ampforwp-text-add');
+        count = additional.find('.widget-top').length;
+
+        additional.append('<div class="widget"><div class="widget-top"><div class="widget-title-action">     </div>    <div class="widget-title"><h3> New Module<span class="in-widget-title"></span></h3></div></div><div class="widget-inside"><p><label for="widget-ampforwp-text['+instance+'][features]['+count+'][title]">Title</label>'+
+            '<input class="widefat" id="widget-ampforwp-text-'+instance+'-features-'+count+'-title" name="widget-ampforwp-text['+instance+'][features]['+count+'][title]" type="text" value="This is the default title" />'+
+            '<label for="widget-ampforwp-text['+instance+'][features]['+count+'][description]">Description</label>'+
+            '<textarea  class="widefat" id="widget-ampforwp-text-'+instance+'-features-'+count+'-description" name="widget-ampforwp-text['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is the description added by default </textarea> <span class="clear"></span></p>' + ' <p> <a class="ampforwp-text-remove delete button left">Remove Feature</a></p></div></div>' );
+        });
+     jQuery(".ampforwp-text-remove").live('click', function() {
+        jQuery(this).parent().parent().parent().remove();
+    });
 
 
 // image_field1 = jQuery('#amp-img-field-'+count);
