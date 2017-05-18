@@ -89,9 +89,6 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
-
-
-		var_dump($new_instance);
 		
 		$instance['title'] = strip_tags($new_instance['title']);
 
