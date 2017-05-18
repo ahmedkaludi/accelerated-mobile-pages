@@ -148,7 +148,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 								<input type="button" class="select-img-<?php echo $c;?> button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('<?php echo $c;?>');"/>
 								<input type="button" style="display:none" name="removeimg" id="remove-img-<?php echo $c;?>" class="button button-secondary remove-img-button" data-count-type="<?php echo $c;?>"  value="Remove Image" onclick="removeImage('<?php echo $c;?>')">
 								<img src="<?php echo $instance['features']["$c"]['image']  ?>" class="preview-image block-image-<?php echo $c;?>" >
-								<input type="" id="amp-img-field-<?php echo $c;?>" class="img<?php echo $c;?>" style="width:auto;" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][image]'; ?>" id="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][image]';?>'" value="<?php echo $instance['features']["$c"]['image']  ?>" />
+								<input type="hidden" id="amp-img-field-<?php echo $c;?>" class="img<?php echo $c;?>" style="width:auto;" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][image]'; ?>" id="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][image]';?>'" value="<?php echo $instance['features']["$c"]['image']  ?>" />
 							</p>
 							<p>	<a class="ampforwp-blurb-remove delete button left"><?php _e('Remove Feature','accelerated-mobile-pages')?></a> </p>
 						</div>
