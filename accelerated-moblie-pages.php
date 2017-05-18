@@ -163,6 +163,8 @@ if ( is_admin() ) {
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
 
+	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+
     add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
