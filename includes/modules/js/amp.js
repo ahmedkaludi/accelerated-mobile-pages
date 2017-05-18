@@ -24,8 +24,6 @@ jQuery(document).ready(function($) {
     }); 
 
 //For Text Module
-
-
     jQuery(".ampforwp-text-add").live('click', function(e) {
         console.log('click');
 
@@ -44,6 +42,45 @@ jQuery(document).ready(function($) {
             '<textarea  class="widefat" id="widget-ampforwp-text-'+instance+'-features-'+count+'-description" name="widget-ampforwp-text['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is the description added by default </textarea> <span class="clear"></span></p>' + ' <p> <a class="ampforwp-text-remove delete button left">Remove Feature</a></p></div></div>' );
         });
      jQuery(".ampforwp-text-remove").live('click', function() {
+        jQuery(this).parent().parent().parent().remove();
+    });
+
+//For Button Module
+    jQuery(".ampforwp-button-add").live('click', function(e) {
+        console.log('click');
+
+        event.preventDefault();
+        var additional = $(this).parent().parent().find('.ampforwp-button-additional');
+        var container = $(this).parent().parent().parent().parent();
+        var container_class = container.attr('id');
+        var container_class_array = container_class.split("ampforwp-button-").reverse();
+        var instance = container_class_array[0];
+        var add = $(this).parent().parent().find('.ampforwp-button-add');
+        count = additional.find('.widget-top').length;
+
+        additional.append('<div class="widget"><div class="widget-top"><div class="widget-title-action">     </div>    <div class="widget-title"><h3> New Module<span class="in-widget-title"></span></h3></div></div><div class="widget-inside"><p><label for="widget-ampforwp-button['+instance+'][features]['+count+'][title]">Button Text</label>'+ 
+
+          //Text Fields
+            '<input class="widefat" id="widget-ampforwp-button-'+instance+'-features-'+count+'-title" name="widget-ampforwp-button['+instance+'][features]['+count+'][title]" type="text" value="Click Here" />'+
+
+            '<label for="widget-ampforwp-button['+instance+'][features]['+count+'][url]">Url:</label>'+
+            '<input class="widefat" id="widget-ampforwp-button-'+instance+'-features-'+count+'-url" name="widget-ampforwp-button['+instance+'][features]['+count+'][url]" type="text" value="#" /></p>' + 
+          // Radio
+            '<p> <div class="open-url"> <label>Open Url in:</label> </div>'+
+
+            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-on"+'">New Window :</label>'+
+            '<input class="widefat" id="widget-ampforwp-button['+instance+'][features]['+count+']'+"-on"+'" name="widget-ampforwp-button['+instance+'][features]['+count+']'+'[radio]" type="radio" value="radio-on" />'+
+            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-off"+'">Same Window :</label>'+
+            '<input class="widefat" id="widget-ampforwp-button['+instance+'][features]['+count+']'+"-off"+'" name="widget-ampforwp-button['+instance+'][features]['+count+']'+'[radio]" type="radio" checked value="radio-off" /></p>'+
+          // Select
+            '<p> <label for="widget-ampforwp-button['+instance+']'+"-id-size"+'">Select Size:</label>'+ 
+            '<select id="widget-ampforwp-button-'+instance+'-id-size" class="widefat" name="widget-ampforwp-button['+instance+'][features]['+count+'][size]"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> </select> </p>'+
+
+            '<p> <a class="ampforwp-button-remove delete button left">Remove Feature</a></p></div></div>' );
+        });
+
+
+     jQuery(".ampforwp-button-remove").live('click', function() {
         jQuery(this).parent().parent().parent().remove();
     });
 
