@@ -1205,6 +1205,7 @@ function ampforwp_remove_schema_data() {
 	// Removed GTranslate Flags from AMP pages #819
 	remove_filter('wp_nav_menu_items', 'gtranslate_menu_item', 10, 2);
 
+	// Remove elements of WP Like Button plugin #841
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
