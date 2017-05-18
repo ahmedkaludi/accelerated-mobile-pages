@@ -106,39 +106,30 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
-
-
-//Rewrite rule for custom Taxonomies
-
-$args = array(
-  'public'   => true,
-  '_builtin' => false
-  
-); 
-$output = 'names'; // or objects
-$operator = 'and'; // 'and' or 'or'
-$taxonomies = get_taxonomies( $args, $output, $operator ); 
-if ( $taxonomies ) {
-  foreach ( $taxonomies  as $taxonomy ) {
-   
-    add_rewrite_rule(
-      $taxonomy.'\/(.+?)\/amp/?$',
-      'index.php?amp&'.$taxonomy.'=$matches[1]',
-      'top'
-    );
-    // For  Custom Taxonomies with pages
-    add_rewrite_rule(
-      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
-      'top'
-    );
-
-
-
-  }
-}
-
-
+    
+	//Rewrite rule for custom Taxonomies
+	$args = array(
+	  'public'   => true,
+	  '_builtin' => false	  
+	); 
+	$output = 'names'; // or objects
+	$operator = 'and'; // 'and' or 'or'
+	$taxonomies = get_taxonomies( $args, $output, $operator ); 
+	if ( $taxonomies ) {
+	  foreach ( $taxonomies  as $taxonomy ) {	   
+	    add_rewrite_rule(
+	      $taxonomy.'\/(.+?)\/amp/?$',
+	      'index.php?amp&'.$taxonomy.'=$matches[1]',
+	      'top'
+	    );
+	    // For Custom Taxonomies with pages
+	    add_rewrite_rule(
+	      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+	      'top'
+	    );
+	  }
+	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
