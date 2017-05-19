@@ -47,27 +47,36 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 
 		extract( $args, EXTR_SKIP );
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Classes' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( );
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
-		
-		echo $before_widget;
-		if ( $title ) echo $before_title . $title . $after_title;
 
-		$output = "";
+        echo $before_widget;
+        
+        $output .= '<div class="amp-wp-content amp_cb_module amp_cb_blurb">';
+        
+		if ( $title ) {
+            $output .=  '<div class="amp_module_title">';
+            $output .=  $title;
+            $output .=  '</div>';
+            }
 
+        $output .= '<div class="flex-grid">'; 
+        
 		foreach( $features as $feature ) {
-
-			$output .= '<div class="class-highlight" style="float:left; width: 350px;">';
-				$output .= '<h4>'.$feature['title'].'</h4>';
+			$output .= '<div class="clmn">';
 				if ( $feature['image'] ) {
-					$output .= '<img src="'. $feature['image'] .'" height="250" width="250" alt="" />';
-				}				
+					$output .= '<img src="'. $feature['image'] .'" height="80" width="80" alt="" />';
+				} 
+                $output .= '<div class="amp_cb_content">';
+                $output .= '<h4>'.$feature['title'].'</h4>';
 				$output .= '<p>'.$feature['description'].'</p>';
+				$output .= '</div>';
 			$output .= '</div>';
 		}
+            $output .=  '</div></div>'; // flex-grid & amp_cb_module
 		$sanitizer = new AMPFORWP_Content( $output, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',array( 'AMP_Img_Sanitizer' => array(),'AMP_Style_Sanitizer' => array() ) ) );
 		$sanitized_output 		= $sanitizer->get_amp_content();
@@ -196,6 +205,12 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
+        
+        
+        wp_enqueue_script('media-upload');
+        wp_enqueue_script('thickbox');
+        wp_enqueue_style('thickbox');
+
 
 		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
 

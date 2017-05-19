@@ -133,3 +133,30 @@
       </div>
   </div>
 </header>
+    
+        <div class="amp_cb_module amp_cb_blurb">
+        <div class="amp_module_title">Blurb Module</div>
+        <div class="flex-grid">
+        <div class="clmn">
+            <amp-img src="http://www.skin.dev/wp-content/uploads/2017/05/blurb.png" alt="" width="80" height="80"></amp-img>
+            <div class="amp_cb_content">
+                <h4>Heart Of The Landing Page</h4>
+                <p>This is a sample text which is being used for the dummy purpose to avoid confusion.</p>
+            </div>
+        </div> 
+        <div class="clmn"> 
+            <amp-img src="http://www.skin.dev/wp-content/uploads/2017/05/blurb.png" alt="" width="80" height="80"></amp-img>
+            <div class="amp_cb_content">
+                <h4>Heart Of The Landing Page</h4>
+                <p>This is a sample text which is being used for the dummy purpose to avoid confusion.</p>
+            </div>
+        </div> 
+        <div class="clmn">
+            <amp-img src="http://www.skin.dev/wp-content/uploads/2017/05/blurb.png" alt="" width="80" height="80"></amp-img>
+            <div class="amp_cb_content">
+                <h4>Heart Of The Landing Page</h4>
+                <p>This is a sample text which is being used for the dummy purpose to avoid confusion.</p>
+            </div>
+        </div> 
+        </div> 
+    </div> 

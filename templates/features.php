@@ -1866,8 +1866,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Above Loop',
 		'id'   => 'ampforwp-above-loop',
 		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
@@ -1875,8 +1875,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Below Loop',
 		'id'   => 'ampforwp-below-loop',
 		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));

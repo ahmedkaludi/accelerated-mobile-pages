@@ -54,20 +54,29 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 
 		
 		echo $before_widget;
-		if ( $title ) echo $before_title . $title . $after_title;
-
-		$output = "";
-
+        $target = "";
+        $output .= '<div class="amp-wp-content amp_cb_module amp_cb_btn">';
+        
 		foreach( $features as $feature ) {
-
-			$output .= '<div class="class-highlight" style="float:left; width: 350px;">';
-				$output .= '<h4>'.$feature['title'].'</h4>';
-				if ( $feature['image'] ) {
-					$output .= '<img src="'. $feature['image'] .'" height="250" width="250" alt="" />';
-				}				
-				$output .= '<p>'.$feature['description'].'</p>';
-			$output .= '</div>';
+            
+            if ( $feature['radio'] == 'radio-off'){
+                $target = "_self";
+            } elseif( $feature['radio'] == 'radio-on' ){ 
+                $target = "_blank";
+            }
+            
+            if ( $feature['size'] == '1'){
+                $size = "s_btn";
+            } elseif( $feature['size'] == '2' ){
+                $size = "m_btn";
+            } elseif( $feature['size'] == '3' ){
+                $size = "l_btn";
+            }
+            
+            $output .= '<a href="#" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
 		}
+        $output .= '</div>';
+        
 		$sanitizer = new AMPFORWP_Content( $output, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',array( 'AMP_Img_Sanitizer' => array(),'AMP_Style_Sanitizer' => array() ) ) );
 		$sanitized_output 		= $sanitizer->get_amp_content();
@@ -115,20 +124,14 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 		); 
 
 		$title = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : ''; ?>
-		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		<p> </p>
 
 
 		<?php
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array(); ?>
 		<span class="ampforwp-button-additional"> <?php
-		    $c = 0;
-
-			if ( empty( $features ) ) { ?>
-					Here is the place holder where we can add default.		
-				<?php 
-			} ?>
+		    $c = 0; ?>
 		
 			<?php
 		
@@ -140,22 +143,21 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 		            	</div>
 
 			            <div class="widget-inside">
+			            <div class="widget-content">
 							<p>
 								<label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>"><?php _e( 'Button Text:' ); ?></label>
-								<input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-title'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>" type="text" value="<?php echo $feature['title']; ?>" />
+                                <input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-title'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>" type="text" value="<?php echo $feature['title']; ?>" /> </p>
 
-								<label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][url]'; ?>"><?php _e( 'Url:' ); ?></label>
+                            <p><label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][url]'; ?>"><?php _e( 'Url:' ); ?></label>
 								<input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-url'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][url]'; ?>" type="text" value="<?php echo $feature['url']; ?>" />
 							</p>
 
 
-							<p> <div class="open-url">   <label> <?php _e('Open Url in:'); ?> </label>  </div>
-						
-						
-								<label for="<?php echo $this->get_field_id('id') . "-on"; ?>"> <?php _e('New Window :'); ?> </label>
-								<input class="widefat" id="<?php echo $this->get_field_id('id') . "-on";  ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][radio]'; ?>" type="radio" value="radio-on"  <?php if ( $feature['radio'] == 'radio-on'): ?> checked <?php endif ?> />						
-
-								<label for="<?php echo $this->get_field_id('id') . "-off"; ?>"> <?php _e('Same Window :'); ?> </label>							
+							<p><label><?php _e('URL Target:'); ?> </label><br />
+                        <label class="radio_label" for="<?php echo $this->get_field_id('id') . "-on"; ?>"><?php _e('New Tab'); ?> </label> 
+                            <input class="widefat" id="<?php echo $this->get_field_id('id') . "-on";  ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][radio]'; ?>" type="radio" value="radio-on"  <?php if ( $feature['radio'] == 'radio-on'): ?> checked <?php endif ?> />						
+ 
+                        <label class="radio_label" for="<?php echo $this->get_field_id('id') . "-off"; ?>"> <?php _e('Current'); ?> </label>	 						
 
 								<input class="widefat" id="<?php echo $this->get_field_id('id') . "-off";  ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][radio]'; ?>" type="radio" value="radio-off"  <?php if ( $feature['radio'] ==  'radio-off' || $feature['radio'] ==  ''): ?> checked <?php endif ?> /> 
 							</p>
@@ -163,13 +165,14 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 							<p>
 								<label for="<?php echo $this->get_field_id('id') . "-size"; ?>"> <?php _e('Select Size:'); ?> </label>
 								<select id="<?php echo $this->get_field_id('id') . "-size"; ?>" class="widefat"  name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][size]'; ?>">
-								    <option value="1" <?php selected( $feature['size'], 1 ); ?>>1</option>
-								    <option value="2" <?php selected( $feature['size'], 2 ); ?>>2</option>
-								    <option value="3" <?php selected( $feature['size'], 3 ); ?>>3</option>
+								    <option value="1" <?php selected( $feature['size'], 1 ); ?>>Small</option>
+								    <option value="2" <?php selected( $feature['size'], 2 ); ?>>Medium</option>
+								    <option value="3" <?php selected( $feature['size'], 3 ); ?>>Large</option>
 								</select>
 							</p>		
 
 							<p>	<a class="ampforwp-button-remove delete button left"><?php _e('Remove Feature','accelerated-mobile-pages')?></a> </p>
+						</div>
 						</div>
 					</div>
 					<?php
@@ -179,8 +182,8 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 		    }  ?>
 		</span>
 
-		<a class="ampforwp-button-add button left">  <?php _e('Add Feature','accelerated-mobile-pages'); ?> </a>
-
+	<a class="ampforwp-button-add button left">  <?php _e('Add Feature','accelerated-mobile-pages'); ?> </a>
+<p>	</p>
 		<?php 
 
 	} // end form
@@ -224,16 +227,8 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 	} // end register_admin_scripts
 
 	public function footer_scritps() { ?>
-
-		<style> 
-		.open-url {
-			font-weight: 600;
-		}
-		</style>
-
-
-		<?php
-	}
+<style>.radio_label{}</style>
+<?php }
 
 	/**
 	 * Registers and enqueues widget-specific styles.
@@ -255,7 +250,3 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 add_action( 'widgets_init', function(){
 	register_widget( 'AMPFORWP_Button_Widget' );
 });
-
-
-
- 

@@ -15,9 +15,9 @@ jQuery(document).ready(function($) {
         count = additional.find('.widget-top').length;
 
         additional.append('<div class="widget"><div class="widget-top"><div class="widget-title-action">     </div>    <div class="widget-title"><h3> New Module<span class="in-widget-title"></span></h3></div></div><div class="widget-inside"><p><label for="widget-ampforwp-blurb['+instance+'][features]['+count+'][title]">Title</label>'+
-            '<input class="widefat" id="widget-ampforwp-blurb-'+instance+'-features-'+count+'-title" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][title]" type="text" value="This is the default title" />'+
+            '<input class="widefat" id="widget-ampforwp-blurb-'+instance+'-features-'+count+'-title" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][title]" type="text" value="Heart Of The Landing Page" />'+
             '<label for="widget-ampforwp-blurb['+instance+'][features]['+count+'][description]">Description</label>'+
-            '<textarea  class="widefat" id="widget-ampforwp-blurb-'+instance+'-features-'+count+'-description" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is the description added by default </textarea> <span class="clear"></span></p>' + '<p> <label for=""> Image: </label><input type="button" class="select-img-'+count+' button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('+count+');"/><input type="button" style="display:none" name="removeimg" id="remove-img-'+count+'" class="button button-secondary remove-img-button" data-count-type="'+count+'"  value="Remove Image" onclick="removeImage('+count+')"><img src="" class="preview-image block-image-'+count+'" >' + '<input type="hidden" id="amp-img-field-'+count+'" class="img'+count+'" style="width:auto;" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][image]" id="'+instance+'-features-'+count+'" value="" /></p>' + ' <p> <a class="ampforwp-blurb-remove delete button left">Remove Feature</a></p></div></div>' );
+            '<textarea  class="widefat" id="widget-ampforwp-blurb-'+instance+'-features-'+count+'-description" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][description]" rows=\'6\' cols=\'50\'>This is a sample text which is being used for the dummy purpose to avoid confusion.</textarea> <span class="clear"></span></p>' + '<p> <label for=""> Image: </label><input type="button" class="select-img-'+count+' button left" style="width:auto;" value="Select Image" onclick="ampSelectImage('+count+');"/><input type="button" style="display:none" name="removeimg" id="remove-img-'+count+'" class="button button-secondary remove-img-button" data-count-type="'+count+'"  value="Remove Image" onclick="removeImage('+count+')"><img src="http://i.imgur.com/5nPXqZG.png" class="preview-image block-image-'+count+'" >' + '<input type="hidden" id="amp-img-field-'+count+'" class="img'+count+'" style="width:auto;" name="widget-ampforwp-blurb['+instance+'][features]['+count+'][image]" id="'+instance+'-features-'+count+'" value="http://i.imgur.com/5nPXqZG.png" /></p>' + ' <p> <a class="ampforwp-blurb-remove delete button left">Remove Feature</a></p></div></div>');
         });
     jQuery(".ampforwp-blurb-remove").live('click', function() {
         jQuery(this).parent().parent().parent().remove();
@@ -61,20 +61,20 @@ jQuery(document).ready(function($) {
         additional.append('<div class="widget"><div class="widget-top"><div class="widget-title-action">     </div>    <div class="widget-title"><h3> New Module<span class="in-widget-title"></span></h3></div></div><div class="widget-inside"><p><label for="widget-ampforwp-button['+instance+'][features]['+count+'][title]">Button Text</label>'+ 
 
           //Text Fields
-            '<input class="widefat" id="widget-ampforwp-button-'+instance+'-features-'+count+'-title" name="widget-ampforwp-button['+instance+'][features]['+count+'][title]" type="text" value="Click Here" />'+
+            '<input class="widefat" id="widget-ampforwp-button-'+instance+'-features-'+count+'-title" name="widget-ampforwp-button['+instance+'][features]['+count+'][title]" type="text" value="Click Here" /></p>'+
 
-            '<label for="widget-ampforwp-button['+instance+'][features]['+count+'][url]">Url:</label>'+
+            '<p><label for="widget-ampforwp-button['+instance+'][features]['+count+'][url]">Url:</label>'+
             '<input class="widefat" id="widget-ampforwp-button-'+instance+'-features-'+count+'-url" name="widget-ampforwp-button['+instance+'][features]['+count+'][url]" type="text" value="#" /></p>' + 
           // Radio
-            '<p> <div class="open-url"> <label>Open Url in:</label> </div>'+
+            '<p>  <label>URL Target:</label> <br />'+
 
-            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-on"+'">New Window :</label>'+
+            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-on"+'">New Tab </label>'+
             '<input class="widefat" id="widget-ampforwp-button['+instance+'][features]['+count+']'+"-on"+'" name="widget-ampforwp-button['+instance+'][features]['+count+']'+'[radio]" type="radio" value="radio-on" />'+
-            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-off"+'">Same Window :</label>'+
+            '<label for="widget-ampforwp-button['+instance+'][features]['+count+']'+"-off"+'">Current </label>'+
             '<input class="widefat" id="widget-ampforwp-button['+instance+'][features]['+count+']'+"-off"+'" name="widget-ampforwp-button['+instance+'][features]['+count+']'+'[radio]" type="radio" checked value="radio-off" /></p>'+
           // Select
             '<p> <label for="widget-ampforwp-button['+instance+']'+"-id-size"+'">Select Size:</label>'+ 
-            '<select id="widget-ampforwp-button-'+instance+'-id-size" class="widefat" name="widget-ampforwp-button['+instance+'][features]['+count+'][size]"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> </select> </p>'+
+            '<select id="widget-ampforwp-button-'+instance+'-id-size" class="widefat" name="widget-ampforwp-button['+instance+'][features]['+count+'][size]"> <option value="1">Small</option> <option value="2">Medium</option> <option value="3">Large</option> </select> </p>'+
 
             '<p> <a class="ampforwp-button-remove delete button left">Remove Feature</a></p></div></div>' );
         });
