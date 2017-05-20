@@ -31,6 +31,14 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 		add_action( 'admin_footer', array( $this, 'footer_scritps') );
 
 
+		add_action( 'ampforwp_tinymce_editor', array( $this, 'editor' ), 10, 4 );
+
+
+		add_action('current_screen',array($this, 'hide_editor'), 50);
+
+
+
+
 	} // end constructor
 
 	/*--------------------------------------------------*/
@@ -50,7 +58,10 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Classes' );
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
-		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
+
+		$text = ( ! empty( $instance['text'] ) ) ? $instance['text'] : '';
+
+		// $features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
 		
 		echo $before_widget;
@@ -58,14 +69,20 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 
 		$output = "";
 
-		foreach( $features as $feature ) {
+		// foreach( $features as $feature ) {
+
+		// 	$output .= '<div class="class-highlight"  >';
+		// 		$output .= '<h4>'.$feature['title'].'</h4>';
+							
+		// 		$output .= '<p>'.$feature['text'].'</p>';
+		// 	$output .= '</div>';
+		// }
+
 
 			$output .= '<div class="class-highlight"  >';
-				$output .= '<h4>'.$feature['title'].'</h4>';
-							
-				$output .= '<p>'.$feature['description'].'</p>';
+				$output .= '<p>'. $text .'</p>';
 			$output .= '</div>';
-		}
+
 		$sanitizer = new AMPFORWP_Content( $output, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',array( 'AMP_Img_Sanitizer' => array(),'AMP_Style_Sanitizer' => array(),'AMP_Twitter_Embed_Handler' => array(),
 				'AMP_YouTube_Embed_Handler' => array(),
@@ -101,15 +118,10 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
-		
-		$instance['title'] = strip_tags($new_instance['title']);
 
-		foreach($new_instance['features'] as $feature){
-			$feature['title'] = strip_tags($feature['title']);
-			$feature['description'] = strip_tags($feature['description']);
-			
-		}
-		$instance['features'] = $new_instance['features'];
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['text'] = $new_instance['text']; 
+		$instance['widget_id'] = $new_instance['widget_id']; 
 
 		return $instance;
 
@@ -124,46 +136,21 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 
 		$instance = wp_parse_args(
 			(array) $instance
-		); 
+		);
 
 		$title = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : ''; ?>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
+		<p>
 
-		<?php
+			<?php  $text = isset( $instance['text'] ) ? esc_attr( $instance['text'] ) : '';
 
-		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array(); ?>
-		<span class="ampforwp-text-additional">
-			<?php
-		    $c = 0;
-		    if ( count( $features ) > 0 ) {
-		        foreach( $features as $feature ) {
-		            if ( isset( $feature['title'] ) || isset( $feature['description'] ) ) { ?>
-		            <div class="widget">
-		            	<div class="widget-top"><div class="widget-title"><h3><?php echo $feature['title'];?><span class="in-widget-title"></span></h3></div>
-		            	</div>
+			do_action( 'ampforwp_tinymce_editor', $instance['text'], $this->get_field_id( 'text' ), $this->get_field_name( 'text' ), $instance['type'] );?>
 
-			            <div class="widget-inside">
-							<p>
-								<label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>"><?php _e( 'Title:' ); ?></label>
-								<input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-title'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>" type="text" value="<?php echo $feature['title']; ?>" />
-								<label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][description]'; ?>"><?php _e( 'Description:' ); ?></label>
-
-								<textarea  class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-description'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][description]'; ?>" rows="6" cols="50"><?php echo $feature['description']; ?></textarea> <span class="clear"></span>
-							</p>
-							
-							<p>	<a class="ampforwp-text-remove delete button left"><?php _e('Remove Feature','accelerated-mobile-pages')?></a> </p>
-						</div>
-					</div>
-					<?php
-		                $c = $c +1;
-		            }
-		        }
-		    }  ?>
-		</span>
-
-		<a class="ampforwp-text-add button left">  <?php _e('Add Feature','accelerated-mobile-pages'); ?> </a>
+			<input type="hidden" class="widefat" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_id( 'text' ); ?>" type="text" value="<?php echo $text; ?>" /> 
+			<input type="hidden" class="widefat ampforwp-widget-editor-id" id="<?php echo $this->get_field_id( 'widget_id' ); ?>" name="<?php echo $this->get_field_id( 'widget_id' ); ?>" type="text" value="<?php echo $this->number ?>" />
+		</p>
 
 		<?php 
 
@@ -171,6 +158,12 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 
 	/*--------------------------------------------------*/
 	/* Public Functions
+
+	<?php  $text = isset( $instance['text'] ) ? esc_attr( $instance['text'] ) : '';
+
+		do_action( 'ampforwp_tinymce_editor', $instance['text'], $this->get_field_id( 'text' ), $this->get_field_name( 'text' ), $instance['type'] );?>
+ 
+		<textarea type="hidden" class="widefat hide" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>" cols="30" rows="10"> <?php echo $text; ?> </textarea>
 	/*--------------------------------------------------*/
 
 	/**
@@ -203,7 +196,7 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 	 */
 	public function register_admin_scripts() {
 
-		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
+	 
 
 	} // end register_admin_scripts
 
@@ -236,6 +229,18 @@ class AMPFORWP_Text_Widget extends WP_Widget {
 	public function register_widget_scripts() {
 
 	} // end register_widget_scripts
+
+	public function editor( $text, $editor_id, $name = '', $type = 'visual' ) {
+		wp_editor( $text, $editor_id, array( 'textarea_name' => $name, 'default_editor' => $type == 'visual' ? 'tmce' : 'html' ) );
+	}
+
+	public function hide_editor() {
+		$screen = get_current_screen(); 
+		if( $screen->id === "widgets" ) {
+			add_filter( 'user_can_richedit' , '__return_false', 50 );
+		}
+	}
+
 
 } // end class
 

@@ -84,23 +84,12 @@ jQuery(document).ready(function($) {
         jQuery(this).parent().parent().parent().remove();
     });
 
-
-// image_field1 = jQuery('#amp-img-field-'+count);
-// image_field2 = jQuery('.block-image-'+count);
-// image_field3 = jQuery('#remove-img-'+count);
-
-
+     // Tiny Mce code
+    $(document).on('widget-updated', function(event, widget){
+        var widget_id = $(widget).attr('id');
+        $('#'+widget_id + ' .switch-tmce').hide();
+    });
  
- //  imageSource = image_field2.attr('src');
-
- //  if ( imageSource ) {
- //    image_field3.show();
- //  }
-
-
-
-
-
   remove_button = jQuery('.remove-img-button');
 
   remove_button.on('click', function(e) {
