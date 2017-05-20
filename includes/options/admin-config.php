@@ -266,7 +266,7 @@ $args = array(
     'default_show'          => false, // If true, shows the default value next to each field that is not the default value.
     'default_mark'          => '', // What to print by the field's title if the value shown is default. Suggested: *
     'admin_bar'             => false,
-    'admin_bar_icon'        => 'dashicons-admin-generic',
+    'admin_bar_icon'        => 'dashicons-admin-generic', 
     // CAREFUL -> These options are for advanced use only
     'output'                => false, // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
     'output_tag'            => false, // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
@@ -572,164 +572,6 @@ Redux::setArgs( "redux_builder_amp", $args );
       );
 
 
-    // AMP GTM SECTION
-   Redux::setSection( $opt_name,    array(
-      	        'title' => __('Analytics'),
-      	        // 'icon' => 'el el-th-large',
-      			    'desc'  => __('You can either use Google Tag Manager or Other Analytics Providers','accelerated-mobile-pages'),
-                'subsection' => true,
-      	        'fields' =>
-      	        	array(
-
-
-                    array(
-                        'id'       => 'amp-analytics-select-option',
-                        'type'     => 'select',
-                        'title'    => __( 'Analytics Type', 'accelerated-mobile-pages' ),
-                        'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
-                        'options'  => array(
-                            '1' => __('Google Analytics', 'accelerated-mobile-pages' ),
-                            '2' => __('Segment Analytics', 'accelerated-mobile-pages' ),
-                            '3' => __('Piwik Analytics', 'accelerated-mobile-pages' ),
-                            '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
-                            '5' => __('comScore', 'accelerated-mobile-pages' ),
-                            '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
-                            '7' => __('StatCounter', 'accelerated-mobile-pages' ),
-                        ),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
-                        'default'  => '1',
-                    ),
-                      array(
-                          'id'       => 'ga-feild',
-                          'type'     => 'text',
-                          'title'    => __( 'Google Analytics', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('amp-analytics-select-option', '=' , '1')
-                          ),
-                          'subtitle' => __( 'Enter your Google Analytics ID.', 'accelerated-mobile-pages' ),
-                          'desc'     => __('Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
-                          'default'  => 'UA-XXXXX-Y',
-                      ),
-                      array(
-                        'id'       => 'sa-feild',
-                        'type'     => 'text',
-                        'title'    => __( 'Segment Analytics', 'accelerated-mobile-pages' ),
-                        'subtitle' => __( 'Enter your Segment Analytics Key.', 'accelerated-mobile-pages' ),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                          array('amp-analytics-select-option', '=' , '2')
-                        ),
-                        'default'  => 'SEGMENT-WRITE-KEY',
-                      ),
-                      array(
-                          'id'       => 'pa-feild',
-                          'type'     => 'text',
-                          'title'    => __( 'Piwik Analytics', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('amp-analytics-select-option', '=' , '3')
-                          ),
-                          'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
-                          'subtitle' => __('Enter your Piwik Analytics URL.', 'accelerated-mobile-pages' ),
-                          'default'  => '#',
-                      ),
-                      array(
-                          'id'       => 'eam-feild',
-                          'type'     => 'text',
-                          'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('amp-analytics-select-option', '=' , '6')
-                          ),
-                          'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
-                          'subtitle' => __('Enter your Effective Measure URL.', 'accelerated-mobile-pages' ),
-                          'default'  => '#',
-                      ),
-                      array(
-                          'id'       => 'sc-feild',
-                          'type'     => 'text',
-                          'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('amp-analytics-select-option', '=' , '7')
-                          ),
-                          'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
-                          'subtitle' => __('Enter your StatCounter URL.', 'accelerated-mobile-pages' ),
-                          'default'  => '#',
-                      ),
-
-                      array(
-                        'id'        	=>'amp-quantcast-analytics-code',
-                        'type'      	=> 'text',
-                        'title'     	=> __('p-code','accelerated-mobile-pages'),
-                        'default'   	=> '',
-                        'required' => array(
-                        array('amp-analytics-select-option', '=' , '4')),
-                      ),
-                      array(
-                        'id'        	=>'amp-comscore-analytics-code-c1',
-                        'type'      	=> 'text',
-                        'title'     	=> __('C1','accelerated-mobile-pages'),
-                        'default'   	=> 1,
-                        'required' => array(
-                        array('amp-analytics-select-option', '=' , '5')),
-                      ),
-                      array(
-                        'id'        	=>'amp-comscore-analytics-code-c2',
-                        'type'      	=> 'text',
-                        'title'     	=> __('C2','accelerated-mobile-pages'),
-                        'default'   	=> '',
-                        'required' => array(
-                        array('amp-analytics-select-option', '=' , '5')),
-                      ),
-
-                      //GTM
-                        array(
-                            'id'       => 'amp-use-gtm-option',
-                            'type'     => 'switch',
-                            'title'    => __( 'Use Google Tag Manager', 'accelerated-mobile-pages' ),
-                            'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
-                            'default'  => 0,
-                        ),
-                        array(
-              						'id'        	=>'amp-gtm-id',
-              						'type'      	=> 'text',
-              						'title'     	=> __('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
-              						'default'   	=> '',
-              						'desc'	=> __('Eg: GTM-5XXXXXP','accelerated-mobile-pages'),
-                        //  'validate' => 'not_empty',
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '1')
-                          ),
-              					),
-              					array(
-              						'id'        	=>'amp-gtm-analytics-type',
-              						'type'      	=> 'text',
-              						'title'     	=> __('Analytics Type','accelerated-mobile-pages'),
-              						'default'   	=> '',
-              						'desc'	=> __('Eg: googleanalytics','accelerated-mobile-pages'),
-                         // 'validate' => 'not_empty',
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '1')
-                          ),
-              					),
-              					array(
-              						'id'        	=>'amp-gtm-analytics-code',
-              						'type'      	=> 'text',
-              						'title'     	=> __('Analytics ID','accelerated-mobile-pages'),
-              						'default'   	=> '',
-      						        'desc'	=> 'Eg: UA-XXXXXX-Y',
-                          // 'validate' => 'not_empty',
-                          'required' => array(
-                          array('amp-use-gtm-option', '=' , '1')),
-              					),
-
-      				    )
-          	)
-   );
 
 
 //code for fetching ctegories to show as a list in redux settings
@@ -932,130 +774,106 @@ Redux::setArgs( "redux_builder_amp", $args );
 
    );
 
-   // SEO SECTION
-  Redux::setSection( $opt_name, array(
-      'title'      => __( 'SEO', 'accelerated-mobile-pages' ),
-      'id'         => 'amp-seo',
-      'subsection' => true,
-       'fields'     => array(
-
-           array(
-               'id'       => 'ampforwp-seo-meta-description',
-               'type'     => 'switch',
-               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
-               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
-               'default'  => 0
-           ),
-
-           array(
-               'id'       => 'ampforwp-seo-custom-additional-meta',
-               'type'     => 'textarea',
-               'title'    => __('Additional tags for Head section AMP page', 'accelerated-mobile-pages'),
-               'subtitle' => __('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
-               'desc' => __('Only link and meta tags allowed', 'accelerated-mobile-pages'),
-               'placeholder'  => __('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
-           ),
-
-
-           array(
-                  'id' => 'ampforwp-yoast-seo-sub-section',
-                  'type' => 'section',
-                  'title' => __('Yoast SEO Options', 'accelerated-mobile-pages'),
-                  'indent' => true
-              ),
-
-           array(
-               'id'       => 'ampforwp-seo-yoast-meta',
-               'type'     => 'switch',
-               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
-               'title'    => __( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
-               'default'  => '1'
-           ),
-           array(
-               'id'       => 'ampforwp-seo-yoast-description',
-               'type'     => 'switch',
-               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
-               'title'    => __( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
-               'default'  => 0
-           ),
-
-           array(
-                  'id' => 'ampforwp-seo-index-noindex-sub-section',
-                  'type' => 'section',
-                  'title' => __('Advanced Index & No Index Options', 'accelerated-mobile-pages'),
-                  'indent' => true
-              ),
-           array(
-               'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
-               'type'     => 'switch',
-               'title'    => __('Archive subpages (sitewide)', 'accelerated-mobile-pages'),
-               'desc'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
-               'default' => 0,
-               'on' => 'index',
-               'off' => 'noindex'
-           ),
-           array(
-               'id'       => 'ampforwp-robots-archive-author-pages',
-               'type'     => 'switch',
-               'title'    => __('Author Archive pages', 'accelerated-mobile-pages'),
-               'default' => 1,
-               'on' => 'index',
-               'off' => 'noindex'
-
-           ),
-           array(
-               'id'       => 'ampforwp-robots-archive-date-pages',
-               'type'     => 'switch',
-               'title'    => __('Date Archive pages', 'accelerated-mobile-pages'),
-               'default' => 1,
-               'on' => 'index',
-               'off' => 'noindex'
-
-           ),
-           array(
-               'id'       => 'ampforwp-robots-archive-category-pages',
-               'type'     => 'switch',
-               'title'    => __('Categories', 'accelerated-mobile-pages'),
-               'default' => 1,
-               'on' => 'index',
-               'off' => 'noindex'
-           ),
-           array(
-               'id'       => 'ampforwp-robots-archive-tag-pages',
-               'type'     => 'switch',
-               'title'    => __('Tags', 'accelerated-mobile-pages'),
-               'default' => 1,
-               'on' => 'index',
-               'off' => 'noindex'
-           ),
-
-
-       )
-
-  )
-
-  );
-    // AMP Menu SECTION
-   Redux::setSection( $opt_name, array(
-       'title'      => __( 'Menu', 'accelerated-mobile-pages' ),
-       'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
-       'id'         => 'amp-menus',
-       'subsection' => true,
-       'fields' => array(
-
-            array(
-                'id'       => 'ampforwp-auto-amp-menu-link',
-                'type'     => 'switch',
-                'title'    => __('Auto Add AMP in Menu URL', 'accelerated-mobile-pages'),
-                'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'accelerated-mobile-pages'),
-                'true'      => 'true',
-                'false'     => 'false',
-                'default'   => 0
+    // Single Section
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Single', 'accelerated-mobile-pages' ),
+//        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-single',
+        'subsection' => true,
+        'fields'     => array(
+          // Social Icons ON/OFF
+          array(
+              'id'        => 'enable-single-social-icons',
+              'type'      => 'switch',
+              'title'     => __('Sticky Social Icons', 'accelerated-mobile-pages'),
+              'default'   => 1,
+              'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
+          ),
+          array(
+              'id'        => 'enable-excerpt-single',
+              'type'      => 'switch',
+              'title'     => __('Excerpt in single', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Enable feature to add Excerpt above Content in single', 'accelerated-mobile-pages'),
+          ),
+          //deselectable next previous links
+          array(
+              'id'        => 'enable-single-next-prev',
+              'type'      => 'switch',
+              'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
+              'default'   => 1,
+              'subtitle'  => __('Enable Next-Previous links in single', 'accelerated-mobile-pages'),
+          ),
+          // Post Modified Date
+          array(
+              'id'        => 'post-modified-date',
+              'type'      => 'switch',
+              'title'     => __('Show Post Modified Date', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+          ),
+          // Author Bio
+         array(
+             'id'       => 'amp-author-description',
+             'type'     => 'switch',
+             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+         ),
+         // Date on Single
+         array(
+            'id'       => 'amp-design-3-date-feature',
+            'type'     => 'switch',
+            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
+            'required' => array(
+              array('amp-design-selector', '=' , '3')
             ),
-        )
-       )
+            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+            'default'  => '0'
+        ),
+          // Related Post
+	        array(
+    		        'id'       => 'ampforwp-single-select-type-of-related',
+    		        'type'     => 'select',
+    		        'title'    => __('Show Related Post from', 'accelerated-mobile-pages'),
+    		        'data'     => 'page',
+                'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
+    		        'options'  => array(
+    			        '1' => 'Tags',
+    			        '2' => 'Categories'
+    		        ),
+               'default'  => '2',
+	        ),
+	        array(
+    		        'id'       => 'ampforwp-number-of-related-posts',
+    		        'type'     => 'text',
+    		        'title'    => __('Number of Related Post', 'accelerated-mobile-pages'),
+                'subtitle' => __('Type the number of related posts you need, Eg : 2', 'accelerated-mobile-pages'),
+    		        'validate' => 'numeric',
+                'default'  => '3',
+	        ),
 
-   ) ;
+
+
+//             array(
+//                  'id' => 'ampforwp-comments-banner',
+//                  'type' => 'select',
+//                   'desc' =>  $comment_desc,
+//                  'title' => __(' df', 'accelerated-mobile-pages'),
+//                 'class'    => 'new-class',
+//
+//                //  'desc'       => ' <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
+//              ),
+//
+
+    $fields = array(
+    'id'   => 'info_normal',
+    'type' => 'info',
+    'class' => 'extension_banner_bg',
+    'desc' => $single_extension_listing )
+
+        ),
+
+    ) );
 
     $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $desc = '';
@@ -1355,112 +1173,57 @@ Redux::setArgs( "redux_builder_amp", $args );
         ) );
 
 
-    // Single Section
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Single', 'accelerated-mobile-pages' ),
-//        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
-        'id'         => 'amp-single',
-        'subsection' => true,
-        'fields'     => array(
-          // Social Icons ON/OFF
-          array(
-              'id'        => 'enable-single-social-icons',
-              'type'      => 'switch',
-              'title'     => __('Sticky Social Icons', 'accelerated-mobile-pages'),
-              'default'   => 1,
-              'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
-          ),
-          array(
-              'id'        => 'enable-excerpt-single',
-              'type'      => 'switch',
-              'title'     => __('Excerpt in single', 'accelerated-mobile-pages'),
-              'default'   => 0,
-              'subtitle'  => __('Enable feature to add Excerpt above Content in single', 'accelerated-mobile-pages'),
-          ),
-          //deselectable next previous links
-          array(
-              'id'        => 'enable-single-next-prev',
-              'type'      => 'switch',
-              'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
-              'default'   => 1,
-              'subtitle'  => __('Enable Next-Previous links in single', 'accelerated-mobile-pages'),
-          ),
-          // Post Modified Date
-          array(
-              'id'        => 'post-modified-date',
-              'type'      => 'switch',
-              'title'     => __('Show Post Modified Date', 'accelerated-mobile-pages'),
-              'default'   => 0,
-              'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-          ),
-          // Author Bio
-         array(
-             'id'       => 'amp-author-description',
-             'type'     => 'switch',
-             'title'    => __( 'Author Bio in Single', 'accelerated-mobile-pages' ),
-             'default'  => '1',
-         ),
-         // Date on Single
-         array(
-            'id'       => 'amp-design-3-date-feature',
-            'type'     => 'switch',
-            'title'    => __( 'Display Date on Single', 'accelerated-mobile-pages' ),
-            'required' => array(
-              array('amp-design-selector', '=' , '3')
+    // AMP Content Builder SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Content Builder', 'accelerated-mobile-pages' ),
+       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP with Drag and drop UI of widgets. <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">Learn More</a>' , 'accelerated-mobile-pages'),
+       'id'         => 'amp-content-builder',
+       'class' => 'amp_content_builder',
+       'subsection' => true,
+       'fields' => array(
+
+            array(
+                'id'       => 'ampforwp-content-builder',
+                'type'     => 'switch',
+                'title'    => __('Content Builder for AMP', 'accelerated-mobile-pages'),
+                'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
             ),
-            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
-            'default'  => '0'
-        ),
-          // Related Post
-	        array(
-    		        'id'       => 'ampforwp-single-select-type-of-related',
-    		        'type'     => 'select',
-    		        'title'    => __('Show Related Post from', 'accelerated-mobile-pages'),
-    		        'data'     => 'page',
-                'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
-    		        'options'  => array(
-    			        '1' => 'Tags',
-    			        '2' => 'Categories'
-    		        ),
-               'default'  => '2',
-	        ),
-	        array(
-    		        'id'       => 'ampforwp-number-of-related-posts',
-    		        'type'     => 'text',
-    		        'title'    => __('Number of Related Post', 'accelerated-mobile-pages'),
-                'subtitle' => __('Type the number of related posts you need, Eg : 2', 'accelerated-mobile-pages'),
-    		        'validate' => 'numeric',
-                'default'  => '3',
-	        ),
+        )
+       )
+
+   ) ;
 
 
+    // AMP Menu SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Menu', 'accelerated-mobile-pages' ),
+       'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+       'id'         => 'amp-menus',
+       'subsection' => true,
+       'fields' => array(
 
-//             array(
-//                  'id' => 'ampforwp-comments-banner',
-//                  'type' => 'select',
-//                   'desc' =>  $comment_desc,
-//                  'title' => __(' df', 'accelerated-mobile-pages'),
-//                 'class'    => 'new-class',
-//
-//                //  'desc'       => ' <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
-//              ),
-//
+            array(
+                'id'       => 'ampforwp-auto-amp-menu-link',
+                'type'     => 'switch',
+                'title'    => __('Auto Add AMP in Menu URL', 'accelerated-mobile-pages'),
+                'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0
+            ),
+        )
+       )
 
-    $fields = array(
-    'id'   => 'info_normal',
-    'type' => 'info',
-    'class' => 'extension_banner_bg',
-    'desc' => $single_extension_listing )
+   ) ;
 
-        ),
-
-    ) );
-
-    // Social Section
+// Social Section
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Social Share', 'accelerated-mobile-pages' ),
+        'title'      => __( 'Social', 'accelerated-mobile-pages' ),
         'id'         => 'amp-social',
-        'desc'      => __('enable social share and your social profiels here','accelerated-mobile-pages'),
+        'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
           // Facebook ON/OFF
@@ -1773,6 +1536,270 @@ Redux::setArgs( "redux_builder_amp", $args );
         )
     ) );
 
+
+   // SEO SECTION
+  Redux::setSection( $opt_name, array(
+      'title'      => __( 'SEO', 'accelerated-mobile-pages' ),
+      'id'         => 'amp-seo',
+      'subsection' => true,
+       'fields'     => array(
+
+           array(
+               'id'       => 'ampforwp-seo-meta-description',
+               'type'     => 'switch',
+               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
+               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
+               'default'  => 0
+           ),
+
+           array(
+               'id'       => 'ampforwp-seo-custom-additional-meta',
+               'type'     => 'textarea',
+               'title'    => __('Additional tags for Head section AMP page', 'accelerated-mobile-pages'),
+               'subtitle' => __('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
+               'desc' => __('Only link and meta tags allowed', 'accelerated-mobile-pages'),
+               'placeholder'  => __('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
+           ),
+
+
+           array(
+                  'id' => 'ampforwp-yoast-seo-sub-section',
+                  'type' => 'section',
+                  'title' => __('Yoast SEO Options', 'accelerated-mobile-pages'),
+                  'indent' => true
+              ),
+
+           array(
+               'id'       => 'ampforwp-seo-yoast-meta',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
+               'title'    => __( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
+               'default'  => '1'
+           ),
+           array(
+               'id'       => 'ampforwp-seo-yoast-description',
+               'type'     => 'switch',
+               'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
+               'title'    => __( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
+               'default'  => 0
+           ),
+
+           array(
+                  'id' => 'ampforwp-seo-index-noindex-sub-section',
+                  'type' => 'section',
+                  'title' => __('Advanced Index & No Index Options', 'accelerated-mobile-pages'),
+                  'indent' => true
+              ),
+           array(
+               'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
+               'type'     => 'switch',
+               'title'    => __('Archive subpages (sitewide)', 'accelerated-mobile-pages'),
+               'desc'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
+               'default' => 0,
+               'on' => 'index',
+               'off' => 'noindex'
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-author-pages',
+               'type'     => 'switch',
+               'title'    => __('Author Archive pages', 'accelerated-mobile-pages'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-date-pages',
+               'type'     => 'switch',
+               'title'    => __('Date Archive pages', 'accelerated-mobile-pages'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-category-pages',
+               'type'     => 'switch',
+               'title'    => __('Categories', 'accelerated-mobile-pages'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+           ),
+           array(
+               'id'       => 'ampforwp-robots-archive-tag-pages',
+               'type'     => 'switch',
+               'title'    => __('Tags', 'accelerated-mobile-pages'),
+               'default' => 1,
+               'on' => 'index',
+               'off' => 'noindex'
+           ),
+
+
+       )
+
+  )
+
+  );
+
+    // Analytics SECTION
+   Redux::setSection( $opt_name,    array(
+      	        'title' => __('Analytics'),
+      	        // 'icon' => 'el el-th-large',
+      			    'desc'  => __('You can either use Google Tag Manager or Other Analytics Providers','accelerated-mobile-pages'),
+                'subsection' => true,
+      	        'fields' =>
+      	        	array(
+
+
+                    array(
+                        'id'       => 'amp-analytics-select-option',
+                        'type'     => 'select',
+                        'title'    => __( 'Analytics Type', 'accelerated-mobile-pages' ),
+                        'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
+                        'options'  => array(
+                            '1' => __('Google Analytics', 'accelerated-mobile-pages' ),
+                            '2' => __('Segment Analytics', 'accelerated-mobile-pages' ),
+                            '3' => __('Piwik Analytics', 'accelerated-mobile-pages' ),
+                            '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
+                            '5' => __('comScore', 'accelerated-mobile-pages' ),
+                            '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
+                            '7' => __('StatCounter', 'accelerated-mobile-pages' ),
+                        ),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                        'default'  => '1',
+                    ),
+                      array(
+                          'id'       => 'ga-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Google Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '1')
+                          ),
+                          'subtitle' => __( 'Enter your Google Analytics ID.', 'accelerated-mobile-pages' ),
+                          'desc'     => __('Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
+                          'default'  => 'UA-XXXXX-Y',
+                      ),
+                      array(
+                        'id'       => 'sa-feild',
+                        'type'     => 'text',
+                        'title'    => __( 'Segment Analytics', 'accelerated-mobile-pages' ),
+                        'subtitle' => __( 'Enter your Segment Analytics Key.', 'accelerated-mobile-pages' ),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                          array('amp-analytics-select-option', '=' , '2')
+                        ),
+                        'default'  => 'SEGMENT-WRITE-KEY',
+                      ),
+                      array(
+                          'id'       => 'pa-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Piwik Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '3')
+                          ),
+                          'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your Piwik Analytics URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'eam-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '6')
+                          ),
+                          'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your Effective Measure URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+                      array(
+                          'id'       => 'sc-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '7')
+                          ),
+                          'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
+                          'subtitle' => __('Enter your StatCounter URL.', 'accelerated-mobile-pages' ),
+                          'default'  => '#',
+                      ),
+
+                      array(
+                        'id'        	=>'amp-quantcast-analytics-code',
+                        'type'      	=> 'text',
+                        'title'     	=> __('p-code','accelerated-mobile-pages'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '4')),
+                      ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c1',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C1','accelerated-mobile-pages'),
+                        'default'   	=> 1,
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
+                      array(
+                        'id'        	=>'amp-comscore-analytics-code-c2',
+                        'type'      	=> 'text',
+                        'title'     	=> __('C2','accelerated-mobile-pages'),
+                        'default'   	=> '',
+                        'required' => array(
+                        array('amp-analytics-select-option', '=' , '5')),
+                      ),
+
+                      //GTM
+                        array(
+                            'id'       => 'amp-use-gtm-option',
+                            'type'     => 'switch',
+                            'title'    => __( 'Use Google Tag Manager', 'accelerated-mobile-pages' ),
+                            'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
+                            'default'  => 0,
+                        ),
+                        array(
+              						'id'        	=>'amp-gtm-id',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
+              						'default'   	=> '',
+              						'desc'	=> __('Eg: GTM-5XXXXXP','accelerated-mobile-pages'),
+                        //  'validate' => 'not_empty',
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '1')
+                          ),
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-type',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics Type','accelerated-mobile-pages'),
+              						'default'   	=> '',
+              						'desc'	=> __('Eg: googleanalytics','accelerated-mobile-pages'),
+                         // 'validate' => 'not_empty',
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '1')
+                          ),
+              					),
+              					array(
+              						'id'        	=>'amp-gtm-analytics-code',
+              						'type'      	=> 'text',
+              						'title'     	=> __('Analytics ID','accelerated-mobile-pages'),
+              						'default'   	=> '',
+      						        'desc'	=> 'Eg: UA-XXXXXX-Y',
+                          // 'validate' => 'not_empty',
+                          'required' => array(
+                          array('amp-use-gtm-option', '=' , '1')),
+              					),
+
+      				    )
+          	)
+   );
+
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
@@ -1849,6 +1876,82 @@ Redux::setArgs( "redux_builder_amp", $args );
        ),
 
    ) );
+
+
+// Comments
+ Redux::setSection( $opt_name, array(
+    'title'      => __( 'Comments', 'accelerated-mobile-pages' ),
+    'desc' => $comment_desc,
+    'id'         => 'disqus-comments',
+    'subsection' => true,
+    'fields'     => array(
+                    array(
+                         'id'       => 'ampforwp-number-of-comments',
+                         'type'     => 'text',
+                         'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
+                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
+                         'default'  => 10,
+                         'required' => array(
+                                            array('ampforwp-disqus-comments-support' , '=' , 0),
+                                            array('ampforwp-facebook-comments-support' , '=' , 0)
+                                        ),
+                     ),
+                     array(
+                         'id'       => 'ampforwp-disqus-comments-support',
+                         'type'     => 'switch',
+                         'title'    => __('Disqus comments Support', 'accelerated-mobile-pages'),
+                         'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
+                         'required' => array('ampforwp-facebook-comments-support', '=' , '0'),
+                         'default'  => 0
+                     ),
+                     array(
+                         'id'       => 'ampforwp-disqus-comments-name',
+                         'type'     => 'text',
+                         'title'    => __('Disqus Name', 'accelerated-mobile-pages'),
+                         'subtitle' => __('Eg: https://xyz.disqus.com', 'accelerated-mobile-pages'),
+                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                         'default'  => ''
+                     ),
+
+                     array(
+                         'id'       => 'ampforwp-disqus-host-position',
+                         'type'     => 'switch',
+                         'title'    => __('Host Disqus Comments through AMPforWP Servers', 'accelerated-mobile-pages'),
+                         'subtitle' => __('Use AMPforWP secure servers to serve Comments file. Recommended if your site is non HTTPS', 'accelerated-mobile-pages'),
+                         'default'  => 1,
+                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                     ),
+
+                     array(
+                         'id'       => 'ampforwp-disqus-host-file',
+                         'type'     => 'text',
+                         'title'    => __('Disqus Host File', 'accelerated-mobile-pages'),
+                         'subtitle' => __('<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'accelerated-mobile-pages'),
+                         'placeholder' => 'https://comments.example.com/disqus.php',
+                         'required' => array('ampforwp-disqus-host-position', '=' , '0'),
+                     ),
+                     array(
+                         'id'       => 'ampforwp-facebook-comments-support',
+                         'type'     => 'switch',
+                         'title'    => __('Facebook comments Support', 'accelerated-mobile-pages'),
+                         'subtitle' => __('Enable/Disable Facebook comments using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 0,
+                     ),
+                     array(
+                         'id'       => 'ampforwp-number-of-fb-no-of-comments',
+                         'type'     => 'text',
+                         'desc'     => __('Enter the number of comments','accelerated-mobile-pages'),
+                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
+                         'default'  => 10,
+                         'required' => array(
+                                        array('ampforwp-facebook-comments-support', '=' , 1),
+
+
+                     ),
+                         )
+                 )
+ ) );
+
 
    // Translation Panel
            Redux::setSection( $opt_name, array(
@@ -2149,80 +2252,6 @@ Redux::setArgs( "redux_builder_amp", $args );
 //
 
 
-
-// Comments
- Redux::setSection( $opt_name, array(
-    'title'      => __( 'Comments', 'accelerated-mobile-pages' ),
-    'desc' => $comment_desc,
-    'id'         => 'disqus-comments',
-    'subsection' => true,
-    'fields'     => array(
-                    array(
-                         'id'       => 'ampforwp-number-of-comments',
-                         'type'     => 'text',
-                         'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
-                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
-                         'default'  => 10,
-                         'required' => array(
-                                            array('ampforwp-disqus-comments-support' , '=' , 0),
-                                            array('ampforwp-facebook-comments-support' , '=' , 0)
-                                        ),
-                     ),
-                     array(
-                         'id'       => 'ampforwp-disqus-comments-support',
-                         'type'     => 'switch',
-                         'title'    => __('Disqus comments Support', 'accelerated-mobile-pages'),
-                         'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
-                         'required' => array('ampforwp-facebook-comments-support', '=' , '0'),
-                         'default'  => 0
-                     ),
-                     array(
-                         'id'       => 'ampforwp-disqus-comments-name',
-                         'type'     => 'text',
-                         'title'    => __('Disqus Name', 'accelerated-mobile-pages'),
-                         'subtitle' => __('Eg: https://xyz.disqus.com', 'accelerated-mobile-pages'),
-                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
-                         'default'  => ''
-                     ),
-
-                     array(
-                         'id'       => 'ampforwp-disqus-host-position',
-                         'type'     => 'switch',
-                         'title'    => __('Host Disqus Comments through AMPforWP Servers', 'accelerated-mobile-pages'),
-                         'subtitle' => __('Use AMPforWP secure servers to serve Comments file. Recommended if your site is non HTTPS', 'accelerated-mobile-pages'),
-                         'default'  => 1,
-                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
-                     ),
-
-                     array(
-                         'id'       => 'ampforwp-disqus-host-file',
-                         'type'     => 'text',
-                         'title'    => __('Disqus Host File', 'accelerated-mobile-pages'),
-                         'subtitle' => __('<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>', 'accelerated-mobile-pages'),
-                         'placeholder' => 'https://comments.example.com/disqus.php',
-                         'required' => array('ampforwp-disqus-host-position', '=' , '0'),
-                     ),
-                     array(
-                         'id'       => 'ampforwp-facebook-comments-support',
-                         'type'     => 'switch',
-                         'title'    => __('Facebook comments Support', 'accelerated-mobile-pages'),
-                         'subtitle' => __('Enable/Disable Facebook comments using this switch.', 'accelerated-mobile-pages'),
-                         'default'  => 0,
-                     ),
-                     array(
-                         'id'       => 'ampforwp-number-of-fb-no-of-comments',
-                         'type'     => 'text',
-                         'desc'     => __('Enter the number of comments','accelerated-mobile-pages'),
-                         'title'    => __('No of Comments', 'accelerated-mobile-pages'),
-                         'default'  => 10,
-                         'required' => array(
-                                        array('ampforwp-facebook-comments-support', '=' , 1),
-
-
-                     ),
-                         )
-                 )
- ) );
 
 
 // Advance Settings SECTION

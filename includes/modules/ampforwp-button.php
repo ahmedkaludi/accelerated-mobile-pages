@@ -18,10 +18,10 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 
 		parent::__construct(
 			'ampforwp-button',
-			__( 'AMPforWP Button Module', 'accelerated-mobile-pages' ),
-			array( // 
-				'classname'		=>	'ampforwp-button',
-				'description'	=>	__( 'Pulls in the featured classes to display within the widget.', 'accelerated-mobile-pages' )
+			__( 'AMP Button Module', 'accelerated-mobile-pages' ),
+			array( 
+				'classname'		=>	'ampforwp-button', 
+				'description'	=>	__( 'Displays Button with text and link options.', 'accelerated-mobile-pages' )
 			)
 		);
 
