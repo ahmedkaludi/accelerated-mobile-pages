@@ -68,6 +68,7 @@
 	56. Multi Translation Feature #540
 	57. Adding Updated date at in the Content
 	58. YouTube Shortcode compatablity with AMP #557
+	59. Comment Button URL
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -2398,4 +2399,18 @@ if ( ! function_exists( 'shortcode_new_to_old_params') ) {
 
 	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
 	}
+}
+
+// 59. Comment Button URL
+function ampforwp_comment_button_url(){
+	global $redux_builder_amp;
+	$button_url = "";
+	if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_nonamp =  '?nonamp=1';
+    else
+      $ampforwp_nonamp = '';
+
+  	$button_url =  trailingslashit( get_permalink() ) .$ampforwp_nonamp. '#commentform';
+
+  return $button_url; 
 }
