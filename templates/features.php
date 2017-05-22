@@ -2405,6 +2405,7 @@ if ( ! function_exists( 'shortcode_new_to_old_params') ) {
 function ampforwp_comment_button_url(){
 	global $redux_builder_amp;
 	$button_url = "";
+	$ampforwp_nonamp = "";
 	if($redux_builder_amp['amp-mobile-redirection']==1)
         $ampforwp_nonamp =  '?nonamp=1';
     else
