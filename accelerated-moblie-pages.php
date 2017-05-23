@@ -177,9 +177,9 @@ function ampforwp_parent_plugin_check() {
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
 
 	// Modules 
-	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
-	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
-	require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 
 
 /*
