@@ -1,3 +1,4 @@
+<?php do_action('ampforwp_before_featured_image_hook'); ?>
 <?php
 $featured_image = $this->get( 'featured_image' );
 
@@ -18,3 +19,4 @@ $caption = $featured_image['caption'];
 	<?php endif; ?>
 </figure>
 </div>
+<?php do_action('ampforwp_after_featured_image_hook'); ?>
