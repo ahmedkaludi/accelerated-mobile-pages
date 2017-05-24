@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7.4
-Stable tag: 0.9.49
+Tested up to: 4.7.5
+Stable tag: 0.9.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,13 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Facebook Comments Support
 * NEW - Email Opt-in Subscription form support in AMP added 
 * NEW - Call to Action boxes and notification bars 
 * NEW - 9 Advertisement sizes - 2 More AD slots added recently
 * NEW - Comments Forms in AMP.
 * NEW - Native AMP Search functionality.
-* NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
+* Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * Disqus Comments Support
 * Google Tag Manager Support
 * Page, Category & Tags Support Added
@@ -131,7 +132,26 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
-= 0.9.48 (12 May 2017) =
+= 0.9.50 (24 May 2017) =
+* View more details on https://ampforwp.com/facebook-comments-in-amp/
+* Design 3 Social Icons issue #832
+* View non AMP leads to /?nonamp=1 #814
+* Youtube shortcode compatibility improved #557
+* welcome.php should be shown only if user is “administrator” #696
+* Facebook comments support added in AMP #825
+* WP Like Button Compatibility #841
+* Custom Taxonomy Support added with Custom Post Type Extension.
+* Front page – comments not found as expected #837
+* Fixed xml:lang tag issue #848
+* Sanitize Iframe in the archive description Fixed #845
+* Compatibility with Newspaper Theme by TagDiv #842 and #796
+* Some debug problems (blog page, style.php) #838
+* Featured Image hooks added
+* Twitter is misspelled #854
+* The core concept of the AMP Content builder has been built.
+
+
+= 0.9.49 (12 May 2017) =
 * View more details on https://ampforwp.com/0-9-49-released-small-important-bugs-fixed-56th-update/
 * Option added to display the excerpt in Single #806
 * Ability to add new invalid tags to filter out from AMP pages #809
