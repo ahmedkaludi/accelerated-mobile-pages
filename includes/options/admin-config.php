@@ -1315,7 +1315,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
               'id'        =>  'enable-single-twittter-profile',
               'type'      =>  'switch',
-              'title'     =>  __('Twittter ', 'accelerated-mobile-pages'),
+              'title'     =>  __('Twitter ', 'accelerated-mobile-pages'),
               'default'   =>  1,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
@@ -1324,7 +1324,7 @@ Redux::setArgs( "redux_builder_amp", $args );
           array(
               'id'        =>  'enable-single-twittter-profile-url',
               'type'      =>  'text',
-              'title'     =>  __('Twittter URL', 'accelerated-mobile-pages'),
+              'title'     =>  __('Twitter URL', 'accelerated-mobile-pages'),
               'default'   =>  '#',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
