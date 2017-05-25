@@ -25,7 +25,10 @@ $template = new AMP_Post_Template( $post_id );?>
 		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);
 		if ( ! $amp_custom_content_enable ) {
 			$amp_component_scripts = $template->data['amp_component_scripts'];
-			foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
+			foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { 
+					if ( $ampforwp_service  ==  'amp-sidebar') {
+						continue;
+					} ?>
 				<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
 			}
 		}	 ?>
