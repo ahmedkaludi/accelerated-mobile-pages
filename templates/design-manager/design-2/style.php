@@ -177,6 +177,7 @@ main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width:
 .comments_list li li{ margin: 20px 20px 10px 20px;background: #f7f7f7;box-shadow: none;border: 1px solid #eee;}
 .comments_list li li li{ margin:20px 20px 10px 20px}
 .comment-content amp-img{max-width: 300px;}
+.amp-facebook-comments{margin-top:45px}
 /* ADS */
 .amp_home_body .amp_ad_1{ margin-top: 10px; margin-bottom: -20px; }
 .single-post .amp_ad_1{ margin-top: 10px; margin-bottom: -20px; }

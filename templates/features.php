@@ -67,6 +67,10 @@
 	55. Call Now Button Feature added
 	56. Multi Translation Feature #540
 	57. Adding Updated date at in the Content
+	58. YouTube Shortcode compatablity with AMP #557
+	59. Comment Button URL
+	60. Remove Category Layout modification code added by TagDiv #842 and #796
+
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -834,6 +838,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
 				 $content = preg_replace('/imageanchor="1"/i', '', $content);
 				 $content = preg_replace('/<plusone\s(.*?)>(.*?)<\/plusone>/', '', $content);
+				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -1204,6 +1209,10 @@ function ampforwp_remove_schema_data() {
 	// Removed GTranslate Flags from AMP pages #819
 	remove_filter('wp_nav_menu_items', 'gtranslate_menu_item', 10, 2);
 
+	// Remove elements of WP Like Button plugin #841
+	remove_filter('the_content', 'fb_like_button');
+	remove_filter('the_excerpt', 'fb_like_button');
+
 }
 
 // 22. Removing author links from comments Issue #180
@@ -1474,6 +1483,8 @@ function ampforwp_frontpage_title_markup () {
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
                 $content_buffer = preg_replace("/about:blank/", "#", $content_buffer);
+                $content_buffer = preg_replace("/<script data-cfasync[^>]*>.*?<\/script>/", "", $content_buffer);
+                $content_buffer = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
             }
@@ -1684,6 +1695,45 @@ function ampforwp_add_disqus_scripts( $data ) {
 	return $data;
 }
 
+// Facebook Comments Support #825
+
+add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
+function ampforwp_facebook_comments_support() {
+	echo ampforwp_facebook_comments_markup();
+}
+function ampforwp_facebook_comments_markup() {
+
+	global $redux_builder_amp;
+	$facebook_comments_markup = '';
+	if ( !comments_open() ){
+		return;
+	}
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+
+		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
+		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
+	    		layout="responsive" data-numposts=';
+		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
+
+		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+	    $facebook_comments_markup .= '></amp-facebook-comments>';
+
+		return $facebook_comments_markup;
+	}
+}
+
+add_filter( 'amp_post_template_data', 'ampforwp_add_fbcomments_scripts' );
+function ampforwp_add_fbcomments_scripts( $data ) {
+
+	$facebook_comments_check = ampforwp_facebook_comments_markup();
+	global $redux_builder_amp;
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
+			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
+				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
+			}
+		}
+		return $data;
+	}
 //36. remove photon support in AMP
 //add_action('amp_init','ampforwp_photon_remove');
 //function ampforwp_photon_remove(){
@@ -1820,8 +1870,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Above Loop',
 		'id'   => 'ampforwp-above-loop',
 		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
@@ -1829,8 +1879,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Below Loop',
 		'id'   => 'ampforwp-below-loop',
 		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
@@ -2324,3 +2374,55 @@ function ampforwp_add_modified_date($post_id){
 		</div> <?php
 	}
 }
+
+// 58. YouTube Shortcode compatablity with AMP #557 
+if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+
+	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+		$str = '';
+
+		$youtube_url = 'https://www.youtube.com/watch?v=';
+		$parsed_url = parse_url( $params['id'] );
+		$server = 'www.youtube.com';
+
+		if ( in_array( $server, $parsed_url ) === false ) {
+			$new_url  = $youtube_url .  $params['id'] ;
+			$params['id'] = $new_url;
+		}
+
+		if ( $old_format_support && isset( $params[0] ) ) {
+			$str = ltrim( $params[0], '=' );
+		} elseif ( is_array( $params ) ) {
+			foreach ( array_keys( $params ) as $key ) {
+			  if ( ! is_numeric( $key ) ) {
+			    $str = $key . '=' . $params[ $key ];
+			  }
+			}
+		}
+
+	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
+	}
+}
+
+// 59. Comment Button URL
+function ampforwp_comment_button_url(){
+	global $redux_builder_amp;
+	$button_url = "";
+	$ampforwp_nonamp = "";
+	if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_nonamp =  '?nonamp=1';
+    else
+      $ampforwp_nonamp = '';
+
+  	$button_url =  trailingslashit( get_permalink() ) .$ampforwp_nonamp. '#commentform';
+
+  return $button_url; 
+}
+
+// 60. Remove Category Layout modification code added by TagDiv #842 and #796
+function ampforwp_remove_support_tagdiv_cateroy_layout(){
+	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 
+	}
+}
+add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);

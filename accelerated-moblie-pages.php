@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.49
+Version: 0.9.50
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.49');
+define('AMPFORWP_VERSION','0.9.50');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -36,12 +36,16 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 function ampforwp_name_blog_page() {
 	$page_for_posts  =  get_option( 'page_for_posts' );
 	$post = get_post($page_for_posts); 
-	$slug = $post->post_name;
-	return $slug;
+	if ( $post ) {
+		$slug = $post->post_name;
+		return $slug;
+	}
 }
 function ampforwp_custom_post_page() {
 	$front_page_type  =  get_option( 'show_on_front' );
-	return $front_page_type;
+	if ( $front_page_type ) {
+		return $front_page_type;
+	}
 }
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
@@ -106,7 +110,30 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
-
+    
+	//Rewrite rule for custom Taxonomies
+	$args = array(
+	  'public'   => true,
+	  '_builtin' => false	  
+	); 
+	$output = 'names'; // or objects
+	$operator = 'and'; // 'and' or 'or'
+	$taxonomies = get_taxonomies( $args, $output, $operator ); 
+	if ( $taxonomies ) {
+	  foreach ( $taxonomies  as $taxonomy ) {	   
+	    add_rewrite_rule(
+	      $taxonomy.'\/(.+?)\/amp/?$',
+	      'index.php?amp&'.$taxonomy.'=$matches[1]',
+	      'top'
+	    );
+	    // For Custom Taxonomies with pages
+	    add_rewrite_rule(
+	      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+	      'top'
+	    );
+	  }
+	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
@@ -152,6 +179,11 @@ function ampforwp_parent_plugin_check() {
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+
+	// Modules 
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
+	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 
 
 /*

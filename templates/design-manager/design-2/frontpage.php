@@ -191,13 +191,12 @@ $template = new AMP_Post_Template( $post_id );?>
 				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 			} else {
-			    if ( !comments_open() ) {
-			      return;
-				} ?>
+			    if ( !comments_open() ) { ?>
 			    <div class="comment-button-wrapper">
 			       <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 			    </div>
-			<?php } ?>
+			<?php }
+			} ?>
 		</div> <?php
 	} ?>
 
