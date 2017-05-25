@@ -22,8 +22,10 @@ function ampforwp_page_template_redirect() {
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
-    session_start();
-    if( $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
+    if( isset($_SESSION['ampforwp_amp_mode']) && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
       return;
     }
     if( wp_is_mobile() && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_GET['nonamp']==1){
