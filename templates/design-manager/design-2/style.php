@@ -167,8 +167,8 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; max-width:
 main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width: 1030px;padding:0}
 .comments_list div{ display:inline-block;}
 .comments_list ul{ margin:0;padding:0}
-.comments_list ul.children{ padding-bottom:10px; margin-left: 4%; width: 96%;}
-.comments_list ul li p{ margin:0;font-size:15px;clear:both;padding-top:16px;}
+.comments_list ul.children{ padding-bottom:10px; margin-left: 4%; width: 96%;} 
+.comments_list ul li p{ margin:0;font-size:15px;clear:both;padding-top:16px; word-break: break-word;
 .comments_list ul li{ font-size:13px;list-style-type:none; margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);padding: 0px;max-width: 1000px;width:100%;}
 .comments_list ul li .comment-body{ padding: 25px;width: 91%;}
 .comments_list ul li .comment-body .comment-author{ margin-right:5px}

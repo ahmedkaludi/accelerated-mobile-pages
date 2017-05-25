@@ -156,7 +156,7 @@ main .amp-wp-content.comments_list{ background: none; box-shadow: none; padding:
 .comments_list div{ display:inline-block; }
 .comments_list ul{ margin:0; padding:0 }
 .comments_list ul.children{ padding-bottom:10px; margin-left: 3%; width: 96%; }
-.comments_list ul li p{ margin:0; font-size:16px; clear:both; padding-top:5px; }
+.comments_list ul li p{ margin:0; font-size:16px; clear:both; padding-top:5px; word-break: break-word;}
 .comments_list ul li{ font-size: 12px; list-style-type: none; margin-bottom: 22px; padding-bottom: 20px; max-width: 1000px; border-bottom: 1px solid #eee; }
 .comments_list ul ul li{ border-left: 2px solid #eee; padding-left: 15px; border-bottom: 0; padding-bottom: 0px; }
 .comments_list ul li .comment-body .comment-author{ margin-right:5px }
