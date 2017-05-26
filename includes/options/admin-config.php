@@ -878,11 +878,16 @@ Redux::setArgs( "redux_builder_amp", $args );
     $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $desc = '';
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
+    if(!is_plugin_active( 'amp-ads-google-adsense/amptoolkit-incontent-ads.php' ) ){
 
         $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
         }
         // ADS SECTION
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if(!is_plugin_active( 'amp-ads-google-adsense/amptoolkit-incontent-ads.php' ))
+        {
+        
+
         Redux::setSection( $opt_name, array(
             'title'      => __( 'Advertisement', 'accelerated-mobile-pages' ),
             'desc' => $desc,
@@ -1171,6 +1176,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
             ),
         ) );
+            }
 
 
     // AMP Content Builder SECTION
