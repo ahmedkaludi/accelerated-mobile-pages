@@ -1213,6 +1213,9 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
+	// Remove Popups and other elements added by Slider-in Plugin
+	define('WDSI_BOX_RENDERED', true, true);
+
 }
 
 // 22. Removing author links from comments Issue #180
