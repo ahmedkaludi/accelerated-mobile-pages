@@ -26,7 +26,7 @@ load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFO
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
+		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_AUTHORS | EP_ROOT );
 		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
 	}
 }
