@@ -96,17 +96,20 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		// if ( is_home() ) {
 
-			$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
-			if ( $ampforwp_is_amp_endpoint ) {
-				amp_prepare_render();
-			} else {
-				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
-			}
+		if ( $ampforwp_is_amp_endpoint ) {
+			amp_prepare_render();
+		} else {
+			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		}
 
-		// }
+		$cpage_var = get_query_var('cpage');
+
+		if ( $cpage_var >= 1) : 
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		endif;			
 	}
 
 	function ampforwp_home_archive_rel_canonical() {
