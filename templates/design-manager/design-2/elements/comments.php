@@ -4,6 +4,7 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
   return;
 }
 ?>
+<?php do_action('ampforwp_before_comment_hook',$this); ?>
 <div class="ampforwp-comment-wrapper">
 <?php
 	global $redux_builder_amp;
@@ -88,3 +89,4 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
     <?php } ?>
 <?php } ?>
 </div>
+<?php do_action('ampforwp_after_comment_hook',$this); ?>

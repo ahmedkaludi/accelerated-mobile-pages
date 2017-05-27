@@ -13,7 +13,7 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 			<?php }
 		}
 }
-		do_action('ampforwp_before_post_content') //Post before Content here ?>
+		do_action('ampforwp_before_post_content',$this) //Post before Content here ?>
 
 			<?php
 			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
@@ -29,7 +29,7 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 			// echo $this->get( 'post_amp_content' ); // amphtml content; no kses
 			?>
 
-		<?php do_action('ampforwp_after_post_content') ; //Post After Content here ?>
+		<?php do_action('ampforwp_after_post_content',$this) ; //Post After Content here ?>
 
 	</div>
 	<!--Post Content Ends here-->
