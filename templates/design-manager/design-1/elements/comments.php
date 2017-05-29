@@ -45,7 +45,8 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
                         <p><?php
                           $comment_content = get_comment_text();
                           $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
-                          echo $sanitizer->get_amp_content(); ?>
+                          $sanitized_comment_content = $sanitizer->get_amp_content();
+                          echo make_clickable( $sanitized_comment_content ); ?>
                         </p>
 											</div>
 												<!-- .comment-content -->
