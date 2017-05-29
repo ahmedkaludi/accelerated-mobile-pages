@@ -85,10 +85,10 @@ jQuery(document).ready(function($) {
     });
 
      // Tiny Mce code
-    $(document).on('widget-updated', function(event, widget){
-        var widget_id = $(widget).attr('id');
-        $('#'+widget_id + ' .switch-tmce').hide();
-    });
+    // $(document).on('widget-updated', function(event, widget){
+    //     var widget_id = $(widget).attr('id');
+    //     $('#'+widget_id + ' .switch-tmce').hide();
+    // });
  
   remove_button = jQuery('.remove-img-button');
 

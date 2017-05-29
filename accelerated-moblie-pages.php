@@ -179,11 +179,19 @@ function ampforwp_parent_plugin_check() {
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+	
+	
+// Modules 
+add_action('after_setup_theme','ampforwp_add_module_files');
+function ampforwp_add_module_files() {
+	
+	if ( ! function_exists( 'bstw' ) ) {
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+	}
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
+}
 
-	// Modules 
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 
 
 /*
