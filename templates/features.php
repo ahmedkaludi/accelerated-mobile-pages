@@ -1345,18 +1345,21 @@ function ampforwp_add_proper_post_meta(){
 	$check_custom_front_page = get_option('show_on_front');
 	if ( $check_custom_front_page == 'page' ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
+		if(is_home()){
+			add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+	
 
-		add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
-		add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
+			add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
 
-		add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
-		add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
-
-		add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+			add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+		
 
 		// This is causing the 2nd debug issue reported in #740
 		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
 		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
+	}
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 	}
@@ -1365,9 +1368,11 @@ add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
 
 
 function custom_twitter_title_homepage() {
-	return  esc_attr( get_bloginfo( 'name' ) );
+	
+		return  esc_attr( get_bloginfo( 'name' ) );
 }
 function custom_twitter_description_homepage() {
+	
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
 function custom_og_url_homepage() {
