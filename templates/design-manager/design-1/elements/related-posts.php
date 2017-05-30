@@ -1,6 +1,6 @@
 <?php
-		do_action('ampforwp_above_related_post'); //Above Related Posts
 		global $post, $redux_builder_amp;
+		do_action('ampforwp_above_related_post',$this); //Above Related Posts
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 			$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
@@ -80,3 +80,4 @@
 				}
 		wp_reset_postdata();
 ?>
+<?php do_action('ampforwp_below_related_post',$this);

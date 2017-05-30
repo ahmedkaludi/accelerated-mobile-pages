@@ -2,6 +2,7 @@
 <?php	global $redux_builder_amp;
 			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
+		<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 		<div class="amp-wp-meta amp-wp-content ampforwp-tax-tag">
 				<?php foreach ($ampforwp_tags as $tag) {
           if($redux_builder_amp['ampforwp-archive-support']){
@@ -34,3 +35,5 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	</div> <?php
 	}
 }
+
+do_action('ampforwp_before_meta_taxonomy_hook',$this);

@@ -138,6 +138,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .the_content p{ margin-top: 0px; margin-bottom: 30px; }
 .amp-wp-tax-tag{ }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
+.amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .archives_body main{ margin-top:30px }
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
