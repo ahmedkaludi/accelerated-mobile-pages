@@ -177,8 +177,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				$supported_amp_post_types = in_array( $type , $supported_types );
 
 				$query_arg_array = $wp->query_vars;
+
 				if( array_key_exists( 'paged' , $query_arg_array ) ) {
-					if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
+					if ( ( is_home() ||  is_front_page() ) && $wp->query_vars['paged'] >= '2' ) {
 						$new_url =  home_url('/');
 						$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
 						$amp_url = $new_url ;
