@@ -48,6 +48,17 @@ function ampforwp_custom_post_page() {
 	}
 }
 
+function ampforwp_get_the_page_id_blog_page(){
+	$page = "";
+	$output = "";
+	if ( ampforwp_name_blog_page() ) {
+		$page = get_page_by_path( ampforwp_name_blog_page() );
+		$output = $page->ID;
+	}
+
+	return $output;
+}
+
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     // For Homepage
@@ -62,14 +73,14 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
-	// For Homepage with Pagination
-	if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
+	// For /Blog page with Pagination
+	//if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
-	        'index.php?amp&paged=$matches[1]',
+	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
-	}
+	//}
 
     // For Author pages
     add_rewrite_rule(	
