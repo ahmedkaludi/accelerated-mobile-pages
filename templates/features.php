@@ -1345,18 +1345,21 @@ function ampforwp_add_proper_post_meta(){
 	$check_custom_front_page = get_option('show_on_front');
 	if ( $check_custom_front_page == 'page' ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
+		if(is_home()){
+			add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+	
 
-		add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
-		add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
+			add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
 
-		add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
-		add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
-
-		add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+			add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+		
 
 		// This is causing the 2nd debug issue reported in #740
 		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
 		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
+	}
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 	}
@@ -1365,9 +1368,11 @@ add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
 
 
 function custom_twitter_title_homepage() {
-	return  esc_attr( get_bloginfo( 'name' ) );
+	
+		return  esc_attr( get_bloginfo( 'name' ) );
 }
 function custom_twitter_description_homepage() {
+	
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
 function custom_og_url_homepage() {
@@ -2496,3 +2501,28 @@ function ampforwp_remove_support_tagdiv_cateroy_layout(){
 	}
 }
 add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
+
+// AMP Gist
+add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
+function ampforwp_gist_shortcode_generator($atts) {
+   extract(shortcode_atts(array(
+   	  'id'     =>'' ,
+      'layout' => fixed-height,
+      'height' => 200,      
+   ), $atts));  
+   if ( empty ( $height ) ) {
+   		$height = '250';
+   }
+  	return '<amp-gist data-gistid='. $atts['id'] .' 
+  		layout="fixed-height"
+  		height="'. $height .'">
+  		</amp-gist>';
+}
+add_action('amp_post_template_head','ampforwp_add_gist_script', 10 , 1);
+function ampforwp_add_gist_script( $data ){
+  $content =    $data->get('post');
+  $content =    $content->post_content;
+	if( has_shortcode( $content , 'amp-gist' ) ){ ?>
+	<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
+<?php }
+}
