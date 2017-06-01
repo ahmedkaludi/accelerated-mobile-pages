@@ -47,7 +47,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 
 		extract( $args, EXTR_SKIP );
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : '';
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
