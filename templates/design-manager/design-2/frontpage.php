@@ -18,7 +18,6 @@ $template = new AMP_Post_Template( $post_id );?>
 		<link rel="canonical" href="<?php
 		echo  trailingslashit( home_url() ) ?>"> <?php
 	} ?>
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
 		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);

@@ -70,6 +70,9 @@
 	58. YouTube Shortcode compatablity with AMP #557
 	59. Comment Button URL
 	60. Remove Category Layout modification code added by TagDiv #842 and #796
+	61. Add Gist Support
+	62. Adding Meta viewport via hook instead of direct #878
+
 
 */
 // Adding AMP-related things to the main theme
@@ -2502,7 +2505,7 @@ function ampforwp_remove_support_tagdiv_cateroy_layout(){
 }
 add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
 
-// AMP Gist
+// 61. Add Gist Support
 add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
 function ampforwp_gist_shortcode_generator($atts) {
    extract(shortcode_atts(array(
@@ -2524,5 +2527,16 @@ function ampforwp_add_gist_script( $data ){
   $content =    $content->post_content;
 	if( has_shortcode( $content , 'amp-gist' ) ){ ?>
 	<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
-<?php }
+	<?php 
+	}
+}
+
+// 62. Adding Meta viewport via hook instead of direct #878 
+add_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
+function ampforwp_add_meta_viewport() {
+	$output = '';
+	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	';
+	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
+	
 }
