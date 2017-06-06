@@ -1,4 +1,5 @@
-<?php class AMPFORWP_Categories_Widget extends WP_Widget {
+<?php 
+class AMPFORWP_Categories_Widget extends WP_Widget {
 
   // Set up the widget name and description.
   public function __construct() {
