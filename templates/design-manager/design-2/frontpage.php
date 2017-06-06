@@ -162,12 +162,14 @@ $template = new AMP_Post_Template( $post_id );?>
 									</footer>
 										<!-- .comment-meta -->
 									<div class="comment-content">
-				                        <p><?php
+				                        <?php
 				                          // $pattern = "~[^a-zA-Z0-9_ !@#$%^&*();\\\/|<>\"'+.,:?=-]~";
 				                          $emoji_content = get_comment_text();
 				                          // $emoji_free_comments = preg_replace($pattern,'',$emoji_content);
-				                          echo $emoji_content; ?>
-				                        </p>
+				                          $emoji_content = wpautop( $emoji_content );
+					                      $sanitizer = new AMPFORWP_Content( $emoji_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+					                      $sanitized_comment_content = $sanitizer->get_amp_content();
+					                      echo make_clickable( $sanitized_comment_content ); ?>
 									</div>
 										<!-- .comment-content -->
 								</article>
