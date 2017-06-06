@@ -37,20 +37,12 @@ $template = new AMP_Post_Template( $post_id );?>
 	</style>
 </head>
 <body class="single-post design_3_wrapper">
-<?php $this->load_parts( array( 'header-bar' ) ); ?>
+	
+	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<header class="amp-wp-article-header ampforwp-title amp-wp-content">
-	<h1 class="amp-wp-title">
-	<?php global  $redux_builder_amp;
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
-					echo get_the_title( $ID ) ;
-				}
-	?>
-</h1>
-</header>
+	<?php do_action( 'ampforwp_design_3_frontpage_title', $template ); ?>
 
-	<?php do_action( 'ampforwp_after_header', $this ); ?>
+	<?php do_action( 'ampforwp_after_header', $template ); ?>
 	<?php do_action('ampforwp_frontpage_above_loop',$template, $post_id) ?>
 
 	<?php do_action('ampforwp_frontpage_below_loop') ?>

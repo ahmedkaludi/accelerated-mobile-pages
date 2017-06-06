@@ -36,16 +36,9 @@ $template = new AMP_Post_Template( $post_id );?>
 	</style>
 </head>
 <body class="single-post design_2_wrapper">
-<?php $this->load_parts( array( 'header-bar' ) ); ?>
+	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-	<?php global  $redux_builder_amp; if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
-		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title">
-				<?php $ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-							echo get_the_title( $ID ) ; ?>
-			</h1>
-		</header>
-	<?php } ?>
+	<?php do_action( 'ampforwp_design_2_frontpage_title', $template ); ?>
 
 	<?php do_action( 'ampforwp_after_header', $template ); ?> 
 	<?php do_action('ampforwp_frontpage_above_loop',$template, $post_id) ?>

@@ -39,9 +39,9 @@ $template = new AMP_Post_Template( $post_id );?>
 </head>
 <body class="single-post amp-wp-frontpage design_1_wrapper">
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
+
 	<?php do_action('ampforwp_frontpage_above_loop',$template, $post_id) ?>
 	
-
 	<?php do_action('ampforwp_frontpage_below_loop',$template, $post_id) ?>
 	<?php do_action( 'amp_post_template_above_footer', $template ); ?>
 	<?php $this->load_parts( array( 'footer' ) ); ?>

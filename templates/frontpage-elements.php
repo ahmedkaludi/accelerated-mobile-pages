@@ -17,13 +17,10 @@ function ampforwp_frontpage_file() {
 
 // Design #1
 function ampforwp_design_1_frontpage_content( $template, $post_id ){ 
-
 	global $redux_builder_amp;
+	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
 
-	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);
-
-	?>
-		<article class="amp-wp-article">
+	<article class="amp-wp-article">
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
@@ -107,7 +104,9 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 
 // Design #2
-function ampforwp_design_2_frontpage_content($template, $post_id){ ?>
+function ampforwp_design_2_frontpage_content($template, $post_id){ 
+	global $redux_builder_amp;
+	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
 
 	<main>
 		<div class="amp-wp-content the_content"> 
@@ -180,7 +179,9 @@ function ampforwp_design_2_frontpage_content($template, $post_id){ ?>
 }
 
 // Design #3
-function ampforwp_design_3_frontpage_content($template, $post_id){ ?>
+function ampforwp_design_3_frontpage_content($template, $post_id){ 
+	global $redux_builder_amp;
+	$amp_custom_content_enable = get_post_meta( $post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
 	<main>
 		<div class="amp-wp-content the_content"> 
 
@@ -245,4 +246,33 @@ function ampforwp_design_3_frontpage_content($template, $post_id){ ?>
 		<?php } ?>
 	</main>
 	<?php 
+}
+
+
+// Frontpage Title for Design #2 
+add_action('ampforwp_design_2_frontpage_title','ampforwp_d2_frontpage_title');
+function ampforwp_d2_frontpage_title() {
+	global  $redux_builder_amp; 
+	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
+		<header class="amp-wp-article-header ampforwp-title">
+			<h1 class="amp-wp-title">
+				<?php $ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+							echo get_the_title( $ID ) ; ?>
+			</h1>
+		</header>
+	<?php } 
+}
+
+// Frontpage Title for Design #3 
+add_action('ampforwp_design_3_frontpage_title','ampforwp_d3_frontpage_title');
+function ampforwp_d3_frontpage_title() { 
+	global  $redux_builder_amp;
+	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
+		<header class="amp-wp-article-header ampforwp-title amp-wp-content">
+			<h1 class="amp-wp-title"> <?php 
+				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				echo get_the_title( $ID ) ;?>
+			</h1>
+		</header> <?php 
+	}
 }
