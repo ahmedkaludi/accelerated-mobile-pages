@@ -21,6 +21,8 @@ function ampforwp_frontpage_file() {
 	}
 }
 
+// TODO: refine this file. #890
+
 // Design #1
 function ampforwp_design_1_frontpage_content( $template, $post_id ){ 
 	global $redux_builder_amp;
