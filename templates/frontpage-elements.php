@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 add_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
 function ampforwp_frontpage_file() {
 	global $redux_builder_amp;
