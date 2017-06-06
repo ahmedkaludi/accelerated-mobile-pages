@@ -1,9 +1,16 @@
 <?php 
 
-add_action('pre_amp_render_post', 'ampforwp_frontpage_file');
+add_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
 function ampforwp_frontpage_file() {
 	global $redux_builder_amp;
 
+	// Title 
+		// Design #2
+		add_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title'); 
+		// Design #3
+		add_action('ampforwp_design_3_frontpage_title','ampforwp_design_3_frontpage_title');
+
+	// Content
 	if ( $redux_builder_amp['amp-design-selector'] == '1') {
 		add_action('ampforwp_frontpage_above_loop', 'ampforwp_design_1_frontpage_content', 10 , 2);
 	}
@@ -250,8 +257,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 
 
 // Frontpage Title for Design #2 
-add_action('ampforwp_design_2_frontpage_title','ampforwp_d2_frontpage_title');
-function ampforwp_d2_frontpage_title() {
+function ampforwp_design_2_frontpage_title() {
 	global  $redux_builder_amp; 
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
@@ -264,8 +270,7 @@ function ampforwp_d2_frontpage_title() {
 }
 
 // Frontpage Title for Design #3 
-add_action('ampforwp_design_3_frontpage_title','ampforwp_d3_frontpage_title');
-function ampforwp_d3_frontpage_title() { 
+function ampforwp_design_3_frontpage_title() { 
 	global  $redux_builder_amp;
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title amp-wp-content">

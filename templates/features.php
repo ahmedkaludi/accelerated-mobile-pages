@@ -2686,18 +2686,29 @@ function ampforwp_frontpage_comments() {
 
 
 
-add_action('pre_amp_render_post','function_to_add');
-function function_to_add($post_id) {
+add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
+function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
-	// $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+
+	if ( is_home() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
 
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true);
  
 
 	if ( $sidebar_check === 'layout-builder') {
+		// Add Layout Builder Elements 
 		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
 		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');		
+		
+		/* 
+			Remove Default Post Elements and make the page blank.
+			So Landing page builder's elements will be visible.
+		*/
 		add_filter('ampforwp_design_elements', 'ampforwp_remove_post_elements');
+		remove_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
+
 	}	
 }
 
