@@ -1900,6 +1900,17 @@ if (function_exists('register_sidebar')) {
 		'after_title'   => '</h4>'
 	));
 
+
+	register_sidebar(array(
+		'name' 			=> 'Layout Builder',
+		'id'   			=> 'layout-builder',
+		'description'   => 'Widget area for below the Loop Output',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '<h4>',
+		'after_title'   => '</h4>'
+	));
+
 }
 
 // 43. custom actions for widgets output
@@ -2540,3 +2551,68 @@ function ampforwp_add_meta_viewport() {
 	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
 	
 }
+
+
+
+add_action('pre_amp_render_post','function_to_add');
+function function_to_add($post_id) {
+	global $redux_builder_amp;
+	// $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+
+	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true);
+ 
+
+	if ( $sidebar_check === 'layout-builder') {
+		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
+		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');		
+		add_filter('ampforwp_design_elements', 'ampforwp_remove_post_elements');
+	}	
+}
+
+
+function ampforwp_add_landing_page_elements() {
+	$sanitized_sidebar = "";
+	$non_sanitized_sidebar = "";
+	$sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'layout-builder' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content();
+   echo $sidebar_output;
+
+}
+
+function  ampforwp_remove_post_elements($elements) {
+	$elements =  array('empty-filter');
+	return $elements ;
+}
+
+
+
+
+
+
