@@ -28,7 +28,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 
 		// Add static written Jquery
-		add_action( 'admin_footer', array( $this, 'footer_scritps') );
+		// add_action( 'admin_footer', array( $this, 'footer_scritps') );
 
 
 	} // end constructor
