@@ -73,6 +73,7 @@
 	61. Add Gist Support
 	62. Adding Meta viewport via hook instead of direct #878
 	63. Frontpage Comments #682 
+	64. PageBuilder  
 
 
 */
@@ -2690,7 +2691,7 @@ function ampforwp_frontpage_comments() {
 }
 
 
-
+// 64. PageBuilder 
 add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
@@ -2699,13 +2700,14 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 
-	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true);
- 
+	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
 		// Add Layout Builder Elements 
 		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
-		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');		
+		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
+		// Add Styling
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling');		
 		
 		/* 
 			Remove Default Post Elements and make the page blank.
@@ -2751,10 +2753,14 @@ function ampforwp_add_landing_page_elements() {
 
    $sidebar_output = $sanitized_sidebar->get_amp_content();
    echo $sidebar_output;
-
 }
 
 function  ampforwp_remove_post_elements($elements) {
 	$elements =  array('empty-filter');
 	return $elements ;
+}
+
+function ampforwp_pagebuilder_styling() { ?>
+
+	<?php 
 }
