@@ -7,7 +7,9 @@ function ampforwp_additional_style_input_2( $amp_template ) {
       $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
       $headercolor =  $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
       $font_color =  $redux_builder_amp['amp-opt-color-rgba-font']['color'];
+      $link_color =  $redux_builder_amp['amp-opt-color-rgba-link']['color'];
       $headerelements =  $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
+
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 	// Get template colors
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
@@ -318,6 +320,8 @@ main .amp-wp-content{ direction: rtl; }
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
+body a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link']['color']; ?> }
+
 .amp-wp-content blockquote { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
 amp-user-notification button { background-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}

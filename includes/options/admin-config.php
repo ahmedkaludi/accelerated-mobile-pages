@@ -653,6 +653,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array('amp-design-selector', '=' , '3')
                  )
               ),
+
+            array(
+                'id'        => 'amp-opt-color-rgba-link',
+                'type'      => 'color_rgba',
+                'title'     => __('Link Color','accelerated-mobile-pages'),
+                'default'   => array(
+                    'color'     => '#0a89c0',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+
+
             array(
                     'id'        => 'amp-opt-color-rgba-headerelements',
                     'type'      => 'color_rgba',
