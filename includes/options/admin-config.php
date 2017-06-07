@@ -620,6 +620,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '2'
             ),
+
+            array(
+                'id'        => 'amp-opt-sticky-head',
+                'type'      => 'switch',
+                'title'     => __('Remove Sticky Head','accelerated-mobile-pages'), 
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'desc'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                'default'  => '1'
+              ),
+
             array(
                 'id'        => 'amp-opt-color-rgba-colorscheme',
                 'type'      => 'color_rgba',
