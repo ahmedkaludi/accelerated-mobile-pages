@@ -58,7 +58,7 @@ amp-sidebar{ width: 250px; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
 .nav_container:hover + .toggle-navigation, .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus{ display: inline-block; width: 100%; }
 /* Category 2 */
-.amp-category-block, .category-widget-wrapper{ padding:30px 15% 10px 15% }
+.category-widget-wrapper{ padding:30px 15% 10px 15% }
 .amp-category-block ul{ list-style-type:none;padding:0 }
 .amp-category-block-btn{ display: block; text-align: center; font-size: 13px; margin-top: 15px; border-bottom: 1px solid #f1f1f1; text-decoration: none; padding-bottom: 8px;}
 .category-widget-gutter h4{ margin-bottom: 0px;}

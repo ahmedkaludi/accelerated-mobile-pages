@@ -2784,7 +2784,7 @@ function  ampforwp_remove_post_elements($elements) {
 }
 
 function ampforwp_pagebuilder_styling() { ?>
-.amp_cb_module{font-size: 14px; line-height: 1.5; margin-top: 25px; margin-bottom: 10px;}
+.amp_cb_module{font-size:14px;line-height:1.5;margin-top:30px;margin-bottom:10px;}
 .amp_cb_module h4{margin:17px 0 6px 0;}
 .amp_cb_module p{margin: 8px 0px 10px 0px;}
 .amp_cb_blurb{text-align: center} 
@@ -2792,7 +2792,7 @@ function ampforwp_pagebuilder_styling() { ?>
 .flex-grid {display:flex;justify-content: space-between;}
 .amp_module_title{text-align: center;font-size: 14px;margin-bottom: 12px;padding-bottom: 4px;text-transform: uppercase;letter-spacing: 1px;border-bottom: 1px solid #f1f1f1;}
 .clmn {flex: 1;padding: 5px}
-.amp_cb_btn{margin-top: 15px;text-align: center;margin-bottom: 30px;}
+.amp_cb_btn{margin-top: 20px;text-align: center;margin-bottom: 30px;}
 .amp_cb_btn a{background: #f92c8b;color: #fff;font-size: 14px;padding: 9px 20px;border-radius: 3px;box-shadow: 1px 1px 4px #ccc;margin:6px;}
 .amp_cb_btn .m_btn{font-size: 16px; padding: 10px 20px;}
 .amp_cb_btn .l_btn{font-size: 18px; padding: 15px 48px;font-weight:bold;}
