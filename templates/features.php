@@ -2543,11 +2543,15 @@ function ampforwp_gist_shortcode_generator($atts) {
 }
 add_action('amp_post_template_head','ampforwp_add_gist_script', 10 , 1);
 function ampforwp_add_gist_script( $data ){
-  $content =    $data->get('post');
-  $content =    $content->post_content;
-	if( has_shortcode( $content , 'amp-gist' ) ){ ?>
-	<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
-	<?php 
+ 	if ( is_single() ) {	 	
+		$content =    $data->get('post');
+		if (   $content ) {
+			$content =    $content->post_content;
+		}
+		if( has_shortcode( $content , 'amp-gist' ) ){ ?>
+		<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
+		<?php 
+		}
 	}
 }
 
@@ -2566,6 +2570,10 @@ function ampforwp_frontpage_comments() {
 	global $redux_builder_amp;
 	$data = get_option( 'ampforwp_design' );
 	$enable_comments = false;
+	$post_id = "";
+
+
+	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
