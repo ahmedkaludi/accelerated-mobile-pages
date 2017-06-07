@@ -67,7 +67,7 @@ function ampforwp_custom_content_meta_register() {
 
   // Assign Pagebuilder Meta Box
   if ( $redux_builder_amp['ampforwp-content-builder'] ) {
-    add_meta_box( 'custom_content_sidebar', __( 'Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
+    add_meta_box( 'custom_content_sidebar', __( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
   }  
 
 }
@@ -81,11 +81,12 @@ function amp_content_sidebar_callback( $post ) {
   wp_nonce_field( basename( __FILE__) , 'custom_content_sidebar_nonce' );
   $amp_content_sidebar = get_post_meta($current_post_id, 'ampforwp_custom_sidebar_select', true);
   $amp_content_sidebar = esc_attr($amp_content_sidebar); ?>
-
   <select name="ampforwp_custom_sidebar_select" id="ampforwp-sidebars-page-sidebar-name">
       <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'none' ); ?> value="none"><?php _e( 'None', 'accelerated-mobile-pages' ); ?></option>
-      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'layout-builder' ); ?> value="layout-builder"><?php _e( 'Layout Builder', 'accelerated-mobile-pages' ); ?></option>
+      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'layout-builder' ); ?> value="layout-builder"><?php _e( 'Page Builder (AMP)', 'accelerated-mobile-pages' ); ?></option>
   </select>
+<p>Assign an AMP Page Builder Widget Area which will be used AMP page.<br /><a href="https://ampforwp.com/tutorials/page-builder">(Need Help?)</a></p>
+
   <?php 
 }
 

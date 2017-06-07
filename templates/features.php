@@ -1908,15 +1908,30 @@ function ampforwp_add_widget_support() {
 		));
 
 		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+    $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
+    $placeholder = 'PLACEHOLDER';
 			register_sidebar(array(
-				'name' 			=> 'Layout Builder',
+				'name' 			=> 'Page Builder (AMP)',
 				'id'   			=> 'layout-builder',
-				'description'   => 'Widget area for below the Loop Output',
+                'description' => $placeholder,
 				'before_widget' => '',
 				'after_widget'  => '',
 				'before_title'  => '<h4>',
-				'after_title'   => '</h4>'
+				'after_title'   => '</h4>' 
 			));
+            
+        add_action( 'widgets_admin_page', function() use ( $desc, $placeholder ) {
+            add_filter( 'esc_html', function( $safe_text, $text ) use ( $desc, $placeholder ) {
+
+                if ( $text !== $placeholder )
+                    return $safe_text;
+
+                remove_filter( current_filter(), __FUNCTION__ );
+
+                return $desc;
+            }, 10, 2 );
+        });
+            
 		}
 
 	}
@@ -2715,7 +2730,7 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
 		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
 		// Add Styling
-		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling');		
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
 		
 		/* 
 			Remove Default Post Elements and make the page blank.
@@ -2769,6 +2784,17 @@ function  ampforwp_remove_post_elements($elements) {
 }
 
 function ampforwp_pagebuilder_styling() { ?>
-
-	<?php 
-}
+.amp_cb_module{font-size: 14px; line-height: 1.5; margin-top: 25px; margin-bottom: 10px;}
+.amp_cb_module h4{margin:17px 0 6px 0;}
+.amp_cb_module p{margin: 8px 0px 10px 0px;}
+.amp_cb_blurb{text-align: center} 
+.amp_cb_blurb amp-img{margin:0 auto;}
+.flex-grid {display:flex;justify-content: space-between;}
+.amp_module_title{text-align: center;font-size: 14px;margin-bottom: 12px;padding-bottom: 4px;text-transform: uppercase;letter-spacing: 1px;border-bottom: 1px solid #f1f1f1;}
+.clmn {flex: 1;padding: 5px}
+.amp_cb_btn{margin-top: 15px;text-align: center;margin-bottom: 30px;}
+.amp_cb_btn a{background: #f92c8b;color: #fff;font-size: 14px;padding: 9px 20px;border-radius: 3px;box-shadow: 1px 1px 4px #ccc;margin:6px;}
+.amp_cb_btn .m_btn{font-size: 16px; padding: 10px 20px;}
+.amp_cb_btn .l_btn{font-size: 18px; padding: 15px 48px;font-weight:bold;}
+@media (max-width: 370px) { .flex-grid {display: block;} }
+<?php }
