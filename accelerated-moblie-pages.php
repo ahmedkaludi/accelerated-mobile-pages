@@ -209,11 +209,14 @@ function ampforwp_parent_plugin_check() {
 add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {
 	
-	if ( ! function_exists( 'bstw' ) ) {
-		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( ! function_exists( 'bstw' ) ) {
+			require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+		}
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 	}
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 }
 
 

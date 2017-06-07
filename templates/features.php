@@ -1882,38 +1882,43 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
 
 // 42. registeing AMP sidebars
-if (function_exists('register_sidebar')) {
+add_action('init', 'ampforwp_add_widget_support');
+function ampforwp_add_widget_support() {
+	if (function_exists('register_sidebar')) {
+		global $redux_builder_amp;
+		
+		register_sidebar(array(
+			'name' => 'AMP Above Loop',
+			'id'   => 'ampforwp-above-loop',
+			'description'   => 'Widget area for above the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
+		register_sidebar(array(
+			'name' => 'AMP Below Loop',
+			'id'   => 'ampforwp-below-loop',
+			'description'   => 'Widget area for below the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
 
-	register_sidebar(array(
-		'name' => 'AMP Above Loop',
-		'id'   => 'ampforwp-above-loop',
-		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
-	register_sidebar(array(
-		'name' => 'AMP Below Loop',
-		'id'   => 'ampforwp-below-loop',
-		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
+		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+			register_sidebar(array(
+				'name' 			=> 'Layout Builder',
+				'id'   			=> 'layout-builder',
+				'description'   => 'Widget area for below the Loop Output',
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h4>',
+				'after_title'   => '</h4>'
+			));
+		}
 
-
-	register_sidebar(array(
-		'name' 			=> 'Layout Builder',
-		'id'   			=> 'layout-builder',
-		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
-
+	}
 }
 
 // 43. custom actions for widgets output

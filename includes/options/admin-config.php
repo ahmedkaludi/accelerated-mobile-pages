@@ -1169,28 +1169,28 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
         ) );
     
-    // AMP Content Builder SECTION
-   // Redux::setSection( $opt_name, array(
-   //     'title'      => __( 'Content Builder', 'accelerated-mobile-pages' ),
-   //     'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP with Drag and drop UI of widgets. <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">Learn More</a>' , 'accelerated-mobile-pages'),
-   //     'id'         => 'amp-content-builder',
-   //     'class' => 'amp_content_builder',
-   //     'subsection' => true,
-   //     'fields' => array(
+   // AMP Content Builder SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Content Builder', 'accelerated-mobile-pages' ),
+       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP with Drag and drop UI of widgets. <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">Learn More</a>' , 'accelerated-mobile-pages'),
+       'id'         => 'amp-content-builder',
+       'class' => 'amp_content_builder',
+       'subsection' => true,
+       'fields' => array(
 
-   //          array(
-   //              'id'       => 'ampforwp-content-builder',
-   //              'type'     => 'switch',
-   //              'title'    => __('Content Builder for AMP', 'accelerated-mobile-pages'),
-   //              'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
-   //              'true'      => 'true',
-   //              'false'     => 'false',
-   //              'default'   => 1
-   //          ),
-   //      )
-   //     )
+            array(
+                'id'       => 'ampforwp-content-builder',
+                'type'     => 'switch',
+                'title'    => __('Content Builder for AMP', 'accelerated-mobile-pages'),
+                'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
+        )
+       )
 
-   // ) ;
+   ) ;
 
 
     // AMP Menu SECTION
