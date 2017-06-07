@@ -65,8 +65,10 @@ function ampforwp_custom_content_meta_register() {
     add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
   }
 
-  // Assign sidebar 
-  add_meta_box( 'custom_content_sidebar', __( 'Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
+  // Assign Pagebuilder Meta Box
+  if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+    add_meta_box( 'custom_content_sidebar', __( 'Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
+  }  
 
 }
 add_action('add_meta_boxes','ampforwp_custom_content_meta_register');

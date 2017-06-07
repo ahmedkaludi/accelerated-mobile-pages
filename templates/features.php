@@ -1886,7 +1886,7 @@ add_action('init', 'ampforwp_add_widget_support');
 function ampforwp_add_widget_support() {
 	if (function_exists('register_sidebar')) {
 		global $redux_builder_amp;
-		
+
 		register_sidebar(array(
 			'name' => 'AMP Above Loop',
 			'id'   => 'ampforwp-above-loop',
@@ -2702,7 +2702,7 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true);
  
 
-	if ( $sidebar_check === 'layout-builder') {
+	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
 		// Add Layout Builder Elements 
 		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
 		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');		
