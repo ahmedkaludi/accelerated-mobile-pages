@@ -781,8 +781,15 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 					</div>
 					<!--END StatCounter CODE -->
 				<?php }
-
-
+			//	10.8 Analytics Support added for Histats Analytics
+				if( $redux_builder_amp['amp-analytics-select-option']=='8' ) { ?>
+					<!-- BEGIN Histats CODE -->
+					<div id="histats">
+					<amp-pixel src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+					</amp-pixel> 
+					</div>
+					<!--END Histats CODE -->
+				<?php }
 
 		}//analytics function ends here
 

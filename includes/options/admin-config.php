@@ -1674,6 +1674,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
                             '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
                             '7' => __('StatCounter', 'accelerated-mobile-pages' ),
+                            '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1763,6 +1764,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'default'   	=> '',
                         'required' => array(
                         array('amp-analytics-select-option', '=' , '5')),
+                      ),
+                       array(
+                          'id'       => 'histats-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Histats Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '8')
+                          ),
+                          'subtitle' => __( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
+                          'default'  => '',
                       ),
 
                       //GTM
