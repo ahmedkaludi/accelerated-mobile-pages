@@ -574,7 +574,7 @@ Redux::setArgs( "redux_builder_amp", $args );
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
-       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP with Drag and drop UI of widgets. <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">Learn More</a>' , 'accelerated-mobile-pages'),
+       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP with Drag and drop UI of widgets. <a href="http://ampforwp.com/tutorials/page-builder">(Need Help?)</a>' , 'accelerated-mobile-pages'),
        'id'         => 'amp-content-builder',
        'class' => 'amp_content_builder',
        'subsection' => true,
