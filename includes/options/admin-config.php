@@ -1687,6 +1687,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
                             '7' => __('StatCounter', 'accelerated-mobile-pages' ),
                             '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
+                            '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1786,6 +1787,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('amp-analytics-select-option', '=' , '8')
                           ),
                           'subtitle' => __( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
+                          'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/how-to-get-histats-analytics-id/">How to get Histats Analytics ID for AMP?</a>',
                           'default'  => '',
                       ),
 
