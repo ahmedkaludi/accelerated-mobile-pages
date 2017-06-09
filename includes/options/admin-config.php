@@ -1790,6 +1790,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/how-to-get-histats-analytics-id/">How to get Histats Analytics ID for AMP?</a>',
                           'default'  => '',
                       ),
+                       array(
+                        'id'            =>'amp-Yandex-Metrika-analytics-code',
+                        'type'          => 'text',
+                        'title'         => __('Yandex Metrika Analytics ID','accelerated-mobile-pages'),
+                        'default'       => '',
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '9')),
+                        'subtitle' => __( 'Enter your Counter ID.', 'accelerated-mobile-pages' ),
+                      ),
 
                       //GTM
                         array(

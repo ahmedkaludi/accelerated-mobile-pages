@@ -790,6 +790,31 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 					</div>
 					<!--END Histats CODE -->
 				<?php }
+			// 10.9 Analytics Support added for Yandex Metrika Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='9' ){ ?>
+						<amp-analytics type="metrika"> 
+    					<script type="application/json"> 
+      					  { 
+            					"vars": { 
+               							 "counterId": "<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Yandex-Metrika-analytics-code']; ?>" 
+          								  }, 
+           						 "triggers": { 
+             							   "notBounce": { 
+                  								  "on": "timer", 
+                  								  "timerSpec": { 
+                       							  "immediate": false, 
+                        						  "interval": 15, 
+                      							  "maxTimerLength": 16 
+                  							  					}, 
+                   						   "request": "notBounce" 
+               											 } 
+           									  } 
+        				   } 
+    					</script> 
+						</amp-analytics> 
+						<?php
+					}//code ends for supporting Yandex Metrika Analytics
 
 		}//analytics function ends here
 
