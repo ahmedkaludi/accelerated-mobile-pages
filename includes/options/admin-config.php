@@ -1688,6 +1688,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '7' => __('StatCounter', 'accelerated-mobile-pages' ),
                             '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
                             '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
+                            '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1799,6 +1800,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('amp-use-gtm-option', '=' , '0'),
                             array('amp-analytics-select-option', '=' , '9')),
                         'subtitle' => __( 'Enter your Counter ID.', 'accelerated-mobile-pages' ),
+                      ),
+                       array(
+                        'id'            =>'amp-Chartbeat-analytics-code',
+                        'type'          => 'text',
+                        'title'         => __('Chartbeat Analytics ID','accelerated-mobile-pages'),
+                        'default'       => '',
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '10')),
+                        'subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
                       ),
 
                       //GTM

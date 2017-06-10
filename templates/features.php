@@ -804,9 +804,24 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
         				   } 
     					</script> 
 						</amp-analytics> 
+						<?php }//code ends for supporting Yandex Metrika Analytics
+			// 10.10 Analytics Support added for Chartbeat Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='10' ){ ?>
+						<amp-analytics type="chartbeat">
+ 						 <script type="application/json">
+   						 {
+     						'vars': {
+        							'accountId':"<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Chartbeat-analytics-code']; ?>",
+        							'title': "<?php the_title(); ?>",
+      								'authors': "<?php the_author_meta('display_name');?>",      
+        							'dashboardDomain': "<?php echo site_url();?>"        
+     								  }
+   						 }
+ 						 </script>
+						</amp-analytics>
 						<?php
-					}//code ends for supporting Yandex Metrika Analytics
-
+					}//code ends for supporting Chartbeat Analytics
 		}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
