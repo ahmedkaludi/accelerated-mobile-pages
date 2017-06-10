@@ -1859,6 +1859,29 @@ Redux::setArgs( "redux_builder_amp", $args );
               'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
               'subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
             ),
+             array(
+                'id'       => 'ampforwp-sd-logo-dimensions',
+                'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                'type'     => 'switch',
+                'default'  => 0,
+            ),
+             array(
+                'id'       => 'ampforwp-sd-logo-width',
+                'type'     => 'text',
+                'title'    => __('Logo Width', 'accelerated-mobile-pages'),
+                'desc'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
+                'default' => '600',
+                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+            ),
+             array(
+                'id'       => 'ampforwp-sd-logo-height',
+                'type'     => 'text',
+                'title'    => __('Logo Height', 'accelerated-mobile-pages'),
+                'desc'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
+                'default' => '60',
+                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+
+            ),
             array(
               'id'      => 'amp-structured-data-placeholder-image',
               'type'    => 'media',
