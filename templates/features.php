@@ -361,16 +361,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 			<?php   }
 						}
-		} ?>
-		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-							if( is_home() ) {
-								if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-								<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-					<?php }
-							}
-						}
-					}
+		} 
 		// Check if any of the ads are enabled then only load ads script
 		//	moved this code to its own function and done the AMP way
 	}
