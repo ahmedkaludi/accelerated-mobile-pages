@@ -918,7 +918,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
-
+	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
+	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
@@ -933,8 +934,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        $metadata['publisher']['logo'] = array(
 	          '@type'   => 'ImageObject',
 	          'url'     =>  $structured_data_logo ,
-	          'height'  => 36,
-	          'width'   => 190,
+	          'height'  => $ampforwp_sd_height,
+	          'width'   => $ampforwp_sd_width,
 	        );
 
 	        //code for adding 'description' meta from Yoast SEO
