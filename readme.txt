@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.5
-Stable tag: 0.9.51
+Stable tag: 0.9.51.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,11 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+
+= 0.9.51.1 (12th June 2017) =
+* Redirection issue after 0.9.51 Update.
+* Improved compatibility with plugins.
 
 = 0.9.51 (8th June 2017) =
 * View more details on https://ampforwp.com/page-builder-released-in-amp/
