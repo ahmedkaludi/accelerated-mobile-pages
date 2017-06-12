@@ -1226,6 +1226,7 @@ function ampforwp_remove_schema_data() {
 
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, true);
+	//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 	 remove_filters_for_anonymous_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
 
 }
