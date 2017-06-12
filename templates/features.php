@@ -74,8 +74,7 @@
 	62. Adding Meta viewport via hook instead of direct #878
 	63. Frontpage Comments #682 
 	64. PageBuilder  
-
-
+	65. Remove Filters code added through Class by other plugins
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1226,17 +1225,20 @@ function ampforwp_remove_schema_data() {
 
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, true);
-	//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
-	 remove_filters_for_anonymous_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
-
+	
+	// Remove Filters added by third party plugin through class
+	if ( function_exists('ampforwp_remove_filters_for_class')) {
+		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
+		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
+	}
 }
 
 // 22. Removing author links from comments Issue #180
-if( ! function_exists( "disable_comment_author_links" ) ) {
+if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 		if ( $ampforwp_is_amp_endpoint ) {
-				return strip_tags( $author_link );
+			return strip_tags( $author_link );
 		} else {
 			return $author_link;
 		}
@@ -2801,6 +2803,32 @@ function ampforwp_pagebuilder_styling() { ?>
 @media (max-width: 430px) { .flex-grid {display: block;} }
 <?php }
 
-
-
-
+/**
+ * 65. Remove Filters code added through Class by other plugins
+ *
+ * Allow to remove method for an hook when, it's a class method used and class don't have variable, but you know the class name :)
+ * Code from https://github.com/herewithme/wp-filters-extras 
+ */
+function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $method_name = '', $priority = 0 ) {
+	global $wp_filter;
+	// Take only filters on right hook name and priority
+	if ( !isset($wp_filter[$hook_name][$priority]) || !is_array($wp_filter[$hook_name][$priority]) )
+		return false;
+	// Loop on filters registered
+	foreach( (array) $wp_filter[$hook_name][$priority] as $unique_id => $filter_array ) {
+		// Test if filter is an array ! (always for class/method)
+		if ( isset($filter_array['function']) && is_array($filter_array['function']) ) {
+			// Test if object is a class, class and method is equal to param !
+			if ( is_object($filter_array['function'][0]) && get_class($filter_array['function'][0]) && get_class($filter_array['function'][0]) == $class_name && $filter_array['function'][1] == $method_name ) {
+			    // Test for WordPress >= 4.7 WP_Hook class (https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/)
+			    if( is_a( $wp_filter[$hook_name], 'WP_Hook' ) ) {
+			        unset( $wp_filter[$hook_name]->callbacks[$priority][$unique_id] );
+			    }
+			    else {
+				    unset($wp_filter[$hook_name][$priority][$unique_id]);
+			    }
+			}
+		}
+	}
+	return false;
+}
