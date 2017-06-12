@@ -22,7 +22,7 @@ function ampforwp_page_template_redirect() {
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
-    if($post_type='forum'){
+    if($post_type == 'forum'){
       return;
     }
     session_start();
