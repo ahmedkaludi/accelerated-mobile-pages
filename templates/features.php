@@ -1232,6 +1232,11 @@ function ampforwp_remove_schema_data() {
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
 		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
+		//Compatibility with Sassy Social Share Plugin
+		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
 	}
 }
 
