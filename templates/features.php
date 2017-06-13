@@ -2044,7 +2044,7 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 			$redux_builder_amp['enable-single-facebook-profile'] 	 ||
 			$redux_builder_amp['enable-single-pintrest-profile'] 	 ||
 			$redux_builder_amp['enable-single-google-plus-profile']	 ||
-			$redux_builder_amp['enable-single-linkdin-profile'] 	 ||
+			$redux_builder_amp['enable-single-linkedin-profile'] 	 ||
 			$redux_builder_amp['enable-single-youtube-profile'] 	 ||
 			$redux_builder_amp['enable-single-instagram-profile'] 	 ||
 			$redux_builder_amp['enable-single-VKontakte-profile'] 	 ||

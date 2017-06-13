@@ -1393,22 +1393,22 @@ Redux::setArgs( "redux_builder_amp", $args );
           ),
           //#5
           array(
-              'id'        =>  'enable-single-linkdin-profile',
+              'id'        =>  'enable-single-linkedin-profile',
               'type'      =>  'switch',
-              'title'     =>  __('Linkdin ', 'accelerated-mobile-pages'),
+              'title'     =>  __('Linkedin ', 'accelerated-mobile-pages'),
               'default'   =>  0,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
               ),
           ),
           array(
-              'id'        =>  'enable-single-linkdin-profile-url',
+              'id'        =>  'enable-single-linkedin-profile-url',
               'type'      =>  'text',
-              'title'     =>  __('Linkdin URL', 'accelerated-mobile-pages'),
+              'title'     =>  __('Linkedin URL', 'accelerated-mobile-pages'),
               'default'   =>  '',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
-                array('enable-single-linkdin-profile', '=' , '1')
+                array('enable-single-linkedin-profile', '=' , '1')
               ),
           ),
           //#6
