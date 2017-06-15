@@ -45,7 +45,7 @@ function ampforwp_welcome_screen_pages() {
   add_dashboard_page(
     __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
     __('Welcome to AMP','accelerated-mobile-pages'),
-    'read',
+    'manage_options',
     'ampforwp-welcome-page',
     'ampforwp_welcome_screen_content'
   );

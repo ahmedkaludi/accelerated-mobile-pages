@@ -12,11 +12,33 @@
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
 		$amp_url 	= str_replace($remove, '', $amp_url) ;
+	} 
+
+	if ( is_archive() ) {
+		$description 	= get_the_archive_description();
+		$sanitizer = new AMPFORWP_Content( $description, array(), 
+			apply_filters( 'ampforwp_content_sanitizers',
+				array( 
+					'AMP_Style_Sanitizer' 		=> array(),
+					'AMP_Blacklist_Sanitizer' 	=> array(),
+					'AMP_Img_Sanitizer' 		=> array(),
+					'AMP_Video_Sanitizer' 		=> array(),
+					'AMP_Audio_Sanitizer' 		=> array(),
+					'AMP_Iframe_Sanitizer' 		=> array(
+						'add_placeholder' 		=> true,
+					)
+				) ) );
 	} ?>
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-
+	<?php
+	$amp_component_scripts = $sanitizer->amp_scripts;
+	if ( $sanitizer && $amp_component_scripts) {	
+		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
+			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
+		}
+	}?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
@@ -55,8 +77,7 @@ if ( get_query_var( 'paged' ) ) {
 
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
-			$description 	= get_the_archive_description();
-			$sanitizer = new AMPFORWP_Content( $description, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+ 			
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  ?>
 				<div class="amp-wp-content taxonomy-description">
@@ -97,7 +118,7 @@ if ( get_query_var( 'paged' ) ) {
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { ?>
-					    <li><?php echo $category->cat_name ?></li>
+					    <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>

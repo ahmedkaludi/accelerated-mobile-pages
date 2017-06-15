@@ -1,26 +1,48 @@
 <?php
 global $redux_builder_amp;
-  wp_reset_postdata();
-
+wp_reset_postdata();
+global $post;
   $ampforwp_backto_nonamp = '';
   if ( is_home() ) {
-    $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+       $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
+    else
+       $ampforwp_backto_nonamp = trailingslashit(home_url()) ;
   }
   if ( is_single() ){
-    global $post;
-    $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
+    else
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )) ;
   }
   if ( is_page() ){
-    global $post;
-    $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
+    else
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID ));
   }
   if( is_archive() ) {
     global $wp;
-    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
-    $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
+    if($redux_builder_amp['amp-mobile-redirection']==1){
+        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
+        $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
+      }
+    else{
+        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
+        $ampforwp_backto_nonamp = preg_replace('/amp/','',$ampforwp_backto_nonamp);
+      }
   } ?>
 <footer class="amp-wp-footer">
-	<div>
+	<div id="footer">
+		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
+          <div class="footer_menu"> <?php
+              $menu = wp_nav_menu( array(
+                  'theme_location' => 'amp-footer-menu',
+                  'echo' => false
+              ) );
+              echo strip_tags( $menu , '<ul><li><a>'); ?>
+          </div>
+        <?php } ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
 			<?php

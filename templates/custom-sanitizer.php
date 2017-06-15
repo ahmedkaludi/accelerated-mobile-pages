@@ -7,7 +7,7 @@ require_once( AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' )
 class AMPFORWP_Content {
 	private $content;
 	private $amp_content = '';
-	private $amp_scripts = array();
+	public $amp_scripts = array();
 	private $amp_styles = array();
 	private $args = array();
 	private $embed_handler_classes = array();

@@ -1,10 +1,10 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
-Tested up to: 4.7.2
-Stable tag: 0.9.43.1
+Tested up to: 4.7.4
+Stable tag: 0.9.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+[youtube https://www.youtube.com/watch?v=jglJGmlZyos]
 
 > <strong>Extensions</strong><br>
 > Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Custom Post Type Support](https://ampforwp.com/custom-post-type/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [DoubleClick Support](https://ampforwp.com/doubleclick-for-publishers/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). 
@@ -29,11 +29,16 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Email Opt-in Subscription form support in AMP added 
+* NEW - Call to Action boxes and notification bars 
+* NEW - 9 Advertisement sizes - 2 More AD slots added recently
+* NEW - Comments Forms in AMP.
+* NEW - Native AMP Search functionality.
 * NEW - Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
-* NEW - Disqus Comments Support
-* NEW - Google Tag Manager Support
-* NEW - Page, Category & Tags Support Added
-* NEW - Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
+* Disqus Comments Support
+* Google Tag Manager Support
+* Page, Category & Tags Support Added
+* Custom AMP Editor - Which allows you to override your Content that you had written in Post or page, so you can add the different content just for AMP.
 * Mobile Redirection -  More than 50% of your traffic is from mobile and you aren’t doing anything to improve their user experience, which means you are falling behind on SEO and it can result in lower SERPS. Lightning fast mobile version means faster User experience means more engagement which directly results in the lower bounce rate.
 * Custom Post Type Support 
 * Star Ratings
@@ -48,7 +53,6 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 * Recent Comments list
 * Automatically integrate AMP to your website.
 * Google Adsense (AMP-AD) Support with 4 different Ad slots across the layout! The First Plugin to have this capability.
-* 7 Advertisement sizes
 * Google Analytics Support.
 * User Friendly Theme Options Panel.
 * Unlimited Color Scheme.
@@ -73,6 +77,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 * Piwik & Segment.com Support
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
+* Widgets & WooCommerce 
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
@@ -126,6 +131,195 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
+= 0.9.48 (28 April 2017) =
+* View more details on: https://ampforwp.com/0-9-48-released-step-towards-multilingual-support-55th-update/
+* The default translation method of WordPress added. (Option in Translation panel to switch between * Translation panel and POT file #540)
+* A new Advertisement slot added above the related posts in the Single. It not only gives better options for people to display ads but this ad slot is also very handy if you are using ad companies like Taboola and RevContent.
+* Another Advertisement slot added below the post title in the Single post.
+* Fatal error: require_once report-bugs.php #747 fixed
+* Add / for codes in Meta Description #766 fixed
+* Controls re-adjusted & Renamed title of yoast description control in Options panel
+* Design-3 Slider URL redirecting to non-AMP page #758
+* Added new sanitizer For HTML to AMP-HTML conversion
+* Sanitized Archive descriptions so that it would convert to AMP
+* Comments sanitized with new sanitizer so that HTML tags automatically become AMP compatible.
+* 301 redirects on non-pretty internal links #767
+* Create a filter to modify the value of rel="amphtml" #778
+* Max-width added for images in comments
+* If in WooCommerce ?amp endpoint set then update href.
+* Undefined Variable (Debug) #733 and many other debug issues were fixed
+* Show last updated Post instead of published date #575
+* WooCommerce Widget added to display latest products on homepage. #763
+* add amp_post_template_above_footer hook global in all the designs #779
+* Excerpt on top of the content in Single #665
+* Subscribe box has been improved for the UX needs #712
+* Notice warnings since 0.4.2 update #740
+* AMP Comments Form Integration with the extension
+* Filter added on the loop in Homepage of the Design 3 so that it can be modified with an external plugin.
+* 404 on paged home page #781
+* Twitter handle should be at the end of the tweet not in the beginning #787
+* Wrong Rel Canonical for AMP Custom Frontpage #799
+* Merged a pull request #761 that will improve the title and description output that is much more stable and flexible for future enhancement and use. It was contributed by Sybre Waaijer - Thanks mate for the contribution, we (our team and users) really appreciate your hard work done on this code.
+* Extension page user experienced improved.
+* Removed old Youtube installation video and replaced with new one.
+
+= 0.9.47.2 (12 April 2017) =
+* Design-3 Slider URL redirecting to non-AMP page #758
+* Ads showing in comments #768
+
+= 0.9.47.1 (11 April 2017) =
+* Meta description option improved in SEO section #766
+* Fatal error: require_once report-bugs.php #747
+
+= 0.9.47 (10 April 2017) =
+* View more details at https://ampforwp.com/0-9-47-released-54th-update/
+* Meta saving method updated for customAMP content editor checkbox was causing some conflict.
+* Wrong Yoast title and structured data in Custom Frontpage fixed
+* CSS minification all 3 designs
+* Polylang flags in menu was causing validation issue, is now resolved
+* WPML flags in menu was causing validation issue, is now resolved
+* Standardized function created for content sanitization.
+* Archive description now displays AMP compatible markup
+* Comments markup sanitized for AMP
+* Design 3 images not aligned properly, fixed
+* Images are aligned to center in Design 1.
+* carousel ending with //amp instead of /amp – fixed #753
+* Title of the Post along with Post link when shared in twitter #683
+* Ads were cutting in half in RTL, fixed
+* Add / at the end of AMP links with in the AMP pages (Internal links) #668
+* Rendering the wrong URLs in front page if paged #742
+* Option to turn off AMP on all pages, so people can turn on only for specific pages #746
+* Need Meta Description on amp pages #741
+* Woocommerce Loop shortcode updated
+* Call Now Button added in header #563
+* Post images are not centered in Design 3 #695
+* UX of GTM settings done, since users were getting confused #700
+* Front page amphtml fixed for paginated pages
+
+= 0.9.45.6 (31 March 2017) =
+* Installation Process from welcome page was not working after WP Plugin DIR API change was fixed.
+* WP Rocket Minifcation and Concatenation was not working, its fixed now.
+* WP Rocket was tested properly to make sure everything is working fine.
+
+= 0.9.45.5 (25 March 2017) =
+* WP rocket conflict solved  
+* Cannot set property ‘innerHTML’ of null issue fixed
+
+= 0.9.45.3 (21 March 2017) =
+* Post 0.9.45 bugs fixed and released as an urgent update.
+
+= 0.9.45.1 (19 March 2017) =
+* Post 0.9.45 bugs fixed and released as an urgent update.
+
+= 0.9.45 (18 March 2017) =
+* View more details at https://ampforwp.com/0-9-45-released-compatibility-rtl-53rd-update/
+* W3Total cache compatibility added
+* RTL Support added for Right-to-Left language websites.
+* Comments Pagination feature added
+* WP-Rocket Compatibility added
+* WPML Compatibility added
+* Quantcast analytics support added
+* ComScore support added
+* Custom Yoast title support added #685
+* WooCommerce Shortcode: Allows you to display WooCommerce Products.  [amp-woocommerce num=6] will display the 6 products from WooCommerce.  [amp-woocommerce num=6 link=noamp] will display 6 products but they will go to non-amp website, if you want to link to AMP version of the page then use [amp-woocommerce num=6 link=amp]
+* Admin area UX improvements
+* Adding notifications script in the correct way
+* Comments now display on frontpage as well.
+* Re-positioned non-amp Header link control to the right section.
+* ?nonamp=1 only displays when the Mobile redirection is on
+* Properly adding iFrame js.
+* Custom Post type incompatibility fixed
+* Widgets added to the Custom Frontpage.
+* Stripping shortcodes from excerpts.
+* Custom content on static frontpage had over riding issue #687
+* Option added for controlling number of comments
+* Welcome page should be shown only if user is “administrator” #696
+* Digg Digg social share compatibility #694
+* Removed unnecessary lines from Design 3
+* Sanitized Archive Description to amp Compatible #659
+* Author box now displays HTML properly #645
+* Date added Design-3 in meta #583
+* Options link was removed from wp-admin tool bar after a feedback from a user.
+* Footer sub menus layout compatibility.
+
+
+= 0.9.44 (5 March 2017) =
+* View more details at https://ampforwp.com/user-experience-52nd-update/
+* Added Welcome Screen for better User experience. [Enhancement]
+* Undefined Index debug error resolved [Bug fix]
+* All in one SEO Support support tested [3rd party compatibility]
+* Frontpage title in Design 3 is out of the container #644 [Bug fix]
+* Default Table markup in AMP #643 [Enhancement]
+* AMP carousel is not working on Frontpage #641 [Bug fix]
+* Social share .js was getting added even when it was not required #638 [Bug fix]
+* Search Feature added for Design 1 & Design 2 [Major Improvement]
+* Accordion script loading issue in Design 3 #634 [Bug fix]
+* ?nonamp=1 links should be nofollow #622 [Bug fix]
+* Same Header and Color Scheme are making header elements invisible #629 [Enhancement]
+* In Search AMP rel canonical was different #631 [Bug fix]
+* Non-AMP link in Design 3 was not working when mobile redirection was enabled #632 [Bug fix]
+* Search form text strings are now added in the translation panel #607 [Bug fix]
+* Load AMP-ads conditionally only if ads are available #609 [Bug fix]
+* Added compatibility with Custom post type extension. Option to hide/show AMP on all custom post types #587 [Bug fix]
+* Report a Bug & Request feature links added [Enhancement]
+* If there was no menu set in Design 3 then all pages were getting displayed. #613 [Bug fix]
+* The tag Font is disallowed #616 [Validation Improved]
+* index/noindex separately added for Tags and also for Categories #606 [Enhancement]
+* Use of undefined constant AMP_QUERY_VAR #596 [Bug fixed]
+* Logo is not centered in Design 3 #586 [Bug fixed]
+* Remove defer, a very rare type of defer was getting added #589 [Validation Improved]
+* Disqus comments iframe had scrolling issues #566 [Bug fixed]
+* Left side blank gap in the RTL in design 2 #541 [Bug fixed]
+* Inline Styles not working correctly in Custom AMP Editor #533 [Bug fixed]
+* Re-save permalinks issues. Flushing rewrites with options saved. #511 [Improvement]
+* Code review and cleaning of the customizer #404 [Code Cleaning]
+* Google Search iframe had some header alignment issues in Design 3. #624 - Thank you Leo Osa @leoosa for the contribution! [Bug fixed]
+* AMP Frontpage + Override AMP Content = Blank page #604 [Bug fixed]
+* Widget area added on the homepage with an 'AMP Category Blocks' widget. It means you can display multiple category blocks the homepage. This allows you to display complex layouts, even on AMP. [Major Improvement]
+* Auto-append /amp at the end of internal links in Menu with an option in the Menu section of the options panel #531 [Major Improvement]
+Reformatting and Minifying of stylesheet [Code Cleaning]
+* Created a new section for Homepage and moved some controls from other areas to the home section for the better user experience. [User Experience]
+* Override Homepage Thumbnail size option added. It will give you more control over your thumbnails. [Major Improvement]
+* New color picker added to change the color of the header elements in the Design 3 to give you better control over the design. [Enhancement]
+* Extra amp-carousel script loading is now fixed. [Bug fixed]
+* Crafting of layout code in design 2 and design 3, especially with social icons area. [Code Cleaning]
+* Design of search form was not clickable in iOS devices #621 [Bug fixed]
+* Disqus iframe was loading even when there was no disqus name was added in the option. We found that many users might be enabling it without knowing the output and then they seem to forget, which was causing them validation warnings. [Bug fixed]
+
+= 0.9.43.6 =
+* View more details at https://ampforwp.com/stability-sprint-3-51st-update/
+* Typo in the is_home() function fixed
+* Option to hide/show AMP on all custom post types #587
+* False detection by Windows defender tool fixed
+* Conditional tags were not compatible with Advanced AMP ads which were causing some conflicts but is now fixed.
+
+= 0.9.43.5 = 
+* View more details at https://ampforwp.com/stability-sprint-2-50th-update/
+* Fixed shortcodes issue in related posts #543
+* Iframe Scripts Added properly
+* Proper conditions added for the social section of Design 3
+* Featured Image issue stretched in Design 2 & 3
+* Removed extra global $redux_builder_amp;
+* Custom Logo Dimensions option added #479
+* Index & NoIndex options added for SEO section. #558
+* Added URL for rewrite flushing rules in Options
+* Option to enable and disable the Author area in Design 3#577
+* Rel Nofollow added in credit link
+* debug issue solved: fn_offset not defined
+* debug issue solved: global $post not declared
+* The word 'ago' is now translatable in design 3
+* The word 'read next' is translatable now
+* Tablepress compatibility added #392
+* Secure API server is now serving through Google Cloud Manager.
+* Thrive Content builder was displaying twice when the Custom AMP content was on. It was a complex issue which has been solved now.
+* amp-ad extension.js script was loading if the Ads are not enabled. #598
+* Social Share Extension Included on Homepage even if we didn't have social icons #599
+* Installation UX improvement #593
+* Removed duplicate global variable
+* Proper OG tags added #588
+* Proper instructions added for Custom AMP content #471
+
+
 = 0.9.43.1 = 
 * View more details at https://ampforwp.com/0-9-43-1-released-stability-sprint-1-49th-update/
 * Emoji in comments leads to AMP errors
@@ -135,7 +329,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * Custom header and footer areas
 * Sticky posts now come on top #564
 * Footer non-amplink added in design 3 #562
-* HTML <p> tag is shown in the title in category! #518
+* HTML Paragraph tag is shown in the title in category! #518
 
 = 0.9.42 = 
 * View more details at https://ampforwp.com/design-three-update/
@@ -399,7 +593,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * Added Support for Segment.com Analytics(Ticket #50)
 * Added a switch for hiding Non-Amp page link from Footer.( Ticket #189)
 * Added an Option that strips Users URL from Comments Section(Ticket #180)
-* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
+* Fixed stripping  <date> tags from the content , Since it was preventing validation – amp-img issues fixed
 * UX Improved for every section of AMP Options page
 * Added Settings button on plugin page
 * Related posts switch added

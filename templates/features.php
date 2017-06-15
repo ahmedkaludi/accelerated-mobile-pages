@@ -67,6 +67,10 @@
 	55. Call Now Button Feature added
 	56. Multi Translation Feature #540
 	57. Adding Updated date at in the Content
+	58. YouTube Shortcode compatablity with AMP #557
+	59. Comment Button URL
+	60. Remove Category Layout modification code added by TagDiv #842 and #796
+
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -222,21 +226,35 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	   	// Custom Homepage and Archive file
 
         global $redux_builder_amp;
-        // Homepage and FrontPage
-        if($redux_builder_amp['amp-frontpage-select-option'] == 0)  {
-            if ( is_home() ) {
-                if ( 'single' === $type ) {
-                	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-                }
-            }
-        } elseif ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-            if ( is_home() ) {
-                if ( 'single' === $type ) {
-                    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-                }
-            }
+		$slug = array();
+		$current_url_in_pieces = array();
 
-        }
+		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
+		        
+        // Homepage and FrontPage
+        if ( is_home() ) {
+        	if ( 'single' === $type ) {
+
+        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+
+		       if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
+		           
+		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+	            }           
+        	
+
+		        if ( $ampforwp_custom_post_page == "page" && ampforwp_name_blog_page() ) {
+					$current_url = home_url( $GLOBALS['wp']->request );
+					$current_url_in_pieces = explode( '/', $current_url );
+				
+					if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
+						 $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+					}  
+				}
+			}	
+		}
+
+
 
         // Archive Pages
         if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
@@ -518,7 +536,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 		// Below Content Single
 			add_action('ampforwp_after_post_content','ampforwp_after_post_content_advert');
-			// Hook updated 
+			// Hook updated
 		//	add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
@@ -721,6 +739,40 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 							<?php
 						}
 
+				// 10.5 Analytics Support added for comscore
+					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
+							<amp-analytics type="comscore">
+								<script type="application/json">
+								{
+								  "vars": {
+								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
+								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
+								  }
+								}
+								</script>
+							</amp-analytics>
+							<?php
+						}
+
+
+			// 10.6 Analytics Support added for Effective Measure
+				if( $redux_builder_amp['amp-analytics-select-option']=='6' ) { ?>
+					<!-- BEGIN EFFECTIVE MEASURE CODE -->
+					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
+					<!--END EFFECTIVE MEASURE CODE -->
+				<?php }
+
+			//	10.7 Analytics Support added for StatCounter
+				if( $redux_builder_amp['amp-analytics-select-option']=='7' ) { ?>
+					<!-- BEGIN StatCounter CODE -->
+					<div id="statcounter">
+					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
+					</amp-pixel> 
+					</div>
+					<!--END StatCounter CODE -->
+				<?php }
+
+
 
 		}//analytics function ends here
 
@@ -774,6 +826,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
 				$tags_to_strip = Array("thrive_headline","type","date","time","place","state","city" );
+				$tags_to_strip = apply_filters('ampforwp_strip_bad_tags', $tags_to_strip);
 				foreach ($tags_to_strip as $tag)
 				{
 				   $content = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/",'',$content);
@@ -785,6 +838,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 $content = preg_replace('/<g:plusone\s(.*?)>(.*)<\/g:plusone>/i', '', $content);
 				 $content = preg_replace('/imageanchor="1"/i', '', $content);
 				 $content = preg_replace('/<plusone\s(.*?)>(.*?)<\/plusone>/', '', $content);
+				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				return $content;
@@ -1092,6 +1146,7 @@ function ampforwp_remove_print_scripts() {
 				remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 				remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
+
 		}
 }
 add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
@@ -1137,7 +1192,7 @@ add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
 //     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 // }, 9 );
 
-// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin
+// 21. Remove Schema data from All In One Schema.org Rich Snippets Plugin 
 add_action( 'pre_amp_render_post', 'ampforwp_remove_schema_data' );
 function ampforwp_remove_schema_data() {
 	remove_filter('the_content','display_rich_snippet');
@@ -1150,6 +1205,13 @@ function ampforwp_remove_schema_data() {
 	if ($amp_custom_content_enable == 'yes') {
 		remove_filter( 'the_content', 'tve_editor_content', 10 );
 	}
+
+	// Removed GTranslate Flags from AMP pages #819
+	remove_filter('wp_nav_menu_items', 'gtranslate_menu_item', 10, 2);
+
+	// Remove elements of WP Like Button plugin #841
+	remove_filter('the_content', 'fb_like_button');
+	remove_filter('the_excerpt', 'fb_like_button');
 
 }
 
@@ -1174,41 +1236,51 @@ remove_action( 'amp_post_template_head', 'quads_amp_add_amp_ad_js');
 add_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
-	if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
-		<div class="sticky_social">
-			<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
-		    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
-          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
-          <amp-social-share type="twitter"
-                            width="50"
-                            height="28"
-                            data-param-url="<?php echo wp_get_shortlink() ?>"
-                            data-param-text="TITLE via <?php echo $data_param_data ?>"
-          ></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
-		    	<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
-		    	<amp-social-share type="email"      width="50" height="28"></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-pinterest-share'] == true)  { ?>
-		    	<amp-social-share type="pinterest"  width="50" height="28"></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-linkedin-share'] == true)  { ?>
-		    	<amp-social-share type="linkedin" width="50" height="28"></amp-social-share>
-		  	<?php } ?>
-		  	<?php if($redux_builder_amp['enable-single-whatsapp-share'] == true)  { ?>
-						<a href="whatsapp://send?text=<?php echo get_the_permalink();?>">
-						<div class="whatsapp-share-icon">
-						    <amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgOTAgOTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDkwIDkwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggaWQ9IldoYXRzQXBwIiBkPSJNOTAsNDMuODQxYzAsMjQuMjEzLTE5Ljc3OSw0My44NDEtNDQuMTgyLDQzLjg0MWMtNy43NDcsMC0xNS4wMjUtMS45OC0yMS4zNTctNS40NTVMMCw5MGw3Ljk3NS0yMy41MjIgICBjLTQuMDIzLTYuNjA2LTYuMzQtMTQuMzU0LTYuMzQtMjIuNjM3QzEuNjM1LDE5LjYyOCwyMS40MTYsMCw0NS44MTgsMEM3MC4yMjMsMCw5MCwxOS42MjgsOTAsNDMuODQxeiBNNDUuODE4LDYuOTgyICAgYy0yMC40ODQsMC0zNy4xNDYsMTYuNTM1LTM3LjE0NiwzNi44NTljMCw4LjA2NSwyLjYyOSwxNS41MzQsNy4wNzYsMjEuNjFMMTEuMTA3LDc5LjE0bDE0LjI3NS00LjUzNyAgIGM1Ljg2NSwzLjg1MSwxMi44OTEsNi4wOTcsMjAuNDM3LDYuMDk3YzIwLjQ4MSwwLDM3LjE0Ni0xNi41MzMsMzcuMTQ2LTM2Ljg1N1M2Ni4zMDEsNi45ODIsNDUuODE4LDYuOTgyeiBNNjguMTI5LDUzLjkzOCAgIGMtMC4yNzMtMC40NDctMC45OTQtMC43MTctMi4wNzYtMS4yNTRjLTEuMDg0LTAuNTM3LTYuNDEtMy4xMzgtNy40LTMuNDk1Yy0wLjk5My0wLjM1OC0xLjcxNy0wLjUzOC0yLjQzOCwwLjUzNyAgIGMtMC43MjEsMS4wNzYtMi43OTcsMy40OTUtMy40Myw0LjIxMmMtMC42MzIsMC43MTktMS4yNjMsMC44MDktMi4zNDcsMC4yNzFjLTEuMDgyLTAuNTM3LTQuNTcxLTEuNjczLTguNzA4LTUuMzMzICAgYy0zLjIxOS0yLjg0OC01LjM5My02LjM2NC02LjAyNS03LjQ0MWMtMC42MzEtMS4wNzUtMC4wNjYtMS42NTYsMC40NzUtMi4xOTFjMC40ODgtMC40ODIsMS4wODQtMS4yNTUsMS42MjUtMS44ODIgICBjMC41NDMtMC42MjgsMC43MjMtMS4wNzUsMS4wODItMS43OTNjMC4zNjMtMC43MTcsMC4xODItMS4zNDQtMC4wOS0xLjg4M2MtMC4yNy0wLjUzNy0yLjQzOC01LjgyNS0zLjM0LTcuOTc3ICAgYy0wLjkwMi0yLjE1LTEuODAzLTEuNzkyLTIuNDM2LTEuNzkyYy0wLjYzMSwwLTEuMzU0LTAuMDktMi4wNzYtMC4wOWMtMC43MjIsMC0xLjg5NiwwLjI2OS0yLjg4OSwxLjM0NCAgIGMtMC45OTIsMS4wNzYtMy43ODksMy42NzYtMy43ODksOC45NjNjMCw1LjI4OCwzLjg3OSwxMC4zOTcsNC40MjIsMTEuMTEzYzAuNTQxLDAuNzE2LDcuNDksMTEuOTIsMTguNSwxNi4yMjMgICBDNTguMiw2NS43NzEsNTguMiw2NC4zMzYsNjAuMTg2LDY0LjE1NmMxLjk4NC0wLjE3OSw2LjQwNi0yLjU5OSw3LjMxMi01LjEwN0M2OC4zOTgsNTYuNTM3LDY4LjM5OCw1NC4zODYsNjguMTI5LDUzLjkzOHoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
-						    </div>
-							</a>
-        <?php } ?>
-		</div>
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {
+		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
+			<div class="sticky_social">
+				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
+			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
+	          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
+	          <amp-social-share type="twitter"
+	                            width="50"
+	                            height="28"
+	                            data-param-url=""
+                        		data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+	          ></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
+			    	<amp-social-share type="gplus"      width="50" height="28"></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-email-share'] == true)  { ?>
+			    	<amp-social-share type="email"      width="50" height="28"></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-pinterest-share'] == true)  { ?>
+			    	<amp-social-share type="pinterest"  width="50" height="28"></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-linkedin-share'] == true)  { ?>
+			    	<amp-social-share type="linkedin" width="50" height="28"></amp-social-share>
+			  	<?php } ?>
+			  	<?php if($redux_builder_amp['enable-single-whatsapp-share'] == true)  { ?>
+							<a href="whatsapp://send?text=<?php echo get_the_permalink();?>">
+							<div class="custom-amp-socialsharing-icon">
+							    <amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgOTAgOTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDkwIDkwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggaWQ9IldoYXRzQXBwIiBkPSJNOTAsNDMuODQxYzAsMjQuMjEzLTE5Ljc3OSw0My44NDEtNDQuMTgyLDQzLjg0MWMtNy43NDcsMC0xNS4wMjUtMS45OC0yMS4zNTctNS40NTVMMCw5MGw3Ljk3NS0yMy41MjIgICBjLTQuMDIzLTYuNjA2LTYuMzQtMTQuMzU0LTYuMzQtMjIuNjM3QzEuNjM1LDE5LjYyOCwyMS40MTYsMCw0NS44MTgsMEM3MC4yMjMsMCw5MCwxOS42MjgsOTAsNDMuODQxeiBNNDUuODE4LDYuOTgyICAgYy0yMC40ODQsMC0zNy4xNDYsMTYuNTM1LTM3LjE0NiwzNi44NTljMCw4LjA2NSwyLjYyOSwxNS41MzQsNy4wNzYsMjEuNjFMMTEuMTA3LDc5LjE0bDE0LjI3NS00LjUzNyAgIGM1Ljg2NSwzLjg1MSwxMi44OTEsNi4wOTcsMjAuNDM3LDYuMDk3YzIwLjQ4MSwwLDM3LjE0Ni0xNi41MzMsMzcuMTQ2LTM2Ljg1N1M2Ni4zMDEsNi45ODIsNDUuODE4LDYuOTgyeiBNNjguMTI5LDUzLjkzOCAgIGMtMC4yNzMtMC40NDctMC45OTQtMC43MTctMi4wNzYtMS4yNTRjLTEuMDg0LTAuNTM3LTYuNDEtMy4xMzgtNy40LTMuNDk1Yy0wLjk5My0wLjM1OC0xLjcxNy0wLjUzOC0yLjQzOCwwLjUzNyAgIGMtMC43MjEsMS4wNzYtMi43OTcsMy40OTUtMy40Myw0LjIxMmMtMC42MzIsMC43MTktMS4yNjMsMC44MDktMi4zNDcsMC4yNzFjLTEuMDgyLTAuNTM3LTQuNTcxLTEuNjczLTguNzA4LTUuMzMzICAgYy0zLjIxOS0yLjg0OC01LjM5My02LjM2NC02LjAyNS03LjQ0MWMtMC42MzEtMS4wNzUtMC4wNjYtMS42NTYsMC40NzUtMi4xOTFjMC40ODgtMC40ODIsMS4wODQtMS4yNTUsMS42MjUtMS44ODIgICBjMC41NDMtMC42MjgsMC43MjMtMS4wNzUsMS4wODItMS43OTNjMC4zNjMtMC43MTcsMC4xODItMS4zNDQtMC4wOS0xLjg4M2MtMC4yNy0wLjUzNy0yLjQzOC01LjgyNS0zLjM0LTcuOTc3ICAgYy0wLjkwMi0yLjE1LTEuODAzLTEuNzkyLTIuNDM2LTEuNzkyYy0wLjYzMSwwLTEuMzU0LTAuMDktMi4wNzYtMC4wOWMtMC43MjIsMC0xLjg5NiwwLjI2OS0yLjg4OSwxLjM0NCAgIGMtMC45OTIsMS4wNzYtMy43ODksMy42NzYtMy43ODksOC45NjNjMCw1LjI4OCwzLjg3OSwxMC4zOTcsNC40MjIsMTEuMTEzYzAuNTQxLDAuNzE2LDcuNDksMTEuOTIsMTguNSwxNi4yMjMgICBDNTguMiw2NS43NzEsNTguMiw2NC4zMzYsNjAuMTg2LDY0LjE1NmMxLjk4NC0wLjE3OSw2LjQwNi0yLjU5OSw3LjMxMi01LjEwN0M2OC4zOTgsNTYuNTM3LDY4LjM5OCw1NC4zODYsNjguMTI5LDUzLjkzOHoiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" width="50" height="20" />
+							    </div>
+								</a>
+	        <?php } ?>
+	        <?php if($redux_builder_amp['enable-single-line-share'] == true)  { ?>
+			<a href="http://line.me/R/msg/text/?<?php echo get_the_permalink(); ?>">
+				<div class="custom-amp-socialsharing-icon custom-amp-socialsharing-line">
+					<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI5Ni41MjggMjk2LjUyOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjk2LjUyOCAyOTYuNTI4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPHBhdGggZD0iTTI5NS44MzgsMTE1LjM0N2wwLjAwMy0wLjAwMWwtMC4wOTItMC43NmMtMC4wMDEtMC4wMTMtMC4wMDItMC4wMjMtMC4wMDQtMC4wMzZjLTAuMDAxLTAuMDExLTAuMDAyLTAuMDIxLTAuMDA0LTAuMDMyICAgbC0wLjM0NC0yLjg1OGMtMC4wNjktMC41NzQtMC4xNDgtMS4yMjgtMC4yMzgtMS45NzRsLTAuMDcyLTAuNTk0bC0wLjE0NywwLjAxOGMtMy42MTctMjAuNTcxLTEzLjU1My00MC4wOTMtMjguOTQyLTU2Ljc2MiAgIGMtMTUuMzE3LTE2LjU4OS0zNS4yMTctMjkuNjg3LTU3LjU0OC0zNy44NzhjLTE5LjEzMy03LjAxOC0zOS40MzQtMTAuNTc3LTYwLjMzNy0xMC41NzdjLTI4LjIyLDAtNTUuNjI3LDYuNjM3LTc5LjI1NywxOS4xOTMgICBDMjMuMjg5LDQ3LjI5Ny0zLjU4NSw5MS43OTksMC4zODcsMTM2LjQ2MWMyLjA1NiwyMy4xMTEsMTEuMTEsNDUuMTEsMjYuMTg0LDYzLjYyMWMxNC4xODgsMTcuNDIzLDMzLjM4MSwzMS40ODMsNTUuNTAzLDQwLjY2ICAgYzEzLjYwMiw1LjY0MiwyNy4wNTEsOC4zMDEsNDEuMjkxLDExLjExNmwxLjY2NywwLjMzYzMuOTIxLDAuNzc2LDQuOTc1LDEuODQyLDUuMjQ3LDIuMjY0YzAuNTAzLDAuNzg0LDAuMjQsMi4zMjksMC4wMzgsMy4xOCAgIGMtMC4xODYsMC43ODUtMC4zNzgsMS41NjgtMC41NywyLjM1MmMtMS41MjksNi4yMzUtMy4xMSwxMi42ODMtMS44NjgsMTkuNzkyYzEuNDI4LDguMTcyLDYuNTMxLDEyLjg1OSwxNC4wMDEsMTIuODYgICBjMC4wMDEsMCwwLjAwMSwwLDAuMDAyLDBjOC4wMzUsMCwxNy4xOC01LjM5LDIzLjIzMS04Ljk1NmwwLjgwOC0wLjQ3NWMxNC40MzYtOC40NzgsMjguMDM2LTE4LjA0MSwzOC4yNzEtMjUuNDI1ICAgYzIyLjM5Ny0xNi4xNTksNDcuNzgzLTM0LjQ3NSw2Ni44MTUtNTguMTdDMjkwLjE3MiwxNzUuNzQ1LDI5OS4yLDE0NS4wNzgsMjk1LjgzOCwxMTUuMzQ3eiBNOTIuMzQzLDE2MC41NjFINjYuNzYxICAgYy0zLjg2NiwwLTctMy4xMzQtNy03Vjk5Ljg2NWMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDd2NDYuNjk2aDE4LjU4MWMzLjg2NiwwLDcsMy4xMzQsNyw3ICAgQzk5LjM0MywxNTcuNDI3LDk2LjIwOSwxNjAuNTYxLDkyLjM0MywxNjAuNTYxeiBNMTE5LjAzLDE1My4zNzFjMCwzLjg2Ni0zLjEzNCw3LTcsN2MtMy44NjYsMC03LTMuMTM0LTctN1Y5OS42NzUgICBjMC0zLjg2NiwzLjEzNC03LDctN2MzLjg2NiwwLDcsMy4xMzQsNyw3VjE1My4zNzF6IE0xODIuMzA0LDE1My4zNzFjMCwzLjAzMy0xLjk1Myw1LjcyMS00LjgzOCw2LjY1OCAgIGMtMC43MTIsMC4yMzEtMS40NDEsMC4zNDMtMi4xNjEsMC4zNDNjLTIuMTk5LDAtNC4zMjMtMS4wMzktNS42NjYtMi44ODhsLTI1LjIwNy0zNC43MTd2MzAuNjA1YzAsMy44NjYtMy4xMzQsNy03LDcgICBjLTMuODY2LDAtNy0zLjEzNC03LTd2LTUyLjE2YzAtMy4wMzMsMS45NTMtNS43MjEsNC44MzgtNi42NThjMi44ODYtMC45MzYsNi4wNDUsMC4wOSw3LjgyNywyLjU0NWwyNS4yMDcsMzQuNzE3Vjk5LjY3NSAgIGMwLTMuODY2LDMuMTM0LTcsNy03YzMuODY2LDAsNywzLjEzNCw3LDdWMTUzLjM3MXogTTIzMy4zMTEsMTU5LjI2OWgtMzQuNjQ1Yy0zLjg2NiwwLTctMy4xMzQtNy03di0yNi44NDdWOTguNTczICAgYzAtMy44NjYsMy4xMzQtNyw3LTdoMzMuNTdjMy44NjYsMCw3LDMuMTM0LDcsN3MtMy4xMzQsNy03LDdoLTI2LjU3djEyLjg0OWgyMS41NjJjMy44NjYsMCw3LDMuMTM0LDcsN2MwLDMuODY2LTMuMTM0LDctNyw3ICAgaC0yMS41NjJ2MTIuODQ3aDI3LjY0NWMzLjg2NiwwLDcsMy4xMzQsNyw3UzIzNy4xNzcsMTU5LjI2OSwyMzMuMzExLDE1OS4yNjl6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="50" height="20" />
+				</div>
+			</a>
+		<?php } ?>
+			</div>
 	<?php }
+		}
 }
 // if ( $ampforwp_social_icons_enabled == true ) {
 //
@@ -1367,6 +1439,33 @@ function ampforwp_replace_title_tags() {
 	}
 }
 
+
+add_action('amp_post_template_include_single','ampforwp_update_title_for_frontpage');
+function ampforwp_update_title_for_frontpage() {
+	$check_custom_front_page = get_option('show_on_front');
+
+	if ( $check_custom_front_page == 'page' && is_home() ) {
+
+		remove_action( 'amp_post_template_head', 'amp_post_template_add_title' );
+		add_action('amp_post_template_head','ampforwp_frontpage_title_markup');
+
+		add_filter('aioseop_title','ampforwp_aioseop_front_page_title');
+	}
+}
+// Custom Frontpage title for ALL in one SEO.
+function ampforwp_aioseop_front_page_title() {
+	$sep = ' | ';
+	return $site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
+}
+
+function ampforwp_frontpage_title_markup () { 
+	$front_page_title = ampforwp_add_custom_title_tag();
+	$front_page_title = apply_filters('ampforwp_frontpage_title_filter', $front_page_title);  
+	?>
+
+	<title> <?php echo esc_html( $front_page_title ); ?> </title> <?php
+}
+
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
 		function ampforwp_the_content_filter_full( $content_buffer ) {
@@ -1383,6 +1482,9 @@ function ampforwp_replace_title_tags() {
                 $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
                 $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
+                $content_buffer = preg_replace("/about:blank/", "#", $content_buffer);
+                $content_buffer = preg_replace("/<script data-cfasync[^>]*>.*?<\/script>/", "", $content_buffer);
+                $content_buffer = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
             }
@@ -1487,6 +1589,13 @@ function ampforwp_remove_bj_load() {
 }
 add_action( 'bjll/compat', 'ampforwp_remove_bj_load' );
 
+//Disable Crazy Lazy for AMP #751
+function ampforwp_remove_crazy_lazy_support(){
+	if( ampforwp_is_amp_endpoint() ){
+		remove_action( 'wp', array( 'CrazyLazy', 'instance' ) );
+	}
+}
+add_action('wp','ampforwp_remove_crazy_lazy_support',9);
 //33. Google tag manager support added
 // Remove any old scripts that have been loaded by other Plugins
 add_action('init', 'amp_gtm_remove_analytics_code');
@@ -1586,6 +1695,45 @@ function ampforwp_add_disqus_scripts( $data ) {
 	return $data;
 }
 
+// Facebook Comments Support #825
+
+add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
+function ampforwp_facebook_comments_support() {
+	echo ampforwp_facebook_comments_markup();
+}
+function ampforwp_facebook_comments_markup() {
+
+	global $redux_builder_amp;
+	$facebook_comments_markup = '';
+	if ( !comments_open() ){
+		return;
+	}
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+
+		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
+		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
+	    		layout="responsive" data-numposts=';
+		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
+
+		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+	    $facebook_comments_markup .= '></amp-facebook-comments>';
+
+		return $facebook_comments_markup;
+	}
+}
+
+add_filter( 'amp_post_template_data', 'ampforwp_add_fbcomments_scripts' );
+function ampforwp_add_fbcomments_scripts( $data ) {
+
+	$facebook_comments_check = ampforwp_facebook_comments_markup();
+	global $redux_builder_amp;
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
+			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
+				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
+			}
+		}
+		return $data;
+	}
 //36. remove photon support in AMP
 //add_action('amp_init','ampforwp_photon_remove');
 //function ampforwp_photon_remove(){
@@ -1722,8 +1870,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Above Loop',
 		'id'   => 'ampforwp-above-loop',
 		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
@@ -1731,8 +1879,8 @@ if (function_exists('register_sidebar')) {
 		'name' => 'AMP Below Loop',
 		'id'   => 'ampforwp-below-loop',
 		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '<div class="category-widget-wrapper"><div class="category-widget-gutter">',
-		'after_widget'  => '</div></div>',
+		'before_widget' => '',
+		'after_widget'  => '',
 		'before_title'  => '<h4>',
 		'after_title'   => '</h4>'
 	));
@@ -1852,7 +2000,8 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
 				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] )  {
+				 $redux_builder_amp['enable-single-whatsapp-share'] ||
+				 $redux_builder_amp['enable-single-line-share'] )  {
 					return true;
 				}
 			return false;
@@ -2191,7 +2340,7 @@ function ampforwp_meta_description() {
 	$desc= preg_replace('/\[(.*)?\]/','',$desc);
 
 	if( $desc ) {
-		echo '<meta name="description" content="'. $desc .'"/>';
+		echo '<meta name="description" content="'. esc_html( convert_chars( wptexturize ( $desc ) ) )  .'"/>';
 	}
 }
 
@@ -2219,11 +2368,11 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
 
 // 57. Adding Updated date at in the Content
 add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
-function ampforwp_add_modified_date($post_id){ 
-	global $redux_builder_amp; 
+function ampforwp_add_modified_date($post_id){
+	global $redux_builder_amp;
 	if ( is_single() && $redux_builder_amp['post-modified-date'] ) { ?>
 		<div class="ampforwp-last-modified-date">
-			<p> <?php 
+			<p> <?php
 				$post_object = new AMP_Post_Template($post_id);
 				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
 					echo esc_html(
@@ -2234,6 +2383,58 @@ function ampforwp_add_modified_date($post_id){
 					);
 				} ?>
 			</p>
-		</div> <?php 
+		</div> <?php
 	}
 }
+
+// 58. YouTube Shortcode compatablity with AMP #557 
+if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+
+	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+		$str = '';
+
+		$youtube_url = 'https://www.youtube.com/watch?v=';
+		$parsed_url = parse_url( $params['id'] );
+		$server = 'www.youtube.com';
+
+		if ( in_array( $server, $parsed_url ) === false ) {
+			$new_url  = $youtube_url .  $params['id'] ;
+			$params['id'] = $new_url;
+		}
+
+		if ( $old_format_support && isset( $params[0] ) ) {
+			$str = ltrim( $params[0], '=' );
+		} elseif ( is_array( $params ) ) {
+			foreach ( array_keys( $params ) as $key ) {
+			  if ( ! is_numeric( $key ) ) {
+			    $str = $key . '=' . $params[ $key ];
+			  }
+			}
+		}
+
+	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
+	}
+}
+
+// 59. Comment Button URL
+function ampforwp_comment_button_url(){
+	global $redux_builder_amp;
+	$button_url = "";
+	$ampforwp_nonamp = "";
+	if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_nonamp =  '?nonamp=1';
+    else
+      $ampforwp_nonamp = '';
+
+  	$button_url =  trailingslashit( get_permalink() ) .$ampforwp_nonamp. '#commentform';
+
+  return $button_url; 
+}
+
+// 60. Remove Category Layout modification code added by TagDiv #842 and #796
+function ampforwp_remove_support_tagdiv_cateroy_layout(){
+	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 
+	}
+}
+add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
