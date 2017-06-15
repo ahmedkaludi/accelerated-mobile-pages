@@ -1211,6 +1211,7 @@ function ampforwp_remove_schema_data() {
     	// Ultimate Social Media PLUS Compatiblity Added
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
 	remove_filter('the_content','sfsi_plus_beforeafterblogposts');
+ 
 
 	// Thrive Content Builder
 	$amp_custom_content_enable = get_post_meta( get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
@@ -1576,6 +1577,9 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     // Disable HTTP protocol removing on script, link, img, srcset and form tags.
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
+
+    // Compatibility issue with the rocket lazy load  #907
+   remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
     // Disable Concatenate Google Fonts
 //    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
     // Disable CSS & JS magnification
