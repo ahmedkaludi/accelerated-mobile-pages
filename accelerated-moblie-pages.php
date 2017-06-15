@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Accelerated Mobile Pages
+Plugin Name: Accelerated Mobile Pages - TechNutty Varient
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.50
+Version: 0.9.50.tn.3.8
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25

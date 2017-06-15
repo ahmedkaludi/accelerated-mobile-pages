@@ -638,14 +638,18 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 = 0.8.7 =
 * Proper Details at http://ampforwp.com/amp-0-8-7/
 * added option to enable/disable AMP on Archive pages (Ticket #188)
-* Solved 404 on Related Posts (Ticket #178 )
+* Solved 404 on Related Posts (Ticket #178 )
 * Related posts by either categories or Tags(Ticket #179)
 * added a link to menu Section from the AMP Options page(Ticket #190)
 * Added Support for Piwik Analytics(Ticket #163)
 * Added Support for Segment.com Analytics(Ticket #50)
 * Added a switch for hiding Non-Amp page link from Footer.( Ticket #189)
 * Added an Option that strips Users URL from Comments Section(Ticket #180)
+<<<<<<< HEAD
+* Fixed stripping  <date> tags from the content , Since it was preventing validation – <amp-img > issues fixed
+=======
 * Fixed stripping  <date> tags from the content , Since it was preventing validation – amp-img issues fixed
+>>>>>>> ahmedkaludi/master
 * UX Improved for every section of AMP Options page
 * Added Settings button on plugin page
 * Related posts switch added

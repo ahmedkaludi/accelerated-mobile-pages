@@ -348,16 +348,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 			<?php if( is_singular() ) {
 							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-			<?php   }
+
+	<?php   }
 						}
 		} ?>
 		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
 			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
 							if( is_home() ) {
 								if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-								<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-					<?php }
+								
+									<?php }
 							}
 						}
 					}
@@ -377,7 +377,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		global $redux_builder_amp;
 		// Adding Sidebar Script
 		if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
-			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+			
 		}
 
 		return $data;
@@ -2227,11 +2227,23 @@ Examples:
 .ampforwp_wc_shortcode li{position: relative;width:29%; font-size:12px; line-height: 1; float: left;list-style-type: none;margin:2%;}
 .ampforwp_wc_shortcode .onsale{position: absolute;top: 0;right: 0;background: #ddd;padding: 7px;font-size: 12px;}
 .single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-.ampforwp-wc-title{margin: 8px 0px 10px 0px;font-size: 13px;}
-.ampforwp-wc-price{color:#444}
-.wc_widgettitle{text-align:center;margin-bottom: 0px;}
-.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
-<?php }
+.ampforwp-wc-title{ margin: 10px 0px; }
+.ampforwp-wc-price{ color:#444 }
+    <?php }
+
+	// 54. Adding sidebar script
+add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_scripts' );
+function ampforwp_add_sidebar_scripts( $data ) {
+	global $redux_builder_amp;
+
+	if ( $redux_builder_amp['ampforwp-amp-menu-on-off'] == true ) {
+					if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
+						$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+					}
+	}
+
+	return $data;
+}
 
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');

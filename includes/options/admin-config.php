@@ -870,10 +870,43 @@ Redux::setArgs( "redux_builder_amp", $args );
     'type' => 'info',
     'class' => 'extension_banner_bg',
     'desc' => $single_extension_listing )
+      ),
 
-        ),
+    // AMP Menu SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Menu', 'accelerated-mobile-pages' ),
+       'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+       'id'         => 'amp-menus',
+       'subsection' => true,
+       'fields' => array(
+
+           array(
+                'id'       => 'ampforwp-amp-menu-on-off',
+                'type'     => 'switch',
+                'title'    => __('Turn AMP menu on/off', 'redux-framework-demo'),
+                'subtitle' => __('Switching this off will remove the AMP menu from all designs.', 'redux-framework-demo'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
+
+            array(
+                'id'       => 'ampforwp-auto-amp-menu-link',
+                'type'     => 'switch',
+                'title'    => __('Auto Add AMP in Menu URL', 'accelerated-mobile-pages'),
+                'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                 'required' => array(
+                 array('ampforwp-amp-menu-on-off', '=' , '1')
+               ),
+                'default'   => 0
+            ),
+        )
+       )
 
     ) );
+
 
     $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
     $desc = '';
