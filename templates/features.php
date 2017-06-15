@@ -1226,6 +1226,9 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
+	 // Compatibility issue with the rocket lazy load  #907
+   remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
+
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, true);
 	
@@ -1577,9 +1580,6 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     // Disable HTTP protocol removing on script, link, img, srcset and form tags.
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
-
-    // Compatibility issue with the rocket lazy load  #907
-   remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
     // Disable Concatenate Google Fonts
 //    add_filter( 'get_rocket_option_minify_google_fonts', '__return_false', PHP_INT_MAX );
     // Disable CSS & JS magnification
