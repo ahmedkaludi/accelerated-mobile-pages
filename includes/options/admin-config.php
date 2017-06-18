@@ -747,7 +747,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
-                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
 
@@ -759,7 +758,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required' => array(
                   array('amp-design-selector', '=' , '2')
                 ),
-                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
 
@@ -771,7 +769,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required' => array(
                   array('amp-design-selector', '=' , '1')
                 ),
-                'desc'     => __('HTTPS is required for search to work on AMP pages.', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
     // Call Now button

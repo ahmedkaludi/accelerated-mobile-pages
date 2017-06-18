@@ -71,9 +71,12 @@ function ampforwp_the_search_form() {
 function ampforwp_get_search_form() {
 	if ( is_search_enabled_in_ampforwp() ) {
 		global $redux_builder_amp;
+		$action_url = '';
 		$label = ampforwp_translation($redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
+		$action_url = esc_url( get_bloginfo('url') );
+		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
-	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . get_bloginfo('url')  .'">
+	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . $action_url  .'">
 <div>
 <label class="screen-reader-text" for="s">' . $label . '</label>
 <input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
