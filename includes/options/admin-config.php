@@ -652,7 +652,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-sticky-head',
                 'type'      => 'switch',
-                'title'     => __('Remove Sticky Head','accelerated-mobile-pages'), 
+                'title'     => __('Make Header unsticky','accelerated-mobile-pages'), 
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
