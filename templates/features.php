@@ -75,6 +75,7 @@
 	63. Frontpage Comments #682 
 	64. PageBuilder  
 	65. Remove Filters code added through Class by other plugins
+	66. Make AMP compatible with Squirrly SEO
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -2884,4 +2885,21 @@ function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $m
 		}
 	}
 	return false;
+}
+
+
+// 66. Make AMP compatible with Squirrly SEO
+add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
+function ampforwp_remove_sq_seo() {
+	$ampforwp_sq_google_analytics =  '';
+	$ampforwp_sq_amp_analytics    =  '';
+
+	if ( class_exists( 'SQ_Tools' ) ) {
+		$ampforwp_sq_google_analytics = SQ_Tools::$options['sq_google_analytics'];
+		$ampforwp_sq_amp_analytics    = SQ_Tools::$options['sq_auto_amp'];
+	} 
+
+	if ( $ampforwp_sq_google_analytics && $ampforwp_sq_amp_analytics ) {
+		remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+	}
 }
