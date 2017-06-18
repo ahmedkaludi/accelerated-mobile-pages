@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.7.5
-Stable tag: 0.9.50
+Stable tag: 0.9.51.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,14 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 = Features: =
 
+* NEW - Page Builder for AMP! [Watch the Demo](http://ampforwp.com/demo/#pagebuilder) | [How to](https://ampforwp.com/tutorials/page-builder/)
+* NEW - Github Gist Support
 * NEW - Facebook Comments Support
-* NEW - Email Opt-in Subscription form support in AMP added 
+* NEW - Email Opt-in Subscription form support in AMP added
 * NEW - Call to Action boxes and notification bars 
-* NEW - 9 Advertisement sizes - 2 More AD slots added recently
-* NEW - Comments Forms in AMP.
-* NEW - Native AMP Search functionality.
+* 9 Advertisement sizes - 2 More AD slots added recently
+* Comments Forms in AMP.
+* Native AMP Search functionality.
 * Design 3 [Watch the Video Overview](https://www.youtube.com/watch?v=ub1pwskt3Rc)
 * Disqus Comments Support
 * Google Tag Manager Support
@@ -131,6 +133,40 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+
+= 0.9.51.1 (12th June 2017) =
+* Redirection issue after 0.9.51 Update.
+* Improved compatibility with plugins.
+
+= 0.9.51 (8th June 2017) =
+* View more details on https://ampforwp.com/page-builder-released-in-amp/
+* Page Builder Support added ( See Tutorial at https://ampforwp.com/tutorials/page-builder/ )
+* Comments are not showing properly when words are long #861
+* Remove amp-social-share extension .js from Pages #853
+* The tag ‘amp-sidebar extension .js script’ appears more than once in the document #828
+* Remove Advertisement tab #839
+* Compatibility with Slide-in Plugin by WPMU dev #866
+* Mobile redirection issue with bbpress #867
+* All the data must be properly sanitize in the sidebar #849
+* AMP html should not be added on the second page of comments
+* Author page’s support #456
+* URLs in comments should be clickable(links) #869
+* Featured image should be centered in desktop mode #870
+* Added More Hooks #721 (Documentation on this coming soon!)
+* Page 2 goes to the wrong URL #865
+* Proper Title and meta for homepage and posts #850
+* Gist Support added #608 – Just add a shortcode and enjoy Devs (Ex: amp-gist id="b9bb35bc68df68259af94430f012425f )
+* /blog/amp pagination not working #875
+* separate the Text and Date format in design 2 #876
+* Comments show in AMP w/o breaks between paragraphs #873
+* If no featured image below hooks are not working #877
+* Change meta name Viewport and its value #878
+* Bolt icon in option #474
+* Code restructuring and code quality improvements.
+* Create a seperate function for comment code in frontpage.php #682
+* Remove all the duplicate code from frontpage.php of all the designs and use hooks to add the code instead of static code #889
+* Few Debug errors removed.
 
 = 0.9.50 (24 May 2017) =
 * View more details on https://ampforwp.com/facebook-comments-in-amp/

@@ -44,6 +44,8 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 	 * @param	array	instance	The current instance of the widget
 	 */
 	public function widget( $args, $instance ) {
+		$target = "";
+        $output = "";
 
 		extract( $args, EXTR_SKIP );
 
@@ -52,9 +54,9 @@ class AMPFORWP_Button_Widget extends WP_Widget {
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
+
 		
 		echo $before_widget;
-        $target = "";
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_btn">';
         
 		foreach( $features as $feature ) {

@@ -24,7 +24,7 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 		 */
 		public function __construct() {
 			/* translators: title of the widget */
-			$widget_title = __( 'AMPforWP Text Module', 'black-studio-tinymce-widget' );
+			$widget_title = __( 'AMP Text Module', 'black-studio-tinymce-widget' );
 			/* translators: description of the widget, shown in available widgets */
 			$widget_description = __( 'Arbitrary text or HTML with visual editor', 'black-studio-tinymce-widget' );
 			$widget_ops = array( 'classname' => 'widget_black_studio_tinymce', 'description' => $widget_description );
@@ -49,17 +49,17 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
 			$before_title = $args['before_title'];
 			$after_title = $args['after_title'];
 			do_action( 'black_studio_tinymce_before_widget', $args, $instance );
-			$before_text = apply_filters( 'black_studio_tinymce_before_text', '<div class="textwidget">', $instance );
+			$before_text = apply_filters( 'black_studio_tinymce_before_text', '<div class="amp-wp-content amp_cb_module amp_cb_text">', $instance );
 			$after_text = apply_filters( 'black_studio_tinymce_after_text', '</div>', $instance );
-			$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
+            $title = empty( $instance['title'] ) ? '' : $instance['title'];
+			$title = apply_filters( 'widget_title', $title , $instance, $this->id_base );
 			$text = apply_filters( 'widget_text', empty( $instance['text'] ) ? '' : $instance['text'], $instance, $this );
+            $markup_title = '<div class="amp_module_title">' . $title . '</div>';
+            $markup_text = '<div class="amp_cb_text_content">' . $text . '</div>';
 			$hide_empty = apply_filters( 'black_studio_tinymce_hide_empty', false, $instance );
 			if ( ! ( $hide_empty && empty( $text ) ) ) {
 				$output = $before_widget;
-				if ( ! empty( $title ) ) {
-					$output .= $before_title . $title . $after_title;
-				}
-				$output .= $before_text . $text . $after_text;
+				$output .= $before_text . $markup_title .  $markup_text . $after_text;
 				$output .= $after_widget;
 				echo $output; // xss ok
 			}

@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.52-beta
+Version: 0.9.53-beta
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -17,7 +17,7 @@ define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.50');
+define('AMPFORWP_VERSION','0.9.51.1');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -209,11 +209,14 @@ function ampforwp_parent_plugin_check() {
 add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {
 	
-	if ( ! function_exists( 'bstw' ) ) {
-		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( ! function_exists( 'bstw' ) ) {
+			require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+		}
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 	}
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 }
 
 

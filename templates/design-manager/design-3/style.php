@@ -216,7 +216,6 @@ pre{ white-space: pre-wrap; }
 .category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
 .amp-category-block-btn{ display: block; text-align: center; font-size: 13px; margin-top: 15px; border-bottom: 1px solid #f1f1f1; text-decoration: none; padding-bottom: 8px;}
 .design_2_wrapper .amp-category-block{ max-width: 840px; margin: 1.5em auto; }
-.amp-category-block-title{ border-bottom: double #ddd; margin-bottom: 12px; padding-bottom: 1px; text-align: center; font-size: 12px; text-transform: uppercase; color: #666; }
 .amp-category-block ul, .category-widget-wrapper{ max-width: 1000px; margin: 0 auto; padding:0px 15px 5px 15px }
 .amp-category-post{ width: 32%; display:inline-table; }
 .amp-category-post amp-img{ margin-bottom:5px; }

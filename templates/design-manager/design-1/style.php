@@ -52,7 +52,6 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .category-widget-gutter{ margin:1.5em 26px 3.5em }
 .category-widget-gutter h4{ margin-bottom: 0px;}
 .category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
-.amp-category-block-title{ border-bottom: double #ddd; margin-bottom: 12px; padding-bottom: 1px; text-align: center; font-size: 12px; text-transform: uppercase; color: #666; }
 .amp-category-block ul{ margin: 1.5em 26px 3.5em; }
 .amp-category-post{ width: 32%; display:inline-table; }
 .amp-category-post a{ color:#555; text-decoration:none}

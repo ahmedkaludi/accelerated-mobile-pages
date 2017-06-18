@@ -44,6 +44,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 	 * @param	array	instance	The current instance of the widget
 	 */
 	public function widget( $args, $instance ) {
+        $output = "";
 
 		extract( $args, EXTR_SKIP );
 

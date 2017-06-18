@@ -73,8 +73,8 @@
 	61. Add Gist Support
 	62. Adding Meta viewport via hook instead of direct #878
 	63. Frontpage Comments #682 
-
-
+	64. PageBuilder  
+	65. Remove Filters code added through Class by other plugins
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -890,6 +890,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
+				// Removing the type attribute from the <ul>
+				 $content = preg_replace('/<ul(.*?)type=".*?"(.*?)/','<ul $1',$content);
 				return $content;
 		}
 
@@ -1249,6 +1251,7 @@ function ampforwp_remove_schema_data() {
     	// Ultimate Social Media PLUS Compatiblity Added
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
 	remove_filter('the_content','sfsi_plus_beforeafterblogposts');
+ 
 
 	// Thrive Content Builder
 	$amp_custom_content_enable = get_post_meta( get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
@@ -1263,17 +1266,30 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
+	 // Compatibility issue with the rocket lazy load  #907
+   remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
+
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, true);
-
+	
+	// Remove Filters added by third party plugin through class
+	if ( function_exists('ampforwp_remove_filters_for_class')) {
+		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
+		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
+		//Compatibility with Sassy Social Share Plugin
+		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
+	}
 }
 
 // 22. Removing author links from comments Issue #180
-if( ! function_exists( "disable_comment_author_links" ) ) {
+if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 		if ( $ampforwp_is_amp_endpoint ) {
-				return strip_tags( $author_link );
+			return strip_tags( $author_link );
 		} else {
 			return $author_link;
 		}
@@ -1924,38 +1940,58 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
 
 // 42. registeing AMP sidebars
-if (function_exists('register_sidebar')) {
+add_action('init', 'ampforwp_add_widget_support');
+function ampforwp_add_widget_support() {
+	if (function_exists('register_sidebar')) {
+		global $redux_builder_amp;
 
-	register_sidebar(array(
-		'name' => 'AMP Above Loop',
-		'id'   => 'ampforwp-above-loop',
-		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
-	register_sidebar(array(
-		'name' => 'AMP Below Loop',
-		'id'   => 'ampforwp-below-loop',
-		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
+		register_sidebar(array(
+			'name' => 'AMP Above Loop',
+			'id'   => 'ampforwp-above-loop',
+			'description'   => 'Widget area for above the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
+		register_sidebar(array(
+			'name' => 'AMP Below Loop',
+			'id'   => 'ampforwp-below-loop',
+			'description'   => 'Widget area for below the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
 
+		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+    $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
+    $placeholder = 'PLACEHOLDER';
+			register_sidebar(array(
+				'name' 			=> 'Page Builder (AMP)',
+				'id'   			=> 'layout-builder',
+                'description' => $placeholder,
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h4>',
+				'after_title'   => '</h4>' 
+			));
+            
+        add_action( 'widgets_admin_page', function() use ( $desc, $placeholder ) {
+            add_filter( 'esc_html', function( $safe_text, $text ) use ( $desc, $placeholder ) {
 
-	register_sidebar(array(
-		'name' 			=> 'Layout Builder',
-		'id'   			=> 'layout-builder',
-		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
+                if ( $text !== $placeholder )
+                    return $safe_text;
 
+                remove_filter( current_filter(), __FUNCTION__ );
+
+                return $desc;
+            }, 10, 2 );
+        });
+            
+		}
+
+	}
 }
 
 // 43. custom actions for widgets output
@@ -2579,11 +2615,15 @@ function ampforwp_gist_shortcode_generator($atts) {
 }
 add_action('amp_post_template_head','ampforwp_add_gist_script', 10 , 1);
 function ampforwp_add_gist_script( $data ){
-  $content =    $data->get('post');
-  $content =    $content->post_content;
-	if( has_shortcode( $content , 'amp-gist' ) ){ ?>
-	<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
-	<?php 
+ 	if ( is_single() ) {	 	
+		$content =    $data->get('post');
+		if (   $content ) {
+			$content =    $content->post_content;
+		}
+		if( has_shortcode( $content , 'amp-gist' ) ){ ?>
+		<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
+		<?php 
+		}
 	}
 }
 
@@ -2602,6 +2642,10 @@ function ampforwp_frontpage_comments() {
 	global $redux_builder_amp;
 	$data = get_option( 'ampforwp_design' );
 	$enable_comments = false;
+	$post_id = "";
+
+
+	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
@@ -2727,7 +2771,7 @@ function ampforwp_frontpage_comments() {
 }
 
 
-
+// 64. PageBuilder 
 add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
@@ -2736,13 +2780,14 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 
-	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true);
- 
+	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
-	if ( $sidebar_check === 'layout-builder') {
+	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
 		// Add Layout Builder Elements 
 		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
-		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');		
+		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
+		// Add Styling
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
 		
 		/* 
 			Remove Default Post Elements and make the page blank.
@@ -2788,10 +2833,55 @@ function ampforwp_add_landing_page_elements() {
 
    $sidebar_output = $sanitized_sidebar->get_amp_content();
    echo $sidebar_output;
-
 }
 
 function  ampforwp_remove_post_elements($elements) {
 	$elements =  array('empty-filter');
 	return $elements ;
+}
+
+function ampforwp_pagebuilder_styling() { ?>
+.amp_cb_module{font-size:14px;line-height:1.5;margin-top:30px;margin-bottom:10px;padding:0 20px;}
+.amp_cb_module h4{margin:17px 0 6px 0;}
+.amp_cb_module p{margin: 8px 0px 10px 0px;}
+.amp_cb_blurb{text-align: center} 
+.amp_cb_blurb amp-img{margin:0 auto;}
+.flex-grid {display:flex;justify-content: space-between;}
+.amp_module_title{text-align: center;font-size: 14px;margin-bottom: 12px;padding-bottom: 4px;text-transform: uppercase;letter-spacing: 1px;border-bottom: 1px solid #f1f1f1;}
+.clmn {flex: 1;padding: 5px}
+.amp_cb_btn{margin-top: 20px;text-align: center;margin-bottom: 30px;}
+.amp_cb_btn a{background: #f92c8b;color: #fff;font-size: 14px;padding: 9px 20px;border-radius: 3px;box-shadow: 1px 1px 4px #ccc;margin:6px;}
+.amp_cb_btn .m_btn{font-size: 16px; padding: 10px 20px;}
+.amp_cb_btn .l_btn{font-size: 18px; padding: 15px 48px;font-weight:bold;}
+@media (max-width: 430px) { .flex-grid {display: block;} }
+<?php }
+
+/**
+ * 65. Remove Filters code added through Class by other plugins
+ *
+ * Allow to remove method for an hook when, it's a class method used and class don't have variable, but you know the class name :)
+ * Code from https://github.com/herewithme/wp-filters-extras 
+ */
+function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $method_name = '', $priority = 0 ) {
+	global $wp_filter;
+	// Take only filters on right hook name and priority
+	if ( !isset($wp_filter[$hook_name][$priority]) || !is_array($wp_filter[$hook_name][$priority]) )
+		return false;
+	// Loop on filters registered
+	foreach( (array) $wp_filter[$hook_name][$priority] as $unique_id => $filter_array ) {
+		// Test if filter is an array ! (always for class/method)
+		if ( isset($filter_array['function']) && is_array($filter_array['function']) ) {
+			// Test if object is a class, class and method is equal to param !
+			if ( is_object($filter_array['function'][0]) && get_class($filter_array['function'][0]) && get_class($filter_array['function'][0]) == $class_name && $filter_array['function'][1] == $method_name ) {
+			    // Test for WordPress >= 4.7 WP_Hook class (https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/)
+			    if( is_a( $wp_filter[$hook_name], 'WP_Hook' ) ) {
+			        unset( $wp_filter[$hook_name]->callbacks[$priority][$unique_id] );
+			    }
+			    else {
+				    unset($wp_filter[$hook_name][$priority][$unique_id]);
+			    }
+			}
+		}
+	}
+	return false;
 }
