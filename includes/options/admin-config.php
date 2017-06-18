@@ -648,6 +648,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '2'
             ),
+
+            array(
+                'id'        => 'amp-opt-sticky-head',
+                'type'      => 'switch',
+                'title'     => __('Remove Sticky Head','accelerated-mobile-pages'), 
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'desc'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                'default'  => '1'
+              ),
+
             array(
                 'id'        => 'amp-opt-color-rgba-colorscheme',
                 'type'      => 'color_rgba',
@@ -681,6 +693,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array('amp-design-selector', '=' , '3')
                  )
               ),
+
+            array(
+                'id'        => 'amp-opt-color-rgba-link',
+                'type'      => 'color_rgba',
+                'title'     => __('Link Color','accelerated-mobile-pages'),
+                'default'   => array(
+                    'color'     => '#0a89c0',
+                ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                )
+              ),
+
+
             array(
                     'id'        => 'amp-opt-color-rgba-headerelements',
                     'type'      => 'color_rgba',
@@ -1666,6 +1692,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
                             '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
                             '7' => __('StatCounter', 'accelerated-mobile-pages' ),
+                            '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
+                            '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
+                            '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1756,6 +1785,38 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'required' => array(
                         array('amp-analytics-select-option', '=' , '5')),
                       ),
+                       array(
+                          'id'       => 'histats-feild',
+                          'type'     => 'text',
+                          'title'    => __( 'Histats Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '8')
+                          ),
+                          'subtitle' => __( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
+                          'desc' => 'Tutorial: <a href="https://ampforwp.com/tutorials/how-to-get-histats-analytics-id/">How to get Histats Analytics ID for AMP?</a>',
+                          'default'  => '',
+                      ),
+                       array(
+                        'id'            =>'amp-Yandex-Metrika-analytics-code',
+                        'type'          => 'text',
+                        'title'         => __('Yandex Metrika Analytics ID','accelerated-mobile-pages'),
+                        'default'       => '',
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '9')),
+                        'subtitle' => __( 'Enter your Counter ID.', 'accelerated-mobile-pages' ),
+                      ),
+                       array(
+                        'id'            =>'amp-Chartbeat-analytics-code',
+                        'type'          => 'text',
+                        'title'         => __('Chartbeat Analytics ID','accelerated-mobile-pages'),
+                        'default'       => '',
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '10')),
+                        'subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
+                      ),
 
                       //GTM
                         array(
@@ -1814,6 +1875,29 @@ Redux::setArgs( "redux_builder_amp", $args );
               'url'      => true,
               'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
               'subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
+            ),
+             array(
+                'id'       => 'ampforwp-sd-logo-dimensions',
+                'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                'type'     => 'switch',
+                'default'  => 0,
+            ),
+             array(
+                'id'       => 'ampforwp-sd-logo-width',
+                'type'     => 'text',
+                'title'    => __('Logo Width', 'accelerated-mobile-pages'),
+                'desc'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
+                'default' => '600',
+                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+            ),
+             array(
+                'id'       => 'ampforwp-sd-logo-height',
+                'type'     => 'text',
+                'title'    => __('Logo Height', 'accelerated-mobile-pages'),
+                'desc'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
+                'default' => '60',
+                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+
             ),
             array(
               'id'      => 'amp-structured-data-placeholder-image',

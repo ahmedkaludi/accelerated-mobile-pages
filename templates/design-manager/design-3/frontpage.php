@@ -25,7 +25,7 @@ $template = new AMP_Post_Template( $post_id );?>
 		if ( ! $amp_custom_content_enable ) {
 			$amp_component_scripts = $template->data['amp_component_scripts'];
 			foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { 
-					if ( $ampforwp_service  ==  'amp-sidebar') {
+					if ( $ampforwp_service  ==  'amp-sidebar' || $ampforwp_service  ==  'amp-analytics') {
 						continue;
 					} ?>
 				<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php

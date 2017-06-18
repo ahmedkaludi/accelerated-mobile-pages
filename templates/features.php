@@ -361,16 +361,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 			<?php   }
 						}
-		} ?>
-		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-							if( is_home() ) {
-								if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-								<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-					<?php }
-							}
-						}
-					}
+		} 
 		// Check if any of the ads are enabled then only load ads script
 		//	moved this code to its own function and done the AMP way
 	}
@@ -781,9 +772,56 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 					</div>
 					<!--END StatCounter CODE -->
 				<?php }
-
-
-
+			//	10.8 Analytics Support added for Histats Analytics
+				if( $redux_builder_amp['amp-analytics-select-option']=='8' ) { ?>
+					<!-- BEGIN Histats CODE -->
+					<div id="histats">
+					<amp-pixel src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+					</amp-pixel> 
+					</div>
+					<!--END Histats CODE -->
+				<?php }
+			// 10.9 Analytics Support added for Yandex Metrika Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='9' ){ ?>
+						<amp-analytics type="metrika"> 
+    					<script type="application/json"> 
+      					  { 
+            					"vars": { 
+               							 "counterId": "<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Yandex-Metrika-analytics-code']; ?>" 
+          								  }, 
+           						 "triggers": { 
+             							   "notBounce": { 
+                  								  "on": "timer", 
+                  								  "timerSpec": { 
+                       							  "immediate": false, 
+                        						  "interval": 15, 
+                      							  "maxTimerLength": 16 
+                  							  					}, 
+                   						   "request": "notBounce" 
+               											 } 
+           									  } 
+        				   } 
+    					</script> 
+						</amp-analytics> 
+						<?php }//code ends for supporting Yandex Metrika Analytics
+			// 10.10 Analytics Support added for Chartbeat Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='10' ){ ?>
+						<amp-analytics type="chartbeat">
+ 						 <script type="application/json">
+   						 {
+     						'vars': {
+        							'accountId':"<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Chartbeat-analytics-code']; ?>",
+        							'title': "<?php the_title(); ?>",
+      								'authors': "<?php the_author_meta('display_name');?>",      
+        							'dashboardDomain': "<?php echo site_url();?>"        
+     								  }
+   						 }
+ 						 </script>
+						</amp-analytics>
+						<?php
+					}//code ends for supporting Chartbeat Analytics
 		}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
@@ -820,7 +858,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 /* Removed So Inline style can work
 				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
 				 */
-				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 //$content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 $content = preg_replace('/<div(.*?) rel=".*?"(.*?)/', '<div $1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
@@ -831,7 +870,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 				 //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
-				 $content = str_replace(' rel="nofollow"',"",$content);
+				 //$content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
@@ -887,7 +926,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
-
+	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
+	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
@@ -902,8 +942,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        $metadata['publisher']['logo'] = array(
 	          '@type'   => 'ImageObject',
 	          'url'     =>  $structured_data_logo ,
-	          'height'  => 36,
-	          'width'   => 190,
+	          'height'  => $ampforwp_sd_height,
+	          'width'   => $ampforwp_sd_width,
 	        );
 
 	        //code for adding 'description' meta from Yoast SEO
@@ -1348,12 +1388,14 @@ function ampforwp_custom_yoast_meta_homepage(){
 	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
 		if(! class_exists('YoastSEO_AMP') ) {
 				if ( class_exists('WPSEO_Options')) {
-					$options = WPSEO_Options::get_option( 'wpseo_social' );
-					if ( $options['twitter'] === true ) {
-						WPSEO_Twitter::get_instance();
-					}
-					if ( $options['opengraph'] === true ) {
-						$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+					if( method_exists('WPSEO_Options', 'get_option')){
+						$options = WPSEO_Options::get_option( 'wpseo_social' );
+						if ( $options['twitter'] === true ) {
+							WPSEO_Twitter::get_instance();
+						}
+						if ( $options['opengraph'] === true ) {
+							$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+						}
 					}
 				}
 				do_action( 'wpseo_opengraph' );

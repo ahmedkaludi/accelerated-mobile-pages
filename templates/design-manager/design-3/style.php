@@ -7,7 +7,10 @@ function ampforwp_additional_style_input_2( $amp_template ) {
       $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
       $headercolor =  $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
       $font_color =  $redux_builder_amp['amp-opt-color-rgba-font']['color'];
+      $link_color =  $redux_builder_amp['amp-opt-color-rgba-link']['color'];
       $headerelements =  $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
+      $sticky_head    = $redux_builder_amp['amp-opt-sticky-head'];
+
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
 	// Get template colors
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
@@ -72,10 +75,20 @@ amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: 
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 /* Header */
+/*Sticky Head For Design 3*/
+
 #header{ background: #fff; text-align: center; height:50px; box-shadow:0 0 32px rgba(0,0,0,.15); }
 header{ padding-bottom:50px; }
 #headerwrap{ position: fixed; z-index:1000; width: 100%; top:0; }
+
+
+<?php if($sticky_head) { ?>
+  header{ padding-bottom:0px; }
+#headerwrap{ position: relative;}
+<?php } ?>
+
 #header h1{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 53px; padding: 0; margin: 0; text-transform: uppercase }
+
 main .amp-wp-content{ font-size: 18px; line-height: 29px; color:#111 }
 .single-post main .amp-wp-article-content h1{ font-size:2em}
 .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6{ font-family: 'Roboto Slab', serif; margin: 0px 0px 5px 0px; line-height: 1.6; }
@@ -317,6 +330,8 @@ main .amp-wp-content{ direction: rtl; }
 /* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
+body a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link']['color']; ?> }
+
 .amp-wp-content blockquote { border-color:  <?php echo sanitize_hex_color( $header_background_color ); ?>; }
 amp-user-notification { border-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
 amp-user-notification button { background-color:  <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?>;}
