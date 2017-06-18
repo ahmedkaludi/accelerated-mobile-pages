@@ -1269,8 +1269,10 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
-	 // Compatibility issue with the rocket lazy load  #907
-   remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
+	// Compatibility issue with the rocket lazy load  #907
+    remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
+    remove_filter( 'the_content', 'rocket_lazyload_iframes', PHP_INT_MAX );
+	add_filter( 'do_rocket_lazyload', '__return_false' );
 
 	// Remove Popups and other elements added by Slider-in Plugin
 	define('WDSI_BOX_RENDERED', true, true);
