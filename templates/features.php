@@ -927,6 +927,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
+	        $ampforwp_sd_height = '';
+	        $ampforwp_sd_width = '';
 	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
 	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
