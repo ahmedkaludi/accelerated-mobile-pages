@@ -652,12 +652,12 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-sticky-head',
                 'type'      => 'switch',
-                'title'     => __('Make Header unsticky','accelerated-mobile-pages'), 
+                'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
                 'desc'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
-                'default'  => '1'
+                'default'  => '0'
               ),
 
             array(
