@@ -23,7 +23,15 @@ $extension_listing = '
         <div class="extension_btn">From: $19</div>
         </div>
     </a></li>
-    <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="second"><a href="http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/cf7.png" /></div>
+        <div class="extension_desc">
+        <h2>Contact Form 7</h2>
+        <p>Add Contact Us Form in AMP.</p>
+        <div class="extension_btn">From: $39</div>
+        </div>
+    </a></li>
+    <li class="first"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
         <div class="extension_desc">
         <h2>Email Opt-in Forms</h2>
@@ -31,7 +39,7 @@ $extension_listing = '
         <div class="extension_btn">From: $79</div>
         </div>
     </a></li>
-    <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="second"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
         <div class="extension_desc">
         <h2>Call To Action (CTA)</h2>
@@ -39,7 +47,7 @@ $extension_listing = '
         <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
-    <li class="second"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="first"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
         <h2>Custom Post Type</h2>
@@ -48,7 +56,7 @@ $extension_listing = '
         </div>
     </a></li>
 
-    <li class="first"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="second"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
         <div class="extension_desc">
         <h2>Advanced Custom Fields</h2>
@@ -56,7 +64,7 @@ $extension_listing = '
         <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
-    <li class="second"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="first"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
         <div class="extension_desc">
         <h2>DoubleClick For Publishers</h2>
@@ -66,7 +74,7 @@ $extension_listing = '
     </a></li>
 
 
-    <li class="first"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="second"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
         <div class="extension_desc">
         <h2>Star Ratings</h2>
@@ -74,7 +82,7 @@ $extension_listing = '
         <div class="extension_btn">From: $19</div>
         </div>
     </a></li>
-    <li class="second"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
+    <li class="first"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
         <div class="extension_desc">
         <h2>AMP WooCommerce</h2>
@@ -83,7 +91,7 @@ $extension_listing = '
         </div>
     </a></li>
 
-    <li class="first"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="second"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
         <div class="extension_desc">
         <h2>Category Base Removal</h2>
@@ -91,7 +99,7 @@ $extension_listing = '
         <div class="extension_btn">FREE</div>
         </div>
     </a></li>
-    <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
+    <li class="first"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
         <h2>More Coming Soon</h2>
@@ -1922,6 +1930,32 @@ Redux::setArgs( "redux_builder_amp", $args );
              ),
         )
     ) );
+
+    // Contact Form SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Contact Form', 'accelerated-mobile-pages' ),
+          'desc'       => 'Contact form 7 forms will automatically be converted into AMP compatible.',
+       'id'         => 'amp-contact',
+       'subsection' => true,
+       'fields'     => array(
+           array(
+               'id'        =>'amp-enable-contactform',
+               'type'      => 'switch',
+               'title'     => __('Contact Form 7 Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           ),
+           array(
+//        'title'    => __('Notification text', 'accelerated-mobile-pages'),
+        'id'   => 'info_normal',
+        'type' => 'info',
+           'required' => array('amp-enable-contactform', '=' , '1'),
+                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+           ),
+       ),
+
+   ) );
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
