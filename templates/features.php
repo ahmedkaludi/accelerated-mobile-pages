@@ -1230,10 +1230,14 @@ function ampforwp_title_callback_redirection( $post ) {
 }
 
 function meta_redirection_status(){
-global $post;
+	global $post;
+	$post_id= $post->ID;
 
-$post_id= $post->ID;
 	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post_id,'ampforwp-redirection-on-off',true);
+
+	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
+		$ampforwp_redirection_post_on_off_meta = 'enable';
+	}
 
 
 	return $ampforwp_redirection_post_on_off_meta;
