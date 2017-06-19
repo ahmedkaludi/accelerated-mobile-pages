@@ -40,4 +40,12 @@
 
 // 2. Newsletter code
 	require_once( AMPFORWP_PLUGIN_DIR . '/includes/newsletter.php' );
+
+// 3. Some Extra Styling for Admin area
+	add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
+	function ampforwp_add_admin_styling(){
+		wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, '1.0.0' );
+        wp_enqueue_style( 'ampforwp_admin_css' );
+	}
+
 ?>

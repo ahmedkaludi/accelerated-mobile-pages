@@ -1,6 +1,7 @@
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
 
 	<?php global $redux_builder_amp; ?>
+	<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 
 	<?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
@@ -60,3 +61,4 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	</div> <?php
 	}
 }
+do_action('ampforwp_after_meta_taxonomy_hook',$this);

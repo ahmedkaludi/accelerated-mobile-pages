@@ -65,7 +65,7 @@ add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
 
     global $redux_builder_amp;
-    if ( $redux_builder_amp ) {
+    if ( $redux_builder_amp['amp-design-selector'] ) {
         return $redux_builder_amp['amp-design-selector'];
     } else {
         return 2;
