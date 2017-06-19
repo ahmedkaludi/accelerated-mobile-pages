@@ -1067,15 +1067,19 @@ function ampforwp_title_custom_meta() {
 
           if( $post_type !== 'page' ) {
             add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );
+           
           }
 
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
               add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+               }
+
+          
           }
 
         }
     }
-}
+
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
 /**
@@ -1124,8 +1128,118 @@ function ampforwp_title_callback( $post ) {
             </label>
         </div>
     </p>
+
+
+
     <?php
 }
+
+/**
+ * Adds a meta box to the post editing screen for Mobile Redirection on-off on specific pages
+ */ 
+
+function ampforwp_title_custom_meta_redirection() {
+  global $redux_builder_amp;
+    $args = array(
+       'public'   => true,
+    );
+
+    $output = 'names'; // 'names' or 'objects' (default: 'names')
+    $operator = 'and'; // 'and' or 'or' (default: 'and')
+
+    $post_types = get_post_types( $args, $output, $operator );
+
+    if ( $post_types ) { // If there are any custom public post types.
+
+        foreach ( $post_types  as $post_type ) {
+
+          if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
+							continue;
+          }
+
+          if( $post_type !== 'page' ) {
+            add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
+           
+          }
+
+          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+              add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
+               }
+
+          
+          }
+
+        }
+    }
+
+add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta_redirection' );
+
+/**
+ * Outputs the content of the meta box for Mobile Redirection on-off on specific pages
+ */
+
+$ampforwp_mobile_redirection_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-redirection-on-off',true);
+
+function ampforwp_title_callback_redirection( $post ) {
+    wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
+    $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );
+
+    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
+    	// This code needs a rewrite.
+		if ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0] == 'disable') {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_post_value[] = $post->ID;
+					update_option('ampforwp_exclude_post', $exclude_post_value);
+				}
+			}
+		} else {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
+					update_option('ampforwp_exclude_post', $exclude_ids);
+				}
+			}
+
+		}
+        ?>
+    <p>
+        <div class="prfx-row-content">
+            <label for="meta-redirection-radio-one">
+                <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-one" value="enable"  checked="checked" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'enable' ); ?>>
+                <?php _e( 'Enable' )?>
+            </label>
+            <label for="meta-redirection-radio-two">
+                <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-two" value="disable" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'disable' ); ?>>
+                <?php _e( 'Disable' )?>
+            </label>
+        </div>
+    </p>
+
+
+
+    <?php
+}
+
+function meta_redirection_status(){
+global $post;
+
+$post_id= $post->ID;
+	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post_id,'ampforwp-redirection-on-off',true);
+
+
+	return $ampforwp_redirection_post_on_off_meta;
+
+}
+// add_action('pre_amp_render_post','meta_redirection_status');
 
 /**
  * Saves the custom meta input for AMP on-off on specific pages
@@ -1146,6 +1260,11 @@ function ampforwp_title_meta_save( $post_id ) {
     if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
+    }
+
+     if( isset( $_POST[ 'ampforwp-redirection-on-off' ] ) ) {
+        $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
+        update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
     }
 
 }
