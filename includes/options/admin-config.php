@@ -697,9 +697,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'        => 'amp-opt-color-rgba-link',
                 'type'      => 'color_rgba',
-                'title'     => __('Link Color','accelerated-mobile-pages'),
+                'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
                 'default'   => array(
-                    'color'     => '#0a89c0',
+                    'color'     => '#f42f42',
                 ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
