@@ -2,6 +2,7 @@
 <header id="#top" class="amp-wp-header">
   <div class="ampforwp-logo-area" >
     <?php
+    do_action('ampforwp_header_top_design1');
     if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
               <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
@@ -65,7 +66,8 @@
         </a>
     </div>
     <?php do_action('ampforwp_header_search'); ?>
-    <?php do_action('ampforwp_call_button'); ?>
+    <?php do_action('ampforwp_call_button');
+    do_action('ampforwp_header_bottom_design1'); ?>
 
 
 
