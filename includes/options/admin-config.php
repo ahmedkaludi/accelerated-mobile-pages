@@ -910,6 +910,21 @@ Redux::setArgs( "redux_builder_amp", $args );
     		        'validate' => 'numeric',
                 'default'  => '3',
 	        ),
+         // Pages
+             array(
+                       'id' => 'Page',
+                       'type' => 'section',
+                       'title' => __('Pages', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                   ),
+         // Meta ON/OFF Pages
+             array(
+                      'id'       => 'meta_page',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Meta For Pages', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Enable or disable the Meta on Pages'),                  
+                  ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
