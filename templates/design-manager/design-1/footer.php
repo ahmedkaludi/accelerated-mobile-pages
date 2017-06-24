@@ -20,14 +20,22 @@ wp_reset_postdata(); ?>
  		?>
 		</p>
 
-		<p class="back-to-top">
+		
+    <?php
+      if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){?>
+      <p class="back-to-top">
 			<a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
-			</a>
-			<?php
-			//24. Added an options button for switching on/off link to non amp page
-			if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){
-        ampforwp_view_nonamp();
-			}?>
+			 |</a>
+			<?php 
+      ampforwp_view_nonamp(); ?>
+      </p>
+			<?php } else{?>
+      <p class="back-to-top">
+        <a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
+      </a>
+      </p>
+     <?php }
+			?>
 		</p>
 	</div>
 </footer>

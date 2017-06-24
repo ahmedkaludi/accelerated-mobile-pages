@@ -76,14 +76,18 @@
           <?php } ?>
           <p class="rightslink">
             <?php
+            if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
               global $allowed_html;
-              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html) ;
-              ?>
+              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html ) ; 
+              ?> |
               <?php
-              //24. Added an options button for switching on/off link to non amp page
-              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
                 ampforwp_view_nonamp();
-              } ?>
+              }
+              else{
+               global $allowed_html;
+              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html ) ; 
+              }
+               ?>
           </p>
           <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
           <p class="poweredby">

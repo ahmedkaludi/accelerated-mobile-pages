@@ -10,13 +10,15 @@
               ) );
               echo strip_tags( $menu , '<ul><li><a>'); ?>
           </div>
-        <?php } ?>
-          <p><a href="#header"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> <?php
-  				//24. Added an options button for switching on/off link to non amp page
-          if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
-            ampforwp_view_nonamp();
-          } ?>
-          </p>
+        <?php } 
+        if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {?>
+          <p><a href="#header"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> |</a> <?php
+            ampforwp_view_nonamp();?>
+            </p>
+        <?php  }
+          else{?>
+            <p><a href="#header"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> </p>
+           <?php } ?>
           <p>
             <?php
               global $allowed_html;
