@@ -1,3 +1,4 @@
+<?php do_action('ampforwp_above_the_title',$this); ?>
 <header class="amp-wp-article-header ampforwp-title">
 	<h1 class="amp-wp-title"> <?php 
 		$ampforwp_title = $this->get( 'post_title' ) ;
@@ -6,3 +7,4 @@
 	</h1>
 	<?php do_action('ampforwp_below_the_title'); ?>
 </header>
+<?php do_action('ampforwp_below_the_title',$this);

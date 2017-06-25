@@ -58,12 +58,11 @@ amp-sidebar{ width: 250px; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
 .nav_container:hover + .toggle-navigation, .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus{ display: inline-block; width: 100%; }
 /* Category 2 */
-.amp-category-block, .category-widget-wrapper{ padding:30px 15% 10px 15% }
+.category-widget-wrapper{ padding:30px 15% 10px 15% }
 .amp-category-block ul{ list-style-type:none;padding:0 }
 .amp-category-block-btn{ display: block; text-align: center; font-size: 13px; margin-top: 15px; border-bottom: 1px solid #f1f1f1; text-decoration: none; padding-bottom: 8px;}
 .category-widget-gutter h4{ margin-bottom: 0px;}
 .category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
-.amp-category-block-title{ border-bottom: double #ddd; margin-bottom: 12px; padding-bottom: 1px; text-align: center; font-size: 12px; text-transform: uppercase; color: #666; }
 .amp-category-post{ width: 32%; display:inline-table; }
 .amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){ margin: 0 1%;}
@@ -101,7 +100,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
 .amp-logo{ margin: 15px 0px 10px 0px; }
 main{ padding: 30px 15% 10px 15%; }
-main .amp-wp-content{ margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05); padding: 15px; }
+main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
+.amp-loop-list, .featured-image-content, .the_content, .taxonomy-description{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
 .home-post_image{ float: right; margin-left: 15px; margin-bottom: -6px; }
 .amp-wp-title{ margin-top: 0px; }
 h2.amp-wp-title{ line-height: 30px; }
@@ -145,6 +145,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px; }
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
+.amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .amp-wp-content.post-pagination-meta{ max-width: 1030px; }
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ display: block; margin: 2em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px;}
@@ -167,8 +168,8 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; max-width:
 main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width: 1030px;padding:0}
 .comments_list div{ display:inline-block;}
 .comments_list ul{ margin:0;padding:0}
-.comments_list ul.children{ padding-bottom:10px; margin-left: 4%; width: 96%;}
-.comments_list ul li p{ margin:0;font-size:15px;clear:both;padding-top:16px;}
+.comments_list ul.children{ padding-bottom:10px; margin-left: 4%; width: 96%;} 
+.comments_list ul li p{ margin:0;font-size:15px;clear:both;padding-top:16px; word-break: break-word;}
 .comments_list ul li{ font-size:13px;list-style-type:none; margin-bottom: 12px; background: #fefefe; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);padding: 0px;max-width: 1000px;width:100%;}
 .comments_list ul li .comment-body{ padding: 25px;width: 91%;}
 .comments_list ul li .comment-body .comment-author{ margin-right:5px}

@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp;  
 	if ( is_single() ) { ?>
+<?php do_action('ampforwp_before_social_icons_hook',$this); ?>
 	<div class="ampforwp-social-icons">
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
@@ -41,3 +42,5 @@
 		<?php } ?>
 	</div>
 <?php } ?>
+
+<?php do_action('ampforwp_after_social_icons_hook',$this);

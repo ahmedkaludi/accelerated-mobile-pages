@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.50
+Version: 0.9.53
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -14,9 +14,10 @@ License: GPL2
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
-define('AMPFORWP_VERSION','0.9.50');
+define('AMPFORWP_VERSION','0.9.53');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -26,7 +27,7 @@ load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFO
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_ALL_ARCHIVES | EP_ROOT );
+		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_AUTHORS  | EP_ALL_ARCHIVES |  EP_ROOT );
 		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
 	}
 }
@@ -48,6 +49,17 @@ function ampforwp_custom_post_page() {
 	}
 }
 
+function ampforwp_get_the_page_id_blog_page(){
+	$page = "";
+	$output = "";
+	if ( ampforwp_name_blog_page() ) {
+		$page = get_page_by_path( ampforwp_name_blog_page() );
+		$output = $page->ID;
+	}
+
+	return $output;
+}
+
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
     // For Homepage
@@ -62,15 +74,27 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
-	// For Homepage with Pagination
-	if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
+	// For /Blog page with Pagination
+	//if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
-	        'index.php?amp&paged=$matches[1]',
+	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
-	}
+	//}
 
+    // For Author pages
+    add_rewrite_rule(	
+        'author\/([^/]+)\/amp\/?$',
+        'index.php?amp&author_name=$matches[1]',
+        'top'
+    );
+
+    add_rewrite_rule(	
+        'author\/([^/]+)\/amp\/page\/?([0-9]{1,})\/?$',
+        'index.php?amp=1&author_name=$matches[1]&paged=$matches[2]',
+        'top'
+    );
 
     // For category pages
     $rewrite_category = get_option('category_base');
@@ -179,11 +203,22 @@ function ampforwp_parent_plugin_check() {
 	// Register all the main options
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+	
+	
+// Modules 
+add_action('after_setup_theme','ampforwp_add_module_files');
+function ampforwp_add_module_files() {
+	
+	global $redux_builder_amp;
+	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( ! function_exists( 'bstw' ) ) {
+			require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/tinymce-widget/tinymce-widget.php';
+		}
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
+	}
+}
 
-	// Modules 
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-blurb.php';
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-text.php';
-	// require AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 
 
 /*

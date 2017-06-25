@@ -28,7 +28,7 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 
 		// Add static written Jquery
-		add_action( 'admin_footer', array( $this, 'footer_scritps') );
+		// add_action( 'admin_footer', array( $this, 'footer_scritps') );
 
 
 	} // end constructor
@@ -44,10 +44,11 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 	 * @param	array	instance	The current instance of the widget
 	 */
 	public function widget( $args, $instance ) {
+        $output = "";
 
 		extract( $args, EXTR_SKIP );
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : '';
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
@@ -177,97 +178,18 @@ class AMPFORWP_Blurb_Widget extends WP_Widget {
 	/*--------------------------------------------------*/
 
 	/**
-	 * Fired when the plugin is activated.
-	 *
-	 * @param		boolean	$network_wide	True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
-	 */
-	public function activate( $network_wide ) {
-
-	} // end activate
-
-	/**
-	 * Fired when the plugin is deactivated.
-	 *
-	 * @param	boolean	$network_wide	True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-	 */
-	public function deactivate( $network_wide ) {
-
-	} // end deactivate
-
-	/**
-	 * Registers and enqueues admin-specific styles.
-	 */
-	public function register_admin_styles() {
-
-	} // end register_admin_styles
-
-	/**
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
-        
         
         wp_enqueue_script('media-upload');
         wp_enqueue_script('thickbox');
         wp_enqueue_style('thickbox');
 
-
 		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
 
 	} // end register_admin_scripts
 
-	public function footer_scritps() { ?>
-
-		<style>
-			.ampforwp-blurb-add:hover{
-				cursor: pointer;
-			}
-			.ampforwp-blurb-add.button {
-				margin-bottom: 10px;
-			}
-			.ampforwp-blurb-additional .preview-image {
-				max-width:100%;
-				width : 70px;
-				height : 70px;
-			}
-            #toplevel_page_amp_options a .wp-menu-image:before{display: none}
-            
-            body #toplevel_page_amp_options .wp-menu-image{
-                    background-image:
-                        url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMxNHB4IiBoZWlnaHQ9IjMxNXB4IiB2aWV3Qm94PSIwIDAgMzE0IDMxNSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDEgKDM1MzI2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIyNjA3MSIgZmlsbD0iI0ZGNEM0QyI+CiAgICAgICAgICAgIDxnIGlkPSJDYXBhXzEiPgogICAgICAgICAgICAgICAgPGcgaWQ9Il94MzJfNDAuX1Bvd2VyIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTU3LjAwNywwIEM3MC4yOTIsMCAwLDcwLjI5MiAwLDE1Ny4wMDcgQzAsMjQzLjcxNSA3MC4yOTIsMzE0LjAxNCAxNTcuMDA3LDMxNC4wMTQgQzI0My43MTYsMzE0LjAxNCAzMTQuMDE0LDI0My43MTUgMzE0LjAxNCwxNTcuMDA3IEMzMTQuMDE0LDcwLjI5MiAyNDMuNzE2LDAgMTU3LjAwNywwIFogTTE1Ny4wMDcsMjgyLjYxMiBDODcuNjM0LDI4Mi42MTIgMzEuNDAyLDIyNi4zNzIgMzEuNDAyLDE1Ny4wMDcgQzMxLjQwMiw4Ny42MzQgODcuNjM0LDMxLjQwMiAxNTcuMDA3LDMxLjQwMiBDMjI2LjM3MSwzMS40MDIgMjgyLjYxMSw4Ny42MzQgMjgyLjYxMSwxNTcuMDA3IEMyODIuNjEyLDIyNi4zNzIgMjI2LjM3MiwyODIuNjEyIDE1Ny4wMDcsMjgyLjYxMiBaIE0yMDQuMTExLDE0MS4zNjggTDE2My40NzksMTQxLjUzMyBDMTU5LjEzOSwxNDEuNTUzIDE1Ny41NDQsMTM4LjYyMyAxNTkuOTA1LDEzNC45NzkgTDIwMy4zOTcsNjguMTA5IEMyMDguMTI2LDYwLjg0MSAyMDYuOTg0LDU5LjkyMiAyMDAuODYxLDY2LjA1MyBMMTA1LjMwNSwxNjEuNiBDOTkuMTcyLDE2Ny43MzIgMTAxLjIzMiwxNzIuNjc2IDEwOS45MDYsMTcyLjY0MSBMMTQyLjY3OSwxNzIuNTA4IEMxNTEuMzQ3LDE3Mi40NzIgMTU0LjU1MiwxNzguMzM1IDE0OS44MjQsMTg1LjYwNSBMMTA2LjMzNCwyNTIuNDc3IEMxMDMuOTcyLDI1Ni4xMTIgMTA0LjU0MiwyNTYuNTgxIDEwNy42MiwyNTMuNTI3IEwxNzUuOTE1LDE4NS43MTcgQzE3OC45ODgsMTgyLjY1OSAxODMuOTUsMTc3LjY4NiAxODYuOTgzLDE3NC41OTYgTDIwOC43ODgsMTUyLjQ4NSBDMjE0Ljg3NSwxNDYuMzE3IDIxMi43NzUsMTQxLjMzIDIwNC4xMTEsMTQxLjM2OCBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+) !important;
-    background-repeat: no-repeat;
-    background-position: center;
-    -webkit-background-size: 20px auto;
-    background-size: 20px auto;
-}
-.amp_content_builder .redux-group-tab-link-a span:after {
-    content: "NEW";
-    color: #fff;
-    font-size: 10px;
-    background: #4452a7;
-    padding: 4px 7px;
-    border-radius: 30px;
-    font-weight: normal;
-    position: relative;
-    top: -1px;
-    left: 5px;
-}
-</style>
-<?php }
-
-	/**
-	 * Registers and enqueues widget-specific styles.
-	 */
-	public function register_widget_styles() {
-
-	} // end register_widget_styles
-
-	/**
-	 * Registers and enqueues widget-specific scripts.
-	 */
-	public function register_widget_scripts() {
-
-	} // end register_widget_scripts
 
 } // end class
 

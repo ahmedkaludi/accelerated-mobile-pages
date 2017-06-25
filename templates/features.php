@@ -70,7 +70,12 @@
 	58. YouTube Shortcode compatablity with AMP #557
 	59. Comment Button URL
 	60. Remove Category Layout modification code added by TagDiv #842 and #796
-
+	61. Add Gist Support
+	62. Adding Meta viewport via hook instead of direct #878
+	63. Frontpage Comments #682 
+	64. PageBuilder  
+	65. Remove Filters code added through Class by other plugins
+	66. Make AMP compatible with Squirrly SEO
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -83,6 +88,8 @@
 	require 'custom-amp-content.php';
 	// Custom AMPFORWP Sanitizers
  	require 'custom-sanitizer.php';
+	// Custom Frontpage items
+ 	require 'frontpage-elements.php';
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
@@ -96,17 +103,20 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	}
 
 	function ampforwp_add_endpoint_actions() {
-		// if ( is_home() ) {
 
-			$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
-			if ( $ampforwp_is_amp_endpoint ) {
-				amp_prepare_render();
-			} else {
-				add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
-			}
+		if ( $ampforwp_is_amp_endpoint ) {
+			amp_prepare_render();
+		} else {
+			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		}
 
-		// }
+		$cpage_var = get_query_var('cpage');
+
+		if ( $cpage_var >= 1) : 
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		endif;			
 	}
 
 	function ampforwp_home_archive_rel_canonical() {
@@ -174,8 +184,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				$supported_amp_post_types = in_array( $type , $supported_types );
 
 				$query_arg_array = $wp->query_vars;
+
 				if( array_key_exists( 'paged' , $query_arg_array ) ) {
-					if ( is_home() && $wp->query_vars['paged'] >= '2' ) {
+					if ( ( is_home() ||  is_front_page() ) && $wp->query_vars['paged'] >= '2' ) {
 						$new_url =  home_url('/');
 						$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
 						$amp_url = $new_url ;
@@ -346,21 +357,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		<?php } ?>
 
 		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-			<?php if( is_singular() ) {
+			<?php if( is_single() ) {
 							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
 				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 			<?php   }
 						}
-		} ?>
-		<?php if($redux_builder_amp['amp-frontpage-select-option'] == 1)  { ?>
-			<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-							if( is_home() ) {
-								if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-								<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-					<?php }
-							}
-						}
-					}
+		} 
 		// Check if any of the ads are enabled then only load ads script
 		//	moved this code to its own function and done the AMP way
 	}
@@ -771,9 +773,56 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 					</div>
 					<!--END StatCounter CODE -->
 				<?php }
-
-
-
+			//	10.8 Analytics Support added for Histats Analytics
+				if( $redux_builder_amp['amp-analytics-select-option']=='8' ) { ?>
+					<!-- BEGIN Histats CODE -->
+					<div id="histats">
+					<amp-pixel src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+					</amp-pixel> 
+					</div>
+					<!--END Histats CODE -->
+				<?php }
+			// 10.9 Analytics Support added for Yandex Metrika Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='9' ){ ?>
+						<amp-analytics type="metrika"> 
+    					<script type="application/json"> 
+      					  { 
+            					"vars": { 
+               							 "counterId": "<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Yandex-Metrika-analytics-code']; ?>" 
+          								  }, 
+           						 "triggers": { 
+             							   "notBounce": { 
+                  								  "on": "timer", 
+                  								  "timerSpec": { 
+                       							  "immediate": false, 
+                        						  "interval": 15, 
+                      							  "maxTimerLength": 16 
+                  							  					}, 
+                   						   "request": "notBounce" 
+               											 } 
+           									  } 
+        				   } 
+    					</script> 
+						</amp-analytics> 
+						<?php }//code ends for supporting Yandex Metrika Analytics
+			// 10.10 Analytics Support added for Chartbeat Analytics
+				global $redux_builder_amp;
+				if ( $redux_builder_amp['amp-analytics-select-option']=='10' ){ ?>
+						<amp-analytics type="chartbeat">
+ 						 <script type="application/json">
+   						 {
+     						'vars': {
+        							'accountId':"<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Chartbeat-analytics-code']; ?>",
+        							'title': "<?php the_title(); ?>",
+      								'authors': "<?php the_author_meta('display_name');?>",      
+        							'dashboardDomain': "<?php echo site_url();?>"        
+     								  }
+   						 }
+ 						 </script>
+						</amp-analytics>
+						<?php
+					}//code ends for supporting Chartbeat Analytics
 		}//analytics function ends here
 
 	// 11. Strip unwanted codes and tags from the_content
@@ -810,7 +859,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 /* Removed So Inline style can work
 				 $content = preg_replace('/(<[^>]+) style=".*?"/', '$1', $content);
 				 */
-				 $content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 //$content = preg_replace('/(<[^>]+) rel=".*?"/', '$1', $content);
+				 $content = preg_replace('/<div(.*?) rel=".*?"(.*?)/', '<div $1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
@@ -821,7 +871,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 
 				 //removing scripts and rel="nofollow" from Body and from divs
 				 //issue #268
-				 $content = str_replace(' rel="nofollow"',"",$content);
+				 //$content = str_replace(' rel="nofollow"',"",$content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				/// simpy add more elements to simply strip tag but not the content as so
 				/// Array ("p","font");
@@ -841,6 +891,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
+				// Removing the type attribute from the <ul>
+				 $content = preg_replace('/<ul(.*?)type=".*?"(.*?)/','<ul $1',$content);
 				return $content;
 		}
 
@@ -875,7 +927,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
-
+	        $ampforwp_sd_height = '';
+	        $ampforwp_sd_width = '';
+	        $ampforwp_sd_height = $redux_builder_amp['ampforwp-sd-logo-height'];
+	        $ampforwp_sd_width = $redux_builder_amp['ampforwp-sd-logo-width'];
 	        if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
@@ -890,8 +945,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	        $metadata['publisher']['logo'] = array(
 	          '@type'   => 'ImageObject',
 	          'url'     =>  $structured_data_logo ,
-	          'height'  => 36,
-	          'width'   => 190,
+	          'height'  => $ampforwp_sd_height,
+	          'width'   => $ampforwp_sd_width,
 	        );
 
 	        //code for adding 'description' meta from Yoast SEO
@@ -1199,6 +1254,7 @@ function ampforwp_remove_schema_data() {
     	// Ultimate Social Media PLUS Compatiblity Added
 	remove_filter('the_content','sfsi_plus_beforaftereposts');
 	remove_filter('the_content','sfsi_plus_beforeafterblogposts');
+ 
 
 	// Thrive Content Builder
 	$amp_custom_content_enable = get_post_meta( get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
@@ -1213,14 +1269,32 @@ function ampforwp_remove_schema_data() {
 	remove_filter('the_content', 'fb_like_button');
 	remove_filter('the_excerpt', 'fb_like_button');
 
+	// Compatibility issue with the rocket lazy load  #907
+    remove_filter( 'the_content' , 'rocket_lazyload_images', PHP_INT_MAX );
+    remove_filter( 'the_content', 'rocket_lazyload_iframes', PHP_INT_MAX );
+	add_filter( 'do_rocket_lazyload', '__return_false' );
+
+	// Remove Popups and other elements added by Slider-in Plugin
+	define('WDSI_BOX_RENDERED', true, true);
+	
+	// Remove Filters added by third party plugin through class
+	if ( function_exists('ampforwp_remove_filters_for_class')) {
+		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
+		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
+		//Compatibility with Sassy Social Share Plugin
+		ampforwp_remove_filters_for_class( 'the_content', 'Sassy_Social_Share_Public', 'render_sharing', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
+	}
 }
 
 // 22. Removing author links from comments Issue #180
-if( ! function_exists( "disable_comment_author_links" ) ) {
+if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 		if ( $ampforwp_is_amp_endpoint ) {
-				return strip_tags( $author_link );
+			return strip_tags( $author_link );
 		} else {
 			return $author_link;
 		}
@@ -1319,12 +1393,14 @@ function ampforwp_custom_yoast_meta_homepage(){
 	if ($redux_builder_amp['ampforwp-seo-yoast-meta']) {
 		if(! class_exists('YoastSEO_AMP') ) {
 				if ( class_exists('WPSEO_Options')) {
-					$options = WPSEO_Options::get_option( 'wpseo_social' );
-					if ( $options['twitter'] === true ) {
-						WPSEO_Twitter::get_instance();
-					}
-					if ( $options['opengraph'] === true ) {
-						$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+					if( method_exists('WPSEO_Options', 'get_option')){
+						$options = WPSEO_Options::get_option( 'wpseo_social' );
+						if ( $options['twitter'] === true ) {
+							WPSEO_Twitter::get_instance();
+						}
+						if ( $options['opengraph'] === true ) {
+							$GLOBALS['wpseo_og'] = new WPSEO_OpenGraph;
+						}
 					}
 				}
 				do_action( 'wpseo_opengraph' );
@@ -1338,18 +1414,21 @@ function ampforwp_add_proper_post_meta(){
 	$check_custom_front_page = get_option('show_on_front');
 	if ( $check_custom_front_page == 'page' ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
+		if(is_home()){
+			add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+	
 
-		add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
-		add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
+			add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
 
-		add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
-		add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
-
-		add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+			add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+		
 
 		// This is causing the 2nd debug issue reported in #740
 		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
 		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
+	}
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 	}
@@ -1358,9 +1437,11 @@ add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
 
 
 function custom_twitter_title_homepage() {
-	return  esc_attr( get_bloginfo( 'name' ) );
+	
+		return  esc_attr( get_bloginfo( 'name' ) );
 }
 function custom_twitter_description_homepage() {
+	
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
 function custom_og_url_homepage() {
@@ -1864,40 +1945,134 @@ function ampforwp_auto_flush_on_save($redux_builder_amp) {
 add_action("redux/options/redux_builder_amp/saved",'ampforwp_auto_flush_on_save', 10, 1);
 
 // 42. registeing AMP sidebars
-if (function_exists('register_sidebar')) {
+add_action('init', 'ampforwp_add_widget_support');
+function ampforwp_add_widget_support() {
+	if (function_exists('register_sidebar')) {
+		global $redux_builder_amp;
 
-	register_sidebar(array(
-		'name' => 'AMP Above Loop',
-		'id'   => 'ampforwp-above-loop',
-		'description'   => 'Widget area for above the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
-	register_sidebar(array(
-		'name' => 'AMP Below Loop',
-		'id'   => 'ampforwp-below-loop',
-		'description'   => 'Widget area for below the Loop Output',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '<h4>',
-		'after_title'   => '</h4>'
-	));
+		register_sidebar(array(
+			'name' => 'AMP Above Loop',
+			'id'   => 'ampforwp-above-loop',
+			'description'   => 'Widget area for above the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
+		register_sidebar(array(
+			'name' => 'AMP Below Loop',
+			'id'   => 'ampforwp-below-loop',
+			'description'   => 'Widget area for below the Loop Output',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
 
+		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+    $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
+    $placeholder = 'PLACEHOLDER';
+			register_sidebar(array(
+				'name' 			=> 'Page Builder (AMP)',
+				'id'   			=> 'layout-builder',
+                'description' => $placeholder,
+				'before_widget' => '',
+				'after_widget'  => '',
+				'before_title'  => '<h4>',
+				'after_title'   => '</h4>' 
+			));
+            
+        add_action( 'widgets_admin_page', function() use ( $desc, $placeholder ) {
+            add_filter( 'esc_html', function( $safe_text, $text ) use ( $desc, $placeholder ) {
+
+                if ( $text !== $placeholder )
+                    return $safe_text;
+
+                remove_filter( current_filter(), __FUNCTION__ );
+
+                return $desc;
+            }, 10, 2 );
+        });
+            
+		}
+
+	}
 }
 
 // 43. custom actions for widgets output
 add_action( 'ampforwp_home_above_loop' , 'ampforwp_output_widget_content_above_loop' );
 add_action( 'ampforwp_frontpage_above_loop' , 'ampforwp_output_widget_content_above_loop' );
 function ampforwp_output_widget_content_above_loop() {
-    dynamic_sidebar( 'ampforwp-above-loop' );
+	 $sanitized_sidebar = "";
+	 $non_sanitized_sidebar = "";
+	 $sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'ampforwp-above-loop' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content();
+   echo $sidebar_output;
+
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
 add_action( 'ampforwp_frontpage_below_loop' , 'ampforwp_output_widget_content_below_loop' );
 function ampforwp_output_widget_content_below_loop() {
-    dynamic_sidebar( 'ampforwp-below-loop' );
+     $sanitized_sidebar = "";
+	 $non_sanitized_sidebar = "";
+	 $sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'ampforwp-below-loop' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content();
+   echo $sidebar_output;
 }
 
 // 44. auto adding /amp for the menu
@@ -2426,3 +2601,309 @@ function ampforwp_remove_support_tagdiv_cateroy_layout(){
 	}
 }
 add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
+
+// 61. Add Gist Support
+add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
+function ampforwp_gist_shortcode_generator($atts) {
+   extract(shortcode_atts(array(
+   	  'id'     =>'' ,
+      'layout' => fixed-height,
+      'height' => 200,      
+   ), $atts));  
+   if ( empty ( $height ) ) {
+   		$height = '250';
+   }
+  	return '<amp-gist data-gistid='. $atts['id'] .' 
+  		layout="fixed-height"
+  		height="'. $height .'">
+  		</amp-gist>';
+}
+add_action('amp_post_template_head','ampforwp_add_gist_script', 10 , 1);
+function ampforwp_add_gist_script( $data ){
+ 	if ( is_single() ) {	 	
+		$content =    $data->get('post');
+		if (   $content ) {
+			$content =    $content->post_content;
+		}
+		if( has_shortcode( $content , 'amp-gist' ) ){ ?>
+		<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
+		<?php 
+		}
+	}
+}
+
+// 62. Adding Meta viewport via hook instead of direct #878 
+add_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
+function ampforwp_add_meta_viewport() {
+	$output = '';
+	$output = '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	';
+	echo apply_filters('ampforwp_modify_meta_viewport_filter',$output);
+	
+}
+
+// 63. Frontpage Comments #682 
+function ampforwp_frontpage_comments() {
+	global $redux_builder_amp;
+	$data = get_option( 'ampforwp_design' );
+	$enable_comments = false;
+	$post_id = "";
+
+
+	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+
+	if ($data['elements'] == '') {
+	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
+	}
+	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+		$options = explode( ',', $data['elements'] );
+	};
+	if ($options): foreach ($options as $key=>$value) {
+		switch ($value) {
+			case 'comments:1':
+				$enable_comments = true;
+			break;
+		}
+	} endif;
+	if ( $enable_comments ) { ?>
+		<div class="ampforwp-comment-wrapper">
+			<?php
+			$comment_button_url = "";
+			// Gather comments for a Front from post id
+			$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			$comments = get_comments(array(
+					'post_id' => $postID,
+					'status' => 'approve' //Change this to the type of comments to be displayed
+			));
+			$comment_button_url = get_permalink( $post_id );
+			$comment_button_url = apply_filters('ampforwp_frontpage_comments_url',$comment_button_url );
+			if ( $comments ) { ?>
+				<div class="amp-wp-content comments_list">
+				    <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )?></h3>
+				    <ul>
+				    <?php
+						$page = (get_query_var('page')) ? get_query_var('page') : 1;
+						$total_comments = get_comments( array(
+							'orderby' 	=> 'post_date' ,
+							'order' 	=> 'DESC',
+							'post_id'	=> $postID,
+							'status' 	=> 'approve',
+							'parent'	=>0 )
+						);
+						$pages = ceil(count($total_comments)/AMPFORWP_COMMENTS_PER_PAGE);
+					    $pagination_args = array(
+							'base'         =>  @add_query_arg('page','%#%'),
+							'format'       => '?page=%#%',
+							'total'        => $pages,
+							'current'      => $page,
+							'show_all'     => False,
+							'end_size'     => 1,
+							'mid_size'     => 2,
+							'prev_next'    => True,
+							'prev_text'    => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous'),
+							'next_text'    => ampforwp_translation( $redux_builder_amp['amp-translator-next-text'], 'Next'),
+							'type'         => 'plain'
+						);
+
+						// Display the list of comments
+						function ampforwp_custom_translated_comment($comment, $args, $depth){
+							$GLOBALS['comment'] = $comment;
+							global $redux_builder_amp; ?>
+							<li id="li-comment-<?php comment_ID() ?>"
+							<?php comment_class(); ?> >
+								<article id="comment-<?php comment_ID(); ?>" class="comment-body">
+									<footer class="comment-meta">
+										<div class="comment-author vcard">
+											<?php
+											printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
+										</div>
+										<!-- .comment-author -->
+										<div class="comment-metadata">
+											<a href="<?php echo trailingslashit( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ) ?>">
+												<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
+											</a>
+											<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
+										</div>
+										<!-- .comment-metadata -->
+									</footer>
+										<!-- .comment-meta -->
+									<div class="comment-content">
+				                        <?php
+				                          // $pattern = "~[^a-zA-Z0-9_ !@#$%^&*();\\\/|<>\"'+.,:?=-]~";
+				                          $emoji_content = get_comment_text();
+				                          // $emoji_free_comments = preg_replace($pattern,'',$emoji_content);
+				                          $emoji_content = wpautop( $emoji_content );
+					                      $sanitizer = new AMPFORWP_Content( $emoji_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+					                      $sanitized_comment_content = $sanitizer->get_amp_content();
+					                      echo make_clickable( $sanitized_comment_content );
+				                           ?>
+									</div>
+										<!-- .comment-content -->
+								</article>
+							 <!-- .comment-body -->
+							</li>
+						<!-- #comment-## -->
+							<?php
+						}// end of ampforwp_custom_translated_comment()
+						wp_list_comments( array(
+						  'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE, //Allow comment pagination
+						  'page'              	=> $page,
+						  'style' 				=> 'li',
+						  'type'				=> 'comment',
+						  'max_depth'   		=> 5,
+						  'avatar_size'			=> 0,
+							'callback'				=> 'ampforwp_custom_translated_comment',
+						  'reverse_top_level' 	=> false //Show the latest comments at the top of the list
+						), $comments);
+						echo paginate_links( $pagination_args );?>
+				    </ul>
+				</div>
+				<?php 
+				if ( comments_open($postID) ) {  ?>
+				<div class="comment-button-wrapper">
+				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+				</div><?php
+				}
+			} else {
+			    if ( !comments_open() ) { ?>
+			    <div class="comment-button-wrapper">
+			       <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
+			    </div>
+			<?php } 
+			}?>
+		</div> <?php
+	} 
+}
+
+
+// 64. PageBuilder 
+add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
+function ampforwp_apply_layout_builder_on_pages($post_id) {
+	global $redux_builder_amp;
+
+	if ( is_home() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+
+	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+
+	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
+		// Add Layout Builder Elements 
+		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
+		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
+		// Add Styling
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
+		
+		/* 
+			Remove Default Post Elements and make the page blank.
+			So Landing page builder's elements will be visible.
+		*/
+		add_filter('ampforwp_design_elements', 'ampforwp_remove_post_elements');
+		remove_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
+
+	}	
+}
+
+
+function ampforwp_add_landing_page_elements() {
+	$sanitized_sidebar = "";
+	$non_sanitized_sidebar = "";
+	$sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'layout-builder' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content();
+   echo $sidebar_output;
+}
+
+function  ampforwp_remove_post_elements($elements) {
+	$elements =  array('empty-filter');
+	return $elements ;
+}
+
+function ampforwp_pagebuilder_styling() { ?>
+.amp_cb_module{font-size:14px;line-height:1.5;margin-top:30px;margin-bottom:10px;padding:0 20px;}
+.amp_cb_module h4{margin:17px 0 6px 0;}
+.amp_cb_module p{margin: 8px 0px 10px 0px;}
+.amp_cb_blurb{text-align: center} 
+.amp_cb_blurb amp-img{margin:0 auto;}
+.flex-grid {display:flex;justify-content: space-between;}
+.amp_module_title{text-align: center;font-size: 14px;margin-bottom: 12px;padding-bottom: 4px;text-transform: uppercase;letter-spacing: 1px;border-bottom: 1px solid #f1f1f1;}
+.clmn {flex: 1;padding: 5px}
+.amp_cb_btn{margin-top: 20px;text-align: center;margin-bottom: 30px;}
+.amp_cb_btn a{background: #f92c8b;color: #fff;font-size: 14px;padding: 9px 20px;border-radius: 3px;box-shadow: 1px 1px 4px #ccc;margin:6px;}
+.amp_cb_btn .m_btn{font-size: 16px; padding: 10px 20px;}
+.amp_cb_btn .l_btn{font-size: 18px; padding: 15px 48px;font-weight:bold;}
+@media (max-width: 430px) { .flex-grid {display: block;} }
+<?php }
+
+/**
+ * 65. Remove Filters code added through Class by other plugins
+ *
+ * Allow to remove method for an hook when, it's a class method used and class don't have variable, but you know the class name :)
+ * Code from https://github.com/herewithme/wp-filters-extras 
+ */
+function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $method_name = '', $priority = 0 ) {
+	global $wp_filter;
+	// Take only filters on right hook name and priority
+	if ( !isset($wp_filter[$hook_name][$priority]) || !is_array($wp_filter[$hook_name][$priority]) )
+		return false;
+	// Loop on filters registered
+	foreach( (array) $wp_filter[$hook_name][$priority] as $unique_id => $filter_array ) {
+		// Test if filter is an array ! (always for class/method)
+		if ( isset($filter_array['function']) && is_array($filter_array['function']) ) {
+			// Test if object is a class, class and method is equal to param !
+			if ( is_object($filter_array['function'][0]) && get_class($filter_array['function'][0]) && get_class($filter_array['function'][0]) == $class_name && $filter_array['function'][1] == $method_name ) {
+			    // Test for WordPress >= 4.7 WP_Hook class (https://make.wordpress.org/core/2016/09/08/wp_hook-next-generation-actions-and-filters/)
+			    if( is_a( $wp_filter[$hook_name], 'WP_Hook' ) ) {
+			        unset( $wp_filter[$hook_name]->callbacks[$priority][$unique_id] );
+			    }
+			    else {
+				    unset($wp_filter[$hook_name][$priority][$unique_id]);
+			    }
+			}
+		}
+	}
+	return false;
+}
+
+
+// 66. Make AMP compatible with Squirrly SEO
+add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
+function ampforwp_remove_sq_seo() {
+	$ampforwp_sq_google_analytics =  '';
+	$ampforwp_sq_amp_analytics    =  '';
+
+	if ( class_exists( 'SQ_Tools' ) ) {
+		$ampforwp_sq_google_analytics = SQ_Tools::$options['sq_google_analytics'];
+		$ampforwp_sq_amp_analytics    = SQ_Tools::$options['sq_auto_amp'];
+	} 
+
+	if ( $ampforwp_sq_google_analytics && $ampforwp_sq_amp_analytics ) {
+		remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+	}
+}

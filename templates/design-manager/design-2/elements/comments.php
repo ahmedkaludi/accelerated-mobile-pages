@@ -4,6 +4,7 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
   return;
 }
 ?>
+<?php do_action('ampforwp_before_comment_hook',$this); ?>
 <div class="ampforwp-comment-wrapper">
 <?php
 	global $redux_builder_amp;
@@ -42,11 +43,13 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
 											</footer>
 												<!-- .comment-meta -->
 											<div class="comment-content">
-                        <p><?php
-                          $comment_content = get_comment_text();
-                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
-                          echo $sanitizer->get_amp_content();   ?>
-                        </p>
+					                        <?php
+					                          	$comment_content = get_comment_text();
+					                        	// Added <p> tag in comments #873
+					                        	$comment_content = wpautop( $comment_content );
+					                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+					                          $sanitized_comment_content = $sanitizer->get_amp_content();
+					                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>
 												<!-- .comment-content -->
 										</article>
@@ -87,3 +90,4 @@ if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] |
     <?php } ?>
 <?php } ?>
 </div>
+<?php do_action('ampforwp_after_comment_hook',$this); ?>

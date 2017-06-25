@@ -1,4 +1,5 @@
-<?php class AMPFORWP_Categories_Widget extends WP_Widget {
+<?php 
+class AMPFORWP_Categories_Widget extends WP_Widget {
 
   // Set up the widget name and description.
   public function __construct() {
@@ -6,12 +7,13 @@
       'classname' => 'ampforwp_categories_widget',
        'description' => __('This Widget adds categories where necessary in AMP Pages','accelerated-mobile-pages')
      );
-    parent::__construct( 'ampforwp_categories_widget', __('AMP Categories','accelerated-mobile-pages'), $widget_options );
+    parent::__construct( 'ampforwp_categories_widget', __('AMP Categories Module','accelerated-mobile-pages'), $widget_options );
   }
 
 
 // args for the output of the form
   public $args = array(
+          'id'            => 'uniqueid',
           'before_title'  => '<h4 class="widgettitle">',
           'after_title'   => '</h4>',
           'before_widget' => '<div class="widget-wrap">',
@@ -44,8 +46,8 @@
     // The Loop
 
     if ( $the_query->have_posts() ) {
-        echo '<div class="amp-category-block"><ul>';
-        echo '<li class="amp-category-block-title">'.$ampforwp_title .'</li>';
+        echo '<div class="amp-wp-content amp_cb_module amp-category-block"><ul>';
+        echo '<li class="amp_module_title">'.$ampforwp_title .'</li>';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
             $ampforwp_post_url = get_permalink(); ?>

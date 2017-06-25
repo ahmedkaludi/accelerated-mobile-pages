@@ -148,39 +148,43 @@ function ampforwp_plugin_parent_activation() {
 			</div>
 
             <style>
-            .install_options{     max-width: 550px;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 25px 27px 25px 26px;
-    border-radius: 2px;
-    margin-top: 19px;}
+            .install_options{
+            	max-width: 550px;
+			    background: #fff;
+			    border: 1px solid #ddd;
+			    padding: 25px 27px 25px 26px;
+			    border-radius: 2px;
+			    margin-top: 19px;
+			}
             .install_options_left{float:left}
             .install_options_right{float:right}
-                .install_options_right a{
-background: #4CAF50;
-    padding: 11px 20px 12px 20px;
-    text-decoration: none;
-    color: #fff;
-    margin-top: 1px;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 3px;}
+            .install_options_right a{
+				background: #4CAF50;
+				padding: 11px 20px 12px 20px;
+				text-decoration: none;
+				color: #fff;
+				margin-top: 1px;
+				display: inline-block;
+				font-size: 16px;
+				border-radius: 3px;
+			}
             .getstarted_wrapper{
-    max-width: 510px;
-    margin-top: 20px; }
+			    max-width: 510px;
+			    margin-top: 20px; }
             .getstarted_options{ float: left}
             .getstarted_options{float: left; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
             .getstarted_links{float: right; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
             .ampforwp-post-installtion-instructions, .ampforwp-pre-installtion-instructions{ margin-left: 15px;}
             .getstarted_ul li{  list-style-type: decimal; list-style-position: inside; }
-            a.getstarted_btn{     background: #666;
-    color: #fff;
-    padding: 9px 35px 9px 35px;
-    font-size: 13px;
-    line-height: 1;
-    text-decoration: none;
-    margin-top: 8px;
-    display: inline-block;}
+            a.getstarted_btn{
+            	background: #666;
+			    color: #fff;
+			    padding: 9px 35px 9px 35px;
+			    font-size: 13px;
+			    line-height: 1;
+			    text-decoration: none;
+			    margin-top: 8px;
+			    display: inline-block;}
             .dashicons-warning, .dashicons-yes{
                 font-family: dashicons;
                 font-style: normal;
@@ -394,10 +398,15 @@ function ampforwp_offline_admin_notice() {
 
 	if ( $amp_plugin_activation_check ) { ?>
 		<style>
+            #layout-builder h2{
+                    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMxNHB4IiBoZWlnaHQ9IjMxNXB4IiB2aWV3Qm94PSIwIDAgMzE0IDMxNSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDEgKDM1MzI2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSIjODI4NzhjIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIyNjA3MSIgZmlsbD0iIzgyODc4YyI+CiAgICAgICAgICAgIDxnIGlkPSJDYXBhXzEiPgogICAgICAgICAgICAgICAgPGcgaWQ9Il94MzJfNDAuX1Bvd2VyIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTU3LjAwNywwIEM3MC4yOTIsMCAwLDcwLjI5MiAwLDE1Ny4wMDcgQzAsMjQzLjcxNSA3MC4yOTIsMzE0LjAxNCAxNTcuMDA3LDMxNC4wMTQgQzI0My43MTYsMzE0LjAxNCAzMTQuMDE0LDI0My43MTUgMzE0LjAxNCwxNTcuMDA3IEMzMTQuMDE0LDcwLjI5MiAyNDMuNzE2LDAgMTU3LjAwNywwIFogTTE1Ny4wMDcsMjgyLjYxMiBDODcuNjM0LDI4Mi42MTIgMzEuNDAyLDIyNi4zNzIgMzEuNDAyLDE1Ny4wMDcgQzMxLjQwMiw4Ny42MzQgODcuNjM0LDMxLjQwMiAxNTcuMDA3LDMxLjQwMiBDMjI2LjM3MSwzMS40MDIgMjgyLjYxMSw4Ny42MzQgMjgyLjYxMSwxNTcuMDA3IEMyODIuNjEyLDIyNi4zNzIgMjI2LjM3MiwyODIuNjEyIDE1Ny4wMDcsMjgyLjYxMiBaIE0yMDQuMTExLDE0MS4zNjggTDE2My40NzksMTQxLjUzMyBDMTU5LjEzOSwxNDEuNTUzIDE1Ny41NDQsMTM4LjYyMyAxNTkuOTA1LDEzNC45NzkgTDIwMy4zOTcsNjguMTA5IEMyMDguMTI2LDYwLjg0MSAyMDYuOTg0LDU5LjkyMiAyMDAuODYxLDY2LjA1MyBMMTA1LjMwNSwxNjEuNiBDOTkuMTcyLDE2Ny43MzIgMTAxLjIzMiwxNzIuNjc2IDEwOS45MDYsMTcyLjY0MSBMMTQyLjY3OSwxNzIuNTA4IEMxNTEuMzQ3LDE3Mi40NzIgMTU0LjU1MiwxNzguMzM1IDE0OS44MjQsMTg1LjYwNSBMMTA2LjMzNCwyNTIuNDc3IEMxMDMuOTcyLDI1Ni4xMTIgMTA0LjU0MiwyNTYuNTgxIDEwNy42MiwyNTMuNTI3IEwxNzUuOTE1LDE4NS43MTcgQzE3OC45ODgsMTgyLjY1OSAxODMuOTUsMTc3LjY4NiAxODYuOTgzLDE3NC41OTYgTDIwOC43ODgsMTUyLjQ4NSBDMjE0Ljg3NSwxNDYuMzE3IDIxMi43NzUsMTQxLjMzIDIwNC4xMTEsMTQxLjM2OCBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+") !important;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 6px;
+    padding-left: 35px !important;
+            }
 			.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted,
-			.ampforwp-pre-installtion-instructions{
-				display: none;
-			}
+			.ampforwp-pre-installtion-instructions{display: none;}
 		</style>
 	<?php } else { ?>
 		<style>

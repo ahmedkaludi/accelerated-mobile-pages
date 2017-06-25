@@ -1,3 +1,4 @@
+<?php do_action('ampforwp_before_meta_info_hook',$this); ?>
 <div class="amp-wp-article-header ampforwp-meta-info">
 
 	<?php $post_author = $this->get( 'post_author' ); ?>
@@ -29,3 +30,4 @@
 	</div>
 
 </div>
+<?php do_action('ampforwp_after_meta_info_hook',$this);
