@@ -3070,3 +3070,47 @@ function ampforwp_view_nonamp(){
   } ?>
 <?php if ( $ampforwp_backto_nonamp ) { ?> <a href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
  }
+
+ //68. Facebook Instant Articles
+
+ function fb_instant_article_feed_generator() {
+	  	add_feed('IAfeed', 'fb_instant_article_feed_function');
+	}
+add_action('init', 'fb_instant_article_feed_generator');
+
+	function new_fb_instant_article_feed_function() {
+	  	add_filter('pre_option_rss_use_excerpt', '__return_zero');
+	  	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
+	 
+
+	}
+/*function instant_articles_content($content){
+
+	if (trim($content) == "")
+            return "";
+
+        // preprocess
+        $content = $this->preprocessContent($content);
+
+        // create DOM parser
+		$this->dom = new DOMDocument();
+		libxml_use_internal_errors(true); // to suppress HTML5 errors
+        $this->dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+
+        // parse!
+        $html_node = $this->dom->documentElement;
+        $body_node = $html_node->lastChild;
+        $this->parseNodeChildren($body_node, True);
+        $this->cleanDom($body_node);
+
+        // render the final version of the DOM into a string
+        $temp_body = $this->dom->getElementsByTagName('body');
+        $final_html_string = $this->dom->saveHTML($temp_body->item(0));
+
+        // remove the <body></body> tags
+        $final_html_string = str_replace('<body>', '', $final_html_string);
+        $final_html_string = str_replace('</body>', '', $final_html_string);
+
+        // return the final version
+        return $final_html_string;
+}*/
