@@ -45,7 +45,6 @@
             <!-- body -->
             <?php //the_content();
             echo apply_filters('instant_articles_content', get_the_content( '' )); ?>
-            <?php //do_action( 'pagefrog_post_instant_articles_content', $post ); ?>
 
             <footer>
             </footer>
