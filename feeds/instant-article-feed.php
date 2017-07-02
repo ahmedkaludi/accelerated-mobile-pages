@@ -43,7 +43,7 @@
         <content:encoded>
             <![CDATA[
                 <?php
-                $template_file = AMPFORWP_PLUGIN_DIR . 'feeds/instant-article.php';
+                $template_file = AMPFORWP_PLUGIN_DIR . 'templates/instant-articles/instant-article.php';
                     load_template($template_file, false);
                 ?>
             ]]>

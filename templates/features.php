@@ -3074,7 +3074,7 @@ function ampforwp_view_nonamp(){
  //68. Facebook Instant Articles
 
  function fb_instant_article_feed_generator() {
-	  	add_feed('IAfeeds', 'fb_instant_article_feed_function');
+	  	add_feed('iafeed', 'fb_instant_article_feed_function');
 	}
 add_action('init', 'fb_instant_article_feed_generator');
 
@@ -3084,33 +3084,3 @@ add_action('init', 'fb_instant_article_feed_generator');
 	 
 
 	}
-function instant_articles_content($content){
-
-	if (trim($content) == "")
-            return "";
-
-        // preprocess
-        $content = $this->preprocessContent($content);
-
-        // create DOM parser
-		$this->dom = new DOMDocument();
-		libxml_use_internal_errors(true); // to suppress HTML5 errors
-        $this->dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-
-        // parse!
-        $html_node = $this->dom->documentElement;
-        $body_node = $html_node->lastChild;
-        $this->parseNodeChildren($body_node, True);
-        $this->cleanDom($body_node);
-
-        // render the final version of the DOM into a string
-        $temp_body = $this->dom->getElementsByTagName('body');
-        $final_html_string = $this->dom->saveHTML($temp_body->item(0));
-
-        // remove the <body></body> tags
-        $final_html_string = str_replace('<body>', '', $final_html_string);
-        $final_html_string = str_replace('</body>', '', $final_html_string);
-
-        // return the final version
-        return $final_html_string;
-}

@@ -43,9 +43,8 @@
             </header>
 
             <!-- body -->
-            <?php //the_content();
-            echo apply_filters('instant_articles_content', get_the_content( '' )); ?>
-
+            <?php 
+            echo apply_filters('fbia_content', apply_filters('the_content', get_the_content( '' ))); ?>
             <footer>
             </footer>
         </article>
