@@ -1149,21 +1149,21 @@ function ampforwp_mobile_redirection() {
 
         foreach ( $post_types  as $post_type ) {
 
-          if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
-							continue;
-          }
+	        if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
+				continue;
+	        }
+	        if( $post_type !== 'page' ) {
+	        	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
+	        		add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
+	        	}
+	        }
 
-          if( $post_type !== 'page' ) {
-            add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
-           
-          }
-
-          if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-              add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
-               }
-
-          
-          }
+          	if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+	          	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
+		          	add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
+	               }
+	            }
+          	}
 
         }
     }
@@ -1217,31 +1217,28 @@ function ampforwp_title_callback_redirection( $post ) {
         </div>
     </p>
 
-
-
     <?php
 }
 
-function meta_redirection_status(){
+function ampforwp_meta_redirection_status(){
 	global $post;
-	$post_id= $post->ID;
+	$ampforwp_redirection_post_on_off_meta = '';
 
-	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post_id,'ampforwp-redirection-on-off',true);
+	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
 
 	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
 		$ampforwp_redirection_post_on_off_meta = 'enable';
 	}
 
-
 	return $ampforwp_redirection_post_on_off_meta;
 
 }
-// add_action('pre_amp_render_post','meta_redirection_status');
 
 /**
  * Saves the custom meta input for AMP on-off on specific pages
  */
 function ampforwp_title_meta_save( $post_id ) {
+	$ampforwp_amp_status = '';
 
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
