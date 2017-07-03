@@ -2458,6 +2458,40 @@ Redux::setSection( $opt_name, array(
 
 ) );
 
+function fb_instant_article(){
+    $feedname = '/iafeed';
+    $fb_instant_article_feed = site_url().$feedname ;
+    return $fb_instant_article_feed;
+}
+// Facebook Instant Articles
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
+   'desc'       => __( 'This section is used to enable FB-IA','accelerated-mobile-pages'),
+   'id'         => 'fb-instant-article',
+   'subsection' => true,
+   'fields'     => array(
+                     array(
+                        'id'        =>'fb-instant-article-switch',
+                        'type'      => 'switch',
+                        'title'     => __('Enable/Disable Facebook Instant Articles', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'subtitle'  => __('Enable FB Instant Articles with this option', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                    ),   
+                     array(
+                        'id'       => 'fb-instant-article-feed-url',
+                        'type'     => 'text',
+                        'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
+                        'subtitle' => __('The URL for Facebook Instant Articles Feed', 'accelerated-mobile-pages'),
+                        'desc' => __('Re-Save permalink when you enable this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages'),
+                        'default'   => fb_instant_article(),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),    
+    ),
+   )
+);
+
 
 // Extension Section
     Redux::setSection( $opt_name, array(
