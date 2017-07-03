@@ -3065,13 +3065,13 @@ function ampforwp_view_nonamp(){
  }
 
  //68. Facebook Instant Articles
-
-if($redux_builder_amp['fb-instant-article-switch']){	
-	add_action('init', 'fb_instant_article_feed_generator');
-}
+add_action('init', 'fb_instant_article_feed_generator');
  
 function fb_instant_article_feed_generator() {
-	add_feed('iafeed', 'fb_instant_article_feed_function');
+	global $redux_builder_amp;
+	if( $redux_builder_amp['fb-instant-article-switch'] ) {	
+		add_feed('iafeed', 'fb_instant_article_feed_function');
+	}
 }
 
 function fb_instant_article_feed_function() {
