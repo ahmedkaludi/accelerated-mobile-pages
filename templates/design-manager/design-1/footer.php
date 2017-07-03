@@ -21,22 +21,13 @@ wp_reset_postdata(); ?>
 		</p>
 
 		
-    <?php
-      if($redux_builder_amp['amp-footer-link-non-amp-page']=='1'){?>
-      <p class="back-to-top">
-			<a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
-			 |</a>
-			<?php 
-      ampforwp_view_nonamp(); ?>
-      </p>
-			<?php } else{?>
-      <p class="back-to-top">
-        <a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
-      </a>
-      </p>
-     <?php }
-			?>
-		</p>
+    <p class="back-to-top">
+      <a href="#top"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top' ); ?>
+      </a> <?php
+      if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ?> |  <?php ampforwp_view_nonamp(); 
+      } ?>
+    </p>
+
 	</div>
 </footer>
 <?php do_action('ampforwp_global_after_footer'); ?>

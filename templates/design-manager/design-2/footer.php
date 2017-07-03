@@ -10,21 +10,19 @@
               ) );
               echo strip_tags( $menu , '<ul><li><a>'); ?>
           </div>
-        <?php } 
-        if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {?>
-          <p><a href="#header"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> |</a> <?php
-            ampforwp_view_nonamp();?>
-            </p>
-        <?php  }
-          else{?>
-            <p><a href="#header"> <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> </p>
-           <?php } ?>
-          <p>
+        <?php } ?>
+
+        <p>
+            <a href="#header">
+              <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> <?php
+                if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ?> |  <?php ampforwp_view_nonamp(); 
+                } ?>
+        
             <?php
               global $allowed_html;
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
               ?>
-          </p>
+        </p>
       </div>
   </footer>
 <?php do_action('ampforwp_global_after_footer'); ?>
