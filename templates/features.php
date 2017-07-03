@@ -1046,16 +1046,19 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 /**
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
 */
+function ampforwp_get_all_post_types(){
+	global $redux_builder_amp;
+
+    $post_types = array('post' => 'post', 'page' => 'page');
+    if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+    	$post_types = array_merge($post_types, $redux_builder_amp['ampforwp-custom-type']);
+    }
+    return $post_types;
+}
 function ampforwp_title_custom_meta() {
   global $redux_builder_amp;
-    $args = array(
-       'public'   => true,
-    );
 
-    $output = 'names'; // 'names' or 'objects' (default: 'names')
-    $operator = 'and'; // 'and' or 'or' (default: 'and')
-
-    $post_types = get_post_types( $args, $output, $operator );
+    $post_types = ampforwp_get_all_post_types();
 
     if ( $post_types ) { // If there are any custom public post types.
 
@@ -1138,16 +1141,9 @@ function ampforwp_title_callback( $post ) {
  * Adds a meta box to the post editing screen for Mobile Redirection on-off on specific pages
  */ 
 
-function ampforwp_title_custom_meta_redirection() {
-  global $redux_builder_amp;
-    $args = array(
-       'public'   => true,
-    );
-
-    $output = 'names'; // 'names' or 'objects' (default: 'names')
-    $operator = 'and'; // 'and' or 'or' (default: 'and')
-
-    $post_types = get_post_types( $args, $output, $operator );
+function ampforwp_mobile_redirection() {
+  	global $redux_builder_amp;
+    $post_types = ampforwp_get_all_post_types();
 
     if ( $post_types ) { // If there are any custom public post types.
 
@@ -1172,14 +1168,11 @@ function ampforwp_title_custom_meta_redirection() {
         }
     }
 
-add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta_redirection' );
+add_action( 'add_meta_boxes', 'ampforwp_mobile_redirection' );
 
 /**
  * Outputs the content of the meta box for Mobile Redirection on-off on specific pages
  */
-
-$ampforwp_mobile_redirection_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-redirection-on-off',true);
-
 function ampforwp_title_callback_redirection( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );
