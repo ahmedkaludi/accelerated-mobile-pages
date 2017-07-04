@@ -4,8 +4,8 @@ add_filter( 'fbia_content', 'headlines');
 add_filter( 'fbia_content', 'filter_dom') ;
 add_filter( 'fbia_content', 'address_tag');
 
-remove_all_filters( 'post_gallery' );
-add_filter( 'post_gallery', 'gallery_shortcode', 10, 3 );
+//remove_all_filters( 'post_gallery' );
+//add_filter( 'post_gallery', 'fb_gallery_shortcode', 10, 3 );
 
 
 // DOM Document Filter
@@ -239,7 +239,7 @@ function no_empty_p_tags($DOMDocument){
 		return $DOMDocument;
 	}	
 
-function fb_gallery_shortcode($output, $attr, $instance){
+/*function fb_gallery_shortcode($output, $attr, $instance){
 		$post = get_post();
 
 		$atts = shortcode_atts( array(
@@ -301,4 +301,4 @@ function fb_gallery_shortcode($output, $attr, $instance){
 		$output .= "</figure>";
 
 		return $output;
-	}	
+	}*/	
