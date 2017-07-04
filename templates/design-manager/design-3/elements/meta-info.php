@@ -1,6 +1,6 @@
-<?php global $redux_builder_amp; ?>
-<?php do_action('ampforwp_before_meta_info_hook',$this); ?>
 
+<?php do_action('ampforwp_before_meta_info_hook',$this); ?>
+<?php global $redux_builder_amp; ?>
 <div class="amp-wp-content amp-wp-article-header ampforwp-meta-info">
 	<div class="amp-wp-content post-title-meta">
 
@@ -8,8 +8,12 @@
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
 	<div class="amp-wp-meta amp-wp-byline">
+  <?php if ( is_single() ) { ?>
 	<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
-
+  <?php } ?>
+<?php if( is_page() && $redux_builder_amp['meta_page'] ) { ?>
+  <span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+  <?php } ?>
 <?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
   if ( $ampforwp_categories ) : ?>
   	<span class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category  ">

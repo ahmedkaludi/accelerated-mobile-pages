@@ -22,6 +22,10 @@ function ampforwp_page_template_redirect() {
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
+    if( ampforwp_meta_redirection_status()=='disable' ){
+        return;
+    }
+
     if($post_type == 'forum'){
       return;
     }

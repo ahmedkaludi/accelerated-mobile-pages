@@ -87,6 +87,7 @@
         </div>
         <div class="headerlogo">
         <?php global $redux_builder_amp;
+        do_action('ampforwp_header_top_design3');
         $set_rel_to_noamp=false;
 
         if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
@@ -128,7 +129,8 @@
         <?php } ?>
         </div>
         <?php do_action('ampforwp_call_button'); ?>
-        <?php do_action('ampforwp_header_search'); ?>
+        <?php do_action('ampforwp_header_search');
+        do_action('ampforwp_header_bottom_design3'); ?>
 
       </div>
   </div>
