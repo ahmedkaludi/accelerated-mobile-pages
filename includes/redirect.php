@@ -22,7 +22,7 @@ function ampforwp_page_template_redirect() {
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
-    if(meta_redirection_status()=='disable'){
+    if( ampforwp_meta_redirection_status()=='disable' ){
         return;
     }
 
