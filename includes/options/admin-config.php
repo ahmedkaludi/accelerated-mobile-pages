@@ -2461,7 +2461,7 @@ Redux::setSection( $opt_name, array(
 function fb_instant_article(){
     $feedname = '';
     $fb_instant_article_feed = ''; 
-    $feedname = 'iafeed';
+    $feedname = 'instant_articles';
     $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
     return esc_url( $fb_instant_article_feed );
 }

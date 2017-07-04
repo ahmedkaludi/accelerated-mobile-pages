@@ -3070,7 +3070,7 @@ add_action('init', 'fb_instant_article_feed_generator');
 function fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
 	if( $redux_builder_amp['fb-instant-article-switch'] ) {	
-		add_feed('iafeed', 'fb_instant_article_feed_function');
+		add_feed('instant_articles', 'fb_instant_article_feed_function');
 	}
 }
 
