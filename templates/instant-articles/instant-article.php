@@ -39,7 +39,9 @@
                         <figure class="ia-ad">
                              <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=PLACEMENT_ID&adtype=banner300x250"></iframe>
                         </figure>
+
                             <figcaption><?php echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
+                            
                          <!-- bottom advertisement -->
                         <figure class="ia-ad">
                              <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=PLACEMENT_ID&adtype=banner300x250"></iframe>
