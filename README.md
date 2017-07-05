@@ -1,10 +1,10 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO, Instant Articles
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8
-Stable tag: 0.9.53
+Stable tag: 0.9.54
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
+* NEW - Facebook Instant Articles Support Added
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
@@ -134,6 +135,17 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.54 (4th July 2017) =
+* View more details on https://ampforwp.com/new/
+* Facebook Instant Articles Support #862
+* Exclude Some Pages from Mobile Redirection #914
+* After 0.9.53 update amp-social-share js missing (critical issue) #924
+* Hooks added in Header (above and below)
+* View non AMP[Code improvement] #928
+* Pages are not supposed to show meta like this, especially Categories #894
+* Monarch plugin having design issues #925
+* Show AMP Hide AMP Check Box Fixes #794
 
 = 0.9.53 (19th June 2017) =
 * View more details on https://ampforwp.com/stability-validation-issues-59th-update/

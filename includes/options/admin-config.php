@@ -910,6 +910,21 @@ Redux::setArgs( "redux_builder_amp", $args );
     		        'validate' => 'numeric',
                 'default'  => '3',
 	        ),
+         // Pages
+             array(
+                       'id' => 'Page',
+                       'type' => 'section',
+                       'title' => __('Pages', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                   ),
+         // Meta ON/OFF Pages
+             array(
+                      'id'       => 'meta_page',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Meta For Pages', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Enable or disable the Meta on Pages'),                  
+                  ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
@@ -2442,6 +2457,41 @@ Redux::setSection( $opt_name, array(
    ),
 
 ) );
+
+function fb_instant_article(){
+    $feedname = '';
+    $fb_instant_article_feed = ''; 
+    $feedname = 'instant_articles';
+    $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
+    return esc_url( $fb_instant_article_feed );
+}
+// Facebook Instant Articles
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
+   'id'         => 'fb-instant-article',
+   'subsection' => true,
+   'fields'     => array(
+                     array(
+                        'id'        =>'fb-instant-article-switch',
+                        'type'      => 'switch',
+                        'title'     => __('Facebook Instant Articles Support', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Re-Save permalink when you enable this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages'),
+                    ),    
+                    array(
+                        'id'       => 'fb-instant-article-feed-url',
+                        'type' => 'info',
+                        'style' => 'critical',
+                        'desc' => fb_instant_article(),
+                        'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),    
+
+    ),
+   )
+);
 
 
 // Extension Section

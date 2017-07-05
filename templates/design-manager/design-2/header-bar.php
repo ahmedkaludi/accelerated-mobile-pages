@@ -1,8 +1,8 @@
 <header class="container">
   <div id="headerwrap">
       <div id="header">
-
-        <?php global $redux_builder_amp;
+        <?php
+         global $redux_builder_amp;
         $set_rel_to_noamp=false;
 
         if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
@@ -26,6 +26,7 @@
           }?>
 
         <?php
+         do_action('ampforwp_header_top_design2');
          if (! empty( $redux_builder_amp['opt-media']['url'] ) ) {  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>" <?php if($set_rel_to_noamp){echo ' rel="nofollow"'; } ?> >
 
@@ -44,7 +45,8 @@
           <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){echo ' rel="nofollow"';} ?>  ><?php bloginfo('name'); ?></a></h3>
         <?php } ?>
           <?php do_action('ampforwp_header_search'); ?>
-          <?php do_action('ampforwp_call_button'); ?>
+          <?php do_action('ampforwp_call_button');
+          do_action('ampforwp_header_bottom_design2'); ?>
       </div>
   </div>
 </header>

@@ -1046,16 +1046,19 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 /**
  * Adds a meta box to the post editing screen for AMP on-off on specific pages
 */
+function ampforwp_get_all_post_types(){
+	global $redux_builder_amp;
+
+    $post_types = array('post' => 'post', 'page' => 'page');
+    if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+    	$post_types = array_merge($post_types, $redux_builder_amp['ampforwp-custom-type']);
+    }
+    return $post_types;
+}
 function ampforwp_title_custom_meta() {
   global $redux_builder_amp;
-    $args = array(
-       'public'   => true,
-    );
 
-    $output = 'names'; // 'names' or 'objects' (default: 'names')
-    $operator = 'and'; // 'and' or 'or' (default: 'and')
-
-    $post_types = get_post_types( $args, $output, $operator );
+    $post_types = ampforwp_get_all_post_types();
 
     if ( $post_types ) { // If there are any custom public post types.
 
@@ -1067,15 +1070,19 @@ function ampforwp_title_custom_meta() {
 
           if( $post_type !== 'page' ) {
             add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );
+           
           }
 
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
               add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+               }
+
+          
           }
 
         }
     }
-}
+
 add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 
 /**
@@ -1124,13 +1131,114 @@ function ampforwp_title_callback( $post ) {
             </label>
         </div>
     </p>
+
+
+
     <?php
+}
+
+/**
+ * Adds a meta box to the post editing screen for Mobile Redirection on-off on specific pages
+ */ 
+
+function ampforwp_mobile_redirection() {
+  	global $redux_builder_amp;
+    $post_types = ampforwp_get_all_post_types();
+
+    if ( $post_types ) { // If there are any custom public post types.
+
+        foreach ( $post_types  as $post_type ) {
+
+	        if( $post_type == 'amp-cta' || $post_type == 'amp-optin' ) {
+				continue;
+	        }
+	        if( $post_type !== 'page' ) {
+	        	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
+	        		add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
+	        	}
+	        }
+
+          	if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+	          	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
+		          	add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
+	               }
+	            }
+          	}
+
+        }
+    }
+
+add_action( 'add_meta_boxes', 'ampforwp_mobile_redirection' );
+
+/**
+ * Outputs the content of the meta box for Mobile Redirection on-off on specific pages
+ */
+function ampforwp_title_callback_redirection( $post ) {
+    wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
+    $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );
+
+    	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
+    	// This code needs a rewrite.
+		if ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0] == 'disable') {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( ! in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_post_value[] = $post->ID;
+					update_option('ampforwp_exclude_post', $exclude_post_value);
+				}
+			}
+		} else {
+			$exclude_post_value = get_option('ampforwp_exclude_post');
+			if ( $exclude_post_value == null ) {
+				$exclude_post_value[] = 0;
+			}
+			if ( $exclude_post_value ) {
+				if ( in_array( $post->ID, $exclude_post_value ) ) {
+					$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
+					update_option('ampforwp_exclude_post', $exclude_ids);
+				}
+			}
+
+		}
+        ?>
+    <p>
+        <div class="prfx-row-content">
+            <label for="meta-redirection-radio-one">
+                <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-one" value="enable"  checked="checked" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'enable' ); ?>>
+                <?php _e( 'Enable' )?>
+            </label>
+            <label for="meta-redirection-radio-two">
+                <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-two" value="disable" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'disable' ); ?>>
+                <?php _e( 'Disable' )?>
+            </label>
+        </div>
+    </p>
+
+    <?php
+}
+
+function ampforwp_meta_redirection_status(){
+	global $post;
+	$ampforwp_redirection_post_on_off_meta = '';
+
+	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
+
+	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
+		$ampforwp_redirection_post_on_off_meta = 'enable';
+	}
+
+	return $ampforwp_redirection_post_on_off_meta;
+
 }
 
 /**
  * Saves the custom meta input for AMP on-off on specific pages
  */
 function ampforwp_title_meta_save( $post_id ) {
+	$ampforwp_amp_status = '';
 
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
@@ -1146,6 +1254,11 @@ function ampforwp_title_meta_save( $post_id ) {
     if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
+    }
+
+     if( isset( $_POST[ 'ampforwp-redirection-on-off' ] ) ) {
+        $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
+        update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
     }
 
 }
@@ -1286,6 +1399,9 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'Sassy_Social_Share_Public', 'frontend_scripts', 10 );
 		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_inline_style', 10 );
 		ampforwp_remove_filters_for_class( 'amp_post_template_css', 'Sassy_Social_Share_Public', 'frontend_amp_css', 10 );
+		//Removing the Monarch social share icons from AMP
+		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
+		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
 	}
 }
 
@@ -2906,4 +3022,56 @@ function ampforwp_remove_sq_seo() {
 	if ( $ampforwp_sq_google_analytics && $ampforwp_sq_amp_analytics ) {
 		remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
 	}
+}
+
+//67 View Non AMP
+function ampforwp_view_nonamp(){
+	global $redux_builder_amp;
+	 global $post;
+  $ampforwp_backto_nonamp = '';
+  if ( is_home() ) {
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+       $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
+    else
+       $ampforwp_backto_nonamp = trailingslashit(home_url()) ;
+  }
+  if ( is_single() ){
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
+    else
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )) ;
+  }
+  if ( is_page() ){
+    if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
+    else
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID ));
+  }
+  if( is_archive() ) {
+    global $wp;
+    if($redux_builder_amp['amp-mobile-redirection']==1){
+        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
+        $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
+      }
+    else{
+        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
+        $ampforwp_backto_nonamp = preg_replace('/amp/','',$ampforwp_backto_nonamp);
+      }
+  } ?>
+<?php if ( $ampforwp_backto_nonamp ) { ?> <a href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+ }
+
+ //68. Facebook Instant Articles
+add_action('init', 'fb_instant_article_feed_generator');
+ 
+function fb_instant_article_feed_generator() {
+	global $redux_builder_amp;
+	if( $redux_builder_amp['fb-instant-article-switch'] ) {	
+		add_feed('instant_articles', 'fb_instant_article_feed_function');
+	}
+}
+
+function fb_instant_article_feed_function() {
+	add_filter('pre_option_rss_use_excerpt', '__return_zero');
+	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
 }
