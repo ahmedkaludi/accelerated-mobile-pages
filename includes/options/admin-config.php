@@ -2488,6 +2488,57 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),    
+                    array(
+                         'id' => 'fb-instant-article-advertising-sub-section',
+                         'type' => 'section',
+                         'title' => __('Instant Articles advertising settings', 'accelerated-mobile-pages'),
+                         'indent' => true,
+                         'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-adveritsing-on',
+                        'type'      => 'switch',
+                        'title'     => __('Turn on advertising for Facebook Instant Articles', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to enable advertising on Instant Article pages.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                     array(
+                        'id'       => 'fb-instant-article-adveritsing-id',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
+                        'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-adveritsing-on', '=', 1)
+                    ),
+                    array(
+                         'id' => 'fb-instant-article-advertising-placements-sub-section',
+                         'type' => 'section',
+                         'title' => __('Instant Articles advertising placements', 'accelerated-mobile-pages'),
+                         'indent' => true,
+                         'required'  => array('fb-instant-article-adveritsing-on', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-advertising-placement-top',
+                        'type'      => 'switch',
+                        'title'     => __('Top placement for Instant Articles ads', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to show an ad at the top of Instant Articles', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-adveritsing-on', '=', 1)
+                    ),
+                     array(
+                        'id'       => 'fb-instant-article-advertising-placement-bottom',
+                        'type'      => 'switch',
+                        'title'     => __('Bottom placement for Instant Articles ads', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to show an ad at the bottom of Instant Articles', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-adveritsing-on', '=', 1)
+                    ),
 
     ),
    )
