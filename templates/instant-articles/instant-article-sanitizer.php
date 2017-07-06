@@ -1,23 +1,18 @@
 <?php
-
 add_filter( 'fbia_content', 'headlines');
-add_filter( 'fbia_content', 'filter_dom') ;
+add_filter( 'fbia_content', 'filter_dom');
 add_filter( 'fbia_content', 'address_tag');
-
-remove_all_filters( 'post_gallery' );
-add_filter( 'post_gallery', 'gallery_shortcode', 10, 3 );
-
+//remove_all_filters( 'post_gallery' );
+//add_filter( 'post_gallery', 'fb_gallery_shortcode', 10, 3 );
 
 // DOM Document Filter
 if(class_exists("DOMDocument")){
 	add_filter( 'fbia_content_dom', 'list_items_with_content');
 	add_filter( 'fbia_content_dom', 'validate_images');
 	add_filter( 'fbia_content_dom','resize_images');
-
 	// The empty P tags class should run last
 	add_filter( 'fbia_content_dom','no_empty_p_tags');
 	}
-
 function headlines($content){
 		// Replace h3, h4, h5, h6 with h2
 		$content = preg_replace(
@@ -25,20 +20,16 @@ function headlines($content){
 			'<h2>$1</h2>',
 			$content
 		);
-
 		return $content;
 	}
-
 function address_tag($content){
 		$content = preg_replace(
 			'/<address[^>]*>(.*)<\/address>/sU',
 			'<p>$1</p>',
 			$content
 		);
-
 		return $content;
 	}
-
 function filter_dom($content){
 		$DOMDocument = get_content_DOM($content);
 
@@ -179,8 +170,6 @@ function resize_images($DOMDocument){
 				}
 			}
 		}
-
-
 		return $DOMDocument;
 	}	
 
@@ -238,8 +227,7 @@ function no_empty_p_tags($DOMDocument){
 
 		return $DOMDocument;
 	}	
-
-function fb_gallery_shortcode($output, $attr, $instance){
+/*function fb_gallery_shortcode($output, $attr, $instance){
 		$post = get_post();
 
 		$atts = shortcode_atts( array(
@@ -301,4 +289,4 @@ function fb_gallery_shortcode($output, $attr, $instance){
 		$output .= "</figure>";
 
 		return $output;
-	}	
+	}*/	
