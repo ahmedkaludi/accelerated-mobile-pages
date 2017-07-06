@@ -1399,6 +1399,8 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
 	}
+	//Removing the WPTouch Pro social share links from AMP
+		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
 }
 
 // 22. Removing author links from comments Issue #180
