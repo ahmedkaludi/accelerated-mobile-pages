@@ -2498,7 +2498,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'fb-instant-article-adveritsing-on',
                         'type'      => 'switch',
-                        'title'     => __('Facebook Instant Articles Support', 'accelerated-mobile-pages'),
+                        'title'     => __('Turn on advertising for Facebook Instant Articles', 'accelerated-mobile-pages'),
                         'default'   => 0, 
                         'true'      => 'true',
                         'false'     => 'false',
