@@ -74,8 +74,8 @@ class AMPFORWP_Button_Widget extends WP_Widget {
             } elseif( $feature['size'] == '3' ){
                 $size = "l_btn";
             }
-         // Removed '#' from the href and Added the user's url #951
-            $output .= '<a href=" '. $feature['url'] .'" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
+            
+            $output .= '<a href="#" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
 		}
         $output .= '</div>';
         
