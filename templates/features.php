@@ -102,6 +102,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		add_action( 'wp', 'ampforwp_add_endpoint_actions' );
 	}
 
+
 	function ampforwp_add_endpoint_actions() {
 
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
@@ -1398,6 +1399,8 @@ function ampforwp_remove_schema_data() {
 		//Removing the Monarch social share icons from AMP
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
+		//Compatibility with wordpress twitter bootstrap #525
+		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
