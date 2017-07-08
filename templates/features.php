@@ -1842,11 +1842,13 @@ function social_sharing_removal_code() {
 add_action('amp_init','social_sharing_removal_code', 9);
 
 
-//35. Disqus Comments Support
+//35. Disqus Comments Support 
 add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
-
 	global $redux_builder_amp;
+	if ( !comments_open() ){
+		return;
+	}//931
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			global $post; $post_slug=$post->post_name;
