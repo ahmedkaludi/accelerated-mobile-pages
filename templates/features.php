@@ -1883,6 +1883,9 @@ function ampforwp_add_disqus_support() {
 add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
+	if ( !comments_open() ){
+		return;
+	}//931
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
