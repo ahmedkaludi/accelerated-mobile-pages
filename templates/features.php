@@ -2418,16 +2418,18 @@ function ampforwp_content_sanitizer( $content ) {
 //53. Removed AMP-WooCommerce Code and added it in AMP-WooCommerce #929
 // Adding the styling for AMP Woocommerce latest Products(AMP-WooCommerce Widgets)
 add_action('amp_post_template_css','amp_latest_products_styling',PHP_INT_MAX);
-function amp_latest_products_styling() { ?>
-	.ampforwp_wc_shortcode{margin-top: 0;padding:0;display:inline-block;width: 100%;}
-	.ampforwp_wc_shortcode li{position: relative;width:29%; font-size:12px; line-height: 1; float: left;list-style-type: none;margin:2%;}
-	.ampforwp_wc_shortcode .onsale{position: absolute;top: 0;right: 0;background: #ddd;padding: 7px;font-size: 12px;}
-	.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-	.ampforwp-wc-title{margin: 8px 0px 10px 0px;font-size: 13px;}
-	.ampforwp-wc-price{color:#444}
-	.wc_widgettitle{text-align:center;margin-bottom: 0px;}
-	.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
+function amp_latest_products_styling() { 
+	if ( class_exists( 'woocommerce' ) ) { ?>
+		.ampforwp_wc_shortcode{margin-top: 0;padding:0;display:inline-block;width: 100%;}
+		.ampforwp_wc_shortcode li{position: relative;width:29%; font-size:12px; line-height: 1; float: left;list-style-type: none;margin:2%;}
+		.ampforwp_wc_shortcode .onsale{position: absolute;top: 0;right: 0;background: #ddd;padding: 7px;font-size: 12px;}
+		.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
+		.ampforwp-wc-title{margin: 8px 0px 10px 0px;font-size: 13px;}
+		.ampforwp-wc-price{color:#444}
+		.wc_widgettitle{text-align:center;margin-bottom: 0px;}
+		.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
 	<?php }
+}
 
 
 // 54. Change the default values of post meta for AMP pages. #746
