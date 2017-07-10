@@ -2487,8 +2487,24 @@ Redux::setSection( $opt_name, array(
                         'desc' => fb_instant_article(),
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
-                    ),    
-
+                    ),  
+                    array(
+                        'id'       => 'fb-instant-article-ads',
+                        'type'      => 'switch',
+                        'title'     => __('Advertisement', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to enable advertising on Instant Article pages.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-ad-id',
+                        'type'     => 'text',
+                        'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
+                        'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-ads', '=', 1)
+                    ),
     ),
    )
 );
