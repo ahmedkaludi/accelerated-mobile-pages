@@ -39,9 +39,12 @@
 				?>
                     <figure>
                         <img src="<?php echo $thumbnail_url; ?>" />
-                        <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0): ?>
-                            <figcaption><?php echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
-                        <?php endif; ?>
+                        <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0):
+                            if ( $attachment->post_excerpt ) { ?>
+                                <figcaption><?php echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
+                                <?php 
+                            }
+                        endif; ?>
                     </figure>
 				<?php endif; ?>
                 <?php if ( $redux_builder_amp['fb-instant-article-ads'] ){ ?>
