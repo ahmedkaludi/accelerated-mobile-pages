@@ -80,7 +80,10 @@ if ( get_query_var( 'paged' ) ) {
 					<?php } ?>
                   <a href="<?php echo trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
                   <div class="featured_title">
-		            <div class="featured_time"><?php global $redux_builder_amp; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ); ?></div>
+		            <div class="featured_time"><?php 
+		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+                    	$post_date = apply_filters('ampforwp_modify_post_date',$post_date);
+                    	echo  $post_date ; ?></div>
 		            <h1><?php the_title() ?></h1>
 		        </div>
                   </a>
@@ -149,7 +152,10 @@ if ( get_query_var( 'paged' ) ) {
 					}
 				?>
 		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-                <div class="featured_time"><?php global $redux_builder_amp ; echo human_time_diff( get_the_time('U'), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ); ?></div>
+                <div class="featured_time"><?php 
+                	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+                    $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
+                    echo  $post_date ; ?></div>
 
 		    </div>
             <div class="cb"></div>
