@@ -62,7 +62,7 @@
 	50. Properly adding noditification Scritps the AMP way
 	51. Adding Digg Digg compatibility with AMP
 	52. Adding a generalized sanitizer function for purifiying normal html to amp-html
-	53. Adding the Markup for AMP Woocommerce latest Products
+	53. Removed AMP-WooCommerce Code and added it in AMP-WooCommerce #929
 	54. Change the default values of post meta for AMP pages.
 	55. Call Now Button Feature added
 	56. Multi Translation Feature #540
@@ -101,6 +101,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	function ampforwp_allow_homepage() {
 		add_action( 'wp', 'ampforwp_add_endpoint_actions' );
 	}
+
 
 	function ampforwp_add_endpoint_actions() {
 
@@ -352,11 +353,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
 	function ampforwp_register_additional_scripts() {
 		global $redux_builder_amp;
-		if( is_page() ) { ?>
-			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-		<?php } ?>
-
-		<?php if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
+		 if( $redux_builder_amp['enable-single-social-icons'] == true || AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
 			<?php if( is_single() ) {
 							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
 				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
@@ -1402,7 +1399,11 @@ function ampforwp_remove_schema_data() {
 		//Removing the Monarch social share icons from AMP
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_inline', 10 );
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
+		//Compatibility with wordpress twitter bootstrap #525
+		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
 	}
+	//Removing the WPTouch Pro social share links from AMP
+		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
 }
 
 // 22. Removing author links from comments Issue #180
@@ -1730,10 +1731,23 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 		}
 	}
 
-//31. removing scripts added by cleantalk
+//31. removing scripts added by cleantalk and 
+ 	//	#525 WordPress Twitter Bootstrap CSS
 add_action('amp_init','ampforwp_remove_js_script_cleantalk');
 function ampforwp_remove_js_script_cleantalk() {
-    remove_action('wp_loaded', 'ct_add_nocache_script', 1);
+	$current_url = '';
+	$amp_check =  '';
+  
+	$current_url = $_SERVER['REQUEST_URI'];
+	$current_url = explode('/', $current_url);
+	$current_url = array_filter($current_url);
+	$amp_check = in_array('amp', $current_url);
+	if ( true === $amp_check ) {
+		ampforwp_remove_filters_for_class( 'wp_loaded', 'ICWP_WPTB_CssProcessor', 'onWpLoaded', 0 );
+	}
+
+	remove_action('wp_loaded', 'ct_add_nocache_script', 1);
+
 }
 
 //32. various lazy loading plugins Support
@@ -1844,11 +1858,13 @@ function social_sharing_removal_code() {
 add_action('amp_init','social_sharing_removal_code', 9);
 
 
-//35. Disqus Comments Support
+//35. Disqus Comments Support 
 add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
-
 	global $redux_builder_amp;
+	if ( !comments_open() ){
+		return;
+	}//931
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			global $post; $post_slug=$post->post_name;
@@ -1880,7 +1896,7 @@ function ampforwp_add_disqus_support() {
 add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular()  && comments_open() ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
@@ -2409,120 +2425,22 @@ function ampforwp_content_sanitizer( $content ) {
 }
 
 
-//53. Adding the Markup for AMP Woocommerce latest Products
-/*******************************
-Examples:
+//53. Removed AMP-WooCommerce Code and added it in AMP-WooCommerce #929
+// Adding the styling for AMP Woocommerce latest Products(AMP-WooCommerce Widgets)
+add_action('amp_post_template_css','amp_latest_products_styling',PHP_INT_MAX);
+function amp_latest_products_styling() { 
+	if ( class_exists( 'woocommerce' ) ) { ?>
+		.ampforwp_wc_shortcode{margin-top: 0;padding:0;display:inline-block;width: 100%;}
+		.ampforwp_wc_shortcode li{position: relative;width:29%; font-size:12px; line-height: 1; float: left;list-style-type: none;margin:2%;}
+		.ampforwp_wc_shortcode .onsale{position: absolute;top: 0;right: 0;background: #ddd;padding: 7px;font-size: 12px;}
+		.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
+		.ampforwp-wc-title{margin: 8px 0px 10px 0px;font-size: 13px;}
+		.ampforwp-wc-price{color:#444}
+		.wc_widgettitle{text-align:center;margin-bottom: 0px;}
+		.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
+	<?php }
+}
 
-[amp-woocommerce num=5]
-[amp-woocommerce num=5 link=noamp]
-*******************************/
-	 function get_amp_latest_prodcuts_markup( $atts ) {
-		 // initializing these to avoid debug errors
-		 global $redux_builder_amp;
-		 global $woocommerce;
-
-		 if( !class_exists( 'WooCommerce' ) ){
-			 return;
-		 }
-
-		 if( array_key_exists( 'link' , $atts ) ) {
-			 $atts[] = shortcode_atts( array(
-  				 'num' => get_permalink($atts['num']),
-  				 'link' => get_permalink($atts['link'])
-  		 ), $atts );
-		 } else {
-			 $atts[] = shortcode_atts( array(
-					 'num' => get_permalink($atts['num']),
-			 ), $atts );
-			 $atts['link'] = 'noamp';
-		 }
-
-		 $exclude_ids = get_option('ampforwp_exclude_post');
-		 $number_of_latest_prcts = $atts['num'] ;
-
-			$q = new WP_Query( array(
-			 'post_type'           => 'product',
-			 'orderby'             => 'date',
-			 'post__not_in' 		  => $exclude_ids,
-			 'has_password' => false,
-			 'post_status'=> 'publish',
-			 'posts_per_page' => $number_of_latest_prcts
-			) );
-
-		  if ( $q->have_posts() ) :  $content = '<ul class="ampforwp_wc_shortcode">';
-            while ( $q->have_posts() ) : $q->the_post();
-						global $post;
-						global $product;
-						if( $atts['link'] === 'amp' ) {
-							$ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
-						} else {
-							$ampforwp_post_url = trailingslashit( get_permalink() ) ;
-						}
-						$content .= '<li class="ampforwp_wc_shortcode_child"><a href="'.$ampforwp_post_url.'">';
-
-//						$content .= '<div class="amp-wp-content ampforwp-wc-parent"><div class="amp-wp-content featured-image-content">';
-						if ( has_post_thumbnail() ) {
-							$thumb_id = get_post_thumbnail_id();
-							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-							$thumb_url = $thumb_url_array[0];
-
-							$content .= '<amp-img src='.$thumb_url.' width="150" height="150" layout="responsive"></amp-img>' ;
-						}
-							if ( $product->is_on_sale() ) {
-								$content .=  '<span class="onsale">' . 'Sale!' . '</span>';
-							}
-//						$content .= '</div>';
-							$content .= '<div class="ampforwp-wc-title">'.get_the_title().'</div>';
-							if (  class_exists( 'WooCommerce' )  ) {
-	//							$content .= '<div class="ampforwp-wc-price">';
-								$amp_product_price 	=  $woocommerce->product_factory->get_product()->get_price_html();
-								$context = '';
-								$allowed_tags 		= wp_kses_allowed_html( $context );
-
-							$stock_status = $product->is_in_stock() ? 'InStock' : 'OutOfStock' ;
-							if ( $amp_product_price && $stock_status = 'InStock' ) {
-								$content .= '<div class="ampforwp-wc-price">' .  wp_kses( $amp_product_price ,  $allowed_tags  ) . '</div>' ;
-							}
-
-							$rating_count = $product->get_rating_count();
-							$rating = $product->get_average_rating();
-							if (  get_option( 'woocommerce_enable_review_rating' ) === 'yes' && $rating_count ) {
-								$content .= '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
-								$content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.__(' out of 5 </span>','accelerated-mobile-pages');
-								$content .= '</div>';
-							}
-
-							}
-              $content .= '</a></li>';  ?>
-					<?php endwhile;  $content .= '</ul>'; ?>
-			<?php endif; ?>
-			<?php wp_reset_postdata();
-
-			 // Add AMP Woocommerce latest Products only on AMP Endpoint
-			 $endpoint_check = is_amp_endpoint();
-			 if ( $endpoint_check ) {
-				 return $content;
-			 }
-	 }
-
-	 // Generating Short code for AMP Woocommerce latest Products
-	 function ampforwp_latest_products_register_shortcodes() {
-		 add_shortcode('amp-woocommerce', 'get_amp_latest_prodcuts_markup');
-	 }
-	 add_action( 'amp_init', 'ampforwp_latest_products_register_shortcodes');
-
-	 // Adding the styling for AMP Woocommerce latest Products
-   add_action('amp_post_template_css','amp_latest_products_styling',PHP_INT_MAX);
-   function amp_latest_products_styling() { ?>
-.ampforwp_wc_shortcode{margin-top: 0;padding:0;display:inline-block;width: 100%;}
-.ampforwp_wc_shortcode li{position: relative;width:29%; font-size:12px; line-height: 1; float: left;list-style-type: none;margin:2%;}
-.ampforwp_wc_shortcode .onsale{position: absolute;top: 0;right: 0;background: #ddd;padding: 7px;font-size: 12px;}
-.single-post .ampforwp_wc_shortcode li amp-img{margin:0}
-.ampforwp-wc-title{margin: 8px 0px 10px 0px;font-size: 13px;}
-.ampforwp-wc-price{color:#444}
-.wc_widgettitle{text-align:center;margin-bottom: 0px;}
-.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
-<?php }
 
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');

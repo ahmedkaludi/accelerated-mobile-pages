@@ -74,8 +74,8 @@ class AMPFORWP_Button_Widget extends WP_Widget {
             } elseif( $feature['size'] == '3' ){
                 $size = "l_btn";
             }
-            
-            $output .= '<a href="#" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
+            //Corrected the URL in button module #951
+            $output .= '<a href=" '. $feature['url'] .'" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
 		}
         $output .= '</div>';
         
