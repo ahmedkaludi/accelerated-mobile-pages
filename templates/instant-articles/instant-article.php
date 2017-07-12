@@ -17,7 +17,12 @@
 				<h1><?php the_title(); ?></h1>
 
 				<!-- kicker -->
-				<!-- TODO -->
+				<h3 class="op-kicker">
+                   <?php $categories = get_the_category();
+                   if ( ! empty( $categories ) ) {
+                       echo esc_html( $categories[0]->name );   
+                    } ?>
+                </h3>
 
                 <!-- publication date/time -->
 				<time class="op-published" datetime="<?php echo get_the_date("c"); ?>"><?php echo get_the_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
