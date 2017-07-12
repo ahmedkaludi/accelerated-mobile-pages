@@ -1731,10 +1731,23 @@ function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
 		}
 	}
 
-//31. removing scripts added by cleantalk
+//31. removing scripts added by cleantalk and 
+ 	//	#525 WordPress Twitter Bootstrap CSS
 add_action('amp_init','ampforwp_remove_js_script_cleantalk');
 function ampforwp_remove_js_script_cleantalk() {
-    remove_action('wp_loaded', 'ct_add_nocache_script', 1);
+	$current_url = '';
+	$amp_check =  '';
+  
+	$current_url = $_SERVER['REQUEST_URI'];
+	$current_url = explode('/', $current_url);
+	$current_url = array_filter($current_url);
+	$amp_check = in_array('amp', $current_url);
+	if ( true === $amp_check ) {
+		ampforwp_remove_filters_for_class( 'wp_loaded', 'ICWP_WPTB_CssProcessor', 'onWpLoaded', 0 );
+	}
+
+	remove_action('wp_loaded', 'ct_add_nocache_script', 1);
+
 }
 
 //32. various lazy loading plugins Support
