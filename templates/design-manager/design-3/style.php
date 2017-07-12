@@ -53,6 +53,7 @@ amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: 
 .toggle-navigationv2 ul h6{ padding: 10px 15px 10px 20px; background: #131313; border:0; font-size: 14px; font-weight:normal; }
 .toggle-navigationv2 ul h6 a:after{ position: absolute; right: 20px; top: 0; color: #999; font-size: 13px; line-height: 38px; transition: 1s all; transform:rotate(-90deg); content: '\25be'; }
 .toggle-navigationv2 ul h6 a{ color:#eee; }
+.toggle-navigationv2 ul h6:after { content: ""; height: 20px; position: absolute; right: 10px; width: 20px; z-index: 999; }
 .toggle-navigationv2 section[expanded] h6 a:after{ content: '\25be'; font-size: 13px; transform:rotate(0); transition: 1s all; color:#ccc }
 .toggle-navigationv2 section[expanded] h6{ transition: 1s all; background:#666 }
 .toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid #555; padding: 25px 0px; color: #fff; width: 100%; }
