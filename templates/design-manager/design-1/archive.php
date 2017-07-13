@@ -85,9 +85,9 @@
 
           <div class="amp-wp-meta">
 							<time> <?php
-										printf( __( '%1$s '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%2$s = human-readable time difference', 'accelerated-mobile-pages' ),
-													human_time_diff( get_the_time( 'U' ),
-													current_time( 'timestamp' ) ) ); ?>
+										$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+                    					$post_date = apply_filters('ampforwp_modify_post_date',$post_date);
+                    					echo  $post_date ; ?>
 							</time>
           </div>
 
