@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8
-Stable tag: 0.9.54.2
+Stable tag: 0.9.55
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,23 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.55 (13th July 2017) =
+* View more details on https://ampforwp.com/0-9-55-released-improvement-update-61st-update/
+* Disqus Comments show up even when disabled per post #931
+* Unnecessary: Adding the Markup for AMP Woocommerce latest Products #929
+* H3 inside OL in Related-Posts.php #930
+* Advertisement Options in Instant Articles #943
+* Incompatible with bootstrap plugin #525
+* Error in tag and category links #934
+* Pagebuilder Button module link had issues #951
+* Unnecessary: Adding the Markup for AMP Woocommerce latest Products #929
+* WPtouch Pro Compatibility Issues #927
+* Better scripts compatibility in Single of post types #757
+* Instant Articles Error: "The HTML element does not contain any text" #949
+* added a filter in all the dates so a user can change the date format and modify #962
+* Design3 Menu Arrows are clickable along with the links #952
+
 
 = 0.9.54.2 (4th July 2017) =
 * Minor bug post 0.9.54 bug fixed
