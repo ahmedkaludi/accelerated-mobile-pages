@@ -92,7 +92,7 @@
  	require 'frontpage-elements.php';
 //0.
 
-define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
+define('AMPFORWP_COMMENTS_PER_PAGE', isset($redux_builder_amp['ampforwp-number-of-comments']) && $redux_builder_amp['ampforwp-number-of-comments'] );
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
@@ -1812,7 +1812,7 @@ add_action('wp','ampforwp_remove_crazy_lazy_support',9);
 add_action('init', 'amp_gtm_remove_analytics_code');
 function amp_gtm_remove_analytics_code() {
   global $redux_builder_amp;
-  if( $redux_builder_amp['amp-use-gtm-option'] ) {
+  if( isset($redux_builder_amp['amp-use-gtm-option']) && $redux_builder_amp['amp-use-gtm-option'] ) {
     remove_action('amp_post_template_footer','ampforwp_analytics',11);
   	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
   } else {
@@ -2101,7 +2101,7 @@ function ampforwp_add_widget_support() {
 			'after_title'   => '</h4>'
 		));
 
-		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
     $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
     $placeholder = 'PLACEHOLDER';
 			register_sidebar(array(
@@ -2984,7 +2984,7 @@ add_action('init', 'fb_instant_article_feed_generator');
  
 function fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
-	if( $redux_builder_amp['fb-instant-article-switch'] ) {	
+	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
 		add_feed('instant_articles', 'fb_instant_article_feed_function');
 	}
 }
