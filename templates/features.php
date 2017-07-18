@@ -90,6 +90,7 @@
  	require 'custom-sanitizer.php';
 	// Custom Frontpage items
  	require 'frontpage-elements.php';
+ 	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
@@ -2584,10 +2585,17 @@ function ampforwp_add_modified_date($post_id){
 	}
 }
 
-// 58. YouTube Shortcode compatablity with AMP #557 
-if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+// 58. YouTube Shortcode compatablity with AMP #557 #971
 
-	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+add_filter('amp_content_embed_handlers','ampforwp_youtube_shortcode_embedder');
+function ampforwp_youtube_shortcode_embedder($data){
+	 unset($data['AMP_YouTube_Embed_Handler']);
+	 $data[ 'AMPforWP_YouTube_Embed_Handler' ] = array();
+	return $data;
+}
+if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
+
+	function ampforwp_youtube_shortcode( $params, $old_format_support = false ) {
 		$str = '';
 
 		$youtube_url = 'https://www.youtube.com/watch?v=';
@@ -2595,10 +2603,11 @@ if ( ! function_exists( 'shortcode_new_to_old_params') ) {
 		$server = 'www.youtube.com';
 
 		if ( in_array( $server, $parsed_url ) === false ) {
+			if($params['id']){
 			$new_url  = $youtube_url .  $params['id'] ;
 			$params['id'] = $new_url;
+			}
 		}
-
 		if ( $old_format_support && isset( $params[0] ) ) {
 			$str = ltrim( $params[0], '=' );
 		} elseif ( is_array( $params ) ) {
