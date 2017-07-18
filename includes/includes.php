@@ -22,9 +22,10 @@
 
 	// 1.2 Footer Menu
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['amp-design-selector'] == 1 ||
+	if ( isset($redux_builder_amp['amp-design-selector']) && 
+		 ($redux_builder_amp['amp-design-selector'] == 1 ||
 		 $redux_builder_amp['amp-design-selector'] == 2 || 
-		 $redux_builder_amp['amp-design-selector'] == 3) {
+		 $redux_builder_amp['amp-design-selector'] == 3)) {
 	 	add_action( 'init', 'ampforwp_footermenu' );
 	}
 	if (! function_exists( 'ampforwp_footermenu') ) {
