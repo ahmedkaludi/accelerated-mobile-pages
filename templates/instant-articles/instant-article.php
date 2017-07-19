@@ -15,8 +15,8 @@
     <iframe>
         <?php echo get_ia_analytics_code(); ?>
     </iframe>
+    </figure>
     <?php } ?>
-</figure>
     </head>
     <body>
         <article>
