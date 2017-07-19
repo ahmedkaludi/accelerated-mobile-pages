@@ -8,7 +8,15 @@
       <?php if ( $redux_builder_amp['fb-instant-article-ads'] ){ ?>
           <!-- automatic ad placement -->
           <meta property="fb:use_automatic_ad_placement" content="true">
-          <?php } ?>
+    <?php } ?>
+    <!-- Analytics code -->
+     <?php if ( $redux_builder_amp['fb-instant-article-analytics'] ){ ?>
+    <figure class="op-tracker">
+    <iframe>
+        <?php echo get_ia_analytics_code(); ?>
+    </iframe>
+    <?php } ?>
+</figure>
     </head>
     <body>
         <article>
