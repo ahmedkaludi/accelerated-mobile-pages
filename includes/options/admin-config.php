@@ -2505,6 +2505,23 @@ Redux::setSection( $opt_name, array(
                         'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-ads', '=', 1)
                     ),
+                    array(
+                        'id'       => 'fb-instant-article-analytics',
+                        'type'      => 'switch',
+                        'title'     => __('Analytics', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to enable analytics on Instant Article pages.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-analytics-code',
+                        'type'     => 'text',
+                        'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-analytics', '=', 1)
+                    ),
     ),
    )
 );
