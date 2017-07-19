@@ -2519,7 +2519,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fb-instant-article-analytics-code',
                         'type'     => 'text',
                         'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Do not enter <iframe> tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-analytics', '=', 1)
                     ),
     ),
