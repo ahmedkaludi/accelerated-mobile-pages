@@ -25,16 +25,15 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 				$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 			}
 			// echo $this->get( 'post_amp_content' ); // amphtml content; no kses
-			$exploded_content = explode('<!--nextpage-->', $ampforwp_the_content);
-
-      $queried_var = get_query_var('page');
-      if ( $queried_var > 1 ) {
-        $queried_var = $queried_var -1   ;
-      }
-      else{
-      	 $queried_var = 0;
-      }
-      echo $exploded_content[$queried_var];
+			$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
+		    $queried_var = get_query_var('page');
+			  if ( $queried_var > 1 ) {
+			    $queried_var = $queried_var -1   ;
+			  }
+			  else{
+			  	 $queried_var = 0;
+			  }
+			  echo $ampforwp_new_content[$queried_var];
 	 do_action('ampforwp_after_post_content',$this) ; //Post After Content here ?>
 
 	</div>
