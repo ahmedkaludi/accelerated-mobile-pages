@@ -2308,9 +2308,7 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-gplus-share']  ||
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
-				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] ||
-				 $redux_builder_amp['enable-single-line-share'] )  {
+				 $redux_builder_amp['enable-single-linkedin-share'] )  {
 					return true;
 				}
 			return false;
