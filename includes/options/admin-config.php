@@ -2508,8 +2508,23 @@ Redux::setSection( $opt_name, array(
     ),
    )
 );
-
-
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Hide AMP', 'accelerated-mobile-pages' ),
+   'id'         => 'hide-amp-section',
+   'subsection' => true,
+   'desc'       => 'Hide AMP for Specific Categories',
+   'fields'     => array(
+                        array(
+                        'id'        =>'hide-amp-categories',
+                        'type'      => 'checkbox',
+                        'title'     => __('Select Categories to hide AMP'),
+                        'default'   => 0, 
+                        'data'      => 'categories',
+                        ), 
+                    )   
+                 )
+    );
+    
 // Extension Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Extensions', 'accelerated-mobile-pages' ),
