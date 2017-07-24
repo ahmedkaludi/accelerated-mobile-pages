@@ -4,21 +4,7 @@ $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
-	<meta charset="utf-8"> <?php
-	$page = '';
-	$query_arg_array = $wp->query_vars;
-
-	if( array_key_exists( "page" , $query_arg_array ) ){
-		$page = $wp->query_vars['page'];
-	}
-
-	if ( $page >= '2') { ?>
-		<link rel="canonical" href="<?php
-		echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
-	} else { ?>
-		<link rel="canonical" href="<?php
-		echo  trailingslashit( home_url() ) ?>"> <?php
-	} ?> 
+	<meta charset="utf-8">  
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
 		$amp_custom_content_enable = get_post_meta($template->data['post_id'], 'ampforwp_custom_content_editor_checkbox', true);

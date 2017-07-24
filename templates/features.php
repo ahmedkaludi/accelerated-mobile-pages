@@ -3210,3 +3210,31 @@ if( $skip_this_post ) {
 }
 return $skip;
 }
+
+add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+function ampforwp_rel_canonical_home_archive(){
+	global $redux_builder_amp;
+	global $wp;
+	if ( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+		$current_archive_url = home_url( $wp->request );
+		$amp_url 	= trailingslashit($current_archive_url);
+		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+		$amp_url 	= str_replace($remove, '', $amp_url) ;?>
+	<link rel="canonical" href="<?php echo $amp_url ?>">
+	<?php }
+
+	if(is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ){
+		  $query_arg_array = $wp->query_vars;
+		  $page = '' ;
+		  if( array_key_exists( "page" , $query_arg_array  ) ) {
+			   $page = $wp->query_vars['page'];
+		  }
+		  if ( $page >= '2') { ?>
+				<link rel="canonical" href="<?php
+				echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
+			} else { ?>
+				<link rel="canonical" href="<?php
+				echo  trailingslashit( home_url() ) ?>"> <?php
+			}
+	}			
+}
