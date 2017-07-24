@@ -3242,7 +3242,7 @@ function ampforwp_rel_canonical_home_archive(){
 	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<?php }
 
-	if(is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ){
+	if((is_front_page() || is_home() ) && $redux_builder_amp['amp-frontpage-select-option'] ){
 		  $query_arg_array = $wp->query_vars;
 		  $page = '' ;
 		  if( array_key_exists( "page" , $query_arg_array  ) ) {
