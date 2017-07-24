@@ -3181,6 +3181,7 @@ function ampforwp_posts_to_remove () {
 global $redux_builder_amp;
 $args = array();
 $get_categories_from_checkbox = '';
+$get_selected_cats = '';
 $selected_cats = array();
 $posts = array();
 $post_id_array = array();
@@ -3188,10 +3189,12 @@ $args = array(
   'post_type' => 'post',
 );
 $get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
-$get_selected_cats = array_filter($get_categories_from_checkbox);
-foreach ($get_selected_cats as $key => $value) {
-	$selected_cats[] = $key;
-}  
+if($get_categories_from_checkbox){
+	$get_selected_cats = array_filter($get_categories_from_checkbox);
+	foreach ($get_selected_cats as $key => $value) {
+		$selected_cats[] = $key;
+	}  
+}
 if ( ! empty($get_selected_cats)) {
 
 	$posts = get_posts( array(
