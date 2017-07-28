@@ -3180,62 +3180,67 @@ add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 // 70. Hide AMP by specific Categories #872
 
 function ampforwp_posts_to_remove () {
-global $redux_builder_amp;
-$args = array();
-$get_categories_from_checkbox = '';
-$get_selected_cats = '';
-$selected_cats = array();
-$posts = array();
-$post_id_array = array();
-$args = array(
-  'post_type' => 'post',
-);
-$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
-if($get_categories_from_checkbox){
-	$get_selected_cats = array_filter($get_categories_from_checkbox);
-	foreach ($get_selected_cats as $key => $value) {
-		$selected_cats[] = $key;
-	}  
-}
-if ( ! empty($get_selected_cats)) {
+	global $redux_builder_amp;
+	$args 							= array();
+	$get_categories_from_checkbox 	= '';
+	$get_selected_cats 				= '';
+	$selected_cats 					= array();
+	$posts 							= array();
+	$post_id_array 					= array();
 
-	$posts = get_posts( array(
-	    'category'          => $selected_cats,
-	    'numberposts'       => '-1',
-	    'post_type'         => $args,
-	    'post_status'       => 'publish',
-	    'suppress_filters'  => false
-	) );
-}
-
-if ( $posts ) {
-	 foreach ($posts as $post) {
-	    $post_id_array[] =  $post->ID;
+	$args = array(
+	  'post_type' => 'post',
+	);
+	$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+	if($get_categories_from_checkbox){
+		$get_selected_cats = array_filter($get_categories_from_checkbox);
+		foreach ($get_selected_cats as $key => $value) {
+			$selected_cats[] = $key;
+		}  
 	}
-}
-return $post_id_array;
+	if ( ! empty($get_selected_cats)) {
+
+		$posts = get_posts( array(
+		    'category'          => $selected_cats,
+		    'numberposts'       => '-1',
+		    'post_type'         => $args,
+		    'post_status'       => 'publish',
+		    'suppress_filters'  => false
+		) );
+	}
+
+	if ( $posts ) {
+		 foreach ($posts as $post) {
+		    $post_id_array[] =  $post->ID;
+		}
+	}
+	return $post_id_array;
 }
 
 add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
 function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
-$list_of_posts = '';
-$skip_this_post = '';
+	$list_of_posts = '';
+	$skip_this_post = '';
 
-$list_of_posts = ampforwp_posts_to_remove();
+	$list_of_posts = ampforwp_posts_to_remove();
+	$skip_this_post = in_array($post_id, $list_of_posts);
 
-$skip_this_post = in_array($post_id, $list_of_posts);
-
-if( $skip_this_post ) {
-  $skip = true;
-  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
-}
-return $skip;
+	if( $skip_this_post ) {
+	  $skip = true;
+	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	}
+	return $skip;
 }
 
 add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
 function ampforwp_rel_canonical_home_archive(){
 	global $redux_builder_amp;
 	global $wp;
+	$current_archive_url 	= '';
+	$amp_url				= '';
+	$remove					= '';
+	$query_arg_array 		= '';
+
 	if ( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
@@ -3245,17 +3250,17 @@ function ampforwp_rel_canonical_home_archive(){
 	<?php }
 
 	if((is_front_page() || is_home() ) && $redux_builder_amp['amp-frontpage-select-option'] ){
-		  $query_arg_array = $wp->query_vars;
-		  $page = '' ;
-		  if( array_key_exists( "page" , $query_arg_array  ) ) {
-			   $page = $wp->query_vars['page'];
-		  }
-		  if ( $page >= '2') { ?>
-				<link rel="canonical" href="<?php
-				echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
-			} else { ?>
-				<link rel="canonical" href="<?php
-				echo  trailingslashit( home_url() ) ?>"> <?php
-			}
+	  	$query_arg_array = $wp->query_vars;
+	  	$page = '' ;
+	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		   $page = $wp->query_vars['page'];
+	  	}
+	  	if ( $page >= '2') { ?>
+			<link rel="canonical" href="<?php
+			echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
+		} else { ?>
+			<link rel="canonical" href="<?php
+			echo  trailingslashit( home_url() ) ?>"> <?php
+		}
 	}			
 }
