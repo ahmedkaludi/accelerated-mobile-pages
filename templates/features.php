@@ -143,6 +143,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
 				return;
 			}
+		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
 			$categories = get_the_category();
 			$category_id = $categories[0]->cat_ID;
@@ -3233,6 +3234,8 @@ function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	if( $skip_this_post ) {
 	  $skip = true;
 	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	  // #999 Disable mobile redirection
+	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 	}
 	return $skip;
 }
