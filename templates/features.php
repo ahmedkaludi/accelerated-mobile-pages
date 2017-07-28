@@ -95,7 +95,12 @@
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
 //0.
 
-define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
+define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
+	// Define number of comments
+	function ampforwp_define_comments_number(){
+		global $redux_builder_amp;
+		return $redux_builder_amp['ampforwp-number-of-comments'];
+	}
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
