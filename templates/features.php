@@ -141,21 +141,23 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
 			$categories = get_the_category();
 			$category_id = $categories[0]->cat_ID;
-			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
-			$get_selected_cats = array_filter($get_categories_from_checkbox);
-			foreach ($get_selected_cats as $key => $value) {
-				$selected_cats[] = $key;
-			}  
-			if($selected_cats && $category_id){
-				if(in_array($category_id, $selected_cats)){
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}  
+				if($selected_cats && $category_id){
+					if(in_array($category_id, $selected_cats)){
 						return;
 					}
 				}
+			} 
 		}	
-      if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-				return;
-			}
-
+      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
 			$query_arg_array = $wp->query_vars;
 			if( in_array( "cpage" , $query_arg_array ) ) {
 				if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
