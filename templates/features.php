@@ -76,6 +76,8 @@
 	64. PageBuilder  
 	65. Remove Filters code added through Class by other plugins
 	66. Make AMP compatible with Squirrly SEO
+	69. Post Pagination #834 #857
+	70. Hide AMP by specific Categories #872
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -90,9 +92,15 @@
  	require 'custom-sanitizer.php';
 	// Custom Frontpage items
  	require 'frontpage-elements.php';
+ 	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
 //0.
 
-define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
+define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
+	// Define number of comments
+	function ampforwp_define_comments_number(){
+		global $redux_builder_amp;
+		return $redux_builder_amp['ampforwp-number-of-comments'];
+	}
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
@@ -135,10 +143,27 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
 				return;
 			}
-      if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-				return;
-			}
-
+		// #872 no-amphtml if selected as hide from settings
+		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+			$categories = get_the_category();
+			$category_id = $categories[0]->cat_ID;
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}  
+				if($selected_cats && $category_id){
+					if(in_array($category_id, $selected_cats)){
+						return;
+					}
+				}
+			} 
+		}	
+      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
 			$query_arg_array = $wp->query_vars;
 			if( in_array( "cpage" , $query_arg_array ) ) {
 				if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
@@ -1401,6 +1426,8 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
 		//Compatibility with wordpress twitter bootstrap #525
 		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
+		//Perfect SEO url + Yoast SEO Compatibility #982
+		ampforwp_remove_filters_for_class( 'wpseo_canonical', 'PSU', 'canonical', 10 );
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
@@ -2306,9 +2333,7 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-gplus-share']  ||
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
-				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] ||
-				 $redux_builder_amp['enable-single-line-share'] )  {
+				 $redux_builder_amp['enable-single-linkedin-share'] )  {
 					return true;
 				}
 			return false;
@@ -2584,10 +2609,17 @@ function ampforwp_add_modified_date($post_id){
 	}
 }
 
-// 58. YouTube Shortcode compatablity with AMP #557 
-if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+// 58. YouTube Shortcode compatablity with AMP #557 #971
 
-	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+add_filter('amp_content_embed_handlers','ampforwp_youtube_shortcode_embedder');
+function ampforwp_youtube_shortcode_embedder($data){
+	 unset($data['AMP_YouTube_Embed_Handler']);
+	 $data[ 'AMPforWP_YouTube_Embed_Handler' ] = array();
+	return $data;
+}
+if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
+
+	function ampforwp_youtube_shortcode( $params, $old_format_support = false ) {
 		$str = '';
 
 		$youtube_url = 'https://www.youtube.com/watch?v=';
@@ -2595,10 +2627,11 @@ if ( ! function_exists( 'shortcode_new_to_old_params') ) {
 		$server = 'www.youtube.com';
 
 		if ( in_array( $server, $parsed_url ) === false ) {
+			if($params['id']){
 			$new_url  = $youtube_url .  $params['id'] ;
 			$params['id'] = $new_url;
+			}
 		}
-
 		if ( $old_format_support && isset( $params[0] ) ) {
 			$str = ltrim( $params[0], '=' );
 		} elseif ( is_array( $params ) ) {
@@ -2992,4 +3025,250 @@ function fb_instant_article_feed_generator() {
 function fb_instant_article_feed_function() {
 	add_filter('pre_option_rss_use_excerpt', '__return_zero');
 	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
+}
+
+// 69. Post Pagination #834 #857
+function ampforwp_post_pagination( $args = '' ) {
+
+	wp_reset_postdata();
+	global $page, $numpages, $multipage, $more;
+
+	$defaults = array(
+		'before'           => '<p>' . __( 'Page:' ),
+		'after'            => '</p>',
+		'link_before'      => '',
+		'link_after'       => '',
+		'next_or_number'   => 'number',
+		'separator'        => ' ',
+		'nextpagelink'     => __( 'Next page' ),
+		'previouspagelink' => __( 'Previous page' ),
+		'pagelink'         => '%',
+		'echo'             => 1
+	);
+
+	$params = wp_parse_args( $args, $defaults );
+
+	/**
+	 * Filters the arguments used in retrieving page links for paginated posts.
+	 * @param array $params An array of arguments for page links for paginated posts.
+	 */
+	$r = apply_filters( 'ampforwp_post_pagination_args', $params );
+
+	$output = '';
+	if ( $multipage ) {
+		if ( 'number' == $r['next_or_number'] ) {
+			$output .= $r['before'];
+			for ( $i = 1; $i <= $numpages; $i++ ) {
+				$link = $r['link_before'] . str_replace( '%', $i, $r['pagelink'] ) . $r['link_after'];
+				if ( $i != $page || ! $more && 1 == $page ) {
+					$link = ampforwp_post_paginated_link_generator( $i ) . $link . '</a>';
+				}
+				/**
+				 * Filters the HTML output of individual page number links.
+				 * @param string $link The page number HTML output.
+				 * @param int    $i    Page number for paginated posts' page links.
+				 */
+				$link = apply_filters( 'ampforwp_post_pagination_link', $link, $i );
+
+				// Use the custom links separator beginning with the second link.
+				$output .= ( 1 === $i ) ? ' ' : $r['separator'];
+				$output .= $link;
+			}
+			$output .= $r['after'];
+		} elseif ( $more ) {
+			$output .= $r['before'];
+			$prev = $page - 1;
+			if ( $prev > 0 ) {
+				$link = ampforwp_post_paginated_link_generator( $prev ) . $r['link_before'] . $r['previouspagelink'] . $r['link_after'] . '</a>';
+				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $prev );
+			}
+			$next = $page + 1;
+			if ( $next <= $numpages ) {
+				if ( $prev ) {
+					$output .= $r['separator'];
+				}
+				$link = ampforwp_post_paginated_link_generator( $next ) . $r['link_before'] . $r['nextpagelink'] . $r['link_after'] . '</a>';
+				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $next );
+			}
+			$output .= $r['after'];
+		}
+	}
+
+	/**
+	 * Filters the HTML output of page links for paginated posts.
+	 * @param string $output HTML output of paginated posts' page links.
+	 * @param array  $args   An array of arguments.
+	 */
+	$html = apply_filters( 'ampforwp_post_pagination', $output, $args );
+	if ( $r['echo'] ) {
+		echo $html;
+	}
+	return $html;
+
+}
+
+/**
+ * Helper function for ampforwp_post_pagination().
+ * @access private
+ *
+ * @global WP_Rewrite $wp_rewrite
+ *
+ * @param int $i Page number.
+ * @return string Link.
+ */
+function ampforwp_post_paginated_link_generator( $i ) {
+	global $wp_rewrite;
+	$post = get_post();
+	$query_args = array();
+	if ( 1 == $i ) {
+		$url = get_permalink();
+	} else {
+		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+			$url = add_query_arg( 'page', $i, get_permalink() );
+		elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
+			$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+		else
+			$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
+	}
+
+	if ( is_preview() ) {
+
+		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
+			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
+		}
+
+		$url = get_preview_post_link( $post, $query_args, $url );
+	}
+
+	return '<a href="' . esc_url( $url ) . '?amp">';
+}
+
+add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_rel_amphtml_paginated_post');
+function ampforwp_modify_rel_amphtml_paginated_post($url) {
+	if(is_single()){
+			$post_paginated_page='';
+			$post_paginated_page = get_query_var('page');
+			if($post_paginated_page){
+				$url = get_permalink();
+				$new_url = $url."$post_paginated_page/?amp";
+				return $new_url;
+			}
+		} 
+	return $url;
+}
+
+add_action('amp_post_template_head','ampforwp_modify_rel_canonical_paginated_post',9);
+function ampforwp_modify_rel_canonical_paginated_post(){
+		if(is_single()){
+			$post_paginated_page='';
+			$post_paginated_page = get_query_var('page');
+			if($post_paginated_page){
+				remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+				add_action('amp_post_template_head','ampforwp_rel_canonical_paginated_post');
+			}
+		}
+}
+function ampforwp_rel_canonical_paginated_post(){
+		$post_paginated_page='';
+		$new_canonical_url = '';
+		global $post;
+	    $current_post_id = $post->ID;
+	    $new_canonical_url = get_permalink($current_post_id);
+	    $new_canonical_url = trailingslashit($new_canonical_url);
+		$post_paginated_page = get_query_var('page');
+		if($post_paginated_page){?>
+			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
+}
+add_action('ampforwp_after_post_content','ampforwp_post_pagination');
+
+
+// 70. Hide AMP by specific Categories #872
+
+function ampforwp_posts_to_remove () {
+	global $redux_builder_amp;
+	$args 							= array();
+	$get_categories_from_checkbox 	= '';
+	$get_selected_cats 				= '';
+	$selected_cats 					= array();
+	$posts 							= array();
+	$post_id_array 					= array();
+
+	$args = array(
+	  'post_type' => 'post',
+	);
+	$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+	if($get_categories_from_checkbox){
+		$get_selected_cats = array_filter($get_categories_from_checkbox);
+		foreach ($get_selected_cats as $key => $value) {
+			$selected_cats[] = $key;
+		}  
+	}
+	if ( ! empty($get_selected_cats)) {
+
+		$posts = get_posts( array(
+		    'category'          => $selected_cats,
+		    'numberposts'       => '-1',
+		    'post_type'         => $args,
+		    'post_status'       => 'publish',
+		    'suppress_filters'  => false
+		) );
+	}
+
+	if ( $posts ) {
+		 foreach ($posts as $post) {
+		    $post_id_array[] =  $post->ID;
+		}
+	}
+	return $post_id_array;
+}
+
+add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
+function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
+	$list_of_posts = '';
+	$skip_this_post = '';
+
+	$list_of_posts = ampforwp_posts_to_remove();
+	$skip_this_post = in_array($post_id, $list_of_posts);
+
+	if( $skip_this_post ) {
+	  $skip = true;
+	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	  // #999 Disable mobile redirection
+	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+	}
+	return $skip;
+}
+
+add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+function ampforwp_rel_canonical_home_archive(){
+	global $redux_builder_amp;
+	global $wp;
+	$current_archive_url 	= '';
+	$amp_url				= '';
+	$remove					= '';
+	$query_arg_array 		= '';
+
+	if ( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+		$current_archive_url = home_url( $wp->request );
+		$amp_url 	= trailingslashit($current_archive_url);
+		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+		$amp_url 	= str_replace($remove, '', $amp_url) ;?>
+	<link rel="canonical" href="<?php echo $amp_url ?>">
+	<?php }
+
+	if((is_front_page() || is_home() ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+	  	$query_arg_array = $wp->query_vars;
+	  	$page = '' ;
+	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		   $page = $wp->query_vars['page'];
+	  	}
+	  	if ( $page >= '2') { ?>
+			<link rel="canonical" href="<?php
+			echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
+		} else { ?>
+			<link rel="canonical" href="<?php
+			echo  trailingslashit( home_url() ) ?>"> <?php
+		}
+	}			
 }

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8
-Stable tag: 0.9.55
+Stable tag: 0.9.56
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,11 +29,12 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Page Break / NextPage (Pagination) Support
 * NEW - Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * NEW - Page Builder for AMP! [Watch the Demo](http://ampforwp.com/demo/#pagebuilder) | [How to](https://ampforwp.com/tutorials/page-builder/)
-* NEW - Github Gist Support
 * NEW - Facebook Comments Support
-* NEW - Email Opt-in Subscription form support in AMP added
+* Github Gist Support
+* Email Opt-in Subscription form support in AMP added
 * Call to Action boxes and notification bars 
 * 9 Advertisement sizes - 2 More AD slots added recently
 * Comments Forms in AMP.
@@ -135,6 +136,20 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.56 (31st July 2017) =
+* View more details on https://ampforwp.com/page-break-in-amp/
+* Page Break / NextPage (Pagination) Support Added #834 #857  (Improvement)
+* Show/Hide AMP for Categories of Posts or All posts #872 (Improvement)
+* JetPack Plugin Conflict Solved #971
+* Social sharing code improved. amp-social-share js is getting added for line and WhatsApp social share #981
+* Code improvement for rel canonicals(home and archive)
+* Perfect SEO URL + Yoast SEO Compatibility #982
+* Some styling for tags to show up properly
+* Undefined index notices #960
+* Non-amp category pages should redirect to non-amp pages if turned off from Hiding AMP #999
+* Page builder text and button module issues #972
+* Documentation links updated in the Options panel
 
 = 0.9.55 (13th July 2017) =
 * View more details on https://ampforwp.com/0-9-55-released-improvement-update-61st-update/
