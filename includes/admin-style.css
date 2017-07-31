@@ -21,7 +21,7 @@ body #toplevel_page_amp_options .wp-menu-image{
     background-size: 20px auto;
 }
 .amp_content_builder .redux-group-tab-link-a span:after {
-    content: "NEW";
+/*    content: "NEW";*/
     color: #fff;
     font-size: 10px;
     background: #4452a7;
