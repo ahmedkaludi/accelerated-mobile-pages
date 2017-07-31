@@ -141,6 +141,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * View more details on https://ampforwp.com/page-break-in-amp/
 * Page Break / NextPage (Pagination) Support Added #834 #857  (Improvement)
 * Show/Hide AMP for Categories of Posts or All posts #872 (Improvement)
+* Adding analytics capabilities to Instant Articles #978
 * JetPack Plugin Conflict Solved #971
 * Social sharing code improved. amp-social-share js is getting added for line and WhatsApp social share #981
 * Code improvement for rel canonicals(home and archive)
