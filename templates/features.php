@@ -2960,6 +2960,20 @@ function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $m
 	return false;
 }
 
+// BuddyPress Compatibility
+add_action('amp_init','ampforwp_allow_homepage_bp');
+function ampforwp_allow_homepage_bp() {
+	add_action( 'wp', 'remove_rel_on_bp' );
+}
+function remove_rel_on_bp(){	
+
+		if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
+			remove_action( 'wp_head', 'amp_frontend_add_canonical');
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+		}
+
+}
+
 
 // 66. Make AMP compatible with Squirrly SEO
 add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
