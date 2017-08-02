@@ -1431,6 +1431,8 @@ function ampforwp_remove_schema_data() {
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
+	//Removing the space added by the Google adsense #967
+		remove_filter( 'the_content', 'ga_strikable_add_optimized_adsense_code');
 }
 
 // 22. Removing author links from comments Issue #180
