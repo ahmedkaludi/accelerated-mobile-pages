@@ -84,6 +84,17 @@
 		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15'  ); ?></p>
 
 		    </div>
+		    <div class="amp-wp-meta">
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <time> <?php
+                          		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+                   				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
+                    			echo  $post_date ; ?>
+                   		 </time>
+                   		 <?php $post_author = $this->get( 'post_author' ); ?>
+                   		 <span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+			  </div>
+
             <div class="cb"></div>
 	</div>
 
