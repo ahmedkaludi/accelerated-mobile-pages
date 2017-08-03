@@ -57,6 +57,7 @@
 				<div class="home-post_image">
 					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img src=<?php echo $thumb_url ?>
+						<?php ampforwp_thumbnail_alt(); ?>
 							<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 							 width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
 							 height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>

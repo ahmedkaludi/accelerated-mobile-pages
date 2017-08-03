@@ -73,6 +73,7 @@
 								<a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
 									<amp-img
 										src=<?php echo $thumb_url ?>
+										<?php ampforwp_thumbnail_alt(); ?>
 										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 											width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
 											height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>

@@ -119,6 +119,7 @@ if ( get_query_var( 'paged' ) ) {
 						<amp-img
 							layout="responsive"
 							src=<?php echo $thumb_url ?>
+							<?php ampforwp_thumbnail_alt(); ?>
 							width=450
 							height=270
 						></amp-img>
