@@ -2963,13 +2963,15 @@ function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $m
 // BuddyPress Compatibility
 add_action('amp_init','ampforwp_allow_homepage_bp');
 function ampforwp_allow_homepage_bp() {
-	add_action( 'wp', 'remove_rel_on_bp' );
+	add_action( 'wp', 'ampforwp_remove_rel_on_bp' );
 }
-function remove_rel_on_bp(){	
-
-		if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
-			remove_action( 'wp_head', 'amp_frontend_add_canonical');
-			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+function ampforwp_remove_rel_on_bp(){	
+		if(function_exists('bp_is_activity_component')||function_exists('bp_is_members_component')||function_exists('bp_is_groups_component'))
+		{
+			if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
+				remove_action( 'wp_head', 'amp_frontend_add_canonical');
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+			}
 		}
 
 }
