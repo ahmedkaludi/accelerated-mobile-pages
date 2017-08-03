@@ -1431,6 +1431,8 @@ function ampforwp_remove_schema_data() {
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
+	//Removing the space added by the Google adsense #967
+		remove_filter( 'the_content', 'ga_strikable_add_optimized_adsense_code');
 }
 
 // 22. Removing author links from comments Issue #180
@@ -2956,6 +2958,20 @@ function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $m
 		}
 	}
 	return false;
+}
+
+// BuddyPress Compatibility
+add_action('amp_init','ampforwp_allow_homepage_bp');
+function ampforwp_allow_homepage_bp() {
+	add_action( 'wp', 'remove_rel_on_bp' );
+}
+function remove_rel_on_bp(){	
+
+		if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
+			remove_action( 'wp_head', 'amp_frontend_add_canonical');
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+		}
+
 }
 
 
