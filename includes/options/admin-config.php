@@ -876,6 +876,14 @@ Redux::setArgs( "redux_builder_amp", $args );
             'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
             'default'  => '0'
         ),
+        // Pagination //#1015 Pegazee
+        array(
+            'id'       => 'amp-pagination',
+            'type'     => 'switch',
+            'title'    => __( 'Pagination in Single', 'accelerated-mobile-pages' ),
+           'default'   => 0,
+           'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
+        ),
           // Related Post
 	        array(
     		        'id'       => 'ampforwp-single-select-type-of-related',
