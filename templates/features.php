@@ -3290,3 +3290,12 @@ function ampforwp_rel_canonical_home_archive(){
 		}
 	}			
 }
+
+//Alt tag for thumbnails #1013
+function ampforwp_thumbnail_alt(){
+	$thumb_id = get_post_thumbnail_id();
+	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+	if($thumb_alt){ ?>
+		  alt ="<?php echo $thumb_alt?>"
+	<?php }
+}
