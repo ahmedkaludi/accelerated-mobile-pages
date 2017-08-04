@@ -644,7 +644,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => '2'
             ),
 
-
             array(
                 'id'        => 'amp-opt-sticky-head',
                 'type'      => 'switch',
@@ -774,6 +773,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'      =>'text',
                 'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                 'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                'required' => array(
+                  array('amp-design-selector', '=' , '1')
+                     ),
                 'validate'  =>'numeric',
                 'default'   =>'20',
                 ),
