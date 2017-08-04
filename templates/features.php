@@ -389,11 +389,15 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		//	moved this code to its own function and done the AMP way
 	}
 	// 6.1 Adding Analytics Scripts
-	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
-	function ampforwp_register_analytics_script(){ ?>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php
-
+	add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
+	function ampforwp_register_analytics_script( $data ){ 
+		global $redux_builder_amp;
+		if( $redux_builder_amp['amp-analytics-select-option'] && $redux_builder_amp['amp-analytics-select-option'] != '3' && $redux_builder_amp['amp-analytics-select-option'] != '6' && $redux_builder_amp['amp-analytics-select-option'] != '7' && $redux_builder_amp['amp-analytics-select-option'] != '8'){
+			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
+				$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
+			}
+		}
+		return $data;
 	}
 
 	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
@@ -716,7 +720,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			// 10.2 Analytics Support added for segment.com
 				if ( $redux_builder_amp['amp-analytics-select-option']=='2' ) { ?>
 						<amp-analytics type="segment">
-							<script>
+							<script type="application/json">
 							{
 							  "vars": {
 							    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
@@ -762,22 +766,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							</amp-analytics>
 							<?php
 						}
-
-				// 10.5 Analytics Support added for comscore
-					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
-							<amp-analytics type="comscore">
-								<script type="application/json">
-								{
-								  "vars": {
-								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
-								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
-								  }
-								}
-								</script>
-							</amp-analytics>
-							<?php
-						}
-
 
 			// 10.6 Analytics Support added for Effective Measure
 				if( $redux_builder_amp['amp-analytics-select-option']=='6' ) { ?>
