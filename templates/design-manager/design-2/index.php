@@ -92,7 +92,11 @@
                     			echo  $post_date ; ?>
                    		 </time>
                    		 <?php $post_author = $this->get( 'post_author' ); ?>
-                   		 <span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+                   		 <div class="amp-wp-author-name">
+                   		 <?php 
+                   		 		$author_name =get_the_author();
+                   		 		echo esc_html( $author_name); ?>
+                   		 		</div>
 			  </div>
 
             <div class="cb"></div>
