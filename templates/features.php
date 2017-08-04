@@ -3318,3 +3318,27 @@ function ampforwp_thumbnail_alt(){
 		echo "alt = '$thumb_alt'";
 	}
 }
+// For Post ID in Body tag 
+function ampforwp_get_body_class(){
+
+    global $post;
+    global $redux_builder_amp;
+    $post_id = '';
+
+  if ( is_singular() ) {
+    $post_id = $post->ID;
+  }
+  if ( $redux_builder_amp['amp-frontpage-select-option']) {
+       if ( is_home() &&  is_front_page() ) {
+         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+       } elseif ( is_home() ){
+         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
+       }
+  }
+
+  return $post_id;
+}
+
+function ampforwp_the_body_class(){
+  echo 'post-id-' . ampforwp_get_body_class();
+}#1006 Pegazee

@@ -10,7 +10,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post <?php if(is_page()){ echo'amp-single-page'; };?> design_2_wrapper">
+<body class="single-post <?php ampforwp_the_body_class(); ?> <?php if(is_page()){ echo'amp-single-page'; };?> design_2_wrapper">
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
