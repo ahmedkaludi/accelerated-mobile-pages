@@ -2846,7 +2846,7 @@ function ampforwp_frontpage_comments() {
 
 
 // 64. PageBuilder 
-add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages');
+add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
 
@@ -2857,14 +2857,16 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
 		// Add Styling Builder Elements
-		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
-		// Remove title for pagebuilder
-		remove_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
+		// Removed Titles for Pagebuilder elements
+		remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
 	}	
 }
 
-function  ampforwp_remove_post_elements($elements) {
+function ampforwp_remove_post_elements($elements) {
 	$elements =  array('empty-filter');
 	return $elements ;
 }
