@@ -2846,67 +2846,22 @@ function ampforwp_frontpage_comments() {
 
 
 // 64. PageBuilder 
-add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
+add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages');
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
 
 	if ( is_home() ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
-		// Add Layout Builder Elements 
-		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
-		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
-		// Add Styling
+		// Add Styling Builder Elements
 		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
-		
-		/* 
-			Remove Default Post Elements and make the page blank.
-			So Landing page builder's elements will be visible.
-		*/
-		add_filter('ampforwp_design_elements', 'ampforwp_remove_post_elements');
+
+		// Remove title for pagebuilder
 		remove_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
-
 	}	
-}
-
-
-function ampforwp_add_landing_page_elements() {
-	$sanitized_sidebar = "";
-	$non_sanitized_sidebar = "";
-	$sidebar_output = "";
-    
-    ob_start();
-	dynamic_sidebar( 'layout-builder' );
-	$non_sanitized_sidebar = ob_get_contents();
-	ob_end_clean();
-
-	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
-		apply_filters( 'amp_content_embed_handlers', array(
-					'AMP_Twitter_Embed_Handler' => array(),
-					'AMP_YouTube_Embed_Handler' => array(),
-					'AMP_Instagram_Embed_Handler' => array(),
-					'AMP_Vine_Embed_Handler' => array(),
-					'AMP_Facebook_Embed_Handler' => array(),
-					'AMP_Gallery_Embed_Handler' => array(),
-		) ),
-		apply_filters(  'amp_content_sanitizers', array(
-					 'AMP_Style_Sanitizer' => array(),
-					 'AMP_Blacklist_Sanitizer' => array(),
-					 'AMP_Img_Sanitizer' => array(),
-					 'AMP_Video_Sanitizer' => array(),
-					 'AMP_Audio_Sanitizer' => array(),
-					 'AMP_Iframe_Sanitizer' => array(
-						 'add_placeholder' => true,
-					 ),
-		)  )
-	);
-
-   $sidebar_output = $sanitized_sidebar->get_amp_content();
-   echo $sidebar_output;
 }
 
 function  ampforwp_remove_post_elements($elements) {
@@ -3298,4 +3253,78 @@ function ampforwp_thumbnail_alt(){
 	if($thumb_alt){ ?>
 		  alt ="<?php echo $thumb_alt?>"
 	<?php }
+}
+
+
+
+
+// Add the scripts and style in header
+function ampforwp_generate_pagebuilder_data() {
+  $sanitized_sidebar     	= "";
+  $non_sanitized_sidebar   	= "";
+  $sidebar_data 			= array();
+    
+  ob_start();
+	  dynamic_sidebar( 'layout-builder' );
+	  $non_sanitized_sidebar = ob_get_contents();
+  ob_end_clean();
+
+  $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+    apply_filters( 'amp_content_embed_handlers', array(
+          'AMP_Twitter_Embed_Handler' => array(),
+          'AMP_YouTube_Embed_Handler' => array(),
+          'AMP_Instagram_Embed_Handler' => array(),
+          'AMP_Vine_Embed_Handler' => array(),
+          'AMP_Facebook_Embed_Handler' => array(),
+          'AMP_Gallery_Embed_Handler' => array(),
+    ) ),
+    apply_filters(  'amp_content_sanitizers', array(
+           'AMP_Style_Sanitizer' => array(),
+           'AMP_Blacklist_Sanitizer' => array(),
+           'AMP_Img_Sanitizer' => array(),
+           'AMP_Video_Sanitizer' => array(),
+           'AMP_Audio_Sanitizer' => array(),
+           'AMP_Iframe_Sanitizer' => array(
+             'add_placeholder' => true,
+           ),
+    )  )
+  );
+
+  $sidebar_data['content'] 	= $sanitized_sidebar->get_amp_content();
+  $sidebar_data['script'] 	= $sanitized_sidebar->get_amp_scripts();
+  $sidebar_data['style'] 	= $sanitized_sidebar->get_amp_styles();
+  
+  return $sidebar_data;
+}
+
+function ampforwp_builder_checker() {
+	global $post, $redux_builder_amp;
+	$pagebuilder_check 	= '';
+	$post_id 			= '';
+
+	$post_id = $post->ID;
+	if ( is_home() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+
+	if ( $pagebuilder_check === 'layout-builder' ) {
+		return ampforwp_generate_pagebuilder_data(); 
+	}
+	return;
+}
+
+
+add_filter( 'amp_post_template_data', 'ampforwp_add_pagebuilder_data' );
+function ampforwp_add_pagebuilder_data( $data ) {
+	$sanitized_data = '';
+	$sanitized_data = ampforwp_builder_checker();
+
+	if ( $sanitized_data ) {
+		$data[ 'post_amp_content' ] 		= $sanitized_data['content'];
+		$data[ 'amp_component_scripts' ] 	= $sanitized_data['script'];
+		$data[ 'post_amp_styles' ] 			= $sanitized_data['style'];
+	}
+	
+	return $data;
 }
