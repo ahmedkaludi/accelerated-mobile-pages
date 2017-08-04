@@ -20,7 +20,7 @@ $extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin" target="_blank">
@@ -122,7 +122,7 @@ $gettingstarted_extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
