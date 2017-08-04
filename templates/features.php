@@ -3248,14 +3248,15 @@ function ampforwp_rel_canonical_home_archive(){
 
 //Alt tag for thumbnails #1013
 function ampforwp_thumbnail_alt(){
+	$thumb_id = '';
+	$thumb_alt = '';
 	$thumb_id = get_post_thumbnail_id();
 	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-	if($thumb_alt){ ?>
-		  alt ="<?php echo $thumb_alt?>"
-	<?php }
+ 
+	if($thumb_alt){ 
+		echo "alt = '$thumb_alt'";
+	}
 }
-
-
 
 
 // Add the scripts and style in header
@@ -3326,5 +3327,5 @@ function ampforwp_add_pagebuilder_data( $data ) {
 		$data[ 'post_amp_styles' ] 			= $sanitized_data['style'];
 	}
 	
-	return $data;
+	return $data; 
 }
