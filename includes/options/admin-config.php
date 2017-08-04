@@ -644,6 +644,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => '2'
             ),
 
+
             array(
                 'id'        => 'amp-opt-sticky-head',
                 'type'      => 'switch',
@@ -744,6 +745,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             
 
              array(
                 'id'       => 'amp-design-2-search-feature',
@@ -766,6 +768,26 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             // Excerpt Length #1013
+             array(
+              'id'        => 'excerpt-design-1-length',
+              'type'      => 'switch',
+              'title'     => __('Excerpt Length', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Enable feature to manually add Excerpt length', 'accelerated-mobile-pages'),
+          ),
+            
+             array(
+                'id'        =>'amp-design-1-excerpt',
+                'type'      =>'text',
+                'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                'title'     =>__('Number of words','accelerated-mobile-pages'),
+                'required'  => array(
+                    array('excerpt-design-1-length','=','1')
+                    ),
+                'validate'  =>'numeric'
+                'default'   =>'20'
+                ),
     // Call Now button
     array(
         'id'       => 'ampforwp-callnow-button',
@@ -835,6 +857,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',
               'type'      => 'switch',
