@@ -19,6 +19,7 @@ add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
 
 function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
+  $post_type = '';
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
