@@ -85,7 +85,6 @@
 
 	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
-	require 'customizer/customizer.php';
 	// Custom AMP Content
 	require 'custom-amp-content.php';
 	// Custom AMPFORWP Sanitizers
@@ -93,6 +92,18 @@
 	// Custom Frontpage items
  	require 'frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
+
+ 	function ampforwp_include_customizer_files(){
+ 		$amp_plugin_data;
+
+ 		$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
+ 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
+ 			return require 'customizer/customizer-new.php' ;
+ 		} else {
+ 			return require 'customizer/customizer.php' ;
+ 		}
+ 	}
+ 	ampforwp_include_customizer_files();
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
