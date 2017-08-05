@@ -73,6 +73,7 @@
 								<a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
 									<amp-img
 										src=<?php echo $thumb_url ?>
+										<?php ampforwp_thumbnail_alt(); ?>
 										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 											width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
 											height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
@@ -84,12 +85,15 @@
 								</a>
 							</div>
 						<?php }
+							
 							if(has_excerpt()){
 								$content = get_the_excerpt();
 							}else{
 								$content = get_the_content();
 							} ?>
-						<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20' ); ?></p>
+						<p><?php global $redux_builder_amp;
+								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
+								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); ?></p>
 					</div>
 		        </div>
 		    <?php endwhile;  ?>

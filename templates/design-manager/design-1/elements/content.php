@@ -23,6 +23,8 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 			// Custom/Alternative AMP content added through post meta
 			$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 		}
+
+	if($redux_builder_amp['amp-pagination']) {
 		$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
 	      $queried_var = get_query_var('page');
 	      if ( $queried_var > 1 ) {
@@ -32,8 +34,12 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 	      	 $queried_var = 0;
 	      }
 	      echo $ampforwp_new_content[$queried_var];
-	do_action('ampforwp_after_post_content',$this) ?>
-
+		  do_action('ampforwp_after_post_content',$this) ;
+	}
+	else{
+				echo $ampforwp_the_content;
+	}//#1015 Pegazee
+	?>
 	<!--Post Next-Previous Links-->
 	<?php
 		if($redux_builder_amp['enable-single-next-prev']) { ?>

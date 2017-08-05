@@ -20,7 +20,7 @@ $extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin" target="_blank">
@@ -122,7 +122,7 @@ $gettingstarted_extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
@@ -744,6 +744,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             
 
              array(
                 'id'       => 'amp-design-2-search-feature',
@@ -766,6 +767,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             // Excerpt Length #1013
+             array(
+                'id'        =>'amp-design-1-excerpt',
+                'type'      =>'text',
+                'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                'required' => array(
+                  array('amp-design-selector', '=' , '1')
+                     ),
+                'validate'  =>'numeric',
+                'default'   =>'20',
+                ),
     // Call Now button
     array(
         'id'       => 'ampforwp-callnow-button',
@@ -835,6 +848,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',
               'type'      => 'switch',
@@ -875,6 +889,14 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
             'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
             'default'  => '0'
+        ),
+        // Pagination //#1015 Pegazee
+        array(
+            'id'       => 'amp-pagination',
+            'type'     => 'switch',
+            'title'    => __( 'Pagination in Single', 'accelerated-mobile-pages' ),
+           'default'   => 0,
+           'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
           // Related Post
 	        array(
