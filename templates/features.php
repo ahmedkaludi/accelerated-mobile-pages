@@ -76,6 +76,8 @@
 	64. PageBuilder  
 	65. Remove Filters code added through Class by other plugins
 	66. Make AMP compatible with Squirrly SEO
+	69. Post Pagination #834 #857
+	70. Hide AMP by specific Categories #872
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -83,16 +85,33 @@
 
 	// 0.9. AMP Design Manager Files
 	require 'design-manager.php';
-	require 'customizer/customizer.php';
 	// Custom AMP Content
 	require 'custom-amp-content.php';
 	// Custom AMPFORWP Sanitizers
  	require 'custom-sanitizer.php';
 	// Custom Frontpage items
  	require 'frontpage-elements.php';
+ 	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
+
+ 	function ampforwp_include_customizer_files(){
+ 		$amp_plugin_data;
+
+ 		$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
+ 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
+ 			return require 'customizer/customizer-new.php' ;
+ 		} else {
+ 			return require 'customizer/customizer.php' ;
+ 		}
+ 	}
+ 	ampforwp_include_customizer_files();
 //0.
 
-define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comments'] );
+define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
+	// Define number of comments
+	function ampforwp_define_comments_number(){
+		global $redux_builder_amp;
+		return $redux_builder_amp['ampforwp-number-of-comments'];
+	}
 
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
@@ -135,10 +154,27 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
 				return;
 			}
-      if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
-				return;
-			}
-
+		// #872 no-amphtml if selected as hide from settings
+		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+			$categories = get_the_category();
+			$category_id = $categories[0]->cat_ID;
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}  
+				if($selected_cats && $category_id){
+					if(in_array($category_id, $selected_cats)){
+						return;
+					}
+				}
+			} 
+		}	
+      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
 			$query_arg_array = $wp->query_vars;
 			if( in_array( "cpage" , $query_arg_array ) ) {
 				if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
@@ -364,11 +400,15 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 		//	moved this code to its own function and done the AMP way
 	}
 	// 6.1 Adding Analytics Scripts
-	add_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
-	function ampforwp_register_analytics_script(){ ?>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<?php
-
+	add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
+	function ampforwp_register_analytics_script( $data ){ 
+		global $redux_builder_amp;
+		if( $redux_builder_amp['amp-analytics-select-option'] && $redux_builder_amp['amp-analytics-select-option'] != '3' && $redux_builder_amp['amp-analytics-select-option'] != '6' && $redux_builder_amp['amp-analytics-select-option'] != '7' && $redux_builder_amp['amp-analytics-select-option'] != '8'){
+			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
+				$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
+			}
+		}
+		return $data;
 	}
 
 	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
@@ -691,7 +731,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 			// 10.2 Analytics Support added for segment.com
 				if ( $redux_builder_amp['amp-analytics-select-option']=='2' ) { ?>
 						<amp-analytics type="segment">
-							<script>
+							<script type="application/json">
 							{
 							  "vars": {
 							    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
@@ -737,22 +777,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE', $redux_builder_amp['ampforwp-number-of-comm
 							</amp-analytics>
 							<?php
 						}
-
-				// 10.5 Analytics Support added for comscore
-					if ( $redux_builder_amp['amp-analytics-select-option']=='5' ) { ?>
-							<amp-analytics type="comscore">
-								<script type="application/json">
-								{
-								  "vars": {
-								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
-								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
-								  }
-								}
-								</script>
-							</amp-analytics>
-							<?php
-						}
-
 
 			// 10.6 Analytics Support added for Effective Measure
 				if( $redux_builder_amp['amp-analytics-select-option']=='6' ) { ?>
@@ -1401,9 +1425,13 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'ET_Monarch', 'display_media', 9999 );
 		//Compatibility with wordpress twitter bootstrap #525
 		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
+		//Perfect SEO url + Yoast SEO Compatibility #982
+		ampforwp_remove_filters_for_class( 'wpseo_canonical', 'PSU', 'canonical', 10 );
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
+	//Removing the space added by the Google adsense #967
+		remove_filter( 'the_content', 'ga_strikable_add_optimized_adsense_code');
 }
 
 // 22. Removing author links from comments Issue #180
@@ -2306,9 +2334,7 @@ if( !function_exists( 'is_socialshare_or_socialsticky_enabled_in_ampforwp' ) ) {
 				 $redux_builder_amp['enable-single-gplus-share']  ||
 				 $redux_builder_amp['enable-single-email-share'] ||
 				 $redux_builder_amp['enable-single-pinterest-share']  ||
-				 $redux_builder_amp['enable-single-linkedin-share'] ||
-				 $redux_builder_amp['enable-single-whatsapp-share'] ||
-				 $redux_builder_amp['enable-single-line-share'] )  {
+				 $redux_builder_amp['enable-single-linkedin-share'] )  {
 					return true;
 				}
 			return false;
@@ -2584,10 +2610,17 @@ function ampforwp_add_modified_date($post_id){
 	}
 }
 
-// 58. YouTube Shortcode compatablity with AMP #557 
-if ( ! function_exists( 'shortcode_new_to_old_params') ) {
+// 58. YouTube Shortcode compatablity with AMP #557 #971
 
-	function shortcode_new_to_old_params( $params, $old_format_support = false ) {
+add_filter('amp_content_embed_handlers','ampforwp_youtube_shortcode_embedder');
+function ampforwp_youtube_shortcode_embedder($data){
+	 unset($data['AMP_YouTube_Embed_Handler']);
+	 $data[ 'AMPforWP_YouTube_Embed_Handler' ] = array();
+	return $data;
+}
+if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
+
+	function ampforwp_youtube_shortcode( $params, $old_format_support = false ) {
 		$str = '';
 
 		$youtube_url = 'https://www.youtube.com/watch?v=';
@@ -2595,10 +2628,11 @@ if ( ! function_exists( 'shortcode_new_to_old_params') ) {
 		$server = 'www.youtube.com';
 
 		if ( in_array( $server, $parsed_url ) === false ) {
+			if($params['id']){
 			$new_url  = $youtube_url .  $params['id'] ;
 			$params['id'] = $new_url;
+			}
 		}
-
 		if ( $old_format_support && isset( $params[0] ) ) {
 			$str = ltrim( $params[0], '=' );
 		} elseif ( is_array( $params ) ) {
@@ -2811,70 +2845,27 @@ function ampforwp_frontpage_comments() {
 
 
 // 64. PageBuilder 
-add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages' );
+add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
 
 	if ( is_home() ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
-		// Add Layout Builder Elements 
-		add_action('ampforwp_post_before_design_elements','ampforwp_add_landing_page_elements');
-		add_action('ampforwp_frontpage_above_loop','ampforwp_add_landing_page_elements');
-		// Add Styling
-		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);		
-		
-		/* 
-			Remove Default Post Elements and make the page blank.
-			So Landing page builder's elements will be visible.
-		*/
-		add_filter('ampforwp_design_elements', 'ampforwp_remove_post_elements');
-		remove_action('pre_amp_render_post', 'ampforwp_frontpage_file', 11);
+		// Add Styling Builder Elements
+		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
+		// Removed Titles for Pagebuilder elements
+		remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
 	}	
 }
 
-
-function ampforwp_add_landing_page_elements() {
-	$sanitized_sidebar = "";
-	$non_sanitized_sidebar = "";
-	$sidebar_output = "";
-    
-    ob_start();
-	dynamic_sidebar( 'layout-builder' );
-	$non_sanitized_sidebar = ob_get_contents();
-	ob_end_clean();
-
-	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
-		apply_filters( 'amp_content_embed_handlers', array(
-					'AMP_Twitter_Embed_Handler' => array(),
-					'AMP_YouTube_Embed_Handler' => array(),
-					'AMP_Instagram_Embed_Handler' => array(),
-					'AMP_Vine_Embed_Handler' => array(),
-					'AMP_Facebook_Embed_Handler' => array(),
-					'AMP_Gallery_Embed_Handler' => array(),
-		) ),
-		apply_filters(  'amp_content_sanitizers', array(
-					 'AMP_Style_Sanitizer' => array(),
-					 'AMP_Blacklist_Sanitizer' => array(),
-					 'AMP_Img_Sanitizer' => array(),
-					 'AMP_Video_Sanitizer' => array(),
-					 'AMP_Audio_Sanitizer' => array(),
-					 'AMP_Iframe_Sanitizer' => array(
-						 'add_placeholder' => true,
-					 ),
-		)  )
-	);
-
-   $sidebar_output = $sanitized_sidebar->get_amp_content();
-   echo $sidebar_output;
-}
-
-function  ampforwp_remove_post_elements($elements) {
+function ampforwp_remove_post_elements($elements) {
 	$elements =  array('empty-filter');
 	return $elements ;
 }
@@ -2894,6 +2885,77 @@ function ampforwp_pagebuilder_styling() { ?>
 .amp_cb_btn .l_btn{font-size: 18px; padding: 15px 48px;font-weight:bold;}
 @media (max-width: 430px) { .flex-grid {display: block;} }
 <?php }
+
+
+// Add the scripts and style in header
+function ampforwp_generate_pagebuilder_data() {
+  $sanitized_sidebar     	= "";
+  $non_sanitized_sidebar   	= "";
+  $sidebar_data 			= array();
+    
+  ob_start();
+	  dynamic_sidebar( 'layout-builder' );
+	  $non_sanitized_sidebar = ob_get_contents();
+  ob_end_clean();
+
+  $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+    apply_filters( 'amp_content_embed_handlers', array(
+          'AMP_Twitter_Embed_Handler' => array(),
+          'AMP_YouTube_Embed_Handler' => array(),
+          'AMP_Instagram_Embed_Handler' => array(),
+          'AMP_Vine_Embed_Handler' => array(),
+          'AMP_Facebook_Embed_Handler' => array(),
+          'AMP_Gallery_Embed_Handler' => array(),
+    ) ),
+    apply_filters(  'amp_content_sanitizers', array(
+           'AMP_Style_Sanitizer' => array(),
+           'AMP_Blacklist_Sanitizer' => array(),
+           'AMP_Img_Sanitizer' => array(),
+           'AMP_Video_Sanitizer' => array(),
+           'AMP_Audio_Sanitizer' => array(),
+           'AMP_Iframe_Sanitizer' => array(
+             'add_placeholder' => true,
+           ),
+    )  )
+  );
+
+  $sidebar_data['content'] 	= $sanitized_sidebar->get_amp_content();
+  $sidebar_data['script'] 	= $sanitized_sidebar->get_amp_scripts();
+  $sidebar_data['style'] 	= $sanitized_sidebar->get_amp_styles();
+  
+  return $sidebar_data;
+}
+
+function ampforwp_builder_checker() {
+	global $post, $redux_builder_amp;
+	$pagebuilder_check 	= '';
+	$post_id 			= '';
+
+	$post_id = $post->ID;
+	if ( is_home() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+
+	if ( $pagebuilder_check === 'layout-builder' ) {
+		return ampforwp_generate_pagebuilder_data(); 
+	}
+	return;
+}
+
+add_filter( 'amp_post_template_data', 'ampforwp_add_pagebuilder_data' );
+function ampforwp_add_pagebuilder_data( $data ) {
+	$sanitized_data = '';
+	$sanitized_data = ampforwp_builder_checker();
+
+	if ( $sanitized_data ) {
+		$data[ 'post_amp_content' ] 		= $sanitized_data['content'];
+		$data[ 'amp_component_scripts' ] 	= $sanitized_data['script'];
+		$data[ 'post_amp_styles' ] 			= $sanitized_data['style'];
+	}
+	
+	return $data; 
+}
 
 /**
  * 65. Remove Filters code added through Class by other plugins
@@ -2923,6 +2985,22 @@ function ampforwp_remove_filters_for_class( $hook_name = '', $class_name ='', $m
 		}
 	}
 	return false;
+}
+
+// BuddyPress Compatibility
+add_action('amp_init','ampforwp_allow_homepage_bp');
+function ampforwp_allow_homepage_bp() {
+	add_action( 'wp', 'ampforwp_remove_rel_on_bp' );
+}
+function ampforwp_remove_rel_on_bp(){	
+		if(function_exists('bp_is_activity_component')||function_exists('bp_is_members_component')||function_exists('bp_is_groups_component'))
+		{
+			if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
+				remove_action( 'wp_head', 'amp_frontend_add_canonical');
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+			}
+		}
+
 }
 
 
@@ -2993,3 +3071,285 @@ function fb_instant_article_feed_function() {
 	add_filter('pre_option_rss_use_excerpt', '__return_zero');
 	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
 }
+
+// 69. Post Pagination #834 #857
+function ampforwp_post_pagination( $args = '' ) {
+
+	wp_reset_postdata();
+	global $page, $numpages, $multipage, $more;
+
+	$defaults = array(
+		'before'           => '<p>' . __( 'Page:' ),
+		'after'            => '</p>',
+		'link_before'      => '',
+		'link_after'       => '',
+		'next_or_number'   => 'number',
+		'separator'        => ' ',
+		'nextpagelink'     => __( 'Next page' ),
+		'previouspagelink' => __( 'Previous page' ),
+		'pagelink'         => '%',
+		'echo'             => 1
+	);
+
+	$params = wp_parse_args( $args, $defaults );
+
+	/**
+	 * Filters the arguments used in retrieving page links for paginated posts.
+	 * @param array $params An array of arguments for page links for paginated posts.
+	 */
+	$r = apply_filters( 'ampforwp_post_pagination_args', $params );
+
+	$output = '';
+	if ( $multipage ) {
+		if ( 'number' == $r['next_or_number'] ) {
+			$output .= $r['before'];
+			for ( $i = 1; $i <= $numpages; $i++ ) {
+				$link = $r['link_before'] . str_replace( '%', $i, $r['pagelink'] ) . $r['link_after'];
+				if ( $i != $page || ! $more && 1 == $page ) {
+					$link = ampforwp_post_paginated_link_generator( $i ) . $link . '</a>';
+				}
+				/**
+				 * Filters the HTML output of individual page number links.
+				 * @param string $link The page number HTML output.
+				 * @param int    $i    Page number for paginated posts' page links.
+				 */
+				$link = apply_filters( 'ampforwp_post_pagination_link', $link, $i );
+
+				// Use the custom links separator beginning with the second link.
+				$output .= ( 1 === $i ) ? ' ' : $r['separator'];
+				$output .= $link;
+			}
+			$output .= $r['after'];
+		} elseif ( $more ) {
+			$output .= $r['before'];
+			$prev = $page - 1;
+			if ( $prev > 0 ) {
+				$link = ampforwp_post_paginated_link_generator( $prev ) . $r['link_before'] . $r['previouspagelink'] . $r['link_after'] . '</a>';
+				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $prev );
+			}
+			$next = $page + 1;
+			if ( $next <= $numpages ) {
+				if ( $prev ) {
+					$output .= $r['separator'];
+				}
+				$link = ampforwp_post_paginated_link_generator( $next ) . $r['link_before'] . $r['nextpagelink'] . $r['link_after'] . '</a>';
+				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $next );
+			}
+			$output .= $r['after'];
+		}
+	}
+
+	/**
+	 * Filters the HTML output of page links for paginated posts.
+	 * @param string $output HTML output of paginated posts' page links.
+	 * @param array  $args   An array of arguments.
+	 */
+	$html = apply_filters( 'ampforwp_post_pagination', $output, $args );
+	if ( $r['echo'] ) {
+		echo $html;
+	}
+	return $html;
+
+}
+
+/**
+ * Helper function for ampforwp_post_pagination().
+ * @access private
+ *
+ * @global WP_Rewrite $wp_rewrite
+ *
+ * @param int $i Page number.
+ * @return string Link.
+ */
+function ampforwp_post_paginated_link_generator( $i ) {
+	global $wp_rewrite;
+	$post = get_post();
+	$query_args = array();
+	if ( 1 == $i ) {
+		$url = get_permalink();
+	} else {
+		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+			$url = add_query_arg( 'page', $i, get_permalink() );
+		elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
+			$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+		else
+			$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
+	}
+
+	if ( is_preview() ) {
+
+		if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) {
+			$query_args['preview_id'] = wp_unslash( $_GET['preview_id'] );
+			$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] );
+		}
+
+		$url = get_preview_post_link( $post, $query_args, $url );
+	}
+
+	return '<a href="' . esc_url( $url ) . '?amp">';
+}
+
+add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_rel_amphtml_paginated_post');
+function ampforwp_modify_rel_amphtml_paginated_post($url) {
+	if(is_single()){
+			$post_paginated_page='';
+			$post_paginated_page = get_query_var('page');
+			if($post_paginated_page){
+				$url = get_permalink();
+				$new_url = $url."$post_paginated_page/?amp";
+				return $new_url;
+			}
+		} 
+	return $url;
+}
+
+add_action('amp_post_template_head','ampforwp_modify_rel_canonical_paginated_post',9);
+function ampforwp_modify_rel_canonical_paginated_post(){
+		if(is_single()){
+			$post_paginated_page='';
+			$post_paginated_page = get_query_var('page');
+			if($post_paginated_page){
+				remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+				add_action('amp_post_template_head','ampforwp_rel_canonical_paginated_post');
+			}
+		}
+}
+function ampforwp_rel_canonical_paginated_post(){
+		$post_paginated_page='';
+		$new_canonical_url = '';
+		global $post;
+	    $current_post_id = $post->ID;
+	    $new_canonical_url = get_permalink($current_post_id);
+	    $new_canonical_url = trailingslashit($new_canonical_url);
+		$post_paginated_page = get_query_var('page');
+		if($post_paginated_page){?>
+			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
+}
+add_action('ampforwp_after_post_content','ampforwp_post_pagination');
+
+
+// 70. Hide AMP by specific Categories #872
+
+function ampforwp_posts_to_remove () {
+	global $redux_builder_amp;
+	$args 							= array();
+	$get_categories_from_checkbox 	= '';
+	$get_selected_cats 				= '';
+	$selected_cats 					= array();
+	$posts 							= array();
+	$post_id_array 					= array();
+
+	$args = array(
+	  'post_type' => 'post',
+	);
+	$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+	if($get_categories_from_checkbox){
+		$get_selected_cats = array_filter($get_categories_from_checkbox);
+		foreach ($get_selected_cats as $key => $value) {
+			$selected_cats[] = $key;
+		}  
+	}
+	if ( ! empty($get_selected_cats)) {
+
+		$posts = get_posts( array(
+		    'category'          => $selected_cats,
+		    'numberposts'       => '-1',
+		    'post_type'         => $args,
+		    'post_status'       => 'publish',
+		    'suppress_filters'  => false
+		) );
+	}
+
+	if ( $posts ) {
+		 foreach ($posts as $post) {
+		    $post_id_array[] =  $post->ID;
+		}
+	}
+	return $post_id_array;
+}
+
+add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
+function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
+	$list_of_posts = '';
+	$skip_this_post = '';
+
+	$list_of_posts = ampforwp_posts_to_remove();
+	$skip_this_post = in_array($post_id, $list_of_posts);
+
+	if( $skip_this_post ) {
+	  $skip = true;
+	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	  // #999 Disable mobile redirection
+	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+	}
+	return $skip;
+}
+
+add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
+function ampforwp_rel_canonical_home_archive(){
+	global $redux_builder_amp;
+	global $wp;
+	$current_archive_url 	= '';
+	$amp_url				= '';
+	$remove					= '';
+	$query_arg_array 		= '';
+
+	if ( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+		$current_archive_url = home_url( $wp->request );
+		$amp_url 	= trailingslashit($current_archive_url);
+		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+		$amp_url 	= str_replace($remove, '', $amp_url) ;?>
+	<link rel="canonical" href="<?php echo $amp_url ?>">
+	<?php }
+
+	if((is_front_page() || is_home() ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+	  	$query_arg_array = $wp->query_vars;
+	  	$page = '' ;
+	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		   $page = $wp->query_vars['page'];
+	  	}
+	  	if ( $page >= '2') { ?>
+			<link rel="canonical" href="<?php
+			echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
+		} else { ?>
+			<link rel="canonical" href="<?php
+			echo  trailingslashit( home_url() ) ?>"> <?php
+		}
+	}			
+}
+
+//Alt tag for thumbnails #1013
+function ampforwp_thumbnail_alt(){
+	$thumb_id = '';
+	$thumb_alt = '';
+	$thumb_id = get_post_thumbnail_id();
+	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
+ 
+	if($thumb_alt){ 
+		echo "alt = '$thumb_alt'";
+	}
+}
+// For Post ID in Body tag 
+function ampforwp_get_body_class(){
+
+    global $post;
+    global $redux_builder_amp;
+    $post_id = '';
+
+  if ( is_singular() ) {
+    $post_id = $post->ID;
+  }
+  if ( $redux_builder_amp['amp-frontpage-select-option']) {
+       if ( is_home() &&  is_front_page() ) {
+         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+       } elseif ( is_home() ){
+         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
+       }
+  }
+
+  return $post_id;
+}
+
+function ampforwp_the_body_class(){
+  echo 'post-id-' . ampforwp_get_body_class();
+}#1006 Pegazee

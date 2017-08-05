@@ -5,15 +5,6 @@
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php
-	global $redux_builder_amp;
-	if ( is_home() || is_front_page()  || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
-		global $wp;
-		$current_archive_url = home_url( $wp->request );
-		$amp_url 	= trailingslashit($current_archive_url);
-		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$amp_url 	= str_replace($remove, '', $amp_url) ;
-	} 
-
 	if ( is_archive() ) {
 		$description 	= get_the_archive_description();
 		$sanitizer = new AMPFORWP_Content( $description, array(), 
@@ -29,7 +20,6 @@
 					)
 				) ) );
 	} ?>
-	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<?php
 	$amp_component_scripts = $sanitizer->amp_scripts;
@@ -107,6 +97,7 @@ if ( get_query_var( 'paged' ) ) {
 						<amp-img
 						layout="responsive"
 						src=<?php echo $thumb_url ?>
+						<?php ampforwp_thumbnail_alt(); ?>
 						width=450
 						height=270
 					></amp-img>

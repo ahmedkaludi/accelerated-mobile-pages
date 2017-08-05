@@ -4,15 +4,6 @@
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
-	<?php global $redux_builder_amp;
-		if ( is_home() || is_front_page() || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
-			global $wp;
-			$current_archive_url = home_url( $wp->request );
-			$amp_url 	= trailingslashit($current_archive_url);
-			$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-			$amp_url 	= str_replace($remove, '', $amp_url) ;
-		} ?>
-	<link rel="canonical" href="<?php echo $amp_url ?>"> 
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
 		<?php $this->load_parts( array( 'style' ) ); ?>
@@ -82,6 +73,7 @@
 								<a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
 									<amp-img
 										src=<?php echo $thumb_url ?>
+										<?php ampforwp_thumbnail_alt(); ?>
 										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 											width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
 											height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
@@ -93,12 +85,15 @@
 								</a>
 							</div>
 						<?php }
+							
 							if(has_excerpt()){
 								$content = get_the_excerpt();
 							}else{
 								$content = get_the_content();
 							} ?>
-						<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20' ); ?></p>
+						<p><?php global $redux_builder_amp;
+								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
+								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); ?></p>
 					</div>
 		        </div>
 		    <?php endwhile;  ?>

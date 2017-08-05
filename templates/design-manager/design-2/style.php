@@ -140,6 +140,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .amp-wp-author:before{ content: "By "; color: #555; }
 .amp-wp-author{ margin-right: 1px; }
 .amp-wp-meta{ font-size: 12px; color: #555; }
+.amp-wp-author-name:before{content:'By';}
 .amp-ad-wrapper{ text-align: center }
 .single-post main{ padding:12px 15% 10px 15% }
 .the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px; }

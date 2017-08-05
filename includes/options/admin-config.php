@@ -20,7 +20,7 @@ $extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin" target="_blank">
@@ -122,7 +122,7 @@ $gettingstarted_extension_listing = '
         <div class="extension_desc">
         <h2>Advanced AMP ADS</h2>
         <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $19</div>
+        <div class="extension_btn">From: $29</div>
         </div>
     </a></li>
     <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
@@ -256,7 +256,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a href="https://ampforwp.com/help/#utm_source=options-panel&utm_medium=help_link&utm_campaign=AMP%20Plugin" target="_blank">'.__('Help','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Tutorials','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=view_premium_features_btn&utm_campaign=AMP%20Plugin">VIEW PREMIUM FEATURES</a> ',
+    'intro_text'            => '<a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('View Documentation','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/support/#utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Contact','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=view_premium_features_btn&utm_campaign=AMP%20Plugin">VIEW PREMIUM FEATURES</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
@@ -380,7 +380,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
 			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/tutorials/" target="_blank">Tutorials</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We have prepared bunch of tutorials for you' ) . '</p>'
 			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
-			               . '<p><strong>' . __( '4. <a href="admin.php?page=amp_options&tab=14" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
+			               . '<p><strong>' . __( '4. <a href="https://ampforwp.com/priority-support/" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
 			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
 			               . '<p><strong>' . __( '6. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
 			               . '<p><strong>' . __( '7. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
@@ -439,19 +439,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'   => 1,
                'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
             ),
-          array(
-               'id'       => 'amp-pages-meta-default',
-               'type'     => 'select',
-               'title'    => __( 'Individual AMP Page (Bulk Edit)', 'accelerated-mobile-pages' ),
-               'subtitle' => __( 'Allows you to Show or Hide AMP from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'accelerated-mobile-pages' ),
-               'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
-               'options'  => array(
-                   'show' => __('Show by Default', 'accelerated-mobile-pages' ),
-                   'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
-               ),
-               'default'  => 'show',
-               'required'=>array('amp-on-off-for-all-pages','=','1'),
-          ),
 
 
           //  array(
@@ -757,6 +744,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             
 
              array(
                 'id'       => 'amp-design-2-search-feature',
@@ -779,6 +767,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                 ),
                 'default'  => '0'
             ),
+             // Excerpt Length #1013
+             array(
+                'id'        =>'amp-design-1-excerpt',
+                'type'      =>'text',
+                'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                'required' => array(
+                  array('amp-design-selector', '=' , '1')
+                     ),
+                'validate'  =>'numeric',
+                'default'   =>'20',
+                ),
     // Call Now button
     array(
         'id'       => 'ampforwp-callnow-button',
@@ -848,6 +848,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',
               'type'      => 'switch',
@@ -888,6 +889,14 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
             'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
             'default'  => '0'
+        ),
+        // Pagination //#1015 Pegazee
+        array(
+            'id'       => 'amp-pagination',
+            'type'     => 'switch',
+            'title'    => __( 'Pagination in Single', 'accelerated-mobile-pages' ),
+           'default'   => 0,
+           'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
           // Related Post
 	        array(
@@ -2361,30 +2370,104 @@ Redux::setArgs( "redux_builder_amp", $args );
                  )
               ) );
 
+ function fb_instant_article(){
+    $feedname = '';
+    $fb_instant_article_feed = ''; 
+    $feedname = 'instant_articles';
+    $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
+    return esc_url( $fb_instant_article_feed );
+}
+// Facebook Instant Articles
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
+   'id'         => 'fb-instant-article',
+   'subsection' => true,
+   'fields'     => array(
+                     array(
+                        'id'        =>'fb-instant-article-switch',
+                        'type'      => 'switch',
+                        'title'     => __('Facebook Instant Articles Support', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Re-Save permalink when you enable this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages'),
+                    ),    
+                    array(
+                        'id'       => 'fb-instant-article-feed-url',
+                        'type' => 'info',
+                        'style' => 'critical',
+                        'desc' => fb_instant_article(),
+                        'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),  
+                    array(
+                        'id'       => 'fb-instant-article-ads',
+                        'type'      => 'switch',
+                        'title'     => __('Advertisement', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to enable advertising on Instant Article pages.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-ad-id',
+                        'type'     => 'text',
+                        'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
+                        'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-ads', '=', 1)
+                    ),
+                     array(
+                        'id'       => 'fb-instant-article-analytics',
+                        'type'      => 'switch',
+                        'title'     => __('Analytics', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'desc' => __('Switch this on to enable analytics on Instant Article pages.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-analytics-code',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-analytics', '=', 1)
+                    ),
+    ),
+   )
+);
+Redux::setSection( $opt_name, array(
+   'title'      => __( 'Hide AMP Bulk Tools', 'accelerated-mobile-pages' ),
+   'id'         => 'hide-amp-section',
+   'subsection' => true,
+   'desc'       => 'Here are some Advanced options to help you exclude AMP from your prefered pages',
+   'fields'     => array(
 
-//    // CSS
-//    Redux::setSection( $opt_name, array(
-//        'title'      => __( 'Custom CSS Editor', 'accelerated-mobile-pages' ),
-//       // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
-//        'id'         => 'opt-css-editor',
-//        'subsection' => true,
-//        'fields'     => array(
-//            array(
-//                'id'       => 'css_editor',
-//                'type'     => 'ace_editor',
-//                'title'    => __('Custom CSS', 'accelerated-mobile-pages'),
-//                'subtitle' => __('You can customize the Stylesheet of the AMP version by using this option.', 'accelerated-mobile-pages'),
-//                'mode'     => 'css',
-//                'theme'    => 'monokai',
-//                'desc'     => '',
-//                'default'  => "/******* Paste your Custom CSS in this Editor *******/"
-//            ),
-//        )
-//    ) );
-//
-
-
-
+                        array(
+                           'id'       => 'amp-pages-meta-default',
+                           'type'     => 'select',
+                           'title'    => __( 'Individual AMP Page (Bulk Edit)', 'accelerated-mobile-pages' ),
+                           'subtitle' => __( 'Allows you to Show or Hide AMP from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'accelerated-mobile-pages' ),
+                           'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
+                           'options'  => array(
+                               'show' => __('Show by Default', 'accelerated-mobile-pages' ),
+                               'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
+                           ),
+                           'default'  => 'show',
+                           'required'=>array('amp-on-off-for-all-pages','=','1'),
+                        ),       
+                        array(
+                        'id'        =>'hide-amp-categories',
+                        'type'      => 'checkbox',
+                        'title'     => __('Select Categories to Hide AMP'),
+                        'subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'default'   => 0, 
+                        'data'      => 'categories',
+                        ), 
+                    )   
+                 )
+    );
 
 // Advance Settings SECTION
 Redux::setSection( $opt_name, array(
@@ -2456,60 +2539,7 @@ Redux::setSection( $opt_name, array(
 
    ),
 
-) );
-
-function fb_instant_article(){
-    $feedname = '';
-    $fb_instant_article_feed = ''; 
-    $feedname = 'instant_articles';
-    $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
-    return esc_url( $fb_instant_article_feed );
-}
-// Facebook Instant Articles
-Redux::setSection( $opt_name, array(
-   'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
-   'id'         => 'fb-instant-article',
-   'subsection' => true,
-   'fields'     => array(
-                     array(
-                        'id'        =>'fb-instant-article-switch',
-                        'type'      => 'switch',
-                        'title'     => __('Facebook Instant Articles Support', 'accelerated-mobile-pages'),
-                        'default'   => 0, 
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'desc' => __('Re-Save permalink when you enable this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages'),
-                    ),    
-                    array(
-                        'id'       => 'fb-instant-article-feed-url',
-                        'type' => 'info',
-                        'style' => 'critical',
-                        'desc' => fb_instant_article(),
-                        'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-switch', '=', 1)
-                    ),  
-                    array(
-                        'id'       => 'fb-instant-article-ads',
-                        'type'      => 'switch',
-                        'title'     => __('Advertisement', 'accelerated-mobile-pages'),
-                        'default'   => 0, 
-                        'true'      => 'true',
-                        'false'     => 'false',
-                        'desc' => __('Switch this on to enable advertising on Instant Article pages.', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-switch', '=', 1)
-                    ),
-                    array(
-                        'id'       => 'fb-instant-article-ad-id',
-                        'type'     => 'text',
-                        'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
-                        'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-ads', '=', 1)
-                    ),
-    ),
-   )
-);
-
-
+) );    
 // Extension Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Extensions', 'accelerated-mobile-pages' ),

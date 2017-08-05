@@ -19,6 +19,7 @@ add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
 
 function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
+  $post_type = '';
 
   if($redux_builder_amp['amp-mobile-redirection']){
 
@@ -29,6 +30,24 @@ function ampforwp_page_template_redirect() {
     if($post_type == 'forum'){
       return;
     }
+    // Return if some categories are selected as Hide #999
+    if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+      $categories = get_the_category();
+      $category_id = $categories[0]->cat_ID;
+      $get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+      // Check if $get_categories_from_checkbox has some cats then only show
+      if ( $get_categories_from_checkbox ) {
+        $get_selected_cats = array_filter($get_categories_from_checkbox);
+        foreach ($get_selected_cats as $key => $value) {
+          $selected_cats[] = $key;
+        }  
+        if($selected_cats && $category_id){
+          if(in_array($category_id, $selected_cats)){
+            return;
+          }
+        }
+      } 
+    } 
     session_start();
     if( $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
       return;

@@ -232,7 +232,14 @@ function no_empty_p_tags($DOMDocument){
 		global $redux_builder_amp;
 		$instant_article_ad_id = $redux_builder_amp['fb-instant-article-ad-id'];
 		return $instant_article_ad_id;
-	}	
+	}
+
+	function get_ia_analytics_code(){
+ 		global $redux_builder_amp;
+ 		$instant_article_analytics_code = $redux_builder_amp['fb-instant-article-analytics-code'];
+ 		return $instant_article_analytics_code;
+ 	}
+ 	
 /*function fb_gallery_shortcode($output, $attr, $instance){
 		$post = get_post();
 

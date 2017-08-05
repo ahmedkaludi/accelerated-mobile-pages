@@ -90,7 +90,9 @@
 						}else{
 							$content = get_the_content();
 						} ?>
-					<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '20'); ?></p>
+					<p><?php global $redux_builder_amp;
+								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
+								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); ?></p>
 				</div>
 	        </div>
 	    <?php endwhile;  ?>

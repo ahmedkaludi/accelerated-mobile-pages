@@ -1,10 +1,10 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
-Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO, Instant Articles
+Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8
-Stable tag: 0.9.54
+Stable tag: 0.9.56
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,11 +29,12 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Page Break / NextPage (Pagination) Support
 * NEW - Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * NEW - Page Builder for AMP! [Watch the Demo](http://ampforwp.com/demo/#pagebuilder) | [How to](https://ampforwp.com/tutorials/page-builder/)
-* NEW - Github Gist Support
 * NEW - Facebook Comments Support
-* NEW - Email Opt-in Subscription form support in AMP added
+* Github Gist Support
+* Email Opt-in Subscription form support in AMP added
 * Call to Action boxes and notification bars 
 * 9 Advertisement sizes - 2 More AD slots added recently
 * Comments Forms in AMP.
@@ -135,6 +136,40 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.56 (31st July 2017) =
+* View more details on https://ampforwp.com/page-break-in-amp/
+* Page Break / NextPage (Pagination) Support Added #834 #857  (Improvement)
+* Show/Hide AMP for Categories of Posts or All posts #872 (Improvement)
+* JetPack Plugin Conflict Solved #971
+* Social sharing code improved. amp-social-share js is getting added for line and WhatsApp social share #981
+* Code improvement for rel canonicals(home and archive)
+* Perfect SEO URL + Yoast SEO Compatibility #982
+* Some styling for tags to show up properly
+* Undefined index notices #960
+* Non-amp category pages should redirect to non-amp pages if turned off from Hiding AMP #999
+* Page builder text and button module issues #972
+* Documentation links updated in the Options panel
+
+= 0.9.55 (13th July 2017) =
+* View more details on https://ampforwp.com/0-9-55-released-improvement-update-61st-update/
+* Disqus Comments show up even when disabled per post #931
+* Unnecessary: Adding the Markup for AMP Woocommerce latest Products #929
+* H3 inside OL in Related-Posts.php #930
+* Advertisement Options in Instant Articles #943
+* Incompatible with bootstrap plugin #525
+* Error in tag and category links #934
+* Pagebuilder Button module link had issues #951
+* Unnecessary: Adding the Markup for AMP Woocommerce latest Products #929
+* WPtouch Pro Compatibility Issues #927
+* Better scripts compatibility in Single of post types #757
+* Instant Articles Error: "The HTML element does not contain any text" #949
+* added a filter in all the dates so a user can change the date format and modify #962
+* Design3 Menu Arrows are clickable along with the links #952
+
+
+= 0.9.54.2 (4th July 2017) =
+* Minor bug post 0.9.54 bug fixed
 
 = 0.9.54 (4th July 2017) =
 * View more details on https://ampforwp.com/new/

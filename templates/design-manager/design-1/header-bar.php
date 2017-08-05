@@ -24,11 +24,11 @@
       <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
             <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>
 
-            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="logo" class="amp-logo"></amp-img>
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="<?php bloginfo('name'); ?>" class="amp-logo"></amp-img>
 
           <?php } else { ?>
 
-            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
+            <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="<?php bloginfo('name'); ?>" class="amp-logo"></amp-img>
 
           <?php } ?>
       <?php } else {

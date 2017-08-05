@@ -5,14 +5,6 @@
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php
-	if ( is_home() || is_front_page()  || is_archive() ){
-		global $wp;
-		$current_archive_url 	= home_url( $wp->request );
-		$amp_url 				= trailingslashit($current_archive_url);
-		$remove 				= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$amp_url 				= str_replace($remove, '', $amp_url) ;
-	}
-
 	if ( is_archive() ) {
 		$description 	= get_the_archive_description();
 		$sanitizer = new AMPFORWP_Content( $description, array(), 
@@ -29,9 +21,7 @@
 				) ) );
 	}
 	 ?>
-	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
-
 	<?php
 	$amp_component_scripts = $sanitizer->amp_scripts;
 	if ( $sanitizer && $amp_component_scripts) {	
@@ -89,6 +79,7 @@
 					<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 						<amp-img
 							src=<?php echo $thumb_url ?>
+							<?php ampforwp_thumbnail_alt(); ?>
 							<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 								width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
 								height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
