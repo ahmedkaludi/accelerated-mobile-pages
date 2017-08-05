@@ -78,6 +78,8 @@
 	66. Make AMP compatible with Squirrly SEO
 	69. Post Pagination #834 #857
 	70. Hide AMP by specific Categories #872
+	71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
+	72. Blacklist Sanitizer Added back #1024
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3318,6 +3320,7 @@ function ampforwp_rel_canonical_home_archive(){
 	}			
 }
 
+// 71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
 //Alt tag for thumbnails #1013
 function ampforwp_thumbnail_alt(){
 	$thumb_id = '';
@@ -3329,27 +3332,34 @@ function ampforwp_thumbnail_alt(){
 		echo "alt = '$thumb_alt'";
 	}
 }
-// For Post ID in Body tag 
+// For Post ID in Body tag #1006
 function ampforwp_get_body_class(){
+	global $post;
+	global $redux_builder_amp;
+	$post_id = '';
 
-    global $post;
-    global $redux_builder_amp;
-    $post_id = '';
+	if ( is_singular() ) {
+		$post_id = $post->ID;
+	}
+	if ( $redux_builder_amp['amp-frontpage-select-option']) {
+	   	if ( is_home() &&  is_front_page() ) {
+	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	   	} elseif ( is_home() ){
+	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
+	   }
+	}
 
-  if ( is_singular() ) {
-    $post_id = $post->ID;
-  }
-  if ( $redux_builder_amp['amp-frontpage-select-option']) {
-       if ( is_home() &&  is_front_page() ) {
-         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-       } elseif ( is_home() ){
-         $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
-       }
-  }
-
-  return $post_id;
+	return $post_id;
 }
 
 function ampforwp_the_body_class(){
-  echo 'post-id-' . ampforwp_get_body_class();
-}#1006 Pegazee
+	echo 'post-id-' . ampforwp_get_body_class();
+}
+
+// 72. Blacklist Sanitizer Added back #1024
+add_filter('amp_content_sanitizers', 'ampforwp_add_blacklist_sanitizer');
+function ampforwp_add_blacklist_sanitizer($data){
+	// Blacklist Sanitizer Added back until we find a better solution to replace it 
+	$data['AMP_Blacklist_Sanitizer']  = array();
+	return $data;
+}
