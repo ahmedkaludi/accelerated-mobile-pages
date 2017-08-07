@@ -284,5 +284,5 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 @media (min-width: 768px) and (max-width: 1600px) {.tablepress { overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px) {.tablepress { display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
-
+.design_2_wrapper .amp-loop-list .amp-wp-meta {display: none;}
 <?php echo $redux_builder_amp['css_editor']; } ?>
