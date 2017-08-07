@@ -95,6 +95,7 @@
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
 
+ 	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		$amp_plugin_data;
 
