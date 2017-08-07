@@ -165,6 +165,11 @@ add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
+	if ( ! did_action( 'amp_init' ) ) {
+		amp_init();
+	}
+	flush_rewrite_rules();
+
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
     // Flushing rewrite urls ONLY on activation
@@ -180,6 +185,16 @@ register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
 function ampforwp_rewrite_deactivate() {
 	// Flushing rewrite urls ONLY on deactivation
 	global $wp_rewrite;
+	
+	foreach ( $wp_rewrite->endpoints as $index => $endpoint ) {
+		if ( AMP_QUERY_VAR === $endpoint[1] ) {
+			unset( $wp_rewrite->endpoints[ $index ] );
+			break;
+		}
+	}
+
+	flush_rewrite_rules();
+
 	$wp_rewrite->flush_rules();
 
 	// Remove transient for Welcome page
@@ -367,6 +382,7 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
  * Gentlemen start your engines
  */
 function ampforwp_plugin_init() {
+	
 	if ( defined( 'AMP__FILE__' ) && defined('AMPFORWP_PLUGIN_DIR') ) {
 		new Ampforwp_Init;
 	}
@@ -379,3 +395,18 @@ add_action('init','ampforwp_plugin_init',9);
 */
 require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
+
+
+
+// Bundling Default plugin
+require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+
+define( 'AMP__FILE__', __FILE__ );
+define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+define( 'AMP__VERSION', '0.4.2' );
+
+require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
