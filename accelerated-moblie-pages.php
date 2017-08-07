@@ -231,7 +231,8 @@ if ( is_admin() ) {
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
 
-    add_action('init','ampforwp_plugin_notice');
+	// Deactivate Parent Plugin notice
+    // add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
@@ -309,8 +310,9 @@ if ( is_admin() ) {
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
-
- 		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
+ 		
+ 		// Deactivate Parent Plugin notice
+ 		// add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
 
  		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
  			static $plugin;
