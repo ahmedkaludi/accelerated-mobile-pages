@@ -320,15 +320,11 @@ if ( is_admin() ) {
  					$settings = array('settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'accelerated-mobile-pages') . '</a>');
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					if ( is_plugin_active( 'amp/amp.php' ) ) {
-					    //if parent plugin is activated
-								$actions = array_merge( $actions, $settings );
-					} else{
-						if(is_plugin_active( 'amp/amp.php' )){
-							$actions = array_merge( $actions, $settings );
-						}else{
+						//if parent plugin is activated
+						$actions = array_merge( $actions, $settings );
+					} else {
 						$please_activate_parent_plugin = array(__('Please Activate Parent plugin','accelerated-mobile-pages') => '<a href="'.get_admin_url() .'index.php?page=ampforwp-welcome-page">' . __('<span style="color:#b30000">'.__('Action Required: Continue Installation','accelerated-mobile-pages').'</span>', 'accelerated-mobile-pages') . '</a>');
 						$actions = array_merge( $please_activate_parent_plugin,$actions );
-					}
 					}
 
  				}
