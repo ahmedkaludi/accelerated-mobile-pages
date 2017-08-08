@@ -435,7 +435,6 @@ function ampforwp_deactivate_amp_plugin() {
 }
 add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
 
-
 function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 	$plugin = '';
 
@@ -444,6 +443,5 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 		$actions['activate'] = '<span style="color:#b30000"> Plugin Bundled with AMPforWP </span>';
 	}
  	return $actions;
-
 }
 add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );

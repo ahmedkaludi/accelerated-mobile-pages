@@ -1,7 +1,4 @@
-<?php
-
-class AMPFORWP_Blurb_Widget extends WP_Widget {
-
+<?php class AMPFORWP_Blurb_Widget extends WP_Widget {
 	/*--------------------------------------------------*/
 	/* Constructor
 	/*--------------------------------------------------*/

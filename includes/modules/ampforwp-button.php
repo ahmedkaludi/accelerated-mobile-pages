@@ -1,6 +1,4 @@
-<?php
-
-class AMPFORWP_Button_Widget extends WP_Widget {
+<?php class AMPFORWP_Button_Widget extends WP_Widget {
 
 	/*--------------------------------------------------*/
 	/* Constructor

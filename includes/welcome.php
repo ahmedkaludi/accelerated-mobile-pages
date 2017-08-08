@@ -1,5 +1,4 @@
-<?php
-add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect' );
+<?php add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect' );
 function ampforwp_welcome_screen_do_activation_redirect() {
   // Bail if no activation redirect
     if ( ! get_transient( 'ampforwp_welcome_screen_activation_redirect' ) ) {
@@ -434,5 +433,4 @@ function afdfddf(){?>
         .ampforwp-custom-btn a{  font-size: 18px !important; background: #388E3C !important; border: 0px !important; border-radius: 2px !important; box-shadow: none !important; padding: 8px 20px !important; height: auto !important}
         .plugin-card-top h4{margin-top: 10px;}
 	</style>
-	<?php 
-}
+<?php }
