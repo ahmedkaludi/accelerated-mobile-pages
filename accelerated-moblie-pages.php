@@ -168,15 +168,15 @@ function ampforwp_rewrite_activation() {
 	// Run AMP deactivation code while activation  
 	ampforwp_deactivate_amp_plugin();
 
-	if ( ! did_action( 'amp_init' ) ) {
-		if ( function_exists( 'amp_init' ) ) {
-			amp_init();
-		}	 	
-	}
+		if ( ! did_action( 'ampforwp_init' ) ) {
+	 		ampforwp_init();		 	
+		}
+
 	flush_rewrite_rules();
 
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
+    
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -445,3 +445,29 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
  	return $actions;
 }
 add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+
+
+if ( ! function_exists('ampforwp_init') ) {
+	add_action( 'init', 'ampforwp_init' );
+	function ampforwp_init() {
+		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
+			return;
+		}
+
+		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+
+		do_action( 'amp_init' );
+
+		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
+
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+		add_post_type_support( 'post', AMP_QUERY_VAR );
+
+		add_filter( 'request', 'amp_force_query_var_value' );
+		add_action( 'wp', 'amp_maybe_add_actions' );
+
+		if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
+			require_once( AMP__DIR__ . '/jetpack-helper.php' );
+		}
+	}
+}

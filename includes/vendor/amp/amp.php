@@ -10,31 +10,6 @@
  * Domain Path: /languages/
  * License: GPLv2 or later
  */
-
-if ( ! function_exists('amp_init') ) {
-	add_action( 'init', 'amp_init' );
-	function amp_init() {
-		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
-			return;
-		}
-
-		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
-
-		do_action( 'amp_init' );
-
-		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
-
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
-		add_post_type_support( 'post', AMP_QUERY_VAR );
-
-		add_filter( 'request', 'amp_force_query_var_value' );
-		add_action( 'wp', 'amp_maybe_add_actions' );
-
-		if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
-			require_once( AMP__DIR__ . '/jetpack-helper.php' );
-		}
-	}
-}
 // Make sure the `amp` query var has an explicit value.
 // Avoids issues when filtering the deprecated `query_string` hook.
 if ( ! function_exists('amp_force_query_var_value') ) {
