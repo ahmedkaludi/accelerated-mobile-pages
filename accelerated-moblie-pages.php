@@ -441,7 +441,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 
 	$plugin =  'amp/amp.php'; 
 	if (  $plugin == $plugin_file  ) {
-		$actions['activate'] = '<span style="color:#b30000"> Cannot Activate for now! </span>';
+		$actions['activate'] = '<span style="color:#b30000"> Plugin Bundled with AMPforWP </span>';
 	}
  	return $actions;
 
