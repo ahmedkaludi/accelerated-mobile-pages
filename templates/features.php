@@ -98,15 +98,23 @@
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		$amp_plugin_data;
+		$amp_plugin_activation_check; 
 
- 		$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
- 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
- 			 return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer-new.php' ;
- 		} else {
- 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
- 		}
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
+
+		if ( $amp_plugin_activation_check ) {
+			$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
+	 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
+	 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer-new.php' ;
+	 		} else {
+	 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
+	 		}
+		} else {
+			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
+		}
  	} 
- 	add_action('after_setup_theme','ampforwp_include_customizer_files');
+ 	ampforwp_include_customizer_files();
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
