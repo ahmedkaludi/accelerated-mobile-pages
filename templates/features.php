@@ -101,14 +101,12 @@
 
  		$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
  		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
- 			return require 'customizer/customizer-new.php' ;
+ 			 return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer-new.php' ;
  		} else {
- 			return require 'customizer/customizer.php' ;
+ 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
  		}
- 	}
-
- 	require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
- 	// ampforwp_include_customizer_files();
+ 	} 
+ 	add_action('after_setup_theme','ampforwp_include_customizer_files');
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
