@@ -13,8 +13,8 @@
 					}
 				}
 			}
-			do_action('ampforwp_before_post_content',$this) //Post before Content here 
-			
+			do_action('ampforwp_before_post_content',$this); //Post before Content here 
+
 			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 
 			// Normal Front Page Content
