@@ -165,8 +165,13 @@ add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
+	// Run AMP deactivation code while activation  
+	ampforwp_deactivate_amp_plugin();
+
 	if ( ! did_action( 'amp_init' ) ) {
-		amp_init();
+		if ( function_exists( 'amp_init' ) ) {
+			amp_init();
+		}	 	
 	}
 	flush_rewrite_rules();
 
@@ -234,8 +239,6 @@ function ampforwp_add_module_files() {
 		require_once AMPFORWP_PLUGIN_DIR .'/includes/modules/ampforwp-button.php';
 	}
 }
-
-
 
 /*
  * Load Files only in the backend
@@ -397,16 +400,50 @@ require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 
 
+/*
+* 	Including core AMP plugin files and removing any other things if necessary
+*/
+function ampforwp_bundle_core_amp_files(){
+	// Bundling Default plugin
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
-// Bundling Default plugin
-require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+	define( 'AMP__FILE__', __FILE__ );
+	define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	define( 'AMP__VERSION', '0.4.2' );
 
-define( 'AMP__FILE__', __FILE__ );
-define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
-define( 'AMP__VERSION', '0.4.2' );
+	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+} 
+add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
-require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
-require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
-require_once( AMP__DIR__ . '/includes/admin/functions.php' );
-require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
-require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+function ampforwp_deactivate_amp_plugin() {
+ 
+	if ( version_compare( floatval( get_bloginfo( 'version' ) ), '3.5', '>=' ) ) {
+
+	    if ( current_user_can( 'activate_plugins' ) ) {
+
+	        add_action( 'admin_init', 'ampforwp_deactivate_amp' ); 
+
+	        function ampforwp_deactivate_amp() {
+	            deactivate_plugins( AMPFORWP_MAIN_PLUGIN_DIR . 'amp/amp.php' );
+	        }
+	    }
+	}
+}
+add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+
+
+function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
+	$plugin = '';
+
+	$plugin =  'amp/amp.php'; 
+	if (  $plugin == $plugin_file  ) {
+		$actions['activate'] = '<span style="color:#b30000"> Cannot Activate for now! </span>';
+	}
+ 	return $actions;
+
+}
+add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
