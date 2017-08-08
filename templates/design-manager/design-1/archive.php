@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp;  ?>
+<?php global $redux_builder_amp; global $wp;  ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -46,11 +46,13 @@
 	    the_archive_title( '<h3 class="page-title">', '</h3>' );
 	    
 			$arch_desc 		= $sanitizer->get_amp_content();
-			if( $arch_desc ) {  ?>
-				<div class="amp-wp-content taxonomy-description">
-					<?php echo $arch_desc ; ?>
-			  </div> <?php
-			}
+			if( $arch_desc ) {  
+				if($wp->query_vars['paged'] <= '1') {?>
+					<div class="amp-wp-content taxonomy-description">
+						<?php echo $arch_desc ; ?>
+				    </div> <?php
+				}
+			}	
 	  } ?>
 
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post();
