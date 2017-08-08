@@ -176,7 +176,7 @@ function ampforwp_rewrite_activation() {
 
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
-    
+
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -440,7 +440,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 
 	$plugin =  'amp/amp.php'; 
 	if (  $plugin == $plugin_file  ) {
-		$actions['activate'] = '<span style="color:#b30000"> Plugin Bundled with AMPforWP </span>';
+		unset($actions['activate']);
 	}
  	return $actions;
 }
