@@ -121,9 +121,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 /* Single */
 .single-post main{ margin: 20px 17px 17px 17px; }
 .amp-wp-article-content{ font-family:'PT Serif', serif; }
-.single-post .post-featured-img, .single-post .amp-wp-article-content amp-img{ margin:0 -17px 17px -17px }
-.single-post .amp-wp-article-content .alignleft amp-img { margin-right: 7px; }
-.single-post .amp-wp-article-content .alignright amp-img { margin-left: 7px; }
+.single-post .post-featured-img, .single-post .amp-wp-article-content amp-img{ margin:0 17px 0px -17px }
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
@@ -142,9 +140,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
-figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
-.single-post figcaption{ margin-top: -17px; margin-left: -17px; margin-right: -17px; }
-.single-post .alignright figcaption { margin: -17px -7px 0 7px; }
+figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
 .amp-wp-byline amp-img{ display: none; }
 .amp-wp-author{ margin-right: 1px; }
 .amp-wp-meta, .amp-wp-meta a{ font-size: 13px; color: #acacac; margin: 20px 0px 20px 0px; padding: 0; }
@@ -289,12 +285,12 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 /* Responsive */
 @media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (min-width:1034px){
-.single-post .amp-wp-article-content amp-img{ margin:0 -17px 17px -17px }
+.single-post .amp-wp-article-content amp-img{ margin:0 auto }
 }
 @media screen and (max-width: 1033px){
-.single-post figcaption{ margin: -7px 0px 17px 0px }
+.single-post figcaption{ margin: 0px 17px 5px -17px;  }
 }
-@media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;} }
+@media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;} .single-post .alignright amp-img, .alignright figcaption{margin:0 -17px 0 17px} .alignnone figcaption{margin:0px -17px 5px -17px} }
 @media screen and (max-width: 600px){ .amp-loop-list .amp-wp-tags{display:none} }
 @media screen and (max-width: 530px){ .home-post_image{ width: 35%; } .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-wp-post-content p { font-size: 12px; } .related_posts ol li p { line-height: 1.6; margin: 7px 0 0 0;} .comments_list ul li .comment-body {width:auto} .amp-category-block li:nth-child(3) {margin:0} }
 @media screen and (max-width: 425px){ .home-post_image{ /*    width: 125px;*/ width: 31.6%; overflow: hidden; height: 100px; /* margin-right: 13px; */ margin-right: 3%; } .home-post_image amp-img{ width: 144%; left: -20%; } h2.amp-wp-title{    margin-bottom: 7px;  line-height: 1.31578947; font-size: 19px; position:relative;top:-3px } h2.amp-wp-title a{ color:#262626} .amp-loop-list{padding:25px 15px 22px 15px} .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-loop-list .amp-wp-post-content p, .related_posts .related_link p{ display:none } .related_posts .related_link a{ font-size: 18px; line-height: 1.7; } .ampforwp-tax-category{ padding-bottom:0 } .amp-wp-byline{ padding:0 } .related_posts .related_link a{ font-size: 17px; line-height: 1.5; } .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;} .icono-share{display:none} .ampforwp-social-icons amp-social-share{ margin-right: 3px;} main .amp-wp-content{ font-size: 16px; line-height: 26px;} .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} .amp-category-post{ font-size:12px; color:#666 } }
@@ -340,9 +336,9 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 <?php if( $redux_builder_amp['enable-single-social-icons'] == true && is_socialshare_or_socialsticky_enabled_in_ampforwp() )  { ?>
 .single-post footer { padding-bottom: 41px;}
 <?php } ?>
+.single-post .alignnone amp-img{ padding: 17px;margin-bottom:0px}
 .single-post amp-img.alignleft, amp-anim.alignleft{ margin-right: 15px; margin-bottom:5px; float: left;}
-.single-post amp-img.alignright, amp-anim.alignright{ float:right; margin-left: 15px; margin-bottom:5px;}
-.single-post amp-img.aligncenter, amp-anim.aligncenter{ text-align:center; margin: 0 auto; max-width:100%}
+.single-post amp-img.alignright, amp-anim.alignright{ float:right; margin: 0px -17px 17px 0; }
 .amp-wp-author:before{ content: " <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' );?>  ";}
 .ampforwp-tax-category span:last-child:after { content: ' ';}
 .ampforwp-tax-category span:after{ content: ', ';}

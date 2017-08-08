@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.57.3
+Version: 0.9.58
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.57.3');
+define('AMPFORWP_VERSION','0.9.58');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -165,8 +165,18 @@ add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
+	// Run AMP deactivation code while activation  
+	ampforwp_deactivate_amp_plugin();
+
+		if ( ! did_action( 'ampforwp_init' ) ) {
+	 		ampforwp_init();		 	
+		}
+
+	flush_rewrite_rules();
+
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
+
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
@@ -180,6 +190,16 @@ register_deactivation_hook( __FILE__, 'ampforwp_rewrite_deactivate', 20 );
 function ampforwp_rewrite_deactivate() {
 	// Flushing rewrite urls ONLY on deactivation
 	global $wp_rewrite;
+	
+	foreach ( $wp_rewrite->endpoints as $index => $endpoint ) {
+		if ( AMP_QUERY_VAR === $endpoint[1] ) {
+			unset( $wp_rewrite->endpoints[ $index ] );
+			break;
+		}
+	}
+
+	flush_rewrite_rules();
+
 	$wp_rewrite->flush_rules();
 
 	// Remove transient for Welcome page
@@ -220,8 +240,6 @@ function ampforwp_add_module_files() {
 	}
 }
 
-
-
 /*
  * Load Files only in the backend
  * As we don't need plugin activation code to run everytime the site loads
@@ -231,7 +249,8 @@ if ( is_admin() ) {
 	// Include Welcome page only on Admin pages
 	require AMPFORWP_PLUGIN_DIR .'/includes/welcome.php';
 
-    add_action('init','ampforwp_plugin_notice');
+	// Deactivate Parent Plugin notice
+    // add_action('init','ampforwp_plugin_notice');
 	function  ampforwp_plugin_notice() {
 
 		if ( ! defined( 'AMP__FILE__' ) ) {
@@ -309,8 +328,9 @@ if ( is_admin() ) {
 
  	// Add Settings Button in Plugin backend
  	if ( ! function_exists( 'ampforwp_plugin_settings_link' ) ) {
-
- 		add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
+ 		
+ 		// Deactivate Parent Plugin notice
+ 		// add_filter( 'plugin_action_links', 'ampforwp_plugin_settings_link', 10, 5 );
 
  		function ampforwp_plugin_settings_link( $actions, $plugin_file )  {
  			static $plugin;
@@ -365,6 +385,7 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
  * Gentlemen start your engines
  */
 function ampforwp_plugin_init() {
+	
 	if ( defined( 'AMP__FILE__' ) && defined('AMPFORWP_PLUGIN_DIR') ) {
 		new Ampforwp_Init;
 	}
@@ -377,3 +398,76 @@ add_action('init','ampforwp_plugin_init',9);
 */
 require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
+
+
+/*
+* 	Including core AMP plugin files and removing any other things if necessary
+*/
+function ampforwp_bundle_core_amp_files(){
+	// Bundling Default plugin
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+
+	define( 'AMP__FILE__', __FILE__ );
+	define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	define( 'AMP__VERSION', '0.4.2' );
+
+	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+} 
+add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
+
+function ampforwp_deactivate_amp_plugin() {
+ 
+	if ( version_compare( floatval( get_bloginfo( 'version' ) ), '3.5', '>=' ) ) {
+
+	    if ( current_user_can( 'activate_plugins' ) ) {
+
+	        add_action( 'admin_init', 'ampforwp_deactivate_amp' ); 
+
+	        function ampforwp_deactivate_amp() {
+	            deactivate_plugins( AMPFORWP_MAIN_PLUGIN_DIR . 'amp/amp.php' );
+	        }
+	    }
+	}
+}
+add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+
+function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
+	$plugin = '';
+
+	$plugin =  'amp/amp.php'; 
+	if (  $plugin == $plugin_file  ) {
+		unset($actions['activate']);
+	}
+ 	return $actions;
+}
+add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+
+
+if ( ! function_exists('ampforwp_init') ) {
+	add_action( 'init', 'ampforwp_init' );
+	function ampforwp_init() {
+		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
+			return;
+		}
+
+		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+
+		do_action( 'amp_init' );
+
+		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
+
+		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+		add_post_type_support( 'post', AMP_QUERY_VAR );
+
+		add_filter( 'request', 'amp_force_query_var_value' );
+		add_action( 'wp', 'amp_maybe_add_actions' );
+
+		if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
+			require_once( AMP__DIR__ . '/jetpack-helper.php' );
+		}
+	}
+}

@@ -1,10 +1,8 @@
 <?php
 // Admin Panel Options
-
 if ( ! class_exists( 'Redux' ) ) {
     return;
 }
-
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";

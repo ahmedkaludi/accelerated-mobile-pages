@@ -3,19 +3,18 @@
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
 		<?php global $redux_builder_amp;
-if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
-	if($redux_builder_amp['enable-excerpt-single']) {
-			if(has_excerpt()){ ?>
-				<div class="ampforwp_single_excerpt">
-					<?php $content = get_the_excerpt();
-					echo $content; ?>
-				</div>
-			<?php }
-		}
-}
-		do_action('ampforwp_before_post_content',$this) //Post before Content here ?>
+			if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
+				if($redux_builder_amp['enable-excerpt-single']) {
+					if( has_excerpt() ){ ?>
+					<div class="ampforwp_single_excerpt">
+						<?php $content = get_the_excerpt();
+						echo $content; ?>
+					</div> <?php
+					}
+				}
+			}
+			do_action('ampforwp_before_post_content',$this); //Post before Content here 
 
-			<?php
 			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 
 			// Normal Front Page Content
@@ -27,7 +26,7 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 			}
 
 			// echo $this->get( 'post_amp_content' ); // amphtml content; no kses
-	if($redux_builder_amp['amp-pagination']) {
+		if($redux_builder_amp['amp-pagination']) {
 			$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
 		    $queried_var = get_query_var('page');
 		    if ( $queried_var > 1 ) {
@@ -37,12 +36,10 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 		    	 $queried_var = 0;
 		    }
 		    echo $ampforwp_new_content[$queried_var];
-	 		do_action('ampforwp_after_post_content',$this) ; //Post After Content here 
-	 }
-	 else{
+	 	} else{
 	 		echo $ampforwp_the_content;
-	 }//#1015 pegazee
-	 ?>
+	 	}//#1015 pegazee
+	 	do_action('ampforwp_after_post_content',$this) ; //Post After Content here ?>
 	</div>
 	<!--Post Content Ends here-->
 

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8.1
-Stable tag: 0.9.57.3
+Stable tag: 0.9.58
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -136,6 +136,16 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.58 (9th August 2017) =
+* View more details on https://ampforwp.com/new/
+* Genesis SEO for AMP support added
+* AMP 0.4.2 Vendor Bundled for making it crash proof
+* Archive desc only on 1st page #1029
+* Ads are not working after 0.9.6 #1030
+* Fixed the Post 0.9.57 Update Bugs #1025
+* All Images are aligned on left side in design 3 #1031
+* Custom frontpage title issue in Design 3 fixed
 
 = 0.9.57 (5th August 2017) =
 * See the Full changelog https://ampforwp.com/0-9-57-released-compatibility-issue-fixed-62nd-update/

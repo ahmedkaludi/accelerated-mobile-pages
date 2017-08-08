@@ -113,7 +113,6 @@ function ampforwp_page_template_redirect_archive() {
 		}
 	}
 }
-
 // Redirection code is not working properly. Need fix
 //add_action( 'template_redirect', 'ampforwp_page_template_redirect_non_amp', 10 );
 // function ampforwp_page_template_redirect_non_amp() {

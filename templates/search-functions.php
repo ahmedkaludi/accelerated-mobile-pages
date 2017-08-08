@@ -1,5 +1,4 @@
 <?php
-
 // 46. search search search everywhere #615
 
 add_action('pre_amp_render_post','ampforwp_search_related_functions',12);
