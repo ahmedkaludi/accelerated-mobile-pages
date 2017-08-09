@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.58
+Version: 0.9.58.1
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.58');
+define('AMPFORWP_VERSION','0.9.58.1');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -408,7 +408,9 @@ function ampforwp_bundle_core_amp_files(){
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
 	define( 'AMP__FILE__', __FILE__ );
-	define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	if ( ! defined('AMP__DIR__') ) {
+		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	}
 	define( 'AMP__VERSION', '0.4.2' );
 
 	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
@@ -455,6 +457,10 @@ if ( ! function_exists('ampforwp_init') ) {
 		}
 
 		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+
+		if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		}
 
 		do_action( 'amp_init' );
 
