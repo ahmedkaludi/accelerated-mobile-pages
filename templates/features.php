@@ -1655,18 +1655,18 @@ function ampforwp_replace_title_tags() {
 		}
 
 		if ( is_home() ) {
-			if ( 1 == $redux_builder_amp['amp-frontpage-select-option'] ) {
+			// Custom frontpage
+			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
+
+			if( get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
-			} else {
-				$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
-
-				$current_archive_url = home_url( $GLOBALS['wp']->request );
-				$current_url_in_pieces = explode( '/', $current_archive_url );
-				$cnt = count( $current_url_in_pieces );
-				if ( is_numeric( $current_url_in_pieces[ $cnt - 1 ] ) ) {
-					$site_title .= $sep . 'Page ' . $current_url_in_pieces[ $cnt - 1 ];
-				}
+			}
+			// Blog page 
+			if ( get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+				$ID = get_option( 'page_for_posts' );
+				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 			}
 		}
 
@@ -1691,7 +1691,7 @@ function ampforwp_replace_title_tags() {
 					}
 				}
 			}
-			elseif(is_home() && get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option']){
+			elseif( is_home() && get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ){
 				$post_id = get_option('page_on_front');
 					if ( null !== $post_id || is_singular() ) {
 						if ( genesis_get_custom_field( '_genesis_title', $post_id ) ) {
@@ -1705,7 +1705,7 @@ function ampforwp_replace_title_tags() {
 			if( $genesis_title ){
 				$site_title = $genesis_title;
 			}
-	}
+		}
 
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
