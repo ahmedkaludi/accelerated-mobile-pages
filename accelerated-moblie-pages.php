@@ -408,7 +408,9 @@ function ampforwp_bundle_core_amp_files(){
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
 	define( 'AMP__FILE__', __FILE__ );
-	define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	if ( ! defined('AMP__DIR__') ) {
+		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	}
 	define( 'AMP__VERSION', '0.4.2' );
 
 	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
