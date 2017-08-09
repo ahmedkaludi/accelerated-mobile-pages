@@ -456,6 +456,10 @@ if ( ! function_exists('ampforwp_init') ) {
 
 		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
+		if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		}
+
 		do_action( 'amp_init' );
 
 		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
