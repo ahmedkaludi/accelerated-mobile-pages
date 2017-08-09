@@ -1,6 +1,6 @@
 <?php
-add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
-function ampforwp_additional_style_input_2( $amp_template ) {
+add_action('amp_post_template_css', 'ampforwp_additional_style_input_3');
+function ampforwp_additional_style_input_3( $amp_template ) {
 	global $redux_builder_amp;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
