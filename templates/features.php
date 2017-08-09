@@ -86,25 +86,34 @@
 
 
 	// 0.9. AMP Design Manager Files
-	require 'design-manager.php';
+	require AMPFORWP_PLUGIN_DIR  .'templates/design-manager.php';
 	// Custom AMP Content
-	require 'custom-amp-content.php';
+	require AMPFORWP_PLUGIN_DIR  .'templates/custom-amp-content.php';
 	// Custom AMPFORWP Sanitizers
- 	require 'custom-sanitizer.php';
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/custom-sanitizer.php';
 	// Custom Frontpage items
- 	require 'frontpage-elements.php';
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
 
+ 	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		$amp_plugin_data;
+		$amp_plugin_activation_check; 
 
- 		$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
- 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
- 			return require 'customizer/customizer-new.php' ;
- 		} else {
- 			return require 'customizer/customizer.php' ;
- 		}
- 	}
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
+
+		if ( $amp_plugin_activation_check ) {
+			$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
+	 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
+	 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer-new.php' ;
+	 		} else {
+	 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
+	 		}
+		} else {
+			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
+		}
+ 	} 
  	ampforwp_include_customizer_files();
 //0.
 
@@ -2506,59 +2515,8 @@ function ampforwp_meta_description() {
 	if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
 		return;
 	}
-
-	global $post;
 	$desc = "" ;
-
-	if($redux_builder_amp['ampforwp-seo-yoast-description']){
-		if ( class_exists('WPSEO_Frontend') ) {
-			// general Description of everywhere
-			$front = WPSEO_Frontend::get_instance();
-			$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
-
-			// Static front page
-			// Code for Custom Frontpage Yoast SEO Description
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-			if ( class_exists('WPSEO_Meta') ) {
-				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
-				}
-			}
-		}
-		// for search
-		if( is_search() ) {
-			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
-		}
-	} else {
-		if( is_home() ) {
-			// normal home page
-			$desc= addslashes( strip_tags( get_bloginfo( 'description' ) ) );
-		}
-
-		if( is_archive() ) {
-			$desc= addslashes( strip_tags( get_the_archive_description() ) );
-		}
-
-		if( is_single() || is_page() ) {
-				if( has_excerpt() ){
-					$desc = get_the_excerpt();
-				} else {
-					global $post;
-					$id = $post->ID;
-					$desc = get_post($id)->post_content;
-				}
-				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
-		}
-
-		if( is_search() ) {
-			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
-		}
-
-		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'] ;
-			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
-		}
-	}
+	$desc = ampforwp_generate_meta_desc();
 
 	// strip_shortcodes  strategy not working here so had to do this way
 	// strips shortcodes
@@ -3362,4 +3320,87 @@ function ampforwp_add_blacklist_sanitizer($data){
 	// Blacklist Sanitizer Added back until we find a better solution to replace it 
 	$data['AMP_Blacklist_Sanitizer']  = array();
 	return $data;
+}
+
+// Genesis SEO #1013
+add_filter('wp_title', 'genesis_seo_title');
+add_filter('pre_get_document_title', 'genesis_seo_title');
+
+function genesis_seo_title( $title ) {
+	if(function_exists('genesis_title')){
+		$genesis_title = genesis_default_title( $title );
+		if( $genesis_title ){
+			$title = $genesis_title;
+		}
+	}
+	return $title;
+}
+
+//Meta description #1013
+function ampforwp_generate_meta_desc(){
+	global $post;
+	//$desc = '';
+
+	if($redux_builder_amp['ampforwp-seo-yoast-description']){
+		if ( class_exists('WPSEO_Frontend') ) {
+			// general Description of everywhere
+			$front = WPSEO_Frontend::get_instance();
+			$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+
+			// Static front page
+			// Code for Custom Frontpage Yoast SEO Description
+			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			if ( class_exists('WPSEO_Meta') ) {
+				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+				}
+			}
+		}
+		// for search
+		if( is_search() ) {
+			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
+		}
+	} 
+		
+	else {
+		if( is_home() ) {
+			// normal home page
+			$desc= addslashes( strip_tags( get_bloginfo( 'description' ) ) );
+		}
+
+		if( is_archive() ) {
+			$desc= addslashes( strip_tags( get_the_archive_description() ) );
+		}
+
+		if( is_single() || is_page() ) {
+				if( has_excerpt() ){
+					$desc = get_the_excerpt();
+				} else {
+					global $post;
+					$id = $post->ID;
+					$desc = get_post($id)->post_content;
+				}
+				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
+		}
+
+		if( is_search() ) {
+			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
+		}
+
+		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'] ;
+			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
+		}
+	}
+
+	//Genesis
+	if(function_exists('genesis_meta')){
+		if(function_exists('genesis_seo_meta_description')){
+			$genesis_description = genesis_get_seo_meta_description();
+			if($genesis_description){
+				$desc = $genesis_description;
+			}
+		}
+	}
+	return $desc;
 }

@@ -47,5 +47,4 @@
 		wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, '1.0.0' );
         wp_enqueue_style( 'ampforwp_admin_css' );
 	}
-
 ?>

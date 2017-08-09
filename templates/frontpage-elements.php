@@ -185,11 +185,11 @@ function ampforwp_design_2_frontpage_title() {
 function ampforwp_design_3_frontpage_title() { 
 	global  $redux_builder_amp;
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
-		<header class="amp-wp-article-header ampforwp-title amp-wp-content">
+		<main><header class="amp-wp-article-header ampforwp-title amp-wp-content">
 			<h1 class="amp-wp-title"> <?php 
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				echo get_the_title( $ID ) ;?>
 			</h1>
-		</header> <?php 
+		</header></main><?php 
 	}
 }
