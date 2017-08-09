@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8.1
-Stable tag: 0.9.58
+Stable tag: 0.9.58.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
+* NEW - Genesis SEO Support 
 * NEW - Facebook Instant Articles Support Added
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
@@ -136,6 +137,12 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.58.1 (9th August 2017) =
+* Jetpack conflict issue solved #1038
+* Genesis SEO Support added #1013
+* Fixed Wrong SEO title issue #1013 and #836
+* Design 3 Carousel script loading method improved #990
 
 = 0.9.58 (9th August 2017) =
 * View more details on https://ampforwp.com/new/
