@@ -3071,7 +3071,7 @@ function fb_instant_article_feed_function() {
 function ampforwp_post_pagination( $args = '' ) {
 
 	wp_reset_postdata();
-	global $page, $numpages, $multipage, $more;
+	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 
 	$defaults = array(
 		'before'           => '<p>' . __( 'Page:' ),
@@ -3140,10 +3140,12 @@ function ampforwp_post_pagination( $args = '' ) {
 	 * @param array  $args   An array of arguments.
 	 */
 	$html = apply_filters( 'ampforwp_post_pagination', $output, $args );
-	if ( $r['echo'] ) {
-		echo $html;
-	}
-	return $html;
+	if($redux_builder_amp['amp-pagination']) {
+		if ( $r['echo'] ) {
+			echo $html;
+		}
+		return $html;
+	}	
 
 }
 
