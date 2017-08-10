@@ -2822,18 +2822,13 @@ function ampforwp_frontpage_comments() {
 				    </ul>
 				</div>
 				<?php 
-				if ( comments_open($postID) ) {  ?>
+				
+			} 
+			if ( comments_open($postID) ) {  ?>
 				<div class="comment-button-wrapper">
 				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
-				}
-			} else {
-			    if ( !comments_open() ) { ?>
-			    <div class="comment-button-wrapper">
-			       <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform'  ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment' ); ?></a>
-			    </div>
-			<?php } 
-			}?>
+				}?>
 		</div> <?php
 	} 
 }
