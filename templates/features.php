@@ -199,7 +199,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
 	        $current_archive_url = home_url( $wp->request );
-	        $amp_url = trailingslashit($current_archive_url).'amp';
+	        $amp_url = trailingslashit(trailingslashit($current_archive_url).'amp');
 
 	    } else {
 	      $amp_url = amp_get_permalink( get_queried_object_id() );
@@ -2298,7 +2298,7 @@ function ampforwp_auto_add_amp_in_link_check() {
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 
-    $atts['href'] = trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR;
+    $atts['href'] = trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
     return $atts;
 }
 
@@ -2361,7 +2361,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				'width' 	=> $structured_data_width,
 			);
 
-			$metadata['mainEntityOfPage'] = $current_url; // proper URL added
+			$metadata['mainEntityOfPage'] = trailingslashit($current_url); // proper URL added
 			$metadata['headline'] = $headline; // proper headline added
 	}
 	return $metadata;
