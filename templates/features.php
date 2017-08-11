@@ -200,7 +200,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        global $wp;
 	        $current_archive_url = home_url( $wp->request );
 	        $amp_url = trailingslashit(trailingslashit($current_archive_url).'amp');
-
 	    } else {
 	      $amp_url = amp_get_permalink( get_queried_object_id() );
 	    }
@@ -219,7 +218,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							$supported_types[] = $custom_post;
 						}
 					}
-				}
+				}	
 
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				if( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) ) {
@@ -232,14 +231,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$supported_amp_post_types = in_array( $type , $supported_types );
 
 				$query_arg_array = $wp->query_vars;
-
 				if( array_key_exists( 'paged' , $query_arg_array ) ) {
-					if ( ( is_home() ||  is_front_page() ) && $wp->query_vars['paged'] >= '2' ) {
-						$new_url =  home_url('/');
-						$new_url = $new_url . AMPFORWP_AMP_QUERY_VAR . '/' . $wp->request ;
-						$amp_url = $new_url ;
-					}
-					if ( is_archive() && $wp->query_vars['paged'] >= '2' ) {
+					if ( (is_home() || is_archive()) && $wp->query_vars['paged'] >= '2' ) {
 						$new_url 		=  home_url('/');
 						$category_path 	= $wp->request;
 						$explode_path  	= explode("/",$category_path);
@@ -262,7 +255,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 				if( $supported_amp_post_types) {
-					printf( '<link rel="amphtml" href="%s" />', esc_url( $amp_url ) );
+					printf( '<link rel="amphtml" href="%s" />', esc_url(trailingslashit($amp_url) ));
 				}
 
 	        }
@@ -3285,29 +3278,24 @@ function ampforwp_rel_canonical_home_archive(){
 	$amp_url				= '';
 	$remove					= '';
 	$query_arg_array 		= '';
+	$page                   = '' ;
 
-	if ( is_home() && !$redux_builder_amp['amp-frontpage-select-option'] || ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) ){
+
+	if ( is_home() || is_front_page() ||  is_archive() && $redux_builder_amp['ampforwp-archive-support'] )	{
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$amp_url 	= str_replace($remove, '', $amp_url) ;?>
-	<link rel="canonical" href="<?php echo $amp_url ?>">
-	<?php }
-
-	if((is_front_page() || is_home() ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+		$amp_url 	= str_replace($remove, '', $amp_url);
 	  	$query_arg_array = $wp->query_vars;
-	  	$page = '' ;
 	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
 		   $page = $wp->query_vars['page'];
 	  	}
-	  	if ( $page >= '2') { ?>
-			<link rel="canonical" href="<?php
-			echo trailingslashit( home_url() ) . '?page=' . $page ?>"> <?php
-		} else { ?>
-			<link rel="canonical" href="<?php
-			echo  trailingslashit( home_url() ) ?>"> <?php
-		}
-	}			
+	  	if ( $page >= '2') { 
+			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
+		} ?>
+		<link rel="canonical" href="<?php echo trailingslashit($amp_url) ?>">
+	<?php }
+				
 }
 
 // 71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
