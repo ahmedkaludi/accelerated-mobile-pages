@@ -122,6 +122,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .single-post main{ margin: 20px 17px 17px 17px; }
 .amp-wp-article-content{ font-family:'PT Serif', serif; }
 .single-post .post-featured-img, .single-post .amp-wp-article-content amp-img{ margin:0 17px 0px -17px }
+.amp-wp-article-featured-image.wp-caption .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
