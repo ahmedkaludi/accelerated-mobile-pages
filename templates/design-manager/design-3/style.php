@@ -2,6 +2,9 @@
 add_action('amp_post_template_css', 'ampforwp_additional_style_input_3');
 function ampforwp_additional_style_input_3( $amp_template ) {
 	global $redux_builder_amp;
+  global $post;
+  $post_id = '';
+  $post_id = $post->ID;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
       $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
