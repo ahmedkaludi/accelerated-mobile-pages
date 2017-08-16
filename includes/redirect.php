@@ -49,7 +49,7 @@ function ampforwp_page_template_redirect() {
       } 
     } 
     session_start();
-    if( $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
+    if( isset($_SESSION['ampforwp_mobile']) && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
       return;
     }
     if( wp_is_mobile() && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_GET['nonamp']==1){
