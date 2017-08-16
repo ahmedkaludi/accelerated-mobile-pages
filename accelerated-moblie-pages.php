@@ -36,6 +36,7 @@ add_action( 'init', 'ampforwp_add_custom_post_support',11);
 
 // Frontpage and Blog page check from reading settings.
 function ampforwp_name_blog_page() {
+	if(!$page_for_posts = get_option('page_for_posts')) return;
 	$page_for_posts  =  get_option( 'page_for_posts' );
 	$post = get_post($page_for_posts); 
 	if ( $post ) {
