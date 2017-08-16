@@ -1075,7 +1075,7 @@ function ampforwp_get_all_post_types(){
 	global $redux_builder_amp;
 
     $post_types = array('post' => 'post', 'page' => 'page');
-    if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+    if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
     	$post_types = array_merge($post_types, $redux_builder_amp['ampforwp-custom-type']);
     }
     return $post_types;
@@ -1879,7 +1879,7 @@ add_action('wp','ampforwp_remove_crazy_lazy_support',9);
 add_action('init', 'amp_gtm_remove_analytics_code');
 function amp_gtm_remove_analytics_code() {
   global $redux_builder_amp;
-  if( $redux_builder_amp['amp-use-gtm-option'] ) {
+  if( isset($redux_builder_amp['amp-use-gtm-option']) && $redux_builder_amp['amp-use-gtm-option'] ) {
     remove_action('amp_post_template_footer','ampforwp_analytics',11);
   	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
   } else {
