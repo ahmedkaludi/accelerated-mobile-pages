@@ -2168,7 +2168,7 @@ function ampforwp_add_widget_support() {
 			'after_title'   => '</h4>'
 		));
 
-		if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
     $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
     $placeholder = 'PLACEHOLDER';
 			register_sidebar(array(
@@ -3045,7 +3045,7 @@ add_action('init', 'fb_instant_article_feed_generator');
  
 function fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
-	if( $redux_builder_amp['fb-instant-article-switch'] ) {	
+	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
 		add_feed('instant_articles', 'fb_instant_article_feed_function');
 	}
 }

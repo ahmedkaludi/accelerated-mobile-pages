@@ -21,7 +21,7 @@ function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
   $post_type = '';
 
-  if($redux_builder_amp['amp-mobile-redirection']){
+  if( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection']){
 
     if( ampforwp_meta_redirection_status()=='disable' ){
         return;
