@@ -3303,14 +3303,12 @@ function ampforwp_rel_canonical_home_archive(){
 				
 }
 
-// 71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
-//Alt tag for thumbnails #1013
+// 71. Alt tag for thumbnails #1013
 function ampforwp_thumbnail_alt(){
 	$thumb_id = '';
 	$thumb_alt = '';
 	$thumb_id = get_post_thumbnail_id();
-	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
- 
+	$thumb_alt = esc_attr(get_post_meta( $thumb_id, '_wp_attachment_image_alt', true));
 	if($thumb_alt){ 
 		echo "alt = '$thumb_alt'";
 	}
