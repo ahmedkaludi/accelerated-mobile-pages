@@ -3441,3 +3441,15 @@ function ampforwp_generate_meta_desc(){
 	}
 	return $desc;	
 }
+
+//Compatibility with WP User Avatar #975
+function ampforwp_get_wp_user_avatar(){
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if(is_plugin_active( 'wp-user-avatar/wp-user-avatar.php' )){
+			if(class_exists('WP_User_Avatar_Functions')){
+				$user_avatar_url = '';
+				$user_avatar_url = get_wp_user_avatar_src();
+				return $user_avatar_url;
+			}
+		}
+}
