@@ -12,6 +12,7 @@
 	</style>
 </head>
 <body class="amp_home_body design_3_wrapper">
+<?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 <div class="amp-wp-content">

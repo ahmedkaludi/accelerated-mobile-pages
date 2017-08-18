@@ -11,7 +11,7 @@
 </head>
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> single-post <?php ampforwp_the_body_class(); ?> <?php if(is_page()){ echo'amp-single-page'; };?> design_1_wrapper">
-
+	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 	<article class="amp-wp-article">

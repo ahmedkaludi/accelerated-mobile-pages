@@ -12,7 +12,7 @@
 </head>
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
-
+<?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 
