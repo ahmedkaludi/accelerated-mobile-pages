@@ -3308,9 +3308,6 @@ function ampforwp_thumbnail_alt(){
 	$thumb_id = '';
 	$thumb_alt = '';
 	$thumb_id = get_post_thumbnail_id();
-	$thumb_alt = esc_attr(get_post_meta( $thumb_id, '_wp_attachment_image_alt', true));
-	if($thumb_alt){ 
-		echo "alt = '$thumb_alt'";
 	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true) ;
 	if($thumb_alt){
 		echo 'alt = "'. esc_attr($thumb_alt). '"';
