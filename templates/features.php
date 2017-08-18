@@ -3311,6 +3311,9 @@ function ampforwp_thumbnail_alt(){
 	$thumb_alt = esc_attr(get_post_meta( $thumb_id, '_wp_attachment_image_alt', true));
 	if($thumb_alt){ 
 		echo "alt = '$thumb_alt'";
+	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true) ;
+	if($thumb_alt){
+		echo 'alt = "'. esc_attr($thumb_alt). '"';
 	}
 }
 // For Post ID in Body tag #1006
