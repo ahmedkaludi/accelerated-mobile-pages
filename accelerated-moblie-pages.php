@@ -481,7 +481,7 @@ if ( ! function_exists('ampforwp_init') ) {
 
 
 function AMP_update_db_check() {
-	$ampforWPCurrentVersion = AMP__VERSION;
+	$ampforWPCurrentVersion = AMPFORWP_VERSION;
    	if (get_option( 'AMPforwp_db_version' ) != $ampforWPCurrentVersion) {
 
    		if ( isset( $_GET['ampforwp-dismiss'] ) && trim($_GET['ampforwp-dismiss'])=="ampforwp_dismiss_admin_notices" ) {
