@@ -918,6 +918,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
 				// Removing the type attribute from the <ul>
 				 $content = preg_replace('/<ul(.*?)type=".*?"(.*?)/','<ul $1',$content);
+				  $content = preg_replace('/<blockquote.+?(?=class="twitter-tweet")class="twitter-tweet".+?(https:\/\/twitter\.com\/)(\w+\/)(\w+\/.*?)".+?(?=<\/blockquote>)<\/blockquote>/i', "$1$2$3", $content);
 				return $content;
 		}
 
@@ -1431,6 +1432,11 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
 		//Perfect SEO url + Yoast SEO Compatibility #982
 		ampforwp_remove_filters_for_class( 'wpseo_canonical', 'PSU', 'canonical', 10 );
+		//SiteOrigin Page builder compatibilty
+		//Neglect SOPB If Custom AMP Editor is checked
+	      if ( $amp_custom_content_enable === 'yes') {
+				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
+			}
 	}
 	//Removing the WPTouch Pro social share links from AMP
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
