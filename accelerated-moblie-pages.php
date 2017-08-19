@@ -481,21 +481,30 @@ if ( ! function_exists('ampforwp_init') ) {
 
 
 function AMP_update_db_check() {
-   	if (get_option( 'AMPforwp_db_version' ) != AMP__VERSION) {
+	$ampforWPCurrentVersion = AMP__VERSION;
+   	if (get_option( 'AMPforwp_db_version' ) != $ampforWPCurrentVersion) {
+
+   		if ( isset( $_GET['ampforwp-dismiss'] ) && trim($_GET['ampforwp-dismiss'])=="ampforwp_dismiss_admin_notices" ) {
+			update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
+			 wp_redirect(admin_url('/index.php'), 301);
+		}
+
         add_action('admin_notices', 'ampforwp_update_notice');
-        
     }
 }
 add_action( 'plugins_loaded', 'AMP_update_db_check' );
 
 function ampforwp_update_notice() {
-	$ampforWPCurrentVersion = AMP__VERSION;
     ?>
-    <div class="updated is-dismissible" style="padding:15px; position:relative;" id="gf_dashboard_message">
+    <div class="notice-success notice  is-dismissible" style="padding:15px; position:relative;" id="gf_dashboard_message">
 	  <?php _e( 'Congratulations AMP Plugin has been updated to '.$ampforWPCurrentVersion, 'ampforwp_plugin_textupdate' ); ?>
 	    <a href="admin.php?page=acmforwp_update">View Details</a> 
+	    <div>
+	        <a  href="<?php echo add_query_arg( 'ampforwp-dismiss', 'ampforwp_dismiss_admin_notices' ) ?>">Dismiss this notice</a>
+		    <button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
+	    </div>
 	</div>
     
     <?php
-    update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
+    //update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
 }
