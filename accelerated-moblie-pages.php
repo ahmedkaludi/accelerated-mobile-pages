@@ -478,3 +478,24 @@ if ( ! function_exists('ampforwp_init') ) {
 		}
 	}
 }
+
+
+function AMP_update_db_check() {
+   	if (get_option( 'AMPforwp_db_version' ) != AMP__VERSION) {
+        add_action('admin_notices', 'ampforwp_update_notice');
+        
+    }
+}
+add_action( 'plugins_loaded', 'AMP_update_db_check' );
+
+function ampforwp_update_notice() {
+	$ampforWPCurrentVersion = AMP__VERSION;
+    ?>
+    <div class="updated is-dismissible" style="padding:15px; position:relative;" id="gf_dashboard_message">
+	  <?php _e( 'Congratulations AMP Plugin has been updated to '.$ampforWPCurrentVersion, 'ampforwp_plugin_textupdate' ); ?>
+	    <a href="admin.php?page=acmforwp_update">View Details</a> 
+	</div>
+    
+    <?php
+    update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
+}
