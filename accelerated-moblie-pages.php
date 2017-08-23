@@ -497,9 +497,14 @@ add_action( 'plugins_loaded', 'AMP_update_db_check' );
 function ampforwp_update_notice() {
 	$ampforWPCurrentVersion = AMPFORWP_VERSION;
 ?>
-    <div class="notice-success notice  is-dismissible amp-update-notice" style="    display:inline-block;
-    position: relative; padding:0;
-    border: 0;" id="gf_dashboard_message">
+    <div class="notice-success notice  is-dismissible amp-update-notice" style="       display: inline-block;
+    position: relative;
+    height: 70px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+" id="gf_dashboard_message">
         <div style="     padding: 15px 15px 10px 15px;
     display: inline-block;">
         <img style="  width: 40px;
