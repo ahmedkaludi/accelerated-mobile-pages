@@ -495,6 +495,7 @@ function AMP_update_db_check() {
 add_action( 'plugins_loaded', 'AMP_update_db_check' );
 
 function ampforwp_update_notice() {
+	$ampforWPCurrentVersion = AMPFORWP_VERSION;
     ?>
     <div class="notice-success notice  is-dismissible" style="padding:15px; position:relative;" id="gf_dashboard_message">
 	  <?php _e( 'Congratulations AMP Plugin has been updated to '.$ampforWPCurrentVersion, 'ampforwp_plugin_textupdate' ); ?>
