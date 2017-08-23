@@ -3,7 +3,7 @@ if ( ! function_exists( 'ampforwp_reporting_bugs' ) ) {
 	function ampforwp_reporting_bugs($sections){
 
 $sections[] = array(
-      'title'      => __( 'Report an Issue /<br> Request a Feature', 'accelerated-mobile-pages' ),
+      'title'      => __( 'Send Feedback', 'accelerated-mobile-pages' ),
       // 'id'         => 'opt-structured-data',
       // 'subsection' => true,
       'icon' => 'el el-warning-sign ',

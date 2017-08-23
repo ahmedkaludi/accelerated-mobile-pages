@@ -7,6 +7,9 @@ add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
 
 function ampforwp_additional_style_input_2( $amp_template ) {
 	global $redux_builder_amp;
+	global $post;
+	$post_id = '';
+	$post_id = $post->ID;
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
@@ -147,6 +150,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-article-featured-image amp-img {margin: 0 auto;}
+.amp-wp-article-featured-image.wp-caption .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
 .amp-wp-content.post-pagination-meta{ max-width: 1030px; }
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ display: block; margin: 2em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px;}

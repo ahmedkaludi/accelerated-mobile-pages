@@ -21,7 +21,7 @@ function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
   $post_type = '';
 
-  if($redux_builder_amp['amp-mobile-redirection']){
+  if( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection']){
 
     if( ampforwp_meta_redirection_status()=='disable' ){
         return;
@@ -49,7 +49,7 @@ function ampforwp_page_template_redirect() {
       } 
     } 
     session_start();
-    if( $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
+    if( isset($_SESSION['ampforwp_mobile']) && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_SESSION['ampforwp_mobile']=='exit'){
       return;
     }
     if( wp_is_mobile() && $_SESSION['ampforwp_amp_mode']=='mobile-on' && $_GET['nonamp']==1){
