@@ -406,6 +406,6 @@ if ( class_exists('TablePress') ) { ?>
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
-p.wp-caption-text{ text-align: center }
+p.wp-caption-text{ text-align: center; font-size: 10px; line-height: 1.6; margin-top: 3px; margin-bottom: 10px; }
 
 <?php echo $redux_builder_amp['css_editor']; } ?>
