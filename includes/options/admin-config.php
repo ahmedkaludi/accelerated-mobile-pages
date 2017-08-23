@@ -1858,7 +1858,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
               						'default'   	=> '',
-              						'desc'	=> __('Eg: GTM-5XXXXXP','accelerated-mobile-pages'),
+              						'desc'	=> __('Eg: GTM-5XXXXXP (<a href="https://ampforwp.com/tutorials/article/gtm-in-amp/">Getting Started?</a>)','accelerated-mobile-pages'),
                         //  'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')

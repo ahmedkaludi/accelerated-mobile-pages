@@ -919,7 +919,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				// Removing the type attribute from the <ul>
 				 $content = preg_replace('/<ul(.*?)type=".*?"(.*?)/','<ul $1',$content);
 				 //Convert the Twitter embed into url for better sanitization #1010
-				  $content = preg_replace('/<blockquote.+?(?=class="twitter-tweet")class="twitter-tweet".+?(https:\/\/twitter\.com\/\w+\/\w+\/.*?)".+?(?=<\/blockquote>)<\/blockquote>/i', "$1", $content);
+				  $content = preg_replace('/<blockquote.+?(?=class="twitter-tweet")class="twitter-tweet".+?(https:\/\/twitter\.com\/\w+\/\w+\/.*?)".+?(?=<\/blockquote>)<\/blockquote>/s', "$1", $content);
 				return $content;
 		}
 
@@ -1121,7 +1121,7 @@ function ampforwp_title_callback( $post ) {
 
     	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
     	// This code needs a rewrite.
-		if ( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
+		if ( ! isset($ampforwp_stored_meta['ampforwp-amp-on-off'][0]) || $ampforwp_stored_meta['ampforwp-amp-on-off'][0] == 'hide-amp') {
 			$exclude_post_value = get_option('ampforwp_exclude_post');
 			if ( $exclude_post_value == null ) {
 				$exclude_post_value[] = 0;
