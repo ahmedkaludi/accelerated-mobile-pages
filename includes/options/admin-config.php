@@ -29,6 +29,14 @@ $extension_listing = '
         <div class="extension_btn">From: $39</div>
         </div>
     </a></li>
+    <li class="second"><a href="http://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin" target="_blank">
+        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/gf.png" /></div>
+        <div class="extension_desc">
+        <h2>Gravity Forms</h2>
+        <p>Add Gravity Forms Support in AMP.</p>
+        <div class="extension_btn">From: $79</div>
+        </div>
+    </a></li>
     <li class="first"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
         <div class="extension_desc">
@@ -634,6 +642,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'select',
                 'title'    => __( 'Design Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design.', 'accelerated-mobile-pages' ),
+                'desc' => '<a href="https://ampforwp.com/themes/" target="_blank">View More AMP Themes →</a>',
                 'options'  => array(
                     '1' => __('Design One', 'accelerated-mobile-pages' ),
                     '2' => __('Design Two', 'accelerated-mobile-pages' ),
@@ -1858,7 +1867,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               						'type'      	=> 'text',
               						'title'     	=> __('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
               						'default'   	=> '',
-              						'desc'	=> __('Eg: GTM-5XXXXXP','accelerated-mobile-pages'),
+              						'desc'	=> __('Eg: GTM-5XXXXXP (<a href="https://ampforwp.com/tutorials/article/gtm-in-amp/">Getting Started?</a>)','accelerated-mobile-pages'),
                         //  'validate' => 'not_empty',
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '1')
@@ -1968,12 +1977,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                'true'      => 'Enabled',
                'false'     => 'Disabled',
            ),
+
            array(
 //        'title'    => __('Notification text', 'accelerated-mobile-pages'),
         'id'   => 'info_normal',
         'type' => 'info',
            'required' => array('amp-enable-contactform', '=' , '1'),
                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+           ),
+           array(
+               'id'        =>'amp-enable-gravityforms_support',
+               'type'      => 'switch',
+               'title'     => __('Gravity Forms Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           ),
+           array(
+//        'title'    => __('Notification text', 'accelerated-mobile-pages'),
+        'id'   => 'info_normal_2',
+        'type' => 'info',
+           'required' => array('amp-enable-gravityforms_support', '=' , '1'),
+                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
            ),
        ),
 
@@ -2569,6 +2594,36 @@ Redux::setSection( $opt_name, array(
         'desc' => '        <a href="http://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin"  target="_blank"><img class="ampforwp-support-banner" src="'.AMPFORWP_IMAGE_DIR . '/priority-support-banner.png" width="345" height="500" /></a>',
         'icon' => 'el el-hand-right',
     ) );
+
+
+
+// Plugin Manager
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Plugins Manager', 'accelerated-mobile-pages' ),
+        'id'         => 'opt-plugins-manager',
+        'subsection' => false,
+        'desc'  => 'You can Disable Plugins only in AMP which are causing AMP validation errors. <a href="http://ampforwp.com/plugins-manager" target="_blank">More Information.</a>',
+        'icon'  => 'el el-magic',
+       'fields' => array(
+
+            array(
+                'id'       => 'ampforwp-plugin-manager-core',
+                'type'     => 'switch',
+                 'title'    => __('Enable Plugin Manager', 'accelerated-mobile-pages'),
+                'default'   => 0
+            ),
+           array(
+//        'title'    => __('Notification text', 'accelerated-mobile-pages'),
+        'id'   => 'info_normal',
+        'type' => 'info',
+           'required' => array('ampforwp-plugin-manager-core', '=' , '1'),
+                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/plugins-manager" target="_blank">Click here for more info</a>)</div></div>',               
+           ),
+        )        
+) );
+
+
+
 /*
 * <--- END SECTIONS
 */

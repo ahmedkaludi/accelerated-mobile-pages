@@ -24,7 +24,7 @@ $template = new AMP_Post_Template( $post_id );?>
 	</style>
 </head>
 <body class="single-post <?php ampforwp_the_body_class(); ?> design_3_wrapper">
-	
+	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
 	<?php do_action( 'ampforwp_design_3_frontpage_title', $template ); ?>

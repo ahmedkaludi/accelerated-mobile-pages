@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/5
 Requires at least: 3.0
 Tested up to: 4.8.1
-Stable tag: 0.9.58.1
+Stable tag: 0.9.59
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,10 +29,12 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
+* NEW - AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * NEW - Page Break / NextPage (Pagination) Support
 * NEW - Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * NEW - Page Builder for AMP! [Watch the Demo](http://ampforwp.com/demo/#pagebuilder) | [How to](https://ampforwp.com/tutorials/page-builder/)
-* NEW - Facebook Comments Support
+* Facebook Comments Support
 * Github Gist Support
 * Email Opt-in Subscription form support in AMP added
 * Call to Action boxes and notification bars 
@@ -137,6 +139,25 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.59 (23th August 2017) =
+* Design 3 Images were not aligned properly. Fixed. #1040
+* Caption in the design 3 improved
+* Jetpack File not loading throwing fatal error #1038
+* If the mobile redirection is ON and the category is excluded to display the AMP then it should redirect properly
+* Custom Editor Compatibility issue with SiteOrigin PageBuilder fixed #997
+* Native Twitter Embed support
+* Added a hook after the body tag: ampforwp_body_beginning (commit)
+* GTM in AMP Improved #958
+* WP User Avatar compatibility Added #975
+* Alt tag on frontpage featured image added #1050
+* Blurred Images on the frontpage fixed #1050
+* Need to escape alt tag #1049
+* Debug errors & PHP warnings were fixed #859 #811 #830 #810
+* Proper rel canonicals for inner pages #1047
+* Added Video sanitizer for comments #1053
+* When activating the AMP plugin, display a notification in the popup. #1036
+* Video Sanitizer added for Comments
 
 = 0.9.58.1 (9th August 2017) =
 * Jetpack conflict issue solved #1038
