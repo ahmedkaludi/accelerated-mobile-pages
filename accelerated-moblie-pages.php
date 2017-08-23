@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.59');
+define('AMPFORWP_VERSION','0.9.e59');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -497,13 +497,13 @@ add_action( 'plugins_loaded', 'AMP_update_db_check' );
 function ampforwp_update_notice() {
 	$ampforWPCurrentVersion = AMPFORWP_VERSION;
 ?>
-    <div class="notice-success notice  is-dismissible amp-update-notice" style="       display: inline-block;
+    <div class="notice-success notice  is-dismissible amp-update-notice" style="           display: table;
     position: relative;
     height: 70px;
     padding: 0;
     border: 0;
     overflow: hidden;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 " id="gf_dashboard_message">
         <div style="     padding: 15px 15px 10px 15px;
     display: inline-block;">
