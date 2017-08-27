@@ -862,6 +862,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'options'  => array(
                   '1' => 'Top',
                   '2' => 'Bottom',
+              ),
               'title'    => __( 'Sticky Social Icons Position', 'accelerated-mobile-pages' ),
               'required' => array(
                 array('enable-single-social-icons', '=' , '1')
