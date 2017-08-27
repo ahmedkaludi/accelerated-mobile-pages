@@ -867,7 +867,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'required' => array(
                 array('enable-single-social-icons', '=' , '1')
               ),
-              'default'   => 1,
+              'default'   => 2,
               'desc'     => __('Where do you want the sticky social icons to be displayed?', 'accelerated-mobile-pages' ),
           ),
           // Excerpt ON/OFF
