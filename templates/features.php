@@ -3058,7 +3058,7 @@ function ampforwp_view_nonamp(){
         $ampforwp_backto_nonamp = preg_replace('/amp/','',$ampforwp_backto_nonamp);
       }
   } ?>
-<?php if ( $ampforwp_backto_nonamp ) { ?> <a href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+<?php if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
  }
 
  //68. Facebook Instant Articles
