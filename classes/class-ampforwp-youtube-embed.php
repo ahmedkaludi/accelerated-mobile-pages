@@ -92,7 +92,9 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 	private function get_video_id_from_url( $url ) {
 		$video_id = false;
 		$parsed_url = parse_url( $url );
-
+		if(!isset($parsed_url['host'])){
+			$parsed_url['host'] = '';
+		}
 		if ( self::SHORT_URL_HOST === substr( $parsed_url['host'], -strlen( self::SHORT_URL_HOST ) ) ) {
 			// youtu.be/{id}
 			$parts = explode( '/', $parsed_url['path'] );

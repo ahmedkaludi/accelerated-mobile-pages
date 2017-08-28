@@ -2630,13 +2630,15 @@ if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
 
 	function ampforwp_youtube_shortcode( $params, $old_format_support = false ) {
 		$str = '';
-
+		$parsed_url = array();
 		$youtube_url = 'https://www.youtube.com/watch?v=';
-		$parsed_url = parse_url( $params['id'] );
+		if(isset( $params['id']) ){
+			$parsed_url = parse_url( $params['id'] );
+		}
 		$server = 'www.youtube.com';
 
 		if ( in_array( $server, $parsed_url ) === false ) {
-			if($params['id']){
+			if(isset($params['id']) && $params['id']){
 			$new_url  = $youtube_url .  $params['id'] ;
 			$params['id'] = $new_url;
 			}
@@ -2650,7 +2652,6 @@ if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
 			  }
 			}
 		}
-
 	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
 	}
 }
