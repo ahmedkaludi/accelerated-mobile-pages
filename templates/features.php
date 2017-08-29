@@ -419,10 +419,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	function ampforwp_add_amp_related_scripts( $data ) {
 		global $redux_builder_amp;
 		// Adding Sidebar Script
-		if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
-			$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+		if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ 
+			if ( empty( $data['amp_component_scripts']['amp-sidebar'] ) ) {
+				$data['amp_component_scripts']['amp-sidebar'] = 'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js';
+			}
 		}
-
 		return $data;
 	}
 

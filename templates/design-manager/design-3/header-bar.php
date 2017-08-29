@@ -1,3 +1,5 @@
+<?php global $redux_builder_amp;
+if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <amp-sidebar id='sidebar'
     layout="nodisplay"
     side="left">
@@ -77,14 +79,16 @@
           </div>
   </div>
 </amp-sidebar>
-
+<?php } ?>
 <div id="designthree" class="designthree main_container">
 <header class="container">
   <div id="headerwrap">
       <div id="header">
+      <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
         <div class="hamburgermenu">
             <button class="toast pull-left" on='tap:sidebar.toggle'><span></span></button>
         </div>
+        <?php } ?>
         <div class="headerlogo">
         <?php global $redux_builder_amp;
         do_action('ampforwp_header_top_design3');
