@@ -17,7 +17,7 @@
         echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
            
         // Home page
-        echo '<li class="item-home"><a class="bread-link bread-home" href="' . trailingslashit( get_home_url() ) . AMPFORWP_AMP_QUERY_VAR . '" title="' . $home_title . '">' . $home_title . '</a></li>';
+        echo '<li class="item-home"><a class="bread-link bread-home" href="' . trailingslashit(trailingslashit( get_home_url() ) . AMPFORWP_AMP_QUERY_VAR) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
 
@@ -28,9 +28,9 @@
                 
                 $userdata = get_userdata( $author ); 
                 $author_url= get_author_posts_url($userdata->ID);
-
+                $author_url = trailingslashit($author_url);
                 // Display author name
-                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'.$author_url.'">' . 'Author: ' . $userdata->display_name . '</a></li>';
+                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'.trailingslashit($author_url. AMPFORWP_AMP_QUERY_VAR ). '">' . 'Author: ' . $userdata->display_name . '</a></li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
               
@@ -42,8 +42,8 @@
                   
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
-              
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';              
+                $post_type_archive = trailingslashit($post_type_archive);
+                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . trailingslashit($post_type_archive . AMPFORWP_AMP_QUERY_VAR) . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';              
             }
               
             $custom_tax_name = get_queried_object()->name;
@@ -58,27 +58,28 @@
                   
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
-              
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';  
+              $post_type_archive = trailingslashit($post_type_archive);
+                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' .trailingslashit($post_type_archive . AMPFORWP_AMP_QUERY_VAR) . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';  
             }
               
             // Get post category info
             $category = get_the_category();
              
             if(!empty($category)) {
-              
+
                 // Get last category post is in
                 $last_category = end(array_values($category));
                   $category_name = get_category($last_category);
                 // Get parent any categories and create array
-                $get_cat_parents = rtrim(get_category_parents($last_category->term_id, true, ','),',');
+                $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
                 $cat_parents = explode(',',$get_cat_parents);
                   
                 // Loop through parent categories and store in variable $cat_display
                 $cat_display = '';
                 foreach($cat_parents as $parents) {
-                    $cat_display .= '<li class="item-cat">'.$parents.'</li>';
-                    
+                    $cat_id = get_cat_ID( $parents);
+                    $cat_link = get_category_link($cat_id);
+                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'.trailingslashit(trailingslashit($cat_link).'amp').'" title="' . $parents . '">' . $parents . '</a></li>';
                 }
             }
               
@@ -90,18 +91,18 @@
                 $cat_id         = $taxonomy_terms[0]->term_id;
                 $cat_nicename   = $taxonomy_terms[0]->slug;
                 $cat_link       = get_term_link($taxonomy_terms[0]->term_id, $custom_taxonomy);
+                $cat_link       = trailingslashit($cat_link);
                 $cat_name       = $taxonomy_terms[0]->name;
             }
               
             // Check if the post is in a category
             if(!empty($last_category)) {
                 echo $cat_display;
-                
-                  
+    
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
                   
-                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
+                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . trailingslashit($cat_link .AMPFORWP_AMP_QUERY_VAR) . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
             }  
               
         } else if ( is_category() ) {
@@ -122,7 +123,7 @@
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
+                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . trailingslashit(trailingslashit(get_permalink($ancestor)) . AMPFORWP_AMP_QUERY_VAR) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
                 }
                    
                 // Display parent pages

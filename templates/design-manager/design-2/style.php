@@ -293,7 +293,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .breadcrumb ul, .category-single ul{padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
 .breadcrumb ul li a{font-size:12px;}
-.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 10px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;}
+.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -0.5px;}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
 <?php echo $redux_builder_amp['css_editor']; } ?>
