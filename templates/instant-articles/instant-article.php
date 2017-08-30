@@ -13,10 +13,9 @@
     <body>
         <article>
             <header>
-
-            <!-- Analytics code -->
             <?php if (isset($redux_builder_amp['fb-instant-article-analytics']) && $redux_builder_amp['fb-instant-article-analytics'] ){
                   if(isset($redux_builder_amp['fb-instant-article-analytics-code']) && $redux_builder_amp['fb-instant-article-analytics-code'] ) {?>
+                      <!-- Analytics code -->
                           <figure class="op-tracker">
                             <iframe>
                               <?php echo get_ia_analytics_code(); ?>
