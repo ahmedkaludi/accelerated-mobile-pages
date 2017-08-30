@@ -5,9 +5,9 @@
       <meta charset="utf-8">
       <link rel="canonical" href="<?php the_permalink(); ?>">
       <meta property="op:markup_version" content="v1.0">
-      <?php if ( $redux_builder_amp['fb-instant-article-ads'] ){ ?>
+      <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){ ?>
           <!-- automatic ad placement -->
-          <meta property="fb:use_automatic_ad_placement" content="true">
+          <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=default">
           <?php } ?>
     </head>
     <body>
@@ -61,12 +61,13 @@
                         endif; ?>
                     </figure>
 				<?php endif; ?>
-                <?php if ( $redux_builder_amp['fb-instant-article-ads'] ){ ?>
-                    <!-- facebook audience network ad -->
-                    <figure class="op-ad">
-                        <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=<?php echo get_ia_placement_id(); ?>&adtype=banner300x250"></iframe>
-                    </figure>
-                    <?php } ?>
+                <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){
+                        if(isset($redux_builder_amp['fb-instant-article-ad-id']) && $redux_builder_amp['fb-instant-article-ad-id']){ ?>
+                            <!-- facebook audience network ad -->
+                            <figure class="op-ad">
+                                <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=<?php echo get_ia_placement_id(); ?>&adtype=banner300x250"></iframe>
+                            </figure>
+                    <?php } } ?>
             </header>
 
             <!-- body -->
