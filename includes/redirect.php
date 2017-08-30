@@ -20,14 +20,19 @@ add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
 function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
   $post_type = '';
-
+  $supported_types = '';
+  $supported_amp_post_types = '';
+  $supported_types = array('post','page');
+  $supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
+  $post_type = get_post_type();
+  $supported_amp_post_types = in_array( $post_type , $supported_types );
   if( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection']){
 
     if( ampforwp_meta_redirection_status()=='disable' ){
         return;
     }
 
-    if($post_type == 'forum'){
+    if($supported_amp_post_types == false){
       return;
     }
     // Return if some categories are selected as Hide #999

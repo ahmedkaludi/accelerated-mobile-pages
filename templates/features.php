@@ -211,21 +211,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        } else {
 				$supported_types = array('post','page');
 
-				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				if( is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' ) ) {
-					if ( $redux_builder_amp['ampforwp-custom-type'] ) {
-						foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
-							$supported_types[] = $custom_post;
-						}
-					}
-				}	
-
-				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				if( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) ) {
-					if( !in_array("product", $supported_types) ){
-						$supported_types[]= 'product';
-					}
-				}
+				$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 				$type = get_post_type();
 				$supported_amp_post_types = in_array( $type , $supported_types );
@@ -254,7 +240,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
         $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
-				if( $supported_amp_post_types) {
+				if( $supported_amp_post_types) {					
 					printf( '<link rel="amphtml" href="%s" />', esc_url(trailingslashit($amp_url) ));
 				}
 
@@ -3467,4 +3453,22 @@ function ampforwp_get_wp_user_avatar(){
 				return $user_avatar_url;
 			}
 		}
+}
+add_filter('get_amp_supported_post_types','ampforwp_supported_post_types');
+function ampforwp_supported_post_types($supported_types){
+global $redux_builder_amp;
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if( is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' ) ) {					
+					if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+						foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
+							$supported_types[] = $custom_post;
+						}
+					}
+				}	
+				if( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) ) {
+					if( !in_array("product", $supported_types) ){
+						$supported_types[]= 'product';
+					}
+				}
+	return $supported_types;
 }
