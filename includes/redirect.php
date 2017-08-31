@@ -71,6 +71,7 @@ function ampforwp_page_template_redirect() {
 				return;
 			} else {
         if(is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] == 0){return;}
+        if ( is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] == 0) { return; }
         if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ) {
           $_SESSION['ampforwp_amp_mode']='mobile-on';
           if ( is_home() ) {
