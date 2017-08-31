@@ -2995,18 +2995,6 @@ function ampforwp_remove_rel_on_bp(){
 
 }
 
-//disable amp for forum plugin #592
-if('wpforo_posts'){
-			add_action( 'wp', 'ampforwp_remove_rel_on_foro' );
-		}
-		function ampforwp_remove_rel_on_foro(){	
-				
-						remove_action( 'wp_head', 'amp_frontend_add_canonical');
-						remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
-					
-				}
-}
-
 
 // 66. Make AMP compatible with Squirrly SEO
 add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
