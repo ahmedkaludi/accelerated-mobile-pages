@@ -3017,7 +3017,14 @@ function ampforwp_view_nonamp(){
 	global $redux_builder_amp;
 	 global $post;
   $ampforwp_backto_nonamp = '';
-  if ( is_home() ) {
+  if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+  	$post_id = get_option('page_for_posts');
+		if($redux_builder_amp['amp-mobile-redirection']==1)
+        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
+    else
+      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id ));
+}
+  elseif ( is_home() ) {
     if($redux_builder_amp['amp-mobile-redirection']==1)
        $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
     else
