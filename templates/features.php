@@ -2997,8 +2997,6 @@ function ampforwp_remove_rel_on_bp(){
 
 //disable amp for forum plugin #592
 if('wpforo_posts'){
-	add_action('amp_init','ampforwp_disable_foro');
-		function ampforwp_disable_foro() {
 			add_action( 'wp', 'ampforwp_remove_rel_on_foro' );
 		}
 		function ampforwp_remove_rel_on_foro(){	
