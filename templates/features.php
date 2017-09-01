@@ -3479,3 +3479,27 @@ global $redux_builder_amp;
 				}
 	return $supported_types;
 }
+
+function is_category_amp_disabled(){
+	global $redux_builder_amp;
+
+if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
+	$categories = get_the_category();
+			$category_id = $categories[0]->cat_ID;
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}  
+				if($selected_cats && $category_id){
+					if(in_array($category_id, $selected_cats)){
+						return true;
+					}
+					else
+						return false;
+				}
+			} 
+	}
+}

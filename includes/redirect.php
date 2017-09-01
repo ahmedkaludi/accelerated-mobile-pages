@@ -2,12 +2,15 @@
 // Redirection for Homepage and Archive Pages when Turned Off from options panel
 function ampforwp_check_amp_page_status() {
   global $redux_builder_amp;
-
+  $hide_cats_amp = '';
+  $hide_cats_amp = is_category_amp_disabled();
   if ( ampforwp_is_amp_endpoint() ) {
-    if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] == 0 ) {
+    if ( is_archive() && ($redux_builder_amp['ampforwp-archive-support'] == 0 || $hide_cats_amp == true) ) {
       global $wp;
       $redirection_location  =  add_query_arg( '', '', home_url( $wp->request ) );
+      
       $redirection_location  =  trailingslashit($redirection_location );
+      
       $redirection_location  =  dirname($redirection_location);
       wp_safe_redirect( $redirection_location );
       exit;
