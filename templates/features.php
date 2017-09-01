@@ -2995,6 +2995,26 @@ function ampforwp_remove_rel_on_bp(){
 
 }
 
+// Removing AMP from WPForo Forums Pages #592
+
+add_action('amp_init','remove_rel_amp_from_forum');
+function remove_rel_amp_from_forum(){
+	add_action('wp','ampforwp_remove_rel_on_forum');
+}
+
+function ampforwp_remove_rel_on_forum(){
+	if(class_exists('wpForo')){
+		Global $post, $wpdb,$wpforo;
+		$foid = $post->ID;
+		$fid = $wpforo->pageid;
+		if($foid==$fid){
+			remove_action( 'wp_head', 'amp_frontend_add_canonical');
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		}
+		
+	}
+}
+
 
 // 66. Make AMP compatible with Squirrly SEO
 add_action('pre_amp_render_post','ampforwp_remove_sq_seo');
