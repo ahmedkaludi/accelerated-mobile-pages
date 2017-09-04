@@ -855,6 +855,21 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'   => 1,
               'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
+          // Sticky Social Position
+          array(
+              'id'        => 'enable-single-social-icons-position',
+              'type'     => 'select',
+              'options'  => array(
+                  '1' => 'Top',
+                  '2' => 'Bottom',
+              ),
+              'title'    => __( 'Sticky Social Icons Position', 'accelerated-mobile-pages' ),
+              'required' => array(
+                array('enable-single-social-icons', '=' , '1')
+              ),
+              'default'   => 2,
+              'desc'     => __('Where do you want the sticky social icons to be displayed?', 'accelerated-mobile-pages' ),
+          ),
           // Excerpt ON/OFF
           array(
               'id'        => 'enable-excerpt-single',
