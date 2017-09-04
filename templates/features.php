@@ -237,11 +237,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 					$amp_url = untrailingslashit($current_search_url);
 				}
-
+		$amp_url = user_trailingslashit($amp_url);	
         $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 				if( $supported_amp_post_types) {					
-					printf( '<link rel="amphtml" href="%s" />', esc_url(trailingslashit($amp_url) ));
+					printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
 				}
 
 	        }
@@ -2298,7 +2298,7 @@ function ampforwp_auto_add_amp_in_link_check() {
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 
-    $atts['href'] = trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
+    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
     return $atts;
 }
 
@@ -3329,7 +3329,7 @@ function ampforwp_rel_canonical_home_archive(){
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
-		<link rel="canonical" href="<?php echo trailingslashit($amp_url) ?>">
+		<link rel="canonical" href="<?php echo user_trailingslashit($amp_url) ?>">
 	<?php }
 				
 }
