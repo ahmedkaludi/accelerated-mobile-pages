@@ -164,7 +164,7 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		/* Breadcrumbs */
 		$services['bread_crumbs'] = array(
 			'id'       => 'bread_crumbs',
-			'label'    => __( 'Bread-crumbs', 'accelerated-mobile-pages' ),
+			'label'    => __( 'Breadcrumb', 'accelerated-mobile-pages' ),
 		);
 		/* Featured Image */
 		$services['featured_image'] = array(

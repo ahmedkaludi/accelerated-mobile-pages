@@ -1,4 +1,4 @@
-<div class="breadcrumb"> <?php  
+<div class="amp-wp-content breadcrumb"> <?php  
     // Settings
     $breadcrums_id      = 'breadcrumbs';
     $breadcrums_class   = 'breadcrumbs';
