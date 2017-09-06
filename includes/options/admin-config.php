@@ -1270,13 +1270,23 @@ Redux::setArgs( "redux_builder_amp", $args );
        'fields' => array(
 
             array(
+                'id'       => 'ampforwp-amp-menu',
+                'type'     => 'switch',
+                'title'    => __('Show/Hide Navigation Menu in AMP', 'accelerated-mobile-pages'),
+                'subtitle' => __('The switch to Enable/Disable Menu in all AMP Pages', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 1
+            ),
+            array(
                 'id'       => 'ampforwp-auto-amp-menu-link',
                 'type'     => 'switch',
                 'title'    => __('Auto Add AMP in Menu URL', 'accelerated-mobile-pages'),
                 'subtitle' => __('Automatically add <code>AMP</code> at the end of menu url', 'accelerated-mobile-pages'),
                 'true'      => 'true',
                 'false'     => 'false',
-                'default'   => 0
+                'default'   => 0,
+                'required'  => array('ampforwp-amp-menu', '=' , '1')
             ),
         )
        )

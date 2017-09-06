@@ -8,6 +8,10 @@
 											$('.ampforwp-title').show();
 											$('.ampforwp-title').appendTo('.amp-wp-article');
 											break;
+									case 'bread_crumbs:1':
+											$('.ampforwp-bread-crumbs').show();
+											$('.ampforwp-bread-crumbs').appendTo('.amp-wp-article');
+											break;		
 									case 'meta_info:1':
 											$('.ampforwp-meta-info').show();
 											$('.ampforwp-meta-info').appendTo('.amp-wp-article');
