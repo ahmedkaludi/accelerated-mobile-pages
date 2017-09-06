@@ -40,8 +40,8 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                             <?php } ?>
 
                             <?php global $redux_builder_amp;
-                            if( $redux_builder_amp['enable-single-linkdin-profile']  && $redux_builder_amp['enable-single-linkdin-profile-url'] !== '') { ?>
-                            <a href="<?php echo $redux_builder_amp['enable-single-linkdin-profile-url']; ?>" target ="_blank"><li class="icon-linkedin"></li></a>
+                            if( $redux_builder_amp['enable-single-linkedin-profile']  && $redux_builder_amp['enable-single-linkedin-profile-url'] !== '') { ?>
+                            <a href="<?php echo $redux_builder_amp['enable-single-linkedin-profile-url']; ?>" target ="_blank"><li class="icon-linkedin"></li></a>
                             <?php } ?>
 
                             <?php global $redux_builder_amp;
