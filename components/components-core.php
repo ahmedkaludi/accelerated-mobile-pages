@@ -258,23 +258,20 @@ function amp_header(){
 	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'ampforwp_after_header', $thisTemplate );
-	// Start the AMP Body container		?>
-	<div class="content-wrapper container">
-   	 	<main>
-        	<article>
- 	<?php do_action('ampforwp_post_before_design_elements') ?>
+ 	do_action('ampforwp_post_before_design_elements') ?>
 <?php } 
 
 function amp_footer(){
 	$post_id = get_queried_object_id();
-	$thisTemplate = new AMP_Post_Template($post_id);
-	// Close the AMP Body Container	?>
-	</article>
-		</main>
-			</div>
-	<?php 		
+	$thisTemplate = new AMP_Post_Template($post_id);		
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
 	$thisTemplate->load_parts( array( 'footer' ) );
+	
+}
+
+function amp_footer_core(){
+	$post_id = get_queried_object_id();
+	$thisTemplate = new AMP_Post_Template($post_id);
 	do_action( 'amp_post_template_footer', $thisTemplate );
 	do_action('ampforwp_global_after_footer');
 	// Close the body and Html tags ?>
@@ -282,6 +279,12 @@ function amp_footer(){
 		</html><?php
 }
 
+function amp_non_amp_link(){
+	global $allowed_html;
+    global $redux_builder_amp;
+    echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
+    if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }
+}
 
 function amp_loop_template(){
 	$post_id = get_queried_object_id();
