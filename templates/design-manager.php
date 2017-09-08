@@ -98,7 +98,11 @@ function ampforwp_stylesheet_file_insertion() {
 	    			if($data['TextDomain']==$ampforwp_design_selector){
 	    				global $startCustomTemplateEngine;
 	    				$startCustomTemplateEngine = true;
-	    				require AMPFORWP_MAIN_PLUGIN_DIR."/".$key;
+	    				if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
+	 		   				require AMPFORWP_MAIN_PLUGIN_DIR."/".$key;
+	    				}else{
+	    					echo "plugin theme not exists";
+	    				}
 	    			}
 	    		}
 	    	}

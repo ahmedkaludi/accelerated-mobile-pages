@@ -630,7 +630,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
     //get All design
     function amp_extra_plugin_theme_header($headers){
-        $headers['AMP Theme Name'] = "AMPThemeName";
+        $headers['AMP Theme Name'] = "AMP";
         return $headers;
     }
     add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
@@ -642,8 +642,8 @@ Redux::setArgs( "redux_builder_amp", $args );
     if(count(get_plugins())>0){
         foreach (get_plugins() as $key => $value) {
             $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$key);
-            if(!empty($plugin['AMPThemeName'])){
-                $themeDesign[$value['TextDomain']] = $plugin['AMPThemeName'];
+            if(!empty($plugin['AMP'])){
+                $themeDesign[$value['TextDomain']] = $plugin['AMP'];
             }
         }
     }
