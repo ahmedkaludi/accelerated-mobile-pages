@@ -257,19 +257,29 @@ function amp_header(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
-	do_action( 'ampforwp_after_header', $thisTemplate ); 
-}
+	do_action( 'ampforwp_after_header', $thisTemplate );
+	// Start the AMP Body container		?>
+	<div class="content-wrapper container">
+   	 	<main>
+        	<article>
+ 	<?php do_action('ampforwp_post_before_design_elements') ?>
+<?php } 
 
 function amp_footer(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
-
+	// Close the AMP Body Container	?>
+	</article>
+		</main>
+			</div>
+	<?php 		
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
 	$thisTemplate->load_parts( array( 'footer' ) );
 	do_action( 'amp_post_template_footer', $thisTemplate );
 	do_action('ampforwp_global_after_footer');
-	?></body>
-	</html><?php
+	// Close the body and Html tags ?>
+	</body>
+		</html><?php
 }
 
 
