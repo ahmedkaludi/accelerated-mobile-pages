@@ -628,6 +628,27 @@ Redux::setArgs( "redux_builder_amp", $args );
       return $default_value;
     }
 
+    //get All design
+    function amp_extra_plugin_theme_header($headers){
+        $headers['AMP Theme Name'] = "AMPThemeName";
+        return $headers;
+    }
+    add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
+    $themeDesign = array(
+            '1' => __('Design One', 'accelerated-mobile-pages' ),
+            '2' => __('Design Two', 'accelerated-mobile-pages' ),
+            '3' => __('Design Three', 'accelerated-mobile-pages' )
+        );
+    if(count(get_plugins())>0){
+        foreach (get_plugins() as $key => $value) {
+            $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$key);
+            if(!empty($plugin['AMPThemeName'])){
+                $themeDesign[$value['TextDomain']] = $plugin['AMPThemeName'];
+            }
+        }
+    }
+    
+
     // AMP Design SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Design', 'accelerated-mobile-pages' ),
@@ -643,11 +664,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __( 'Design Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design.', 'accelerated-mobile-pages' ),
                 'desc' => '<a href="https://ampforwp.com/themes/" target="_blank">View More AMP Themes →</a>',
-                'options'  => array(
-                    '1' => __('Design One', 'accelerated-mobile-pages' ),
-                    '2' => __('Design Two', 'accelerated-mobile-pages' ),
-                    '3' => __('Design Three', 'accelerated-mobile-pages' )
-                ),
+                'options'  => $themeDesign,
                 'default'  => '2'
             ),
 
