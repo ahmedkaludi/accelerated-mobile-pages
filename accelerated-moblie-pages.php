@@ -554,3 +554,9 @@ function ampforwp_update_notice() {
     <?php
     //update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
 }
+
+if(!defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH')){
+	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', plugin_dir_path( __FILE__ )."/components"); 
+}
+
+require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
