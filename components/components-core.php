@@ -340,8 +340,7 @@ $thisTemplate = new AMP_Post_Template($post_id);
 		
 	}
 	add_action( 'amp_meta', 'amp_post_load_custom_fonts');
-	function amp_load_fonts($fontName){
+	function amp_font($fontName){
 		global $fontComponent;
 		$fontComponent[] = $fontName;
 	}
-	amp_load_fonts('https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600|Source+Sans+Pro:400,700');
