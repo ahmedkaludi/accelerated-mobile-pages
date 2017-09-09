@@ -131,16 +131,16 @@ function call_loops_standard($data=array()){
 		    $paged = 1;
 		}
 		$pre_link = '';
-		if ( $paged > 1 ) { 
-			$pre_link = '<div class="prev">'.previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ) .'</div>';
-		}
+        if ( $paged > 1 ) { 
+          $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ) .'</div>';
+        }
 
-		echo '<div class="loop-pagination">
-					<div class="next">'. next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), $amp_q->max_num_pages ) .'</div>
-						'.$pre_link.'
-					<div class="clearfix"></div>
-				</div>';
-	}
+        echo '<div class="loop-pagination">
+          <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), $amp_q->max_num_pages ) .'</div>
+            '.$pre_link.'
+          <div class="clearfix"></div>
+        </div>';
+    }
 
 	/***
 	* Get Title of post

@@ -40,7 +40,7 @@ function ampforwp_framework_get_related_posts(){
 				if( $my_query->have_posts() ) { ?>
 					    <div class="amp-related-posts">
 									<ul class="clearfix">
-											<span class="amp-related-posts-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
+											<h3 class="amp-related-posts-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></h3>
 											<?php
 									    while( $my_query->have_posts() ) {
 											    $my_query->the_post();
