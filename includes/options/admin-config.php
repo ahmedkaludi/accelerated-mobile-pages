@@ -396,7 +396,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                  ' .$gettingstarted_extension_listing
 
 				 , 'accelerated-mobile-pages' ),
-        'icon'  => 'el el-cog'
+        'icon'  => 'el el-cogs'
     ) );
 
     Redux::setSection( $opt_name, array(
