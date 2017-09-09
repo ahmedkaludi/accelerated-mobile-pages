@@ -5,6 +5,7 @@ if ( ! class_exists( 'Redux' ) ) {
 }
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
+$amptfad = '<strong>Did you know:</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
@@ -1841,6 +1842,13 @@ Redux::setSection( $opt_name, array(
                 'default'  => '2'
                 ),
 
+            $fields = array(
+                'id'   => 'info_theme_framework',
+                'type' => 'info',
+                'style' => 'success',
+                'desc' => $amptfad
+            )
+            
             )
         ) );
 
