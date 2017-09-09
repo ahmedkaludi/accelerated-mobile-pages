@@ -9,8 +9,10 @@ if(!function_exists('ampforwp_framework_get_sideabr')){
 		switch(strtolower($action)) {
 			case 'start':
 				echo sideber_begin($data);
+				do_action('amp_sidebar_start');
 				break;
 			case 'end':
+				do_action('amp_sidebar_end');
 				echo sideber_end();
 				break;
 			case 'open-button':

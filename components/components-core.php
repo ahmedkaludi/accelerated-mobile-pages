@@ -242,14 +242,17 @@ function amp_header_core(){
 		<head>
 		<meta charset="utf-8">
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
+		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
 			<style amp-custom>
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
+				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 			</style>
 
 		</head>
 		<body class="<?php echo $bodyClass; ?>">
+		<?php do_action('amp_start', $thisTemplate); ?>
 		<?php do_action('ampforwp_body_beginning', $thisTemplate);  
 }
 
@@ -257,6 +260,7 @@ function amp_header(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
+	do_action( 'amp_after_header', $thisTemplate );
 	do_action( 'ampforwp_after_header', $thisTemplate );
  	do_action('ampforwp_post_before_design_elements') ?>
 <?php } 
@@ -264,6 +268,7 @@ function amp_header(){
 function amp_footer(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);		
+	do_action( 'amp_before_footer', $thisTemplate );
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
 	$thisTemplate->load_parts( array( 'footer' ) );
 	
@@ -274,6 +279,7 @@ function amp_footer_core(){
 	$thisTemplate = new AMP_Post_Template($post_id);
 	do_action( 'amp_post_template_footer', $thisTemplate );
 	do_action('ampforwp_global_after_footer');
+	do_action('amp_end',$thisTemplate);
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
@@ -289,8 +295,9 @@ function amp_non_amp_link(){
 function amp_loop_template(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
-
-	 $thisTemplate->load_parts( array( 'loop' ) ); 
+	do_action('amp_before_loop',$thisTemplate);
+	$thisTemplate->load_parts( array( 'loop' ) );
+	do_action('amp_after_loop',$thisTemplate);
 }
 
 // The Content
