@@ -324,3 +324,24 @@ $thisTemplate = new AMP_Post_Template($post_id);
     	do_action('ampforwp_after_post_content'); ?>
 	</div>
 <?php }
+
+//Load font Compoment
+	$fontComponent = array();
+	function amp_post_load_custom_fonts(){
+		global $fontComponent;
+		if(count($fontComponent)){
+			$fontComponent = array_unique($fontComponent);
+			foreach ($fontComponent as $key => $value) {
+			?>
+			<link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
+			<?php		
+			}
+		}
+		
+	}
+	add_action( 'amp_meta', 'amp_post_load_custom_fonts');
+	function amp_load_fonts($fontName){
+		global $fontComponent;
+		$fontComponent[] = $fontName;
+	}
+	amp_load_fonts('https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600|Source+Sans+Pro:400,700');

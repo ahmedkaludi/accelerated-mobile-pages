@@ -75,16 +75,19 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	}
 	// Load the Core Styles of Custom Theme
 	add_action('amp_css', 'ampforwp_custom_style');
-	function ampforwp_custom_style() {  
+	function ampforwp_custom_style() { 
+		global $redux_builder_amp; 
 		require_once( AMPFORWP_CUSTOM_THEME . '/style.php' );
 		// Custom CSS
 		echo $redux_builder_amp['css_editor']; 
 	}
 
 	// Loading Custom Google Fonts in the theme
-	add_action( 'amp_post_template_head', 'amp_post_template_add_custom_google_font');
+	/*add_action( 'amp_post_template_head', 'amp_post_template_add_custom_google_font');
 	function amp_post_template_add_custom_google_font( $amp_template ) {
 	    $font_urls = $amp_template->get( 'font_urls', array() );
 		$font_urls['source_serif_pro'] = 'https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600|Source+Sans+Pro:400,700';  ?>
 	<link rel="stylesheet" href="<?php echo esc_url( $font_urls['source_serif_pro'] ); ?>">
-	<?php }
+	<?php }*/
+
+
