@@ -1,5 +1,5 @@
 <?php
-// Admin Panel Options
+//Admin Panel Options        
 if ( ! class_exists( 'Redux' ) ) {
     return;
 }
@@ -543,6 +543,14 @@ Redux::setArgs( "redux_builder_amp", $args );
        )
 
    ) ;
+
+    $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
+    $desc = '';
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
+
+        $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
+        }
 
      // ADS SECTION
  Redux::setSection( $opt_name, array(
@@ -1231,46 +1239,50 @@ Redux::setArgs( "redux_builder_amp", $args );
        ),
 
    ) );
-
-       // Contact Form SECTION
-   Redux::setSection( $opt_name, array(
-       'title'      => __( 'Contact Form', 'accelerated-mobile-pages' ),
-          'desc'       => 'Contact form 7 forms will automatically be converted into AMP compatible.',
-       'id'         => 'amp-contact',
-       'subsection' => true,
-       'fields'     => array(
-           array(
+ // contact form 7 
+$forms_support[] =  array(
                'id'        =>'amp-enable-contactform',
                'type'      => 'switch',
                'title'     => __('Contact Form 7 Support', 'accelerated-mobile-pages'),
                'default'   => '',
                'true'      => 'Enabled',
                'false'     => 'Disabled',
-           ),
+           );
 
-           array(
-//        'title'    => __('Notification text', 'accelerated-mobile-pages'),
-        'id'   => 'info_normal',
-        'type' => 'info',
-           'required' => array('amp-enable-contactform', '=' , '1'),
-                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
-           ),
-           array(
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+    if(!is_plugin_active( 'AMP-CF7/amp-cf7.php' ) ){
+            $forms_support[]= array(
+                'id'   => 'info_normal_cf7',
+                'type' => 'info',
+                'required' => array('amp-enable-contactform', '=' , '1'),
+                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+                   );
+        }
+    // gravity form 
+$forms_support[]=  array(
                'id'        =>'amp-enable-gravityforms_support',
                'type'      => 'switch',
                'title'     => __('Gravity Forms Support', 'accelerated-mobile-pages'),
                'default'   => '',
                'true'      => 'Enabled',
                'false'     => 'Disabled',
-           ),
-           array(
-//        'title'    => __('Notification text', 'accelerated-mobile-pages'),
-        'id'   => 'info_normal_2',
-        'type' => 'info',
-           'required' => array('amp-enable-gravityforms_support', '=' , '1'),
-                'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
-           ),
-       ),
+           );
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+    if(!is_plugin_active( 'amp-gravity-forms/amp-gravity-forms.php' ) ){
+        $forms_support[]= array(
+                        'id'   => 'info_normal_2',
+                        'type' => 'info',
+                        'required' => array('amp-enable-gravityforms_support', '=' , '1'),
+                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -35px -12px 0 -12px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+           );}
+ 
+   // Contact Form SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Contact Form', 'accelerated-mobile-pages' ),
+          'desc'       => 'Contact form 7 forms will automatically be converted into AMP compatible.',
+       'id'         => 'amp-contact',
+       'subsection' => true,
+       'fields'     => $forms_support
 
    ) );
 
@@ -2634,13 +2646,7 @@ Redux::setSection( $opt_name, array(
 
     ) );
 
-    $AD_URL = "http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=advertisement-tab&utm_campaign=AMP%20Plugin";
-    $desc = '';
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if(!is_plugin_active( 'amp-incontent-ads/amptoolkit-incontent-ads.php' ) ){
 
-        $desc = '<a href="'.$AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp-ads-retina.png" width="560" height="85" /></a>';
-        }
     
 // Extension Section
     Redux::setSection( $opt_name, array(
