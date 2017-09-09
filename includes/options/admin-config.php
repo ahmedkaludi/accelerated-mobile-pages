@@ -89,12 +89,12 @@ $extension_listing = '
         <div class="extension_btn">From: $19</div>
         </div>
     </a></li>
-    <li class="first"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
+    <li class="first"><a href="https://ampforwp.com/woocommerce/" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
         <div class="extension_desc">
-        <h2>AMP WooCommerce</h2>
-        <p>Add WooCommerce in AMP in two clicks.</p>
-        <div class="extension_btn">FREE</div>
+        <h2>AMP WooCommerce Pro</h2>
+        <p>Advanced WooCommerce in AMP in two clicks.</p>
+        <div class="extension_btn">From: $79</div>
         </div>
     </a></li>
 
@@ -183,12 +183,12 @@ $gettingstarted_extension_listing = '
         <div class="extension_btn">From: $19</div>
         </div>
     </a></li>
-    <li class="second"><a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">
+    <li class="second"><a href="https://ampforwp.com/woocommerce/" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
         <div class="extension_desc">
-        <h2>AMP WooCommerce</h2>
-        <p>Add WooCommerce in AMP in two clicks.</p>
-        <div class="extension_btn">FREE</div>
+        <h2>AMP WooCommerce Pro</h2>
+        <p>Advanced WooCommerce in AMP in two clicks.</p>
+        <div class="extension_btn">From: $79</div>
         </div>
     </a></li>
 
