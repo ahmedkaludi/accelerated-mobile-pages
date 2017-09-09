@@ -2026,7 +2026,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',
-                    'title'    => __('Show/Hide Navigation Menu in AMP', 'accelerated-mobile-pages'),
+                    'title'    => __('Navigation Menu in AMP', 'accelerated-mobile-pages'),
                     'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
                     'subtitle' => __('The switch to Enable/Disable Menu in all AMP Pages', 'accelerated-mobile-pages'),
                     'true'      => 'true',
