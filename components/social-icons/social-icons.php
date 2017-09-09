@@ -142,7 +142,7 @@ function amp_social_styles(){ ?>
 .icon-snapchat-ghost:before{ content: "\f2ac"; background:#fffc00 }
 .amp-social{ font-size: 15px; display: inline-block; }
 .amp-social ul{ list-style-type:none; padding:0;margin:0; text-align:center }
-.amp-social li{ box-sizing: initial; display:inline-block; margin:5px; }
-.amp-social li:before{ box-sizing: initial; color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
+.amp-social li{ box-sizing: initial; display:inline-block; }
+.amp-social li:before{ box-sizing: initial; color:#fff; padding: 6px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
 
 <?php }
