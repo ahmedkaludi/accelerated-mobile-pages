@@ -89,7 +89,25 @@ function ampforwp_stylesheet_file_insertion() {
         }
 
         // Add StyleSheet
-        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
+        if(file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php')){
+	        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
+	    }else{
+
+	    	$pluginData = get_plugins();
+	    	if(count($pluginData)>0){
+	    		foreach($pluginData as $key=>$data){
+	    			if($data['TextDomain']==$ampforwp_design_selector){
+	    				if(!file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
+	    					echo "plugin theme not exists";	
+	    				}
+	    				break;
+	    			}
+	    		}
+	    	}
+	    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
+
+
+	    }
 }
 
 // Post Title

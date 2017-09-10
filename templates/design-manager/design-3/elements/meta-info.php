@@ -35,7 +35,7 @@
 <?php endif; ?>
 
 <?php if ( $redux_builder_amp['amp-design-3-date-feature'] ) : ?>
-	<span class="ampforwp-design3-single-date"><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On '); the_modified_date( get_option( 'date_format' ) ) ?></span>
+	<span class="ampforwp-design3-single-date"><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On'); the_modified_date( get_option( 'date_format' ) ) ?></span>
 <?php endif; ?>
 
 	</div>

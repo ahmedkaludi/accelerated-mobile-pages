@@ -3331,6 +3331,23 @@ function ampforwp_rel_canonical_home_archive(){
 		} ?>
 		<link rel="canonical" href="<?php echo user_trailingslashit($amp_url) ?>">
 	<?php }
+
+	if(is_search()){
+		$paged = get_query_var( 'paged' );
+		$current_search_url = trailingslashit(get_home_url())."?s=".get_search_query();
+		$amp_url = untrailingslashit($current_search_url);
+		if ($paged > 1 ) {
+			global $wp;
+			$current_archive_url 	= home_url( $wp->request );
+			$amp_url 				= trailingslashit($current_archive_url);
+			$remove 				= '/'. AMPFORWP_AMP_QUERY_VAR;
+			$amp_url				= str_replace($remove, '', $amp_url) ;
+			$amp_url 				= $amp_url ."?s=".get_search_query();
+		} 
+		?>
+		<link rel="canonical" href="<?php echo user_trailingslashit($amp_url) ?>">
+	<?php
+	}
 				
 }
 

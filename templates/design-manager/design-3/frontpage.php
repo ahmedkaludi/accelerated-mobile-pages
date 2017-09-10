@@ -1,6 +1,14 @@
 <?php global $redux_builder_amp;
  global $wp;
-$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+ //WPML Static Front Page Support #1111
+ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+ if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+ 	$post_id = get_option('page_on_front');
+ 	
+ }
+ else{
+ 	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+ }
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
