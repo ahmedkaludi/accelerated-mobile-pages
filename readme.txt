@@ -1,10 +1,10 @@
 === AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
-Donate link: https://www.paypal.me/Kaludi/5
+Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.1
-Stable tag: 0.9.59
+Stable tag: 0.9.61
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * NEW - AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * NEW - Page Break / NextPage (Pagination) Support
@@ -81,12 +82,14 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * RTL Support
 * Custom AMP FrontPage
 * Notifications
-* Chartbeat (NEW), Hi-stats (NEW), Yandex Metrika (NEW), Piwik, Segment.com, StatCounter, Effective Measure and comScore Support 
+* Chartbeat, Hi-stats, Yandex Metrika, Piwik, Segment.com, StatCounter, Effective Measure and comScore Support 
 * Incontent & DoubleClick Support
 * Great Support & Active Development.
 * Widgets & WooCommerce 
-* NEW - Genesis SEO Support 
-* NEW - Facebook Instant Articles Support Added
+* Genesis SEO Support 
+* Breadcrumb Support added 
+* Facebook Instant Articles Support Added
+* NEW - AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
@@ -139,6 +142,33 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.61 (10th September 2017) =
+* View more details on https://ampforwp.com/options-restructured/
+* Options Panel Restructured – Options were dividing into two parts: Settings and Appearance.
+* AMP Theme Framework Core Support Added. You can now create themes of your own in just minutes.
+* WPML Static Front Page Support #1111
+* Notification message disables when CF7 & gravity form is activated. #1107
+* Space after On in Design 3 #1114
+
+= 0.9.60 (4th September 2017) =
+* View more details on https://ampforwp.com/0-9-60-released-improved-redirection-66th-update/
+* Class added to View non-amp anchor tag
+* Params added properly to get rid of a warning #1077
+* rel=attachment noopener generating validation errors #1090
+* Breadcrumbs Support Added #701
+* Enable / Disable button added for Navigation Menu #735
+* Move the ad code for Instant Article down after the article #964
+* Add analytics code of FB instant articles properly #1096
+* datetime Tag not stripping properly #1043
+* Mobile redirection on custom post types #1028 #1052
+* Mobile Redirection causing extra redirect #879 #933
+* Proper mobile redirection on Homepage #1052
+* View non-amp on blog will redirect to blog
+* Blog will redirect to blog irrespective of AMP Homepage option #871
+* Dont redirect if archive support is disabled #1052
+* non-amp category pages should redirect to non-amp pages if turned off from Hide AMP #999
+* Disable amp for forum plugin (wpforo) #592
 
 = 0.9.59 (23th August 2017) =
 * Design 3 Images were not aligned properly. Fixed. #1040

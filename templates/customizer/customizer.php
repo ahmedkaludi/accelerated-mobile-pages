@@ -161,7 +161,11 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 			'id'       => 'title',
 			'label'    => __( 'Title', 'accelerated-mobile-pages' ),
 		);
-
+		/* Breadcrumbs */
+		$services['bread_crumbs'] = array(
+			'id'       => 'bread_crumbs',
+			'label'    => __( 'Breadcrumb', 'accelerated-mobile-pages' ),
+		);
 		/* Featured Image */
 		$services['featured_image'] = array(
 			'id'       => 'featured_image',

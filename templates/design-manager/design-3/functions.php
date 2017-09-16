@@ -126,9 +126,11 @@ function ampforwp_add_design3_required_scripts( $data ) {
 	$amp_menu_has_child = get_transient( 'ampforwp_has_nav_child' );
 
 	// Add Scripts only when AMP Menu is Enabled
-	if( has_nav_menu( 'amp-menu' ) ) {
-		if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
-			$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
+	if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ 
+		if( has_nav_menu( 'amp-menu' ) ) {
+			if ( empty( $data['amp_component_scripts']['amp-accordion'] ) ) {
+				$data['amp_component_scripts']['amp-accordion'] = 'https://cdn.ampproject.org/v0/amp-accordion-0.1.js';
+			}
 		}
 	}
 	// Add Scripts only when Homepage AMP Featured Slider is Enabled

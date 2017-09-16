@@ -2,12 +2,15 @@
 // Redirection for Homepage and Archive Pages when Turned Off from options panel
 function ampforwp_check_amp_page_status() {
   global $redux_builder_amp;
-
+  $hide_cats_amp = '';
+  $hide_cats_amp = is_category_amp_disabled();
   if ( ampforwp_is_amp_endpoint() ) {
-    if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] == 0 ) {
+    if ( is_archive() && ($redux_builder_amp['ampforwp-archive-support'] == 0 || $hide_cats_amp == true) ) {
       global $wp;
       $redirection_location  =  add_query_arg( '', '', home_url( $wp->request ) );
+      
       $redirection_location  =  trailingslashit($redirection_location );
+      
       $redirection_location  =  dirname($redirection_location);
       wp_safe_redirect( $redirection_location );
       exit;
@@ -20,14 +23,22 @@ add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
 function ampforwp_page_template_redirect() {
   global $redux_builder_amp;
   $post_type = '';
-
+  $supported_types = '';
+  $supported_amp_post_types = '';
+  $supported_types = array('post','page');
+  $supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
+  $post_type = get_post_type();
+  $supported_amp_post_types = in_array( $post_type , $supported_types );
   if( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection']){
 
     if( ampforwp_meta_redirection_status()=='disable' ){
         return;
     }
 
-    if($post_type == 'forum'){
+    if($supported_amp_post_types == false){
+      return;
+    }
+    if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==0){
       return;
     }
     // Return if some categories are selected as Hide #999
@@ -69,8 +80,19 @@ function ampforwp_page_template_redirect() {
         if( !isset($_SESSION['ampforwp_amp_mode']) || !isset($_GET['nonamp']) ) {
           $_SESSION['ampforwp_amp_mode']='mobile-on';
           if ( is_home() ) {
+            if( get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+              $post_id = get_option('page_for_posts');
+              $ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
+            if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
+              //dont Echo anything
+            } else {
+            wp_redirect( trailingslashit(trailingslashit( esc_url( ( get_permalink( $post_id ) ) ) ) . AMPFORWP_AMP_QUERY_VAR ) , 301 );
+            exit();
+            }
+          }
+            
             if ( $redux_builder_amp['ampforwp-homepage-on-off-support'] == 1 ) {
-              wp_redirect( trailingslashit( esc_url( home_url() ) ) . AMPFORWP_AMP_QUERY_VAR ,  301 );
+              wp_redirect( trailingslashit(trailingslashit( esc_url( home_url() ) ) . AMPFORWP_AMP_QUERY_VAR ) ,  301 );
               exit();
             }
   				}
@@ -78,15 +100,19 @@ function ampforwp_page_template_redirect() {
             if ( $redux_builder_amp['ampforwp-archive-support'] == 1 ) {
               global $wp;
               $current_archive_url = home_url( $wp->request );
-              wp_redirect( trailingslashit( esc_url( $current_archive_url ) ) . AMPFORWP_AMP_QUERY_VAR , 301 );
+              wp_redirect( trailingslashit(trailingslashit( esc_url( $current_archive_url ) ) . AMPFORWP_AMP_QUERY_VAR ) , 301 );
               exit();
             }
   				} else {
             $ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
             if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
               //dont Echo anything
-            } else {
-  					wp_redirect( trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMPFORWP_AMP_QUERY_VAR , 301 );
+            } 
+            elseif($redux_builder_amp['ampforwp-homepage-on-off-support'] == 0 &&get_option('page_on_front')){
+              return;
+            }
+            else {
+  					wp_redirect( trailingslashit(trailingslashit( esc_url( ( get_permalink( $id ) ) ) ) . AMPFORWP_AMP_QUERY_VAR ) , 301 );
   					exit();
             }
   				}
