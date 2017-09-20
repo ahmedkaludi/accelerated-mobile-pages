@@ -3541,3 +3541,11 @@ if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 			} 
 	}
 }
+// Things to be added in the Body Tag #1064
+add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
+function ampforwp_body_beginning_html_output(){
+	global $redux_builder_amp;
+  	if( $redux_builder_amp['amp-body-text-area'] ) {
+    	echo $redux_builder_amp['amp-body-text-area'] ;
+  }
+}

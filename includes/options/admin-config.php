@@ -1497,6 +1497,14 @@ Redux::setSection( $opt_name, array(
                         'default'   => ''
                     ),
                     array(
+                        'id'       => 'amp-body-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Body (beginning of body tag) ', 'accelerated-mobile-pages'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'accelerated-mobile-pages'),
+                        'desc' => __('check your markup here (enter markup in the beginning of body tag) : https://validator.ampproject.org/', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                    array(
                         'id'       => 'amp-footer-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Footer', 'accelerated-mobile-pages'),
