@@ -17,8 +17,7 @@
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 	<main>
 		<article class="amp-wp-article">
-			<?php do_action('ampforwp_post_before_design_elements') ?>
-			<?php $this->load_parts( array( 'bread-crumbs' ) ); ?>
+			<?php do_action('ampforwp_post_before_design_elements') ?>	
 			<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
 			<?php do_action('ampforwp_post_after_design_elements') ?>
 		</article>
