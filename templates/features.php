@@ -2586,12 +2586,11 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
 
 // 57. Adding Updated date at in the Content
 add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
-function ampforwp_add_modified_date($post_id){
+function ampforwp_add_modified_date($post_object){
 	global $redux_builder_amp;
 	if ( is_single() && $redux_builder_amp['post-modified-date'] ) { ?>
 		<div class="ampforwp-last-modified-date">
 			<p> <?php
-				$post_object = new AMP_Post_Template($post_id);
 				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
 					echo esc_html(
 						sprintf(
