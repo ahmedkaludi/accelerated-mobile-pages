@@ -167,6 +167,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+			$selected_cats = array();
 			$categories = get_the_category();
 			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
