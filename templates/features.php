@@ -1456,7 +1456,14 @@ function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {
-		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
+		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { 
+			$permalink = '';
+			if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
+				$permalink = get_the_permalink();
+			}
+			else
+				$permalink = wp_get_shortlink();
+			?>
 			<div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
@@ -1467,7 +1474,7 @@ function ampforwp_sticky_social_icons(){
 	                            width="50"
 	                            height="28"
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        		data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
