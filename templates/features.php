@@ -1467,7 +1467,7 @@ function ampforwp_sticky_social_icons(){
 	                            width="50"
 	                            height="28"
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        		data-param-text="TITLE <?php echo get_the_permalink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
