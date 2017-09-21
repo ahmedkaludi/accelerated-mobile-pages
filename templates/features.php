@@ -2341,7 +2341,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
 
-			if( is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+			if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages']; // ID of slected front page
 				$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 				$static_page_data = get_post( $ID );
