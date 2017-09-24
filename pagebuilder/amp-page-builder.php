@@ -11,12 +11,12 @@ define( 'AMP_PAGE_BUILDER_URL', plugin_dir_url(__FILE__) );
 
 add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register');
 function ampforwp_pagebuilder_content_meta_register(){
-	$a = array('post','page');
-	add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback', $a,'normal', 'default' );
+	$pb_post_type = array('post','page');
+	add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback', $pb_post_type, 'normal', 'default' );
 }
 
-function amp_content_pagebuilder_title_callback(){
-	global $post,$page;
+function amp_content_pagebuilder_title_callback( $post ){
+	global $post;
 	$amp_current_post_id = $post->ID;
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 

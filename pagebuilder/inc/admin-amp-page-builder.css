@@ -141,7 +141,7 @@ div#amppb-actions-container:before {
     color: #9E9E9E;
     font-size: 18px;
     position: relative;
-    top: 5px;
+    top: 5px; 
     width: 23px;
     height: 20px;
     border-radius: 60px;
@@ -233,7 +233,7 @@ amppb-row-fields .amppb-column-2:not(:last-child){
     margin-bottom: 10px;
 }
 
-.amppb-row-fields .has-module .amppb-module:only-child{
+.amppb-row-fields .amppb-module:only-child{
     margin-bottom: 0px;
 }
 .amppb-row-fields .has-module .amppb-module:last-child{
@@ -293,7 +293,9 @@ content: "Drop Here";
     display: inline-block;
     margin-bottom: 10px
 }
-
+.ui-state-highlight-module:last-child{
+    margin-bottom: 0px;
+}
 
 .ui-state-active,
 .ui-widget-content .ui-state-active,
