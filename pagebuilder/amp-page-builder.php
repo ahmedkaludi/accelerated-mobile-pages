@@ -1,9 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { 
-	echo "!!!Shhhhhhhh no one is here"; 
+	echo "Silence is golden"; 
 }
-
-
 
 // Identifies the current plugin version.
 define( 'AMP_PAGE_BUILDER', plugin_dir_path(__FILE__) );
@@ -24,7 +22,11 @@ function amp_content_pagebuilder_title_callback( $post ){
 	$editor_id 	= 'ampforwp_custom_content_editor';
 	//wp_editor( $content, $editor_id );
 	if(empty($content)){
-		echo "Add your content";
+		echo "<div class='amppb_welcome'>
+                    <a class='amppb_helper_btn beta_btn' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Beta Feature</span></a>
+                    <a class='amppb_helper_btn video_btn' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Video Tutorial</span></a>
+                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
+</div>";
 	}
 	//echo "<textarea style='display:none' id='amp-content-preview'>$content</textarea>";
 	/*echo "<div class='rander_amp_html'>";
@@ -96,7 +98,7 @@ function call_page_builder(){
 		</div><!-- .amppb-module-actions -->
         
         
-    </div><!-- .fx-page-builder -->
+    </div>
     <?php add_thickbox(); ?>
     <div id="my-amppb-dialog" class="hidden" style="max-width:800px">
 
