@@ -1,9 +1,9 @@
 <?php
 $output = '<img src="{{selected_image}}" class="{{css_class}}" width="150" height="150">';
-return [
+return array(
 		'label' =>'Image',
 		'name' => 'image',
-		'fields' => [
+		'fields' => array(
 					array(
 						'type'	=>'upload',
 						'name'  => "selected_image",
@@ -16,6 +16,6 @@ return [
 						'label'=>"Custom CSS Class",
 						'default'=>''
 						)
-					],
+					),
 		'front_template'=> $output 
-];
+);

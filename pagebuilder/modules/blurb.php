@@ -4,10 +4,10 @@ $output .= '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb
 <p>{{text_description}}</p>
 </div>'; 
 
-return [
+return array(
 		'label' =>'Blurb',
 		'name' =>'blurb',
-		'fields'=> [
+		'fields'=> array( 
 					array(
 						'type'		=>'text',
 						'name'		=>"text_title",
@@ -44,7 +44,7 @@ return [
                     'label'   => 'Custom CSS Class',
                     'default' => ''
 						)  
-					],
+					),
 		'front_template'=> $output 
-	];
+	);
 ?>

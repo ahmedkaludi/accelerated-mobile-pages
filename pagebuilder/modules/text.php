@@ -1,9 +1,9 @@
 <?php $output = '<div class="amp_pb_module amp_text {{css_class}}">
 <p>{{text_editor}}</p></div>';
-return [
+return array(
 		'label' =>'Text',
 		'name' =>'text',
-		'fields'=> [
+		'fields'=> array(
 					array(
 						'type'		=>'textarea',
 						'name'		=>"text_editor",
@@ -17,7 +17,7 @@ return [
 						'label'		=>'Custom CSS Class',
 						'default'	=>'Content Goes Here',
 						)
-        ],
+        ),
 		'front_template'=>$output
-	];
+	);
 ?>

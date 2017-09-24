@@ -1,9 +1,9 @@
 <?php $output = '<div class="amp_pb_module amp_btn {{css_class}}">
 <a href="{{button_link}}">{{button_txt}}</a></div>';
-return [
+return array(
 		'label' =>'Button',
 		'name' =>'button',
-		'fields'=> [
+		'fields'=> array(
 				 	array(
                     'type'    => 'text',
                     'name'    => 'button_txt',
@@ -23,7 +23,7 @@ return [
                     'default' => ''
 						)
             
-        ],
+        ),
 		'front_template'=>$output
-	];
+	);
 ?>
