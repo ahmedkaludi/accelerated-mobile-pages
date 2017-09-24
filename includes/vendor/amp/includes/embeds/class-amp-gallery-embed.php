@@ -85,6 +85,8 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		foreach ( $attachments as $attachment_id ) {
 			list( $url, $width, $height ) = wp_get_attachment_image_src( $attachment_id, $atts['size'], true );
 
+			$captext2 = get_post( $attachment_id)->post_excerpt;
+
 			if ( ! $url ) {
 				continue;
 			}
@@ -93,6 +95,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 				'url' => $url,
 				'width' => $width,
 				'height' => $height,
+				'captext' => $captext2,
 			);
 		}
 
@@ -114,15 +117,28 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 
 		$images = array();
 		foreach ( $args['images'] as $image ) {
-			$images[] = AMP_HTML_Utils::build_tag(
+			
+			if ( $image['captext'] ) { 
+				$captext = '<div class="i-amp-caption">' . $image['captext'] . '</div></div>';
+				$startdiv = '<div>';
+			}
+			else {
+				$captext = '';
+				$startdiv = '';
+			}
+	
+			$images[] =   $startdiv . AMP_HTML_Utils::build_tag(
 				'amp-img',
 				array(
 					'src' => $image['url'],
 					'width' => $image['width'],
 					'height' => $image['height'],
 					'layout' => 'responsive',
-				)
-			);
+					
+				) ) . $captext;
+			
+
+
 		}
 
 		return AMP_HTML_Utils::build_tag(
