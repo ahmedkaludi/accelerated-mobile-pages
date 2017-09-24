@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.61
+Version: 0.9.62
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.61');
+define('AMPFORWP_VERSION','0.9.62');
 // any changes to AMP_QUERY_VAR should be refelected here
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
@@ -516,7 +516,7 @@ function ampforwp_update_notice() {
     margin-left: 5px;
     font-weight: 300;
     top: -14px;
-    font-size: 20px;"> <?php _e( 'AMP has been updated to '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
+    font-size: 20px;"> <?php _e( 'Introducing AMP Page Builder in '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
 	    <a href="https://ampforwp.com/new/" target="_blank" style="
     position: relative;
     top: -17px;
@@ -561,3 +561,4 @@ if(!defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH')){
 }
 
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
+require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
