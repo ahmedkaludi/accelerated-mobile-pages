@@ -33,7 +33,16 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body design_3_wrapper">
+<body class="amp_home_body archives_body design_3_wrapper <?php
+             if ( is_post_type_archive() ) {
+                 $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
+             ?> <?php
+             // Show ID on Pages, Post, Post Type's Post
+             if ( is_singular() ) { ?>singular-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?> <?php
+        // Show ID on category, tag, Author Page, Etc.
+        if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?>">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
