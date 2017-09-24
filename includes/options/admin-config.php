@@ -1800,7 +1800,7 @@ Redux::setSection( $opt_name, array(
 
 // Appearance Section
 Redux::setSection( $opt_name, array(
-              'title'      => __( 'Appearance', 'accelerated-mobile-pages' ),
+              'title'      => __( 'Design', 'accelerated-mobile-pages' ),
               'icon' => 'el el-adjust-alt',
               'desc'  => ''
 
