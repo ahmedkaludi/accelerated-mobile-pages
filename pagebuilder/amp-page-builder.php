@@ -23,8 +23,9 @@ function amp_content_pagebuilder_title_callback( $post ){
 	//wp_editor( $content, $editor_id );
 	if(empty($content)){
 		echo "<div class='amppb_welcome'>
-                    <a class='amppb_helper_btn beta_btn' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Beta Feature</span></a>
-                    <a class='amppb_helper_btn video_btn' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Video Tutorial</span></a>
+                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
+                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
+
                     <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
 </div>";
 	}
