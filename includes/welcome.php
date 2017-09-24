@@ -75,28 +75,31 @@ function ampforwp_welcome_screen_content() {
 
 
 
-		    <h1 style="color: #303F9F;font-weight: 500;margin-top: 48px;">
+		    <h1 style="color: #303F9F;font-weight: 500;margin-top: 30px;">
 		    	<i class="dashicons dashicons-editor-help" style="font-size: 36px; margin-right: 20px; margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
 			<p style="font-family: georgia;font-size: 20px;font-style: italic;margin-bottom: 3px;line-height: 1.5;margin-top: 11px;color: #666;"><?php echo __('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p>
-		    <div class="getstarted_wrapper">
+		    
+            <div class="getstarted_wrapper">
             <div class="getstarted_options">
-            <p><b><?php echo __('Links to help you started:','accelerated-mobile-pages') ?></b>
+            <p><b>Getting Started</b></p>
 				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/getting-started-with-amp" target="_blank"><?php echo __('Getting Started with AMP','accelerated-mobile-pages') ?></a></li>
-					<li><a href="https://ampforwp.com/add-menus-amp/" target="_blank"><?php echo __('Adding Navigation Menu','accelerated-mobile-pages') ?></a></li>
-					<li><a href="https://ampforwp.com/add-analytics-amp/" target="_blank"><?php echo __('Adding Google Analtyics','accelerated-mobile-pages') ?></a></li>
-					<a class="getstarted_btn" href="https://ampforwp.com/help/" target="_blank"><?php echo __('View all Tutorials','accelerated-mobile-pages') ?></a>
-				</ul> </p>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/installation-updating/" target="_blank">Installation &amp; Setup</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/settings-options/" target="_blank">Settings &amp; Options</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/" target="_blank">Setup AMP</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/page-builder/" target="_blank">Page Builder</a></li>
+				</ul>  
             </div>
-            <div class="getstarted_links">
-            <p><b><?php echo __('There are 3 ways to get help:','accelerated-mobile-pages') ?></b></p>
-			<ul class="getstarted_ul">
-				<li><a href="https://wordpress.org/support/plugin/accelerated-mobile-pages" target="_blank"><?php echo __('Support Forum','accelerated-mobile-pages') ?></a></li>
-				<li><a href="https://ampforwp.com/tutorials/" target="_blank"><?php echo __('Tutorials','accelerated-mobile-pages') ?></a></li>
-				<li><a href="https://ampforwp.com/help" target="_blank"><?php echo __('View Documentation','accelerated-mobile-pages') ?></a></li>
-			</ul>
-            </div><div class="clear"></div>
+            <div class="getstarted_options">
+            <p><b>Useful Links</b></p>
+				<ul class="getstarted_ul">
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank">Extensions &amp; Themes Docs</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extending/" target="_blank">Developers Docs</a></li>
+					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To's</a></li>
+				</ul>  
+            </div>
+            <div class="clear"></div>
             </div>
 
 		</div>
@@ -346,14 +349,23 @@ function afdfddf(){?>
 			font-size: 16px;
 			border-radius: 3px;
 		}
-        .getstarted_wrapper{
-		    max-width: 510px;
-		    margin-top: 20px; }
-        .getstarted_options{ float: left}
-        .getstarted_options{float: left; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
+        .getstarted_wrapper{ display: inline-block; margin: 15px 0px 5px 0px; }
+        .getstarted_options{float: left; margin-right: 15px;
+    background: #fff; border: 1px solid #ddd; padding: 5px 25px 10px 23px; border-radius: 2px;}
         .getstarted_links{float: right; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
         .ampforwp-post-installtion-instructions, .ampforwp-pre-installtion-instructions{ margin-left: 15px;}
-        .getstarted_ul li{  list-style-type: decimal; list-style-position: inside; }
+        .getstarted_ul li{     list-style-type: decimal;
+    list-style-position: inside;
+    line-height: 28px;
+    font-size: 14px; }
+.getstarted_options p {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: #333;
+}
+        .getstarted_ul {
+    margin-top: 6px;
+}
         a.getstarted_btn{
         	background: #666;
 		    color: #fff;

@@ -109,8 +109,8 @@ $extension_listing = '
     <li class="first"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
-        <h2>More Coming Soon</h2>
-        <p>Improvements in progress.</p>
+        <h2>View All Extensions</h2>
+        <p>See all the extensions available for AMP</p>
         </div>
     </a></li>
 
@@ -203,9 +203,9 @@ $gettingstarted_extension_listing = '
     <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=gettingstarted_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
         <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
         <div class="extension_desc">
-        <h2>More Coming Soon</h2>
-        <p>Improvements in progress.</p>
-        </div>
+        <h2>View All Extensions</h2>
+        <p>See all the extensions available for AMP</p>
+<div class="extension_btn">View All</div>        </div>
     </a></li>
 
 
@@ -377,20 +377,38 @@ Redux::setArgs( "redux_builder_amp", $args );
         'id'    => 'basic',
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
 
-                      sprintf( __( '  <h2 style="    width: 150px;
-    float: right;
-    padding: 15px 20px;
-    border: 1px solid #ddd;
-    font-size: 13px;
-    line-height: 20px;"><a href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? Support us by leaving a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' ) . ampforwp_plugin_activation_notice()
-			               . '<h2>' . __( 'Here are some quick links to help you get started:', 'accelerated-mobile-pages' ) . '</h2>'
-			               . '<p><strong>' . __( '1. <a href="http://ampforwp.com/help/" target="_blank">User Documentation</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.' ) . '</p>'
-			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/tutorials/" target="_blank">Tutorials</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We’re bunch of passionate people that are dedicated towards helping our users. We have prepared bunch of tutorials for you' ) . '</p>'
-			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#extend" target="_blank">Developer Docs</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.' ) . '</p>'
-			               . '<p><strong>' . __( '4. <a href="https://ampforwp.com/priority-support/" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
-			               . '<p><strong>' . __( '5. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
-			               . '<p><strong>' . __( '6. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
-			               . '<p><strong>' . __( '7. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
+                      sprintf( __( '  <h2 style="width: 150px;float: right;
+    padding: 8px 11px;background: #4CAF50;
+    font-size: 13px;margin: -24px 0 0 10px;
+    border-radius: 5px;line-height: 22px;"><a style="color: #fff;text-decoration: none;" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? <br /> Leave a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' ) 
+                    //  . ampforwp_plugin_activation_notice()
+//       . '<h2>' . __( 'Here are some quick links to help you get started:', 'accelerated-mobile-pages' ) . '</h2>'
+                      
+			               . '<div class="getstarted_wrapper">
+            <div class="getstarted_options">
+            <p><b>Getting Started</b></p>
+				<ul class="getstarted_ul">
+					<li><a href="https://ampforwp.com/tutorials/article-categories/installation-updating/" target="_blank">Installation & Setup</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/settings-options/" target="_blank">Settings & Options</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/" target="_blank">Setup AMP</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/page-builder/" target="_blank">Page Builder</a></li>
+				</ul>  
+            </div>
+            <div class="getstarted_options">
+            <p><b>Useful Links</b></p>
+				<ul class="getstarted_ul">
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank">Extensions & Themes Docs</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extending/" target="_blank">Developers Docs</a></li>
+					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To\'s</a></li>
+				</ul>  
+            </div>
+            <div class="clear"></div>
+            </div>'
+           . '<p><strong>' . __( '1. <a href="https://ampforwp.com/priority-support/" target="_blank">Fixing AMP Validation Errors</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We will personally take care that your website’s AMP version is perfectly validated. We will make sure that your AMP version gets approved and indexed by Google Webmaster Tools properly and we will even keep an eye on AMP updates from Google and implement them into your website.' ) . '</p>'
+			               . '<p><strong>' . __( '2. <a href="https://ampforwp.com/help/#support-forum" target="_blank">Community Support Forum</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.' ) . '</p>'
+			               . '<p><strong>' . __( '3. <a href="https://ampforwp.com/help/#contact" target="_blank">Hire Us / Other queries</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'We try to answer each and every email, so remember to give us some time. For any other queries, please use the contact form. Please be descriptive as possible.' ) . '</p>'
+			               . '<p><strong>' . __( '4. <a href="http://ampforwp.com/new/" target="_blank"> What\'s New in this Version?</a>: ', 'accelerated-mobile-pages' ) . '</strong>' . __( 'If you want to know whats new in the latest version of the plugin, then please use this link. ') . '</p>'
 
 						         . '</p></div>
                                  <br /><p><h3>Take AMP to the Next Level with Premium Extensions</h3></p>
@@ -519,7 +537,7 @@ Redux::setArgs( "redux_builder_amp", $args );
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
-       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP from the widgets area. <a href="http://ampforwp.com/tutorials/page-builder">(Need Help?)</a>' , 'accelerated-mobile-pages'),
+       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP. <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/">(See Video Tutorial)</a>' , 'accelerated-mobile-pages'),
        'id'         => 'amp-content-builder',
        'class' => 'amp_content_builder',
        'subsection' => true,
@@ -528,15 +546,24 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'       => 'ampforwp-content-builder',
                 'type'     => 'switch',
-                'title'    => __('Enable Page Builder for AMP', 'accelerated-mobile-pages'),
+                'title'    => __('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
                 'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
                 'true'      => 'true',
                 'desc' => '<div style="    background: #FFF9C4;
     display: inline-block;
-    padding: 12px;
-    margin-top: 12px;
+    padding: 10px 20px;
+    margin-top: 15px;
     left: 0;
-    line-height: 1.6;"><b>Hello!</b> First time here? <br /> <a href="https://ampforwp.com/tutorials/page-builder/" target="_blank">Learn how to use this Feature</a></div>',
+    line-height: 1.6;
+    position: absolute;
+    left: 20px;
+    font-size: 15px;"><b>Introducing  AMP Page Builder 2.0</b>, Re-Engineered! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
+    
+    <iframe style="    position: absolute;
+    left: 20px;
+    margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
+    
+    ',
                 'false'     => 'false',
                 'default'   => 1
             ),

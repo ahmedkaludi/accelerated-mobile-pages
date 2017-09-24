@@ -2176,10 +2176,10 @@ function ampforwp_add_widget_support() {
 		));
 
 		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
-    $desc = "Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
+    $desc = "<b>Update: <a target='_blank' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/'>Introducing PageBuilder 2.0</a></b><br />Drag and Drop the AMP Modules in this Widget Area and then assign this widget area to a page <a href=http://ampforwp.com/tutorials/page-builder>(Need Help?)</a>";
     $placeholder = 'PLACEHOLDER';
 			register_sidebar(array(
-				'name' 			=> 'Page Builder (AMP)',
+				'name' 			=> 'Page Builder (AMP) [Legacy]',
 				'id'   			=> 'layout-builder',
                 'description' => $placeholder,
 				'before_widget' => '',
