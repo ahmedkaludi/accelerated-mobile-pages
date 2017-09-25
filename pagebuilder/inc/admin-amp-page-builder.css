@@ -138,7 +138,7 @@ div#amppb-actions-container:before {
     color: #fff;
 }
 .tools-icon{
-    display: none;
+    /*display: none;*/
     padding: 3px 0px 1px 1px;
     float: right;
     cursor: pointer;

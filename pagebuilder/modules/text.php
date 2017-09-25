@@ -5,7 +5,7 @@ return array(
 		'name' =>'text',
 		'fields'=> array(
 					array(
-						'type'		=>'textarea',
+						'type'		=>'text-editor',
 						'name'		=>"text_editor",
 						'label'		=>'Content',
 						'default'	=>'Content Goes Here',

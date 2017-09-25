@@ -159,10 +159,11 @@ jQuery( document ).ready( function( $ ){
 		$.each(ploatedStructure.rows,function(rowkey,rowData){
 			if(rowData.id==containerId){
 				currentButton.parents('.amppb-tc-footer').siblings('.amp-pb-rowsetting-content').find('input').each(function(){
-					selectedSettings[$(this).attr('name')] = encodeURI($(this).val());
-					
+					console.log(ploatedStructure.rows[rowkey].data);
+					/*selectedSettings[$(this).attr('name')] = encodeURI($(this).val());
+					ploatedStructure.rows[rowkey].data[$(this).attr('name')] = encodeURI($(this).val());*/
 				});
-				ploatedStructure.rows[rowkey].data.push(selectedSettings);
+				//ploatedStructure.rows[rowkey].data.push(selectedSettings);
 				return false;
 			}
 		});
@@ -256,15 +257,16 @@ jQuery( document ).ready( function( $ ){
 					//loadEditor(id);
 					
 					break; 
-
 			}
 		});
 		//if(upload){ selectionOfImage(); }
 		$(".amp-pb-module-content").html(popupHtml); 
 		if(editor.length){  
 			$.each(editor, function(key, value){
-				if(tinymce.get('pre-details')){
-					tinymce.get('pre-details').remove();
+				if(tinymce.get(value)){
+					//tinymce.get(value).remove();
+					console.log(value);
+					tinymce.get(value).destroy();
 				}
 				tinymce.init( {
 							mode : "exact",
@@ -274,7 +276,7 @@ jQuery( document ).ready( function( $ ){
 							menubar : false,
 							statusbar : false,
 							toolbar: [
-								"bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | undo redo"
+								"bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | undo redo | link image"
 							],
 							plugins : "paste",
 							paste_auto_cleanup_on_paste : true,
