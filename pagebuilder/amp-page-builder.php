@@ -121,14 +121,7 @@ function call_page_builder(){
 	<div id="amppb-row-setting-dialog" class="hidden" style="max-width:800px">
 
     	<div class="amp-pb-rowsetting-content">
-			<p class="form-control">
-				<label for="setting_row_title">Row title</label>
-				<input type="text" name="row_title" id="setting_row_title">
-			</p>
-			<p class="form-control">
-				<label for="setting_row_class">Custom class</label>
-				<input type="text" name="row_class" id="setting_row_class">
-			</p>
+			
 	 	</div>
  		<div class="amppb-tc-footer">
  			<div class="buttons-groups">

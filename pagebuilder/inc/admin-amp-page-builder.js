@@ -129,45 +129,80 @@ jQuery( document ).ready( function( $ ){
 
     $(document.body).on('click', ".rowBoxContainer", function(e){
 		 e.preventDefault();
-		/* Delete Row */
+		/* ON open row Setting thickbox */
 		var containerId = $( this ).parents( '.amppb-row' ).attr('id').replace("conatiner-","");
 		$('#amppb-rowsetting').attr('data-current-container',containerId);
 		
+		$(".amp-pb-rowsetting-content").html(''); 
+		var popupContents = $(this).attr('data-template');
+		$("#amppb-rowsetting").attr('data-template',popupContents);
+		popupContents = JSON.parse(popupContents);
+		var popupHtml = '';
+		var upload = false; var editor = [];
 		var ploatedStructure = JSON.parse($('#amp-page-builder-data').val());
 		$.each(ploatedStructure.rows,function(rowkey,rowData){
 			if(rowData.id==containerId){
-				console.log(rowData.data);
-				
-				$( "#amppb-rowsetting" ).parents('.amppb-tc-footer').siblings('.amp-pb-rowsetting-content').find('input').each(function(){
-					console.log($(this).attr('name'));
-					$(this).val( decodeURI(rowData.data[0][$(this).attr('name')]) );
+				//ploatedStructure.rows[rowkey].data = {};
+				$.each(popupContents.fields, function(fieldsName,fieldReplace){
+					
+					if(typeof ploatedStructure.rows[rowkey].data[fieldReplace.name]!='undefined'){
+						fieldReplace.default = ploatedStructure.rows[rowkey].data[fieldReplace.name];
+					}else{
+						ploatedStructure.rows[rowkey].data[fieldReplace.name] = fieldReplace.default;
+					}
+					
+					var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+					var id = fieldReplace.name;
+					popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default));
+					//To load action of fields
+					switch(fieldReplace.type){
+						case 'upload':
+							upload = true;
+							break;
+						case 'text-editor':
+							editor.push(id);
+							break; 
+					}
+					
+					
+								
 				});
-				
-
+			return false;
 			}
 		});
+		storeJsonDataInput(ploatedStructure);
+	
+		$(".amp-pb-rowsetting-content").html(popupHtml); 
+		editorJs(editor);
 	});
 	//Save data of row settings
 	$( document.body ).on('click', "#amppb-rowsetting", function(e){
 		e.preventDefault();
 		console.log("Save button #amppb-rowsetting has clicked");
 		var containerId = $(this).attr('data-current-container');
+		
+		var popupContents = $(this).attr('data-template');
+		
 		var ploatedStructure = JSON.parse($('#amp-page-builder-data').val());
-		var selectedSettings = {};
-		console.log(ploatedStructure);
-		var currentButton = $(this);
+		
+		popupContents = JSON.parse(popupContents);
 		$.each(ploatedStructure.rows,function(rowkey,rowData){
+			ploatedStructure.rows[rowkey].data = {};
 			if(rowData.id==containerId){
-				currentButton.parents('.amppb-tc-footer').siblings('.amp-pb-rowsetting-content').find('input').each(function(){
-					console.log(ploatedStructure.rows[rowkey].data);
-					/*selectedSettings[$(this).attr('name')] = encodeURI($(this).val());
-					ploatedStructure.rows[rowkey].data[$(this).attr('name')] = encodeURI($(this).val());*/
-				});
-				//ploatedStructure.rows[rowkey].data.push(selectedSettings);
+				$.each(popupContents.fields, function(fieldsName,fieldReplace){
+					var userValue = $("#"+fieldReplace.name).val();
+					fieldReplace.default = userValue;
+					
+						ploatedStructure.rows[rowkey].data[fieldReplace.name] = userValue;
+							
+				})
 				return false;
 			}
 		});
-		storeJsonDataInput(ploatedStructure);
+			storeJsonDataInput(ploatedStructure);
+		//Restore New values in start setting button
+		$("#conatiner-"+containerId).find('.rowBoxContainer').attr('data-template',JSON.stringify(popupContents));
+		
 		tb_remove();
 	});
 	
@@ -179,6 +214,7 @@ jQuery( document ).ready( function( $ ){
 
 		//Grab value of current modules
 		var moduledetails = $(this).parents('.buttons-groups').find("#ampb-parents-dialog").attr('data-modules');
+		
 
 		moduledetails = JSON.parse(moduledetails);
 
@@ -261,6 +297,10 @@ jQuery( document ).ready( function( $ ){
 		});
 		//if(upload){ selectionOfImage(); }
 		$(".amp-pb-module-content").html(popupHtml); 
+		editorJs(editor);
+	});
+	
+	function editorJs(editor){
 		if(editor.length){  
 			$.each(editor, function(key, value){
 				if(tinymce.get(value)){
@@ -276,9 +316,15 @@ jQuery( document ).ready( function( $ ){
 							menubar : false,
 							statusbar : false,
 							toolbar: [
-								"bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | undo redo | link image"
+				"bold italic underline strikethrough superscript| alignleft aligncenter alignright | bullist numlist outdent indent | undo redo | headings | link image | removeformat media |wpgallery wpautoresize"
 							],
-							plugins : "paste",
+							plugins: 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
+							/* content_css: [
+								'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+								'//www.tinymce.com/css/codepen.min.css'
+							], */
+							/* plugins : "paste", */
+							branding: false,
 							paste_auto_cleanup_on_paste : true,
 							paste_postprocess : function( pl, o ) {
 								o.node.innerHTML = o.node.innerHTML.replace( /&nbsp;+/ig, " " );
@@ -288,9 +334,7 @@ jQuery( document ).ready( function( $ ){
 			})
 			
 		}
-	});
-	
-	
+	}
 	
 	
 	

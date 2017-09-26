@@ -1,5 +1,5 @@
 <?php
-$output .= '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{img_width}}" height="{{img_height}}" />
+$output = '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{img_width}}" height="{{img_height}}" />
 <h4>{{text_title}}</h4>
 <p>{{text_description}}</p>
 </div>'; 
