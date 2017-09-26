@@ -1762,6 +1762,9 @@ function ampforwp_frontpage_title_markup () {
                 $content_buffer = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content_buffer);
 //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
+                // xlink attribute causes Validatation Issues #1149
+				$content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
+
             }
             return $content_buffer;
 		}
