@@ -80,6 +80,7 @@
 	70. Hide AMP by specific Categories #872
 	71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
 	72. Blacklist Sanitizer Added back #1024
+	73. View AMP Site below View Site In Dashboard #1076
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3563,4 +3564,19 @@ if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 				}
 			} 
 	}
+}
+
+// 73. View AMP Site below View Site In Dashboard #1076
+
+add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
+ 
+function ampforwp_visit_amp_in_admin_bar($admin_bar) {         
+          $args = array(
+                'parent' => 'site-name',
+                'id'     => 'view-amp',
+                'title'  => 'Visit AMP',
+                'href'   => get_home_url().'/'.AMP_QUERY_VAR,
+                'meta'   => false
+            );
+            $admin_bar->add_node( $args );       
 }
