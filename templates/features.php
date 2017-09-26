@@ -1650,9 +1650,21 @@ function ampforwp_replace_title_tags() {
 			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 
 			if( get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+				//WPML Static Front Page Support for title and description with Yoast #1143
 
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
+
+				 	$ID = get_option( 'page_on_front' );
+				$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
+
+				$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
+				 }
+
+				else{
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+				}
 			}
 			// Blog page 
 			if ( get_option( 'page_for_posts' ) && get_queried_object_id() ) {
@@ -3409,12 +3421,21 @@ function ampforwp_generate_meta_desc(){
 
 			// Static front page
 			// Code for Custom Frontpage Yoast SEO Description
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-			if ( class_exists('WPSEO_Meta') ) {
-				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+			//WPML Static Front Page Support for title and description with Yoast #1143 
+				 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
+
+				 	$post_id = get_option( 'page_on_front' );
+				 }
+				 else {
+				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				}
-			}
+
+				if ( class_exists('WPSEO_Meta') ) {
+					if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+						$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+					}
+				}
 		}
 		// for search
 		if( is_search() ) {
