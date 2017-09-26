@@ -1,3 +1,5 @@
+<?php  global $redux_builder_amp; 
+if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampforwp-bread-crumb']==1) { ?>
 <div class="amp-wp-content breadcrumb"> <?php  
     // Settings
     $breadcrums_id      = 'breadcrumbs';
@@ -195,3 +197,4 @@
       
     }?>
 </div>
+<?php }

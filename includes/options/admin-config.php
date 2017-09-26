@@ -2187,6 +2187,14 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
+         //Breadcrumb ON/OFF
+          array(
+              'id'       => 'ampforwp-bread-crumb',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Breadcrumb'),                  
+           ),
           // Social Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
