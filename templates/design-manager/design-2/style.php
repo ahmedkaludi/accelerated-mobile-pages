@@ -139,7 +139,7 @@ li.amp-wp-tax-category{ float: right }
 .amp-wp-content amp-img{ max-width: 100%; }
 figure{ margin: 0; }
 figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px 8px; }
-.amp-wp-byline amp-img{ display: none; }
+
 .amp-wp-author:before{ content: "By "; color: #555; }
 .amp-wp-author{ margin-right: 1px; }
 .amp-wp-meta{ font-size: 12px; color: #555; }
