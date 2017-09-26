@@ -34,7 +34,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body design_2_wrapper <?php
+<body class="archives_body design_2_wrapper <?php
              if ( is_post_type_archive() ) {
                  $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
              ?><?php

@@ -34,7 +34,16 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> archives_body design_1_wrapper <?php
+             if ( is_post_type_archive() ) {
+                 $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
+             ?><?php
+             // Show ID on Pages, Post, Post Type's Post
+             if ( is_singular() ) { ?>singular-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?> <?php
+        // Show ID on category, tag, Author Page, Etc.
+        if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?>"">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
