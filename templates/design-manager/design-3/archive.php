@@ -97,7 +97,7 @@ if ( get_query_var( 'paged' ) ) {
 	  		}
 			}?>
 
-		<div class="amp-wp-content amp-loop-list">
+		<div class="amp-wp-content amp-loop-list <?php if ( has_post_thumbnail() ) { } else{?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( has_post_thumbnail() ) { ?>
 				<?php
 				$thumb_id = get_post_thumbnail_id();
