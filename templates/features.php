@@ -3583,7 +3583,7 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
                 'parent' => 'site-name',
                 'id'     => 'view-amp',
                 'title'  => 'Visit AMP',
-                'href'   => get_home_url().'/'.AMP_QUERY_VAR,
+                'href'   => user_trailingslashit(get_home_url().'/'.AMP_QUERY_VAR),
                 'meta'   => false
             );
             $admin_bar->add_node( $args );       
