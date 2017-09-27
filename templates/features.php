@@ -2181,18 +2181,18 @@ function ampforwp_add_widget_support() {
 		global $redux_builder_amp;
 
 		register_sidebar(array(
-			'name' => 'AMP Above Loop',
+			'name' => 'AMP HomePage Above Loop',
 			'id'   => 'ampforwp-above-loop',
-			'description'   => 'Widget area for above the Loop Output',
+			'description'   => 'Widget area for AMP HomePage above the Loop Output, Add only AMP Modules',
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '<h4>',
 			'after_title'   => '</h4>'
 		));
 		register_sidebar(array(
-			'name' => 'AMP Below Loop',
+			'name' => 'AMP HomePage Below Loop',
 			'id'   => 'ampforwp-below-loop',
-			'description'   => 'Widget area for below the Loop Output',
+			'description'   => 'Widget area for AMP HomePage below the Loop Output, Add only AMP Modules',
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '<h4>',
