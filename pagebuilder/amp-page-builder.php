@@ -158,5 +158,5 @@ function myprefix_get_image() {
     }
 }
 
-require_once "functions.php";
+require_once AMP_PAGE_BUILDER.'functions.php';
 
