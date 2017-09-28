@@ -178,9 +178,15 @@ add_action('admin_head', function()
 {
     ?>
     <style type="text/css">
-       #wp-content-editor-container .mce-container .mce-ampforwp-the-content{
+       #wp-content-editor-container .mce-container .mce-ampforwp-copy-content-button{
           display: none;
         }
+      .dashicons-clipboard:before{
+          font: 400 18px/1.25 dashicons;
+       }
+       .mce-ampforwp-copy-content-button .mce-txt{
+          margin-left: 3px;
+       }
     </style>
     <?php
 });
