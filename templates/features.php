@@ -1432,6 +1432,8 @@ function ampforwp_remove_schema_data() {
 		remove_filter( 'the_content', 'foundation_handle_share_links_bottom', 100 );
 	//Removing the space added by the Google adsense #967
 		remove_filter( 'the_content', 'ga_strikable_add_optimized_adsense_code');
+	//Removing Social Media Share Buttons & Social Sharing Icons #1135
+		remove_filter('the_content', 'sfsi_social_buttons_below');
 }
 
 // 22. Removing author links from comments Issue #180
