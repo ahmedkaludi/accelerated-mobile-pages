@@ -12,7 +12,7 @@
 
 				foreach ($ampforwp_tags as $tag) {
             if($redux_builder_amp['ampforwp-archive-support']){
-							   echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'.trailingslashit( trailingslashit( get_tag_link( $tag->term_id ) ) . 'amp' ) . '" >'.$tag->name .'</a></span>');//#934
+							   echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. user_trailingslashit( trailingslashit( get_tag_link( $tag->term_id ) ) . 'amp' ) . '" >'.$tag->name .'</a></span>');//#934
           } else {
                       echo ('<span>'.$tag->name .'</span>');
           }

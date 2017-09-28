@@ -8,7 +8,7 @@ function ampforwp_framework_get_post_navigation(){
 							if (!empty( $next_post )) {
 								$next_text = $next_post->post_title;
 								?>
-									<a href="<?php echo trailingslashit( trailingslashit( get_permalink( $next_post->ID ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+									<a href="<?php echo user_trailingslashit( trailingslashit( get_permalink( $next_post->ID ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 								} ?>
 					</div>
 
@@ -17,7 +17,7 @@ function ampforwp_framework_get_post_navigation(){
 								 if (!empty( $prev_post )) {
 									 $prev_text = $prev_post->post_title;
 									  ?>
-								   <a href="<?php echo trailingslashit( trailingslashit( get_permalink( $prev_post->ID ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+								   <a href="<?php echo user_trailingslashit( trailingslashit( get_permalink( $prev_post->ID ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 								 } ?>
 					</div>
 

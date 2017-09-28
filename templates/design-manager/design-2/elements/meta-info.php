@@ -34,7 +34,7 @@
 			</span>
       <?php foreach ($ampforwp_categories as $cat ) {
 					if($redux_builder_amp['ampforwp-archive-support']){
-            	echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. trailingslashit( trailingslashit( get_category_link( $cat->term_id ) ) .'amp' ) . '" >'.$cat->name .'</a></span>');//#934
+            	echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. user_trailingslashit( trailingslashit( get_category_link( $cat->term_id ) ) .'amp' ) . '" >'.$cat->name .'</a></span>');//#934
 				} else {
 	echo ('<span>'.$cat->name .'</span>');
 				}

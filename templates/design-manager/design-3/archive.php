@@ -89,7 +89,7 @@ if ( get_query_var( 'paged' ) ) {
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
   		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
-  		$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+  		$ampforwp_amp_post_url  = user_trailingslashit( $ampforwp_amp_post_url );
 
 			if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
 	  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {

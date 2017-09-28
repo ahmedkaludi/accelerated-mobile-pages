@@ -70,7 +70,7 @@ if ( get_query_var( 'paged' ) ) {
 						?>
 						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 					<?php } ?>
-                  <a href="<?php echo trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
+                  <a href="<?php echo user_trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
 		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
@@ -116,7 +116,7 @@ if ( get_query_var( 'paged' ) ) {
 				$thumb_url = $thumb_url_array[0];
 				?>
 				<div class="home-post_image">
-					<a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+					<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
 						<amp-img
 							layout="responsive"
 							src=<?php echo $thumb_url ?>
@@ -134,7 +134,7 @@ if ( get_query_var( 'paged' ) ) {
 					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php
