@@ -1550,6 +1550,28 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         //'required'  => array('ampforwp-amp-menu', '=' , '1')
                     ),
+					//Category Base Removal in AMP
+					array(
+                        'id'       => 'ampforwp-category-base-removel-link',
+                        'type'     => 'switch',
+                        'title'    => __('Category base remove in AMP', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Category base removal in <code>AMP</code> from url', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,
+                        
+                    ),
+					//Tag base Removal in AMP
+					array(
+                        'id'       => 'ampforwp-tag-base-removal-link',
+                        'type'     => 'switch',
+                        'title'    => __('Tag base remove in AMP', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Tag base remove in <code>AMP</code> from url', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,
+                        
+                    ),
 
    ),
 
