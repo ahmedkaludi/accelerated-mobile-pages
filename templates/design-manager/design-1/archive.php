@@ -43,7 +43,7 @@
     ?><?php } ?> <?php
         // Show ID on category, tag, Author Page, Etc.
         if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
-    ?><?php } ?>"">
+    ?><?php } ?>">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
