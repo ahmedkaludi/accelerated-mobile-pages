@@ -2292,7 +2292,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
                     'options'  => array(
                         '1' => 'Tags',
-                        '2' => 'Categories'
+                        '2' => 'Categories',
                         '3' => 'Post Type'
                     ),
                'default'  => '2',
