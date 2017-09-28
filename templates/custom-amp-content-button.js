@@ -4,7 +4,7 @@
             text: 'Copy The Content',
             icon: 'dashicons dashicons-clipboard',
             classes: 'ampforwp-copy-content-button ', 
-            tooltip: 'Copy The Content from Main Editor', 
+            tooltip: 'Visual Editor to AMP Editor', 
             onclick: function() {
                 editor.insertContent(tinymce.editors.content.getContent());
             }

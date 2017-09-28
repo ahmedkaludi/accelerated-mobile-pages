@@ -185,7 +185,7 @@ add_action('admin_head', function()
           font: 400 18px/1.25 dashicons;
        }
        .mce-ampforwp-copy-content-button .mce-txt{
-          margin-left: 3px;
+          margin-left: 5px;
        }
     </style>
     <?php
