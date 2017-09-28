@@ -3556,6 +3556,7 @@ function is_category_amp_disabled(){
 
 if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 	$categories = get_the_category();
+	$selected_cats = array();
 			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
 			// Check if $get_categories_from_checkbox has some cats then only show
