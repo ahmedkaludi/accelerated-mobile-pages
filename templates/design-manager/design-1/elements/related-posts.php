@@ -38,7 +38,21 @@
 										);
 					}
 			}//end of block for tags
-			$my_query = new wp_query( $args );
+
+		// Custom Post types for tags
+		 if($redux_builder_amp['ampforwp-single-select-type-of-related']==3) {
+                $current_post_type = get_post_type( $post );
+                // The query arguments
+                $args = array(
+                    'posts_per_page'=> $int_number_of_related_posts,
+                    'order' => 'DESC',
+                    'orderby' => 'ID',
+                    'post_type' => $current_post_type,
+                    'post__not_in' => array( $post->ID )
+                );             
+			}//end of block for custom Post types
+
+        $my_query = new wp_query( $args );
 				if( $my_query->have_posts() ) { ?>
 					<div class="amp-wp-content relatedpost">
 					    <div class="related_posts">

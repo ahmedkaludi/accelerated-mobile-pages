@@ -2293,6 +2293,7 @@ Redux::setSection( $opt_name, array(
                     'options'  => array(
                         '1' => 'Tags',
                         '2' => 'Categories'
+                        '3' => 'Post Type'
                     ),
                'default'  => '2',
             ),
