@@ -79,7 +79,7 @@ if ( get_query_var( 'paged' ) ) {
  			
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
-				if($wp->query_vars['paged'] <= '1') {?>
+				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
 						<?php echo $arch_desc ; ?>
 				  </div> <?php
@@ -92,7 +92,7 @@ if ( get_query_var( 'paged' ) ) {
   		$ampforwp_amp_post_url  = user_trailingslashit( $ampforwp_amp_post_url );
 
 			if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
-	  		if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+	  		if (isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
 	  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
 	  		}
 			}?>
