@@ -2329,6 +2329,7 @@ function ampforwp_output_widget_content_below_loop() {
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
+add_action('widget_content_below_the_header_Design_1','ampforwp_output_widget_content_below_the_header');
 function ampforwp_output_widget_content_below_the_header() {
 	 $sanitized_sidebar = "";
 	 $non_sanitized_sidebar = "";

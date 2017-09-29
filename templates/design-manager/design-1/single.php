@@ -13,6 +13,7 @@
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> single-post <?php ampforwp_the_body_class(); ?> <?php if(is_page()){ echo'amp-single-page'; };?> design_1_wrapper">
 	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
+	<?php do_action( 'widget_content_below_the_header_Design_1', $this ); ?>
 
 	<article class="amp-wp-article">
 		<?php do_action('ampforwp_post_before_design_elements') ?>

@@ -46,6 +46,7 @@
     ?><?php } ?>">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
+<?php do_action( 'widget_content_below_the_header_Design_1', $this ); ?>
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
