@@ -138,8 +138,8 @@ function ampforwp_tag_url_rewrite_rules($rewrite){
 
 
 
-//
+///* 
 if(!is_admin()){
 $uri = $_SERVER['REQUEST_URI'];
 echo $uri;die;
-}
+} */
