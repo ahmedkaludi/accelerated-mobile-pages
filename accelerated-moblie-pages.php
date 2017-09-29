@@ -444,11 +444,18 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 
 	$plugin =  'amp/amp.php'; 
 	if (  $plugin == $plugin_file  ) {
+		add_thickbox();
 		unset($actions['activate']);
-	}
+		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'This plugin is already added in our core\')">Activate</span>';
+		array_unshift ($actions,$a);
+	} 
  	return $actions;
 }
 add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+
+
+
+
 
 
 if ( ! function_exists('ampforwp_init') ) {
