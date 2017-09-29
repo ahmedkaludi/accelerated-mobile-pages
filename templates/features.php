@@ -3696,3 +3696,16 @@ function ampforwp_body_beginning_html_output(){
     	echo $redux_builder_amp['amp-body-text-area'] ;
   }
 }
+
+add_filter('get_amp_supported_post_types','is_amp_post_support_enabled');
+function is_amp_post_support_enabled($supportedTypes){
+	global $redux_builder_amp;
+	if($redux_builder_amp['amp-on-off-for-all-posts']!='1'){
+		$index = array_search('post',$supportedTypes);
+		unset($supportedTypes[$index]);
+	}elseif($redux_builder_amp['amp-on-off-for-all-posts']==1){
+		$supportedTypes[] = 'post';
+		$supportedTypes = array_unique($supportedTypes);
+	}
+	return $supportedTypes;
+}

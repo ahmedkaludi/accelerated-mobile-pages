@@ -463,6 +463,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'indent' => true,
             ),
            array(
+               'id'        =>'amp-on-off-for-all-posts',
+               'type'      => 'switch',
+               'title'     => __('AMP on Posts', 'accelerated-mobile-pages'),
+               'subtitle'  => __('Enable or Disable AMP on all Posts', 'accelerated-mobile-pages'),
+               'default'   => 1,
+               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
+            ),
+			array(
                'id'        =>'amp-on-off-for-all-pages',
                'type'      => 'switch',
                'title'     => __('AMP on Pages', 'accelerated-mobile-pages'),
