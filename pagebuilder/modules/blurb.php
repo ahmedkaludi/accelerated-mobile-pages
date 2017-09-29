@@ -24,7 +24,7 @@ return array(
 						'type'		=>'upload',
 						'name'		=>"blurb_image",
 						'label'		=>"Image",
-						'default'	=>'http://i.imgur.com/5nPXqZG.png',
+						'default'	=>plugins_url('accelerated-mobile-pages/images/150x150.png'),
 						),
 					array(
 						'type'		=>'text',

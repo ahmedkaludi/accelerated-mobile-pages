@@ -8,7 +8,7 @@ return array(
 						'type'	=>'upload',
 						'name'  => "selected_image",
 						'label' => "Select Image",
-						'default'	=>'http://via.placeholder.com/150x150'
+						'default'	=>plugins_url('accelerated-mobile-pages/images/150x150.png')
 						),
 				 	array(
 			 			'type'	=>'text',

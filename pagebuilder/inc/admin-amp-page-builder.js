@@ -697,8 +697,9 @@ function Refresh_Image(the_id,currentSelectfield){
 
             if(response.success === true) {
             	console.log(response.data.image)
-                currentSelectfield.parents('.form-control').find('#myprefix-preview-image').replaceWith( response.data.image );
-				currentSelectfield.parents('.form-control').find('input[type=hidden]').val(response.data.image);
+                var src = currentSelectfield.parents('.form-control').find('#myprefix-preview-image').replaceWith( response.data.image ).attr('id','myprefix-preview-image').attr('src');
+				//var src = currentSelectfield.parents('.form-control').find('#myprefix-preview-image').attr('src');
+				currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
             }
         });
 }
