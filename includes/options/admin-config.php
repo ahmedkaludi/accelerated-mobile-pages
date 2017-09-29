@@ -1329,15 +1329,20 @@ $forms_support[]=  array(
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
+        array(
+                            'title'     =>__('WordPress Comments','accelerated-mobile-pages'),
+                            'id'        => 'wordpress-comments-support',
+                            'subtitle'  => __('Enable/Disable WordPress comments using this switch.', 'accelerated-mobile-pages'),
+                            'type'      => 'switch',
+
+                        ),
                     array(
                          'id'       => 'ampforwp-number-of-comments',
                          'type'     => 'text',
                          'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
                          'title'    => __('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
-                         'required' => array(
-                                            array('ampforwp-disqus-comments-support' , '=' , 0),
-                                            array('ampforwp-facebook-comments-support' , '=' , 0)
+                         'required' => array('wordpress-comments-support' , '=' , 1
                                         ),
                      ),
                      array(
@@ -1345,7 +1350,6 @@ $forms_support[]=  array(
                          'type'     => 'switch',
                          'title'    => __('Disqus comments Support', 'accelerated-mobile-pages'),
                          'subtitle' => __('Enable/Disable Disqus comments using this switch.', 'accelerated-mobile-pages'),
-                         'required' => array('ampforwp-facebook-comments-support', '=' , '0'),
                          'default'  => 0
                      ),
                      array(
