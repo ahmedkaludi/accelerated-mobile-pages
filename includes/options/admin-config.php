@@ -1518,7 +1518,7 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
-                        'title'    => __('Enter HTML in Header', 'accelerated-mobile-pages'),
+                        'title'    => __('Enter HTML in Head', 'accelerated-mobile-pages'),
                         'subtitle' => __('please enter markup that is AMP validated', 'accelerated-mobile-pages'),
                         'desc' => __('check your markup here (enter markup between HEAD tag) : https://validator.ampproject.org/', 'accelerated-mobile-pages'),
                         'default'   => ''

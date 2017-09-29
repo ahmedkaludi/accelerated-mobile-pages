@@ -2185,16 +2185,37 @@ function ampforwp_add_widget_support() {
 		register_sidebar(array(
 			'name' => 'AMP HomePage Above Loop',
 			'id'   => 'ampforwp-above-loop',
-			'description'   => 'Widget area for AMP HomePage above the Loop Output, Add only AMP Modules',
+			'description'   => 'This Widget will be display on AMP HomePage Above the loop ',
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '<h4>',
 			'after_title'   => '</h4>'
 		));
+
 		register_sidebar(array(
 			'name' => 'AMP HomePage Below Loop',
 			'id'   => 'ampforwp-below-loop',
-			'description'   => 'Widget area for AMP HomePage below the Loop Output, Add only AMP Modules',
+			'description'   => 'This Widget will be display on AMP HomePage Below the loop',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
+
+		register_sidebar(array(
+			'name' => 'AMP Below the Header',
+			'id'   => 'ampforwp-below-header',
+			'description'   => 'This Widget will be display after the header bar',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '<h4>',
+			'after_title'   => '</h4>'
+		));
+
+		register_sidebar(array(
+			'name' => 'AMP Above the Footer',
+			'id'   => 'ampforwp-above-footer',
+			'description'   => 'This Widget display Above the Footer',
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '<h4>',
@@ -2306,6 +2327,82 @@ function ampforwp_output_widget_content_below_loop() {
    $sidebar_output = $sanitized_sidebar->get_amp_content();
    echo $sidebar_output;
 }
+
+add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
+function ampforwp_output_widget_content_below_the_header() {
+	 $sanitized_sidebar = "";
+	 $non_sanitized_sidebar = "";
+	 $sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'ampforwp-below-header' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
+   <div class="amp_widget_below_the_header">
+  <?php echo $sidebar_output; ?> </div>
+
+<?php }
+
+add_action( 'amp_post_template_above_footer' , 'ampforwp_output_widget_content_above_the_footer' );
+function ampforwp_output_widget_content_above_the_footer() {
+	 $sanitized_sidebar = "";
+	 $non_sanitized_sidebar = "";
+	 $sidebar_output = "";
+    
+    ob_start();
+	dynamic_sidebar( 'ampforwp-above-footer' );
+	$non_sanitized_sidebar = ob_get_contents();
+	ob_end_clean();
+
+	$sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+		apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+		) ),
+		apply_filters(  'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+		)  )
+	);
+
+   $sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
+   <div class="amp_widget_above_the_footer">
+  <?php echo $sidebar_output; ?> </div>
+
+<?php }
 
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
