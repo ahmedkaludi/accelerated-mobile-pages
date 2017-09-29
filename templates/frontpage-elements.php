@@ -48,28 +48,23 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 		<div class="amp-wp-content the_content">
 
-			<?php if (has_post_thumbnail( $post_id ) ):  ?>
-				<figure class="amp-wp-article-featured-image wp-caption"> <?php  
-					$thumb_id = get_post_thumbnail_id($post_id);
-					$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
-					$caption = get_the_post_thumbnail_caption( $post_id ); 
-					$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-					if($thumb_alt){
-						$alt = $thumb_alt;
-					}
-					else{
-						$alt = get_the_title( $post_id );
-					}
-					?>
-				<amp-img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" layout=responsive alt="<?php echo esc_attr($alt); ?>" >  </amp-img>
-					<?php if ( $caption ) : ?>
-						<p class="wp-caption-text">
-							<?php echo wp_kses_data( $caption ); ?>
-						</p>
-					<?php endif; ?>
-				</figure>
-			<?php endif; ?>
-		 <?php
+			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
+		<?php 	$featured_image = $template->get( 'featured_image' );
+			if ( $featured_image )  {
+					$amp_html = $featured_image['amp_html'];
+					$caption = $featured_image['caption']; ?>
+					<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
+						<figure class="amp-wp-article-featured-image wp-caption">
+							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php if ( $caption ) : ?>
+								<p class="wp-caption-text">
+									<?php echo wp_kses_data( $caption ); ?>
+								</p>
+							<?php endif; ?>
+						</figure>
+					</div> <?php
+			} 
+		do_action('ampforwp_after_featured_image_hook', $template );
 
 			do_action( 'ampforwp_before_post_content', $template );
 
@@ -108,29 +103,24 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 
 	<main>
 		<div class="amp-wp-content the_content"> 
-
-		<?php if (has_post_thumbnail( $post_id ) ):  ?>
-			<figure class="amp-wp-article-featured-image wp-caption"> <?php  
-				$thumb_id = get_post_thumbnail_id($post_id);
-				$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-				if($thumb_alt){
-						$alt = $thumb_alt;
-				}
-				else{
-					$alt = get_the_title( $post_id );
-				}
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' ); 
-				$caption = get_the_post_thumbnail_caption( $post_id ); ?>
-				<amp-img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" layout=responsive alt="<?php echo esc_attr($alt); ?>" >  </amp-img>	
-				<?php if ( $caption ) : ?>
-					<p class="wp-caption-text">
-						<?php echo wp_kses_data( $caption ); ?>
-					</p>
-				<?php endif; ?>
-			</figure>
-		<?php endif; ?>	
-
-		<?php
+			
+		<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
+		<?php 	$featured_image = $template->get( 'featured_image' );
+			if ( $featured_image )  {
+					$amp_html = $featured_image['amp_html'];
+					$caption = $featured_image['caption']; ?>
+					<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
+						<figure class="amp-wp-article-featured-image wp-caption">
+							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php if ( $caption ) : ?>
+								<p class="wp-caption-text">
+									<?php echo wp_kses_data( $caption ); ?>
+								</p>
+							<?php endif; ?>
+						</figure>
+					</div> <?php
+			} 
+		do_action('ampforwp_after_featured_image_hook', $template ); 
 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {
@@ -167,28 +157,24 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 	<main>
 		<div class="amp-wp-content the_content"> 
 
-			<?php if (has_post_thumbnail( $post_id ) ):  ?>
-				<figure class="amp-wp-article-featured-image wp-caption"> <?php
-					$thumb_id = get_post_thumbnail_id($post_id);
-					$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-					if($thumb_alt){
-							$alt = $thumb_alt;
-					}
-					else{
-						$alt = get_the_title( $post_id );
-					}  
-					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' ); 
-					$caption = get_the_post_thumbnail_caption( $post_id ); ?>
-					<amp-img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" layout=responsive alt="<?php echo esc_attr($alt); ?>" >  </amp-img>	
-					<?php if ( $caption ) : ?>
-						<p class="wp-caption-text">
-							<?php echo wp_kses_data( $caption ); ?>
-						</p>
-					<?php endif; ?>
-				</figure>
-			<?php endif; ?>
+			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
+		<?php 	$featured_image = $template->get( 'featured_image' );
+			if ( $featured_image )  {
+					$amp_html = $featured_image['amp_html'];
+					$caption = $featured_image['caption']; ?>
+					<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
+						<figure class="amp-wp-article-featured-image wp-caption">
+							<?php echo $amp_html; // amphtml content; no kses ?>
+							<?php if ( $caption ) : ?>
+								<p class="wp-caption-text">
+									<?php echo wp_kses_data( $caption ); ?>
+								</p>
+							<?php endif; ?>
+						</figure>
+					</div> <?php
+			} 
+		do_action('ampforwp_after_featured_image_hook', $template );
 
-			<?php 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {
 				echo $template->get('post_amp_content');
