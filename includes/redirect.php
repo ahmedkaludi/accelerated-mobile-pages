@@ -43,6 +43,7 @@ function ampforwp_page_template_redirect() {
     }
     // Return if some categories are selected as Hide #999
     if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+      $selected_cats = array();
       $categories = get_the_category();
       $category_id = $categories[0]->cat_ID;
       $get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 

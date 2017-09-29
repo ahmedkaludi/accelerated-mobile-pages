@@ -167,6 +167,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+			$selected_cats = array();
 			$categories = get_the_category();
 			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
@@ -1455,7 +1456,14 @@ function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {
-		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { ?>
+		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { 
+			$permalink = '';
+			if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
+				$permalink = get_the_permalink();
+			}
+			else
+				$permalink = wp_get_shortlink();
+			?>
 			<div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
@@ -1466,7 +1474,7 @@ function ampforwp_sticky_social_icons(){
 	                            width="50"
 	                            height="28"
 	                            data-param-url=""
-                        		data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        		data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 	          ></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
@@ -2327,11 +2335,13 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
 				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 			}
+
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
+			
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
 
-			if( is_front_page() ) {
+			if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages']; // ID of slected front page
 				$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 				$static_page_data = get_post( $ID );
@@ -2339,11 +2349,12 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$datePublished = $static_page_data->post_date;
 				$dateModified = $static_page_data->post_modified;
 
-				$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ) ); // Featured Image structured Data
+				$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ),full ); 
+				// Featured Image structured Data
 				if( $featured_image_array ) {
 					$structured_data_image = $featured_image_array[0];
-					$structured_data_image = $featured_image_array[1];
-					$structured_data_image = $featured_image_array[2];
+					$structured_data_width = $featured_image_array[1];
+					$structured_data_height = $featured_image_array[2];
 				}
 			} else {
 			// To DO : check the entire else section .... time for search and homepage...wierd ???
@@ -2586,12 +2597,11 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
 
 // 57. Adding Updated date at in the Content
 add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
-function ampforwp_add_modified_date($post_id){
+function ampforwp_add_modified_date($post_object){
 	global $redux_builder_amp;
 	if ( is_single() && $redux_builder_amp['post-modified-date'] ) { ?>
 		<div class="ampforwp-last-modified-date">
 			<p> <?php
-				$post_object = new AMP_Post_Template($post_id);
 				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
 					echo esc_html(
 						sprintf(
@@ -3521,6 +3531,7 @@ function is_category_amp_disabled(){
 	global $redux_builder_amp;
 
 if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
+	$selected_cats = array();
 	$categories = get_the_category();
 			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
@@ -3539,4 +3550,12 @@ if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 				}
 			} 
 	}
+}
+// Things to be added in the Body Tag #1064
+add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
+function ampforwp_body_beginning_html_output(){
+	global $redux_builder_amp;
+  	if( $redux_builder_amp['amp-body-text-area'] ) {
+    	echo $redux_builder_amp['amp-body-text-area'] ;
+  }
 }

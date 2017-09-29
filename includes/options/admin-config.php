@@ -1524,6 +1524,14 @@ Redux::setSection( $opt_name, array(
                         'default'   => ''
                     ),
                     array(
+                        'id'       => 'amp-body-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Body (beginning of body tag) ', 'accelerated-mobile-pages'),
+                        'subtitle' => __('please enter markup that is AMP validated', 'accelerated-mobile-pages'),
+                        'desc' => __('check your markup here (enter markup in the beginning of body tag) : https://validator.ampproject.org/', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                    array(
                         'id'       => 'amp-footer-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Footer', 'accelerated-mobile-pages'),
@@ -1822,7 +1830,7 @@ Redux::setSection( $opt_name, array(
                      'required' => array( 'amp-use-pot', '=' , 0 )
 
                  )
-    ) );
+        ) );
 
 
 // Appearance Section
@@ -2187,6 +2195,14 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
+          //Breadcrumb ON/OFF
+          array(
+                        'id'       => 'ampforwp-bread-crumb',
+                        'type'     => 'switch',
+                        'default'  =>  '1',
+                        'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Enable or Disable Breadcrumb'),                  
+           ),
           // Social Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
@@ -2379,6 +2395,13 @@ Redux::setSection( $opt_name, array(
               'required'  => array('enable-single-twitter-share', '=' , '1'),
               'placeholder'  => __('Eg: @xyx','accelerated-mobile-pages'),
               'default'   =>  '',
+          ),
+          array(
+              'id'        =>  'enable-single-twitter-share-link',
+              'type'      =>  'switch',
+              'title'     =>  __('Pretty Permalinks for Twitter Share?', 'accelerated-mobile-pages'),
+              'subtitle'  => __('Enable this to have pretty links for twitter sharing'),
+              'default'   =>  0,
           ),
           // GooglePlus ON/OFF
           array(
