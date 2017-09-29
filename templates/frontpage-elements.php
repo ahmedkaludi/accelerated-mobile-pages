@@ -39,9 +39,9 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
 				<h1 class="amp-wp-title">
-						<?php echo get_the_title( $post_id ) ; ?>
-				</h1>
+						<?php echo get_the_title( $post_id );?></h1>
 			</header>
+			
 		<?php } ?>
 
 		<?php do_action( 'ampforwp_after_header', $template );  ?>
@@ -230,9 +230,9 @@ function ampforwp_design_2_frontpage_title() {
  				else{
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			}
-							echo get_the_title( $ID ) ; ?>
-			</h1>
-		</header>
+							echo get_the_title( $ID );?></h1>
+		</header>	
+		
 	<?php } 
 }
 
@@ -247,7 +247,7 @@ function ampforwp_design_3_frontpage_title() {
  }
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<main><header class="amp-wp-article-header ampforwp-title amp-wp-content">
-			<h1 class="amp-wp-title"> <?php 
+			<h1 class="amp-wp-title"><?php 
 			//WPML Static Front Page Support #1111
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
@@ -257,8 +257,8 @@ function ampforwp_design_3_frontpage_title() {
  				else{
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			}
-				echo get_the_title( $ID ) ;?>
-			</h1>
+				echo get_the_title( $ID );?></h1>
 		</header></main><?php 
+		
 	}
 }
