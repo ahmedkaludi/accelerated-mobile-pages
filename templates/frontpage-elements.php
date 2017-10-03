@@ -38,8 +38,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 			<header class="amp-wp-article-header ampforwp-title">
-				<h1 class="amp-wp-title">
-						<?php echo get_the_title( $post_id );?></h1>
+				<h1 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h1>
 			</header>
 			
 		<?php } ?>
@@ -208,15 +207,7 @@ function ampforwp_design_2_frontpage_title() {
  	}
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title">
-				<?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
- 				$ID = get_option('page_on_front');
- 	
- 				}
- 				else{
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-			}
-							echo get_the_title( $ID );?></h1>
+			<h1 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];}echo get_the_title( $ID );?></h1>
 		</header>	
 		
 	<?php } 
