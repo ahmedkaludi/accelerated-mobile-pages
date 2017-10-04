@@ -1685,6 +1685,7 @@ function ampforwp_replace_title_tags() {
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 			}
 
+			// Custom Front Page Title From Yoast SEO #1163
 			if (class_exists('WPSEO_Meta_Columns')) {
 				 	Global $redux_builder_amp;
 				 	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
