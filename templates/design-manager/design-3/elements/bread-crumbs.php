@@ -81,7 +81,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
                 foreach($cat_parents as $parents) {
                     $cat_id = get_cat_ID( $parents);
                     $cat_link = get_category_link($cat_id);
-                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. user_trailingslashit(trailingslashit($cat_link).'amp').'" title="' . $parents . '">' . $parents . '</a></li>';
+                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. user_trailingslashit(trailingslashit($cat_link).AMPFORWP_AMP_QUERY_VAR).'" title="' . $parents . '">' . $parents . '</a></li>';
                 }
             }
               
