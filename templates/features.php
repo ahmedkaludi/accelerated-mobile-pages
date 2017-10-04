@@ -1672,6 +1672,8 @@ function ampforwp_replace_title_tags() {
 				$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 				 }
 
+
+
 				else{
 				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
@@ -1681,6 +1683,13 @@ function ampforwp_replace_title_tags() {
 			if ( get_option( 'page_for_posts' ) && get_queried_object_id() ) {
 				$ID = get_option( 'page_for_posts' );
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+			}
+
+			if (class_exists('WPSEO_Meta_Columns')) {
+				 	Global $redux_builder_amp;
+				 	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
+				 	$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 			}
 		}
 
