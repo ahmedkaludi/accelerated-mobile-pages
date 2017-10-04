@@ -43,7 +43,7 @@
 						<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
 										<ol class="clearfix">
-												<span class="related-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span><!--#930-->
+												<span class="related-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
 												<?php
 										    while( $my_query->have_posts() ) {
 												    $my_query->the_post();
