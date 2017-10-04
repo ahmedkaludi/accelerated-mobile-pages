@@ -64,11 +64,15 @@
 			  </div>
 
 
-						<?php if ( has_post_thumbnail() ) { ?>
-							<?php
-							$thumb_id = get_post_thumbnail_id();
-							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-							$thumb_url = $thumb_url_array[0];
+						<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
+							if ( has_post_thumbnail()) {
+								$thumb_id = get_post_thumbnail_id();
+								$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+								$thumb_url = $thumb_url_array[0];
+							}
+							else{
+								$thumb_url = ampforwp_cf_featured_image_src();
+							}
 							?>
 							<div class="home-post-image">
 								<a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
