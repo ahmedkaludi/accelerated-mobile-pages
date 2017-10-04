@@ -15,7 +15,6 @@
 			$amp_url				= str_replace($remove, '', $amp_url) ;
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} ?>
-	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
