@@ -1584,6 +1584,24 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         
                     ),
+                    // Featured Image from Custom Fields
+                    array(
+                        'id'       => 'ampforwp-custom-fields-featured-image-switch',
+                        'type'     => 'switch',
+                        'title'    => __('Featured Image from Custom Fields', 'accelerated-mobile-pages'),
+                        'subtitle' => __('This will allow you to add Featured Image from Custom Fields', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,                        
+                    ),
+                     array(
+                       'id'       => 'ampforwp-custom-fields-featured-image',
+                       'type'     => 'text',
+                       'title'    => __('Custom Field For Featured Image', 'accelerated-mobile-pages'),
+                       'default'  => __ ('','accelerated-mobile-pages'),
+                       'placeholder'=>__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
+                       'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
+                   ),
 
    ),
 

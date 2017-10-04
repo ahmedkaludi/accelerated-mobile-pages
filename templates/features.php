@@ -3710,3 +3710,33 @@ function is_amp_post_support_enabled($supportedTypes){
 	}
 	return $supportedTypes;
 }
+
+// Featured Image check from Custom Fields
+function ampforwp_is_custom_field_featured_image(){
+	global $redux_builder_amp, $post;
+	if(isset($redux_builder_amp['ampforwp-custom-fields-featured-image-switch'], $redux_builder_amp['ampforwp-custom-fields-featured-image']) && $redux_builder_amp['ampforwp-custom-fields-featured-image-switch'] && $redux_builder_amp['ampforwp-custom-fields-featured-image']){
+		return true;
+		}
+	else
+		return false;
+}
+
+function ampforwp_cf_featured_image_src(){
+global $redux_builder_amp, $post;
+	if($redux_builder_amp['ampforwp-custom-fields-featured-image-switch']){
+		$post_id = '';
+		$custom_fields = '';
+		$featured_image_field = '';
+		$custom_fields_name = array();
+		$post_id = get_the_ID();
+		$custom_fields = get_post_custom($post_id);
+		foreach ($custom_fields as $key => $value) {
+			$custom_fields_name[] = $key;	 
+		}
+		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
+		if(in_array($featured_image_field, $custom_fields_name)){
+			$amp_img_src = $custom_fields[$featured_image_field][0];
+			return $amp_img_src;
+		}
+	}
+}
