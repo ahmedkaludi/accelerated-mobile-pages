@@ -3750,3 +3750,15 @@ global $redux_builder_amp, $post;
 		}
 	}
 }
+
+// Dev Mode in AMP
+add_action('amp_init','ampforwp_dev_mode');
+function ampforwp_dev_mode(){
+	global $redux_builder_amp;
+	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']){
+		add_action( 'wp', 'ampforwp_dev_mode_remove_amphtml' );		
+	}
+}
+function ampforwp_dev_mode_remove_amphtml(){
+	remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+}

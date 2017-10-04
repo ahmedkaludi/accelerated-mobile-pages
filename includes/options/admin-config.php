@@ -1602,6 +1602,23 @@ Redux::setSection( $opt_name, array(
                        'placeholder'=>__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
                        'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
                    ),
+                     array(
+                        'id'       => 'ampforwp-development-mode',
+                        'type'     => 'switch',
+                        'title'    => __('Dev Mode in AMP'),
+                        'subtitle' => __('This will enable the Development mode in AMP', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,                        
+                    ),
+                      array(
+                        'id'       => 'ampforwp-development-mode-notice',
+                        'type' => 'info',
+                        'style' => 'info',
+                        'desc' => 'Only Admin can see the AMP version, Go to url/amp to check the AMP version ',
+                        'title'    => __('Dev Mode', 'accelerated-mobile-pages'),
+                        'required'  => array('ampforwp-development-mode', '=', 1)
+                    ),
 
    ),
 
