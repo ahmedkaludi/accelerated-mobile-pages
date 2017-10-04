@@ -1,6 +1,6 @@
 <?php do_action('ampforwp_before_featured_image_hook',$this);
 $featured_image = $this->get( 'featured_image' );
-if($featured_image || ampforwp_is_custom_field_featured_image() ){
+if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) {
 	if ( $featured_image )  {
 		$amp_html = $featured_image['amp_html'];
 		$caption = $featured_image['caption']; 
