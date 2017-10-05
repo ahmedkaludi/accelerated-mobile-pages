@@ -1457,8 +1457,8 @@ remove_action( 'amp_post_template_head', 'quads_amp_add_amp_ad_js');
 add_action('amp_post_template_footer','ampforwp_sticky_social_icons');
 function ampforwp_sticky_social_icons(){
 	global $redux_builder_amp;
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {
+/*	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {*/
 		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { 
 			$permalink = '';
 			if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
@@ -1508,7 +1508,7 @@ function ampforwp_sticky_social_icons(){
 		<?php } ?>
 			</div>
 	<?php }
-		}
+		//}
 }
 // if ( $ampforwp_social_icons_enabled == true ) {
 //
