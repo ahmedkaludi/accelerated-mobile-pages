@@ -576,3 +576,6 @@ if(!defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH')){
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
+
+
+require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
