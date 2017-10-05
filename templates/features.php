@@ -2439,14 +2439,14 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 // 45. searchpage, frontpage, homepage structured data
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
-		global $redux_builder_amp;
+		global $redux_builder_amp,$wp;
 
 		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
 
 			if( is_home() || is_front_page() ){
 				global $wp;
 				$current_url = home_url( $wp->request );
-				$current_url = dirname( $current_url );
+				//$current_url = dirname( $current_url );
 				$headline 	 =  get_bloginfo('name') . ' | ' . get_option( 'blogdescription' );
 			} else {
 				$current_url 	= trailingslashit(get_home_url())."?s=".get_search_query();
@@ -2476,19 +2476,23 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 						$structured_data_width  = $featured_image_array[1];
 						$structured_data_height  = $featured_image_array[2];
 					}
-					$metadata['datePublished'] = $datePublished; // proper published date added
-					$metadata['dateModified'] = $dateModified; // proper modified date
 				}
 				else{
 					if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
 						$headline = ampforwp_name_blog_page() . ' | ' . get_option('blogname');
+						$page_for_posts  =  get_option( 'page_for_posts' );
+						$blog_data = get_post($page_for_posts); 
+						if ( $post ) {
+							$datePublished = $blog_data->post_date;
+							$dateModified = $blog_data->post_modified;
+						}
 					}
-					// To DO : check the entire else section .... time for search and homepage...wierd ???
-					//$datePublished = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) - 2 );
-					// time difference is 2 minute between published and modified date
-					//$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
-					unset($metadata['dateModified']);
-					unset($metadata['datePublished']);
+					else {
+						// To DO : check the entire else section .... time for search and homepage...wierd ???
+						$datePublished = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) - 2 );
+						// time difference is 2 minute between published and modified date
+						$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
+					}
 				}
 			$metadata['image'] = array(
 				'@type' 	=> 'ImageObject',
@@ -2496,6 +2500,17 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				'height' 	=> $structured_data_height,
 				'width' 	=> $structured_data_width,
 			);
+			$metadata['datePublished'] = $datePublished; // proper published date added
+			$metadata['dateModified'] = $dateModified; // proper modified date
+			$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+			$current_url 	= str_replace($remove, '', $current_url);
+		  	$query_arg_array = $wp->query_vars;
+		  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+			   $page = $wp->query_vars['page'];
+		  	}
+		  	if ( $page >= '2') { 
+				$current_url = trailingslashit( $current_url  . '?page=' . $page);
+			}
 			$metadata['mainEntityOfPage'] = trailingslashit($current_url); // proper URL added
 			$metadata['headline'] = $headline; // proper headline added
 	}
