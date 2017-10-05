@@ -2436,13 +2436,12 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
     return $atts;
 }
 
-
 // 45. searchpage, frontpage, homepage structured data
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
 		global $redux_builder_amp;
 
-		if( is_search() || is_home() || ( is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] )) {
+		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
 
 			if( is_home() || is_front_page() ){
 				global $wp;
@@ -2454,7 +2453,6 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 				$current_url 	= untrailingslashit( $current_url );
 				$headline 		= ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();
 			}
-
 			// creating this to prevent errors
 			$structured_data_image_url = '';
 			// placeholder Image area
@@ -2464,43 +2462,45 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
-
-			if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages']; // ID of slected front page
-				$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
-				$static_page_data = get_post( $ID );
-
-				$datePublished = $static_page_data->post_date;
-				$dateModified = $static_page_data->post_modified;
-
-				$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ), full ); // Featured Image structured Data
-				if( $featured_image_array ) {
-					$structured_data_image = $featured_image_array[0];
-					$structured_data_width  = $featured_image_array[1];
-					$structured_data_height  = $featured_image_array[2];
+			$current_url_in_pieces = explode( '/', $current_url );
+			if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && !in_array( ampforwp_name_blog_page() , $current_url_in_pieces ) ) {
+				 // ID of slected front page
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
+					$static_page_data = get_post( $ID );
+					$datePublished = $static_page_data->post_date;
+					$dateModified = $static_page_data->post_modified;
+					$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ), full ); // Featured Image structured Data
+					if( $featured_image_array ) {
+						$structured_data_image = $featured_image_array[0];
+						$structured_data_width  = $featured_image_array[1];
+						$structured_data_height  = $featured_image_array[2];
+					}
+					$metadata['datePublished'] = $datePublished; // proper published date added
+					$metadata['dateModified'] = $dateModified; // proper modified date
 				}
-			} else {
-			// To DO : check the entire else section .... time for search and homepage...wierd ???
-				$datePublished = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) - 2 );
-				// time difference is 2 minute between published and modified date
-				$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
-			}
-			$metadata['datePublished'] = $datePublished; // proper published date added
-			$metadata['dateModified'] = $dateModified; // proper modified date
-
+				else{
+					if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
+						$headline = ampforwp_name_blog_page() . ' | ' . get_option('blogname');
+					}
+					// To DO : check the entire else section .... time for search and homepage...wierd ???
+					//$datePublished = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) - 2 );
+					// time difference is 2 minute between published and modified date
+					//$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
+					unset($metadata['dateModified']);
+					unset($metadata['datePublished']);
+				}
 			$metadata['image'] = array(
 				'@type' 	=> 'ImageObject',
 				'url' 		=> $structured_data_image ,
 				'height' 	=> $structured_data_height,
 				'width' 	=> $structured_data_width,
 			);
-
 			$metadata['mainEntityOfPage'] = trailingslashit($current_url); // proper URL added
 			$metadata['headline'] = $headline; // proper headline added
 	}
 	return $metadata;
 }
-
 
 // 46. search search search everywhere #615
 require 'search-functions.php';
