@@ -42,23 +42,16 @@ a{ color: #312C7E; text-decoration: none }
 amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', serif; }
 .amp-sidebar-image{ line-height: 100px; vertical-align:middle; }
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
-.navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%; }
-amp-accordion>section[expanded]>:nth-child(n){ background:#666; }
-amp-accordion>section[expanded]>:nth-child(n) li:last-child{ margin-bottom:10px }
-amp-accordion>section[expanded]>:nth-child(n) li{ animation: openingmenu .3s normal forwards ease-in-out; -webkit-transform: translate3d(0, 0, 60%) scale(1); transform: translate3d(0, 0, 60%) scale(1); }
-@keyframes openingmenu{ 0% { padding:0px; } 100% { padding:0px 0px 0px 10px; } }
-@keyframes closingmenu{ 0% { padding:0px 0px 0px 20px; } 100% { padding:0px; } }
-.toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0; }
+.navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%}
+.toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
 .toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:100% }
-amp-accordion>section[expanded] li a{ padding: 8px 15px 8px 20px; font-size: 14px; }
-amp-accordion>section[expanded] li a:before{ content: "\25b8"; left: -7px; top: -2px; position: relative; font-size: 10px; color: #a9a9a9; }
-.toggle-navigationv2 ul li a:hover,.toggle-navigationv2 ul h6:hover{ transition: 1s all; background: #666; color: #fff; }
-.toggle-navigationv2 ul h6{ padding: 10px 15px 10px 20px; background: #131313; border:0; font-size: 14px; font-weight:normal; }
-.toggle-navigationv2 ul h6 a:after{ position: absolute; right: 20px; top: 0; color: #999; font-size: 13px; line-height: 38px; transition: 1s all; transform:rotate(-90deg); content: '\25be'; }
-.toggle-navigationv2 ul h6 a{ color:#eee; }
-.toggle-navigationv2 ul h6:after { content: ""; height: 20px; position: absolute; right: 10px; width: 20px; z-index: 999; }
-.toggle-navigationv2 section[expanded] h6 a:after{ content: '\25be'; font-size: 13px; transform:rotate(0); transition: 1s all; color:#ccc }
-.toggle-navigationv2 section[expanded] h6{ transition: 1s all; background:#666 }
+.amp-menu li{position:relative}
+.toggle-navigationv2 ul li a:hover{background:#666;color:#fff}
+.amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
+.amp-menu li.menu-item-has-children ul ul{background:#444}
+.amp-menu li.menu-item-has-children ul ul ul{background:#666}
+.amp-menu li.menu-item-has-children:hover > ul{display:block}
+.amp-menu li.menu-item-has-children:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:0;z-index:10000;line-height:1}
 .toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid #555; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
