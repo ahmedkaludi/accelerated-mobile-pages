@@ -2476,7 +2476,8 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 					$static_page_data = get_post( $ID );
 					$datePublished = $static_page_data->post_date;
 					$dateModified = $static_page_data->post_modified;
-					$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $ID ), full ); // Featured Image structured Data
+					$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id($ID), 'full' ); 
+					// Featured Image structured Data
 					if( $featured_image_array ) {
 						$structured_data_image = $featured_image_array[0];
 						$structured_data_width  = $featured_image_array[1];
