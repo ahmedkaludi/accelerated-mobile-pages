@@ -3783,3 +3783,18 @@ function ampforwp_dev_mode(){
 function ampforwp_dev_mode_remove_amphtml(){
 	remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
 }
+// Notice for Dev Mode
+add_action('admin_notices', 'ampforwp_dev_mode_notice');
+function ampforwp_dev_mode_notice(){ 
+	global $redux_builder_amp;
+	$message = '';
+	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']) {
+			$message =  'AMP Dev mode is Enabled';?>		
+			<div class="notice notice-success is-dismissible amp-dev-notice" style="position:relative;
+		    height: 40px; overflow: hidden; ">
+				<div class="ampforwp-dev-mode-message" style="margin-top: 10px;">
+					<?php echo $message; ?>					
+				</div>	
+			</div>
+<?php }
+}
