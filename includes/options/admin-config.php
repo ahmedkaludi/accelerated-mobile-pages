@@ -1613,11 +1613,11 @@ Redux::setSection( $opt_name, array(
                     ),
                       array(
                         'id'       => 'ampforwp-development-mode-notice',
-                        'type' => 'info',
-                        'style' => 'info',
-                        'desc' => 'Only Admin can see the AMP version, Go to url/amp to check the AMP version ',
+                        'type'     => 'info',
+                        'style'    => 'info',
+                        'desc'     => __('Add /amp at the end of url to view the AMP version of the site. Search Engines will not be able to Crawl the AMP site when in Dev Mode.', 'accelerated-mobile-pages'),
                         'title'    => __('Dev Mode', 'accelerated-mobile-pages'),
-                        'required'  => array('ampforwp-development-mode', '=', 1)
+                        'required' => array('ampforwp-development-mode', '=', 1)
                     ),
 
    ),
