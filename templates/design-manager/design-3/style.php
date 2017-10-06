@@ -294,8 +294,6 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 @media screen and (max-width: 320px){ .related_posts .related_link a{ font-size: 13px; } .ampforwp-social-icons amp-social-share{ margin-right: 1px; } }
 .entry-content amp-anim{display:table-cell;}
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
-/* RTL Start */
-
 .amp-carousel-slide h1{ direction: rtl; }
 .featured_time{ text-align: right; padding-right: 20px; }
 main .amp-wp-content{ direction: rtl; }
@@ -306,20 +304,15 @@ main .amp-wp-content{ direction: rtl; }
 .closebutton{ left:20px; }
 .hamburgermenu{ float: right; }
 .toast{ display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 60px; background: none; border: 0; }
-.amp-ad-wrapper{ direction: ltr; }
-/* RTL single */
-
+.amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; }
 .related_posts ol li amp-img{ float: right; margin-left: 15px; }
 .single-post .amp_author_area amp-img{ float: right; margin-left: 12px; }
 .amp-wp-article, .footer_wrapper container{ direction: rtl; }
 .single-post .post-pagination-meta span{ float: right; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .amp_author_area_wrapper strong{ float: right; }
-
-/* RTL End */
 <?php } ?>
 
-/* Style Modifer */
 <?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
 body a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link']['color']; ?> }
@@ -334,7 +327,6 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 .ampforwp-tax-category span:last-child:after { content: ' ';}
 .ampforwp-tax-category span:after{ content: ', ';}
 .amp-wp-article-content img { max-width: 100%;}
-/* Social icons */
 @font-face {
   font-family: 'icomoon';
   src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot?b9qrme');
@@ -345,14 +337,10 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
   font-weight: normal;
   font-style: normal;
 }
-
 [class^="icon-"], [class*=" icon-"]{ font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1;
-
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .icon-twitter:before{ content: "\f099";background:#1da1f2 }
 .icon-facebook:before{ content: "\f09a";background:#3b5998 }
 .icon-facebook-f:before{ content: "\f09a";background:#3b5998 }
