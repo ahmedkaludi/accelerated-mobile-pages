@@ -10,26 +10,56 @@
 									1=>array(
 									'title'=>'Welcome',
 									'fields'=>array(),
+									'description'=>'This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.',
 									),
 									2=>array(
 									'title'=>'Logo Setup',
-									'fields'=>array(),
+									'description'=>'',
+									'fields'=>'<li>
+											    <input type="hidden" value="" class="regular-text process_custom_images" id="process_custom_images" name="" max="" min="1" step="1">
+
+												<button type="button" class="set_custom_images merlin__button merlin__button--blue">Set Logo</button></li>'
 									),
 									3=>array(
 									'title'=>'Pages Support',
-									'fields'=>array(),
+									'description'=>'',
+									'fields'=>'<li class="merlin__drawer--import-content__list-item status">
+												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" checked>
+												<label>AMP on Posts</label>
+												</li>
+											   <li class="merlin__drawer--import-content__list-item status">
+												<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" value="1" checked>
+											    <label>AMP on Pages</label>
+												</li>
+											   <li class="merlin__drawer--import-content__list-item status">
+												<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" value="1" checked>
+											    <label>AMP on Homepage Support</label>
+												</li>
+											   <li class="merlin__drawer--import-content__list-item status">
+												<input type="checkbox" name="amp-frontpage-select-option" class="checkbox" value="1" checked>
+											   <label>AMP on Front Page</label>
+												</li>
+												
+												',
 									),
 									4=>array(
 									'title'=>'Set tracking',
-									'fields'=>array(),
+									'description'=>'',
+									'fields'=>'<input type="hidden" name="amp-analytics-select-option" value="1">
+									<li>
+									Google Analytics
+									<input type="text" name="ga-feild">
+									</li>',
 									),
 									5=>array(
 									'title'=>'Select Design',
-									'fields'=>array(),
+									'description'=>'',
+									'fields'=>'',
 									),
 									6=>array(
 									'title'=>'Enjoy',
-									'fields'=>array(),
+									'description'=>'',
+									'fields'=>'',
 									),
 								),
 					'current_step'=>array(
@@ -38,13 +68,15 @@
 								)
 				);
 	add_action( 'admin_menu', 'ampforwp_add_admin_menu' );
+	add_action( 'admin_init', 'ampforwp_installer_init');
+	add_action( 'admin_footer', 'ampforwp_svg_sprite');
+	add_action( 'wp_ajax_merlin_content', 'ampforwp_ajax_content', 10, 0 );
 	function ampforwp_add_admin_menu(){
 		global $config;
 		add_theme_page(
 			esc_html( 'ampforwp_intaller' ), esc_html( 'ampforwp_intaller' ), 'manage_options', $config['installerpage'], 'ampforwp_installer_init' 
 		);
 	}
-	add_action( 'admin_init', 'ampforwp_installer_init');
 	function ampforwp_installer_init(){
 		global $config;
 		instller_admin_init();
@@ -78,6 +110,10 @@
 		wp_enqueue_style( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/css/merlin' . $suffix . '.css' , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
 		wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/js/merlin' . $suffix . '.js' , array( 'jquery-core' ), '0.1' );
+		if($step==2){
+			// Enqueue javascript.
+			wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/js/loadmediascripts.js' , array( 'jquery-core' ), '0.1' );
+		}
 		
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(
 			'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
@@ -131,22 +167,20 @@
 	
 	function step1(){
 		global $config;
-		$pluginName 					= ucfirst( 'AMPforWP Installer' );
-
+		$stepDetails = $config['steps'][$config['current_step']['step_id']];
 		?>
-
 		<div class="merlin__content--transition">
 
 			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
 			
-			<h1><?php echo esc_html( 'Welcome to AMPforWp' ); ?></h1>
+			<h1><?php echo $stepDetails['title']; ?></h1>
 
 			<p><?php echo esc_html( 'This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.' ); ?></p>
 	
 		</div>
 
 		<footer class="merlin__content__footer">
-			<a href="<?php echo esc_url( wp_get_referer() && ! strpos( wp_get_referer(), 'plugin.php' ) ? wp_get_referer() : admin_url( '/' ) ); ?>" class="merlin__button merlin__button--skip"><?php echo esc_html( 'Cancel' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=amp_options' ) ); ?>" class="merlin__button merlin__button--skip"><?php echo esc_html( 'Cancel' ); ?></a>
 			
 			<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Start' ); ?></a>
 			<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
@@ -156,7 +190,8 @@
 	
 	function step2(){
 		global $config;
-		global $redux_builder_amp;
+		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		
 		?>
 
 		<div class="merlin__content--transition">
@@ -166,27 +201,33 @@
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
 			
-			<h1><?php echo esc_html( 'Setup Amp' ); ?></h1>
+			<h1><?php echo $stepDetails['title']; ?></h1>
 
-			<p><?php echo esc_html( 'Enable AMP options on you website.' ); ?></p>
-			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( 'Advance' ); ?></span><span class="chevron"></span></a>
+			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
 			
 		</div>
 		<form action="" method="post">
-			<ul class="merlin__drawer merlin__drawer--import-content">
+			
+			<ul class="">
 				<li>
 				<?php 
-					//print_r(Redux::getSection('redux_builder_amp'));
-					echo "Enable or Disable AMP on all Posts <input type='checkbox' value='1' name='amp-on-off-for-all-posts'>" 
+				wp_enqueue_media ();
+					echo $stepDetails['fields'];
 				?>
 				</li>
 			</ul>
 			
 
 			<footer class="merlin__content__footer">
-				<a href="<?php echo esc_url( wp_get_referer() && ! strpos( wp_get_referer(), 'plugin.php' ) ? wp_get_referer() : admin_url( '/' ) ); ?>" class="merlin__button merlin__button--skip"><?php echo esc_html( 'Skip' ); ?></a>
+				<?php ampforwp_skip_button(); ?>
 				
-				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( 'Skip' ); ?></a>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
+					<span class="merlin__button--loading__text"><?php echo esc_html( 'Save' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
+				</a>
+				
+				
 				
 				<?php /* <a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next">
 						<span class="merlin__button--loading__text"><?php echo esc_html( 'Proceed' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
@@ -197,13 +238,129 @@
 	<?php
 	}
 	
-	function ampforwp_loading_spinner(){
+	function step3(){
 		global $config;
-		$spinner =  $config['installer_dir']. '/assets/images/spinner';
+		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		?>
 
-		// Retrieve the spinner.
-		get_template_part(  $spinner );
+		<div class="merlin__content--transition">
+
+			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+			
+			<h1><?php echo $stepDetails['title']; ?></h1>
+
+			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
+			
+			
+		</div>
+		<form action="" method="post">
+			
+			<ul class="merlin__drawer--import-content">
+				<?php 
+					echo $stepDetails['fields'];
+				?>
+				
+			</ul>
+			
+
+			<footer class="merlin__content__footer">
+				<?php ampforwp_skip_button(); ?>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				
+				
+				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
+			</footer>
+		</form>
+	<?php
 	}
+	
+	function step4(){
+		global $config;
+		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		?>
+
+		<div class="merlin__content--transition">
+
+			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+			
+			<h1><?php echo $stepDetails['title']; ?></h1>
+
+			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
+			
+			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( 'Advance' ); ?></span><span class="chevron"></span></a>
+			
+		</div>
+		<form action="" method="post">
+			
+			<ul class="merlin__drawer merlin__drawer--import-content">
+				<li>
+				<?php 
+					echo $stepDetails['fields'];
+				?>
+				</li>
+			</ul>
+			
+
+			<footer class="merlin__content__footer">
+				<?php ampforwp_skip_button(); ?>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				
+				
+				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
+			</footer>
+		</form>
+	<?php
+	}
+	function step5(){
+		global $config;
+		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		?>
+
+		<div class="merlin__content--transition">
+
+			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+			
+			<h1><?php echo $stepDetails['title']; ?></h1>
+
+			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
+			
+			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( 'Advance' ); ?></span><span class="chevron"></span></a>
+			
+		</div>
+		<form action="" method="post">
+			
+			<ul class="merlin__drawer merlin__drawer--import-content">
+				<li>
+				<?php 
+					echo $stepDetails['fields'];
+				?>
+				</li>
+			</ul>
+			
+
+			<footer class="merlin__content__footer">
+				<?php ampforwp_skip_button(); ?>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				
+				
+				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
+			</footer>
+		</form>
+	<?php
+	}
+	
 	
 	
 	
@@ -213,13 +370,20 @@
 	
 	
 	function ampforwp_save_steps_data(){
-		global $redux_builder_amp;
-		print_r($_POST);
-		
+		$redux_builder_amp = get_option('redux_builder_amp');
+		if($redux_builder_amp!=''){
+			foreach($_POST as $postKey=>$postValue)
+				$redux_builder_amp[$postKey] = $postValue;
+		}
+		update_option('redux_builder_amp',$redux_builder_amp);
 	}
 	
 	
-	
+	function ampforwp_skip_button(){
+		?>
+		<a href="<?php echo esc_url(  ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip"><?php echo esc_html( 'Skip' ); ?></a>
+		<?php
+	}
 	function ampforwp_finish_page() {
 		global $config;
 		// Theme Name.
@@ -250,7 +414,7 @@
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
 			
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( 'Let\'s Go' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=amp_options' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( 'Let\'s Go' ); ?></a>
 			
 			
 			<ul class="merlin__drawer merlin__drawer--extras">
@@ -280,11 +444,24 @@
 	
 	
 	
+	function ampforwp_loading_spinner(){
+		global $config;
+		$spinner = AMPFORWP_PLUGIN_DIR. $config['installer_dir']. '/assets/images/spinner.php';
+
+		// Retrieve the spinner.
+		get_template_part(  $spinner );
+	}
 	
-	
-	
-	
-	
+	function ampforwp_svg_sprite() {
+		global $config;
+		// Define SVG sprite file.
+		$svg = AMPFORWP_PLUGIN_DIR. $config['installer_dir'] . '/assets/images/sprite.svg' ;
+
+		// If it exists, include it.
+		if ( file_exists( $svg ) ) {
+			require_once apply_filters( 'merlin_svg_sprite', $svg );
+		}
+	}
 	function ampforwp_step_next_link() {
 		global $config;
 		$step = $config['current_step']['step_id'] + 1;
