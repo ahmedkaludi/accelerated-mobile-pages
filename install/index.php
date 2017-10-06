@@ -305,9 +305,6 @@
 			<h1><?php echo $stepDetails['title']; ?></h1>
 
 			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
-			
-			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( 'Advance' ); ?></span><span class="chevron"></span></a>
-			
 		</div>
 		<form action="" method="post">
 			
