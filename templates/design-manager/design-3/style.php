@@ -89,6 +89,7 @@ header{ padding-bottom:50px; }
 main .amp-wp-content{ font-size: 18px; line-height: 29px; color:#111 }
 .single-post main .amp-wp-article-content h1{ font-size:2em}
 .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6{ font-family: 'Roboto Slab', serif; margin: 0px 0px 5px 0px; line-height: 1.6; }
+
 .home-post_image{ float: left; width:33%; padding-right: 2%; }
 .amp-wp-title{ margin-top: 0px; }
 h2.amp-wp-title{ font-family: 'Roboto Slab', serif; font-weight: 700; font-size: 20px; margin-bottom: 7px; line-height: 1.3; }
@@ -150,7 +151,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 .single-post .amp-wp-article-content amp-img{ max-width:100% } 
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
-.single-post ,.related-title,.single-post .comments_list h3{ font-size: 20px; color: #777; font-family:'Roboto Slab', serif; border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
+.single-post main,.related-title,.single-post .comments_list h3{ font-size: 20px; color: #777; font-family:'Roboto Slab', serif; border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
 .related-title {display:block}
 .related_posts ol{ list-style-type:none; margin:0; padding:0 }
 .related_posts ol li{ display:inline-block; width:100%; margin-bottom: 12px; padding: 0px; }
