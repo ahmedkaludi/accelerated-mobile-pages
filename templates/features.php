@@ -2460,6 +2460,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			}
 			// creating this to prevent errors
 			$structured_data_image_url = '';
+			$page = '';
 			// placeholder Image area
 			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
 				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
