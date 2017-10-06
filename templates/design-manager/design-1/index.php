@@ -14,7 +14,7 @@
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> amp_home_body design_1_wrapper">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-<?php do_action( 'widget_content_below_the_header_Design_1', $this ); ?>
+<?php do_action( 'below_the_header_design_1', $this ); ?>
 
 
 <?php do_action('ampforwp_home_above_loop') ?>

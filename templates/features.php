@@ -2193,7 +2193,7 @@ function ampforwp_add_widget_support() {
 		global $redux_builder_amp;
 
 		register_sidebar(array(
-			'name' => 'AMP HomePage Above Loop',
+			'name' => 'AMP Above Loop [HomePage]',
 			'id'   => 'ampforwp-above-loop',
 			'description'   => 'This Widget will be display on AMP HomePage Above the loop ',
 			'before_widget' => '',
@@ -2203,7 +2203,7 @@ function ampforwp_add_widget_support() {
 		));
 
 		register_sidebar(array(
-			'name' => 'AMP HomePage Below Loop',
+			'name' => 'AMP Below Loop [HomePage]',
 			'id'   => 'ampforwp-below-loop',
 			'description'   => 'This Widget will be display on AMP HomePage Below the loop',
 			'before_widget' => '',
@@ -2213,8 +2213,8 @@ function ampforwp_add_widget_support() {
 		));
 
 		register_sidebar(array(
-			'name' => 'AMP Below the Header',
-			'id'   => 'ampforwp-below-header',
+			'name' 			=> 'AMP Below the Header [Site Wide]',
+			'id'   			=> 'ampforwp-below-header',
 			'description'   => 'This Widget will be display after the header bar',
 			'before_widget' => '',
 			'after_widget'  => '',
@@ -2223,8 +2223,8 @@ function ampforwp_add_widget_support() {
 		));
 
 		register_sidebar(array(
-			'name' => 'AMP Above the Footer',
-			'id'   => 'ampforwp-above-footer',
+			'name' 			=> 'AMP Above the Footer [Site Wide]',
+			'id'   			=> 'ampforwp-above-footer',
 			'description'   => 'This Widget display Above the Footer',
 			'before_widget' => '',
 			'after_widget'  => '',
@@ -2339,7 +2339,7 @@ function ampforwp_output_widget_content_below_loop() {
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
-add_action('widget_content_below_the_header_Design_1','ampforwp_output_widget_content_below_the_header');
+add_action('below_the_header_design_1','ampforwp_output_widget_content_below_the_header');
 function ampforwp_output_widget_content_below_the_header() {
 	 $sanitized_sidebar = "";
 	 $non_sanitized_sidebar = "";
@@ -2372,8 +2372,11 @@ function ampforwp_output_widget_content_below_the_header() {
 	);
 
    $sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
-   <div class="amp_widget_below_the_header">
-  <?php echo $sidebar_output; ?> </div>
+
+   	<div class="amp-wp-content widget-wrapper">
+	   	<div class="amp_widget_below_the_header">
+	  	<?php echo $sidebar_output; ?> </div>
+  	</div> 
 
 <?php }
 
@@ -2410,8 +2413,10 @@ function ampforwp_output_widget_content_above_the_footer() {
 	);
 
    $sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
-   <div class="amp_widget_above_the_footer">
-  <?php echo $sidebar_output; ?> </div>
+   	<div class="amp-wp-content widget-wrapper">
+		<div class="amp_widget_above_the_footer">
+		<?php echo $sidebar_output; ?> </div>
+	</div>
 
 <?php }
 
