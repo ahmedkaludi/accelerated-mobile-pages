@@ -148,7 +148,7 @@ if(!is_admin()){
 			$explodedUri = array_filter($explodedUri);
 			
 			//To remove last AMP from URL
-			if($explodedUri[count($explodedUri)]=='amp'){
+			if(isset($explodedUri[count($explodedUri)]) && $explodedUri[count($explodedUri)]=='amp'){
 				array_pop($explodedUri);
 			}
 			$indexOfAmp = array_search('amp',$explodedUri);
