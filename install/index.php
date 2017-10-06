@@ -1,4 +1,10 @@
 <?php
+	$redux_builder_amp = get_option('redux_builder_amp');
+	$ampLogo="";
+	if(isset($redux_builder_amp['opt-media']['url'])){
+		$ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" width="100" height="100">';
+	}
+	
 	$config = array(
 					'installer_dir' => 'install',
 					'plugin_title'  => ucfirst( 'AMPforWP Installer' ),
@@ -9,35 +15,42 @@
 					'steps' => array(
 									1=>array(
 									'title'=>'Welcome',
-									'fields'=>array(),
+									'fields'=>'',
 									'description'=>'This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.',
 									),
 									2=>array(
 									'title'=>'Logo Setup',
 									'description'=>'',
 									'fields'=>'<li>
-											    <input type="hidden" value="" class="regular-text process_custom_images" id="process_custom_images" name="" max="" min="1" step="1">
+											    <input type="hidden" value="" class="regular-text process_custom_images" id="process_custom_images" name="opt-media" value="">
 
-												<button type="button" class="set_custom_images merlin__button merlin__button--blue">Set Logo</button></li>'
+												<button type="button" class="set_custom_images merlin__button merlin__button--blue">Set Logo</button>
+												'.$ampLogo.'
+												</li>'
 									),
 									3=>array(
 									'title'=>'Pages Support',
 									'description'=>'',
-									'fields'=>'<li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" checked>
-												<label>AMP on Posts</label>
+									'fields'=>'<li class="merlin__drawer--import-content__list-item status status--pending">
+												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" id="amp-on-posts" '.($redux_builder_amp['amp-on-off-for-all-posts']? 'checked': '').'>
+												<label for="amp-on-posts">
+												<i></i><span>AMP on Posts</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" value="1" checked>
-											    <label>AMP on Pages</label>
+												<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" id="amp-on-pages" value="1" '.($redux_builder_amp['amp-on-off-for-all-pages']? 'checked': '').'>
+											    <label for="amp-on-pages">
+												<i></i><span>AMP on Pages</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" value="1" checked>
-											    <label>AMP on Homepage Support</label>
+												<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" id="amp-on-home" value="1" '.($redux_builder_amp['ampforwp-homepage-on-off-support']? 'checked': '').'>
+											    <label for="amp-on-home">
+												<i></i><span>AMP on Homepage Support</span></label>
 												</li>
-											   <li class="merlin__drawer--import-content__list-item status">
-												<input type="checkbox" name="amp-frontpage-select-option" class="checkbox" value="1" checked>
-											   <label>AMP on Front Page</label>
+											   
+											  <li class="merlin__drawer--import-content__list-item status">
+												<input type="checkbox" name="ampforwp-archive-support" class="checkbox" id="ampforwp-archive-support" value="1" '.($redux_builder_amp['ampforwp-archive-support']? 'checked': '').'>
+											   <label for="ampforwp-archive-support">
+											   <i></i><span>AMP on Archive Page</span></label>
 												</li>
 												
 												',
@@ -47,14 +60,21 @@
 									'description'=>'',
 									'fields'=>'<input type="hidden" name="amp-analytics-select-option" value="1">
 									<li>
-									Google Analytics
-									<input type="text" name="ga-feild">
+									<input type="text" name="ga-feild" id="ga-feild" value="'.($redux_builder_amp['ga-feild']? $redux_builder_amp['ga-feild'] : '').'">
+									<label for="ga-feild">Google Analytics</label>
 									</li>',
 									),
 									5=>array(
 									'title'=>'Select Design',
 									'description'=>'',
-									'fields'=>'',
+									'fields'=>'<select name="amp-design-selector" id="ampforwp-design-select">
+											<option value="1" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design One</option>
+											<option value="2" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design Two</option>
+											<option value="3" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design Three</option>
+									</select>
+									<label for="ampforwp-design-select">
+											   AMP on Archive Page</label>
+											   ',
 									),
 									6=>array(
 									'title'=>'Enjoy',
@@ -70,17 +90,14 @@
 	add_action( 'admin_menu', 'ampforwp_add_admin_menu' );
 	add_action( 'admin_init', 'ampforwp_installer_init');
 	add_action( 'admin_footer', 'ampforwp_svg_sprite');
-	add_action( 'wp_ajax_merlin_content', 'ampforwp_ajax_content', 10, 0 );
+	add_action( 'wp_ajax_ampforwp_save_installer', 'ampforwp_save_steps_data', 10, 0 );
 	function ampforwp_add_admin_menu(){
 		global $config;
-		add_theme_page(
-			esc_html( 'ampforwp_intaller' ), esc_html( 'ampforwp_intaller' ), 'manage_options', $config['installerpage'], 'ampforwp_installer_init' 
-		);
+		ampforwp_installer_init();
 	}
 	function ampforwp_installer_init(){
 		global $config;
 		instller_admin_init();
-		//add_action( 'admin_init', 'instller_admin_init');
 	}
 	function instller_admin_init(){
 		if(isset($_GET['ampforwp_install']) && $_GET['ampforwp_install']=='1' && is_admin()){
@@ -105,15 +122,11 @@
 		
 		
 		// Use minified libraries if dev mode is turned on.
-		$suffix = ( ( true == $config['dev_mode'] ) ) ? '' : '.min';
+		$suffix = '';//( ( true == $config['dev_mode'] ) ) ? '' : '.min';
 		// Enqueue styles.
 		wp_enqueue_style( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/css/merlin' . $suffix . '.css' , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
 		wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/js/merlin' . $suffix . '.js' , array( 'jquery-core' ), '0.1' );
-		if($step==2){
-			// Enqueue javascript.
-			wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/js/loadmediascripts.js' , array( 'jquery-core' ), '0.1' );
-		}
 		
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(
 			'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
@@ -132,7 +145,7 @@
 				$show_content = true;
 
 				if ( ! empty( $_REQUEST['save_step'] ) && isset( $config['current_step']['steps'] ) ) {
-					ampforwp_save_steps_data();
+					//ampforwp_save_steps_data();
 				}
 
 				if ( $show_content ) {
@@ -143,7 +156,7 @@
 
 			</div>
 
-			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( '/' ) ), esc_html( 'Return to dashboard' ) ); ?>
+			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=amp_options' ) ), esc_html( 'Return to dashboard' ) ); ?>
 
 		</div>
 
@@ -208,13 +221,13 @@
 		</div>
 		<form action="" method="post">
 			
-			<ul class="">
-				<li>
+			<ul class="merlin__drawer--import-content">
+				
 				<?php 
 				wp_enqueue_media ();
 					echo $stepDetails['fields'];
 				?>
-				</li>
+				
 			</ul>
 			
 
@@ -223,15 +236,10 @@
 				
 				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( 'Skip' ); ?></a>
 				
-				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
 					<span class="merlin__button--loading__text"><?php echo esc_html( 'Save' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
 				</a>
 				
-				
-				
-				<?php /* <a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next">
-						<span class="merlin__button--loading__text"><?php echo esc_html( 'Proceed' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
-					</a> */ ?>
 				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
 			</footer>
 		</form>
@@ -269,7 +277,11 @@
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( 'Skip' ); ?></a>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
+					<span class="merlin__button--loading__text"><?php echo esc_html( 'Save' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
+				</a>
 				
 				
 				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
@@ -299,7 +311,7 @@
 		</div>
 		<form action="" method="post">
 			
-			<ul class="merlin__drawer merlin__drawer--import-content">
+			<ul class="merlin__drawer--import-content">
 				<li>
 				<?php 
 					echo $stepDetails['fields'];
@@ -311,7 +323,11 @@
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( 'Skip' ); ?></a>
+				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
+					<span class="merlin__button--loading__text"><?php echo esc_html( 'Save' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
+				</a>
 				
 				
 				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
@@ -335,12 +351,12 @@
 
 			<p><?php echo isset($stepDetails['description'])? $stepDetails['description'] : ''; ?></p>
 			
-			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( 'Advance' ); ?></span><span class="chevron"></span></a>
+			
 			
 		</div>
 		<form action="" method="post">
 			
-			<ul class="merlin__drawer merlin__drawer--import-content">
+			<ul class="merlin__drawer--import-content">
 				<li>
 				<?php 
 					echo $stepDetails['fields'];
@@ -352,8 +368,11 @@
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( 'Next' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( 'Skip' ); ?></a>
 				
+				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
+					<span class="merlin__button--loading__text"><?php echo esc_html( 'Save' ); ?></span><?php echo ampforwp_loading_spinner(); ?>
+				</a>
 				
 				<?php wp_nonce_field( 'ampforwp_install_nonce' ); ?>
 			</footer>
@@ -372,10 +391,23 @@
 	function ampforwp_save_steps_data(){
 		$redux_builder_amp = get_option('redux_builder_amp');
 		if($redux_builder_amp!=''){
-			foreach($_POST as $postKey=>$postValue)
-				$redux_builder_amp[$postKey] = $postValue;
+			foreach($_POST as $postKey=>$postValue){
+				if($postKey=='opt-media' && $postValue!=""){
+					
+					$postValue = json_decode(stripcslashes($postValue),true);
+					$redux_builder_amp[$postKey] = $postValue;
+				}elseif(isset($redux_builder_amp[$postKey]) && $postValue!=""){
+					$redux_builder_amp[$postKey] = $postValue;
+				} 
+			} 
 		}
 		update_option('redux_builder_amp',$redux_builder_amp);
+		wp_send_json(
+			array(
+				'done' => 1,
+				'message' => "Stored Successfully",
+			)
+		);
 	}
 	
 	
