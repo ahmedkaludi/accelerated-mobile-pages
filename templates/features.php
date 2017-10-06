@@ -3401,16 +3401,11 @@ add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 function ampforwp_posts_to_remove () {
 	global $redux_builder_amp;
-	$args 							= array();
 	$get_categories_from_checkbox 	= '';
-	$get_selected_cats 				= '';
+	$get_selected_cats 				= array();
 	$selected_cats 					= array();
-	$posts 							= array();
 	$post_id_array 					= array();
 
-	$args = array(
-	  'post_type' => 'post',
-	);
 	$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
 	if($get_categories_from_checkbox){
 		$get_selected_cats = array_filter($get_categories_from_checkbox);
@@ -3418,22 +3413,26 @@ function ampforwp_posts_to_remove () {
 			$selected_cats[] = $key;
 		}  
 	}
-	if ( ! empty($get_selected_cats)) {
-
-		$posts = get_posts( array(
-		    'category'          => $selected_cats,
-		    'numberposts'       => '-1',
-		    'post_type'         => $args,
-		    'post_status'       => 'publish',
-		    'suppress_filters'  => false
-		) );
+	$new_selected_cats = implode(',' , $selected_cats);
+	if(!empty($get_selected_cats)){
+		$the_query = new WP_Query( array( 
+							'ignore_sticky_posts' => 1,
+							'posts_per_page' 	  => -1,
+							'cat'				  => $new_selected_cats ,
+							'fields'			  => 'ids',
+		  			    	'post_type'           => 'post',
+		 			    	'post_status'         => 'publish', 
+		 			    			) 
+							);
+		// Get the IDs of posts
+		if ( $the_query->have_posts() ) {
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+				$post_id_array[] = get_the_ID(); 
+			} 			
+		} 
 	}
-
-	if ( $posts ) {
-		 foreach ($posts as $post) {
-		    $post_id_array[] =  $post->ID;
-		}
-	}
+ 	wp_reset_postdata();
 	return $post_id_array;
 }
 
@@ -3443,8 +3442,9 @@ function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	$skip_this_post = '';
 
 	$list_of_posts = ampforwp_posts_to_remove();
-	$skip_this_post = in_array($post_id, $list_of_posts);
-
+	if ( $list_of_posts ) {
+		$skip_this_post = in_array($post_id, $list_of_posts);
+	}	
 	if( $skip_this_post ) {
 	  $skip = true;
 	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
