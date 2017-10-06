@@ -67,13 +67,15 @@
 									5=>array(
 									'title'=>'Select Design',
 									'description'=>'',
-									'fields'=>'<select name="amp-design-selector" id="ampforwp-design-select">
-											<option value="1" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design One</option>
-											<option value="2" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design Two</option>
-											<option value="3" '.($redux_builder_amp['amp-design-selector']? 'selected' : '').'>Design Three</option>
+									'fields'=>'<li><select name="amp-design-selector" id="ampforwp-design-select">
+											<option value="1" '.($redux_builder_amp['amp-design-selector']==1? 'selected' : '').'>Design One</option>
+											<option value="2" '.($redux_builder_amp['amp-design-selector']==2? 'selected' : '').'>Design Two</option>
+											<option value="3" '.($redux_builder_amp['amp-design-selector']==3? 'selected' : '').'>Design Three</option>
 									</select>
 									<label for="ampforwp-design-select">
-											   AMP on Archive Page</label>
+											   AMP Design</label>
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-'.$redux_builder_amp['amp-design-selector'].'.png" width="100" height="100">
+									</li>
 											   ',
 									),
 									6=>array(
@@ -122,7 +124,7 @@
 		
 		
 		// Use minified libraries if dev mode is turned on.
-		$suffix = '';//( ( true == $config['dev_mode'] ) ) ? '' : '.min';
+		$suffix = '';
 		// Enqueue styles.
 		wp_enqueue_style( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/css/merlin' . $suffix . '.css' , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
@@ -131,6 +133,7 @@
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(
 			'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
 			'wpnonce'      		=> wp_create_nonce( 'ampforwp_install_nonce' ),
+			'pluginurl'			=> AMPFORWP_PLUGIN_DIR_URI,
 		) );
 		
 
@@ -332,6 +335,7 @@
 		</form>
 	<?php
 	}
+	
 	function step5(){
 		global $config;
 		$stepDetails = $config['steps'][$config['current_step']['step_id']];
@@ -354,11 +358,9 @@
 		<form action="" method="post">
 			
 			<ul class="merlin__drawer--import-content">
-				<li>
 				<?php 
 					echo $stepDetails['fields'];
 				?>
-				</li>
 			</ul>
 			
 

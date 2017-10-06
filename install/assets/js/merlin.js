@@ -117,7 +117,7 @@ var Merlin = (function($){
                 action: "ampforwp_save_installer",
                 wpnonce: ampforwp_install_params.wpnonce,
 				}
-			jQuery('ul.merlin__drawer--import-content').find('input,select').each(function(key, fields){
+			jQuery('ul.merlin__drawer--import-content').find('input, select').each(function(key, fields){
 				
 				switch(jQuery(this).attr('type')){
 					case 'text':
@@ -131,7 +131,7 @@ var Merlin = (function($){
 							params[jQuery(this).attr('name')] = 0;
 						}
 					break;
-					case 'select':
+					default: 
 						params[jQuery(this).attr('name')] = jQuery(this).val();
 					break;
 				}
@@ -239,4 +239,8 @@ jQuery(document).ready(function($) {
             });
         }
     }
+	$('#ampforwp-design-select').click(function(){
+		var selectCurrentDesign = $(this).val();
+		$(this).parents('li').find('img').attr('src',ampforwp_install_params.pluginurl+'/images/design-'+selectCurrentDesign+'.png')
+	});
 });
