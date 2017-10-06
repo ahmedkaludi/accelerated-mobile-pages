@@ -452,7 +452,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 	if (  $plugin == $plugin_file  ) {
 		add_thickbox();
 		unset($actions['activate']);
-		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'This plugin is already added in our core\')">Activate</span>';
+		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundeled with AMPforWP to avoid conflicts.\')">Activate</span>';
 		array_unshift ($actions,$a);
 	} 
  	return $actions;
