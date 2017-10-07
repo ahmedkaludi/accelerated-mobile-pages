@@ -21,10 +21,10 @@
 .ios7-switch input + span {
     position: relative;
     display: inline-block;
-    width: 3.5em;
-    height:2em;
+    width: 5em;
+    height: 2.45em;
     background: white;
-    box-shadow: inset 0 0 0 0.0625em #e2e2e2;
+    box-shadow: inset 0 0 0 0.0625em #cacaca;
     border-radius: 2em;
     vertical-align: -0.15em;
     transition: all 0.40s cubic-bezier(.17,.67,.43,.98);
@@ -32,26 +32,26 @@
 
 .ios7-switch:active input + span,
 .ios7-switch input + span:active {
-    box-shadow: inset 0 0 0 2em #e2e2e2;
+    box-shadow: inset 0 0 0 2em #ccc;
 }
 
 .ios7-switch input + span:after {
-position: absolute;
+    position: absolute;
     display: block;
     content: '';
-    width: 1.85em;
-    height: 1.85em;
+    width: 2.3em;
+    height: 2.3em;
     border-radius: 10em;
-    top: .03em;
-    left: 0.0625em;
+    top: 0.08em;
+    left: 0.08em;
     background: white;
-    box-shadow: inset 0 0 0 0.03em rgba(0,0,0,0.1), 0 0 0.05em rgba(0,0,0,0.05), 0 0.1em 0.2em rgba(0,0,0,0.2);
-   transition: all 0.25s ease-out;
+    box-shadow: inset 0 0 0 0.01em rgba(0,0,0,0.25), 0 0 0.15em rgba(0,0,0,0.20), 0.1em 0.04em 0.2em rgba(0,0,0,0.25);
+    transition: all 0.25s ease-out;
 }
 
 .ios7-switch:active input + span:after,
 .ios7-switch input + span:active:after {
-    width: 2.5em;
+    width:2.7em;
 }
 
 .ios7-switch input:checked + span {
@@ -59,12 +59,12 @@ position: absolute;
 }
 
 .ios7-switch input:checked + span:after {
-    left:1.6em;
+    left:2.6em;
 }
 
 .ios7-switch:active input:checked + span:after,
 .ios7-switch input:checked + span:active:after {
-    left: 0.9em;
+    left: 2.25em;
 }
 
 /* accessibility styles */
@@ -92,7 +92,7 @@ position: absolute;
 }
 
 .ios7-switch:hover input:focus + span {
-    box-shadow: inset 0 0 0 0.0625em #e2e2e2;
+    box-shadow: inset 0 0 0 0.0625em #ccc;
 }
 
 .ios7-switch:hover input:focus:checked + span {
