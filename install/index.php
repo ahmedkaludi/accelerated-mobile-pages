@@ -2,16 +2,16 @@
 	$redux_builder_amp = get_option('redux_builder_amp');
 	$ampLogo="";
 	if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
-		$ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" width="100" height="100">';
+		$ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" class="amp_install_logo_preview" />';
 	}
 	
 	$config = array(
 					'installer_dir' => 'install',
 					'plugin_title'  => ucfirst( 'AMPforWP Installer' ),
-					'start_steps' => 0,
-					'total_steps' => 5,
+					'start_steps' => 1,
+					'total_steps' => 6,
 					'installerpage' => 'ampforwptourinstaller',
-					'dev_mode' => false,
+					'dev_mode' => false, 
 					'steps' => array(
 									1=>array(
 									'title'=>'Welcome',
@@ -73,8 +73,6 @@
 											<option value="3" '.($redux_builder_amp['amp-design-selector']==3? 'selected' : '').'>Design Three</option>
 									</select>
  
-									<label for="ampforwp-design-select">
-											   AMP Design</label>
 									<div>
 									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.($redux_builder_amp['amp-design-selector']==1 ? '': 'display:none' ).'">
 									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.($redux_builder_amp['amp-design-selector']==2 ? '': 'display:none' ).'">
@@ -626,7 +624,7 @@
 		?>
 		<ol class="dots">
 
-			<?php for( $i = 1; $i<=$config['total_steps']; $i++ ) :
+			<?php for( $i = 1; $i<$config['total_steps']; $i++ ) :
 
 				$class_attr = '';
 				$show_link = false;
