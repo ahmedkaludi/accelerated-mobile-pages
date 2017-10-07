@@ -2377,7 +2377,7 @@ body .amp_install_center {text-align: center}
 .amp_install_theme_preview{
     margin-bottom: -30px;
 }
-.amp_install_logo_preview{
+.amp_install_logo_preview{ 
         max-width: 180px;
     height: auto;
     border-radius: 8px;

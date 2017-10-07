@@ -465,7 +465,8 @@ font-size: 16px;
     display: inline-block;
     font-size: 14px;
     border-radius: 30px;
-    transition: 0.2s all;
+    transition: 0.2s all; 
+    box-shadow: none;
 }
 .amp_user_onboarding_choose:hover a{
     background: #ed1c25;
