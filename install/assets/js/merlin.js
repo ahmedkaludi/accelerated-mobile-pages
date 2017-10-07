@@ -239,8 +239,9 @@ jQuery(document).ready(function($) {
             });
         }
     }
-	$('#ampforwp-design-select').click(function(){
+	$('#ampforwp-design-select').change(function(){
 		var selectCurrentDesign = $(this).val();
-		$(this).parents('li').find('img').attr('src',ampforwp_install_params.pluginurl+'/images/design-'+selectCurrentDesign+'.png')
+		$(this).parents('li').find('#design-'+selectCurrentDesign).siblings('img').hide();
+		$(this).parents('li').find('#design-'+selectCurrentDesign).fadeIn();//.find('img').attr('src',ampforwp_install_params.pluginurl+'/images/design-'+selectCurrentDesign+'.png')
 	});
 });

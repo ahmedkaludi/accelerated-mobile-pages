@@ -98,8 +98,8 @@ wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php
 	        	<p class="form-control">
 	        		<label for="{id}">{label}</label>
 	        		<input type="button" class="button selectImage" value="Select image" id="">
-					<img id="myprefix-preview-image" src="{default_value}" />
-					<input type="hidden" name="myprefix_image_id" id="{id}" value="" class="regular-text" />
+					<img id="ampforwp-preview-image" src="{default_value}" />
+					<input type="hidden" name="ampforwp_image_id" id="{id}" value="" class="regular-text" />
 	        	</p>
         	</div>
         	<div id="select">

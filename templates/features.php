@@ -1693,10 +1693,6 @@ function ampforwp_replace_title_tags() {
 				 	if($fixed_title){
 				 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 				 	}
-				 	else{
-				 		$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
-				 	}
-
 			}
 		}
 
@@ -1736,7 +1732,6 @@ function ampforwp_replace_title_tags() {
 				$site_title = $genesis_title;
 			}
 		}
-
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
@@ -2451,7 +2446,7 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
 		global $redux_builder_amp,$wp;
-
+		$desc = '';
 		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
 
 			if( is_home() || is_front_page() ){
@@ -2527,6 +2522,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$metadata['mainEntityOfPage'] = trailingslashit($current_url); // proper URL added
 			$metadata['headline'] = $headline; // proper headline added
 	}
+	// Description for Structured Data
+	$desc = esc_attr( convert_chars( wptexturize (  ampforwp_generate_meta_desc() ) ) );
+	$metadata['description'] = $desc;
 	return $metadata;
 }
 
