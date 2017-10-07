@@ -2446,7 +2446,7 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
 		global $redux_builder_amp,$wp;
-
+		$desc = '';
 		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
 
 			if( is_home() || is_front_page() ){
@@ -2522,6 +2522,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$metadata['mainEntityOfPage'] = trailingslashit($current_url); // proper URL added
 			$metadata['headline'] = $headline; // proper headline added
 	}
+	// Description for Structured Data
+	$desc = esc_attr( convert_chars( wptexturize (  ampforwp_generate_meta_desc() ) ) );
+	$metadata['description'] = $desc;
 	return $metadata;
 }
 
