@@ -1,7 +1,7 @@
 <?php
 	$redux_builder_amp = get_option('redux_builder_amp');
 	$ampLogo="";
-	if(isset($redux_builder_amp['opt-media']['url'])){
+	if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
 		$ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" width="100" height="100">';
 	}
 	
@@ -74,7 +74,11 @@
 									</select>
 									<label for="ampforwp-design-select">
 											   AMP Design</label>
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-'.$redux_builder_amp['amp-design-selector'].'.png" width="100" height="100">
+									<div>
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="100" height="100" id="design-1" style="'.($redux_builder_amp['amp-design-selector']==1 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="100" height="100" id="design-2" style="'.($redux_builder_amp['amp-design-selector']==2 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="100" height="100" id="design-3" style="'.($redux_builder_amp['amp-design-selector']==3 ? '': 'display:none' ).'">
+									</div>
 									</li>
 											   ',
 									),
