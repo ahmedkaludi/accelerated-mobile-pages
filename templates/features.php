@@ -1693,10 +1693,6 @@ function ampforwp_replace_title_tags() {
 				 	if($fixed_title){
 				 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 				 	}
-				 	else{
-				 		$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
-				 	}
-
 			}
 		}
 
@@ -1736,7 +1732,6 @@ function ampforwp_replace_title_tags() {
 				$site_title = $genesis_title;
 			}
 		}
-
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
