@@ -6,7 +6,6 @@
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
-	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
@@ -18,8 +17,6 @@
 <main>
 	<article class="amp-wp-article">
 		<?php do_action('ampforwp_post_before_design_elements') ?>
-		 <?php $this->load_parts( array( 'bread-crumbs' ) ); ?>
-
 		<?php $this->load_parts( apply_filters( 'ampforwp_design_elements', array( 'empty-filter' ) ) ); ?>
 		<?php do_action('ampforwp_post_after_design_elements') ?>
 	</article>

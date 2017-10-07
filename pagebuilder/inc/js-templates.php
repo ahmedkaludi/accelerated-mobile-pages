@@ -7,7 +7,7 @@
 		            <span class="amppb-handle dashicons dashicons-move"></span>
 		            <span class="amppb-row-title-text">1 Column</span>
                     <span data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-		            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 1">
+		            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 1" data-template='<?php echo json_encode($containerCommonSettings); ?>'>
 		            	<span class="tools-icon dashicons dashicons-menu"></span>
 		            </a>
 		        </div><!-- .amppb-row-title -->
@@ -24,7 +24,7 @@
 		            <span class="amppb-handle dashicons dashicons-move"></span>
 		            <span class="amppb-row-title-text">2 Columns</span> 
 		            <span data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-		            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 2">
+		            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 2" data-template='<?php echo json_encode($containerCommonSettings); ?>'>
 		            	<span class="tools-icon dashicons dashicons-menu"></span>
 		            </a>
 		        </div><!-- .amppb-row-title -->
@@ -98,8 +98,8 @@ wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php
 	        	<p class="form-control">
 	        		<label for="{id}">{label}</label>
 	        		<input type="button" class="button selectImage" value="Select image" id="">
-					<img id="myprefix-preview-image" src="http://via.placeholder.com/350x150" />
-					<input type="hidden" name="myprefix_image_id" id="{id}" value="" class="regular-text" />
+					<img id="ampforwp-preview-image" src="{default_value}" />
+					<input type="hidden" name="ampforwp_image_id" id="{id}" value="" class="regular-text" />
 	        	</p>
         	</div>
         	<div id="select">

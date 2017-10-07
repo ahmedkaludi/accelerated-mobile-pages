@@ -29,14 +29,23 @@
 		}
 	}?>
 	<style amp-custom>
-		<?php $this->load_parts( array( 'style' ) ); ?>
 		<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
+<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> archives_body design_1_wrapper <?php
+             if ( is_post_type_archive() ) {
+                 $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
+             ?><?php
+             // Show ID on Pages, Post, Post Type's Post
+             if ( is_singular() ) { ?>singular-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?> <?php
+        // Show ID on category, tag, Author Page, Etc.
+        if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
+    ?><?php } ?>">
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
+<?php do_action( 'below_the_header_design_1', $this ); ?>
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
@@ -47,7 +56,14 @@
 	    
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
-				if($wp->query_vars['paged'] <= '1') {?>
+				if ( get_query_var( 'paged' ) ) {
+		        $paged = get_query_var('paged');
+		    } elseif ( get_query_var( 'page' ) ) {
+		        $paged = get_query_var('page');
+		    } else {
+		        $paged = 1;
+		    }
+				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
 						<?php echo $arch_desc ; ?>
 				    </div> <?php
@@ -59,10 +75,10 @@
 
 			$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
 
-			$ampforwp_amp_post_url  = trailingslashit( $ampforwp_amp_post_url );
+			$ampforwp_amp_post_url  = user_trailingslashit( $ampforwp_amp_post_url );
 
 				if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
-					if ( $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
+					if ( isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
 		  			$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . '?amp';
 		  		}
 				} ?>
@@ -82,11 +98,15 @@
 							</time>
           </div>
 
-					<?php if ( has_post_thumbnail() ) { ?>
-						<?php
+				<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) {
+					if ( has_post_thumbnail()) {  
 						$thumb_id = get_post_thumbnail_id();
 						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
 						$thumb_url = $thumb_url_array[0];
+						}
+						else{
+								$thumb_url = ampforwp_cf_featured_image_src();
+							}
 						?>
 						<div class="home-post-image">
 							<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">

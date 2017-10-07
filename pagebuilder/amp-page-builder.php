@@ -121,14 +121,7 @@ function call_page_builder(){
 	<div id="amppb-row-setting-dialog" class="hidden" style="max-width:800px">
 
     	<div class="amp-pb-rowsetting-content">
-			<p class="form-control">
-				<label for="setting_row_title">Row title</label>
-				<input type="text" name="row_title" id="setting_row_title">
-			</p>
-			<p class="form-control">
-				<label for="setting_row_class">Custom class</label>
-				<input type="text" name="row_class" id="setting_row_class">
-			</p>
+			
 	 	</div>
  		<div class="amppb-tc-footer">
  			<div class="buttons-groups">
@@ -139,8 +132,8 @@ function call_page_builder(){
 	</div>
 	<!-- <div id="my-image-dialog" class="hidden" style="max-width:800px">
     	<input type="button" class="button" value="Select image" id="selectImage">
-		<img id="myprefix-preview-image" src="http://via.placeholder.com/350x150" />
-		<input type="hidden" name="myprefix_image_id" id="myprefix_image_id" value="" class="regular-text" />
+		<img id="ampforwp-preview-image" src="http://via.placeholder.com/350x150" />
+		<input type="hidden" name="ampforwp_image_id" id="ampforwp_image_id" value="" class="regular-text" />
 		<div class="amppb-tc-footer">
  			<div class="amppb-status"></div>
  			<div class="buttons-groups">
@@ -152,10 +145,10 @@ function call_page_builder(){
 }
 
 // Ajax action to refresh the user image
-add_action( 'wp_ajax_myprefix_get_image', 'myprefix_get_image'   );
-function myprefix_get_image() {
+add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image'   );
+function ampforwp_get_image() {
     if(isset($_GET['id']) ){
-        $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'myprefix-preview-image' ) );
+        $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
         $data = array(
             'image'    => $image,
         );
@@ -165,5 +158,5 @@ function myprefix_get_image() {
     }
 }
 
-require_once "functions.php";
+require_once AMP_PAGE_BUILDER.'functions.php';
 

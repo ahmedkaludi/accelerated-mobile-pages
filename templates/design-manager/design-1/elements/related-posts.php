@@ -7,6 +7,19 @@
 		// declaring this variable here to prevent debug errors
 		$args = null;
 
+		// Custom Post types 
+       if( $current_post_type = get_post_type( $post )) {
+                // The query arguments
+                $args = array(
+                    'posts_per_page'=> $int_number_of_related_posts,
+                    'order' => 'DESC',
+                    'orderby' => 'ID',
+                    'post_type' => $current_post_type,
+                    'post__not_in' => array( $post->ID )
+                );   			
+		}//end of block for custom Post types
+
+		// code block for categories
 		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2) {
 				$categories = get_the_category($post->ID);
 					if ($categories) {
@@ -22,6 +35,7 @@
 							);
 						}
 			} //end of block for categories
+
 			//code block for tags
 		 if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
 					$ampforwp_tags = get_the_tags($post->ID);
@@ -38,19 +52,21 @@
 										);
 					}
 			}//end of block for tags
-			$my_query = new wp_query( $args );
+		
+
+        $my_query = new wp_query( $args ); 
 				if( $my_query->have_posts() ) { ?>
 					<div class="amp-wp-content relatedpost">
 					    <div class="related_posts">
 							<ol class="clearfix">
-								<span><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span><!--#930-->
+								<span><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
 								<?php
 						    	while( $my_query->have_posts() ) {
 								    $my_query->the_post();
 										$related_post_permalink = get_permalink();
 										$related_post_permalink = trailingslashit( $related_post_permalink );
-										$related_post_permalink = trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
-										?>
+										$related_post_permalink = user_trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
+										  ?> 
 									<li class="<?php if ( has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
                                         <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( has_post_thumbnail() ) {

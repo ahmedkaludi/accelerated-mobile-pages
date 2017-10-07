@@ -7,7 +7,6 @@
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 
 	<style amp-custom>
-	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
@@ -62,15 +61,19 @@ if ( get_query_var( 'paged' ) ) {
 		         $category_posts->the_post();
 		?>
 		      <div>
-					<?php if ( has_post_thumbnail() ) { ?>
-						<?php
-						$thumb_id = get_post_thumbnail_id();
-						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium_large', true);
-						$thumb_url = $thumb_url_array[0];
+					<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
+						if ( has_post_thumbnail()) {    
+							$thumb_id = get_post_thumbnail_id();
+							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium_large', true);
+							$thumb_url = $thumb_url_array[0];
+							}
+						else{
+							$thumb_url = ampforwp_cf_featured_image_src();
+						}
 						?>
 						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 					<?php } ?>
-                  <a href="<?php echo trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
+                  <a href="<?php echo user_trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
 		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
@@ -108,15 +111,19 @@ if ( get_query_var( 'paged' ) ) {
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
-		<div class="amp-wp-content amp-loop-list <?php if ( has_post_thumbnail() ) { } else{?>amp-loop-list-noimg<?php } ?>">
-			<?php if ( has_post_thumbnail() ) { ?>
-				<?php
-				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-				$thumb_url = $thumb_url_array[0];
+		<div class="amp-wp-content amp-loop-list <?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { } else{?>amp-loop-list-noimg<?php } ?>">
+			<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) {  
+				if ( has_post_thumbnail()) { 
+					$thumb_id = get_post_thumbnail_id();
+					$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
+					$thumb_url = $thumb_url_array[0];
+				}
+				else{
+					$thumb_url = ampforwp_cf_featured_image_src();
+				}
 				?>
 				<div class="home-post_image">
-					<a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+					<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
 						<amp-img
 							layout="responsive"
 							src=<?php echo $thumb_url ?>
@@ -134,7 +141,7 @@ if ( get_query_var( 'paged' ) ) {
 					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php

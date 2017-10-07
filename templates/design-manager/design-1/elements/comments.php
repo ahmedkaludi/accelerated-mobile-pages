@@ -1,6 +1,6 @@
 <?php
 global $redux_builder_amp;
-if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] || $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
+if (!comments_open() || $redux_builder_amp['wordpress-comments-support']==false ) {
   return;
 }
 ?>

@@ -138,7 +138,7 @@ div#amppb-actions-container:before {
     color: #fff;
 }
 .tools-icon{
-    display: none;
+    /*display: none;*/
     padding: 3px 0px 1px 1px;
     float: right;
     cursor: pointer;
@@ -172,12 +172,7 @@ div#amppb-actions-container:before {
 .amppb-row-fields .hover{ 
     width: 100%;
     background: transparent;
-/*
-    margin: 0;
-    border-color: #777;
-    background: #eee;
-    border-radius: 30px;
-*/
+
 }
 .amppb-row-fields .hover:before{
     content: "Drop the module here";
@@ -267,7 +262,7 @@ amppb-row-fields .amppb-column-2:not(:last-child){
 }
  
 
-.ui-state-highlight {
+#amp-page-builder .ui-state-highlight {
     height: 97px;
     background: #666;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.9);
@@ -275,7 +270,7 @@ amppb-row-fields .amppb-column-2:not(:last-child){
     border-radius: 3px; 
     margin-bottom: 16px;
 }
-.ui-state-highlight:before{
+#amp-page-builder .ui-state-highlight:before{
 content: "Drop Here";
     width: 100%;
     display: inline-block;
@@ -288,7 +283,7 @@ content: "Drop Here";
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.ui-state-highlight-module {
+#amp-page-builder .ui-state-highlight-module {
     min-height: 35px;
     width: 100%;
     border: 1px dashed #999;
@@ -297,63 +292,59 @@ content: "Drop Here";
     display: inline-block;
     margin-bottom: 10px
 }
-.ui-state-highlight-module:last-child{
+#amp-page-builder .ui-state-highlight-module:last-child{
     margin-bottom: 0px;
 }
 
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active,
-a.ui-button:active,
-.ui-button:active,
-.ui-button.ui-state-active:hover {
+#amp-page-builder .ui-state-active,
+#amp-page-builder .ui-widget-content .ui-state-active,
+#amp-page-builder .ui-widget-header .ui-state-active,
+#amp-page-builder a.ui-button:active,
+#amp-page-builder .ui-button:active,
+#amp-page-builder .ui-button.ui-state-active:hover {
   border: 1px solid #003eff;
   background: #007fff;
   font-weight: normal;
   color: #ffffff;
 }
-.ui-icon-background,
-.ui-state-active .ui-icon-background {
+#amp-page-builder .ui-icon-background,
+#amp-page-builder .ui-state-active .ui-icon-background {
   border: #003eff;
   background-color: #ffffff;
 }
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited {
+#amp-page-builder .ui-state-active a,
+#amp-page-builder .ui-state-active a:link,
+#amp-page-builder .ui-state-active a:visited {
   color: #ffffff;
   text-decoration: none;
 }
 
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus,
-.ui-button:hover,
-.ui-button:focus {
+#amp-page-builder .ui-state-hover,
+#amp-page-builder .ui-widget-content .ui-state-hover,
+#amp-page-builder .ui-widget-header .ui-state-hover,
+#amp-page-builder .ui-state-focus,
+#amp-page-builder .ui-widget-content .ui-state-focus,
+#amp-page-builder .ui-widget-header .ui-state-focus,
+#amp-page-builder .ui-button:hover,
+#amp-page-builder .ui-button:focus {
   border: 1px solid #cccccc;
   background: #ededed;
   font-weight: normal;
   color: #2b2b2b;
 }
-.ui-state-hover div,
-.ui-state-hover div:hover,
-.ui-state-hover div:link,
-.ui-state-hover div:visited,
-.ui-state-focus div,
-.ui-state-focus div:hover,
-.ui-state-focus div:link,
-.ui-state-focus div:visited,
-a.ui-button:hover,
-a.ui-button:focus {
+#amp-page-builder .ui-state-hover div,
+#amp-page-builder .ui-state-hover div:hover,
+#amp-page-builder .ui-state-hover div:link,
+#amp-page-builder .ui-state-hover div:visited,
+#amp-page-builder .ui-state-focus div,
+#amp-page-builder .ui-state-focus div:hover,
+#amp-page-builder .ui-state-focus div:link,
+#amp-page-builder .ui-state-focus div:visited,
+#amp-page-builder a.ui-button:hover,
+#amp-page-builder a.ui-button:focus {
   color: #2b2b2b;
   text-decoration: none;
 }
-.hover {
-    background:red;
-}
-
 
 .thickbox{
   text-decoration: none;

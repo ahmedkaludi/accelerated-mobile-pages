@@ -27,7 +27,6 @@ $template = new AMP_Post_Template( $post_id );?>
 			}
 		}	 ?>
 	<style amp-custom>
-	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>

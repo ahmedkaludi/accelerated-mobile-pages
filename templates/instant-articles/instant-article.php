@@ -13,15 +13,6 @@
     <body>
         <article>
             <header>
-            <?php if (isset($redux_builder_amp['fb-instant-article-analytics']) && $redux_builder_amp['fb-instant-article-analytics'] ){
-                  if(isset($redux_builder_amp['fb-instant-article-analytics-code']) && $redux_builder_amp['fb-instant-article-analytics-code'] ) {?>
-                      <!-- Analytics code -->
-                          <figure class="op-tracker">
-                            <iframe>
-                              <?php echo get_ia_analytics_code(); ?>
-                            </iframe>
-                          </figure>
-            <?php } } ?>
                 <!-- title -->
 				<h1><?php the_title(); ?></h1>
 
@@ -73,6 +64,15 @@
             <!-- body -->
             <?php 
             echo apply_filters('fbia_content', apply_filters('the_content', get_the_content( '' ))); ?>
+            <?php if (isset($redux_builder_amp['fb-instant-article-analytics']) && $redux_builder_amp['fb-instant-article-analytics'] ){
+                  if(isset($redux_builder_amp['fb-instant-article-analytics-code']) && $redux_builder_amp['fb-instant-article-analytics-code'] ) {?>
+                      <!-- Analytics code -->
+                          <figure class="op-tracker">
+                            <iframe>
+                              <?php echo get_ia_analytics_code(); ?>
+                            </iframe>
+                          </figure>
+            <?php } } ?>
             <footer>
             </footer>
         </article>

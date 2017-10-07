@@ -50,7 +50,7 @@
 				<div id="pagination">
                 <?php $next_post = get_next_post();
                     if (!empty( $next_post )) { ?>
-                    <span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-next-read-text'], 'Next Read' ); ?></span> <a href="<?php echo trailingslashit( trailingslashit(get_permalink( $next_post->ID )) . AMPFORWP_AMP_QUERY_VAR) ; ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
+                    <span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-next-read-text'], 'Next Read' ); ?></span> <a href="<?php echo user_trailingslashit( trailingslashit(get_permalink( $next_post->ID )) . AMPFORWP_AMP_QUERY_VAR) ; ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
                     } ?>
 				</div>
 			</div>

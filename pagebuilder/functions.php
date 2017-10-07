@@ -2,6 +2,29 @@
 
 require_once("config/moduleTemplate.php");
 
+$output = '<div class="amp_pb_module {{row_class}}">';
+$outputEnd = '</div>';
+$containerCommonSettings = array(
+			'fields' => array(
+							array(
+								'type'		=>'text',
+								'name'		=>"row_label",
+								'label'		=>'Row label',
+								'default'	=>'',
+								),
+					
+							array(
+								'type'		=>'text',
+								'name'		=>"row_class",
+								'label'		=>'Row class',
+								'default'	=>'',
+								)
+							),
+			'front_template_start'=>$output,
+			'front_template_end'=>$outputEnd
+			);
+
+
 /* Admin Script */
 add_action( 'admin_enqueue_scripts', 'amppbbase_admin_scripts' );
  
@@ -35,7 +58,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
     }
 }
 
+
 function js_templates() {
+	global $containerCommonSettings;
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
 
@@ -115,6 +140,7 @@ function amp_pagebuilder_content_styles(){
 
 function amppb_post_content($content){
 	global $post;
+	global $containerCommonSettings;
 
 	$previousData = get_post_meta($post->ID,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -130,10 +156,19 @@ function amppb_post_content($content){
 			//rander its html
 			foreach ($previousData as $key => $rowsData) {
 				$customClass = '';
-				if(isset($rowsData['data'][0]['row_class'])){
-					$customClass = urldecode($rowsData['data'][0]['row_class']);
+				$rowStartTemplate = $containerCommonSettings['front_template_start'];
+				$rowEndTemplate = $containerCommonSettings['front_template_end'];
+				
+				foreach ($containerCommonSettings['fields'] as $key => $field) {
+					if(isset($rowsData['data'][$field['name']])){
+						$replace = $rowsData['data'][$field['name']];
+					}else{
+						$replace = '';
+					}
+					$customClass = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 				}
-				$html .= '<div class="row '.$customClass.'">';
+				$html .= $customClass;
+				//$html .= '<div class="row '.$customClass.'">';
 				if(count($rowsData['cell_data'])>0){
 					switch ($rowsData['cells']) {
 						case '1':
@@ -154,7 +189,7 @@ function amppb_post_content($content){
 							break;
 					}
 				}
-				$html .= '</div>';
+				$html .= $rowEndTemplate;
 			}
 				$html .= '</div>';
 		}

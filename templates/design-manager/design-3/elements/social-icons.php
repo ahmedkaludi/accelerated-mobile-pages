@@ -1,5 +1,12 @@
 <?php global $redux_builder_amp;  ?>
-<?php if( is_single() ) { ?>
+<?php if( is_single() ) { 
+	$permalink = '';
+	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
+		$permalink = get_the_permalink();
+	}
+	else
+		$permalink = wp_get_shortlink();
+	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this); ?>
 <div class="amp-wp-content ampforwp-social-icons-wrapper ampforwp-social-icons">
     <i class="icono-share"></i>
@@ -10,7 +17,7 @@
       $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle']; ?>
 			<amp-social-share type="twitter" width="40" height="40"
                         data-param-url=""
-                        data-param-text="TITLE <?php echo wp_get_shortlink().' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 				></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>
