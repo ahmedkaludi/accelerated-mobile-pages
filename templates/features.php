@@ -1690,7 +1690,13 @@ function ampforwp_replace_title_tags() {
 				 	Global $redux_builder_amp;
 				 	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 				 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
-				 	$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
+				 	if($fixed_title){
+				 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
+				 	}
+				 	else{
+				 		$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
+				 	}
+
 			}
 		}
 
