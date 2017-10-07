@@ -1917,15 +1917,43 @@ Redux::setSection( $opt_name, array(
     }
     add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
     $themeDesign = array(
-            '1' => __('Design One', 'accelerated-mobile-pages' ),
-            '2' => __('Design Two', 'accelerated-mobile-pages' ),
-            '3' => __('Design Three', 'accelerated-mobile-pages' )
+			array(
+				'upgreade'=>true,
+				'title'=>__('Design One', 'accelerated-mobile-pages' ),
+				'value'=>1,
+				'alt'=>__('Design One', 'accelerated-mobile-pages' ),
+				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png',
+			),
+			array(
+				'upgreade'=>true,
+				'title'=>__('Design Two', 'accelerated-mobile-pages' ),
+				'value'=>2,
+				'alt'=>__('Design Two', 'accelerated-mobile-pages' ),
+				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
+			),
+			array(
+				'upgreade'=>true,
+				'title'=>__('Design Three', 'accelerated-mobile-pages' ),
+				'value'=>3,
+				'alt'=>__('Design Three', 'accelerated-mobile-pages' ),
+				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png',
+			)
         );
     if(count(get_plugins())>0){
         foreach (get_plugins() as $key => $value) {
             $plugin = get_plugin_data(WP_PLUGIN_DIR.'/'.$key);
-            if(!empty($plugin['AMP'])){
-                $themeDesign[$value['TextDomain']] = $plugin['AMP'];
+            if(!empty($plugin['AMP'])){//$plugin['AMP']
+				$imageUrl = '';
+				if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR.$value['TextDomain'].'/screenshot.png')){
+					$imageUrl = plugins_url($value['TextDomain'].'/screenshot.png');
+				}
+                $themeDesign[] = array(
+									'upgreade'=>true,
+									'title'=>$plugin['AMP'],
+									'value'=>$value['TextDomain'],
+									'alt'=>$plugin['AMP'],
+									'img'=>$imageUrl,
+								);
             }
         }
     }
@@ -1938,7 +1966,7 @@ Redux::setSection( $opt_name, array(
 
              $fields =  array(
                 'id'       => 'amp-design-selector',
-                'type'     => 'select',
+                'type'     => 'select_image',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design.', 'accelerated-mobile-pages' ),
                 'desc' => '<a href="https://ampforwp.com/themes/" target="_blank">View More AMP Themes →</a>',

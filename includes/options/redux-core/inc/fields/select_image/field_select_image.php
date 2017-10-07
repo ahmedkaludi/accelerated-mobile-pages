@@ -76,38 +76,55 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
 
                 // Enum through the options array
                 foreach ( $this->field['options'] as $k => $v ) {
+					if($v['upgreade']==1){
+						$selected = selected( $this->value, $v['value'], false );
+						
+						// If selected returns something other than a blank space, we
+						// found our default/saved name.  Save the array number in a
+						// variable to use later on when we want to extract its associted
+						// url.
+						if ( '' != $selected ) {
+							$arrNum = $x;
+						}
+						// No alt?  Set it to title.  We do this so the alt tag shows
+						// something.  It also makes HTML/SEO purists happy.
+						if ( ! isset( $v['alt'] ) ) {
+							$v['alt'] = $v['title'];
+						}
+						// Add the option tag, with values.
+						echo '<option value="' . $v['value'] . '" ' . $selected . ' data-image="'. $v['img'].'" data-alt="'. $v['alt'] .'">' . $v['title'] . '</option>';
+					}else{
+						// No array?  No problem!
+						if ( ! is_array( $v ) ) {
+							$v = array( 'img' => $v );
+						}
 
-                    // No array?  No problem!
-                    if ( ! is_array( $v ) ) {
-                        $v = array( 'img' => $v );
-                    }
+						// No title set?  Make it blank.
+						if ( ! isset( $v['title'] ) ) {
+							$v['title'] = '';
+						}
 
-                    // No title set?  Make it blank.
-                    if ( ! isset( $v['title'] ) ) {
-                        $v['title'] = '';
-                    }
+						// No alt?  Set it to title.  We do this so the alt tag shows
+						// something.  It also makes HTML/SEO purists happy.
+						if ( ! isset( $v['alt'] ) ) {
+							$v['alt'] = $v['title'];
+						}
 
-                    // No alt?  Set it to title.  We do this so the alt tag shows
-                    // something.  It also makes HTML/SEO purists happy.
-                    if ( ! isset( $v['alt'] ) ) {
-                        $v['alt'] = $v['title'];
-                    }
+						// Set the selected entry
+						$selected = selected( $this->value, $v['img'], false );
 
-                    // Set the selected entry
-                    $selected = selected( $this->value, $v['img'], false );
+						// If selected returns something other than a blank space, we
+						// found our default/saved name.  Save the array number in a
+						// variable to use later on when we want to extract its associted
+						// url.
+						if ( '' != $selected ) {
+							$arrNum = $x;
+						}
 
-                    // If selected returns something other than a blank space, we
-                    // found our default/saved name.  Save the array number in a
-                    // variable to use later on when we want to extract its associted
-                    // url.
-                    if ( '' != $selected ) {
-                        $arrNum = $x;
-                    }
-
-                    // Add the option tag, with values.
-                    echo '<option value="' . $v['img'] . '" ' . $selected . '>' . $v['alt'] . '</option>';
-
-                    // Add a bean
+						// Add the option tag, with values.
+						echo '<option value="' . $v['img'] . '" ' . $selected . '>' . $v['alt'] . '</option>';
+					}
+					// Add a bean
                     $x ++;
                 }
 
