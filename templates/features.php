@@ -3428,15 +3428,16 @@ function ampforwp_posts_to_remove () {
 	}
 	$new_selected_cats = implode(',' , $selected_cats);
 	if(!empty($get_selected_cats)){
-		$the_query = new WP_Query( array( 
-							'ignore_sticky_posts' => 1,
-							'posts_per_page' 	  => -1,
-							'cat'				  => $new_selected_cats ,
-							'fields'			  => 'ids',
-		  			    	'post_type'           => 'post',
-		 			    	'post_status'         => 'publish', 
-		 			    			) 
-							);
+		$the_query = new WP_Query( 
+			array( 
+				'ignore_sticky_posts' => 1,
+				'posts_per_page' 	  => -1,
+				'cat'				  => $new_selected_cats ,
+				'fields'			  => 'ids',
+				'post_type'           => 'post',
+				'post_status'         => 'publish', 
+			) 
+		);
 		// Get the IDs of posts
 		if ( $the_query->have_posts() ) {
 			while ( $the_query->have_posts() ) {
