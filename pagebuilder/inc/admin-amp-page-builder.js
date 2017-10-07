@@ -689,7 +689,7 @@ jQuery( document ).ready( function( $ ){
 // Ajax request to refresh the image preview
 function Refresh_Image(the_id,currentSelectfield){
         var data = {
-            action: 'myprefix_get_image',
+            action: 'ampforwp_get_image',
             id: the_id
         };
 
@@ -697,8 +697,8 @@ function Refresh_Image(the_id,currentSelectfield){
 
             if(response.success === true) {
             	console.log(response.data.image)
-                currentSelectfield.parents('.form-control').find('#myprefix-preview-image').replaceWith( response.data.image ).attr('id','myprefix-preview-image');
-				var src = currentSelectfield.parents('.form-control').find('#myprefix-preview-image').attr('src');
+                currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
+				var src = currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').attr('src');
 				currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
             }
         });
