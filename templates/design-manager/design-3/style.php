@@ -313,7 +313,6 @@ main .amp-wp-content{ direction: rtl; }
 .amp_author_area_wrapper strong{ float: right; }
 <?php } ?>
 
-<?php $color =  $redux_builder_amp['opt-color-rgba']['color']; ?>
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }
 body a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link']['color']; ?> }
 
