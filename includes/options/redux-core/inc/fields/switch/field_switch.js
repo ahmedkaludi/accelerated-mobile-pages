@@ -40,6 +40,25 @@
                 } else {
                     return;
                 }
+				
+				el.find( ".switch-on-off" ).change(
+					function(){
+						var parent = $( this ).parents( '.switch-options' );
+						var sel = 0;
+						if($( this ).prop('checked') == true){
+							sel = 1;
+						}
+						
+						$( '.checkbox-input', parent ).val( sel ).trigger('change');
+						
+						redux_change( $( '.checkbox-input', parent ) );
+						//fold/unfold related options
+                        var obj = $( this );
+                        var $fold = '.f_' + obj.data( 'id' );
+						el.find( $fold ).slideDown( 'normal', "swing" );
+					}
+				);
+				
                 el.find( ".cb-enable" ).click(
                     function() {
                         if ( $( this ).hasClass( 'selected' ) ) {
