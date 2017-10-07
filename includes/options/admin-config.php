@@ -2499,6 +2499,7 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Pretty Permalinks for Twitter Share?', 'accelerated-mobile-pages'),
               'subtitle'  => __('Enable this to have pretty links for twitter sharing'),
               'default'   =>  0,
+              'required'  => array('enable-single-twitter-share', '=' , '1'),
           ),
           // GooglePlus ON/OFF
           array(
