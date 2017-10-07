@@ -8,8 +8,8 @@
 	$config = array(
 					'installer_dir' => 'install',
 					'plugin_title'  => ucfirst( 'AMPforWP Installer' ),
-					'start_steps' => 1,
-					'total_steps' => 6,
+					'start_steps' => 0,
+					'total_steps' => 5,
 					'installerpage' => 'ampforwptourinstaller',
 					'dev_mode' => false,
 					'steps' => array(
@@ -19,9 +19,9 @@
 									'description'=>'This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.',
 									),
 									2=>array(
-									'title'=>'Logo Setup',
-									'description'=>'',
-									'fields'=>'<li>
+									'title'=>'Upload Logo',
+									'description'=>'Recommend logo size is: 190x36',
+									'fields'=>'<li class="amp_install_center">
 											    <input type="hidden" value="" class="regular-text process_custom_images" id="process_custom_images" name="opt-media" value="">
 
 												<button type="button" class="set_custom_images merlin__button merlin__button--blue">Set Logo</button>
@@ -29,58 +29,57 @@
 												</li>'
 									),
 									3=>array(
-									'title'=>'Pages Support',
-									'description'=>'',
+									'title'=>'Select Pages',
+									'description'=>'Where you would like to enable AMP.',
 									'fields'=>'<li class="merlin__drawer--import-content__list-item status status--pending">
 												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" id="amp-on-posts" '.($redux_builder_amp['amp-on-off-for-all-posts']? 'checked': '').'>
 												<label for="amp-on-posts">
-												<i></i><span>AMP on Posts</span></label>
+												<i></i><span>Posts</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
 												<input type="checkbox" name="amp-on-off-for-all-pages" class="checkbox" id="amp-on-pages" value="1" '.($redux_builder_amp['amp-on-off-for-all-pages']? 'checked': '').'>
 											    <label for="amp-on-pages">
-												<i></i><span>AMP on Pages</span></label>
+												<i></i><span>Pages</span></label>
 												</li>
 											   <li class="merlin__drawer--import-content__list-item status">
 												<input type="checkbox" name="ampforwp-homepage-on-off-support" class="checkbox" id="amp-on-home" value="1" '.($redux_builder_amp['ampforwp-homepage-on-off-support']? 'checked': '').'>
 											    <label for="amp-on-home">
-												<i></i><span>AMP on Homepage Support</span></label>
+												<i></i><span>Homepage</span></label>
 												</li>
 											   
 											  <li class="merlin__drawer--import-content__list-item status">
 												<input type="checkbox" name="ampforwp-archive-support" class="checkbox" id="ampforwp-archive-support" value="1" '.($redux_builder_amp['ampforwp-archive-support']? 'checked': '').'>
 											   <label for="ampforwp-archive-support">
-											   <i></i><span>AMP on Archive Page</span></label>
+											   <i></i><span>Category & Tags</span></label>
 												</li>
 												
 												',
 									),
 									4=>array(
-									'title'=>'Set tracking',
-									'description'=>'',
-									'fields'=>'<input type="hidden" name="amp-analytics-select-option" value="1">
-									<li>
+									'title'=>'Setup Analytics',
+									'description'=>'Enter your Google Analytics Tracking code',
+									'fields'=>'<li class="amp_install_center">
+                                    <input type="hidden" name="amp-analytics-select-option" value="1">
 									<input type="text" name="ga-feild" id="ga-feild" value="'.($redux_builder_amp['ga-feild']? $redux_builder_amp['ga-feild'] : '').'">
-									<label for="ga-feild">Google Analytics</label>
+									<label for="ga-feild"></label>
 									</li>',
 									),
 									5=>array(
 									'title'=>'Select Design',
 									'description'=>'',
-									'fields'=>'<li><select name="amp-design-selector" id="ampforwp-design-select">
+									'fields'=>'<li class="amp_install_center"><select name="amp-design-selector" id="ampforwp-design-select">
 											<option value="1" '.($redux_builder_amp['amp-design-selector']==1? 'selected' : '').'>Design One</option>
 											<option value="2" '.($redux_builder_amp['amp-design-selector']==2? 'selected' : '').'>Design Two</option>
 											<option value="3" '.($redux_builder_amp['amp-design-selector']==3? 'selected' : '').'>Design Three</option>
 									</select>
-									<label for="ampforwp-design-select">
-											   AMP Design</label>
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-'.$redux_builder_amp['amp-design-selector'].'.png" width="100" height="100">
+							
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-'.$redux_builder_amp['amp-design-selector'].'.png" width="150" height="200" class="amp_install_theme_preview">
 									</li>
 											   ',
 									),
 									6=>array(
 									'title'=>'Enjoy',
-									'description'=>'',
+									'description'=>'Navigate to ',
 									'fields'=>'',
 									),
 								),
@@ -140,7 +139,7 @@
 		ob_start();
 		ampforwp_install_header(); ?>
 		<div class="merlin__wrapper">
-
+            <div class="amp_install_wizard">AMP Installation Wizard</div>
 			<div class="merlin__content merlin__content--<?php echo esc_attr( strtolower( $title ) ); ?>">
 
 				<?php
@@ -187,11 +186,14 @@
 		?>
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
-			
+			<div class="amp_branding"></div>
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+
 			<h1><?php echo $stepDetails['title']; ?></h1>
 
-			<p><?php echo esc_html( 'This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.' ); ?></p>
+			<p><?php echo esc_html( 'This Installation Wizard helps you to setup the necessary options for AMP. It is optional & should take only a few minutes.' ); ?></p>
 	
 		</div>
 
@@ -212,7 +214,7 @@
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<div class="amp_branding"></div>
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
@@ -256,7 +258,7 @@
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<div class="amp_branding"></div>
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
@@ -300,7 +302,7 @@
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<div class="amp_branding"></div>
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
@@ -343,7 +345,7 @@
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'welcome' ) ), ampforwp_svg_allowed_html() ); ?>
+			<div class="amp_branding"></div>
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
@@ -435,13 +437,13 @@
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'done' ) ), ampforwp_svg_allowed_html() ); ?>
+			<div class="amp_branding"></div>
 			
-			<h1><?php echo esc_html( 'All done. Have fun!' ); ?></h1>
+			<h1><?php echo esc_html( 'Setup Done. Have fun!' ); ?></h1>
 
-			<p><?php wp_kses(  'Your Website has been all set up for AMP. Enjoy your AMP website.','ampforwp_install' ); ?></p>
+			<p><?php echo wp_kses(  'Basic Setup has been done. Navigate to AMP options panel to access all the options.','ampforwp_install' ); ?></p>
 
-		</div>
+		</div> 
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
 			
@@ -522,9 +524,7 @@
 	
 	
 	function ampforwp_install_footer() {
-		?>	<a class="merlin--icon" target="_blank" href="https://ampforwp.com">
-				<?php echo wp_kses( ampforwp_makesvg( array( 'icon' => 'merlin' ) ), ampforwp_svg_allowed_html() ); ?>
-			</a>
+		?>	 
 		</body>
 		<?php do_action( 'admin_footer' ); ?>
 		<?php do_action( 'admin_print_footer_scripts' ); ?>
