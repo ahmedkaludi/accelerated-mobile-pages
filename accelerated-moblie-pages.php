@@ -18,15 +18,23 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.62');
+define('AMPFORWP_VERSION','0.9.63');
+
 // any changes to AMP_QUERY_VAR should be refelected here
-if(empty(get_option('permalink_structure'))) {
- $ampforwp_slug = '&amp=1';
-}else{
- $ampforwp_slug = "amp";
+function ampforwp_generate_endpoint(){
+    $ampforwp_slug = '';
+    $get_permalink_structure = '';
+    $get_permalink_structure = get_option('permalink_structure');
+    
+    if(empty( $get_permalink_structure )) {
+        $ampforwp_slug = '&amp=1';
+    }else{
+        $ampforwp_slug = "amp";
+    }
+    return $ampforwp_slug;
 }
 
-define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', $ampforwp_slug ) );
+define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
 
 load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
 
@@ -529,7 +537,7 @@ function ampforwp_update_notice() {
     margin-left: 5px;
     font-weight: 300;
     top: -14px;
-    font-size: 20px;"> <?php _e( 'Introducing AMP Page Builder in '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
+    font-size: 20px;"> <?php _e( 'A Big Update of AMP in '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
 	    <a href="https://ampforwp.com/new/" target="_blank" style="
     position: relative;
     top: -17px;
