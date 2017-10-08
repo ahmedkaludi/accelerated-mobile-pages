@@ -169,7 +169,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * Structured data improvements #1048 #1044 #1085 #1118
 * Twitter share URL based on users choice, you can allow people to share pretty links and short links. #1097
 * Author Avatar removed code fixed which has been displayed in the div "amp-wp-meta amp-wp-byline". #1087
-* Only one <figure> element is allowed in the article <header>: FB Instant Articles #1127 & #1157
+* Only one figure element is allowed in the article <header>: FB Instant Articles #1127 & #1157
 * Image alt tags are empty and cause issues fixed. #1154
 * Button to copy the content into Custom AMP Editor #783
 * Rename AMP loop widget areas or add proper descriptions #1045
