@@ -5,7 +5,7 @@ if ( ! class_exists( 'Redux' ) ) {
 }
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
-$amptfad = '<strong>Did you know:</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
+$amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
@@ -384,7 +384,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     //  . ampforwp_plugin_activation_notice()
 //       . '<h2>' . __( 'Here are some quick links to help you get started:', 'accelerated-mobile-pages' ) . '</h2>'
                       
-			               . '<div class="getstarted_wrapper">
+			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
             <div class="getstarted_options">
             <p><b>Getting Started</b></p>
 				<ul class="getstarted_ul">
@@ -1968,8 +1968,10 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'select_image',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => __( 'Select your design.', 'accelerated-mobile-pages' ),
-                'desc' => '<a href="https://ampforwp.com/themes/" target="_blank">View More AMP Themes →</a>',
+                'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
+    top: 20px;text-decoration: none;
+    background: #eee;padding: 5px 8px 5px 9px;
+    border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
                 'options'  => $themeDesign,
                 'default'  => '2'
                 ),

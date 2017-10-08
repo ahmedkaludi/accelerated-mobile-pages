@@ -91,9 +91,9 @@
     background: #4452a7;
     text-shadow: none;
     border: 0;
-    border-radius: 0;
+    border-radius: 30px;
     box-shadow: none;
-    padding: 14px 32px 28px 35px;
+    padding: 12px 30px 26px 30px;
     line-height: 1;
     margin-left: 5px;
     transition: all 100ms;
@@ -237,3 +237,16 @@ float:left;padding-bottom: 20px;
     text-align: center;
     margin-bottom: 7px;}
 .single_ex_listing .extension_btn{opacity: 0.75}
+#info-info_theme_framework{
+    position: absolute;
+    top: 160px;
+    right: 20px;
+    width: 199px;
+}
+.redux-section-indent-start h3{    text-transform: uppercase;
+    margin-top: -1px !important;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 0px;
+    padding-top: 25px;
+    background: #fcfcfc; }
