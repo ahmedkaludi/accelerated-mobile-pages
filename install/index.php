@@ -1,9 +1,23 @@
 <?php
-	$redux_builder_amp = get_option('redux_builder_amp');
-	$ampLogo="";
-	if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
-		$ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" class="amp_install_logo_preview" />';
-	}
+/**
+ * Merlin WP
+ * Better WordPress Theme Onboarding
+ *
+ * The following code is a derivative work from the
+ * Envato WordPress Theme Setup Wizard by David Baker.
+ *
+ * @package   Merlin WP
+ * @version   @@pkg.version
+ * @link      https://merlinwp.com/
+ * @author    Richard Tabor, from ThemeBeans.com
+ * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
+ * @license   Licensed GPLv3 for open source use
+ */
+$redux_builder_amp = get_option('redux_builder_amp');
+$ampLogo="";
+if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-media']['url']!=""){
+    $ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" class="amp_install_logo_preview" />';
+}
 	
 	$config = array(
 					'installer_dir' => 'install',

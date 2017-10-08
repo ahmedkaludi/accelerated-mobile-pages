@@ -1757,10 +1757,8 @@ function ampforwp_aioseop_front_page_title() {
 
 function ampforwp_frontpage_title_markup () { 
 	$front_page_title = ampforwp_add_custom_title_tag();
-	$front_page_title = apply_filters('ampforwp_frontpage_title_filter', $front_page_title);  
-	?>
-
-	<title> <?php echo esc_html( $front_page_title ); ?> </title> <?php
+	$front_page_title = apply_filters('ampforwp_frontpage_title_filter', $front_page_title); 
+	?><title><?php echo esc_html( $front_page_title ); ?></title><?php
 }
 
 // 27. Clean the Defer issue
