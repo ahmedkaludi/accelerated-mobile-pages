@@ -3,11 +3,11 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.61
+Version: 0.9.63
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
-License: GPL2
+License: GPL2+
 */
 
 // Exit if accessed directly.
@@ -18,9 +18,23 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.61');
+define('AMPFORWP_VERSION','0.9.63');
+
 // any changes to AMP_QUERY_VAR should be refelected here
-define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+function ampforwp_generate_endpoint(){
+    $ampforwp_slug = '';
+    $get_permalink_structure = '';
+    $get_permalink_structure = get_option('permalink_structure');
+    
+    if(empty( $get_permalink_structure )) {
+        $ampforwp_slug = '&amp=1';
+    }else{
+        $ampforwp_slug = "amp";
+    }
+    return $ampforwp_slug;
+}
+
+define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
 
 load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
 
@@ -444,11 +458,18 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file )  {
 
 	$plugin =  'amp/amp.php'; 
 	if (  $plugin == $plugin_file  ) {
+		add_thickbox();
 		unset($actions['activate']);
-	}
+		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts. \')">Activate</span>';
+		array_unshift ($actions,$a);
+	} 
  	return $actions;
 }
 add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+
+
+
+
 
 
 if ( ! function_exists('ampforwp_init') ) {
@@ -516,7 +537,7 @@ function ampforwp_update_notice() {
     margin-left: 5px;
     font-weight: 300;
     top: -14px;
-    font-size: 20px;"> <?php _e( 'AMP has been updated to '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
+    font-size: 20px;"> <?php _e( 'A Big Update of AMP in '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
 	    <a href="https://ampforwp.com/new/" target="_blank" style="
     position: relative;
     top: -17px;
@@ -561,3 +582,9 @@ if(!defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH')){
 }
 
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
+require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
+require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
+require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
+
+
+require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );

@@ -1,0 +1,2 @@
+1.Few changes in class-amp-post-template.php to take care of the archive debug errors
+Reference: #1130 #966

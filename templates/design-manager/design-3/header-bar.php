@@ -10,9 +10,11 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       if( has_nav_menu( 'amp-menu' ) ) { ?>
         <div class="navigation_heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'] , 'Navigate' ); ?></div>
       <?php
+      // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
         wp_nav_menu( array(
             'theme_location' => 'amp-menu',
-            'walker' => new AMPforWP_Menu_Walker()
+            'menu'=>'ul',
+            'menu_class'=>'amp-menu'
         ) );
       }
            ?>
@@ -103,7 +105,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
-                    $ampforwp_home_url = trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
+                    $ampforwp_home_url = user_trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
                           $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';

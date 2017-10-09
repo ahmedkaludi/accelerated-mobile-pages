@@ -42,12 +42,24 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
 
             //Label OFF
             $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'redux-framework' );
+			
+			
+			 echo '<div class="switch-options">
+						<label class="ios7-switch">
+							<input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . $this->field['id'] . '">
+							<span></span>
+						</label>
+					';
+			echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $this->value . '" />';
+			echo '</div>';
 
-            echo '<div class="switch-options">';
+			
+			
+            /* echo '<div class="switch-options">';
             echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['on'] . '</span></label>';
             echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['off'] . '</span></label>';
             echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $this->value . '" />';
-            echo '</div>';
+            echo '</div>'; */
         } //function
 
         /**

@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.8.1
-Stable tag: 0.9.61
+Tested up to: 4.8.2
+Stable tag: 0.9.63
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,9 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
-[youtube https://www.youtube.com/watch?v=jglJGmlZyos]
+[youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
+
+[youtube https://www.youtube.com/watch?v=vAGPFKKm5G4]
 
 <strong>Extensions</strong><br>
 Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Contact Form 7 Support](https://ampforwp.com/contact-form-7/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
@@ -29,12 +31,12 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * NEW - AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
 * NEW - Page Break / NextPage (Pagination) Support
-* NEW - Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
-* NEW - Page Builder for AMP! [Watch the Demo](http://ampforwp.com/demo/#pagebuilder) | [How to](https://ampforwp.com/tutorials/page-builder/)
+* Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * Facebook Comments Support
 * Github Gist Support
 * Email Opt-in Subscription form support in AMP added
@@ -54,7 +56,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * 2 Designs Added 
 * Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
-* Switch on/off Support for Pages on AMP
+* Switch on/off Support for Pages & Posts on AMP
 * Translation Panel & RTL
 * Internal AMP linking - You can browse AMP pages internally
 * Related posts below the post
@@ -89,6 +91,9 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Genesis SEO Support 
 * Breadcrumb Support added 
 * Facebook Instant Articles Support Added
+* NEW - AMP Installation Wizard that makes it easy to setup for new users.
+* NEW - Category base remover support
+* NEW - Tag base remover support
 * NEW - AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
@@ -118,7 +123,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 == Installation ==
 **[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
 
-[youtube https://www.youtube.com/watch?v=zzRy6Q_VGGc]
+[youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
 **[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
 
@@ -142,6 +147,69 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.63 (8th October 2017) =
+* View more details on https://ampforwp.com/new/
+* Category and Tag Base Remover as core features #1079
+* Hide AMP on Posts option added #935
+* Installation Setup Screen Added for new users
+* Validation for the session in PHP #1158. PR by Bryan Contreras @bryan3561
+* All the amp pages should work perfect with Plain Permalink settings #488
+* WYSIWYG TinyMCE editor added for the Text Module in AMP Page Builder #1205
+* WPML Static Front Page Support for title and description with Yoast. #1143
+* Row Settings area added for AMP Page Builder #1148
+* xlink attribute causes Validation Issues #1149
+* Posts with no images on Archive pages are squeezed to 65% #1058
+* Body Class to target specific pages #1123
+* Option to enable/disable Breadcrumb #1129
+* Debug errors due to Breadcrumbs fixed #1109 #1130 #966
+* Visit AMP option added below the View Site in Dashboard. #1076
+* Many Debug errors fixed #1109
+* Textarea for body tag which will help people add AMP Auto Ads #1064
+* Structured data improvements #1048 #1044 #1085 #1118
+* Twitter share URL based on users choice, you can allow people to share pretty links and short links. #1097
+* Author Avatar removed code fixed which has been displayed in the div "amp-wp-meta amp-wp-byline". #1087
+* Only one figure element is allowed in the article header FB Instant Articles #1127 & #1157
+* Image alt tags are empty and cause issues fixed. #1154
+* Button to copy the content into Custom AMP Editor #783
+* Rename AMP loop widget areas or add proper descriptions #1045
+* Trailing slash issue #1095
+* Related Posts by Post type featured added #1141
+* Ultimate Social Media Icons plugin causes validation issues fixed #1135
+* Adding proper path for functions.php, it was causing strange fatal errors and irregular white screen of death fixed  #1144
+* A smooth way to migrate from other AMP plugins to AMPforWP #1051
+* Alert added on AMP by Automattic installation. #1180
+* Insertion of strange spaces around H1 titles #1069
+* AMP Page Builder and HTTPS #1164
+* You can display comments from more than one vendor such as displaying WP & FB Comments #1150
+* Rename AMP loop widget areas or add proper descriptions #1045
+* FrontPage featured image with srcset #1063
+* An option for Showing featured image from custom field #1098
+* Added the Custom Front Page Title From Yoast SEO #1163
+* Commenting breaks SSI directives causes to display error #1179
+* rel canonical appears more than once in search pages #1195
+* Dev mode in AMP #1083
+* Social Sticky Icons Improvements #1061
+* Grand-Child support added in Design 3 #1152
+* amp-accordion non-critical error in Design 3 & CSS improvements fixed #1152
+* Incorrect @id for mainentity #1080
+* Hide AMP by specific Categories tweaked for performance. Thanks to Joshua Eichorn @jeichorn CTO at Page.ly #1133 - Huge Thanks!
+* amp-auto-ads for sites with RTL support ON #1176
+* Redirected the Google forms to our contact page so that we can take each and every query and answer every person. #1201
+* ui-state-highlight class was conflicting with ACF date picker fixed #1199
+* Responsify WP Lazy loading causes blank image (Compatibility) #1131
+* amp-carousel scripts loading on the second page fixed in Design 3
+* Show Design screenshot while selection of design #1209
+* Switches Redesigned for better UX #1211
+* Welcome Page UX Improved #1214
+
+= 0.9.62 (25th September 2017) =
+* View more details on https://ampforwp.com/new/
+* INTRODUCING Page Builder 2.0 for AMP! [Learn More & Watch the Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* Documentation & Help links improved
+* Post type specific classes for targetting
+* Design name restored in Options panel (It was recently renamed to Appearance) 
+* Minor Bug fixes as well
 
 = 0.9.61 (10th September 2017) =
 * View more details on https://ampforwp.com/options-restructured/

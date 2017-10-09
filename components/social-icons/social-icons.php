@@ -5,7 +5,8 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
     1: Connect with options panel
 	2: Add icons for email, line and whatsapp
 	*/
-	global $post;
+	global $post, $redux_builder_amp;
+	$twitter_url = '';
 	$post_id = $post->ID;
 	$desc = $post->post_excerpt; 
 	 if (has_post_thumbnail( $post_id ) ){
@@ -15,12 +16,16 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
  	$social_icons_names = array();
 	$url = get_the_permalink();
 	$title = get_the_title();
-
+	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
+		$twitter_url = get_the_permalink();
+	}
+	else
+		$twitter_url = wp_get_shortlink();
 	foreach ($selected_social_icons as $key => $value) {
 	 	$social_icons_names[] = $key;	 
 	 }
 	 if($selected_social_icons['twitter'] == null){
-	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $url.'&text='. $title .' ';
+	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $twitter_url.'&text='. $title .' ';
 	 	//https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}
 	 }
 	 if($selected_social_icons['facebook'] == null){

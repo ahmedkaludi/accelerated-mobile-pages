@@ -53,17 +53,31 @@
                 el.find( '.redux-select-images' ).on(
                     'change', function() {
                         var preview = $( this ).parents( '.redux-field:first' ).find( '.redux-preview-image' );
-
-                        if ( $( this ).val() === "" ) {
-                            preview.fadeOut(
-                                'medium', function() {
-                                    preview.attr( 'src', '' );
-                                }
-                            );
-                        } else {
-                            preview.attr( 'src', $( this ).val() );
-                            preview.fadeIn().css( 'visibility', 'visible' );
-                        }
+						
+						if(typeof $( this ).select2().find(":selected").data("image")!="undefined"){
+							if($( this ).select2().find(":selected").data("image")===""){
+								preview.fadeOut(
+									'medium', function() {
+										preview.attr( 'src', '' );
+									}
+								);
+							}else{
+								preview.attr( 'src', $( this ).select2().find(":selected").data("image") );
+								preview.attr( 'alt', $( this ).select2().find(":selected").data("alt") );
+								preview.fadeIn().css( 'visibility', 'visible' );
+							}
+						}else{
+							if ( $( this ).val() === "" ) {
+								preview.fadeOut(
+									'medium', function() {
+										preview.attr( 'src', '' );
+									}
+								);
+							} else {
+								preview.attr( 'src', $( this ).val() );
+								preview.fadeIn().css( 'visibility', 'visible' );
+							}
+						}
                     }
                 );
             }

@@ -145,5 +145,48 @@ function amp_content_editor_meta_save ( $post_id ) {
         update_post_meta($post_id, 'ampforwp_custom_sidebar_select', $_POST[ 'ampforwp_custom_sidebar_select' ] );
     }
 }
-
 add_action ( 'save_post' , 'amp_content_editor_meta_save' );
+//Add Button
+add_action('admin_head', 'ampforwp_add_my_tc_button');
+function ampforwp_add_my_tc_button() {
+    global $typenow;
+    // check user permissions
+    if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
+    return;
+    }
+    // verify the post type
+    if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+        return;
+    // check if WYSIWYG is enabled
+    if ( get_user_option('rich_editing') == 'true') {
+        add_filter('mce_buttons', 'ampforwp_register_my_tc_button');
+        add_filter("mce_external_plugins", "ampforwp_add_tinymce_plugin");
+    }
+}
+//Load the js file
+function ampforwp_add_tinymce_plugin($plugin_array) {
+    $plugin_array['ampforwp_tc_button'] = plugins_url( '/custom-amp-content-button.js', __FILE__ ); // CHANGE THE BUTTON SCRIPT HERE
+    return $plugin_array;
+}
+//Register the Button
+function ampforwp_register_my_tc_button($buttons) {
+   array_push($buttons, "|", "ampforwp_tc_button");
+   return $buttons;
+}
+//Style to hide Button in the main Editor
+add_action('admin_head', function()
+{
+    ?>
+    <style type="text/css">
+       #wp-content-editor-container .mce-container .mce-ampforwp-copy-content-button{
+          display: none;
+        }
+      .dashicons-clipboard:before{
+          font: 400 18px/1.25 dashicons;
+       }
+       .mce-ampforwp-copy-content-button .mce-txt{
+          margin-left: 5px;
+       }
+    </style>
+    <?php
+});

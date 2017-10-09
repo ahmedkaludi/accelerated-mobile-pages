@@ -15,10 +15,8 @@
 			$amp_url				= str_replace($remove, '', $amp_url) ;
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} ?>
-	<link rel="canonical" href="<?php echo $amp_url ?>">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
-	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
@@ -53,11 +51,15 @@
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			$ampforwp_amp_post_url = trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>
 		<div class="amp-wp-content amp-loop-list">
-			<?php if ( has_post_thumbnail() ) { ?>
-				<?php
-				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-				$thumb_url = $thumb_url_array[0];
+			<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
+				if ( has_post_thumbnail()) {   
+					$thumb_id = get_post_thumbnail_id();
+					$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+					$thumb_url = $thumb_url_array[0];
+					}
+				else{
+					$thumb_url = ampforwp_cf_featured_image_src();
+				}
 				?>
 				<div class="home-post_image"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><amp-img src=<?php echo $thumb_url ?> width=100 height=75></amp-img></a></div>
 			<?php } ?>

@@ -145,8 +145,14 @@ class AMP_Post_Template {
 		$post_title = get_the_title( $this->ID );
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
-		$post_author = get_userdata( $this->post->post_author );
-
+		if(!empty($this->post)){
+			$post_author = get_userdata( $this->post->post_author );
+			$post_author_name = $post_author->display_name;
+		}
+		else {
+			$post_author = '';
+			$post_author_name = '';
+		}
 		$this->add_data( array(
 			'post' => $this->post,
 			'post_id' => $this->ID,
@@ -169,7 +175,7 @@ class AMP_Post_Template {
 			'dateModified' => date( 'c', $post_modified_timestamp ),
 			'author' => array(
 				'@type' => 'Person',
-				'name' => $post_author->display_name,
+				'name' => $post_author_name,
 			),
 		);
 
@@ -195,57 +201,61 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_commments_data() {
-		if ( ! post_type_supports( $this->post->post_type, 'comments' ) ) {
-			return;
+		if(!empty($this->post)){
+			if ( ! post_type_supports( $this->post->post_type, 'comments' ) ) {
+				return;
+			}
+
+			$comments_open = comments_open( $this->ID );
+
+			// Don't show link if close and no comments
+			if ( ! $comments_open
+				&& ! $this->post->comment_count ) {
+				return;
+			}
+
+			$comments_link_url = get_comments_link( $this->ID );
+			$comments_link_text = $comments_open
+				? __( 'Leave a Comment', 'amp' )
+				: __( 'View Comments', 'amp' );
+
+			$this->add_data( array(
+				'comments_link_url' => $comments_link_url,
+				'comments_link_text' => $comments_link_text,
+			) );
 		}
-
-		$comments_open = comments_open( $this->ID );
-
-		// Don't show link if close and no comments
-		if ( ! $comments_open
-			&& ! $this->post->comment_count ) {
-			return;
-		}
-
-		$comments_link_url = get_comments_link( $this->ID );
-		$comments_link_text = $comments_open
-			? __( 'Leave a Comment', 'amp' )
-			: __( 'View Comments', 'amp' );
-
-		$this->add_data( array(
-			'comments_link_url' => $comments_link_url,
-			'comments_link_text' => $comments_link_text,
-		) );
 	}
 
 	private function build_post_content() {
-		$amp_content = new AMP_Content( $this->post->post_content,
-			apply_filters( 'amp_content_embed_handlers', array(
-				'AMP_Twitter_Embed_Handler' => array(),
-				'AMP_YouTube_Embed_Handler' => array(),
-				'AMP_Instagram_Embed_Handler' => array(),
-				'AMP_Vine_Embed_Handler' => array(),
-				'AMP_Facebook_Embed_Handler' => array(),
-				'AMP_Gallery_Embed_Handler' => array(),
-			), $this->post ),
-			apply_filters( 'amp_content_sanitizers', array(
-				 'AMP_Style_Sanitizer' => array(),
-				 'AMP_Blacklist_Sanitizer' => array(),
-				 'AMP_Img_Sanitizer' => array(),
-				 'AMP_Video_Sanitizer' => array(),
-				 'AMP_Audio_Sanitizer' => array(),
-				 'AMP_Iframe_Sanitizer' => array(
-					 'add_placeholder' => true,
-				 ),
-			), $this->post ),
-			array(
-				'content_max_width' => $this->get( 'content_max_width' ),
-			)
-		);
+		if(!empty($this->post->post_content)){
+			$amp_content = new AMP_Content( $this->post->post_content,
+				apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Twitter_Embed_Handler' => array(),
+					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_Instagram_Embed_Handler' => array(),
+					'AMP_Vine_Embed_Handler' => array(),
+					'AMP_Facebook_Embed_Handler' => array(),
+					'AMP_Gallery_Embed_Handler' => array(),
+				), $this->post ),
+				apply_filters( 'amp_content_sanitizers', array(
+					 'AMP_Style_Sanitizer' => array(),
+					 'AMP_Blacklist_Sanitizer' => array(),
+					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Video_Sanitizer' => array(),
+					 'AMP_Audio_Sanitizer' => array(),
+					 'AMP_Iframe_Sanitizer' => array(
+						 'add_placeholder' => true,
+					 ),
+				), $this->post ),
+				array(
+					'content_max_width' => $this->get( 'content_max_width' ),
+				)
+			);
 
-		$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
-		$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
-		$this->add_data_by_key( 'post_amp_styles', $amp_content->get_amp_styles() );
+			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
+			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
+			$this->add_data_by_key( 'post_amp_styles', $amp_content->get_amp_styles() );
+	}
 	}
 
 	private function build_post_featured_image() {

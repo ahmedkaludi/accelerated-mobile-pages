@@ -1,3 +1,5 @@
+<?php  global $redux_builder_amp; 
+if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampforwp-bread-crumb']==1) { ?>
 <div class="amp-wp-content breadcrumb"> <?php  
     // Settings
     $breadcrums_id      = 'breadcrumbs';
@@ -68,7 +70,7 @@
             if(!empty($category)) {
 
                 // Get last category post is in
-                $last_category = end(array_values($category));
+                $last_category = end((array_values($category)));
                   $category_name = get_category($last_category);
                 // Get parent any categories and create array
                 $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
@@ -79,7 +81,7 @@
                 foreach($cat_parents as $parents) {
                     $cat_id = get_cat_ID( $parents);
                     $cat_link = get_category_link($cat_id);
-                    $cat_display .= '<li class="item-cat item-cat-' . $parents->term_id . '"><a class="bread-cat bread-cat-' . $parents->term_id . ' bread-cat-' . $parents. '" href="'.trailingslashit(trailingslashit($cat_link).'amp').'" title="' . $parents . '">' . $parents . '</a></li>';
+                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. user_trailingslashit(trailingslashit($cat_link).AMPFORWP_AMP_QUERY_VAR).'" title="' . $parents . '">' . $parents . '</a></li>';
                 }
             }
               
@@ -195,3 +197,4 @@
       
     }?>
 </div>
+<?php }

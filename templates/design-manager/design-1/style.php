@@ -105,7 +105,6 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 <?php if($redux_builder_amp['enable-single-social-icons'] && is_socialshare_or_socialsticky_enabled_in_ampforwp() ){ ?> .amp-wp-footer{padding-bottom: 60px;}<?php } ?>
 
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
-/* RTL Styling */
 header, amp-sidebar, article, footer{ direction: rtl;}
 .home-post-image{float:left; margin: 0 10px 10px 20px;}
 .amp-wp-header{text-align: right;}
@@ -125,7 +124,7 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .closebutton{right:0; left:20px;}
 .amp-wp-byline amp-img{ margin:0px 0px 0px 6px;}
 .comment-author{float: right;}
-.amp-ad-wrapper{ direction: ltr; }
+.amp-ad-wrapper,.amp-wp-article amp-ad{ direction: ltr; }
 <?php } ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
 .callnow{ position: relative; top: -27px; right: 100px; }
@@ -142,4 +141,7 @@ if ( class_exists('TablePress') ) { ?>
 .breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -1px;}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
+.amp-wp-content.widget-wrapper{max-width:840px}
+.amp_widget_above_the_footer {margin:0 10px;}
+.widget-wrapper li { list-style-position: inside; }
 <?php echo $redux_builder_amp['css_editor']; } ?>
