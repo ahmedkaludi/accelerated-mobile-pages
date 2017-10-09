@@ -2596,7 +2596,7 @@ if( !function_exists('ampforwp_checking_any_social_profiles') ) {
 }
 
 // 50. Properly adding noditification Scritps the AMP way
-add_filter( 'amp_post_template_data', 'ampforwp_add_notification_scripts' );
+add_filter( 'amp_post_template_data', 'ampforwp_add_notification_scripts', 75 );
 function ampforwp_add_notification_scripts( $data ) {
 	global $redux_builder_amp;
 
