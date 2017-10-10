@@ -234,6 +234,7 @@ function ampforwp_parent_plugin_check() {
 
 // Redux panel inclusion code
 	if ( !class_exists( 'ReduxFramework' ) ) {
+	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 	}
 	// Register all the main options
