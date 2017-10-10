@@ -9,3 +9,11 @@ function ampforwp_filter_remove_function_responsifywp(){
 	}
   }
 }
+
+//
+add_filter('heateor_sss_disable_sharing','something');
+function something(){
+	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
+		return 1;
+	}
+}
