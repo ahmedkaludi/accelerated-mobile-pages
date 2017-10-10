@@ -1,2 +1,6 @@
 1.Few changes in class-amp-post-template.php to take care of the archive debug errors
 Reference: #1130 #966
+
+2. Replaced the fastimage with fasterimage for PHP 5.4+ #1191
+	files are added in:	amp/includes/lib->fasterimage
+						amp/includes/lib/fastimage
