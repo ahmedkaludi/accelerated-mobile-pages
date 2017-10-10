@@ -128,7 +128,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		}
 		return $number_of_comments;
 	}
-var_dump(AMPFORWP_COMMENTS_PER_PAGE);
+	// var_dump(AMPFORWP_COMMENTS_PER_PAGE);
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
 
