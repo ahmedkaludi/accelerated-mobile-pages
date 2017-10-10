@@ -2647,7 +2647,7 @@ Redux::setSection( $opt_name, array(
           array(
               'id'        =>  'enable-single-linkdin-profile',
               'type'      =>  'switch',
-              'title'     =>  __('Linkdin ', 'accelerated-mobile-pages'),
+              'title'     =>  __('LinkedIn', 'accelerated-mobile-pages'),
               'default'   =>  0,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
@@ -2656,7 +2656,7 @@ Redux::setSection( $opt_name, array(
           array(
               'id'        =>  'enable-single-linkdin-profile-url',
               'type'      =>  'text',
-              'title'     =>  __('Linkdin URL', 'accelerated-mobile-pages'),
+              'title'     =>  __('LinkedIn URL', 'accelerated-mobile-pages'),
               'default'   =>  '',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),
