@@ -1784,6 +1784,7 @@ function ampforwp_frontpage_title_markup () {
 
                 // xlink attribute causes Validatation Issues #1149
 				$content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
+				$content_buffer = preg_replace('/!important/', '' , $content_buffer);
 
             }
             return $content_buffer;
