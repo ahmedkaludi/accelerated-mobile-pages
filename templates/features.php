@@ -122,9 +122,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// Define number of comments
 	function ampforwp_define_comments_number(){
 		global $redux_builder_amp;
-		return $redux_builder_amp['ampforwp-number-of-comments'];
+		$number_of_comments = '';
+		if(isset($redux_builder_amp['ampforwp-number-of-comments'])){
+			$number_of_comments = $redux_builder_amp['ampforwp-number-of-comments'];
+		}
+		return $number_of_comments;
 	}
-
+var_dump(AMPFORWP_COMMENTS_PER_PAGE);
 	// 1. Add Home REL canonical
 	// Add AMP rel-canonical for home and archive pages
 

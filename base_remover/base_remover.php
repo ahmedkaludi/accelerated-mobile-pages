@@ -41,10 +41,15 @@ add_filter( 'init', 'ampforwp_url_base_rewrite_rules', 100 );
 function ampforwp_url_base_rewrite_rules(){
 	global $redux_builder_amp;
 	global $wp_rewrite;
+	$categoryBaseRewrite = 0;
+	$tagBaseRewrite = 0;
 	
-	
-	$categoryBaseRewrite = $redux_builder_amp['ampforwp-category-base-removel-link'];
-	$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
+	if(isset($redux_builder_amp['ampforwp-category-base-removel-link'])){	
+		$categoryBaseRewrite = $redux_builder_amp['ampforwp-category-base-removel-link'];
+	}
+	if(isset($redux_builder_amp['ampforwp-tag-base-removal-link'])){
+		$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
+	}
 	/* $catagoryStatusChanges = get_option('AMP-category-base-removal-status');
 	if($catagoryStatusChanges==$categoryBaseRewrite){
 		update_option('AMP-category-base-removal-status',$categoryBaseRewrite);
