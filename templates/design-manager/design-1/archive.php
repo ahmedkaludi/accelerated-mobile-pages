@@ -52,7 +52,7 @@
 	<?php do_action('ampforwp_post_before_loop') ?>
 
 	  <?php if ( is_archive() ) {
-	    the_archive_title( '<h3 class="page-title">', '</h3>' );
+	    the_archive_title( '<h1 class="page-title">', '</h1>' );
 	    
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  

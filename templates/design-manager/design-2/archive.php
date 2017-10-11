@@ -54,7 +54,7 @@
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
  			<?php
- 			the_archive_title( '<h3 class="page-title">', '</h3>' );
+ 			the_archive_title( '<h1 class="page-title">', '</h1>' );
 
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) { 

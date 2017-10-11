@@ -74,7 +74,7 @@ if ( get_query_var( 'paged' ) ) {
 		) ); ?>
 
  	<?php if ( is_archive() ) {
- 			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
+ 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
  			
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
