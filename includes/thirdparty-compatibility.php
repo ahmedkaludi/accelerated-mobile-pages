@@ -17,3 +17,11 @@ function ampforwp_removing_sassy_social_share(){
 		return 1;
 	}
 }
+
+// Remove Schema theme Lazy Load #1170
+
+add_action('pre_amp_render_post','schema_lazy_load_remover');
+function schema_lazy_load_remover(){
+	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
+	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
+}
