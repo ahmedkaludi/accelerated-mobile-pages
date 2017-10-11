@@ -3262,8 +3262,8 @@ function ampforwp_post_pagination( $args = '' ) {
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 
 	$defaults = array(
-		'before'           => '<p>' . __( 'Page:' ),
-		'after'            => '</p>',
+		'before'           => '<div class="ampforwp_pagination" ><p>' . __( 'Page:' ),
+		'after'            => '</p></div>',
 		'link_before'      => '',
 		'link_after'       => '',
 		'next_or_number'   => 'number',
