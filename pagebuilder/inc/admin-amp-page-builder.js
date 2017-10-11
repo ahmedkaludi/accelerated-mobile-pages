@@ -248,7 +248,12 @@ jQuery( document ).ready( function( $ ){
 
 							$.each(moduledetails.fields, function(fieldtype,modData){
 								var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
-								cells[modData.name] = $('#'+fieldIdentifier).val();
+								if(modData.type=='text-editor'){
+									cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+								}else{
+									cells[modData.name] = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
+								}
+								//cells[modData.name] = $('#'+fieldIdentifier).val();
 							});
 
 						}
