@@ -116,7 +116,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                 }
           }?>
 
-        <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
+        <?php if ( isset($redux_builder_amp['opt-media']['url'] ) && true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
 
             <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>

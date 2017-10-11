@@ -1568,7 +1568,9 @@ function ampforwp_custom_yoast_meta_homepage(){
 				do_action( 'wpseo_opengraph' );
 
 		}//execute only if Glue is deactive
-	echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+		if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
+			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
+		}
 	}
 }
 
@@ -3419,8 +3421,9 @@ function ampforwp_posts_to_remove () {
 	$get_selected_cats 				= array();
 	$selected_cats 					= array();
 	$post_id_array 					= array();
-
-	$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+	if(isset($redux_builder_amp['hide-amp-categories'])){
+		$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+	}
 	if($get_categories_from_checkbox){
 		$get_selected_cats = array_filter($get_categories_from_checkbox);
 		foreach ($get_selected_cats as $key => $value) {
@@ -3741,12 +3744,14 @@ function ampforwp_body_beginning_html_output(){
 add_filter('get_amp_supported_post_types','is_amp_post_support_enabled');
 function is_amp_post_support_enabled($supportedTypes){
 	global $redux_builder_amp;
-	if($redux_builder_amp['amp-on-off-for-all-posts']!='1'){
-		$index = array_search('post',$supportedTypes);
-		unset($supportedTypes[$index]);
-	}elseif($redux_builder_amp['amp-on-off-for-all-posts']==1){
-		$supportedTypes[] = 'post';
-		$supportedTypes = array_unique($supportedTypes);
+	if( isset( $redux_builder_amp['amp-on-off-for-all-posts'] ) ) {
+		if($redux_builder_amp['amp-on-off-for-all-posts']!='1'){
+			$index = array_search('post',$supportedTypes);
+			unset($supportedTypes[$index]);
+		}elseif($redux_builder_amp['amp-on-off-for-all-posts']==1){
+			$supportedTypes[] = 'post';
+			$supportedTypes = array_unique($supportedTypes);
+		}
 	}
 	return $supportedTypes;
 }
