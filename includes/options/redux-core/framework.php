@@ -2959,7 +2959,7 @@
 //                                }
 //                            }
 
-                            if ( isset( $this->extensions[ $field['type'] ] ) && method_exists( $this->extensions[ $field['type'] ], '_validate_values' ) ) {
+                            if ( isset($field['type']) && isset( $this->extensions[ $field['type'] ] ) && method_exists( $this->extensions[ $field['type'] ], '_validate_values' ) ) {
                                 $plugin_options = $this->extensions[ $field['type'] ]->_validate_values( $plugin_options, $field );
                             }
 

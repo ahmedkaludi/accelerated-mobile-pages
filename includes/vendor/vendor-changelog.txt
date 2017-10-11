@@ -7,3 +7,5 @@ Reference: #1130 #966
 						amp/includes/sanitizers/class-amp-img-sanitizer.php
 						amp/includes/utils/class-amp-image-dimension-extract.php
 						amp/includes/utils/class-amp-wp-utils.php
+
+3. Redux: A small change in redux-core/framework.php at line number 2962. #1219						
