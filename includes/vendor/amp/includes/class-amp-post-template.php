@@ -12,7 +12,7 @@ require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
-
+require_once(AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );

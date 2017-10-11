@@ -4,7 +4,7 @@
 
 This plugin adds support for the [Accelerated Mobile Pages](https://www.ampproject.org) (AMP) Project, which is an open source initiative that aims to provide mobile optimized content that can load instantly everywhere.
 
-With the plugin active, all posts on your site will have dynamically generated AMP-compatible versions, accessible by appending `/amp/` to the end your post URLs. For example, if your post URL is `http://example.com/2016/01/01/amp-on/`, you can access the AMP version at `http://example.com/2016/01/01/amp-on/amp/`. If you do not have [pretty permalinks](https://codex.wordpress.org/Using_Permalinks#mod_rewrite:_.22Pretty_Permalinks.22) enabled, you can do the same thing by appending `?amp=1`, i.e. `http://example.com/2016/01/01/amp-on/?amp=1`
+With the plugin active, all posts on your site will have dynamically generated AMP-compatible versions, accessible by appending `/amp/` to the end your post URLs. For example, if your post URL is `http://example.com/2016/01/01/amp-on/`, you can access the AMP version at `http://example.com/2016/01/01/amp-on/amp/`. If you do not have [pretty permalinks](https://codex.wordpress.org/Using_Permalinks#mod_rewrite:_.22Pretty_Permalinks.22) enabled, you can do the same thing by appending `?amp=1`, i.e. `http://example.com/?p=123&amp=1`
 
 Note #1: that Pages and archives are not currently supported.
 
@@ -53,7 +53,7 @@ function xyz_amp_set_site_icon_url( $data ) {
 
 #### Logo Only
 
-If you want to hide the site text and just show a logo, use the `amp_post_template_css` action. The following colours the title bar black, hides the site title, and replaces it with a centered logo:
+If you want to hide the site text and just show a logo, use the `amp_post_template_css` action. The following colors the title bar black, hides the site title, and replaces it with a centered logo:
 
 ```
 add_action( 'amp_post_template_css', 'xyz_amp_additional_css_styles' );
@@ -79,7 +79,7 @@ function xyz_amp_additional_css_styles( $amp_template ) {
 }
 ```
 
-Note: you will need to adjust the colours and sizes based on your brand.
+Note: you will need to adjust the colors and sizes based on your brand.
 
 ### Template Tweaks
 
@@ -490,7 +490,70 @@ function xyz_amp_add_ad_sanitizer( $sanitizer_classes, $post ) {
 }
 ```
 
+## Extracting Image Dimensions
+
+AMP requires images to have width and height attributes. When these attributes aren't present in an image tag, AMP-WP will 
+attempt to determine them for the image.
+
+### Extraction Methods
+
+#### Concurrent Dimension Extraction - PHP 5.3+ and cURL
+If you're using PHP 5.3+ and have the cURL extension installed, AMP-WP will attempt to determine dimensions for all images
+that need them concurrently. Only the minimum number of bytes required to determine the dimensions for a given image type 
+are retrieved. Dimensions are then cached via transients for subsequent requests. This is the fastest and therefore recommended method.
+#### Sequential Dimension Extraction - PHP 5.2 or no cURL
+If you're using PHP 5.2 or do not have the cURL extension installed, AMP-WP will attempt to determine image dimensions
+sequentially. Only the minimum number of bytes required to determine the dimensions for a given image type are retrieved, 
+but the time it takes to retrieve each image's dimensions sequentially can still add up. Dimensions are then cached via transients for subsequent requests.
+#### Custom Dimension Extraction
+You can implement your own image dimension extraction method by adding a callback to the **amp_extract_image_dimensions_batch** filter.
+
+amp_extract_image_dimensions_batch callback functions take a single argument, *$dimensions* by convention, which is a map/array of image urls to either an array containing the
+dimensions of the image at the url (if another callback for the filter was able to determine them), or false if the dimensions have yet to be determined, e.g.
+
+```php
+array(
+    'http://i0.wp.com/placehold.it/350x150.png' => array(
+        'width' => 350,
+        'height' => 150,
+     ),
+     'http://i0.wp.com/placehold.it/1024x768.png' => false,
+);
+```
+Your custom dimension extraction callback would iterate through the mappings contained in this single argument, determining 
+dimensions via your custom method for all image url keys whose values are not arrays of dimensions, e.g.
+```php
+function my_custom_dimension_extraction_callback( $dimensions ) {
+    foreach ( $dimensions as $url => $value ) {
+        // Skip if dimensions have already been determined for this image.
+        if ( is_array( $value ) ) {
+            continue;                
+        }
+        $width = <YOUR CUSTOM CODE TO DETERMINE WIDTH>
+        $height = <YOUR CUSTOM CODE TO DETERMINE HEIGHT>
+        $dimensions[ $url ] = array( 
+            'width' => $width,
+            'height' => $height,
+         );
+    }
+    
+    return $dimensions;
+```
+Your callback needs to return $dimensions so that the value either cascades to the next callback that was added to the *amp_extract_image_dimensions_batch* filter or is 
+returned to the apply_filter() call (if there are no more unprocessed callbacks).
+
+The default callback provided by WP-AMP described above, *extract_by_downloading_images*, will fire unless explicitly removed, so be sure 
+to remove it from the callback chain if you don't want it to, e.g.
+
+```php
+	remove_filter( 'amp_extract_image_dimensions_batch', array( 'AMP_Image_Dimension_Extractor', 'extract_by_downloading_images' ), 999, 1 );
+````
+
+**Note that if you previously added a custom dimension extraction callback to the *amp_extract_image_dimensions* filter, 
+you need to update it to hook into the *amp_extract_image_dimensions_batch* filter instead and iterate over the key value 
+pairs in the single argument as per the example above.**
 ## Analytics
+
 
 To output proper analytics tags, you can use the `amp_post_template_analytics` filter:
 
