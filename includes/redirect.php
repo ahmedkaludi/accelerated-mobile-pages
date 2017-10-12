@@ -42,6 +42,9 @@ function ampforwp_page_template_redirect() {
     if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==0){
       return;
     }
+    if ( is_feed() ) {
+      return;
+    }
     // Return if some categories are selected as Hide #999
     if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
       $selected_cats = array();
