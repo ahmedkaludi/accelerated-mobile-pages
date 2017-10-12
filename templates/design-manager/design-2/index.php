@@ -42,9 +42,12 @@
  	<?php if ( is_archive() ) {
  			the_archive_title( '<h3 class="page-title">', '</h3>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
- 		} ?>
-
-	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+ 		} 
+ 		$blog_title = ampforwp_get_blog_details('title');
+			if($blog_title){  ?>
+				<h1 class="page-title"><?php echo $blog_title ?> </h1>
+			<?php }	
+ 	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = user_trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ) ; ?>
 
 		<div class="amp-wp-content amp-loop-list">

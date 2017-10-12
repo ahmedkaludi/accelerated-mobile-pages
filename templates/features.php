@@ -84,6 +84,7 @@
 	74. Featured Image check from Custom Fields 
 	75. Dev Mode in AMP
 	76. Body Class for AMP pages
+	77. AMP Blog Details
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3792,7 +3793,7 @@ function ampforwp_dev_mode_notice(){
 			</div>
 <?php }
 }
-
+ 
 // 76. Body Class for AMP pages
 if (! function_exists( 'ampforwp_body_class' ) ) {
 	function ampforwp_body_class( $class = '' ) {
@@ -3865,3 +3866,43 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 
 // Fallback for ticket #1006
 function ampforwp_the_body_class(){ return ;}
+
+// 77. AMP Blog Details
+if( !function_exists('ampforwp_get_blog_details') ) {
+	function ampforwp_get_blog_details( $param = "" ) {
+		global $redux_builder_amp;
+		$current_url = '';
+		$output = '';
+		$current_url_in_pieces = array();
+		if(is_home() &&  $redux_builder_amp['amp-frontpage-select-option'] == 1 && get_option('show_on_front') == 'page'){
+			$current_url = home_url( $GLOBALS['wp']->request );
+			$current_url_in_pieces = explode( '/', $current_url );
+			$page_for_posts  =  get_option( 'page_for_posts' );
+			$post = get_post($page_for_posts);
+			if ( $post ) {
+				$slug = $post->post_name;
+				$title = $post->post_title;
+				$blog_id = $post->ID;
+			}
+			switch ($param) {
+				case 'title':
+					$output = $title;
+					break;
+				case 'name':
+					$output = $slug;
+					break;
+				case 'id':
+					$output = $blog_id;
+					break;
+				default:
+					if(in_array($slug, $current_url_in_pieces)){
+						$output = true;
+					}
+					else
+						$output = false;
+					break;
+			}
+		}
+		return $output;
+	}
+}
