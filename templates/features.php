@@ -1248,7 +1248,9 @@ function ampforwp_meta_redirection_status(){
 	global $post;
 	$ampforwp_redirection_post_on_off_meta = '';
 
-	$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
+	if ( ! is_404() ) {
+		$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
+	}
 
 	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
 		$ampforwp_redirection_post_on_off_meta = 'enable';
