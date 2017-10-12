@@ -21,7 +21,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body design_3_wrapper">
+<body <?php ampforwp_body_class('amp_home_body archives_body design_3_wrapper');?>>
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
