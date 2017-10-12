@@ -26,10 +26,9 @@
   	<div class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category">
   		<span>
 				<?php global $redux_builder_amp;
-				//if RTL is OFF
-				if(!$redux_builder_amp['amp-rtl-select-option']) {
+				
 						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' ));
-							}
+							
 				?>
 			</span>
       <?php foreach ($ampforwp_categories as $cat ) {
@@ -40,10 +39,7 @@
 				}
       }
 
-			//if RTL is ON
-			if($redux_builder_amp['amp-rtl-select-option']) {
-					 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' ));
-						}
+			
 			 ?>
   	</div>
   <?php endif; ?>
