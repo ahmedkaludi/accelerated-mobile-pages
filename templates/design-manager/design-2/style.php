@@ -115,9 +115,8 @@ h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; }
 main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 .page-title{
 	font-size: 1.17em;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-}
+	padding: 6px 0;
+    }
 /* Footer */
 #footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }

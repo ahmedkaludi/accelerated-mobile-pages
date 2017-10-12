@@ -41,7 +41,7 @@
 		$q = new WP_Query( $filtered_args ); ?>
 
  	<?php if ( is_archive() ) {
- 			the_archive_title( '<h3 class="page-title">', '</h3>' );
+ 			the_archive_title( '<h1 class="page-title">', '</h1>' );
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} 
  		$blog_title = ampforwp_get_blog_details('title');
