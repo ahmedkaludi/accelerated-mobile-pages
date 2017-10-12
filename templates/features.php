@@ -3812,3 +3812,43 @@ function ampforwp_dev_mode_notice(){
 			</div>
 <?php }
 }
+
+// AMP Blog Details
+if( !function_exists('ampforwp_get_blog_details') ) {
+	function ampforwp_get_blog_details( $param = "" ) {
+		global $redux_builder_amp;
+		$current_url = '';
+		$output = '';
+		$current_url_in_pieces = array();
+		if(is_home() &&  $redux_builder_amp['amp-frontpage-select-option'] == 1 && get_option('show_on_front') == 'page'){
+			$current_url = home_url( $GLOBALS['wp']->request );
+			$current_url_in_pieces = explode( '/', $current_url );
+			$page_for_posts  =  get_option( 'page_for_posts' );
+			$post = get_post($page_for_posts);
+			if ( $post ) {
+				$slug = $post->post_name;
+				$title = $post->post_title;
+				$blog_id = $post->ID;
+			}
+			switch ($param) {
+				case 'title':
+					$output = $title;
+					break;
+				case 'name':
+					$output = $slug;
+					break;
+				case 'id':
+					$output = $blog_id;
+					break;
+				default:
+					if(in_array($slug, $current_url_in_pieces)){
+						$output = true;
+					}
+					else
+						$output = false;
+					break;
+			}
+		}
+		return $output;
+	}
+}
