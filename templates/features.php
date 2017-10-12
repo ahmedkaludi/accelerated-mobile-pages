@@ -81,6 +81,9 @@
 	71. Alt tag for thumbnails #1013 and For Post ID in Body tag #1006
 	72. Blacklist Sanitizer Added back #1024
 	73. View AMP Site below View Site In Dashboard #1076
+	74. Featured Image check from Custom Fields 
+	75. Dev Mode in AMP
+	76. Body Class for AMP pages
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3527,29 +3530,6 @@ function ampforwp_thumbnail_alt(){
 		echo 'alt="' . esc_attr($thumb_alt) . '"';
 	}
 }
-// For Post ID in Body tag #1006
-function ampforwp_get_body_class(){
-	global $post;
-	global $redux_builder_amp;
-	$post_id = '';
-
-	if ( is_singular() ) {
-		$post_id = $post->ID;
-	}
-	if ( $redux_builder_amp['amp-frontpage-select-option']) {
-	   	if ( is_home() &&  is_front_page() ) {
-	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	   	} elseif ( is_home() ){
-	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
-	   }
-	}
-
-	return $post_id;
-}
-
-function ampforwp_the_body_class(){
-	echo 'post-id-' . ampforwp_get_body_class();
-}
 
 // 72. Blacklist Sanitizer Added back #1024
 add_filter('amp_content_sanitizers', 'ampforwp_add_blacklist_sanitizer');
@@ -3756,7 +3736,7 @@ function is_amp_post_support_enabled($supportedTypes){
 	return $supportedTypes;
 }
 
-// Featured Image check from Custom Fields
+// 74. Featured Image check from Custom Fields
 function ampforwp_is_custom_field_featured_image(){
 	global $redux_builder_amp, $post;
 	if(isset($redux_builder_amp['ampforwp-custom-fields-featured-image-switch'], $redux_builder_amp['ampforwp-custom-fields-featured-image']) && $redux_builder_amp['ampforwp-custom-fields-featured-image-switch'] && $redux_builder_amp['ampforwp-custom-fields-featured-image']){
@@ -3786,7 +3766,7 @@ global $redux_builder_amp, $post;
 	}
 }
 
-// Dev Mode in AMP
+// 75. Dev Mode in AMP
 add_action('amp_init','ampforwp_dev_mode');
 function ampforwp_dev_mode(){
 	global $redux_builder_amp;
@@ -3812,3 +3792,76 @@ function ampforwp_dev_mode_notice(){
 			</div>
 <?php }
 }
+
+// 76. Body Class for AMP pages
+if (! function_exists( 'ampforwp_body_class' ) ) {
+	function ampforwp_body_class( $class = '' ) {
+	    // Separates classes with a single space, collates classes for body element
+	    echo 'class="' . join( ' ', ampforwp_get_body_class( $class ) ) . '"';
+	}
+}
+
+if (! function_exists( 'ampforwp_get_body_class' ) ) {
+	function ampforwp_get_body_class( $class = '' ){
+		global $wp_query, $redux_builder_amp, $post;
+	 
+	    $classes = array();
+		$post_id = '';
+		$post_type = '';
+
+		$classes[] = 'body';
+
+		if ( is_singular() ) {
+			$post_id = $post->ID;
+			$classes[] = 'single-post';
+		}
+
+		if ( $redux_builder_amp['amp-frontpage-select-option']) {
+		   	if ( is_home() &&  is_front_page() ) {
+		    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		   	} elseif ( is_home() ){
+		    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
+		   }
+		}
+
+	    $classes[] = $post_id;
+
+	    if ( $post_id ) {
+	    	$classes[] = 'post-id-' . $post_id;
+	    	$classes[] = 'singular-' . $post_id;
+	    }
+
+	    if ( is_page() ) {
+	    	$classes[] = 'amp-single-page';
+	    }
+	    
+ 
+		if ( is_post_type_archive() ) {
+			$post_type = get_queried_object();
+			$classes[] = 'type-'. $post_type->rewrite['slug'];
+		}
+ 
+		if ( is_archive() ) {
+			$page_id 	= get_queried_object_id();
+			$classes[] 	= 'archives_body archive-'. $page_id;
+		}
+
+		if ( ! empty( $class ) ) {
+		    if ( !is_array( $class ) )
+		        $class = preg_split( '#\s+#', $class );
+		    $classes = array_merge( $classes, $class );
+		} else {
+		    // Ensure that we always coerce class to being an array.
+		    $class = array();
+		}
+
+		$classes = array_map( 'esc_attr', $classes );
+	    $classes = apply_filters( 'ampforwp_body_class', $classes, $class );
+	 
+	    return array_unique( $classes );
+	}
+
+}
+
+// Fallback for ticket #1006
+function ampforwp_the_body_class(){ return ;}
