@@ -121,7 +121,6 @@ function ampforwp_category_url_rewrite_rules($rewrite){
 	return $rewrite;
 }
 
- 
 function ampforwp_tag_url_rewrite_rules($rewrite){
 	$terms = get_terms( 'post_tag', array( 'hide_empty' => false ) );
 	foreach ( $terms as $term ) {
@@ -134,43 +133,4 @@ function ampforwp_tag_url_rewrite_rules($rewrite){
 	}
 	
 	return $rewrite;
-} 
-
-
-
-//
-
-if(!is_admin()){
-	function check_amp_is_inside_url(){
-		
-			$uri = add_query_arg( NULL, NULL );
-			$explodedUri = explode("/",$uri);
-			$explodedUri = array_filter($explodedUri);
-			
-			//To remove last AMP from URL
-			if(isset($explodedUri[count($explodedUri)]) && $explodedUri[count($explodedUri)]=='amp'){
-				array_pop($explodedUri);
-			}
-			$indexOfAmp = array_search('amp',$explodedUri);
-			$pageIndexOfAmp = array_search('page',$explodedUri);
-			
-			//Redirect page to amp page 
-			/*
-			 1. if there is amp in current URL
-			 2. if page is not found in current url
-			*/
-			if($indexOfAmp!=false && $pageIndexOfAmp==false){
-				unset($explodedUri[$indexOfAmp]);
-				//$redirectUrl = home_url();
-				$redirectUrl = "//".$_SERVER['HTTP_HOST']."/".implode("/",$explodedUri).'/amp';
-				if ( wp_redirect( $redirectUrl ) ) {
-					exit;
-				}
-				
-			}
-		
-		//if(is_singular('post')){
-		//}
-	}
-	add_action('init', 'check_amp_is_inside_url');
-} 
+}
