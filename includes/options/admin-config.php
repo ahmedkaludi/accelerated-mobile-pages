@@ -2310,6 +2310,15 @@ Redux::setSection( $opt_name, array(
               'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
               'subtitle' => __('Enable or Disable Breadcrumb'),                  
            ),
+          //Categories and Tags Links
+          array(
+              'id'       => 'ampforwp-cats-tags-links-single',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => __('Categories and Tags Links', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Categories/Tags links in Single', 'accelerated-mobile-pages'),                  
+              'required'  => array('ampforwp-archive-support', '=' , '1'),
+           ),
           // Social Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
