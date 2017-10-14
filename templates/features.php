@@ -1985,9 +1985,9 @@ add_action('amp_init','social_sharing_removal_code', 9);
 add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
-	if ( !comments_open() ){
-		return;
-	}//931
+	//if ( !comments_open() ){
+	//	return;
+	//}//931
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			global $post; $post_slug=$post->post_name;
@@ -2041,9 +2041,9 @@ function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
 	$facebook_comments_markup = '';
-	if ( !comments_open() ){
-		return;
-	}
+	//if ( !comments_open() ){
+		//return;
+	//}
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
