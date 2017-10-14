@@ -1,5 +1,4 @@
 <?php
-
 function amp_load_fasterimage_classes() {
 	// We're not using composer to pull in FasterImage so we need to load the files manually
 	$fasterimage__DIR__ = dirname( __FILE__ );

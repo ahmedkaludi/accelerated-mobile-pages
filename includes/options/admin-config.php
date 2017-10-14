@@ -581,7 +581,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     
     ',
                 'false'     => 'false',
-                'default'   => 1
+                'default'   => 0
             ),
         )
        )
