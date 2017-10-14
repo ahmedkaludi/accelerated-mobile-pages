@@ -98,7 +98,8 @@
  	require AMPFORWP_PLUGIN_DIR  .'templates/custom-sanitizer.php';
 	// Custom Frontpage items
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
- 	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ; 
+ 	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php'; 
 
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
@@ -3906,5 +3907,22 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 			}
 		}
 		return $output;
+	}
+}
+// Saved Custom Post Types for AMP in Options
+add_action('init', 'get_amp_custom_post_types');
+if(!function_exists('get_amp_custom_post_types')){
+	function get_amp_custom_post_types(){
+	global $redux_builder_amp;
+	$post_types = '';
+	$saved_custom_posts = '';
+	$saved_custom_posts = get_option('ampforwp_custom_post_types');
+	$post_types = get_post_types( array( 'public' => true, '_builtin' => false));
+		if($saved_custom_posts && $post_types){
+			if(array_diff($saved_custom_posts, $post_types) ){
+				update_option('ampforwp_custom_post_types',  $post_types);
+			}
+		}
+
 	}
 }

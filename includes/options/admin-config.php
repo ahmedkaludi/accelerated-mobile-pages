@@ -1183,13 +1183,71 @@ Redux::setArgs( "redux_builder_amp", $args );
                         )
             )
    );
-
+    //Get options for Structured Data Type
+if( !function_exists('ampforwp_get_sd_types') ){
+    function ampforwp_get_sd_types(){
+        $options = array();
+        array_push($options, 'BlogPosting' , 'NewsArticle', 'Recipe' , 'Product' );
+        return $options;
+    }
+  }
+ 
+ add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
+ function ampforwp_add_extra_fields($fields){
+    $post_types = '';
+    $custom_fields = array();
+    $extra_fields = array();
+    $post_types = get_option('ampforwp_custom_post_types');
+    if($post_types){
+        foreach ($post_types as $post_type) {
+             $custom_fields[] = array(
+              'id'       => 'ampforwp-sd-type-'. $post_type,
+              'type'     => 'select',
+              'title'    => __($post_type, 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+              'options'  =>  ampforwp_get_sd_types(),
+              'default'  => 0,
+            );
+            $extra_fields = array_merge($extra_fields, $custom_fields);
+        }
+    }
+    array_splice($fields, 2, 0,  $extra_fields);
+    return $fields;
+   
+ }
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
         'id'         => 'opt-structured-data',
         'subsection' => true,
-        'fields'     => array(
+        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array(
+            array(
+              'id'       => 'ampforwp-sd-type-posts',
+              'type'     => 'select',
+              'title'    => __('Posts', 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
+              'options'  => ampforwp_get_sd_types(),
+              'default'  => 0,
+            ),
+            array(
+              'id'       => 'ampforwp-sd-type-pages',
+              'type'     => 'select',
+              'title'    => __('Pages', 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
+              'options'  =>  ampforwp_get_sd_types(),
+              'default'  => 0,
+            ),
+            array(
+              'id'       => 'amp-structured-data-post-type',
+              'type'     => 'select',
+              'multi'    => true,
+              'title'    => __('Post Types for Structured Data', 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the number of post types to set Structured Data Type', 'accelerated-mobile-pages'),
+              'data'     => 'post_type',
+              'args'     => array(
+                        '_builtin' => false
+                            ),
+            ),
             array(
               'id'       => 'amp-structured-data-logo',
               'type'     => 'media',
@@ -1245,6 +1303,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'  => '550'
              ),
         )
+)
     ) );
 
     // Notifications SECTION
