@@ -9,3 +9,6 @@ Reference: #1130 #966
 						amp/includes/utils/class-amp-wp-utils.php
 
 3. Redux: A small change in redux-core/framework.php at line number 2962. #1219						
+
+4. Make sure we are passing the integer in the date function Ticekt no #1241
+	changes made in includes/class-amp-post-template.php on line 174 and 175
