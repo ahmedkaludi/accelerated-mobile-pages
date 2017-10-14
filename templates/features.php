@@ -85,6 +85,7 @@
 	75. Dev Mode in AMP
 	76. Body Class for AMP pages
 	77. AMP Blog Details
+	78. Saved Custom Post Types for AMP in Options for Structured Data
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3909,19 +3910,29 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 		return $output;
 	}
 }
-// Saved Custom Post Types for AMP in Options
-add_action('init', 'get_amp_custom_post_types');
-if(!function_exists('get_amp_custom_post_types')){
-	function get_amp_custom_post_types(){
-	global $redux_builder_amp;
-	$post_types = '';
-	$saved_custom_posts = '';
-	$saved_custom_posts = get_option('ampforwp_custom_post_types');
-	$post_types = get_post_types( array( 'public' => true, '_builtin' => false));
-		if($saved_custom_posts && $post_types){
-			if(array_diff($saved_custom_posts, $post_types) ){
-				update_option('ampforwp_custom_post_types',  $post_types);
-			}
+// Saved Custom Post Types for AMP in Options for Structured Data
+add_action('init', 'ampforwp_get_custom_post_types_sd');
+if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
+	function ampforwp_get_custom_post_types_sd(){
+		global $redux_builder_amp;
+		$post_types = array();
+		$saved_custom_posts = array();
+
+		$saved_custom_posts = get_option('ampforwp_custom_post_types');
+		$post_types = get_post_types( array( 'public' => true, '_builtin' => false));
+		
+		if (empty($post_types)) {
+			$post_types = array();
+		}
+
+		if (empty($saved_custom_posts)) {
+			update_option('ampforwp_custom_post_types',  $post_types);
+		}
+ 		if ( empty( $saved_custom_posts ) ) {
+			$saved_custom_posts = array();
+ 		}
+		if(array_diff($saved_custom_posts, $post_types) ){	
+			update_option('ampforwp_custom_post_types',  $post_types);
 		}
 
 	}

@@ -1238,17 +1238,6 @@ if( !function_exists('ampforwp_get_sd_types') ){
               'default'  => 0,
             ),
             array(
-              'id'       => 'amp-structured-data-post-type',
-              'type'     => 'select',
-              'multi'    => true,
-              'title'    => __('Post Types for Structured Data', 'accelerated-mobile-pages'),
-              'subtitle' => __('Select the number of post types to set Structured Data Type', 'accelerated-mobile-pages'),
-              'data'     => 'post_type',
-              'args'     => array(
-                        '_builtin' => false
-                            ),
-            ),
-            array(
               'id'       => 'amp-structured-data-logo',
               'type'     => 'media',
               'url'      => true,
