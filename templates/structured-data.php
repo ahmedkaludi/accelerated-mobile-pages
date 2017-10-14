@@ -1,9 +1,9 @@
 <?php
 
 // Structured Data Type
-add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 2 );
-function ampforwp_structured_data_type( $metadata , $post ){
-	global $redux_builder_amp;
+add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 1 );
+function ampforwp_structured_data_type( $metadata ){
+	global $redux_builder_amp, $post;
 	$post_types 	= '';
 	$set_sd_post 	= '';
 	$set_sd_page 	= '';	
@@ -23,7 +23,7 @@ function ampforwp_structured_data_type( $metadata , $post ){
 
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
-
+    		
         	if($post->post_type == 'post'){
         		$metadata['@type'] = $set_sd_post;
         	}
