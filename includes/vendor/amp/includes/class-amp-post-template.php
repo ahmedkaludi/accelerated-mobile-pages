@@ -255,7 +255,11 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
 			$this->add_data_by_key( 'post_amp_styles', $amp_content->get_amp_styles() );
-	}
+		}else{
+			$this->add_data_by_key( 'post_amp_content', '' );
+			$this->merge_data_for_key( 'amp_component_scripts', array() );
+			$this->add_data_by_key( 'post_amp_styles', array() );
+		}
 	}
 
 	private function build_post_featured_image() {
