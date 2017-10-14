@@ -1,58 +1,51 @@
 <?php
 
 // Structured Data Type
-add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 10, 2 );
+add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 2 );
 function ampforwp_structured_data_type( $metadata , $post ){
 	global $redux_builder_amp;
-	$sd_type_posts = '';
-	$sd_type_pages = '';
-	$post_types = '';
-	if( isset($redux_builder_amp['ampforwp-sd-type-posts']) ) {
-		if( $redux_builder_amp['ampforwp-sd-type-posts'] == 1 ){
-			$sd_type_posts = 'BlogPosting';
-		}
-		elseif($redux_builder_amp['ampforwp-sd-type-posts'] == 2 ){
-			$sd_type_posts = 'NewsArticle';
-			 
-		}
-		elseif($redux_builder_amp['ampforwp-sd-type-posts'] == 3  ){
-			$sd_type_posts = 'Recipe';
-			 
-		}
-		elseif($redux_builder_amp['ampforwp-sd-type-posts'] == 4  ){
-			$sd_type_posts = 'Product';
-			 
-		}
+	$post_types 	= '';
+	$set_sd_post 	= '';
+	$set_sd_page 	= '';	
+
+	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
+	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
+
+	if ( empty( $set_sd_post ) ) {
+		$set_sd_post = 'BlogPosting';
 	}
-	if(  isset($redux_builder_amp['ampforwp-sd-type-pages'] ) ) {
-		if( $redux_builder_amp['ampforwp-sd-type-pages'] == 1){ 
-			$sd_type_pages = 'BlogPosting';
-		}
-		elseif( $redux_builder_amp['ampforwp-sd-type-pages'] == 2){ 
-			$sd_type_pages = 'NewsArticle';
-		}
-		elseif( $redux_builder_amp['ampforwp-sd-type-pages'] == 3){ 
-			$sd_type_pages = 'Recipe';
-		}
-		elseif( $redux_builder_amp['ampforwp-sd-type-pages'] == 4){ 
-			$sd_type_pages = 'Product';
-		}
-	} 
+
+	if ( empty( $set_sd_page ) ) {
+		$set_sd_page = 'BlogPosting';
+	}
+	 
 	$post_types = ampforwp_get_all_post_types();
+
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
+
         	if($post->post_type == 'post'){
-        		 if($sd_type_posts){
-        			$metadata['@type'] = $sd_type_posts;
-        		}
+        		$metadata['@type'] = $set_sd_post;
         	}
+
         	if($post->post_type == 'page'){
-        		if($sd_type_posts){
-        			$metadata['@type'] = $sd_type_pages;
-        		}
+        		$metadata['@type'] = $set_sd_page;
         	}
+
+        	if( $post->post_type == 'page' ||  $post->post_type == 'post'  ){
+        		continue;
+        	}
+
+        	if($post->post_type == $post_type){
+        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) ) {
+					$redux_builder_amp['ampforwp-sd-type-'.$post_type.''] = 'BlogPosting';
+				}
+        		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+        	}
+
+
         }
     }
-   // $custom_post_types = get_option('ampforwp_custom_post_types');
+
 	return $metadata;
 }

@@ -1184,37 +1184,42 @@ Redux::setArgs( "redux_builder_amp", $args );
             )
    );
     //Get options for Structured Data Type
-if( !function_exists('ampforwp_get_sd_types') ){
-    function ampforwp_get_sd_types(){
-        $options = array();
-        array_push($options, 'BlogPosting' , 'NewsArticle', 'Recipe' , 'Product' );
-        return $options;
-    }
-  }
- 
- add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
- function ampforwp_add_extra_fields($fields){
-    $post_types = '';
-    $custom_fields = array();
-    $extra_fields = array();
-    $post_types = get_option('ampforwp_custom_post_types');
-    if($post_types){
-        foreach ($post_types as $post_type) {
-             $custom_fields[] = array(
-              'id'       => 'ampforwp-sd-type-'. $post_type,
-              'type'     => 'select',
-              'title'    => __($post_type, 'accelerated-mobile-pages'),
-              'subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
-              'options'  =>  ampforwp_get_sd_types(),
-              'default'  => 0,
+    if( !function_exists('ampforwp_get_sd_types') ){
+        function ampforwp_get_sd_types(){
+            $options = array();
+            $options = array(
+                'BlogPosting'   => 'BlogPosting',
+                'NewsArticle'   => 'NewsArticle',
+                'Recipe'        => 'Recipe',
+                'Product'       => 'Product',
             );
-            $extra_fields = array_merge($extra_fields, $custom_fields);
+            return $options;
         }
     }
-    array_splice($fields, 2, 0,  $extra_fields);
-    return $fields;
-   
- }
+ 
+    add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
+    function ampforwp_add_extra_fields($fields){
+        $post_types = '';
+        $custom_fields = array();
+        $extra_fields = array();
+        $post_types = get_option('ampforwp_custom_post_types');
+        if($post_types){
+            foreach ($post_types as $post_type) {
+                $custom_fields[] = array(
+                  'id'       => 'ampforwp-sd-type-'. $post_type,
+                  'type'     => 'select',
+                  'title'    => __($post_type, 'accelerated-mobile-pages'),
+                  'subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+                  'options'  =>  ampforwp_get_sd_types(),
+                  'default'  => 'BlogPosting',
+                );
+                $extra_fields = array_merge($extra_fields, $custom_fields);
+            }
+        }
+        array_splice($fields, 2, 0,  $extra_fields);
+        return $fields;
+       
+    }
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
@@ -1227,7 +1232,7 @@ if( !function_exists('ampforwp_get_sd_types') ){
               'title'    => __('Posts', 'accelerated-mobile-pages'),
               'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
               'options'  => ampforwp_get_sd_types(),
-              'default'  => 0,
+              'default'  => 'BlogPosting',
             ),
             array(
               'id'       => 'ampforwp-sd-type-pages',
@@ -1235,7 +1240,7 @@ if( !function_exists('ampforwp_get_sd_types') ){
               'title'    => __('Pages', 'accelerated-mobile-pages'),
               'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
               'options'  =>  ampforwp_get_sd_types(),
-              'default'  => 0,
+              'default'  => 'BlogPosting',
             ),
             array(
               'id'       => 'amp-structured-data-logo',
