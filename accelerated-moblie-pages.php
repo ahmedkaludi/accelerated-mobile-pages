@@ -538,7 +538,7 @@ function ampforwp_update_notice() {
     margin-left: 5px;
     font-weight: 300;
     top: -14px;
-    font-size: 20px;"> <?php _e( 'A Big Update of AMP in '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
+    font-size: 20px;"> <?php _e( 'AMP has been updated to '.$ampforWPCurrentVersion, 'accelerated-mobile-pages' ); ?></div>
 	    <a href="https://ampforwp.com/new/" target="_blank" style="
     position: relative;
     top: -17px;
