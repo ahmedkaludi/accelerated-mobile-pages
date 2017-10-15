@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.2
-Stable tag: 0.9.63
+Stable tag: 0.9.64
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Structured Data Options (New & Improved)
 * NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
@@ -147,6 +148,32 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.64 (15th October 2017) =
+* View more details on https://ampforwp.com/new/
+* Structured Data Type option added. You can now change the structured data format for Posts, Pages and Custom post types #323
+* When comments plugin activate, Comments section should remove. #1093
+* Notification causes a validation error. #1147
+* CSS !important need sanitization #1225 - This will help us to validate tens of thousands of pages.
+* Strange spaces when using Sassy Social Share #1185
+* Remote CDN use? Let's host it? #549
+* Typo fix for Linkedin Profile Page URL section #905 [Thanks to Prayag @pra85]
+* Replace fastimage with fasterimage for PHP 5.4+ #1191
+* Debug Errors Post 0.9.63 #1219
+* Ad5 code injected twice #1116
+* Homepage Support must be Off when we turn Off Homepage Support. #738
+* Add custom class in post pagination for styling #1100
+* Removed the Lazy Loading issue of Schema Theme #1170
+* H1 tag for archive titles (Commit) #1155
+* Alt tag for the Logo #1155
+* Design 3 Menu RTL issue fixed #1106
+* Ability to add dynamic classes in body tag #1237
+* Warnings fixed on 404 page #1243
+* Properly structured data for Homepage, Custom Frontpage and Blog #1155 #1242
+* Option added to Enable/Disable categories and Tags links from Single #1155
+* Fatal error after 0.9.63 fixed #1220
+* Debug Error due to vendor AMP #1213
+* PHP warning on line 147 after 0.9.63 #1241
 
 = 0.9.63 (8th October 2017) =
 * View more details on https://ampforwp.com/new/

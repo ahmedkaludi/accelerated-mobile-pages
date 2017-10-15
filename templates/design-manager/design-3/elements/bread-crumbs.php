@@ -19,7 +19,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
         echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
            
         // Home page
-        echo '<li class="item-home"><a class="bread-link bread-home" href="' . trailingslashit( get_home_url() ) . AMPFORWP_AMP_QUERY_VAR . '" title="' . $home_title . '">' . $home_title . '</a></li>';
+        echo '<li class="item-home"><a class="bread-link bread-home" href="' . user_trailingslashit(trailingslashit( get_home_url() ) . AMPFORWP_AMP_QUERY_VAR) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
 

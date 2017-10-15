@@ -41,10 +41,15 @@ add_filter( 'init', 'ampforwp_url_base_rewrite_rules', 100 );
 function ampforwp_url_base_rewrite_rules(){
 	global $redux_builder_amp;
 	global $wp_rewrite;
+	$categoryBaseRewrite = 0;
+	$tagBaseRewrite = 0;
 	
-	
-	$categoryBaseRewrite = $redux_builder_amp['ampforwp-category-base-removel-link'];
-	$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
+	if(isset($redux_builder_amp['ampforwp-category-base-removel-link'])){	
+		$categoryBaseRewrite = $redux_builder_amp['ampforwp-category-base-removel-link'];
+	}
+	if(isset($redux_builder_amp['ampforwp-tag-base-removal-link'])){
+		$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
+	}
 	/* $catagoryStatusChanges = get_option('AMP-category-base-removal-status');
 	if($catagoryStatusChanges==$categoryBaseRewrite){
 		update_option('AMP-category-base-removal-status',$categoryBaseRewrite);
@@ -134,43 +139,4 @@ function ampforwp_tag_url_rewrite_rules($rewrite){
 	}
 	
 	return $rewrite;
-} 
-
-
-
-//
-
-if(!is_admin()){
-	function check_amp_is_inside_url(){
-		
-			$uri = add_query_arg( NULL, NULL );
-			$explodedUri = explode("/",$uri);
-			$explodedUri = array_filter($explodedUri);
-			
-			//To remove last AMP from URL
-			if(isset($explodedUri[count($explodedUri)]) && $explodedUri[count($explodedUri)]=='amp'){
-				array_pop($explodedUri);
-			}
-			$indexOfAmp = array_search('amp',$explodedUri);
-			$pageIndexOfAmp = array_search('page',$explodedUri);
-			
-			//Redirect page to amp page 
-			/*
-			 1. if there is amp in current URL
-			 2. if page is not found in current url
-			*/
-			if($indexOfAmp!=false && $pageIndexOfAmp==false){
-				unset($explodedUri[$indexOfAmp]);
-				//$redirectUrl = home_url();
-				$redirectUrl = "//".$_SERVER['HTTP_HOST']."/".implode("/",$explodedUri).'/amp';
-				if ( wp_redirect( $redirectUrl ) ) {
-					exit;
-				}
-				
-			}
-		
-		//if(is_singular('post')){
-		//}
-	}
-	add_action('init', 'check_amp_is_inside_url');
-} 
+}

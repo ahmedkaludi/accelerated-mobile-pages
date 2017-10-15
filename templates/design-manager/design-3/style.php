@@ -44,7 +44,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
 .navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%}
 .toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
-.toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:100% }
+.toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:94% }
 .amp-menu li{position:relative}
 .toggle-navigationv2 ul li a:hover{background:#666;color:#fff}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
@@ -311,6 +311,8 @@ main .amp-wp-content{ direction: rtl; }
 .single-post .post-pagination-meta span{ float: right; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .amp_author_area_wrapper strong{ float: right; }
+.amp-menu li.menu-item-has-children:after { left: 0; right: auto; }
+amp-sidebar { direction: rtl; }
 <?php } ?>
 
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }

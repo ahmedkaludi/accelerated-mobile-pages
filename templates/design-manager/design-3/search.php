@@ -21,7 +21,7 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body design_3_wrapper">
+<body <?php ampforwp_body_class('amp_home_body archives_body design_3_wrapper');?>>
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
@@ -54,7 +54,7 @@
 
 
      <?php global $redux_builder_amp; ?>
- 		<h3 class="amp-wp-content page-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?>  </h3>
+ 		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?>  </h1>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>

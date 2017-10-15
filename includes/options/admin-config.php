@@ -6,10 +6,18 @@ if ( ! class_exists( 'Redux' ) ) {
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
+// #1093 Display only If AMP Comments is Not Installed
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+   if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
-$cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
+}
+// If CTA is not Activated
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+   if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
+$cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
+}
 $extension_listing = '
 <div class="extension_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
@@ -573,7 +581,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     
     ',
                 'false'     => 'false',
-                'default'   => 1
+                'default'   => 0
             ),
         )
        )
@@ -1175,13 +1183,65 @@ Redux::setArgs( "redux_builder_amp", $args );
                         )
             )
    );
-
+    //Get options for Structured Data Type
+    if( !function_exists('ampforwp_get_sd_types') ){
+        function ampforwp_get_sd_types(){
+            $options = array();
+            $options = array(
+                'BlogPosting'   => 'BlogPosting',
+                'NewsArticle'   => 'NewsArticle',
+                'Recipe'        => 'Recipe',
+                'Product'       => 'Product',
+            );
+            return $options;
+        }
+    }
+ 
+    add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
+    function ampforwp_add_extra_fields($fields){
+        $post_types = '';
+        $custom_fields = array();
+        $extra_fields = array();
+        $post_types = get_option('ampforwp_custom_post_types');
+        if($post_types){
+            foreach ($post_types as $post_type) {
+                $custom_fields[] = array(
+                  'id'       => 'ampforwp-sd-type-'. $post_type,
+                  'type'     => 'select',
+                  'title'    => __($post_type, 'accelerated-mobile-pages'),
+                  'subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+                  'options'  =>  ampforwp_get_sd_types(),
+                  'default'  => 'BlogPosting',
+                );
+                $extra_fields = array_merge($extra_fields, $custom_fields);
+            }
+        }
+        array_splice($fields, 2, 0,  $extra_fields);
+        return $fields;
+       
+    }
     // Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
         'id'         => 'opt-structured-data',
         'subsection' => true,
-        'fields'     => array(
+        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array(
+            array(
+              'id'       => 'ampforwp-sd-type-posts',
+              'type'     => 'select',
+              'title'    => __('Posts', 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
+              'options'  => ampforwp_get_sd_types(),
+              'default'  => 'BlogPosting',
+            ),
+            array(
+              'id'       => 'ampforwp-sd-type-pages',
+              'type'     => 'select',
+              'title'    => __('Pages', 'accelerated-mobile-pages'),
+              'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
+              'options'  =>  ampforwp_get_sd_types(),
+              'default'  => 'BlogPosting',
+            ),
             array(
               'id'       => 'amp-structured-data-logo',
               'type'     => 'media',
@@ -1237,6 +1297,7 @@ Redux::setArgs( "redux_builder_amp", $args );
               'default'  => '550'
              ),
         )
+)
     ) );
 
     // Notifications SECTION
@@ -1322,7 +1383,7 @@ $forms_support[]=  array(
 
    ) );
 
-// Comments
+// comments 
  Redux::setSection( $opt_name, array(
     'title'      => __( 'Comments', 'accelerated-mobile-pages' ),
     'desc' => $comment_desc,
@@ -2302,6 +2363,15 @@ Redux::setSection( $opt_name, array(
               'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
               'subtitle' => __('Enable or Disable Breadcrumb'),                  
            ),
+          //Categories and Tags Links
+          array(
+              'id'       => 'ampforwp-cats-tags-links-single',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => __('Categories and Tags Links', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Categories/Tags links in Single', 'accelerated-mobile-pages'),                  
+              'required'  => array('ampforwp-archive-support', '=' , '1'),
+           ),
           // Social Icons ON/OFF
           array(
               'id'        => 'enable-single-social-icons',
@@ -2639,7 +2709,7 @@ Redux::setSection( $opt_name, array(
           array(
               'id'        =>  'enable-single-linkdin-profile',
               'type'      =>  'switch',
-              'title'     =>  __('Linkdin ', 'accelerated-mobile-pages'),
+              'title'     =>  __('LinkedIn', 'accelerated-mobile-pages'),
               'default'   =>  0,
               'required' => array(
                 array('amp-design-selector', '=' , '3')
@@ -2648,7 +2718,7 @@ Redux::setSection( $opt_name, array(
           array(
               'id'        =>  'enable-single-linkdin-profile-url',
               'type'      =>  'text',
-              'title'     =>  __('Linkdin URL', 'accelerated-mobile-pages'),
+              'title'     =>  __('LinkedIn URL', 'accelerated-mobile-pages'),
               'default'   =>  '',
               'required' => array(
                 array('amp-design-selector', '=' , '3'),

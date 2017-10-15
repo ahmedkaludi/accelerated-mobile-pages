@@ -10,7 +10,7 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> amp_home_body design_1_wrapper">
+<body <?php ampforwp_body_class('amp_home_body design_1_wrapper');?>>
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 <?php do_action( 'below_the_header_design_1', $this ); ?>
@@ -42,9 +42,12 @@
                 'post_status'=> 'publish'
 			);
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
-			$q = new WP_Query( $filtered_args ); ?>
-
-			<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
+			$q = new WP_Query( $filtered_args ); 
+			$blog_title = ampforwp_get_blog_details('title');
+			if($blog_title){  ?>
+				<h1 class="page-title"><?php echo $blog_title ?> </h1>
+			<?php }	
+			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 			        <h1 class="amp-wp-title">

@@ -9,7 +9,8 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="design_3_wrapper single-post <?php ampforwp_the_body_class(); ?> <?php if(is_page()){ echo'amp-single-page'; };?>">
+ 
+<body <?php ampforwp_body_class('design_3_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 

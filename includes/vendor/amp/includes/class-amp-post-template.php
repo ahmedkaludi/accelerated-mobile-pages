@@ -12,7 +12,7 @@ require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
-
+require_once(AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
@@ -144,6 +144,7 @@ class AMP_Post_Template {
 	private function build_post_data() {
 		$post_title = get_the_title( $this->ID );
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
+		$post_publish_timestamp = intval( $post_publish_timestamp );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
 		if(!empty($this->post)){
 			$post_author = get_userdata( $this->post->post_author );
@@ -255,7 +256,11 @@ class AMP_Post_Template {
 			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
 			$this->add_data_by_key( 'post_amp_styles', $amp_content->get_amp_styles() );
-	}
+		}else{
+			$this->add_data_by_key( 'post_amp_content', '' );
+			$this->merge_data_for_key( 'amp_component_scripts', array() );
+			$this->add_data_by_key( 'post_amp_styles', array() );
+		}
 	}
 
 	private function build_post_featured_image() {

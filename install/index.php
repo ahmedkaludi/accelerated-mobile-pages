@@ -19,7 +19,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
     $ampLogo = '<br/><br/><img src="'.$redux_builder_amp['opt-media']['url'].'" class="amp_install_logo_preview" />';
 }
 	
-	$config = array(
+	$ampforwp_install_config = array(
 					'installer_dir' => 'install',
 					'plugin_title'  => ucfirst( 'AMPforWP Installer' ),
 					'start_steps' => 1,
@@ -111,11 +111,11 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	add_action( 'admin_footer', 'ampforwp_svg_sprite');
 	add_action( 'wp_ajax_ampforwp_save_installer', 'ampforwp_save_steps_data', 10, 0 );
 	function ampforwp_add_admin_menu(){
-		global $config;
+		global $ampforwp_install_config;
 		ampforwp_installer_init();
 	}
 	function ampforwp_installer_init(){
-		global $config;
+		global $ampforwp_install_config;
 		instller_admin_init();
 	}
 	function instller_admin_init(){
@@ -128,24 +128,24 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function steps_call(){
-		global $config;
-		if ( empty( $_GET['page'] ) || $config['installerpage'] !== $_GET['page'] ) {
+		global $ampforwp_install_config;
+		if ( empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
 			return;
 		}
 		 if ( ob_get_length() ) {
 			ob_end_clean();
 		} 
-		$step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) :  $config['start_steps'] ;
-		$title = $config['steps'][$step]['title'];
-		$config['current_step']['step_id'] = $step;
+		$step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) :  $ampforwp_install_config['start_steps'] ;
+		$title = $ampforwp_install_config['steps'][$step]['title'];
+		$ampforwp_install_config['current_step']['step_id'] = $step;
 		
 		
 		// Use minified libraries if dev mode is turned on.
 		$suffix = '';
 		// Enqueue styles.
-		wp_enqueue_style( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/css/merlin' . $suffix . '.css' , array( 'wp-admin' ), '0.1');
+		wp_enqueue_style( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/css/merlin' . $suffix . '.css' , array( 'wp-admin' ), '0.1');
 		// Enqueue javascript.
-		wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $config['installer_dir']. '/assets/js/merlin' . $suffix . '.js' , array( 'jquery-core' ), '0.1' );
+		wp_enqueue_script( 'ampforwp_install', AMPFORWP_PLUGIN_DIR_URI. $ampforwp_install_config['installer_dir']. '/assets/js/merlin' . $suffix . '.js' , array( 'jquery-core' ), '0.1' );
 		
 		wp_localize_script( 'ampforwp_install', 'ampforwp_install_params', array(
 			'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
@@ -164,7 +164,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				// Content Handlers.
 				$show_content = true;
 
-				if ( ! empty( $_REQUEST['save_step'] ) && isset( $config['current_step']['steps'] ) ) {
+				if ( ! empty( $_REQUEST['save_step'] ) && isset( $ampforwp_install_config['current_step']['steps'] ) ) {
 					//ampforwp_save_steps_data();
 				}
 
@@ -185,12 +185,12 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function show_ampforwp_steps_body(){
-		global $config;
-		if($config['total_steps']==$config['current_step']['step_id']){
+		global $ampforwp_install_config;
+		if($ampforwp_install_config['total_steps']==$ampforwp_install_config['current_step']['step_id']){
 			call_user_func('ampforwp_finish_page');
 		}else{
-			if(function_exists('step'.$config['current_step']['step_id'])){
-				call_user_func('step'.$config['current_step']['step_id']);
+			if(function_exists('step'.$ampforwp_install_config['current_step']['step_id'])){
+				call_user_func('step'.$ampforwp_install_config['current_step']['step_id']);
 			}else{
 				call_user_func('ampforwp_finish_page');
 			}
@@ -199,8 +199,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function step1(){
-		global $config;
-		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		global $ampforwp_install_config;
+		$stepDetails = $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']];
 		?>
 		<div class="merlin__content--transition">
 
@@ -225,8 +225,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function step2(){
-		global $config;
-		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		global $ampforwp_install_config;
+		$stepDetails = $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']];
 		
 		?>
 
@@ -270,8 +270,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function step3(){
-		global $config;
-		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		global $ampforwp_install_config;
+		$stepDetails = $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']];
 		?>
 
 		<div class="merlin__content--transition">
@@ -314,8 +314,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function step4(){
-		global $config;
-		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		global $ampforwp_install_config;
+		$stepDetails = $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']];
 		?>
 
 		<div class="merlin__content--transition">
@@ -357,8 +357,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function step5(){
-		global $config;
-		$stepDetails = $config['steps'][$config['current_step']['step_id']];
+		global $ampforwp_install_config;
+		$stepDetails = $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']];
 		?>
 
 		<div class="merlin__content--transition">
@@ -436,9 +436,9 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		<?php
 	}
 	function ampforwp_finish_page() {
-		global $config;
+		global $ampforwp_install_config;
 		// Theme Name.
-		$plugin_title 					= $config['plugin_title'];
+		$plugin_title 					= $ampforwp_install_config['plugin_title'];
 		// Strings passed in from the config file.
 		$strings = null;
 
@@ -496,17 +496,17 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function ampforwp_loading_spinner(){
-		global $config;
-		$spinner = AMPFORWP_PLUGIN_DIR. $config['installer_dir']. '/assets/images/spinner.php';
+		global $ampforwp_install_config;
+		$spinner = AMPFORWP_PLUGIN_DIR. $ampforwp_install_config['installer_dir']. '/assets/images/spinner.php';
 
 		// Retrieve the spinner.
 		get_template_part(  $spinner );
 	}
 	
 	function ampforwp_svg_sprite() {
-		global $config;
+		global $ampforwp_install_config;
 		// Define SVG sprite file.
-		$svg = AMPFORWP_PLUGIN_DIR. $config['installer_dir'] . '/assets/images/sprite.svg' ;
+		$svg = AMPFORWP_PLUGIN_DIR. $ampforwp_install_config['installer_dir'] . '/assets/images/sprite.svg' ;
 
 		// If it exists, include it.
 		if ( file_exists( $svg ) ) {
@@ -514,17 +514,17 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		}
 	}
 	function ampforwp_step_next_link() {
-		global $config;
-		$step = $config['current_step']['step_id'] + 1;
+		global $ampforwp_install_config;
+		$step = $ampforwp_install_config['current_step']['step_id'] + 1;
 
 		return add_query_arg( 'step', $step );
 	}
 	
 	function ampforwp_install_header() {
-		global $config;
+		global $ampforwp_install_config;
 		
 		// Get the current step.
-		$current_step = strtolower( $config['steps'][$config['current_step']['step_id']]['title'] ); ?>
+		$current_step = strtolower( $ampforwp_install_config['steps'][$ampforwp_install_config['current_step']['step_id']]['title'] ); ?>
 
 		<!DOCTYPE html>
 		<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
@@ -634,24 +634,24 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 	
 	function step_output_bottom_dots(){
-		global $config;
+		global $ampforwp_install_config;
 		?>
 		<ol class="dots">
 
-			<?php for( $i = 1; $i<$config['total_steps']; $i++ ) :
+			<?php for( $i = 1; $i<$ampforwp_install_config['total_steps']; $i++ ) :
 
 				$class_attr = '';
 				$show_link = false;
 
-				if ( $i === $config['current_step']['step_id'] ) {
+				if ( $i === $ampforwp_install_config['current_step']['step_id'] ) {
 					$class_attr = 'active';
-				} elseif ( $config['current_step']['step_id'] >  $i) {
+				} elseif ( $ampforwp_install_config['current_step']['step_id'] >  $i) {
 					$class_attr = 'done';
 					$show_link = true;
 				} ?>
 
 				<li class="<?php echo esc_attr( $class_attr ); ?>">
-					<a href="<?php echo esc_url( add_query_arg( 'step', $i ) ); ?>" title="<?php echo esc_attr( $config['current_step']['title'] ); ?>"></a>
+					<a href="<?php echo esc_url( add_query_arg( 'step', $i ) ); ?>" title="<?php echo esc_attr( $ampforwp_install_config['current_step']['title'] ); ?>"></a>
 				</li>
 
 			<?php endfor; ?>
