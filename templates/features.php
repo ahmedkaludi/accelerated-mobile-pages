@@ -86,6 +86,7 @@
 	76. Body Class for AMP pages
 	77. AMP Blog Details
 	78. Saved Custom Post Types for AMP in Options for Structured Data
+	79. Favicon for AMP
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3910,7 +3911,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 		return $output;
 	}
 }
-// Saved Custom Post Types for AMP in Options for Structured Data
+// 78. Saved Custom Post Types for AMP in Options for Structured Data
 add_action('init', 'ampforwp_get_custom_post_types_sd');
 if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
 	function ampforwp_get_custom_post_types_sd(){
@@ -3937,3 +3938,6 @@ if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
 
 	}
 }
+
+// 79. Favicon for AMP
+add_action('amp_post_template_head','wp_site_icon');
