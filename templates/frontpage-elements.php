@@ -95,15 +95,11 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 	//WPML Static Front Page Support #1111
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
- 	$post_id = get_option('page_on_front');
- 	
- 	}
-	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
-
-	<main>
-		<div class="amp-wp-content the_content"> 
-			
-		<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
+ 		$post_id = get_option('page_on_front'); 	
+ 	} 
+ 	do_action( 'ampforwp_design_2_frontpage_title', $template ); 
+	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true); ?>
+			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
 		<?php 	$featured_image = $template->get( 'featured_image' );
 			if ( $featured_image )  {
 					$amp_html = $featured_image['amp_html'];
@@ -119,8 +115,11 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 						</figure>
 					</div> <?php
 			} 
-		do_action('ampforwp_after_featured_image_hook', $template ); 
-
+		do_action('ampforwp_after_featured_image_hook', $template ); ?>
+ 
+		<div class="amp-wp-content the_content"> 
+			
+			<?php 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {
 				echo $template->get('post_amp_content');
@@ -138,7 +137,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 		<div class="amp-wp-content post-pagination-meta">
 			<?php $template->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
 		</div> 
-	</main>
+ 
 
 	<?php 
 }
