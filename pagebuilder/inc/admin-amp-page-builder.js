@@ -154,6 +154,9 @@ jQuery( document ).ready( function( $ ){
 					var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
 					var id = fieldReplace.name;
 					popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default));
+					if(popupHtml.indexOf('{options}')!==-1){
+						popupHtml += popupHtml.replace(/{options}/g, decodeURI(fieldReplace.options));
+					}
 					//To load action of fields
 					switch(fieldReplace.type){
 						case 'upload':
@@ -224,6 +227,8 @@ jQuery( document ).ready( function( $ ){
 			var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 			if(modData.type=='text-editor'){
 				modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+			}if(modData.type=='select'){
+				modData.default = encodeURI($('#'+fieldIdentifier).val());
 			}else{
 				modData.default = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
 				
@@ -287,7 +292,8 @@ jQuery( document ).ready( function( $ ){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
 			
-			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default));
+			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default)).replace(/{options}/g, decodeURI(fieldReplace.options));
+			
 			//To load action of fields
 			switch(fieldReplace.type){
 				case 'upload':
