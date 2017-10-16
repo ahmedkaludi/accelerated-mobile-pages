@@ -202,6 +202,7 @@ function amppb_post_content($content){
 
 function rowData($container,$col){
 	global $moduleTemplate;
+	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
 		$html .= "<div class='col col-".$col."'>";
@@ -211,12 +212,34 @@ function rowData($container,$col){
 			
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
-				
-				foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-					if(isset($contentArray[$field['name']]) && !empty($contentArray)){
-						$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $contentArray[$field['name']], $moduleFrontHtml);
-					}else{
-						$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
+				if($moduleName=='contents'){
+					$fieldValues = array();
+					foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+						$fieldValues[$field['name']]= $contentArray[$field['name']];
+					}
+					
+					$args = array(
+							'cat' => $fieldValues['category_selection'],
+							'posts_per_page' => $fieldValues['show_total_posts'],
+							'has_password' => false,
+							'post_status'=> 'publish'
+						);
+					//The Query
+					$the_query = new WP_Query( $args );
+					 $totalLoopHtml = contentHtml($the_query);
+					$moduleFrontHtml = str_replace('{{content_title}}', $fieldValues['content_title'], $moduleFrontHtml);
+					$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
+					/* Restore original Post Data */
+					wp_reset_postdata();
+					
+				}else{
+					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
+						if(isset($contentArray[$field['name']]) && !empty($contentArray)){
+							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $contentArray[$field['name']], $moduleFrontHtml);
+						}else{
+							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+						}
 					}
 				}
 				$html .= $moduleFrontHtml;
