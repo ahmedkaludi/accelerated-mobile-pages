@@ -1347,7 +1347,7 @@ $forms_support[] =  array(
            );
 
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-    if(!is_plugin_active( 'AMP-CF7/amp-cf7.php' ) ){
+    if(!is_plugin_active( 'amp-cf7/amp-cf7.php' ) ){
             $forms_support[]= array(
                 'id'   => 'info_normal_cf7',
                 'type' => 'info',
