@@ -71,8 +71,15 @@
 					}else{
 						$content = get_the_content();
 					} ?>
-		        <p><?php echo wp_trim_words( strip_shortcodes(  $content ) , '15' ); ?></p>
-
+		        <p class="large-screen-excerpt">
+				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); 
+				?></p>
+		        <p class="small-screen-excerpt" > <?php    
+					if($redux_builder_amp['excerpt-option-design-2']== true) {
+						$excertp_length='';
+						$excertp_length = $redux_builder_amp['amp-design-2-excerpt']; 
+						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+				</p>
 		    </div>
             <div class="cb"></div>
 		</div>

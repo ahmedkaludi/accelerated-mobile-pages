@@ -2257,21 +2257,78 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
 
-            // Excerpt Length #1013
+            // Excerpt Length for design1 #1013
+                array(
+
+                        'id'        => 'excerpt-option-design-1',
+                        'type'      => 'switch',
+                        'title'     => __('Excerpt', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '1'),
+                     )
+                ),
                 array(
                         'id'        =>'amp-design-1-excerpt',
                         'type'      =>'text',
                         'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
-                         array('amp-design-selector', '=' , '1')
+                         array('amp-design-selector', '=' , '1'),
+                         array('excerpt-option-design-1', '=' , '1'),
+                             ),
+                        'validate'  =>'numeric',
+                        'default'   =>'20',
+                ),
+
+            // Excerpt Length for design2 #1122
+                array(
+
+                        'id'        => 'excerpt-option-design-2',
+                        'type'      => 'switch',
+                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '2'),
+                     )                        
+                ),
+                array(
+                        'id'        =>'amp-design-2-excerpt',
+                        'type'      =>'text',
+                        'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'required' => array(
+                         array('amp-design-selector', '=' , '2'),
+                         array('excerpt-option-design-2', '=' , '1'),
+                             ),
+                        'validate'  =>'numeric',
+                        'default'   =>'20',
+                ),
+
+            // Excerpt Length for design3 #1122
+                array(
+                        'id'        => 'excerpt-option-design-3',
+                        'type'      => 'switch',
+                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '3'),
+                     )                         
+                ),
+                array(
+                        'id'        =>'amp-design-3-excerpt',
+                        'type'      =>'text',
+                        'subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'required' => array(
+                         array('amp-design-selector', '=' , '3'),
+                         array('excerpt-option-design-3', '=' , '1'),
                              ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),
 
             // Homepage thumbnail
-
                 array(
                         'id'       => 'ampforwp-homepage-posts-image-modify-size',
                         'type'     => 'switch',
