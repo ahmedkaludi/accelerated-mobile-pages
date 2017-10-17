@@ -57,14 +57,17 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) );
+			              global $redux_builder_amp;
+			              		if($redux_builder_amp['amp-design-selector'] == '1' && $redux_builder_amp['amp-design-1-featured-time'] == '1'){
+			               ?>
 			              <time> <?php
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    			echo  $post_date ; ?>
-                   		 </time>
-			  </div>
-
+                    			echo  $post_date ;?>
+                    		</time><?php 
+			 		 		}?>
+					</div>
 
 						<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
 							if ( has_post_thumbnail()) {

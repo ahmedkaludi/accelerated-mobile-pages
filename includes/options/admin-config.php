@@ -2270,6 +2270,27 @@ Redux::setSection( $opt_name, array(
                         'default'   =>'20',
                 ),
 
+            // Featured Time
+                array(
+                        'id'        =>'amp-design-1-featured-time',
+                        'type'      =>'switch',
+                        'title'     =>__('Featured Time','accelerated-mobile-pages'),
+                        'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
+                        'required' => array(array('amp-design-selector', '=' , '1') ),
+                        'required' => array('amp-frontpage-select-option', '=' , '0'),
+                        'default'   =>'1',
+                ),
+
+                array(
+                        'id'        =>'amp-design-3-featured-time',
+                        'type'      =>'switch',
+                        'title'     =>__('Featured Time','accelerated-mobile-pages'),
+                        'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
+                        'required' => array(array('amp-design-selector', '=' , '3') ),
+                        'required' => array('amp-frontpage-select-option', '=' , '0'),
+                        'default'   =>'1',
+                ),
+
             // Homepage thumbnail
 
                 array(
@@ -2345,6 +2366,7 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-slider', '=' , '1')
                         ),
                 ),
+
         )
     ));
 
