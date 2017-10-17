@@ -236,7 +236,7 @@ function rowData($container,$col){
 				}else{
 					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 						if(isset($contentArray[$field['name']]) && !empty($contentArray)){
-							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $contentArray[$field['name']], $moduleFrontHtml);
+							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
 						}else{
 							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 						}
