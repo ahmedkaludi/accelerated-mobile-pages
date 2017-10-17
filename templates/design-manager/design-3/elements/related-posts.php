@@ -10,13 +10,17 @@
 		// Custom Post types 
        if( $current_post_type = get_post_type( $post )) {
                 // The query arguments
+       		//#1263
+       		if($current_post_type != 'page'){
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
                     'orderby' => 'ID',
                     'post_type' => $current_post_type,
                     'post__not_in' => array( $post->ID )
-                );   			
+
+                );  
+            } 			
 		}//end of block for custom Post types
 
 		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
