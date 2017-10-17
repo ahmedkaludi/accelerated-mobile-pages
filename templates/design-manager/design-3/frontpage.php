@@ -35,8 +35,6 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-	<?php do_action( 'ampforwp_design_3_frontpage_title', $template ); ?>
-
 	<?php do_action( 'ampforwp_after_header', $template ); ?>
 	<?php do_action('ampforwp_frontpage_above_loop',$template, $post_id) ?>
 
