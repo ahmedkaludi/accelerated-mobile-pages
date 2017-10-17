@@ -2274,7 +2274,7 @@ Redux::setSection( $opt_name, array(
                 array(
                         'id'        =>'amp-design-1-featured-time',
                         'type'      =>'switch',
-                        'title'     =>__('Featured Time','accelerated-mobile-pages'),
+                        'title'     =>__('Published Time','accelerated-mobile-pages'),
                         'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
                         'required' => array(array('amp-design-selector', '=' , '1') ),
                         'required' => array('amp-frontpage-select-option', '=' , '0'),
@@ -2284,7 +2284,7 @@ Redux::setSection( $opt_name, array(
                 array(
                         'id'        =>'amp-design-3-featured-time',
                         'type'      =>'switch',
-                        'title'     =>__('Featured Time','accelerated-mobile-pages'),
+                        'title'     =>__('Published Time','accelerated-mobile-pages'),
                         'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
                         'required' => array(array('amp-design-selector', '=' , '3') ),
                         'required' => array('amp-frontpage-select-option', '=' , '0'),
