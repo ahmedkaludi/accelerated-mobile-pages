@@ -287,10 +287,25 @@ jQuery( document ).ready( function( $ ){
 		popupContents = JSON.parse(popupContents);
 		var popupHtml = '';
 		var upload = false; var editor = [];
-		
+		var updateSelectValues = [];
 		$.each(popupContents.fields, function(fieldsName,fieldReplace){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+			switch(fieldReplace.type){
+				case 'select':
+					updateSelectValues.push({id: id, value: decodeURI(fieldReplace.default)});
+				break;
+				case 'multi_upload':
+					var imageHtml = '';
+					var imageSrc = fieldReplace.default.split(",");
+					$.each(imageSrc, function(id, src){
+						if(src!=''){
+							imageHtml += '<img src="'+src+'" width="100" height="100">';
+						}
+					})
+					fieldReplace.default = imageHtml;
+				break;
+			}
 			
 			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default)).replace(/{options}/g, decodeURI(fieldReplace.options));
 			
@@ -306,8 +321,12 @@ jQuery( document ).ready( function( $ ){
 					break; 
 			}
 		});
-		//if(upload){ selectionOfImage(); }
 		$(".amp-pb-module-content").html(popupHtml); 
+		if(updateSelectValues.length>0){
+			$.each(updateSelectValues, function(id, v){
+				$("#"+ v.id).val(v.value);
+			})
+		}
 		editorJs(editor);
 	});
 	
@@ -626,6 +645,11 @@ jQuery( document ).ready( function( $ ){
 			e.preventDefault();
 			console.log("selectImage click event called");
 			var currentSelectfield = $(this);
+			var selectorType = currentSelectfield.attr("data-imageselactor");
+			var multiple = false;
+			if(selectorType=='multiple'){
+				multiple = true;
+			}
 			var image_frame;
 			if(image_frame){
 			 image_frame.open();
@@ -633,7 +657,7 @@ jQuery( document ).ready( function( $ ){
 			// Define image_frame as wp.media object
 			image_frame = wp.media({
 			           title: 'Select Media',
-			           multiple : false,
+			           multiple : multiple,
 			           library : {
 			                type : 'image',
 			            }
@@ -707,10 +731,22 @@ function Refresh_Image(the_id,currentSelectfield){
         jQuery.get(ajaxurl, data, function(response) {
 
             if(response.success === true) {
-            	console.log(response.data.image)
-                currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
-				var src = currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').attr('src');
-				currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
+            	console.log(response.data)
+				if(currentSelectfield.attr("data-imageselactor")=='multiple'){
+					currentSelectfield.parents('.form-control').find('.sample-gallery-template').html("");
+					var imageSrc = '';
+					jQuery.each(response.data, function(keys,imageValue){
+						console.log(imageValue.image);
+						currentSelectfield.parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
+						currentSelectfield.parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
+						imageSrc += imageValue.detail[0]+",";
+					});
+					currentSelectfield.parents('.form-control').find('input[type=hidden]').val(imageSrc)
+				}else{
+					currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
+					var src = currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').attr('src');
+					currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
+				}
             }
         });
 }

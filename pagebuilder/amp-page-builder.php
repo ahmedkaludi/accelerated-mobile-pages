@@ -148,10 +148,26 @@ function call_page_builder(){
 add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image'   );
 function ampforwp_get_image() {
     if(isset($_GET['id']) ){
-        $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-        $data = array(
-            'image'    => $image,
-        );
+		if(strpos($_GET['id'],",") !== false){
+			$get_ids = explode(",", $_GET['id']);
+			
+			if(count($get_ids)>0){
+				foreach($get_ids as $id){
+					$image = wp_get_attachment_image( $id, 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+					$image_src = wp_get_attachment_image_src($id, 'medium', false);
+					$data[] = array(
+						'image'    => $image,
+						'detail'	   => $image_src
+					);
+
+				}
+			}
+		}else{
+			$image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+			$data = array(
+				'image'    => $image,
+			);
+		}
         wp_send_json_success( $data );
     } else {
         wp_send_json_error();

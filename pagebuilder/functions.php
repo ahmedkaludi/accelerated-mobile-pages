@@ -26,12 +26,11 @@ $containerCommonSettings = array(
 
 
 /* Admin Script */
-add_action( 'admin_enqueue_scripts', 'amppbbase_admin_scripts' );
- 
 /**
  * Admin pagebuilder Scripts
  * @since 1.0.0Scripts
  */
+add_action( 'admin_enqueue_scripts', 'amppbbase_admin_scripts' );
 function amppbbase_admin_scripts( $hook_suffix ){
     global $post_type;
     global $moduleTemplate;
@@ -40,9 +39,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
     if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
-
         wp_enqueue_media();
-
         wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 					'jquery',
 					'jquery-ui-resizable',
@@ -64,16 +61,9 @@ function js_templates() {
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
 
-/**
- *
- *
- *
- *
- *
- **/
+ 
 /* Save post meta on the 'save_post' hook. */
 add_action( 'save_post', 'amppb_save_post', 10, 2 );
- 
 /**
  * Save Page Builder Data When Saving Page
  */
@@ -211,6 +201,9 @@ function rowData($container,$col){
 		if(count($container)>0){
 			
 			foreach($container as $contentArray){
+				if(isset($moduleTemplate[$contentArray['type']]['frontend_script'])){
+					pagebuilder_add_amp_script($moduleTemplate[$contentArray['type']]['frontend_script']);
+				}
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				if($moduleName=='contents'){
@@ -269,6 +262,23 @@ function sortByIndex($contentArray){
 	}
 }
 
-
-
-
+//To add script in amp page
+$componentScripts = array();
+function pagebuilder_add_amp_script($scripts = array()){
+	global $componentScripts;
+	$componentScripts = $scripts;
+	if(count($componentScripts)>0){
+		add_filter('amp_post_template_data','ampforwp_pagebuilder_component_scripts', 20);
+	}
+}
+function ampforwp_pagebuilder_component_scripts(){
+	global $componentScripts;
+	print_r($componentScripts);die;
+	if(count($componentScripts)>0){
+		foreach($componentScripts as $scriptName=>$scriptLink){
+			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
+				$data['amp_component_scripts'][$scriptName] = $scriptLink;
+			}
+		}
+	}
+}

@@ -8,7 +8,7 @@ $categories = get_categories( array(
                   'orderby' => 'name',
                   'order'   => 'ASC'
               ) );
-$categoriesArray = array('recent'=>'Recent Posts');
+$categoriesArray = array('recent_option'=>'Recent Posts');
 $options = '<option value="recent_option">Recent Posts</option>';
 foreach($categories as $category){
 	$categoriesArray[$category->term_id] = $category->name;
