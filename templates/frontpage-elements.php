@@ -33,7 +33,7 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
  	
 	 }
 	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
-
+	<?php do_action( 'ampforwp_after_header', $template ); ?>
 	<article class="amp-wp-article">
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
@@ -41,18 +41,12 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 				<h1 class="amp-wp-title"><?php echo get_the_title( $post_id );?></h1>
 			</header>
 			
-		<?php } ?>
-
-		<?php do_action( 'ampforwp_after_header', $template );  ?>
-
-		<div class="amp-wp-content the_content">
-
-			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
+		<?php }  
+		do_action('ampforwp_before_featured_image_hook', $template ); ?>
 		<?php 	$featured_image = $template->get( 'featured_image' );
 			if ( $featured_image )  {
 					$amp_html = $featured_image['amp_html'];
 					$caption = $featured_image['caption']; ?>
-					<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">
 						<figure class="amp-wp-article-featured-image wp-caption">
 							<?php echo $amp_html; // amphtml content; no kses ?>
 							<?php if ( $caption ) : ?>
@@ -61,10 +55,12 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 								</p>
 							<?php endif; ?>
 						</figure>
-					</div> <?php
-			} 
-		do_action('ampforwp_after_featured_image_hook', $template );
+			<?php	} 
+			do_action('ampforwp_after_featured_image_hook', $template ); ?>
 
+		<div class="amp-wp-content the_content">
+
+			<?php 
 			do_action( 'ampforwp_before_post_content', $template );
 
 			// Normal Front Page Content
