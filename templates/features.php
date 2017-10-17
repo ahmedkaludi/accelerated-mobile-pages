@@ -87,6 +87,7 @@
 	77. AMP Blog Details
 	78. Saved Custom Post Types for AMP in Options for Structured Data
 	79. Favicon for AMP
+	80. Mobile Preview styling
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -1096,7 +1097,7 @@ function ampforwp_title_custom_meta() {
           }
           // Posts
 	      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	        add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );	       
+	        add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
@@ -1120,6 +1121,10 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
 function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = get_post_meta( $post->ID );
+    $preview_query_args = array();
+	$preview_link = '';
+	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
+	$preview_link = get_preview_post_link($post, $preview_query_args );
 
     	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
     	// This code needs a rewrite.
@@ -1158,13 +1163,33 @@ function ampforwp_title_callback( $post ) {
                 <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
                 <?php _e( 'Hide' )?>
             </label>
+             <?php
+             if($post->post_status == 'publish') {
+	             add_thickbox(); ?>
+	             <div class="ampforwp-preview-button-container"> 
+					<input alt="#TB_inline?height=1135&amp;width=718&amp;inlineId=ampforwp_preview" title="AMP Mobile Preview" class="thickbox ampforwp-preview-button button-primary" type="button" value="Preview AMP" />  
+				 </div>
+			<?php } ?>   
         </div>
     </p>
-
-
-
-    <?php
-}
+    <!-- AMP Preview --> 
+    <div id="ampforwp_preview" style="display:none">
+	 	<div id="ampforwp-preview-format">
+	        <div class="row">
+	            <div class="col-sm-12 margin-top-bottom text-center">
+	                <div class="ampforwp-preview-phone-frame-wrapper">
+	                    <div class="ampforwp-preview-phone-frame">
+	                        <div class="ampforwp-preview-container">
+	                            <iframe src="<?php echo $preview_link; ?>"></iframe>
+	                        </div> 
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+	</div>
+   
+<?php }
 
 /**
  * Adds a meta box to the post editing screen for Mobile Redirection on-off on specific pages
@@ -3950,3 +3975,75 @@ if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
 
 // 79. Favicon for AMP
 add_action('amp_post_template_head','wp_site_icon');
+
+// 80. Mobile Preview Styling
+add_action('admin_head','ampforwp_mobile_preview_styling');
+function ampforwp_mobile_preview_styling(){ ?>
+	<style type="text/css">
+		.col-sm-12 {
+	        width: 100%;
+	    }
+	    .margin-top-bottom {
+		    margin-top: 9px;
+		    margin-bottom: 10px;
+		}
+		.text-center {
+		    text-align: center;
+		}
+        #ampforwp-preview-format {
+		    margin-bottom: 0px;
+		    line-height: 0.5em;
+		}
+		.ampforwp-preview-phone-frame-wrapper {
+		    width:110%;
+		    display:inline-block;
+		    position: relative;
+		    max-width: 300px;
+		    text-align: center;
+		    margin-left: -12px;
+		}
+		.ampforwp-preview-phone-frame-wrapper:after {
+		    padding-top: 180%; 
+		    display:block;
+		    content: '';
+		}
+		.ampforwp-preview-phone-frame {
+		    position: absolute;
+		    top: 0;
+		    bottom: 0;
+		    right: 0;
+		    left: 0;
+		    border: 1px solid #e5e5e5;
+		    border-radius: 40px;
+		    padding-top:50px;
+		    padding-bottom: 35px;		 
+		    background: #f1f1f1;
+
+		}
+        .ampforwp-preview-container {
+		    height: 100%;
+		    position: relative;
+		    width: 100%;
+		    border: 1px solid #e5e5e5;
+		    overflow: hidden;
+		}
+		.ampforwp-preview-container > iframe {
+		    height: 100%;
+		    width: 100%;
+		    background-color: black;
+		    transform: scale(1, 1); 
+		    transform-origin: top left;
+		}
+		#TB_window #TB_ajaxContent{
+			width: 100%;
+			height: 100%;
+		}
+		#TB_ajaxWindowTitle{
+			font-size: large;
+		}
+		.ampforwp-preview-button-container{
+			float: right;
+			margin-top: -3px;	 
+		}
+	</style>
+<?php }
