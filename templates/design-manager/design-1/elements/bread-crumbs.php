@@ -70,7 +70,8 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
             if(!empty($category)) {
 
                 // Get last category post is in
-                $last_category = end((array_values($category)));
+                $last_category = array_values($category);
+				$last_category = end($last_category);
                   $category_name = get_category($last_category);
                 // Get parent any categories and create array
                 $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
