@@ -1630,6 +1630,16 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
+                    // Grab the First Image for Featured Image if there is none
+                    array(
+                        'id'       => 'ampforwp-featured-image-from-content',
+                        'type'     => 'switch',
+                        'title'    => __('Featured Image from The Content', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Show the first image of the content as Featured Image if there is no featured image', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,                        
+                    ),
                     // Duplicate Featured Image
                     array(
                         'id'       => 'ampforwp-duplicate-featured-image',
