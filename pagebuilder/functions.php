@@ -199,41 +199,44 @@ function rowData($container,$col){
 		//sort modules by index
 		$container = sortByIndex($container);
 		if(count($container)>0){
-			
 			foreach($container as $contentArray){
-				if(isset($moduleTemplate[$contentArray['type']]['frontend_script'])){
-					pagebuilder_add_amp_script($moduleTemplate[$contentArray['type']]['frontend_script']);
-				}
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
-				if($moduleName=='contents'){
-					$fieldValues = array();
-					foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
-						$fieldValues[$field['name']]= $contentArray[$field['name']];
-					}
-					
-					$args = array(
-							'cat' => $fieldValues['category_selection'],
-							'posts_per_page' => $fieldValues['show_total_posts'],
-							'has_password' => false,
-							'post_status'=> 'publish'
-						);
-					//The Query
-					$the_query = new WP_Query( $args );
-					 $totalLoopHtml = contentHtml($the_query);
-					$moduleFrontHtml = str_replace('{{content_title}}', $fieldValues['content_title'], $moduleFrontHtml);
-					$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
-					/* Restore original Post Data */
-					wp_reset_postdata();
-					
-				}else{
-					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-						if(isset($contentArray[$field['name']]) && !empty($contentArray)){
-							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
-						}else{
-							$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+				switch($moduleName){
+					case 'gallery_image':
+						$moduleDetails = $moduleTemplate[$contentArray['type']];
+						$moduleFrontHtml = pagebuilderGetGalleryFrontendView($moduleDetails,$contentArray);
+					break;
+					case 'contents':
+						$fieldValues = array();
+						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+							$fieldValues[$field['name']]= $contentArray[$field['name']];
 						}
-					}
+						
+						$args = array(
+								'cat' => $fieldValues['category_selection'],
+								'posts_per_page' => $fieldValues['show_total_posts'],
+								'has_password' => false,
+								'post_status'=> 'publish'
+							);
+						//The Query
+						$the_query = new WP_Query( $args );
+						 $totalLoopHtml = contentHtml($the_query);
+						$moduleFrontHtml = str_replace('{{content_title}}', $fieldValues['content_title'], $moduleFrontHtml);
+						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
+						/* Restore original Post Data */
+						wp_reset_postdata();
+						
+					break;
+					default:
+						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
+							if(isset($contentArray[$field['name']]) && !empty($contentArray)){
+								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+							}else{
+								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+							}
+						}
+					break;
 				}
 				$html .= $moduleFrontHtml;
 				/*if($contentArray['type']=="text"){
@@ -259,26 +262,5 @@ function sortByIndex($contentArray){
 		return $completeSortedArray;
 	}else{
 		return $contentArray;
-	}
-}
-
-//To add script in amp page
-$componentScripts = array();
-function pagebuilder_add_amp_script($scripts = array()){
-	global $componentScripts;
-	$componentScripts = $scripts;
-	if(count($componentScripts)>0){
-		add_filter('amp_post_template_data','ampforwp_pagebuilder_component_scripts', 20);
-	}
-}
-function ampforwp_pagebuilder_component_scripts(){
-	global $componentScripts;
-	print_r($componentScripts);die;
-	if(count($componentScripts)>0){
-		foreach($componentScripts as $scriptName=>$scriptLink){
-			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
-				$data['amp_component_scripts'][$scriptName] = $scriptLink;
-			}
-		}
 	}
 }
