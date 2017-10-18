@@ -11,22 +11,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		$amp_html = "<amp-img src='$amp_img_src' width=300 height=250 layout=responsive ></amp-img>";
 	}
 	else{
-		$image_arguments = array(
-						        'post_type' => 'attachment',
-						        'post_mime_type' => 'image',
-						        'post_parent' => $post->ID,
-						        'numberposts' => 1
-						    );
-        $content_images = get_children($image_arguments);
-        if ($content_images) {
-            foreach ($content_images as $image) {
-            	$featured_id = $image->ID;
-		        $image_html =	wp_get_attachment_image( $featured_id, 'large' );
-		     	$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
-		        $amp_html =  $amp_html_sanitizer->get_amp_content();
-			 } 
-		}
-            wp_reset_postdata();
+		$amp_html = ampforwp_get_featured_image_from_content($post);
 	}	
 		?>
 		<figure class="amp-wp-article-featured-image wp-caption">
