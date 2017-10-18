@@ -245,6 +245,10 @@ function call_loops_standard($data=array()){
 		}
 		echo '</ul>';
 	}
+	// author
+	function amp_loop_author($suffix='by'){
+		echo $suffix . ' ' .get_the_author();
+	}
 
 
 
