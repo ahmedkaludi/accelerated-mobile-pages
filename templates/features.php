@@ -917,8 +917,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				 $content = preg_replace('/xml:lang=[^>]*/', '', $content);
 
 				//				 $content = preg_replace('/<img*/', '<amp-img', $content); // Fallback for plugins
-				// Removing the type attribute from the <ul>
-				 $content = preg_replace('/<ul(.*?)type=".*?"(.*?)/','<ul $1',$content);
+				// Removing the type attribute from the <ul> (Improved after 0.9.63)
+				 $content = preg_replace('/<ul(.*?)\btype=".*?"(.*?)/','<ul $1',$content);
+				
+				 // Proper sanitizing the <ul> tag for itemtype and itemscope #1210
+				 $content = preg_replace('/<ul(.*?)(\w+=".*?")(.*?)(\btype=".*?")(.*?)(\w+=".*?")/','<ul $2 $6',$content);
+				 $content = preg_replace('/<ul(.*?)\btype=".*?"/','<ul $1',$content);
+
+
 				 //Convert the Twitter embed into url for better sanitization #1010
 				  $content = preg_replace('/<blockquote.+?(?=class="twitter-tweet")class="twitter-tweet".+?(https:\/\/twitter\.com\/\w+\/\w+\/.*?)".+?(?=<\/blockquote>)<\/blockquote>/s', "$1", $content);
 				return $content;
