@@ -47,8 +47,6 @@ function call_loops_standard($data=array()){
 			'has_password' => false ,
 			'post_status'=> 'publish'
 		  );
-		$filtered_args = apply_filters('ampforwp_query_args', $args);
-		$amp_q = new WP_Query( $filtered_args );
 	}
 	if ( is_home() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
@@ -61,8 +59,6 @@ function call_loops_standard($data=array()){
 			'has_password'		  => false ,
 			'post_status'		  => 'publish'
 		);
-		$filtered_args = apply_filters('ampforwp_query_args', $args);
-		$amp_q = new WP_Query( $filtered_args );
 	}
 
 	if ( is_search() ) {
@@ -75,9 +71,16 @@ function call_loops_standard($data=array()){
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'
 		);
-		$amp_q = new WP_Query( $args );
 	}
-
+	if(isset($data['post_to_show']) && $data['post_to_show']>0){
+		$args['posts_per_page'] = $data['post_to_show'];
+	}
+	if(isset($data['offset']) && $data['offset']>0){
+		$args['offset'] = $data['offset'];
+	}
+	
+	$filtered_args = apply_filters('ampforwp_query_args', $args);
+	$amp_q = new WP_Query( $filtered_args );
 }
 //call_loops_standered();
 /****
@@ -93,7 +96,7 @@ function call_loops_standard($data=array()){
 	function amp_loop($selection,$data=array()){
 		global $amp_q;
 		if(empty($amp_q) || is_null($amp_q)){
-			call_loops_standard();
+			call_loops_standard($data);
             echo "<div class='loop-wrapper'>";
 		}
 		if ( !isset($ampLoopData['no_data']) ) :
@@ -118,6 +121,7 @@ function call_loops_standard($data=array()){
 	}
 	function amp_end_loop(){
 		wp_reset_postdata();
+		wp_reset_query();
         echo "</div>";
 	}
 
@@ -203,7 +207,8 @@ function call_loops_standard($data=array()){
 		if (has_post_thumbnail()  ) { 
 			$tag = 'div';
 			$tag_class = '';
-			$imageClass = 'class =';
+			$imageClass = '';
+			$imageSize = 'thumbnail';
 			if(isset($data['tag']) && $data['tag']!=""){
 				$tag = $data['tag'];
 			}
@@ -211,17 +216,20 @@ function call_loops_standard($data=array()){
 				$tag_class = $data['tag_class'];
 			}
 			if(isset($data['image_class']) && $data['image_class']!=""){
-				$imageClass .= '"'.$data['image_class'].'"';
+				$imageClass = $data['image_class'];
+			}
+			if(isset($data['image_size']) && $data['image_size']!=""){
+				$imageSize = $data['image_size'];
 			}
 
 			$thumb_id = get_post_thumbnail_id();
-			$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+			$thumb_url_array = wp_get_attachment_image_src($thumb_id, $imageSize, true);
 			$thumb_url = $thumb_url_array[0];
 			
 
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img '.$imageClass.' layout="responsive" src="'. $thumb_url .'" width=150 height=150></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 	     } 
