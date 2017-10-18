@@ -88,6 +88,7 @@
 	78. Saved Custom Post Types for AMP in Options for Structured Data
 	79. Favicon for AMP
 	80. Mobile Preview styling
+	81. Duplicate Featured Image Support
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4057,3 +4058,15 @@ function ampforwp_mobile_preview_styling(){ ?>
 		}
 	</style>
 <?php }
+
+// 81. Duplicate Featured Image Support
+add_filter('ampforwp_allow_featured_image', 'ampforwp_enable_post_and_featured_image');
+function ampforwp_enable_post_and_featured_image($show_image){
+	global $redux_builder_amp;
+
+	if ( isset($redux_builder_amp['ampforwp-duplicate-featured-image']) && $redux_builder_amp['ampforwp-duplicate-featured-image'] == 1  ) {
+		$show_image = true;	 
+	}
+
+	return $show_image; 
+}

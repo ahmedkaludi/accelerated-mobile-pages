@@ -277,9 +277,16 @@ class AMP_Post_Template {
 		// If an image with the same ID as the featured image exists in the content, skip the featured image markup.
 		// Prevents duplicate images, which is especially problematic for photo blogs.
 		// A bit crude but it's fast and should cover most cases.
+		// $post_content = $this->post->post_content;
+		// if ( false !== strpos( $post_content, 'wp-image-' . $featured_id )
+		// 	|| false !== strpos( $post_content, 'attachment_' . $featured_id ) ) {
+		// 	return;
+		// }
+
+		// Updated the code with a filter (ampforwp_allow_featured_image), so users can change defaul settings. #1071 and #670
+
 		$post_content = $this->post->post_content;
-		if ( false !== strpos( $post_content, 'wp-image-' . $featured_id )
-			|| false !== strpos( $post_content, 'attachment_' . $featured_id ) ) {
+		if ( true !== apply_filters('ampforwp_allow_featured_image', false) && ( false !== strpos( $post_content, 'wp-image-' . $featured_id ) || false !== strpos( $post_content, 'attachment_' . $featured_id ) ) ) {
 			return;
 		}
 

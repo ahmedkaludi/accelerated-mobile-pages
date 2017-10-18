@@ -12,3 +12,5 @@ Reference: #1130 #966
 
 4. Make sure we are passing the integer in the date function Ticekt no #1241
 	changes made in includes/class-amp-post-template.php on line 174 and 175
+
+5. Added a filter called ampforwp_allow_featured_image, so users can show or hide Featured image according to the usage. #1071

@@ -1655,6 +1655,16 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
+                    // Duplicate Featured Image
+                    array(
+                        'id'       => 'ampforwp-duplicate-featured-image',
+                        'type'     => 'switch',
+                        'title'    => __('Duplicate Featured Image', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Turn On the support if you want to show the Featured Image if it already exists in post content.', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,                        
+                    ),
                      array(
                        'id'       => 'ampforwp-custom-fields-featured-image',
                        'type'     => 'text',
