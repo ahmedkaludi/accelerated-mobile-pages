@@ -1481,6 +1481,8 @@ function ampforwp_remove_schema_data() {
 		remove_filter( 'the_content', 'ga_strikable_add_optimized_adsense_code');
 	//Removing Social Media Share Buttons & Social Sharing Icons #1135
 		remove_filter('the_content', 'sfsi_social_buttons_below');
+	// Removing WordPress Social Share Buttons #1272
+    	remove_filter ('the_content', 'FTGSB');
 }
 
 // 22. Removing author links from comments Issue #180
