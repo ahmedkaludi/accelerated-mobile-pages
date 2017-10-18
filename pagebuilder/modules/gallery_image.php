@@ -89,19 +89,19 @@ function pagebuilderGetGalleryFrontendView($moduleDetails,$selectedArray){
 }
 
 //To add script in amp page
-$galleryComponentScriptsPB = array();
+$galleryComponentScriptsAmpPB = array();
 function pagebuilder_add_amp_script($scripts = array()){
-	global $galleryComponentScriptsPB;
-	$galleryComponentScriptsPB = $scripts;
-	if(count($galleryComponentScriptsPB)>0){
+	global $galleryComponentScriptsAmpPB;
+	$galleryComponentScriptsAmpPB = $scripts;
+	if(count($galleryComponentScriptsAmpPB)>0){
 		add_filter('amp_post_template_data','ampforwp_pagebuilder_component_scripts', 20);
 	}
 }
 
 function ampforwp_pagebuilder_component_scripts($data){
-	global $galleryComponentScriptsPB;
-	if(count($galleryComponentScriptsPB)>0){
-		foreach($galleryComponentScriptsPB as $scriptName=>$scriptLink){
+	global $galleryComponentScriptsAmpPB;
+	if(count($galleryComponentScriptsAmpPB)>0){
+		foreach($galleryComponentScriptsAmpPB as $scriptName=>$scriptLink){
 			if ( empty( $data['amp_component_scripts'][$scriptName] ) ) {
 				$data['amp_component_scripts'][$scriptName] = $scriptLink;
 			}

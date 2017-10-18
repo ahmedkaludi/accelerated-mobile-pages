@@ -291,6 +291,7 @@ jQuery( document ).ready( function( $ ){
 		$.each(popupContents.fields, function(fieldsName,fieldReplace){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+			fieldReplace.default_images = '';
 			switch(fieldReplace.type){
 				case 'select':
 					updateSelectValues.push({id: id, value: decodeURI(fieldReplace.default)});
@@ -300,14 +301,14 @@ jQuery( document ).ready( function( $ ){
 					var imageSrc = fieldReplace.default.split(",");
 					$.each(imageSrc, function(id, src){
 						if(src!=''){
-							imageHtml += '<img src="'+src+'" width="100" height="100">';
+							imageHtml += '<img src="'+src+'" width="40" height="40">';
 						}
 					})
-					fieldReplace.default = imageHtml;
+					fieldReplace.default_images = imageHtml;
 				break;
 			}
 			
-			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default)).replace(/{options}/g, decodeURI(fieldReplace.options));
+			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default)).replace(/{options}/g, decodeURI(fieldReplace.options)).replace(/{default_images}/g, decodeURI(fieldReplace.default_images));
 			
 			//To load action of fields
 			switch(fieldReplace.type){
