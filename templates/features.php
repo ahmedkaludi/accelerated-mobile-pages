@@ -247,12 +247,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					}
 				}
 
+				$amp_url = user_trailingslashit($amp_url);	
+
 				if( is_search() ) {
 					$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 					$amp_url = untrailingslashit($current_search_url);
 				}
-		$amp_url = user_trailingslashit($amp_url);	
-        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
+				
+		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 				if( $supported_amp_post_types) {					
 					printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
