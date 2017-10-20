@@ -122,8 +122,13 @@ function call_loops_standard($data=array()){
 	function amp_end_loop(){
 		global $amp_q;
 		wp_reset_postdata();
-		$amp_q = '';
         echo "</div>";
+	}
+
+	function amp_reset_loop(){
+		global $amp_q;
+		$amp_q = '';
+		return "";
 	}
 
 	function amp_pagination(){
