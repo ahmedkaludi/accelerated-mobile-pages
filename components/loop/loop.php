@@ -255,8 +255,22 @@ function call_loops_standard($data=array()){
 		echo '</ul>';
 	}
 	// author
-	function amp_loop_author($suffix='by'){
-		echo $suffix . ' ' .get_the_author();
+	function amp_loop_author($args = array()){
+		 global $redux_builder_amp;
+		// 
+		 $author_prefix = $author_wrapper_class = '';
+		 $author_link = '#';
+		 if(isset( $args['author_prefix'])){
+		 	  $author_prefix = $args['author_prefix'];
+		 }
+		 $suffix = ampforwp_translation($redux_builder_amp['amp-translator-by-text'] , $author_prefix );
+		 if(isset( $args['author_link'])){
+		 	  $author_link = $args['author_link'];
+		 }
+		 if(isset( $args['author_wrapper_class'])){
+		 	  $author_wrapper_class = $args['author_wrapper_class'];
+		 }
+		echo '<span class="'. $author_wrapper_class .'">'.$suffix . '<a href="'. $author_link.'"> ' .get_the_author().'</a></span>';
 	}
 
 
