@@ -89,6 +89,9 @@
 	79. Favicon for AMP
 	80. Mobile Preview styling
 	81. Duplicate Featured Image Support
+	82. Grab Featured Image from The Content
+	83. Advance Analytics(Google Analytics)
+
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -717,20 +720,28 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
-				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){ ?>
+				if ( $redux_builder_amp['amp-analytics-select-option']=='1' ){
+					$ga_fields = array();
+					$ampforwp_ga_fields = array();
+					$ga_account = '';
+					$ga_account = $redux_builder_amp['ga-feild'];
+					$ga_fields = array(
+									'vars'=>array(
+										'account'=>$ga_account
+										),
+									'triggers'=> array(
+										'trackPageview'=> array(
+											'on'=>'visible',
+											'request'=>'pageview'
+										)
+									)
+								);
+					$ampforwp_ga_fields = json_encode( $ga_fields);
+					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
+				 ?>
 						<amp-analytics type="googleanalytics" id="analytics1">
 							<script type="application/json">
-							{
-							  "vars": {
-							    "account": "<?php global $redux_builder_amp; echo $redux_builder_amp['ga-feild']; ?>"
-							  },
-							  "triggers": {
-							    "trackPageview": {
-							      "on": "visible",
-							      "request": "pageview"
-							    }
-							  }
-							}
+								<?php echo $ampforwp_ga_fields; ?>
 							</script>
 						</amp-analytics>
 						<?php
@@ -4091,4 +4102,16 @@ function ampforwp_get_featured_image_from_content($size = 'full') {
 	$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
     $amp_html =  $amp_html_sanitizer->get_amp_content();
 	return $amp_html;
+}
+
+// 83. Advance Analytics(Google Analytics)
+add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
+function ampforwp_add_advance_ga_fields($ga_fields){
+	global $redux_builder_amp;
+	$ampforwp_adv_ga_fields = array();
+	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-feild-advance'];
+	if($ampforwp_adv_ga_fields)	{
+		return $ampforwp_adv_ga_fields;
+	}
+	return $ga_fields;	
 }

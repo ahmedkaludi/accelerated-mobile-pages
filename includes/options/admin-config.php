@@ -1009,6 +1009,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'desc'     => __('Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
                           'default'  => 'UA-XXXXX-Y',
                       ),
+                      // Advance Tracking options for Google Analytics
+                      array(
+                          'id'       => 'ampforwp-ga-feild-advance-switch',
+                          'type'     => 'switch',
+                          'title'    => __( 'Google Analytics Advance', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '1')
+                          ),
+                          'subtitle' => __( 'Enable the Advance Tracking options', 'accelerated-mobile-pages' ),
+                          'default'  => 0,
+                      ),
+                      array(
+                        'id'       => 'ampforwp-ga-feild-advance',
+                        'type'     => 'ace_editor',
+                        'title'    => __('Advance Google Analytics', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Enter the Advance Tracking options', 'accelerated-mobile-pages'),
+                        'mode'     => 'javascript',
+                        'theme'    => 'monokai',
+                        'desc'     => '',
+                        'default'  => __('','accelerated-mobile-pages')
+                    ),
                       array(
                         'id'       => 'sa-feild',
                         'type'     => 'text',
