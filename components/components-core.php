@@ -134,10 +134,10 @@ function amp_featured_image( ){
 }
 
 // Author Box
-function amp_author_box( $author_url="" ){
+function amp_author_box( $author_url="",$args=array() ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-author-box']) && $loadComponent['AMP-author-box']==true){
-		ampforwp_framework_get_author_box($author_url );
+		ampforwp_framework_get_author_box($author_url, $args);
 	}
 }
 
