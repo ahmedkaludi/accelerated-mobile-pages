@@ -203,16 +203,24 @@ function call_loops_standard($data=array()){
 		}
 		echo user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
 	}
-	function amp_loop_image($data=array()){
+	function amp_loop_image( $data=array() ){
 		global $ampLoopData,$counterOffset;
-		if (has_post_thumbnail()  ) { 
-			$tag = 'div';
-			$tag_class = '';
-			$imageClass = '';
-			$imageSize = 'thumbnail';
+		if (has_post_thumbnail()  ) {
+
+			$tag 				= 'div';
+			$tag_class 			= '';
+			$layout_responsive 	= '';
+			$imageClass 		= '';
+			$imageSize 			= 'thumbnail';
+
 			if(isset($data['tag']) && $data['tag']!=""){
 				$tag = $data['tag'];
 			}
+
+			if(isset($data['responsive']) && $data['responsive']!=""){
+				$layout_responsive = 'layout=responsive';
+ 			}
+
 			if(isset($data['tag_class']) && $data['tag_class']!=""){
 				$tag_class = $data['tag_class'];
 			}
@@ -230,7 +238,7 @@ function call_loops_standard($data=array()){
 
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" class="'.$imageClass.'"></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 	     } 
