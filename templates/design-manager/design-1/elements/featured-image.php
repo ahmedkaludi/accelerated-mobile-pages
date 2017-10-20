@@ -12,16 +12,18 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 	}
 	elseif($redux_builder_amp['ampforwp-featured-image-from-content'] == true){
 		$amp_html = ampforwp_get_featured_image_from_content();
-	}	
-		?>
-		<figure class="amp-wp-article-featured-image wp-caption">
-			<?php echo $amp_html; // amphtml content; no kses ?>
-			<?php if ( $caption ) : ?>
-				<p class="wp-caption-text">
-					<?php echo wp_kses_data( $caption ); ?>
-				</p>
-			<?php endif; ?>
-		</figure>
-		<?php 
+	}
+		if( $amp_html ) {	
+			?>
+			<figure class="amp-wp-article-featured-image wp-caption">
+				<?php echo $amp_html; // amphtml content; no kses ?>
+				<?php if ( $caption ) : ?>
+					<p class="wp-caption-text">
+						<?php echo wp_kses_data( $caption ); ?>
+					</p>
+				<?php endif; ?>
+			</figure>
+			<?php 
+		}
 	}
 do_action('ampforwp_after_featured_image_hook',$this);
