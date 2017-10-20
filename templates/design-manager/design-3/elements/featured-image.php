@@ -10,8 +10,8 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		$amp_img_src = ampforwp_cf_featured_image_src();
 		$amp_html = "<amp-img src='$amp_img_src' width=300 height=250 layout=responsive ></amp-img>";
 	}
-	else{
-		$amp_html = ampforwp_get_featured_image_from_content($post);
+	elseif($redux_builder_amp['ampforwp-featured-image-from-content'] == true){
+		$amp_html = ampforwp_get_featured_image_from_content();
 	}	
 		?>
 		<div class="amp-wp-article-featured-image amp-wp-content featured-image-content">

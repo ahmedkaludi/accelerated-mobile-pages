@@ -4078,27 +4078,17 @@ function ampforwp_enable_post_and_featured_image($show_image){
 	return $show_image; 
 }
 // 82. Grab Featured Image from The Content
-function ampforwp_get_featured_image_from_content( $post ) {
-	$image_arguments = array();
-	$content_images = '';
-	$featured_id = '';
-	$amp_html = '';
-	$image_arguments = array(
-					        'post_type' => 'attachment',
-					        'post_mime_type' => 'image',
-					        'post_parent' => $post->ID,
-					        'numberposts' => 1,
-					        'post_status' => null,
-					    );
-    $content_images = get_children($image_arguments);
-    if ($content_images) {
-        foreach ($content_images as $image) {
-        	$featured_id = $image->ID;
-	        $image_html =	wp_get_attachment_image( $featured_id, 'large' );
-	     	$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
-	        $amp_html =  $amp_html_sanitizer->get_amp_content();
-		 } 
-	}
-    wp_reset_postdata();
-    return $amp_html;
+function ampforwp_get_featured_image_from_content($size = 'full') {
+	global $post, $posts;
+	$image_url = '';
+	ob_start();
+	ob_end_clean();
+	// Match all the images from the content
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	//Grab the First Image
+	$image_html = $matches[0][0];
+	// Sanitize it
+	$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+    $amp_html =  $amp_html_sanitizer->get_amp_content();
+	return $amp_html;
 }
