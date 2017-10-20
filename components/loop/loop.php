@@ -120,8 +120,9 @@ function call_loops_standard($data=array()){
 		return $post_status;
 	}
 	function amp_end_loop(){
+		global $amp_q;
 		wp_reset_postdata();
-		wp_reset_query();
+		$amp_q = '';
         echo "</div>";
 	}
 

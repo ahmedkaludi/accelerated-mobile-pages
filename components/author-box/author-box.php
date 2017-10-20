@@ -10,5 +10,6 @@ if($author_avatar_url == null){
         <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>     
         <strong><?php echo esc_html( $post_author->display_name ); ?></strong>
         <?php echo $post_author->description; ?>
+        <span class="posted-time"><?php echo esc_html( get_the_date() ); ?></span>
     </div>
 <?php }
