@@ -1032,7 +1032,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       ),
                       // Advance Tracking options for Google Analytics
                       array(
-                          'id'       => 'ampforwp-ga-feild-advance-switch',
+                          'id'       => 'ampforwp-ga-field-advance-switch',
                           'type'     => 'switch',
                           'title'    => __( 'Google Analytics Advance', 'accelerated-mobile-pages' ),
                           'required' => array(
@@ -1043,9 +1043,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'default'  => 0,
                       ),
                       array(
-                        'id'       => 'ampforwp-ga-feild-advance',
+                        'id'       => 'ampforwp-ga-field-advance',
                         'type'     => 'ace_editor',
                         'title'    => __('Advance Google Analytics', 'accelerated-mobile-pages'),
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '1'),
+                            array('ampforwp-ga-field-advance-switch', '=' , '1')
+                        ),
                         'subtitle' => __('Enter the Advance Tracking options', 'accelerated-mobile-pages'),
                         'mode'     => 'javascript',
                         'theme'    => 'monokai',

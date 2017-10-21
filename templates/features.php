@@ -4054,8 +4054,8 @@ add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields')
 function ampforwp_add_advance_ga_fields($ga_fields){
 	global $redux_builder_amp;
 	$ampforwp_adv_ga_fields = array();
-	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-feild-advance'];
-	if($ampforwp_adv_ga_fields)	{
+	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-field-advance'];
+	if($ampforwp_adv_ga_fields && $redux_builder_amp['ampforwp-ga-field-advance-switch'])	{
 		return $ampforwp_adv_ga_fields;
 	}
 	return $ga_fields;	
