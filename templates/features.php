@@ -3577,7 +3577,7 @@ function ampforwp_rel_canonical_home_archive(){
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
-		<link rel="canonical" href="<?php echo user_trailingslashit($amp_url) ?>">
+		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( $amp_url ) ) ?>">
 	<?php }
 
 	if(is_search()){
@@ -3593,7 +3593,7 @@ function ampforwp_rel_canonical_home_archive(){
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} 
 		?>
-		<link rel="canonical" href="<?php echo user_trailingslashit($amp_url) ?>">
+		<link rel="canonical" href="<?php echo untrailingslashit( esc_url( $amp_url ) ); ?>">
 	<?php
 	}
 				
