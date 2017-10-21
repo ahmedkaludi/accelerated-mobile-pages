@@ -4227,8 +4227,8 @@ function ampforwp_inline_related_posts(){
 //related posts code ends here
 }
 
-add_action('pre_amp_render_post','ampforwp_inline_related_posts');
-function ampforwp_inline_related_posts(){
+add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
+function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1){
 		add_filter('the_content','inline_related_posts');
