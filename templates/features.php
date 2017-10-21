@@ -1178,11 +1178,11 @@ function ampforwp_title_callback( $post ) {
         ?>
     <p>
         <div class="prfx-row-content">
-            <label for="meta-radio-one">
+            <label class="meta-radio-two" for="meta-radio-one">
                 <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'default' ); ?>>
                 <?php _e( 'Show' )?>
             </label>
-            <label for="meta-radio-two">
+            <label class="meta-radio-two" for="meta-radio-two">
                 <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
                 <?php _e( 'Hide' )?>
             </label>
@@ -1190,7 +1190,7 @@ function ampforwp_title_callback( $post ) {
              if($post->post_status == 'publish') {
 	             add_thickbox(); ?>
 	             <div class="ampforwp-preview-button-container"> 
-					<input alt="#TB_inline?height=1135&amp;width=718&amp;inlineId=ampforwp_preview" title="AMP Mobile Preview" class="thickbox ampforwp-preview-button button-primary" type="button" value="Preview AMP" />  
+					<input alt="#TB_inline?height=1135&amp;width=718&amp;inlineId=ampforwp_preview" title="AMP Mobile Preview" class="thickbox ampforwp-preview-button preview button" type="button" value="Preview AMP" />  
 				 </div>
 			<?php } ?>   
         </div>
