@@ -4041,13 +4041,13 @@ function ampforwp_get_featured_image_from_content($size = 'full') {
 	$matches = '';
 	$amp_html_sanitizer = '';
 	$amp_html = '';
+	$image_html = '';
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
 	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 	//Grab the First Image
 	if ( $matches[0] ) {
-
 		$image_html = $matches[0][0];
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
