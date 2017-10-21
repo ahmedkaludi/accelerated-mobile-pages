@@ -116,7 +116,7 @@ function amppb_save_post( $post_id, $post ){
 add_action("pre_amp_render_post",'amp_pagebuilder_content');
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
-	?>
+	?>.amp_pb{display: inline-block;width: 100%;}
     .row{display: inline-flex;width: 100%;}
 	.col-2{width:50%;float:left;}
     .amp_blurb{text-align:center}
