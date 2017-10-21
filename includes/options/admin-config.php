@@ -2550,6 +2550,13 @@ Redux::setSection( $opt_name, array(
                     'validate' => 'numeric',
                 'default'  => '3',
             ),
+            array(
+                    'id'       => 'ampforwp-inline-related-posts',
+                    'type'     => 'switch',
+                    'title'    => __('Inline Related Post', 'accelerated-mobile-pages'),
+                'subtitle' => __('Insert Related Posts between the content', 'accelerated-mobile-pages'),
+                'default'  => 0,
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
