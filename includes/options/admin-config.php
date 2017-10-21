@@ -975,8 +975,8 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'AMPforWP_cache_minimize_mode',
                'type'     => 'switch',
-               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
-               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
+               'title'     => __('Minify Html/CSS', 'accelerated-mobile-pages'),
+               'subtitle'     => __('The HTML/CSS Minify', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
 
