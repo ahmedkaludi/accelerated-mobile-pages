@@ -1456,7 +1456,8 @@ Redux::setSection( $opt_name, array(
                             'medium' => __('Every 350 words', 'accelerated-mobile-pages' ),
                             'low' => __('Every 500 words', 'accelerated-mobile-pages' ),
                         ),
-                        'required'  => array('fb-instant-article-ads', '=', 1)
+                        'required'  => array('fb-instant-article-ads', '=', 1),
+                        'default'  => 'defualt',
                     ),
                     array(
                         'id'       => 'fb-instant-article-analytics',
