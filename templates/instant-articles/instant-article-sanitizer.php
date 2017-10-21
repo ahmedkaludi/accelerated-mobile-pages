@@ -234,7 +234,7 @@ function no_empty_p_tags($DOMDocument){
 		return $instant_article_ad_id;
 	}
 
-	function get_ia_ad_density()){
+	function get_ia_ad_density(){
 		global $redux_builder_amp;
 		$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density'];
 		return $instant_article_ad_density;
