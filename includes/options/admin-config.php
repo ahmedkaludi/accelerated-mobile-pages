@@ -2372,8 +2372,7 @@ Redux::setSection( $opt_name, array(
                         'type'      =>'switch',
                         'title'     =>__('Published Time','accelerated-mobile-pages'),
                         'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
-                        'required' => array(array('amp-design-selector', '=' , '1') ),
-                        'required' => array('amp-frontpage-select-option', '=' , '0'),
+                        'required' => array(array('amp-design-selector', '=' , '1') ), 
                         'default'   =>'1',
                 ),
 
@@ -2382,8 +2381,7 @@ Redux::setSection( $opt_name, array(
                         'type'      =>'switch',
                         'title'     =>__('Published Time','accelerated-mobile-pages'),
                         'subtitle' => __('Display published time of the post on homepage', 'accelerated-mobile-pages'),
-                        'required' => array(array('amp-design-selector', '=' , '3') ),
-                        'required' => array('amp-frontpage-select-option', '=' , '0'),
+                        'required' => array(array('amp-design-selector', '=' , '3') ), 
                         'default'   =>'1',
                 ),
 
