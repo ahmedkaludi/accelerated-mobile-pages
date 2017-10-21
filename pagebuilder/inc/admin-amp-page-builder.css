@@ -580,7 +580,16 @@ a.amppb_helper_btn:hover{
     color: #fff;
     border-color: #80858a
 }
-
+.enable_ampforwp_page_builder{
+    height: 19px;
+}
+.enable_ampforwp_page_builder label{
+    position: relative;
+    top: 6px;
+    background: #eee;
+    display: inline-block;
+    padding: 7px 7px 5px 7px;
+}
 /********
 Form Styles
 ***********************/

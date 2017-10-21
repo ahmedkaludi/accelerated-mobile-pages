@@ -69,7 +69,7 @@ function call_page_builder(){
 	}
 	?>
 	<div class="enable_ampforwp_page_builder">
-		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Page builder (Check this, to show below structure in AMP Page)</label>
+		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 	</div>
 	<div id="amp-page-builder">
  		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
