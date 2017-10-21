@@ -4240,7 +4240,7 @@ function ampforwp_new_gallery_images($images, $image){
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
     global $redux_builder_amp;
-    if(!$redux_builder_amp['AMPforWP_cache_minimize_mode']){
+    if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
     }
     $buffer = $content_buffer ; 

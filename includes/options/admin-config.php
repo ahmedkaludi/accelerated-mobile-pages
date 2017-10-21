@@ -973,7 +973,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'fields'     => array(
 
            array(
-               'id'       => 'AMPforWP_cache_minimize_mode',
+               'id'       => 'ampforwp_cache_minimize_mode',
                'type'     => 'switch',
                'title'     => __('Minify Html/CSS', 'accelerated-mobile-pages'),
                'subtitle'     => __('The HTML/CSS Minify', 'accelerated-mobile-pages'),
