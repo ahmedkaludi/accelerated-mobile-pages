@@ -1447,7 +1447,18 @@ Redux::setSection( $opt_name, array(
                         'subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-ads', '=', 1)
                     ),
-                     array(
+                    array(
+                        'id'       => 'fb-instant-article-ad-density',
+                        'type'     => 'select',
+                        'title'    => __('How often should ads show in Instant Article pages', 'accelerated-mobile-pages'),
+                        'options'  => array(
+                            'defualt' => __('Every 250 words', 'accelerated-mobile-pages' ),
+                            'medium' => __('Every 350 words', 'accelerated-mobile-pages' ),
+                            'low' => __('Every 500 words', 'accelerated-mobile-pages' ),
+                        ),
+                        'required'  => array('fb-instant-article-ads', '=', 1)
+                    ),
+                    array(
                         'id'       => 'fb-instant-article-analytics',
                         'type'      => 'switch',
                         'title'     => __('Analytics', 'accelerated-mobile-pages'),
