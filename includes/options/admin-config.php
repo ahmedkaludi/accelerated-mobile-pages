@@ -2750,7 +2750,7 @@ Redux::setSection( $opt_name, array(
               'id'        =>  'enable-single-vk-share',
               'type'      =>  'switch',
               'title'     =>  __('VKontakte', 'accelerated-mobile-pages'),
-              'default'   =>  1,
+              'default'   =>  0,
           ),
           array(
        'id' => 'social-media-profiles-subsection',
