@@ -1864,6 +1864,8 @@ function ampforwp_frontpage_title_markup () {
 				$content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
 				$content_buffer = preg_replace('/!important/', '' , $content_buffer);
 
+				$content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
+
             }
             return $content_buffer;
 		}
