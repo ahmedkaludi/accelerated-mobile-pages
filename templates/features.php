@@ -1308,7 +1308,7 @@ function ampforwp_meta_redirection_status(){
 	global $post;
 	$ampforwp_redirection_post_on_off_meta = '';
 
-	if ( ! is_404() ) {
+	if ( ! is_404() && ampforwp_is_search_has_results() ) {
 		$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
 	}
 
@@ -1318,6 +1318,11 @@ function ampforwp_meta_redirection_status(){
 
 	return $ampforwp_redirection_post_on_off_meta;
 
+}
+
+// Added the check to see if any search results exists
+function ampforwp_is_search_has_results() {
+    return 0 != $GLOBALS['wp_query']->found_posts;
 }
 
 /**
