@@ -46,6 +46,7 @@ function call_page_builder(){
 	global $moduleTemplate;
 	add_thickbox();
 	$previousData = get_post_meta($post->ID,'amp-page-builder');
+	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	//$previousData = wp_slash($previousData);
 	$previousData = (str_replace("'", "", $previousData));
@@ -67,6 +68,9 @@ function call_page_builder(){
 		}
 	}
 	?>
+	<div class="enable_ampforwp_page_builder">
+		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Page builder (Check this, to show below structure in AMP Page)</label>
+	</div>
 	<div id="amp-page-builder">
  		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
         <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" value='<?php echo $previousData; ?>'>

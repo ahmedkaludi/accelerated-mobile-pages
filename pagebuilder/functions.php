@@ -83,6 +83,9 @@ function amppb_save_post( $post_id, $post ){
     
     /* == Save, Delete, or Update Page Builder Data == */
  
+    $ampforwp_pagebuilder_enable = isset( $request['ampforwp_page_builder_enable'] ) ?  $request['ampforwp_page_builder_enable']  : null;
+    update_post_meta( $post_id, 'ampforwp_page_builder_enable', $ampforwp_pagebuilder_enable );
+    
     /* Get (old) saved page builder data */
     $saved_data = get_post_meta( $post_id, 'amp-page-builder', true );
  
@@ -134,7 +137,8 @@ function amppb_post_content($content){
 
 	$previousData = get_post_meta($post->ID,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	if($previousData!=""){
+	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
+	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$html ="";
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
