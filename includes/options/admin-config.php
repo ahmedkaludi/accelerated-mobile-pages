@@ -965,6 +965,27 @@ Redux::setArgs( "redux_builder_amp", $args );
 
   );
 
+  // SEO SECTION
+  Redux::setSection( $opt_name, array(
+      'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
+      'id'         => 'amp-performance',
+      'subsection' => true,
+       'fields'     => array(
+
+           array(
+               'id'       => 'AMPforWP_cache_minimize_mode',
+               'type'     => 'switch',
+               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
+               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
+               'default'  => 0
+           ),
+
+       )
+
+  )
+
+  );
+
     // Analytics SECTION
    Redux::setSection( $opt_name,    array(
                 'title' => __('Analytics'),
