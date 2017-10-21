@@ -4015,77 +4015,12 @@ if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
 // 79. Favicon for AMP
 add_action('amp_post_template_head','wp_site_icon');
 
-// 80. Mobile Preview Styling
-add_action('admin_head','ampforwp_mobile_preview_styling');
-function ampforwp_mobile_preview_styling(){ ?>
-	<style type="text/css">
-		.col-sm-12 {
-	        width: 100%;
-	    }
-	    .margin-top-bottom {
-		    margin-top: 9px;
-		    margin-bottom: 10px;
-		}
-		.text-center {
-		    text-align: center;
-		}
-        #ampforwp-preview-format {
-		    margin-bottom: 0px;
-		    line-height: 0.5em;
-		}
-		.ampforwp-preview-phone-frame-wrapper {
-		    width:110%;
-		    display:inline-block;
-		    position: relative;
-		    max-width: 300px;
-		    text-align: center;
-		    margin-left: -12px;
-		}
-		.ampforwp-preview-phone-frame-wrapper:after {
-		    padding-top: 180%; 
-		    display:block;
-		    content: '';
-		}
-		.ampforwp-preview-phone-frame {
-		    position: absolute;
-		    top: 0;
-		    bottom: 0;
-		    right: 0;
-		    left: 0;
-		    border: 1px solid #e5e5e5;
-		    border-radius: 40px;
-		    padding-top:50px;
-		    padding-bottom: 35px;		 
-		    background: #f1f1f1;
-
-		}
-        .ampforwp-preview-container {
-		    height: 100%;
-		    position: relative;
-		    width: 100%;
-		    border: 1px solid #e5e5e5;
-		    overflow: hidden;
-		}
-		.ampforwp-preview-container > iframe {
-		    height: 100%;
-		    width: 100%;
-		    background-color: black;
-		    transform: scale(1, 1); 
-		    transform-origin: top left;
-		}
-		#TB_window #TB_ajaxContent{
-			width: 100%;
-			height: 100%;
-		}
-		#TB_ajaxWindowTitle{
-			font-size: large;
-		}
-		.ampforwp-preview-button-container{
-			float: right;
-			margin-top: -3px;	 
-		}
-	</style>
-<?php }
+// 80. Mobile Preview Styling 
+	/*
+	 * Code moved to accelerated-mobile-pages/includes/admin-style.css 
+	 * As it is not the best practice to add css directly into admin head
+	 * for more info please check the issue #1082 in github 
+	*/
 
 // 81. Duplicate Featured Image Support
 add_filter('ampforwp_allow_featured_image', 'ampforwp_enable_post_and_featured_image');
