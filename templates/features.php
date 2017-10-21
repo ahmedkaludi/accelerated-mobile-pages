@@ -4121,7 +4121,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 
 // 84. Inline Related Posts
 
-function design_3_inline_related_posts(){
+function ampforwp_inline_related_posts(){
 	global $post,  $redux_builder_amp;
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
@@ -4242,7 +4242,7 @@ function inline_related_posts($content){
 	$half_index = floor($no_of_parts / 2);
 	$half_content = array_chunk($content_parts, $half_index);
 	
-	$html[] ='<div class="ampforwp-inline-related-post">'.design_3_inline_related_posts().'</div>';
+	$html[] ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
 	$firs_content = $half_content[0];
 	$second_content = $half_content[1];
 	$final_content = array_merge($firs_content,$html,$second_content);
