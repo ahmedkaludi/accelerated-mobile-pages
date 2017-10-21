@@ -7,6 +7,7 @@ return array(
 		'name' => 'gallery_image',
 		'frontend_script' => array(
 			'amp-carousel'=>'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',
+			'amp-image-lightbox' => 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js',
 								   ),
 		'frontend_css'=> $frontCss,
 		'fields' => array(
@@ -26,10 +27,10 @@ return array(
 						array(
 							'type'	=>'select',
 							'name'  =>"image_show_type",
-							'label' =>"Is slider",
-							'default'=>'yes',
-							'options' => '<option value="yes">Yes</option>
-										<option value="no">No</option>',
+							'label' =>"Display Format",
+							'default'=>'slider-gallery',
+							'options' => '<option value="slider-gallery">Slider Gallery</option>
+										<option value="tiled-gallery">Tiled Gallery</option>',
 							),
 						array(
 							'type'	=>'text',
@@ -56,7 +57,7 @@ return array(
 function pagebuilderGetGalleryFrontendView($moduleDetails,$selectedArray){
 	$returnHtml = '<div class="galley-image-container">';
 	 
-	if(isset($selectedArray['image_show_type']) && $selectedArray['image_show_type']=='yes'){
+	if(isset($selectedArray['image_show_type']) && $selectedArray['image_show_type']=='slider-gallery'){
 		if(isset($moduleDetails['frontend_script'])){
 			pagebuilder_add_amp_script($moduleDetails['frontend_script']);
 		}
@@ -73,13 +74,31 @@ function pagebuilderGetGalleryFrontendView($moduleDetails,$selectedArray){
 						'size'=>$selectedArray['image_size_selection']
 						);
 			wp_get_image_editor( $imageUrl, $args );
-			$returnHtml .= '<amp-img src="'.$imageUrl.'"
+			
+
+
+			$returnHtml .= '<amp-img';
+			if($selectedArray['image_show_type']=='tiled-gallery'){
+					if(isset($moduleDetails['frontend_script'])){
+							pagebuilder_add_amp_script($moduleDetails['frontend_script']);
+						}
+					$returnHtml .= ' on="tap:lightbox1"
+									  role="button"
+									  tabindex="0"';
+				}
+			$returnHtml .= ' src="'.$imageUrl.'"
 							width="400"
 							height="300"
 							alt="'.$imageUrl.'"></amp-img>';
+			if($selectedArray['image_show_type']=='tiled-gallery'){
+					$returnHtml .= '<amp-image-lightbox id="lightbox1"
+  							layout="nodisplay"></amp-image-lightbox>';
+				}
+
+
 		}
 	}
-	if(isset($selectedArray['image_show_type']) && $selectedArray['image_show_type']=='yes'){
+	if(isset($selectedArray['image_show_type']) && $selectedArray['image_show_type']=='slider-gallery'){
 		$returnHtml .= '</amp-carousel>';
 	}
 	
