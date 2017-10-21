@@ -92,6 +92,7 @@
 	82. Grab Featured Image from The Content
 	83. Advance Analytics(Google Analytics)
 	84. Inline Related Posts
+	85. Caption for Gallery Images
 
 */
 // Adding AMP-related things to the main theme
@@ -4249,4 +4250,39 @@ function inline_related_posts($content){
 	$final_content = implode($break_point, $final_content);
 	$content = $final_content;
 	return $content;
+}
+
+// 85. Caption for Gallery Images
+// Add extra key=>value pair into the attachment array
+add_filter('amp_gallery_image_params','ampforwp_gallery_new_params', 10, 2);
+function ampforwp_gallery_new_params($urls, $attachment_id ){
+	$new_urls = array();
+	$captext = '';
+	$caption = array();
+	$captext = get_post( $attachment_id)->post_excerpt;
+	if($captext){
+		// Append only when caption is present
+		$caption = array('caption'=>$captext);
+		$new_urls = array_merge($urls,$caption);
+		return $new_urls;
+	}
+	else{
+		//If there's No caption
+		return $urls;	
+	}
+}
+// Add Caption in the Gallery Image
+add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 2);
+function ampforwp_new_gallery_images($images, $image){
+	//Check if the attachment has caption or not
+	if(isset($image['caption']) && $image['caption'] != '' ){
+		$caption = $image['caption'];
+		$figcaption = '<p class="wp-caption-text">'. wp_kses_data( $caption ) . '</p>';
+		// Append the caption with image
+		return '<div class="ampforwp-gallery-item">'. $images . $figcaption .'</div>';
+	}
+	else{
+		// If there is no caption
+		return '<div class="ampforwp-gallery-item">'. $images . '</div>';
+	}
 }

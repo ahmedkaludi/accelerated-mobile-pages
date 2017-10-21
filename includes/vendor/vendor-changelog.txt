@@ -14,3 +14,5 @@ Reference: #1130 #966
 	changes made in includes/class-amp-post-template.php on line 174 and 175
 
 5. Added a filter called ampforwp_allow_featured_image, so users can show or hide Featured image according to the usage. #1071
+
+6. Two Filters added at line number 92 and 124 in amp/includes/embeds/class-amp-gallery-embed.php to add extra parameters for Gallery. 

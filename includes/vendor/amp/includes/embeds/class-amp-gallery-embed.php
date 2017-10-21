@@ -89,13 +89,12 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 				continue;
 			}
 
-			$urls[] = array(
+			$urls[] = apply_filters('amp_gallery_image_params', array(
 				'url' => $url,
 				'width' => $width,
 				'height' => $height,
-			);
+			),$attachment_id);
 		}
-
 		return $this->render( array(
 			'images' => $urls,
 		) );
@@ -111,10 +110,9 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		if ( empty( $args['images'] ) ) {
 			return '';
 		}
-
 		$images = array();
-		foreach ( $args['images'] as $image ) {
-			$images[] = AMP_HTML_Utils::build_tag(
+		foreach ( $args['images'] as $key => $image ) {
+			$images[$key] = AMP_HTML_Utils::build_tag(
 				'amp-img',
 				array(
 					'src' => $image['url'],
@@ -123,8 +121,8 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 					'layout' => 'responsive',
 				)
 			);
+		$images[$key] = apply_filters('amp_gallery_images', $images[$key], $image);
 		}
-
 		return AMP_HTML_Utils::build_tag(
 			'amp-carousel',
 			array(
