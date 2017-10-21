@@ -15,8 +15,9 @@
 
     <?php
         $args = array(
-            'meta_query' => $meta_query,
-            'post_status' => 'publish'
+            'meta_query'            => $meta_query,
+            'post_status'           => 'publish',
+            'ignore_sticky_posts'   => 1
         );
         $query = new WP_Query( $args );
         $rendered_posts = 0;
