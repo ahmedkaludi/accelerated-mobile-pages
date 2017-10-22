@@ -4072,7 +4072,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 
 function ampforwp_inline_related_posts(){
 	global $post,  $redux_builder_amp;
-		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
+		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
 		// declaring this variable here to prevent debug errors
 		$args = null;
@@ -4180,10 +4181,10 @@ add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1){
-		add_filter('the_content','inline_related_posts');
+		add_filter('the_content','ampforwp_generate_inline_related_posts');
 	}
 }
-function inline_related_posts($content){
+function ampforwp_generate_inline_related_posts($content){
 	global $post;
 	
 	$break_point = '</p>';
