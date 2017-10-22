@@ -1034,7 +1034,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array(
                           'id'       => 'ampforwp-ga-field-advance-switch',
                           'type'     => 'switch',
-                          'title'    => __( 'Google Analytics Advance', 'accelerated-mobile-pages' ),
+                          'title'    => __( 'Advanced Analytics Tracking Event Options', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('amp-analytics-select-option', '=' , '1')
