@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.2
-Stable tag: 0.9.64
+Stable tag: 0.9.65
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,34 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.65 (22nd October 2017) =
+* View more details on https://ampforwp.com/new/
+* Favicon for AMP #1039
+* AMP Minification option added with Performance Tab in Options #1286
+* Post support is turned off then Meta box should also be removed #1253
+* Excerpt Length feature in Design two and Three #1122
+* Test Contact form plugins and their settings in the options panel #1121
+* Mobile preview in Edit Screen #1082
+* Search feature for Options Panel #1238
+* WordPress Social Share Buttons Validation Issues #1272
+* itemtype attribute is striping in the ul tag #1210
+* Debug Error in Breadcrumb 0.9.64 #1267
+* Disable AMP linking at Wordpress Search Page #969
+* Featured Image is missing #1071
+* Removed ampforwp_plugin_activation_notice #1034
+* Add VK (Vkontakte) Sharing Button #1187
+* Grab the first image instead of post thumbnail for featured image #1189
+* AMP theme framework core changes #1274
+* Grab the first image instead of post thumbnail for featured image #1189
+* Create a Switch on Top of Page Builder #1279
+* Inline Related Posts added that helps you with improving bounce rate #1078
+* Caption Support in Image Gallery Carousel #1172 #1136
+* Instant Articles feed shows sticky posts on top #945
+* Added search check, to fix debug notice
+* Option to hide date from Design 1 & Design 3 Homepage Loop #1264
+* UI labels improvements in the Options panel
+* Sorting out design #2 – static front page #1175
 
 = 0.9.64 (15th October 2017) =
 * View more details on https://ampforwp.com/new/

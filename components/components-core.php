@@ -134,10 +134,10 @@ function amp_featured_image( ){
 }
 
 // Author Box
-function amp_author_box( $author_url="" ){
+function amp_author_box( $author_url="",$args=array() ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-author-box']) && $loadComponent['AMP-author-box']==true){
-		ampforwp_framework_get_author_box($author_url );
+		ampforwp_framework_get_author_box($author_url, $args);
 	}
 }
 
@@ -217,7 +217,7 @@ function amp_header_core(){
     // Homepage
 	if ( is_home() ) {
 		
-    	$bodyClass = 'amp-index '.esc_attr( $thisTemplate->get( 'body_class' ) ); 
+    	$bodyClass = 'amp-index amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
     	if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
 			$bodyClass = 'single-post design_3_wrapper';
         }
@@ -251,7 +251,7 @@ function amp_header_core(){
 			</style>
 
 		</head>
-		<body class="<?php echo $bodyClass; ?>">
+		<body <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>
 		<?php do_action('ampforwp_body_beginning', $thisTemplate);  
 }

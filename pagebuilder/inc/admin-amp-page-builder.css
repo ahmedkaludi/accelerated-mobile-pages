@@ -3,7 +3,7 @@
 **/
 .amppb_welcome{
 position: absolute;
-    top: -45px;
+    top: -36px;
     right: 34px;
 }
 #pagebilder_content h2 span{
@@ -580,7 +580,17 @@ a.amppb_helper_btn:hover{
     color: #fff;
     border-color: #80858a
 }
-
+.enable_ampforwp_page_builder{
+    height: 19px;
+}
+.enable_ampforwp_page_builder label{
+    position: relative;
+    top: 6px;
+    background: #eee;
+    display: inline-block;
+    padding: 7px 13px 5px 13px;
+}
+.enable_ampforwp_page_builder input{margin-right: 8px;}
 /********
 Form Styles
 ***********************/

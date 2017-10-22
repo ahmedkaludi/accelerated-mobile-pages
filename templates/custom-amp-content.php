@@ -12,7 +12,15 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
       global $post;
       $amp_current_post_id = get_the_ID() ;
       if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-        $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+          //Custom AMP Editor Support for WPML  #1138
+           include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+           if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+            $amp_current_post_id = get_option('page_on_front');
+            
+           }
+           else{
+              $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+            }
       }
     	$amp_custom_post_content_input 	= get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
       $amp_custom_post_content_check  = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
@@ -135,8 +143,10 @@ function amp_content_editor_meta_save ( $post_id ) {
       update_post_meta($post_id, 'ampforwp_custom_content_editor', $_POST[ 'ampforwp_custom_content_editor' ] );
     }
     // Save data of Custom AMP Editor CheckBox
-    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {
-        update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $_POST[ 'ampforwp_custom_content_editor_checkbox' ] );
+    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {       
+
+      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $_POST[ 'ampforwp_custom_content_editor_checkbox' ] );
+      
     }
 
 
