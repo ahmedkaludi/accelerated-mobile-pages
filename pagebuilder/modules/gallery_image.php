@@ -3,7 +3,7 @@ $output = '';
 $options = '<option value="thumbnail">Thumbnail</option><option value="medium">Medium</option><option value="large">Large</option>';
 $frontCss = '';
 return array(
-		'label' =>'Gallery or Slider',
+		'label' =>'Gallery',
 		'name' => 'gallery_image',
 		'frontend_script' => array(
 			'amp-carousel'=>'https://cdn.ampproject.org/v0/amp-carousel-0.1.js',

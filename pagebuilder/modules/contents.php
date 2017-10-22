@@ -15,7 +15,7 @@ foreach($categories as $category){
 	$options.= '<option value="'.$category->term_id.'">'.$category->name.'</option>';
 }
 return array(
-		'label' =>'Content builder',
+		'label' =>'Posts',
 		'name' => 'contents',
 		'fields' => array(
 						array(
