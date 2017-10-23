@@ -62,18 +62,13 @@ if ( get_query_var( 'paged' ) ) {
 		         $category_posts->the_post();
 		?>
 		      <div>
-					<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
-						if ( has_post_thumbnail()) {    
-							$thumb_id = get_post_thumbnail_id();
-							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium_large', true);
-							$thumb_url = $thumb_url_array[0];
-							}
-						else{
-							$thumb_url = ampforwp_cf_featured_image_src();
-						}
-						?>
-						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
-					<?php } ?>
+					<?php if ( ampforwp_has_post_thumbnail() ) { 
+						$thumb_url = ampforwp_get_post_thumbnail();
+						if($thumb_url){
+							?>
+							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
+						<?php } 
+					}?>
                   <a href="<?php echo user_trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
