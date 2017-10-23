@@ -4362,3 +4362,21 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 		return $thumb_url;
 	}	
 }
+
+// Removing AMP from the Password Protected Post/Page #1192
+
+add_action('amp_init','remove_amp_from_password_protected_posts');
+function remove_amp_from_password_protected_posts() {
+	add_action( 'wp', 'ampforwp_remove_rel_on_pp' );
+}
+
+
+function ampforwp_remove_rel_on_pp(){
+	global $post;
+	if(post_password_required( $post )){
+		// Removing amphtml
+		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+		// Removing Mobile Redirection as causing too Many Redirection Issue
+		remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+	}
+}
