@@ -74,7 +74,7 @@
             </ul>
           </div>
           <?php } 
-          if( $redux_builder_amp['ampforwp-footer-top-design3']=='1' ){ ?>
+          if( isset( $redux_builder_amp['ampforwp-footer-top-design3'] ) =='1' ){ ?>
             <p class="rightslink back-to-top">
              <a href="#">
                   <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> 
