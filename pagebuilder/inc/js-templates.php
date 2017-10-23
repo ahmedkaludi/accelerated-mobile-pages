@@ -56,7 +56,6 @@
 
 
 global $moduleTemplate;
-wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php', array( 'jquery' ), false, true );
 ?>
 		<div class="amppb-module-templates hidden">
     		<?php 
