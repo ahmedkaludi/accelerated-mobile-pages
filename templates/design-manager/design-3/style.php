@@ -110,6 +110,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
 #footer p{ margin: 0 }
+.back-to-top{padding-bottom: 8px;}
 .rightslink, #footer .rightslink a{ font-size:13px; color:#999 }
 .poweredby{ padding-top:10px; font-size:10px; }
 #footer .poweredby a{ color:#666 }

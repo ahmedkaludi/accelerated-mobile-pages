@@ -73,10 +73,15 @@
 
             </ul>
           </div>
-          <?php } ?>
+          <?php } 
+          if( $redux_builder_amp['ampforwp-footer-top-design3']=='1' ){ ?>
+            <p class="rightslink back-to-top">
+             <a href="#">
+                  <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> 
+                </a> </p> <?php } ?>
           <p class="rightslink">
             <?php
-              global $allowed_html;
+              global $allowed_html; 
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html ) ;
               if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ?> | <?php ampforwp_view_nonamp(); } ?>
           </p>
