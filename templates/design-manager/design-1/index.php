@@ -65,8 +65,14 @@
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
                     			echo  $post_date ;?>
-                    		</time><?php 
-			 		 		}?>
+                    		</time> <?php
+			 		 		}
+			 		 	if( isset($redux_builder_amp['ampforwp-design1-cats-home']) && $redux_builder_amp['ampforwp-design1-cats-home'] ) {
+			 		 		foreach((get_the_category()) as $category) { ?>
+			 		 		<ul class="amp-wp-tags">
+					   			<li class="amp-cat-<?php echo $category->term_id;?>"> <?php echo  '  ' . $category->cat_name ?> </li> </ul>
+							<?php }
+						} ?>
 					</div>
 
 						<?php if ( ampforwp_has_post_thumbnail() ) {  

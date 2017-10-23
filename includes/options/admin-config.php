@@ -2323,6 +2323,15 @@ Redux::setSection( $opt_name, array(
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),
+                array(
+                        'id'        => 'ampforwp-design1-cats-home',
+                        'type'      => 'switch',
+                        'title'     => __('Category label', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '1'),
+                     )
+                ),
 
             // Excerpt Length for design2 #1122
                 array(
