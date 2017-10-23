@@ -399,19 +399,21 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
  
 	// 6. Add required Javascripts for extra AMP features
-	add_action('amp_post_template_head','ampforwp_register_additional_scripts', 20);
-	function ampforwp_register_additional_scripts() {
+		// Code updated and added the JS proper way #336 
+	add_filter('amp_post_template_data','ampforwp_add_amp_social_share_script', 20);
+	function ampforwp_add_amp_social_share_script( $data ){
 		global $redux_builder_amp;
-		 if( $redux_builder_amp['enable-single-social-icons'] == true || defined('AMPFORWP_DM_SOCIAL_CHECK') && AMPFORWP_DM_SOCIAL_CHECK === 'true' )  { ?>
-			<?php if( is_single() ) {
-							if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-			<?php   }
-						}
-		} 
-		// Check if any of the ads are enabled then only load ads script
-		//	moved this code to its own function and done the AMP way
-	}
+		if( $redux_builder_amp['enable-single-social-icons'] == true || defined('AMPFORWP_DM_SOCIAL_CHECK') && AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
+				if( is_single() &&  is_socialshare_or_socialsticky_enabled_in_ampforwp() ) {
+					if ( empty( $data['amp_component_scripts']['amp-social-share'] ) ) {
+						$data['amp_component_scripts']['amp-social-share'] = 'https://cdn.ampproject.org/v0/amp-social-share-0.1.js';
+					}
+				}
+			}
+		return $data;
+	}	
+
+
 	// 6.1 Adding Analytics Scripts
 	add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 	function ampforwp_register_analytics_script( $data ){ 
@@ -1593,15 +1595,6 @@ function ampforwp_sticky_social_icons(){
 			</div>
 	<?php }
 		//}
-}
-// if ( $ampforwp_social_icons_enabled == true ) {
-//
-// }
-//	add_action('amp_post_template_head','ampforwp_register_social_sharing_script');
-function ampforwp_register_social_sharing_script() {
-			if( is_socialshare_or_socialsticky_enabled_in_ampforwp() ) { ?>
-				<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-<?php }
 }
 
 //	25. Yoast meta Support
@@ -2917,7 +2910,7 @@ add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
 function ampforwp_gist_shortcode_generator($atts) {
    extract(shortcode_atts(array(
    	  'id'     =>'' ,
-      'layout' => fixed-height,
+      'layout' => 'fixed-height',
       'height' => 200,      
    ), $atts));  
    if ( empty ( $height ) ) {
@@ -2928,19 +2921,27 @@ function ampforwp_gist_shortcode_generator($atts) {
   		height="'. $height .'">
   		</amp-gist>';
 }
-add_action('amp_post_template_head','ampforwp_add_gist_script', 10 , 1);
-function ampforwp_add_gist_script( $data ){
- 	if ( is_single() ) {	 	
-		$content =    $data->get('post');
-		if (   $content ) {
-			$content =    $content->post_content;
-		}
-		if( has_shortcode( $content , 'amp-gist' ) ){ ?>
-		<script async custom-element="amp-gist" src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
-		<?php 
+
+// Code updated and added the JS proper way #336
+add_filter('amp_post_template_data','ampforwp_add_amp_gist_script', 100);
+function ampforwp_add_amp_gist_script( $data ){
+	global $redux_builder_amp;
+	$content = "";
+
+	$content =   $data['post'];
+	$content = $content->post_content;
+	 
+	if( is_single() ) {
+		if( has_shortcode( $content, 'amp-gist' ) ){ 
+			if ( empty( $data['amp_component_scripts']['amp-gist'] ) ) {
+				$data['amp_component_scripts']['amp-gist'] = 'https://cdn.ampproject.org/v0/amp-gist-0.1.js';
+			}
 		}
 	}
+		 
+	return $data;
 }
+
 
 // 62. Adding Meta viewport via hook instead of direct #878 
 add_action( 'amp_post_template_head','ampforwp_add_meta_viewport', 9);
