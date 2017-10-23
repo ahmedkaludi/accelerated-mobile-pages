@@ -89,20 +89,13 @@
 							</time>
           </div>
 
-				<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) {
-					if ( has_post_thumbnail()) {  
-						$thumb_id = get_post_thumbnail_id();
-						$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-						$thumb_url = $thumb_url_array[0];
-						}
-						else{
-								$thumb_url = ampforwp_cf_featured_image_src();
-							}
-						?>
+				<?php if (ampforwp_has_post_thumbnail() ) {  
+					$thumb_url = ampforwp_get_post_thumbnail();
+					if($thumb_url){ ?>
 						<div class="home-post-image">
 							<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
 								<amp-img
-									src=<?php echo $thumb_url ?>
+									src=<?php echo esc_url($thumb_url); ?>
 									<?php ampforwp_thumbnail_alt(); ?>
 									<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
 										width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
@@ -115,6 +108,7 @@
 							</a>
 						</div>
 					<?php }
+				}
 						if( has_excerpt() ){
 							$content = get_the_excerpt();
 						}else{
