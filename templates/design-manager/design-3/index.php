@@ -115,7 +115,7 @@ if ( get_query_var( 'paged' ) ) {
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
-		<div class="amp-wp-content amp-loop-list <?php if ( ampforwp_has_post_thumbnail() ) { } else{?>amp-loop-list-noimg<?php } ?>">
+		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
 				$thumb_url = ampforwp_get_post_thumbnail();
 				if($thumb_url){
@@ -124,7 +124,7 @@ if ( get_query_var( 'paged' ) ) {
 						<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
 							<amp-img
 								layout="responsive"
-								src=<?php echo $thumb_url ?>
+								src=<?php echo esc_url( $thumb_url ); ?>
 								<?php ampforwp_thumbnail_alt(); ?>
 								width=450
 								height=270
