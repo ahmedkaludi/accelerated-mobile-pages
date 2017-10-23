@@ -1678,6 +1678,14 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
+                    array(
+                       'id'       => 'ampforwp-custom-fields-featured-image',
+                       'type'     => 'text',
+                       'title'    => __('Custom Field For Featured Image', 'accelerated-mobile-pages'),
+                       'default'  => __ ('','accelerated-mobile-pages'),
+                       'placeholder'=>__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
+                       'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
+                   ),
                     // Grab the First Image for Featured Image if there is none
                     array(
                         'id'       => 'ampforwp-featured-image-from-content',
@@ -1698,14 +1706,6 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
-                     array(
-                       'id'       => 'ampforwp-custom-fields-featured-image',
-                       'type'     => 'text',
-                       'title'    => __('Custom Field For Featured Image', 'accelerated-mobile-pages'),
-                       'default'  => __ ('','accelerated-mobile-pages'),
-                       'placeholder'=>__('Write the Custom Field of Featured Image','accelerated-mobile-pages'),
-                       'required' => array( 'ampforwp-custom-fields-featured-image-switch', '=' , 1 )
-                   ),
                      array(
                         'id'       => 'ampforwp-development-mode',
                         'type'     => 'switch',

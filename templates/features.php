@@ -94,7 +94,7 @@
 	84. Inline Related Posts
 	85. Caption for Gallery Images
 	86. minify the content of pages
-
+	87. Post Thumbnail
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4021,7 +4021,6 @@ add_action('amp_post_template_head','wp_site_icon');
 	 * As it is not the best practice to add css directly into admin head
 	 * for more info please check the issue #1082 in github 
 	*/
-
 // 81. Duplicate Featured Image Support
 add_filter('ampforwp_allow_featured_image', 'ampforwp_enable_post_and_featured_image');
 function ampforwp_enable_post_and_featured_image($show_image){
@@ -4034,7 +4033,7 @@ function ampforwp_enable_post_and_featured_image($show_image){
 	return $show_image; 
 }
 // 82. Grab Featured Image from The Content
-function ampforwp_get_featured_image_from_content($size = 'full') {
+function ampforwp_get_featured_image_from_content($featured_image = "") {
 	global $post, $posts;
 	$image_url = '';
 	$output = '';
@@ -4042,18 +4041,33 @@ function ampforwp_get_featured_image_from_content($size = 'full') {
 	$amp_html_sanitizer = '';
 	$amp_html = '';
 	$image_html = '';
+	$featured_image_output = '';
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
 	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 	//Grab the First Image
 	if ( $matches[0] ) {
+		$image_url = $matches[1][0];
 		$image_html = $matches[0][0];
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
 	}
-	return $amp_html;
+	switch ($featured_image) {
+			case 'image':
+				$featured_image_output = $amp_html;
+			break;
+
+			case 'url':
+				$featured_image_output = $image_url;
+			break;
+
+			default:
+				$featured_image_output = $amp_html;
+			break;
+		}
+	return $featured_image_output;
 }
 
 // 83. Advance Analytics(Google Analytics)
@@ -4309,4 +4323,42 @@ function ampforwp_minify_html_output($content_buffer){
 
     return $content_buffer;
 
+}
+
+// 87. Post Thumbnail
+// Checker for Post Thumbnail
+if( !function_exists('ampforwp_has_post_thumbnail')){
+	function ampforwp_has_post_thumbnail(){
+		global $post, $redux_builder_amp;
+		if(has_post_thumbnail()){
+			return true;
+		}
+		elseif(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
+			return true;
+		}
+		elseif(isset($redux_builder_amp['ampforwp-featured-image-from-content']) && $redux_builder_amp['ampforwp-featured-image-from-content'] == true){
+			return true;
+		}
+		else
+			return false;
+	}
+}
+// Get Post Thumbnail URL
+if( !function_exists('ampforwp_get_post_thumbnail')){
+	function ampforwp_get_post_thumbnail(){
+		global $post, $redux_builder_amp;
+		$thumb_url = '';
+		if ( has_post_thumbnail()) { 
+			$thumb_id = get_post_thumbnail_id();
+			$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
+			$thumb_url = $thumb_url_array[0];
+		}
+		elseif(ampforwp_is_custom_field_featured_image()){
+			$thumb_url = ampforwp_cf_featured_image_src();
+		}
+		elseif($redux_builder_amp['ampforwp-featured-image-from-content'] == true){
+			$thumb_url = ampforwp_get_featured_image_from_content('url');
+		}
+		return $thumb_url;
+	}	
 }
