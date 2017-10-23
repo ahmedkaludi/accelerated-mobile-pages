@@ -146,4 +146,5 @@ if ( class_exists('TablePress') ) { ?>
 .amp-wp-content.widget-wrapper{max-width:840px}
 .amp_widget_above_the_footer {margin:0 10px;}
 .widget-wrapper li { list-style-position: inside; }
+.amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
 <?php echo $redux_builder_amp['css_editor']; } ?>

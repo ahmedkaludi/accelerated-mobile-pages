@@ -402,4 +402,5 @@ if ( class_exists('TablePress') ) { ?>
 .breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
 .breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
+.amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
 <?php echo $redux_builder_amp['css_editor']; } ?>

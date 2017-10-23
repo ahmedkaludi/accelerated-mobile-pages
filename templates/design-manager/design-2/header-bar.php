@@ -69,10 +69,16 @@
     side="right">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
-          $menu = wp_nav_menu( array(
+          $menu_html_content = wp_nav_menu( array(
                                     'theme_location' => 'amp-menu' ,
-                                    'echo' => false) );
-          echo strip_tags( $menu , '<ul><li><a>'); ?>
+                                    'echo' => false,
+                                    'menu_class' => 'menu amp-menu'
+                                  ) );
+          $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+        $sanitized_comment_content =  $sanitizer_obj->get_amp_content();
+        echo make_clickable( $sanitized_comment_content );
+
+          ?>
 
   </div>
 </amp-sidebar>

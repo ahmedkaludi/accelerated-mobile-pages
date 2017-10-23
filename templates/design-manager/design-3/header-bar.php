@@ -11,11 +11,15 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
         <div class="navigation_heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'] , 'Navigate' ); ?></div>
       <?php
       // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
-        wp_nav_menu( array(
+        $menu_html_content = wp_nav_menu( array(
             'theme_location' => 'amp-menu',
             'menu'=>'ul',
-            'menu_class'=>'amp-menu'
+            'menu_class'=>'amp-menu',
+            'echo'=>false
         ) );
+        $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+        $sanitized_comment_content =  $sanitizer_obj->get_amp_content();
+        echo make_clickable( $sanitized_comment_content );
       }
            ?>
           <div class="social_icons">
