@@ -96,7 +96,7 @@
 	86. minify the content of pages
 	87. Post Thumbnail
 	88. Removing AMP from the Password Protected Post/Page #1192
-	89. Author Page URL
+	89. Author Details
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4384,7 +4384,8 @@ function ampforwp_remove_rel_on_pp(){
 	}
 }
 
-// 89. Author Page URL
+// 89. Author Details
+// Author Page URL
 if( ! function_exists( 'ampforwp_get_author_page_url' ) ){
 	function ampforwp_get_author_page_url(){
 		global $redux_builder_amp, $post;
@@ -4397,5 +4398,32 @@ if( ! function_exists( 'ampforwp_get_author_page_url' ) ){
     		$author_page_url = user_trailingslashit( $author_page_url . AMPFORWP_AMP_QUERY_VAR );
     	}
 		return $author_page_url;
+	}
+}
+// Author Meta
+if( ! function_exists( 'ampforwp_get_author_details' ) ){
+	function ampforwp_get_author_details( $post_author , $params='' ){
+		global $redux_builder_amp, $post;
+		$post_author_url = '';
+		$post_author_url = ampforwp_get_author_page_url();
+		switch ($params) {
+			case 'meta-info':
+				if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { 
+					return	'<span class="amp-wp-author author vcard"><a href="'.esc_url($post_author_url).'">'.esc_html( $post_author->display_name ).'</a></span>';
+ 				}
+				else { 
+					return '<span class="amp-wp-author author vcard">' .esc_html( $post_author->display_name ).'</span>';
+				 } 
+				break;
+
+			case 'meta-taxonomy':
+				if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { 
+	                return	'<a href="' . esc_url($post_author_url) . ' "><strong>' . esc_html( $post_author->display_name ) . ' </strong></a>:'; 
+	                 }
+                	else{ 
+                		return '<strong> ' . esc_html( $post_author->display_name) . ' </strong>:';
+                	}
+				break;
+		}
 	}
 }
