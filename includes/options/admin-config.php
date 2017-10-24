@@ -1214,7 +1214,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     'type'          => 'text',
                                     'title'         => __('Facebook Pixel ID','accelerated-mobile-pages'),
                                     'default'       => '',
-                                    'desc'  => 'Eg: 153246987501548',
+                                    'desc'  => 'Example: 153246987501548',
                                       'required' => array(
                                       array('amp-fb-pixel', '=' , '1')),
                                 ),
