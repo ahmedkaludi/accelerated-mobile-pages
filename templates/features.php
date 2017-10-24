@@ -98,6 +98,7 @@
 	88. Removing AMP from the Password Protected Post/Page #1192
 	89. Author Details
 	90. Facebook Pixel
+	91. Set Header last modified information
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4451,3 +4452,17 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 
 			}
 		}
+//91. Set Header last modified information
+add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader');
+function ampforwp_addAmpLastModifiedHeader($headers) {
+
+    //Check if we are in a single post of any type (archive pages has not modified date)
+    $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+
+    if( is_singular() && $ampforwp_is_amp_endpoint ) {
+        $post_id = get_queried_object_id();
+        if( $post_id ) {
+            header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
+        }
+    }
+}
