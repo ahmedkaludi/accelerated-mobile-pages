@@ -6,24 +6,13 @@
 
 			<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
-<?php if ( $post_author ) : 
-  $post_author_url = ampforwp_get_author_page_url(); ?>
+<?php if ( $post_author ) : ?>
 	<div class="amp-wp-meta amp-wp-byline">
   <?php if ( is_single() ) { 
-    if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { ?>
-	     <span class="amp-wp-author author vcard"><a href="<?php echo esc_url($post_author_url); ?>"><?php echo esc_html( $post_author->display_name ); ?></a></span>
-    <?php }
-    else{ ?>
-      <span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
-    <?php } 
+    echo ampforwp_get_author_details( $post_author , 'meta-info' ); 
   } ?>
 <?php if( is_page() && $redux_builder_amp['meta_page'] ) {
-  if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { ?>
-    <span class="amp-wp-author author vcard"><a href="<?php echo esc_url($post_author_url); ?>"><?php echo esc_html( $post_author->display_name ); ?></a></span>
-  <?php }
-   else { ?>
-    <span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
-  <?php }
+    echo ampforwp_get_author_details( $post_author , 'meta-info' );
     } ?>
 <?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
   if ( $ampforwp_categories ) : ?>
