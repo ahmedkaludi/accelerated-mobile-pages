@@ -31,17 +31,32 @@ jQuery(function($) {
                         parent.find('.redux-main').removeClass('redux-search');
                     }
                     parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
+                    
+                    if($('.redux-group-tab-link-li.active').length>0){
+                        var rel = $('.redux-group-tab-link-li.active a').attr('data-rel');
+                        var selector = 'div#'+rel+'_section_group';
+                        jQuery(selector).show();
+                        jQuery(selector).css('display','block');
+                        console.log( $(selector));
+                    }else{
+                        $('.redux-group-tab-link-li.activeChild').click();
+                        $('div#'+rel+'_section_group').show();
+                        $('#'+rel+'_section_group').css('display','block');
+                    }
 
                 }            
                 parent.find('.redux-field-container').each(function() {
                     if (searchString != "") {
+                        parent.find('div.redux-group-tab').css('display','none');
                         $(this).parents('tr:first').hide();
                     } else {
                         $(this).parents('tr:first').show();
                     }
                 });
-                parent.find('div.redux-group-tab').css('display','none');
                 parent.find('.form-table tr').filter(function () {
+                    if(searchString==''){
+                        return false;
+                    }
                     var item = $(this);
                     var isMatch = true,
                         text = $(this).find('.redux_field_th').text().toLowerCase();
