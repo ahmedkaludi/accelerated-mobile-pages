@@ -1244,6 +1244,9 @@ Redux::setArgs( "redux_builder_amp", $args );
         $post_types = get_option('ampforwp_custom_post_types');
         if($post_types){
             foreach ($post_types as $post_type) {
+                if( $post_type == 'post' || $post_type == 'page' ) {
+                            continue;
+                }
                 $custom_fields[] = array(
                   'id'       => 'ampforwp-sd-type-'. $post_type,
                   'type'     => 'select',

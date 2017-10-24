@@ -3996,15 +3996,15 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 	}
 }
 // 78. Saved Custom Post Types for AMP in Options for Structured Data
-add_action('init', 'ampforwp_get_custom_post_types_sd');
-if(! function_exists('ampforwp_get_custom_post_types_sd') ) {
-	function ampforwp_get_custom_post_types_sd(){
+add_action("redux/options/redux_builder_amp/saved",'ampforwp_save_custom_post_types_sd', 10, 1);
+if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
+	function ampforwp_save_custom_post_types_sd( $redux_builder_amp ){
 		global $redux_builder_amp;
 		$post_types = array();
 		$saved_custom_posts = array();
 
 		$saved_custom_posts = get_option('ampforwp_custom_post_types');
-		$post_types = get_post_types( array( 'public' => true, '_builtin' => false));
+		$post_types = ampforwp_get_all_post_types();
 		
 		if (empty($post_types)) {
 			$post_types = array();
