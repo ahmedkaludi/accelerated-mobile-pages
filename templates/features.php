@@ -4254,7 +4254,7 @@ function ampforwp_minify_html_output($content_buffer){
         $mod = '/u';
     else
         $mod = '/s';
-    $buffer = str_replace(array (chr(13) . chr(10), chr(9)), array (chr(10), ''), $buffer);
+    $buffer = str_replace(array (chr(13) . chr(10), chr(9)), array (chr(10), ' '), $buffer);
     $buffer = str_ireplace(array ('<script', '/script>', '<pre', '/pre>', '<textarea', '/textarea>', '<style', '/style>'), array ('M1N1FY-ST4RT<script', '/script>M1N1FY-3ND', 'M1N1FY-ST4RT<pre', '/pre>M1N1FY-3ND', 'M1N1FY-ST4RT<textarea', '/textarea>M1N1FY-3ND', 'M1N1FY-ST4RT<style', '/style>M1N1FY-3ND'), $buffer);
     $split = explode('M1N1FY-3ND', $buffer);
     $buffer = ''; 
@@ -4288,16 +4288,18 @@ function ampforwp_minify_html_output($content_buffer){
         } else {
             $process = $split[$i];
             $asis = '';
-        }
-        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/(\s)+' . $mod), array('>', '<', '\\1'), $process);
+        } 
+
+        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('>', '<', ' '), $process);
+
         if ( $minify_html_comments != 'no' )
             $process = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->' . $mod, '', $process);
         $buffer .= $process.$asis;
     }
     $buffer = str_replace(array (chr(10) . '<script', chr(10) . '<style', '*/' . chr(10), 'M1N1FY-ST4RT'), array('<script', '<style', '*/', ''), $buffer);
-    $minify_html_xhtml = get_option( 'minify_html_xhtml' );
-    $minify_html_relative = get_option( 'minify_html_relative' );
-    $minify_html_scheme = get_option( 'minify_html_scheme' );
+    $minify_html_xhtml 		= 'no';
+    $minify_html_relative 	= 'no';
+    $minify_html_scheme 	= 'no';
     if ( $minify_html_xhtml == 'yes' && strtolower( substr( ltrim( $buffer ), 0, 15 ) ) == '<!doctype html>' )
         $buffer = str_replace( ' />', '>', $buffer );
     if ( $minify_html_relative == 'yes' )
