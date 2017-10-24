@@ -95,6 +95,8 @@
 	85. Caption for Gallery Images
 	86. minify the content of pages
 	87. Post Thumbnail
+	88. Removing AMP from the Password Protected Post/Page #1192
+	89. Author Page URL
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4364,7 +4366,7 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 	}	
 }
 
-// Removing AMP from the Password Protected Post/Page #1192
+// 88. Removing AMP from the Password Protected Post/Page #1192
 
 add_action('amp_init','remove_amp_from_password_protected_posts');
 function remove_amp_from_password_protected_posts() {
@@ -4379,5 +4381,21 @@ function ampforwp_remove_rel_on_pp(){
 		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
 		// Removing Mobile Redirection as causing too Many Redirection Issue
 		remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+	}
+}
+
+// 89. Author Page URL
+if( ! function_exists( 'ampforwp_get_author_page_url' ) ){
+	function ampforwp_get_author_page_url(){
+		global $redux_builder_amp, $post;
+		$author_id = '';
+		$author_page_url = '';
+		$author_id = get_the_author_meta( 'ID' );
+		$author_page_url = get_author_posts_url( $author_id );
+		// If Archive support is enabled
+		if(  isset($redux_builder_amp['ampforwp-archive-support'] ) && $redux_builder_amp['ampforwp-archive-support'] ){
+    		$author_page_url = user_trailingslashit( $author_page_url . AMPFORWP_AMP_QUERY_VAR );
+    	}
+		return $author_page_url;
 	}
 }

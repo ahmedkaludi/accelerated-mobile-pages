@@ -6,15 +6,26 @@
 			<ul class="amp-wp-meta amp-meta-wrapper">
 <?php $post_author = $this->get( 'post_author' ); ?>
 <?php if ( $post_author ) : ?>
-	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
+	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); 
+	$post_author_url = ampforwp_get_author_page_url(); ?>
 	<div class="amp-wp-meta amp-wp-byline">
 		<?php 
-		if(is_single() ) {?>
-		<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+		if(is_single() ) {
+			if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { ?>
+				<span class="amp-wp-author author vcard"><a href="<?php echo esc_url($post_author_url); ?>"><?php echo esc_html( $post_author->display_name ); ?></a></span>
+			<?php }
+			else { ?>
+				<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+			<?php } ?>
 		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'] . ' ', 'On'); the_modified_date( get_option( 'date_format' ) ) ?></li>
 <?php } 
-	if( is_page() && $redux_builder_amp['meta_page'] ) { ?>
-		<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+	if( is_page() && $redux_builder_amp['meta_page'] ) { 
+		if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { ?>
+			<span class="amp-wp-author author vcard"><a href="<?php echo esc_url($post_author_url); ?>"><?php echo esc_html( $post_author->display_name ); ?></a></span>
+		<?php }
+		else{ ?>
+			<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
+		<?php } ?>
 	<li class="amp-wp-meta-date"> <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'] . ' ', 'On'); the_modified_date( get_option( 'date_format' ) ) ?></li> 
 <?php } ?>
 	</div>

@@ -2543,6 +2543,13 @@ Redux::setSection( $opt_name, array(
              'title'    => __( 'Author Bio', 'accelerated-mobile-pages' ),
              'default'  => '1',
          ),
+         // Author Pages
+         array(
+             'id'       => 'ampforwp-author-page-url',
+             'type'     => 'switch',
+             'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
+             'default'  => '0',
+         ),
          // Date on Single
          array(
             'id'       => 'amp-design-3-date-feature',
