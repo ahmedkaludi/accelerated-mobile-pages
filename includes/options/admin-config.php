@@ -2791,6 +2791,13 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('VKontakte', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+          // Odnoklassniki
+          array(
+              'id'        =>  'enable-single-odnoklassniki-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Odnoklassniki', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',

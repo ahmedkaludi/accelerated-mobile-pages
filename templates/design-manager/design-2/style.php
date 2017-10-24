@@ -99,6 +99,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .custom-amp-socialsharing-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
+.custom-amp-social-sharing-odnoklassniki{background:#ed812b}
 /* Header */
 #header{ background: #fff; text-align: center; }
 #header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
