@@ -108,9 +108,9 @@
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), 0 ) ?></div>
+			<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text']. ' &raquo;' , 'Show more Posts'), 0 ) ?></div>
 				<?php if ( $paged > 1 ) { ?>
-					<div class="prev"><?php previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ); ?></div>
+					<div class="prev"><?php previous_posts_link( '&laquo; '.ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ); ?></div>
 				<?php } ?>
 			<div class="clearfix"></div>
 		</div>
