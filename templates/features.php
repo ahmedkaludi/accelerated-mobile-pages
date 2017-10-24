@@ -97,6 +97,7 @@
 	87. Post Thumbnail
 	88. Removing AMP from the Password Protected Post/Page #1192
 	89. Author Details
+	90. Facebook Pixel
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4434,3 +4435,16 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 		}
 	}
 }
+
+// 90. Facebook Pixel
+
+add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
+		function ampforwp_facebook_pixel() {
+
+			Global $redux_builder_amp;
+			if($redux_builder_amp['amp-fb-pixel'] == 1){
+				$amp_pixel = '<amp-pixel src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
+				echo $amp_pixel;
+
+			}
+		}

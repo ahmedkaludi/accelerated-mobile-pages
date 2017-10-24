@@ -1176,10 +1176,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     'title'         => __('Tag Manager ID (Container ID)','accelerated-mobile-pages'),
                                     'default'       => '',
                                     'desc'  => __('Eg: GTM-5XXXXXP (<a href="https://ampforwp.com/tutorials/article/gtm-in-amp/">Getting Started?</a>)','accelerated-mobile-pages'),
-                        //  'validate' => 'not_empty',
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '1')
-                          ),
+                                    //  'validate' => 'not_empty',
+                                      'required' => array(
+                                        array('amp-use-gtm-option', '=' , '1')
+                                      ),
                                 ),
                                 array(
                                     'id'            =>'amp-gtm-analytics-type',
@@ -1187,10 +1187,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     'title'         => __('Analytics Type','accelerated-mobile-pages'),
                                     'default'       => '',
                                     'desc'  => __('Eg: googleanalytics','accelerated-mobile-pages'),
-                         // 'validate' => 'not_empty',
-                          'required' => array(
-                            array('amp-use-gtm-option', '=' , '1')
-                          ),
+                                     // 'validate' => 'not_empty',
+                                      'required' => array(
+                                        array('amp-use-gtm-option', '=' , '1')
+                                      ),
                                 ),
                                 array(
                                     'id'            =>'amp-gtm-analytics-code',
@@ -1199,8 +1199,24 @@ Redux::setArgs( "redux_builder_amp", $args );
                                     'default'       => '',
                                     'desc'  => 'Eg: UA-XXXXXX-Y',
                           // 'validate' => 'not_empty',
-                          'required' => array(
-                          array('amp-use-gtm-option', '=' , '1')),
+                                      'required' => array(
+                                      array('amp-use-gtm-option', '=' , '1')),
+                                ),
+
+                                array(
+                                    'id'            =>'amp-fb-pixel',
+                                    'type'          => 'switch',
+                                    'title'         => __('Facebook Pixel','accelerated-mobile-pages'),
+                                    'default'       => 0,
+                                ),
+                                array(
+                                    'id'            =>'amp-fb-pixel-id',
+                                    'type'          => 'text',
+                                    'title'         => __('Facebook Pixel ID','accelerated-mobile-pages'),
+                                    'default'       => '',
+                                    'desc'  => 'Eg: 153246987501548',
+                                      'required' => array(
+                                      array('amp-fb-pixel', '=' , '1')),
                                 ),
 
                         )
