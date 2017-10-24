@@ -37,7 +37,7 @@ jQuery(function($) {
                         var selector = 'div#'+rel+'_section_group';
                         jQuery(selector).show();
                         jQuery(selector).css('display','block');
-                        console.log( $(selector));
+                       // console.log( $(selector));
                     }else{
                         $('.redux-group-tab-link-li.activeChild').click();
                         $('div#'+rel+'_section_group').show();
