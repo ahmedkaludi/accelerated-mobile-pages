@@ -2118,7 +2118,8 @@ Redux::setSection( $opt_name, array(
                     'required' => array(
                       array('amp-design-selector', '=' , '3')
                     )
-              ),   
+              ), 
+              // Design 3  
              array(
                     'id'        => 'amp-opt-color-rgba-link',
                     'type'      => 'color_rgba',
@@ -2128,6 +2129,30 @@ Redux::setSection( $opt_name, array(
                     ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
+                    )
+              ), 
+             // Design 2
+             array(
+                    'id'        => 'amp-opt-color-rgba-link-design2',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                    'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                    )
+              ),
+              // Design 1 
+             array(
+                    'id'        => 'amp-opt-color-rgba-link-design1',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Anchor Link Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                    'color'     => '#0a89c0',
+                    ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
                     )
               ), 
 

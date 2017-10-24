@@ -268,6 +268,7 @@ main .amp-archive-heading { direction:rtl }
 .toggle-navigationv2 ul li a { padding: 15px 8px; width: 95%;}
 <?php } ?>
 .amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a, [class*=icono-] { color: <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
+body a {color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link-design2']['color'];?> }
 .amp-wp-content blockquote{ border-color:<?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 .nav_container, .comment-button-wrapper a { background:  <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 .nav_container a{ color:<?php echo sanitize_hex_color( $header_color ); ?> }
