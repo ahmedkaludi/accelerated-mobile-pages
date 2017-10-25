@@ -41,7 +41,15 @@ function ampforwp_welcome_screen_do_activation_redirect_parent() {
 add_action('admin_menu', 'ampforwp_welcome_screen_pages');
 
 function ampforwp_welcome_screen_pages() {
-  add_dashboard_page(
+  /*add_dashboard_page(
+    __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
+    __('Welcome to AMP','accelerated-mobile-pages'),
+    'manage_options',
+    'ampforwp-welcome-page',
+    'ampforwp_welcome_screen_content'
+  );*/
+  add_submenu_page(
+    'amp_options',
     __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
     __('Welcome to AMP','accelerated-mobile-pages'),
     'manage_options',
