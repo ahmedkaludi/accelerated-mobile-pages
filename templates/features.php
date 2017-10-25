@@ -99,6 +99,7 @@
 	89. Facebook Pixel
 	90. Set Header last modified information
 	91. Comment Author Gravatar URL
+	92. View AMP in Admin Bar
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4482,3 +4483,37 @@ if( ! function_exists('ampforwp_comment_gravatar_checker') ){
 		return $has_valid_avatar;
 	}
 }
+// 92. View AMP in Admin Bar
+add_action( 'wp_before_admin_bar_render', 'ampforwp_view_amp_admin_bar' ); 
+if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
+	function ampforwp_view_amp_admin_bar( ) {
+		global $wp_admin_bar, $post, $wp_post_types, $redux_builder_amp;
+		$post_type_title = '';
+		$supported_amp_post_types = array();
+		$post_type_title = ucfirst($post->post_type);
+		// Get all post types supported by AMP
+		$supported_amp_post_types = ampforwp_get_all_post_types();
+		// Check for Admin
+		if ( is_admin() ) {
+			$current_screen = get_current_screen();
+			// Check for Screen base, user ability to read and visibility
+			if ('post' == $current_screen->base && current_user_can('read_post', $post->ID )
+			&& ( $wp_post_types[$post->post_type]->public )
+			&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
+				// Check if current post type is AMPed or not
+				if( $supported_amp_post_types && in_array($post->post_type, $supported_amp_post_types) ){
+					// If AMP on Posts or Pages is off then do nothing
+					if($post->post_type == 'post' && !$redux_builder_amp['amp-on-off-for-all-posts'] || $post->post_type == 'page' && !$redux_builder_amp['amp-on-off-for-all-pages']) {
+						return;
+					}
+					$wp_admin_bar->add_node(array(
+						'id'    => 'ampforwp-view-amp',
+						'title' => 'View ' . $post_type_title . ' (AMP)' ,
+						'href'  => user_trailingslashit( get_permalink( $post->ID ) . AMPFORWP_AMP_QUERY_VAR)
+					));
+				}
+			}
+		}
+	}
+}
+
