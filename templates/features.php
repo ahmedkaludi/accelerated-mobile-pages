@@ -95,10 +95,9 @@
 	85. Caption for Gallery Images
 	86. minify the content of pages
 	87. Post Thumbnail
-	88. Removing AMP from the Password Protected Post/Page #1192
-	89. Author Details
-	90. Facebook Pixel
-	91. Set Header last modified information
+	88. Author Details
+	89. Facebook Pixel
+	90. Set Header last modified information
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -176,7 +175,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 	function ampforwp_home_archive_rel_canonical() {
 		global $redux_builder_amp;
-		global $wp;
+		global $wp, $post;
 	    if( is_attachment() ) {
         return;
 	    }
@@ -187,6 +186,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         return;
 	    }
 	    if ( is_archive() && !$redux_builder_amp['ampforwp-archive-support'] ) {
+				return;
+			}
+		// #1192 Password Protected posts exclusion
+		if(post_password_required( $post )){
 				return;
 			}
 		// #872 no-amphtml if selected as hide from settings
@@ -4378,25 +4381,7 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 	}	
 }
 
-// 88. Removing AMP from the Password Protected Post/Page #1192
-
-add_action('amp_init','remove_amp_from_password_protected_posts');
-function remove_amp_from_password_protected_posts() {
-	add_action( 'wp', 'ampforwp_remove_rel_on_pp' );
-}
-
-
-function ampforwp_remove_rel_on_pp(){
-	global $post;
-	if(post_password_required( $post )){
-		// Removing amphtml
-		remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
-		// Removing Mobile Redirection as causing too Many Redirection Issue
-		remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
-	}
-}
-
-// 89. Author Details
+// 88. Author Details
 // Author Page URL
 if( ! function_exists( 'ampforwp_get_author_page_url' ) ){
 	function ampforwp_get_author_page_url(){
@@ -4440,7 +4425,7 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 	}
 }
 
-// 90. Facebook Pixel
+// 89. Facebook Pixel
 
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 		function ampforwp_facebook_pixel() {
@@ -4452,7 +4437,7 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 
 			}
 		}
-//91. Set Header last modified information
+//90. Set Header last modified information
 add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader');
 function ampforwp_addAmpLastModifiedHeader($headers) {
 

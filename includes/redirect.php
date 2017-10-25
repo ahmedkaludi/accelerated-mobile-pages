@@ -22,7 +22,7 @@ add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
 
 
 function ampforwp_page_template_redirect() {
-  global $redux_builder_amp;
+  global $redux_builder_amp, $post;
   $post_type = '';
   $supported_types = '';
   $supported_amp_post_types = '';
@@ -45,6 +45,10 @@ function ampforwp_page_template_redirect() {
     if ( is_feed() ) {
       return;
     }
+    // #1192 Password Protected posts exclusion
+    if(post_password_required( $post )){
+        return;
+      }
     // Return if some categories are selected as Hide #999
     if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
       $selected_cats = array();
