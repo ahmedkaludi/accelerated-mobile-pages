@@ -180,7 +180,8 @@ main .amp-wp-content.comments_list{ background: none; box-shadow: none; padding:
 .comments_list ul ul li{ border-left: 2px solid #eee; padding-left: 15px; border-bottom: 0; padding-bottom: 0px; }
 .comments_list ul li .comment-body .comment-author{ margin-right:5px }
 .comment-author{ float:left }
-.single-post footer.comment-meta{ color:#666; padding-bottom: 0; }
+.single-post footer.comment-meta{ color:#666; padding-bottom: 0; line-height: 1.9; }
+.comment-author-img{float: left; margin-right: 5px; border-radius: 60px; }
 .comment-metadata a{ color:#888 }
 .comments_list li li{ margin: 20px 20px 10px 20px; background: #f7f7f7; box-shadow: none; border: 1px solid #eee; }
 .comments_list li li li{ margin:20px 20px 10px 20px }

@@ -198,7 +198,8 @@ main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width:
 .comments_list ul li .comment-body{ padding: 25px;width: 91%;}
 .comments_list ul li .comment-body .comment-author{ margin-right:5px}
 .comment-author{ float:left }
-.single-post footer.comment-meta{ padding-bottom: 0;}
+.comment-author-img{float: left; margin-right: 5px; border-radius: 60px;}
+.single-post footer.comment-meta{ padding-bottom: 0; line-height: 1.7;}
 .comments_list li li{ margin: 20px 20px 10px 20px;background: #f7f7f7;box-shadow: none;border: 1px solid #eee;}
 .comments_list li li li{ margin:20px 20px 10px 20px}
 .comment-content amp-img{max-width: 300px;}

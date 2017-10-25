@@ -98,6 +98,7 @@
 	88. Author Details
 	89. Facebook Pixel
 	90. Set Header last modified information
+	91. Comment Author Gravatar URL
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4450,4 +4451,34 @@ function ampforwp_addAmpLastModifiedHeader($headers) {
             header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
         }
     }
+}
+// 91. Comment Author Gravatar URL
+if( ! function_exists('ampforwp_get_comments_gravatar') ){
+	function ampforwp_get_comments_gravatar( $comment ) {
+	$gravatar_exists = '';
+	$gravatar_exists = ampforwp_comment_gravatar_checker($comment->comment_author_email);
+	if($gravatar_exists == true){
+		return get_avatar_url( $comment, apply_filters( 'ampforwp_get_comments_gravatar', '60' ), '' );
+	}
+	else
+		return;    	
+	}
+}
+// Gravatar Checker
+if( ! function_exists('ampforwp_comment_gravatar_checker') ){
+	function ampforwp_comment_gravatar_checker($email) {
+		// Craft a potential url and test its headers
+		$hash = md5(strtolower(trim($email)));
+		$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+		$headers = @get_headers($uri);
+		// If its 404
+		if (!preg_match("|200|", $headers[0])) {
+			$has_valid_avatar = FALSE;
+		} 
+		// Else if it is 200
+		else {
+			$has_valid_avatar = TRUE;
+		}
+		return $has_valid_avatar;
+	}
 }
