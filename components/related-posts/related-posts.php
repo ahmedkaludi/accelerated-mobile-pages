@@ -1,8 +1,13 @@
 <?php 
-function ampforwp_framework_get_related_posts(){
+/*
+	@data parameter have options for
+	show_excerpt
+*/
+function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
 	do_action('ampforwp_above_related_post',$this); //Above Related Posts
-	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
+	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$args = null;
 
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
@@ -62,14 +67,25 @@ function ampforwp_framework_get_related_posts(){
                                                           </a>
 							                <div class="related_link">
 							                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
-							                    <?php if(has_excerpt()){
-																		$content = get_the_excerpt();
-																	}else{
-																		$content = get_the_content();
-																	}
-																	?>
-							                    <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-							                </div>
+
+							                    <?php
+							                    $show_excerpt = (isset($argsdata['show_excerpt'])? $argsdata['show_excerpt'] : true);
+							                    if($show_excerpt){
+								                     if(has_excerpt()){
+															$content = get_the_excerpt();
+														}else{
+															$content = get_the_content();
+														}
+												?><p><?php 
+												echo wp_trim_words( strip_shortcodes( $content ) , '15' ); 
+												?></p><?php 
+												} 
+												$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);
+												if($show_author){
+													$author_args = isset($argsdata['author_args'])? $argsdata['author_args'] : array();
+													ampforwp_framework_get_author_box($author_args);
+												}
+											?></div>
 							            </li>
 													<?php
 												}
