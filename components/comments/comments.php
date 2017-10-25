@@ -53,8 +53,10 @@ else {
 							                        <?php
 							                          	$comment_content = get_comment_text();
 							                        	$comment_content = wpautop( $comment_content );
-							                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(),
-							                          'AMP_Video_Sanitizer' => array() ) ) );
+							                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+							                          		'AMP_Img_Sanitizer' => array(),
+							                          		'AMP_Video_Sanitizer' => array(),
+							                          		'AMP_Style_Sanitizer' => array() ) ) );
 							                         $sanitized_comment_content =  $sanitizer->get_amp_content();
 							                          echo make_clickable( $sanitized_comment_content );   ?>
 												</div>
