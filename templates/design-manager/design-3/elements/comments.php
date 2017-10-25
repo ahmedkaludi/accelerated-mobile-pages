@@ -22,6 +22,7 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 				function ampforwp_custom_translated_comment($comment, $args, $depth){
 									$GLOBALS['comment'] = $comment;
 									global $redux_builder_amp;
+									$comment_author_img_url = "";
 									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); ?>
 									<li id="li-comment-<?php comment_ID() ?>"
 									<?php comment_class(); ?> >
