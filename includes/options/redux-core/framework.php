@@ -1432,7 +1432,22 @@
 
                     if ( true === $this->args['allow_sub_menu'] ) {
                         if ( ! isset ( $section['type'] ) || $section['type'] != 'divide' ) {
-                            foreach ( $this->sections as $k => $section ) {
+                            $new_menu_sections = apply_filters("ampforwp_add_admin_subpages",$this->sections); 
+                            foreach ( $new_menu_sections as $k => $section ) {
+
+                                if(isset($section['custom_amp_menu']) && $section['custom_amp_menu']){
+                                   
+                                    call_user_func( 'add_submenu_page',
+                                        $this->args['page_slug'],
+                                        $section['page_title'],
+                                        $section['menu_title'],
+                                        $section['page_permissions'],
+                                        $section['menu_slug'],
+                                        $section['callback']
+                                      );
+                                    continue;
+                                }
+
                                 $canBeSubSection = ( $k > 0 && ( ! isset ( $this->sections[ ( $k ) ]['type'] ) || $this->sections[ ( $k ) ]['type'] != "divide" ) ) ? true : false;
 
                                 if ( ! isset ( $section['title'] ) || ( $canBeSubSection && ( isset ( $section['subsection'] ) && $section['subsection'] == true ) ) ) {
@@ -1459,6 +1474,7 @@
                                 call_user_func( 'add_submenu_page', $this->args['page_slug'], $section['title'], $section['title'], $this->args['page_permissions'], $this->args['page_slug'] . '&tab=' . $k,
                                     //create_function( '$a', "return null;" )
                                     '__return_null' );
+                            
                             }
 
                             // Remove parent submenu item instead of adding null item.
