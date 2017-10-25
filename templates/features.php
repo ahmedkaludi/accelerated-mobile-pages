@@ -4490,7 +4490,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		global $wp_admin_bar, $post, $wp_post_types, $redux_builder_amp;
 		$post_type_title = '';
 		$supported_amp_post_types = array();
-		$post_type_title = ucfirst($post->post_type);
+		
 		// Get all post types supported by AMP
 		$supported_amp_post_types = ampforwp_get_all_post_types();
 		// Check for Admin
@@ -4506,6 +4506,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					if($post->post_type == 'post' && !$redux_builder_amp['amp-on-off-for-all-posts'] || $post->post_type == 'page' && !$redux_builder_amp['amp-on-off-for-all-pages']) {
 						return;
 					}
+					$post_type_title = ucfirst($post->post_type);
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . $post_type_title . ' (AMP)' ,
