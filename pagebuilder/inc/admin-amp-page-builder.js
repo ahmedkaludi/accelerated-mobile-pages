@@ -231,10 +231,10 @@ jQuery( document ).ready( function( $ ){
 				modData.default = encodeURI($('#'+fieldIdentifier).val());
 			}else{
 				modData.default = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
-				
 			}
 			
 		});
+		console.log(JSON.stringify(moduleJson));
 		$('#module-'+containerdetails[1]).find('#selectedModule').val(JSON.stringify(moduleJson))
 
 		/*var fieldValue = [];
@@ -334,12 +334,151 @@ jQuery( document ).ready( function( $ ){
 	function editorJs(editor){
 		if(editor.length){  
 			$.each(editor, function(key, value){
-				if(tinymce.get(value)){
-					//tinymce.get(value).remove();
-					console.log(value);
-					tinymce.get(value).destroy();
+				var control = $("#".value), restoreTextMode = false,triggerChangeIfDirty,changeDebounceDelay = 1000, needsTextareaChangeTrigger;
+				var textarea = control;
+				var id = value;//textarea.attr( 'id' );
+				if ( typeof window.tinymce === 'undefined' ) {
+					wp.editor.initialize( id, {
+						quicktags: true
+					});
+
+					return;
 				}
-				$("#"+value).before('<button type="button" id="insert-media-button" class="button insert-media add_media" data-editor="'+value+'"><span class="wp-media-buttons-icon"></span> Add Media</button>');
+
+				// Destroy any existing editor so that it can be re-initialized after a widget-updated event.
+				if ( tinymce.get( id ) ) {
+					restoreTextMode = tinymce.get( id ).isHidden();
+					wp.editor.remove( id );
+				}
+				wp.editor.initialize( id, {
+					tinymce: {
+						wpautop: true
+					},
+					quicktags: true
+				});
+
+
+
+				triggerChangeIfDirty = function() {
+				var updateWidgetBuffer = 300; // See wp.customize.Widgets.WidgetControl._setupUpdateUI() which uses 250ms for updateWidgetDebounced.
+				if ( control.editor.isDirty() ) {
+
+					/*
+					 * Account for race condition in customizer where user clicks Save & Publish while
+					 * focus was just previously given to to the editor. Since updates to the editor
+					 * are debounced at 1 second and since widget input changes are only synced to
+					 * settings after 250ms, the customizer needs to be put into the processing
+					 * state during the time between the change event is triggered and updateWidget
+					 * logic starts. Note that the debounced update-widget request should be able
+					 * to be removed with the removal of the update-widget request entirely once
+					 * widgets are able to mutate their own instance props directly in JS without
+					 * having to make server round-trips to call the respective WP_Widget::update()
+					 * callbacks. See <https://core.trac.wordpress.org/ticket/33507>.
+					 */
+					if ( wp.customize && wp.customize.state ) {
+						wp.customize.state( 'processing' ).set( wp.customize.state( 'processing' ).get() + 1 );
+						_.delay( function() {
+							wp.customize.state( 'processing' ).set( wp.customize.state( 'processing' ).get() - 1 );
+						}, updateWidgetBuffer );
+					}
+
+					if ( ! control.editor.isHidden() ) {
+						control.editor.save();
+					}
+				}
+
+				// Trigger change on textarea when it is dirty for sake of widgets in the Customizer needing to sync form inputs to setting models.
+				if ( needsTextareaChangeTrigger ) {
+					textarea.trigger( 'change' );
+					needsTextareaChangeTrigger = false;
+				}
+			};
+
+
+				/**
+				 * Show a pointer, focus on dismiss, and speak the contents for a11y.
+				 *
+				 * @param {jQuery} pointerElement Pointer element.
+				 * @returns {void}
+				 */
+				showPointerElement = function( pointerElement ) {
+					pointerElement.show();
+					pointerElement.find( '.close' ).focus();
+					wp.a11y.speak( pointerElement.find( 'h3, p' ).map( function() {
+						return $( this ).text();
+					} ).get().join( '\n\n' ) );
+				};
+
+				editor = window.tinymce.get( id );
+				if ( ! editor ) {
+					throw new Error( 'Failed to initialize editor' );
+				}
+				onInit = function() {
+
+					// If a prior mce instance was replaced, and it was in text mode, toggle to text mode.
+					if ( restoreTextMode ) {
+						switchEditors.go( id, 'html' );
+					}
+
+					// Show the pointer.
+					$( '#' + id + '-html' ).on( 'click', function() {
+						control.pasteHtmlPointer.hide(); // Hide the HTML pasting pointer.
+
+						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_custom_html' ) ) {
+							return;
+						}
+						showPointerElement( control.customHtmlWidgetPointer );
+					});
+
+					// Hide the pointer when switching tabs.
+					$( '#' + id + '-tmce' ).on( 'click', function() {
+						control.customHtmlWidgetPointer.hide();
+					});
+
+					// Show pointer when pasting HTML.
+					editor.on( 'pastepreprocess', function( event ) {
+						var content = event.content;
+						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_paste_html' ) || ! content || ! /&lt;\w+.*?&gt;/.test( content ) ) {
+							return;
+						}
+
+						// Show the pointer after a slight delay so the user sees what they pasted.
+						_.delay( function() {
+							showPointerElement( control.pasteHtmlPointer );
+						}, 250 );
+					});
+				};
+
+				if ( editor.initialized ) {
+					onInit();
+				} else {
+					editor.on( 'init', onInit );
+				}
+
+				control.editorFocused = false;
+
+				editor.on( 'focus', function onEditorFocus() {
+					control.editorFocused = true;
+				});
+				editor.on( 'paste', function onEditorPaste() {
+					editor.setDirty( true ); // Because pasting doesn't currently set the dirty state.
+					triggerChangeIfDirty();
+				});
+				editor.on( 'NodeChange', function onNodeChange() {
+					needsTextareaChangeTrigger = true;
+				});
+				editor.on( 'NodeChange', _.debounce( triggerChangeIfDirty, changeDebounceDelay ) );
+				editor.on( 'blur hide', function onEditorBlur() {
+					control.editorFocused = false;
+					triggerChangeIfDirty();
+				});
+
+				control.editor = editor;
+
+/*
+
+
+
 				tinymce.init( {
 							mode : "exact",
 							elements : value,  //'pre-details',
@@ -455,10 +594,10 @@ jQuery( document ).ready( function( $ ){
 							toolbar4: "",
 							wp_autoresize_on: true,
 							add_unload_trigger: false
-						} );
-				if ( ! window.wpActiveEditor ) {
+						} );*/
+				/*if ( ! window.wpActiveEditor ) {
 					window.wpActiveEditor = value;
-				}
+				}*/
 			})
 			
 		}
