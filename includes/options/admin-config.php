@@ -2635,6 +2635,13 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
             ),
             array(
+                    'id'       => 'ampforwp-single-order-of-related-posts',
+                    'type'     => 'switch',
+                    'title'    => __('Show Related Posts Randomly', 'accelerated-mobile-pages'),
+                'subtitle' => __('Related posts by random order', 'accelerated-mobile-pages'),
+                'default'  => 0,
+            ),
+            array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
                     'title'    => __('Inline Related Post', 'accelerated-mobile-pages'),
