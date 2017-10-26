@@ -72,7 +72,7 @@ function amp_logo(){
 
 // Title
 function amp_title(){
-		global $redux_builder_amp, $post;
+		global $redux_builder_amp, $post, $this;
 	$ID = '';
 	if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
 		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
