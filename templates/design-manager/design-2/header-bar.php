@@ -68,7 +68,10 @@
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
-      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
+      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
+      <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+       <?php
           $menu_html_content = wp_nav_menu( array(
                                     'theme_location' => 'amp-menu' ,
                                     'echo' => false,
@@ -79,6 +82,7 @@
         echo make_clickable( $sanitized_comment_content );
 
           ?>
+        </nav>
 
   </div>
 </amp-sidebar>

@@ -9,8 +9,12 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       <?php
       if( has_nav_menu( 'amp-menu' ) ) { ?>
         <div class="navigation_heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'] , 'Navigate' ); ?></div>
+      
+      <?php // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
+         // schema.org/SiteNavigationElement missing from menus #1229 ?>
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
       <?php
-      // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
         $menu_html_content = wp_nav_menu( array(
             'theme_location' => 'amp-menu',
             'menu'=>'ul',
@@ -22,6 +26,8 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
         echo make_clickable( $sanitized_comment_content );
       }
            ?>
+             
+           </nav>
           <div class="social_icons">
             <ul>
 
