@@ -2605,6 +2605,15 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 						$structured_data_width  = $featured_image_array[1];
 						$structured_data_height  = $featured_image_array[2];
 					}
+					// Frontpage Author
+					$structured_data_author = '';
+					$structured_data_author	= get_userdata($static_page_data->post_author );
+					if ( $structured_data_author ) {
+						$structured_data_author = $structured_data_author->display_name ;
+					} else {
+						$structured_data_author = "admin";
+					}
+					$metadata['author']['name'] = $structured_data_author;
 				}
 				else{
 					if( ampforwp_get_blog_details() == true ) {
@@ -3992,36 +4001,43 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 	function ampforwp_get_blog_details( $param = "" ) {
 		global $redux_builder_amp;
 		$current_url = '';
-		$output = '';
+		$output 	 = '';
+		$slug 		 = '';
+		$title 		 = '';
+		$blog_id 	 = '';
 		$current_url_in_pieces = array();
 		if(is_home() &&  $redux_builder_amp['amp-frontpage-select-option'] == 1 && get_option('show_on_front') == 'page'){
 			$current_url = home_url( $GLOBALS['wp']->request );
 			$current_url_in_pieces = explode( '/', $current_url );
 			$page_for_posts  =  get_option( 'page_for_posts' );
-			$post = get_post($page_for_posts);
-			if ( $post ) {
-				$slug = $post->post_name;
-				$title = $post->post_title;
-				$blog_id = $post->ID;
+			if( $page_for_posts ){
+				$post = get_post($page_for_posts);
+				if ( $post ) {
+					$slug = $post->post_name;
+					$title = $post->post_title;
+					$blog_id = $post->ID;
+				}						
+				switch ($param) {
+					case 'title':
+						$output = $title;
+						break;
+					case 'name':
+						$output = $slug;
+						break;
+					case 'id':
+						$output = $blog_id;
+						break;
+					default:
+						if( in_array( $slug , $current_url_in_pieces , true ) ){
+							$output = true;
+						}
+						else
+							$output = false;
+						break;
+				}
 			}
-			switch ($param) {
-				case 'title':
-					$output = $title;
-					break;
-				case 'name':
-					$output = $slug;
-					break;
-				case 'id':
-					$output = $blog_id;
-					break;
-				default:
-					if(in_array($slug, $current_url_in_pieces)){
-						$output = true;
-					}
-					else
-						$output = false;
-					break;
-			}
+			else
+				$output = false;
 		}
 		return $output;
 	}
