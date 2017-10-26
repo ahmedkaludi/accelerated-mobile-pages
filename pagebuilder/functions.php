@@ -132,11 +132,9 @@ function amp_pagebuilder_content_styles(){
 
 
 function amppb_post_content($content){
-	global $post;
-	global $redux_builder_amp;
-	global $containerCommonSettings;
+	global $post,  $redux_builder_amp, $containerCommonSettings;
 	$postId = $post->ID;
-	if(is_home() || is_front_page()){
+	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&ampforwp_get_blog_details() == false){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
