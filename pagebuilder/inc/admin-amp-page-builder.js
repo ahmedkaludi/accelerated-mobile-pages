@@ -334,17 +334,18 @@ jQuery( document ).ready( function( $ ){
 	function editorJs(editor){
 		if(editor.length){  
 			$.each(editor, function(key, value){
-				var control = $("#".value), restoreTextMode = false,triggerChangeIfDirty,changeDebounceDelay = 1000, needsTextareaChangeTrigger;
-				var textarea = control;
-				var id = value;//textarea.attr( 'id' );
+				var control = $("#"+value).parents('form-control'), restoreTextMode = false,triggerChangeIfDirty,changeDebounceDelay = 1000, needsTextareaChangeTrigger;
+				var component = {
+					dismissedPointers: []
+				};
+				var textarea = control.find('textarea');
+				var id = value;
 				if ( typeof window.tinymce === 'undefined' ) {
 					wp.editor.initialize( id, {
 						quicktags: true
 					});
-
 					return;
 				}
-
 				// Destroy any existing editor so that it can be re-initialized after a widget-updated event.
 				if ( tinymce.get( id ) ) {
 					restoreTextMode = tinymce.get( id ).isHidden();
@@ -356,25 +357,9 @@ jQuery( document ).ready( function( $ ){
 					},
 					quicktags: true
 				});
-
-
-
 				triggerChangeIfDirty = function() {
-				var updateWidgetBuffer = 300; // See wp.customize.Widgets.WidgetControl._setupUpdateUI() which uses 250ms for updateWidgetDebounced.
+				var updateWidgetBuffer = 300; 
 				if ( control.editor.isDirty() ) {
-
-					/*
-					 * Account for race condition in customizer where user clicks Save & Publish while
-					 * focus was just previously given to to the editor. Since updates to the editor
-					 * are debounced at 1 second and since widget input changes are only synced to
-					 * settings after 250ms, the customizer needs to be put into the processing
-					 * state during the time between the change event is triggered and updateWidget
-					 * logic starts. Note that the debounced update-widget request should be able
-					 * to be removed with the removal of the update-widget request entirely once
-					 * widgets are able to mutate their own instance props directly in JS without
-					 * having to make server round-trips to call the respective WP_Widget::update()
-					 * callbacks. See <https://core.trac.wordpress.org/ticket/33507>.
-					 */
 					if ( wp.customize && wp.customize.state ) {
 						wp.customize.state( 'processing' ).set( wp.customize.state( 'processing' ).get() + 1 );
 						_.delay( function() {
@@ -386,15 +371,35 @@ jQuery( document ).ready( function( $ ){
 						control.editor.save();
 					}
 				}
-
 				// Trigger change on textarea when it is dirty for sake of widgets in the Customizer needing to sync form inputs to setting models.
 				if ( needsTextareaChangeTrigger ) {
 					textarea.trigger( 'change' );
 					needsTextareaChangeTrigger = false;
 				}
 			};
-
-
+				control.customHtmlWidgetPointer = control.find( '.wp-pointer.custom-html-widget-pointer' );
+				if ( control.customHtmlWidgetPointer.length ) {
+					control.customHtmlWidgetPointer.find( '.close' ).on( 'click', function( event ) {
+						event.preventDefault();
+						control.customHtmlWidgetPointer.hide();
+						$( '#' + control.fields.text.attr( 'id' ) + '-html' ).focus();
+						control.dismissPointers( [ 'text_widget_custom_html' ] );
+					});
+					control.customHtmlWidgetPointer.find( '.add-widget' ).on( 'click', function( event ) {
+						event.preventDefault();
+						control.customHtmlWidgetPointer.hide();
+						control.openAvailableWidgetsPanel();
+					});
+				}
+				control.pasteHtmlPointer = control.find( '.wp-pointer.paste-html-pointer' );
+				if ( control.pasteHtmlPointer.length ) {
+					control.pasteHtmlPointer.find( '.close' ).on( 'click', function( event ) {
+						event.preventDefault();
+						control.pasteHtmlPointer.hide();
+						control.editor.focus();
+						control.dismissPointers( [ 'text_widget_custom_html', 'text_widget_paste_html' ] );
+					});
+				}
 				/**
 				 * Show a pointer, focus on dismiss, and speak the contents for a11y.
 				 *
@@ -422,7 +427,7 @@ jQuery( document ).ready( function( $ ){
 
 					// Show the pointer.
 					$( '#' + id + '-html' ).on( 'click', function() {
-						control.pasteHtmlPointer.hide(); // Hide the HTML pasting pointer.
+						//control.pasteHtmlPointer.hide(); // Hide the HTML pasting pointer.
 
 						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_custom_html' ) ) {
 							return;
@@ -472,132 +477,8 @@ jQuery( document ).ready( function( $ ){
 					control.editorFocused = false;
 					triggerChangeIfDirty();
 				});
-
 				control.editor = editor;
-
-/*
-
-
-
-				tinymce.init( {
-							mode : "exact",
-							elements : value,  //'pre-details',
-							theme: "modern",
-							skin: "lightgray",
-							language: "en",
-							menubar : false,
-							statusbar : false,
-							branding: false,
-							paste_auto_cleanup_on_paste : true,
-							paste_postprocess : function( pl, o ) {
-								o.node.innerHTML = o.node.innerHTML.replace( /&nbsp;+/ig, " " );
-							},
-							formats: {
-								alignleft: [
-								  {
-								    selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li",
-								    styles: {
-								      textAlign: "left"
-								    }
-								  },
-								  {
-								    selector: "img,table,dl.wp-caption",
-								    classes: "alignleft"
-								  }
-								],
-								aligncenter: [
-								  {
-								    selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li",
-								    styles: {
-								      textAlign: "center"
-								    }
-								  },
-								  {
-								    selector: "img,table,dl.wp-caption",
-								    classes: "aligncenter"
-								  }
-								],
-								alignright: [
-								  {
-								    selector: "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li",
-								    styles: {
-								      textAlign: "right"
-								    }
-								  },
-								  {
-								    selector: "img,table,dl.wp-caption",
-								    classes: "alignright"
-								  }
-								],
-								strikethrough: {
-								  inline: "del"
-								}
-							},
-							relative_urls: false,
-							remove_script_host: false,
-							convert_urls: false,
-							browser_spellcheck: true,
-							fix_list_elements: true,
-							entities: "38,amp,60,lt,62,gt",
-							entity_encoding: "raw",
-							keep_styles: false,
-							cache_suffix: "wp-mce-4603-20170530",
-							resize: false,
-							menubar: false,
-							branding: false,
-							preview_styles: "font-family font-size font-weight font-style text-decoration text-transform",
-							end_container_on_empty_block: true,
-							wpeditimage_html5_captions: true,
-							wp_lang_attr: "en-US",
-							wp_shortcut_labels: {
-								"Heading 1": "access1",
-								"Heading 2": "access2",
-								"Heading 3": "access3",
-								"Heading 4": "access4",
-								"Heading 5": "access5",
-								"Heading 6": "access6",
-								"Paragraph": "access7",
-								"Blockquote": "accessQ",
-								"Underline": "metaU",
-								"Strikethrough": "accessD",
-								"Bold": "metaB",
-								"Italic": "metaI",
-								"Code": "accessX",
-								"Align center": "accessC",
-								"Align right": "accessR",
-								"Align left": "accessL",
-								"Justify": "accessJ",
-								"Cut": "metaX",
-								"Copy": "metaC",
-								"Paste": "metaV",
-								"Select all": "metaA",
-								"Undo": "metaZ",
-								"Redo": "metaY",
-								"Bullet list": "accessU",
-								"Numbered list": "accessO",
-								"Insert\/edit image": "accessM",
-								"Remove link": "accessS",
-								"Toolbar Toggle": "accessZ",
-								"Insert Read More tag": "accessT",
-								"Insert Page Break tag": "accessP",
-								"Distraction-free writing mode": "accessW",
-								"Keyboard Shortcuts": "accessH"
-							},
-							content_css: "",
-							plugins: "charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview",
-							selector: "#"+value,
-							wpautop: true,
-							indent: false,
-							toolbar1: "formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,dfw,wp_adv,|,ampforwp_tc_button",
-							toolbar2: "strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help",
-							toolbar3: "",
-							toolbar4: "",
-							wp_autoresize_on: true,
-							add_unload_trigger: false
-						} );*/
-				/*if ( ! window.wpActiveEditor ) {
-					window.wpActiveEditor = value;
-				}*/
+				 
 			})
 			
 		}
