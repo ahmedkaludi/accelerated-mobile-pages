@@ -280,7 +280,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				              $append_amp = 'amp';
 				              array_splice( $explode_url, 5, 0, $append_amp );
 				              $impode_url = implode('/', $explode_url);
-				              $amp_url = trailingslashit(user_trailingslashit($impode_url));
+				              $amp_url = user_trailingslashit(trailingslashit($impode_url));
 				          }
 				        }
 				
