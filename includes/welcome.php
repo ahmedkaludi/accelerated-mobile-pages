@@ -14,7 +14,7 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   }
 
   // Redirect to welcome page
-  wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'index.php' ) ) );
+  wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
 }
 
 // add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );
@@ -33,7 +33,7 @@ function ampforwp_welcome_screen_do_activation_redirect_parent() {
 	}
 
 	// Redirect to welcome page
-	wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'index.php' ) ) );
+	wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
 
  	update_option( 'ampforwp_parent_plugin_check', true );
 }
