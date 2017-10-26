@@ -1231,6 +1231,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'NewsArticle'   => 'NewsArticle',
                 'Recipe'        => 'Recipe',
                 'Product'       => 'Product',
+                'VideoObject'   => 'VideoObject'
             );
             return $options;
         }
@@ -1338,6 +1339,14 @@ Redux::setArgs( "redux_builder_amp", $args );
               'subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
               'default'  => '550'
              ),
+            array(
+              'id'      => 'amporwp-structured-data-video-thumb-url',
+              'type'    => 'media',
+              'url'     => true,
+              'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
+              'subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
+              'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+            ),
         )
 )
     ) );
