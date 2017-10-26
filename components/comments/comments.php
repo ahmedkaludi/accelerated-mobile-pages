@@ -95,9 +95,7 @@ else {
 	     <?php } ?>
 	<?php } ?>
 	</div>
-	<?php
-	global $this;
-	 do_action('ampforwp_after_comment_hook',$this);
+	<?php do_action('ampforwp_after_comment_hook',$this);
 
 	}
 
