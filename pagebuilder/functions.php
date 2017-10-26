@@ -133,9 +133,13 @@ function amp_pagebuilder_content_styles(){
 
 function amppb_post_content($content){
 	global $post;
+	global $redux_builder_amp;
 	global $containerCommonSettings;
-
-	$previousData = get_post_meta($post->ID,'amp-page-builder');
+	$postId = $post->ID;
+	if(is_home() || is_front_page()){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
