@@ -1127,13 +1127,21 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 */
 function ampforwp_get_all_post_types(){
 	global $redux_builder_amp;
+	$post_types 		 = array();
+	$selected_post_types = array();
 
     $post_types = array('post' => 'post', 'page' => 'page');
     if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
-    	$post_types = array_merge($post_types, $redux_builder_amp['ampforwp-custom-type']);
+
+    	foreach ($redux_builder_amp['ampforwp-custom-type'] as $key) {
+    		$selected_post_types[$key] = $key;
+    	}
+    	$post_types = array_merge($post_types, $selected_post_types);
     }
+
     return $post_types;
 }
+
 function ampforwp_title_custom_meta() {
   global $redux_builder_amp;
 
@@ -4023,11 +4031,16 @@ add_action("redux/options/redux_builder_amp/saved",'ampforwp_save_custom_post_ty
 if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
 	function ampforwp_save_custom_post_types_sd( $redux_builder_amp ){
 		global $redux_builder_amp;
-		$post_types = array();
+		$post_types 		= array();
 		$saved_custom_posts = array();
+		$count_current_pt 	= "";
+		$count_saved_pt 	= "";
+		$array_1 			= "";
+		$array_2 			= "";
 
 		$saved_custom_posts = get_option('ampforwp_custom_post_types');
 		$post_types = ampforwp_get_all_post_types();
+
 		
 		if (empty($post_types)) {
 			$post_types = array();
@@ -4039,7 +4052,20 @@ if(! function_exists('ampforwp_save_custom_post_types_sd') ) {
  		if ( empty( $saved_custom_posts ) ) {
 			$saved_custom_posts = array();
  		}
-		if(array_diff($saved_custom_posts, $post_types) ){	
+
+ 		$count_current_pt = count( $post_types );
+		$count_saved_pt =  count( $saved_custom_posts );
+
+		if ( $count_current_pt > $count_saved_pt) {
+			
+			$array_1 = $post_types;
+			$array_2 = $saved_custom_posts;
+		} else {
+			$array_1 = $saved_custom_posts;
+			$array_2 = $post_types;
+		}
+
+		if( array_diff( $array_1, $array_2 ) ){	
 			update_option('ampforwp_custom_post_types',  $post_types);
 		}
 
