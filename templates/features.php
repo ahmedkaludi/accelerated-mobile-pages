@@ -4510,7 +4510,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . $post_type_title . ' (AMP)' ,
-						'href'  => user_trailingslashit( get_permalink( $post->ID ) . AMPFORWP_AMP_QUERY_VAR)
+						'href'  => user_trailingslashit( trailingslashit( get_permalink( $post->ID ) ) . AMPFORWP_AMP_QUERY_VAR )
 					));
 				}
 			}
