@@ -269,6 +269,20 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 					$amp_url = untrailingslashit($current_search_url);
 				}
+
+				// WPML AMPHTML #1285
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+				          Global $sitepress_settings;
+				          if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+				              $wpml_url =get_permalink( get_queried_object_id() );
+				              $explode_url = explode('/', $wpml_url);
+				              $append_amp = 'amp';
+				              array_splice( $explode_url, 5, 0, $append_amp );
+				              $impode_url = implode('/', $explode_url);
+				              $amp_url = trailingslashit(user_trailingslashit($impode_url));
+				          }
+				        }
 				
 		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
