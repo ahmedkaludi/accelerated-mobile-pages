@@ -40,7 +40,7 @@ else {
 										<li id="li-comment-<?php comment_ID() ?>"
 										<?php comment_class(); ?> >
 											<article id="comment-<?php comment_ID(); ?>" class="comment-body">
-												<footer class="comment-meta">.
+												<footer class="comment-meta">
 												<?php if($comment_author_img_url){ ?>
 		                 							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
 		                 						<?php } ?>

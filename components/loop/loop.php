@@ -191,13 +191,16 @@ function call_loops_standard($data=array()){
 		echo '</'.$tag.'>';
 	}
 
-	function amp_loop_date(){
+	function amp_loop_date($args=array()){
 		global $redux_builder_amp;
-		$post_date =  human_time_diff(
+		if(isset($args['format']) && $args['format']=='traditional'){
+			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+        }else{
+        	$post_date =  human_time_diff(
         						get_the_time('U', get_the_ID() ), 
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
-        
+        }
         echo '<div class="loop-date">'.$post_date.'</div>';
 	}
 
@@ -276,7 +279,12 @@ function call_loops_standard($data=array()){
 	// author
 	function amp_loop_author($args = array()){
 		 global $redux_builder_amp;
-		ampforwp_framework_get_author_box($args);
+		if(function_exists('ampforwp_framework_get_author_box')){
+			ampforwp_framework_get_author_box($args);
+		}else{
+			echo "";
+		}
+
 	}
 
 

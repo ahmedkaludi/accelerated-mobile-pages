@@ -59,7 +59,7 @@ $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_
             <amp-img src="<?php echo $author_avatar_url; ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
-        <?php echo '<div class="'. $author_wrapper_class .'">
+        <?php echo '<div class="author-details '. $author_wrapper_class .'">
                         <span class="author-name">'
                         .$author_prefix . ' <a href="'. $author_link.AMPFORWP_AMP_QUERY_VAR.'"> ' .esc_html( $post_author->display_name ).'</a>
                         </span>';
@@ -81,7 +81,3 @@ $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_
         </div>
     </div>
 <?php }
-
-function ampforwp_framework_get_author(){
-
-}
