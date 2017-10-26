@@ -28,6 +28,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     $ampforwp_category_link = $instance[ 'showButton' ];
     $ampforwp_show_excerpt = $instance[ 'showExcerpt' ];
 
+    global $redux_builder_amp;
+
  //   echo . $args['before_title'] .  . $args['after_title']; ?>
 
     <?php
@@ -79,11 +81,16 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
             </li> <?php
         }
 
-        //show more
-        if( $ampforwp_category_link === 'yes' && $ampforwp_category_id !== '' ) {
-          global $redux_builder_amp;
-          echo '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
-        }
+        //show more link
+        if( $ampforwp_category_link === 'yes' && ! empty( $ampforwp_category_id ) ) {
+          
+          $category_link =  '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+        } else {
+          $category_link =   '<a class="amp-category-block-btn" href="'.user_trailingslashit( home_url() ).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+        } 
+
+        echo  $category_link ;
+
         echo '</ul></div>';
 
     } else {
