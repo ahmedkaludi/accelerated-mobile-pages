@@ -10,6 +10,8 @@ wp_reset_postdata(); ?>
              <?php 
              $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
+                  'link_before'     => '<span itemprop="name">',
+                  'link_after'     => '</span>',
                   'echo' => false
               ) );
               echo strip_tags( $menu , '<ul><li><a>'); ?>

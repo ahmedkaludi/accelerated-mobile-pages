@@ -17,6 +17,8 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       <?php
         $menu_html_content = wp_nav_menu( array(
             'theme_location' => 'amp-menu',
+            'link_before'     => '<span itemprop="name">',
+            'link_after'     => '</span>',
             'menu'=>'ul',
             'menu_class'=>'amp-menu',
             'echo'=>false
