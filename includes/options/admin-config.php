@@ -2053,11 +2053,13 @@ Redux::setSection( $opt_name, array(
     //get All design
     function amp_extra_plugin_theme_header($headers){
         $headers['AMP Theme Name'] = "AMP";
+        $headers['AMP Theme Demo'] = "DEMO LINK";
         return $headers;
     }
     add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
     $themeDesign = array(
 			array(
+                'demo_link' => 'https://ampforwp.com/demo/#one',
 				'upgreade'=>true,
 				'title'=>__('Design One', 'accelerated-mobile-pages' ),
 				'value'=>1,
@@ -2065,6 +2067,7 @@ Redux::setSection( $opt_name, array(
 				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png',
 			),
 			array(
+                'demo_link' => 'https://ampforwp.com/demo/#two',
 				'upgreade'=>true,
 				'title'=>__('Design Two', 'accelerated-mobile-pages' ),
 				'value'=>2,
@@ -2072,6 +2075,7 @@ Redux::setSection( $opt_name, array(
 				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
 			),
 			array(
+                'demo_link' => 'https://ampforwp.com/demo/#three',
 				'upgreade'=>true,
 				'title'=>__('Design Three', 'accelerated-mobile-pages' ),
 				'value'=>3,
@@ -2088,6 +2092,7 @@ Redux::setSection( $opt_name, array(
 					$imageUrl = plugins_url($value['TextDomain'].'/screenshot.png');
 				}
                 $themeDesign[] = array(
+                                    'demo_link' => $plugin['DEMO LINK'],
 									'upgreade'=>true,
 									'title'=>$plugin['AMP'],
 									'value'=>$value['TextDomain'],

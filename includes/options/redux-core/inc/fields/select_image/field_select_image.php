@@ -91,8 +91,11 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
 						if ( ! isset( $v['alt'] ) ) {
 							$v['alt'] = $v['title'];
 						}
+                        if ( ! isset( $v['demo_link'] ) ) {
+                            $v['demo_link'] = '';
+                        }
 						// Add the option tag, with values.
-						echo '<option value="' . $v['value'] . '" ' . $selected . ' data-image="'. $v['img'].'" data-alt="'. $v['alt'] .'">' . $v['title'] . '</option>';
+						echo '<option value="' . $v['value'] . '" ' . $selected . ' data-image="'. $v['img'].'" data-alt="'. $v['alt'] .'" data-demolink="'. $v['demo_link'] .'">' . $v['title'] . '</option>';
 					}else{
 						// No array?  No problem!
 						if ( ! is_array( $v ) ) {
