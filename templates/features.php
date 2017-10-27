@@ -4590,7 +4590,7 @@ function ampforwp_url_purifier($url){
 	        	$url = $url.$queryVar;
 	        }else{
 	        	$queryVar = str_replace('&', '?', $queryVar);
-	        	echo $url = $url.$queryVar;die;
+	        	 $url = $url.$queryVar;
 	        }
 	    }else{
 	    	 $url = user_trailingslashit(trailingslashit($url).$queryVar);
