@@ -42,7 +42,8 @@ function ampforwp_welcome_screen_do_activation_redirect_parent() {
 add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
 function ampforwp_add_welcome_pages($sections){
 	
-	$newsection[] = array(
+	
+	$sections[] = array(
 		'page_title'=> __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
 		'menu_title'=>__('Welcome to AMP','accelerated-mobile-pages'),
 		'page_permissions'=>'manage_options',
@@ -50,7 +51,7 @@ function ampforwp_add_welcome_pages($sections){
 		'callback' => 'ampforwp_welcome_screen_content',
 		'custom_amp_menu'   => true
 	);
-	array_splice($sections,0,0,$newsection);
+	//array_splice($sections,10,0,$newsection);
 	return $sections;
 }
 
