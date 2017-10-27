@@ -1541,6 +1541,14 @@ Redux::setSection( $opt_name, array(
                         'desc' => fb_instant_article(),
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'ampforwp-fb-instant-article-posts',
+                        'type'      => 'text',
+                        'title'     => __('Number of Posts', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
+                         'desc' => __('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
                     array(
                         'id'       => 'fb-instant-article-ads',
