@@ -227,8 +227,8 @@ function rowData($container,$col){
 							);
 						//The Query
 						$the_query = new WP_Query( $args );
-						 $totalLoopHtml = contentHtml($the_query);
-						$moduleFrontHtml = str_replace('{{content_title}}', $fieldValues['content_title'], $moduleFrontHtml);
+						 $totalLoopHtml = contentHtml($the_query,$fieldValues);
+						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
 						/* Restore original Post Data */
 						wp_reset_postdata();
