@@ -100,6 +100,7 @@
 	90. Set Header last modified information
 	91. Comment Author Gravatar URL
 	92. View AMP in Admin Bar
+	93. added AMP url purifire for amphtml
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -229,7 +230,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if ( is_home()  || is_front_page() || is_archive() ){
 	        global $wp;
 	        $current_archive_url = home_url( $wp->request );
-	        $amp_url = trailingslashit(trailingslashit($current_archive_url).'amp');
+	        $amp_url = trailingslashit($current_archive_url);
+	        $amp_url = ampforwp_url_purifier($amp_url);
 	    } else {
 	      $amp_url = amp_get_permalink( get_queried_object_id() );
 	    }
@@ -285,7 +287,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				        }
 				
 		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
-
+		        $amp_url = ampforwp_url_purifier($amp_url);
 				if( $supported_amp_post_types) {					
 					printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
 				}
@@ -4572,5 +4574,27 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 			}
 		}
 	}
+}
+//93. added AMP url purifire for amphtml
+function ampforwp_url_purifier($url){
+		//if already have amp / amp=1
+		if(strpos($url, 'amp=1')==true || strpos($url, '/amp')==true){
+			$url = urldecode($url);
+			return $url;
+		}
+		$get_permalink_structure = get_option('permalink_structure');
+		$queryVar = AMPFORWP_AMP_QUERY_VAR;
+		if(empty( $get_permalink_structure ) || strpos($url, '?')==true) {
+	        //check current url already have ? or not
+	        if(strpos($url, '?')==true){
+	        	$url = $url.$queryVar;
+	        }else{
+	        	$queryVar = str_replace('&', '?', $queryVar);
+	        	echo $url = $url.$queryVar;die;
+	        }
+	    }else{
+	    	 $url = user_trailingslashit(trailingslashit($url).$queryVar);
+	    }
+	return $url;
 }
 
