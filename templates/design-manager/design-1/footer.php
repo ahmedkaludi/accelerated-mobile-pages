@@ -4,9 +4,9 @@ wp_reset_postdata(); ?>
 <footer class="amp-wp-footer">
 	<div id="footer">
 		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
-          <div class="footer_menu"> 
+          <div class="footer_menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement"> 
            <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+      <nav id ="primary-amp-menu">
              <?php 
              $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
@@ -14,9 +14,9 @@ wp_reset_postdata(); ?>
                   'link_after'     => '</span>',
                   'echo' => false
               ) );
-              echo strip_tags( $menu , '<ul><li><a>'); ?>
-          </div>
-        </nav>
+              echo strip_tags( $menu , '<ul><li itemprop="name"><a itemprop="url">'); ?>
+          </nav>
+        </div>
         <?php } ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
