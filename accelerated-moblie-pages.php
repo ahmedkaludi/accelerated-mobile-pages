@@ -24,13 +24,15 @@ define('AMPFORWP_VERSION','0.9.65');
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
     $get_permalink_structure = '';
-    $get_permalink_structure = get_option('permalink_structure');
+    //$get_permalink_structure = get_option('permalink_structure');
     
-    if(empty( $get_permalink_structure )) {
-        $ampforwp_slug = '&amp=1';
-    }else{
-        $ampforwp_slug = "amp";
-    }
+    // if(empty( $get_permalink_structure )) {
+    //     $ampforwp_slug = '&amp=1';
+    // }else{
+    //     $ampforwp_slug = "amp";
+    // }
+   	$ampforwp_slug = "amp";
+
     return $ampforwp_slug;
 }
 

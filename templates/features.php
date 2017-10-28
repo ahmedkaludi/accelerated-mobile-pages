@@ -231,7 +231,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        global $wp;
 	        $current_archive_url = home_url( $wp->request );
 	        $amp_url = trailingslashit($current_archive_url);
-	        $amp_url = ampforwp_url_purifier($amp_url);
 	    } else {
 	      $amp_url = amp_get_permalink( get_queried_object_id() );
 	    }
@@ -286,8 +285,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				          }
 				        }
 				
+				$amp_url = ampforwp_url_purifier($amp_url);
 		        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
-		        $amp_url = ampforwp_url_purifier($amp_url);
+
 				if( $supported_amp_post_types) {					
 					printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
 				}
@@ -4588,24 +4588,50 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 }
 //93. added AMP url purifire for amphtml
 function ampforwp_url_purifier($url){
-		//if already have amp / amp=1
-		if(strpos($url, 'amp=1')==true || strpos($url, '/amp')==true){
-			$url = urldecode($url);
-			return $url;
-		}
+		global $wp_query;
+
+		$get_permalink_structure 	= "";
+		$endpoint 					= "";
+		$queried_var				= "";
+		$quried_value				= "";	
+
+		$endpoint = AMPFORWP_AMP_QUERY_VAR;
 		$get_permalink_structure = get_option('permalink_structure');
-		$queryVar = AMPFORWP_AMP_QUERY_VAR;
-		if(empty( $get_permalink_structure ) || strpos($url, '?')==true) {
-	        //check current url already have ? or not
-	        if(strpos($url, '?')==true){
-	        	$url = $url.$queryVar;
-	        }else{
-	        	$queryVar = str_replace('&', '?', $queryVar);
-	        	 $url = $url.$queryVar;
-	        }
-	    }else{
-	    	 $url = user_trailingslashit(trailingslashit($url).$queryVar);
-	    }
+
+		if ( empty( $get_permalink_structure ) ) {
+
+			$endpoint = '?' . $endpoint;
+
+			if (is_home() || is_archive() ) {
+				$url  = trailingslashit($url) . $endpoint;
+			}
+			if ( is_archive() ) {
+
+				if ( is_archive() ) {
+					$queried_var 	= 'm';
+				}
+				if ( is_tag() ) {
+					$queried_var 	= 'tag';
+				}
+				if ( is_category() ) {
+					$queried_var 	= 'cat';
+				}
+				if ( is_author() ) {
+					$queried_var 	= 'author';
+				}
+				
+				$quried_value 	= get_query_var($queried_var);
+
+				$url = $url .'&'. $queried_var .'='. $quried_value;
+			}
+
+		} else {
+
+			if ( is_home() || is_archive() ) {
+				$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+			}
+		}
+
 	return $url;
 }
 
