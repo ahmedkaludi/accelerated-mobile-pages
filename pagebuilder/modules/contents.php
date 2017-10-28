@@ -2,7 +2,9 @@
  $output = '<div><h4>{{content_title}}</h4>		
  			<div>{{category_selection}}</div>		
  	</div>';		
- 		
+ 
+
+ $frontCss = '.ampforwp_wc_shortcode_excerpt p{font-size:10px;color:blue}';
  		
  $categories = get_categories( array(		
                    'orderby' => 'name',		
@@ -14,6 +16,8 @@
  	$categoriesArray[$category->term_id] = $category->name;		
  	$options.= '<option value="'.$category->term_id.'">'.$category->name.'</option>';		
  }		
+
+
  return array(		
  		'label' =>'Posts',		
  		'name' => 'contents',		
@@ -47,7 +51,8 @@
 						'options_details'=>array('yes'=>'Yes', 'no'=>'No')
  						)		
  					),		
- 		'front_template'=> $output		
+ 		'front_template'=> $output,
+    'front_css'=>$frontCss,	
  );		
  function contentHtml($the_query,$fieldValues){		
  	$contenthtml = '';		

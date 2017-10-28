@@ -114,8 +114,14 @@ function amppb_save_post( $post_id, $post ){
 
 
 add_action("pre_amp_render_post",'amp_pagebuilder_content');
+function amp_pagebuilder_content(){
+		add_filter( 'the_content', 'amppb_post_content', 1 ); // Run 
+}
+
+$ampPagebuilderModuleCss = array();
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
+	global $ampPagebuilderModuleCss;
 	?>.amp_pb{display: inline-block;width: 100%;}
     .row{display: inline-flex;width: 100%;}
 	.col-2{width:50%;float:left;}
@@ -124,11 +130,8 @@ function amp_pagebuilder_content_styles(){
     .amp_btn{text-align:center}
     .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 	<?php
+	echo implode(" ", $ampPagebuilderModuleCss);
 } 
-	function amp_pagebuilder_content(){
-			add_filter( 'the_content', 'amppb_post_content', 1 ); // Run 
-	}
-
 
 
 function amppb_post_content($content){
@@ -197,7 +200,7 @@ function amppb_post_content($content){
 }
 
 function rowData($container,$col){
-	global $moduleTemplate;
+	global $moduleTemplate, $ampPagebuilderModuleCss;
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
@@ -207,6 +210,10 @@ function rowData($container,$col){
 		if(count($container)>0){
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
+				if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
+					$ampPagebuilderModuleCss[] = $moduleTemplate[$contentArray['type']]['front_css'];
+					
+				}
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				switch($moduleName){
 					case 'gallery_image':
@@ -257,7 +264,9 @@ function rowData($container,$col){
 	}
 	return $html;
 }
-
+function ampforwp_pagebuilder_module_style(){
+	echo $redux_builder_amp['css_editor'];
+}
 function sortByIndex($contentArray){
 	$completeSortedArray = array();
 	if(count($contentArray)>0){
