@@ -1,4 +1,11 @@
-<?php add_action('amp_post_template_css', 'ampforwp_additional_style_input');
+<?php
+add_filter( 'amp_post_template_data', 'ampforwp_add_design1_remove_googlefonts' );
+function ampforwp_add_design1_remove_googlefonts( $data ) {
+	unset($data['font_urls']['merriweather']);
+	return $data;
+}
+
+add_action('amp_post_template_css', 'ampforwp_additional_style_input');
 function ampforwp_additional_style_input( $amp_template ) {
 	global $redux_builder_amp;
 	global $post;

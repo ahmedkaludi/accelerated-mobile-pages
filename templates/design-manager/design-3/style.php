@@ -29,6 +29,31 @@ a{ color: #312C7E; text-decoration: none }
 .aligncenter{ text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 amp-anim { max-width: 100%; }
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/robotoslab/RobotoSlab-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/robotoslab/RobotoSlab-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'PT Serif';
+    font-style: normal;
+    font-weight: 400;
+    src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/ptserif/PT_Serif-Web-Regular.ttf');
+}
+@font-face {
+    font-family: 'PT Serif';
+    font-style: normal;
+    font-weight: 700;
+    src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/ptserif/PT_Serif-Web-Bold.ttf');
+}
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
