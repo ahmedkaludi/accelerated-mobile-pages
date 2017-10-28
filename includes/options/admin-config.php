@@ -1512,13 +1512,18 @@ $forms_support[]=  array(
                  )
  ) );
 
- function fb_instant_article(){
+function fb_instant_article() {
     $feedname = '';
     $fb_instant_article_feed = ''; 
-    $feedname = 'instant_articles';
+    $input = ''; 
+
+    $feedname   = 'instant_articles';
     $fb_instant_article_feed = trailingslashit( site_url() ).$feedname ;
-    return esc_url( $fb_instant_article_feed );
+    $input      =  '<a href=" '. $fb_instant_article_feed  . '" target="_blank">' .  esc_url( $fb_instant_article_feed ). '</a>' ;
+
+    return strip_tags($input, '<a>');
 }
+
 // Facebook Instant Articles
 Redux::setSection( $opt_name, array(
    'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
