@@ -40,6 +40,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
         wp_enqueue_media();
+        wp_enqueue_editor();
+		wp_enqueue_script( 'text-widgets' );
         wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 					'jquery',
 					'jquery-ui-resizable',
