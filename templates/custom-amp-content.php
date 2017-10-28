@@ -143,9 +143,12 @@ function amp_content_editor_meta_save ( $post_id ) {
       update_post_meta($post_id, 'ampforwp_custom_content_editor', $_POST[ 'ampforwp_custom_content_editor' ] );
     }
     // Save data of Custom AMP Editor CheckBox
-    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) {       
-
-      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $_POST[ 'ampforwp_custom_content_editor_checkbox' ] );
+    if ( isset( $_POST['ampforwp_custom_content_editor'] ) ) { 
+      $ampforwp_custom_editor_checkbox = null;      
+      if(isset($_POST[ 'ampforwp_custom_content_editor_checkbox' ])){
+        $ampforwp_custom_editor_checkbox = $_POST[ 'ampforwp_custom_content_editor_checkbox' ];
+      }
+      update_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', $ampforwp_custom_editor_checkbox );
       
     }
 
