@@ -46,6 +46,7 @@ function ampforwp_additional_style_input( $amp_template ) {
   font-weight: 700;
     src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-BoldItalic.ttf');
 }
+.cb{clear:both}
 .alignright{ float: right; }
 .alignleft{ float: left; }
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
@@ -89,7 +90,7 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .category-widget-gutter h4{ margin-bottom: 0px;}
 .category-widget-gutter ul{ margin-top: 10px; list-style-type:none; padding:0 }
 .amp-category-block ul{ margin: 1.5em 26px 3.5em; }
-.amp-category-post{ width: 32%; display:inline-table; }
+.amp-category-post{ width: 32%; display: inline-block; word-wrap: break-word;float: left;}
 .amp-category-post a{ color:#555; text-decoration:none}
 .amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){ margin: 0 1%; }

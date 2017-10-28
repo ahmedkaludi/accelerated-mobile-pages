@@ -79,7 +79,9 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               } ?>
 
             </li> <?php
-        }
+        } ?>
+        <div class="cb"></div>
+        <?php
 
         //show more link
         if( $ampforwp_category_link === 'yes' && ! empty( $ampforwp_category_id ) ) {
@@ -88,10 +90,13 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
         } else {
           $category_link =   '<a class="amp-category-block-btn" href="'.user_trailingslashit( home_url() ).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         } 
+        if( $ampforwp_category_link === 'no' ) {
+            $category_link = '';
+        }
 
         echo  $category_link ;
 
-        echo '</ul></div>';
+        echo '</ul> <div class="cb"></div> </div>';
 
     } else {
         // no posts found
