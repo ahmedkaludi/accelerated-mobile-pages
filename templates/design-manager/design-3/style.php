@@ -434,7 +434,7 @@ if ( class_exists('TablePress') ) { ?>
 @media (min-width: 768px) and (max-width: 1600px){ .tablepress{ overflow-x: none; } }
 @media (min-width: 320px) and (max-width: 767px){ .tablepress{ display: inline-block; overflow-x: scroll; } }
 <?php }  
-if( $redux_builder_amp['ampforwp-bread-crumb'] == 1 ) { ?>
+if( !is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 ) { ?>
 .breadcrumb{line-height: 1;margin-bottom:6px;}
 .breadcrumb ul, .category-single ul{ padding:0; margin:0;}
 .breadcrumb ul li{display:inline;}
