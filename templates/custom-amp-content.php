@@ -64,10 +64,11 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
 
 function ampforwp_custom_content_meta_register() {
-
-  add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
-
   global $redux_builder_amp;
+  if($redux_builder_amp['amp-on-off-for-all-posts']) {
+    add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
+  }
+
   if($redux_builder_amp['amp-on-off-for-all-pages']){
     add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
   }
