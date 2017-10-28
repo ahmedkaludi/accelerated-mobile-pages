@@ -79,7 +79,9 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               } ?>
 
             </li> <?php
-        }
+        } ?>
+        <div class="cb"></div>
+        <?php
 
         //show more link
         if( $ampforwp_category_link === 'yes' && ! empty( $ampforwp_category_id ) ) {
@@ -94,7 +96,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
 
         echo  $category_link ;
 
-        echo '</ul></div>';
+        echo '</ul> <div class="cb"></div> </div>';
 
     } else {
         // no posts found
