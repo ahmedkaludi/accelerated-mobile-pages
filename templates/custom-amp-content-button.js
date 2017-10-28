@@ -6,7 +6,11 @@
             classes: 'ampforwp-copy-content-button ', 
             tooltip: 'Visual Editor to AMP Editor', 
             onclick: function() {
-                editor.insertContent(tinymce.editors.content.getContent());
+                if(typeof tinymce.editors.content.getContent()!= undefined){
+                    editor.insertContent(tinymce.editors.content.getContent());
+                }else{
+                    editor.insertContent(document.getElementById('content').value());
+                }
             }
         });
     });
