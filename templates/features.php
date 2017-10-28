@@ -2220,11 +2220,15 @@ function ampforwp_add_extra_functions() {
 add_filter( 'get_the_archive_title', 'ampforwp_editable_archvies_title' );
 function ampforwp_editable_archvies_title($title) {
 	global $redux_builder_amp;
-    if ( is_category() ) {
-            $title = single_cat_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-cat-text'], 'Category (archive title)').' ', false );
-        } elseif ( is_tag() ) {
-            $title = single_tag_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-tag-text'], 'Tag (archive title)').' ', false );
-        }
+	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+
+	if ( $ampforwp_is_amp_endpoint){
+	    if ( is_category() ) {
+	            $title = single_cat_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-cat-text'], 'Category (archive title)').' ', false );
+	        } elseif ( is_tag() ) {
+	            $title = single_tag_title( ampforwp_translation($redux_builder_amp['amp-translator-archive-tag-text'], 'Tag (archive title)').' ', false );
+	        }
+    }
     return $title;
 }
 
