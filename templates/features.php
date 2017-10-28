@@ -4562,9 +4562,11 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		if ( is_admin() ) {
 			$current_screen = get_current_screen();
 			// Check for Screen base, user ability to read and visibility
-			if ('post' == $current_screen->base && current_user_can('read_post', $post->ID )
-			&& ( $wp_post_types[$post->post_type]->public )
-			&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
+			if ('post' == $current_screen->base 
+				&& 'add' != $current_screen->action 
+				&& current_user_can('read_post', $post->ID )
+				&& ( $wp_post_types[$post->post_type]->public )
+				&& ( $wp_post_types[$post->post_type]->show_in_admin_bar ) ) {
 				// Check if current post type is AMPed or not
 				if( $supported_amp_post_types && in_array($post->post_type, $supported_amp_post_types) ){
 					// If AMP on Posts or Pages is off then do nothing
