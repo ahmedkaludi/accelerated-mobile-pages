@@ -154,6 +154,10 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                     echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . $this->field['id'] . '">';
                 } else {
                     echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '">';
+                    if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
+                        $demo = $this->field['options'][ $arrNum - 1 ]['demo_link'];
+                        echo '<a href="'. $demo .'" id="theme-selected-demo-link" target="_blank"> Demo </a>';
+                    }
                 }
 
                 // Close the <div> tag.
