@@ -213,7 +213,7 @@ function rowData($container,$col){
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
-					$ampPagebuilderModuleCss[] = $moduleTemplate[$contentArray['type']]['front_css'];
+					$ampPagebuilderModuleCss[$contentArray['type']] = $moduleTemplate[$contentArray['type']]['front_css'];
 					
 				}
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
@@ -244,6 +244,7 @@ function rowData($container,$col){
 						
 					break;
 					default:
+                        if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 							if(isset($contentArray[$field['name']]) && !empty($contentArray)){
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
@@ -251,6 +252,7 @@ function rowData($container,$col){
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 							}
 						}
+                    }
 					break;
 				}
 				$html .= $moduleFrontHtml;
