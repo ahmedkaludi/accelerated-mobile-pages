@@ -93,7 +93,8 @@
          <?php
          $menu_html_content = wp_nav_menu( array(
                                   'theme_location' => 'amp-menu' ,
-                                  'itemprop'=>'url',
+                                  'link_before'     => '<span itemprop="name">',
+                                  'link_after'     => '</span>',
                                   'echo' => false,
                                   'menu_class' => 'menu amp-menu'
                                 ) );

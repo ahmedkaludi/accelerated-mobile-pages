@@ -3,9 +3,9 @@
   <footer class="container">
       <div id="footer">
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
-          <div class="footer_menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement"> 
+          <div class="footer_menu"> 
            <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu">
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
             <?php
               $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
@@ -14,8 +14,8 @@
                   'echo' => false
               ) );
               echo strip_tags( $menu , '<ul><li><a>'); ?>
-          </nav>
-        </div>
+          </div>
+        </nav>
         <?php } ?>
 
         <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>

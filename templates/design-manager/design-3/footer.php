@@ -5,16 +5,18 @@
         
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
          <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-          <div class="footer_menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
-            <nav id ="primary-amp-menu">
+          <div class="footer_menu">
+           <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
               <?php
               $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
+                  'link_before'     => '<span itemprop="name">',
+                  'link_after'     => '</span>',
                   'echo' => false
               ) );
-              echo strip_tags( $menu , '<ul><li itemprop="name"><a itemprop="url">'); ?>
-              </nav>
+              echo strip_tags( $menu , '<ul><li><a>'); ?>
           </div>
+        </nav>
         <?php } ?>
 
         <?php if( ampforwp_checking_any_social_profiles() ) { ?>

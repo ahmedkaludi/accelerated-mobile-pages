@@ -13,10 +13,12 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       <?php // Grand child support AND amp-accordion non critical error in Design 3 due to nav #1152
          // schema.org/SiteNavigationElement missing from menus #1229 ?>
       <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
       <?php
         $menu_html_content = wp_nav_menu( array(
             'theme_location' => 'amp-menu',
-            'itemprop'=>'url',
+            'link_before'     => '<span itemprop="name">',
+            'link_after'     => '</span>',
             'menu'=>'ul',
             'menu_class'=>'amp-menu',
             'echo'=>false
