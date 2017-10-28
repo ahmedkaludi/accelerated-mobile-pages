@@ -2660,7 +2660,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'ampforwp-single-select-type-of-related',
                     'type'     => 'select',
-                    'title'    => __('Show Related Post from', 'accelerated-mobile-pages'),
+                    'title'    => __('Related Post by', 'accelerated-mobile-pages'),
                     'data'     => 'page',
                 'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
                     'options'  => array(
@@ -2668,6 +2668,13 @@ Redux::setSection( $opt_name, array(
                         '2' => 'Categories',
                     ),
                'default'  => '2',
+            ),
+            array(
+                    'id'       => 'ampforwp-single-order-of-related-posts',
+                    'type'     => 'switch',
+                    'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
+                'subtitle' => __('Related posts by random order', 'accelerated-mobile-pages'),
+                'default'  => 0,
             ),
             array(
                     'id'       => 'ampforwp-number-of-related-posts',
@@ -2678,16 +2685,9 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
             ),
             array(
-                    'id'       => 'ampforwp-single-order-of-related-posts',
-                    'type'     => 'switch',
-                    'title'    => __('Show Related Posts Randomly', 'accelerated-mobile-pages'),
-                'subtitle' => __('Related posts by random order', 'accelerated-mobile-pages'),
-                'default'  => 0,
-            ),
-            array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
-                    'title'    => __('Inline Related Post', 'accelerated-mobile-pages'),
+                    'title'    => __('In-Content Related Post', 'accelerated-mobile-pages'),
                 'subtitle' => __('Insert Related Posts between the content', 'accelerated-mobile-pages'),
                 'default'  => 0,
             ),
