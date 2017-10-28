@@ -974,6 +974,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 				  // for readability attibute in div tag
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
+				  // removing color from span tag
+				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
+				  // removing sl-processed form anchor tag
+				  $content = preg_replace('/<a (href=".*?")(.*?)(target=".*?")(.*?)(sl-processed=".*?")>/', '<a $1$3>', $content);
+				   // removing text-align:center from p tag
+				  $content = preg_replace('/<p(.*?)(text-align:=".*?")(.*?)(center=".*?")(.*?)>/', '<p$1$5>', $content);
+
 				return $content;
 		}
 
