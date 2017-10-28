@@ -2571,9 +2571,16 @@ Redux::setSection( $opt_name, array(
               'id'       => 'ampforwp-cats-single',
               'type'     => 'switch',
               'default'  =>  '1',
-              'title'    => __('Categories and Tags Links', 'accelerated-mobile-pages'),
-              'subtitle' => __('Enable or Disable Categories/Tags links in Single', 'accelerated-mobile-pages'),                  
-              'required'  => array('ampforwp-archive-support', '=' , '1'),
+              'title'    => __('Categories', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),                
+           ),
+         //Tags  ON/OFF
+         array(
+              'id'       => 'ampforwp-tags-single',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => __('Tags', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Tags in Single', 'accelerated-mobile-pages'),                 
            ),
           //Categories and Tags Links
           array(

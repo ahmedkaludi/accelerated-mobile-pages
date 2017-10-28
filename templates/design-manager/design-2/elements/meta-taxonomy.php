@@ -1,6 +1,7 @@
+<?php global $redux_builder_amp;
+	if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single']) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
-<?php	global $redux_builder_amp;
-			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+<?php	$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 		<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 		<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
@@ -26,7 +27,7 @@
 
 		</div>
 <?php endif;?>
-</div>
+</div> <?php } ?>
 
 <?php
 

@@ -21,6 +21,7 @@
 <?php endif; ?>
 
 <?php
+if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single']) {
   $ampforwp_categories = get_the_terms( $this->ID, 'category' );
   if ( $ampforwp_categories ) : ?>
   	<div class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category">
@@ -42,7 +43,7 @@
 			
 			 ?>
   	</div>
-  <?php endif; ?>
+  <?php endif; }  ?>
 
 			</ul>
 	</div>
