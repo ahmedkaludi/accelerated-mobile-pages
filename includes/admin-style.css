@@ -114,3 +114,19 @@ body #toplevel_page_amp_options .wp-menu-image{
     4px 7px;
 
 }  
+.amp-theme-selector-img a#theme-selected-demo-link{
+    background: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    padding: 3px 8px 4px 7px;
+    bottom: 16px;
+    font-size: 12px;
+    border-radius: 100px;
+    color: #fff;
+    position: relative;
+    right: 67px;
+}
+.amp-theme-selector-img img{
+    position: relative;
+    visibility: visible;
+    cursor:pointer;
+}

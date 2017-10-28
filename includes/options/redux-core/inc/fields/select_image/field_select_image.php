@@ -138,7 +138,7 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 echo '<br /><br />';
 
                 // Show the preview image.
-                echo '<div>';
+                echo '<div class="amp-theme-selector-img">';
 
                 // just in case.  You never know.
                 if ( ! isset( $arrNum ) ) {
@@ -153,10 +153,15 @@ if ( ! class_exists( 'ReduxFramework_select_image' ) ) {
                 if ( '' == $this->value ) {
                     echo '<img src="#" class="redux-preview-image" style="visibility:hidden;" id="image_' . $this->field['id'] . '">';
                 } else {
-                    echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '">';
+                    $demo="#";
                     if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
                         $demo = $this->field['options'][ $arrNum - 1 ]['demo_link'];
-                        echo '<a href="'. $demo .'" id="theme-selected-demo-link" target="_blank"> Demo </a>';
+                    }
+                    echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
+                    if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
+                        echo '<a href="'. $demo .'" id="theme-selected-demo-link" target="_blank">  
+                                Demo 
+                            </a>';
                     }
                 }
 
