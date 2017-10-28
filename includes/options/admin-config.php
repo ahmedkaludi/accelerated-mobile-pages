@@ -2058,7 +2058,7 @@ Redux::setSection( $opt_name, array(
     //get All design
     function amp_extra_plugin_theme_header($headers){
         $headers['AMP Theme Name'] = "AMP";
-        $headers['AMP Theme Demo'] = "DEMO LINK";
+        $headers['AMP Theme Demo'] = "AMP Demo";
         return $headers;
     }
     add_filter("extra_plugin_headers","amp_extra_plugin_theme_header");
@@ -2097,7 +2097,7 @@ Redux::setSection( $opt_name, array(
 					$imageUrl = plugins_url($value['TextDomain'].'/screenshot.png');
 				}
                 $themeDesign[] = array(
-                                    'demo_link' => $plugin['DEMO LINK'],
+                                    'demo_link' => $plugin['AMP Demo'],
 									'upgreade'=>true,
 									'title'=>$plugin['AMP'],
 									'value'=>$value['TextDomain'],
@@ -2565,6 +2565,15 @@ Redux::setSection( $opt_name, array(
               'default'  =>  '1',
               'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
               'subtitle' => __('Enable or Disable Breadcrumb'),                  
+           ),
+          //Categories  ON/OFF
+         array(
+              'id'       => 'ampforwp-cats-single',
+              'type'     => 'switch',
+              'default'  =>  '1',
+              'title'    => __('Categories and Tags Links', 'accelerated-mobile-pages'),
+              'subtitle' => __('Enable or Disable Categories/Tags links in Single', 'accelerated-mobile-pages'),                  
+              'required'  => array('ampforwp-archive-support', '=' , '1'),
            ),
           //Categories and Tags Links
           array(
