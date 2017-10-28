@@ -3690,30 +3690,28 @@ function ampforwp_generate_meta_desc(){
 	$desc = '';
 	$post_id = '';
 	$genesis_description = '';
-	if($redux_builder_amp['ampforwp-seo-yoast-description']){
-		if ( class_exists('WPSEO_Frontend') ) {
-			// general Description of everywhere
-			$front = WPSEO_Frontend::get_instance();
-			$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+	if( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend')  ){
+		// general Description of everywhere
+		$front = WPSEO_Frontend::get_instance();
+		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
 
-			// Static front page
-			// Code for Custom Frontpage Yoast SEO Description
-			//WPML Static Front Page Support for title and description with Yoast #1143 
-				 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
+		// Static front page
+		// Code for Custom Frontpage Yoast SEO Description
+		//WPML Static Front Page Support for title and description with Yoast #1143 
+			 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
 
-				 	$post_id = get_option( 'page_on_front' );
-				 }
-				 else {
-				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			 	$post_id = get_option( 'page_on_front' );
+			 }
+			 else {
+			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			}
+
+			if ( class_exists('WPSEO_Meta') ) {
+				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
 				}
-
-				if ( class_exists('WPSEO_Meta') ) {
-					if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-						$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
-					}
-				}
-		}
+			}
 		// for search
 		if( is_search() ) {
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
