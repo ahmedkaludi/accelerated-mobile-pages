@@ -88,6 +88,9 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
         } else {
           $category_link =   '<a class="amp-category-block-btn" href="'.user_trailingslashit( home_url() ).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         } 
+        if( $ampforwp_category_link === 'no' ) {
+            $category_link = '';
+        }
 
         echo  $category_link ;
 
