@@ -20,3 +20,7 @@ Reference: #1130 #966
 7. amp-video script added in amp/includes/sanitizers/class-amp-video-sanitizer.php #991
 
 8. allow-popups added on line number 10 in amp/includes/sanitizers/class-amp-iframe-sanitizer.php #1099
+
+9 Changed placeholder image path from assets folder to image folder
+amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
+'placeholder_image_url' => AMPFORWP_IMAGE_DIR. '/placeholder-icon.png' ,
