@@ -10,7 +10,7 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> amp_home_body design_1_wrapper">
+<body <?php ampforwp_body_class('amp_home_body design_1_wrapper');?>>
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 <?php do_action( 'below_the_header_design_1', $this ); ?>
@@ -42,9 +42,12 @@
                 'post_status'=> 'publish'
 			);
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
-			$q = new WP_Query( $filtered_args ); ?>
-
-			<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
+			$q = new WP_Query( $filtered_args ); 
+			$blog_title = ampforwp_get_blog_details('title');
+			if($blog_title){  ?>
+				<h1 class="page-title"><?php echo $blog_title ?> </h1>
+			<?php }	
+			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 			        <h1 class="amp-wp-title">
@@ -54,14 +57,17 @@
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
-			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>
+			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) );
+			              global $redux_builder_amp;
+			              		if($redux_builder_amp['amp-design-selector'] == '1' && $redux_builder_amp['amp-design-1-featured-time'] == '1'){
+			               ?>
 			              <time> <?php
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    			echo  $post_date ; ?>
-                   		 </time>
-			  </div>
-
+                    			echo  $post_date ;?>
+                    		</time><?php 
+			 		 		}?>
+					</div>
 
 						<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
 							if ( has_post_thumbnail()) {
@@ -96,8 +102,9 @@
 								$content = get_the_content();
 							} ?>
 						<p><?php global $redux_builder_amp;
+								if($redux_builder_amp['excerpt-option-design-1']== true) {
 								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
-								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); ?></p>
+								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); }?></p>
 					</div>
 		        </div>
 		    <?php endwhile;  ?>

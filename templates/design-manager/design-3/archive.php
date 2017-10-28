@@ -32,16 +32,8 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body archives_body design_3_wrapper <?php
-             if ( is_post_type_archive() ) {
-                 $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
-             ?> <?php
-             // Show ID on Pages, Post, Post Type's Post
-             if ( is_singular() ) { ?>singular-<?php $page_id = get_queried_object_id(); echo $page_id;
-    ?><?php } ?> <?php
-        // Show ID on category, tag, Author Page, Etc.
-        if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
-    ?><?php } ?>">
+
+<body <?php ampforwp_body_class('amp_home_body design_3_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
@@ -74,7 +66,7 @@ if ( get_query_var( 'paged' ) ) {
 		) ); ?>
 
  	<?php if ( is_archive() ) {
- 			the_archive_title( '<h3 class="amp-wp-content page-title">', '</h3>' );
+ 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
  			
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
@@ -136,7 +128,14 @@ if ( get_query_var( 'paged' ) ) {
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( strip_shortcodes(  $content ) , '15' ); ?></p>
+		        <p class="large-screen-excerpt-design-3">
+				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); ?> </p>
+		        <p class="small-screen-excerpt-design-3" > <?php    
+					if($redux_builder_amp['excerpt-option-design-3']== true) {
+						$excertp_length='';
+						$excertp_length = $redux_builder_amp['amp-design-3-excerpt']; 
+						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+				</p>
                 <div class="featured_time">
                   <?php
                        $post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );

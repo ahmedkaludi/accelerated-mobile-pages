@@ -33,16 +33,8 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="archives_body design_2_wrapper <?php
-             if ( is_post_type_archive() ) {
-                 $post_type = get_queried_object(); echo'type-'; echo $post_type->rewrite['slug']; }
-             ?><?php
-             // Show ID on Pages, Post, Post Type's Post
-             if ( is_singular() ) { ?>singular-<?php $page_id = get_queried_object_id(); echo $page_id;
-    ?><?php } ?> <?php
-        // Show ID on category, tag, Author Page, Etc.
-        if ( is_archive() ) { ?>archive-<?php $page_id = get_queried_object_id(); echo $page_id;
-    ?><?php } ?>">
+
+<body <?php ampforwp_body_class('design_2_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
@@ -54,7 +46,7 @@
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
  			<?php
- 			the_archive_title( '<h3 class="page-title">', '</h3>' );
+ 			the_archive_title( '<h1 class="page-title">', '</h1>' );
 
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) { 
@@ -125,8 +117,14 @@
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-
+		       <p class="large-screen-excerpt">
+				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); ?> </p>
+		        <p class="small-screen-excerpt" > <?php    
+					if($redux_builder_amp['excerpt-option-design-2']== true) {
+						$excertp_length='';
+						$excertp_length = $redux_builder_amp['amp-design-2-excerpt']; 
+						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+				</p>
 		    </div>
             <div class="cb"></div>
 		</div>

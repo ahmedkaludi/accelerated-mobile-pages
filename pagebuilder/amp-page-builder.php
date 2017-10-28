@@ -46,6 +46,7 @@ function call_page_builder(){
 	global $moduleTemplate;
 	add_thickbox();
 	$previousData = get_post_meta($post->ID,'amp-page-builder');
+	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	//$previousData = wp_slash($previousData);
 	$previousData = (str_replace("'", "", $previousData));
@@ -67,6 +68,9 @@ function call_page_builder(){
 		}
 	}
 	?>
+	<div class="enable_ampforwp_page_builder">
+		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
+	</div>
 	<div id="amp-page-builder">
  		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
         <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" value='<?php echo $previousData; ?>'>
@@ -148,10 +152,26 @@ function call_page_builder(){
 add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image'   );
 function ampforwp_get_image() {
     if(isset($_GET['id']) ){
-        $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-        $data = array(
-            'image'    => $image,
-        );
+		if(strpos($_GET['id'],",") !== false){
+			$get_ids = explode(",", $_GET['id']);
+			
+			if(count($get_ids)>0){
+				foreach($get_ids as $id){
+					$image = wp_get_attachment_image( $id, 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+					$image_src = wp_get_attachment_image_src($id, 'medium', false);
+					$data[] = array(
+						'image'    => $image,
+						'detail'	   => $image_src
+					);
+
+				}
+			}
+		}else{
+			$image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+			$data = array(
+				'image'    => $image,
+			);
+		}
         wp_send_json_success( $data );
     } else {
         wp_send_json_error();

@@ -1,2 +1,18 @@
 1.Few changes in class-amp-post-template.php to take care of the archive debug errors
 Reference: #1130 #966
+
+2.Replaced the fastimage with fasterimage for PHP 5.4+ #1191
+		changes made in amp/includes/lib/fastimage
+						amp/includes/lib/fasterimage
+						amp/includes/sanitizers/class-amp-img-sanitizer.php
+						amp/includes/utils/class-amp-image-dimension-extract.php
+						amp/includes/utils/class-amp-wp-utils.php
+
+3. Redux: A small change in redux-core/framework.php at line number 2962. #1219						
+
+4. Make sure we are passing the integer in the date function Ticekt no #1241
+	changes made in includes/class-amp-post-template.php on line 174 and 175
+
+5. Added a filter called ampforwp_allow_featured_image, so users can show or hide Featured image according to the usage. #1071
+
+6. Two Filters added at line number 92 and 124 in amp/includes/embeds/class-amp-gallery-embed.php to add extra parameters for Gallery. 

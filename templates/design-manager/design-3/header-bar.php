@@ -116,16 +116,24 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                 }
           }?>
 
-        <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {  ?>
+        <?php if ( isset($redux_builder_amp['opt-media']['url'] ) && true == ($redux_builder_amp['opt-media']['url']) ) {
+          $logo_id =  attachment_url_to_postid($redux_builder_amp['opt-media'] ['url']);
+          $logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
+          if($logo_alt){
+            $alt = $logo_alt;
+          }
+          else {
+            $alt = get_bloginfo('name');
+          } ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
 
             <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>
 
-                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="<?php bloginfo('name'); ?>" class="amp-logo"></amp-img>
+                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt="<?php echo $alt; ?>" class="amp-logo"></amp-img>
 
             <?php } else { ?>
 
-                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="<?php bloginfo('name'); ?>" class="amp-logo"></amp-img>
+                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="<?php echo $alt ?>" class="amp-logo"></amp-img>
 
             <?php } ?>
 

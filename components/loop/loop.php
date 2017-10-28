@@ -47,8 +47,6 @@ function call_loops_standard($data=array()){
 			'has_password' => false ,
 			'post_status'=> 'publish'
 		  );
-		$filtered_args = apply_filters('ampforwp_query_args', $args);
-		$amp_q = new WP_Query( $filtered_args );
 	}
 	if ( is_home() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
@@ -61,8 +59,6 @@ function call_loops_standard($data=array()){
 			'has_password'		  => false ,
 			'post_status'		  => 'publish'
 		);
-		$filtered_args = apply_filters('ampforwp_query_args', $args);
-		$amp_q = new WP_Query( $filtered_args );
 	}
 
 	if ( is_search() ) {
@@ -75,9 +71,16 @@ function call_loops_standard($data=array()){
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'
 		);
-		$amp_q = new WP_Query( $args );
 	}
-
+	if(isset($data['post_to_show']) && $data['post_to_show']>0){
+		$args['posts_per_page'] = $data['post_to_show'];
+	}
+	if(isset($data['offset']) && $data['offset']>0){
+		$args['offset'] = $data['offset'];
+	}
+	
+	$filtered_args = apply_filters('ampforwp_query_args', $args);
+	$amp_q = new WP_Query( $filtered_args );
 }
 //call_loops_standered();
 /****
@@ -93,7 +96,7 @@ function call_loops_standard($data=array()){
 	function amp_loop($selection,$data=array()){
 		global $amp_q;
 		if(empty($amp_q) || is_null($amp_q)){
-			call_loops_standard();
+			call_loops_standard($data);
             echo "<div class='loop-wrapper'>";
 		}
 		if ( !isset($ampLoopData['no_data']) ) :
@@ -117,8 +120,15 @@ function call_loops_standard($data=array()){
 		return $post_status;
 	}
 	function amp_end_loop(){
+		global $amp_q;
 		wp_reset_postdata();
         echo "</div>";
+	}
+
+	function amp_reset_loop(){
+		global $amp_q;
+		$amp_q = '';
+		return "";
 	}
 
 	function amp_pagination(){
@@ -198,30 +208,42 @@ function call_loops_standard($data=array()){
 		}
 		echo user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
 	}
-	function amp_loop_image($data=array()){
+	function amp_loop_image( $data=array() ){
 		global $ampLoopData,$counterOffset;
-		if (has_post_thumbnail()  ) { 
-			$tag = 'div';
-			$tag_class = '';
-			$imageClass = 'class =';
+		if (has_post_thumbnail()  ) {
+
+			$tag 				= 'div';
+			$tag_class 			= '';
+			$layout_responsive 	= '';
+			$imageClass 		= '';
+			$imageSize 			= 'thumbnail';
+
 			if(isset($data['tag']) && $data['tag']!=""){
 				$tag = $data['tag'];
 			}
+
+			if(isset($data['responsive']) && $data['responsive']!=""){
+				$layout_responsive = 'layout=responsive';
+ 			}
+
 			if(isset($data['tag_class']) && $data['tag_class']!=""){
 				$tag_class = $data['tag_class'];
 			}
 			if(isset($data['image_class']) && $data['image_class']!=""){
-				$imageClass .= '"'.$data['image_class'].'"';
+				$imageClass = $data['image_class'];
+			}
+			if(isset($data['image_size']) && $data['image_size']!=""){
+				$imageSize = $data['image_size'];
 			}
 
 			$thumb_id = get_post_thumbnail_id();
-			$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+			$thumb_url_array = wp_get_attachment_image_src($thumb_id, $imageSize, true);
 			$thumb_url = $thumb_url_array[0];
 			
 
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img '.$imageClass.' layout="responsive" src="'. $thumb_url .'" width=150 height=150></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 	     } 
@@ -236,6 +258,24 @@ function call_loops_standard($data=array()){
 			}
 		}
 		echo '</ul>';
+	}
+	// author
+	function amp_loop_author($args = array()){
+		 global $redux_builder_amp;
+		// 
+		 $author_prefix = $author_wrapper_class = '';
+		 $author_link = '#';
+		 if(isset( $args['author_prefix'])){
+		 	  $author_prefix = $args['author_prefix'];
+		 }
+		 $suffix = ampforwp_translation($redux_builder_amp['amp-translator-by-text'] , $author_prefix );
+		 if(isset( $args['author_link'])){
+		 	  $author_link = $args['author_link'];
+		 }
+		 if(isset( $args['author_wrapper_class'])){
+		 	  $author_wrapper_class = $args['author_wrapper_class'];
+		 }
+		echo '<span class="'. $author_wrapper_class .'">'.$suffix . '<a href="'. $author_link.'"> ' .get_the_author().'</a></span>';
 	}
 
 

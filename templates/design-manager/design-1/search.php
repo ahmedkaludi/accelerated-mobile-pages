@@ -21,7 +21,8 @@
 	</style>
 </head>
 
-<body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?> design_1_wrapper">
+<body <?php ampforwp_body_class('amp_home_body design_1_wrapper');?>>
+
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
@@ -48,7 +49,7 @@
 			'post_status'		  => 'publish'
 		) ); ?>
 
- 		<h3 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h3>
+ 		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h1>
 
  		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
@@ -92,8 +93,9 @@
 							$content = get_the_content();
 						} ?>
 					<p><?php global $redux_builder_amp;
+								if($redux_builder_amp['excerpt-option-design-1']== true) {
 								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
-								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); ?></p>
+								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); }?></p>
 				</div>
 	        </div>
 	    <?php endwhile;  ?>

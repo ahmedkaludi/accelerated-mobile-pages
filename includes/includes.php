@@ -25,9 +25,9 @@
 	if (! function_exists( 'ampforwp_footermenu') ) {
 		function ampforwp_footermenu() {
 			global $redux_builder_amp;	 
-			if ( (isset($redux_builder_amp['amp-design-selector'])) && $redux_builder_amp['amp-design-selector'] == 1 ||
+			if ( isset($redux_builder_amp['amp-design-selector']) && ($redux_builder_amp['amp-design-selector'] == 1 ||
 				 $redux_builder_amp['amp-design-selector'] == 2 || 
-				 $redux_builder_amp['amp-design-selector'] == 3 ) {			
+				 $redux_builder_amp['amp-design-selector'] == 3 )) {			
 				register_nav_menus(
 					array(
 					  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
@@ -44,7 +44,13 @@
 // 3. Some Extra Styling for Admin area
 	add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
 	function ampforwp_add_admin_styling(){
+		// Style file to add or modify css inside admin area
 		wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, '1.0.0' );
         wp_enqueue_style( 'ampforwp_admin_css' );
+
+        // Admin area scripts file
+		wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', false, '1.0.0' );
+        wp_enqueue_script( 'ampforwp_admin_js' );
+
 	}
 ?>

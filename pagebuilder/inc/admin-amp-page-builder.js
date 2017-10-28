@@ -154,6 +154,9 @@ jQuery( document ).ready( function( $ ){
 					var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
 					var id = fieldReplace.name;
 					popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default));
+					if(popupHtml.indexOf('{options}')!==-1){
+						popupHtml += popupHtml.replace(/{options}/g, decodeURI(fieldReplace.options));
+					}
 					//To load action of fields
 					switch(fieldReplace.type){
 						case 'upload':
@@ -224,6 +227,8 @@ jQuery( document ).ready( function( $ ){
 			var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 			if(modData.type=='text-editor'){
 				modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+			}if(modData.type=='select'){
+				modData.default = encodeURI($('#'+fieldIdentifier).val());
 			}else{
 				modData.default = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
 				
@@ -248,7 +253,12 @@ jQuery( document ).ready( function( $ ){
 
 							$.each(moduledetails.fields, function(fieldtype,modData){
 								var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
-								cells[modData.name] = $('#'+fieldIdentifier).val();
+								if(modData.type=='text-editor'){
+									cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+								}else{
+									cells[modData.name] = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
+								}
+								//cells[modData.name] = $('#'+fieldIdentifier).val();
 							});
 
 						}
@@ -277,12 +287,29 @@ jQuery( document ).ready( function( $ ){
 		popupContents = JSON.parse(popupContents);
 		var popupHtml = '';
 		var upload = false; var editor = [];
-		
+		var updateSelectValues = [];
 		$.each(popupContents.fields, function(fieldsName,fieldReplace){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+			fieldReplace.default_images = '';
+			switch(fieldReplace.type){
+				case 'select':
+					updateSelectValues.push({id: id, value: decodeURI(fieldReplace.default)});
+				break;
+				case 'multi_upload':
+					var imageHtml = '';
+					var imageSrc = fieldReplace.default.split(",");
+					$.each(imageSrc, function(id, src){
+						if(src!=''){
+							imageHtml += '<img src="'+src+'" width="40" height="40">';
+						}
+					})
+					fieldReplace.default_images = imageHtml;
+				break;
+			}
 			
-			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default));
+			popupHtml += htmlFields.replace(/{name}/g,fieldReplace.name).replace(/{label}/g,fieldReplace.label).replace(/{id}/g,id).replace(/{default_value}/g, decodeURI(fieldReplace.default)).replace(/{options}/g, decodeURI(fieldReplace.options)).replace(/{default_images}/g, decodeURI(fieldReplace.default_images));
+			
 			//To load action of fields
 			switch(fieldReplace.type){
 				case 'upload':
@@ -295,8 +322,12 @@ jQuery( document ).ready( function( $ ){
 					break; 
 			}
 		});
-		//if(upload){ selectionOfImage(); }
 		$(".amp-pb-module-content").html(popupHtml); 
+		if(updateSelectValues.length>0){
+			$.each(updateSelectValues, function(id, v){
+				$("#"+ v.id).val(v.value);
+			})
+		}
 		editorJs(editor);
 	});
 	
@@ -615,6 +646,11 @@ jQuery( document ).ready( function( $ ){
 			e.preventDefault();
 			console.log("selectImage click event called");
 			var currentSelectfield = $(this);
+			var selectorType = currentSelectfield.attr("data-imageselactor");
+			var multiple = false;
+			if(selectorType=='multiple'){
+				multiple = true;
+			}
 			var image_frame;
 			if(image_frame){
 			 image_frame.open();
@@ -622,7 +658,7 @@ jQuery( document ).ready( function( $ ){
 			// Define image_frame as wp.media object
 			image_frame = wp.media({
 			           title: 'Select Media',
-			           multiple : false,
+			           multiple : multiple,
 			           library : {
 			                type : 'image',
 			            }
@@ -696,10 +732,22 @@ function Refresh_Image(the_id,currentSelectfield){
         jQuery.get(ajaxurl, data, function(response) {
 
             if(response.success === true) {
-            	console.log(response.data.image)
-                currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
-				var src = currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').attr('src');
-				currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
+            	console.log(response.data)
+				if(currentSelectfield.attr("data-imageselactor")=='multiple'){
+					currentSelectfield.parents('.form-control').find('.sample-gallery-template').html("");
+					var imageSrc = '';
+					jQuery.each(response.data, function(keys,imageValue){
+						console.log(imageValue.image);
+						currentSelectfield.parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
+						currentSelectfield.parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
+						imageSrc += imageValue.detail[0]+",";
+					});
+					currentSelectfield.parents('.form-control').find('input[type=hidden]').val(imageSrc)
+				}else{
+					currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
+					var src = currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').attr('src');
+					currentSelectfield.parents('.form-control').find('input[type=hidden]').val(src);
+				}
             }
         });
 }

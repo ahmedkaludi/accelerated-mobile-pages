@@ -44,7 +44,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .amp-close-image{ top: 15px; left: 225px; cursor: pointer; }
 .navigation_heading{ padding: 20px 20px 15px 20px; color: #aaa; font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #555; display: inline-block; width: 100%}
 .toggle-navigationv2 ul{ list-style-type: none; margin: 15px 0 0 0; padding: 0}
-.toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:100% }
+.toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:94% }
 .amp-menu li{position:relative}
 .toggle-navigationv2 ul li a:hover{background:#666;color:#fff}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
@@ -69,6 +69,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
 .custom-amp-socialsharing-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
+
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 /* Header */
@@ -101,6 +102,8 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .amp-loop-list .amp-wp-post-content{ float: left; width: 65%; }
 .amp-loop-list .featured_time{ color:#b3b3b3; padding-left:0 }
 .amp-wp-post-content p{ color: grey; line-height: 1.5; font-size: 14px; margin: 8px 0 10px; font-family:'PT Serif', serif }
+/* For Excerpt */
+.amp-wp-post-content .small-screen-excerpt-design-3 {display: none;} .amp-wp-post-content .large-screen-excerpt-design-3 { display: block; }
 /* Footer */
 #footer{ background: #151515; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:#fff }
@@ -119,7 +122,8 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .single-post main{ margin: 20px 17px 17px 17px; }
 .amp-wp-article-content{ font-family:'PT Serif', serif; }
 .single-post .post-featured-img{ margin:0 -17px 0px -17px }
-.amp-wp-article-featured-image.wp-caption .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
+.amp-wp-article-featured-image.wp-caption .wp-caption-text, .ampforwp-gallery-item .wp-caption-text{color: #696969; font-size: 11px; line-height: 1.5; background: #eee; margin: 0; padding: .66em .75em; text-align: center; }
+.ampforwp-gallery-item.amp-carousel-slide { padding-bottom: 20px;}
 .ampforwp-title{ padding: 0px 0px 0px 0px; margin-top: 12px; margin-bottom: 12px; }
 .comment-button-wrapper{ margin-bottom: 50px; margin-top: 30px; text-align:center }
 .comment-button-wrapper a{ color: #fff; background: #312c7e; font-size: 14px; padding: 12px 22px 12px 22px; font-family: 'Roboto Slab', serif; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; }
@@ -135,6 +139,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
 .custom-amp-socialsharing-icon-rounded{margin-right:6px;padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; background: #5cbe4a; display: inline-block; height: inherit; border-radius: 60px; }
 .custom-amp-socialsharing-line{background:#00b900}
+.custom-amp-social-sharing-vk{background:#45668e}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
@@ -255,7 +260,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .amp-featured-wrapper{ background:#333 }
 .amp-featured-area{ margin: 0 auto; max-width: 450px; max-height: 270px; }
 .amp-carousel-slide h1{ font-size: 30px; font-family: 'PT Serif', serif; margin: 0; font-weight: normal; line-height: 38px; color: #fff; padding: 10px 20px 20px 20px; }
-.amp-carousel-slide amp-img:before{ z-index:100; bottom: 0; content: ""; display: block; height: 100%; position: absolute; width: 100%; background: -webkit-gradient(linear, 50% 0%, 50% 75%, color-stop(0%, rgba(0,0,0,0)), color-stop(150%, #000000)) repeat scroll 0 0 rgba(0,0,0,0.2); background: -webkit-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -moz-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -o-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); }
+.amp-featured-area .amp-carousel-slide amp-img:before{ z-index:100; bottom: 0; content: ""; display: block; height: 100%; position:absolute; width: 100%; background: -webkit-gradient(linear, 50% 0%, 50% 75%, color-stop(0%, rgba(0,0,0,0)), color-stop(150%, #000000)) repeat scroll 0 0 rgba(0,0,0,0.2); background: -webkit-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -moz-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: -o-linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); background: linear-gradient(rgba(0,0,0,0),#000000 75%) repeat scroll 0 0 rgba(0,0,0,0); }
 .featured_title{ position:absolute; z-index:110; bottom:0 }
 .featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px; }
 .featured_meta{ color:#acacac; font-size:12px; margin:0 15px; }
@@ -287,7 +292,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 @media screen and (max-width: 768px){ .amp-wp-meta{ margin:10px 0px 15px 0px } .home-post_image{ width: 40%; } .amp-loop-list .amp-wp-post-content{ width: 58%; } .amp-loop-list .featured_time{line-height:1} .single-post main .amp-wp-content h1{  line-height:1.4;  font-size: 30px;}  }
 @media screen and (max-width: 600px){ .amp-loop-list .amp-wp-tags{display:none} }
 @media screen and (max-width: 530px){ .home-post_image{ width: 35%; } .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-wp-post-content p { font-size: 12px; } .related_posts ol li p { line-height: 1.6; margin: 7px 0 0 0;} .comments_list ul li .comment-body {width:auto} .amp-category-block li:nth-child(3) {margin:0} }
-@media screen and (max-width: 425px){ .home-post_image{ /*    width: 125px;*/ width: 31.6%; overflow: hidden; height: 100px; /* margin-right: 13px; */ margin-right: 3%; } .home-post_image amp-img{ width: 144%; left: -20%; } h2.amp-wp-title{    margin-bottom: 7px;  line-height: 1.31578947; font-size: 19px; position:relative;top:-3px } h2.amp-wp-title a{ color:#262626} .amp-loop-list{padding:25px 15px 22px 15px} .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-loop-list .amp-wp-post-content p, .related_posts .related_link p{ display:none } .related_posts .related_link a{ font-size: 18px; line-height: 1.7; } .ampforwp-tax-category{ padding-bottom:0 } .amp-wp-byline{ padding:0 } .related_posts .related_link a{ font-size: 17px; line-height: 1.5; } .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;} .icono-share{display:none} .ampforwp-social-icons amp-social-share{ margin-right: 3px;} main .amp-wp-content{ font-size: 16px; line-height: 26px;} .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} .amp-category-post{ font-size:12px; color:#666 } }
+@media screen and (max-width: 425px){ .home-post_image{ /*    width: 125px;*/ width: 31.6%; overflow: hidden; height: 100px; /* margin-right: 13px; */ margin-right: 3%; } .home-post_image amp-img{ width: 144%; left: -20%; } h2.amp-wp-title{    margin-bottom: 7px;  line-height: 1.31578947; font-size: 19px; position:relative;top:-3px } h2.amp-wp-title a{ color:#262626} .amp-loop-list{padding:25px 15px 22px 15px} .amp-loop-list .amp-wp-post-content{ width: 63%; } .amp-loop-list .amp-wp-post-content .large-screen-excerpt-design-3, .related_posts .related_link p{ display:none } .amp-loop-list .amp-wp-post-content .small-screen-excerpt-design-3 { display: block; } .related_posts .related_link a{ font-size: 18px; line-height: 1.7; } .ampforwp-tax-category{ padding-bottom:0 } .amp-wp-byline{ padding:0 } .related_posts .related_link a{ font-size: 17px; line-height: 1.5; } .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 26px;} .icono-share{display:none} .ampforwp-social-icons amp-social-share{ margin-right: 3px;} main .amp-wp-content{ font-size: 16px; line-height: 26px;} .single-post .amp_author_area .amp_author_area_wrapper{font-size:13px;} .amp-category-post{ font-size:12px; color:#666 } }
 @media screen and (max-width: 400px){ .amp-wp-title{ font-size: 19px; } }
 @media screen and (max-width: 375px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 24px;} .home-post_image{ height: 79px; } .amp-carousel-slide h1{ font-size: 28px; line-height: 32px; } #pagination .next a, #pagination .prev a{ color: #666; font-size: 14px; padding: 15px 0px; margin-top: -5px; }.related-title,.comments_list h3{ margin-top:15px; } #pagination .next{ margin-bottom:15px; } .related_posts .related_link a{ font-size: 15px; line-height: 1.6; } }
 @media screen and (max-width: 340px){ .single-post main .amp-wp-content h1{ line-height: 1.3; font-size: 22px;} .amp-loop-list{ padding: 20px 15px 18px 15px; } h2.amp-wp-title{ line-height: 1.31578947; font-size: 17px; } .related_posts .related_link a{ font-size: 15px; } .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; } }
@@ -311,6 +316,8 @@ main .amp-wp-content{ direction: rtl; }
 .single-post .post-pagination-meta span{ float: right; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .amp_author_area_wrapper strong{ float: right; }
+.amp-menu li.menu-item-has-children:after { left: 0; right: auto; }
+amp-sidebar { direction: rtl; }
 <?php } ?>
 
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }

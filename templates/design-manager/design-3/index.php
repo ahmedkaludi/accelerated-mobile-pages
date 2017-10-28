@@ -10,7 +10,8 @@
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="amp_home_body design_3_wrapper">
+
+<body <?php ampforwp_body_class('amp_home_body design_3_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
@@ -106,9 +107,12 @@ if ( get_query_var( 'paged' ) ) {
 			$filtered_args = apply_filters('ampforwp_query_args', $args_new);
 
 
-		$q = new WP_Query( $filtered_args ); ?>
-
-	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
+		$q = new WP_Query( $filtered_args );  
+		$blog_title = ampforwp_get_blog_details('title');
+		if($blog_title){  ?>
+			<h1 class="amp-wp-content page-title"><?php echo $blog_title ?> </h1>
+		<?php }	
+		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list <?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { } else{?>amp-loop-list-noimg<?php } ?>">
@@ -151,11 +155,23 @@ if ( get_query_var( 'paged' ) ) {
 						$content = get_the_content();
 					}
 				?>
-		        <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+		        <p class="large-screen-excerpt-design-3">
+				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); ?> </p>
+		        <p class="small-screen-excerpt-design-3"> <?php    
+					if($redux_builder_amp['excerpt-option-design-3']== true) {
+						$excertp_length='';
+						$excertp_length = $redux_builder_amp['amp-design-3-excerpt']; 
+						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+				</p>
+		        <?php 
+		        	global $redux_builder_amp;
+                  	if($redux_builder_amp['amp-design-selector'] == '3' && $redux_builder_amp['amp-design-3-featured-time'] == '1'){
+                  		?>
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    echo  $post_date ; ?></div>
+                    echo  $post_date ; ?></div><?php
+                }?>
 
 		    </div>
             <div class="cb"></div>

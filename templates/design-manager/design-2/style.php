@@ -98,6 +98,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
 .custom-amp-socialsharing-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
+.ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
 /* Header */
 #header{ background: #fff; text-align: center; }
 #header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
@@ -111,8 +112,19 @@ main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 h2.amp-wp-title{ line-height: 30px; }
 h2.amp-wp-title a{ font-weight: 300; color: #000; font-size: 20px; }
 h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; }
+/* For Excerpt */
+.amp-wp-post-content .small-screen-excerpt{
+	display: none;
+}
+.amp-wp-post-content .large-screen-excerpt {
+	display: block;
+}
 .amp-wp-post-content p{ font-size: 12px; color: #999; line-height: 20px; margin: 3px 0 0 5px; }
 main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
+.page-title{
+	font-size: 1.17em;
+	padding: 6px 0;
+    }
 /* Footer */
 #footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
@@ -151,7 +163,8 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-article-featured-image amp-img {margin: 0 auto;}
-.amp-wp-article-featured-image.wp-caption .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
+.amp-wp-article-featured-image.wp-caption .wp-caption-text, .ampforwp-gallery-item .wp-caption-text{color: #696969; font-size: 11px; line-height: 15px; background: #eee; margin: 0; padding: .66em .75em; text-align: center;}
+.ampforwp-gallery-item.amp-carousel-slide { padding-bottom: 20px;}
 .amp-wp-content.post-pagination-meta{ max-width: 1030px; }
 .single-post .ampforwp-social-icons.ampforwp-social-icons-wrapper{ display: block; margin: 2em auto 0.9em auto ; max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px;}
@@ -234,7 +247,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 @media screen and (max-width: 340px) { .related_posts .related_link a { font-size: 15px; } .single-post main{ padding: 10px 5px 10px 5px } .the_content .amp-ad-wrapper{ text-align: center; margin-left: -13px; } .amp-category-post {line-height: 1.45;font-size: 12px; } .amp-category-block li:nth-child(3) {margin:0%} }
 @media screen and (max-width: 320px) { .related_posts .related_link a { font-size: 13px; } h1.amp-wp-title{ font-size:17px; padding:0px 4px	} }
 @media screen and (max-width: 400px) { .amp-wp-title{ font-size: 19px; margin: 21px 10px -1px 10px; } }
-@media screen and (max-width: 767px) { .amp-wp-post-content p{ display: block } .amp-wp-post-content p{ display: none } main, .amp-category-block, .category-widget-wrapper{ padding: 15px 18px 0px 18px; } .toggle-navigation ul li{ width: 50% } }
+@media screen and (max-width: 767px) {  .amp-wp-post-content .large-screen-excerpt { display: none; } .amp-wp-post-content .small-screen-excerpt { display: block; } main, .amp-category-block, .category-widget-wrapper{ padding: 15px 18px 0px 18px; } .toggle-navigation ul li{ width: 50% }    }
 @media screen and (max-width: 495px) { h2.amp-wp-title a{ font-size: 17px; line-height: 26px;} }
 <?php if($redux_builder_amp['amp-rtl-select-option'] == true) { ?>
 header, amp-sidebar, article, footer, main { direction: rtl; }
@@ -250,6 +263,7 @@ main .amp-archive-heading { direction:rtl }
 .amp-meta-wrapper { padding-right:0 }
 .comment-author { float:right; margin-left:5px; }
 .amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; }
+.toggle-navigationv2 ul li a { padding: 15px 8px; width: 95%;}
 <?php } ?>
 .amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a, [class*=icono-] { color: <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 .amp-wp-content blockquote{ border-color:<?php echo sanitize_hex_color( $header_background_color ); ?>;; }

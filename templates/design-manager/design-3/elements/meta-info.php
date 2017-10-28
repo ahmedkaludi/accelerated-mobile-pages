@@ -17,20 +17,17 @@
 <?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
   if ( $ampforwp_categories ) : ?>
   	<span class="amp-wp-meta amp-wp-tax-category ampforwp-tax-category  ">
-            <?php
-            //if RTL is OFF
-            if(!$redux_builder_amp['amp-rtl-select-option']) {
-            global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-in-designthree'] .' ', 'accelerated-mobile-pages' )); } ?>
-      <?php foreach ($ampforwp_categories as $cat ) {
-        if($redux_builder_amp['ampforwp-archive-support']){
-            echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. user_trailingslashit( trailingslashit(get_category_link($cat->term_id)).'amp') . '" >'.$cat->name .'</a></span>');//#934
-      } else {
+      <?php
+        global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-in-designthree'] .' ', 'accelerated-mobile-pages' )); 
+        foreach ($ampforwp_categories as $cat ) {
+          if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
+            echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. user_trailingslashit( trailingslashit(get_category_link($cat->term_id)).'amp') . '" >'.$cat->name .'</a></span>'); 
+        } 
+      else {
         echo ('<span>'.$cat->name .'</span>');
       }
        }
-			//if RTL is ON
-			if($redux_builder_amp['amp-rtl-select-option']) {
-             global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' )); } ?>
+			?>
   	</span>
 <?php endif; ?>
 

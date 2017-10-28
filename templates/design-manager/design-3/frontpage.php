@@ -30,11 +30,10 @@ $template = new AMP_Post_Template( $post_id );?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
-<body class="single-post <?php ampforwp_the_body_class(); ?> design_3_wrapper">
+
+<body <?php ampforwp_body_class('single-post design_3_wrapper');?>>
 	<?php do_action('ampforwp_body_beginning', $this); ?>
 	<?php $this->load_parts( array( 'header-bar' ) ); ?>
-
-	<?php do_action( 'ampforwp_design_3_frontpage_title', $template ); ?>
 
 	<?php do_action( 'ampforwp_after_header', $template ); ?>
 	<?php do_action('ampforwp_frontpage_above_loop',$template, $post_id) ?>

@@ -97,10 +97,18 @@ wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php
         	<div id="upload">
 	        	<p class="form-control">
 	        		<label for="{id}">{label}</label>
-	        		<input type="button" class="button selectImage" value="Select image" id="">
+	        		<input type="button" class="button selectImage" value="Select image" id="" data-imageselactor="single">
 					<img id="ampforwp-preview-image" src="{default_value}" />
-					<input type="hidden" name="ampforwp_image_id" id="{id}" value="" class="regular-text" />
+					<input type="hidden" name="ampforwp_image_id" id="{id}" class="regular-text" value="{default_value}"/>
 	        	</p>
+        	</div>
+			<div id="multi_upload">
+	        	<div class="form-control">
+	        		<label for="{id}">{label}</label>
+	        		<input type="button" class="button selectImage" value="Select image" data-imageselactor="multiple" id="">
+					<input type="hidden" name="ampforwp_image_id" id="{id}" class="regular-text" value="{default_value}"/>
+					<div class="sample-gallery-template">{default_images}</div>
+	        	</div>
         	</div>
         	<div id="select">
 	        	<p class="form-control">
