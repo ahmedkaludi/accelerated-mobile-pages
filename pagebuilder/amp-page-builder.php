@@ -8,13 +8,19 @@ define( 'AMP_PAGE_BUILDER', plugin_dir_path(__FILE__) );
 define( 'AMP_PAGE_BUILDER_URL', plugin_dir_url(__FILE__) );
 
 add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register');
-function ampforwp_pagebuilder_content_meta_register(){
-	$pb_post_type = array('post','page');
+function ampforwp_pagebuilder_content_meta_register($post_type){
 	global $redux_builder_amp;
-  	if( ( !$redux_builder_amp['amp-on-off-for-all-posts'] && in_array('post', $pb_post_type , true) ) || ( !$redux_builder_amp['amp-on-off-for-all-pages'] && in_array('post', $pb_post_type , true) ) ){
-  		return;
+
+	// Page builder for posts
+  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
+  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+  	} 
+  	
+  	// Page builder for pages
+  	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
+  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
   	}
-	add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback', $pb_post_type, 'normal', 'default' );
+
 }
 
 function amp_content_pagebuilder_title_callback( $post ){
