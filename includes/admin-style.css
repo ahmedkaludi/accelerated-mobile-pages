@@ -114,7 +114,7 @@ body #toplevel_page_amp_options .wp-menu-image{
     4px 7px;
 
 }  
-.amp-theme-selector-img a#theme-selected-demo-link{
+.amp-theme-selector-img a{
     background: rgba(0, 0, 0, 0.7);
     text-decoration: none;
     padding: 3px 8px 4px 7px;
@@ -123,7 +123,10 @@ body #toplevel_page_amp_options .wp-menu-image{
     border-radius: 100px;
     color: #fff;
     position: relative;
-    right: 67px;
+    right: 62px;
+}
+.amp-theme-selector-img:hover a {
+    background: #4452a7;
 }
 .amp-theme-selector-img img{
     position: relative;

@@ -24,19 +24,19 @@
 
 
  return array(		
- 		'label' =>'Posts',		
+ 		'label' =>'Category',		
  		'name' => 'contents',		
  		'fields' => array(		
  						array(		
  						'type'		=>'text',		
  						'name'		=>"content_title",		
- 						'label'		=>'Title of content',		
+ 						'label'		=>'Category Block Title',		
  						'default'	=>'Category',		
  						),		
  						array(		
  							'type'	=>'select',		
  							'name'=>"category_selection",		
- 							'label'=>"Select content type",		
+ 							'label'=>"Select Category",		
  							'default'=>'recent_option',		
  							'options' => $options,		
  							'options_details'=>$categoriesArray		
@@ -44,13 +44,13 @@
  						array(		
  						'type'		=>'text',		
  						'name'		=>"show_total_posts",		
- 						'label'		=>'No of posts',		
+ 						'label'		=>'Count',		
  						'default'	=>'3',		
  						),
  						array(		
  						'type'		=>'select',
  						'name'		=>"ampforwp_show_excerpt",
- 						'label'		=>"Show content excerpt(Default: yes)",		
+ 						'label'		=>"Excerpt",		
 						'default'	=>'yes',		
 						'options'	=> '<option value="yes">Yes</option><option value="no">No</option>',		
 						'options_details'=>array('yes'=>'Yes', 'no'=>'No')
