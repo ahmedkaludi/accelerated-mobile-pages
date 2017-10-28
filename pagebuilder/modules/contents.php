@@ -42,7 +42,7 @@
  						'type'		=>'select',
  						'name'		=>"ampforwp_show_excerpt",
  						'label'		=>"Show content excerpt(Default: yes)",		
-						'default'	=>'Yes',		
+						'default'	=>'yes',		
 						'options'	=> '<option value="yes">Yes</option><option value="no">No</option>',		
 						'options_details'=>array('yes'=>'Yes', 'no'=>'No')
  						)		
