@@ -139,12 +139,13 @@ function amp_pagebuilder_content_styles(){
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp, $containerCommonSettings;
 	$postId = $post->ID;
-	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&ampforwp_get_blog_details() == false){
+	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
+
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$html ="";
 		$previousData = (str_replace("'", "", $previousData));
