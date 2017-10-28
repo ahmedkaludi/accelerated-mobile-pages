@@ -21,7 +21,31 @@ function ampforwp_additional_style_input( $amp_template ) {
 	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
 	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
 ?>
- #statcounter{width: 1px;height:1px;} 
+#statcounter{width: 1px;height:1px;} 
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+    src:  local('Merriweather'), local('Merriweather-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-Regular.ttf');
+}
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+    src:  local('Merriweather Bold'), local('Merriweather-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-Bold.ttf');
+}
+@font-face {
+    font-family: 'Merriweather';
+    font-style: italic;
+    font-weight: 400;
+    src:  local('Merriweather Italic'), local('Merriweather-Italic'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-Italic.ttf');
+}
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 700;
+    src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-BoldItalic.ttf');
+}
 .alignright{ float: right; }
 .alignleft{ float: left; }
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
