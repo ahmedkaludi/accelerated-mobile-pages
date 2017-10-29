@@ -149,6 +149,13 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
+= 0.9.65.2 (25th October 2017) =
+* TypeWatch is not a function #1299
+* Error with BackupBuddy fixed #1303
+
+= 0.9.65.1 (24th October 2017) =
+* AMP Minifcation Issues fixed
+
 = 0.9.65 (22nd October 2017) =
 * View more details on https://ampforwp.com/new/
 * Favicon for AMP #1039

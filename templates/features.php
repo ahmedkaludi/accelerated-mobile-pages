@@ -4357,7 +4357,7 @@ function ampforwp_minify_html_output($content_buffer){
         $mod = '/u';
     else
         $mod = '/s';
-    $buffer = str_replace(array (chr(13) . chr(10), chr(9)), array (chr(10), '  '), $buffer);
+    $buffer = str_replace(array (chr(13) . chr(10), chr(9)), array (chr(10), ' '), $buffer);
     $buffer = str_ireplace(array ('<script', '/script>', '<pre', '/pre>', '<textarea', '/textarea>', '<style', '/style>'), array ('M1N1FY-ST4RT<script', '/script>M1N1FY-3ND', 'M1N1FY-ST4RT<pre', '/pre>M1N1FY-3ND', 'M1N1FY-ST4RT<textarea', '/textarea>M1N1FY-3ND', 'M1N1FY-ST4RT<style', '/style>M1N1FY-3ND'), $buffer);
     $split = explode('M1N1FY-3ND', $buffer);
     $buffer = ''; 
@@ -4391,8 +4391,10 @@ function ampforwp_minify_html_output($content_buffer){
         } else {
             $process = $split[$i];
             $asis = '';
-        }
-        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/(\s)+' . $mod), array('>', '<', '\\1'), $process);
+        } 
+
+        $process = preg_replace(array ('/\>[^\S ]+' . $mod, '/[^\S ]+\<' . $mod, '/\s+/' ), array('>', '<', ' '), $process);
+
         if ( $minify_html_comments != 'no' )
             $process = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->' . $mod, '', $process);
         $buffer .= $process.$asis;
