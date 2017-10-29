@@ -14,23 +14,24 @@
     <language><?php bloginfo_rss( 'language' ); ?></language>
 
     <?php
+        global $redux_builder_amp;
+        $number_of_articles = '';
+        if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
+            $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
+            $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
+        }
+        else{
+            $number_of_articles = -1;
+        }
         $args = array(
-            'meta_query'            => $meta_query,
             'post_status'           => 'publish',
-            'ignore_sticky_posts'   => 1
+            'ignore_sticky_posts'   => 1,
+            'posts_per_page'        => $number_of_articles
         );
         $query = new WP_Query( $args );
-        $rendered_posts = 0;
-
         while( $query->have_posts() ) :
 
             $query->the_post();
-
-            // only show up to 50 rendered posts
-            $rendered_posts += 1;
-            if ( $rendered_posts > 50 ) {
-                break;
-            }
     ?>
 
     <item>

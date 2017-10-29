@@ -72,6 +72,20 @@ function call_loops_standard($data=array()){
 			'post_status'		  => 'publish'
 		);
 	}
+	if(is_author()){
+		$exclude_ids = get_option('ampforwp_exclude_post');
+		$author = get_user_by( 'slug', get_query_var( 'author_name' ) );
+		$args =  array(
+			'author'        	  =>  $author->ID,
+			'post_type'           => 'post',
+			'orderby'             => 'date',
+			'ignore_sticky_posts' => 1,
+			'paged'               => esc_attr($paged),
+			'post__not_in' 		  => $exclude_ids,
+			'has_password' => false ,
+			'post_status'=> 'publish'
+		  );
+	}
 	if(isset($data['post_to_show']) && $data['post_to_show']>0){
 		$args['posts_per_page'] = $data['post_to_show'];
 	}
@@ -177,13 +191,16 @@ function call_loops_standard($data=array()){
 		echo '</'.$tag.'>';
 	}
 
-	function amp_loop_date(){
+	function amp_loop_date($args=array()){
 		global $redux_builder_amp;
-		$post_date =  human_time_diff(
+		if(isset($args['format']) && $args['format']=='traditional'){
+			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+        }else{
+        	$post_date =  human_time_diff(
         						get_the_time('U', get_the_ID() ), 
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
-        
+        }
         echo '<div class="loop-date">'.$post_date.'</div>';
 	}
 
@@ -254,7 +271,7 @@ function call_loops_standard($data=array()){
 		echo ' <ul class="loop-category">';
 		if(count(get_the_category()) > 0){
 			foreach((get_the_category()) as $category) {
-				echo '<li class="amp-cat-'. $category->term_id.'">'. $category->cat_name.'</li>';
+				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.get_category_link($category->term_id).AMPFORWP_AMP_QUERY_VAR.'">'. $category->cat_name.'</a></li>';
 			}
 		}
 		echo '</ul>';
@@ -262,20 +279,12 @@ function call_loops_standard($data=array()){
 	// author
 	function amp_loop_author($args = array()){
 		 global $redux_builder_amp;
-		// 
-		 $author_prefix = $author_wrapper_class = '';
-		 $author_link = '#';
-		 if(isset( $args['author_prefix'])){
-		 	  $author_prefix = $args['author_prefix'];
-		 }
-		 $suffix = ampforwp_translation($redux_builder_amp['amp-translator-by-text'] , $author_prefix );
-		 if(isset( $args['author_link'])){
-		 	  $author_link = $args['author_link'];
-		 }
-		 if(isset( $args['author_wrapper_class'])){
-		 	  $author_wrapper_class = $args['author_wrapper_class'];
-		 }
-		echo '<span class="'. $author_wrapper_class .'">'.$suffix . '<a href="'. $author_link.'"> ' .get_the_author().'</a></span>';
+		if(function_exists('ampforwp_framework_get_author_box')){
+			ampforwp_framework_get_author_box($args);
+		}else{
+			echo "";
+		}
+
 	}
 
 

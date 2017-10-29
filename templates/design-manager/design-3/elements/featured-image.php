@@ -1,6 +1,8 @@
 <?php do_action('ampforwp_before_featured_image_hook',$this);
 global $redux_builder_amp, $post;
 $featured_image = $this->get( 'featured_image' );
+$amp_html = "";
+$caption = "";
 if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) || $redux_builder_amp['ampforwp-featured-image-from-content'] == true){
 	if (  $featured_image ) {
 		$amp_html = $featured_image['amp_html'];

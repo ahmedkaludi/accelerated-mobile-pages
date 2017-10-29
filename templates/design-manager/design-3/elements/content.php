@@ -45,7 +45,7 @@
 
 	<!--Post Next-Previous Links-->
 	<?php global $redux_builder_amp;
-		if($redux_builder_amp['enable-single-next-prev']) { ?>
+		if($redux_builder_amp['enable-single-next-prev'] && !is_page() ) { ?>
 			<div class="amp-wp-content post-pagination-meta">
 				<div id="pagination">
                 <?php $next_post = get_next_post();

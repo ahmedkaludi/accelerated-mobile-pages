@@ -40,6 +40,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
         wp_enqueue_media();
+        wp_enqueue_editor();
+		wp_enqueue_script( 'text-widgets' );
         wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 					'jquery',
 					'jquery-ui-resizable',
@@ -114,8 +116,14 @@ function amppb_save_post( $post_id, $post ){
 
 
 add_action("pre_amp_render_post",'amp_pagebuilder_content');
+function amp_pagebuilder_content(){
+		add_filter( 'the_content', 'amppb_post_content', 1 ); // Run 
+}
+
+$ampPagebuilderModuleCss = array();
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
+	global $ampPagebuilderModuleCss;
 	?>.amp_pb{display: inline-block;width: 100%;}
     .row{display: inline-flex;width: 100%;}
 	.col-2{width:50%;float:left;}
@@ -124,20 +132,20 @@ function amp_pagebuilder_content_styles(){
     .amp_btn{text-align:center}
     .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 	<?php
+	echo implode(" ", $ampPagebuilderModuleCss);
 } 
-	function amp_pagebuilder_content(){
-			add_filter( 'the_content', 'amppb_post_content', 1 ); // Run 
-	}
-
 
 
 function amppb_post_content($content){
-	global $post;
-	global $containerCommonSettings;
+	global $post,  $redux_builder_amp, $containerCommonSettings;
+	$postId = $post->ID;
+	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
 
-	$previousData = get_post_meta($post->ID,'amp-page-builder');
+	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$html ="";
 		$previousData = (str_replace("'", "", $previousData));
@@ -195,7 +203,7 @@ function amppb_post_content($content){
 }
 
 function rowData($container,$col){
-	global $moduleTemplate;
+	global $moduleTemplate, $ampPagebuilderModuleCss;
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
@@ -205,6 +213,10 @@ function rowData($container,$col){
 		if(count($container)>0){
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
+				if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
+					$ampPagebuilderModuleCss[$contentArray['type']] = $moduleTemplate[$contentArray['type']]['front_css'];
+					
+				}
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				switch($moduleName){
 					case 'gallery_image':
@@ -225,14 +237,15 @@ function rowData($container,$col){
 							);
 						//The Query
 						$the_query = new WP_Query( $args );
-						 $totalLoopHtml = contentHtml($the_query);
-						$moduleFrontHtml = str_replace('{{content_title}}', $fieldValues['content_title'], $moduleFrontHtml);
+						 $totalLoopHtml = contentHtml($the_query,$fieldValues);
+						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
 						/* Restore original Post Data */
 						wp_reset_postdata();
 						
 					break;
 					default:
+                        if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 							if(isset($contentArray[$field['name']]) && !empty($contentArray)){
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
@@ -240,6 +253,7 @@ function rowData($container,$col){
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 							}
 						}
+                    }
 					break;
 				}
 				$html .= $moduleFrontHtml;
@@ -255,7 +269,9 @@ function rowData($container,$col){
 	}
 	return $html;
 }
-
+function ampforwp_pagebuilder_module_style(){
+	echo $redux_builder_amp['css_editor'];
+}
 function sortByIndex($contentArray){
 	$completeSortedArray = array();
 	if(count($contentArray)>0){

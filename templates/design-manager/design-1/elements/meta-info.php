@@ -11,12 +11,15 @@
 			 if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  
 			 if( is_single()) { ?>
 				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
-				<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
-				<?php } 
+				<?php  
+				echo ampforwp_get_author_details( $post_author , 'meta-info' );
+			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
 				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
-				<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
-				<?php } } ?>
+				<?php  
+					echo ampforwp_get_author_details( $post_author , 'meta-info' );
+				 }
+			} ?>
 		</div>
 	<?php endif; ?>
 

@@ -2,14 +2,21 @@
   wp_reset_postdata();?>
   <footer class="footer_wrapper container">
       <div id="footer">
+        
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
-          <div class="footer_menu"> <?php
+         <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
+          <div class="footer_menu">
+           <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+              <?php
               $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
+                  'link_before'     => '<span itemprop="name">',
+                  'link_after'     => '</span>',
                   'echo' => false
               ) );
               echo strip_tags( $menu , '<ul><li><a>'); ?>
           </div>
+        </nav>
         <?php } ?>
 
         <?php if( ampforwp_checking_any_social_profiles() ) { ?>
@@ -73,10 +80,15 @@
 
             </ul>
           </div>
-          <?php } ?>
+          <?php } 
+          if( isset( $redux_builder_amp['ampforwp-footer-top-design3'] ) =='1' ){ ?>
+            <p class="rightslink back-to-top">
+             <a href="#">
+                  <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> 
+                </a> </p> <?php } ?>
           <p class="rightslink">
             <?php
-              global $allowed_html;
+              global $allowed_html; 
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html ) ;
               if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ?> | <?php ampforwp_view_nonamp(); } ?>
           </p>

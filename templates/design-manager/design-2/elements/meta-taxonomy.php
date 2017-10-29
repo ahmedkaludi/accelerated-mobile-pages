@@ -1,6 +1,7 @@
+<?php global $redux_builder_amp;
+	if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single']) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
-<?php	global $redux_builder_amp;
-			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+<?php	$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 		<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 		<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
@@ -26,7 +27,7 @@
 
 		</div>
 <?php endif;?>
-</div>
+</div> <?php } ?>
 
 <?php
 
@@ -45,8 +46,9 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                if ( $author_avatar_url ) { ?>
 	                    <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
-	                } ?>
-	                <strong><?php echo esc_html( $post_author->display_name ); ?></strong>: <?php echo  $post_author->description ; ?>
+	                }
+	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
+	             	echo  $post_author->description ; ?>
 
 	        <?php } ?>
 	    </div>
