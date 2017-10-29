@@ -149,6 +149,62 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
+= 0.9.66 (29th October 2017) =
+* View more details on https://ampforwp.com/0-9-66-released-bug-squashing-oct-2017-72nd-update/
+* Design 3 & Design 1 are optimised with 90+ Google PageSpeed Score on Mobile and 95+ in desktop performance #1273
+* Featured Image from the content for blog and homepage #1295
+* Category Module for AMP Page builder added #888
+* Don't load unused CSS selectors. All the CSS is conditionally loading, to decrease the number of CSS loaded per page and increased in performance #1292
+* Twitter Video embed code support added in AMP #1307
+* Video Posting Structured data #1293
+* Navigation menus are now Schema compatible for better Structured data integration #1229
+* Yoast checking conditions for Structured Data Improved #1293
+* Added "back to Top" in design 3 #959
+* Proper blog check and author for custom frontpage #1260 (Made some changes to check the blog properly and also added the author details for Custom Frontpage)
+* AMP not working on password-protected pages #1192
+* Debug errors reported by the user #1284 and few more we found internally
+* Inline Style Sanitizer for Comments to avoid any validation issues #1193
+* Next/Previous links removed from pages #1268 props @Frenchomatic
+* WPML Multilingual CMS plugin flags compatibility added #1270
+* Image sanitizer added for the Sidebar #1270
+* Added AMP Components the correct way. Added amp-gist, amp-social-share. #336
+* amp-video script added - Which decreases the non-critical validation issues #991
+* Arrows in Design 3 pagination #1000
+* Author page links in Single #1282
+* Added previous open state of option panel and show again when search clean #1238
+* Odnoklassniki Social Sharing Support for AMP (with target blank for better bounce rate) #1230
+* GIF or animated images resize problem fixed #1281
+* In Design1, Header Background & Link Color have same option #1249
+* FB Pixel for AMP added #1231
+* Structured Data Type option for AMPed Custom Post types only #1259
+* Attribute ‘readability in the tag ‘div’ removed - this decreases the validation issues #1306
+* AMP Theme Framework Improvements: loop, author, related_post, Add Author support #1311
+* Commentator's Avatar in the comments section #1132
+* Remove 'Welcome to AMP' from Dashboard sub-menu and moved to the options area to decrease the annoyance and increase the user happiness #902
+* Option to Sort the Random Order of Related Posts to increase the audience engagement (Default is 'ID', on enabling the option it will change to 'rand') #1250
+*  View AMP on Admin Bar for the respected page/post If enable. #1236
+* google maps iframe – link to larger map #1099
+* Comments now jumping due to the slash at the end #1309
+* Page Builder causes Incompatibility with the Divi theme (We restructured the Text Module for Page builder for better compatibility and UX) #1162
+* Inline Style Sanitizer for Comments added. Less Critical Validation issues and Better Presentation #1193
+* WPML amp-html error fixed #1285
+* Radio button not working for Show View more Button" #1018
+* Added registered handle for tinymcePointer localize data #1301
+* Date in the Design 2 should not be hidden in mobile version #1315
+* Page builder not working on homepage(Selected as front page) #1316
+* Instant articles number of posts option #1271 (Removed some unused code as well, it will rendered all posts if none is enter in the options)
+* Auto flush on save for FBIA to improve the UX.
+* Plain Permalinks Support improved. #1318
+* Tables support added to FB Instant Articles #1266
+* Demo link added in the Theme selector option #1248
+* Remove invalid attributes from multiple tags which reduces critical validation errors and validates pages.
+* AMP makes a problem in archive page label, when it is active in non-amp version #1304
+* placeholder-icon.png is 404 fixed #1310
+* Category & Tags switches for Single added. #1055
+* Copy Content (Custom AMP Editor) Option Not showing with Page Builder of SiteOrigin issue fixed #1280
+* Improving UX with: when AMP support is off for a specific post type then all the AMP related metaboxes should be removed #1289
+* Options Panel Options rearranged, labels rewritten, descriptions repositioned for better User interaction [commit]
+
 = 0.9.65.2 (25th October 2017) =
 * TypeWatch is not a function #1299
 * Error with BackupBuddy fixed #1303

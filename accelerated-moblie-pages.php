@@ -593,23 +593,15 @@ function ampforwp_update_notice() {
     text-decoration: none;
     font-size: 16px;
     line-height: 23px; font-weight: 300;"> Appreciate it?  <br> <span style="font-size: 11px;text-transform: uppercase;" title="Give Us 5 Star">Leave a Review →</span></a>
-
-	    </div>
-	    </div>
- 
-    
-    <?php
-    //update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
+</div></div>
+<?php
+//update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
 }
-
 if(!defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH')){
 	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', plugin_dir_path( __FILE__ )."/components"); 
 }
-
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
-
-
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
