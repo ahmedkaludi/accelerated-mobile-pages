@@ -457,9 +457,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'        =>'amp-on-off-for-all-pages',
                'type'      => 'switch',
                'title'     => __('Pages', 'accelerated-mobile-pages'),
-               'subtitle'  => __('Enable AMP Support on Pages', 'accelerated-mobile-pages'),
+               'subtitle'  => __('Enable AMP Support on Pages.', 'accelerated-mobile-pages'),
                'default'   => 1,
-               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
+//               'subtitle'      => __( '<a href="https://ampforwp.com/flush-rewrite-urls/">Re-Save permalink</a> if you make changes in this option, please have a look here on how to do it', 'accelerated-mobile-pages' ),
             ),
            array(
                'id'       => 'ampforwp-homepage-on-off-support',
@@ -918,7 +918,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
                'title'    => __('Archive subpages (sitewide)', 'accelerated-mobile-pages'),
-               'desc'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
+               'subtitle'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
                'default' => 0,
                'on' => 'index',
                'off' => 'noindex'
@@ -1451,7 +1451,7 @@ $forms_support[]=  array(
                     array(
                          'id'       => 'ampforwp-number-of-comments',
                          'type'     => 'text',
-                         'desc'     => __('This refers to the normal comments','accelerated-mobile-pages'),
+                         'subtitle'     => __('This refers to the normal comments','accelerated-mobile-pages'),
                          'title'    => __('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
                          'required' => array('wordpress-comments-support' , '=' , 1
@@ -1500,7 +1500,7 @@ $forms_support[]=  array(
                      array(
                          'id'       => 'ampforwp-number-of-fb-no-of-comments',
                          'type'     => 'text',
-                         'desc'     => __('Enter the number of comments','accelerated-mobile-pages'),
+                         'subtitle'     => __('Enter the number of comments','accelerated-mobile-pages'),
                          'title'    => __('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
                          'required' => array(
@@ -2202,15 +2202,6 @@ Redux::setSection( $opt_name, array(
                     )
               ), 
 
-                 // Call Now button
-             array(
-                    'id'       => 'ampforwp-callnow-button',
-                    'type'     => 'switch',
-                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'default'   => 0
-             ),
              array(
                     'id'        =>'enable-amp-call-numberfield',
                     'type'      => 'text',
@@ -2230,38 +2221,6 @@ Redux::setSection( $opt_name, array(
                     )
              ),
 
-             array(
-                    'id'       => 'amp-design-3-search-feature',
-                    'type'     => 'switch',
-                    'subtitle' => __('HTTPS is mandatory for Search', 'accelerated-mobile-pages'),
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '3')
-                    ),
-                    'default'  => '0'
-            ),
-             
-             array(
-                    'id'       => 'amp-design-2-search-feature',
-                    'subtitle' => __('HTTPS is mandatory for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '2')
-                    ),
-                    'default'  => '0'
-            ),
-
-             array(
-                    'id'       => 'amp-design-1-search-feature',
-                    'subtitle' => __('HTTPS is mandatory for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '1')
-                    ),
-                    'default'  => '0'
-            ),
 
              array(
                     'id'       => 'css_editor',
@@ -2292,25 +2251,58 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-header-settings',
         'subsection' => true,
         'fields'     => array(
-
              array(
-                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                    'type'      => 'switch',
-                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
+                    'id'       => 'ampforwp-amp-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
+                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 1
+            ),   
              array(
-                    'id'        => 'amp-opt-sticky-head',
-                    'type'      => 'switch',
-                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'id'       => 'amp-design-3-search-feature',
+                    'type'     => 'switch',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
-                      array('amp-design-selector', '=' , '3')
+                        array('amp-design-selector', '=' , '3')
                     ),
-                    'desc'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
                     'default'  => '0'
             ),
+             
              array(
+                    'id'       => 'amp-design-2-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                    ),
+                    'default'  => '0'
+            ),
+
+             array(
+                    'id'       => 'amp-design-1-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                    ),
+                    'default'  => '0'
+            ),
+                 // Call Now button
+             array(
+                    'id'       => 'ampforwp-callnow-button',
+                    'type'     => 'switch',
+                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 0
+             ),
+            array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
                     'title'     => __('Header Background Color','accelerated-mobile-pages'),
@@ -2332,16 +2324,24 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
+            array(
+                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                    'type'      => 'switch',
+                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
              array(
-                    'id'       => 'ampforwp-amp-menu',
-                    'type'     => 'switch',
-                    'title'    => __('Navigation Menu in AMP', 'accelerated-mobile-pages'),
-                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
-                    'subtitle' => __('The switch to Enable/Disable Menu in all AMP Pages', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'default'   => 1
-            ),    
+                    'id'        => 'amp-opt-sticky-head',
+                    'type'      => 'switch',
+                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    ),
+                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
+            ),
+ 
 
           )
         )
@@ -2370,7 +2370,25 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-homepage-settings',
         'subsection' => true,
         'fields'     => array(
-
+    array(
+                        'id'       => 'amp-design-3-featured-slider',
+                        'type'     => 'switch',
+                        'title'    => __( 'Featured Slider', 'accelerated-mobile-pages' ),
+                        'required' => array(
+                           array('amp-design-selector', '=' , '3')
+                        ),
+                        'default'  => '1'
+                ),
+                 array(
+                        'id'       => 'amp-design-3-category-selector',
+                        'type'     => 'select',
+                        'title'    => __( 'Featured Slider Category', 'accelerated-mobile-pages' ),
+                        'options'  => $categories_array,
+                        'required' => array(
+                          array('amp-design-selector', '=' , '3'),
+                          array('amp-design-3-featured-slider', '=' , '1')
+                        ),
+                ),
             // Excerpt Length for design1 #1013
                 array(
 
@@ -2528,25 +2546,7 @@ Redux::setSection( $opt_name, array(
                         )
                 ),
 
-                array(
-                        'id'       => 'amp-design-3-featured-slider',
-                        'type'     => 'switch',
-                        'title'    => __( 'Featured Slider', 'accelerated-mobile-pages' ),
-                        'required' => array(
-                           array('amp-design-selector', '=' , '3')
-                        ),
-                        'default'  => '1'
-                ),
-                 array(
-                        'id'       => 'amp-design-3-category-selector',
-                        'type'     => 'select',
-                        'title'    => __( 'Featured Slider Category', 'accelerated-mobile-pages' ),
-                        'options'  => $categories_array,
-                        'required' => array(
-                          array('amp-design-selector', '=' , '3'),
-                          array('amp-design-3-featured-slider', '=' , '1')
-                        ),
-                ),
+            
 
         )
     ));
@@ -2645,7 +2645,7 @@ Redux::setSection( $opt_name, array(
             'required' => array(
               array('amp-design-selector', '=' , '3')
             ),
-            'desc'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+            'subtitle'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
             'default'  => '0'
         ),
         // Pagination //#1015 
