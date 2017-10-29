@@ -117,7 +117,11 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
-                    $ampforwp_home_url = ampforwp_url_purifier(get_bloginfo('url') );
+                    $ampforwp_home_url = user_trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
+                    $get_permalink_structure = get_option('permalink_structure');
+                    if ( empty( $get_permalink_structure ) ) {
+                      $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?amp=1';
+                    }
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
                           $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
@@ -126,7 +130,9 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
                           $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
                          }
                 }
-          }?>
+
+              }
+          ?>
 
         <?php if ( isset($redux_builder_amp['opt-media']['url'] ) && true == ($redux_builder_amp['opt-media']['url']) ) {
           $logo_id =  attachment_url_to_postid($redux_builder_amp['opt-media'] ['url']);

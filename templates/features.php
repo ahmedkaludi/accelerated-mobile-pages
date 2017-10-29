@@ -2990,17 +2990,19 @@ add_filter('amp_post_template_data','ampforwp_add_amp_gist_script', 100);
 function ampforwp_add_amp_gist_script( $data ){
 	global $redux_builder_amp;
 	$content = "";
-
+    
 	$content =   $data['post'];
-	$content = $content->post_content;
-	 
-	if( is_single() ) {
-		if( has_shortcode( $content, 'amp-gist' ) ){ 
-			if ( empty( $data['amp_component_scripts']['amp-gist'] ) ) {
-				$data['amp_component_scripts']['amp-gist'] = 'https://cdn.ampproject.org/v0/amp-gist-0.1.js';
-			}
-		}
-	}
+    if( $content ){
+        $content = $content->post_content;
+        
+        if( is_single() ) {
+            if( has_shortcode( $content, 'amp-gist' ) ){ 
+                if ( empty( $data['amp_component_scripts']['amp-gist'] ) ) {
+                    $data['amp_component_scripts']['amp-gist'] = 'https://cdn.ampproject.org/v0/amp-gist-0.1.js';
+                }
+            }
+        }
+    }
 		 
 	return $data;
 }
@@ -4589,19 +4591,15 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 //93. added AMP url purifire for amphtml
 function ampforwp_url_purifier($url){
 		global $wp_query;
-
 		$get_permalink_structure 	= "";
 		$endpoint 					= "";
 		$queried_var				= "";
-		$quried_value				= "";	
-
+		$quried_value				= "";
 		$endpoint = AMPFORWP_AMP_QUERY_VAR;
 		$get_permalink_structure = get_option('permalink_structure');
-
+    
 		if ( empty( $get_permalink_structure ) ) {
-
 			$endpoint = '?' . $endpoint;
-
 			if (is_home() || is_archive() ) {
 				$url  = trailingslashit($url) . $endpoint;
 			}
@@ -4619,19 +4617,14 @@ function ampforwp_url_purifier($url){
 				if ( is_author() ) {
 					$queried_var 	= 'author';
 				}
-				
 				$quried_value 	= get_query_var($queried_var);
-
 				$url = $url .'&'. $queried_var .'='. $quried_value;
 			}
-
 		} else {
-
 			if ( is_home() || is_archive() ) {
 				$url = user_trailingslashit( trailingslashit($url) . $endpoint );
 			}
 		}
-
+		//var_dump($url); die;
 	return $url;
 }
-
