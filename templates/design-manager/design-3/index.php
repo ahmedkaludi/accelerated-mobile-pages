@@ -62,18 +62,13 @@ if ( get_query_var( 'paged' ) ) {
 		         $category_posts->the_post();
 		?>
 		      <div>
-					<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
-						if ( has_post_thumbnail()) {    
-							$thumb_id = get_post_thumbnail_id();
-							$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium_large', true);
-							$thumb_url = $thumb_url_array[0];
-							}
-						else{
-							$thumb_url = ampforwp_cf_featured_image_src();
-						}
-						?>
-						 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
-					<?php } ?>
+					<?php if ( ampforwp_has_post_thumbnail() ) { 
+						$thumb_url = ampforwp_get_post_thumbnail();
+						if($thumb_url){
+							?>
+							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
+						<?php } 
+					}?>
                   <a href="<?php echo user_trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
@@ -115,29 +110,24 @@ if ( get_query_var( 'paged' ) ) {
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
-		<div class="amp-wp-content amp-loop-list <?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { } else{?>amp-loop-list-noimg<?php } ?>">
-			<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) {  
-				if ( has_post_thumbnail()) { 
-					$thumb_id = get_post_thumbnail_id();
-					$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-					$thumb_url = $thumb_url_array[0];
-				}
-				else{
-					$thumb_url = ampforwp_cf_featured_image_src();
-				}
-				?>
-				<div class="home-post_image">
-					<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
-						<amp-img
-							layout="responsive"
-							src=<?php echo $thumb_url ?>
-							<?php ampforwp_thumbnail_alt(); ?>
-							width=450
-							height=270
-						></amp-img>
-					</a>
-				</div>
-			<?php } ?>
+		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
+			<?php if ( ampforwp_has_post_thumbnail() ) {  
+				$thumb_url = ampforwp_get_post_thumbnail();
+				if($thumb_url){
+					?>
+					<div class="home-post_image">
+						<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+							<amp-img
+								layout="responsive"
+								src=<?php echo esc_url( $thumb_url ); ?>
+								<?php ampforwp_thumbnail_alt(); ?>
+								width=450
+								height=270
+							></amp-img>
+						</a>
+					</div>
+				<?php }
+				} ?>
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
@@ -182,9 +172,9 @@ if ( get_query_var( 'paged' ) ) {
 	<div class="amp-wp-content pagination-holder">
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( ampforwp_translation( $redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), 0 ) ?></div>
+			<div class="next"><?php next_posts_link( ampforwp_translation( $redux_builder_amp['amp-translator-show-more-posts-text']. ' &raquo;' , 'Show more Posts'), 0 ) ?></div>
 					<?php if ( $paged > 1 ) { ?>
-						<div class="prev"><?php previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts') ); ?></div>
+						<div class="prev"><?php previous_posts_link( '&laquo; '.ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts') ); ?></div>
 					<?php } ?>
 			<div class="clearfix"></div>
 		</div>

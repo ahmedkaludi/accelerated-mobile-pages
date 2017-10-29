@@ -65,36 +65,36 @@
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
                     			echo  $post_date ;?>
-                    		</time><?php 
-			 		 		}?>
+                    		</time> <?php
+			 		 		}
+			 		 	if( isset($redux_builder_amp['ampforwp-design1-cats-home']) && $redux_builder_amp['ampforwp-design1-cats-home'] ) {
+			 		 		foreach((get_the_category()) as $category) { ?>
+			 		 		<ul class="amp-wp-tags">
+					   			<li class="amp-cat-<?php echo $category->term_id;?>"> <?php echo  '  ' . $category->cat_name ?> </li> </ul>
+							<?php }
+						} ?>
 					</div>
 
-						<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
-							if ( has_post_thumbnail()) {
-								$thumb_id = get_post_thumbnail_id();
-								$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-								$thumb_url = $thumb_url_array[0];
-							}
-							else{
-								$thumb_url = ampforwp_cf_featured_image_src();
-							}
-							?>
-							<div class="home-post-image">
-								<a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
-									<amp-img
-										src=<?php echo $thumb_url ?>
-										<?php ampforwp_thumbnail_alt(); ?>
-										<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
-											width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
-											height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
-										<?php } else { ?>
-											width=100
-											height=75
-										<?php } ?>
-									></amp-img>
-								</a>
-							</div>
-						<?php }
+						<?php if ( ampforwp_has_post_thumbnail() ) {  
+							$thumb_url = ampforwp_get_post_thumbnail();
+							if($thumb_url){ ?>
+								<div class="home-post-image">
+									<a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
+										<amp-img
+											src=<?php echo esc_url($thumb_url); ?>
+											<?php ampforwp_thumbnail_alt(); ?>
+											<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
+												width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
+												height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
+											<?php } else { ?>
+												width=100
+												height=75
+											<?php } ?>
+										></amp-img>
+									</a>
+								</div>
+							<?php }
+						}
 							
 							if(has_excerpt()){
 								$content = get_the_excerpt();

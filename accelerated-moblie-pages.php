@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.65
+Version: 0.9.66
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,19 +18,21 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.65');
+define('AMPFORWP_VERSION','0.9.66');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
     $get_permalink_structure = '';
-    $get_permalink_structure = get_option('permalink_structure');
+    //$get_permalink_structure = get_option('permalink_structure');
     
-    if(empty( $get_permalink_structure )) {
-        $ampforwp_slug = '&amp=1';
-    }else{
-        $ampforwp_slug = "amp";
-    }
+    // if(empty( $get_permalink_structure )) {
+    //     $ampforwp_slug = '&amp=1';
+    // }else{
+    //     $ampforwp_slug = "amp";
+    // }
+   	$ampforwp_slug = "amp";
+
     return $ampforwp_slug;
 }
 
@@ -196,8 +198,30 @@ function ampforwp_rewrite_activation() {
 	global $wp_rewrite;
 	$wp_rewrite->flush_rules();
 
+	delete_option('ampforwp_rewrite_flush_option');
+
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
+
+}
+
+add_action('init', 'ampforwp_flush_rewrite_by_option', 20);
+
+function ampforwp_flush_rewrite_by_option(){
+
+	global $wp_rewrite;
+	$get_current_permalink_settings  = "";
+
+	$get_current_permalink_settings  = get_option('ampforwp_rewrite_flush_option');
+
+	if ( $get_current_permalink_settings ) {
+		return;
+	}
+	// Adding double check to make sure, we are not updating and calling database unnecessarily
+	if ( empty( $get_current_permalink_settings )){
+		$wp_rewrite->flush_rules();
+		update_option('ampforwp_rewrite_flush_option', 'true');
+	}
 
 }
 

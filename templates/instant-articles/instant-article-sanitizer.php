@@ -12,6 +12,8 @@ if(class_exists("DOMDocument")){
 	add_filter( 'fbia_content_dom','resize_images');
 	// The empty P tags class should run last
 	add_filter( 'fbia_content_dom','no_empty_p_tags');
+	// Wrap the Tables and Iframes inside Figure
+	add_filter( 'fbia_content_dom','ampforwp_fbia_wrap_elements');
 	}
 function headlines($content){
 		// Replace h3, h4, h5, h6 with h2
@@ -227,6 +229,28 @@ function no_empty_p_tags($DOMDocument){
 
 		return $DOMDocument;
 	}
+function ampforwp_fbia_wrap_elements( $DOMDocument ){
+
+	$figure_object = $DOMDocument->createElement( 'figure' );
+	$figure_object->setAttribute( 'class', 'op-interactive' );
+
+		// The elements to wrap.
+		$elements_to_wrap = array( 'iframe', 'table' );
+
+		foreach ( $elements_to_wrap as $element_to_wrap ) {
+
+			foreach ( $elements = $DOMDocument->getElementsByTagName( $element_to_wrap ) as $element ) {
+				if ( 'figure' !== $element->parentNode->tagName ) {
+
+					$figure_template = clone $figure_object;
+					$element->parentNode->replaceChild( $figure_template, $element );
+					$figure_template->appendChild( $element );
+
+				}
+			}
+		}
+	return $DOMDocument;
+}
 
 	function get_ia_placement_id(){
 		global $redux_builder_amp;

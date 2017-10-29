@@ -68,11 +68,23 @@
     layout="nodisplay"
     side="right">
   <div class="toggle-navigationv2">
-      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div> <?php
-          $menu = wp_nav_menu( array(
+      <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
+      <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
+      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+       <?php
+          $menu_html_content = wp_nav_menu( array(
                                     'theme_location' => 'amp-menu' ,
-                                    'echo' => false) );
-          echo strip_tags( $menu , '<ul><li><a>'); ?>
+                                    'link_before'     => '<span itemprop="name">',
+                                    'link_after'     => '</span>',
+                                    'echo' => false,
+                                    'menu_class' => 'menu amp-menu'
+                                  ) );
+          $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+        $sanitized_comment_content =  $sanitizer_obj->get_amp_content();
+        echo make_clickable( $sanitized_comment_content );
+
+          ?>
+        </nav>
 
   </div>
 </amp-sidebar>

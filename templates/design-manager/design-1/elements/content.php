@@ -41,7 +41,7 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 		do_action('ampforwp_after_post_content',$this) ; ?>
 	<!--Post Next-Previous Links-->
 	<?php
-		if($redux_builder_amp['enable-single-next-prev']) { ?>
+		if($redux_builder_amp['enable-single-next-prev'] && !is_page() ) { ?>
 			<!--IF Starts here-->
 			<div class="amp-wp-content post-pagination-meta">
 				<div id="pagination">

@@ -60,18 +60,13 @@
 		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
 
 		<div class="amp-wp-content amp-loop-list">
-			<?php if ( has_post_thumbnail() || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src() ) ) { 
-				if ( has_post_thumbnail()) {    
-					$thumb_id = get_post_thumbnail_id();
-					$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-					$thumb_url = $thumb_url_array[0];
-					}
-				else{
-					$thumb_url = ampforwp_cf_featured_image_src();
-				}
+			<?php if ( ampforwp_has_post_thumbnail() ) { 
+				$thumb_url = ampforwp_get_post_thumbnail();
+				if($thumb_url){
 				?>
-				<div class="home-post_image"><a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"><amp-img layout="responsive" src=<?php echo $thumb_url ?> width=450 height=270 ></amp-img></a></div>
-			<?php } ?>
+					<div class="home-post_image"><a href="<?php echo esc_url( trailingslashit( $ampforwp_amp_post_url ) ); ?>"><amp-img layout="responsive" src=<?php echo esc_url($thumb_url); ?> width=450 height=270 ></amp-img></a></div>
+				<?php } 
+				} ?>
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
@@ -113,9 +108,9 @@
 
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), 0 ) ?></div>
+			<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text']. ' &raquo;' , 'Show more Posts'), 0 ) ?></div>
 				<?php if ( $paged > 1 ) { ?>
-					<div class="prev"><?php previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ); ?></div>
+					<div class="prev"><?php previous_posts_link( '&laquo; '.ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ); ?></div>
 				<?php } ?>
 			<div class="clearfix"></div>
 		</div>

@@ -1,7 +1,11 @@
+<?php global $redux_builder_amp;
+	if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single'] || isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single'] ) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
 
-	<?php global $redux_builder_amp; ?>
-	<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
+	
+	<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); 
+
+	if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single']) { ?>
 
 	<?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
@@ -15,10 +19,13 @@
 						}
 			} ?>
 		</div>
-	<?php endif; ?>
+	<?php endif; } ?>
 
 
-	<?php	$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+	<?php	
+		if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single']) {
+
+			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
 					<?php  if($redux_builder_amp['amp-rtl-select-option']==0) {
@@ -35,9 +42,9 @@
 						  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
 						}?>
 				</div>
-	<?php endif;?>
+	<?php endif; }?>
 
-</div>
+</div> <?php } ?>
 
 <?php
 
@@ -56,10 +63,10 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                if ( $author_avatar_url ) { ?>
 	                    <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
-	                } ?>
-	                <strong><?php echo esc_html( $post_author->display_name ); ?></strong>: <?php echo  $post_author->description ; ?>
-
-	        <?php } ?>
+	                } 
+	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
+	               	echo  $post_author->description ;  
+	            } ?>
 	    </div>
 	</div> <?php
 	}

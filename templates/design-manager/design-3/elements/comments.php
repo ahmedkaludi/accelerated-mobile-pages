@@ -22,18 +22,22 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 				function ampforwp_custom_translated_comment($comment, $args, $depth){
 									$GLOBALS['comment'] = $comment;
 									global $redux_builder_amp;
-									?>
+									$comment_author_img_url = "";
+									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); ?>
 									<li id="li-comment-<?php comment_ID() ?>"
 									<?php comment_class(); ?> >
 										<article id="comment-<?php comment_ID(); ?>" class="comment-body">
 											<footer class="comment-meta">
+												<?php if($comment_author_img_url){ ?>
+                     								<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+                     							<?php } ?>
 												<div class="comment-author vcard">
 													 <?php
 													 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 												</div>
 												<!-- .comment-author -->
 												<div class="comment-metadata">
-													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
+													<a href="<?php echo htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
 														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 													</a>
 													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
@@ -46,8 +50,10 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 						                          	$comment_content = get_comment_text();
 						                        	// Added <p> tag in comments #873
 						                        	$comment_content = wpautop( $comment_content );
-						                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(),
-						                          'AMP_Video_Sanitizer' => array() ) ) );
+						                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+						                          		'AMP_Img_Sanitizer' => array(),
+							                          	'AMP_Video_Sanitizer' => array(),
+							                          	'AMP_Style_Sanitizer' => array() ) ) );
 						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
 						                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>

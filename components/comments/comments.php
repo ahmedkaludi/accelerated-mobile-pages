@@ -33,11 +33,17 @@ else {
 					function ampforwp_custom_translated_comment($comment, $args, $depth){
 										$GLOBALS['comment'] = $comment;
 										global $redux_builder_amp;
+										$comment_author_img_url = "";
+										$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
+										
 										?>
 										<li id="li-comment-<?php comment_ID() ?>"
 										<?php comment_class(); ?> >
 											<article id="comment-<?php comment_ID(); ?>" class="comment-body">
 												<footer class="comment-meta">
+												<?php if($comment_author_img_url){ ?>
+		                 							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+		                 						<?php } ?>
 													<div class="comment-author vcard">
 														 <?php
 														 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
@@ -53,8 +59,10 @@ else {
 							                        <?php
 							                          	$comment_content = get_comment_text();
 							                        	$comment_content = wpautop( $comment_content );
-							                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(),
-							                          'AMP_Video_Sanitizer' => array() ) ) );
+							                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+							                          		'AMP_Img_Sanitizer' => array(),
+							                          		'AMP_Video_Sanitizer' => array(),
+							                          		'AMP_Style_Sanitizer' => array() ) ) );
 							                         $sanitized_comment_content =  $sanitizer->get_amp_content();
 							                          echo make_clickable( $sanitized_comment_content );   ?>
 												</div>

@@ -5,6 +5,7 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 */
 global $post;
 function ampforwp_framework_get_categories_list(){
+	global $post;
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
@@ -20,7 +21,7 @@ function ampforwp_framework_get_categories_list(){
 	<?php endif; 
 }
 function ampforwp_framework_get_tags_list(){
-
+	global $post;
 	 	$ampforwp_tags=  get_the_terms( $post->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-tags">
