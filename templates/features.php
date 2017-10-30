@@ -980,6 +980,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/<a (href=".*?")(.*?)(target=".*?")(.*?)(sl-processed=".*?")>/', '<a $1$3>', $content);
 				   // removing text-align:center from p tag
 				  $content = preg_replace('/<p(.*?)(text-align:=".*?")(.*?)(center=".*?")(.*?)>/', '<p$1$5>', $content);
+				  // removing paraid, paraeid from p tag
+				   $content = preg_replace('/<p(.*?)(class=".*?")(.*?)paraid=".*?" paraeid=".*?">/', '<p$1$2>', $content);
 
 				return $content;
 		}
