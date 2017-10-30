@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.2
-Stable tag: 0.9.66
+Stable tag: 0.9.66.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,11 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.66.1 (30th October 2017) =
+* Fatal error if has version less than WP 4.8 fixed
+* More Minor Validation errors fixed
+* Odnoklassniki sharing button is not working #1337
 
 = 0.9.66 (29th October 2017) =
 * View more details on https://ampforwp.com/0-9-66-released-bug-squashing-oct-2017-72nd-update/
