@@ -1353,7 +1353,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'Notifications', 'accelerated-mobile-pages' ),
+       'title'      => __( 'Notice Bar', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
        'subsection' => true,
@@ -1387,6 +1387,51 @@ Redux::setArgs( "redux_builder_amp", $args );
        ),
 
    ) );
+
+    // Push Notifications section
+   Redux::setSection( $opt_name, array(
+          'title'       => __( 'Push Notifications', 'accelerated-mobile-pages' ),
+          'icon'        => 'el el-podcast',
+          'id'          => 'ampforwp-push-notifications',
+          'desc'        => " ",
+          'subsection'  => true,
+          'fields'      => array(
+                    array(
+                            'id'        => 'ampforwp-web-push-onesignal',
+                            'type'      => 'switch',
+                            'title'     => 'OneSignal Push Notifications',
+                            'true'      => 'true',
+                            'false'     => 'false', 
+                            'default'   =>  0,
+                            ),
+                    array(
+                            'id'        => 'ampforwp-one-signal-app-id',
+                            'type'      => 'text',
+                            'title'     => 'APP ID',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            ),
+                    array(
+                            'id'        => 'ampforwp-onesignal-http-site',
+                            'type'      => 'switch',
+                            'title'     => 'HTTP Site',
+                            'subtitle'  => 'For HTTP Sites Only',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'true'      => 'true',
+                            'false'     => 'false',
+                            'default'   => 0
+                        ),
+                    array(
+                            'id'        => 'ampforwp-onesignal-subdomain',
+                            'type'      => 'text',
+                            'title'     => 'Subdomain',
+                            'desc'      => __('Example: ampforwp', 'accelerated-mobile-pages'),
+                            'required'  => array(
+                                            array('ampforwp-web-push-onesignal', '=' , '1'),
+                                            array('ampforwp-onesignal-http-site', '=','1')),
+                            ),
+                )
+            ) 
+    );
  // contact form 7 
 $forms_support[] =  array(
                'id'        =>'amp-enable-contactform',
