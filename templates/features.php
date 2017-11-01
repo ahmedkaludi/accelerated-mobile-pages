@@ -4625,11 +4625,10 @@ function ampforwp_url_purifier($url){
 				$url = $url .'&'. $queried_var .'='. $quried_value;
 			}
 		} else {
-			if ( is_home() || is_archive() ) {
+			if ( is_home() || is_archive() || is_front_page() ) {
 				$url = user_trailingslashit( trailingslashit($url) . $endpoint );
 			}
 		}
-		//var_dump($url); die;
 	return $url;
 }
 
