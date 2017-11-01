@@ -980,6 +980,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/<a (href=".*?")(.*?)(target=".*?")(.*?)(sl-processed=".*?")>/', '<a $1$3>', $content);
 				   // removing text-align:center from p tag
 				  $content = preg_replace('/<p(.*?)(text-align:=".*?")(.*?)(center=".*?")(.*?)>/', '<p$1$5>', $content);
+				  // removing paraid, paraeid from p tag
+				   $content = preg_replace('/<p(.*?)(class=".*?")(.*?)paraid=".*?" paraeid=".*?">/', '<p$1$2>', $content);
 
 				return $content;
 		}
@@ -1636,7 +1638,7 @@ function ampforwp_sticky_social_icons(){
 			</a>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-odnoklassniki-share'] == true)  { ?>
-			<a href="http://ok.ru/dk?st.cmd=WidgetShare&st.shareUrl=<?php echo get_the_permalink(); ?>" target="_blank">
+			<a href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php echo get_the_permalink(); ?>" target="_blank">
 				<div class="custom-amp-socialsharing-icon custom-amp-social-sharing-odnoklassniki"> 
 					<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDk1LjQ4MSA5NS40ODEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDk1LjQ4MSA5NS40ODE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDMuMDQxLDY3LjI1NGMtNy40MDItMC43NzItMTQuMDc2LTIuNTk1LTE5Ljc5LTcuMDY0Yy0wLjcwOS0wLjU1Ni0xLjQ0MS0xLjA5Mi0yLjA4OC0xLjcxMyAgICBjLTIuNTAxLTIuNDAyLTIuNzUzLTUuMTUzLTAuNzc0LTcuOTg4YzEuNjkzLTIuNDI2LDQuNTM1LTMuMDc1LDcuNDg5LTEuNjgyYzAuNTcyLDAuMjcsMS4xMTcsMC42MDcsMS42MzksMC45NjkgICAgYzEwLjY0OSw3LjMxNywyNS4yNzgsNy41MTksMzUuOTY3LDAuMzI5YzEuMDU5LTAuODEyLDIuMTkxLTEuNDc0LDMuNTAzLTEuODEyYzIuNTUxLTAuNjU1LDQuOTMsMC4yODIsNi4yOTksMi41MTQgICAgYzEuNTY0LDIuNTQ5LDEuNTQ0LDUuMDM3LTAuMzgzLDcuMDE2Yy0yLjk1NiwzLjAzNC02LjUxMSw1LjIyOS0xMC40NjEsNi43NjFjLTMuNzM1LDEuNDQ4LTcuODI2LDIuMTc3LTExLjg3NSwyLjY2MSAgICBjMC42MTEsMC42NjUsMC44OTksMC45OTIsMS4yODEsMS4zNzZjNS40OTgsNS41MjQsMTEuMDIsMTEuMDI1LDE2LjUsMTYuNTY2YzEuODY3LDEuODg4LDIuMjU3LDQuMjI5LDEuMjI5LDYuNDI1ICAgIGMtMS4xMjQsMi40LTMuNjQsMy45NzktNi4xMDcsMy44MWMtMS41NjMtMC4xMDgtMi43ODItMC44ODYtMy44NjUtMS45NzdjLTQuMTQ5LTQuMTc1LTguMzc2LTguMjczLTEyLjQ0MS0xMi41MjcgICAgYy0xLjE4My0xLjIzNy0xLjc1Mi0xLjAwMy0yLjc5NiwwLjA3MWMtNC4xNzQsNC4yOTctOC40MTYsOC41MjgtMTIuNjgzLDEyLjczNWMtMS45MTYsMS44ODktNC4xOTYsMi4yMjktNi40MTgsMS4xNSAgICBjLTIuMzYyLTEuMTQ1LTMuODY1LTMuNTU2LTMuNzQ5LTUuOTc5YzAuMDgtMS42MzksMC44ODYtMi44OTEsMi4wMTEtNC4wMTRjNS40NDEtNS40MzMsMTAuODY3LTEwLjg4LDE2LjI5NS0xNi4zMjIgICAgQzQyLjE4Myw2OC4xOTcsNDIuNTE4LDY3LjgxMyw0My4wNDEsNjcuMjU0eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik00Ny41NSw0OC4zMjljLTEzLjIwNS0wLjA0NS0yNC4wMzMtMTAuOTkyLTIzLjk1Ni0yNC4yMThDMjMuNjcsMTAuNzM5LDM0LjUwNS0wLjAzNyw0Ny44NCwwICAgIGMxMy4zNjIsMC4wMzYsMjQuMDg3LDEwLjk2NywyNC4wMiwyNC40NzhDNzEuNzkyLDM3LjY3Nyw2MC44ODksNDguMzc1LDQ3LjU1LDQ4LjMyOXogTTU5LjU1MSwyNC4xNDMgICAgYy0wLjAyMy02LjU2Ny01LjI1My0xMS43OTUtMTEuODA3LTExLjgwMWMtNi42MDktMC4wMDctMTEuODg2LDUuMzE2LTExLjgzNSwxMS45NDNjMC4wNDksNi41NDIsNS4zMjQsMTEuNzMzLDExLjg5NiwxMS43MDkgICAgQzU0LjM1NywzNS45NzEsNTkuNTczLDMwLjcwOSw1OS41NTEsMjQuMTQzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" width="50" height="20" />
 				</div>
@@ -4629,4 +4631,87 @@ function ampforwp_url_purifier($url){
 		}
 		//var_dump($url); die;
 	return $url;
+}
+
+// 94. OneSignal Push Notifications
+add_action( 'ampforwp_body_beginning' , 'ampforwp_onesignal_notifications' , 11 );
+if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
+	function ampforwp_onesignal_notifications(){ 
+	global $redux_builder_amp;
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
+		$onesignal_domain 		= '';
+		$onesignal_subdomain 	= '';
+		$onesignal_app_id		= '';
+		$helper_iframe_url		= '';
+		$permission_dialog_url  = '';
+		$service_worker_url		= '';
+		// HTTPS sites
+		$onesignal_domain 		= trailingslashit( esc_url( home_url() ) ) ;
+		$onesignal_app_id		= $redux_builder_amp['ampforwp-one-signal-app-id'];
+		$helper_iframe_url = $onesignal_domain .'amphtml-helper-frame.html?appId=' . $onesignal_app_id;
+
+		$permission_dialog_url = $onesignal_domain .'amp-permission-dialog.html?appId=' . $onesignal_app_id;
+
+		$service_worker_url = $onesignal_domain .'OneSignalSDKWorker.js?appId=' . $onesignal_app_id;
+		// HTTP sites
+		if(isset($redux_builder_amp['ampforwp-onesignal-http-site'] ) && $redux_builder_amp['ampforwp-onesignal-http-site'] ){
+			$onesignal_subdomain = $redux_builder_amp['ampforwp-onesignal-subdomain'];
+			$helper_iframe_url = 'https://' . $onesignal_subdomain . '.os.tc/amp/helper_frame?appId=' . $onesignal_app_id . '';
+			$permission_dialog_url = 'https://' . $onesignal_subdomain . '.os.tc/amp/permission_dialog?appId=' . $onesignal_app_id . '';
+			$service_worker_url = 'https://' . $onesignal_subdomain . '.os.tc/OneSignalSDKWorker.js?appId=' . $onesignal_app_id . '';
+		}	?>
+	 <amp-web-push
+	    id="amp-web-push"
+	    layout="nodisplay"
+	    helper-iframe-url="<?php echo esc_url($helper_iframe_url); ?>"
+	    permission-dialog-url="<?php echo esc_url($permission_dialog_url); ?>"
+	    service-worker-url="<?php echo esc_url($service_worker_url); ?>">
+	 </amp-web-push> 
+<?php 
+		}
+	}
+}
+// OneSignal Push Notifications Widget
+add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
+if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
+	function ampforwp_onesignal_notifications_widget(){ ?>
+		<!-- A subscription widget -->
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
+		  <button class="subscribe" on="tap:amp-web-push.subscribe">
+		    <amp-img
+		             class="subscribe-icon"
+		             width="24"
+		             height="24"
+		             layout="fixed"
+		             src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3Vic2NyaWJlLWljb24iIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMS44NCAxOS44ODdIMS4yMnMtLjk0Ny0uMDk0LS45NDctLjk5NWMwLS45LjgwNi0uOTQ4LjgwNi0uOTQ4czMuMTctMS41MTcgMy4xNy0yLjYwOGMwLTEuMDktLjUyLTEuODUtLjUyLTYuMzA1czIuODUtNy44NyA2LjI2LTcuODdjMCAwIC40NzMtMS4xMzQgMS44NS0xLjEzNCAxLjMyNSAwIDEuOCAxLjEzNyAxLjggMS4xMzcgMy40MTMgMCA2LjI2IDMuNDE4IDYuMjYgNy44NyAwIDQuNDYtLjQ3NyA1LjIyLS40NzcgNi4zMSAwIDEuMDkgMy4xNzYgMi42MDcgMy4xNzYgMi42MDdzLjgxLjA0Ni44MS45NDdjMCAuODUzLS45OTYuOTk1LS45OTYuOTk1SDExLjg0ek04IDIwLjk3N2g3LjExcy0uNDkgMi45ODctMy41MyAyLjk4N1M4IDIwLjk3OCA4IDIwLjk3OHoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=">
+		    </amp-img>
+		    Subscribe to updates
+		  </button>
+		</amp-web-push-widget>
+		<!-- An unsubscription widget -->
+		<amp-web-push-widget visibility="subscribed" layout="fixed" width="230" height="45">
+		   <button class="unsubscribe" on="tap:amp-web-push.unsubscribe">Unsubscribe from updates</button>
+		</amp-web-push-widget>
+	<?php }
+}
+//OneSignal Push Notifications Script
+add_filter('amp_post_template_data', 'ampforwp_onesignal_notifications_script');
+if(!function_exists('ampforwp_onesignal_notifications_script')){
+	function ampforwp_onesignal_notifications_script( $data ){
+		if ( empty( $data['amp_component_scripts']['amp-web-push'] ) ) {
+				$data['amp_component_scripts']['amp-web-push'] = 'https://cdn.ampproject.org/v0/amp-web-push-0.1.js';
+			}
+		return $data;
+	}
+}
+// OneSignal Push Notifications Styling
+add_action('amp_post_template_css' , 'ampforwp_onesignal_notifications_styling' , 99);
+if(!function_exists('ampforwp_onesignal_notifications_styling')){
+	function ampforwp_onesignal_notifications_styling(){ ?>
+    amp-web-push-widget button.subscribe { display: inline-flex; align-items: center; border-radius: 2px; border: 0; box-sizing: border-box; margin: 0; padding: 10px 15px; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4A90E2; color: white; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+    amp-web-push-widget button.subscribe .subscribe-icon {margin-right: 10px;}
+    amp-web-push-widget button.subscribe:active {transform: scale(0.99);}
+    amp-web-push-widget button.unsubscribe {display: inline-flex; align-items: center; justify-content: center; height: 45px; border: 0; margin: 0; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4a90e2; color: #fff; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; padding: 10px 15px;}
+    amp-web-push-widget.amp-invisible{ display:none;}
+<?php }
 }
