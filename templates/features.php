@@ -4673,7 +4673,9 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 // OneSignal Push Notifications Widget
 add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
 if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
-	function ampforwp_onesignal_notifications_widget(){ ?>
+	function ampforwp_onesignal_notifications_widget(){
+	global $redux_builder_amp;
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){ ?>
 		<!-- A subscription widget -->
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
 		  <button class="subscribe" on="tap:amp-web-push.subscribe">
@@ -4692,25 +4694,32 @@ if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 		   <button class="unsubscribe" on="tap:amp-web-push.unsubscribe">Unsubscribe from updates</button>
 		</amp-web-push-widget>
 	<?php }
+	}
 }
 //OneSignal Push Notifications Script
 add_filter('amp_post_template_data', 'ampforwp_onesignal_notifications_script');
 if(!function_exists('ampforwp_onesignal_notifications_script')){
 	function ampforwp_onesignal_notifications_script( $data ){
+	global $redux_builder_amp;
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
 		if ( empty( $data['amp_component_scripts']['amp-web-push'] ) ) {
 				$data['amp_component_scripts']['amp-web-push'] = 'https://cdn.ampproject.org/v0/amp-web-push-0.1.js';
 			}
-		return $data;
+		}
+	return $data;
 	}
 }
 // OneSignal Push Notifications Styling
 add_action('amp_post_template_css' , 'ampforwp_onesignal_notifications_styling' , 99);
 if(!function_exists('ampforwp_onesignal_notifications_styling')){
-	function ampforwp_onesignal_notifications_styling(){ ?>
+	function ampforwp_onesignal_notifications_styling(){
+	global $redux_builder_amp;
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){ ?>
     amp-web-push-widget button.subscribe { display: inline-flex; align-items: center; border-radius: 2px; border: 0; box-sizing: border-box; margin: 0; padding: 10px 15px; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4A90E2; color: white; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
     amp-web-push-widget button.subscribe .subscribe-icon {margin-right: 10px;}
     amp-web-push-widget button.subscribe:active {transform: scale(0.99);}
     amp-web-push-widget button.unsubscribe {display: inline-flex; align-items: center; justify-content: center; height: 45px; border: 0; margin: 0; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4a90e2; color: #fff; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; padding: 10px 15px;}
     amp-web-push-widget.amp-invisible{ display:none;}
 <?php }
+	}	
 }
