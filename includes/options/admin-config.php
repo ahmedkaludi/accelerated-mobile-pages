@@ -1809,6 +1809,15 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Dev Mode', 'accelerated-mobile-pages'),
                         'required' => array('ampforwp-development-mode', '=', 1)
                     ),
+                      array(
+                        'id'       => 'ampforwp-update-notification-bar',
+                        'type'     => 'switch',
+                        'title'    => __('Plugin Update Notification Bar'),
+                        'subtitle' => __('Enable/Disable the Plugin Update Notification Bar', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 1,                        
+                    ),
 
    ),
 

@@ -528,6 +528,7 @@ if ( ! function_exists('ampforwp_init') ) {
 
 
 function AMP_update_db_check() {
+	global $redux_builder_amp;
 	$ampforWPCurrentVersion = AMPFORWP_VERSION;
    	if (get_option( 'AMPforwp_db_version' ) != $ampforWPCurrentVersion) {
 
@@ -535,8 +536,9 @@ function AMP_update_db_check() {
 			update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
 			 wp_redirect(admin_url('/index.php'), 301);
 		}
-
-        add_action('admin_notices', 'ampforwp_update_notice');
+		if( isset($redux_builder_amp['ampforwp-update-notification-bar'] ) && $redux_builder_amp['ampforwp-update-notification-bar']){
+	        add_action('admin_notices', 'ampforwp_update_notice');
+	    }
     }
 }
 add_action( 'plugins_loaded', 'AMP_update_db_check' );
