@@ -154,7 +154,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 * More Minor Validation errors fixed
 * Odnoklassniki sharing button is not working #1337
 
-= 0.9.66 (29th October 2017) =
+= 0.9.66.0 (29th October 2017) =
 * View more details on https://ampforwp.com/0-9-66-released-bug-squashing-oct-2017-72nd-update/
 * Design 3 & Design 1 are optimised with 90+ Google PageSpeed Score on Mobile and 95+ in desktop performance #1273
 * Featured Image from the content for blog and homepage #1295
