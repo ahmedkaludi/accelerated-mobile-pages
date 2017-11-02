@@ -54,6 +54,7 @@ class AMP_Pinterest_Embed_Handler extends AMP_Base_Embed_Handler {
 				'height' => $this->args['height'],
 				'data-do' => "embedPin",
 				'data-url' => $args['url'],
+				'layout'   => 'responsive',
 			)
 		);
 	}
