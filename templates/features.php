@@ -971,6 +971,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 				 //Convert the Twitter embed into url for better sanitization #1010
 				  $content = preg_replace('/<blockquote.+?(?=class="twitter-.*?")class="twitter-.*?".+?(https:\/\/twitter\.com\/\w+\/\w+\/.*?)".+?(?=<\/blockquote>)<\/blockquote>/s', "$1", $content);
+				  // Convert the Soundcloud embed into URL to build amp-soundcloud
+				  $content = preg_replace('/<iframe .*(https?).*(\/\/api\.soundcloud\.com\/tracks\/)([0-9]+)(.*)<\/iframe>/', "$1:$2$3", $content);
 
 				  // for readability attibute in div tag
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
