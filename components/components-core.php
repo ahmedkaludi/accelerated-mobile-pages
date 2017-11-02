@@ -349,6 +349,19 @@ $thisTemplate = new AMP_Post_Template($post_id);
 	</div>
 <?php }
 
+function amp_date($args=array()){
+		global $redux_builder_amp;
+		if(isset($args['format']) && $args['format']=='traditional'){
+			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+        }else{
+        	$post_date =  human_time_diff(
+        						get_the_time('U', get_the_ID() ), 
+        						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
+        						'ago');
+        }
+        echo '<div class="loop-date">'.$post_date.'</div>';
+	}
+
 //Load font Compoment
 	$fontComponent = array();
 	function amp_post_load_custom_fonts(){
