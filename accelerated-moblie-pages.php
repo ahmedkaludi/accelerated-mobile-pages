@@ -520,6 +520,9 @@ if ( ! function_exists('ampforwp_init') ) {
 		add_filter( 'request', 'amp_force_query_var_value' );
 		add_action( 'wp', 'amp_maybe_add_actions' );
 
+		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
+		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
+
 		if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
 			require_once( AMP__DIR__ . '/jetpack-helper.php' );
 		}
@@ -607,3 +610,22 @@ require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
+
+/**
+ * Redirects the old AMP URL to the new AMP URL.
+ * If post slug is updated the amp page with old post slug will be redirected to the updated url.
+ *
+ * @param  string $link New URL of the post.
+ *
+ * @return string $link URL to be redirected.
+ */
+if( ! function_exists( 'ampforwp_redirect_old_slug_to_new_url' ) ){
+	function ampforwp_redirect_old_slug_to_new_url( $link ) {
+
+		if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+			$link = trailingslashit( trailingslashit( $link ) . AMPFORWP_AMP_QUERY_VAR );
+		}
+
+		return $link;
+	}
+}
