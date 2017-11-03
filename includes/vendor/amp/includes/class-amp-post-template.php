@@ -74,7 +74,7 @@ class AMP_Post_Template {
 			'font_urls' => array(
 				'merriweather' => 'https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic',
 			),
-			
+
 			'post_amp_styles' => array(),
 
 			/**
@@ -88,7 +88,7 @@ class AMP_Post_Template {
 			 * @param	object	$post	The current post.
 			 */
 			'amp_analytics' => apply_filters( 'amp_post_template_analytics', array(), $this->post ),
- 		);
+ 			);
 
 		$this->build_post_content();
 		$this->build_post_data();
@@ -102,7 +102,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ] ) ) {
 			return $this->data[ $property ];
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $default;
@@ -307,7 +307,7 @@ class AMP_Post_Template {
 			$featured_html,
 			array( 'AMP_Img_Sanitizer' => array() ),
 			array(
-				'content_max_width' => $this->get( 'content_max_width' )
+				'content_max_width' => $this->get( 'content_max_width' ),
 			)
 		);
 
@@ -414,7 +414,7 @@ class AMP_Post_Template {
 
 		$file = apply_filters( 'amp_post_template_file', $file, $template_type, $this->post );
 		if ( ! $this->is_valid_template( $file ) ) {
-			_doing_it_wrong( __METHOD__, sprintf( __( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'amp' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'amp' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
 			return;
 		}
 
