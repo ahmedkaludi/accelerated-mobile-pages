@@ -3,6 +3,7 @@
 require_once( AMP__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
 require_once( AMP__DIR__ . '/includes/utils/class-amp-html-utils.php' );
 require_once( AMP__DIR__ . '/includes/utils/class-amp-string-utils.php' );
+require_once( AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 
 require_once( AMP__DIR__ . '/includes/class-amp-content.php' );
 
@@ -14,9 +15,9 @@ require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php'
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
 
-require_once( AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
+require_once( AMP__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
@@ -240,6 +241,7 @@ class AMP_Post_Template {
 				apply_filters( 'amp_content_embed_handlers', array(
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
+					'AMP_DailyMotion_Embed_Handler' => array(),
 					'AMP_Vimeo_Embed_Handler' => array(),
 					'AMP_SoundCloud_Embed_Handler' => array(),
 					'AMP_Instagram_Embed_Handler' => array(),
