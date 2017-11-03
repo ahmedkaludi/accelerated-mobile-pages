@@ -74,6 +74,8 @@ class AMP_Post_Template {
 			'font_urls' => array(
 				'merriweather' => 'https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic',
 			),
+			
+			'post_amp_styles' => array(),
 
 			/**
 			 * Add amp-analytics tags.
@@ -264,7 +266,7 @@ class AMP_Post_Template {
 
 			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
 			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
-			$this->add_data_by_key( 'post_amp_styles', $amp_content->get_amp_styles() );
+			$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
 		}else{
 			$this->add_data_by_key( 'post_amp_content', '' );
 			$this->merge_data_for_key( 'amp_component_scripts', array() );
@@ -319,7 +321,7 @@ class AMP_Post_Template {
 		}
 
 		if ( $featured_styles ) {
-			$this->add_data_by_key( 'post_amp_styles', $featured_styles );
+			$this->merge_data_for_key( 'post_amp_styles', $featured_styles );
 		}
 	}
 
