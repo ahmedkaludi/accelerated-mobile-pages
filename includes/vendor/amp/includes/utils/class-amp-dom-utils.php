@@ -106,7 +106,7 @@ class AMP_DOM_Utils {
 				'hr',
 				'img',
 				'input',
-				'keygen' 
+				'keygen',
 				'link',
 				'meta',
 				'param',
