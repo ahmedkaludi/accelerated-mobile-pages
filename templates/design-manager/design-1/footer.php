@@ -6,7 +6,7 @@ wp_reset_postdata(); ?>
 		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
           <div class="footer_menu"> 
            <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+      <nav id ="primary-amp-menu-footer" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
              <?php 
              $menu = wp_nav_menu( array(
                   'theme_location' => 'amp-footer-menu',
