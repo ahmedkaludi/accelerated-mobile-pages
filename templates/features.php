@@ -4607,8 +4607,12 @@ function ampforwp_url_purifier($url){
 			}
 		} else {
 			if ( is_home() || is_archive() || is_front_page() ) {
-				$url = user_trailingslashit( trailingslashit($url) . $endpoint );
-			}
+		        if ( is_archive() && get_query_var('paged') > 1 ) {
+		          	$url = user_trailingslashit( trailingslashit($url) );
+		        } else {
+		          	$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+		        }
+	      	}
 		}
 	return $url;
 }
