@@ -532,12 +532,15 @@ if ( ! function_exists('ampforwp_init') ) {
 
 function AMP_update_db_check() {
 	global $redux_builder_amp;
+	$current_url = '';
+	$current_url = "//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	$ampforWPCurrentVersion = AMPFORWP_VERSION;
    	if (get_option( 'AMPforwp_db_version' ) != $ampforWPCurrentVersion) {
 
    		if ( isset( $_GET['ampforwp-dismiss'] ) && trim($_GET['ampforwp-dismiss'])=="ampforwp_dismiss_admin_notices" ) {
 			update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
-			 wp_redirect(admin_url('/index.php'), 301);
+			$current_url = str_replace('ampforwp-dismiss=ampforwp_dismiss_admin_notices','', $current_url );
+			 wp_redirect($current_url, 301);
 		}
 		if( isset($redux_builder_amp['ampforwp-update-notification-bar'] ) && $redux_builder_amp['ampforwp-update-notification-bar']){
 	        add_action('admin_notices', 'ampforwp_update_notice');
