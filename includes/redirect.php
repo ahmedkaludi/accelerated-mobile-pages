@@ -142,7 +142,7 @@ function ampforwp_page_template_redirect() {
             }
           } // is_archive()
 
-          if ( is_single() ) {
+          if ( is_singular() ) {
 
               $ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
               if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
