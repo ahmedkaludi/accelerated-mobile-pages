@@ -3801,9 +3801,10 @@ global $redux_builder_amp;
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
 
-if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
-	$categories = get_the_category();
-	$selected_cats = array();
+	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
+		$categories = get_the_category();
+		$selected_cats = array();
+		if ( $categories) {
 			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
 			// Check if $get_categories_from_checkbox has some cats then only show
@@ -3820,6 +3821,7 @@ if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 						return false;
 				}
 			} 
+		}
 	}
 }
 
