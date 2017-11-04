@@ -440,4 +440,5 @@ if( !is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 ) { ?>
 .breadcrumb ul li:last-child a::after{display:none;}
 <?php } ?> 
 .amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
+.menu-item amp-img {width: 16px; height: 11px;}
 <?php echo $redux_builder_amp['css_editor']; } ?>

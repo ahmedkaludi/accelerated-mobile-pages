@@ -326,4 +326,5 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .breadcrumb ul li:last-child a::after{display:none;}
 <?php } ?> 
 .amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
+.menu-item amp-img {width: 16px; height: 11px;}
 <?php echo $redux_builder_amp['css_editor']; } ?>
