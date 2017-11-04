@@ -35,6 +35,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
               apply_filters( 'amp_content_embed_handlers', array(
           				'AMP_Twitter_Embed_Handler' => array(),
           				'AMP_YouTube_Embed_Handler' => array(),
+                  'AMP_DailyMotion_Embed_Handler' => array(),
                   'AMP_Vimeo_Embed_Handler' => array(),
                   'AMP_SoundCloud_Embed_Handler' => array(),
           				'AMP_Instagram_Embed_Handler' => array(),
