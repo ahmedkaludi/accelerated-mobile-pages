@@ -103,6 +103,7 @@
 	93. added AMP url purifire for amphtml
 	94. OneSignal Push Notifications
 	95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
+	96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4735,4 +4736,58 @@ if( ! function_exists( 'ampforwp_nav_menu_link_attributes' ) ) {
 	    $atts['itemprop'] = "url";
 	    return $atts;
 	}
+}
+
+// 96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
+function ampforwp_is_front_page(){
+    global $redux_builder_amp;
+
+    // Reading settings me frontpage set
+    $get_front_page_reading_settings  = get_option('page_on_front');
+
+    // Homepage support on   
+    $get_amp_homepage_settings        =  $redux_builder_amp['ampforwp-homepage-on-off-support'];
+
+    // AMP Custom front page from AMP panel
+    $get_custom_frontpage_settings    =  $redux_builder_amp['amp-frontpage-select-option'];
+
+    // Frontpage id should be assigned
+    $get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
+
+    // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
+    if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings)
+        return true;
+
+     // TRUE: When we have " A static page" in reading settings and custom frontpage in amp
+    if ( 'page' == get_option( 'show_on_front') && is_home() && $get_front_page_reading_settings && $get_amp_homepage_settings && $get_custom_frontpage_settings && $get_amp_custom_frontpage_id) {
+
+        $current_page = get_queried_object();
+        if ( $current_page ) {
+          $current_page =  $current_page->ID;
+        }
+        if ( get_option( 'page_for_posts') == $current_page ) {
+            return false ;
+        }
+        return true;
+    }
+
+  return false ;
+
+}
+
+function ampforwp_is_home(){
+    global $redux_builder_amp;
+
+    $output  = false;
+    if ( ampforwp_is_front_page() == false && ampforwp_is_blog () == false && is_home() ) {
+      return true;
+    }
+    return $output;
+}
+
+function ampforwp_is_blog(){
+  $get_blog_details = "";
+  $get_blog_details = ampforwp_get_blog_details();
+
+  return $get_blog_details ;
 }
