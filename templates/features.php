@@ -101,6 +101,8 @@
 	91. Comment Author Gravatar URL
 	92. View AMP in Admin Bar
 	93. added AMP url purifire for amphtml
+	94. OneSignal Push Notifications
+	95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -4724,4 +4726,13 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
     amp-web-push-widget.amp-invisible{ display:none;}
 <?php }
 	}	
+}
+// 95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
+add_filter( 'nav_menu_link_attributes', 'ampforwp_nav_menu_link_attributes', 10, 3 );
+if( ! function_exists( 'ampforwp_nav_menu_link_attributes' ) ) {
+	function ampforwp_nav_menu_link_attributes( $atts, $item, $args ) {
+	    // Manipulate link attributes
+	    $atts['itemprop'] = "url";
+	    return $atts;
+	}
 }
