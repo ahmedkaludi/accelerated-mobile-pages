@@ -226,7 +226,11 @@ jQuery( document ).ready( function( $ ){
 		$.each(moduleJson.fields, function(fieldtype,modData){
 			var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 			if(modData.type=='text-editor'){
-				modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+				if(tinymce.get(fieldIdentifier)){
+					modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+				}else{
+					modData.default = encodeURI($("#"+fieldIdentifier).val().replace("'","\'"));
+				}
 			}if(modData.type=='select'){
 				modData.default = encodeURI($('#'+fieldIdentifier).val());
 			}else{
@@ -254,7 +258,12 @@ jQuery( document ).ready( function( $ ){
 							$.each(moduledetails.fields, function(fieldtype,modData){
 								var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 								if(modData.type=='text-editor'){
-									cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+									if(tinymce.get(fieldIdentifier)){
+										cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+									}else{
+										modData.default = encodeURI($("#"+fieldIdentifier).val().replace("'","\'"));
+									}
+
 								}else{
 									cells[modData.name] = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
 								}

@@ -31,20 +31,12 @@ function amp_content_pagebuilder_title_callback( $post ){
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
 	$editor_id 	= 'ampforwp_custom_content_editor';
 	//wp_editor( $content, $editor_id );
-	if(empty($content)){
-		echo "<div class='amppb_welcome'>
-                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
-                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
-
-                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
-</div>";
-	}
+	
 	//echo "<textarea style='display:none' id='amp-content-preview'>$content</textarea>";
 	/*echo "<div class='rander_amp_html'>";
 		echo html_entity_decode($content);	
 	echo "</div>";*/
-	wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
-	wp_enqueue_style( 'wp-jquery-ui-dialog' );
+	
 
 
 	//previous data stored compatible
@@ -64,9 +56,23 @@ function amp_content_pagebuilder_title_callback( $post ){
 	}
 	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)=='yes'){
 		$url = remove_query_arg('use_amp_pagebuilder');
+
+		if(empty($content)){
+			echo "<div class='amppb_welcome'>
+	                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
+	                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
+
+	                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
+	</div>";
+		}
+
+		wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
+		wp_enqueue_style( 'wp-jquery-ui-dialog' );
+
 		echo "<div class='amppb_welcome'>
 			 <a class='amppb_helper_btn' href='".add_query_arg('ramppb','1',$url)."' style='margin-right:285px;'><span>Remove</span></a>
 		</div>";
+
 		call_page_builder();
 	}else{
 		$url = remove_query_arg('ramppb');
@@ -215,4 +221,3 @@ function ampforwp_get_image() {
 }
 
 require_once AMP_PAGE_BUILDER.'functions.php';
-
