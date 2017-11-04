@@ -56,6 +56,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	//Disable page builder
 	if(isset($_GET['ramppb']) && $_GET['ramppb']=='1'){
 		delete_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
+		delete_post_meta($amp_current_post_id, 'ampforwp_page_builder_enable','yes');
 	}
 	//Enable page builder
 	if(isset($_GET['use_amp_pagebuilder']) && $_GET['use_amp_pagebuilder']=='1'){

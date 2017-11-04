@@ -108,6 +108,15 @@ class AMP_Post_Template {
 
 		return $default;
 	}
+	public function set( $property, $value = '' ) {
+		if ( isset( $this->data[ $property ]  ) ) {
+			return $this->data[ $property ] = $value ;
+		} else {
+			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+		}
+
+		return $value;
+	}
 
 	public function get_customizer_setting( $name, $default = null ) {
 		$settings = $this->get( 'customizer_settings' );
