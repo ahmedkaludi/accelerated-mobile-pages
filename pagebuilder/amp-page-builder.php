@@ -45,7 +45,32 @@ function amp_content_pagebuilder_title_callback( $post ){
 	echo "</div>";*/
 	wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
 	wp_enqueue_style( 'wp-jquery-ui-dialog' );
-	call_page_builder();
+
+
+	//previous data stored compatible
+	//echo get_post_meta( $amp_current_post_id, 'amp-page-builder', true );
+	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)==null && 
+		get_post_meta( $amp_current_post_id, 'amp-page-builder', true ) != ''){
+		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
+	}
+	//Disable page builder
+	if(isset($_GET['ramppb']) && $_GET['ramppb']=='1'){
+		delete_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
+	}
+	//Enable page builder
+	if(isset($_GET['use_amp_pagebuilder']) && $_GET['use_amp_pagebuilder']=='1'){
+		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
+	}
+	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)=='yes'){
+		$url = remove_query_arg('use_amp_pagebuilder');
+		echo "<div class='amppb_welcome'>
+			 <a class='amppb_helper_btn' href='".add_query_arg('ramppb','1',$url)."' style='margin-right:285px;'><span>Remove</span></a>
+		</div>";
+		call_page_builder();
+	}else{
+		$url = remove_query_arg('ramppb');
+		echo '<a href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="" class="button">Use Amp page builder</a>';
+	}
 }
 
 

@@ -291,6 +291,9 @@ jQuery( document ).ready( function( $ ){
 		$.each(popupContents.fields, function(fieldsName,fieldReplace){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+			if(fieldReplace.type=='upload'){
+				htmlFields = htmlFields.replace(/src="#"/g, 'src="{default_value}"');
+			}
 			fieldReplace.default_images = '';
 			switch(fieldReplace.type){
 				case 'select':
