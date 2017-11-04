@@ -217,13 +217,6 @@ main .amp-wp-content.comments_list {background: none;box-shadow: none;max-width:
 .single-post .amp_ad_1{ margin-top: 10px; margin-bottom: -20px; }
 html .single-post .ampforwp-incontent-ad-1 { margin-bottom: 10px; }
 .amp-ad-4{ margin-top:10px; }
-<?php if($redux_builder_amp['amp-enable-notifications']==1){ ?>
-/* Notifications */
-#amp-user-notification1 p { display: inline-block; }
-amp-user-notification { padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
-amp-user-notification button { padding: 8px 10px; background: #000; color: #fff; margin-left: 5px; border: 0; }
-amp-user-notification button:hover { cursor: pointer }
-<?php } ?>
 .amp-wp-content blockquote { background-color: #fff; border-left: 3px solid; margin: 0; padding: 15px 20px 8px 24px; background: #f3f3f3; }
 pre { white-space: pre-wrap; }
 /* Tables */
@@ -247,6 +240,13 @@ table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 .hide-meta-info{ display: none; }
 <?php }?>
+<?php if( $redux_builder_amp['amp-enable-notifications'] == 1 || $redux_builder_amp['ampforwp-cta-subsection-notification-sticky'] == 1 ){ ?>
+/* Notifications */
+#amp-user-notification1 p { display: inline-block; }
+amp-user-notification { padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
+amp-user-notification button { padding: 8px 10px; background: #000; color: #fff; margin-left: 5px; border: 0; }
+amp-user-notification button:hover { cursor: pointer }
+<?php } ?>
 /* Responsive */
 @media screen and (min-width: 650px) { table {display: inline-table;}  }
 @media screen and (max-width: 800px) { .single-post main{ padding: 12px 10px 10px 10px } }
