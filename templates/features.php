@@ -1242,7 +1242,7 @@ function ampforwp_title_callback( $post ) {
              if($post->post_status == 'publish') {
 	             add_thickbox(); ?>
 	             <div class="ampforwp-preview-button-container"> 
-					<input alt="#TB_inline?height=1135&amp;width=718&amp;inlineId=ampforwp_preview" title="AMP Mobile Preview" class="thickbox ampforwp-preview-button preview button" type="button" value="Preview AMP" />  
+					<input alt="#TB_inline?height=1135&amp;width=718&amp;inlineId=ampforwp_preview" title="AMP Mobile Preview" class="thickbox ampforwp-preview-button preview button amp-preview-button" type="button" value="Preview AMP" />  
 				 </div>
 			<?php } ?>   
         </div>
@@ -1252,10 +1252,9 @@ function ampforwp_title_callback( $post ) {
 	 	<div id="ampforwp-preview-format">
 	        <div class="row">
 	            <div class="col-sm-12 margin-top-bottom text-center">
-	                <div class="ampforwp-preview-phone-frame-wrapper">
+	            	<div class="ampforwp-preview-phone-frame-wrapper">
 	                    <div class="ampforwp-preview-phone-frame">
-	                        <div class="ampforwp-preview-container">
-	                            <iframe src="<?php echo $preview_link; ?>"></iframe>
+	                        <div class="ampforwp-preview-container" id="amp-preview-iframe" data-src="<?php echo $preview_link; ?>">
 	                        </div> 
 	                    </div>
 	                </div>
