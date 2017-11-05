@@ -69,9 +69,9 @@ function amp_content_pagebuilder_title_callback( $post ){
 		wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
 		wp_enqueue_style( 'wp-jquery-ui-dialog' );
 
-		echo "<div class='amppb_welcome'>
-			 <a class='amppb_helper_btn' href='".add_query_arg('ramppb','1',$url)."' style='margin-right:285px;'><span>Remove</span></a>
-		</div>";
+		// echo "<div class='amppb_welcome'>
+		// 	 <a class='amppb_helper_btn' href='".add_query_arg('ramppb','1',$url)."' style='margin-right:285px;'><span>Remove</span></a>
+		// </div>";
 
 		call_page_builder();
 	}else{
