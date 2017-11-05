@@ -539,7 +539,8 @@ function AMP_update_db_check() {
 			update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
 			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
 		}
-		if( isset($redux_builder_amp['ampforwp-update-notification-bar'] ) && $redux_builder_amp['ampforwp-update-notification-bar']){
+		if( isset($redux_builder_amp['ampforwp-update-notification-bar'] ) && $redux_builder_amp['ampforwp-update-notification-bar'] && current_user_can( 'manage_options' ) ){
+
 	        add_action('admin_notices', 'ampforwp_update_notice');
 	    }
     }
