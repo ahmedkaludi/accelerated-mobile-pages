@@ -1391,7 +1391,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     // Push Notifications section
    Redux::setSection( $opt_name, array(
           'title'       => __( 'Push Notifications', 'accelerated-mobile-pages' ),
-          'icon'        => 'el el-podcast',
+//          'icon'        => 'el el-podcast',
           'id'          => 'ampforwp-push-notifications',
           'desc'        => " ",
           'subsection'  => true,
@@ -1406,6 +1406,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             ),
                     array(
                             'id'        => 'ampforwp-one-signal-app-id',
+                            'subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a>',
                             'type'      => 'text',
                             'title'     => 'APP ID',
                             'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
