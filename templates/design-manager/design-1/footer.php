@@ -4,22 +4,22 @@ wp_reset_postdata(); ?>
 <footer class="amp-wp-footer">
 	<div id="footer">
 		<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
-          <div class="footer_menu"> 
+      <div class="footer_menu"> 
            <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu-footer" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
-             <?php 
-             $menu = wp_nav_menu( array(
-                  'theme_location' => 'amp-footer-menu',
-                  'link_before'     => '<span itemprop="name">',
-                  'link_after'     => '</span>',
-                  'echo' => false
-              ) );
-             $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
-             $sanitized_menu =  $sanitizer_obj->get_amp_content();
-             echo $sanitized_menu; ?>
-          </div>
-        </nav>
-        <?php } ?>
+          <nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+                 <?php 
+                 $menu = wp_nav_menu( array(
+                      'theme_location' => 'amp-footer-menu',
+                      'link_before'     => '<span itemprop="name">',
+                      'link_after'     => '</span>',
+                      'echo' => false
+                  ) );
+                 $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
+                 $sanitized_menu =  $sanitizer_obj->get_amp_content();
+                 echo $sanitized_menu; ?>
+          </nav>
+        </div>
+    <?php } ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
 			<?php
