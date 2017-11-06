@@ -16,7 +16,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
     //if( 'page' == $post_type && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
-        wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
+        wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
         $amp_current_post_id = get_the_ID();
             if(function_exists('wp_enqueue_editor')){
@@ -33,7 +33,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'backbone',
 						'plupload',
 						'plupload-all',
-					), '0.0.1', true );
+					),AMPFORWP_VERSION, true );
 	        add_action( 'admin_footer', 'js_templates');
 	   
 	    
