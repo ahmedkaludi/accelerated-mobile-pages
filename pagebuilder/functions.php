@@ -98,12 +98,19 @@ function amppb_save_post( $post_id, $post ){
 
 
 
-add_action("pre_amp_render_post",'amp_pagebuilder_content');
+add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
- 	add_filter( 'ampforwp_modify_the_content', 'amppb_post_content', 9 ); // Run 
+ 	add_filter( 'the_content', 'ampforwp_insert_pb_content' ); // Run 
 }
 
-$ampPagebuilderModuleCss = array();
+function  ampforwp_insert_pb_content( $content ){
+	$new_content = "";
+	$new_content = amppb_post_content($content);
+	$content = $new_content;
+	return $content;
+}
+
+
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
 	?>.amp_pb{display: inline-block;width: 100%;}
@@ -139,8 +146,6 @@ function amp_pagebuilder_content_styles(){
 			}//foreach closed
 		}//if closed  count($previousData['rows'])>0
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
-	
-	
 } 
 
 
@@ -207,11 +212,12 @@ function amppb_post_content($content){
 			$content = $html;	
 		}
 	}
+
 	return $content;
 }
 
 function rowData($container,$col){
-	global $moduleTemplate, $ampPagebuilderModuleCss;
+	global $moduleTemplate;
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
@@ -221,10 +227,6 @@ function rowData($container,$col){
 		if(count($container)>0){
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
-				if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
-					$ampPagebuilderModuleCss[$contentArray['type']] = $moduleTemplate[$contentArray['type']]['front_css'];
-					
-				}
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				switch($moduleName){
 					case 'gallery_image':
