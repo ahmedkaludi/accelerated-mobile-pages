@@ -4640,7 +4640,7 @@ function ampforwp_url_purifier($url){
 			}
 		} else {
 			if ( is_home() || is_archive() || is_front_page() ) {
-		        if ( is_archive() && get_query_var('paged') > 1 ) {
+		        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
 		          	$url = user_trailingslashit( trailingslashit($url) );
 		        } else {
 		          	$url = user_trailingslashit( trailingslashit($url) . $endpoint );
