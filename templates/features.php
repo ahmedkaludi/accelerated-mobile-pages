@@ -4793,7 +4793,7 @@ function ampforwp_is_home(){
 
     $output  = false;
     if ( ampforwp_is_front_page() == false && ampforwp_is_blog () == false && is_home() ) {
-      return true;
+       $output  = true;
     }
     return $output;
 }
