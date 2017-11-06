@@ -23,4 +23,13 @@ Reference: #1130 #966
 
 9 Changed placeholder image path from assets folder to image folder
 amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
-'placeholder_image_url' => AMPFORWP_IMAGE_DIR. '/placeholder-icon.png' ,
+'placeholder_image_url' => AMPFORWP_IMAGE_DIR. '/placeholder-icon.png'
+
+10. Embed Handlers: Added support for Vimeo, SoundCloud, Pinterest, Dailymotion and PlayBuzz  
+11.Fixes: Old slug redirect for AMP URLs
+		  Handle issues with data uri images in CSS
+		  Output CSS for feature image
+		  Fix attribute when adding AMP Mustache
+		  Various documentation updates
+		  Coding Standards
+Check #1033 for more details on 10 and 11

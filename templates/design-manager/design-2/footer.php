@@ -4,18 +4,20 @@
       <div id="footer">
         <?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
           <div class="footer_menu"> 
-           <?php // schema.org/SiteNavigationElement missing from menus #1229 ?>
-      <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
-            <?php
-              $menu = wp_nav_menu( array(
-                  'theme_location' => 'amp-footer-menu',
-                  'link_before'     => '<span itemprop="name">',
-                  'link_after'     => '</span>',
-                  'echo' => false
-              ) );
-              echo strip_tags( $menu , '<ul><li><a>'); ?>
+           <?php // #1229 ?>
+            <nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+                <?php
+                  $menu = wp_nav_menu( array(
+                      'theme_location' => 'amp-footer-menu',
+                      'link_before'     => '<span itemprop="name">',
+                      'link_after'     => '</span>',
+                      'echo' => false
+                  ) );
+                  $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
+                  $sanitized_menu =  $sanitizer_obj->get_amp_content();
+                  echo $sanitized_menu; ?>
+            </nav>
           </div>
-        </nav>
         <?php } ?>
 
         <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>

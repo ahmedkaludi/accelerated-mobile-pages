@@ -9,12 +9,15 @@ add_action( 'pre_amp_render_post', 'amp_jetpack_mods' );
  *
  **/
 function amp_jetpack_mods() {
-	if ( Jetpack::is_module_active( 'stats' ) ) {
-		add_action( 'amp_post_template_footer', 'jetpack_amp_add_stats_pixel' );
+	if ( class_exists('Jetpack') ) {
+		if ( Jetpack::is_module_active( 'stats' ) ) {
+			add_action( 'amp_post_template_footer', 'jetpack_amp_add_stats_pixel' );
+		}
+		amp_jetpack_disable_sharing();
+		amp_jetpack_disable_related_posts();
 	}
-	amp_jetpack_disable_sharing();
-	amp_jetpack_disable_related_posts();
 }
+
 
 function amp_jetpack_disable_sharing() {
 	add_filter( 'sharing_show', '__return_false', 100 );
@@ -63,7 +66,7 @@ function jetpack_amp_build_stats_pixel_url() {
 		$data = compact( 'v', 'j', 'blog', 'post', 'tz', 'srv' );
 	}
 
-	$data['host'] = rawurlencode( $_SERVER['HTTP_HOST'] );
+	$data['host'] = isset( $_SERVER['HTTP_HOST'] ) ? rawurlencode( $_SERVER['HTTP_HOST'] ) : '';
 	$data['rand'] = 'RANDOM'; // amp placeholder
 	$data['ref'] = 'DOCUMENT_REFERRER'; // amp placeholder
 	$data = array_map( 'rawurlencode' , $data );
