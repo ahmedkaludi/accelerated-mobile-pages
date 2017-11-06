@@ -217,7 +217,7 @@ var pageBuilderStarter = function(){
 	//Save data of row settings
 	$( document.body ).on('click', "#amppb-rowsetting", function(e){
 		e.preventDefault();
-		console.log("Save button #amppb-rowsetting has clicked");
+		//console.log("Save button #amppb-rowsetting has clicked");
 		var containerId = $(this).attr('data-current-container');
 		
 		var popupContents = $(this).attr('data-template');
@@ -274,7 +274,7 @@ var pageBuilderStarter = function(){
 			}
 			
 		});
-		console.log(JSON.stringify(moduleJson));
+		//console.log(JSON.stringify(moduleJson));
 		$('#module-'+containerdetails[1]).find('#selectedModule').val(JSON.stringify(moduleJson))
 
 		/*var fieldValue = [];
@@ -620,7 +620,7 @@ var pageBuilderStarter = function(){
 									return false;
 								}
 							});
-							console.log(previousValue);
+							//console.log(previousValue);
 						}
 					});
 					$.each(ploatedStructure.rows,function(k,rowVal){
@@ -645,7 +645,7 @@ var pageBuilderStarter = function(){
 					var moduleJson = JSON.parse($(this).find('div.amppb-module:last').find("#selectedModule").val());
 					//Store module inside the array
 					$.each(ploatedStructure.rows,function(k,columnVal){
-						console.log(columnVal.id+' '+containerId);
+						//console.log(columnVal.id+' '+containerId);
 						if(columnVal.id==containerId){
 							
 							var moduleIndex = $(currentDropZone).find('div.amppb-module').length;
@@ -669,7 +669,7 @@ var pageBuilderStarter = function(){
 					});
 					ploatedStructure['totalmodules'] = $moduleId+1;
 					storeJsonDataInput(ploatedStructure);
-					console.log(ploatedStructure);
+					//console.log(ploatedStructure);
 					
 				}
 				loadAfterModule();
@@ -717,7 +717,7 @@ var pageBuilderStarter = function(){
 				var ploatedStructure = JSON.parse($('#amp-page-builder-data').val());
 				var indexOfRow = $(this).parents('.amppb-row').attr('id').replace("conatiner-","");
 				$(this).find('div.amppb-module').each(function(indexKey,val){
-					console.log(indexKey);
+					//console.log(indexKey);
 					var indexOfModule = $(this).attr('id').replace('module-','');
 					$.each(ploatedStructure.rows,function(k,columnVal){
 						if(columnVal.id==indexOfRow){
@@ -809,7 +809,7 @@ var pageBuilderStarter = function(){
 	***************/
 		$(document.body).on('click', "input.selectImage", function(e){
 			e.preventDefault();
-			console.log("selectImage click event called");
+			//console.log("selectImage click event called");
 			var currentSelectfield = $(this);
 			var selectorType = currentSelectfield.attr("data-imageselactor");
 			var multiple = false;
@@ -861,14 +861,14 @@ var pageBuilderStarter = function(){
 
 	function loadEditor(id){
 		id = id;//.replace("-","_").replace("-","_");
-		console.log("loadEditor function called "+ id);
+		//console.log("loadEditor function called "+ id);
 		
 		
 
 	}
 
 	function callToRemoveHasModule(){
-		console.log("called Function");
+		//console.log("called Function");
 		$(".modules-drop").each(function(index, container){
 			if($(this).find('.amppb-module').length==0){
 				$(this).removeClass("has-module");
@@ -879,7 +879,6 @@ var pageBuilderStarter = function(){
 
 }
 if($("#amp-page-builder").length>0){
-	alert('sdcvfd');
 	pageBuilderStarter();
 }
 });
@@ -901,12 +900,12 @@ function Refresh_Image(the_id,currentSelectfield){
         jQuery.get(ajaxurl, data, function(response) {
 
             if(response.success === true) {
-            	console.log(response.data)
+            	//console.log(response.data)
 				if(currentSelectfield.attr("data-imageselactor")=='multiple'){
 					currentSelectfield.parents('.form-control').find('.sample-gallery-template').html("");
 					var imageSrc = '';
 					jQuery.each(response.data, function(keys,imageValue){
-						console.log(imageValue.image);
+						//console.log(imageValue.image);
 						currentSelectfield.parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
 						currentSelectfield.parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
 						imageSrc += imageValue.detail[0]+",";
