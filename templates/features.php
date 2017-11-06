@@ -2468,9 +2468,13 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
     apply_filters( 'amp_content_embed_handlers', array(
           'AMP_Twitter_Embed_Handler' => array(),
           'AMP_YouTube_Embed_Handler' => array(),
+          'AMP_DailyMotion_Embed_Handler' => array(),
+		  'AMP_Vimeo_Embed_Handler' => array(),
+		  'AMP_SoundCloud_Embed_Handler' => array(),
           'AMP_Instagram_Embed_Handler' => array(),
           'AMP_Vine_Embed_Handler' => array(),
           'AMP_Facebook_Embed_Handler' => array(),
+          'AMP_Pinterest_Embed_Handler' => array(),
           'AMP_Gallery_Embed_Handler' => array(),
     ) ),
     apply_filters(  'amp_content_sanitizers', array(
@@ -2479,6 +2483,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
            'AMP_Img_Sanitizer' => array(),
            'AMP_Video_Sanitizer' => array(),
            'AMP_Audio_Sanitizer' => array(),
+           'AMP_Playbuzz_Sanitizer' => array(),
            'AMP_Iframe_Sanitizer' => array(
              'add_placeholder' => true,
            ),
