@@ -13,9 +13,13 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 			'post_id' => $postID,
 			'status' => 'approve' //Change this to the type of comments to be displayed
 	));
-	if ( $comments ) { ?>
+	if ( $comments ) { 
+		$comment_nums = '';
+		$comment_nums =  get_comments_number();
+		$comment_nums = " ($comment_nums) " ?>
 		<div class="amp-wp-content comments_list">
-            <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></h3>
+            <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' ). $comment_nums ?>
+            </h3>
             <ul>
 					<?php
 					// Display the list of comments
