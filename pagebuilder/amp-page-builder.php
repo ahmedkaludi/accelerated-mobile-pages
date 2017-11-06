@@ -72,7 +72,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 		call_page_builder();
 	}else{
 		$url = remove_query_arg('ramppb');
-		echo '<div href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="start_amp_pb_post" class="start_amp_pb" data-postId="'.get_the_ID().'" onclick="">Use Amp page builder</div>';
+		echo '<div href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="start_amp_pb_post" class="start_amp_pb" data-postId="'.get_the_ID().'" onclick="">Start the AMP Page Builder</div>';
 	}
 }
 
