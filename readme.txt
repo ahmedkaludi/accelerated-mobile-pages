@@ -31,12 +31,13 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
-* NEW - Structured Data Options (New & Improved)
+* NEW - OneSignal Push Notifications integration 
+* NEW - Structured Data Options
 * NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
-* NEW - AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
-* NEW - Page Break / NextPage (Pagination) Support
+* AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
+* Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * Facebook Comments Support
 * Github Gist Support
