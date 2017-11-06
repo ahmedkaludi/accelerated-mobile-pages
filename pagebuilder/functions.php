@@ -122,8 +122,8 @@ function amppb_save_post( $post_id, $post ){
 
 
 add_action("pre_amp_render_post",'amp_pagebuilder_content');
-function amp_pagebuilder_content(){
-		add_filter( 'the_content', 'amppb_post_content', 1 ); // Run 
+function amp_pagebuilder_content(){ 
+ 	add_filter( 'ampforwp_modify_the_content', 'amppb_post_content', 9 ); // Run 
 }
 
 $ampPagebuilderModuleCss = array();

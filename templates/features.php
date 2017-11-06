@@ -2417,8 +2417,10 @@ function ampforwp_output_widget_content_above_loop() {
 	$sanitized_sidebar = "";
 	$sidebar_output = "";
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');	
-    $sidebar_output = $sanitized_sidebar->get_amp_content();
-    echo $sidebar_output;
+    if ( $sanitized_sidebar) {
+		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
+	}
+      if ( $sidebar_output) {  echo $sidebar_output ; }
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
@@ -2427,8 +2429,10 @@ function ampforwp_output_widget_content_below_loop() {
     $sanitized_sidebar = "";
 	$sidebar_output = "";
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');	
-    $sidebar_output = $sanitized_sidebar->get_amp_content();
-    echo $sidebar_output;
+ if ( $sanitized_sidebar) {
+		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
+	}
+    if ( $sidebar_output) : echo $sidebar_output;  endif; 
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
@@ -2437,11 +2441,12 @@ function ampforwp_output_widget_content_below_the_header() {
 	 $sanitized_sidebar = "";
 	 $sidebar_output = "";
 	 $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
-     $sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
-
+     if ( $sanitized_sidebar) {
+		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
+	}?>
    	<div class="amp-wp-content widget-wrapper">
 	   	<div class="amp_widget_below_the_header">
-	  	<?php echo $sidebar_output; ?> </div>
+	  	<?php  if ( $sidebar_output) : echo $sidebar_output;  endif; ?> </div>
   	</div> 
 
 <?php }
@@ -2451,10 +2456,12 @@ function ampforwp_output_widget_content_above_the_footer() {
 	$sanitized_sidebar = "";
 	$sidebar_output = "";
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
-	$sidebar_output = $sanitized_sidebar->get_amp_content(); ?>
+	if ( $sanitized_sidebar) {
+		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
+	}?>
    	<div class="amp-wp-content widget-wrapper">
 		<div class="amp_widget_above_the_footer">
-		<?php echo $sidebar_output; ?> </div>
+		<?php  if ( $sidebar_output) : echo $sidebar_output;  endif; ?> </div>
 	</div>
 
 <?php }
@@ -2468,7 +2475,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   dynamic_sidebar( $sidebar );
   $non_sanitized_sidebar = ob_get_contents();
   ob_end_clean();
-
+if ( $non_sanitized_sidebar ) {
   $sanitized_sidebar = new AMP_Content( $non_sanitized_sidebar,
     apply_filters( 'amp_content_embed_handlers', array(
           'AMP_Twitter_Embed_Handler' => array(),
@@ -2494,6 +2501,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
            ),
     )  )
   );
+}
 
   return $sanitized_sidebar;
 }
