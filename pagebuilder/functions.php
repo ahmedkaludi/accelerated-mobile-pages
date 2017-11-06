@@ -2,28 +2,6 @@
 
 require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
 
-$output = '<div class="amp_pb_module {{row_class}}">';
-$outputEnd = '</div>';
-$containerCommonSettings = array(
-			'fields' => array(
-							array(
-								'type'		=>'text',
-								'name'		=>"row_label",
-								'label'		=>'Row label',
-								'default'	=>'',
-								),
-					
-							array(
-								'type'		=>'text',
-								'name'		=>"row_class",
-								'label'		=>'Row class',
-								'default'	=>'',
-								)
-							),
-			'front_template_start'=>$output,
-			'front_template_end'=>$outputEnd
-			);
-
 
 /* Admin Script */
 /**
@@ -41,8 +19,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
         wp_enqueue_media();
         $amp_current_post_id = get_the_ID();
-        if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)=='yes'){
-	        if(function_exists('wp_enqueue_editor')){
+            if(function_exists('wp_enqueue_editor')){
 	        	wp_enqueue_editor();
 	        }
 			wp_enqueue_script( 'text-widgets' );
@@ -58,7 +35,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'plupload-all',
 					), '0.0.1', true );
 	        add_action( 'admin_footer', 'js_templates');
-	    }
+	   
 	    
     }
 }

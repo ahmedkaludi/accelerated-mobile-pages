@@ -1,4 +1,40 @@
+
 jQuery( document ).ready( function( $ ){
+
+
+	$('#start_amp_pb_post').click(function(){
+        var ampPbLoader = document.getElementById('start_amp_pb_post');
+        if(ampPbLoader!=null){
+        	$(this).html('Loading...<span class="dashicons dashicons-update spinner"></span>');
+            var postId = ampPbLoader.getAttribute("data-postId");
+            var data = {
+                'action': 'call_page_builder',
+                'post_id': postId,
+            };
+            $.ajax({
+            	url:ajaxurl,
+            	type:'get',
+            	data:data,
+            	beforeSend: function(){
+            		$(this).html('Loading...<span class="dashicons dashicons-update"></span>');
+            	},
+            	success: function(response){
+            		//alert(response)
+            		$('#pagebilder_content').find('.inside').html(response);
+            		pageBuilderStarter();
+            	},
+            	error: function(){
+            		alert('Error occurred, not getting response');
+            		$(this).html("Use Amp page builder");
+            	}
+            });
+           
+        }
+    });
+
+	//Page builder starter
+var pageBuilderStarter = function(){
+
     $( "#sorted_rows" ).sortable({
     	placeholder: "ui-state-highlight",
     	handle  : '.amppb-handle',
@@ -841,8 +877,12 @@ jQuery( document ).ready( function( $ ){
 	}
 
 
+}
+if($("#amp-page-builder").length>0){
+	alert('sdcvfd');
+	pageBuilderStarter();
+}
 });
-
 /**
  *
  *

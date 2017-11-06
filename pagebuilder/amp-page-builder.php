@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) { 
+if ( ! defined( 'ABSPATH' ) ) {
 	echo "Silence is golden"; 
 }
 
@@ -7,27 +7,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'AMP_PAGE_BUILDER', plugin_dir_path(__FILE__) );
 define( 'AMP_PAGE_BUILDER_URL', plugin_dir_url(__FILE__) );
 
+//Set Metabox
 add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register');
 function ampforwp_pagebuilder_content_meta_register($post_type){
 	global $redux_builder_amp;
-
 	// Page builder for posts
   	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
   		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
-  	} 
-  	
+  	}
   	// Page builder for pages
   	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
   		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
   	}
-
 }
 
 function amp_content_pagebuilder_title_callback( $post ){
 	global $post;
 	$amp_current_post_id = $post->ID;
-	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
-
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
 	$editor_id 	= 'ampforwp_custom_content_editor';
 	//wp_editor( $content, $editor_id );
@@ -63,7 +59,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
 
 	                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
-	</div>";
+				</div>";
 		}
 
 		wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
@@ -76,21 +72,31 @@ function amp_content_pagebuilder_title_callback( $post ){
 		call_page_builder();
 	}else{
 		$url = remove_query_arg('ramppb');
-		echo '<a href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="" class="button">Use Amp page builder</a>';
+		echo '<div href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="start_amp_pb_post" class="start_amp_pb" data-postId="'.get_the_ID().'" onclick="">Use Amp page builder</div>';
 	}
 }
 
-
+add_action("wp_ajax_call_page_builder", "call_page_builder");
 
 /* Add page builder form after editor */
 function call_page_builder(){
 	global $post;
 	global $moduleTemplate;
+	if($post!=null){
+		$postId = $post->ID;
+	}
+	if(isset($_GET['post_id'])){
+		$postId = $_GET['post_id'];
+	}
 	add_thickbox();
-	$previousData = get_post_meta($post->ID,'amp-page-builder');
-	$ampforwp_pagebuilder_enable = get_post_meta($post->ID,'ampforwp_page_builder_enable', true);
+	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder')!='yes'){
+		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
+	}
+
+	$previousData = get_post_meta($postId,'amp-page-builder');
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	//$previousData = wp_slash($previousData);
+	
 	$previousData = (str_replace("'", "", $previousData));
 	
 	$totalRows = 1;
@@ -109,6 +115,7 @@ function call_page_builder(){
 			$previousData = json_encode($jsonData);
 		}
 	}
+	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
 	<div class="enable_ampforwp_page_builder">
 		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
@@ -120,22 +127,15 @@ function call_page_builder(){
 		
         <div id="sorted_rows" class="amppb-rows droppable">
             <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>
-			
         </div><!-- .amppb-rows -->
- 		
-
         <?php /* This is where our action buttons to add rows 
 			Modules
         */ ?>
         <div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
 			    <span id="action-col-1" class="amppb-add-row button-primary button-large draggable module-col-1" data-template="col-1">1 Column</span>
 			    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2">2 Columns</span>
-			    
         </div><!-- .amppb-actions -->
        
- 
-        
-
         <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
 		    <?php
 		    foreach ($moduleTemplate as $key => $module) {
@@ -146,7 +146,6 @@ function call_page_builder(){
         
         
     </div>
-    <?php add_thickbox(); ?>
     <div id="my-amppb-dialog" class="hidden" style="max-width:800px">
 
     	<div class="amp-pb-module-content">
@@ -176,22 +175,11 @@ function call_page_builder(){
  			</div>
  		</div>
 	</div>
-	<!-- <div id="my-image-dialog" class="hidden" style="max-width:800px">
-    	<input type="button" class="button" value="Select image" id="selectImage">
-		<img id="ampforwp-preview-image" src="http://via.placeholder.com/350x150" />
-		<input type="hidden" name="ampforwp_image_id" id="ampforwp_image_id" value="" class="regular-text" />
-		<div class="amppb-tc-footer">
- 			<div class="amppb-status"></div>
- 			<div class="buttons-groups">
- 				<input type="button" class="button" data-current-container="" data-current-module="" id="amppb-rowData-content-image" data-type="image" value="Submit">
- 			</div>
- 		</div>
-	</div> -->
     <?php
 }
 
 // Ajax action to refresh the user image
-add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image'   );
+add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');
 function ampforwp_get_image() {
     if(isset($_GET['id']) ){
 		if(strpos($_GET['id'],",") !== false){
