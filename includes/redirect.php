@@ -15,7 +15,7 @@ function ampforwp_check_amp_page_status() {
       wp_safe_redirect( $redirection_location );
       exit;
     }
-	
+  
   }
 }
 add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
@@ -83,7 +83,6 @@ function ampforwp_page_template_redirect() {
     }
 
     if( ampforwp_is_home() &&$redux_builder_amp['ampforwp-homepage-on-off-support'] == 0 ){
-
         return;
     }
 
@@ -103,6 +102,18 @@ function ampforwp_page_template_redirect() {
             session_destroy();
         }
     }
+
+    if ( (is_home() || is_archive()) && $wp->query_vars['paged'] >= '2' ) {
+        $new_url    =  home_url('/');
+        $category_path  = $wp->request;
+        $explode_path   = explode("/",$category_path);
+        $inserted     = array(AMPFORWP_AMP_QUERY_VAR);
+        array_splice( $explode_path, -2, 0, $inserted );
+        $impode_url = implode('/', $explode_path);
+
+        $updated_amp_url = $new_url . $impode_url ;
+    }
+
     // Check if we are on Mobile phones then start redirection process
     if ( wp_is_mobile() ) {
 
@@ -123,8 +134,13 @@ function ampforwp_page_template_redirect() {
 
           if ( ampforwp_is_home() ) {
 
-             wp_redirect( user_trailingslashit(trailingslashit( esc_url( home_url() ) ) . AMPFORWP_AMP_QUERY_VAR ) ,  301 );
+              $current_url = home_url(AMPFORWP_AMP_QUERY_VAR) ;
+              if ( $wp->query_vars['paged'] >= '2' ) {
+                  $current_url = $updated_amp_url;
+              }
+             wp_redirect( user_trailingslashit( esc_url(  $current_url ) ) ,  301 );
                 exit();
+
           } // is_home()
 
           if ( ampforwp_is_blog() ) {
@@ -139,12 +155,14 @@ function ampforwp_page_template_redirect() {
           } // ampforwp_is_blog
 
           if ( is_archive() ) {
-
-            if ( $redux_builder_amp['ampforwp-archive-support'] == 1 ) {
-                $current_archive_url = home_url( $wp->request );
-                wp_redirect( user_trailingslashit(trailingslashit( esc_url( $current_archive_url ) ) . AMPFORWP_AMP_QUERY_VAR ) , 301 );
-                exit();  
-            }
+              if ( $redux_builder_amp['ampforwp-archive-support'] == 1 ) {
+                  $current_archive_url = trailingslashit( home_url( $wp->request ) ) . AMPFORWP_AMP_QUERY_VAR;
+                  if ( $wp->query_vars['paged'] >= '2' ) {
+                      $current_archive_url = $updated_amp_url;
+                  }
+                  wp_redirect( user_trailingslashit( esc_url( $current_archive_url ) ) , 301 );
+                  exit();  
+              }
           } // is_archive()
 
           if ( is_singular() ) {
@@ -171,16 +189,16 @@ add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
 function ampforwp_page_template_redirect_archive() {
 
-	if ( is_404() ) {
-		if( ampforwp_is_amp_endpoint() ) {
-			global $wp;
-			$ampforwp_404_url 	= add_query_arg( '', '', home_url( $wp->request ) );
-			$ampforwp_404_url	= trailingslashit($ampforwp_404_url );
-			$ampforwp_404_url = dirname($ampforwp_404_url);
-			wp_redirect( esc_url( $ampforwp_404_url )  , 301 );
-			exit();
-		}
-	}
+  if ( is_404() ) {
+    if( ampforwp_is_amp_endpoint() ) {
+      global $wp;
+      $ampforwp_404_url   = add_query_arg( '', '', home_url( $wp->request ) );
+      $ampforwp_404_url = trailingslashit($ampforwp_404_url );
+      $ampforwp_404_url = dirname($ampforwp_404_url);
+      wp_redirect( esc_url( $ampforwp_404_url )  , 301 );
+      exit();
+    }
+  }
 }
 // Redirection code is not working properly. Need fix
 //add_action( 'template_redirect', 'ampforwp_page_template_redirect_non_amp', 10 );
