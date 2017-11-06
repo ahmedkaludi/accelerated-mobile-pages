@@ -327,4 +327,6 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 <?php } ?> 
 .amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
 .menu-item amp-img {width: 16px; height: 11px; display: inline-block; margin-right: 5px;}
-<?php echo $redux_builder_amp['css_editor']; } ?>
+<?php // Ads (sitewide)
+if( ( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) || ( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) ){ ?> .amp-ad-wrapper{ text-align: center } .amp-ad-wrapper{ text-align: center; margin-left: -13px; } .amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; } .amp-ad-2{ margin-bottom: 50px; } .amp_home_body .amp_ad_1{ margin-top: 10px; margin-bottom: -20px; }<?php } 
+echo $redux_builder_amp['css_editor']; } ?>
