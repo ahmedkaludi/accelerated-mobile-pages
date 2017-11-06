@@ -2508,70 +2508,85 @@ if ( $non_sanitized_sidebar ) {
 // Sidebar Scripts	
 add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_data' );
 function ampforwp_add_sidebar_data( $data ) {
-	$sanitized_data_above_loop = '';
-	$sanitized_data_below_loop = '';
+	$sanitized_data_above_loop 	 = '';
+	$sanitized_data_below_loop 	 = '';
 	$sanitized_data_below_header = '';
 	$sanitized_data_above_footer = '';
 	// Get the Data
-	$sanitized_data_above_loop = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');
-	$sanitized_data_below_loop = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');
+	$sanitized_data_above_loop 	 = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');
+	$sanitized_data_below_loop 	 = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');
 	$sanitized_data_below_header = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
 	$sanitized_data_above_footer = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
-	// Add Scripts
-	if ( $sanitized_data_above_loop->get_amp_scripts() ) {
-		foreach ($sanitized_data_above_loop->get_amp_scripts() as $key => $value ) {
-			if( empty( $data['amp_component_scripts'][$key] ) ){
-				$data['amp_component_scripts'][$key]  = $value;
+
+	if ( $sanitized_data_above_loop ) {
+		// Add Scripts
+		if ( $sanitized_data_above_loop->get_amp_scripts() ) {
+			foreach ($sanitized_data_above_loop->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_above_loop->get_amp_styles() ) {
+			foreach ($sanitized_data_above_loop->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
 			}
 		}
 	}
-	if ( $sanitized_data_below_loop->get_amp_scripts() ) {
-		foreach ($sanitized_data_below_loop->get_amp_scripts() as $key => $value ) {
-			if( empty( $data['amp_component_scripts'][$key] ) ){
-				$data['amp_component_scripts'][$key]  = $value;
+	if ( $sanitized_data_below_loop ) {
+		// Add Scripts
+		if ( $sanitized_data_below_loop->get_amp_scripts() ) {
+			foreach ($sanitized_data_below_loop->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_below_loop->get_amp_styles() ) {
+			foreach ($sanitized_data_below_loop->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
 			}
 		}
 	}
-	if ( $sanitized_data_below_header->get_amp_scripts() ) {
-		foreach ($sanitized_data_below_header->get_amp_scripts() as $key => $value ) {
-			if( empty( $data['amp_component_scripts'][$key] ) ){
-				$data['amp_component_scripts'][$key]  = $value;
+	if ( $sanitized_data_below_header ) {
+		// Add Scripts
+		if ( $sanitized_data_below_header->get_amp_scripts() ) {
+			foreach ($sanitized_data_below_header->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_below_header->get_amp_styles() ) {
+			foreach ($sanitized_data_below_header->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
 			}
 		}
 	}
-	if ( $sanitized_data_above_footer->get_amp_scripts() ) {
-		foreach ($sanitized_data_above_footer->get_amp_scripts() as $key => $value ) {
-			if( empty( $data['amp_component_scripts'][$key] ) ){
-				$data['amp_component_scripts'][$key]  = $value;
+	if ( $sanitized_data_above_footer ) {		
+		// Add Scripts
+		if ( $sanitized_data_above_footer->get_amp_scripts() ) {
+			foreach ($sanitized_data_above_footer->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
 			}
 		}
-	}
-	// Add Styles
-	if ( $sanitized_data_above_loop->get_amp_styles() ) {
-		foreach ($sanitized_data_above_loop->get_amp_styles() as $key => $value ) {
-			if( empty( $data['post_amp_styles'][$key] ) ){
-				$data['post_amp_styles'][$key]  = $value;
-			}
-		}
-	}
-	if ( $sanitized_data_below_loop->get_amp_styles() ) {
-		foreach ($sanitized_data_below_loop->get_amp_styles() as $key => $value ) {
-			if( empty( $data['post_amp_styles'][$key] ) ){
-				$data['post_amp_styles'][$key]  = $value;
-			}
-		}
-	}
-	if ( $sanitized_data_below_header->get_amp_styles() ) {
-		foreach ($sanitized_data_below_header->get_amp_styles() as $key => $value ) {
-			if( empty( $data['post_amp_styles'][$key] ) ){
-				$data['post_amp_styles'][$key]  = $value;
-			}
-		}
-	}
-	if ( $sanitized_data_above_footer->get_amp_styles() ) {
-		foreach ($sanitized_data_above_footer->get_amp_styles() as $key => $value ) {
-			if( empty( $data['post_amp_styles'][$key] ) ){
-				$data['post_amp_styles'][$key]  = $value;
+		// Add Styles
+		if ( $sanitized_data_above_footer->get_amp_styles() ) {
+			foreach ($sanitized_data_above_footer->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
 			}
 		}
 	}
