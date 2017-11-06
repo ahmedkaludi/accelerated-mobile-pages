@@ -82,7 +82,8 @@ function ampforwp_page_template_redirect() {
         return;
     }
 
-    if( $redux_builder_amp['ampforwp-homepage-on-off-support'] == 0 ){
+    if( ampforwp_is_home() &&$redux_builder_amp['ampforwp-homepage-on-off-support'] == 0 ){
+
         return;
     }
 
