@@ -36,10 +36,16 @@ class AMP_Content {
 
 	private function transform() {
 		$content = $this->content;
-
 		// First, embeds + the_content filter
 		$embed_handlers = $this->register_embed_handlers();
-		$content = apply_filters( 'the_content', $content );
+		if( $this->args && 'non-content' == $this->args['non-content'] ){
+			$content = apply_filters( 'the_content', $content );
+			$content = apply_filters( 'amp_general_content', $content );
+		}
+		else{			
+			$content = apply_filters( 'the_content', $content );
+			$content = apply_filters( 'amp_pagebuilder_content', $content );
+		}
 		$this->unregister_embed_handlers( $embed_handlers );
 
 		// Then, sanitize to strip and/or convert non-amp content

@@ -100,7 +100,7 @@ function amppb_save_post( $post_id, $post ){
 
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
- 	add_filter( 'the_content', 'ampforwp_insert_pb_content' ); // Run 
+ 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' ); // Run 
 }
 
 function  ampforwp_insert_pb_content( $content ){
