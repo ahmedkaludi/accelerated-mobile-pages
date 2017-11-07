@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.3
-Stable tag: 0.9.67
+Stable tag: 0.9.67.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -150,7 +150,7 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 == Changelog ==
 
-= 0.9.67 (6th November 2017) =
+= 0.9.67.0 (6th November 2017) =
 * View more details on https://ampforwp.com/one-signal-push-notifications-for-amp/
 * OneSignal Push Notifications integrated #807
 * Vimeo embed support added
