@@ -176,6 +176,9 @@ function call_page_builder(){
  		</div>
 	</div>
     <?php
+    if(isset($_GET['post_id'])){
+		exit;
+	}
 }
 
 // Ajax action to refresh the user image
