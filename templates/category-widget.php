@@ -66,7 +66,6 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               <a class="ampforwp_wc_shortcode_title" href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
                   <?php echo get_the_title(); ?>
               </a> <?php
-
               if( $ampforwp_show_excerpt == 'yes' ) { ?>
                 <div class="ampforwp_wc_shortcode_excerpt"> <?php
                   if( has_excerpt() ) {
@@ -74,7 +73,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
                   } else {
                     $content = get_the_content();
                   } ?>
-                  <p class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></p>
+
+                  <div class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></div>                  
                 </div> <?php
               } ?>
 
