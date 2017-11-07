@@ -441,7 +441,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}
 			}
 		// Facebook Like Script
-		if( isset($redux_builder_amp['ampforwp-facebook-like-button'] ) && true == $redux_builder_amp['ampforwp-facebook-like-button'] ){
+		if( isset($redux_builder_amp['ampforwp-facebook-like-button'] ) && true == $redux_builder_amp['ampforwp-facebook-like-button'] && is_single() ){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
@@ -4473,7 +4473,9 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 			return true;
 		}
 		elseif(isset($redux_builder_amp['ampforwp-featured-image-from-content']) && $redux_builder_amp['ampforwp-featured-image-from-content'] == true){
-			return true;
+			if( ampforwp_get_featured_image_from_content() || ampforwp_get_featured_image_from_content('url') ){				
+				return true;
+			}
 		}
 		else
 			return false;
