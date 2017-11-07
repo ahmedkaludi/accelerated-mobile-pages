@@ -9,6 +9,18 @@ if ( is_single() ) {
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this); ?>
 	<div class="amp-wp-content post-pagination-meta ampforwp-social-icons-wrapper ampforwp-social-icons">
+		<?php if( true == $redux_builder_amp['ampforwp-facebook-like-button'] ) {
+			$facebook_like_url = '';
+			$facebook_like_url = $redux_builder_amp['ampforwp-facebook-like-url'];
+			if( $facebook_like_url ){ ?>
+				<amp-facebook-like width=90 height=28
+				 	layout="fixed"
+				 	data-size="large"
+				    data-layout="button_count"
+				    data-href="<?php echo esc_url($facebook_like_url); ?>">
+				</amp-facebook-like>
+			<?php }
+		} ?>	   
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>

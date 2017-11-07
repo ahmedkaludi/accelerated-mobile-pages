@@ -2849,6 +2849,23 @@ Redux::setSection( $opt_name, array(
         'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
+          // Facebook Like 
+          array(
+              'id'        =>  'ampforwp-facebook-like-button',
+              'type'      =>  'switch',
+              'title'     =>  __('Facebook Like Button', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Facebook Like URL
+          array(
+               'id'       => 'ampforwp-facebook-like-url',
+               'title'    => __('Facebook Page URL', 'accelerated-mobile-pages'),
+               'subtitle' => __('The absolute URL of the page that will be liked. For example, https://www.facebook.com/ampforwp/', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
+               'placeholder'  => __('Enter your facebook page url','accelerated-mobile-pages'),
+               'default'  => ''
+          ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
