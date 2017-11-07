@@ -2511,7 +2511,7 @@ if ( $non_sanitized_sidebar ) {
            'AMP_Iframe_Sanitizer' => array(
              'add_placeholder' => true,
            ),
-    )  )
+    )  ), array('non-content'=>'non-content')
   );
 }
 
