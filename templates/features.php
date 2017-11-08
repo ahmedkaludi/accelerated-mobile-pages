@@ -4752,7 +4752,18 @@ add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widg
 if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
 	global $redux_builder_amp;
-	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){ ?>
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){ 
+		$subscribe    	  = '';
+		$unsubscribe  	  = '';
+		$subscribe 		  = 'Subscribe to updates';
+		$unsubscribe 	  = 'Unsubscribe from updates';
+		if($redux_builder_amp['ampforwp-onesignal-translator-subscribe']){
+			$subscribe 	  = $redux_builder_amp['ampforwp-onesignal-translator-subscribe'];
+		}
+		if($redux_builder_amp['ampforwp-onesignal-translator-unsubscribe']){
+			$unsubscribe  = $redux_builder_amp['ampforwp-onesignal-translator-unsubscribe'];
+		}
+		?>
 		<!-- A subscription widget -->
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
 		  <button class="subscribe" on="tap:amp-web-push.subscribe">
@@ -4763,12 +4774,14 @@ if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 		             layout="fixed"
 		             src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3Vic2NyaWJlLWljb24iIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMS44NCAxOS44ODdIMS4yMnMtLjk0Ny0uMDk0LS45NDctLjk5NWMwLS45LjgwNi0uOTQ4LjgwNi0uOTQ4czMuMTctMS41MTcgMy4xNy0yLjYwOGMwLTEuMDktLjUyLTEuODUtLjUyLTYuMzA1czIuODUtNy44NyA2LjI2LTcuODdjMCAwIC40NzMtMS4xMzQgMS44NS0xLjEzNCAxLjMyNSAwIDEuOCAxLjEzNyAxLjggMS4xMzcgMy40MTMgMCA2LjI2IDMuNDE4IDYuMjYgNy44NyAwIDQuNDYtLjQ3NyA1LjIyLS40NzcgNi4zMSAwIDEuMDkgMy4xNzYgMi42MDcgMy4xNzYgMi42MDdzLjgxLjA0Ni44MS45NDdjMCAuODUzLS45OTYuOTk1LS45OTYuOTk1SDExLjg0ek04IDIwLjk3N2g3LjExcy0uNDkgMi45ODctMy41MyAyLjk4N1M4IDIwLjk3OCA4IDIwLjk3OHoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=">
 		    </amp-img>
-		    Subscribe to updates
+		    <?php echo $subscribe; ?>
 		  </button>
 		</amp-web-push-widget>
 		<!-- An unsubscription widget -->
 		<amp-web-push-widget visibility="subscribed" layout="fixed" width="230" height="45">
-		   <button class="unsubscribe" on="tap:amp-web-push.unsubscribe">Unsubscribe from updates</button>
+		   <button class="unsubscribe" on="tap:amp-web-push.unsubscribe">
+		   	<?php echo $unsubscribe; ?>
+		   </button>
 		</amp-web-push-widget>
 	<?php }
 	}

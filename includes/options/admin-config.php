@@ -1440,6 +1440,27 @@ data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'
                                             array('ampforwp-web-push-onesignal', '=' , '1'),
                                             array('ampforwp-onesignal-http-site', '=','1')),
                             ),
+                    array(
+                       'id' => 'translation',
+                       'type' => 'section',
+                       'title' => __('Translation', 'accelerated-mobile-pages'),
+                       'required' => array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                       'indent' => true,
+                    ),
+                    array(
+                       'id'       => 'ampforwp-onesignal-translator-subscribe',
+                       'type'     => 'text',
+                       'title'    => __('Subscribe', 'accelerated-mobile-pages'),
+                       'default'  => __('Subscribe to updates','accelerated-mobile-pages'),
+                       'placeholder'=>__('Add some text','accelerated-mobile-pages'),
+                   ),
+                     array(
+                       'id'       => 'ampforwp-onesignal-translator-unsubscribe',
+                       'type'     => 'text',
+                       'title'    => __('Unsubsribe', 'accelerated-mobile-pages'),
+                       'default'  => __('Unsubscribe from updates','accelerated-mobile-pages'),
+                       'placeholder'=>__('Add some text','accelerated-mobile-pages'),
+                   ),
                 )
             ) 
     );
