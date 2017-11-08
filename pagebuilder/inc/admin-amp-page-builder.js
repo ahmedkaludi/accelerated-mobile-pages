@@ -25,7 +25,7 @@ jQuery( document ).ready( function( $ ){
             	},
             	error: function(){
             		alert('Error occurred, not getting response');
-            		$(this).html("Use Amp page builder");
+            		$(this).html("Start the AMP Page Builder");
             	}
             });
            

@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.8.2
-Stable tag: 0.9.66.1
+Tested up to: 4.8.3
+Stable tag: 0.9.67.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,12 +31,13 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
-* NEW - Structured Data Options (New & Improved)
+* NEW - OneSignal Push Notifications integration 
+* NEW - Structured Data Options
 * NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
 * NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
-* NEW - AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
-* NEW - Page Break / NextPage (Pagination) Support
+* AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
+* Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * Facebook Comments Support
 * Github Gist Support
@@ -148,6 +149,32 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.67.0 (6th November 2017) =
+* View more details on https://ampforwp.com/one-signal-push-notifications-for-amp/
+* OneSignal Push Notifications integrated #807
+* Vimeo embed support added
+* SoundCloud embed support added
+* Pinterest embed support added
+* PlayBuzz embed support added
+* DailyMotion embed support added
+* Fix: Handle issues with data uri images in CSS #1033
+* Fix attribute when adding AMP Mustache lib #1033
+* Fix: Output CSS for feature image #1033
+* An option added for users who don't want to receive update notifications #1342
+* Structured data nav improvement
+* Sitenavigationelement has been implemented correctly for footer menu. #1345
+* Style sanitization for Menu Items #1359
+* Polylang flags support for menu  #1360
+* Mobile Redirection issues fixed #1173
+* Jetpack fatal error fixed #1355
+* AMP Page Builder requires a button to be clicked, so the scripts are not running on the runtime making it easy on the edit screen page and avoid the possible script conflict.
+* Needs proper CTA Bar's styling. #1361
+* Debug errors on archive pages #1353
+* Preview shall only be loaded on click rather than in background #1331
+* ampforwp_is_home() function code improved
+* making sure scripts and styling is properly adding when sanitizing the sidebar #868
+* All the backend css and js should be versioned, so it's not cached. #1335
 
 = 0.9.66.1 (30th October 2017) =
 * Fatal error if has version less than WP 4.8 fixed

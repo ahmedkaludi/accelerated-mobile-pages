@@ -33,3 +33,6 @@ amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
 		  Various documentation updates
 		  Coding Standards
 Check #1033 for more details on 10 and 11
+
+12. Argument specific filters added at line number 43 and 47 of class-amp-content.php
+Reason: To extend the functionality of sidebars and Pagebuilder

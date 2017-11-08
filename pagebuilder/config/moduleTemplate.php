@@ -16,7 +16,7 @@ if (is_dir($dir)) {
 
 //Row Contents
 $output = '<div class="amp_pb_module {{row_class}}">';
-$outputEnd = '</div>';
+$outputEnd = '<div class="cb"></div> </div>';
 $containerCommonSettings = array(
 			'fields' => array(
 							array(

@@ -606,21 +606,22 @@ Form Styles
     margin: 0;
 }
 .start_amp_pb{
-font-size: 15px;
+    font-size: 15px;
     height: 40px;
     line-height: 2.55;
     padding: 0px 20px 0px 5px;
-    font-weight: 400;
+    font-weight: 300;
     background: #ed1c25;
     border: 0;
     color: #fff;
+    cursor: pointer;
     text-shadow: none;
     position: relative;
     top: 3px;
-    /* float: none; */
-    width: 220px;
+    width: fit-content;
     margin: 0 auto;
     display: block;
+    border-radius: 3px;
 }
 .start_amp_pb:before {
     content: "";

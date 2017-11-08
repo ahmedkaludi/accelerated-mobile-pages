@@ -16,7 +16,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
     //if( 'page' == $post_type && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
-        wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), '0.0.1' );
+        wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
         $amp_current_post_id = get_the_ID();
             if(function_exists('wp_enqueue_editor')){
@@ -33,7 +33,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'backbone',
 						'plupload',
 						'plupload-all',
-					), '0.0.1', true );
+					),AMPFORWP_VERSION, true );
 	        add_action( 'admin_footer', 'js_templates');
 	   
 	    
@@ -98,15 +98,21 @@ function amppb_save_post( $post_id, $post ){
 
 
 
-add_action("pre_amp_render_post",'amp_pagebuilder_content');
+add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
- 	add_filter( 'ampforwp_modify_the_content', 'amppb_post_content', 9 ); // Run 
+ 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' ); // Run 
 }
 
-$ampPagebuilderModuleCss = array();
+function  ampforwp_insert_pb_content( $content ){
+	$new_content = "";
+	$new_content = amppb_post_content($content);
+	$content = $new_content;
+	return $content;
+}
+
+
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
-	global $ampPagebuilderModuleCss;
 	?>.amp_pb{display: inline-block;width: 100%;}
     .row{display: inline-flex;width: 100%;}
 	.col-2{width:50%;float:left;}
@@ -115,7 +121,31 @@ function amp_pagebuilder_content_styles(){
     .amp_btn{text-align:center}
     .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 	<?php
-	echo implode(" ", $ampPagebuilderModuleCss);
+	//To load css of modules which are in use
+	global $redux_builder_amp, $moduleTemplate, $post;
+	$postId = $post->ID;
+	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$previousData = get_post_meta($postId,'amp-page-builder');
+	$previousData = isset($previousData[0])? $previousData[0]: null;
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+		$previousData = (str_replace("'", "", $previousData));
+		$previousData = json_decode($previousData,true);
+		if(count($previousData['rows'])>0){
+
+			foreach ($previousData['rows'] as $key => $rowsData) {
+				$container = $rowsData['cell_data'];
+				if(count($container)>0){
+					foreach($container as $contentArray){
+						echo $moduleTemplate[$contentArray['type']]['front_css'];
+					}//foreach content closed 
+				}//ic container check closed
+
+			}//foreach closed
+		}//if closed  count($previousData['rows'])>0
+	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 
 
@@ -182,11 +212,12 @@ function amppb_post_content($content){
 			$content = $html;	
 		}
 	}
+
 	return $content;
 }
 
 function rowData($container,$col){
-	global $moduleTemplate, $ampPagebuilderModuleCss;
+	global $moduleTemplate;
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
@@ -196,10 +227,6 @@ function rowData($container,$col){
 		if(count($container)>0){
 			foreach($container as $contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
-				if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
-					$ampPagebuilderModuleCss[$contentArray['type']] = $moduleTemplate[$contentArray['type']]['front_css'];
-					
-				}
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				switch($moduleName){
 					case 'gallery_image':
