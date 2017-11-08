@@ -580,6 +580,16 @@ Redux::setArgs( "redux_builder_amp", $args );
             'fields'     => array(
                 // Ad 1 Starts
                 array(
+                    'id'        =>'ampforwp-ads-data-loading-strategy',
+                    'type'      => 'switch',
+                    'title'     => __('Optimize For Viewability', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'subtitle'  => __('To optimised Ads by setting the parameter:
+data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'),
+                    'true'      => 'Enabled',
+                    'false'     => 'Disabled',
+                ),
+                array(
                     'id'        =>'enable-amp-ads-1',
                     'type'      => 'switch',
                     'title'     => __('AD #1', 'accelerated-mobile-pages'),
