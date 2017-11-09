@@ -4409,7 +4409,7 @@ function ampforwp_new_gallery_images($images, $image){
 	}
 	else{
 		// If there is no caption
-		return '<div class="ampforwp-gallery-item">'. $images . '</div>';
+		return '<div class="ampforwp-gallery-item amp-carousel-container">'. $images . '</div>';
 	}
 }
 
