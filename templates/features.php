@@ -1046,7 +1046,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		}
 
 	// 11.5 Strip unwanted codes the_content of Frontpage
-    add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_frontpage');
+   // add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_frontpage');
         function ampforwp_strip_invalid_content_frontpage(){
             if ( is_front_page() || is_home() ) {
 			add_filter( 'the_content', 'ampforwp_the_content_filter_frontpage', 20 );
