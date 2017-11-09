@@ -354,6 +354,7 @@ main .amp-wp-content{ direction: rtl; }
 .amp_author_area_wrapper strong{ float: right; }
 .amp-menu li.menu-item-has-children:after { left: 0; right: auto; }
 amp-sidebar { direction: rtl; }
+amp-carousel{direction: ltr;}
 <?php } ?>
 
 a {  color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']; ?> }

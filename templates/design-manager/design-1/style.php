@@ -163,6 +163,7 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .amp-wp-byline amp-img{ margin:0px 0px 0px 6px;}
 .comment-author{float: right;}
 .amp-ad-wrapper,.amp-wp-article amp-ad{ direction: ltr; }
+amp-carousel{direction: ltr;}
 <?php } ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
 .callnow{ position: relative; top: -27px; right: 100px; }
