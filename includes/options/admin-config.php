@@ -1241,7 +1241,8 @@ data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'
                 'NewsArticle'   => 'NewsArticle',
                 'Recipe'        => 'Recipe',
                 'Product'       => 'Product',
-                'VideoObject'   => 'VideoObject'
+                'VideoObject'   => 'VideoObject',
+                'Article'       => 'Article'
             );
             return $options;
         }
