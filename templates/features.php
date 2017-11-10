@@ -3877,7 +3877,7 @@ function ampforwp_supported_post_types($supported_types){
 global $redux_builder_amp;
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				if( is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' ) ) {					
-					if ( $redux_builder_amp['ampforwp-custom-type'] ) {
+					if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
 						foreach($redux_builder_amp['ampforwp-custom-type'] as $custom_post){
 							$supported_types[] = $custom_post;
 						}
