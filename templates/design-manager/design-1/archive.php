@@ -40,7 +40,7 @@
 
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
-	<?php do_action('ampforwp_post_before_loop',$count) ?>
+	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php $count = 1; ?>
 
 	  <?php if ( is_archive() ) {

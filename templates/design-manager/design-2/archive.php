@@ -123,7 +123,10 @@
             <div class="cb"></div>
 		</div>
 
-	<?php endwhile;  ?>
+	<?php
+	do_action('ampforwp_between_loop',$count,$this);
+		         $count++;
+	 endwhile;  ?>
 
 		<div class="amp-wp-content pagination-holder">
 
