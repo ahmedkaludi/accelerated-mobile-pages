@@ -1731,7 +1731,16 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
 
                     ),
-
+                    array(
+                        'id'       => 'amp-meta-permissions',
+                        'type'     => 'select',
+                        'title'    => __('AMP Metabox Permission', 'accelerated-mobile-pages'),
+                        'options'  => array(
+                            'all'       => 'All users who can post',
+                            'admin'     => 'Only to Admin'
+                        ),
+                        'default'  => 'all',
+                    ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',

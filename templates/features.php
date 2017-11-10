@@ -1195,7 +1195,14 @@ function ampforwp_title_custom_meta() {
 
     $post_types = ampforwp_get_all_post_types();
 
-    if ( $post_types ) { // If there are any custom public post types.
+    $user_level = '';
+    $user_level = current_user_can( 'manage_options' );
+
+    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
+    	$user_level = true;
+    }
+
+    if ( $post_types && $user_level ) { // If there are any custom public post types.
 
         foreach ( $post_types  as $post_type ) {
 
@@ -1305,7 +1312,14 @@ function ampforwp_mobile_redirection() {
   	global $redux_builder_amp;
     $post_types = ampforwp_get_all_post_types();
 
-    if ( $post_types ) { // If there are any custom public post types.
+    $user_level = '';
+    $user_level = current_user_can( 'manage_options' );
+
+    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
+    	$user_level = true;
+    }
+
+    if ( $post_types && $user_level ) { // If there are any custom public post types.
 
         foreach ( $post_types  as $post_type ) {
 

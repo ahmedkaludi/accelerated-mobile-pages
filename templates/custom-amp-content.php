@@ -69,19 +69,29 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
 
 function ampforwp_custom_content_meta_register() {
-  global $redux_builder_amp;
-  if($redux_builder_amp['amp-on-off-for-all-posts']) {
-    add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
-  }
+    global $redux_builder_amp;
 
-  if($redux_builder_amp['amp-on-off-for-all-pages']){
-    add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
-  }
+    $user_level = '';
+    $user_level = current_user_can( 'manage_options' );
 
-  // Assign Pagebuilder Meta Box
-  if ( $redux_builder_amp['ampforwp-content-builder'] ) {
-    add_meta_box( 'custom_content_sidebar', __( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
-  }  
+    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
+      $user_level = true;
+    }
+
+    if ( $user_level ) {
+        if($redux_builder_amp['amp-on-off-for-all-posts']) {
+          add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
+        }
+
+        if($redux_builder_amp['amp-on-off-for-all-pages']){
+          add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
+        }
+
+        // Assign Pagebuilder Meta Box // Legecy pagebuilder
+        if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+          add_meta_box( 'custom_content_sidebar', __( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
+        }  
+    }
 
 }
 add_action('add_meta_boxes','ampforwp_custom_content_meta_register');
