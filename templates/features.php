@@ -4950,3 +4950,14 @@ function ampforwp_is_blog(){
 
   return $get_blog_details ;
 }
+// Change the format of the post date on Loops #1384
+add_filter('ampforwp_modify_post_date', 'ampforwp_full_post_date_loops');
+if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
+	function ampforwp_full_post_date_loops($date){
+		global $redux_builder_amp;
+		if(isset($redux_builder_amp['ampforwp-full-post-date']) && true == $redux_builder_amp['ampforwp-full-post-date'] ){
+			$date =  get_the_date();
+		}
+	return $date;
+	}
+}

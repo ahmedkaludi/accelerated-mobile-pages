@@ -2586,7 +2586,15 @@ Redux::setSection( $opt_name, array(
                         'default'   =>'1',
                 ),
 
-            // Homepage thumbnail
+               // Full date Format
+                array(
+                        'id'        =>'ampforwp-full-post-date',
+                        'type'      =>'switch',
+                        'title'     =>__('Date Format','accelerated-mobile-pages'),
+                        'subtitle' => __('Display Full Date of Posts on Homepage/Archives. ex: 11 November 2017', 'accelerated-mobile-pages'),
+                        'required' => array(array('amp-design-selector', '!=' , '2') ), 
+                        'default'   =>'0',
+                ),
 
 
             // Homepage thumbnail
