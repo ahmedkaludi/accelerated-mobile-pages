@@ -1406,6 +1406,7 @@ data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'
           'id'          => 'ampforwp-push-notifications',
           'desc'        => " ",
           'subsection'  => true,
+          'class'       =>'ampforwp-new-element',
           'fields'      => array(
                     array(
                             'id'        => 'ampforwp-web-push-onesignal',
