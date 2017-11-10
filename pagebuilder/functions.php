@@ -139,7 +139,9 @@ function amp_pagebuilder_content_styles(){
 				$container = $rowsData['cell_data'];
 				if(count($container)>0){
 					foreach($container as $contentArray){
-						echo $moduleTemplate[$contentArray['type']]['front_css'];
+						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
+							echo $moduleTemplate[$contentArray['type']]['front_css'];
+						}
 					}//foreach content closed 
 				}//ic container check closed
 

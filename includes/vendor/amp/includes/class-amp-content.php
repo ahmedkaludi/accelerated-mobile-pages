@@ -38,9 +38,11 @@ class AMP_Content {
 		$content = $this->content;
 		// First, embeds + the_content filter
 		$embed_handlers = $this->register_embed_handlers();
-		if( $this->args && 'non-content' == $this->args['non-content'] ){
-			$content = apply_filters( 'the_content', $content );
-			$content = apply_filters( 'amp_general_content', $content );
+		if( (!empty($this->args)) && (!empty($this->args['non-content'])) ){
+			if('non-content' == $this->args['non-content']){
+				$content = apply_filters( 'the_content', $content );
+				$content = apply_filters( 'amp_general_content', $content );
+			}
 		}
 		else{			
 			$content = apply_filters( 'the_content', $content );
