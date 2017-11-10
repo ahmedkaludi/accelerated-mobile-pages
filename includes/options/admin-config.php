@@ -583,7 +583,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'id'        =>'ampforwp-ads-data-loading-strategy',
                     'type'      => 'switch',
                     'title'     => __('Optimize For Viewability', 'accelerated-mobile-pages'),
-                    'default'   => 1,
+                    'default'   => 0,
                     'subtitle'  => __('To optimised Ads by setting the parameter:
 data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'),
                     'true'      => 'Enabled',
