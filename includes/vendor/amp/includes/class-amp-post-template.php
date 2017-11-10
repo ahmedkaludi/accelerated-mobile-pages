@@ -165,7 +165,9 @@ class AMP_Post_Template {
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
 		if(!empty($this->post)){
 			$post_author = get_userdata( $this->post->post_author );
-			$post_author_name = $post_author->display_name;
+			if ( $post_author ) {
+				$post_author_name = $post_author->display_name;
+			}
 		}
 		else {
 			$post_author = '';
