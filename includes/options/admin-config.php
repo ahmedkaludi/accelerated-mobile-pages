@@ -2181,7 +2181,7 @@ Redux::setSection( $opt_name, array(
 
              $fields =  array(
                 'id'       => 'amp-design-selector',
-                'type'     => 'demolink_image_select',
+                'type'     => 'select_image',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
@@ -3294,7 +3294,6 @@ Redux::setSection( $opt_name, array(
            ),
         )        
 ) );
-    Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 
 
 
