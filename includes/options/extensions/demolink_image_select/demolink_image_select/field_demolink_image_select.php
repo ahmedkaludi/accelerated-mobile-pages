@@ -214,7 +214,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 
             wp_enqueue_script(
                 'field-demolink-select-image-js',
-               $this->extension_url .'field_demolink_image_select' . Redux_Functions::isMin() . '.js',
+               $this->extension_url .'field_demolink_image_select.js',
                 array('jquery', 'select2-js', 'redux-js'),
                 time(),
                 true
