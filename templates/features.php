@@ -2895,32 +2895,53 @@ function amp_latest_products_styling() {
 
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
+add_action('admin_head','ampforwp_change_default_amp_post_meta');
 function ampforwp_change_default_amp_page_meta() {
 	global $redux_builder_amp;
-	$check_meta 		= get_option('ampforwp_default_pages_to');
-	$checker			= 'show';
-	$control			= $redux_builder_amp['amp-pages-meta-default'];
-	$meta_value_to_upate = 'default';
+	// Pages
+	$check_meta_page 		= get_option('ampforwp_default_pages_to');
+	$checker_page			= 'show';
+	$control_page			= $redux_builder_amp['amp-pages-meta-default'];
+	$meta_value_to_upate_page = 'default';
 
-	if ( $control  === 'hide' ) {
-		$checker				= 'hide';
-		$meta_value_to_upate 	= 'hide-amp';
+	if ( $control_page  === 'hide' ) {
+		$checker_page				= 'hide';
+		$meta_value_to_upate_page 	= 'hide-amp';
 	}
-
-	// Check and Run only if the value has been changed, else return
-	if ( $check_meta === $checker ) {
+	if ( $check_meta_page === $checker_page ) {
 		return;
 	}
 	// Get all the pages and update the post meta
 	$pages = get_pages(array());
 	foreach($pages as $page){
-	    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+	    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate_page);
 	}
-	// Update the option as the process has been done and update an option
-	update_option('ampforwp_default_pages_to', $checker);
+	// Check and Update the option if the value has been changed
+	update_option('ampforwp_default_pages_to', $checker_page);
 	return ;
 }
 
+function ampforwp_change_default_amp_post_meta() {
+	global $redux_builder_amp;
+	// Posts
+	$check_meta_post 		= get_option('ampforwp_default_posts_to');
+	$checker_post			= 'show';
+	$control_post			= $redux_builder_amp['ampforwp-posts-meta-default'];
+	$meta_value_to_upate_post = 'default';
+	if ( $control_post  === 'hide' ) {
+		$checker_post				= 'hide';
+		$meta_value_to_upate_post 	= 'hide-amp';
+	}
+	if ( $check_meta_post === $checker_post ) {
+		return;
+	}
+	$posts = get_posts(array());
+	foreach($posts as $post){
+	    update_post_meta($post->ID,'ampforwp-amp-on-off', $meta_value_to_upate_post);
+	}
+	update_option('ampforwp_default_posts_to', $checker_post);
+	return ;
+}
 
 // Adding the meta="description" from yoast or from the content
 add_action('amp_post_template_head','ampforwp_meta_description');

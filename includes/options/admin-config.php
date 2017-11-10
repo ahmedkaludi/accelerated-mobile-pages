@@ -1694,7 +1694,21 @@ Redux::setSection( $opt_name, array(
                            ),
                            'default'  => 'show',
                            'required'=>array('amp-on-off-for-all-pages','=','1'),
-                        ),       
+                        ),
+                        // Show/Hide Posts (BULK)
+                        array(
+                           'id'       => 'ampforwp-posts-meta-default',
+                           'type'     => 'select',
+                           'title'    => __( 'Individual AMP Post (Bulk Edit)', 'accelerated-mobile-pages' ),
+                           'subtitle' => __( 'Allows you to Show or Hide AMP from All posts, so it can be changed individually later. This option will change the  Default value of AMP metabox in Posts', 'accelerated-mobile-pages' ),
+                           'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
+                           'options'  => array(
+                               'show' => __('Show by Default', 'accelerated-mobile-pages' ),
+                               'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
+                           ),
+                           'default'  => 'show',
+                           'required'=>array('amp-on-off-for-all-posts','=','1'),
+                        ),          
                         array(
                         'id'        =>'hide-amp-categories',
                         'type'      => 'checkbox',
