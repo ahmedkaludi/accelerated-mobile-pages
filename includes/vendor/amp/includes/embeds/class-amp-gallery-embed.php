@@ -131,6 +131,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 				'height' => $this->args['height'],
 				'type' => 'slides',
 				'layout' => 'responsive',
+				'class'  => 'collapsible-captions',
 			),
 			implode( PHP_EOL, $images )
 		);

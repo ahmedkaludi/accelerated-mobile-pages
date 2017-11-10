@@ -4402,17 +4402,86 @@ add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 2);
 function ampforwp_new_gallery_images($images, $image){
 	//Check if the attachment has caption or not
 	if(isset($image['caption']) && $image['caption'] != '' ){
+		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
+		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 		$caption = $image['caption'];
-		$figcaption = '<p class="wp-caption-text">'. wp_kses_data( $caption ) . '</p>';
 		// Append the caption with image
-		return '<div class="ampforwp-gallery-item">'. $images . $figcaption .'</div>';
+		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
 	}
 	else{
 		// If there is no caption
 		return '<div class="ampforwp-gallery-item amp-carousel-container">'. $images . '</div>';
 	}
 }
-
+if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
+	function ampforwp_additional_style_carousel_caption(){ ?>
+    .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
+    .collapsible-captions * {
+      /* disable chrome touch highlight */
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      box-sizing: border-box;
+    }
+    .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
+    .collapsible-captions amp-img img {object-fit: contain; }
+    .collapsible-captions figure { margin: 0; padding: 0; }
+    /* single line caption */
+    .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
+      /* inital height is one line */
+      max-height: var(--caption-height);
+      line-height: var(--caption-height);
+      padding: 0 var(--button-size) 0 5px;
+      /* cut text after first line and show an ellipsis */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* animate expansion */
+      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      /* overlay the carousel icons */
+      z-index: 1000;
+      /* some styling */
+      color: var(--caption-color);
+      background: rgba(0, 0, 0, 0.6);    
+    }
+    /* expanded caption */
+    .collapsible-captions figcaption.expanded {
+      /* add padding and show all of the text */
+      line-height: inherit;
+      white-space: normal;
+      text-overflow: auto;
+      max-height: 100px;
+      /* show scrollbar in case caption is larger than image */
+      overflow: auto;
+    }
+    /* don't show focus highlights in chrome */
+    .collapsible-captions figcaption:focus { outline: none; border: none; }
+    /* the expand/collapse icon */
+    .collapsible-captions figcaption span { display: block; position: absolute;
+      top: calc((var(--caption-height) - var(--button-size)) / 2);
+      right: 2px; width: var(--button-size); height: var(--button-size);
+      line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
+      cursor: pointer; }
+	figcaption{ margin-bottom: 20px; }
+<?php }
+ }
+// amp-bind for carousel with captions
+if( !function_exists('ampforwp_carousel_bind_script')){
+	function ampforwp_carousel_bind_script($data){
+		if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+			$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+		}	
+	return $data;
+	}
+}
+// To enable the carousel magic
+add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
+if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
+		function ampforwp_carousel_class_magic($data){
+		$content = $data->get('post_amp_content');
+		$content = str_replace(array(':openbrack:',':closebrack:'), array('[',']'), $content);
+		$data->set('post_amp_content',$content);
+		return $data;
+	}
+}
 // 86. minify the content of pages
 add_filter('ampforwp_the_content_last_filter','ampforwp_minify_html_output');
 function ampforwp_minify_html_output($content_buffer){
