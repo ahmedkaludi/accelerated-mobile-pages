@@ -1017,17 +1017,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
 				  // removing color from span tag
 				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
-				  // removing sl-processed form anchor tag
-				  $content = preg_replace('/<a (href=".*?")(.*?)(target=".*?")(.*?)(sl-processed=".*?")>/', '<a $1$3>', $content);
-				  $content = preg_replace('/<a (href=".*?")(.*?)(rel=".*?")(.*?)(sl-processed=".*?")>/', '<a $1$3>', $content);
-				  // Removing text-align, center, font-size from the a tag
-				  $content = preg_replace('/<a (href=".*?")(.*?)(rel=".*?").*?(text-align:=".*?").*?(center=".*?").*?(font-size:=".*?")>/', '<a $1 $3>', $content);
-				  // Removing _blank="" from the a tag
-				  $content = preg_replace('/<a (href=".*?")(.*?)(_blank=".*?")>/', '<a $1 $2>', $content);
-				   // removing text-align:center from p tag
-				  $content = preg_replace('/<p(.*?)(text-align:=".*?")(.*?)(center=".*?")(.*?)>/', '<p$1$5>', $content);
-				  // removing paraid, paraeid from p tag
-				   $content = preg_replace('/<p(.*?)(class=".*?")(.*?)paraid=".*?" paraeid=".*?">/', '<p$1$2>', $content);
+				  // removing sl-processed attribute
+				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
 
 				return $content;
 		}
