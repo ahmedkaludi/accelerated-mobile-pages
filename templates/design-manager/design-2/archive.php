@@ -68,6 +68,8 @@
  	} ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
+		$count = "";
+		$count = 1;
 		$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
 
 		$ampforwp_amp_post_url  = user_trailingslashit( $ampforwp_amp_post_url );
@@ -123,7 +125,10 @@
             <div class="cb"></div>
 		</div>
 
-	<?php endwhile;  ?>
+	<?php
+	do_action('ampforwp_between_loop',$count,$this);
+		         $count++;
+	 endwhile;  ?>
 
 		<div class="amp-wp-content pagination-holder">
 

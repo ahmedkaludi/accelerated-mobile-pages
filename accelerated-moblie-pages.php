@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.66.1
+Version: 0.9.68-beta
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.66.1');
+define('AMPFORWP_VERSION','0.9.68-beta');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -520,6 +520,9 @@ if ( ! function_exists('ampforwp_init') ) {
 		add_filter( 'request', 'amp_force_query_var_value' );
 		add_action( 'wp', 'amp_maybe_add_actions' );
 
+		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
+		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
+
 		if ( class_exists( 'Jetpack' ) && ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) {
 			require_once( AMP__DIR__ . '/jetpack-helper.php' );
 		}
@@ -528,15 +531,18 @@ if ( ! function_exists('ampforwp_init') ) {
 
 
 function AMP_update_db_check() {
+	global $redux_builder_amp;
 	$ampforWPCurrentVersion = AMPFORWP_VERSION;
    	if (get_option( 'AMPforwp_db_version' ) != $ampforWPCurrentVersion) {
 
    		if ( isset( $_GET['ampforwp-dismiss'] ) && trim($_GET['ampforwp-dismiss'])=="ampforwp_dismiss_admin_notices" ) {
 			update_option( 'AMPforwp_db_version', $ampforWPCurrentVersion );
-			 wp_redirect(admin_url('/index.php'), 301);
+			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
 		}
+		if( isset($redux_builder_amp['ampforwp-update-notification-bar'] ) && $redux_builder_amp['ampforwp-update-notification-bar'] && current_user_can( 'manage_options' ) ){
 
-        add_action('admin_notices', 'ampforwp_update_notice');
+	        add_action('admin_notices', 'ampforwp_update_notice');
+	    }
     }
 }
 add_action( 'plugins_loaded', 'AMP_update_db_check' );
@@ -605,3 +611,22 @@ require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
+
+/**
+ * Redirects the old AMP URL to the new AMP URL.
+ * If post slug is updated the amp page with old post slug will be redirected to the updated url.
+ *
+ * @param  string $link New URL of the post.
+ *
+ * @return string $link URL to be redirected.
+ */
+if( ! function_exists( 'ampforwp_redirect_old_slug_to_new_url' ) ){
+	function ampforwp_redirect_old_slug_to_new_url( $link ) {
+
+		if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+			$link = trailingslashit( trailingslashit( $link ) . AMPFORWP_AMP_QUERY_VAR );
+		}
+
+		return $link;
+	}
+}

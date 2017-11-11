@@ -1,5 +1,5 @@
 <?php /* Rows template (Going to be hidden) */ ?>
-    <div class="amppb-templates">
+    <div class="amppb-templates"  data-type="text/html">
     	 <?php /* == This is the 1 column row template == */ ?>
 		    <div class="amppb-row amppb-col-1" id="conatiner-{id}">
 		 		<input type="hidden" name="column-data" value="">
@@ -73,7 +73,7 @@ global $moduleTemplate;
     		}
     		?>
         </div>
-        <div class="amppb-fields-templates hidden">
+        <div class="amppb-fields-templates hidden" data-type="text/html">
         	<div id="textarea">
 	        	<p class="form-control">
 	        		<label for="{id}">{label}</label>
@@ -97,7 +97,7 @@ global $moduleTemplate;
 	        	<p class="form-control">
 	        		<label for="{id}">{label}</label>
 	        		<input type="button" class="button selectImage" value="Select image" id="" data-imageselactor="single">
-					<img id="ampforwp-preview-image" src="{default_value}" />
+					<img id="ampforwp-preview-image" src="#" />
 					<input type="hidden" name="ampforwp_image_id" id="{id}" class="regular-text" value="{default_value}"/>
 	        	</p>
         	</div>

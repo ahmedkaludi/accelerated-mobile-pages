@@ -41,6 +41,7 @@
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_loop') ?>
+	<?php $count = 1; ?>
 
 	  <?php if ( is_archive() ) {
 	    the_archive_title( '<h1 class="page-title">', '</h1>' );
@@ -61,7 +62,7 @@
 				}
 			}	
 	  } ?>
-
+	  	<?php  do_action('ampforwp_between_loop',$count); ?>
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 			$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
@@ -120,7 +121,10 @@
 								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); }?></p>
 				</div>
 	        </div>
-	    <?php endwhile;  ?>
+	    <?php 
+	     do_action('ampforwp_between_loop',$count,$this);
+		         $count++;
+	     endwhile;  ?>
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">

@@ -55,7 +55,7 @@ function xyz_amp_set_site_icon_url( $data ) {
 
 If you want to hide the site text and just show a logo, use the `amp_post_template_css` action. The following colors the title bar black, hides the site title, and replaces it with a centered logo:
 
-```
+```php
 add_action( 'amp_post_template_css', 'xyz_amp_additional_css_styles' );
 
 function xyz_amp_additional_css_styles( $amp_template ) {
@@ -90,18 +90,11 @@ You can tweak various parts of the template via code.
 The default template does not display the featured image currently. There are many ways to add it, such as the snippet below:
 
 ```php
-add_action( 'pre_amp_render_post', 'xyz_amp_add_custom_actions' );
-function xyz_amp_add_custom_actions() {
-	add_filter( 'the_content', 'xyz_amp_add_featured_image' );
-}
+add_filter( 'amp_post_template_data', 'xyz_amp_remove_featured_image' );
 
-function xyz_amp_add_featured_image( $content ) {
-	if ( has_post_thumbnail() ) {
-		// Just add the raw <img /> tag; our sanitizer will take care of it later.
-		$image = sprintf( '<p class="xyz-featured-image">%s</p>', get_the_post_thumbnail() );
-		$content = $image . $content;
-	}
-	return $content;
+function xyz_amp_remove_featured_image( $data ) {
+    $data['featured_image'] = false;
+    return $data;
 }
 ```
 
@@ -136,7 +129,7 @@ Note: The path must pass the default criteria set out by [`validate_file`](https
 
 The plugin adds some default metadata to enable ["Rich Snippet" support](https://developers.google.com/structured-data/rich-snippets/articles). You can modify this using the `amp_post_template_metadata` filter. The following changes the type annotation to `NewsArticle` (from the default `BlogPosting`) and overrides the default Publisher Logo.
 
-```
+```php
 add_filter( 'amp_post_template_metadata', 'xyz_amp_modify_json_metadata', 10, 2 );
 
 function xyz_amp_modify_json_metadata( $metadata, $post ) {
@@ -314,13 +307,13 @@ Note: there are some requirements for a custom template:
 
 * You must trigger the `amp_post_template_head` action in the `<head>` section:
 
-```
+```php
 do_action( 'amp_post_template_head', $this );
 ```
 
 * You must trigger the `amp_post_template_footer` action right before the `</body>` tag:
 
-```
+```php
 do_action( 'amp_post_template_footer', $this );
 ```
 
@@ -395,7 +388,10 @@ class XYZ_AMP_Related_Posts_Embed extends AMP_Base_Embed_Handler {
 	}
 
 	public function get_scripts() {
-		return array( 'amp-mustache' => 'https://cdn.ampproject.org/v0/amp-mustache-0.1.js' );
+		return array( 
+			'amp-mustache' => 'https://cdn.ampproject.org/v0/amp-mustache-0.1.js'
+			'amp-list' => 'https://cdn.ampproject.org/v0/amp-list-0.1.js',
+		);
 	}
 
 	public function add_related_posts( $content ) {
@@ -557,7 +553,7 @@ pairs in the single argument as per the example above.**
 
 To output proper analytics tags, you can use the `amp_post_template_analytics` filter:
 
-```
+```php
 add_filter( 'amp_post_template_analytics', 'xyz_amp_add_custom_analytics' );
 function xyz_amp_add_custom_analytics( $analytics ) {
 	if ( ! is_array( $analytics ) ) {
@@ -619,7 +615,7 @@ You'll need to flush your rewrite rules after this.
 
 If you want a custom template for your post type:
 
-```
+```php
 add_filter( 'amp_post_template_file', 'xyz_amp_set_review_template', 10, 3 );
 
 function xyz_amp_set_review_template( $file, $type, $post ) {

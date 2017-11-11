@@ -36,10 +36,18 @@ class AMP_Content {
 
 	private function transform() {
 		$content = $this->content;
-
 		// First, embeds + the_content filter
 		$embed_handlers = $this->register_embed_handlers();
-		$content = apply_filters( 'the_content', $content );
+		if( (!empty($this->args)) && (!empty($this->args['non-content'])) ){
+			if('non-content' == $this->args['non-content']){
+				$content = apply_filters( 'the_content', $content );
+				$content = apply_filters( 'amp_general_content', $content );
+			}
+		}
+		else{			
+			$content = apply_filters( 'the_content', $content );
+			$content = apply_filters( 'amp_pagebuilder_content', $content );
+		}
 		$this->unregister_embed_handlers( $embed_handlers );
 
 		// Then, sanitize to strip and/or convert non-amp content
@@ -63,7 +71,7 @@ class AMP_Content {
 			$embed_handler = new $embed_handler_class( array_merge( $this->args, $args ) );
 
 			if ( ! is_subclass_of( $embed_handler, 'AMP_Base_Embed_Handler' ) ) {
-				_doing_it_wrong( __METHOD__, sprintf( __( 'Embed Handler (%s) must extend `AMP_Embed_Handler`', 'amp' ), $embed_handler_class ), '0.1' );
+				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Embed Handler (%s) must extend `AMP_Embed_Handler`', 'amp' ), $embed_handler_class ), '0.1' );
 				continue;
 			}
 
@@ -99,14 +107,14 @@ class AMP_Content_Sanitizer {
 
 		foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
 			if ( ! class_exists( $sanitizer_class ) ) {
-				_doing_it_wrong( __METHOD__, sprintf( __( 'Sanitizer (%s) class does not exist', 'amp' ), esc_html( $sanitizer_class ) ), '0.4.1' );
+				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'amp' ), esc_html( $sanitizer_class ) ), '0.4.1' );
 				continue;
 			}
 
 			$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
 
 			if ( ! is_subclass_of( $sanitizer, 'AMP_Base_Sanitizer' ) ) {
-				_doing_it_wrong( __METHOD__, sprintf( __( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'amp' ), esc_html( $sanitizer_class ) ), '0.1' );
+				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'amp' ), esc_html( $sanitizer_class ) ), '0.1' );
 				continue;
 			}
 

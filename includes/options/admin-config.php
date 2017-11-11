@@ -13,6 +13,7 @@ $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&ut
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
 // If CTA is not Activated
+$cta_desc = "";
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
    if(!is_plugin_active( 'AMP-cta/amp-cta.php' )){
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
@@ -579,6 +580,15 @@ Redux::setArgs( "redux_builder_amp", $args );
             'subsection' => true,
             'fields'     => array(
                 // Ad 1 Starts
+                array(
+                    'id'        =>'ampforwp-ads-data-loading-strategy',
+                    'type'      => 'switch',
+                    'title'     => __('Optimize For Viewability', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'subtitle'  => __('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
+                    'true'      => 'Enabled',
+                    'false'     => 'Disabled',
+                ),
                 array(
                     'id'        =>'enable-amp-ads-1',
                     'type'      => 'switch',
@@ -1231,7 +1241,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'NewsArticle'   => 'NewsArticle',
                 'Recipe'        => 'Recipe',
                 'Product'       => 'Product',
-                'VideoObject'   => 'VideoObject'
+                'VideoObject'   => 'VideoObject',
+                'Article'       => 'Article'
             );
             return $options;
         }
@@ -1391,10 +1402,11 @@ Redux::setArgs( "redux_builder_amp", $args );
     // Push Notifications section
    Redux::setSection( $opt_name, array(
           'title'       => __( 'Push Notifications', 'accelerated-mobile-pages' ),
-          'icon'        => 'el el-podcast',
+//          'icon'        => 'el el-podcast',
           'id'          => 'ampforwp-push-notifications',
           'desc'        => " ",
           'subsection'  => true,
+          'class'       =>'ampforwp-new-element',
           'fields'      => array(
                     array(
                             'id'        => 'ampforwp-web-push-onesignal',
@@ -1406,6 +1418,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             ),
                     array(
                             'id'        => 'ampforwp-one-signal-app-id',
+                            'subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a>',
                             'type'      => 'text',
                             'title'     => 'APP ID',
                             'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
@@ -1429,6 +1442,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                                             array('ampforwp-web-push-onesignal', '=' , '1'),
                                             array('ampforwp-onesignal-http-site', '=','1')),
                             ),
+                    array(
+                       'id' => 'translation',
+                       'type' => 'section',
+                       'title' => __('Translation', 'accelerated-mobile-pages'),
+                       'required' => array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                       'indent' => true,
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                    ),
+                    array(
+                       'id'       => 'ampforwp-onesignal-translator-subscribe',
+                       'type'     => 'text',
+                       'title'    => __('Subscribe', 'accelerated-mobile-pages'),
+                       'default'  => __('Subscribe to updates','accelerated-mobile-pages'),
+                       'placeholder'=>__('Add some text','accelerated-mobile-pages'),
+                   ),
+                     array(
+                       'id'       => 'ampforwp-onesignal-translator-unsubscribe',
+                       'type'     => 'text',
+                       'title'    => __('Unsubsribe', 'accelerated-mobile-pages'),
+                       'default'  => __('Unsubscribe from updates','accelerated-mobile-pages'),
+                       'placeholder'=>__('Add some text','accelerated-mobile-pages'),
+                   ),
                 )
             ) 
     );
@@ -1598,7 +1633,8 @@ Redux::setSection( $opt_name, array(
                         'title'     => __('Number of Posts', 'accelerated-mobile-pages'),
                         'subtitle' => __('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
                          'desc' => __('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-switch', '=', 1)
+                        'required'  => array('fb-instant-article-switch', '=', 1),
+                        'default'   => '50'
                     ),  
                     array(
                         'id'       => 'fb-instant-article-ads',
@@ -1696,7 +1732,16 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
 
                     ),
-
+                    array(
+                        'id'       => 'amp-meta-permissions',
+                        'type'     => 'select',
+                        'title'    => __('AMP Metabox Permission', 'accelerated-mobile-pages'),
+                        'options'  => array(
+                            'all'       => 'All users who can post',
+                            'admin'     => 'Only to Admin'
+                        ),
+                        'default'  => 'all',
+                    ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
@@ -1808,6 +1853,15 @@ Redux::setSection( $opt_name, array(
                         'desc'     => __('Add /amp at the end of url to view the AMP version of the site. Search Engines will not be able to Crawl the AMP site when in Dev Mode.', 'accelerated-mobile-pages'),
                         'title'    => __('Dev Mode', 'accelerated-mobile-pages'),
                         'required' => array('ampforwp-development-mode', '=', 1)
+                    ),
+                      array(
+                        'id'       => 'ampforwp-update-notification-bar',
+                        'type'     => 'switch',
+                        'title'    => __('Plugin Update Notification Bar'),
+                        'subtitle' => __('Enable/Disable the Plugin Update Notification Bar', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 1,                        
                     ),
 
    ),
@@ -2161,7 +2215,7 @@ Redux::setSection( $opt_name, array(
 
              $fields =  array(
                 'id'       => 'amp-design-selector',
-                'type'     => 'select_image',
+                'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
@@ -2533,7 +2587,15 @@ Redux::setSection( $opt_name, array(
                         'default'   =>'1',
                 ),
 
-            // Homepage thumbnail
+               // Full date Format
+                array(
+                        'id'        =>'ampforwp-full-post-date',
+                        'type'      =>'switch',
+                        'title'     =>__('Date Format','accelerated-mobile-pages'),
+                        'subtitle' => __('Display Full Date of Posts on Homepage/Archives. ex: 11 November 2017', 'accelerated-mobile-pages'),
+                        'required' => array(array('amp-design-selector', '!=' , '2') ), 
+                        'default'   =>'0',
+                ),
 
 
             // Homepage thumbnail
@@ -2840,6 +2902,23 @@ Redux::setSection( $opt_name, array(
         'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
+          // Facebook Like 
+          array(
+              'id'        =>  'ampforwp-facebook-like-button',
+              'type'      =>  'switch',
+              'title'     =>  __('Facebook Like Button', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Facebook Like URL
+          array(
+               'id'       => 'ampforwp-facebook-like-url',
+               'title'    => __('Facebook Page URL', 'accelerated-mobile-pages'),
+               'subtitle' => __('The absolute URL of the page that will be liked. For example, https://www.facebook.com/ampforwp/', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
+               'placeholder'  => __('Enter your facebook page url','accelerated-mobile-pages'),
+               'default'  => ''
+          ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
@@ -3259,7 +3338,7 @@ Redux::setSection( $opt_name, array(
 ) );
 
 
-
+Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 /*
 * <--- END SECTIONS
 */
