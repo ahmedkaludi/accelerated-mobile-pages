@@ -105,6 +105,7 @@
 	95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
 	96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 	97. Change the format of the post date on Loops #1384 
+	98. Create Dynamic url of amp according to the permalink structure #1318
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -3942,15 +3943,15 @@ function is_category_amp_disabled(){
 
 add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
  
-function ampforwp_visit_amp_in_admin_bar($admin_bar) {         
-          $args = array(
-                'parent' => 'site-name',
-                'id'     => 'view-amp',
-                'title'  => 'Visit AMP',
-                'href'   => user_trailingslashit(get_home_url().'/'.AMP_QUERY_VAR),
-                'meta'   => false
-            );
-            $admin_bar->add_node( $args );       
+function ampforwp_visit_amp_in_admin_bar($admin_bar) {
+	$args = array(
+	    'parent' => 'site-name',
+	    'id'     => 'view-amp',
+	    'title'  => 'Visit AMP',
+	    'href'   => ampforwp_url_controller( get_home_url() ),
+	    'meta'   => false
+	);
+	$admin_bar->add_node( $args );       
 }
 
 // Things to be added in the Body Tag #1064
@@ -4970,4 +4971,19 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 		}
 	return $date;
 	}
+}
+
+// 98. Create Dynamic url of amp according to the permalink structure #1318
+function ampforwp_url_controller($url){
+	$new_url 					= "";
+	$get_permalink_structure 	=  "";
+
+	$get_permalink_structure = get_option('permalink_structure');
+	if ( $get_permalink_structure ) {
+		$new_url = user_trailingslashit( $url .'/'. AMPFORWP_AMP_QUERY_VAR);
+	} else {
+		$new_url = add_query_arg( 'amp', '1', $url );
+	}
+
+	return $new_url;
 }
