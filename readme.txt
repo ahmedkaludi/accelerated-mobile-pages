@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.8.3
-Stable tag: 0.9.67.0
+Stable tag: 0.9.68
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,36 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.68 (12th November 2017) =
+* View More details on https://ampforwp.com/0-9-68-released-stability-update-74th-update/
+* ADs are Optimize For Viewability, meaning it will try to load faster than the original AMP AD loading strategy.
+* Content was disappearing issue was resolved #1392
+* Featured Image from The Content option is connected to related post #1339
+* Fix amp-web-push helper iframe configuration URL #1387
+* Facebook Like button added to AMP #1327
+* WPML support for AMP Improvement #1285
+* Debug Errors fixed #1366
+* Setting ad density for Facebook Instant Articles ads #1287
+* Showing the number of comments in Single #1341
+* Styling added to the sitewide ads and made sure that they are in the center. #1343
+* One Signal buttons Translation added #1383
+* Article type added to Structured data #1344 #1354
+* The issue with the amp-carousel when RTL was enabled #1358
+* amp-carousel with images of different sizes #1358
+* a bug where Img is getting converted to amp-img if there's no height or width. which causing validation issue and image is not visible fixed.
+* Instant Article should have a default value for number of posts, it was causing the memory issue with alot of posts #1390
+* Notice if a post has no author data #1338
+* Added a new redux extension select field in redux framework #1349
+* Issues with galleries as well as gallery captions #1363
+* Added a hook for adding anything in between the loops #1396
+* Hide meta boxes as per the user level types #1340
+* A Switch between the Date formats #1384
+* Fix: Jannah theme lazy load issue #1362
+* Issues with galleries as well as gallery captions #1363
+* Create Dynamic url of amp according to the permalink structure #1318
+* Minor code performance improvement.
+* Archive titles in Design 3 frontend issue
 
 = 0.9.67.0 (6th November 2017) =
 * View more details on https://ampforwp.com/one-signal-push-notifications-for-amp/
