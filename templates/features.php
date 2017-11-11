@@ -4985,5 +4985,5 @@ function ampforwp_url_controller($url){
 		$new_url = add_query_arg( 'amp', '1', $url );
 	}
 
-	return $new_url;
+	return esc_url( $new_url );
 }
