@@ -282,7 +282,8 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #searchsubmit{opacity:0}
 .featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px; }
 .archives_body main{ margin-top:30px }
-.archives_body .page-title{margin-left:15px}
+.archives_body .page-title, .taxonomy-description{padding: 0 15px}
+.taxonomy-description p{margin-top: 5px;font-size: 14px;line-height: 1.5;}
 <?php  if(is_home() && $redux_builder_amp['amp-frontpage-select-option']==0){?>
 /* AMP carousel */
 .amp-carousel-button-prev, .amp-carousel-button-next{ top:30px;border-radius:60px; }
