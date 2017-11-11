@@ -8,7 +8,7 @@
       <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){ ?>
         <!-- automatic ad placement -->
         <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo get_ia_ad_density(); ?>">
-      <?php } ?>} ?>
+      <?php } ?>
     </head>
     <body>
         <article>
