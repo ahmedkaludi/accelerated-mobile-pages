@@ -585,8 +585,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'type'      => 'switch',
                     'title'     => __('Optimize For Viewability', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'subtitle'  => __('To optimised Ads by setting the parameter:
-data-loading-strategy=prefer-viewability-over-views', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('This will increase the loading speed of the Ads', 'accelerated-mobile-pages'),
                     'true'      => 'Enabled',
                     'false'     => 'Disabled',
                 ),
