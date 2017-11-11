@@ -258,6 +258,12 @@ function ampforwp_fbia_wrap_elements( $DOMDocument ){
 		return $instant_article_ad_id;
 	}
 
+	function get_ia_ad_density(){
+		global $redux_builder_amp;
+		$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density'];
+		return $instant_article_ad_density;
+	}
+
 	function get_ia_analytics_code(){
  		global $redux_builder_amp;
  		$instant_article_analytics_code = $redux_builder_amp['fb-instant-article-analytics-code'];
