@@ -262,14 +262,4 @@ float:left;padding-bottom: 20px;
 .ampforwp-new-element {
     position: relative;
 }
-.subsection .ampforwp-new-element:after {
-    content: "new";
-    font-size: 12px;
-    position: absolute;
-    right: 8px;
-    top: 5px;
-    color: #fff;
-    background: #31409e;
-    padding: 1px 4px 4px 4px;
-    border-radius: 50px;
-}
+.subsection .ampforwp-new-element:after {content: "new";font-size: 9px;position: absolute;right: 8px;top: 6px;color: #fff;background: #31409e;text-transform: uppercase;border-radius: 7px;padding: 1px 5px 0px 6px;}
