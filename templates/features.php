@@ -4980,7 +4980,7 @@ function ampforwp_url_controller($url){
 
 	$get_permalink_structure = get_option('permalink_structure');
 	if ( $get_permalink_structure ) {
-		$new_url = user_trailingslashit( $url .'/'. AMPFORWP_AMP_QUERY_VAR);
+		$new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
 	} else {
 		$new_url = add_query_arg( 'amp', '1', $url );
 	}
