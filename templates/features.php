@@ -4398,6 +4398,9 @@ function ampforwp_new_gallery_images($images, $image){
 	if(isset($image['caption']) && $image['caption'] != '' ){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
+		// To enable the carousel magic
+		add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
+		add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 		$caption = $image['caption'];
 		// Append the caption with image
 		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
@@ -4466,10 +4469,8 @@ if( !function_exists('ampforwp_carousel_bind_script')){
 	return $data;
 	}
 }
-// To enable the carousel magic
-add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
 if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
-		function ampforwp_carousel_class_magic($data){
+	function ampforwp_carousel_class_magic($data){
 		$content = $data->get('post_amp_content');
 		$content = str_replace(array(':openbrack:',':closebrack:'), array('[',']'), $content);
 		$data->set('post_amp_content',$content);
