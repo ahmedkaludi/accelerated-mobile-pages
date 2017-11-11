@@ -69,7 +69,7 @@ if ( get_query_var( 'paged' ) ) {
 							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 						<?php } 
 					}?>
-                  <a href="<?php echo user_trailingslashit( trailingslashit( get_the_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
+                  <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
 		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
@@ -108,8 +108,7 @@ if ( get_query_var( 'paged' ) ) {
 		if($blog_title){  ?>
 			<h1 class="amp-wp-content page-title"><?php echo $blog_title ?> </h1>
 		<?php }	
-		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 
 		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
@@ -117,7 +116,7 @@ if ( get_query_var( 'paged' ) ) {
 				if($thumb_url){
 					?>
 					<div class="home-post_image">
-						<a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>">
+						<a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
 							<amp-img
 								layout="responsive"
 								src=<?php echo esc_url( $thumb_url ); ?>
@@ -136,7 +135,7 @@ if ( get_query_var( 'paged' ) ) {
 					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
 					<?php } ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( user_trailingslashit( $ampforwp_amp_post_url ) ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php
