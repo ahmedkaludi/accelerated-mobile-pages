@@ -17,6 +17,7 @@
 <?php do_action('ampforwp_home_above_loop') ?>
 <main>
 	<?php do_action('ampforwp_post_before_loop') ?>
+	<?php $count = 1; ?>
 
 	<?php
 		if ( get_query_var( 'paged' ) ) {
@@ -111,7 +112,10 @@
             <div class="cb"></div>
 	</div>
 
-	<?php endwhile;  ?>
+	<?php
+	do_action('ampforwp_between_loop',$count,$this);
+		         $count++;
+	 endwhile;  ?>
 
 	<div class="amp-wp-content pagination-holder">
 

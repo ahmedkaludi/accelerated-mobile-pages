@@ -24,8 +24,7 @@ if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
 				// Custom/Alternative AMP content added through post meta
 				$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 			}
-			// echo $this->get( 'post_amp_content' ); // amphtml content; no kses
-			
+			//Filter to modify the Content			 
 			if($redux_builder_amp['amp-pagination']) {
 				$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
 			    $queried_var = get_query_var('page');

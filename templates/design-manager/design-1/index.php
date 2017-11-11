@@ -21,8 +21,9 @@
 <article class="amp-wp-article ampforwp-custom-index amp-wp-home">
 
 	<?php do_action('ampforwp_post_before_loop') ?>
-
+	
 		<?php
+			$count = 1;
 			if ( get_query_var( 'paged' ) ) {
 		        $paged = get_query_var('paged');
 		    } elseif ( get_query_var( 'page' ) ) {
@@ -46,10 +47,12 @@
 			$blog_title = ampforwp_get_blog_details('title');
 			if($blog_title){  ?>
 				<h1 class="page-title"><?php echo $blog_title ?> </h1>
-			<?php }	
+			<?php }
+			
+				
 			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
-
+		        	
 			        <h1 class="amp-wp-title">
 			            <?php  $ampforwp_post_url = get_permalink(); ?>
 			            <a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>"><?php the_title() ?></a>
@@ -107,8 +110,12 @@
 								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); }?></p>
 					</div>
 		        </div>
-		    <?php endwhile;  ?>
-
+		         <?php 
+		         do_action('ampforwp_between_loop',$count,$this);
+		         $count++;
+		    	
+		    endwhile;  ?>
+ 			
 		    <div class="amp-wp-content pagination-holder">
 
 		        <div id="pagination">

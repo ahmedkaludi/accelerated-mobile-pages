@@ -1,4 +1,40 @@
+
 jQuery( document ).ready( function( $ ){
+
+
+	$('#start_amp_pb_post').click(function(){
+        var ampPbLoader = document.getElementById('start_amp_pb_post');
+        if(ampPbLoader!=null){
+        	$(this).html('Loading...<span class="dashicons dashicons-update spinner"></span>');
+            var postId = ampPbLoader.getAttribute("data-postId");
+            var data = {
+                'action': 'call_page_builder',
+                'post_id': postId,
+            };
+            $.ajax({
+            	url:ajaxurl,
+            	type:'get',
+            	data:data,
+            	beforeSend: function(){
+            		$(this).html('Loading...<span class="dashicons dashicons-update"></span>');
+            	},
+            	success: function(response){
+            		//alert(response)
+            		$('#pagebilder_content').find('.inside').html(response);
+            		pageBuilderStarter();
+            	},
+            	error: function(){
+            		alert('Error occurred, not getting response');
+            		$(this).html("Start the AMP Page Builder");
+            	}
+            });
+           
+        }
+    });
+
+	//Page builder starter
+var pageBuilderStarter = function(){
+
     $( "#sorted_rows" ).sortable({
     	placeholder: "ui-state-highlight",
     	handle  : '.amppb-handle',
@@ -181,7 +217,7 @@ jQuery( document ).ready( function( $ ){
 	//Save data of row settings
 	$( document.body ).on('click', "#amppb-rowsetting", function(e){
 		e.preventDefault();
-		console.log("Save button #amppb-rowsetting has clicked");
+		//console.log("Save button #amppb-rowsetting has clicked");
 		var containerId = $(this).attr('data-current-container');
 		
 		var popupContents = $(this).attr('data-template');
@@ -226,7 +262,11 @@ jQuery( document ).ready( function( $ ){
 		$.each(moduleJson.fields, function(fieldtype,modData){
 			var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 			if(modData.type=='text-editor'){
-				modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+				if(tinymce.get(fieldIdentifier)){
+					modData.default = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+				}else{
+					modData.default = encodeURI($("#"+fieldIdentifier).val().replace("'","\'"));
+				}
 			}if(modData.type=='select'){
 				modData.default = encodeURI($('#'+fieldIdentifier).val());
 			}else{
@@ -234,7 +274,7 @@ jQuery( document ).ready( function( $ ){
 			}
 			
 		});
-		console.log(JSON.stringify(moduleJson));
+		//console.log(JSON.stringify(moduleJson));
 		$('#module-'+containerdetails[1]).find('#selectedModule').val(JSON.stringify(moduleJson))
 
 		/*var fieldValue = [];
@@ -254,7 +294,12 @@ jQuery( document ).ready( function( $ ){
 							$.each(moduledetails.fields, function(fieldtype,modData){
 								var fieldIdentifier = modData.name+'-'+containerdetails[0]+'-'+containerdetails[1];
 								if(modData.type=='text-editor'){
-									cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+									if(tinymce.get(fieldIdentifier)){
+										cells[modData.name] = encodeURI(tinymce.get(fieldIdentifier).getContent().replace("'","\'"));
+									}else{
+										modData.default = encodeURI($("#"+fieldIdentifier).val().replace("'","\'"));
+									}
+
 								}else{
 									cells[modData.name] = encodeURI($('#'+fieldIdentifier).val().replace("'","\'"));
 								}
@@ -291,6 +336,9 @@ jQuery( document ).ready( function( $ ){
 		$.each(popupContents.fields, function(fieldsName,fieldReplace){
 			var id = fieldReplace.name+"-"+conatinerId+'-' +moduleId;
 			var htmlFields = $('.amppb-fields-templates').find("#"+fieldReplace.type).html();
+			if(fieldReplace.type=='upload'){
+				htmlFields = htmlFields.replace(/src="#"/g, 'src="{default_value}"');
+			}
 			fieldReplace.default_images = '';
 			switch(fieldReplace.type){
 				case 'select':
@@ -572,7 +620,7 @@ jQuery( document ).ready( function( $ ){
 									return false;
 								}
 							});
-							console.log(previousValue);
+							//console.log(previousValue);
 						}
 					});
 					$.each(ploatedStructure.rows,function(k,rowVal){
@@ -597,7 +645,7 @@ jQuery( document ).ready( function( $ ){
 					var moduleJson = JSON.parse($(this).find('div.amppb-module:last').find("#selectedModule").val());
 					//Store module inside the array
 					$.each(ploatedStructure.rows,function(k,columnVal){
-						console.log(columnVal.id+' '+containerId);
+						//console.log(columnVal.id+' '+containerId);
 						if(columnVal.id==containerId){
 							
 							var moduleIndex = $(currentDropZone).find('div.amppb-module').length;
@@ -621,7 +669,7 @@ jQuery( document ).ready( function( $ ){
 					});
 					ploatedStructure['totalmodules'] = $moduleId+1;
 					storeJsonDataInput(ploatedStructure);
-					console.log(ploatedStructure);
+					//console.log(ploatedStructure);
 					
 				}
 				loadAfterModule();
@@ -669,7 +717,7 @@ jQuery( document ).ready( function( $ ){
 				var ploatedStructure = JSON.parse($('#amp-page-builder-data').val());
 				var indexOfRow = $(this).parents('.amppb-row').attr('id').replace("conatiner-","");
 				$(this).find('div.amppb-module').each(function(indexKey,val){
-					console.log(indexKey);
+					//console.log(indexKey);
 					var indexOfModule = $(this).attr('id').replace('module-','');
 					$.each(ploatedStructure.rows,function(k,columnVal){
 						if(columnVal.id==indexOfRow){
@@ -761,7 +809,7 @@ jQuery( document ).ready( function( $ ){
 	***************/
 		$(document.body).on('click', "input.selectImage", function(e){
 			e.preventDefault();
-			console.log("selectImage click event called");
+			//console.log("selectImage click event called");
 			var currentSelectfield = $(this);
 			var selectorType = currentSelectfield.attr("data-imageselactor");
 			var multiple = false;
@@ -813,14 +861,14 @@ jQuery( document ).ready( function( $ ){
 
 	function loadEditor(id){
 		id = id;//.replace("-","_").replace("-","_");
-		console.log("loadEditor function called "+ id);
+		//console.log("loadEditor function called "+ id);
 		
 		
 
 	}
 
 	function callToRemoveHasModule(){
-		console.log("called Function");
+		//console.log("called Function");
 		$(".modules-drop").each(function(index, container){
 			if($(this).find('.amppb-module').length==0){
 				$(this).removeClass("has-module");
@@ -829,8 +877,11 @@ jQuery( document ).ready( function( $ ){
 	}
 
 
+}
+if($("#amp-page-builder").length>0){
+	pageBuilderStarter();
+}
 });
-
 /**
  *
  *
@@ -849,12 +900,12 @@ function Refresh_Image(the_id,currentSelectfield){
         jQuery.get(ajaxurl, data, function(response) {
 
             if(response.success === true) {
-            	console.log(response.data)
+            	//console.log(response.data)
 				if(currentSelectfield.attr("data-imageselactor")=='multiple'){
 					currentSelectfield.parents('.form-control').find('.sample-gallery-template').html("");
 					var imageSrc = '';
 					jQuery.each(response.data, function(keys,imageValue){
-						console.log(imageValue.image);
+						//console.log(imageValue.image);
 						currentSelectfield.parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
 						currentSelectfield.parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
 						imageSrc += imageValue.detail[0]+",";
