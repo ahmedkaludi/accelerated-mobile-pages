@@ -1606,7 +1606,7 @@ function fb_instant_article() {
 
 // Facebook Instant Articles
 Redux::setSection( $opt_name, array(
-   'title'      => __( 'Facebook Instant Articles', 'accelerated-mobile-pages' ),
+   'title'      => __( 'Instant Articles', 'accelerated-mobile-pages' ),
    'id'         => 'fb-instant-article',
    'subsection' => true,
    'fields'     => array(
