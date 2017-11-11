@@ -280,7 +280,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
 				global $sitepress_settings, $wp;
 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 				  	if( is_singular() ){
