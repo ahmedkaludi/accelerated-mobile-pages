@@ -240,7 +240,7 @@ table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 .hide-meta-info{ display: none; }
 <?php }?>
-<?php if( $redux_builder_amp['amp-enable-notifications'] == 1 || $redux_builder_amp['ampforwp-cta-subsection-notification-sticky'] == 1 ){ ?>
+<?php if( $redux_builder_amp['amp-enable-notifications'] == 1 || isset($redux_builder_amp['ampforwp-cta-subsection-notification-sticky']) && $redux_builder_amp['ampforwp-cta-subsection-notification-sticky'] == 1 ){ ?>
 /* Notifications */
 #amp-user-notification1 p { display: inline-block; }
 amp-user-notification { padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
