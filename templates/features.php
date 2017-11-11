@@ -104,8 +104,7 @@
 	94. OneSignal Push Notifications
 	95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
 	96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
-	97. Change the format of the post date on Loops #1384
-	98. WPML amphtml modifier
+	97. Change the format of the post date on Loops #1384 
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -278,6 +277,38 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 
 			$amp_url = ampforwp_url_purifier($amp_url);
+
+
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+				global $sitepress_settings, $wp;
+				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+				  	if( is_singular() ){
+						$wpml_url =get_permalink( get_queried_object_id() );
+						$explode_url = explode('/', $wpml_url);
+						$append_amp = 'amp';
+						array_splice( $explode_url, 5, 0, $append_amp );
+						$impode_url = implode('/', $explode_url);
+						$amp_url = untrailingslashit($impode_url);
+				    }
+				    if ( is_home()  || is_archive() ){
+				        global $wp;
+				        $current_archive_url = home_url( $wp->request );
+						$explode_path  	= explode("/",$current_archive_url);
+						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
+						$query_arg_array = $wp->query_vars;
+						if( array_key_exists( 'paged' , $query_arg_array ) ) {
+							array_splice( $explode_path, -3, 0, $inserted );
+						}
+						else{
+							array_splice( $explode_path, -1, 0, $inserted );
+						}
+						$impode_url = implode('/', $explode_path);
+						$amp_url = $impode_url;
+				    }
+				}
+			}
+
 	        $amp_url = apply_filters('ampforwp_modify_rel_canonical',$amp_url);
 
 	        if( $supported_amp_post_types) {					
@@ -4938,42 +4969,5 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 			$date =  get_the_date();
 		}
 	return $date;
-	}
-}
-
-// 98. WPML amphtml modifier
-add_filter('ampforwp_modify_rel_canonical','ampforwp_wpml_rel_modifier');
-if( ! function_exists('ampforwp_wpml_rel_modifier')){
-	function ampforwp_wpml_rel_modifier($amp_url){
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
-		  global $sitepress_settings, $wp;
-		  if($sitepress_settings[ 'language_negotiation_type' ] == 3){
-		  	if(is_single() ){
-		      $wpml_url =get_permalink( get_queried_object_id() );
-		      $explode_url = explode('/', $wpml_url);
-		      $append_amp = 'amp';
-		      array_splice( $explode_url, 5, 0, $append_amp );
-		      $impode_url = implode('/', $explode_url);
-		      $amp_url = user_trailingslashit($impode_url);
-		    }
-		    if ( is_home()  || is_archive() ){
-		        global $wp;
-		        $current_archive_url = home_url( $wp->request );
-				$explode_path  	= explode("/",$current_archive_url);
-				$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
-				$query_arg_array = $wp->query_vars;
-				if( array_key_exists( 'paged' , $query_arg_array ) ) {
-					array_splice( $explode_path, -3, 0, $inserted );
-				}
-				else{
-					array_splice( $explode_path, -1, 0, $inserted );
-				}
-				$impode_url = implode('/', $explode_path);
-				$amp_url = $impode_url;
-		    }
-		  }
-		}
-	return $amp_url;
 	}
 }
