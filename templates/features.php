@@ -4820,7 +4820,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 		// HTTPS sites
 		$onesignal_domain 		= trailingslashit( esc_url( home_url() ) ) ;
 		$onesignal_app_id		= $redux_builder_amp['ampforwp-one-signal-app-id'];
-		$helper_iframe_url = $onesignal_domain .'amphtml-helper-frame.html?appId=' . $onesignal_app_id;
+		$helper_iframe_url = $onesignal_domain .'amp-helper-frame.html?appId=' . $onesignal_app_id;
 
 		$permission_dialog_url = $onesignal_domain .'amp-permission-dialog.html?appId=' . $onesignal_app_id;
 
