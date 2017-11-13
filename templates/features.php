@@ -2763,7 +2763,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$metadata['headline'] = $headline; // proper headline added
 	}
 	// Description for Structured Data
-	$desc = esc_html( convert_chars( wptexturize (  ampforwp_generate_meta_desc() ) ) );
+	$desc =   esc_attr( convert_chars( stripslashes( ampforwp_generate_meta_desc())) );
 	$metadata['description'] = $desc;
 	return $metadata;
 }
@@ -2954,7 +2954,7 @@ function ampforwp_meta_description() {
 	$desc = ampforwp_generate_meta_desc();
 
 	if( $desc ) {
-		echo '<meta name="description" content="'. esc_html( convert_chars( wptexturize ( $desc ) ) )  .'"/>';
+		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
 }
 
