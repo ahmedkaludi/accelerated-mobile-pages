@@ -164,7 +164,6 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .custom-amp-socialsharing-line{background:#00b900}
 .custom-amp-social-sharing-vk{background:#45668e}
 .custom-amp-social-sharing-odnoklassniki{background:#ed812b}
-.ampforwp-social-icons amp-facebook-like{border-radius: 60px;position: relative;top: -6px;}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
