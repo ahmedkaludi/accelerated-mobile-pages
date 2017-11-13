@@ -9,14 +9,10 @@
 	<?php $author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) ); ?>
 	<div class="amp-wp-meta amp-wp-byline">
 		<?php 
-		if(is_single() ) {
+		if(is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
 			echo ampforwp_get_author_details( $post_author , 'meta-info' ); ?>
-		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'] . ' ', 'On'); the_modified_date( get_option( 'date_format' ) ) ?></li>
-<?php } 
-	if( is_page() && $redux_builder_amp['meta_page'] ) { 
-		echo ampforwp_get_author_details( $post_author , 'meta-info' ); ?>
-	<li class="amp-wp-meta-date"> <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'] . ' ', 'On'); the_modified_date( get_option( 'date_format' ) ) ?></li> 
-<?php } ?>
+		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-on-text'] . ' ', 'On'); the_date( get_option( 'date_format' ) ) ?></li>
+		<?php }  ?>
 	</div>
 <?php endif; ?>
 
