@@ -1966,8 +1966,7 @@ function ampforwp_frontpage_title_markup () {
 // 27. Clean the Defer issue
 	// TODO : Get back to this issue. #407
 		function ampforwp_the_content_filter_full( $content_buffer ) {
-            $ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-			if ( $ampforwp_is_amp_endpoint ) {
+            if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
 				$content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
 				$content_buffer = preg_replace("/' defer onload='/", "", $content_buffer);
 				$content_buffer = preg_replace("/' defer /", "", $content_buffer);
