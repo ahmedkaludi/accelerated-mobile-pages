@@ -4634,7 +4634,7 @@ if( ! function_exists( 'ampforwp_get_author_page_url' ) ){
 		$author_page_url = get_author_posts_url( $author_id );
 		// If Archive support is enabled
 		if(  isset($redux_builder_amp['ampforwp-archive-support'] ) && $redux_builder_amp['ampforwp-archive-support'] ){
-    		$author_page_url = user_trailingslashit( $author_page_url . AMPFORWP_AMP_QUERY_VAR );
+    		$author_page_url = ampforwp_url_controller( $author_page_url  );
     	}
 		return $author_page_url;
 	}
