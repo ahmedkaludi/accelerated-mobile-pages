@@ -2921,16 +2921,6 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Facebook Like Button', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
-          // Facebook Like URL
-          array(
-               'id'       => 'ampforwp-facebook-like-url',
-               'title'    => __('Facebook Page URL', 'accelerated-mobile-pages'),
-               'subtitle' => __('The absolute URL of the page that will be liked. For example, https://www.facebook.com/ampforwp/', 'accelerated-mobile-pages'),
-               'type'     => 'text',
-               'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
-               'placeholder'  => __('Enter your facebook page url','accelerated-mobile-pages'),
-               'default'  => ''
-          ),
           // Facebook ON/OFF
           array(
               'id'        =>  'enable-single-facebook-share',
