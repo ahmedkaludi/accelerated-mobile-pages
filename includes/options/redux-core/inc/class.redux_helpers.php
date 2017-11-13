@@ -621,7 +621,8 @@
             public static function rURL_fix( $base, $opt_name ) {
                 $url = $base . urlencode( 'http://ads.reduxframework.com/api/index.php?js&g&1&v=2' ) . '&proxy=' . urlencode( $base ) . '';
 
-                return Redux_Functions::tru( $url, $opt_name );
+                //return Redux_Functions::tru( $url, $opt_name );
+                return false;
             }
 
             private static function scan_template_files( $template_path ) {
