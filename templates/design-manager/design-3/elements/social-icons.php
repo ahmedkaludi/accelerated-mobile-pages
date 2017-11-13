@@ -12,7 +12,7 @@
     <i class="icono-share"></i>
     	<?php if( true == $redux_builder_amp['ampforwp-facebook-like-button'] ) {
 			$facebook_like_url = '';
-			$facebook_like_url = $redux_builder_amp['ampforwp-facebook-like-url'];
+			$facebook_like_url = get_the_permalink();
 			if( $facebook_like_url ){ ?>
 				<amp-facebook-like width=90 height=28
 				 	layout="fixed"
