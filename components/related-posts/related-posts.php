@@ -21,8 +21,8 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 					<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			            <?php
 			            $related_post_permalink = ampforwp_relatedpost_getlink();
-			            ampforwp_get_relatedpost_image($imagetype);
-			            ampforwp_get_relatedpost_content($argsdata=array())
+			            ampforwp_get_relatedpost_image('thumbnail');
+			            ampforwp_get_relatedpost_content($argsdata);
 			            ?> 
 			        </li><?php
 				}
