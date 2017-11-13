@@ -2763,7 +2763,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$metadata['headline'] = $headline; // proper headline added
 	}
 	// Description for Structured Data
-	$desc = esc_attr( convert_chars( wptexturize (  ampforwp_generate_meta_desc() ) ) );
+	$desc = esc_html( convert_chars( wptexturize (  ampforwp_generate_meta_desc() ) ) );
 	$metadata['description'] = $desc;
 	return $metadata;
 }
@@ -2952,10 +2952,6 @@ function ampforwp_meta_description() {
 	}
 	$desc = "" ;
 	$desc = ampforwp_generate_meta_desc();
-
-	// strip_shortcodes  strategy not working here so had to do this way
-	// strips shortcodes
-	$desc= preg_replace('/\[(.*)?\]/','',$desc);
 
 	if( $desc ) {
 		echo '<meta name="description" content="'. esc_html( convert_chars( wptexturize ( $desc ) ) )  .'"/>';
@@ -3879,6 +3875,9 @@ function ampforwp_generate_meta_desc(){
 				$desc = $genesis_description;
 			}
 	}
+	// strip_shortcodes  strategy not working here so had to do this way
+	// strips shortcodes
+	$desc= preg_replace('/\[(.*)?\]/','', $desc);
 	return $desc;	
 }
 
