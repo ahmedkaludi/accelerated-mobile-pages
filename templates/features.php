@@ -4239,6 +4239,9 @@ function ampforwp_get_featured_image_from_content($featured_image = "") {
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
+	    // Filter to remove that image from the content
+	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
+
 	}
 	switch ($featured_image) {
 			case 'image':
@@ -4252,9 +4255,27 @@ function ampforwp_get_featured_image_from_content($featured_image = "") {
 			default:
 				$featured_image_output = $amp_html;
 			break;
-		}
+		}	
 	return $featured_image_output;
 }
+// Remove 1st image from the content if Featured image from the content option is enabled
+if( ! function_exists( 'featured_image_content_filter' ) ){
+	function featured_image_content_filter($content){
+		global $redux_builder_amp;
+		$featured_image = "";
+		$featured_image = ampforwp_get_featured_image_from_content('url');
+		if( $featured_image && false == $redux_builder_amp['ampforwp-duplicate-featured-image']){
+			// Change the src to use it in the pattern
+			$featured_image = str_replace('/', '\/', $featured_image);
+			// Remove the amp-img 
+			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*)<\/amp-img>/', '', $content);
+			// Remove the figure (due to caption)
+			$content = preg_replace('/<figure(.*)href="'.$featured_image.'"(.*)<\/figure>/', '', $content);
+		}
+	return $content;
+	}
+}
+
 
 // 83. Advance Analytics(Google Analytics)
 add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
