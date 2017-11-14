@@ -34,7 +34,7 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
 <?php endif;  } ?>
 
 <?php if ( $redux_builder_amp['amp-design-3-date-feature'] ) : ?>
-	<span class="ampforwp-design3-single-date"><?php global $redux_builder_amp; echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . get_the_date( get_option( 'date_format' ), FALSE ) ) ?></span>
+	<span class="ampforwp-design3-single-date"><?php global $redux_builder_amp; echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . get_the_date( get_option( 'date_format' ) ) ) ?></span>
 <?php endif; ?>
 
 	</div>
