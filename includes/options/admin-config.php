@@ -2331,7 +2331,18 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-callnow-button', '=' , '1')
                     )
              ),
-
+            // Date Format
+            array(
+                    'id'        =>'ampforwp-post-date-format',
+                    'type'      =>'select',
+                    'title'     =>__('Date Format','accelerated-mobile-pages'),
+                    'subtitle' => __('Select the Date Format of Posts', 'accelerated-mobile-pages'),
+                    'options'   => array(
+                                    '1' => 'Ago',
+                                    '2' => 'Traditional view'
+                                    ), 
+                    'default'   =>'1',
+            ),
 
              array(
                     'id'       => 'css_editor',
@@ -2598,17 +2609,6 @@ Redux::setSection( $opt_name, array(
                         'required' => array(array('amp-design-selector', '=' , '3') ), 
                         'default'   =>'1',
                 ),
-
-               // Full date Format
-                array(
-                        'id'        =>'ampforwp-full-post-date',
-                        'type'      =>'switch',
-                        'title'     =>__('Date Format','accelerated-mobile-pages'),
-                        'subtitle' => __('Display Full Date of Posts on Homepage/Archives. ex: 11 November 2017', 'accelerated-mobile-pages'),
-                        'required' => array(array('amp-design-selector', '!=' , '2') ), 
-                        'default'   =>'0',
-                ),
-
 
             // Homepage thumbnail
                 array(

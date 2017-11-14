@@ -4984,10 +4984,13 @@ function ampforwp_is_blog(){
 add_filter('ampforwp_modify_post_date', 'ampforwp_full_post_date_loops');
 if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 	function ampforwp_full_post_date_loops($date){
-		global $redux_builder_amp;
-		if(isset($redux_builder_amp['ampforwp-full-post-date']) && true == $redux_builder_amp['ampforwp-full-post-date'] ){
-			$date =  get_the_date();
-		}
+	global $redux_builder_amp;
+	if((is_home() || is_archive()) && 2 == $redux_builder_amp['ampforwp-post-date-format']){
+		$date =  get_the_date();
+	}
+	if(is_single() && 1 == $redux_builder_amp['ampforwp-post-date-format']){
+		$date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+	}
 	return $date;
 	}
 }

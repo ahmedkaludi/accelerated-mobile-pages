@@ -27,12 +27,7 @@
 		<time datetime="<?php echo esc_attr( date( 'c', $this->get( 'post_publish_timestamp' ) ) ); ?>">
 		<?php if( is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
 			global $redux_builder_amp;
-			echo esc_html(
-				sprintf(
-					_x( '%s '.ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' ), '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-					human_time_diff( $this->get( 'post_publish_timestamp' ), current_time( 'timestamp' ) )
-				)
-			);
+			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . get_the_date( get_option( 'date_format' ), FALSE ) );
 			}?>
 		</time>
 	</div>
