@@ -145,7 +145,7 @@ function call_loops_standard($data=array()){
 		return "";
 	}
 
-	function amp_pagination($args =array){
+	function amp_pagination($args =array()) {
 		global $amp_q, $redux_builder_amp;
 		if (get_query_var( 'paged' ) ) {
 		    $paged = get_query_var('paged');
