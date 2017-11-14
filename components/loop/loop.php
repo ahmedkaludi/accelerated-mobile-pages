@@ -145,7 +145,7 @@ function call_loops_standard($data=array()){
 		return "";
 	}
 
-	function amp_pagination(){
+	function amp_pagination($args =array){
 		global $amp_q, $redux_builder_amp;
 		if (get_query_var( 'paged' ) ) {
 		    $paged = get_query_var('paged');
@@ -155,8 +155,14 @@ function call_loops_standard($data=array()){
 		    $paged = 1;
 		}
 		$pre_link = '';
+		if(!isset($args['previous_text']) || $args['previous_text']==''){
+			$args['previous_text'] = 'Show previous Posts';
+		}
+		if(!isset($args['next_text']) || $args['next_text']==''){
+			$args['previous_text'] = 'Show more Posts';
+		}
         if ( $paged > 1 ) { 
-          $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ) .'</div>';
+          $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
         }
 
         echo '<div class="loop-pagination">
