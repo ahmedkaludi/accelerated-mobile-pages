@@ -159,14 +159,14 @@ function call_loops_standard($data=array()){
 			$args['previous_text'] = 'Show previous Posts';
 		}
 		if(!isset($args['next_text']) || $args['next_text']==''){
-			$args['previous_text'] = 'Show more Posts';
+			$args['next_text'] = 'Show more Posts';
 		}
         if ( $paged > 1 ) { 
           $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
         }
 
         echo '<div class="loop-pagination">
-          <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), $amp_q->max_num_pages ) .'</div>
+          <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
             '.$pre_link.'
           <div class="clearfix"></div>
         </div>';
