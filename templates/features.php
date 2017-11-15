@@ -4837,7 +4837,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 		$permission_dialog_url  = '';
 		$service_worker_url		= '';
 		// HTTPS sites
-		$onesignal_domain 		= AMPFORWP_PLUGIN_DIR_URI.'includes/OneSignal/';
+		$onesignal_domain 		= AMPFORWP_PLUGIN_DIR_URI.'includes/onesignal-integration/';
 		$onesignal_app_id		= $redux_builder_amp['ampforwp-one-signal-app-id'];
 		$helper_iframe_url = $onesignal_domain .'amp-helper-frame.html?appId=' . $onesignal_app_id;
 
