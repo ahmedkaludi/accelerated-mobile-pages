@@ -4983,15 +4983,21 @@ function ampforwp_is_blog(){
 // 97. Change the format of the post date on Loops #1384
 add_filter('ampforwp_modify_post_date', 'ampforwp_full_post_date_loops');
 if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
-	function ampforwp_full_post_date_loops($date){
+	function ampforwp_full_post_date_loops($full_date){
 	global $redux_builder_amp;
 	if((is_home() || is_archive()) && 2 == $redux_builder_amp['ampforwp-post-date-format']){
-		$date =  get_the_date();
+		$full_date =  get_the_date();
 	}
 	if(is_single() && 1 == $redux_builder_amp['ampforwp-post-date-format']){
-		$date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+		$date 		= human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') );
+		$full_date 	=  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+		if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
+			$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
+			// Change the % days into the actual number of days
+			$full_date = str_replace('% days', $date, $full_date);
+		}
 	}
-	return $date;
+	return $full_date;
 	}
 }
 

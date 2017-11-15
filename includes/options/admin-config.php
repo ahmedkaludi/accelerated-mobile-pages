@@ -2343,6 +2343,14 @@ Redux::setSection( $opt_name, array(
                                     ), 
                     'default'   =>'1',
             ),
+            array(
+                    'id'        =>'ampforwp-post-date-format-text',
+                    'type'      =>'text',
+                    'title'     =>__('Text for the Date Format','accelerated-mobile-pages'),
+                    'desc'  =>__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
+                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
+                    'default'   =>'% days ago',
+            ), 
 
              array(
                     'id'       => 'css_editor',
