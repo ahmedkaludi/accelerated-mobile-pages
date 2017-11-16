@@ -44,6 +44,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
     );
     // The Query
     $the_query = new WP_Query( $args );
+    $thumb_url = "";
 
     // The Loop
 
@@ -54,11 +55,8 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
             $the_query->the_post();
             $ampforwp_post_url = get_permalink(); ?>
             <li class="amp-category-post">
-              <?php if ( has_post_thumbnail() ) { ?>
-                  <?php
-                  $thumb_id = get_post_thumbnail_id();
-                  $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-                  $thumb_url = $thumb_url_array[0];
+              <?php if ( ampforwp_has_post_thumbnail() ) {
+                  $thumb_url = ampforwp_get_post_thumbnail('url');
                   ?>
                   <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
               <?php } ?>
