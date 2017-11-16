@@ -80,6 +80,7 @@ function ampforwp_get_the_page_id_blog_page(){
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
+	global $redux_builder_amp;
     // For Homepage
     add_rewrite_rule(
       'amp/?$',
@@ -175,6 +176,10 @@ function ampforwp_add_custom_rewrite_rules() {
 	      'top'
 	    );
 	  }
+	}
+	// For OneSignal
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
+		add_rewrite_rule('OneSignalSDKWorker.js','wp-content/plugins/accelerated-mobile-pages/includes/onesignal-integration/OneSignalSDKWorker.js','top');
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );

@@ -1038,6 +1038,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
 				  // removing sl-processed attribute
 				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
+				  // ga-on
+				  $content = preg_replace('/(<[^>]+) ga-on=".*?"/', '$1', $content);
+				  // ga-event-category
+				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
 
 				return $content;
 		}
@@ -4915,13 +4919,6 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
     amp-web-push-widget.amp-invisible{ display:none;}
 <?php }
 	}	
-}
-// Rewrite Rule for Onesignal Service worker to make it work properly
-add_action( 'init', 'ampforwp_custom_rewrite_rule_onesignal' );
-if( ! function_exists('ampforwp_custom_rewrite_rule_onesignal')){
-	function ampforwp_custom_rewrite_rule_onesignal(){
-	 add_rewrite_rule('OneSignalSDKWorker.js','wp-content/plugins/accelerated-mobile-pages/includes/onesignal-integration/OneSignalSDKWorker.js','top');
-	}
 }
 // 95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
 add_filter( 'nav_menu_link_attributes', 'ampforwp_nav_menu_link_attributes', 10, 3 );
