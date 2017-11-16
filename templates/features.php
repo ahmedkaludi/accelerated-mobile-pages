@@ -4355,37 +4355,34 @@ function ampforwp_inline_related_posts(){
 						
 				    while( $my_query->have_posts() ) {
 						    $my_query->the_post();
-									$related_post_permalink = get_permalink();
-									$related_post_permalink = trailingslashit($related_post_permalink);
-									$related_post_permalink = user_trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
-								if ( has_post_thumbnail() ) { 
+								$related_post_permalink = get_permalink();
+								$related_post_permalink = trailingslashit($related_post_permalink);
+								$related_post_permalink = user_trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
+								if ( ampforwp_has_post_thumbnail() ) {
 									$title_class = 'has_related_thumbnail';
-									 } else {
-									  $title_class = 'no_related_thumbnail'; 
-									}
+								} else {
+									$title_class = 'no_related_thumbnail'; 
+								}
 
-								$inline_related_posts .= '<li class="'.$title_class.'">
+							$inline_related_posts .= '<li class="'.$title_class.'">
                                     <a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.get_the_title().'">';
 			          
-				            $thumb_id_2 = get_post_thumbnail_id();
-				            $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, 'thumbnail', true);
-				            $thumb_url_2 = $thumb_url_array_2[0];
+				           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
 			            
-
-									 if ( has_post_thumbnail() ) { 
-			            	$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
-									 } 
-                                 $inline_related_posts .='</a>';
-		                $inline_related_posts .='<div class="related_link">';
-		                     $inline_related_posts .='<a href="'.esc_url( $related_post_permalink ).'">'.get_the_title().'</a>';
-		                    if(has_excerpt()){
-													$content ='<p>'.get_the_excerpt().'</p>';
-												}else{
-													$content ='<p>'.get_the_content().'</p>';
-												}
-		                    $inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , '15' ).'</p>
-		                </div>
-		            </li>';
+								if ( ampforwp_has_post_thumbnail() ) {
+									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+								} 
+								$inline_related_posts .='</a>';
+								$inline_related_posts .='<div class="related_link">';
+									$inline_related_posts .='<a href="'.esc_url( $related_post_permalink ).'">'.get_the_title().'</a>';
+				                    if( has_excerpt() ){
+										$content ='<p>'.get_the_excerpt().'</p>';
+									}else{
+										$content ='<p>'.get_the_content().'</p>';
+									}
+			                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , '15' ).'</p>
+		                		</div>
+		           			 </li>';
 							
 							}
 
