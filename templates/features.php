@@ -1038,6 +1038,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
 				  // removing sl-processed attribute
 				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
+				  // ga-on
+				  $content = preg_replace('/(<[^>]+) ga-on=".*?"/', '$1', $content);
+				  // ga-event-category
+				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
 
 				return $content;
 		}
