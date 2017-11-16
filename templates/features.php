@@ -4399,7 +4399,7 @@ add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() ){
-		add_filter('the_content','ampforwp_generate_inline_related_posts');
+		add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
