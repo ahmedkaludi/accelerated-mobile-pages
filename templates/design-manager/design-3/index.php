@@ -40,7 +40,7 @@ if ( get_query_var( 'paged' ) ) {
 		      delay="4000">
 		<?php
 		  global $redux_builder_amp;
-		  if( $redux_builder_amp['amp-design-3-category-selector'] ){
+		  if( isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ){
 		    $args = array(
 		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
 		                   'posts_per_page' => 4,
