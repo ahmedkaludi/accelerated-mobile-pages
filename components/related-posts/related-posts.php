@@ -5,7 +5,7 @@
 */
 function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
-	do_action('ampforwp_above_related_post',$this); //Above Related Posts
+	do_action('ampforwp_above_related_post'); //Above Related Posts
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$my_query = related_post_loop_query();
@@ -31,7 +31,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 			</ul>
 		</div>
 <?php wp_reset_postdata(); ?>
-<?php do_action('ampforwp_below_related_post_hook',$this); 
+<?php do_action('ampforwp_below_related_post_hook'); 
 }
 
 
@@ -93,7 +93,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail'){
 	        $thumb_url_2 = $thumb_url_array_2[0];
 	    
 	     if ( has_post_thumbnail() ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="150" height="150" layout="responsive"></amp-img>
+	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="<?php echo $thumb_url_array_2[1]; ?>" height="<?php echo $thumb_url_array_2[2]; ?>" layout="responsive"></amp-img>
 		<?php } ?>
 	    </a>
 <?php
