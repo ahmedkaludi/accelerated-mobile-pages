@@ -4916,13 +4916,6 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
 <?php }
 	}	
 }
-// Rewrite Rule for Onesignal Service worker to make it work properly
-add_action( 'init', 'ampforwp_custom_rewrite_rule_onesignal' );
-if( ! function_exists('ampforwp_custom_rewrite_rule_onesignal')){
-	function ampforwp_custom_rewrite_rule_onesignal(){
-	 add_rewrite_rule('OneSignalSDKWorker.js','wp-content/plugins/accelerated-mobile-pages/includes/onesignal-integration/OneSignalSDKWorker.js','top');
-	}
-}
 // 95. Modify menu link attributes for SiteNavigationElement Schema Markup #1229 #1345
 add_filter( 'nav_menu_link_attributes', 'ampforwp_nav_menu_link_attributes', 10, 3 );
 if( ! function_exists( 'ampforwp_nav_menu_link_attributes' ) ) {
