@@ -4384,12 +4384,11 @@ function ampforwp_inline_related_posts(){
 		                		</div>
 		           			 </li>';
 							
-							}
-
-					        }
-							$inline_related_posts .= '</</ol>
+							}					     
+							$inline_related_posts .= '</ol>
 						    </div>
 						</div>';
+					}
 	      wp_reset_postdata();
 	      return $inline_related_posts;
 //related posts code ends here
@@ -4398,13 +4397,13 @@ function ampforwp_inline_related_posts(){
 add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
-	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() ){
+	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
 		add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
 	global $post;
-	
+		
 	$break_point = '</p>';
 	$content_parts = explode($break_point, $content);
 	$no_of_parts = count($content_parts);
@@ -4412,6 +4411,7 @@ function ampforwp_generate_inline_related_posts($content){
 	$half_content = array_chunk($content_parts, $half_index);
 	
 	$html[] ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+
 	$firs_content = $half_content[0];
 	$second_content = $half_content[1];
 	$final_content = array_merge($firs_content,$html,$second_content);
