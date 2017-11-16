@@ -4828,6 +4828,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	global $redux_builder_amp;
 	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
 		$onesignal_domain 		= '';
+		$onesignal_domain_sw 	= '';
 		$onesignal_subdomain 	= '';
 		$onesignal_app_id		= '';
 		$helper_iframe_url		= '';
@@ -4835,12 +4836,13 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 		$service_worker_url		= '';
 		// HTTPS sites
 		$onesignal_domain 		= AMPFORWP_PLUGIN_DIR_URI.'includes/onesignal-integration/';
+		$onesignal_domain_sw 	= trailingslashit( home_url() );
 		$onesignal_app_id		= $redux_builder_amp['ampforwp-one-signal-app-id'];
 		$helper_iframe_url = $onesignal_domain .'amp-helper-frame.html?appId=' . $onesignal_app_id;
 
 		$permission_dialog_url = $onesignal_domain .'amp-permission-dialog.html?appId=' . $onesignal_app_id;
 
-		$service_worker_url = $onesignal_domain .'OneSignalSDKWorker.js?appId=' . $onesignal_app_id;
+		$service_worker_url = $onesignal_domain_sw .'OneSignalSDKWorker.js?appId=' . $onesignal_app_id;
 		// HTTP sites
 		if(isset($redux_builder_amp['ampforwp-onesignal-http-site'] ) && $redux_builder_amp['ampforwp-onesignal-http-site'] ){
 			$onesignal_subdomain = $redux_builder_amp['ampforwp-onesignal-subdomain'];
