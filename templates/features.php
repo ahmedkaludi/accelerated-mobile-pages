@@ -5018,3 +5018,15 @@ function ampforwp_url_controller($url){
 
 	return esc_url( $new_url );
 }
+
+
+add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );
+function ampforwp_merriweather_font_management( $data ) {
+	global $redux_builder_amp;
+
+	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] != 1) {
+		unset($data['font_urls']['merriweather']);
+	}
+	
+	return $data;
+}
