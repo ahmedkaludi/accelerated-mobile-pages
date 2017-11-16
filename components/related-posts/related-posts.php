@@ -93,7 +93,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail'){
 	        $thumb_url_2 = $thumb_url_array_2[0];
 	    
 	     if ( has_post_thumbnail() ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="150" height="150" layout="responsive"></amp-img>
+	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="<?php echo $thumb_url_array_2[1]; ?>" height="<?php echo $thumb_url_array_2[2]; ?>" layout="responsive"></amp-img>
 		<?php } ?>
 	    </a>
 <?php
