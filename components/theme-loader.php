@@ -22,9 +22,14 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	function ampforwp_designing_custom_template( $file, $type, $post ) { 
 	 global $redux_builder_amp;
 		// Single file
-	    if ( is_single() || is_page() ) {
+	    if ( is_single() ) {
 			if('single' === $type && !('product' === $post->post_type )) {
 				$file = AMPFORWP_CUSTOM_THEME . '/single.php';
+		 	}
+		}
+		if ( is_page() ) {
+			if('single' === $type && !('product' === $post->post_type )) {
+				$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		 	}
 		}
 	    // Loop Template
