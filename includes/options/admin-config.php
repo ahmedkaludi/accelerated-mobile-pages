@@ -1899,6 +1899,14 @@ Redux::setSection( $opt_name, array(
                        'default'  => 0
                    ),
                    array(
+                       'id'       => 'amp-translator-breadcrumbs-homepage-text',
+                       'type'     => 'text',
+                       'title'    => __('Breadcrumbs Homepage Title', 'accelerated-mobile-pages'),
+                       'default'  => __('Homepage','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'accelerated-mobile-pages'),

@@ -4,7 +4,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
     // Settings
     $breadcrums_id      = 'breadcrumbs';
     $breadcrums_class   = 'breadcrumbs';
-    $home_title         = 'Homepage';
+    $home_title         = ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-homepage-text'] , 'Homepage' );
       
     // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
     $custom_taxonomy    = 'product_cat';
