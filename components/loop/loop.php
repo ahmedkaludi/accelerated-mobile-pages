@@ -226,10 +226,10 @@ function call_loops_standard($data=array()){
 	}
 
 	function amp_loop_permalink($return,$amp_query_var ='amp'){
-		if($return){
-			return user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
+		if( $return ){
+			return ampforwp_url_controller( get_permalink() ) ;
 		}
-		echo user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
+		echo ampforwp_url_controller( get_permalink() );
 	}
 	function amp_loop_image( $data=array() ){
 		global $ampLoopData,$counterOffset;
@@ -277,7 +277,7 @@ function call_loops_standard($data=array()){
 		echo ' <ul class="loop-category">';
 		if(count(get_the_category()) > 0){
 			foreach((get_the_category()) as $category) {
-				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.get_category_link($category->term_id).AMPFORWP_AMP_QUERY_VAR.'">'. $category->cat_name.'</a></li>';
+				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';
 			}
 		}
 		echo '</ul>';
