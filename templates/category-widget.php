@@ -58,10 +58,10 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
               <?php if ( ampforwp_has_post_thumbnail() ) {
                   $thumb_url = ampforwp_get_post_thumbnail('url');
                   ?>
-                  <a href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
+                  <a href="<?php echo ampforwp_url_controller($ampforwp_post_url);?>"><amp-img  class="ampforwp_wc_shortcode_img"  src=<?php echo $thumb_url ?> width=150 height=150 layout=responsive></amp-img></a>
               <?php } ?>
 
-              <a class="ampforwp_wc_shortcode_title" href="<?php echo trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR ;?>">
+              <a class="ampforwp_wc_shortcode_title" href="<?php echo ampforwp_url_controller($ampforwp_post_url) ;?>">
                   <?php echo get_the_title(); ?>
               </a> <?php
 
@@ -84,9 +84,9 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
         //show more link
         if( $ampforwp_category_link === 'yes' && ! empty( $ampforwp_category_id ) ) {
           
-          $category_link =  '<a class="amp-category-block-btn" href="'.trailingslashit(get_category_link($ampforwp_category_id)).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+          $category_link =  '<a class="amp-category-block-btn" href="'.ampforwp_url_controller(get_category_link( $ampforwp_category_id) ).'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         } else {
-          $category_link =   '<a class="amp-category-block-btn" href="'.user_trailingslashit( home_url() ).'amp'.'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+          $category_link =   '<a class="amp-category-block-btn" href="'.ampforwp_url_controller( home_url() ).'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
         } 
         if( $ampforwp_category_link === 'no' ) {
             $category_link = '';
