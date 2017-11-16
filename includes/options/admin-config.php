@@ -1446,9 +1446,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'id' => 'translation',
                        'type' => 'section',
                        'title' => __('Translation', 'accelerated-mobile-pages'),
-                       'required' => array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                       'required' => array( 
+                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'amp-use-pot', '=' , 0 )
+                                    ),   
                        'indent' => true,
-                       'required' => array( 'amp-use-pot', '=' , 0 )
                     ),
                     array(
                        'id'       => 'ampforwp-onesignal-translator-subscribe',
