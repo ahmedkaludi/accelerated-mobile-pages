@@ -77,6 +77,22 @@ if ( get_query_var( 'paged' ) ) {
 				  </div> <?php
 				}
 			}
+			if(is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support']){
+				$parent_cat_id 	= '';
+			    $cat_childs		= array();
+ 			    $parent_cat_id 	= get_queried_object_id();
+ 			 	$cat_childs 	= get_terms( array(
+ 			  						'taxonomy' => get_queried_object()->taxonomy,
+ 			  						'parent'   => $parent_cat_id)
+									);
+	 			if(!empty($cat_childs)){
+	 				echo "<div class='amp-sub-archives'><ul>";
+	 				foreach ($cat_childs as $cat_child ) {
+	 					 echo '<li><a href="' . get_term_link( $cat_child ) . '">' . $cat_child->name . '</a></li>'; 
+	 				}
+	 				echo "</ul></div>";
+	 			}
+	 		}	
  		} ?>
 
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post();

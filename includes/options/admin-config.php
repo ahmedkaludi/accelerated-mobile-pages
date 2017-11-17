@@ -509,6 +509,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
+           array(
+               'id'       => 'ampforwp-sub-categories-support',
+               'type'     => 'switch',
+               'title'    => __('Sub-Categories', 'accelerated-mobile-pages'),
+               'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
+               'default'  => '0'
+             ),
 
           //  array(
           //      'id'       => 'amp-ad-places',
