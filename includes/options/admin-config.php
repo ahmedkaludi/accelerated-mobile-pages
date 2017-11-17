@@ -2432,12 +2432,18 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
                     'default'   => 0
              ),
              array(
                     'id'        =>'enable-amp-call-numberfield',
                     'type'      => 'text',
-                    'required'  => array('ampforwp-callnow-button', '=' , '1'),
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
                     'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
                     'default'   => '',
              ),
