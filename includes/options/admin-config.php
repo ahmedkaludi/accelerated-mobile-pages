@@ -2322,14 +2322,6 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '1')
                     )
               ), 
-
-             array(
-                    'id'        =>'enable-amp-call-numberfield',
-                    'type'      => 'text',
-                    'required'  => array('ampforwp-callnow-button', '=' , '1'),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme-call',
                     'type'      => 'color_rgba',
@@ -2441,6 +2433,13 @@ Redux::setSection( $opt_name, array(
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                    'type'      => 'text',
+                    'required'  => array('ampforwp-callnow-button', '=' , '1'),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
              ),
             array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
