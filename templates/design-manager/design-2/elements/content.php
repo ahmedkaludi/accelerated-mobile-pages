@@ -2,16 +2,6 @@
 	<!--Post Content here-->
 	<div class="amp-wp-content the_content">
 		<?php global $redux_builder_amp;
-if( array_key_exists( 'enable-excerpt-single' , $redux_builder_amp ) ) {
-	if($redux_builder_amp['enable-excerpt-single']) {
-			if(has_excerpt()){ ?>
-				<div class="ampforwp_single_excerpt">
-					<?php $content = get_the_excerpt();
-					echo $content; ?>
-				</div>
-			<?php }
-		}
-}
 		do_action('ampforwp_before_post_content',$this) //Post before Content here ?>
 
 			<?php
