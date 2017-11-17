@@ -19,13 +19,16 @@
             </nav>
           </div>
         <?php } ?>
-        <p> <?php if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
-                     if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                      <a href="#header"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> | <?php ampforwp_view_nonamp(); 
-                      }
-                      else{
-                        ampforwp_view_nonamp();
-                      }
+        <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
+                    <a href="#header"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
+                  <?php }
+                  if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
+                    if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
+                      | <?php ampforwp_view_nonamp(); 
+                    }
+                    else{
+                      ampforwp_view_nonamp();
+                    }
                   }
               global $allowed_html;
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
