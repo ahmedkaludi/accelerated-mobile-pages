@@ -52,14 +52,12 @@
 
  		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h1>
 
- 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-		$ampforwp_amp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ; ?>
+ 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
 		        <h1 class="amp-wp-title">
-		            <?php  $ampforwp_post_url = get_permalink(); ?>
-		            <a href="<?php  echo trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>"><?php the_title() ?></a>
+		            <a href="<?php echo ampforwp_url_controller( get_permalink() );?>"><?php the_title() ?></a>
 		        </h1>
 
 				<div class="amp-wp-content-loop">
@@ -74,9 +72,10 @@
 
 				<?php if ( ampforwp_has_post_thumbnail() ) {  
 					$thumb_url = ampforwp_get_post_thumbnail();
+					
 					if($thumb_url){ ?>
 						<div class="home-post-image">
-							<a href="<?php  echo trailingslashit( trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR );?>">
+							<a href="<?php echo ampforwp_url_controller( get_permalink() );?>">
 								<amp-img src=<?php echo esc_url($thumb_url); ?> width=100 height=75></amp-img>
 							</a>
 						</div>

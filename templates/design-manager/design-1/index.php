@@ -54,8 +54,9 @@
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 		        	
 			        <h1 class="amp-wp-title">
-			            <?php  $ampforwp_post_url = get_permalink(); ?>
-			            <a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>"><?php the_title() ?></a>
+			            <?php  $ampforwp_post_url = get_permalink(); ?>	            
+
+			            <a href="<?php echo ampforwp_url_controller( $ampforwp_post_url ); ?>"><?php the_title() ?></a>
 			        </h1>
 
 					<div class="amp-wp-content-loop">
@@ -82,7 +83,7 @@
 							$thumb_url = ampforwp_get_post_thumbnail();
 							if($thumb_url){ ?>
 								<div class="home-post-image">
-									<a href="<?php  echo user_trailingslashit( trailingslashit( $ampforwp_post_url ) . AMPFORWP_AMP_QUERY_VAR );?>">
+									<a href="<?php echo ampforwp_url_controller( $ampforwp_post_url );?>">
 										<amp-img
 											src=<?php echo esc_url($thumb_url); ?>
 											<?php ampforwp_thumbnail_alt(); ?>

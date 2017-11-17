@@ -20,7 +20,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 				?>
 					<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			            <?php
-			            $related_post_permalink = ampforwp_relatedpost_getlink();
+			            $related_post_permalink = ampforwp_url_controller( get_permalink() );
 			            ampforwp_get_relatedpost_image('thumbnail');
 			            ampforwp_get_relatedpost_content($argsdata);
 			            ?> 
@@ -84,7 +84,7 @@ function ampforwp_related_post(){
 
 
 function ampforwp_get_relatedpost_image( $imagetype ='thumbnail'){
-	$related_post_permalink = ampforwp_relatedpost_getlink();
+	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
@@ -99,7 +99,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail'){
 <?php
 }
 function ampforwp_get_relatedpost_content($argsdata=array()){
-	$related_post_permalink = ampforwp_relatedpost_getlink();
+	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 ?>
 	<div class="related_link">
 			                <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
@@ -125,11 +125,3 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 						</div>
 <?php
 }
-
-function ampforwp_relatedpost_getlink(){
-	$related_post_permalink = get_permalink();
-	$related_post_permalink = trailingslashit($related_post_permalink);
-	$related_post_permalink = user_trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
-	return $related_post_permalink;
-} 
-?>

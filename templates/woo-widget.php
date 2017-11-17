@@ -54,7 +54,7 @@
            global $post;
            global $product;
            if( $ampforwp_procts_page_link === 'amp' ) {
-             $ampforwp_post_url = trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
+             $ampforwp_post_url = ampforwp_url_controller( get_permalink() );
            } else {
              $ampforwp_post_url = trailingslashit( get_permalink() ) ;
            } ?>
