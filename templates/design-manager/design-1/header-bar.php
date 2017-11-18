@@ -3,18 +3,21 @@
   <div class="ampforwp-logo-area" >
     <?php
     do_action('ampforwp_header_top_design1');
+    $nonamp_home_url = "";
+    $nonamp_home_url = add_query_arg( array( 'nonamp' => '1' ),  $this->get( 'home_url' ) );
+
     if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
-              <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+              <a href="<?php echo esc_url( $nonamp_home_url ); ?>" rel="nofollow">
             <?php } else { ?>
               <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ); ?>">
             <?php }
     } else { ?>
             <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
-                <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>">
+                <a href="<?php echo ampforwp_url_controller( $this->get( 'home_url' ) ) ; ?>">
             <?php } else {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
-              <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+              <a href="<?php echo esc_url( $nonamp_home_url ); ?>" rel="nofollow">
             <?php } else { ?>
               <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ); ?>" >
             <?php }
@@ -45,20 +48,20 @@
     </a>
 
     <?php
-    if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
-    ?>
-    <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
+
+    if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){ ?>
+      <a href="<?php echo esc_url( $nonamp_home_url ); ?>">
     <?php }else{ ?>
 
-    <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+      <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
-    <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
+      <a href="<?php echo ampforwp_url_controller(  $this->get( 'home_url' ) ); ?>">
 
-    <?php } else {?>
+      <?php } else {?>
 
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) .'?nonamp=1'); ?>" rel="nofollow">
+      <a href="<?php echo esc_url(  $nonamp_home_url ); ?>" rel="nofollow">
 
-    <?php }
+      <?php }
     } ?>
         <?php $site_icon_url = $this->get( 'site_icon_url' );
             if ( $site_icon_url ) : ?>

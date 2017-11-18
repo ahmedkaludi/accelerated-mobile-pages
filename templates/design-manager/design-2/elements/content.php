@@ -48,7 +48,7 @@
 							if (!empty( $next_post )) {
 								$next_text = $next_post->post_title;
 								?>
-									<a href="<?php echo user_trailingslashit( trailingslashit( get_permalink( $next_post->ID ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+									<a href="<?php echo ampforwp_url_controller( get_permalink( $next_post->ID ) ); ?>"><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 								} ?>
 					</div>
 					<!--Next Link code-->
@@ -59,7 +59,7 @@
 								 if (!empty( $prev_post )) {
 									 $prev_text = $prev_post->post_title;
 									  ?>
-								   <a href="<?php echo user_trailingslashit( trailingslashit( get_permalink( $prev_post->ID ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+								   <a href="<?php echo ampforwp_url_controller( get_permalink( $prev_post->ID ) ); ?>"> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 								 } ?>
 					</div>
 					<!--Prev Link code-->

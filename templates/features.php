@@ -3061,7 +3061,10 @@ function ampforwp_comment_button_url(){
     else
       $ampforwp_nonamp = '';
 
-  	$button_url =  trailingslashit( get_permalink() ) .$ampforwp_nonamp. '#commentform';
+
+  	$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
+
+  	$button_url = $button_url. '#commentform';
 
   return $button_url; 
 }
@@ -3244,9 +3247,10 @@ function ampforwp_frontpage_comments() {
 				<?php 
 				
 			} 
-			if ( comments_open($postID) ) {  ?>
+			if ( comments_open($postID) ) {
+				$comment_button_url = add_query_arg( array( 'nonamp' => '1' ),  $comment_button_url );?>
 				<div class="comment-button-wrapper">
-				    <a href="<?php echo esc_url( trailingslashit( $comment_button_url ) ) .'?nonamp=1'.'#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+				    <a href="<?php echo esc_url( $comment_button_url ) . '#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 				</div><?php
 				}?>
 		</div> <?php
