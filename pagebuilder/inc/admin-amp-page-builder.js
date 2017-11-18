@@ -388,145 +388,15 @@ var pageBuilderStarter = function(){
 				};
 				var textarea = control.find('textarea');
 				var id = value;
-				if ( typeof window.tinymce === 'undefined' ) {
-					wp.editor.initialize( id, {
-						quicktags: true
-					});
-					return;
-				}
-				// Destroy any existing editor so that it can be re-initialized after a widget-updated event.
+				
 				if ( tinymce.get( id ) ) {
-					restoreTextMode = tinymce.get( id ).isHidden();
-					wp.editor.remove( id );
+					tinyMCE.EditorManager.remove( "#"+value );
+					tinyMCE.EditorManager.execCommand("mceRemoveEditor", true, id);
 				}
-				wp.editor.initialize( id, {
-					tinymce: {
-						wpautop: true
-					},
-					quicktags: true
-				});
-				triggerChangeIfDirty = function() {
-				var updateWidgetBuffer = 300; 
-				if ( control.editor.isDirty() ) {
-					if ( wp.customize && wp.customize.state ) {
-						wp.customize.state( 'processing' ).set( wp.customize.state( 'processing' ).get() + 1 );
-						_.delay( function() {
-							wp.customize.state( 'processing' ).set( wp.customize.state( 'processing' ).get() - 1 );
-						}, updateWidgetBuffer );
-					}
+				tinyMCE.EditorManager.execCommand("mceAddEditor", true, id);
+				tinyMCE.EditorManager.execCommand("mceVisualBlocks", true, id);
+				tinyMCE.EditorManager.execCommand("mceAddControl", true, id);
 
-					if ( ! control.editor.isHidden() ) {
-						control.editor.save();
-					}
-				}
-				// Trigger change on textarea when it is dirty for sake of widgets in the Customizer needing to sync form inputs to setting models.
-				if ( needsTextareaChangeTrigger ) {
-					textarea.trigger( 'change' );
-					needsTextareaChangeTrigger = false;
-				}
-			};
-				control.customHtmlWidgetPointer = control.find( '.wp-pointer.custom-html-widget-pointer' );
-				if ( control.customHtmlWidgetPointer.length ) {
-					control.customHtmlWidgetPointer.find( '.close' ).on( 'click', function( event ) {
-						event.preventDefault();
-						control.customHtmlWidgetPointer.hide();
-						$( '#' + control.fields.text.attr( 'id' ) + '-html' ).focus();
-						control.dismissPointers( [ 'text_widget_custom_html' ] );
-					});
-					control.customHtmlWidgetPointer.find( '.add-widget' ).on( 'click', function( event ) {
-						event.preventDefault();
-						control.customHtmlWidgetPointer.hide();
-						control.openAvailableWidgetsPanel();
-					});
-				}
-				control.pasteHtmlPointer = control.find( '.wp-pointer.paste-html-pointer' );
-				if ( control.pasteHtmlPointer.length ) {
-					control.pasteHtmlPointer.find( '.close' ).on( 'click', function( event ) {
-						event.preventDefault();
-						control.pasteHtmlPointer.hide();
-						control.editor.focus();
-						control.dismissPointers( [ 'text_widget_custom_html', 'text_widget_paste_html' ] );
-					});
-				}
-				/**
-				 * Show a pointer, focus on dismiss, and speak the contents for a11y.
-				 *
-				 * @param {jQuery} pointerElement Pointer element.
-				 * @returns {void}
-				 */
-				showPointerElement = function( pointerElement ) {
-					pointerElement.show();
-					pointerElement.find( '.close' ).focus();
-					wp.a11y.speak( pointerElement.find( 'h3, p' ).map( function() {
-						return $( this ).text();
-					} ).get().join( '\n\n' ) );
-				};
-
-				editor = window.tinymce.get( id );
-				if ( ! editor ) {
-					throw new Error( 'Failed to initialize editor' );
-				}
-				onInit = function() {
-
-					// If a prior mce instance was replaced, and it was in text mode, toggle to text mode.
-					if ( restoreTextMode ) {
-						switchEditors.go( id, 'html' );
-					}
-
-					// Show the pointer.
-					$( '#' + id + '-html' ).on( 'click', function() {
-						//control.pasteHtmlPointer.hide(); // Hide the HTML pasting pointer.
-
-						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_custom_html' ) ) {
-							return;
-						}
-						showPointerElement( control.customHtmlWidgetPointer );
-					});
-
-					// Hide the pointer when switching tabs.
-					$( '#' + id + '-tmce' ).on( 'click', function() {
-						control.customHtmlWidgetPointer.hide();
-					});
-
-					// Show pointer when pasting HTML.
-					editor.on( 'pastepreprocess', function( event ) {
-						var content = event.content;
-						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_paste_html' ) || ! content || ! /&lt;\w+.*?&gt;/.test( content ) ) {
-							return;
-						}
-
-						// Show the pointer after a slight delay so the user sees what they pasted.
-						_.delay( function() {
-							showPointerElement( control.pasteHtmlPointer );
-						}, 250 );
-					});
-				};
-
-				if ( editor.initialized ) {
-					onInit();
-				} else {
-					editor.on( 'init', onInit );
-				}
-
-				control.editorFocused = false;
-
-				editor.on( 'focus', function onEditorFocus() {
-					control.editorFocused = true;
-				});
-				editor.on( 'paste', function onEditorPaste() {
-					editor.setDirty( true ); // Because pasting doesn't currently set the dirty state.
-					triggerChangeIfDirty();
-				});
-				editor.on( 'NodeChange', function onNodeChange() {
-					needsTextareaChangeTrigger = true;
-				});
-				editor.on( 'NodeChange', _.debounce( triggerChangeIfDirty, changeDebounceDelay ) );
-				editor.on( 'blur hide', function onEditorBlur() {
-					control.editorFocused = false;
-					triggerChangeIfDirty();
-				});
-				control.editor = editor;
-				 
 			})
 			
 		}

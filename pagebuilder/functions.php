@@ -19,10 +19,10 @@ function amppbbase_admin_scripts( $hook_suffix ){
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
         $amp_current_post_id = get_the_ID();
-            if(function_exists('wp_enqueue_editor')){
+            /*if(function_exists('wp_enqueue_editor')){
 	        	wp_enqueue_editor();
-	        }
-			wp_enqueue_script( 'text-widgets' );
+	        }*/
+			//wp_enqueue_script( 'text-widgets' );
 	        wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
 						'jquery-ui-resizable',
