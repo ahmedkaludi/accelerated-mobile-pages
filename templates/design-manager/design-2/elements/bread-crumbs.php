@@ -19,7 +19,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
         echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
            
         // Home page
-        echo '<li class="item-home"><a class="bread-link bread-home" href="' . user_trailingslashit(trailingslashit( get_home_url() ) . AMPFORWP_AMP_QUERY_VAR) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
+        echo '<li class="item-home"><a class="bread-link bread-home" href="' . ampforwp_url_controller( get_home_url() ) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
 
@@ -28,11 +28,11 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
         } else if  ( is_author() ) {
                 global $author;
                 
-                $userdata = get_userdata( $author ); 
-                $author_url= get_author_posts_url($userdata->ID);
+                $userdata   = get_userdata( $author ); 
+                $author_url = ampforwp_url_controller( get_author_posts_url( $userdata->ID ) );
 
                 // Display author name
-                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'.$author_url. AMPFORWP_AMP_QUERY_VAR . '">' . 'Author: ' . $userdata->display_name . '</a></li>';
+                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'.$author_url . '">' . 'Author: ' . $userdata->display_name . '</a></li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
               
@@ -42,10 +42,10 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
             // If it is a custom post type display name and link
             if($post_type != 'post') {
                   
-                $post_type_object = get_post_type_object($post_type);
-                $post_type_archive = get_post_type_archive_link($post_type);
+                $post_type_object  = get_post_type_object($post_type);
+                $post_type_archive = ampforwp_url_controller( get_post_type_archive_link($post_type) );
               
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . AMPFORWP_AMP_QUERY_VAR . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';              
+                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';              
             }
               
             $custom_tax_name = get_queried_object()->name;
@@ -58,10 +58,10 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
             // If it is a custom post type display name and link
             if($post_type != 'post') {
                   
-                $post_type_object = get_post_type_object($post_type);
-                $post_type_archive = get_post_type_archive_link($post_type);
+                $post_type_object   = get_post_type_object($post_type);
+                $post_type_archive  = ampforwp_url_controller( get_post_type_archive_link($post_type) );
               
-                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . AMPFORWP_AMP_QUERY_VAR . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';  
+                echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';  
             }
               
             // Get post category info
@@ -80,9 +80,9 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
                 // Loop through parent categories and store in variable $cat_display
                 $cat_display = '';
                 foreach($cat_parents as $parents) {
-                    $cat_id = get_cat_ID( $parents);
-                    $cat_link = get_category_link($cat_id);
-                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. user_trailingslashit(trailingslashit($cat_link).'amp').'" title="' . $parents . '">' . $parents . '</a></li>';
+                    $cat_id     = get_cat_ID( $parents);
+                    $cat_link   = ampforwp_url_controller( get_category_link($cat_id) );
+                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. $cat_link .'" title="' . $parents . '">' . $parents . '</a></li>';
                 }
             }
               
@@ -95,6 +95,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
                 $cat_nicename   = $taxonomy_terms[0]->slug;
                 $cat_link       = get_term_link($taxonomy_terms[0]->term_id, $custom_taxonomy);
                 $cat_name       = $taxonomy_terms[0]->name;
+                $cat_link       = ampforwp_url_controller( $cat_link );
             }
               
             // Check if the post is in a category
@@ -104,7 +105,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
                   
-                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link .AMPFORWP_AMP_QUERY_VAR . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
+                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
             }  
               
         } else if ( is_category() ) {
@@ -125,7 +126,7 @@ if(isset($redux_builder_amp['ampforwp-bread-crumb']) && $redux_builder_amp['ampf
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . AMPFORWP_AMP_QUERY_VAR . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
+                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . ampforwp_url_controller( get_permalink($ancestor) ) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
                 }
                    
                 // Display parent pages

@@ -50,7 +50,7 @@
 		<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h1>
  		</div>
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-			$ampforwp_amp_post_url = trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ); ?>
+			$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
 				$thumb_url = ampforwp_get_post_thumbnail();
