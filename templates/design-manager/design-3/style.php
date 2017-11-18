@@ -281,9 +281,9 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #searchsubmit{opacity:0}
 .featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px; }
 .archives_body main{ margin-top:30px }
-.archives_body .page-title, .taxonomy-description{padding: 0 15px}
+.archives_body .page-title, .taxonomy-description, .amp-sub-archives{padding: 0 15px}
 .taxonomy-description p{margin-top: 5px;font-size: 14px;line-height: 1.5;}
-.amp-sub-archives li{width: 33%;display: inline-block;} .amp-sub-archives ul{padding: 0;}
+.amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;}
 <?php  if(is_home() && $redux_builder_amp['amp-frontpage-select-option']==0){?>
 /* AMP carousel */
 .amp-carousel-button-prev, .amp-carousel-button-next{ top:30px;border-radius:60px; }

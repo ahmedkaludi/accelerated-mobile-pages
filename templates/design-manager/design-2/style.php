@@ -126,7 +126,7 @@ h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; }
 }
 .amp-wp-post-content p{ font-size: 12px; color: #999; line-height: 20px; margin: 3px 0 0 5px; }
 main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
-.amp-sub-archives li{width: 33%;display: inline-block;} .amp-sub-archives ul{padding: 0;}
+.amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;}
 .page-title{
 	font-size: 1.17em;
 	padding: 6px 0;
