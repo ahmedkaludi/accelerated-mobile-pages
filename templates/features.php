@@ -3050,7 +3050,30 @@ if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
 	  return str_replace( array( '&amp;', '&#038;' ), '&', $str );
 	}
 }
-
+// Add extra params in amp-youtube
+add_filter('amp_youtube_params', 'ampforwp_youtube_modified_params');
+if( ! function_exists(' ampforwp_youtube_modified_params ') ){
+	function ampforwp_youtube_modified_params($amp_youtube){
+		$check = '';
+		$param = '';
+		// Check for extra params
+		$check = preg_match('/(.*?)&(.*)/', $amp_youtube['data-videoid']);
+		if(1 === $check){
+			// Grab the extra param
+			$param = preg_replace('/(.*?)&(.*)/', '$2', $amp_youtube['data-videoid']);
+			// Parse the string into variables
+			parse_str($param, $query_args);
+			// Check for rel param
+			if(isset($query_args['rel'])){
+				// Add the rel param in amp-youtube's data-param
+				$amp_youtube['data-param-rel'] = $query_args['rel'];
+			}
+			// Remove that param from URL
+			$amp_youtube['data-videoid'] = preg_replace('/&(.*)/', '', $amp_youtube['data-videoid']);
+		}
+		return $amp_youtube;
+	}
+}
 // 59. Comment Button URL
 function ampforwp_comment_button_url(){
 	global $redux_builder_amp;
