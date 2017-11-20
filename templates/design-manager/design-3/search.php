@@ -85,13 +85,21 @@
 					}
 				?>
 		        <p class="large-screen-excerpt-design-3">
-				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); 
+				<?php 
+					$excertp_length	='';
+					$excertp_length = 15;
+					$final_content 	= ""; 
+					$final_content 	= apply_filters('ampforwp_modify_index_content', wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ), $content,  $excertp_length );
+					echo $final_content;  
 				?></p>
 		        <p class="small-screen-excerpt-design-3" > <?php    
 					if($redux_builder_amp['excerpt-option-design-3']== true) {
-						$excertp_length='';
-						$excertp_length = $redux_builder_amp['amp-design-3-excerpt']; 
-						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+						$excertp_length ='';
+						$excertp_length = $redux_builder_amp['amp-design-3-excerpt'];
+						$final_content  = ""; 
+						$final_content  = apply_filters('ampforwp_modify_index_content', wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ), $content,  $excertp_length );
+						echo $final_content;
+					} ?> 
 				</p>
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
