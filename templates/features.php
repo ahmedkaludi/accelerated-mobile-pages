@@ -106,6 +106,8 @@
 	96. ampforwp_is_front_page() ampforwp_is_home() and ampforwp_is_blog is created
 	97. Change the format of the post date on Loops #1384 
 	98. Create Dynamic url of amp according to the permalink structure #1318
+	99. Merriweather Font Management
+	100. Flags compatibility in Menu 
 */
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
@@ -5065,8 +5067,7 @@ function ampforwp_url_controller($url){
 
 	return esc_url( $new_url );
 }
-
-
+// 99. Merriweather Font Management
 add_filter( 'amp_post_template_data', 'ampforwp_merriweather_font_management' );
 function ampforwp_merriweather_font_management( $data ) {
 	global $redux_builder_amp;
@@ -5076,4 +5077,31 @@ function ampforwp_merriweather_font_management( $data ) {
 	}
 	
 	return $data;
+}
+// 100. Flags compatibility in Menu
+add_filter('ampforwp_menu_content','ampforwp_modify_menu_content');
+if( ! function_exists(' ampforwp_modify_menu_content ') ){
+	function ampforwp_modify_menu_content($menu){
+		$dom 		= '';
+		$nodes 		= '';
+		$num_nodes 	= '';
+		// Create a new document
+		$dom 		= new DOMDocument;
+		$dom->loadHTML($menu);
+		// get all the img's
+		$nodes 		= $dom->getElementsByTagName( 'img' );
+		$num_nodes 	= $nodes->length;
+		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
+			$node 	= $nodes->item( $i );
+			// Set The Width and Height if there in none
+			if ( '' === $node->getAttribute( 'width' ) ) {
+				$node->setAttribute('width', 15);
+			}
+			if( '' === $node->getAttribute( 'height' ) ){
+				$node->setAttribute('height', 15);
+			}
+		}
+		$menu = $dom->saveHTML();
+		return $menu;
+	}
 }
