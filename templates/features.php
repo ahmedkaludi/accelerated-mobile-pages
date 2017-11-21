@@ -5107,10 +5107,4 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$menu = $dom->saveHTML();
 		return $menu;
 	}
-}
-
-add_filter('envira_gallery_output','aisichh');
-
-function aisichh($content){
-	var_dump($content);
-}
+} 
