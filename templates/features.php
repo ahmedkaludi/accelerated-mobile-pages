@@ -5086,8 +5086,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$nodes 		= '';
 		$num_nodes 	= '';
 		// Create a new document
-		$dom 		= new DOMDocument;
-		$dom->loadHTML($menu);
+		$dom 		= new DOMDocument();
+		//turning off some errors
+        libxml_use_internal_errors(true);
+		$dom->loadHTML(mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8'));
+
 		// get all the img's
 		$nodes 		= $dom->getElementsByTagName( 'img' );
 		$num_nodes 	= $nodes->length;
