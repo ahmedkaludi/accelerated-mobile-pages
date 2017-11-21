@@ -4530,7 +4530,7 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
       z-index: 1000;
       /* some styling */
       color: var(--caption-color);
-      background: rgba(0, 0, 0, 0.6);    
+      background: rgba(0, 0, 0, 0.6); margin-bottom:0;    
     }
     /* expanded caption */
     .collapsible-captions figcaption.expanded {
