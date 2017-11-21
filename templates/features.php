@@ -1044,6 +1044,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/(<[^>]+) ga-on=".*?"/', '$1', $content);
 				  // ga-event-category
 				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
+				   // aria-current
+				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
 
 				return $content;
 		}
