@@ -3807,7 +3807,7 @@ function ampforwp_thumbnail_alt(){
 	$thumb_id = get_post_thumbnail_id();
 	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true) ;
 	if($thumb_alt){
-		echo 'alt="' . esc_attr($thumb_alt) . '"';
+		echo ' alt="' . esc_attr($thumb_alt) . '" ';
 	}
 }
 
@@ -5107,4 +5107,10 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$menu = $dom->saveHTML();
 		return $menu;
 	}
+}
+
+add_filter('envira_gallery_output','aisichh');
+
+function aisichh($content){
+	var_dump($content);
 }
