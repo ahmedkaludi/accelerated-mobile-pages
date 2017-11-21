@@ -66,7 +66,7 @@
          $contenthtml.= '<ul>';		
          while ( $the_query->have_posts() ) {		
              $the_query->the_post();		
-             $ampforwp_post_url = get_permalink();		
+             $ampforwp_post_url = ampforwp_url_controller( get_permalink() );		
              $contenthtml.='<li>';		
                  if ( has_post_thumbnail() ) {	
                    $contenthtml.= '
@@ -75,13 +75,13 @@
                    $thumb_id = get_post_thumbnail_id();		
                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);		
                    $thumb_url = $thumb_url_array[0];		
-                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="150" height="150" layout="responsive"></amp-img></a>';	
+                   $contenthtml.= '<a href="'. $ampforwp_post_url .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="150" height="150" layout="responsive"></amp-img></a>';	
                     $contenthtml.= '
                     </div>
                     ';		             
                  }
              $contenthtml.= '<div class="cat_mod_r">';		             
-               $contenthtml.= '<a href="'. trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR.'">'.get_the_title().'</a>'; 		
+               $contenthtml.= '<a href="'.  $ampforwp_post_url .'">'.get_the_title().'</a>'; 		
  		
                if( $ampforwp_show_excerpt == 'yes' ) { 		
  				if( has_excerpt() ) {		

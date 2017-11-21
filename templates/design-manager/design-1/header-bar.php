@@ -3,18 +3,21 @@
   <div class="ampforwp-logo-area" >
     <?php
     do_action('ampforwp_header_top_design1');
+    $nonamp_home_url = "";
+    $nonamp_home_url = add_query_arg( array( 'nonamp' => '1' ),  $this->get( 'home_url' ) );
+
     if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
-              <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+              <a href="<?php echo esc_url( $nonamp_home_url ); ?>" rel="nofollow">
             <?php } else { ?>
               <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ); ?>">
             <?php }
     } else { ?>
             <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
-                <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) )  . AMPFORWP_AMP_QUERY_VAR ); ?>">
+                <a href="<?php echo ampforwp_url_controller( $this->get( 'home_url' ) ) ; ?>">
             <?php } else {
             if( $redux_builder_amp['amp-mobile-redirection'] ) { ?>
-              <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ).'?nonamp=1'); ?>" rel="nofollow">
+              <a href="<?php echo esc_url( $nonamp_home_url ); ?>" rel="nofollow">
             <?php } else { ?>
               <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) ); ?>" >
             <?php }
@@ -45,20 +48,20 @@
     </a>
 
     <?php
-    if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){
-    ?>
-    <a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
+
+    if($redux_builder_amp['amp-on-off-support-for-non-amp-home-page']){ ?>
+      <a href="<?php echo esc_url( $nonamp_home_url ); ?>">
     <?php }else{ ?>
 
-    <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
+      <?php if($redux_builder_amp['ampforwp-homepage-on-off-support']) { ?>
 
-    <a href="<?php echo esc_url( trailingslashit( trailingslashit( $this->get( 'home_url' ) ) ) . AMPFORWP_AMP_QUERY_VAR ); ?>">
+      <a href="<?php echo ampforwp_url_controller(  $this->get( 'home_url' ) ); ?>">
 
-    <?php } else {?>
+      <?php } else {?>
 
-    <a href="<?php echo esc_url( trailingslashit( $this->get( 'home_url' ) ) .'?nonamp=1'); ?>" rel="nofollow">
+      <a href="<?php echo esc_url(  $nonamp_home_url ); ?>" rel="nofollow">
 
-    <?php }
+      <?php }
     } ?>
         <?php $site_icon_url = $this->get( 'site_icon_url' );
             if ( $site_icon_url ) : ?>
@@ -98,6 +101,7 @@
                                   'echo' => false,
                                   'menu_class' => 'menu amp-menu'
                                 ) );
+        $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
         $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
         $sanitized_menu =  $sanitizer_obj->get_amp_content();
         echo $sanitized_menu;

@@ -60,14 +60,28 @@
 						<?php echo $arch_desc ; ?>
 				    </div> <?php
 				}
-			}	
+			}
+			if(is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support']){
+				$parent_cat_id 	= '';
+			    $cat_childs		= array();
+ 			    $parent_cat_id 	= get_queried_object_id();
+ 			 	$cat_childs 	= get_terms( array(
+ 			  						'taxonomy' => get_queried_object()->taxonomy,
+ 			  						'parent'   => $parent_cat_id)
+									);
+	 			if(!empty($cat_childs)){
+	 				echo "<div class='amp-sub-archives'><ul>";
+	 				foreach ($cat_childs as $cat_child ) {
+	 					 echo '<li><a href="' . get_term_link( $cat_child ) . '">' . $cat_child->name . '</a></li>'; 
+	 				}
+	 				echo "</ul></div>";
+	 			}
+	 		}	
 	  } ?>
 	  	<?php  do_action('ampforwp_between_loop',$count); ?>
 		<?php  if ( have_posts() ) : while ( have_posts() ) : the_post();
 
-			$ampforwp_amp_post_url =  trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ;
-
-			$ampforwp_amp_post_url  = user_trailingslashit( $ampforwp_amp_post_url );
+			$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() );
 
 				if( in_array( 'ampforwp-custom-type-amp-endpoint' , $redux_builder_amp ) ) {
 					if ( isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && $redux_builder_amp['ampforwp-custom-type-amp-endpoint']) {
@@ -116,9 +130,16 @@
 							$content = get_the_content();
 						} ?>
 					<p><?php global $redux_builder_amp;
-								if($redux_builder_amp['excerpt-option-design-1']== true) {
-								$excertp_length = $redux_builder_amp['amp-design-1-excerpt'];
-								echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); }?></p>
+						if($redux_builder_amp['excerpt-option-design-1']== true) {
+							$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
+							$final_content = "";					
+							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+							if ( false === has_filter('ampforwp_modify_index_content' ) ) {
+								$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
+							}
+							echo $final_content;
+
+						}?></p>
 				</div>
 	        </div>
 	    <?php 

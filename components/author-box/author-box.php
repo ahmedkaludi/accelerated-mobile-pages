@@ -61,7 +61,7 @@ $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_
         <?php } ?>
         <?php echo '<div class="author-details '. $author_wrapper_class .'">
                         <span class="author-name">'
-                        .$author_prefix . ' <a href="'. $author_link.AMPFORWP_AMP_QUERY_VAR.'"> ' .esc_html( $post_author->display_name ).'</a>
+                        .$author_prefix . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>
                         </span>';
 
         //to show date and time

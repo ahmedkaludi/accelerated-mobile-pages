@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.68
+Version: 0.9.69
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -18,7 +18,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.68');
+define('AMPFORWP_VERSION','0.9.69');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -80,6 +80,7 @@ function ampforwp_get_the_page_id_blog_page(){
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
+	global $redux_builder_amp;
     // For Homepage
     add_rewrite_rule(
       'amp/?$',
@@ -175,6 +176,10 @@ function ampforwp_add_custom_rewrite_rules() {
 	      'top'
 	    );
 	  }
+	}
+	// For OneSignal
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
+		add_rewrite_rule('OneSignalSDKWorker.js','wp-content/plugins/accelerated-mobile-pages/includes/onesignal-integration/OneSignalSDKWorker.js','top');
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );

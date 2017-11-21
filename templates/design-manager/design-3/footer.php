@@ -14,6 +14,7 @@
                   'link_after'     => '</span>',
                   'echo' => false
               ) );
+              $menu = apply_filters('ampforwp_menu_content', $menu);
               $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
               $sanitized_menu =  $sanitizer_obj->get_amp_content();
               echo $sanitized_menu; ?>
@@ -83,7 +84,7 @@
             </ul>
           </div>
           <?php } 
-          if( isset( $redux_builder_amp['ampforwp-footer-top-design3'] ) =='1' ){ ?>
+          if( $redux_builder_amp['ampforwp-footer-top-design3'] == '1' ){ ?>
             <p class="rightslink back-to-top">
              <a href="#">
                   <?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> 
@@ -92,7 +93,11 @@
             <?php
               global $allowed_html; 
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html ) ;
-              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ?> | <?php ampforwp_view_nonamp(); } ?>
+              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
+                if($redux_builder_amp['amp-translator-footer-text']){ ?> | <?php ampforwp_view_nonamp(); }
+                else{
+                  ampforwp_view_nonamp();
+                } } ?>
           </p>
           <?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
           <p class="poweredby">

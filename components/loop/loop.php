@@ -145,7 +145,7 @@ function call_loops_standard($data=array()){
 		return "";
 	}
 
-	function amp_pagination(){
+	function amp_pagination($args =array()) {
 		global $amp_q, $redux_builder_amp;
 		if (get_query_var( 'paged' ) ) {
 		    $paged = get_query_var('paged');
@@ -155,12 +155,18 @@ function call_loops_standard($data=array()){
 		    $paged = 1;
 		}
 		$pre_link = '';
+		if(!isset($args['previous_text']) || $args['previous_text']==''){
+			$args['previous_text'] = 'Show previous Posts';
+		}
+		if(!isset($args['next_text']) || $args['next_text']==''){
+			$args['next_text'] = 'Show more Posts';
+		}
         if ( $paged > 1 ) { 
-          $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts' ) ) .'</div>';
+          $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
         }
 
         echo '<div class="loop-pagination">
-          <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Show more Posts'), $amp_q->max_num_pages ) .'</div>
+          <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
             '.$pre_link.'
           <div class="clearfix"></div>
         </div>';
@@ -220,10 +226,10 @@ function call_loops_standard($data=array()){
 	}
 
 	function amp_loop_permalink($return,$amp_query_var ='amp'){
-		if($return){
-			return user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
+		if( $return ){
+			return ampforwp_url_controller( get_permalink() ) ;
 		}
-		echo user_trailingslashit(trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR) ;
+		echo ampforwp_url_controller( get_permalink() );
 	}
 	function amp_loop_image( $data=array() ){
 		global $ampLoopData,$counterOffset;
@@ -271,7 +277,7 @@ function call_loops_standard($data=array()){
 		echo ' <ul class="loop-category">';
 		if(count(get_the_category()) > 0){
 			foreach((get_the_category()) as $category) {
-				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.get_category_link($category->term_id).AMPFORWP_AMP_QUERY_VAR.'">'. $category->cat_name.'</a></li>';
+				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';
 			}
 		}
 		echo '</ul>';

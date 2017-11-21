@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.8.3
-Stable tag: 0.9.68
+Tested up to: 4.9
+Stable tag: 0.9.69
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,36 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.69 (20th November 2017) =
+* View More details on https://ampforwp.com/0-9-69-released-stability-update-75th-update/
+* One Signal Push Notifications bug fixed! #1404
+* AMP theme framework Related posts extended so that it can be used as a loop format #1406
+* Facebook like Button improvements #1405
+* Add layout responsive tag to image module in page builder #1373
+* Strip the shortcodes from Structure data area #1389
+* Test HTTP API Call From admin panel by redux #1391
+* Meta description tag in normal site Unicode character is different from AMP site unicode character. #1369
+* Updated the check for ampforwp_is_amp_endpoint this should fix the issue #1372
+* Updated the URL for design 3 so it can work with plain permalink #1318
+* Updated the option Featured Image from The Content #1367
+* If “Featured Image From The Content is enabled and Duplicate Featured Image” is disable it will remove all the duplicate images from the content. #1375
+* Date Format under Homepage improvements #1408
+* Warnings due to inline related posts in Homepage #1413
+* Plain Permalinks Support improved. #1318
+* Allow Homepage title of Bread Crumbs feature to be changed from Translation Panel #1414
+* Debug Errors in AMP Theme Framework #1403
+* Unnecessary loading of Merriweather fixed, it will only load in the Design 1.
+* Enter Phone Number is not Appearing when switch to Call now button #1425
+* Need excerpt below the title, above the meta #1399
+* Remove the Separator piple symbol from the footer when “Back to Top link” is off #1417
+* Display Child or subcategories on Category pages. #1385
+* Add Caption in the Gallery Image feature conflicting with Gallery widget #1407
+* Youtube Shortcode embed with &rel=0 support #1378
+* Filter for Excerpt custom text in the AMP options #1411
+* WPML Multilingual CMS plugin flags compatibility #1270
+* Compatibility with Tasty Recipes plugin and other page builders with amp page builder #1431
+
 
 = 0.9.68 (12th November 2017) =
 * View More details on https://ampforwp.com/0-9-68-released-stability-update-74th-update/

@@ -8,7 +8,7 @@
 		<div class="amp-wp-meta amp-wp-content ampforwp-tax-tag">
 				<?php foreach ($ampforwp_tags as $tag) {
 				if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single'] ) {
-             			 echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. user_trailingslashit( trailingslashit(get_tag_link($tag->term_id)).'amp') .'" >'. $tag->name  .'</a></span>');//#934 
+             			 echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ) .'" >'. $tag->name  .'</a></span>');//#934 
         		}
         		 else {
 		         	 echo '<span>'. $tag->name .'</span>';

@@ -50,7 +50,7 @@
 				<h1 class="page-title"><?php echo $blog_title ?> </h1>
 			<?php }	
  	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-		$ampforwp_amp_post_url = user_trailingslashit( trailingslashit( get_permalink() ) . AMPFORWP_AMP_QUERY_VAR ) ; ?>
+		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
@@ -85,13 +85,31 @@
 					}
 				?>
 		        <p class="large-screen-excerpt">
-				<?php  echo wp_trim_words( strip_shortcodes(  $content ) , '15'); 
+				<?php 
+					$excerpt_length = ""; 
+					$excerpt_length = 15;
+					$final_content  = "";
+					
+					$final_content = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+
+					if ( false === has_filter('ampforwp_modify_index_content' ) ) {
+						$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
+					}
+
+					echo $final_content; 
 				?></p>
 		        <p class="small-screen-excerpt" > <?php    
 					if($redux_builder_amp['excerpt-option-design-2']== true) {
-						$excertp_length='';
-						$excertp_length = $redux_builder_amp['amp-design-2-excerpt']; 
-						echo wp_trim_words( strip_shortcodes( $content ) ,  $excertp_length ); } ?> 
+						$excerpt_length_2	='';
+						$excerpt_length_2 	= $redux_builder_amp['amp-design-2-excerpt']; 
+						$final_content 		= ""; 				
+						$final_content = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+
+						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
+							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
+						}
+						echo $final_content;
+					} ?> 
 				</p>
 		    </div>
 		    <div class="amp-wp-meta">

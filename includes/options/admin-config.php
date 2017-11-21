@@ -509,6 +509,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
+           array(
+               'id'       => 'ampforwp-sub-categories-support',
+               'type'     => 'switch',
+               'title'    => __('Sub-Categories', 'accelerated-mobile-pages'),
+               'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
+               'default'  => '0'
+             ),
 
           //  array(
           //      'id'       => 'amp-ad-places',
@@ -1446,9 +1453,11 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'id' => 'translation',
                        'type' => 'section',
                        'title' => __('Translation', 'accelerated-mobile-pages'),
-                       'required' => array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                       'required' => array( 
+                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'amp-use-pot', '=' , 0 )
+                                    ),   
                        'indent' => true,
-                       'required' => array( 'amp-use-pot', '=' , 0 )
                     ),
                     array(
                        'id'       => 'ampforwp-onesignal-translator-subscribe',
@@ -1897,6 +1906,14 @@ Redux::setSection( $opt_name, array(
                        'default'  => 0
                    ),
                    array(
+                       'id'       => 'amp-translator-breadcrumbs-homepage-text',
+                       'type'     => 'text',
+                       'title'    => __('Breadcrumbs Homepage Title', 'accelerated-mobile-pages'),
+                       'default'  => __('Homepage','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'accelerated-mobile-pages'),
@@ -2312,14 +2329,6 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '1')
                     )
               ), 
-
-             array(
-                    'id'        =>'enable-amp-call-numberfield',
-                    'type'      => 'text',
-                    'required'  => array('ampforwp-callnow-button', '=' , '1'),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme-call',
                     'type'      => 'color_rgba',
@@ -2331,7 +2340,26 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-callnow-button', '=' , '1')
                     )
              ),
-
+            // Date Format
+            array(
+                    'id'        =>'ampforwp-post-date-format',
+                    'type'      =>'select',
+                    'title'     =>__('Date Format','accelerated-mobile-pages'),
+                    'subtitle' => __('Select the Date Format of Posts', 'accelerated-mobile-pages'),
+                    'options'   => array(
+                                    '1' => 'Ago',
+                                    '2' => 'Traditional view'
+                                    ), 
+                    'default'   =>'1',
+            ),
+            array(
+                    'id'        =>'ampforwp-post-date-format-text',
+                    'type'      =>'text',
+                    'title'     =>__('Text for the Date Format','accelerated-mobile-pages'),
+                    'desc'  =>__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
+                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
+                    'default'   =>'% days ago',
+            ), 
 
              array(
                     'id'       => 'css_editor',
@@ -2411,7 +2439,20 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
                     'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                    'type'      => 'text',
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
              ),
             array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
@@ -2598,17 +2639,6 @@ Redux::setSection( $opt_name, array(
                         'required' => array(array('amp-design-selector', '=' , '3') ), 
                         'default'   =>'1',
                 ),
-
-               // Full date Format
-                array(
-                        'id'        =>'ampforwp-full-post-date',
-                        'type'      =>'switch',
-                        'title'     =>__('Date Format','accelerated-mobile-pages'),
-                        'subtitle' => __('Display Full Date of Posts on Homepage/Archives. ex: 11 November 2017', 'accelerated-mobile-pages'),
-                        'required' => array(array('amp-design-selector', '!=' , '2') ), 
-                        'default'   =>'0',
-                ),
-
 
             // Homepage thumbnail
                 array(
@@ -2920,16 +2950,6 @@ Redux::setSection( $opt_name, array(
               'type'      =>  'switch',
               'title'     =>  __('Facebook Like Button', 'accelerated-mobile-pages'),
               'default'   =>  0,
-          ),
-          // Facebook Like URL
-          array(
-               'id'       => 'ampforwp-facebook-like-url',
-               'title'    => __('Facebook Page URL', 'accelerated-mobile-pages'),
-               'subtitle' => __('The absolute URL of the page that will be liked. For example, https://www.facebook.com/ampforwp/', 'accelerated-mobile-pages'),
-               'type'     => 'text',
-               'required'  => array('ampforwp-facebook-like-button', '=' , '1'),
-               'placeholder'  => __('Enter your facebook page url','accelerated-mobile-pages'),
-               'default'  => ''
           ),
           // Facebook ON/OFF
           array(
