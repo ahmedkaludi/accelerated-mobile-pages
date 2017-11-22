@@ -25,36 +25,44 @@
 
  return array(		
  		'label' =>'Category',		
- 		'name' => 'contents',		
- 		'fields' => array(		
+ 		'name' => 'contents',
+    'tabs' => array(
+              'customizer'=>'Customizer',
+              'container_css'=>'Container css'
+            ),
+ 		'fields' => array(
  						array(		
  						'type'		=>'text',		
  						'name'		=>"content_title",		
- 						'label'		=>'Category Block Title',		
+ 						'label'		=>'Category Block Title',
+            'tab'     =>'customizer',
  						'default'	=>'Category',		
  						),		
  						array(		
  							'type'	=>'select',		
- 							'name'=>"category_selection",		
- 							'label'=>"Select Category",		
- 							'default'=>'recent_option',		
+ 							'name'  =>"category_selection",		
+ 							'label' =>"Select Category",
+              'tab'   =>'customizer',
+ 							'default' =>'recent_option',		
  							'options' => $options,		
  							'options_details'=>$categoriesArray		
  						),		
  						array(		
  						'type'		=>'text',		
- 						'name'		=>"show_total_posts",		
+ 						'name'		=>"show_total_posts",
  						'label'		=>'Count',		
+            'tab'     =>'customizer',
  						'default'	=>'3',		
  						),
  						array(		
  						'type'		=>'select',
  						'name'		=>"ampforwp_show_excerpt",
- 						'label'		=>"Excerpt",		
+ 						'label'		=>"Excerpt",
+            'tab'     =>'customizer',
 						'default'	=>'yes',		
 						'options'	=> '<option value="yes">Yes</option><option value="no">No</option>',		
 						'options_details'=>array('yes'=>'Yes', 'no'=>'No')
- 						)		
+ 						),
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,	
@@ -66,7 +74,7 @@
          $contenthtml.= '<ul>';		
          while ( $the_query->have_posts() ) {		
              $the_query->the_post();		
-             $ampforwp_post_url = ampforwp_url_controller( get_permalink() );		
+             $ampforwp_post_url = get_permalink();		
              $contenthtml.='<li>';		
                  if ( has_post_thumbnail() ) {	
                    $contenthtml.= '
@@ -75,13 +83,13 @@
                    $thumb_id = get_post_thumbnail_id();		
                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);		
                    $thumb_url = $thumb_url_array[0];		
-                   $contenthtml.= '<a href="'. $ampforwp_post_url .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="150" height="150" layout="responsive"></amp-img></a>';	
+                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="150" height="150" layout="responsive"></amp-img></a>';	
                     $contenthtml.= '
                     </div>
                     ';		             
                  }
              $contenthtml.= '<div class="cat_mod_r">';		             
-               $contenthtml.= '<a href="'.  $ampforwp_post_url .'">'.get_the_title().'</a>'; 		
+               $contenthtml.= '<a href="'. trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR.'">'.get_the_title().'</a>'; 		
  		
                if( $ampforwp_show_excerpt == 'yes' ) { 		
  				if( has_excerpt() ) {		

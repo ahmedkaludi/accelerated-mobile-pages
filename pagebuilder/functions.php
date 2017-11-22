@@ -1,6 +1,6 @@
 <?php
 
-require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+
 
 
 /* Admin Script */
@@ -19,11 +19,14 @@ function amppbbase_admin_scripts( $hook_suffix ){
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
         $amp_current_post_id = get_the_ID();
-            /*if(function_exists('wp_enqueue_editor')){
-	        	wp_enqueue_editor();
-	        }*/
-			//wp_enqueue_script( 'text-widgets' );
-	        wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
+            
+			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );
+			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
+			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
+			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
+			
+
+			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
 						'jquery-ui-resizable',
 						'jquery-ui-sortable',
@@ -33,6 +36,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'backbone',
 						'plupload',
 						'plupload-all',
+						'vuejs',
+						'vueSortable',
+						'vuedraggable',
+						'vuedropdrag'
+
 					),AMPFORWP_VERSION, true );
 	        add_action( 'admin_footer', 'js_templates');
 	   
