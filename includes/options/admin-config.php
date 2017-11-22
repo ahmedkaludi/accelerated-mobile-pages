@@ -401,7 +401,18 @@ Redux::setArgs( "redux_builder_amp", $args );
 				 , 'accelerated-mobile-pages' ),
         'icon'  => 'el el-cogs'
     ) );
-
+    
+    function ampforwp_default_logo_settings($param=""){
+        $custom_logo_id = '';
+        $image          = '';
+        $value          = '';
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $image = wp_get_attachment_image_src( $custom_logo_id , 'full');
+        if( $image ){
+            return $image[0];
+        }
+        return $value;
+    }
     Redux::setSection( $opt_name, array(
         'title'      => __( 'General', 'accelerated-mobile-pages' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
@@ -415,7 +426,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'url'      => true,
                 'title'    => __('Logo', 'accelerated-mobile-pages'),
                 'subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
-                'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages')
+                'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages'),
+                'default' => array('url' => ampforwp_default_logo_settings() ),
             ),
            array(
                 'id'       => 'ampforwp-custom-logo-dimensions',

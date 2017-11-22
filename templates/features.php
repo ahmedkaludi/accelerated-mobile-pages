@@ -107,8 +107,12 @@
 	97. Change the format of the post date on Loops #1384 
 	98. Create Dynamic url of amp according to the permalink structure #1318
 	99. Merriweather Font Management
-	100. Flags compatibility in Menu 
+	100. Flags compatibility in Menu
+	101. Function for Logo attributes 
 */
+// AMP Components	
+// AMP LOGO
+add_amp_theme_support('AMP-logo');	
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 
@@ -5107,4 +5111,59 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$menu = $dom->saveHTML();
 		return $menu;
 	}
+}
+
+// 101. Function for Logo attributes
+function ampforwp_default_logo($param=""){
+	global $redux_builder_amp;
+	$logo_id		= '';
+	$image 			= '';
+	$value 			= '';
+	$logo_alt		= '';
+	$logo_url		= $redux_builder_amp['opt-media']['url'];
+	if($logo_url){
+		$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
+		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
+		$image 	 = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) , 'full');
+		switch ($param) {
+			case 'url':
+				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[0];
+				}
+				else
+					$value = $logo_url;
+				break;
+			case 'width':
+				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[1];
+				}
+				elseif (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+					$value = $redux_builder_amp['opt-media-width'];
+				}
+				else
+					$value = 190;
+				break;
+			case 'height':
+				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[2];
+				}
+				elseif (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+					$value = $redux_builder_amp['opt-media-height'];
+				}
+				else
+					$value = 36;
+				break;
+			case 'alt':
+				if($logo_alt){
+					$value = $logo_alt;
+				}
+				else
+					$value = get_bloginfo('name');
+				break;	
+			default:
+				$value = $image[0];
+				break;
+		}
+	}
+	return $value;
 } 
