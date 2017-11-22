@@ -5134,21 +5134,21 @@ function ampforwp_default_logo($param=""){
 					$value = $logo_url;
 				break;
 			case 'width':
-				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
-					$value = $image[1];
-				}
-				elseif (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
 					$value = $redux_builder_amp['opt-media-width'];
+				}
+				elseif( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[1];
 				}
 				else
 					$value = 190;
 				break;
 			case 'height':
-				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
-					$value = $image[2];
-				}
-				elseif (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
 					$value = $redux_builder_amp['opt-media-height'];
+				}
+				elseif( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[2];
 				}
 				else
 					$value = 36;
