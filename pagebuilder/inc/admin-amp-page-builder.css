@@ -672,7 +672,8 @@ div.drag{
 }
 
 .modal-container {
-  width: 300px;
+  width: 80%;
+  height:80%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -680,17 +681,29 @@ div.drag{
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
-
+.modal-sidebar{
+  margin: 20px 0;
+  width: 20%;
+  float: left;
+}
 .modal-body {
   margin: 20px 0;
+  width: 80%;
+  float: right;
 }
-
+.modal-content{
+    height:85%;
+    max-height: 85%;
+    overflow-y: auto;
+    overflow-x: hide;
+}
 .modal-default-button {
   float: right;
 }
@@ -716,4 +729,44 @@ div.drag{
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text-right {
+    text-align: right;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.form-label > .form-control {
+    margin-top: 0.5em;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5em 1em;
+    line-height: 1.5;
+    border: 1px solid #ddd;
 }

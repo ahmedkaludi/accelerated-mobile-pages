@@ -153,6 +153,7 @@ function call_page_builder(){
 	?>
 	<div id="ampForWpPageBuilder_container">
 		{{message}}
+		<span v-html="demoMessage"></span>
 		<div class="enable_ampforwp_page_builder">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 			<label  @click="showModal = true" data-content='<?php echo json_encode($pageBuilderData); ?>'>settings</label>
@@ -180,8 +181,20 @@ function call_page_builder(){
 						        	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
 						        		<div class="modules-drop" :class="{'ui-droppable': row.cell_data.length==0 }">
 						        		
-							        		<draggable v-model="row.cell_data" :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}" @start="moduledrag=true" @end="moduledrag=false">
-							        				<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
+							        		<draggable v-model="row.cell_data" :options="{
+								        			draggable:'.amppb-module',
+								        			handle: '.amppb-module',
+								        			group:'amppb-modules'
+								        			}"
+							        		:move='module_moved'
+							        		:data-rowid="row.id"
+							        		>
+												<module-data
+													 v-for="(cell, key, index)  in row.cell_data" 
+													 :key="cell.cell_id"
+													 :cell="cell" 
+													 :cellcontainer="1"
+							        				></module-data>
 								        	</draggable>
 						        		</div>
 								    </drop>
@@ -202,14 +215,22 @@ function call_page_builder(){
 						        <div class="amppb-row-fields ">
 					        	    <div class="amppb-column-2-left col" data-cell="1">
 					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
-							            	<div class="modules-drop" :class="{'ui-droppable': row.cell_left==0 }">
+							            	<div class="modules-drop" :class="{'ui-droppable': row.cell_left.length==0 }">
 							            		
 							            		<draggable 
-							            		 v-model="row.cell_data"
-							            		 :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}" 
+							            		 v-model="row.cell_left"
+							            		 :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}"
 							            		 @start="moduledrag=true" 
-							            		 @end="moduledrag=false">
-							            				<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
+							            		 :move='module_moved'
+							            		 :data-rowid="row.id"
+							            		 :data-cellid="1"
+							            		 >
+								            		<module-data
+													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
+													 :key="cell.cell_id"
+													 :cell="cell" 
+													 :cellcontainer="1"
+							        				></module-data>
 									        	</draggable>
 										        
 							            	</div>
@@ -218,10 +239,19 @@ function call_page_builder(){
 						            <div class="amppb-column-2-right col" data-cell="2">
 						            	<div class="resize-handle"></div>
 						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
-											<div class="modules-drop" :class="{'ui-droppable': row.cell_right==0 }">
+											<div class="modules-drop" :class="{'ui-droppable': row.cell_right.length==0 }">
 											
-												<draggable v-model="row.cell_data" :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}" @start="moduledrag=true" @end="moduledrag=false">
-														<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="2"></module-data>
+												<draggable v-model="row.cell_right" :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}"@start="moduledrag=true" :move='module_moved'
+												:data-rowid="row.id"
+												:data-cellid="2"
+												>
+													<module-data
+													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
+													 :key="cell.cell_id"
+													 :cell="cell" 
+													 :cellcontainer="2"
+							        				></module-data>
+													
 									        	</draggable>
 											
 											</div>
@@ -297,6 +327,15 @@ function call_page_builder(){
 				-->
 				<h3 slot="header">custom header</h3>
 			</amp-pagebuilder-modal>
+			<amp-pagebuilder-module-modal v-if="showmoduleModal" @close="showmoduleModal = false">
+				<!--
+				  you can use custom content here to overwrite
+				  default content
+				-->
+				
+			</amp-pagebuilder-module-modal>
+			
+
 	        
 	        
 	    </div>

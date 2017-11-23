@@ -62,7 +62,7 @@
 global $moduleTemplate;
 ?>
 <script type="text/x-template" id="module-data-template">
-	
+	   
 		<?php $i=0;
     		foreach ($moduleTemplate as $key => $module) {
     			unset($module['front_template']);
@@ -74,25 +74,26 @@ global $moduleTemplate;
     			$i++;
     			echo '
     				<div 
-    					'.$conditioner.'="cell.type==\''.strtolower($module['name']).'\'
-    					 &&
-    					  cellcontainer==cell.cell_container"
+                        '.$conditioner.'="cell.type==\''.strtolower($module['name']).'\'
+                         &&
+                          cellcontainer==cell.cell_container"
 
-    					 class="amppb-module module-draggable amppb-module-'.strtolower($module['name']).'"
-    					  data-tooltip="'.$module['name'].' Module"
-					>
+                         class="amppb-module module-draggable amppb-module-'.strtolower($module['name']).'"
+                          data-tooltip="'.$module['name'].' Module"
+                    >
 
-		        		<span class="module_label">'.$module['label'].'</span>
-		        		<input type="hidden" id="selectedModule" value=\''.json_encode($module).'\'> 
-		        		<span class="amppb-setting-right">
-			        		<label  @click="showModal = true" class="boxContainer link" title="'.$module['label'].'">
-			        			<span class="dashicons dashicons-admin-generic"></span>
-			        		</label>
-		        		</span>
-		        	</div>
+                        <span class="module_label">'.$module['label'].'</span>
+                        <input type="hidden" id="selectedModule" value=\''.json_encode($module).'\'> 
+                        <span class="amppb-setting-right">
+                            <label  @click="showModulePopUp()" class="boxContainer link" title="'.$module['label'].'">
+                                <span class="dashicons dashicons-admin-generic"></span>
+                            </label>
+                        </span>
+                    </div>
     					';
     		}
     ?>
+        
  </script>
  <script type="text/x-template" id="amppb-fields-templates">
  	<template>
@@ -145,32 +146,109 @@ global $moduleTemplate;
 <!-- template for the modal component -->
 <script type="text/x-template" id="amp-pagebuilder-modal-template">
   <transition name="modal">
-    <div class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
 
-          <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
-          </div>
+                    <div class="modal-header">
+                        <h3>Page builder Settings</h3>
+                    </div>
+                    <div class="modal-content">
+                        <div class="modal-sidebar">
+                            <ul>
+                                <li> 
+                                  <a href="#customize">  Customize</a>
+                                </li>
+                                <li> <a href="#import">Import/Layout</a></li>
+                                <li> <a href="#export">Export</a></li>
+                            </ul>
+                        </div>
+                        <div class="modal-body">
+                            <div id="customize">
+                                <label class="form-label">
+                                    Title
+                                    <input class="form-control">
+                                </label>
+                                <label class="form-label">
+                                    Body
+                                    <textarea rows="5" class="form-control"></textarea>
+                                </label>
+                            </div>
+                            <div id="import">
+                                Import
+                            </div>
+                            <div id="export">
+                                Import
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
 
-          <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
-          </div>
+                    <div class="modal-footer">
+                        <slot name="footer">
+                          default footer
+                            <button type="button" class="modal-default-button" @click="">
+                                Save
+                            </button>
+                            <button type="button" class="modal-default-button" @click="hideModulePopUp()">
+                                Close
+                            </button>
+                        </slot>
+                    </div>
 
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-            </slot>
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </transition>
+    </transition>
+</script>
+
+
+
+<!-- template for the modal component -->
+<script type="x/template" id="amp-pagebuilder-module-modal-template">
+     <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
+
+                    <div class="modal-header">
+                        <h3>New Post</h3>
+                    </div>
+                    <div class="modal-content">
+                        <div class="modal-sidebar">
+                            <ul>
+                                <li> LINK 1</li>
+                                <li> LINK 1</li>
+                                <li> LINK 1</li>
+                            </ul>
+                        </div>
+                        <div class="modal-body">
+                            <label class="form-label">
+                                Title
+                                <input class="form-control">
+                            </label>
+                            <label class="form-label">
+                                Body
+                                <textarea rows="5" class="form-control"></textarea>
+                            </label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <slot name="footer">
+                          default footer
+                            <button type="button" class="modal-default-button" @click="">
+                                Save
+                            </button>
+                            <button type="button" class="modal-default-button" @click="hideModulePopUp()">
+                                Close
+                            </button>
+                        </slot>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </transition>
 </script>
