@@ -60,46 +60,43 @@
 									);
 					}
 			}//end of block for tags
+			if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ){
 			$my_query = new wp_query( $args );
-					if( $my_query->have_posts() ) { ?>
-						<div class="amp-wp-content relatedpost">
-						    <div class="related_posts">
-										<ol class="clearfix">
-												<span class="related-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
-												<?php
-										    while( $my_query->have_posts() ) {
-												    $my_query->the_post();
-															$related_post_permalink = "";
-															$related_post_permalink = ampforwp_url_controller( get_permalink() );
-														?>
-														<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
-                                                            <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-												<?php if ( ampforwp_has_post_thumbnail() ) { 
-													$thumb_url = ampforwp_get_post_thumbnail();
-													if($thumb_url){?>
-										            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="150" height="150" layout="responsive"></amp-img>
-													<?php } 
-													}?>
-                                              		</a>
-								                <div class="related_link">
-								                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
-								                    <?php if(has_excerpt()){
-																			$content = get_the_excerpt();
-																		}else{
-																			$content = get_the_content();
-																		}
-																		?>
-								                    <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
-								                </div>
-								            </li>
-														<?php
-													}
-
-					        } ?>
-									</ol>
-						    </div>
-						</div> <?php
+				if( $my_query->have_posts() ) { ?>
+					<div class="amp-wp-content relatedpost">
+					    <div class="related_posts">
+							<ol class="clearfix">
+								<span class="related-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
+								<?php
+						    	while( $my_query->have_posts() ) {
+								    $my_query->the_post();
+									$related_post_permalink = "";
+									$related_post_permalink = ampforwp_url_controller( get_permalink() );?>
+									<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+                                        <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+									<?php if ( ampforwp_has_post_thumbnail() ) { 
+									$thumb_url = ampforwp_get_post_thumbnail();
+									if($thumb_url){?>
+						            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="150" height="150" layout="responsive"></amp-img>
+									<?php } 
+									}?>
+                              		</a>
+					                <div class="related_link">
+					                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
+					                    <?php if(has_excerpt()){
+												$content = get_the_excerpt();
+											}else{
+												$content = get_the_content();
+											}
+											?>
+					                    <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+					                </div>
+				            		</li>
+				            <?php } ?>
+							</ol>
+					    </div>
+					</div> <?php
 	      wp_reset_postdata();
-//related posts code ends here
-		?>
+	  			}
+	  		} ?>
 <?php do_action('ampforwp_below_related_post_hook',$this);

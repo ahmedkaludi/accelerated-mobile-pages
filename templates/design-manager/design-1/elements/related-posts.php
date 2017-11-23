@@ -61,8 +61,8 @@
 					}
 			}//end of block for tags
 		
-
-        $my_query = new wp_query( $args ); 
+		if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ){
+        	$my_query = new wp_query( $args ); 
 				if( $my_query->have_posts() ) { ?>
 					<div class="amp-wp-content relatedpost">
 					    <div class="related_posts">
@@ -100,6 +100,7 @@
 						</div>
 					</div> <?php
 				}
+			}
 		wp_reset_postdata();
 ?>
 <?php do_action('ampforwp_below_related_post',$this);
