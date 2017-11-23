@@ -5093,7 +5093,13 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$num_nodes 	= '';
 		// Create a new document
 		$dom 		= new DOMDocument();
-		$dom->loadHTML(mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8'));
+		if( function_exists( 'mb_convert_encoding' ) ){
+			$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+		}
+		else{
+			$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+		}
+		$dom->loadHTML($menu);
 
 		// get all the img's
 		$nodes 		= $dom->getElementsByTagName( 'img' );
