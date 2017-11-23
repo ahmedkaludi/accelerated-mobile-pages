@@ -121,8 +121,13 @@ if ( get_query_var( 'paged' ) ) {
 								layout="responsive"
 								src=<?php echo esc_url( $thumb_url ); ?>
 								<?php ampforwp_thumbnail_alt(); ?>
+								<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
+								 width=<?php echo $redux_builder_amp['ampforwp-homepage-posts-design-3-width'] ?>
+								 height=<?php echo $redux_builder_amp['ampforwp-homepage-posts-design-3-height'] ?>
+							 <?php } else { ?>
 								width=450
 								height=270
+							<?php } ?>
 							></amp-img>
 						</a>
 					</div>

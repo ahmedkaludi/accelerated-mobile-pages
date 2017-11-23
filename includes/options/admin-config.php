@@ -2658,9 +2658,6 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'switch',
                         'title'    => __('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
                         'default'  => 0,
-                        'required' => array(
-                          array('amp-design-selector','!=',3)
-                        )
                  ),
                 array(
                         'id'       => 'ampforwp-homepage-posts-design-1-2-width',
