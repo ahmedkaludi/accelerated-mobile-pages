@@ -1149,6 +1149,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$structured_data_image_url = '';
 
 			if ( $post_image_check == false) {
+
 				if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
 					$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 				}
@@ -1190,14 +1191,32 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$metadata['headline'] = $structured_data_archive_title;
 			}
 
+			// Get Image metadata from the Custom Field
+			if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_cf_featured_image_src('url') ,
+						'width' 	=> ampforwp_cf_featured_image_src('width'),
+						'height' 	=> ampforwp_cf_featured_image_src('height'),
+				);	
+			}
+
+			// Get image metadata from The Content
+			if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_get_featured_image_from_content('url') ,
+						'width' 	=> ampforwp_get_featured_image_from_content('width'),
+						'height' 	=> ampforwp_get_featured_image_from_content('height'),
+				);
+			}
+
 			if( in_array( "image" , $metadata )  ) {
 				if ( $metadata['image']['width'] < 696 ) {
 		 			$metadata['image']['width'] = 700 ;
-	     	}
+	     		}
 			}
-
-
-			return $metadata;
+		return $metadata;
 	}
 
 // 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
@@ -4035,22 +4054,39 @@ function ampforwp_is_custom_field_featured_image(){
 		return false;
 }
 
-function ampforwp_cf_featured_image_src(){
+function ampforwp_cf_featured_image_src($param=""){
 global $redux_builder_amp, $post;
 	if($redux_builder_amp['ampforwp-custom-fields-featured-image-switch']){
-		$post_id = '';
-		$custom_fields = '';
-		$featured_image_field = '';
-		$custom_fields_name = array();
-		$post_id = get_the_ID();
-		$custom_fields = get_post_custom($post_id);
+		$post_id 				= '';
+		$custom_fields 			= '';
+		$featured_image_field 	= '';
+		$output 				= '';
+		$custom_fields_name 	= array();
+		$post_id 				= get_the_ID();
+		$custom_fields 			= get_post_custom($post_id);
 		foreach ($custom_fields as $key => $value) {
 			$custom_fields_name[] = $key;	 
 		}
 		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
 		if(in_array($featured_image_field, $custom_fields_name)){
 			$amp_img_src = $custom_fields[$featured_image_field][0];
-			return $amp_img_src;
+			$image_id = attachment_url_to_postid($amp_img_src);
+			$image = wp_get_attachment_image_src($image_id, 'full');
+			switch ($param) {
+				case 'url':
+					$output = $image[0];
+					break;
+				case 'width':
+					$output = $image[1];
+					break;
+				case 'height':
+						$output = $image[2];
+						break;	
+				default:
+					$output = $image[0];
+					break;
+			}
+			return $output;
 		}
 	}
 }
@@ -4270,21 +4306,25 @@ function ampforwp_enable_post_and_featured_image($show_image){
 // 82. Grab Featured Image from The Content
 function ampforwp_get_featured_image_from_content($featured_image = "") {
 	global $post, $posts;
-	$image_url = '';
-	$output = '';
-	$matches = '';
-	$amp_html_sanitizer = '';
-	$amp_html = '';
-	$image_html = '';
-	$featured_image_output = '';
+	$image_url 				= '';
+	$image_width 			= '';
+	$image_height 			= '';
+	$output 				= '';
+	$matches 				= '';
+	$amp_html_sanitizer 	= '';
+	$amp_html 				= '';
+	$image_html 			= '';
+	$featured_image_output 	= '';
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 	//Grab the First Image
 	if ( $matches[0] ) {
-		$image_url = $matches[1][0];
-		$image_html = $matches[0][0];
+		$image_url 		= $matches[1][0];
+		$image_html 	= $matches[0][0];
+		$image_width 	= $matches[2][0];
+		$image_height 	= $matches[3][0];
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
@@ -4299,6 +4339,14 @@ function ampforwp_get_featured_image_from_content($featured_image = "") {
 
 			case 'url':
 				$featured_image_output = $image_url;
+			break;
+
+			case 'width':
+				$featured_image_output = $image_width;
+			break;
+
+			case 'height':
+				$featured_image_output = $image_height;
 			break;
 
 			default:
