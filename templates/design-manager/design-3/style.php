@@ -177,7 +177,8 @@ figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: 
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .single-post .amp-wp-article-content amp-img{ max-width:100% }
-<?php if(is_single()){?>
+<?php if(is_single()){
+ if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ){ ?>
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
 .single-post main,.related-title,.single-post .comments_list h3{ font-size: 20px; color: #777; font-family:'Roboto Slab', serif; border-bottom: 1px solid #eee; font-weight: 400; padding-bottom: 1px; margin-bottom: 10px; }
@@ -190,6 +191,7 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0p
 .no_related_thumbnail{ padding: 15px 18px; }
 .no_related_thumbnail .related_link{ margin: 16px 18px 20px 19px; } 
 <?php }
+}
 if( $redux_builder_amp['wordpress-comments-support'] ==1) { ?>
 /* Comments */
 .page-numbers{ padding: 9px 10px; background: #fff; font-size: 14px; }
