@@ -126,11 +126,9 @@ h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; }
 }
 .amp-wp-post-content p{ font-size: 12px; color: #999; line-height: 20px; margin: 3px 0 0 5px; }
 main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
-.amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;}
-.page-title{
-	font-size: 1.17em;
-	padding: 6px 0;
-    }
+.amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;}.page-title{font-size: 1.17em;padding: 6px 0;}
+<?php if(is_author()){ ?> .author-archive amp-img{border-radius: 50%;margin: 0px 8px 10px;display: block;}.author-archive{float: left;} .amp-wp-content .taxonomy-description{background: #f1f1f1; padding:0px} .page-title{padding:0} <?php } ?>
+
 /* Footer */
 #footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }

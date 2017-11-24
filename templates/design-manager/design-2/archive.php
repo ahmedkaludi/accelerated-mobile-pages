@@ -45,7 +45,18 @@
 
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
-		<?php 
+		<?php
+			if( is_author() ){
+			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+				if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
+					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
+					if($curauth_url){ ?>
+						<div class="author-archive">
+							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
+						</div>
+					<?php }
+				}
+			} 
  			the_archive_title( '<h1 class="page-title">', '</h1>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) { 
