@@ -4720,21 +4720,44 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 }
 // Get Post Thumbnail URL
 if( !function_exists('ampforwp_get_post_thumbnail')){
-	function ampforwp_get_post_thumbnail(){
+	function ampforwp_get_post_thumbnail($param=""){
 		global $post, $redux_builder_amp;
-		$thumb_url = '';
+		$thumb_url 		= '';
+		$thumb_width 	= '';
+		$thumb_height 	= '';
+		$output 		= '';
 		if ( has_post_thumbnail()) { 
-			$thumb_id = get_post_thumbnail_id();
-			$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-			$thumb_url = $thumb_url_array[0];
+			$thumb_id 			= get_post_thumbnail_id();
+			$thumb_url_array 	= wp_get_attachment_image_src($thumb_id, 'full', true);
+			$thumb_url 			= $thumb_url_array[0];
+			$thumb_width 		= $thumb_url_array[1];
+			$thumb_height 		= $thumb_url_array[2];
 		}
 		if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-			$thumb_url = ampforwp_cf_featured_image_src();
+			$thumb_url 		= ampforwp_cf_featured_image_src();
+			$thumb_width 	= ampforwp_cf_featured_image_src('width');
+			$thumb_height 	= ampforwp_cf_featured_image_src('height');
 		}
 		if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content('url') ){
-			$thumb_url = ampforwp_get_featured_image_from_content('url');
+			$thumb_url 		= ampforwp_get_featured_image_from_content('url');
+			$thumb_width 	= ampforwp_get_featured_image_from_content('width');
+			$thumb_height 	= ampforwp_get_featured_image_from_content('height');
 		}
-		return $thumb_url;
+		switch ($param) {
+			case 'url':
+				$output = $thumb_url;
+				break;
+			case 'width':
+				$output = $thumb_width;
+				break;
+			case 'height':
+				$output = $thumb_height;
+				break;	
+			default:
+				$output = $thumb_url;
+				break;
+		}
+		return $output;
 	}	
 }
 

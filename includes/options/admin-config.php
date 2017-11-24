@@ -2657,6 +2657,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-homepage-posts-image-modify-size',
                         'type'     => 'switch',
                         'title'    => __('Override Homepage Thumbnail Size', 'accelerated-mobile-pages'),
+                        'required' => array( array( 'amp-design-selector','!=',3 ) ),
                         'default'  => 0,
                  ),
                 array(
@@ -2681,31 +2682,6 @@ Redux::setSection( $opt_name, array(
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
-                array(
-                        'id'       => 'ampforwp-homepage-posts-design-3-width',
-                        'type'     => 'text',
-                        'title'    => __('Image Width', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Defaults to 450', 'accelerated-mobile-pages'),
-                        'default'  => 330,
-                        'required' => array(
-                          array('amp-design-selector','=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-posts-design-3-height',
-                        'type'     => 'text',
-                        'title'    => __('Image Height', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Defaults to 270', 'accelerated-mobile-pages'),
-                        'default'  => 198,
-                        'required' => array(
-                          array('amp-design-selector','=',3),
-                          array('ampforwp-homepage-posts-image-modify-size','=',1)
-                        )
-                ),
-
-            
-
         )
     ));
 
