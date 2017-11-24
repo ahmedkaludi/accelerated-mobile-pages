@@ -91,7 +91,7 @@ function amp_flush_rewrite_rules($hard=true){
 }
 
 function ampforwp_category_url_rewrite_rules($rewrite){
-	global $redux_builder_amp;
+	global $redux_builder_amp, $wp_rewrite;
 	$categoryBaseRewrite = $redux_builder_amp['ampforwp-category-base-removel-link'];
 	$categories = get_categories( array( 'hide_empty' => false ) );
 	if(is_array( $categories ) && ! empty( $categories ) ) {
@@ -106,16 +106,9 @@ function ampforwp_category_url_rewrite_rules($rewrite){
 			}
 			$category_nicename = trim($category_nicename);
 			
-			$rewrite["(".$category_nicename.")".'\/amp/?$'] = 'index.php?amp&category_name='.$category_nicename;
-			$rewrite["(".$category_nicename.")".'\/amp\/page\/?([0-9]{1,})\/?$'] = 'index.php?amp&category_name='.$category_nicename.'&paged=$matches[1]';
-			
-			
-			// Redirect support from Old Category Base
-			$old_category_base = get_option( 'category_base' ) ? get_option( 'category_base' ) : 'category';
-			$old_category_base = trim( $old_category_base, '/' );
-			$rewrite[ $old_category_base . '/(.*)$' ] = 'index.php?category_redirect=$matches[1]';
-
-
+			$rewrite['('.$category_nicename.')'.'/amp/?$'] = 'index.php?amp&category_name=$matches[1]';
+			$rewrite['('.$category_nicename.')'.'/amp/' . $wp_rewrite->pagination_base . '/?([0-9]{1,})/?$'] = 'index.php?amp&category_name=$matches[1]&paged=$matches[2]';
+		
 			// Redirect support from Old Category Base
 			$old_category_base = get_option( 'category_base' ) ? get_option( 'category_base' ) : 'category';
 			$old_category_base = trim( $old_category_base, '/' );
@@ -132,9 +125,9 @@ function ampforwp_tag_url_rewrite_rules($rewrite){
 	foreach ( $terms as $term ) {
 		$term_nicename = trim($term->slug);
 		
-		$rewrite["(".$term_nicename.")".'\/amp/?$'] = 'index.php?amp&tag='.$term_nicename;
-		$rewrite["(".$term_nicename.")".'\/amp\/page\/?([0-9]{1,})\/?$'] = 
-		  'index.php?amp&tag='.$term_nicename.'&paged=$matches[1]'; 
+		$rewrite['('.$term_nicename.')'.'/amp/?$'] = 'index.php?amp&tag=$matches[1]';
+		$rewrite['('.$term_nicename.')'.'/amp/page/?([0-9]{1,})/?$'] = 
+		  'index.php?amp&tag=$matches[1]&paged=$matches[2]'; 
   
 	}
 	
