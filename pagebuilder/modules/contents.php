@@ -26,6 +26,7 @@
  return array(		
  		'label' =>'Category',		
  		'name' => 'contents',
+    'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Customizer',
               'container_css'=>'Container css'

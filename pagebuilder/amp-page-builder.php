@@ -125,29 +125,7 @@ function call_page_builder(){
 			$previousData = json_encode($jsonData);
 		}
 	}
-	$pageBuilderData = array(
-						'title'=>'Pagebuilder Settings',
-						'tabs' => array(
-				              'customizer'=>'Customizer',
-				              'container_css'=>'Container css'
-				            ),
-						'fields' => array(
-								array(		
-				 						'type'		=>'text',		
-				 						'name'		=>"content_title",		
-				 						'label'		=>'Category Block Title',
-				           				'tab'     =>'customizer',
-				 						'default'	=>'Category',		
-				 						),
-								array(		
-				 						'type'		=>'text',		
-				 						'name'		=>"content_title",		
-				 						'label'		=>'Category Block Title',
-				           				'tab'     =>'container_css',
-				 						'default'	=>'Category',		
-				 						),
-							)
-						);
+	
 	require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
@@ -156,7 +134,7 @@ function call_page_builder(){
 		<span v-html="demoMessage"></span>
 		<div class="enable_ampforwp_page_builder">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
-			<label  @click="showModal = true" data-content='<?php echo json_encode($pageBuilderData); ?>'>settings</label>
+			<label  @click="showModal = true">settings</label>
 		</div>
 		<div id="amp-page-builder">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
@@ -164,15 +142,15 @@ function call_page_builder(){
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
 				<drop class="drop" @drop="handleDrop">
-					<draggable v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" :move="rows_moved">
-						<div v-for="row in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
+					<draggable v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" @change='rows_moved($event)'>
+						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
 							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
 						 		<input type="hidden" name="column-data" value="">
 						        <div class="amppb-row-title">
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
-						            <span data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-						            <a href="#" class="thickbox rowBoxContainer" title="Row settings column 1" data-template='<?php // echo json_encode($containerCommonSettings); ?>'>
+						            <span @click="reomve_row(key)" class="amppb-remove dashicons dashicons-trash"></span>
+						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-template='<?php // echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
 						        </div><!-- .amppb-row-title -->
@@ -183,13 +161,12 @@ function call_page_builder(){
 						        		
 							        		<draggable v-model="row.cell_data" :options="{
 								        			draggable:'.amppb-module',
-								        			handle: '.amppb-module',
 								        			group:'amppb-modules'
 								        			}"
-							        		:move='module_moved'
 							        		:data-rowid="row.id"
+							        		@change='module_moved($event,row,1)'
 							        		>
-												<module-data
+													<module-data
 													 v-for="(cell, key, index)  in row.cell_data" 
 													 :key="cell.cell_id"
 													 :cell="cell" 
@@ -206,8 +183,8 @@ function call_page_builder(){
 						        <div class="amppb-row-title">
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 Columns</span> 
-						            <span data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-						            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 2" data-template='<?php //echo json_encode($containerCommonSettings); ?>'>
+						            <span @click="reomve_row(key)" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
+						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 2" data-popupContent='<?php echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
 						        </div><!-- .amppb-row-title -->
@@ -218,12 +195,12 @@ function call_page_builder(){
 							            	<div class="modules-drop" :class="{'ui-droppable': row.cell_left.length==0 }">
 							            		
 							            		<draggable 
-							            		 v-model="row.cell_left"
-							            		 :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}"
+							            		 v-model="row.cell_data"
+							            		 :options="{draggable:'.amppb-module',group:'amppb-modules'}"
 							            		 @start="moduledrag=true" 
-							            		 :move='module_moved'
 							            		 :data-rowid="row.id"
 							            		 :data-cellid="1"
+							            		 @change='module_moved($event,row,1)'
 							            		 >
 								            		<module-data
 													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
@@ -241,10 +218,12 @@ function call_page_builder(){
 						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
 											<div class="modules-drop" :class="{'ui-droppable': row.cell_right.length==0 }">
 											
-												<draggable v-model="row.cell_right" :options="{draggable:'.amppb-module',handle: '.amppb-module',group:'amppb-modules'}"@start="moduledrag=true" :move='module_moved'
+												<draggable v-model="row.cell_data" :options="{draggable:'.amppb-module',group:'amppb-modules'}"@start="moduledrag=true" 
 												:data-rowid="row.id"
 												:data-cellid="2"
+												@change='module_moved($event,row,2)'
 												>
+
 													<module-data
 													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
 													 :key="cell.cell_id"

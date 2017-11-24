@@ -675,7 +675,7 @@ div.drag{
   width: 80%;
   height:80%;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 20px 20px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -689,13 +689,35 @@ div.drag{
   color: #42b983;
 }
 .modal-sidebar{
-  margin: 20px 0;
-  width: 20%;
-  float: left;
+      width: 19%;
+      height:100%;
+      float: left;
+
+    margin: 0;
+    padding: 10px 0;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #ccc;
+    user-select: none;
+}
+.modal-sidebar > ul{
+    padding-right:10px; 
+}
+.modal-sidebar > ul > li{
+    padding:10px 5px 5px 5px; 
+   
+}
+.modal-sidebar > ul > li:hover{
+    background:#dad9d9;
+   
+}
+.modal-sidebar > ul > li.active{
+    border: 1px solid #cdcdcd;
+    background-color: #ececec; 
 }
 .modal-body {
-  margin: 20px 0;
-  width: 80%;
+  /*margin: 20px 0;*/
+  width: 79%;
   float: right;
 }
 .modal-content{
@@ -758,15 +780,23 @@ div.drag{
     display: block;
     margin-bottom: 1em;
 }
+.form-label > input[type=text], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=week], input[type=password], input[type=checkbox], input[type=color], input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=month], input[type=number], .form-label > select, .form-label > textarea{
+    padding: 0.3em 1em;
+    line-height: 1.5;
+}
 
 .form-label > .form-control {
     margin-top: 0.5em;
 }
 
 .form-control {
+
     display: block;
-    width: 100%;
     padding: 0.5em 1em;
     line-height: 1.5;
     border: 1px solid #ddd;
+
+}
+.link{
+    cursor: pointer;
 }

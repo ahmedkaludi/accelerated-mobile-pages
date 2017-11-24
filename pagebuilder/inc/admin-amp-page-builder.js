@@ -1,14 +1,31 @@
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
-  props: ['dataContent']
+  props: ['dataContent'],
+   methods:{
+  	hidePageBuilderPopUp: function(event){
+			app.showModal = false;
+		},
+	showtabs: function($key){
+
+	}
+  }
 })
+
 Vue.component('amp-pagebuilder-module-modal', {
   template: '#amp-pagebuilder-module-modal-template',
-  props: ['dataContent'],
+  props: [],
+  data: function(){
+  	return {
+	  	modalcontent: app.modalcontent
+	  };
+  },
   methods:{
   	hideModulePopUp: function(event){
 			app.showmoduleModal = false;
-		}
+		},
+	showtabs: function(key){
+		this.modalcontent.default_tab=key;
+	}
   }
 })
 //Need to make
@@ -21,88 +38,95 @@ Vue.component('module-data',{
 	props: ['cell','cellcontainer','modulekey'],
 	data:function(){
 		return {
-			showModuleModal: false
-			
+			showModuleModal: false,
 		};
 	},
 	methods:{
-		showModulePopUp: function(){
-			app.showmoduleModal = true;
+		showModulePopUp: function(event){
+			openModulePopup(event);
 		},
 		
-	}
-	
+	}	
+})
+function openModulePopup(event){
+	popupContent = event.currentTarget.getAttribute('data-popupContent'); 
+	app.modalcontent = JSON.parse(popupContent);
+	app.showmoduleModal = true;
+}
+Vue.component('fields-data',{
+	template: '#fields-data-template',
+	props: ['field','defaulttab'],
+	data:function(){
+		return {};
+	},
+	methods:{}	
 })
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
   data: {
-    message: 'Hello AMP Page builder वासियों अज़ीम',
+    message: 'Hello AMP Page builder वासियों',
     demoMessage: {},
     showModal: false,
     showmoduleModal: false,
+    modalcontent: [],
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
     mainContent_Save: JSON.stringify(this.mainContent),
+    //Scroll position
+    scrollPosition: 0
   },
   methods: {
+  		showModulePopUp: function(event){
+			openModulePopup(event);
+		},
   		 //row Sorting
   		rows_moved: function(evt){
-  			
-  			var newIndex = (evt.draggedContext.futureIndex)+1;
-  			var currentElement = evt.draggedContext.element;
-  			var current = evt.relatedContext.list;
-  			//alert(JSON.stringify(current));
+  			/*newIndex = (evt.moved.newIndex)+1;
+  			oldIndex = evt.moved.oldIndex;
+  			element = evt.moved.element;
   			this.mainContent.rows.forEach(function(data,key){
-  				if(data.id==currentElement.id){
+  				if(data.id==element.id){
   					data.index = newIndex;
-  				}else if(data.id != currentElement.id && data.index>=newIndex){
-  					data.index = data.index+1;
-  					this.mainContent.rows[key].index = this.mainContent.rows[key].index+1
-  					alert(data.id+"!="+currentElement.id);
+  				}else if(data.id != element.id && data.index>=newIndex){
+  					data.index = (data.index)+1;
   				}
   			});
-
-  			this.call_default_functions();
   			
+  			this.call_default_functions();*/
+  			return true;
   		},
-  		module_moved: function(evt){
-  			/*var newIndex = (evt.draggedContext.futureIndex)+1;
-  			var currentElement = evt.draggedContext.element;
+  		module_moved: function(evt,row,col){
+  			/*if(evt.added){
+  				addedelement = evt.added.element;
+  				addedelement.index = (evt.newIndex)+1;
+  				this.mainContent.rows.forEach(function(data,key){
+	  				if(row.id==data.id){
+		  			 	data.cell_data.push(addedelement)
+	  				}
+	  			});
+  			}else if(evt.removed){
+  				removeelement = evt.removed.element;
+  				this.mainContent.rows.forEach(function(data,key){
+  					if(row.id==data.id){
+  						data.cell_data.forEach(function(moduleData,modeuleKey){
+  							alert(JSON.stringify(moduleData)+ " \n" + JSON.stringify(removeelement));
+  							if(moduleData.cell_id == removeelement.cell_id){
+  								moduleData.splice(modeuleKey,1);
+  							}
+  						});
+  					}
+  				});
+  			}*/
+  			//alert(JSON.stringify(evt)+ " \n"+(row.id)+ " \n"+col);
   			
-  			var rowid = evt.draggedContext;
-  			alert("draggedContext "
-  						+" \n "+ JSON.stringify( evt.draggedContext.index)
-  						+" \n "+ JSON.stringify( evt.draggedContext.element)
-  						+" \n "+ JSON.stringify( evt.draggedContext.futureIndex)
-  						);
-  			this.demoMessage = evt;*/
-  			/*alert("relatedContext "
-  						+ JSON.stringify(  evt.relatedContext.index) 
-  						+ JSON.stringify(  evt.relatedContext.element) 
-  						+ JSON.stringify(  evt.relatedContext.list)
-  						+ JSON.stringify(  evt.relatedContext.component) );*/
+  			// newIndex = (evt.moved.newIndex)+1;
+  			// oldIndex = evt.moved.oldIndex;
+  			// element = evt.moved.element;
+  			// 
 
-			/*var cellid = evt.currentTarget.getAttribute('data-cellid');
-  			this.mainContent.rows.forEach(function(data,key){
-  				if(data.id == currentElement.container_id){
-  					data.cell_data.forEach(function(moduleData,modulekey){
-  						if(moduleData.cell_id==currentElement.cell_id){
-  							moduleData.splice(modulekey, 1);
-  						}
-
-  					});
-  				}
-  				//add on new position 
-  				if(data.id == rowid){
-  					currentElement.index = newIndex;
-  					currentElement.cell_container = cellid;
-  					currentElement.container_id = rowid;
-  					data.push(currentElement);
-  				}
-  			});*/
-  			this.call_default_functions();
-  			//return true;
+  			//this.call_default_functions();
+  			return true;
 		},
   		//Rows drop details
 		handleDrop: function(columnData,Events) {
@@ -167,22 +191,29 @@ var app = new Vue({
 
 			
 		},
+		reomve_row: function(key){
+			var response = confirm("Do you want to delete Row? ");
+			if(response){
+				this.mainContent.rows.splice(key, 1);
+				this.call_default_functions();
+			}
+		},
 		setcontentData: function(){
 			this.mainContent_Save = JSON.stringify(this.mainContent);
   		},
 		re_process_rawdata: function(){
 			//Sort rows
-			this.mainContent.rows.sort(function(a, b){
+			/*this.mainContent.rows.sort(function(a, b){
 				var a1= a.index, b1= b.index;
 				if(a1== b1) return 0;
 				return a1> b1? 1: -1;
-			});
+			});*/
 			this.mainContent.rows.forEach(function(row,key){
-				row.cell_data.sort(function(a, b){
+				/*row.cell_data.sort(function(a, b){
 					var a1= a.index, b1= b.index;
 					if(a1== b1) return 0;
 					return a1> b1? 1: -1;
-				});
+				});*/
 				if(row.cells==2){
 					row.cell_left  = [];
 					row.cell_right = [];
@@ -193,7 +224,7 @@ var app = new Vue({
 							row.cell_right.push(module);
 						}
 					});
-					row.cell_left.sort(function(a, b){
+					/*row.cell_left.sort(function(a, b){
 						var a1= a.index, b1= b.index;
 						if(a1== b1) return 0;
 						return a1> b1? 1: -1;
@@ -202,7 +233,7 @@ var app = new Vue({
 						var a1= a.index, b1= b.index;
 						if(a1== b1) return 0;
 						return a1> b1? 1: -1;
-					});
+					});*/
 				}
 			});
 		},
