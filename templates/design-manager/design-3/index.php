@@ -112,7 +112,7 @@ if ( get_query_var( 'paged' ) ) {
 
 		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
-				$thumb_url 	  	= ampforwp_get_post_thumbnail();
+				$thumb_url 	  	= ampforwp_get_post_thumbnail('url');
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
 				if($thumb_url){
