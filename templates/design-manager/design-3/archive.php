@@ -66,25 +66,28 @@ if ( get_query_var( 'paged' ) ) {
 			'post_status'=> 'publish'
 		) ); ?>
 
- 	<?php if ( is_archive() ) {
+ 	<?php if ( is_archive() ) { ?>
+ 		<div class="amp-wp-content archive-heading">
+ 	<?php 
  			if( is_author() ){
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
 				if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
-						<div class="amp-wp-content author-archive">
+						<div class="author-img">
 							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
 						</div>
 					<?php }
 				}
 			}
- 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
+ 			the_archive_title( '<h1 class="page-title">', '</h1>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
-					<div class="amp-wp-content taxonomy-description">
+					<div class="taxonomy-description">
 						<?php echo $arch_desc ; ?>
-				  </div> <?php
+				  </div>
+			  </div> <?php
 				}
 			}
 			if(is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support']){
