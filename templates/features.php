@@ -5162,30 +5162,32 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
-		// Create a new document
-		$dom 		= new DOMDocument();
-		if( function_exists( 'mb_convert_encoding' ) ){
-			$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
-		}
-		else{
-			$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
-		}
-		$dom->loadHTML($menu);
+		if( !empty( $menu ) ){
+			// Create a new document
+			$dom = new DOMDocument();
+			if( function_exists( 'mb_convert_encoding' ) ){
+				$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+			}
+			else{
+				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+			}
+			$dom->loadHTML($menu);
 
-		// get all the img's
-		$nodes 		= $dom->getElementsByTagName( 'img' );
-		$num_nodes 	= $nodes->length;
-		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
-			$node 	= $nodes->item( $i );
-			// Set The Width and Height if there in none
-			if ( '' === $node->getAttribute( 'width' ) ) {
-				$node->setAttribute('width', 15);
+			// get all the img's
+			$nodes 		= $dom->getElementsByTagName( 'img' );
+			$num_nodes 	= $nodes->length;
+			for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
+				$node 	= $nodes->item( $i );
+				// Set The Width and Height if there in none
+				if ( '' === $node->getAttribute( 'width' ) ) {
+					$node->setAttribute('width', 15);
+				}
+				if( '' === $node->getAttribute( 'height' ) ){
+					$node->setAttribute('height', 15);
+				}
 			}
-			if( '' === $node->getAttribute( 'height' ) ){
-				$node->setAttribute('height', 15);
-			}
+			$menu = $dom->saveHTML();
 		}
-		$menu = $dom->saveHTML();
 		return $menu;
 	}
 }
