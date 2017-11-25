@@ -131,7 +131,6 @@ function call_page_builder(){
 	?>
 	<div id="ampForWpPageBuilder_container">
 		{{message}}
-		<span v-html="demoMessage"></span>
 		<div class="enable_ampforwp_page_builder">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 			<label  @click="showModal = true">settings</label>
@@ -141,40 +140,28 @@ function call_page_builder(){
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="mainContent_Save" value='<?php echo $previousData; ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
-				<drop class="drop" @drop="handleDrop">
-					<draggable v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" @change='rows_moved($event)'>
-						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
+					<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
 							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
 						 		<input type="hidden" name="column-data" value="">
 						        <div class="amppb-row-title">
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
 						            <span @click="reomve_row(key)" class="amppb-remove dashicons dashicons-trash"></span>
-						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-template='<?php // echo json_encode($containerCommonSettings); ?>'>
+						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 1" :data-popupcontent='<?php echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields col" data-cell="1">
-						        	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
-						        		<div class="modules-drop" :class="{'ui-droppable': row.cell_data.length==0 }">
+						        	<div class="modules-drop" :class="{'ui-droppable': row.cell_data.length==0 }">
 						        		
-							        		<draggable v-model="row.cell_data" :options="{
-								        			draggable:'.amppb-module',
-								        			group:'amppb-modules'
-								        			}"
-							        		:data-rowid="row.id"
-							        		@change='module_moved($event,row,1)'
-							        		>
-													<module-data
-													 v-for="(cell, key, index)  in row.cell_data" 
-													 :key="cell.cell_id"
-													 :cell="cell" 
-													 :cellcontainer="1"
-							        				></module-data>
-								        	</draggable>
-						        		</div>
-								    </drop>
+											<module-data
+											 v-for="(cell, key, index)  in row.cell_data" 
+											 :key="cell.cell_id"
+											 :cell="cell" 
+											 :cellcontainer="1"
+					        				></module-data>
+						        	</div>
 						        </div><!-- .amppb-row-fields -->
 						    </div><!-- .amppb-row.amppb-col-1 -->
 
@@ -184,46 +171,26 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 Columns</span> 
 						            <span @click="reomve_row(key)" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 2" data-popupContent='<?php echo json_encode($containerCommonSettings); ?>'>
+						            <a href="#" @click="showModulePopUp($event)" class="rowBoxContainer" title="Row settings column 2" :data-popupContent='<?php echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields ">
 					        	    <div class="amppb-column-2-left col" data-cell="1">
-					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
-							            	<div class="modules-drop" :class="{'ui-droppable': row.cell_left.length==0 }">
-							            		
-							            		<draggable 
-							            		 v-model="row.cell_data"
-							            		 :options="{draggable:'.amppb-module',group:'amppb-modules'}"
-							            		 @start="moduledrag=true" 
-							            		 :data-rowid="row.id"
-							            		 :data-cellid="1"
-							            		 @change='module_moved($event,row,1)'
-							            		 >
-								            		<module-data
-													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
-													 :key="cell.cell_id"
-													 :cell="cell" 
-													 :cellcontainer="1"
-							        				></module-data>
-									        	</draggable>
-										        
-							            	</div>
-						            	</drop>
+				        	    		<div class="modules-drop" :class="{'ui-droppable': row.cell_left.length==0 }">
+						            		<module-data
+												 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
+												 :key="cell.cell_id"
+												 :cell="cell" 
+												 :cellcontainer="1"
+						        				></module-data>
+						            	</div>
 						            </div><!-- .amppb-col-2-left -->
 						            <div class="amppb-column-2-right col" data-cell="2">
 						            	<div class="resize-handle"></div>
-						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
-											<div class="modules-drop" :class="{'ui-droppable': row.cell_right.length==0 }">
+						            		<div class="modules-drop" :class="{'ui-droppable': row.cell_right.length==0 }">
 											
-												<draggable v-model="row.cell_data" :options="{draggable:'.amppb-module',group:'amppb-modules'}"@start="moduledrag=true" 
-												:data-rowid="row.id"
-												:data-cellid="2"
-												@change='module_moved($event,row,2)'
-												>
-
 													<module-data
 													 v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" 
 													 :key="cell.cell_id"
@@ -231,32 +198,26 @@ function call_page_builder(){
 													 :cellcontainer="2"
 							        				></module-data>
 													
-									        	</draggable>
 											
 											</div>
-										</drop>
 						            </div><!-- .amppb-col-2-right -->
 						        </div><!-- .amppb-row-fields -->
 						    </div><!-- .amppb-row.amppb-col-2 -->
 			          	</div>
-		         	</draggable>
-		        </drop>	
 				    
 				
 		</div><!-- .amppb-rows -->
 
 	
          	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
-	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true">
+	        	<div class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
-				    <span slot="image">Col 1 dragged</span>
-				</drag>
-				<drag class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true">
+				</div>
+				<div class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true">
 				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
 				    >2 Columns</span>
-				    <span slot="image">Col 2 dragged</span>
-				</drag>
+				</div>
 	       		<div class="clearfix"></div>
 	        </div><!-- .amppb-actions -->
 	        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
@@ -264,13 +225,12 @@ function call_page_builder(){
 			    foreach ($moduleTemplate as $key => $module) {
 			    	$moduleJson = array('type'=> 'module','modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
-			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true">
+			    	<div class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true">
 				    	<span class="amppb-add-row button-primary button-large draggable module-'.strtolower($module['name']).'"
 				    	>
 				    		'.$module['label'].'
 				    	</span>
-				    	<span class="module-button amppb-module-'.strtolower($module['name']).'" slot="image">'.$module['label'].' dragged</span>
-			    	</drag>
+			    	</div>
 			    	';
 			    }
 			    ?>

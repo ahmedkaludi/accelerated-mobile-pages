@@ -46,10 +46,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
 
 
             
+			wp_enqueue_script( 'ravenjs', 'https://cdn.ravenjs.com/3.20.1/raven.min.js' );
 			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );
-			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
-			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
-			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
+			wp_enqueue_script( 'vuedndlist', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-and-drop-list/dist/vue-drag-and-drop-list.js' );
 			
 
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
@@ -63,9 +62,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'plupload',
 						'plupload-all',
 						'vuejs',
-						'vueSortable',
-						'vuedraggable',
-						'vuedropdrag'
+						'vuedndlist',
 
 					),AMPFORWP_VERSION, true );
 			wp_localize_script( 'amppb-admin', 'amppb_data', $previousData ); 

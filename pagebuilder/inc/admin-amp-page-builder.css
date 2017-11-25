@@ -650,6 +650,10 @@ div.drag{
     border-color: #aaa;
     background: #ccc;
 }
+.amppb-module-dummy{
+    background: transparent;
+    border: transparent;
+}
 
 
 

@@ -64,7 +64,7 @@ Vue.component('fields-data',{
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
   data: {
-    message: 'Hello AMP Page builder वासियों',
+    message: 'Hello AMP Page builder',
     demoMessage: {},
     showModal: false,
     showmoduleModal: false,
@@ -73,6 +73,20 @@ var app = new Vue({
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
     mainContent_Save: JSON.stringify(this.mainContent),
+    colonetemplate: {
+				'id':1,
+				'index':1,
+				'cells': 1,
+				'cell_data': [],
+				'data':{}
+				},
+	coltwotemplate:{
+					'id':1,
+					'index':1,
+					'cells': 2,
+					'cell_data': [],
+					'data':{}
+					},
     //Scroll position
     scrollPosition: 0
   },
@@ -80,117 +94,15 @@ var app = new Vue({
   		showModulePopUp: function(event){
 			openModulePopup(event);
 		},
-  		 //row Sorting
-  		rows_moved: function(evt){
-  			/*newIndex = (evt.moved.newIndex)+1;
-  			oldIndex = evt.moved.oldIndex;
-  			element = evt.moved.element;
-  			this.mainContent.rows.forEach(function(data,key){
-  				if(data.id==element.id){
-  					data.index = newIndex;
-  				}else if(data.id != element.id && data.index>=newIndex){
-  					data.index = (data.index)+1;
-  				}
-  			});
-  			
-  			this.call_default_functions();*/
-  			return true;
-  		},
-  		module_moved: function(evt,row,col){
-  			/*if(evt.added){
-  				addedelement = evt.added.element;
-  				addedelement.index = (evt.newIndex)+1;
-  				this.mainContent.rows.forEach(function(data,key){
-	  				if(row.id==data.id){
-		  			 	data.cell_data.push(addedelement)
-	  				}
-	  			});
-  			}else if(evt.removed){
-  				removeelement = evt.removed.element;
-  				this.mainContent.rows.forEach(function(data,key){
-  					if(row.id==data.id){
-  						data.cell_data.forEach(function(moduleData,modeuleKey){
-  							alert(JSON.stringify(moduleData)+ " \n" + JSON.stringify(removeelement));
-  							if(moduleData.cell_id == removeelement.cell_id){
-  								moduleData.splice(modeuleKey,1);
-  							}
-  						});
-  					}
-  				});
-  			}*/
-  			//alert(JSON.stringify(evt)+ " \n"+(row.id)+ " \n"+col);
-  			
-  			// newIndex = (evt.moved.newIndex)+1;
-  			// oldIndex = evt.moved.oldIndex;
-  			// element = evt.moved.element;
-  			// 
-
-  			//this.call_default_functions();
-  			return true;
+		copiedrows: function(template){
+			template.id++;
 		},
-  		//Rows drop details
-		handleDrop: function(columnData,Events) {
-			if( typeof columnData == "undefined" || !("type" in columnData) || columnData.type!="column"){
-				return false;
-			}
-			this.dropover = false;
-			var containerid = (this.mainContent.totalrows);
-			var noOfCell = columnData['value'].replace('col-',"");
-			var newRow   = {
-							'id':containerid,
-							'index':containerid,
-							'cells': noOfCell,
-							'cell_data': [],
-							'data':{}
-							};
-			if(noOfCell==2){
-				newRow.cell_left = [];
-				newRow.cell_right = [];
-			}
-
-			this.mainContent.totalrows = containerid+1;
-			this.mainContent.rows.push(newRow);
-			this.call_default_functions();
+		module_copied: function(template){
+			template.cell_id++;
 		},
-		handleModuleDrop: function(moduleData,Events) {
-			this.dropover = false;
-			if(typeof moduleData == "undefined" ){ return false; }
-			if(!("type" in moduleData) ){return false;}
-			if(moduleData.type!="module" ){return false;}
-			var moduletype = moduleData['type'];
-			var modulename = moduleData['modulename'];
-			moduleJson = moduleData['moduleJson'];
-			element = Events.currentTarget;
-			var modulesid = (this.mainContent.totalmodules);
-
-			var rowid = element.getAttribute('data-rowid');
-			var cellid = element.getAttribute('data-cellid');
-			this.mainContent.rows.forEach(function(columnVal,k){
-				if(columnVal.id==rowid){
-					moduleIndex = columnVal.cell_data.length+1;
-					var cellData = {
-							'cell_id'	: modulesid,
-							'index'		: moduleIndex,
-							'type'		: modulename,
-							'container_id': rowid,
-							'cell_container': cellid,
-							};
-
-						if(moduleJson.fields.length > 0){
-							moduleJson.fields.forEach(function(module,key){
-								cellData[module.name] = module.default;
-							});
-						}
-						columnVal.cell_data.push(cellData);
-					
-				}
-			});
-			this.mainContent.totalmodules = modulesid+1;
-			this.call_default_functions();
-			
-
-			
-		},
+		inserted(data){
+	      // console.log(data);
+	    },
 		reomve_row: function(key){
 			var response = confirm("Do you want to delete Row? ");
 			if(response){
@@ -203,37 +115,29 @@ var app = new Vue({
   		},
 		re_process_rawdata: function(){
 			//Sort rows
-			/*this.mainContent.rows.sort(function(a, b){
+			this.mainContent.rows.sort(function(a, b){
 				var a1= a.index, b1= b.index;
 				if(a1== b1) return 0;
 				return a1> b1? 1: -1;
-			});*/
+			});
 			this.mainContent.rows.forEach(function(row,key){
-				/*row.cell_data.sort(function(a, b){
-					var a1= a.index, b1= b.index;
-					if(a1== b1) return 0;
-					return a1> b1? 1: -1;
-				});*/
-				if(row.cells==2){
-					row.cell_left  = [];
-					row.cell_right = [];
-					row.cell_data.forEach(function(module,k){
-						if(module.cell_container==1){
-							row.cell_left.push(module);
-						}else if(module.cell_container==2){
-							row.cell_right.push(module);
-						}
-					});
-					/*row.cell_left.sort(function(a, b){
+				if(row.cell_data && row.cell_data.length>0){
+					row.cell_data.sort(function(a, b){
 						var a1= a.index, b1= b.index;
 						if(a1== b1) return 0;
 						return a1> b1? 1: -1;
 					});
-					row.cell_right.sort(function(a, b){
-						var a1= a.index, b1= b.index;
-						if(a1== b1) return 0;
-						return a1> b1? 1: -1;
-					});*/
+					if(row.cells==2){
+						row.cell_left  = [];
+						row.cell_right = [];
+						row.cell_data.forEach(function(module,k){
+							if(module.cell_container==1){
+								row.cell_left.push(module);
+							}else if(module.cell_container==2){
+								row.cell_right.push(module);
+							}
+						});
+					}
 				}
 			});
 		},
@@ -245,5 +149,6 @@ var app = new Vue({
 	}/*module close*/
 });
 
-app.mainContent = amppb_data;
+//app.mainContent = amppb_data;
+app.mainContent = {"rows":[{"id":1,"index":1,"cells":2,"cell_data":[{"cell_id":1,"index":1,"type":"blurb","container_id":"1","cell_container":"1","text_title":"Heart Of The Landing Page","text_description":"This is a sample text which is being used for the dummy purpose to avoid confusion.","blurb_image":"http://localhost/magzine/testing-wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png","img_width":"80px","img_height":"80px","css_class":""},{"cell_id":2,"index":1,"type":"button","container_id":"1","cell_container":"2","button_txt":"Click Here","button_link":"#","css_class":""}],"data":{}},{"id":2,"index":2,"cells":2,"cell_data":[{"cell_id":3,"index":1,"type":"blurb","container_id":"2","cell_container":"1","text_title":"Heart Of The Landing Page","text_description":"This is a sample text which is being used for the dummy purpose to avoid confusion.","blurb_image":"http://localhost/magzine/testing-wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png","img_width":"80px","img_height":"80px","css_class":""},{"cell_id":4,"index":1,"type":"button","container_id":"2","cell_container":"2","button_txt":"Click Here","button_link":"#","css_class":""}],"data":{}}],"totalrows":3,"totalmodules":5};
 app.call_default_functions();
