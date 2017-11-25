@@ -958,7 +958,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						<?php
 					}//code ends for supporting Chartbeat Analytics
 		}//analytics function ends here
-
+	// For Setting up Google AMP Client ID API
+	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
+	if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
+		function ampforwp_analytics_clientid_api() {
+			global $redux_builder_amp;
+			if ( 1 == $redux_builder_amp['amp-analytics-select-option'] || 'googleanalytics' == $redux_builder_amp['amp-gtm-analytics-type']){ ?>
+				<meta name="amp-google-client-id-api" content="googleanalytics">
+			<?php }
+		}
+	}
 	// 11. Strip unwanted codes and tags from the_content
 		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content');
 		function ampforwp_strip_invalid_content() {
