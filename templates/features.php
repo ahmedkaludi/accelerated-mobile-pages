@@ -4737,7 +4737,7 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 		$output 		= '';
 		if ( has_post_thumbnail()) { 
 			$thumb_id 			= get_post_thumbnail_id();
-			$thumb_url_array 	= wp_get_attachment_image_src($thumb_id, 'full', true);
+			$thumb_url_array 	= wp_get_attachment_image_src($thumb_id, 'medium', true);
 			$thumb_url 			= $thumb_url_array[0];
 			$thumb_width 		= $thumb_url_array[1];
 			$thumb_height 		= $thumb_url_array[2];
