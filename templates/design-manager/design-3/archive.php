@@ -74,13 +74,13 @@ if ( get_query_var( 'paged' ) ) {
 				if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
-						<div class="author-img">
-							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
+						<div class="amp-wp-content author-img">
+							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 						</div>
 					<?php }
 				}
 			}
- 			the_archive_title( '<h1 class="page-title">', '</h1>' );
+ 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
