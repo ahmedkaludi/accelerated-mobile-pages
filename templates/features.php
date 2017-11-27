@@ -5258,3 +5258,16 @@ function ampforwp_default_logo($param=""){
 	}
 	return $value;
 } 
+// Envira Lazy Load compatibility
+add_action('pre_amp_render_post', 'ampforwp_envira_compatibility');
+function ampforwp_envira_compatibility(){
+	add_filter('envira_gallery_pre_data', 'ampforwp_envira_lazy_load');
+	if( ! function_exists(' ampforwp_envira_lazy_load ') ){
+		function ampforwp_envira_lazy_load($data){
+			// Change the Lazyload value to Zero
+			$data['config']['lazy_loading'] = 0;
+			$data['config']['lazy_loading_delay'] = 0;
+			return $data;
+		}
+	}	
+}
