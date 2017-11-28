@@ -1672,6 +1672,8 @@ function ampforwp_remove_schema_data() {
     	remove_filter ('the_content', 'FTGSB');
     // Jannah Theme Lazy Load Compatibility
     	remove_filter( 'wp_get_attachment_image_attributes', 'jannah_lazyload_image_attributes', 8, 3 );
+    // Goodlife Theme Lazy Load Compatibility
+    	remove_filter( 'post_thumbnail_html', 'thb_src_attribute', 10, 3 );	
 }
 
 // 22. Removing author links from comments Issue #180
