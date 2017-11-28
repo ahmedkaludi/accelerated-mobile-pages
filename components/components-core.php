@@ -343,7 +343,7 @@ $thisTemplate = new AMP_Post_Template($post_id);
 				// Custom/Alternative AMP content added through post meta  
 				$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 			} 
-		$ampforwp_the_content = apply_filters('ampforwp_content_filter',$ampforwp_the_content);
+		$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 		echo $ampforwp_the_content;
     	do_action('ampforwp_after_post_content',$thisTemplate); ?>
 	</div>
