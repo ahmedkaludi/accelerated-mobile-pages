@@ -4401,8 +4401,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 // 84. Inline Related Posts
 
 function ampforwp_inline_related_posts(){
-	global $post,  $redux_builder_amp;
-		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
+	global $post, $redux_builder_amp;
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-inline-related-posts'];		
 		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
 		// declaring this variable here to prevent debug errors

@@ -2847,6 +2847,15 @@ Redux::setSection( $opt_name, array(
                 'subtitle' => __('Insert Related Posts between the content', 'accelerated-mobile-pages'),
                 'default'  => 0,
             ),
+            array(
+                    'id'       => 'ampforwp-number-of-inline-related-posts',
+                    'type'     => 'text',
+                    'title'    => __('Number of In-Content Related Post', 'accelerated-mobile-pages'),
+                'subtitle' => __('Type the number of In-Content related posts you need, Eg : 2', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                'default'  => '3',
+                'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
