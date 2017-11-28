@@ -4580,7 +4580,7 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
     .collapsible-captions amp-img img {object-fit: contain; }
     .collapsible-captions figure { margin: 0; padding: 0; }
     .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
-      max-height: var(--caption-height);
+      max-height: var(--caption-height);margin-bottom:0;
       line-height: var(--caption-height);
       padding: 0 var(--button-size) 0 5px;
       white-space: nowrap;
