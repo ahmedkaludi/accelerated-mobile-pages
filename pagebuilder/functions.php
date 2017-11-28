@@ -34,7 +34,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'plupload',
 						'plupload-all',
 					),AMPFORWP_VERSION, true );
-	        add_action( 'admin_footer', 'js_templates');
+	        add_action( 'admin_footer', 'js_templates', 999);
 	   
 	    
     }
