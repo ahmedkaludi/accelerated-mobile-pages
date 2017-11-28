@@ -106,7 +106,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 <?php }?>
 /* Header */
 #header{ background: #fff; text-align: center; }
-#header h3{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
+#header h1{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
 .amp-logo amp-img{ margin: 15px 0px 10px 0px; }
 main { padding: 30px 15% 10px 15%; }
 .amp-wp-content.widget-wrapper{padding: 0px 15%;}
