@@ -4573,44 +4573,32 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 	function ampforwp_additional_style_carousel_caption(){ ?>
     .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
     .collapsible-captions * {
-      /* disable chrome touch highlight */
       -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
       box-sizing: border-box;
     }
     .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
     .collapsible-captions amp-img img {object-fit: contain; }
     .collapsible-captions figure { margin: 0; padding: 0; }
-    /* single line caption */
     .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
-      /* inital height is one line */
       max-height: var(--caption-height);
       line-height: var(--caption-height);
       padding: 0 var(--button-size) 0 5px;
-      /* cut text after first line and show an ellipsis */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      /* animate expansion */
       transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      /* overlay the carousel icons */
       z-index: 1000;
-      /* some styling */
       color: var(--caption-color);
-      background: rgba(0, 0, 0, 0.6); margin-bottom:0;    
+      background: rgba(0, 0, 0, 0.6);   
     }
-    /* expanded caption */
     .collapsible-captions figcaption.expanded {
-      /* add padding and show all of the text */
       line-height: inherit;
       white-space: normal;
       text-overflow: auto;
       max-height: 100px;
-      /* show scrollbar in case caption is larger than image */
       overflow: auto;
     }
-    /* don't show focus highlights in chrome */
     .collapsible-captions figcaption:focus { outline: none; border: none; }
-    /* the expand/collapse icon */
     .collapsible-captions figcaption span { display: block; position: absolute;
       top: calc((var(--caption-height) - var(--button-size)) / 2);
       right: 2px; width: var(--button-size); height: var(--button-size);

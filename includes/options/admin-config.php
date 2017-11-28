@@ -521,13 +521,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
-           array(
-               'id'       => 'ampforwp-sub-categories-support',
-               'type'     => 'switch',
-               'title'    => __('Sub-Categories', 'accelerated-mobile-pages'),
-               'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
-               'default'  => '0'
-             ),
 
           //  array(
           //      'id'       => 'amp-ad-places',
@@ -1788,16 +1781,6 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
-                        'id'       => 'amp-meta-permissions',
-                        'type'     => 'select',
-                        'title'    => __('AMP Metabox Permission', 'accelerated-mobile-pages'),
-                        'options'  => array(
-                            'all'       => 'All users who can post',
-                            'admin'     => 'Only to Admin'
-                        ),
-                        'default'  => 'all',
-                    ),
-                    array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
                         'title'    => __('Enter HTML in Head', 'accelerated-mobile-pages'),
@@ -1891,6 +1874,16 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 0,                        
+                    ),
+                    array(
+                        'id'       => 'amp-meta-permissions',
+                        'type'     => 'select',
+                        'title'    => __('Show Metabox in Post Editor to', 'accelerated-mobile-pages'),
+                        'options'  => array(
+                            'all'       => 'All users who can post',
+                            'admin'     => 'Only to Admin'
+                        ),
+                        'default'  => 'all',
                     ),
                      array(
                         'id'       => 'ampforwp-development-mode',
@@ -3319,6 +3312,13 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                     ),
+           array(
+               'id'       => 'ampforwp-sub-categories-support',
+               'type'     => 'switch',
+               'title'    => __('Sub-Categories under Category', 'accelerated-mobile-pages'),
+               'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
+               'default'  => '0'
+             ),
         )
 
     ) );
