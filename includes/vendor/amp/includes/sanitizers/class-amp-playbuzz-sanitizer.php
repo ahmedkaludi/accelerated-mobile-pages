@@ -52,6 +52,14 @@ class AMP_Playbuzz_Sanitizer extends AMP_Base_Sanitizer {
 				continue;
 			}
 
+			if ( $new_attributes['src'] ) {
+				$checker = preg_match("@^https?://@", $new_attributes['src'] ) ;
+			}
+			
+			if ( empty( $checker ) ) {
+				$new_attributes['src'] = 'https:' . $new_attributes['src'];
+			}
+
 			$new_node = AMP_DOM_Utils::create_node( $this->dom, self::$script_slug, $new_attributes );
 
 			$node->parentNode->replaceChild( $new_node, $node );
