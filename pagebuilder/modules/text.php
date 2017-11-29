@@ -3,11 +3,6 @@
 return array(
 		'label' =>'Text',
 		'name' =>'text',
-		'default_tab'=> 'customizer',
-		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
-            ),
 		'fields'=> array(
 					array(
 						'type'		=>'text-editor',

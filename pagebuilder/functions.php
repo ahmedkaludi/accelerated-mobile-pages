@@ -18,39 +18,13 @@ function amppbbase_admin_scripts( $hook_suffix ){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
-        $amp_current_post_id = get_the_ID();
-        $postId = $amp_current_post_id;
-
-        $previousData = get_post_meta($postId,'amp-page-builder');
-		$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-		$previousData = isset($previousData[0])? $previousData[0]: null;
-		
-		$previousData = (str_replace("'", "", $previousData));
-		
-		$totalRows = 1;
-		$totalmodules = 1;
-		if(!empty($previousData)){
-			//echo ' sdcds '.json_encode($previousData);die;
-			$jsonData = json_decode($previousData,true);
-			if(count($jsonData['rows'])>0){
-				$totalRows = $jsonData['totalrows'];
-				$totalmodules = $jsonData['totalmodules'];
-				$previousData = $jsonData;//json_encode($jsonData);
-			}else{
-				$jsonData['rows'] = array();
-				$jsonData['totalrows']=1;
-				$jsonData['totalmodules'] = 1;
-				$previousData = $jsonData;//json_encode($jsonData);
-			}
-		}
-
-
+        $amp_current_post_id = $postId = get_the_ID();
             
-			wp_enqueue_script( 'ravenjs', 'https://cdn.ravenjs.com/3.20.1/raven.min.js' );
 			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );
-			wp_enqueue_script( 'vuedndlist', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-and-drop-list/dist/vue-drag-and-drop-list.js' );
+			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
+			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
+			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
 			
-
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
 						'jquery-ui-resizable',
@@ -62,10 +36,43 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'plupload',
 						'plupload-all',
 						'vuejs',
-						'vuedndlist',
+						'vueSortable',
+						'vuedraggable',
+						'vuedropdrag'
 
 					),AMPFORWP_VERSION, true );
-			wp_localize_script( 'amppb-admin', 'amppb_data', $previousData ); 
+					
+					
+			$previousData = get_post_meta($postId,'amp-page-builder');
+			$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+			$previousData = isset($previousData[0])? $previousData[0]: null;
+			
+			$previousData = (str_replace("'", "", $previousData));
+			
+			$totalRows = 1;
+			$totalmodules = 1;
+			if(!empty($previousData)){
+				//echo ' sdcds '.json_encode($previousData);die;
+				$jsonData = json_decode($previousData,true);
+				if(count($jsonData['rows'])>0){
+					$totalRows = $jsonData['totalrows'];
+					$totalmodules = $jsonData['totalmodules'];
+					$previousData = ($jsonData);
+				}else{
+					$jsonData['rows'] = array();
+					$jsonData['totalrows']=1;
+					$jsonData['totalmodules'] = 1;
+					$previousData = ($jsonData);
+				}
+			}else{
+					$jsonData['rows'] = array();
+					$jsonData['totalrows']=1;
+					$jsonData['totalmodules'] = 1;
+					$previousData = ($jsonData);
+				}
+			wp_localize_script( 'amppb-admin', 'amppb_data',$previousData);
+					
+			
 	        add_action( 'admin_footer', 'js_templates');
 	   
 	    

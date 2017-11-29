@@ -18,25 +18,17 @@ if (is_dir($dir)) {
 $output = '<div class="amp_pb_module {{row_class}}">';
 $outputEnd = '<div class="cb"></div> </div>';
 $containerCommonSettings = array(
-			'label' =>'Row Settings',
-			'default_tab'=> 'customizer',
-			'tabs' => array(
-				'customizer'=>'Customizer',
-				'container_css'=>'Container css'
-				),
 			'fields' => array(
 							array(
 								'type'		=>'text',
 								'name'		=>"row_label",
 								'label'		=>'Row label',
-								'tab'		=>'customizer',
 								'default'	=>'',
 								),
 					
 							array(
 								'type'		=>'text',
 								'name'		=>"row_class",
-								'tab'		=>'container_css',
 								'label'		=>'Row class',
 								'default'	=>'',
 								)
