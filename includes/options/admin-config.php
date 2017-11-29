@@ -1052,18 +1052,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'desc'     => __('Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
                           'default'  => 'UA-XXXXX-Y',
                       ),
-                      // Google Cliend ID API
-                      array(
-                        'id'       => 'ampforwp-ga-clientid-api',
-                        'type' => 'info',
-                        'style' => 'info',
-                        'desc' => '<a href="https://ampforwp.com/tutorials/article/set-google-amp-client-id-api/" target="_blank">Check this Tutorial to set it up</a>',
-                        'title'    => __('Set up Google AMP Client ID API', 'accelerated-mobile-pages'),
-                        'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
-                            array('amp-analytics-select-option', '=' , '1')
-                          ),
-                    ),
+         
                       // Advance Tracking options for Google Analytics
                       array(
                           'id'       => 'ampforwp-ga-field-advance-switch',
@@ -1200,7 +1189,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         array(
                             'id'       => 'amp-use-gtm-option',
                             'type'     => 'switch',
-                            'title'    => __( 'Use Google Tag Manager', 'accelerated-mobile-pages' ),
+                            'title'    => __( 'Google Tag Manager', 'accelerated-mobile-pages' ),
                             'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
                             'default'  => 0,
                         ),
