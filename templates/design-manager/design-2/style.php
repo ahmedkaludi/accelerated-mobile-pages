@@ -41,7 +41,6 @@ amp-anim { max-width: 100%; }
     margin: 0 auto;
     <?php endif; ?>
 }
-
 /* Slide Navigation code */
 .nav_container{ padding: 18px 15px; background: #312C7E; color: #fff; text-align: center }
 amp-sidebar{ width: 250px; }
@@ -108,6 +107,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #header{ background: #fff; text-align: center; }
 #header h1{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 15px; margin: 0; }
 .amp-logo amp-img{ margin: 15px 0px 10px 0px; }
+.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;}
 main { padding: 30px 15% 10px 15%; }
 .amp-wp-content.widget-wrapper{padding: 0px 15%;}
 main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
