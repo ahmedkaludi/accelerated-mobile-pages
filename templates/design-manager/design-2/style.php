@@ -69,7 +69,7 @@ amp-sidebar{ width: 250px; }
 .amp-category-post{ width: 32%;display: inline-block; word-wrap: break-word;float: left;}
 .amp-category-post amp-img{ margin-bottom:5px; }
 .amp-category-block li:nth-child(3){ margin: 0 1%;}
-.searchmenu{    float: right;
+.searchmenu{  
     right: 10px;
     top: 31%;
     position: absolute; }
@@ -303,7 +303,8 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .ampforwp-tax-category span:last-child:after, .ampforwp-tax-tag span:last-child:after { content: ' '; }
 .amp-wp-article-content img { max-width: 100%; }
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
-.callnow{ position: relative; top: -35px; right: 39px }
+.callnow{ left: 58px; top: 36%; position: absolute;
+} 
 .callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 <?php if ( class_exists('TablePress') ) { ?>

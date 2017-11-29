@@ -1,12 +1,12 @@
 <?php
 add_action('amp_post_template_css', 'ampforwp_additional_style_input_3');
 function ampforwp_additional_style_input_3( $amp_template ) {
-	global $redux_builder_amp;
+  global $redux_builder_amp;
   global $post;
   $post_id = '';
   $post_id = $post->ID;
-	$get_customizer = new AMP_Post_Template( $post_id );
-	// Get content width
+  $get_customizer = new AMP_Post_Template( $post_id );
+  // Get content width
       $colorscheme =  $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color'];
       $headercolor =  $redux_builder_amp['amp-opt-color-rgba-headercolor']['color'];
       $font_color =  $redux_builder_amp['amp-opt-color-rgba-font']['color'];
@@ -14,11 +14,11 @@ function ampforwp_additional_style_input_3( $amp_template ) {
       $headerelements =  $redux_builder_amp['amp-opt-color-rgba-headerelements']['color'];
       $sticky_head    = $redux_builder_amp['amp-opt-sticky-head'];
 
-	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
-	// Get template colors
-	$header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
-	$header_color            = $get_customizer->get_customizer_setting( 'header_color' );
-	?>
+  $content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );
+  // Get template colors
+  $header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
+  $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
+  ?>
 
 /* Global Styling */
 body{ font: 16px/1.4 Sans-serif; }
@@ -106,7 +106,7 @@ header{ padding-bottom:50px; }
   header{ padding-bottom:0px; }
 #headerwrap{ position: relative;}
 <?php } ?>
-#header h1{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 53px; padding: 0; margin: 0; text-transform: uppercase }
+#header h1{ text-align: center; font-size: 16px; position: relative; font-weight: bold; line-height: 50px; padding: 0; margin: 0; text-transform: uppercase }
 main .amp-wp-content{ font-size: 18px; line-height: 29px; color:#111 }
 .single-post main .amp-wp-article-content h1{ font-size:2em}
 .single-post main .amp-wp-article-content h1, .single-post main .amp-wp-article-content h2, .single-post main .amp-wp-article-content h3, .single-post main .amp-wp-article-content h4, .single-post main .amp-wp-article-content h5, .single-post main .amp-wp-article-content h6{ font-family: 'Roboto Slab', serif; margin: 0px 0px 5px 0px; line-height: 1.6; }
@@ -250,9 +250,8 @@ pre{ white-space: pre-wrap; }
 .amp-category-block li:nth-child(3){ margin: 0 1%; }
 .searchmenu{ margin-right: 15px; margin-top: 11px; position: absolute; top: 0; right: 0; }
 .searchmenu button{ background:transparent; border:none }
-.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;}
+.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;position:relative;top:9px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
-.headerlogo amp-img{ margin-top:6px }
 .headerlogo a{ color:#F42; }
 
 /*Navigation Menu*/
@@ -421,7 +420,7 @@ amp-user-notification button { background-color:  <?php echo $redux_builder_amp[
 <?php
 if ( class_exists('TablePress') ) { ?>
 .tablepress-table-description{ clear: both; display: block; }
-.tablepress{ border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 1em; border: none;	}
+.tablepress{ border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 1em; border: none; }
 .tablepress th, .tablepress td{ padding: 8px; border: none; background: none; text-align: left; }
 .tablepress tbody td{ vertical-align: top; }
 .tablepress tbody td, .tablepress tfoot th{ border-top: 1px solid #dddddd; }
