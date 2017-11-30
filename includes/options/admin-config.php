@@ -2294,7 +2294,19 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-global-subsection',
         'subsection' => true,
         'fields'     => array(
-
+             // Swift
+            array(
+                    'id'        => 'swift-color-scheme',
+                    'title'     => __('Global Color Scheme', 'ampswifttheme'),
+                    'subtitle'  => __('Choose the color for title, anchor link','ampswifttheme'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'rgba'      => '(255,61,37,1)',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                     )
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
@@ -2394,26 +2406,6 @@ Redux::setSection( $opt_name, array(
                     'theme'    => 'monokai',
                     'desc'     => '',
                     'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
-            ),
-        // Swift
-            array(
-                  
-                   'id'     => 'global-color-scheme',
-                   'type'   => 'section',
-                   'title'  => __('Color Scheme', 'ampswifttheme'),
-                   'indent' => true,
-                   'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
-            ),
-            array(
-                    'id'        => 'swift-color-scheme',
-                    'title'     => __('Global Color Scheme', 'ampswifttheme'),
-                    'subtitle'  => __('Choose the color for title, anchor link','ampswifttheme'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                    'rgba'      => '(255,61,37,1)',
-                     ),
             ), 
         )
     ));
@@ -2434,120 +2426,7 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-header-settings',
         'subsection' => true,
         'fields'     => array(
-             array(
-                    'id'       => 'ampforwp-amp-menu',
-                    'type'     => 'switch',
-                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
-                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
-                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'default'   => 1
-            ),   
-             array(
-                    'id'       => 'amp-design-3-search-feature',
-                    'type'     => 'switch',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '3')
-                    ),
-                    'default'  => '0'
-            ),
-             
-             array(
-                    'id'       => 'amp-design-2-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '2')
-                    ),
-                    'default'  => '0'
-            ),
-
-             array(
-                    'id'       => 'amp-design-1-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '1')
-                    ),
-                    'default'  => '0'
-            ),
-                 // Call Now button
-             array(
-                    'id'       => 'ampforwp-callnow-button',
-                    'type'     => 'switch',
-                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'required' => array(
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'default'   => 0
-             ),
-             array(
-                    'id'        =>'enable-amp-call-numberfield',
-                    'type'      => 'text',
-                    'required'  => array(
-                        array('ampforwp-callnow-button', '=' , '1'),
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-headercolor',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Background Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#FFFFFF',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-             array(
-                    'id'        => 'amp-opt-color-rgba-headerelements',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => ampforwp_get_element_default_color(),
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-            array(
-                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                    'type'      => 'switch',
-                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
-             array(
-                    'id'        => 'amp-opt-sticky-head',
-                    'type'      => 'switch',
-                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    ),
-                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
-                    'default'  => '0'
-            ),
-
             // Swift
-            array(
-                    'id'     => 'header',
-                   'type'   => 'section',
-                   'title'  => __('Header', 'amptechtheme'),
-                   'indent' => true,
-                   'required' => array(
-                  array('amp-design-selector', '=' , '4')
-                )
-            ),
             array(
                     'id'    => 'header-type',
                    'title'  => __('Header Type', 'amptechtheme'),
@@ -2557,6 +2436,7 @@ Redux::setSection( $opt_name, array(
                         '2' =>  'Header 2'
                     ),
                    'default'=> '1',
+                   'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
              array(
                     'id'    => 'customize-options',
@@ -2564,7 +2444,7 @@ Redux::setSection( $opt_name, array(
                     'title' => __('Customize Header Options', 'ampswifttheme'),
                     'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'ampswifttheme'),
                     'default'   => 0,
-
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
 
             array(
@@ -2713,6 +2593,109 @@ Redux::setSection( $opt_name, array(
                   'required' => array(
                       array('customize-options','=',1)
                     )    
+            ),   
+             array(
+                    'id'       => 'ampforwp-amp-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
+                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 1
+            ),
+             array(
+                    'id'       => 'amp-design-3-search-feature',
+                    'type'     => 'switch',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '3')
+                    ),
+                    'default'  => '0'
+            ),
+             
+             array(
+                    'id'       => 'amp-design-2-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                    ),
+                    'default'  => '0'
+            ),
+
+             array(
+                    'id'       => 'amp-design-1-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                    ),
+                    'default'  => '0'
+            ),
+                 // Call Now button
+             array(
+                    'id'       => 'ampforwp-callnow-button',
+                    'type'     => 'switch',
+                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                    'type'      => 'text',
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
+             ),
+            array(
+                    'id'        => 'amp-opt-color-rgba-headercolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#FFFFFF',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+             array(
+                    'id'        => 'amp-opt-color-rgba-headerelements',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => ampforwp_get_element_default_color(),
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+            array(
+                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                    'type'      => 'switch',
+                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+             array(
+                    'id'        => 'amp-opt-sticky-head',
+                    'type'      => 'switch',
+                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    ),
+                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
             ),
           )
         )
@@ -2899,6 +2882,47 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
+            // Swift
+             array(
+                    'id'    => 'swift-date',
+                    'type'  => 'switch',
+                    'title' => __('Date', 'ampswifttheme'),
+                    'subtitle'  => __('Enable to show Post Date', 'ampswifttheme'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+             array(
+                    'id'    => 'swift-author-box',
+                    'type'  => 'switch',
+                    'title' => __('Author Box', 'ampswifttheme'),
+                    'subtitle'  => __('Switch to show/hide author box', 'ampswifttheme'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+             array(
+                    'id'    => 'swift-social-icons',
+                    'type'  => 'switch',
+                    'title' => __('Social Icons', 'ampswifttheme'),
+                    'subtitle'  => __('Switch to show/hide Social Icons', 'ampswifttheme'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'    => 'swift-comment',
+                    'type'  => 'switch',
+                    'title' => __('Comments', 'ampswifttheme'),
+                    'subtitle'  => __('Switch to show/hide Comments', 'ampswifttheme'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+               array(
+                    'id'    => 'swift-taxonomy',
+                    'type'  => 'switch',
+                    'title' => __('Taxonomy Tags', 'ampswifttheme'),
+                    'subtitle'  => __('switch to show/hide taxonomy tags', 'ampswifttheme'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),   
          //Breadcrumb ON/OFF
           array(
               'id'       => 'ampforwp-bread-crumb',
@@ -3041,49 +3065,6 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
-            // Swift
-                array(
-                       'id'     => 'swift-single',
-                       'type'   => 'section',
-                       'title'  => __('Single', 'ampswifttheme'),
-                       'indent' => true,
-                       'required' => array( array('amp-design-selector', '=' , '4') ),
-                ),
-                 array(
-                        'id'    => 'swift-date',
-                        'type'  => 'switch',
-                        'title' => __('Date', 'ampswifttheme'),
-                        'subtitle'  => __('Enable to show Post Date', 'ampswifttheme'),
-                        'default'   => 1
-                ),
-                 array(
-                        'id'    => 'swift-author-box',
-                        'type'  => 'switch',
-                        'title' => __('Author Box', 'ampswifttheme'),
-                        'subtitle'  => __('Switch to show/hide author box', 'ampswifttheme'),
-                        'default'   => 1
-                ),
-                 array(
-                        'id'    => 'swift-social-icons',
-                        'type'  => 'switch',
-                        'title' => __('Social Icons', 'ampswifttheme'),
-                        'subtitle'  => __('Switch to show/hide Social Icons', 'ampswifttheme'),
-                        'default'   => 1
-                ),
-                array(
-                        'id'    => 'swift-comment',
-                        'type'  => 'switch',
-                        'title' => __('Comments', 'ampswifttheme'),
-                        'subtitle'  => __('Switch to show/hide Comments', 'ampswifttheme'),
-                        'default'   => 1
-                ),
-                   array(
-                        'id'    => 'swift-taxonomy',
-                        'type'  => 'switch',
-                        'title' => __('Taxonomy Tags', 'ampswifttheme'),
-                        'subtitle'  => __('switch to show/hide taxonomy tags', 'ampswifttheme'),
-                        'default'   => 1
-                ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
@@ -3111,7 +3092,15 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-footer-settings',
         'subsection' => true,
         'fields'     => array(
-
+                 // Swift
+                 array(
+                        'id'    => 'swift-menu',
+                        'type'  => 'switch',
+                        'title' => __('Menu', 'ampswifttheme'),
+                        'subtitle'  => __('switch to show/hide Menu', 'ampswifttheme'),
+                        'default'   => 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
                 array(
                         'id'       => 'amp-footer-link-non-amp-page',
                         'type'     => 'switch',
@@ -3153,23 +3142,6 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-selector', '=' , '3')
                         ),
                         'default'  => '1'
-                ),
-              // Swift
-                array(
-                       'id'     => 'swift-single',
-                       'type'   => 'section',
-                       'title'  => __('Footer', 'ampswifttheme'),
-                       'indent' => true,
-                       'required' => array(
-                          array('amp-design-selector', '=' , '4')
-                        ),
-                ),
-                 array(
-                        'id'    => 'swift-menu',
-                        'type'  => 'switch',
-                        'title' => __('Menu', 'ampswifttheme'),
-                        'subtitle'  => __('switch to show/hide Menu', 'ampswifttheme'),
-                        'default'   => 1
                 ), 
         )
     ));
