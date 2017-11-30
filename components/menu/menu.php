@@ -1,13 +1,18 @@
 <?php
 function amp_menu_html(){
-if( has_nav_menu( 'amp-menu' ) ) {
-    wp_nav_menu( array(
-            'theme_location' => 'amp-menu',
-            'container'=>'aside',
-            'menu'=>'ul',
-            'menu_class'=>'amp-menu',
-        ) );
-}
+	if( has_nav_menu( 'amp-menu' ) ) {
+	    $menu_html_content = wp_nav_menu( array(
+	            'theme_location' => 'amp-menu',
+	            'container'=>'aside',
+	            'menu'=>'ul',
+	            'menu_class'=>'amp-menu',
+	            'echo' => false,
+	        ) );
+	    $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
+	    $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
+	    $sanitized_menu =  $sanitizer_obj->get_amp_content();
+	    echo $sanitized_menu;
+	}
 }
 
 //Load styling for Menu
