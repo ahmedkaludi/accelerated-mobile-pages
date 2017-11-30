@@ -29,7 +29,7 @@ $containerCommonSettings = array(
 								'name'		=>"row_label",
 								'label'		=>'Row label',
 								'tab'    	=>'customizer',
-								'default'	=>'',
+								'default'	=>'Add here',
 								),
 					
 							array(
@@ -37,7 +37,7 @@ $containerCommonSettings = array(
 								'name'		=>"row_class",
 								'label'		=>'Row class',
 								'tab'     	=>'container_css',
-								'default'	=>'',
+								'default'	=>'Add here',
 								)
 							),
 			'front_template_start'=>$output,

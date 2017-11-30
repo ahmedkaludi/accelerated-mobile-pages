@@ -800,7 +800,10 @@ div.drag{
 .link{
     cursor: pointer;
 }
-
+.ghost {
+    opacity: .5;
+  background: #C8EBFB;
+}
 
 
 

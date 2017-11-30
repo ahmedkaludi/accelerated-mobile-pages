@@ -167,7 +167,14 @@ function call_page_builder(){
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
 				<drop class="drop" @drop="handleDrop">
-					<draggable :element="'div'" v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" :move="rows_moved">
+					<draggable :element="'div'" v-model="mainContent.rows" 
+						:options="{
+							animation:200,
+							draggable:'.amppb-row',
+							handle: '.amppb-handle',
+							ghostClass: 'ghost',
+							group:{name:'row'}
+						}" :move="rows_moved">
 						<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
 						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
 							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
@@ -176,7 +183,9 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'>
+						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            :data-container_id="row.id"
+						            >
 						            	<i class="tools-icon dashicons dashicons-menu"></i>
 						            </span>
 						        </div><!-- .amppb-row-title -->
@@ -188,13 +197,16 @@ function call_page_builder(){
 							        		class="modules-drop"
 							        		:class="{'ui-droppable': row.cell_data.length==0 }"
 							        		v-model="row.cell_data" 
-							        			:options="{draggable:'.amppb-module',
-							        						handle: '.amppb-module',
-							        						group:{name:'amppb-modules'}
-							        					  }"
+							        			:options="{
+							        				animation:100,
+							        				draggable:'.amppb-module',
+					        						handle: '.amppb-module',
+					        						group:{name:'amppb-modules'},
+					        						ghostClass: 'ghost'
+					        					  }"
 							        		 @start="moduledrag=true"
 							        		 @end="moduledrag=false"
-							        		 :move="modulesort"
+							        		:move="modulesort"
 											:data-rowid="row.id" :data-cellid="1"
 											>
 							        			<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
@@ -221,12 +233,14 @@ function call_page_builder(){
 					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
 							            	<div class="modules-drop">
 							            		
-							            		<draggable :element="'div'"class="modules-drop"
+							            		<draggable :element="'div'"class="module-drop-zone"
 												:class="{'ui-droppable': row.cell_left==0 }" v-model="row.cell_data" 
 												:options="{
+														animation:200,
 														draggable:'.amppb-module',
 														handle: '.amppb-module',
-														group:{name:'amppb-modules'}
+														group:{name:'amppb-modules'},
+														ghostClass: 'ghost'
 												}"
 												@start="moduledrag=true"
 												@end="moduledrag=false"
@@ -244,12 +258,15 @@ function call_page_builder(){
 						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
 											<div class="modules-drop" >
 											
-												<draggable :element="'div'"class="modules-drop"
+												<draggable :element="'div'"class="module-drop-zone"
 												:class="{'ui-droppable': row.cell_right==0 }"
 												 v-model="row.cell_data" 
-													:options="{draggable:'.amppb-module',
-															handle: '.amppb-module',
-															group:{name:'amppb-modules'}
+													:options="{	
+													animation:200,
+													draggable:'.amppb-module',
+													handle: '.amppb-module',
+													group:{name:'amppb-modules'},
+													ghostClass: 'ghost'
 													}"
 												@start="moduledrag=true"
 												@end="moduledrag=false"
