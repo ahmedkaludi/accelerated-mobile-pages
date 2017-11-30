@@ -2395,6 +2395,26 @@ Redux::setSection( $opt_name, array(
                     'desc'     => '',
                     'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
             ),
+        // Swift
+            array(
+                  
+                   'id'     => 'global-color-scheme',
+                   'type'   => 'section',
+                   'title'  => __('Color Scheme', 'ampswifttheme'),
+                   'indent' => true,
+                   'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+            ),
+            array(
+                    'id'        => 'swift-color-scheme',
+                    'title'     => __('Global Color Scheme', 'ampswifttheme'),
+                    'subtitle'  => __('Choose the color for title, anchor link','ampswifttheme'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'rgba'      => '(255,61,37,1)',
+                     ),
+            ), 
         )
     ));
 
@@ -2517,8 +2537,183 @@ Redux::setSection( $opt_name, array(
                     'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
                     'default'  => '0'
             ),
- 
 
+            // Swift
+            array(
+                    'id'     => 'header',
+                   'type'   => 'section',
+                   'title'  => __('Header', 'amptechtheme'),
+                   'indent' => true,
+                   'required' => array(
+                  array('amp-design-selector', '=' , '4')
+                )
+            ),
+            array(
+                    'id'    => 'header-type',
+                   'title'  => __('Header Type', 'amptechtheme'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Header 1',
+                        '2' =>  'Header 2'
+                    ),
+                   'default'=> '1',
+            ),
+             array(
+                    'id'    => 'customize-options',
+                    'type'  => 'switch',
+                    'title' => __('Customize Header Options', 'ampswifttheme'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'ampswifttheme'),
+                    'default'   => 0,
+
+            ),
+
+            array(
+                    'id'       => 'swift-height-control',
+                    'type'     => 'text',
+                    'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
+                    'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
+                    'desc'     => __('Here you can give the height of the Header in PX', 'ampswifttheme'),
+                    'default'  => '60px',
+                    'required' => array(
+                      array('customize-options','=',1)
+                    )           
+            ),
+
+            array(
+                    'id'    => 'margin-padding-options',
+                    'type'  => 'switch',
+                    'title' => __('Customize Margin/Padding Options', 'ampswifttheme'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'ampswifttheme'),
+                    'default'   => 0,
+                    'required' => array(
+                      array('customize-options','=',1)
+                    ) 
+            ),
+
+            array(
+                    'id'             => 'swift-padding-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.header'),
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Padding Option', 'ampswifttheme'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding they want.', 'ampswifttheme'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'default'            => array(
+                        'padding-top'     => '0px', 
+                        'padding-right'   => '0px', 
+                        'padding-bottom'  => '0px', 
+                        'padding-left'    => '0px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('margin-padding-options','=',1)
+                    )       
+            ),
+
+            array(
+                    'id'             => 'swift-margin-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.site-header'),
+                    'mode'           => 'margin',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Margin Option', 'ampswifttheme'),
+                    'subtitle'       => __('Allow your users to choose the spacing or margin they want.', 'ampswifttheme'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'default'            => array(
+                        'margin-top'     => '0px', 
+                        'margin-right'   => '0px', 
+                        'margin-bottom'  => '0px', 
+                        'margin-left'    => '0px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('margin-padding-options','=',1)
+                    )       
+            ),
+            
+            array(
+                'id'        => 'swift-background-scheme',
+                'title'     => __('Header Background Color Scheme', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Header Background','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'required' => array(
+                      array('customize-options','=',1)
+                    )  
+              ),
+            array(
+                  'id'       => 'swift-border-checkbox-control',
+                  'type'     => 'checkbox',
+                  'title'    => __('Checkbox (Border Bottom Line)Option', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Border Bottom Line, Please check', 'ampswifttheme'),
+                  'default'  => '1',
+                  'required' => array(
+                        array('customize-options','=',1)
+                      )  
+              ),
+            array(
+                  'id'       => 'swift-boxshadow-checkbox-control',
+                  'type'     => 'checkbox',
+                  'title'    => __('Checkbox (Box Shadow)Option', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Boxshadow for the Header Bottom Line, Please check', 'ampswifttheme'),
+                  'default'  => '1',
+                  'required' => array(
+                        array('customize-options','=',1)
+                      )  
+              ),
+              array(
+                    'id'        => 'swift-header-overlay',
+                    'title'     => __('Header Overlay Color Scheme', 'ampswifttheme'),
+                    'subtitle'  => __('Choose the color for Header Ovelay Background','ampswifttheme'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'rgba'      => '(255,61,37,1)',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+              array(
+                    'id'        => 'swift-element-color-control',
+                    'title'     => __('Header Element Color Scheme', 'ampswifttheme'),
+                    'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
+                    'type'      => 'color',
+                    'default'   => array(
+                      'color'      => '#fff',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+              array(
+                  'id'       => 'swift-header-overlay-width-control',
+                  'type'     => 'checkbox',
+                  'title'    => __('Checkbox (Header Overlay Width)Option', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Header Overlay background should be Full Width, Please check', 'ampswifttheme'),
+                  'default'  => '0',
+                  'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+
+            array(
+                    'id'    => 'header-position-type',
+                   'title'  => __('Header Overlay Position Type', 'amptechtheme'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Left',
+                        '2' =>  'Right'
+                    ),
+                   'default'=> '1',
+                  'required' => array(
+                      array('customize-options','=',1)
+                    )    
+            ),
           )
         )
       );
@@ -2846,6 +3041,49 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
+            // Swift
+                array(
+                       'id'     => 'swift-single',
+                       'type'   => 'section',
+                       'title'  => __('Single', 'ampswifttheme'),
+                       'indent' => true,
+                       'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
+                 array(
+                        'id'    => 'swift-date',
+                        'type'  => 'switch',
+                        'title' => __('Date', 'ampswifttheme'),
+                        'subtitle'  => __('Enable to show Post Date', 'ampswifttheme'),
+                        'default'   => 1
+                ),
+                 array(
+                        'id'    => 'swift-author-box',
+                        'type'  => 'switch',
+                        'title' => __('Author Box', 'ampswifttheme'),
+                        'subtitle'  => __('Switch to show/hide author box', 'ampswifttheme'),
+                        'default'   => 1
+                ),
+                 array(
+                        'id'    => 'swift-social-icons',
+                        'type'  => 'switch',
+                        'title' => __('Social Icons', 'ampswifttheme'),
+                        'subtitle'  => __('Switch to show/hide Social Icons', 'ampswifttheme'),
+                        'default'   => 1
+                ),
+                array(
+                        'id'    => 'swift-comment',
+                        'type'  => 'switch',
+                        'title' => __('Comments', 'ampswifttheme'),
+                        'subtitle'  => __('Switch to show/hide Comments', 'ampswifttheme'),
+                        'default'   => 1
+                ),
+                   array(
+                        'id'    => 'swift-taxonomy',
+                        'type'  => 'switch',
+                        'title' => __('Taxonomy Tags', 'ampswifttheme'),
+                        'subtitle'  => __('switch to show/hide taxonomy tags', 'ampswifttheme'),
+                        'default'   => 1
+                ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
@@ -2916,6 +3154,23 @@ Redux::setSection( $opt_name, array(
                         ),
                         'default'  => '1'
                 ),
+              // Swift
+                array(
+                       'id'     => 'swift-single',
+                       'type'   => 'section',
+                       'title'  => __('Footer', 'ampswifttheme'),
+                       'indent' => true,
+                       'required' => array(
+                          array('amp-design-selector', '=' , '4')
+                        ),
+                ),
+                 array(
+                        'id'    => 'swift-menu',
+                        'type'  => 'switch',
+                        'title' => __('Menu', 'ampswifttheme'),
+                        'subtitle'  => __('switch to show/hide Menu', 'ampswifttheme'),
+                        'default'   => 1
+                ), 
         )
     ));
 
