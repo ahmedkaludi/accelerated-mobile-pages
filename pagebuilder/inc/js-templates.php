@@ -85,7 +85,10 @@ global $moduleTemplate;
 		        		<span class="module_label">'.$module['label'].'</span>
 		        		<input type="hidden" id="selectedModule" value=\''.json_encode($module).'\'> 
 		        		<span class="amppb-setting-right">
-			        		<label  @click="showModulePopUp($event)" class="boxContainer link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'>
+			        		<label  @click="showModulePopUp($event)" class="boxContainer link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'
+                                :data-module_id="cell.cell_id"
+                                :data-container_id="cell.container_id"
+                            >
 			        			<span class="dashicons dashicons-admin-generic"></span>
 			        		</label>
 		        		</span>
@@ -98,21 +101,21 @@ global $moduleTemplate;
     <div id="textarea" v-if="field.type=='textarea' && field.tab==defaulttab">
         <p class="">
             <label class="form-label">{{field.label}}
-              <textarea class="full textarea" :id="field.id" :name="field.name">{{field.default_value}}</textarea>
+              <textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea>
             </label>
         </p>
     </div>
     <div id="text-editor" v-else-if="field.type=='text-editor' && field.tab==defaulttab">
         <p class="">
             <label class="form-label">{{field.label}}
-            <textarea class="full text-editor tinymce-enabled" :id="field.id" :name="field.id">{{field.default_value}}</textarea>
+                <vue-tinymce v-model="field.default" height="300" :id="field.id" :name="field.id" col="10" rows="5">{{field.default}}</vue-tinymce>
             </label>
         </p>
     </div>
     <div id="text" v-else-if="field.type=='text' && field.tab==defaulttab">
         <p class="">
             <label class="form-label">{{field.label}}
-            <input type="text" class="full text" :id="field.id" :name="field.name" :value="field.default_value">
+            <input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
             </label>
         </p>
     </div>
@@ -121,8 +124,8 @@ global $moduleTemplate;
             <label class="form-label">{{field.label}}
               <input type="button" class="button selectImage" value="Select image" id="" data-imageselactor="single">
             </label>
-            <img id="ampforwp-preview-image" src="#" />
-            <input type="hidden" name="ampforwp_image_id" :id="field.id" class="regular-text" :value="field.default_value"/>
+            <img id="ampforwp-preview-image" src="field.default" />
+            <input type="hidden" name="ampforwp_image_id" :id="field.id" class="regular-text" v-model="field.default"/>
 
         </p>
     </div>
@@ -131,14 +134,14 @@ global $moduleTemplate;
             <label  class="form-label">{{field.label}}
               <input type="button" class="button selectImage" value="Select image" data-imageselactor="multiple" id="">
             </label>
-            <input type="hidden" name="ampforwp_image_id" :id="field.id" class="regular-text" :value="field.default_value"/>
+            <input type="hidden" name="ampforwp_image_id" :id="field.id" class="regular-text" v-model="field.default"/>
             <div class="sample-gallery-template">{{field.default_images}}</div>
         </div>
     </div>
     <div id="select" v-else-if="field.type=='select' && field.tab==defaulttab">
         <p class="">
             <label class="form-label">{{field.label}}
-            <select type="text" class="full text" :id="field.id" :name="field.name">
+            <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default">
                 <option 
                     v-for="(option, key, index) in field.options_details"
                     value="key"
@@ -240,6 +243,7 @@ global $moduleTemplate;
                             <fields-data v-for="(field, key, index) in modalcontent.fields"
                                 :field="field" 
                                 :key="key"
+                                :fieldkey="key"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
                         </div>
@@ -249,7 +253,7 @@ global $moduleTemplate;
                     <div class="modal-footer">
                         <slot name="footer form-control">
                           default footer
-                            <button type="button" class="button modal-default-button">
+                            <button type="button" @click="saveModulePopupdata(modalcontent.fields)" class="button modal-default-button">
                                 Save
                             </button>
                             <button type="button" class="button modal-default-button" @click="hideModulePopUp()">

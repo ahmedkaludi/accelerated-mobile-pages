@@ -127,10 +127,11 @@ function call_page_builder(){
 	}
 	$pageBuilderData = array(
 						'title'=>'Pagebuilder Settings',
+						'default_tab'=> 'customizer',
 						'tabs' => array(
-				              'customizer'=>'Customizer',
-				              'container_css'=>'Container css'
-				            ),
+						  'customizer'=>'Customizer',
+						  'container_css'=>'Container css'
+						),
 						'fields' => array(
 								array(		
 				 						'type'		=>'text',		
@@ -149,6 +150,9 @@ function call_page_builder(){
 							)
 						);
 	require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+	$backendRowSetting = $containerCommonSettings;
+	unset($backendRowSetting['front_template_start']);
+	unset($backendRowSetting['front_template_end']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
 	<div id="ampForWpPageBuilder_container">
@@ -172,9 +176,9 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-						            <a href="#" class="thickbox rowBoxContainer" title="Row settings column 1" data-template='<?php // echo json_encode($containerCommonSettings); ?>'>
-						            	<span class="tools-icon dashicons dashicons-menu"></span>
-						            </a>
+						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'>
+						            	<i class="tools-icon dashicons dashicons-menu"></i>
+						            </span>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields col" data-cell="1">
@@ -205,9 +209,11 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 Columns</span> 
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-						            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 2" data-template='<?php //echo json_encode($containerCommonSettings); ?>'>
+						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            :data-container_id="row.id"
+						            >
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
-						            </a>
+						            </span>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields ">

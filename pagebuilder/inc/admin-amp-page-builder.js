@@ -21,6 +21,30 @@ Vue.component('amp-pagebuilder-module-modal', {
 		},
 	showtabs: function(key){
 		this.modalcontent.default_tab=key;
+	},
+	saveModulePopupdata: function(fields){
+		console.log(fields);
+		//Save Values to main content
+		app.mainContent.rows.forEach(function(rowData, rowKey){
+			if(rowData.id==app.modalTypeData.containerId){
+				if(app.modalType=='module'){
+					rowData.cell_data.forEach(function(moduleData, moduleKey){
+						if(moduleData.cell_id==app.modalTypeData.moduleId){
+							fields.forEach(function(fieldData,fieldKey){
+								Vue.set( moduleData, fieldData.name, fieldData.default );
+							})
+						}
+					});
+				}else if(app.modalType=='rowSetting'){
+					fields.forEach(function(fieldData,fieldKey){
+						Vue.set( rowData.data, fieldData.name, fieldData.default );
+					});
+				}
+			}
+		});
+		console.log(app.modalTypeData.containerId, app.mainContent.rows);
+		this.hideModulePopUp();
+		app.call_default_functions();
 	}
   }
 })
@@ -36,21 +60,69 @@ Vue.component('module-data',{
 	},
 	methods:{
 		showModulePopUp: function(event){
-			openModulePopup(event);
+			openModulePopup(event,'module');
 		},
 	}
 })
-function openModulePopup(event){
+function openModulePopup(event,type){
 	popupContent = event.currentTarget.getAttribute('data-popupContent'); 
+	app.modalType = type;
 	app.modalcontent = JSON.parse(popupContent);
+	if(type=='module'){
+		currentModuleId = event.currentTarget.getAttribute('data-module_id'); 
+		currentcontainerId = event.currentTarget.getAttribute('data-container_id');
+		app.modalTypeData = {
+							'moduleId': currentModuleId,
+							'containerId': currentcontainerId
+						}
+
+
+
+		//Save Values to main content
+		app.mainContent.rows.forEach(function(rowData, rowKey){
+			if(rowData.id==currentcontainerId){
+				rowData.cell_data.forEach(function(moduleData, moduleKey){
+					if(moduleData.cell_id==currentModuleId){
+						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
+							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
+								Vue.set( fieldData, 
+										'default', 
+										decodeURIComponent(moduleData[fieldData.name]) );
+							}
+							
+						})
+					}
+				});
+			}
+		});
+	}else if(type=='rowSetting'){
+		currentcontainerId = event.currentTarget.getAttribute('data-container_id'); 
+		app.modalTypeData = {
+							'containerId': currentcontainerId
+						}
+
+		//Save Values to main content
+		app.mainContent.rows.forEach(function(rowData, rowKey){
+			if(rowData.id==currentcontainerId){
+				app.modalcontent.fields.forEach(function(fieldData,fieldKey){
+					if(rowData.data[fieldData.name] && rowData.data[fieldData.name]!=''){
+						Vue.set( fieldData, 'default', rowData.data[fieldData.name] );
+					}
+					
+				})
+			}
+		});
+	}
+	
 	app.showmoduleModal = true;
-	alert(app.showmoduleModal);
 }
 Vue.component('fields-data',{
 	template: '#fields-data-template',
-	props: ['field','defaulttab'],
+	props: ['field', 'fieldkey', 'defaulttab'],
 	data:function(){
-		return {};
+		return {
+			default_value:"Hello"
+		};
 	},
 	methods:{}	
 })
@@ -59,8 +131,12 @@ var app = new Vue({
   data: {
     message: 'Hello AMP Page builder वासियों',
     showModal: false,
+    //Module data
     showmoduleModal: false,
     modalcontent: [],
+    modalType:'',//module/rowSetting
+    modalTypeData: {},
+
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
@@ -121,7 +197,7 @@ var app = new Vue({
   		},
   		//row Sorting
   		rows_moved: function(evt, originalEvent){
-  			if(evt.draggedContext && evt.type=='move'){
+  			/*if(evt.draggedContext && evt.type=='move'){
   			console.log("row draggedContext");
   			console.log(evt);
   			console.log("row relatedContext");
@@ -130,8 +206,8 @@ var app = new Vue({
   						evt.relatedContext.list,
   						evt.relatedContext.component
   						)
-  			return true;
-  				var CopyData = this.mainContent.rows.slice();
+  			return ;*/
+  				/*var CopyData = this.mainContent.rows.slice();
 
 				newIndex = (evt.draggedContext.futureIndex)+1;
 				oldIndex = evt.draggedContext.index;
@@ -144,10 +220,10 @@ var app = new Vue({
 					}else if(data.id != element.id && data.index>=newIndex){
 						Vue.set(data,index, parseInt(data.index)+1);
 					}
-				});
+				});*/
 				//this.mainContent.rows = CopyData;
-			this.call_default_functions();
-			}
+			/*this.call_default_functions();
+			}*/
 			return false;
   		},
 
@@ -232,8 +308,8 @@ var app = new Vue({
 
 			
 		},
-		add_modules: function(type){
-			
+		showRowSettingPopUp: function(event){
+			openModulePopup(event,'rowSetting');
 		},
 		setcontentData: function(){
   			this.mainContent_Save = JSON.stringify(this.mainContent);

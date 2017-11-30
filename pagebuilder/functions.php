@@ -24,6 +24,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
 			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
 			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
+			/*wp_enqueue_script( 'vue-tinymce', AMP_PAGE_BUILDER_URL.'inc/node_modules/@deveodk/vue-tinymce/dist/@deveodk/vue-tinymce.js' );*/
 			
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',

@@ -10,7 +10,7 @@ return array(
             ),
 		'fields'=> array(
 					array(
-						'type'		=>'text-editor',
+						'type'		=>'textarea',
 						'name'		=>"text_editor",
 						'label'		=>'Content',
 						'tab'		=> 'customizer',
@@ -25,6 +25,7 @@ return array(
 						'default'	=>'Content Goes Here',
 						)
         ),
-		'front_template'=>$output
+		'front_template'=>$output,
+		'front_css'=>'',	
 	);
 ?>

@@ -32,6 +32,7 @@ return array(
 						)
             
         ),
-		'front_template'=>$output
+		'front_template'=>$output,
+        'front_css'=>'', 
 	);
 ?>
