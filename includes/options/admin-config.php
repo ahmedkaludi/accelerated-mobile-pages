@@ -2209,7 +2209,7 @@ Redux::setSection( $opt_name, array(
     $themeDesign = array(
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#one',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design One', 'accelerated-mobile-pages' ),
 				'value'=>1,
 				'alt'=>__('Design One', 'accelerated-mobile-pages' ),
@@ -2217,7 +2217,7 @@ Redux::setSection( $opt_name, array(
 			),
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#two',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design Two', 'accelerated-mobile-pages' ),
 				'value'=>2,
 				'alt'=>__('Design Two', 'accelerated-mobile-pages' ),
@@ -2225,12 +2225,20 @@ Redux::setSection( $opt_name, array(
 			),
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#three',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design Three', 'accelerated-mobile-pages' ),
 				'value'=>3,
 				'alt'=>__('Design Three', 'accelerated-mobile-pages' ),
 				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png',
-			)
+			),
+            array(
+                'demo_link' => 'https://ampforwp.com/demo/#four',
+                'upgrade'=>true,
+                'title'=>__('Swift', 'accelerated-mobile-pages' ),
+                'value'=>4,
+                'alt'=>__('Swift', 'accelerated-mobile-pages' ),
+                'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
+            ),
         );
     if(count(get_plugins())>0){
         foreach (get_plugins() as $key => $value) {
@@ -2242,7 +2250,7 @@ Redux::setSection( $opt_name, array(
 				}
                 $themeDesign[] = array(
                                     'demo_link' => $plugin['AMP Demo'],
-									'upgreade'=>true,
+									'upgrade'=>true,
 									'title'=>$plugin['AMP'],
 									'value'=>$value['TextDomain'],
 									'alt'=>$plugin['AMP'],

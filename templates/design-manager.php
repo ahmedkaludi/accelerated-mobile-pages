@@ -73,40 +73,38 @@ function ampforwp_design_selector() {
     if ( $redux_builder_amp['amp-design-selector'] ) {
         return $redux_builder_amp['amp-design-selector'];
     } else {
-        return 2;
+        return 4;
     }
 
 }
-
 
 add_action('pre_amp_render_post','ampforwp_stylesheet_file_insertion', 12 );
 function ampforwp_stylesheet_file_insertion() {
 
         if ( ! ampforwp_design_selector() ) {
-          $ampforwp_design_selector   = 2;
+          $ampforwp_design_selector   = 4;
         } else {
           $ampforwp_design_selector  = ampforwp_design_selector();
         }
 
         // Add StyleSheet
-        if(file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php')){
+        if(file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php') && 4 != $ampforwp_design_selector){
 	        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
 	    }else{
-
-	    	$pluginData = get_plugins();
-	    	if(count($pluginData)>0){
-	    		foreach($pluginData as $key=>$data){
-	    			if($data['TextDomain']==$ampforwp_design_selector){
-	    				if(!file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
-	    					echo "plugin theme not exists";	
-	    				}
-	    				break;
-	    			}
-	    		}
-	    	}
+	    	if(4 != $ampforwp_design_selector){
+		    	$pluginData = get_plugins();
+		    	if(count($pluginData)>0){
+		    		foreach($pluginData as $key=>$data){
+		    			if($data['TextDomain']==$ampforwp_design_selector){
+		    				if(!file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
+		    					echo "plugin theme not exists";	
+		    				}
+		    				break;
+		    			}
+		    		}
+		    	}
+		    }
 	    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
-
-
 	    }
 }
 

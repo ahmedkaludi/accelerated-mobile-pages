@@ -1,8 +1,10 @@
 <?php
-if(!defined('AMPFORWP_CUSTOM_THEME')){
-	define('AMPFORWP_CUSTOM_THEME',AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+if( 4 == $ampforwp_design_selector ){
+	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift' );
 }
-
+elseif(!defined('AMPFORWP_CUSTOM_THEME')){
+	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+}
 
 	require_once(  AMPFORWP_CUSTOM_THEME . '/functions.php' );
 	//Filter the Template files to override previous ones
