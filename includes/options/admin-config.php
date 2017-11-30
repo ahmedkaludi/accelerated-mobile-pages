@@ -1679,16 +1679,16 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-ads', '=', 1)
                     ),
                     array(
-                        'id'       => 'fb-instant-article-ad-density',
+                        'id'       => 'fb-instant-article-ad-density-setup',
                         'type'     => 'select',
                         'title'    => __('How often should ads show in Instant Article pages', 'accelerated-mobile-pages'),
                         'options'  => array(
-                            'defualt' => __('Every 250 words', 'accelerated-mobile-pages' ),
+                            'default' => __('Every 250 words', 'accelerated-mobile-pages' ),
                             'medium' => __('Every 350 words', 'accelerated-mobile-pages' ),
                             'low' => __('Every 500 words', 'accelerated-mobile-pages' ),
                         ),
                         'required'  => array('fb-instant-article-ads', '=', 1),
-                        'default'  => 'defualt',
+                        'default'  => 'default',
                     ),
                     array(
                         'id'       => 'fb-instant-article-analytics',

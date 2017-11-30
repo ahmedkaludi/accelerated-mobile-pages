@@ -283,7 +283,7 @@ function ampforwp_fbia_video_element( $DOMDocument ){
 
 	function get_ia_ad_density(){
 		global $redux_builder_amp;
-		$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density'];
+		$instant_article_ad_density = $redux_builder_amp['fb-instant-article-ad-density-setup'];
 		return $instant_article_ad_density;
 	}
 
