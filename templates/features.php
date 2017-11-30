@@ -107,8 +107,12 @@
 	97. Change the format of the post date on Loops #1384 
 	98. Create Dynamic url of amp according to the permalink structure #1318
 	99. Merriweather Font Management
-	100. Flags compatibility in Menu 
+	100. Flags compatibility in Menu
+	101. Function for Logo attributes 
 */
+// AMP Components	
+// AMP LOGO
+add_amp_theme_support('AMP-logo');	
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 
@@ -474,7 +478,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}
 			}
 		// Facebook Like Script
-		if( isset($redux_builder_amp['ampforwp-facebook-like-button'] ) && true == $redux_builder_amp['ampforwp-facebook-like-button'] && is_single() ){
+		if( true == $redux_builder_amp['ampforwp-facebook-like-button'] && is_single() && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK ){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
@@ -954,7 +958,16 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						<?php
 					}//code ends for supporting Chartbeat Analytics
 		}//analytics function ends here
-
+	// For Setting up Google AMP Client ID API
+	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
+	if( ! function_exists( ' ampforwp_analytics_clientid_api ' ) ) {
+		function ampforwp_analytics_clientid_api() {
+			global $redux_builder_amp;
+			if ( 1 == $redux_builder_amp['amp-analytics-select-option'] || 'googleanalytics' == $redux_builder_amp['amp-gtm-analytics-type']){ ?>
+				<meta name="amp-google-client-id-api" content="googleanalytics">
+			<?php }
+		}
+	}
 	// 11. Strip unwanted codes and tags from the_content
 		add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content');
 		function ampforwp_strip_invalid_content() {
@@ -1044,6 +1057,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				  $content = preg_replace('/(<[^>]+) ga-on=".*?"/', '$1', $content);
 				  // ga-event-category
 				  $content = preg_replace('/(<[^>]+) ga-event-category=".*?"/', '$1', $content);
+				   // aria-current
+				  $content = preg_replace('/(<[^>]+) aria-current=".*?"/', '$1', $content);
+				  // Gallery Break fix 
+				  $content = preg_replace('/\[gallery(.*?)\]/', '</p>[gallery$1]</p>', $content);
 
 				return $content;
 		}
@@ -1143,6 +1160,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$structured_data_image_url = '';
 
 			if ( $post_image_check == false) {
+
 				if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
 					$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
 				}
@@ -1184,14 +1202,32 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$metadata['headline'] = $structured_data_archive_title;
 			}
 
+			// Get Image metadata from the Custom Field
+			if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_cf_featured_image_src('url') ,
+						'width' 	=> ampforwp_cf_featured_image_src('width'),
+						'height' 	=> ampforwp_cf_featured_image_src('height'),
+				);	
+			}
+
+			// Get image metadata from The Content
+			if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_get_featured_image_from_content('url') ,
+						'width' 	=> ampforwp_get_featured_image_from_content('width'),
+						'height' 	=> ampforwp_get_featured_image_from_content('height'),
+				);
+			}
+
 			if( in_array( "image" , $metadata )  ) {
 				if ( $metadata['image']['width'] < 696 ) {
 		 			$metadata['image']['width'] = 700 ;
-	     	}
+	     		}
 			}
-
-
-			return $metadata;
+		return $metadata;
 	}
 
 // 14. Adds a meta box to the post editing screen for AMP on-off on specific pages.
@@ -1635,6 +1671,8 @@ function ampforwp_remove_schema_data() {
     	remove_filter ('the_content', 'FTGSB');
     // Jannah Theme Lazy Load Compatibility
     	remove_filter( 'wp_get_attachment_image_attributes', 'jannah_lazyload_image_attributes', 8, 3 );
+    // Goodlife Theme Lazy Load Compatibility
+    	remove_filter( 'post_thumbnail_html', 'thb_src_attribute', 10, 3 );	
 }
 
 // 22. Removing author links from comments Issue #180
@@ -3807,7 +3845,7 @@ function ampforwp_thumbnail_alt(){
 	$thumb_id = get_post_thumbnail_id();
 	$thumb_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true) ;
 	if($thumb_alt){
-		echo 'alt="' . esc_attr($thumb_alt) . '"';
+		echo ' alt="' . esc_attr($thumb_alt) . '" ';
 	}
 }
 
@@ -4029,22 +4067,39 @@ function ampforwp_is_custom_field_featured_image(){
 		return false;
 }
 
-function ampforwp_cf_featured_image_src(){
+function ampforwp_cf_featured_image_src($param=""){
 global $redux_builder_amp, $post;
 	if($redux_builder_amp['ampforwp-custom-fields-featured-image-switch']){
-		$post_id = '';
-		$custom_fields = '';
-		$featured_image_field = '';
-		$custom_fields_name = array();
-		$post_id = get_the_ID();
-		$custom_fields = get_post_custom($post_id);
+		$post_id 				= '';
+		$custom_fields 			= '';
+		$featured_image_field 	= '';
+		$output 				= '';
+		$custom_fields_name 	= array();
+		$post_id 				= get_the_ID();
+		$custom_fields 			= get_post_custom($post_id);
 		foreach ($custom_fields as $key => $value) {
 			$custom_fields_name[] = $key;	 
 		}
 		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
 		if(in_array($featured_image_field, $custom_fields_name)){
 			$amp_img_src = $custom_fields[$featured_image_field][0];
-			return $amp_img_src;
+			$image_id = attachment_url_to_postid($amp_img_src);
+			$image = wp_get_attachment_image_src($image_id, 'full');
+			switch ($param) {
+				case 'url':
+					$output = $image[0];
+					break;
+				case 'width':
+					$output = $image[1];
+					break;
+				case 'height':
+						$output = $image[2];
+						break;	
+				default:
+					$output = $image[0];
+					break;
+			}
+			return $output;
 		}
 	}
 }
@@ -4264,21 +4319,25 @@ function ampforwp_enable_post_and_featured_image($show_image){
 // 82. Grab Featured Image from The Content
 function ampforwp_get_featured_image_from_content($featured_image = "") {
 	global $post, $posts;
-	$image_url = '';
-	$output = '';
-	$matches = '';
-	$amp_html_sanitizer = '';
-	$amp_html = '';
-	$image_html = '';
-	$featured_image_output = '';
+	$image_url 				= '';
+	$image_width 			= '';
+	$image_height 			= '';
+	$output 				= '';
+	$matches 				= '';
+	$amp_html_sanitizer 	= '';
+	$amp_html 				= '';
+	$image_html 			= '';
+	$featured_image_output 	= '';
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 	//Grab the First Image
 	if ( $matches[0] ) {
-		$image_url = $matches[1][0];
-		$image_html = $matches[0][0];
+		$image_url 		= $matches[1][0];
+		$image_html 	= $matches[0][0];
+		$image_width 	= $matches[2][0];
+		$image_height 	= $matches[3][0];
 		// Sanitize it
 		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
@@ -4293,6 +4352,14 @@ function ampforwp_get_featured_image_from_content($featured_image = "") {
 
 			case 'url':
 				$featured_image_output = $image_url;
+			break;
+
+			case 'width':
+				$featured_image_output = $image_width;
+			break;
+
+			case 'height':
+				$featured_image_output = $image_height;
 			break;
 
 			default:
@@ -4335,8 +4402,8 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 // 84. Inline Related Posts
 
 function ampforwp_inline_related_posts(){
-	global $post,  $redux_builder_amp;
-		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
+	global $post, $redux_builder_amp;
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-inline-related-posts'];		
 		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 
 		// declaring this variable here to prevent debug errors
@@ -4505,44 +4572,32 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 	function ampforwp_additional_style_carousel_caption(){ ?>
     .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
     .collapsible-captions * {
-      /* disable chrome touch highlight */
       -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
       box-sizing: border-box;
     }
     .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
     .collapsible-captions amp-img img {object-fit: contain; }
     .collapsible-captions figure { margin: 0; padding: 0; }
-    /* single line caption */
     .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
-      /* inital height is one line */
-      max-height: var(--caption-height);
+      max-height: var(--caption-height);margin-bottom:0;
       line-height: var(--caption-height);
       padding: 0 var(--button-size) 0 5px;
-      /* cut text after first line and show an ellipsis */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      /* animate expansion */
       transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      /* overlay the carousel icons */
       z-index: 1000;
-      /* some styling */
       color: var(--caption-color);
-      background: rgba(0, 0, 0, 0.6);    
+      background: rgba(0, 0, 0, 0.6);   
     }
-    /* expanded caption */
     .collapsible-captions figcaption.expanded {
-      /* add padding and show all of the text */
       line-height: inherit;
       white-space: normal;
       text-overflow: auto;
       max-height: 100px;
-      /* show scrollbar in case caption is larger than image */
       overflow: auto;
     }
-    /* don't show focus highlights in chrome */
     .collapsible-captions figcaption:focus { outline: none; border: none; }
-    /* the expand/collapse icon */
     .collapsible-captions figcaption span { display: block; position: absolute;
       top: calc((var(--caption-height) - var(--button-size)) / 2);
       right: 2px; width: var(--button-size); height: var(--button-size);
@@ -4666,21 +4721,44 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 }
 // Get Post Thumbnail URL
 if( !function_exists('ampforwp_get_post_thumbnail')){
-	function ampforwp_get_post_thumbnail(){
+	function ampforwp_get_post_thumbnail($param=""){
 		global $post, $redux_builder_amp;
-		$thumb_url = '';
+		$thumb_url 		= '';
+		$thumb_width 	= '';
+		$thumb_height 	= '';
+		$output 		= '';
 		if ( has_post_thumbnail()) { 
-			$thumb_id = get_post_thumbnail_id();
-			$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-			$thumb_url = $thumb_url_array[0];
+			$thumb_id 			= get_post_thumbnail_id();
+			$thumb_url_array 	= wp_get_attachment_image_src($thumb_id, 'medium', true);
+			$thumb_url 			= $thumb_url_array[0];
+			$thumb_width 		= $thumb_url_array[1];
+			$thumb_height 		= $thumb_url_array[2];
 		}
 		if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-			$thumb_url = ampforwp_cf_featured_image_src();
+			$thumb_url 		= ampforwp_cf_featured_image_src();
+			$thumb_width 	= ampforwp_cf_featured_image_src('width');
+			$thumb_height 	= ampforwp_cf_featured_image_src('height');
 		}
 		if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content('url') ){
-			$thumb_url = ampforwp_get_featured_image_from_content('url');
+			$thumb_url 		= ampforwp_get_featured_image_from_content('url');
+			$thumb_width 	= ampforwp_get_featured_image_from_content('width');
+			$thumb_height 	= ampforwp_get_featured_image_from_content('height');
 		}
-		return $thumb_url;
+		switch ($param) {
+			case 'url':
+				$output = $thumb_url;
+				break;
+			case 'width':
+				$output = $thumb_width;
+				break;
+			case 'height':
+				$output = $thumb_height;
+				break;	
+			default:
+				$output = $thumb_url;
+				break;
+		}
+		return $output;
 	}	
 }
 
@@ -4813,7 +4891,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . $post_type_title . ' (AMP)' ,
-						'href'  => user_trailingslashit( trailingslashit( get_permalink( $post->ID ) ) . AMPFORWP_AMP_QUERY_VAR )
+						'href'  => ampforwp_url_controller( get_permalink( $post->ID ) )
 					));
 				}
 			}
@@ -5078,6 +5156,7 @@ function ampforwp_merriweather_font_management( $data ) {
 	
 	return $data;
 }
+
 // 100. Flags compatibility in Menu
 add_filter('ampforwp_menu_content','ampforwp_modify_menu_content');
 if( ! function_exists(' ampforwp_modify_menu_content ') ){
@@ -5085,24 +5164,96 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		$dom 		= '';
 		$nodes 		= '';
 		$num_nodes 	= '';
-		// Create a new document
-		$dom 		= new DOMDocument();
-		$dom->loadHTML(mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8'));
+		if( !empty( $menu ) ){
+			// Create a new document
+			$dom = new DOMDocument();
+			if( function_exists( 'mb_convert_encoding' ) ){
+				$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+			}
+			else{
+				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+			}
+			$dom->loadHTML($menu);
 
-		// get all the img's
-		$nodes 		= $dom->getElementsByTagName( 'img' );
-		$num_nodes 	= $nodes->length;
-		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
-			$node 	= $nodes->item( $i );
-			// Set The Width and Height if there in none
-			if ( '' === $node->getAttribute( 'width' ) ) {
-				$node->setAttribute('width', 15);
+			// get all the img's
+			$nodes 		= $dom->getElementsByTagName( 'img' );
+			$num_nodes 	= $nodes->length;
+			for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
+				$node 	= $nodes->item( $i );
+				// Set The Width and Height if there in none
+				if ( '' === $node->getAttribute( 'width' ) ) {
+					$node->setAttribute('width', 15);
+				}
+				if( '' === $node->getAttribute( 'height' ) ){
+					$node->setAttribute('height', 15);
+				}
 			}
-			if( '' === $node->getAttribute( 'height' ) ){
-				$node->setAttribute('height', 15);
-			}
+			$menu = $dom->saveHTML();
 		}
-		$menu = $dom->saveHTML();
 		return $menu;
 	}
 }
+
+// 101. Function for Logo attributes
+function ampforwp_default_logo($param=""){
+	global $redux_builder_amp;
+	$logo_id		= '';
+	$image 			= '';
+	$value 			= '';
+	$logo_alt		= '';
+	$logo_url		= $redux_builder_amp['opt-media']['url'];
+	if($logo_url){
+		$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
+		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
+		$image 	 = wp_get_attachment_image_src( $logo_id , 'full');
+		switch ($param) {
+			case 'url':
+				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
+					$value = $image[0];
+				}
+				else
+					$value = $logo_url;
+				break;
+			case 'width':
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+					$value = $redux_builder_amp['opt-media-width'];
+				}
+				else 
+					$value = $image[1];
+				break;
+			case 'height':
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+					$value = $redux_builder_amp['opt-media-height'];
+				}
+				else
+					$value = $image[2];
+				break;
+			case 'alt':
+				if($logo_alt){
+					$value = $logo_alt;
+				}
+				else
+					$value = get_bloginfo('name');
+				break;	
+			default:
+				$value = $image[0];
+				break;
+		}
+	}
+	return $value;
+} 
+// Envira Lazy Load compatibility
+add_filter('envira_gallery_pre_data', 'ampforwp_envira_lazy_load');
+if( ! function_exists(' ampforwp_envira_lazy_load ') ){
+	function ampforwp_envira_lazy_load($data){
+	if( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ){
+		if(function_exists('envira_get_config')){
+			$checker = envira_get_config( 'lazy_loading', $data);
+			if( 1 === $checker){
+				$data['config']['lazy_loading'] = 0;
+			}
+		}
+	}	
+	return $data;
+	}
+}	

@@ -154,7 +154,7 @@ function amp_paginated_post_rel_canonical(){
 			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
 }
 
-add_filter('ampforwp_content_filter','ampforwp_post_paginated_content');
+add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
 function ampforwp_post_paginated_content($content){
 	global $redux_builder_amp;
 	$ampforwp_new_content = '';

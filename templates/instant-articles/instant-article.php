@@ -62,8 +62,11 @@
             </header>
 
             <!-- body -->
-            <?php 
-            echo apply_filters('fbia_content', apply_filters('the_content', get_the_content( '' ))); ?>
+            <?php
+            global $more;
+            // Make it 1 to allow the full article
+            $more = 1; 
+            echo apply_filters('fbia_content', apply_filters('the_content', get_the_content())); ?>
             <?php if (isset($redux_builder_amp['fb-instant-article-analytics']) && $redux_builder_amp['fb-instant-article-analytics'] ){
                   if(isset($redux_builder_amp['fb-instant-article-analytics-code']) && $redux_builder_amp['fb-instant-article-analytics-code'] ) {?>
                       <!-- Analytics code -->

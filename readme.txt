@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9
-Stable tag: 0.9.69
+Stable tag: 0.9.70
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,36 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.70 (30th November 2017) =
+* View More details on https://ampforwp.com/0-9-70-released-stability-update-76th-update/
+* Image alt tags are empty which caused issues. #1154 (thanks to @liagua)
+* ALT and IMG tags are in one line #1442
+* Updated the permalink for post view in admin area #1318
+* aria-current causing validation issues #1427
+* Aligning Captions in the Bottom in Gallery #1428
+* Logo’s height & width should dynamically come from the logo. This was a great UX improvement in my opinion. The logo would good regardless of the kind of image you upload. #1429
+* After 0.9.69.1 update – Call to undefined function mb_convert_encoding #1447
+* Featured image options now also reflect the structured data #1430
+* Blur & Stretching issues of Design 3 thumbnails are now fixed. They’re crisp and clear than ever! #1227
+* Related posts are showing on single even when turned off #1434
+* Show Related posts CSS only when it is selected #1356
+* Author image now displays on author pages #1426
+* Category base removal in AMP from url option is only working on the first page #1418
+* Bug fixed: PHP Warning DOMDocument Empty string supplied as input #1449
+* Video support added in Instant Articles #1300
+* Read more tag in Instant articles issue fixed #1415
+* Amp carousel issues fixed #1446 #1456
+* Compatibilty with Envira Gallery Lazy Loading #1432
+* Inline Related Posts in AMP Theme Framework #1457
+* Different number of in-content related post and related posts at the footer #1448
+* FooGallery update broke all the AMP compatibility, but we fixed it from our side so that user’s gallery work perfectly #1424
+* WPBakery Page Builder Conflict solved #1419
+* Goodlife theme Lazy Load compatibility added #1416
+* AMP-Facebook-Like Was found but unused Validation Error fixed. #1463
+* Playbuzz not displaying if added with https: #1466
+* Options Panel labels renamed for better understanding.
+
 
 = 0.9.69 (20th November 2017) =
 * View More details on https://ampforwp.com/0-9-69-released-stability-update-75th-update/

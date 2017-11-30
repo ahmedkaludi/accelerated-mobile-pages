@@ -31,6 +31,14 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
 			$node = $nodes->item( $i );
 
+			// Add Foo Gallery Support
+			if ( $node->hasAttribute( 'data-src-fg' ) ) {
+				$image_scr_from_data_src   = $node->getAttribute( 'data-src-fg' ) ;
+				if ( ! $node->hasAttribute( 'src' ) || '' === $node->getAttribute( 'src' ) ) {
+					$node->setAttribute( 'src', $image_scr_from_data_src );
+				}
+			}
+
 			if ( ! $node->hasAttribute( 'src' ) || '' === $node->getAttribute( 'src' ) ) {
 				$node->parentNode->removeChild( $node );
 				continue;

@@ -1,60 +1,12 @@
+<?php global $redux_builder_amp; ?>
 <header class="container">
   <div id="headerwrap">
       <div id="header">
-        <?php
-         global $redux_builder_amp;
-        $set_rel_to_noamp=false;
-
-        if( $redux_builder_amp['amp-on-off-support-for-non-amp-home-page'] ) {
-                if( $redux_builder_amp['amp-mobile-redirection'] ) {
-                  $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
-                  $set_rel_to_noamp = true;
-                  } else {
-                    $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
-                 }
-        } else {
-                 if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
-                    $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') ) ;
-                 } else {
-                        if( $redux_builder_amp['amp-mobile-redirection'] ) {
-                          $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
-                          $set_rel_to_noamp = true;
-                         } else {
-                          $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
-                         }
-                }
-          }?>
-
-        <?php
-         do_action('ampforwp_header_top_design2');
-         if (! empty( $redux_builder_amp['opt-media']['url'] ) ) { 
-          $logo_id =  attachment_url_to_postid($redux_builder_amp['opt-media'] ['url']);
-          $logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
-          if($logo_alt){
-            $alt = $logo_alt;
-          }
-          else {
-            $alt = get_bloginfo('name');
-          } ?>
-          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>" <?php if($set_rel_to_noamp){echo ' rel="nofollow"'; } ?> >
-
-            <?php if($redux_builder_amp['ampforwp-custom-logo-dimensions'] == true)  { ?>
-
-                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo $redux_builder_amp['opt-media-width']; ?>" height="<?php echo $redux_builder_amp['opt-media-height']; ?>" alt= "<?php echo $alt; ?>" class="amp-logo"></amp-img>
-
-            <?php } else { ?>
-
-                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt= "<?php echo $alt; ?>" class="amp-logo"></amp-img>
-
-            <?php } ?>
-
-          </a>
-        <?php } else { ?>
-          <h3><a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){echo ' rel="nofollow"';} ?>  ><?php bloginfo('name'); ?></a></h3>
-        <?php } ?>
-          <?php do_action('ampforwp_header_search'); ?>
-          <?php do_action('ampforwp_call_button');
-          do_action('ampforwp_header_bottom_design2'); ?>
+        <?php do_action('ampforwp_header_top_design2'); ?>
+        <?php amp_logo(); ?>
+        <?php do_action('ampforwp_header_search'); ?>
+        <?php do_action('ampforwp_call_button');
+        do_action('ampforwp_header_bottom_design2'); ?>
       </div>
   </div>
 </header>
