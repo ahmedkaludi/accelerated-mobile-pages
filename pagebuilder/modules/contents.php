@@ -26,6 +26,7 @@
  return array(		
  		'label' =>'Category',		
  		'name' => 'contents',
+    'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Customizer',
               'container_css'=>'Container css'
@@ -42,7 +43,7 @@
  							'type'	=>'select',		
  							'name'  =>"category_selection",		
  							'label' =>"Select Category",
-              'tab'   =>'customizer',
+              'tab'     =>'customizer',
  							'default' =>'recent_option',		
  							'options' => $options,		
  							'options_details'=>$categoriesArray		

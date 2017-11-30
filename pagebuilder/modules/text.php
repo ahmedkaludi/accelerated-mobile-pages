@@ -3,11 +3,17 @@
 return array(
 		'label' =>'Text',
 		'name' =>'text',
+		'default_tab'=> 'customizer',
+		'tabs' => array(
+              'customizer'=>'Customizer',
+              'container_css'=>'Container css'
+            ),
 		'fields'=> array(
 					array(
 						'type'		=>'text-editor',
 						'name'		=>"text_editor",
 						'label'		=>'Content',
+						'tab'		=> 'customizer',
 						'default'	=>'Content Goes Here',
 						),
             
@@ -15,6 +21,7 @@ return array(
 						'type'		=>'text',
 						'name'		=>"css_class",
 						'label'		=>'Custom CSS Class',
+						'tab'		=> "customizer",
 						'default'	=>'Content Goes Here',
 						)
         ),

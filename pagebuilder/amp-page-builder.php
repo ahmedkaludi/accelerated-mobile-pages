@@ -163,15 +163,15 @@ function call_page_builder(){
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
 				<drop class="drop" @drop="handleDrop">
-					<draggable v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" :move="rows_moved">
+					<draggable :element="'div'" v-model="mainContent.rows" :options="{draggable:'.amppb-row',handle: '.amppb-handle'}" :move="rows_moved">
 						<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
-						<div v-for="row in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
+						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
 							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
 						 		<input type="hidden" name="column-data" value="">
 						        <div class="amppb-row-title">
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
-						            <span data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
+						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
 						            <a href="#" class="thickbox rowBoxContainer" title="Row settings column 1" data-template='<?php // echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
@@ -204,7 +204,7 @@ function call_page_builder(){
 						        <div class="amppb-row-title">
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 Columns</span> 
-						            <span data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
+						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
 						            <a href="#TB_inline?width=100%&height=100%&inlineId=amppb-row-setting-dialog" class="thickbox rowBoxContainer" title="Row settings column 2" data-template='<?php //echo json_encode($containerCommonSettings); ?>'>
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </a>
@@ -326,6 +326,13 @@ function call_page_builder(){
 				-->
 				<h3 slot="header">custom header</h3>
 			</amp-pagebuilder-modal>
+			<amp-pagebuilder-module-modal v-if="showmoduleModal" @close="showmoduleModal = false">
+				<!--
+				  you can use custom content here to overwrite
+				  default content
+				-->
+				
+			</amp-pagebuilder-module-modal>
 	        
 	        
 	    </div>

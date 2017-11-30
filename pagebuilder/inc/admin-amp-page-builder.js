@@ -1,21 +1,66 @@
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
-  props: ['dataContent']
+  props: ['dataContent'],
+   methods:{
+  	hidePageBuilderPopUp: function(event){
+			app.showModal = false;
+		},
+  }
 })
-//Need to make
-Vue.component('col-template',function(){
-	template: '#col-template'
+Vue.component('amp-pagebuilder-module-modal', {
+  template: '#amp-pagebuilder-module-modal-template',
+  props: [],
+  data: function(){
+  	return {
+	  	modalcontent: app.modalcontent
+	  };
+  },
+  methods:{
+  	hideModulePopUp: function(event){
+			app.showmoduleModal = false;
+		},
+	showtabs: function(key){
+		this.modalcontent.default_tab=key;
+	}
+  }
 })
+
 //module is working
 Vue.component('module-data',{
 	template: '#module-data-template',
 	props: ['cell','cellcontainer','modulekey'],
+	data:function(){
+		return {
+			showModuleModal: false,
+		};
+	},
+	methods:{
+		showModulePopUp: function(event){
+			openModulePopup(event);
+		},
+	}
+})
+function openModulePopup(event){
+	popupContent = event.currentTarget.getAttribute('data-popupContent'); 
+	app.modalcontent = JSON.parse(popupContent);
+	app.showmoduleModal = true;
+	alert(app.showmoduleModal);
+}
+Vue.component('fields-data',{
+	template: '#fields-data-template',
+	props: ['field','defaulttab'],
+	data:function(){
+		return {};
+	},
+	methods:{}	
 })
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
   data: {
     message: 'Hello AMP Page builder वासियों',
     showModal: false,
+    showmoduleModal: false,
+    modalcontent: [],
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
@@ -106,7 +151,13 @@ var app = new Vue({
 			return false;
   		},
 
-
+  		reomve_row: function(key){
+			var response = confirm("Do you want to delete Row? ");
+			if(response){
+				this.mainContent.rows.splice(key, 1);
+				this.call_default_functions();
+			}
+		},
   		//Rows drop details
 		handleDrop: function(columnData,Events) {
 			if(typeof columnData=='undefined' || typeof columnData.type=='undefined'){
