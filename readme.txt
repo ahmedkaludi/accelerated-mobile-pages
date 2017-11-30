@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9
-Stable tag: 0.9.70
+Tested up to: 4.9.1
+Stable tag: 0.9.71
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,10 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.71 (1st December 2017) =
+* Design 2 Post Titles issue fixed
+* Instant Articles validation issue fixed.
 
 = 0.9.70 (30th November 2017) =
 * View More details on https://ampforwp.com/0-9-70-released-stability-update-76th-update/
