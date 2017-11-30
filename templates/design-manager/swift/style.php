@@ -186,19 +186,30 @@ amp-sidebar {
         <?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>
         background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;
          <?php } else { ?> background:rgba(255,61,37,1); <?php } ?>
-        <?php if($redux_builder_amp['swift-border-checkbox-control']){?>
-            border-bottom: 1px solid rgba(0,0,0,0.12);
-        <?php } ?>
+        <?php if($redux_builder_amp['swift-border-line-control']){?>
+            border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;
+        <?php } else { ?> border-bottom:1px solid; <?php } ?>
+        <?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>
+            border-color:<?php echo $redux_builder_amp['swift-border-color-control'] ['rgba'] ?>;
+        <?php } else { ?>border-color:rgba(0,0,0,0.12); <?php } ?>
         <?php if($redux_builder_amp['swift-boxshadow-checkbox-control']){?>
             box-shadow:0px 0px 2px 2px #ccc;
         <?php }?>
         <?php if($redux_builder_amp['swift-padding-control']){?>
-             padding: <?php echo $redux_builder_amp['swift-padding-control']?>;
+             padding: <?php echo $redux_builder_amp['swift-padding-control']['padding-top'] .' '. 
+                                 $redux_builder_amp['swift-padding-control']['padding-right'] .' '. 
+                                 $redux_builder_amp['swift-padding-control']['padding-bottom']  .' '. 
+                                 $redux_builder_amp['swift-padding-control']['padding-left'] ; ?>;
         <?php } else { ?> padding:0px 0px 0px 0px; <?php } ?>
+
         <?php if($redux_builder_amp['swift-margin-control']){?>
-            margin: <?php echo $redux_builder_amp['swift-margin-control']?>;
+            margin: <?php echo  $redux_builder_amp['swift-margin-control']['margin-top'] .' '. 
+                                $redux_builder_amp['swift-margin-control']['margin-right'] .' '. 
+                                $redux_builder_amp['swift-margin-control']['margin-bottom']  .' '. 
+                                $redux_builder_amp['swift-margin-control']['margin-left'] ; ?>;
         <?php } else { ?> margin:0px 0px 0px 0px; <?php } ?>
     }
+
     .head, .head-2{
         width:100%;
         clear:both;

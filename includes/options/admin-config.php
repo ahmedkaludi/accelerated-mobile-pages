@@ -2514,6 +2514,49 @@ Redux::setSection( $opt_name, array(
                     )       
             ),
             
+             array(
+                    'id'    => 'border-line',
+                    'type'  => 'switch',
+                    'title' => __('Customize Borderline and Boxshadow Options', 'ampswifttheme'),
+                    'subtitle'  => __('Here you can add the border line and color', 'ampswifttheme'),
+                    'default'   => 0,
+                    'required' => array(
+                      array('customize-options','=',1)
+                    ) 
+            ),
+            array(
+                  'id'       => 'swift-border-line-control',
+                  'type'     => 'text',
+                  'title'    => __('Border Bottom Line', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Border Bottom Line, Please give number', 'ampswifttheme'),
+                  'default'  => '0',
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+            array(
+                  'id'       => 'swift-border-color-control',
+                  'type'     => 'color_rgba',
+                  'title'    => __('Border Color', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Border Color, Please select', 'ampswifttheme'),
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+            array(
+                  'id'       => 'swift-boxshadow-checkbox-control',
+                  'type'     => 'switch',
+                  'title'    => __('Box Shadow Option', 'ampswifttheme'), 
+                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
+                  'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'ampswifttheme'),
+                  'default'  => '0',
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+
             array(
                 'id'        => 'swift-background-scheme',
                 'title'     => __('Header Background Color Scheme', 'ampswifttheme'),
@@ -2522,28 +2565,6 @@ Redux::setSection( $opt_name, array(
                 'required' => array(
                       array('customize-options','=',1)
                     )  
-              ),
-            array(
-                  'id'       => 'swift-border-checkbox-control',
-                  'type'     => 'checkbox',
-                  'title'    => __('Checkbox (Border Bottom Line)Option', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Border Bottom Line, Please check', 'ampswifttheme'),
-                  'default'  => '1',
-                  'required' => array(
-                        array('customize-options','=',1)
-                      )  
-              ),
-            array(
-                  'id'       => 'swift-boxshadow-checkbox-control',
-                  'type'     => 'checkbox',
-                  'title'    => __('Checkbox (Box Shadow)Option', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Boxshadow for the Header Bottom Line, Please check', 'ampswifttheme'),
-                  'default'  => '1',
-                  'required' => array(
-                        array('customize-options','=',1)
-                      )  
               ),
               array(
                     'id'        => 'swift-header-overlay',
@@ -2571,10 +2592,10 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                   'id'       => 'swift-header-overlay-width-control',
-                  'type'     => 'checkbox',
-                  'title'    => __('Checkbox (Header Overlay Width)Option', 'ampswifttheme'), 
+                  'type'     => 'switch',
+                  'title'    => __('Header Overlay Width Option', 'ampswifttheme'), 
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Header Overlay background should be Full Width, Please check', 'ampswifttheme'),
+                  'desc'     => __('If you want the Header Overlay background should be Full Width, Please Enable', 'ampswifttheme'),
                   'default'  => '0',
                   'required' => array(
                         array('customize-options','=',1)

@@ -43,12 +43,20 @@
     </div>
 </header>
 <?php } ?>
-
+<?php if($redux_builder_amp['header-position-type'] == '1'){?>
 <?php amp_sidebar(['action'=>'start',
     'id'=>'sidebar',
     'layout'=>'nodisplay',
     'side'=>'left'
 ] ); ?>
+<?php } ?>
+<?php if($redux_builder_amp['header-position-type'] == '2'){?>
+<?php amp_sidebar(['action'=>'start',
+    'id'=>'sidebar',
+    'layout'=>'nodisplay',
+    'side'=>'right'
+] ); ?>
+<?php } ?>
 <div class="amp-close-btn">
     <?php amp_sidebar(['action'=>'close-button']); ?>
 </div>
