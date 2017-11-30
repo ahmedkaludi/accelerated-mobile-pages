@@ -2452,7 +2452,7 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'text',
                     'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
                     'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
-                    'desc'     => __('Here you can give the height of the Header in PX', 'ampswifttheme'),
+                    'desc'     => __('Here you can give the height of the Header in Numbers', 'ampswifttheme'),
                     'default'  => '60px',
                     'required' => array(
                       array('customize-options','=',1)
@@ -2495,7 +2495,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'             => 'swift-margin-control',
                     'type'           => 'spacing',
-                    'output'         => array('.site-header'),
+                    'output'         => array('.header'),
                     'mode'           => 'margin',
                     'units'          => array('px'),
                     'units_extended' => 'false',

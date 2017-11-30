@@ -1,4 +1,6 @@
+<?php global $redux_builder_amp?>
 <?php amp_header_core() ?>
+<?php if($redux_builder_amp['header-type'] == '1'){?>
   <header class="header">
     <div class="cntr">
         <div class="head">
@@ -23,6 +25,8 @@
         </div>
     </div>
 </header>
+<?php } ?>
+<?php if($redux_builder_amp['header-type'] == '2'){?>
 <header class="header-2">
     <div class="cntr">
         <div class="head-2">
@@ -38,7 +42,7 @@
         </div>
     </div>
 </header>
-
+<?php } ?>
 
 <?php amp_sidebar(['action'=>'start',
     'id'=>'sidebar',
