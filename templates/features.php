@@ -5156,6 +5156,7 @@ function ampforwp_merriweather_font_management( $data ) {
 	
 	return $data;
 }
+
 // 100. Flags compatibility in Menu
 add_filter('ampforwp_menu_content','ampforwp_modify_menu_content');
 if( ! function_exists(' ampforwp_modify_menu_content ') ){
