@@ -1,5 +1,11 @@
 <?php 
 // Loading the Components
+// Big Post Image
+add_image_size( 'amp-featured-large', 723, 394, true ); 
+// Small Post Image
+add_image_size( 'amp-featured-small', 346, 188, true );
+//Single post leftside Image
+add_image_size( 'amp-single-img', 220, 134, true );
 //Search
 add_amp_theme_support('AMP-search');
 //Logo
