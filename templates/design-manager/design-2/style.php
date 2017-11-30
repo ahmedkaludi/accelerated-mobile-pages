@@ -107,7 +107,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .custom-amp-social-sharing-odnoklassniki{background:#ed812b}
 <?php }?>
 /* Header */
-header{line-height: 0;}
+header.container{line-height: 0;}
 #header{ background: #fff; text-align: center;padding:17px 0px 17px 0px;display: inline-block;width: 100%;position:relative}
 #header h1{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 4px 3px; margin: 0; }
 .amp-logo{left: 0;right: 0;display:inline-block} 
