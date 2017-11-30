@@ -2469,8 +2469,8 @@ function ampforwp_add_widget_support() {
 			'description'   => 'This Widget will be display after the header bar',
 			'before_widget' => '',
 			'after_widget'  => '',
-			'before_title'  => '<h4>',
-			'after_title'   => '</h4>'
+			'before_title'  => '<h4><span>',
+			'after_title'   => '</h4></span>'
 		));
 
 		register_sidebar(array(
@@ -2479,8 +2479,8 @@ function ampforwp_add_widget_support() {
 			'description'   => 'This Widget display Above the Footer',
 			'before_widget' => '',
 			'after_widget'  => '',
-			'before_title'  => '<h4>',
-			'after_title'   => '</h4>'
+			'before_title'  => '<h4><span>',
+			'after_title'   => '</h4></span>'
 		));
 
 		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
