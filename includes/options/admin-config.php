@@ -2524,15 +2524,27 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     ) 
             ),
+             array(
+                    'id'    => 'border',
+                    'type'  => 'switch',
+                    'title' => __('Customize Borderline Options', 'ampswifttheme'),
+                    'subtitle'  => __('Here you can add the border line and color', 'ampswifttheme'),
+                    'default'   => 0,
+                    'required' => array(
+                      array('customize-options','=',1)
+                    ) 
+            ),
             array(
                   'id'       => 'swift-border-line-control',
                   'type'     => 'text',
                   'title'    => __('Border Bottom Line', 'ampswifttheme'), 
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
                   'desc'     => __('If you want the Border Bottom Line, Please give number', 'ampswifttheme'),
-                  'default'  => '0',
+                  'default'  => array(
+                        'border-bottom-line'     => '1px solid', 
+                    ),
                   'required' => array(
-                        array('border-line','=',1)
+                        array('border','=',1)
                       )  
               ),
             array(
@@ -2541,8 +2553,11 @@ Redux::setSection( $opt_name, array(
                   'title'    => __('Border Color', 'ampswifttheme'), 
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
                   'desc'     => __('If you want the Border Color, Please select', 'ampswifttheme'),
+                  'default'  => array(
+                        'rgba'     => '(154, 147, 147, 0.8)', 
+                    ),
                   'required' => array(
-                        array('border-line','=',1)
+                        array('border','=',1)
                       )  
               ),
             array(

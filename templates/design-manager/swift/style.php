@@ -188,10 +188,10 @@ amp-sidebar {
          <?php } else { ?> background:rgba(255,61,37,1); <?php } ?>
         <?php if($redux_builder_amp['swift-border-line-control']){?>
             border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;
-        <?php } else { ?> border-bottom:1px solid; <?php } ?>
+        <?php } ?>
         <?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>
             border-color:<?php echo $redux_builder_amp['swift-border-color-control'] ['rgba'] ?>;
-        <?php } else { ?>border-color:rgba(0,0,0,0.12); <?php } ?>
+        <?php } ?>
         <?php if($redux_builder_amp['swift-boxshadow-checkbox-control']){?>
             box-shadow:0px 0px 2px 2px #ccc;
         <?php }?>
