@@ -5,7 +5,6 @@
 */
 function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
-	do_action('ampforwp_above_related_post'); //Above Related Posts
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$my_query = related_post_loop_query();
@@ -78,6 +77,7 @@ function related_post_loop_query(){
 
 function ampforwp_related_post(){ 
 	global $redux_builder_amp;
+	do_action('ampforwp_above_related_post'); //Above Related Posts
 	?>
    <h3 class="amp-related-posts-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></h3>
 <?php } 
