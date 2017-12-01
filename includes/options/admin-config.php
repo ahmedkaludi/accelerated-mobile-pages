@@ -2577,7 +2577,10 @@ Redux::setSection( $opt_name, array(
                 'title'     => __('Header Background Color Scheme', 'ampswifttheme'),
                 'subtitle'  => __('Choose the color for Header Background','ampswifttheme'),
                 'type'      => 'color_rgba',
-                'required' => array(
+                'default'   => array(
+                    'rgba'      => '(20, 20, 22, 0.9)',
+                    ),
+                    'required' => array(
                       array('customize-options','=',1)
                     )  
               ),
@@ -2587,7 +2590,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Ovelay Background','ampswifttheme'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                    'rgba'      => '(255,61,37,1)',
+                    'rgba'      => '(20, 20, 22, 0.9)',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
@@ -2597,9 +2600,9 @@ Redux::setSection( $opt_name, array(
                     'id'        => 'swift-element-color-control',
                     'title'     => __('Header Element Color Scheme', 'ampswifttheme'),
                     'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
-                    'type'      => 'color',
+                    'type'      => 'color_rgba',
                     'default'   => array(
-                      'kolor'      => '#000',
+                    'rgba'      => '(0,0,0,0.1)',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
