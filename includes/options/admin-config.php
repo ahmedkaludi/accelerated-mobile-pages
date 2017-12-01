@@ -2527,7 +2527,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'    => 'border',
                     'type'  => 'switch',
-                    'title' => __('Customize Borderline Options', 'ampswifttheme'),
+                    'title' => __('Borderline Options', 'ampswifttheme'),
                     'subtitle'  => __('Here you can add the border line and color', 'ampswifttheme'),
                     'default'   => 0,
                     'required' => array(
@@ -2599,7 +2599,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
                     'type'      => 'color',
                     'default'   => array(
-                      'color'      => '#fff',
+                      'kolor'      => '#000',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
