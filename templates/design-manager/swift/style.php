@@ -122,7 +122,7 @@ amp-sidebar {
     width: 100%;
     padding-right: 20%;
     padding-left: 10%;
-    max-width:100%;
+    max-width:100vw;
 }
 <?php } ?>
 /* AMP Sidebar Toggle button */
