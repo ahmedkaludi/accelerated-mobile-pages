@@ -2453,7 +2453,9 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
                     'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
                     'desc'     => __('Here you can give the height of the Header in Numbers', 'ampswifttheme'),
-                    'default'  => '60px',
+                    'default'  => array(
+                        'height' => '60px',
+                        ),
                     'required' => array(
                       array('customize-options','=',1)
                     )           
@@ -2524,16 +2526,7 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     ) 
             ),
-             array(
-                    'id'    => 'border',
-                    'type'  => 'switch',
-                    'title' => __('Borderline Options', 'ampswifttheme'),
-                    'subtitle'  => __('Here you can add the border line and color', 'ampswifttheme'),
-                    'default'   => 0,
-                    'required' => array(
-                      array('customize-options','=',1)
-                    ) 
-            ),
+
             array(
                   'id'       => 'swift-border-line-control',
                   'type'     => 'text',
@@ -2544,7 +2537,7 @@ Redux::setSection( $opt_name, array(
                         'border-bottom-line'     => '1px solid', 
                     ),
                   'required' => array(
-                        array('border','=',1)
+                        array('border-line','=',1)
                       )  
               ),
             array(
@@ -2557,7 +2550,7 @@ Redux::setSection( $opt_name, array(
                         'rgba'     => '(154, 147, 147, 0.8)', 
                     ),
                   'required' => array(
-                        array('border','=',1)
+                        array('border-line','=',1)
                       )  
               ),
             array(
