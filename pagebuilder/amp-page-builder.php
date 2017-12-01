@@ -163,20 +163,24 @@ function call_page_builder(){
 		</div>
 		<div id="amp-page-builder">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
-	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="mainContent_Save" value='<?php echo $previousData; ?>'>
+	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
 				<drop class="drop" @drop="handleDrop">
-					<draggable :element="'div'" v-model="mainContent.rows" 
+					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
+					<draggable :element="'div'" class="dragrow"
+						v-model="mainContent.rows" 
 						:options="{
 							animation:200,
 							draggable:'.amppb-row',
 							handle: '.amppb-handle',
 							ghostClass: 'ghost',
-							group:{name:'row'}
-						}" :move="rows_moved">
-						<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
-						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row " :class="'amppb-col-'+row.id">
+							group:{name:'.amppb-row'}
+						}"
+						@start="rowdrag=true"
+						@end="rowdrag=false;rows_moved($event)"
+						>
+						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row" :id="'conatiner-'+row.id">
 							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
 						 		<input type="hidden" name="column-data" value="">
 						        <div class="amppb-row-title">
@@ -201,12 +205,11 @@ function call_page_builder(){
 							        				animation:100,
 							        				draggable:'.amppb-module',
 					        						handle: '.amppb-module',
-					        						group:{name:'amppb-modules'},
-					        						ghostClass: 'ghost'
+					        						group:{name:'.amppb-module'},
+					        						ghostClass: 'ghost',
 					        					  }"
 							        		 @start="moduledrag=true"
-							        		 @end="moduledrag=false"
-							        		:move="modulesort"
+							        		 @end="moduledrag=false;modulesort($event)"
 											:data-rowid="row.id" :data-cellid="1"
 											>
 							        			<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
@@ -234,20 +237,19 @@ function call_page_builder(){
 							            	<div class="modules-drop">
 							            		
 							            		<draggable :element="'div'"class="module-drop-zone"
-												:class="{'ui-droppable': row.cell_left==0 }" v-model="row.cell_data" 
+												:class="{'ui-droppable': row.cell_left.length==0 }" v-model="row.cell_left" 
 												:options="{
 														animation:200,
 														draggable:'.amppb-module',
 														handle: '.amppb-module',
-														group:{name:'amppb-modules'},
+														group:{name:'.amppb-module'},
 														ghostClass: 'ghost'
 												}"
 												@start="moduledrag=true"
-												@end="moduledrag=false"
-												:move="modulesort"
+												@end="moduledrag=false;modulesort($event)"
 												:data-rowid="row.id" :data-cellid="1"
 												>
-							            				<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
+							            				<module-data v-for="(cell, key, index)  in row.cell_left" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
 									        	</draggable>
 										        
 							            	</div>
@@ -259,21 +261,20 @@ function call_page_builder(){
 											<div class="modules-drop" >
 											
 												<draggable :element="'div'"class="module-drop-zone"
-												:class="{'ui-droppable': row.cell_right==0 }"
-												 v-model="row.cell_data" 
+												:class="{'ui-droppable': row.cell_right.length==0 }"
+												 v-model="row.cell_right" 
 													:options="{	
 													animation:200,
 													draggable:'.amppb-module',
 													handle: '.amppb-module',
-													group:{name:'amppb-modules'},
-													ghostClass: 'ghost'
+													group:{name:'.amppb-module'},
+													ghostClass: 'ghost',
 													}"
 												@start="moduledrag=true"
-												@end="moduledrag=false"
-												:move="modulesort"
+												@end="moduledrag=false;modulesort($event)"
 												:data-rowid="row.id" :data-cellid="2"
 												>
-														<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="2"></module-data>
+														<module-data v-for="(cell, key, index)  in row.cell_right" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="2"></module-data>
 									        	</draggable>
 											
 											</div>

@@ -137,6 +137,7 @@ var app = new Vue({
     modalType:'',//module/rowSetting
     modalTypeData: {},
 
+    rowdrag: false,
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
@@ -145,7 +146,8 @@ var app = new Vue({
   methods: {
   		//module sort
   		modulesort:function(evt,originalEvent){
-  			/*console.log("Module relatedContext");
+  			
+  			/*
   			console.log(evt.relatedContext.index,
   						evt.relatedContext.element,
   						evt.relatedContext.list,
@@ -156,75 +158,70 @@ var app = new Vue({
   						evt.draggedContext.element,
   						evt.draggedContext.futureIndex,
   						);*/
-  			if(evt.draggedContext && evt.type=='move'){
+  			if(evt && evt.type=='end'){
   				//Information where element has dropped
-  				var rowId = evt.to.getAttribute('data-rowid');
-				var colid = evt.to.getAttribute('data-cellid');
-				//console.log(colid,rowId)
-  				//Element which we have moves
-  				moveElemnt = evt.draggedContext.element;
-  				moveElemntFutureIndex = evt.draggedContext.futureIndex;
-  				moveElemnt.index = moveElemntFutureIndex+1;
-  				moveElemnt.cell_container = colid;
-  				moveElemnt.rowId = rowId;
+  				var module_id = evt.clone.getAttribute('data-module_id');//Dragged module
+				//var module_dragged_row_id = evt.from.getAttribute('data-rowid');
+				//to Data
+				var module_sorted_row_id = parseInt(evt.to.getAttribute('data-rowid'));
+				var module_sorted_row_cellid = parseInt(evt.to.getAttribute('data-cellid'));
+				/*
+				console.log(module_id, module_dragged_row_id);
 
-  				var CopyData = this.mainContent.rows.slice();
+  				var rowId = evt.to.getAttribute('data-rowid');
+				var colid = evt.to.getAttribute('data-cellid');*/
+				//Element which we have moves
   				
-  				var removeKey = null;
   				this.mainContent.rows.forEach(function(data,key){
-  					
-					data.cell_data.forEach(function(module,modKey){
-						if(module.cell_id==moveElemnt.cell_id){
-							//Remove module from previous index
-							Vue.delete( data.cell_data, modKey )
-							return false;
+					Vue.set(data, 'index', parseInt(key)+1);
+					if(data.cells==2){
+						if(data.cell_left.length>0){
+							data.cell_left.forEach(function(module,modKey){
+								Vue.set(module, 'index', parseInt(modKey)+1);
+								if(module_id==module.cell_id){
+									Vue.set(module, 'container_id', module_sorted_row_id);
+									Vue.set(module, 'cell_container',module_sorted_row_cellid);
+								}
+							});
 						}
-					});
-				});
-				var newRowID = null;
-				this.mainContent.rows.forEach(function(data,key){
-					if(data.id==rowId){
-						Vue.set(data.cell_data, data.cell_data.length, moveElemnt);	
-						return false;
+						if(data.cell_right.length>0){
+							data.cell_right.forEach(function(module,modKey){
+								Vue.set(module, 'index', parseInt(modKey)+1);
+								if(module_id==module.cell_id){
+									Vue.set(module, 'container_id', module_sorted_row_id);
+									Vue.set(module, 'cell_container',module_sorted_row_cellid);
+								}
+							});
+						}
+					}else{
+						data.cell_data.forEach(function(module,modKey){
+							Vue.set(module, 'index', parseInt(modKey)+1);
+							if(module_id==module.cell_id){
+								Vue.set(module, 'container_id', module_sorted_row_id);
+								Vue.set(module, 'cell_container',module_sorted_row_cellid);
+							}
+						});
 					}
 					
-				});
-				//this.mainContent.rows = CopyData;
+  				});
 				this.call_default_functions();
 				//console.log(this.mainContent);
   			}
-  			return false;
+  			return true;
   		},
   		//row Sorting
-  		rows_moved: function(evt, originalEvent){
-  			/*if(evt.draggedContext && evt.type=='move'){
-  			console.log("row draggedContext");
-  			console.log(evt);
-  			console.log("row relatedContext");
-  			console.log(evt.relatedContext.index,
-  						evt.relatedContext.element,
-  						evt.relatedContext.list,
-  						evt.relatedContext.component
-  						)
-  			return ;*/
-  				/*var CopyData = this.mainContent.rows.slice();
-
-				newIndex = (evt.draggedContext.futureIndex)+1;
-				oldIndex = evt.draggedContext.index;
-				element = evt.relatedContext.element;
-				console.log(element);
+  		rows_moved: function(evt){
+  			if(evt && evt.type=='end'){
 				this.mainContent.rows.forEach(function(data,key){
-					console.log(data);
-					if(data.id==element.id){
-						Vue.set(data,'index', newIndex);
-					}else if(data.id != element.id && data.index>=newIndex){
-						Vue.set(data,index, parseInt(data.index)+1);
-					}
-				});*/
-				//this.mainContent.rows = CopyData;
-			/*this.call_default_functions();
-			}*/
-			return false;
+					Vue.set(data, 'index', parseInt(key)+1);
+						data.cell_data.forEach(function(module,modKey){
+							Vue.set(module, 'index', parseInt(modKey)+1);
+						});
+				});
+			}
+			this.call_default_functions();
+			return true;
+			//return true;
   		},
 
   		reomve_row: function(key){
@@ -296,6 +293,12 @@ var app = new Vue({
 							});
 						}
 						columnVal.cell_data.push(cellData);
+						if(cellid==1){
+							columnVal.cell_left.push(cellData);
+						}
+						if(cellid==2){
+							columnVal.cell_right.push(cellData);
+						}
 				}
 			});
 			this.mainContent.totalmodules = modulesid+1;
@@ -322,20 +325,41 @@ var app = new Vue({
 				});
 			this.mainContent.rows.forEach(function(row,key){
 				if(row.cells && row.cells=="2"){
-					row.cell_left  = 0;
-					row.cell_right = 0;
-					row.cell_data.forEach(function(module,k){
-						if(parseInt(module.cell_container)==1){
-							row.cell_left = row.cell_left+1;
-						}else if(parseInt(module.cell_container)==2){
-							row.cell_right = row.cell_right+1;
-						}
-					});
-					row.cell_data.sort(function(a, b){
-						var a1= a.index, b1= b.index;
-						if(a1== b1) return 0;
-						return a1> b1? 1: -1;
-					});
+					
+					if(!row.cell_left && !row.cell_right){
+						row.cell_left  = [];
+						row.cell_right = [];
+						row.cell_data.forEach(function(module,k){
+							if(parseInt(module.cell_container)==1){
+								row.cell_left = module;
+							}else if(parseInt(module.cell_container)==2){
+								row.cell_right = module;
+							}
+						});
+					}else{
+						row.cell_data = row.cell_left.concat(row.cell_right)
+					}
+					if(row.cell_data.length>0){
+						row.cell_data.sort(function(a, b){
+							var a1= a.index, b1= b.index;
+							if(a1== b1) return 0;
+							return a1> b1? 1: -1;
+						});
+					}
+					if(row.cell_left.length>0){
+						row.cell_left.sort(function(a, b){
+							var a1= a.index, b1= b.index;
+							if(a1== b1) return 0;
+							return a1> b1? 1: -1;
+						});
+					}
+					if(row.cell_right.length>0){
+						row.cell_right.sort(function(a, b){
+							var a1= a.index, b1= b.index;
+							if(a1== b1) return 0;
+							return a1> b1? 1: -1;
+						});
+					}
 				}
 			});
 		},

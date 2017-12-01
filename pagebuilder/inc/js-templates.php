@@ -77,15 +77,14 @@ global $moduleTemplate;
     					'.$conditioner.'="cell.type==\''.strtolower($module['name']).'\'
     					 &&
     					  cellcontainer==cell.cell_container"
-    					 class="amppb-module module-draggable amppb-module-'.strtolower($module['name']).'"
+    					 class="amppb-module amppb-module-'.strtolower($module['name']).'"
     					  data-tooltip="'.$module['name'].' Module"
                           :data-module_id="cell.cell_id"
 					>
 
 		        		<span class="module_label">'.$module['label'].'</span>
-		        		<input type="hidden" id="selectedModule" value=\''.json_encode($module).'\'> 
 		        		<span class="amppb-setting-right">
-			        		<label  @click="showModulePopUp($event)" class="boxContainer link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'
+			        		<label  @click="showModulePopUp($event)" class="link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'
                                 :data-module_id="cell.cell_id"
                                 :data-container_id="cell.container_id"
                             >
