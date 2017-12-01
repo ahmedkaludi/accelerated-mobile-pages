@@ -49,3 +49,4 @@
 		</div>
 	</div>
 </footer>
+<?php amp_footer_core(); ?>
