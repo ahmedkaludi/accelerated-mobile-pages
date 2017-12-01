@@ -41,6 +41,29 @@
     </div>
 </header>
 <?php } ?>
+<?php if($redux_builder_amp['header-type'] == '3'){?>
+<header class="header-3">
+    <div class="cntr">
+        <div class="head-3">
+            <div class="h-logo">
+                <?php amp_logo(); ?>
+            </div>
+            <div class="h-nav">
+               <?php amp_sidebar(['action'=>'open-button']); ?>
+            </div><!-- /.left-nav -->
+            <div class="srch">
+                <a class="lb" href="#ovelay"></a>
+                <div class="lb-btn"> 
+                    <div class="lb-t" id="ovelay">
+                       <?php amp_search();?>
+                       <a class="lb-x" href="#"></a>
+                    </div> 
+                </div>
+            </div><!-- /.search -->
+        </div>
+    </div>
+</header>
+<?php } ?>
 <?php if($redux_builder_amp['header-position-type'] == '1'){?>
 <?php amp_sidebar(['action'=>'start',
     'id'=>'sidebar',

@@ -2433,7 +2433,8 @@ Redux::setSection( $opt_name, array(
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Header 1',
-                        '2' =>  'Header 2'
+                        '2' =>  'Header 2',
+                        '3' => 'Header 3'
                     ),
                    'default'=> '1',
                    'required' => array( array('amp-design-selector', '=' , '4') ),
@@ -2453,9 +2454,7 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
                     'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
                     'desc'     => __('Here you can give the height of the Header in Numbers', 'ampswifttheme'),
-                    'default'  => array(
-                        'height' => '60px',
-                        ),
+                    'default'  => '60px',
                     'required' => array(
                       array('customize-options','=',1)
                     )           
@@ -2533,9 +2532,7 @@ Redux::setSection( $opt_name, array(
                   'title'    => __('Border Bottom Line', 'ampswifttheme'), 
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
                   'desc'     => __('If you want the Border Bottom Line, Please give number', 'ampswifttheme'),
-                  'default'  => array(
-                        'border-bottom-line'     => '1px solid', 
-                    ),
+                  'default'  => '1',
                   'required' => array(
                         array('border-line','=',1)
                       )  
@@ -2547,7 +2544,7 @@ Redux::setSection( $opt_name, array(
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
                   'desc'     => __('If you want the Border Color, Please select', 'ampswifttheme'),
                   'default'  => array(
-                        'rgba'     => '(154, 147, 147, 0.8)', 
+                        'rgba'     => 'rgba(0,0,0,0.12)', 
                     ),
                   'required' => array(
                         array('border-line','=',1)
@@ -2559,7 +2556,7 @@ Redux::setSection( $opt_name, array(
                   'title'    => __('Box Shadow Option', 'ampswifttheme'), 
                   'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
                   'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'ampswifttheme'),
-                  'default'  => '0',
+                  'default'  => 0,
                   'required' => array(
                         array('border-line','=',1)
                       )  
@@ -2571,7 +2568,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle'  => __('Choose the color for Header Background','ampswifttheme'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'      => '(20, 20, 22, 0.9)',
+                    'rgba'  => 'rgba(255, 255, 255, 255)',
                     ),
                     'required' => array(
                       array('customize-options','=',1)
@@ -2583,8 +2580,8 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Ovelay Background','ampswifttheme'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                    'rgba'      => '(20, 20, 22, 0.9)',
-                     ),
+                        'rgba'  => 'rgba(20, 20, 22, 0.9)',
+                         ),
                     'required' => array(
                         array('customize-options','=',1)
                       )
@@ -2595,7 +2592,19 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                    'rgba'      => '(0,0,0,0.1)',
+                        'rgba'  => 'rgb(0, 0, 0)',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+              array(
+                    'id'        => 'swift-element-overlay-color-control',
+                    'title'     => __('Header Overlay Element Color Scheme', 'ampswifttheme'),
+                    'subtitle'  => __('Choose the color for Header Overlay  Elements','ampswifttheme'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgb(255, 255, 255)',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
