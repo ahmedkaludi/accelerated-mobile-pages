@@ -114,3 +114,8 @@
 <?php amp_sidebar(['action'=>'end']); ?>
 
 <div class="content-wrapper">
+<?php if($redux_builder_amp['primary-menu']){?>
+<div class="p-menu">
+    <?php amp_menu(); ?>
+</div>
+<?php } ?>

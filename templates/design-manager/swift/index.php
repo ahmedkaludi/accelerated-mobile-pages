@@ -1,7 +1,4 @@
 <?php amp_header(); ?>
-<div class="p-menu">
-	<?php amp_menu(); ?>
-</div>
 <div class="cntr">
 	<?php
 	if (is_home() ){

@@ -2624,7 +2624,7 @@ Redux::setSection( $opt_name, array(
 
             array(
                     'id'    => 'header-position-type',
-                   'title'  => __('Header Overlay Position Type', 'amptechtheme'),
+                   'title'  => __('Header Overlay Position Type', 'ampswifttheme'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Left',
@@ -2634,7 +2634,53 @@ Redux::setSection( $opt_name, array(
                   'required' => array(
                       array('customize-options','=',1)
                     )    
-            ),   
+            ),
+
+            array(
+                    'id'       => 'primary-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Primary Menu', 'ampswifttheme'),
+                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'ampswifttheme'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'ampswifttheme'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 1
+            ),
+            array(
+                    'id'             => 'primary-menu-padding-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.p-menu'),
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Primary Menu Padding Option', 'ampswifttheme'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'ampswifttheme'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'default'            => array(
+                        'padding-top'     => '15px', 
+                        'padding-right'   => '25px', 
+                        'padding-bottom'  => '15px', 
+                        'padding-left'    => '25px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )       
+            ),
+            array(
+                'id'        => 'primary-menu-background-scheme',
+                'title'     => __('Primary Menu Background Color Scheme', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Primary Menu Background','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgba(255, 255, 255, 255)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+
+
              array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',

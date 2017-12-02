@@ -530,13 +530,18 @@ a.lb-x:after {
     overflow-x: scroll;
     overflow-y:hidden;
     white-space: nowrap;
-    padding:0px 24px;
+    <?php if($redux_builder_amp['primary-menu-padding-control']){?>
+         padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-top'] .' '. 
+                             $redux_builder_amp['primary-menu-padding-control']['padding-right'] .' '. 
+                             $redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' '. 
+                             $redux_builder_amp['primary-menu-padding-control']['padding-left'] ; ?>;
+    <?php } ?>
+    <?php if($redux_builder_amp['primary-menu-padding-control']['rgba']){?>
+        background:<?php echo $redux_builder_amp['primary-menu-padding-control']['rgba']; ?>
+    <?php } ?>
 }
 ::-webkit-scrollbar {
 display: none;
-}
-.p-menu ul{
-    margin:30px 0px 0px 0px;
 }
 .p-menu ul li{
     display: inline-block;
@@ -1161,9 +1166,6 @@ display: none;
 
 }
 @media(max-width:768px){
-.p-menu{
-    padding:0 40px;
-}
 .fbp-img {
     width: 100%;
     float:none;
@@ -1243,15 +1245,8 @@ display: none;
     width: 100%;
     padding: 0px 20px;
 }
-.p-menu{
-    padding: 0 20px;
-}
 .overlay-search:before {
     right: 9%;
-}
-
-.p-menu ul{
-    margin:25px 0px 0px 0px;
 }
 .fsp-img{
     width:100%;
