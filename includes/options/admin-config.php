@@ -2644,7 +2644,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle' => __('Enable/Disable Menu from header', 'ampswifttheme'),
                     'true'      => 'true',
                     'false'     => 'false',
-                    'default'   => 1
+                    'default'   => '1'
             ),
             array(
                     'id'             => 'primary-menu-padding-control',
