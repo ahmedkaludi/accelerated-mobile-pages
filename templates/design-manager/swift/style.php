@@ -227,9 +227,15 @@ amp-sidebar {
         height:<?php echo $redux_builder_amp['swift-height-control']?>px;
     <?php } ?>
 }
-.h-1, .h-2{
+.h-1{
     display:flex;
     order:1;
+}
+.h-2{
+    order: 1;
+    flex-grow: 1;
+    justify-content: flex-end;
+    display: flex;
 }
 .shop, .call{
     align-self: center;
@@ -463,8 +469,9 @@ a.lb-x:after {
 /*** Header - Styles ***/
 
 .head-2 .h-logo{
-    flex-grow:1;
+    order:-1;
     align-self: center;
+    margin-left:30px;
 }
 .h-sing{
     font-size: 18px;
