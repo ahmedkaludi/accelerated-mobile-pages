@@ -224,24 +224,31 @@ amp-sidebar {
     clear:both;
     display: inline-flex;
     <?php if($redux_builder_amp['swift-height-control']){?>
-        height:<?php echo $redux_builder_amp['swift-height-control']?>;
+        height:<?php echo $redux_builder_amp['swift-height-control']?>px;
     <?php } ?>
 }
 .h-nav{
-    display: flex;
-    flex: 1 45%;
+    order: -1;
     align-self: center;
-}
-.head-3 .h-nav {
-    flex: 0 10%;
 }
 .logo{
     z-index: 2;
-    display: flex;
-    flex: 1 50%;
+    flex-grow: 1;
     align-self: center;
 }
-
+.h-3 {
+    order: 1;
+    display: inline-flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+.h-3 .h-nav, .h-3 .srch{
+    margin:0px 15px;
+}
+.head-3 .h-logo{
+    order:-1;
+    align-self: center;
+}
 .logo .amp-logo a{
     line-height:0;
     display:block;
@@ -256,8 +263,7 @@ amp-sidebar {
 .srch{
     z-index: 1;
     line-height: 0;
-    display: flex;
-    flex: 0 0%;
+    order: 1;
     align-self: center;
 }
 .srch .lb:after{
@@ -267,8 +273,6 @@ amp-sidebar {
    <?php if($redux_builder_amp['swift-element-color-control'] ['rgba']){?>
         color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
     <?php } ?>
-    line-height: 0;
-    display: block;
 }
 .amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px;}
 
@@ -433,16 +437,14 @@ a.lb-x:after {
 }
 /*** Header - Styles ***/
 
-.h-logo{
-    display: flex;
-    flex: 1 50%;
+.head-2 .h-logo{
+    flex-grow:1;
     align-self: center;
 }
 .h-sing{
     font-size: 18px;
     font-weight: 600;
-    display: flex;
-    flex: 0 17%;
+    order:1;
     align-self: center;
 }
 .h-sing a{
@@ -1110,10 +1112,6 @@ display: none;
 .fsp{
     width:30%;
 }
-.h-sing {
-    flex: 0 180px;
-    font-size:17px;
-}
 /** Single page **/
 .sp-rt {
     width: 650px;
@@ -1169,7 +1167,6 @@ display: none;
     top:-5px;
 }
 .h-sing {
-    flex: 0 200px;
     font-size:15px;
 }
 .sp-rt {
@@ -1185,9 +1182,7 @@ display: none;
 .overlay-search:before {
     right: 11%;
 }
-.head-3 .h-nav {
-    flex: 0 15%;
-}
+
 /** Single Page **/
 .sp-lt {
     width: 100%;
@@ -1222,9 +1217,7 @@ display: none;
 .overlay-search:before {
     right: 9%;
 }
-.head-3 .h-nav {
-    flex: 0 20%;
-}
+
 .p-menu ul{
     margin:25px 0px 0px 0px;
 }
@@ -1248,7 +1241,6 @@ display: none;
     margin-bottom:20px;
 }
 .h-sing {
-    flex: 0 180px;
     font-size: 13px;
 }
 .h-sing a {

@@ -2454,7 +2454,7 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
                     'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
                     'desc'     => __('Here you can give the height of the Header in Numbers', 'ampswifttheme'),
-                    'default'  => '60px',
+                    'default'  => '60',
                     'required' => array(
                       array('customize-options','=',1)
                     )           
