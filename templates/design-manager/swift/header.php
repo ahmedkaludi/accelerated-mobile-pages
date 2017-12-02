@@ -11,7 +11,7 @@
                 <?php amp_logo(); ?>
             </div><!-- /.logo -->
             <div class="h-1">
-                <div class="srch">
+                <div class="h-srch h-ic">
                     <a class="lb" href="#ovelay"></a>
                     <div class="lb-btn"> 
                         <div class="lb-t" id="ovelay">
@@ -20,10 +20,10 @@
                         </div> 
                     </div>
                 </div><!-- /.search -->
-                <div class="shop">
+                <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="call">
+                <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
             </div>
@@ -46,10 +46,10 @@
                 <div class="h-sing">
                     <a href="#">Sign up free</a>
                 </div>
-                <div class="shop">
+                <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="call">
+                <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="h-nav">
                    <?php amp_sidebar(['action'=>'open-button']); ?>
                 </div><!-- /.left-nav -->
-                <div class="srch">
+                <div class="h-srch h-ic">
                     <a class="lb" href="#ovelay"></a>
                     <div class="lb-btn"> 
                         <div class="lb-t" id="ovelay">
@@ -77,10 +77,10 @@
                         </div> 
                     </div>
                 </div><!-- /.search -->
-                <div class="shop">
+                <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="call">
+                <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
             </div>

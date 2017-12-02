@@ -227,6 +227,16 @@ amp-sidebar {
         height:<?php echo $redux_builder_amp['swift-height-control']?>px;
     <?php } ?>
 }
+.h-ic a:after{
+    <?php if($redux_builder_amp['swift-element-color-control'] ['rgba']){?>
+        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
+    <?php } ?>
+    font-family: 'icomoon';
+    font-size: 23px;
+}
+.h-ic{
+    align-self: center;
+}
 .h-1{
     display:flex;
     order:1;
@@ -237,21 +247,12 @@ amp-sidebar {
     justify-content: flex-end;
     display: flex;
 }
-.shop, .call{
-    align-self: center;
-    margin:0 10px;
-    font-size:22px;
-}
-.call a:after{
+.h-call a:after{
     content: "\e0cd";
-    font-family: 'icomoon';
-    color:#000;
     align-self: center;
 }
-.shop a:after{
+.h-shop a:after{
     content: "\e8cc";
-    font-family: 'icomoon';
-    color:#000;
     align-self: center;
 }
 .h-nav{
@@ -269,8 +270,8 @@ amp-sidebar {
     flex-grow: 1;
     justify-content: flex-end;
 }
-.h-3 .h-nav, .h-3 .srch{
-    margin:0px 15px;
+.h-3 .h-nav, .h-ic{
+    margin:0px 10px;
 }
 .head-3 .h-logo{
     order:-1;
@@ -287,23 +288,12 @@ amp-sidebar {
     font-weight: 700;
     text-transform: uppercase;
 }
-.srch{
-    z-index: 1;
-    line-height: 0;
-    align-self: center;
-    margin:0px 10px;
-}
-.srch a{
+.h-srch a{
     line-height:1;
     display:block;
 }
-.srch .lb:after{
+.h-srch .lb:after{
     content: "\e8b6";
-    font-family: 'icomoon';
-    font-size: 23px;
-   <?php if($redux_builder_amp['swift-element-color-control'] ['rgba']){?>
-        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
-    <?php } ?>
 }
 .amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px;}
 
