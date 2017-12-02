@@ -516,9 +516,7 @@ a.lb-x:after {
     left: 0;
     right: 0;
     bottom: 0;
-    <?php if($redux_builder_amp['signin-button-hover-color']['rgba']){?>
-        background: <?php echo $redux_builder_amp['signin-button-hover-color']['rgba']?>;
-    <?php }?>
+    background: #005be2;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 0 50%;

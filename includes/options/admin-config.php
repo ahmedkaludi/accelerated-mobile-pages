@@ -2760,26 +2760,14 @@ Redux::setSection( $opt_name, array(
                 )  
             ),
 
-             array(
-                'id'        => 'signin-button-hover-color',
-                'title'     => __('Button Hover Background Color', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Button Background on Hover','ampswifttheme'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgb(0, 91, 226)',
-                    ),
-                'required' => array(
-                  array('signin-button-style','=',1)
-                )  
-            ),
             array(
                     'id'    => 'border-type',
                    'title'  => __('Border Type', 'amptechtheme'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
-                        '2' =>  'Border Radius',
-                        '3' => 'customize'
+                        '2' =>  'Round',
+                        '3' => 'Custom'
                     ),
                    'default'=> '1',
                    'required' => array( array('signin-button', '=' ,1) ),
