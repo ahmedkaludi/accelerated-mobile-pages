@@ -2610,18 +2610,7 @@ Redux::setSection( $opt_name, array(
                         array('customize-options','=',1)
                       )
               ),
-              array(
-                  'id'       => 'swift-header-overlay-width-control',
-                  'type'     => 'switch',
-                  'title'    => __('Header Overlay Width Option', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Header Overlay background should be Full Width, Please Enable', 'ampswifttheme'),
-                  'default'  => '0',
-                  'required' => array(
-                        array('customize-options','=',1)
-                      )
-              ),
-
+              
             array(
                     'id'    => 'header-position-type',
                    'title'  => __('Header Overlay Position Type', 'ampswifttheme'),
@@ -2667,6 +2656,19 @@ Redux::setSection( $opt_name, array(
                       array('primary-menu','=',1)
                     )       
             ),
+            array(
+                'id'        => 'primary-menu-text-scheme',
+                'title'     => __('Primary Menu Text Color Scheme', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Primary Text Menu','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgba(102, 102, 102, 0.96)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+
             array(
                 'id'        => 'primary-menu-background-scheme',
                 'title'     => __('Primary Menu Background Color Scheme', 'ampswifttheme'),
