@@ -470,9 +470,16 @@ a.lb-x:after {
     margin:0 10px;
 }
 .h-sing a{
-    border:2px solid #000;
+    <?php if($redux_builder_amp['signin-button-border-line']){?>
+        border: <?php echo $redux_builder_amp['signin-button-border-line']?>px solid;
+    <?php } ?>
+    <?php if($redux_builder_amp['signin-button-border-color']['rgba']){?>
+        border-color: <?php echo $redux_builder_amp['signin-button-border-color']['rgba']?>;
+    <?php } ?>
     padding:10px 25px;
-    color:#333;
+    <?php if($redux_builder_amp['signin-button-text-color']['rgba']){?>
+        color: <?php echo $redux_builder_amp['signin-button-text-color']['rgba']?>;
+    <?php } ?>
     display: inline-block;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
@@ -483,6 +490,24 @@ a.lb-x:after {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
 }
+ <?php if($redux_builder_amp['border-type'] == '2'){?>
+.h-sing a{
+    border-radius:100px;
+}
+.h-sing a:before{
+    border-radius:100px;
+}
+<?php } ?>
+ <?php if($redux_builder_amp['border-type'] == '3'){?>
+<?php if($redux_builder_amp['border-radius'] ){ ?>
+.h-sing a{
+    border-radius:<?php echo $redux_builder_amp['border-radius']?>px;
+}
+.h-sing a:before{
+    border-radius:<?php echo $redux_builder_amp['border-radius']?>px;
+}
+<?php } ?>
+<?php } ?>
 .h-sing a:before {
     content: "";
     position: absolute;
@@ -491,7 +516,9 @@ a.lb-x:after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #005be2;
+    <?php if($redux_builder_amp['signin-button-hover-color']['rgba']){?>
+        background: <?php echo $redux_builder_amp['signin-button-hover-color']['rgba']?>;
+    <?php }?>
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 0 50%;

@@ -2682,6 +2682,125 @@ Redux::setSection( $opt_name, array(
                     )  
               ),
 
+            array(
+                'id'        => 'signin-button',
+                'title'     => __('Button Customize', 'ampswifttheme'),
+                'subtitle'  => __('You can do the customization here ','ampswifttheme'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('header-type','=',2)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-text',
+                'title'     => __('Button Text', 'ampswifttheme'),
+                'subtitle'  => __('You can write your required text ','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => 'Sign up free',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-link',
+                'title'     => __('Button Link', 'ampswifttheme'),
+                'subtitle'  => __('You can add the Link here ','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '#',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-style',
+                'title'     => __('Button Styles', 'ampswifttheme'),
+                'subtitle'  => __('You can change the button here','ampswifttheme'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-border-line',
+                'title'     => __('Button Border Line', 'ampswifttheme'),
+                'subtitle'  => __('You can change the button border line','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '2',
+                    'required' => array(
+                      array('signin-button-style','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-text-color',
+                'title'     => __('Button Text Color', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Button Texxt','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+             array(
+                'id'        => 'signin-button-border-color',
+                'title'     => __('Button Border Line Color', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Button Border Line','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+
+             array(
+                'id'        => 'signin-button-hover-color',
+                'title'     => __('Button Hover Background Color', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Button Background on Hover','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 91, 226)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+            array(
+                    'id'    => 'border-type',
+                   'title'  => __('Border Type', 'amptechtheme'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Square',
+                        '2' =>  'Border Radius',
+                        '3' => 'customize'
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('signin-button', '=' ,1) ),
+            ),
+
+            array(
+                'id'        => 'border-radius',
+                'title'     => __('Customize Border Radius', 'ampswifttheme'),
+                'subtitle'  => __('You can change the border radius','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '10',
+                    'required' => array(
+                      array('border-type','=',3)
+                    )  
+              ),
+
+
+
+
+
+
 
              array(
                     'id'       => 'ampforwp-amp-menu',

@@ -43,9 +43,11 @@
                 <?php amp_logo(); ?>
             </div>
             <div class="h-2">
+                <?php if($redux_builder_amp['signin-button-text'] && $redux_builder_amp['signin-button-link']){?>
                 <div class="h-sing">
-                    <a href="#">Sign up free</a>
+                    <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo $redux_builder_amp['signin-button-text'] ?></a>
                 </div>
+                <?php } ?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
