@@ -10,15 +10,23 @@
             <div class="logo">
                 <?php amp_logo(); ?>
             </div><!-- /.logo -->
-            <div class="srch">
-                <a class="lb" href="#ovelay"></a>
-                <div class="lb-btn"> 
-                    <div class="lb-t" id="ovelay">
-                       <?php amp_search();?>
-                       <a class="lb-x" href="#"></a>
-                    </div> 
+            <div class="h-1">
+                <div class="srch">
+                    <a class="lb" href="#ovelay"></a>
+                    <div class="lb-btn"> 
+                        <div class="lb-t" id="ovelay">
+                           <?php amp_search();?>
+                           <a class="lb-x" href="#"></a>
+                        </div> 
+                    </div>
+                </div><!-- /.search -->
+                <div class="shop">
+                    <a href="#"></a>
                 </div>
-            </div><!-- /.search -->
+                <div class="call">
+                    <a href="#"></a>
+                </div>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -34,8 +42,16 @@
             <div class="h-logo">
                 <?php amp_logo(); ?>
             </div>
-            <div class="h-sing">
-                <a href="#">Sign up free</a>
+            <div class="h-2">
+                <div class="h-sing">
+                    <a href="#">Sign up free</a>
+                </div>
+                <div class="shop">
+                    <a href="#"></a>
+                </div>
+                <div class="call">
+                    <a href="#"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -61,6 +77,12 @@
                         </div> 
                     </div>
                 </div><!-- /.search -->
+                <div class="shop">
+                    <a href="#"></a>
+                </div>
+                <div class="call">
+                    <a href="#"></a>
+                </div>
             </div>
         </div>
     </div>

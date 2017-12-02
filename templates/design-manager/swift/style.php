@@ -227,6 +227,27 @@ amp-sidebar {
         height:<?php echo $redux_builder_amp['swift-height-control']?>px;
     <?php } ?>
 }
+.h-1, .h-2{
+    display:flex;
+    order:1;
+}
+.shop, .call{
+    align-self: center;
+    margin:0 10px;
+    font-size:22px;
+}
+.call a:after{
+    content: "\e0cd";
+    font-family: 'icomoon';
+    color:#000;
+    align-self: center;
+}
+.shop a:after{
+    content: "\e8cc";
+    font-family: 'icomoon';
+    color:#000;
+    align-self: center;
+}
 .h-nav{
     order: -1;
     align-self: center;
@@ -263,8 +284,12 @@ amp-sidebar {
 .srch{
     z-index: 1;
     line-height: 0;
-    order: 1;
     align-self: center;
+    margin:0px 10px;
+}
+.srch a{
+    line-height:1;
+    display:block;
 }
 .srch .lb:after{
     content: "\e8b6";
@@ -444,8 +469,8 @@ a.lb-x:after {
 .h-sing{
     font-size: 18px;
     font-weight: 600;
-    order:1;
     align-self: center;
+    margin:0 10px;
 }
 .h-sing a{
     border:2px solid #000;
