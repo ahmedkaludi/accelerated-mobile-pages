@@ -8,6 +8,7 @@ Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
 License: GPL2+
+Text Domain: accelerated-mobile-pages
 */
 
 // Exit if accessed directly.
