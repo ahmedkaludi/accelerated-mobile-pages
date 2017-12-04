@@ -896,7 +896,23 @@ display: none;
 .amp-related-posts ul{
     list-style-type:none;
 }
-
+.r-pf{
+    margin-top: 40px;
+    display: inline-block;
+    width: 100%;
+}
+.r-pf h3{
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #a1a1a1;
+    display: block;
+    font-weight: 600;
+    margin:0;
+    padding-bottom:15px;
+}
+.r-pf .loop-wrapper{
+    margin-top:0;
+}
 /** Pagination**/
 #pagination{
     margin-top: 30px;

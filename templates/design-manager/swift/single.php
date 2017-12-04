@@ -66,6 +66,8 @@
 		</div>
 	</div>
 	<div class="r-pf">
+		<div class="cntr">
+			<h3>Recent Posts</h3>
 		<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 			<div class="fsp">
 				<?php $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'amp-featured-small', 'responsive'=> true); ?>
@@ -82,6 +84,7 @@
 			    </div>
 			</div>
 		<?php endwhile; amp_loop('end');  ?>
+		</div>
 	</div>
 	<?php amp_footer()?>
 </div>
