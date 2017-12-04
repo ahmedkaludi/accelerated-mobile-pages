@@ -87,6 +87,20 @@ function call_loops_standard($data=array()){
 			'post_status'=> 'publish'
 		  );
 	}
+	if( is_single() ) {
+		global $post;
+		$exclude_ids = get_option('ampforwp_exclude_post');
+		$exclude_ids[] = $post->ID;
+		$args =  array(
+			'post_type'           => 'post',
+			'orderby'             => 'date',
+			'ignore_sticky_posts' => 1,
+			'paged'               => esc_attr($paged),
+			'post__not_in' 		  => $exclude_ids,
+			'has_password' => false ,
+			'post_status'=> 'publish'
+		  );
+	}
 	if(isset($data['post_to_show']) && $data['post_to_show']>0){
 		$args['posts_per_page'] = $data['post_to_show'];
 	}
