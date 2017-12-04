@@ -67,7 +67,7 @@
 	</div>
 	<div class="r-pf">
 		<div class="cntr">
-			<h3>Recent Posts</h3>
+			<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 		<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 			<div class="fsp">
 				<?php $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'amp-featured-small', 'responsive'=> true); ?>

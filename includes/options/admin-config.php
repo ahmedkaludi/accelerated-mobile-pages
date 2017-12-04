@@ -1970,6 +1970,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-recent-text',
+                       'type'     => 'text',
+                       'title'    => __('Recent Posts', 'accelerated-mobile-pages'),
+                       'default'  => __('Recent Posts','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-navigate-text',
                        'type'     => 'text',
                        'title'    => __('Navigate', 'accelerated-mobile-pages'),
