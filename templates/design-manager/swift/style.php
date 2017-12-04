@@ -944,7 +944,7 @@ display: none;
     font-size: 12px;
     position: absolute;
     top: -26px;
-    color: #005be2;
+    color: #a1a1a1;
 }
 .next a:before{
     content: "Next";
@@ -952,7 +952,7 @@ display: none;
     font-size: 12px;
     position: absolute;
     top: -26px;
-    color: #005be2;
+    color: #a1a1a1;
     right:0
 }
 .next:hover a, .prev:hover a{
