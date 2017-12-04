@@ -941,16 +941,14 @@ display: none;
     position:relative;
     margin-top:10px;
 }
-.prev a:before{
-    content: "PREVIOUS";
+.prev span{
     display: block;
     font-size: 12px;
     position: absolute;
     top: -26px;
     color: #a1a1a1;
 }
-.next a:before{
-    content: "Next";
+.next span{
     display: block;
     font-size: 12px;
     position: absolute;
