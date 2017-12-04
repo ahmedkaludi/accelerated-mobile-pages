@@ -101,11 +101,14 @@ function call_loops_standard($data=array()){
 			'post_status'=> 'publish'
 		  );
 	}
-	if(isset($data['post_to_show']) && $data['post_to_show']>0){
+	if( isset( $data['post_to_show'] ) && $data['post_to_show']>0 ){
 		$args['posts_per_page'] = $data['post_to_show'];
 	}
-	if(isset($data['offset']) && $data['offset']>0){
+	if( isset( $data['offset'] ) && $data['offset']>0 ){
 		$args['offset'] = $data['offset'];
+	}
+	if( isset( $data['posts_per_page'] ) && $data['posts_per_page']>0 ){
+		$args['posts_per_page'] = $data['posts_per_page'];
 	}
 	
 	$filtered_args = apply_filters('ampforwp_query_args', $args);
