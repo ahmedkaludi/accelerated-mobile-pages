@@ -2562,27 +2562,6 @@ Redux::setSection( $opt_name, array(
                       )  
               ),
 
-            array(
-                    'id'    => 'cart',
-                    'type'  => 'switch',
-                    'title' => __('Enable/Disable the Shopping Cart Option', 'ampswifttheme'),
-                    'subtitle'  => __('Here you can enable/disable the cart option', 'ampswifttheme'),
-                    'default'   => 1,
-                    'required' => array(
-                      array('customize-options','=',1)
-                    ) 
-            ),
-            array(
-                    'id'    => 'call',
-                    'type'  => 'switch',
-                    'title' => __('Enable/Disable the Call Option', 'ampswifttheme'),
-                    'subtitle'  => __('Here you can enable/disable the call option', 'ampswifttheme'),
-                    'default'   => 1,
-                    'required' => array(
-                      array('customize-options','=',1)
-                    ) 
-            ),
-
 
             array(
                 'id'        => 'swift-background-scheme',
