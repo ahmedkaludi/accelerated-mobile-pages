@@ -2145,6 +2145,14 @@ Redux::setSection( $opt_name, array(
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
+                    array(
+                       'id'       => 'amp-translator-share-text',
+                       'type'     => 'text',
+                       'title'    => __('Share', 'accelerated-mobile-pages'),
+                       'default'  => __('Share','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
                    array(
                        'id'       => 'amp-translator-search-text',
                        'type'     => 'text',

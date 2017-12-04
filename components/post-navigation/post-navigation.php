@@ -7,7 +7,7 @@ function ampforwp_framework_get_post_navigation(){
 					<?php $next_post = get_next_post();
 						if (!empty( $next_post )) {
 						$next_text = $next_post->post_title; ?>	
-						<a href="<?php echo ampforwp_url_controller( get_permalink( $next_post->ID ) ); ?>"><span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ); ?></span><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
+						<a href="<?php echo ampforwp_url_controller( get_permalink( $next_post->ID ) ); ?>"><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ); ?></span><?php echo apply_filters('ampforwp_next_link',$next_text ); ?> &raquo;</a> <?php
 						} ?>
 					</div>
 
@@ -16,7 +16,7 @@ function ampforwp_framework_get_post_navigation(){
 					 if (!empty( $prev_post )) {
 						 $prev_text = $prev_post->post_title;
 						  ?>
-					    <a href="<?php echo ampforwp_url_controller( get_permalink( $prev_post->ID ) ); ?>"><span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ); ?></span> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
+					    <a href="<?php echo ampforwp_url_controller( get_permalink( $prev_post->ID ) ); ?>"><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ); ?></span> &laquo; <?php echo apply_filters('ampforwp_prev_link',$prev_text ); ?></a> <?php
 					 } ?>
 					</div>
 
