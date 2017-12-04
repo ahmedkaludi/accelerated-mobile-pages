@@ -194,6 +194,7 @@ amp-sidebar {
 *****/
 .header, .header-2, .header-3{
     width:100%;
+    display:inline-block;
     <?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;
      <?php }?>
@@ -265,6 +266,7 @@ amp-sidebar {
     z-index: 2;
     flex-grow: 1;
     align-self: center;
+    text-align:center;
 }
 .h-3 {
     order: 1;
@@ -285,7 +287,7 @@ amp-sidebar {
 }
 .logo .amp-logo a{
     line-height:0;
-    display:block;
+   display:inline-block;
     color:#000;
 }
 .logo h1{
@@ -293,6 +295,7 @@ amp-sidebar {
     font-size: 17px;
     font-weight: 700;
     text-transform: uppercase;
+    display:inline-block;
 }
 .h-srch a{
     line-height:1;
@@ -1251,6 +1254,9 @@ display: none;
 .overlay-search:before {
     right: 11%;
 }
+.right a, .left a{
+    padding:10px 25px;
+}
 
 /** Single Page **/
 .sp-rl {
@@ -1284,6 +1290,13 @@ display: none;
 .cntr, .sf-img .wp-caption-text{
     width: 100%;
     padding: 0px 20px;
+}
+.right, .left{
+    float:none;
+    text-align:center;
+}
+.right{
+    margin-bottom:30px;
 }
 .overlay-search:before {
     right: 9%;
