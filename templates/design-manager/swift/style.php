@@ -22,9 +22,11 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 /* Image Alignment */
 .alignright {
     float: right;
+    margin-left:10px;
 }
 .alignleft {
     float: left;
+    margin-right:10px;
 }
 .aligncenter {
     display: block;
@@ -279,6 +281,7 @@ amp-sidebar {
 .head-3 .h-logo{
     order:-1;
     align-self: center;
+    z-index:2;
 }
 .logo .amp-logo a{
     line-height:0;
