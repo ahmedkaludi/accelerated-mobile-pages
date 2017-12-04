@@ -1,10 +1,94 @@
+
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
   props: ['dataContent'],
-   methods:{
+  data: function(){
+  	return {
+  		currentLayoutData: app.mainContent,
+  		modalCrrentTab: 'customize',
+  		ajaxurl: amppb_panel_options.ajaxUrl,
+  		save_layout:{name:'',
+  					url:''
+  					},
+  		showsavedLayouts :amppb_panel_options.savedLayouts,
+  	}
+  },
+  methods:{
   	hidePageBuilderPopUp: function(event){
 			app.showModal = false;
 		},
+	settingShowTabs: function(key){
+		this.modalCrrentTab=key;
+	},
+	savePagebuilderSettings:function(){
+		app.mainContent = this.currentLayoutData;
+		app.call_default_functions();
+		this.hidePageBuilderPopUp();
+	},
+	savePagebuildercustomLayout: function(event){
+		if(!this.save_layout.name && this.save_layout.name==""){
+			alert("Please enter name of layout");
+			return false;
+		}
+		var saveLayoutData = {
+							action: 'amppb_save_layout_data',
+							layoutname:this.save_layout.name,
+							layouturl: this.save_layout.url,
+							layoutdata: JSON.stringify(this.currentLayoutData)
+							};
+		this.$http.post(amppb_panel_options.ajaxUrl+'?action=amppb_save_layout_data', 
+						saveLayoutData,
+						{
+						headers:{
+							responseType:'json'
+						},
+						responseType:'json',
+						emulateHTTP:true,
+						emulateJSON:true,
+						}
+					).then(function(response){
+						response =response.body;
+						//var somtest = response.json(response.body);
+						if(response.status="200"){
+							this.showsavedLayouts = response.data;
+							console.log(response.data)
+							this.save_layout = {name:"",url:""};
+						}
+					},
+					 //errorCallback
+					 function(){
+					 	alert('connection not establish');
+					 });
+	},
+	layoutFileSelected: function(event){
+		var filename  = event.target.name;
+		var files = event.target.files;
+		var fileCount = event.target.files.length;
+		if(fileCount>0){
+			var rawFile = files[0];
+			rawFile.onreadystatechange = function()
+		    {
+		        if(rawFile.readyState === 4)
+		        {
+		            if(rawFile.status === 200 || rawFile.status == 0)
+		            {
+		                var allText = rawFile.responseText;
+		                alert(allText);
+		            }
+		        }
+		    }
+		}//if closed
+		
+	
+	},
+	importLayout: function(event){
+		var response = confirm("Replace current layout. \n Do you want to import new layout?");
+		if(response){
+			app.mainContent = JSON.parse(event.target.getAttribute('data-layout'));
+			app.call_default_functions();
+		}
+		this.hidePageBuilderPopUp();
+	},
   }
 })
 Vue.component('amp-pagebuilder-module-modal', {
@@ -37,14 +121,17 @@ Vue.component('amp-pagebuilder-module-modal', {
 					});
 				}else if(app.modalType=='rowSetting'){
 					fields.forEach(function(fieldData,fieldKey){
+						if(rowData.data){
+							rowData.data[fieldData.name] = fieldData.default;
+						}
 						Vue.set( rowData.data, fieldData.name, fieldData.default );
 					});
 				}
 			}
 		});
-		console.log(app.modalTypeData.containerId, app.mainContent.rows);
+		return false;
+	//	app.call_default_functions();
 		this.hideModulePopUp();
-		app.call_default_functions();
 	}
   }
 })
@@ -128,6 +215,10 @@ Vue.component('fields-data',{
 })
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
+  http: {
+            emulateJSON: true,
+            emulateHTTP: true
+    },
   data: {
     message: 'Hello AMP Page builder वासियों',
     showModal: false,
@@ -146,30 +237,14 @@ var app = new Vue({
   methods: {
   		//module sort
   		modulesort:function(evt,originalEvent){
-  			
-  			/*
-  			console.log(evt.relatedContext.index,
-  						evt.relatedContext.element,
-  						evt.relatedContext.list,
-  						evt.relatedContext.component,
-  						);*/
-  			/*console.log("Module draggedContext");
-  			console.log(evt.draggedContext.index,
-  						evt.draggedContext.element,
-  						evt.draggedContext.futureIndex,
-  						);*/
   			if(evt && evt.type=='end'){
   				//Information where element has dropped
   				var module_id = evt.clone.getAttribute('data-module_id');//Dragged module
-				//var module_dragged_row_id = evt.from.getAttribute('data-rowid');
+				
 				//to Data
 				var module_sorted_row_id = parseInt(evt.to.getAttribute('data-rowid'));
 				var module_sorted_row_cellid = parseInt(evt.to.getAttribute('data-cellid'));
-				/*
-				console.log(module_id, module_dragged_row_id);
-
-  				var rowId = evt.to.getAttribute('data-rowid');
-				var colid = evt.to.getAttribute('data-cellid');*/
+				
 				//Element which we have moves
   				
   				this.mainContent.rows.forEach(function(data,key){
@@ -242,7 +317,7 @@ var app = new Vue({
 			this.dropover = false;
 			var containerid = parseInt(this.mainContent.totalrows);
 			
-			var noOfCell = columnData['value'].replace('col-',"");
+			var noOfCell = parseInt(columnData['value'].replace('col-',""));
 			var newRow   = {
 							'id':containerid,
 							'index':containerid,
@@ -251,8 +326,8 @@ var app = new Vue({
 							'data':{}
 							};
 			if(noOfCell==2){
-				newRow.cell_left = 0;
-				newRow.cell_right = 0;
+				newRow.cell_left = [];
+				newRow.cell_right = [];
 			}
 			this.mainContent.totalrows = containerid+1;
 			this.mainContent.rows.push(newRow);
@@ -294,20 +369,21 @@ var app = new Vue({
 						}
 						columnVal.cell_data.push(cellData);
 						if(cellid==1){
+							if(!columnVal.cell_left){
+								columnVal.cell_left = [];
+							}
 							columnVal.cell_left.push(cellData);
 						}
 						if(cellid==2){
+							if(!columnVal.cell_right){
+								columnVal.cell_right = [];
+							}
 							columnVal.cell_right.push(cellData);
 						}
 				}
 			});
 			this.mainContent.totalmodules = modulesid+1;
 			this.call_default_functions();
-			/*rowData.cell_data.sort(function(a, b){
-						var a1= a.index, b1= b.index;
-						if(a1== b1) return 0;
-						return a1> b1? 1: -1;
-					});*/
 
 			
 		},
@@ -361,7 +437,12 @@ var app = new Vue({
 						});
 					}
 				}
-			});
+			});//loop closed
+			//setting data Compatible
+			if(!this.mainContent.settingdata){
+				this.mainContent.settingdata = {};
+			}
+			
 		},
 		call_default_functions:function(){
 			this.re_process_rawdata();
@@ -373,122 +454,5 @@ var app = new Vue({
 	}/*module close*/
 });
 
-app.mainContent = amppb_data;/* {
-  "rows": [
-    {
-      "id": 1,
-      "index": 1,
-      "cells": 2,
-      'cell_left':2,
-      'cell_right':1,
-      "cell_data": [
-        {
-          "cell_id": 1,
-          "index": 1,
-          "type": "text",
-          "container_id": "1",
-          "cell_container": "1",
-          "text_editor": "Content Goes Here",
-          "css_class": "Content Goes Here"
-        },
-        {
-          "cell_id": 2,
-          "index": 1,
-          "type": "image",
-          "container_id": "1",
-          "cell_container": "2",
-          "selected_image": "http://localhost/magzine/testing-wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png",
-          "image_height": "150",
-          "image_width": "150",
-          "css_class": ""
-        },
-        {
-          "cell_id": 3,
-          "index": 2,
-          "type": "button",
-          "container_id": "1",
-          "cell_container": "1",
-          "button_txt": "Click Here",
-          "button_link": "#",
-          "css_class": ""
-        },
-        {
-          "cell_id": 4,
-          "index": 2,
-          "type": "button",
-          "container_id": "1",
-          "cell_container": "2",
-          "button_txt": "Click Here",
-          "button_link": "#",
-          "css_class": ""
-        },
-        {
-          "cell_id": 5,
-          "index": 3,
-          "type": "image",
-          "container_id": "1",
-          "cell_container": "1",
-          "selected_image": "http://localhost/magzine/testing-wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png",
-          "image_height": "150",
-          "image_width": "150",
-          "css_class": ""
-        },
-        {
-          "cell_id": 6,
-          "index": 3,
-          "type": "button",
-          "container_id": "1",
-          "cell_container": "2",
-          "button_txt": "Click Here",
-          "button_link": "#",
-          "css_class": ""
-        }
-      ],
-      "data": {
-        
-      }
-    },
-    {
-      "id": 2,
-      "index": 2,
-      "cells": 1,
-      "cell_data": [
-        {
-          "cell_id": 7,
-          "index": 1,
-          "type": "button",
-          "container_id": "2",
-          "cell_container": "1",
-          "button_txt": "Click Here",
-          "button_link": "#",
-          "css_class": ""
-        },
-        {
-          "cell_id": 8,
-          "index": 2,
-          "type": "button",
-          "container_id": "2",
-          "cell_container": "1",
-          "button_txt": "Click Here",
-          "button_link": "#",
-          "css_class": ""
-        },
-        {
-          "cell_id": 9,
-          "index": 3,
-          "type": "text",
-          "container_id": "2",
-          "cell_container": "1",
-          "text_editor": "Content Goes Here",
-          "css_class": "Content Goes Here"
-        }
-      ],
-      "data": {
-        
-      }
-    }
-  ],
-  "totalrows": 3,
-  "totalmodules": 10
-} */;
+app.mainContent = amppb_data;
 app.call_default_functions();

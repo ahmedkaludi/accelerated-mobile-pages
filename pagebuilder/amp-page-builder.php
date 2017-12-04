@@ -92,6 +92,7 @@ add_action("wp_ajax_call_page_builder", "call_page_builder");
 function call_page_builder(){
 	global $post;
 	global $moduleTemplate;
+	global $layoutTemplate;
 	if($post!=null){
 		$postId = $post->ID;
 	}
@@ -166,7 +167,7 @@ function call_page_builder(){
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop">
-				<drop class="drop" @drop="handleDrop">
+				<drop class="drop" @drop="handleDrop" >
 					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
 					<draggable :element="'div'" class="dragrow"
 						v-model="mainContent.rows" 
@@ -291,12 +292,12 @@ function call_page_builder(){
 
 	
          	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
-	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true">
+	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
 				    <span slot="image">Col 1 dragged</span>
 				</drag>
-				<drag class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true">
+				<drag class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
 				    >2 Columns</span>
 				    <span slot="image">Col 2 dragged</span>
@@ -308,7 +309,7 @@ function call_page_builder(){
 			    foreach ($moduleTemplate as $key => $module) {
 			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
-			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true">
+			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
 				    	<span class="amppb-add-row button-primary button-large draggable module-'.strtolower($module['name']).'"
 				    	>
 				    		'.$module['label'].'
@@ -399,4 +400,72 @@ function ampforwp_get_image() {
     }
 }
 
+add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
+function amppb_export_layout_data(){
+	header( 'content-type: application/json' );
+	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
+	
+	$export_data = wp_unslash( $_POST['export_layout_data'] );
+	echo $export_data;
+	
+	wp_die();
+}
+add_action( 'wp_ajax_amppb_save_layout_data', 'amppb_save_layout_data');
+function amppb_save_layout_data(){
+	$layoutname = $_POST['layoutname'];
+	$layouturl = $_POST['layouturl'];
+	$layoutdata = $_POST['layoutdata'];
+	$postarr = array(
+				'post_title'   =>$layoutname,
+				'post_content' =>$layoutdata,
+				'post_excerpt' =>$layouturl,
+				'post_author'  => 1,
+				'post_status'  =>'publish',
+				'post_type'    =>'amppb_layout'
+					);
+	wp_insert_post( $postarr );
+
+
+	$allPostLayout = array();
+	$args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'date',
+				'order'            => 'DESC',
+				'post_type'        => 'amppb_layout',
+				'post_status'      => 'publish'
+				);
+	$posts_array = get_posts( $args );
+	if(count($posts_array)>0){
+		foreach ($posts_array as $key => $layoutData) {
+		$allPostLayout[] = array('post_title'=>$layoutData->post_title,
+								'post_content'=>$layoutData->post_content,
+								'post_excerpt'=>$layoutData->post_excerpt
+									);
+		}
+	}
+	echo json_encode(array("status"=>200, "data"=>$allPostLayout));
+	exit;
+}
+
+function create_posttype_amppb_layout(){
+	register_post_type( 'amppb_layout',
+	    array(
+	      'labels' => array(
+		        'name' => __( 'AMP Layouts' ),
+		        'singular_name' => __( 'AMP Layout' )
+		      ),
+	    /*'public' => true,
+      	'has_archive' => false,*/
+	    'public' => false,  // it's not public, it shouldn't have it's own permalink, and so on
+		'publicly_queriable' => true,  // you should be able to query it
+		'show_ui' => true,  // you should be able to edit it in wp-admin
+		'exclude_from_search' => true,  // you should exclude it from search results
+		'show_in_nav_menus' => false,  // you shouldn't be able to add it to menus
+		'has_archive' => false,  // it shouldn't have archive page
+		'rewrite' => false,  // it shouldn't have rewrite rules
+	      'rewrite' => array('slug' => 'amppb-layout'),
+	    )
+	  );
+}
+add_action( 'init', 'create_posttype_amppb_layout' );
 require_once AMP_PAGE_BUILDER.'functions.php';

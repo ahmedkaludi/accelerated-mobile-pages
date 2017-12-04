@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 /* Admin Script */
 /**
  * Admin pagebuilder Scripts
@@ -12,6 +8,7 @@ add_action( 'admin_enqueue_scripts', 'amppbbase_admin_scripts' );
 function amppbbase_admin_scripts( $hook_suffix ){
     global $post_type;
     global $moduleTemplate;
+    global $layoutTemplate;
     /* In Page Edit Screen */
     //if( 'page' == $post_type && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     if($post_type=='post' || $post_type=='page'){
@@ -21,6 +18,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
         $amp_current_post_id = $postId = get_the_ID();
             
 			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );
+			wp_enqueue_script( 'vuejs-resource', 'https://cdn.jsdelivr.net/npm/vue-resource@1.3.4' );
+			wp_enqueue_script( 'vue-toasted', 'https://unpkg.com/vue-toasted' );
 			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
 			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
 			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
@@ -28,15 +27,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
-						'jquery-ui-resizable',
-						'jquery-ui-sortable',
-						'jquery-ui-draggable',
-						'jquery-ui-droppable',
-						'underscore',
-						'backbone',
-						'plupload',
-						'plupload-all',
+						'mce-view',
 						'vuejs',
+						'vuejs-resource',
 						'vueSortable',
 						'vuedraggable',
 						'vuedropdrag'
@@ -72,9 +65,31 @@ function amppbbase_admin_scripts( $hook_suffix ){
 					$previousData = ($jsonData);
 				}
 			wp_localize_script( 'amppb-admin', 'amppb_data',$previousData);
-					
-			
-	        add_action( 'admin_footer', 'js_templates');
+
+
+			$allPostLayout = array();
+			$args = array(
+						'posts_per_page'   => -1,
+						'orderby'          => 'date',
+						'order'            => 'DESC',
+						'post_type'        => 'amppb_layout',
+						'post_status'      => 'publish'
+						);
+			$posts_array = get_posts( $args );
+			if(count($posts_array)>0){
+				foreach ($posts_array as $key => $layoutData) {
+				$allPostLayout[] = array('post_title'=>$layoutData->post_title,
+										'post_content'=>$layoutData->post_content,
+										'post_excerpt'=>$layoutData->post_excerpt
+											);
+				}
+			}
+			$components_options = array(
+									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
+									"savedLayouts"=>$allPostLayout
+									);
+			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
+			add_action( 'admin_footer', 'js_templates',9999);
 	   
 	    
     }
@@ -83,6 +98,9 @@ function amppbbase_admin_scripts( $hook_suffix ){
 
 function js_templates() {
 	global $containerCommonSettings;
+	global $moduleTemplate;
+    global $layoutTemplate;
+    global $savedlayoutTemplate;
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
 
@@ -117,8 +135,6 @@ function amppb_save_post( $post_id, $post ){
     /* Get new submitted data and sanitize it. */
     $submitted_data = isset( $request['amp-page-builder'] ) ?  $request['amp-page-builder']  : null;
     $submitted_data = (str_replace("'", "", $submitted_data));
-    //$submitted_data = json_decode($submitted_data,true);
-   // $submitted_data = wp_slash(json_encode($submitted_data));
     $submitted_data = wp_slash($submitted_data);
     
     /* New data submitted, No previous data, create it  */
@@ -137,6 +153,11 @@ function amppb_save_post( $post_id, $post ){
 }
 
 
+
+
+/***
+Show Front Data
+****/
 
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
@@ -335,4 +356,7 @@ function sortByIndex($contentArray){
 	}else{
 		return $contentArray;
 	}
+}
+function empty_content($str) {
+    return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
 }

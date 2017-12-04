@@ -692,7 +692,7 @@ div.drag{
       width: 19%;
       height:100%;
       float: left;
-
+    overflow-y: auto;
     margin: 0;
     padding: 10px 0;
     border-right-width: 1px;
@@ -719,12 +719,15 @@ div.drag{
   /*margin: 20px 0;*/
   width: 79%;
   float: right;
+  overflow-y: auto;
+  max-height: 100%;
+  height: 100%;
 }
 .modal-content{
     height:85%;
     max-height: 85%;
-    overflow-y: auto;
-    overflow-x: hide;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .modal-default-button {
   float: right;
@@ -806,3 +809,90 @@ div.drag{
 }
 
 
+
+
+
+/***************************
+Layout css 
+***************************/
+
+.amppb-layout-layout{
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    padding: 6px;
+    width: 25%;
+}
+.amppb-layout-layout .amppb-layout-wrapper{
+        padding: 15px 10px;
+    background: #F7F7F7;
+    border: 1px solid #d0d0d0;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.amppb-layout-layout .amppb-layout-wrapper .amppb-layout-screenshot{
+    background: #ffffff;
+    margin-bottom: 10px;
+    border: 1px solid #d0d0d0;
+    cursor: pointer;
+}
+.amppb-layout-screenshot img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.amppb-layout-bottom{
+    position: relative;
+    margin: 10px -10px -15px -10px;
+    background: #fcfcfc;
+    border-top: 1px solid #d0d0d0;
+}
+.amppb-layout-title {
+    margin: 0;
+    padding: 16px 10px;
+    cursor: pointer;
+}
+.amppb-layout-button{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    visibility: hidden;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 11px 10px 10px 15px;
+    border-left: 1px solid #d0d0d0;
+    background: #f6f6f6;
+    -webkit-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.05);
+    box-shadow: -1px 0 1px rgba(0, 0, 0, 0.05);
+}
+.amppb-layout-button button{
+    background: #fafafa;
+    border-color: #999;
+    color: #23282d;
+}
+.amppb-layout-layout:hover .amppb-layout-button{
+    visibility: visible;
+}
+
+.amppb-modal-row{
+    width:100%;
+    clear: both;
+}
+.amppb-modal-col-2{
+    width: 46%;
+    padding: 15px 15px 0px 15px;
+    float: left;
+}
+.fileupload{
+    margin-bottom: 10px; 
+}
