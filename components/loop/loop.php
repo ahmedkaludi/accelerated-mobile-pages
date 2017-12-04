@@ -14,7 +14,8 @@ function amp_archive_title(){
 	}
 }
 
-$amp_q ='';
+$amp_q = '';
+$count = 1;
 function call_loops_standard($data=array()){
 	global $amp_q;
 	if (get_query_var( 'paged' ) ) {
@@ -128,9 +129,11 @@ function call_loops_standard($data=array()){
 	}
 
 	function amp_start_loop(){
-		global $amp_q;
+		global $amp_q, $count;
 		$post_status = $amp_q->have_posts();
 		$amp_q->the_post();
+		do_action('ampforwp_between_loop',$count);
+        $count++;
 		return $post_status;
 	}
 	function amp_end_loop(){
