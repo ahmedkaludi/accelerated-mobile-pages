@@ -20,16 +20,12 @@
                         </div> 
                     </div>
                 </div><!-- /.search -->
-                <?php if($redux_builder_amp['cart']){?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
-                <?php if($redux_builder_amp['call']){?>
                 <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -52,16 +48,12 @@
                     <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo $redux_builder_amp['signin-button-text'] ?></a>
                 </div>
                 <?php } ?>
-                <?php if($redux_builder_amp['cart']){?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
-                <?php if($redux_builder_amp['call']){?>
                 <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
             </div>
         </div>
     </div>
@@ -87,16 +79,12 @@
                         </div> 
                     </div>
                 </div><!-- /.search -->
-                <?php if($redux_builder_amp['cart']){?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
-                <?php if($redux_builder_amp['call']){?>
                 <div class="h-call h-ic">
                     <a href="#"></a>
                 </div>
-                <?php } ?>
             </div>
         </div>
     </div>
