@@ -273,6 +273,9 @@ amp-sidebar {
 .h-3 .h-nav, .h-ic{
     margin:0px 10px;
 }
+.h-ic:last-child{
+    margin-right:0;
+}
 .head-3 .h-logo{
     order:-1;
     align-self: center;
@@ -1172,6 +1175,9 @@ display: none;
 .fsp{
     width:30%;
 }
+.sp-rt {
+    margin-left: 30px;
+}
 
 
 }
@@ -1261,7 +1267,7 @@ display: none;
 }
 }
 @media(max-width:480px){
-.cntr {
+.cntr, .sf-img .wp-caption-text{
     width: 100%;
     padding: 0px 20px;
 }
