@@ -796,10 +796,10 @@ display: none;
 .shr-txt{
     margin-bottom: 15px;
 }
-.athr-tx, .lbl-tx{
+.athr-tx, .tags .amp-tags > span:nth-child(1){
     margin-bottom: 10px;
 }
-.shr-txt, .athr-tx, .lbl-tx, .amp-related-posts-title{
+.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title{
     text-transform: uppercase;
     font-size: 12px;
     color: #a1a1a1;
@@ -818,9 +818,6 @@ display: none;
     text-transform: capitalize;
     color: #005be2;
     font-weight: 500;
-}
-.tags .amp-tags > span:nth-child(1){
-    display:none;
 }
 .amp-tags span a{
     font-size:15px;

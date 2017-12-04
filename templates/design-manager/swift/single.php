@@ -32,7 +32,6 @@
 		            	<?php amp_author_box(); ?>
 		            </div>
 		            <div class="tags">
-		            	<span class="lbl-tx">TAGS</span>
 		            	<?php amp_tags_list();?>
 		            </div>
 		            <div class="post-date">

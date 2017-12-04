@@ -5,11 +5,11 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 */
 global $post;
 function ampforwp_framework_get_categories_list(){
-	global $post;
+	global $post, $redux_builder_amp;
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
-				<span>Categories:</span>
+				<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' ); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
 						//if($redux_builder_amp['ampforwp-archive-support']){
 								echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) )   .'" > '. $cat->name .'</a></span>');//#934
@@ -21,7 +21,7 @@ function ampforwp_framework_get_categories_list(){
 	<?php endif; 
 }
 function ampforwp_framework_get_tags_list(){
-	global $post;
+	global $post, $redux_builder_amp;
 	 	$ampforwp_tags=  get_the_terms( $post->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-tags">
@@ -29,7 +29,7 @@ function ampforwp_framework_get_tags_list(){
 					  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
 							 		}*/
 							 		?>
-							<span>Tags:</span>
+							<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags' ); ?></span>
 					<?php 	foreach ($ampforwp_tags as $tag) {
 							//if($redux_builder_amp['ampforwp-archive-support']){
                 echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
