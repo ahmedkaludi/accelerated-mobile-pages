@@ -1,20 +1,16 @@
 <?php
 function ampforwp_framework_get_comments(){
 global $redux_builder_amp;
-if ( !comments_open() ){
+if ( !comments_open() || false == $redux_builder_amp['wordpress-comments-support'] ) {
 		return;
 	}
 if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 	echo ampforwp_framework_get_facebook_comments();
 }
-elseif ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
+if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
-else {
-	if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] || $redux_builder_amp['ampforwp-facebook-comments-support']) {
-	  return;
-	}
-	?>
+if( true == $redux_builder_amp['wordpress-comments-support'] ){ ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;

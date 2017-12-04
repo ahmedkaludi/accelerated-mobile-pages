@@ -316,6 +316,14 @@ function amp_non_amp_link(){
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }
 }
 
+// Back to Top
+function amp_back_to_top_link(){
+	 global $redux_builder_amp;
+    if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
+        <a href="#top"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
+      <?php }
+}
+
 function amp_loop_template(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
