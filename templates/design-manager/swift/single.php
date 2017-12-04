@@ -28,7 +28,7 @@
 		            	]);?> 
 		            </div>
 		            <div class="sp-athr">
-		            	<span class="athr-tx">WRITTEN BY</span>
+		            	<span class="athr-tx"><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-by-text'], 'BY' ); ?></span>
 		            	<?php amp_author_box(); ?>
 		            </div>
 		            <div class="tags">
