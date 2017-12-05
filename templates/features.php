@@ -5256,6 +5256,8 @@ if( ! function_exists(' ampforwp_envira_lazy_load ') ){
 	return $data;
 	}
 }	
+
+// amp-vimeo proper video id for 3 parameter url
 add_filter('amp_vimeo_parse_url','amp_vimeo_parse_url_video_id');
 function amp_vimeo_parse_url_video_id($tok){
 
