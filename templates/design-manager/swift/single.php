@@ -3,6 +3,7 @@
 <div class="sp">
 	<div class="cntr">
 		<?php amp_categories_list();?>
+		<?php amp_breadcrumb();?>
 		<?php amp_title(); ?>
 	</div>
 	<div class="sf-img">

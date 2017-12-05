@@ -1,7 +1,7 @@
 <?php
 $loadComponent = array();
 $scriptComponent = array();
-$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now');
+$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb');
 //$removeScriptComponent = array('amp-carousel');
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
@@ -220,6 +220,14 @@ function amp_call_now(){
 	}
 }
 
+// Breadcrumb
+function amp_breadcrumb(){
+	global $loadComponent;
+	if(isset($loadComponent['AMP-breadcrumb']) && $loadComponent['AMP-breadcrumb']==true){
+		echo amp_breadcrumb_output();
+	}
+}
+
 //Get Core of AMP HTML
 function amp_header_core(){
 	$post_id = get_queried_object_id();
@@ -358,38 +366,38 @@ $thisTemplate = new AMP_Post_Template($post_id);
 <?php }
 
 function amp_date($args=array()){
-		global $redux_builder_amp;
-		if( 2 == $redux_builder_amp['ampforwp-post-date-format'] ){
-			$args['format'] = 'traditional';
-		}
-		if(isset($args['format']) && $args['format']=='traditional'){
-			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
-        }else{
-        	$post_date =  human_time_diff(
-        						get_the_time('U', get_the_ID() ), 
-        						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
-        						'ago');
-        }
-        $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-        echo '<div class="loop-date">'.$post_date.'</div>';
+	global $redux_builder_amp;
+	if( 2 == $redux_builder_amp['ampforwp-post-date-format'] ){
+		$args['format'] = 'traditional';
 	}
+	if(isset($args['format']) && $args['format']=='traditional'){
+		$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+    }else{
+    	$post_date =  human_time_diff(
+    						get_the_time('U', get_the_ID() ), 
+    						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
+    						'ago');
+    }
+    $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
+    echo '<div class="loop-date">'.$post_date.'</div>';
+}
 
 //Load font Compoment
-	$fontComponent = array();
-	function amp_post_load_custom_fonts(){
-		global $fontComponent;
-		if(count($fontComponent)){
-			$fontComponent = array_unique($fontComponent);
-			foreach ($fontComponent as $key => $value) {
-			?>
-			<link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
-			<?php		
-			}
+$fontComponent = array();
+function amp_post_load_custom_fonts(){
+	global $fontComponent;
+	if(count($fontComponent)){
+		$fontComponent = array_unique($fontComponent);
+		foreach ($fontComponent as $key => $value) {
+		?>
+		<link rel="stylesheet" href="<?php echo esc_url( $value ); ?>">
+		<?php		
 		}
-		
 	}
-	add_action( 'amp_meta', 'amp_post_load_custom_fonts');
-	function amp_font($fontName){
-		global $fontComponent;
-		$fontComponent[] = $fontName;
-	}
+	
+}
+add_action( 'amp_meta', 'amp_post_load_custom_fonts');
+function amp_font($fontName){
+	global $fontComponent;
+	$fontComponent[] = $fontName;
+}
