@@ -38,3 +38,5 @@ Check #1033 for more details on 10 and 11
 Reason: To extend the functionality of sidebars and Pagebuilder
 
 13. Foo Gallery Support code added in class-amp-img-sanitizer.php in line no 35 #1424
+
+14. amp_vimeo_parse_url filter applied in class-amp-vimeo-embed.php in line no 108

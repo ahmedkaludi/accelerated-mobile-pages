@@ -5256,3 +5256,12 @@ if( ! function_exists(' ampforwp_envira_lazy_load ') ){
 	return $data;
 	}
 }	
+add_filter('amp_vimeo_parse_url','amp_vimeo_parse_url_video_id');
+function amp_vimeo_parse_url_video_id($tok){
+
+	  if(sizeof($tok)==3){
+       return $tok[1];
+      }else{
+        return end($tok);
+      }
+}
