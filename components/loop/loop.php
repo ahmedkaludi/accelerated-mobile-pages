@@ -1,9 +1,36 @@
 <?php
 function amp_archive_title(){
 	global $redux_builder_amp;
+	if( is_author() ){
+		$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+		if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
+			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
+			if($curauth_url){ ?>
+				<div class="amp-wp-content author-img">
+					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+				</div>
+			<?php }
+		}
+	}
 	if ( is_archive() ) {
 	    the_archive_title( '<h3 class="amp-archive-title">', '</h3>' );
 	    the_archive_description( '<div class="amp-archive-desc">', '</div>' );
+	}
+	if( is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support'] ){
+		$parent_cat_id 	= '';
+	    $cat_childs		= array();
+	    $parent_cat_id 	= get_queried_object_id();
+	 	$cat_childs 	= get_terms( array(
+	  						'taxonomy' => get_queried_object()->taxonomy,
+	  						'parent'   => $parent_cat_id )
+						);
+		if( !empty( $cat_childs ) ){
+			echo "<div class='amp-sub-archives'><ul>";
+			foreach ($cat_childs as $cat_child ) {
+				 echo '<li><a href="' . get_term_link( $cat_child ) . '">' . $cat_child->name . '</a></li>'; 
+			}
+			echo "</ul></div>";
+		}
 	}
 	if(is_search()){
 		$label = 'You searched for:';

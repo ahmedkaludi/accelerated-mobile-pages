@@ -701,6 +701,7 @@ display: none;
     margin-top: 10px;
     color: #333;
 }
+.author-img amp-img{border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}.author-img{float: left;padding-bottom: 25px;}
 /****
 * Single
 *****/
