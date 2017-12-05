@@ -49,4 +49,7 @@
 		</div>
 	</div>
 </footer>
+<div class="swift-sticky-social">
+	<?php amp_social(); ?>
+</div>
 <?php amp_footer_core(); ?>

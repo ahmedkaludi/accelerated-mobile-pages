@@ -861,6 +861,9 @@ display: none;
     border-radius: 2px;
     padding:2px;
 }
+
+.swift-sticky-social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
+
 .sp-rt p, .pg p{
     font-size:19px;
     line-height:30px;
