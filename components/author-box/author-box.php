@@ -59,10 +59,14 @@ $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_
             <amp-img src="<?php echo $author_avatar_url; ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
-        <?php echo '<div class="author-details '. $author_wrapper_class .'">
-                        <span class="author-name">'
-                        .$author_prefix . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>
-                        </span>';
+        <?php echo '<div class="author-details '. $author_wrapper_class .'">';
+        if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
+             echo '<span class="author-name">'
+                .$author_prefix . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>
+                </span>';
+        }
+        else
+            echo '<span class="author-name">' . $author_prefix . esc_html( $post_author->display_name ) . '</span>';
 
         //to show date and time
         if($show_date || $show_time){
