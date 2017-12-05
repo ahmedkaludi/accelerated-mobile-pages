@@ -160,7 +160,7 @@ function call_page_builder(){
 		{{message}}
 		<div class="enable_ampforwp_page_builder">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
-			<label  @click="showModal = true" data-content='<?php echo json_encode($pageBuilderData); ?>'>settings</label>
+			<label  @click="showModal = true;">settings</label>
 		</div>
 		<div id="amp-page-builder">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
@@ -400,52 +400,6 @@ function ampforwp_get_image() {
     }
 }
 
-add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
-function amppb_export_layout_data(){
-	header( 'content-type: application/json' );
-	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
-	
-	$export_data = wp_unslash( $_POST['export_layout_data'] );
-	echo $export_data;
-	
-	wp_die();
-}
-add_action( 'wp_ajax_amppb_save_layout_data', 'amppb_save_layout_data');
-function amppb_save_layout_data(){
-	$layoutname = $_POST['layoutname'];
-	$layouturl = $_POST['layouturl'];
-	$layoutdata = $_POST['layoutdata'];
-	$postarr = array(
-				'post_title'   =>$layoutname,
-				'post_content' =>$layoutdata,
-				'post_excerpt' =>$layouturl,
-				'post_author'  => 1,
-				'post_status'  =>'publish',
-				'post_type'    =>'amppb_layout'
-					);
-	wp_insert_post( $postarr );
-
-
-	$allPostLayout = array();
-	$args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'date',
-				'order'            => 'DESC',
-				'post_type'        => 'amppb_layout',
-				'post_status'      => 'publish'
-				);
-	$posts_array = get_posts( $args );
-	if(count($posts_array)>0){
-		foreach ($posts_array as $key => $layoutData) {
-		$allPostLayout[] = array('post_title'=>$layoutData->post_title,
-								'post_content'=>$layoutData->post_content,
-								'post_excerpt'=>$layoutData->post_excerpt
-									);
-		}
-	}
-	echo json_encode(array("status"=>200, "data"=>$allPostLayout));
-	exit;
-}
 
 function create_posttype_amppb_layout(){
 	register_post_type( 'amppb_layout',

@@ -10,13 +10,12 @@ return array(
             ),
 		'fields'=> array(
 					array(
-						'type'		=>'textarea',
+						'type'		=>'text-editor',
 						'name'		=>"text_editor",
 						'label'		=>'Content',
-						'tab'		=> 'customizer',
+						'tab'		=>'customizer',
 						'default'	=>'Content Goes Here',
 						),
-            
 					array(
 						'type'		=>'text',
 						'name'		=>"css_class",

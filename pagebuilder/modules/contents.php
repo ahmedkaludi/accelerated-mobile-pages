@@ -1,4 +1,5 @@
 <?php		
+ includes_url('category.php');
  $output = '<div class="pb_mod cat_mod"><h4>{{content_title}}</h4>		
  			<div class="wrap">{{category_selection}}</div>		
  	</div>';		

@@ -20,9 +20,8 @@ Vue.component('amp-pagebuilder-modal', {
 	settingShowTabs: function(key){
 		this.modalCrrentTab=key;
 	},
-	savePagebuilderSettings:function(){
-		app.mainContent = this.currentLayoutData;
-		app.call_default_functions();
+	savePagebuilderSettings:function(currentLayoutData){
+		app.mainContent = currentLayoutData;
 		this.hidePageBuilderPopUp();
 	},
 	savePagebuildercustomLayout: function(event){
@@ -51,7 +50,8 @@ Vue.component('amp-pagebuilder-modal', {
 						//var somtest = response.json(response.body);
 						if(response.status="200"){
 							this.showsavedLayouts = response.data;
-							console.log(response.data)
+							amppb_panel_options.savedLayouts = this.showsavedLayouts
+							
 							this.save_layout = {name:"",url:""};
 						}
 					},
@@ -72,8 +72,8 @@ Vue.component('amp-pagebuilder-modal', {
 		        {
 		            if(rawFile.status === 200 || rawFile.status == 0)
 		            {
-		                var allText = rawFile.responseText;
-		                alert(allText);
+		              var allText = rawFile.responseText;
+		              alert(allText);
 		            }
 		        }
 		    }
@@ -106,8 +106,25 @@ Vue.component('amp-pagebuilder-module-modal', {
 	showtabs: function(key){
 		this.modalcontent.default_tab=key;
 	},
+	removeModule: function(){
+		var response = confirm("Do you want to delete Module? ");
+			if(response){
+				app.mainContent.rows.forEach(function(rowData, rowKey){
+					if(rowData.id==app.modalTypeData.containerId){
+						if(app.modalType=='module'){
+							rowData.cell_data.forEach(function(moduleData, moduleKey){
+								if(moduleData.cell_id==app.modalTypeData.moduleId){
+									Vue.delete( rowData.cell_data, moduleKey );
+									return false;
+								}
+							});
+						}
+					}
+				});
+			}
+			this.hideModulePopUp();
+	},
 	saveModulePopupdata: function(fields){
-		console.log(fields);
 		//Save Values to main content
 		app.mainContent.rows.forEach(function(rowData, rowKey){
 			if(rowData.id==app.modalTypeData.containerId){
@@ -129,9 +146,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 				}
 			}
 		});
+		this.hideModulePopUp();
 		return false;
 	//	app.call_default_functions();
-		this.hideModulePopUp();
 	}
   }
 })
@@ -150,7 +167,8 @@ Vue.component('module-data',{
 			openModulePopup(event,'module');
 		},
 	}
-})
+});
+
 function openModulePopup(event,type){
 	popupContent = event.currentTarget.getAttribute('data-popupContent'); 
 	app.modalType = type;
@@ -203,16 +221,58 @@ function openModulePopup(event,type){
 	
 	app.showmoduleModal = true;
 }
+
+
 Vue.component('fields-data',{
 	template: '#fields-data-template',
 	props: ['field', 'fieldkey', 'defaulttab'],
 	data:function(){
 		return {
-			default_value:"Hello"
+			text_editor_wysiwig: ''
 		};
 	},
-	methods:{}	
-})
+	mounted: function () {
+	  this.$nextTick(function () {
+	  	//alert("csdcd");
+	  /*	tinymce.destroy();
+	  	tinymce.execCommand('mceRemoveControl', true, 'my_original_textarea_id');
+	  	tinymce.init(tinyMCEPreInit.mceInit.content); 
+        tinyMCE.execCommand('mceAddEditor', false, "My_TextAreaID_22"); 
+        quicktags({id : "My_TextAreaID_22"});*/
+	    // code that assumes this.$el is in-document
+	   
+	  })
+	},
+
+	methods:{
+		getEditor: function(values){
+
+			this.$http.post(amppb_panel_options.ajaxUrl+'?action=amppb_textEditor', 
+						values,
+						{
+						headers:{
+							responseType:'json'
+						},
+						responseType:'json',
+						emulateHTTP:true,
+						emulateJSON:true,
+						}
+					).then(function(response){
+						response =response.body;
+						//var somtest = response.json(response.body);
+						this.text_editor_wysiwig = response;
+					},
+					 //errorCallback
+					 function(){
+					 	alert('connection not establish');
+					 });
+
+		}
+	}
+});
+
+
+
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
   http: {
@@ -440,7 +500,10 @@ var app = new Vue({
 			});//loop closed
 			//setting data Compatible
 			if(!this.mainContent.settingdata){
-				this.mainContent.settingdata = {};
+				this.mainContent.settingdata = {
+					front_class: '',
+					front_css: ''
+				};
 			}
 			
 		},
