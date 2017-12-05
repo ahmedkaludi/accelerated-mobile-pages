@@ -94,29 +94,25 @@ function amp_title(){
 }
 
 // Excerpt
-function amp_excerpt(){
-		global $redux_builder_amp, $post;
+function amp_excerpt($no_of_words=15){
+	global $redux_builder_amp, $post;
 	$ID = '';
-	if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
-		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
-			$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		}
+	if( ampforwp_is_front_page() ){
+		$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	else
 		$ID = $post->ID;
-	if( $ID!=null ){  ?>
+	if( $ID != null && true == $redux_builder_amp['enable-excerpt-single'] ){  ?>
 			<p><?php 
-				 if(has_excerpt()){
+				 if( has_excerpt() ){
 					$content = get_the_excerpt();
-				}else{
+				} else{
 					$content = get_the_content();
 				}
-				echo wp_trim_words( strip_shortcodes( $content ) , '15' ); 
-			?></p>
-<?php
-    }
+				echo wp_trim_words( strip_shortcodes( $content ) , $no_of_words ); ?>
+			</p>
+	<?php }
 }
-
 
 //Menus
 function amp_menu(){
