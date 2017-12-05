@@ -359,6 +359,9 @@ $thisTemplate = new AMP_Post_Template($post_id);
 
 function amp_date($args=array()){
 		global $redux_builder_amp;
+		if( 2 == $redux_builder_amp['ampforwp-post-date-format'] ){
+			$args['format'] = 'traditional';
+		}
 		if(isset($args['format']) && $args['format']=='traditional'){
 			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
         }else{
@@ -367,6 +370,7 @@ function amp_date($args=array()){
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
         }
+        $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
         echo '<div class="loop-date">'.$post_date.'</div>';
 	}
 
