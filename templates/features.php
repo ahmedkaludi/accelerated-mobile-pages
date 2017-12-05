@@ -4905,10 +4905,10 @@ function ampforwp_url_purifier($url){
 		$endpoint 					= "";
 		$queried_var				= "";
 		$quried_value				= "";
+		$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
 		$get_permalink_structure = get_option('permalink_structure');
     
 		if ( empty( $get_permalink_structure ) ) {
-			
 			if (is_home() || is_archive() ) {
 				$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
 			}
@@ -4934,7 +4934,7 @@ function ampforwp_url_purifier($url){
 		        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
 		          	$url = user_trailingslashit( trailingslashit($url) );
 		        } else {
-		          	$url = user_trailingslashit( add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url) );
+		        	$url = user_trailingslashit( trailingslashit($url) . $endpoint );
 		        }
 	      	}
 		}
