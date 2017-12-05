@@ -15,6 +15,13 @@
 			<div class="sp-rl">
 				<div class="sp-rt">
 					<?php amp_content(); ?>
+					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+						<?php amp_author_box( 
+											array(	'avatar'=>true,
+													'avatar_size'=>60,
+													'author_description'=>true)
+											); ?>
+					<?php } ?>
 					<?php amp_post_pagination();?>
 					<div class="cmts">
 						<?php amp_comments();?>
