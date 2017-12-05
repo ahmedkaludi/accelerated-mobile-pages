@@ -23,9 +23,11 @@
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="h-call h-ic">
-                    <a href="#"></a>
-                </div>
+                <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
+                    <div class="h-call h-ic">
+                        <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                    </div>
+                <?php } ?> 
             </div>
             <div class="clearfix"></div>
         </div>
@@ -51,9 +53,11 @@
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="h-call h-ic">
-                    <a href="#"></a>
-                </div>
+                <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
+                    <div class="h-call h-ic">
+                        <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                    </div>
+                <?php } ?>    
             </div>
         </div>
     </div>
@@ -82,9 +86,11 @@
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
-                <div class="h-call h-ic">
-                    <a href="#"></a>
-                </div>
+                <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
+                    <div class="h-call h-ic">
+                        <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                    </div>
+                <?php } ?> 
             </div>
         </div>
     </div>
