@@ -828,14 +828,18 @@ display: none;
     color: #005be2;
     font-weight: 500;
 }
-.amp-tags span a:after{
+.amp-tags .amp-tag {
+    font-size:15px;
+    font-weight: 500;
+}
+.amp-tags .amp-tag:after{
     content: "/";
     display: inline-block;
     padding: 5px;
     position: relative;
     top: 2px;
 }
-.amp-tags span:last-child a:after{
+.amp-tags .amp-tag:last-child:after{
     display:none;
 }
 .post-date .loop-date{
