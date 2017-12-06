@@ -345,7 +345,6 @@ if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
 	}
 $thisTemplate = new AMP_Post_Template($post_id);
 	 ?>
-	<div>
 	    <?php do_action('ampforwp_before_post_content',$thisTemplate); 
 		$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
 		// Normal Content
@@ -358,7 +357,6 @@ $thisTemplate = new AMP_Post_Template($post_id);
 		$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 		echo $ampforwp_the_content;
     	do_action('ampforwp_after_post_content',$thisTemplate); ?>
-	</div>
 <?php }
 
 function amp_date($args=array()){
