@@ -13,7 +13,7 @@ return array(
                     'type'    => 'text',
                     'name'    => 'button_txt',
                     'label'   => 'Button Text',
-                    'tab'     =>'customizer',
+                    'tab'     => 'customizer',
                     'default' => 'Click Here'
 						),
 				 	array(

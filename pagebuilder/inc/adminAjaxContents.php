@@ -1,6 +1,12 @@
 <?php
+add_action('wp_ajax_amppb_color_picker',function(){
+	wp_enqueue_style( 'wp-color-picker' );
+	echo '<input type="text" value="#bada55" class="color-field"/><script>$(\'.color-field\').wpColorPicker()</script>';
+
+});
+
 add_action('wp_ajax_amppb_textEditor', function(){
-    wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
+   echo wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
 });
 
 add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
@@ -48,4 +54,40 @@ function amppb_save_layout_data(){
 	}
 	echo json_encode(array("status"=>200, "data"=>$allPostLayout));
 	exit;
+}
+
+
+
+// Ajax action to refresh the user image
+add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');
+function ampforwp_get_image() {
+    if(isset($_GET['id']) ){
+		if(strpos($_GET['id'],",") !== false){
+			$get_ids = explode(",", $_GET['id']);
+			
+			if(count($get_ids)>0){
+				foreach($get_ids as $id){
+					$image = wp_get_attachment_image( $id, 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+					$image_src = wp_get_attachment_image_src($id, 'medium', false);
+					$data[] = array(
+						'image'    => $image,
+						'detail'	   => $image_src
+					);
+
+				}
+			}
+		}else{
+			$image = wp_get_attachment_image( $_GET['id'], 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
+			$image_src = wp_get_attachment_image_src($_GET['id'], 'medium', false);
+			$data = array(
+				'image'    => $image,
+				'detail'   => $image_src
+			);
+		}
+        wp_send_json_success( $data );
+        exit;
+    } else {
+        wp_send_json_error();
+        exit;
+    }
 }

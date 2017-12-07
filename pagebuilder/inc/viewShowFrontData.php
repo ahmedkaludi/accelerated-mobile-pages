@@ -58,6 +58,8 @@ function amp_pagebuilder_content_styles(){
 
 function amppb_post_content($content){
 	require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+	global $containerCommonSettings;
+	global $moduleTemplate;
 	global $post,  $redux_builder_amp;
 	$postId = $post->ID;
 	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){

@@ -1,5 +1,6 @@
 <?php $output = '<div class="amp_pb_module amp_text {{css_class}}">
-<p>{{text_editor}}</p></div>';
+<p>{{text_editor}}</p>
+</div>';
 return array(
 		'label' =>'Text',
 		'name' =>'text',
@@ -25,6 +26,6 @@ return array(
 						)
         ),
 		'front_template'=>$output,
-		'front_css'=>'',	
+		'front_css'=>'',
 	);
 ?>
