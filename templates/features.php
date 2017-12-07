@@ -126,7 +126,8 @@ add_amp_theme_support('AMP-logo');
 	// Custom Frontpage items
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
- 	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php'; 
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
+ 	require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';  
 
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){

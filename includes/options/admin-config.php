@@ -3071,6 +3071,7 @@ Redux::setSection( $opt_name, array(
                         'default'  => 100,
                         'required' => array(
                           array('amp-design-selector','!=',3),
+                          array('amp-design-selector','!=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
@@ -3082,6 +3083,29 @@ Redux::setSection( $opt_name, array(
                         'default'  => 75,
                         'required' => array(
                           array('amp-design-selector','!=',3),
+                          array('amp-design-selector','!=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                        'id'       => 'ampforwp-swift-homepage-posts-width',
+                        'type'     => 'text',
+                        'title'    => __('Image Width', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Defaults to 346', 'accelerated-mobile-pages'),
+                        'default'  => 346,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                        'id'       => 'ampforwp-swift-homepage-posts-height',
+                        'type'     => 'text',
+                        'title'    => __('Image Height', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Defaults to 188', 'accelerated-mobile-pages'),
+                        'default'  => 188,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),

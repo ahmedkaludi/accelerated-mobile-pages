@@ -308,6 +308,18 @@ function call_loops_standard($data=array()){
 
 			$thumb_id = get_post_thumbnail_id();
 			$thumb_url_array = wp_get_attachment_image_src($thumb_id, $imageSize, true);
+			
+			if(isset($data['image_crop']) && $data['image_crop'] != ""){
+				$width 	= $data['image_crop_width'];
+				if(empty($width)){
+					$width = $thumb_url_array[1];
+				}
+				$height = $data['image_crop_height'];
+				if(empty($height)){
+					$height = $thumb_url_array[2];
+				}
+				$thumb_url_array = aq_resize( $thumb_url_array[0], $width, $height, true, false ); //resize & crop the image
+			}
 			$thumb_url = $thumb_url_array[0];
 			
 
