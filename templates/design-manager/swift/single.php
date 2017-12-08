@@ -5,7 +5,9 @@
 		<?php amp_categories_list();?>
 		<?php amp_breadcrumb();?>
 		<?php amp_title(); ?>
-		<?php amp_excerpt(20); ?>
+		<div class="tl-exc">
+		   <?php amp_excerpt(20); ?>
+	    </div>
 	</div>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
