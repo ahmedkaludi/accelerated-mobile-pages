@@ -133,3 +133,9 @@ body #toplevel_page_amp_options .wp-menu-image{
     visibility: visible;
     cursor:pointer;
 }
+.hidetab{
+    display: none !important;
+}
+.activetab{
+    display: block !important;
+}

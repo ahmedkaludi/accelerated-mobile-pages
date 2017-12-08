@@ -93,4 +93,20 @@ jQuery(function($) {
         }
         
     });
+var reduxOptionTab = function(){
+    $('.redux-tab-selector').click(function(){
+        var tabFields = $(this).attr('data-tabfields');
+        $(this).parents('.redux-group-tab').find('table tr').removeClass('activetab').addClass('hidetab');
+        tabFields = JSON.parse(tabFields);
+        $.each(tabFields,function(index,value){
+        $('[name = "redux_builder_amp['+value+']"]').parents('tr').removeClass('hidetab').addClass('activetab');    
+        // $('[name = "redux_builder_amp['+value+']"]').parents('tr').siblings().hide()
+        // $('[name = "redux_builder_amp['+value+']"]').parents('tr').show()
+        })
+        //$('[name = "redux_builder_amp['+value+']"]').parents('tr').
+        console.log('eessdsf');
+    });
+    $('.redux-tab-selector:first').click();
+} 
+reduxOptionTab();   
 });

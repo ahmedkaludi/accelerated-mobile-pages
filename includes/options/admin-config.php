@@ -2441,6 +2441,15 @@ Redux::setSection( $opt_name, array(
                 'title'      => __( 'Header', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-header-settings',
         'subsection' => true,
+        'amp_tab'       => array(
+                            array(
+                                'label' => 'Tab1',
+                                'fields' => array('header-type','primary-menu','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page') ),
+                            array(
+                            'label' => 'Tab2',
+                            'fields' => array('customize-options') ),
+
+        ),
         'fields'     => array(
             // Swift
             array(
