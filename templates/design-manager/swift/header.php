@@ -115,9 +115,6 @@
 </div>
 <div class="m-menu">
     <?php amp_menu(); ?>
-    <div class="menu-btn">
-        <a href="#">Get Started Free</a>
-    </div>
 </div>
 <?php amp_sidebar(['action'=>'end']); ?>
 
