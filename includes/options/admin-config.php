@@ -2630,7 +2630,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Overlay  Elements','ampswifttheme'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgb(255, 255, 255)',
+                        'rgba'  => 'rgba(255, 255, 255, 0.8)',
                      ),
                     'required' => array(
                         array('customize-options','=',1)

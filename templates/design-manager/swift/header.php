@@ -12,9 +12,9 @@
             </div><!-- /.logo -->
             <div class="h-1">
                 <div class="h-srch h-ic">
-                    <a class="lb" href="#ovelay"></a>
+                    <a class="lb" href="#search"></a>
                     <div class="lb-btn"> 
-                        <div class="lb-t" id="ovelay">
+                        <div class="lb-t" id="search">
                            <?php amp_search();?>
                            <a class="lb-x" href="#"></a>
                         </div> 
@@ -75,9 +75,9 @@
                    <?php amp_sidebar(['action'=>'open-button']); ?>
                 </div><!-- /.left-nav -->
                 <div class="h-srch h-ic">
-                    <a class="lb" href="#ovelay"></a>
+                    <a class="lb" href="#search"></a>
                     <div class="lb-btn"> 
-                        <div class="lb-t" id="ovelay">
+                        <div class="lb-t" id="search">
                            <?php amp_search();?>
                            <a class="lb-x" href="#"></a>
                         </div> 
@@ -115,9 +115,6 @@
 </div>
 <div class="m-menu">
     <?php amp_menu(); ?>
-    <div class="menu-btn">
-        <a href="#">Get Started Free</a>
-    </div>
 </div>
 <?php amp_sidebar(['action'=>'end']); ?>
 
