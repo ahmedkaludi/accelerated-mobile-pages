@@ -984,6 +984,7 @@ display: none;
     color: #fff;
     border-radius: 3px;
     font-size:16px;
+    display:inline-block;
 }
 .right a:after{
     content:"»";
@@ -3665,9 +3666,29 @@ display: none;
 }
 
 
-
-
-
+/*** ADS CODE ***/
+.amp-ad-wrapper{
+    width:100%;
+    text-align:center;
+}
+.amp-ad-1{
+   margin: -2px 0px -17px 0px;
+}
+.amp-ad-2{
+   margin: 20px 0px -23px 0px; 
+}
+.amp-ad-3{
+    margin: 0px 0px -4px 0px;
+}
+.amp-ad-4{
+    margin: 20px 0px 20px 0px;
+}
+.amp-ad-5{
+    margin: 10px 0px -17px 0px;
+}
+.amp-ad-6{
+    margin: 0px 0px 20px 0px;
+}
 /****
 * RTL Styles
 *****/
