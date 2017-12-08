@@ -3120,7 +3120,7 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
             // Swift
-             array(
+            array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
                     'title' => __('Date', 'ampswifttheme'),
@@ -3128,15 +3128,7 @@ Redux::setSection( $opt_name, array(
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-             array(
-                    'id'    => 'swift-author-box',
-                    'type'  => 'switch',
-                    'title' => __('Author Box', 'ampswifttheme'),
-                    'subtitle'  => __('Switch to show/hide author box', 'ampswifttheme'),
-                    'default'   => 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-             array(
+            array(
                     'id'    => 'swift-social-icons',
                     'type'  => 'switch',
                     'title' => __('Social Icons', 'ampswifttheme'),
