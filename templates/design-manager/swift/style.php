@@ -141,6 +141,9 @@ amp-sidebar {
         background: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
     <?php } ?>
 }
+.amp-sidebar-toggle span:last-child{
+    margin-bottom:0;
+}
 .amp-sidebar-toggle span:nth-child(2){
     top: 7px;
 }
@@ -496,6 +499,9 @@ a.lb-x:after {
     align-self: center;
     margin-left:30px;
 }
+.amp-logo{
+    line-height:0;
+}
 .h-sing{
     font-size: 18px;
     font-weight: 600;
@@ -671,6 +677,18 @@ display: none;
     color:#333;
     font-size:13px;
     line-height:20px;
+}
+.fbp-cnt .amp-author {
+    padding-left:6px;
+}
+.fbp:hover .author-name a{
+    text-decoration:underline;
+}
+.fbp-cnt .author-details a{
+    color:#808080;
+}
+.fbp-cnt .author-details a:hover{
+    color: #005be2;
 }
 /** Socila Icons **/
 
@@ -951,16 +969,16 @@ display: none;
     margin-top:0;
 }
 <?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
-.amp-author {
+.sp-rt .amp-author {
     margin-top:30px;
 }
-.amp-author .amp-author-image{
+.sp-rt .amp-author .amp-author-image{
     float:left;
 }
-.amp-author .author-details a{
+.sp-rt .amp-author .author-details a{
     color:#808080;
 }
-.author-details a:hover{
+.sp-rt .author-details a:hover{
     color:#005be2;
     text-decoration:underline;
 }
