@@ -462,6 +462,7 @@ a.lb-x:after {
     <?php if($redux_builder_amp['swift-element-overlay-color-control']['rgba']){?>
         color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
     <?php }  ?>
+    top:4px;
 }
 .lb-btn form #amp-search-submit {
     cursor: pointer;
@@ -1340,7 +1341,8 @@ display: none;
     margin-top:10px;
 }
 .overlay-search:before {
-    right: 11%;
+    right: 11.5%;
+    top: 5px;
 }
 .right a, .left a{
     padding:10px 25px;
@@ -1406,6 +1408,7 @@ display: none;
 }
 .overlay-search:before {
     right: 9%;
+    top:5px;
 }
 .fsp-img{
     width:100%;
@@ -1495,6 +1498,7 @@ display: none;
 }
 .overlay-search:before {
     right: 6%;
+    top: 6px;
 }
 }
 
