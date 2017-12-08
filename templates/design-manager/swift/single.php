@@ -2,8 +2,8 @@
 <?php amp_header(); ?>
 <div class="sp">
 	<div class="cntr">
-		<?php amp_categories_list();?>
 		<?php amp_breadcrumb();?>
+		<?php amp_categories_list();?>
 		<?php amp_title(); ?>
 		<div class="tl-exc">
 		   <?php amp_excerpt(20); ?>

@@ -714,11 +714,10 @@ display: none;
     margin-top: 10px;
     line-height:20px;
 }
-
 .amp-category span:nth-child(1) {
     display: none;
 }
-.amp-category span a{
+.amp-category span a, .amp-category span{
     color: #005be2;
     font-size: 14px;
     font-weight: bold;
@@ -727,9 +726,10 @@ display: none;
 .amp-category span:after{
     content:"/";
     display:inline-block;
-    margin:0px 3px 0px 5px;
+    margin:0px 5px 0px 5px;
     position:relative;
     top:1px;
+    color:#111;
 }
 .amp-category span:last-child:after{
     display:none;
@@ -826,13 +826,13 @@ display: none;
 .sp-athr, .tags, .post-date, .srp{
     margin-top:20px;
 }
-.sp-athr .author-details a {
+.sp-athr .author-details a, .sp-athr .author-details {
     font-size: 15px;
     text-transform: capitalize;
     color: #005be2;
     font-weight: 500;
 }
-.amp-tags span a{
+.amp-tags span a, .amp-tag{
     font-size:15px;
     color: #005be2;
     font-weight: 500;
@@ -847,6 +847,7 @@ display: none;
     padding: 5px;
     position: relative;
     top: 2px;
+    color:#111;
 }
 .amp-tags .amp-tag:last-child:after{
     display:none;
@@ -933,6 +934,37 @@ display: none;
 .r-pf .loop-wrapper{
     margin-top:0;
 }
+<?php if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
+/** Breadcrumbs **/
+.breadcrumb{
+    width: 100%;
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+.breadcrumb ul li{
+    display: inline-block;
+    list-style-type: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+.breadcrumb ul li a{
+    color: #999;
+    letter-spacing: 1px;
+}
+.item-home:after{
+   content: "\e315";
+    display: inline-block;
+    color: #005be2;
+    font-family: 'icomoon';
+    padding-left: 5px;
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+}
+<?php } ?>
 /** Pagination**/
 #pagination{
     margin-top: 30px;
