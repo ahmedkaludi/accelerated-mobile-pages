@@ -1114,6 +1114,9 @@ display: none;
     list-style:none;
     margin-bottom:25px;
 }
+.cmts .amp-comments-wrapper ul .children{
+    margin-left:30px;
+}
 .cmts .comment-author.vcard .says{
     display:none;
 }
