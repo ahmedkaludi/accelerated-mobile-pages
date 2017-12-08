@@ -451,11 +451,15 @@ a.lb-x:after {
     padding:10px;
     cursor:pointer;
 }
+.amp-search-wrapper{
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
 .overlay-search:before {
     content: "\e8b6";
     position: absolute;
-    right: 13.3%;
-    top: 16px;
+    right:0;
     font-size: 24px;
     font-family: 'icomoon';
     cursor: pointer;
@@ -474,6 +478,8 @@ a.lb-x:after {
     opacity: 0;
     position: absolute;
     z-index:100;
+    right: 0;
+    top: 0;
 }
 .lb-btn form #s {
     padding: 10px;
@@ -481,7 +487,7 @@ a.lb-x:after {
     border: none;
     border-bottom: 1px solid #504c4c;
     color: #ffffff;
-    width:70%;
+    width:100%;
 }
 /*** Header - Styles ***/
 
@@ -1340,10 +1346,7 @@ display: none;
 .fsp-cnt .loop-date{
     margin-top:10px;
 }
-.overlay-search:before {
-    right: 11.5%;
-    top: 5px;
-}
+
 .right a, .left a{
     padding:10px 25px;
 }
@@ -1406,10 +1409,7 @@ display: none;
 .right{
     margin-bottom:30px;
 }
-.overlay-search:before {
-    right: 9%;
-    top:5px;
-}
+
 .fsp-img{
     width:100%;
     float:none;
@@ -1496,10 +1496,7 @@ display: none;
 .right a, .left a {
     padding: 10px 30px;
 }
-.overlay-search:before {
-    right: 6%;
-    top: 6px;
-}
+
 }
 
 /**** Font-Icons ****/
