@@ -1660,10 +1660,28 @@ amp-user-notification button {
 
 /** Responsive **/
 @media(max-width:1024px){
-
-    
+.fbp-img{
+    float:right;
+}
+.fbp-cnt {
+    width: 34%;
+    margin-left: 0;
+    margin-right: 30px;   
 }
 
+}
+@media(min-width:481px) and (max-width:768px){
+.fbp-cnt {
+    width:100%;
+    floa:none;
+}
+.fsp-img {
+    float: right;
+    margin-right: 0;
+    margin-left:30px;
+}
+
+}
 <?php } ?>
 
 
