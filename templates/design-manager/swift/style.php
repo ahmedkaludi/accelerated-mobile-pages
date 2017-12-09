@@ -1229,14 +1229,10 @@ display: none;
 * Footer
 *****/
 .footer{
-    padding: 30px 0px;
+    padding: 60px 0px;
     font-size: 12px;
-    margin-top:40px;
-    border-top:1px solid #f2f2f2;
-}
-.m-rr{
-    text-align: center;
-    width:100%;
+    margin-top: 80px;
+    border-top: 1px solid #f2f2f2;
 }
 .f-menu ul li{
     display:inline-block;
@@ -1264,10 +1260,13 @@ display: none;
 .f-w{
     display: inline-flex;
     width: 100%;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 30px;
-
+    padding-bottom: 60px;
+}
+.m-rr{
+    text-align: center;
+    width:100%;
+    border-top: 1px solid #eee;
+    padding-top: 60px;
 }
 .w-bl{
     margin-left: 0;
@@ -1281,23 +1280,25 @@ display: none;
     flex: 1 0 25%;
 }
 .w-bl h4{
-    color:#333;
-    font-size:20px;
-    line-height:24px;
-    font-weight:500;
-    margin-bottom:20px;
+    color: #999;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 4px;
 }
 .w-bl ul li{
-    list-style-type:none;
-    font-size:20px;
-    margin-bottom:20px;
+    list-style-type: none;
+    font-size: 15px;
+    margin-bottom: 22px;
 }
 .w-bl ul li:last-child{
     margin-bottom:0;
 }
 .w-bl ul li a{
-    text-decoration:none;
-    color:#666;
+    text-decoration: none;
+    color: #333;
 }
 
 

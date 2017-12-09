@@ -39,7 +39,9 @@
 				</ul>
 			</div>
 		</div>
-		<div class="m-rr">
+	</div>
+	<div class="m-rr">
+		<div class="cntr">
 			<div class="f-menu">
 				<?php amp_menu(); ?>
 			</div>
