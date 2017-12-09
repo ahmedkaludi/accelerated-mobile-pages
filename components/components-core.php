@@ -49,7 +49,24 @@ function loadComponents($componentName){
 	}
 	include_once($file);
 }
-	
+
+// Icons
+$amp_icons_css = array();
+function add_amp_icon($args=array()){
+	global $amp_icons_css;
+	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+	foreach ($args as $key ) {
+		$amp_icons_css[] = $amp_icons_css_array[$key]; 
+	}
+	add_action('amp_css', 'amp_icon_css');
+	function amp_icon_css(){
+		global $amp_icons_css;
+		foreach ($amp_icons_css as $key => $value) {
+	        echo $value;
+	    }
+	}
+}
+
 /**
  * Component Functions
  **/
