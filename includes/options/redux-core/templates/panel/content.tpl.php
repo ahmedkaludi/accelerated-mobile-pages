@@ -33,9 +33,11 @@
         echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ) . '" data-rel="' . $k . '">';
         //echo '<div id="' . $k . '_nav-bar' . '"';
         if ( !empty( $section['amp_tab'] ) ){
+            echo "<div class='redux-tab-container'>";
             foreach ($section['amp_tab'] as $key => $value) {
             echo "<div class='redux-tab-selector' data-tabfields='". json_encode($value['fields']) ."'>". $value['label']. "</div>";
             }
+            echo "</div>";
         }
 
         /*

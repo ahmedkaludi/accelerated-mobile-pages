@@ -7,6 +7,7 @@ jQuery(function($) {
                     var parent = $(this).parents('.redux-container:first');
                     var expanded_options = parent.find('.expand_options');
                     if (searchString != "") {
+                        $('.redux-tab-container').hide();
                         if (!expanded_options.hasClass('expanded')) {
                             expanded_options.click();
                             parent.find('.redux-main').addClass('redux-search');
@@ -41,6 +42,10 @@ jQuery(function($) {
                     });
                     parent.find('.form-table tr').filter(function () {
                         if(searchString==''){
+                            $('.redux-tab-container').show();
+                            $('.redux-tab-container').each(function(){
+                                $(this).find('.redux-tab-selector:first').click();
+                            });
                             return false;
                         }
                         var item = $(this);
@@ -95,18 +100,22 @@ jQuery(function($) {
     });
 var reduxOptionTab = function(){
     $('.redux-tab-selector').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
         var tabFields = $(this).attr('data-tabfields');
-        $(this).parents('.redux-group-tab').find('table tr').removeClass('activetab').addClass('hidetab');
+        $(this).parents('.redux-group-tab').find('table tr').hide();
         tabFields = JSON.parse(tabFields);
         $.each(tabFields,function(index,value){
-        $('[name = "redux_builder_amp['+value+']"]').parents('tr').removeClass('hidetab').addClass('activetab');    
-        // $('[name = "redux_builder_amp['+value+']"]').parents('tr').siblings().hide()
-        // $('[name = "redux_builder_amp['+value+']"]').parents('tr').show()
+        if ($('[name = "redux_builder_amp['+value+']"]').parents('tr').hasClass('hide')) {
+            $('[name = "redux_builder_amp['+value+']"]').parents('tr').hide();
+        }
+        else{
+            $('[name = "redux_builder_amp['+value+']"]').parents('tr').show();    
+        }    
         })
-        //$('[name = "redux_builder_amp['+value+']"]').parents('tr').
-        console.log('eessdsf');
     });
-    $('.redux-tab-selector:first').click();
+    //$('.redux-tab-container').each(function(){
+        $(this).find('.redux-tab-selector:first').click();
+    //});
 } 
 reduxOptionTab();   
 });

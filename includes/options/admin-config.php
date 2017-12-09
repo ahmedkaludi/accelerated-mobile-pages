@@ -2444,7 +2444,7 @@ Redux::setSection( $opt_name, array(
         'amp_tab'       => array(
                             array(
                                 'label' => 'Tab1',
-                                'fields' => array('header-type','primary-menu','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page','signin-button','signin-button-text','signin-button-link') ),
+                                'fields' => array('header-type-image','primary-menu','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page','signin-button','signin-button-text','signin-button-link') ),
                             array(
                             'label' => 'Tab2',
                             'fields' => array('customize-options', 'swift-height-control', 'margin-padding-options','swift-padding-control', 'swift-margin-control','border-line','swift-border-line-control','swift-border-color-control','swift-boxshadow-checkbox-control','swift-background-scheme','swift-header-overlay','swift-element-color-control','swift-element-overlay-color-control','header-position-type','primary-menu-padding-control','primary-menu-text-scheme','primary-menu-background-scheme','primary-menu-background-scheme','signin-button-style','signin-button-border-line','signin-button-text-color','signin-button-border-color', 'border-type','border-radius' ) ),
