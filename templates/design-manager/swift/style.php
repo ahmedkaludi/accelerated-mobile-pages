@@ -1551,15 +1551,6 @@ display: none;
 }
 
 /**** Font-Icons ****/
-@font-face {
-  font-family: 'icomoon';
-  src:
-    url('fonts/icomoon.ttf?wtrpmf') format('truetype'),
-    url('fonts/icomoon.woff?wtrpmf') format('woff'),
-    url('fonts/icomoon.svg?wtrpmf#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
