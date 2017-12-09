@@ -2618,7 +2618,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgb(0, 0, 0)',
+                        'rgba'  => 'rgb(17, 17, 17)',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
@@ -2672,9 +2672,9 @@ Redux::setSection( $opt_name, array(
                     'subtitle'       => __('Allow your users to choose the spacing or padding.', 'ampswifttheme'),
                     'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
                     'default'            => array(
-                        'padding-top'     => '15px', 
+                        'padding-top'     => '12px', 
                         'padding-right'   => '25px', 
-                        'padding-bottom'  => '15px', 
+                        'padding-bottom'  => '12px', 
                         'padding-left'    => '25px',
                         'units'          => 'px', 
                     ),
@@ -2688,7 +2688,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle'  => __('Choose the color for Primary Text Menu','ampswifttheme'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgba(102, 102, 102, 0.96)',
+                    'rgba'  => 'rgba(102, 102, 102, 1)',
                     ),
                     'required' => array(
                       array('primary-menu','=',1)
@@ -2701,7 +2701,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle'  => __('Choose the color for Primary Menu Background','ampswifttheme'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgba(255, 255, 255, 255)',
+                    'rgba'  => 'rgb(239, 239, 239)',
                     ),
                     'required' => array(
                       array('primary-menu','=',1)

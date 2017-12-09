@@ -276,6 +276,9 @@ amp-sidebar {
 .h-3 .h-nav, .h-ic{
     margin:0px 10px;
 }
+.h-ic:first-child{
+    margin-left:0;
+}
 .h-ic:last-child{
     margin-right:0;
 }
