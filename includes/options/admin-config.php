@@ -2444,27 +2444,38 @@ Redux::setSection( $opt_name, array(
         'amp_tab'       => array(
                             array(
                                 'label' => 'Tab1',
-                                'fields' => array('header-type','primary-menu','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page') ),
+                                'fields' => array('header-type','primary-menu','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page','signin-button','signin-button-text','signin-button-link') ),
                             array(
                             'label' => 'Tab2',
-                            'fields' => array('customize-options') ),
+                            'fields' => array('customize-options', 'swift-height-control', 'margin-padding-options','swift-padding-control', 'swift-margin-control','border-line','swift-border-line-control','swift-border-color-control','swift-boxshadow-checkbox-control','swift-background-scheme','swift-header-overlay','swift-element-color-control','swift-element-overlay-color-control','header-position-type','primary-menu-padding-control','primary-menu-text-scheme','primary-menu-background-scheme','primary-menu-background-scheme','signin-button-style','signin-button-border-line','signin-button-text-color','signin-button-border-color', 'border-type','border-radius' ) ),
 
         ),
         'fields'     => array(
             // Swift
             array(
-                    'id'    => 'header-type',
-                   'title'  => __('Header Type', 'amptechtheme'),
-                   'type'   => 'select',
+                    'id'    => 'header-type-image',
+                   'title'  => __('Header Type', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
                    'options'=> array(
-                        '1' =>  'Header 1',
-                        '2' =>  'Header 2',
-                        '3' => 'Header 3'
+                        '1' => array(
+                                'alt'=>' Header 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Header 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Header 3 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
+                                ),
                     ),
                    'default'=> '1',
+                   'width' => 200,
+                   'height'=> 200,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
-             array(
+            array(
                     'id'    => 'customize-options',
                     'type'  => 'switch',
                     'title' => __('Customize Header Options', 'ampswifttheme'),
@@ -2715,7 +2726,7 @@ Redux::setSection( $opt_name, array(
                 'type'      => 'switch',
                 'default'   => '0',
                     'required' => array(
-                      array('header-type','=',2)
+                      array('header-type-image','=',2)
                     )  
               ),
 
@@ -2809,12 +2820,6 @@ Redux::setSection( $opt_name, array(
                       array('border-type','=',3)
                     )  
               ),
-
-
-
-
-
-
 
              array(
                     'id'       => 'ampforwp-amp-menu',
