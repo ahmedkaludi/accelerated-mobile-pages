@@ -245,7 +245,6 @@ amp-sidebar {
 }
 .h-2{
     order: 1;
-    flex-grow: 1;
     justify-content: flex-end;
     display: flex;
 }
@@ -500,7 +499,7 @@ a.lb-x:after {
 .head-2 .h-logo{
     order:-1;
     align-self: center;
-    margin-left:30px;
+   flex-grow:1;
 }
 .amp-logo{
     line-height:0;
@@ -509,7 +508,7 @@ a.lb-x:after {
     font-size: 18px;
     font-weight: 600;
     align-self: center;
-    margin:0 10px;
+    margin:0 10px 0px 0px;
 }
 .h-sing a{
     <?php if($redux_builder_amp['signin-button-border-line']){?>
@@ -579,6 +578,12 @@ a.lb-x:after {
 }
 
 /*** Primary Menu ***/
+.p-m-fl{
+    width:100%;
+    <?php if($redux_builder_amp['primary-menu-background-scheme']['rgba']){?>
+        background:<?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>
+    <?php } ?>
+}
 .p-menu{
     width:100%;
     text-align:center;
@@ -592,9 +597,6 @@ a.lb-x:after {
                              $redux_builder_amp['primary-menu-padding-control']['padding-right'] .' '. 
                              $redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' '. 
                              $redux_builder_amp['primary-menu-padding-control']['padding-left'] ; ?>;
-    <?php } ?>
-    <?php if($redux_builder_amp['primary-menu-background-scheme']['rgba']){?>
-        background:<?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>
     <?php } ?>
 }
 ::-webkit-scrollbar {
@@ -1423,6 +1425,9 @@ display: none;
     width: 100%;
     padding: 0px 20px;
 }
+.cntr.b-w{
+    padding:0 12px;
+}
 .right, .left{
     float:none;
     text-align:center;
@@ -1592,7 +1597,45 @@ amp-user-notification button {
 /****
 * RTL Styles
 *****/
-    <?php  if( is_rtl() ) {?> <?php } ?>
+<?php  if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
+/*** Header ***/
+.h-1 {
+    order: -1;
+}
+.h-nav{
+    order: 1;
+}
+.h-2 {
+    order: -2;
+}
+.h-3 {
+    order: -2;
+    justify-content: flex-start;
+}
+.h-3 .h-srch{
+    margin-left:0;
+}
+.fbp-cnt, .fsp-cnt{
+    text-align:right;
+}
+.right a, .left a{
+    direction:rtl;
+}
+.right a:after{
+    padding:0px 6px 0px 0px;
+    top:-1px;
+}
+.left a:before{
+    padding:0px 0px 0px 6px;
+    top:1px;
+}
+.w-bl{
+    direction:rtl;
+}
+
+
+
+<?php } ?>
 
 
 

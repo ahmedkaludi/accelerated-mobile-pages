@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
-<div class="cntr">
+<div class="cntr b-w">
 	<?php
 	if (is_home() ){
 	 if (get_query_var( 'paged' ) ) {
