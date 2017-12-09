@@ -23,7 +23,7 @@ function ampforwp_framework_get_featured_image(){
 			}
 			$alt = esc_attr($alt);
 			if( $image ){			
-				$amp_html = "<amp-img src='$image[0];' width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
+				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 			}
 		}
 		if ( ampforwp_is_custom_field_featured_image() ) {
