@@ -659,8 +659,14 @@ display: none;
     width:31%;
     margin-left:30px;
 }
-.loop-category{
+.fbp-cnt .loop-category{
     margin-bottom:12px;
+}
+.fsp-cnt .loop-category{
+    margin-bottom:7px;
+}
+.fsp-cnt .loop-category li {
+  font-weight: 500;
 }
 .loop-category li{
     display: inline-block;
@@ -680,8 +686,11 @@ display: none;
     line-height: 38px;
     font-weight:900;
 }
-.fbp-cnt h2 a, .fsp h2 a{
+.fbp-cnt h2 a{
     color:#191919;
+}
+ .fsp h2 a{
+    color:#222;
 }
 .fbp-cnt h2:hover a, .fsp-cnt h2:hover a{
     color:#005be2;
@@ -711,9 +720,21 @@ display: none;
 /**** Small post ***/
 .fsp{
     display: inline-flex;
-    margin: 0px 28px 50px 0px;
+    margin: 0px 28px 40px 0px;
     width: 30.5%;
     flex-direction: column;
+}
+.fsp:hover .loop-category li{
+    border-bottom: 1px solid #c5c5c5;
+}
+.fsp .loop-category li a{
+    border:none;
+}
+.fsp .loop-category li:hover{
+    border-color:#005be2;
+}
+.fsp .loop-category li:hover a{
+     color:#005be2;
 }
 .fsp-cnt{
     margin-top:10px;
@@ -723,7 +744,7 @@ display: none;
     line-height:0;
 }
 .fsp h2{
-    margin:0px 0px 10px 0px;
+    margin:0px 0px 5px 0px;
     font-size:20px;
     line-height:25px;
     font-weight:700;
@@ -1290,7 +1311,7 @@ display: none;
 
 /*** Transitions ***/
 .fbp-cnt h2 a, .p-menu ul li a, .fsp h2 a,
-.author-details a, .has_thumbnail{
+.author-details a, .has_thumbnail, .loop-category li a, .fsp .loop-category li{
     transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
   -moz-transition: all 0.3s ease-in-out 0s;
