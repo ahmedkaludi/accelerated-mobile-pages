@@ -71,9 +71,6 @@
                 <?php amp_logo(); ?>
             </div>
             <div class="h-3">
-                <div class="h-nav">
-                   <?php amp_sidebar(['action'=>'open-button']); ?>
-                </div><!-- /.left-nav -->
                 <div class="h-srch h-ic">
                     <a class="lb" href="#search"></a>
                     <div class="lb-btn"> 
@@ -90,7 +87,10 @@
                     <div class="h-call h-ic">
                         <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
                     </div>
-                <?php } ?> 
+                <?php } ?>
+                <div class="h-nav">
+                   <?php amp_sidebar(['action'=>'open-button']); ?>
+                </div><!-- /.left-nav --> 
             </div>
         </div>
     </div>

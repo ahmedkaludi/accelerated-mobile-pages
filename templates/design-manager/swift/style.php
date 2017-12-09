@@ -260,19 +260,27 @@ amp-sidebar {
     order: -1;
     align-self: center;
 }
+.h-3 .h-nav{
+    order:0;
+    margin:0px 0px 0px 10px;
+}
 .logo{
     z-index: 2;
     flex-grow: 1;
     align-self: center;
     text-align:center;
 }
-.h-3 {
+.h-3{
     order: 1;
     display: inline-flex;
     flex-grow: 1;
     justify-content: flex-end;
 }
-.h-3 .h-nav, .h-ic{
+.h-3 .h-srch a:after{
+    position:relative;
+    left:5px;
+} 
+.h-ic{
     margin:0px 10px;
 }
 .h-ic:first-child{
@@ -652,7 +660,7 @@ display: none;
     margin-left:30px;
 }
 .loop-category{
-    margin-bottom:5px;
+    margin-bottom:12px;
 }
 .loop-category li{
     display: inline-block;
@@ -679,9 +687,10 @@ display: none;
     color:#005be2;
 }
 .fbp-cnt p, .fsp-cnt p{
-    color:#333;
+    color:#444;
     font-size:13px;
     line-height:20px;
+    letter-spacing: 0.10px;
 }
 .fbp-cnt .amp-author {
     padding-left:6px;
@@ -720,9 +729,9 @@ display: none;
     font-weight:700;
 }
 .at-dt, .pt-dt{
-    font-size:12px;
+    font-size:11px;
     color:#808080;
-    margin:8px 0px; 
+    margin:9px 0px 9px 0px; 
     display: inline-flex;
 }
 
@@ -988,9 +997,7 @@ display: none;
     text-decoration:underline;
 }
 .amp-author-image amp-img{border-radius: 50%;margin: 0px 12px 5px 0px;display: block; width:50px;}
-.author-name{
-    text-transform: capitalize;
-}
+
 .author-details p{
     margin: 0;
     font-size: 15px;
@@ -1615,6 +1622,10 @@ amp-user-notification button {
 .h-3 .h-srch{
     margin-left:0;
 }
+.h-3 .h-nav {
+    order: -1;
+    margin: 0px 10px 0px 0;
+}
 .fbp-cnt, .fsp-cnt{
     text-align:right;
 }
@@ -1633,7 +1644,11 @@ amp-user-notification button {
     direction:rtl;
 }
 
+/** Responsive **/
+@media(max-width:1024px){
 
+    
+}
 
 <?php } ?>
 
