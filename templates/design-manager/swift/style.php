@@ -588,6 +588,7 @@ a.lb-x:after {
 /*** Primary Menu ***/
 .p-m-fl{
     width:100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     <?php if($redux_builder_amp['primary-menu-background-scheme']['rgba']){?>
         background:<?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>
     <?php } ?>
@@ -690,7 +691,7 @@ display: none;
     color:#191919;
 }
  .fsp h2 a{
-    color:#222;
+    color:#000;
 }
 .fbp-cnt h2:hover a, .fsp-cnt h2:hover a{
     color:#005be2;
@@ -718,23 +719,14 @@ display: none;
 
 
 /**** Small post ***/
+.fsp:nth-child(4), .fsp:nth-child(7), .fsp:nth-child(10){
+    margin-right:0;
+}
 .fsp{
     display: inline-flex;
     margin: 0px 28px 40px 0px;
-    width: 30.5%;
+    width: 31.3%;
     flex-direction: column;
-}
-.fsp:hover .loop-category li{
-    border-bottom: 1px solid #c5c5c5;
-}
-.fsp .loop-category li a{
-    border:none;
-}
-.fsp .loop-category li:hover{
-    border-color:#005be2;
-}
-.fsp .loop-category li:hover a{
-     color:#005be2;
 }
 .fsp-cnt{
     margin-top:10px;
@@ -747,12 +739,12 @@ display: none;
     margin:0px 0px 5px 0px;
     font-size:20px;
     line-height:25px;
-    font-weight:700;
+    font-weight:500;
 }
 .at-dt, .pt-dt{
     font-size:11px;
     color:#808080;
-    margin:9px 0px 9px 0px; 
+    margin:12px 0px 9px 0px; 
     display: inline-flex;
 }
 
@@ -1114,11 +1106,12 @@ display: none;
 /*** loop-pagination ***/
 .right a, .left a{
     background: #005be2;
-    padding: 10px 40px;
+    padding: 8px 22px 12px 25px;
     color: #fff;
-    border-radius: 3px;
-    font-size:16px;
-    display:inline-block;
+    line-height: 1;
+    border-radius: 46px;
+    font-size: 14px;
+    display: inline-block;
 }
 .right a:after{
     content:"»";
@@ -1311,7 +1304,7 @@ display: none;
 
 /*** Transitions ***/
 .fbp-cnt h2 a, .p-menu ul li a, .fsp h2 a,
-.author-details a, .has_thumbnail, .loop-category li a, .fsp .loop-category li{
+.author-details a, .has_thumbnail{
     transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
   -moz-transition: all 0.3s ease-in-out 0s;
@@ -1432,7 +1425,7 @@ display: none;
     margin-top:20px;
 }
 .loop-wrapper {
-    margin-top: 25px;
+    margin-top: 17px;
 }
 .amp-archive-desc {
     font-size: 13px;
