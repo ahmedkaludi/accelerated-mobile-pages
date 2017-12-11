@@ -1323,9 +1323,9 @@ display: none;
 /** In content releated post desing styles **/
 .related_posts .has_related_thumbnail{
     display: inline-flex;
-    width: 30%;
+    width: 29%;
     flex-direction: column;
-    margin: 0px 1% 2%;
+    margin:0px 30px 30px 0px;
     justify-content: space-evenly;
 }
 .related-title{
@@ -1336,15 +1336,14 @@ display: none;
     font-weight: 600;
     padding-bottom: 15px;
 }
-.related_link{
-    margin: 0px 0px 5px 0px;
-    font-size: 20px;
-    line-height: 25px;
-    font-weight: 500;
-    margin-top:10px;
-}
+
 .related_link a{
-    color:#000;   
+    color: #333;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    margin-top: 10px;
+    display: inline-block;
 }
 .related_link p{
     color: #444;
