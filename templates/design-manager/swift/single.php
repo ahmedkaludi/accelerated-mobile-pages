@@ -62,7 +62,7 @@
 					        ?>
 					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 					            <div class="rlp-image">     
-					                 <?php ampforwp_get_relatedpost_image('medium');?>
+					                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 								</div>
 								<div class="rlp-cnt">
 									<?php ampforwp_get_relatedpost_content($argsdata); ?> 

@@ -83,13 +83,24 @@ function ampforwp_related_post(){
 <?php } 
 
 
-function ampforwp_get_relatedpost_image( $imagetype ='thumbnail'){
+function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() ){
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
 	        $thumb_id_2 = get_post_thumbnail_id();
 	        $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, $imagetype, true);
+	        if(isset($data['image_crop']) && $data['image_crop'] != ""){
+				$width 	= $data['image_crop_width'];
+				if(empty($width)){
+					$width = $thumb_url_array_2[1];
+				}
+				$height = $data['image_crop_height'];
+				if(empty($height)){
+					$height = $thumb_url_array_2[2];
+				}
+				$thumb_url_array_2 = aq_resize( $thumb_url_array_2[0], $width, $height, true, false ); //resize & crop the image
+			}
 	        $thumb_url_2 = $thumb_url_array_2[0];
 	    
 	     if ( has_post_thumbnail() ) { ?>
