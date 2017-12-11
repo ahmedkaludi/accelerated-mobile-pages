@@ -767,7 +767,19 @@ display: none;
 }
 .author-img amp-img {border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}
 .author-img{float: left;}
-
+.amp-sub-archives{
+    margin:10px 0px 0px 10px;
+}
+.amp-sub-archives ul li{
+    list-style-type: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+.amp-sub-archives ul li a{
+    color:#005be2;
+}
 /****
 * Single
 *****/
@@ -1336,7 +1348,6 @@ display: none;
     font-weight: 600;
     padding-bottom: 15px;
 }
-
 .related_link a{
     color: #333;
     font-size: 16px;
