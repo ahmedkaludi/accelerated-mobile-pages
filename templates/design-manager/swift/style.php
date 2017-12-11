@@ -1105,6 +1105,22 @@ display: none;
     transform: translate(0px, -50%);
     width: 2px;
 }
+/** Post Pagination **/
+.ampforwp_post_pagination{
+    width:100%;
+    text-align:center;
+    display:inline-block;
+}
+.ampforwp_post_pagination p{
+   margin: 0;
+    font-size: 18px;
+    color: #444;
+    font-weight: 500;
+}
+.ampforwp_post_pagination p a{
+    color:#005be2;
+    padding:0px 10px;
+}
 /*** loop-pagination ***/
 .right a, .left a{
     background: #005be2;
@@ -1304,8 +1320,41 @@ display: none;
     color: #333;
 }
 
+/** In content releated post desing styles **/
+.related_posts .has_related_thumbnail{
+    display: inline-flex;
+    width: 30%;
+    flex-direction: column;
+    margin: 0px 1% 2%;
+    justify-content: space-evenly;
+}
+.related-title{
+    display:block;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #a1a1a1;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+.related_link{
+    margin: 0px 0px 5px 0px;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 500;
+    margin-top:10px;
+}
+.related_link a{
+    color:#000;   
+}
+.related_link p{
+    color: #444;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: 0.10px;
+    margin: 0;
+    padding-top: 10px;
 
-
+}
 /*** Transitions ***/
 .fbp-cnt h2 a, .p-menu ul li a, .fsp h2 a,
 .author-details a, .has_thumbnail, .f-menu ul li a{
@@ -1672,6 +1721,13 @@ amp-user-notification button {
     order: -1;
     margin: 0px 10px 0px 0;
 }
+.fbp-img {
+    float: right;
+}
+.fbp-cnt {
+    margin-right: 30px;
+    margin-left:0
+}
 .fbp-cnt, .fsp-cnt{
     text-align:right;
 }
@@ -1733,7 +1789,19 @@ amp-user-notification button {
 .sp-lt {
     direction: rtl;
 }
-
+/*** Archive ***/
+.archive .author-img {
+    float: right;
+}
+.archive  .author-img amp-img {
+    margin: 0px 0px 10px 12px;
+}
+.amp-archive-title, .amp-archive-desc{
+    text-align:right;
+}
+.archive .fsp:nth-child(1), .archive .fsp:nth-child(4), .archive .fsp:nth-child(7), .archive .fsp:nth-child(10){
+    margin-left:0;
+}
 /** Responsive **/
 @media(max-width:1024px){
 .fbp-img{

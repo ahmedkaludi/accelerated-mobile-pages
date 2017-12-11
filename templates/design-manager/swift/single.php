@@ -24,7 +24,6 @@
 													'author_description'=>true)
 											); ?>
 					<?php } ?>
-					<?php amp_post_pagination();?>
 					<div class="cmts">
 						<?php amp_comments();?>
 						<?php do_action('ampforwp_post_after_design_elements'); ?>
