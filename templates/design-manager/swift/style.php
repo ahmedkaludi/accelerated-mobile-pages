@@ -713,6 +713,9 @@ display: none;
 .b-w .fsp:nth-child(4), .b-w .fsp:nth-child(7), .b-w .fsp:nth-child(10){
     margin-right:0;
 }
+.archive .fsp:nth-child(3), .archive .fsp:nth-child(6), .archive .fsp:nth-child(9), .archive .fsp:nth-child(12){
+    margin-right:0;
+}
 .r-pf .fsp:nth-child(3), .r-pf .fsp:nth-child(6){
     margin-right:0;
 }
