@@ -1315,9 +1315,13 @@ display: none;
 
 /*** Responsive ***/
 @media(max-width:1024px){
-.cntr, .sf-img .wp-caption-text{
+.cntr{
     width:100%;
     padding:0px 40px;
+}
+.sf-img .wp-caption-text{
+    width:100%;
+    padding:10px 40px;
 }
 .fbp-img{
     width:62%;
@@ -1414,7 +1418,7 @@ display: none;
     margin-top: 40px;
 }
 .sp-cnt{
-    margin-top: 25px;
+    margin-top: 15px;
 }
 .rlp-image{
     width:200px;
@@ -1451,9 +1455,13 @@ display: none;
 
 }
 @media(max-width:480px){
-.cntr, .sf-img .wp-caption-text{
+.cntr{
     width: 100%;
     padding: 0px 20px;
+}
+.sf-img .wp-caption-text{
+    width:100%;
+    padding:10px 15px;
 }
 .cntr.b-w{
     padding:0 12px;
@@ -1688,7 +1696,8 @@ amp-user-notification button {
 .sp-rt{
     order: 0;
     direction: rtl;
-    margin-right: 60px;
+    margin-right: 50px;
+    margin-left:0;
 }
 .sp-rt .amp-author .amp-author-image {
     float: right;
