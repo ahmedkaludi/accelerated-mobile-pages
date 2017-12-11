@@ -3,6 +3,7 @@ global $redux_builder_amp;
 if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==false) ) {
   return;
 }
+
 ?>
 <div class="ampforwp-comment-wrapper">
 <?php
@@ -61,6 +62,9 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
 						                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>
+
+  										<?php  do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
+                  
 												<!-- .comment-content -->
 										</article>
 									 <!-- .comment-body -->
@@ -101,3 +105,5 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 <?php } ?>
 </div>
 <?php do_action('ampforwp_after_comment_hook',$this);
+
+
