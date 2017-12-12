@@ -16,7 +16,9 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-					<?php amp_content(); ?>
+					<div class="cntn-wrp">
+						<?php amp_content(); ?>
+					</div>
 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
 						<?php amp_author_box( 
 											array(	'avatar'=>true,
@@ -24,11 +26,11 @@
 													'author_description'=>true)
 											); ?>
 					<?php } ?>
+					<?php amp_post_navigation();?>
 					<div class="cmts">
 						<?php amp_comments();?>
 						<?php do_action('ampforwp_post_after_design_elements'); ?>
 					</div>
-					<?php amp_post_navigation();?>
 				</div>
 				<div class="sp-lt">
 					<div class="ss-icons">
@@ -47,7 +49,7 @@
 		            	<?php amp_tags_list();?>
 		            </div>
 		            <div class="post-date">
-		            	<?php amp_date(); ?>
+		            	<?php amp_date(); ?><?php edit_post_link(); ?>
 		            </div>
 		            <?php
 					$my_query = related_post_loop_query();

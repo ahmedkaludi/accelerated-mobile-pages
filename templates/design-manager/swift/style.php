@@ -794,8 +794,8 @@ display: none;
 }
 .amp-category span a, .amp-category span{
     color: #005be2;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 500;
     text-transform: uppercase;
 }
 .amp-category span:after{
@@ -804,21 +804,21 @@ display: none;
     margin:0px 5px 0px 5px;
     position:relative;
     top:1px;
-    color:#111;
+    color:rgba(0, 0, 0, 0.25);
 }
 .amp-category span:last-child:after{
     display:none;
 }
 .sp{
     width:100%;
-    margin-top:40px;
+    margin-top:20px;
 }
 .amp-post-title{
     font-size:48px;
-    line-height:56px;
+    line-height:58px;
     color: #333;
     margin:0;
-    padding-top:5px;
+    padding-top:15px;
 }
 .sf-img {
     width: 100%;
@@ -881,58 +881,37 @@ display: none;
     padding-bottom:20px;
     border-bottom:1px dotted #ccc;
 }
-.shr-txt{
-    margin-bottom: 15px;
+.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title{
+    margin-bottom: 12px;
 }
-.athr-tx, .tags .amp-tags > span:nth-child(1){
-    margin-bottom: 10px;
-}
-.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title{
+.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date .loop-date, .related-title{
     text-transform: uppercase;
     font-size: 12px;
-    color: #a1a1a1;
+    color: #666;
     display: block;
-    font-weight: 600;
-}
-.amp-related-posts-title{
-    margin:0;
-    padding-bottom:15px;
+    font-weight: 400;
 }
 .sp-athr, .tags, .post-date, .srp{
     margin-top:20px;
 }
-.sp-athr .author-details a, .sp-athr .author-details {
+.sp-athr .author-details a, .sp-athr .author-details, .amp-tags span a, .amp-tag {
     font-size: 15px;
-    text-transform: capitalize;
     color: #005be2;
-    font-weight: 500;
-}
-.amp-tags span a, .amp-tag{
-    font-size:15px;
-    color: #005be2;
-    font-weight: 500;
-}
-.amp-tags .amp-tag {
-    font-size:15px;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.5;
 }
 .amp-tags .amp-tag:after{
     content: "/";
     display: inline-block;
-    padding: 5px;
+    padding: 0px 10px;
     position: relative;
-    top: 2px;
-    color:#111;
+    top: -1px;
+    color: #ccc;
+    font-size: 12px;
 }
 .amp-tags .amp-tag:last-child:after{
     display:none;
 }
-.post-date .loop-date{
-    font-size: 13px;
-    color: #a1a1a1;
-    font-weight: 500;
-}
-
 .ss-icons .amp-social .icon-twitter :before{
     color:#1da1f2;
 }
@@ -948,12 +927,13 @@ display: none;
 }
 
 .swift-sticky-social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-
-.sp-rt p, .pg p{
-    font-size:19px;
-    line-height:30px;
-    color:#4c4c4c;
-    margin:20px 0px;
+.cntn-wrp{
+    font-size:18px;
+    color:#000;
+        line-height:1.5;
+}
+.cntn-wrp p{
+    margin:0px 0px 30px 0px;
 }
 .sp-rt p strong, .pg p strong{
     font-weight: 700;
@@ -967,20 +947,10 @@ display: none;
     margin: 0px;
     height:100%;
 }
-.rlp-cnt a{
-    color: #333;
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 700;
-    margin-top: 10px;
-    display: inline-block;
-}
 .srp ul li{
     display: inline-block;
     line-height: 1.3;
     margin-bottom: 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px dotted #ccc;
     list-style-type:none;
 }
 .srp ul li:last-child{
@@ -1009,15 +979,41 @@ display: none;
 .r-pf .loop-wrapper{
     margin-top:0;
 }
+/** In content releated post desing styles **/
+.related_posts .has_related_thumbnail{
+    display: inline-flex;
+    width: 29%;
+    flex-direction: column;
+    margin:0px 30px 30px 0px;
+    justify-content: space-evenly;
+}
+.related_link a{
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-top: 7px;
+    display: inline-block;
+}
+.related_link p{
+    font-size: 12px;
+    margin: 0;
+    padding-top: 10px;
+}
 <?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
 .sp-rt .amp-author {
-    margin-top:30px;
+    padding: 20px 20px;
+    border-radius: 0;
+    background: #f9f9f9;
+    border: 1px solid #ececec;
 }
 .sp-rt .amp-author .amp-author-image{
     float:left;
 }
 .sp-rt .amp-author .author-details a{
-    color:#808080;
+    color: #222;
+    font-size: 14px;
+    font-weight: 500;
 }
 .sp-rt .author-details a:hover{
     color:#005be2;
@@ -1027,10 +1023,10 @@ display: none;
 
 .author-details p{
     margin: 0;
-    font-size: 15px;
-    line-height: 22px;
-    color: #333;
-    padding-top: 5px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #666;
+    padding-top: 4px;
 }
 <?php } ?>
 <?php if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
@@ -1038,9 +1034,9 @@ display: none;
 .breadcrumb{
     width: 100%;
     display: inline-block;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
     border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .breadcrumb ul li{
     display: inline-block;
@@ -1056,7 +1052,7 @@ display: none;
 .item-home:after{
    content: "\e315";
     display: inline-block;
-    color: #005be2;
+    color: #bdbdbd;
     font-family: 'icomoon';
     padding-left: 5px;
     font-size: 12px;
@@ -1090,18 +1086,21 @@ display: none;
     margin-top:10px;
 }
 .prev span{
-    display: block;
+    text-transform: uppercase;
     font-size: 12px;
+    color: #666;
+    display: block;
+    font-weight: 400;
     position: absolute;
     top: -26px;
-    color: #a1a1a1;
 }
 .next span{
-    display: block;
+    text-transform: uppercase;
     font-size: 12px;
+    color: #666;
+    display: block;
     position: absolute;
     top: -26px;
-    color: #a1a1a1;
     right:0
 }
 .next:hover a, .prev:hover a{
@@ -1172,7 +1171,7 @@ display: none;
     width:100%;
     display:inline-block;
     clear:both;
-    margin-top:20px;
+    margin-top:40px;
 }
 .amp-comment-button{
     background-color: #005be2;
@@ -1207,25 +1206,30 @@ display: none;
 }
 .cmts h3{
     margin: 0;
-    font-size: 17px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
-    font-weight: bold;
+    font-size: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #444;
 }
 .cmts h3:after{
     content: "";
     display: block;
-    width: 145px;
-    border-bottom: 2px solid #005be2;
+    width: 115px;
+    border-bottom: 1px solid #005be2;
     position: relative;
-    top: 12px;
+    top: 7px;
 }
 .cmts ul{
     margin-top:16px;
 }
 .cmts ul li{
-    list-style:none;
-    margin-bottom:25px;
+    list-style: none;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 .cmts .amp-comments-wrapper ul .children{
     margin-left:30px;
@@ -1234,22 +1238,19 @@ display: none;
     display:none;
 }
 .cmts  .comment-author.vcard .fn{
-    font-size: 15px;
-    font-weight: 600;
-    color: #111;
-}
-.comment-author.vcard{
-    display: inline-block;
-    margin-right: 5px;
-    vertical-align: middle;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
 }
 .cmts .comment-metadata{
-    font-size: 13px;
-    font-weight: normal;
-    display:inline-block;
+    font-size: 11px;
+    margin-top: 8px;
+}
+.amp-comments-wrapper ul li:hover .comment-meta .comment-metadata a{
+    color:#005be2;
 }
 .cmts .comment-metadata a{
-    color: #333;
+    color: #999;
 }
 .comment-content{
     margin-top:6px;
@@ -1257,11 +1258,11 @@ display: none;
     display:inline-block;
 }
 .comment-content p{
-    font-size: 16px;
-    color: #000;
-    line-height: 21px;
-    font-weight:400;
-    margin:0;
+    font-size: 14px;
+    color: #333;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0;
 }
 .comment-meta amp-img{
     float:left;
@@ -1346,39 +1347,7 @@ display: none;
     color: #333;
 }
 
-/** In content releated post desing styles **/
-.related_posts .has_related_thumbnail{
-    display: inline-flex;
-    width: 29%;
-    flex-direction: column;
-    margin:0px 30px 30px 0px;
-    justify-content: space-evenly;
-}
-.related-title{
-    display:block;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #a1a1a1;
-    font-weight: 600;
-    padding-bottom: 15px;
-}
-.related_link a{
-    color: #333;
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 700;
-    margin-top: 10px;
-    display: inline-block;
-}
-.related_link p{
-    color: #444;
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: 0.10px;
-    margin: 0;
-    padding-top: 10px;
 
-}
 /*** Transitions ***/
 .fbp-cnt h2 a, .p-menu ul li a, .fsp h2 a,
 .author-details a, .has_thumbnail, .f-menu ul li a{
@@ -1415,7 +1384,9 @@ display: none;
 .sp-rt {
     margin-left: 30px;
 }
-
+.related_posts .has_related_thumbnail {
+    margin: 0px 26px 30px 0px;
+}
 
 }
 @media(max-width:980px){
@@ -1577,7 +1548,12 @@ display: none;
     padding: 8px 15px;
 }
 /** Single Page **/
-
+.cntn-wrp p{
+    line-height:1.65;
+}
+.related_posts .has_related_thumbnail {
+    width: 100%;
+}
 .rlp-image {
     width: 100%;
     float: none;
@@ -1657,7 +1633,9 @@ display: none;
 .right a, .left a {
     padding: 10px 30px;
 }
-
+.cntn-wrp p {
+    font-size: 16px;
+}
 }
 
 /**** Font-Icons ****/
