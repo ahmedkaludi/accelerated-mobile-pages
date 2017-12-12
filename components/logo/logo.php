@@ -1,8 +1,8 @@
 <?php
-function ampforwp_framework_get_logo(){ 
+function ampforwp_framework_get_logo(){
   global $redux_builder_amp; ?>
 <div class="amp-logo">
-  <?php 
+  <?php
         do_action('amp_header_top');
         $set_rel_to_noamp=false;
 
@@ -27,7 +27,6 @@ function ampforwp_framework_get_logo(){
           }?>
 
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
-        $logo_id =  attachment_url_to_postid($redux_builder_amp['opt-media'] ['url']);
           $alt = ampforwp_default_logo('alt')  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
 
