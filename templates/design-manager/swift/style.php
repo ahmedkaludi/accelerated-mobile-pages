@@ -1174,7 +1174,7 @@ display: none;
     clear:both;
     margin-top:20px;
 }
-.cmts  .amp-comment-button{
+.amp-comment-button{
     background-color: #005be2;
     font-size: 15px;
     font-family: 'Open Sans',sans-serif;
@@ -1186,10 +1186,24 @@ display: none;
     font-weight: 600;
     width:250px;
 }
-.cmts .amp-comment-button a{
+.form-submit #submit{
+    background-color: #005be2;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+    color:#fff;
+    cursor: pointer;
+}
+.amp-comment-button a{
     color: #ffffff;
     display: block;
     padding: 7px 0px 8px 0px;
+}
+.comment-form-comment #comment {
+    border-color: #ccc;
+    width: 100%;
+    padding: 20px;
 }
 .cmts h3{
     margin: 0;
