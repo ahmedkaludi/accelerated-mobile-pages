@@ -881,10 +881,10 @@ display: none;
     padding-bottom:20px;
     border-bottom:1px dotted #ccc;
 }
-.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title{
+.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title, .r-pf h3{
     margin-bottom: 12px;
 }
-.shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date .loop-date, .related-title{
+.shr-txt, .athr-tx, .r-pf h3, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date .loop-date, .related-title{
     text-transform: uppercase;
     font-size: 12px;
     color: #666;
@@ -966,15 +966,6 @@ display: none;
     margin-top: 40px;
     display: inline-block;
     width: 100%;
-}
-.r-pf h3{
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #a1a1a1;
-    display: block;
-    font-weight: 600;
-    margin:0;
-    padding-bottom:15px;
 }
 .r-pf .loop-wrapper{
     margin-top:0;
@@ -1127,6 +1118,7 @@ display: none;
     font-size: 18px;
     color: #444;
     font-weight: 500;
+    margin-bottom:10px;
 }
 .ampforwp_post_pagination p a{
     color:#005be2;
@@ -1187,12 +1179,18 @@ display: none;
 }
 .form-submit #submit{
     background-color: #005be2;
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
     border-radius: 3px;
-    font-weight: 600;
-    color:#fff;
+    font-weight: 500;
+    color: #fff;
     cursor: pointer;
+    margin: 0;
+    border: 0;
+    padding: 11px 21px;
+}
+#respond p {
+    margin: 12px 0;
 }
 .amp-comment-button a{
     color: #ffffff;
