@@ -2441,17 +2441,21 @@ Redux::setSection( $opt_name, array(
                 'title'      => __( 'Header', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-header-settings',
         'subsection' => true,
-        'amp_tab'       => array(
-                            array(
-                                'label' => 'Tab1',
-                                'fields' => array('header-type','primary-menu','primary-menu-padding-control','primary-menu-text-scheme','primary-menu-background-scheme','primary-menu-background-scheme','ampforwp-callnow-button','ampforwp-amp-menu','amp-on-off-support-for-non-amp-home-page','signin-button','signin-button-text','signin-button-link','signin-button-style','signin-button-border-line','signin-button-text-color','signin-button-border-color', 'border-type','border-radius') ),
-                            array(
-                            'label' => 'Tab2',
-                            'fields' => array('customize-options', 'swift-height-control', 'margin-padding-options','swift-padding-control', 'swift-margin-control','border-line','swift-border-line-control','swift-border-color-control','swift-boxshadow-checkbox-control','swift-background-scheme','swift-header-overlay','swift-element-color-control','swift-element-overlay-color-control','header-position-type', ) ),
-
-        ),
+        'tab'       => true,
         'fields'     => array(
             // Swift
+            // Tab 1
+            array(
+                   'id' => 'header-tab-1',
+                   'type' => 'section',
+                   'title' => __('', 'accelerated-mobile-pages'),
+                   'label'  => 'Tab 1',
+                   'indent' => true,
+                   'start'  => true,
+                   /*'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),*/
+             ),
             array(
                     'id'    => 'header-type',
                    'title'  => __('Header Type', 'accelerated-mobile-pages'),
@@ -2475,6 +2479,291 @@ Redux::setSection( $opt_name, array(
                    'height'=> 200,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
+            array(
+                    'id'       => 'primary-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Primary Menu', 'ampswifttheme'),
+                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'ampswifttheme'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'ampswifttheme'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => '1'
+            ),
+            array(
+                    'id'             => 'primary-menu-padding-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.p-menu'),
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Primary Menu Padding Option', 'ampswifttheme'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'ampswifttheme'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'default'            => array(
+                        'padding-top'     => '12px', 
+                        'padding-right'   => '25px', 
+                        'padding-bottom'  => '12px', 
+                        'padding-left'    => '25px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )       
+            ),
+            array(
+                'id'        => 'primary-menu-text-scheme',
+                'title'     => __('Primary Menu Text Color Scheme', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Primary Text Menu','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgba(102, 102, 102, 1)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'primary-menu-background-scheme',
+                'title'     => __('Primary Menu Background Color Scheme', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Primary Menu Background','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(239, 239, 239)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button',
+                'title'     => __('Button Customize', 'ampswifttheme'),
+                'subtitle'  => __('You can do the customization here ','ampswifttheme'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('header-type','=',2)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-text',
+                'title'     => __('Button Text', 'ampswifttheme'),
+                'subtitle'  => __('You can write your required text ','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => 'Sign up free',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-link',
+                'title'     => __('Button Link', 'ampswifttheme'),
+                'subtitle'  => __('You can add the Link here ','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '#',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+
+            array(
+                'id'        => 'signin-button-style',
+                'title'     => __('Button Styles', 'ampswifttheme'),
+                'subtitle'  => __('You can change the button here','ampswifttheme'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-border-line',
+                'title'     => __('Button Border Line', 'ampswifttheme'),
+                'subtitle'  => __('You can change the button border line','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '2',
+                    'required' => array(
+                      array('signin-button-style','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-text-color',
+                'title'     => __('Button Text Color', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Button Texxt','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+             array(
+                'id'        => 'signin-button-border-color',
+                'title'     => __('Button Border Line Color', 'ampswifttheme'),
+                'subtitle'  => __('Choose the color for Button Border Line','ampswifttheme'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+
+            array(
+                    'id'    => 'border-type',
+                   'title'  => __('Border Type', 'amptechtheme'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Square',
+                        '2' =>  'Round',
+                        '3' => 'Custom'
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('signin-button', '=' ,1) ),
+            ),
+
+            array(
+                'id'        => 'border-radius',
+                'title'     => __('Customize Border Radius', 'ampswifttheme'),
+                'subtitle'  => __('You can change the border radius','ampswifttheme'),
+                'type'      => 'text',
+                'default'   => '10',
+                    'required' => array(
+                      array('border-type','=',3)
+                    )  
+              ),
+
+             array(
+                    'id'       => 'ampforwp-amp-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
+                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 1
+            ),
+               // Call Now button
+             array(
+                    'id'       => 'ampforwp-callnow-button',
+                    'type'     => 'switch',
+                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                    'type'      => 'text',
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
+             ),
+             array(
+                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                    'type'      => 'switch',
+                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+             array(
+                    'id'        => 'amp-opt-sticky-head',
+                    'type'      => 'switch',
+                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    ),
+                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
+            ),
+             array(
+                    'id'       => 'amp-design-3-search-feature',
+                    'type'     => 'switch',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '3')
+                    ),
+                    'default'  => '0'
+            ),
+             
+             array(
+                    'id'       => 'amp-design-2-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                    ),
+                    'default'  => '0'
+            ),
+
+             array(
+                    'id'       => 'amp-design-1-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                    ),
+                    'default'  => '0'
+            ),
+               
+            array(
+                    'id'        => 'amp-opt-color-rgba-headercolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Background Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#FFFFFF',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+             array(
+                    'id'        => 'amp-opt-color-rgba-headerelements',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Elements Color','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => ampforwp_get_element_default_color(),
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+             // Tab 1 end    
+             array(
+                   'id' => 'header-tab-1-end',
+                   'type' => 'section',
+                   'title' => __('Tab 1', 'accelerated-mobile-pages'),
+                   'end'  => true,
+                   /*'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),*/
+               ),
+            // Tab 2
+            array(
+                   'id' => 'header-tab-2',
+                   'type' => 'section',
+                   'title' => __('', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'start'  => true,
+                   'label' => 'Tab 2',
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+             ),       
             array(
                     'id'    => 'customize-options',
                     'type'  => 'switch',
@@ -2661,272 +2950,19 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     )    
             ),
-
+            // Tab 2 end
             array(
-                    'id'       => 'primary-menu',
-                    'type'     => 'switch',
-                    'title'    => __('Primary Menu', 'ampswifttheme'),
-                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'ampswifttheme'),
-                    'subtitle' => __('Enable/Disable Menu from header', 'ampswifttheme'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'default'   => '1'
-            ),
-            array(
-                    'id'             => 'primary-menu-padding-control',
-                    'type'           => 'spacing',
-                    'output'         => array('.p-menu'),
-                    'mode'           => 'padding',
-                    'units'          => array('px'),
-                    'units_extended' => 'false',
-                    'title'          => __('Primary Menu Padding Option', 'ampswifttheme'),
-                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'ampswifttheme'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
-                    'default'            => array(
-                        'padding-top'     => '12px', 
-                        'padding-right'   => '25px', 
-                        'padding-bottom'  => '12px', 
-                        'padding-left'    => '25px',
-                        'units'          => 'px', 
+                   'id' => 'header-tab-2-end',
+                   'type' => 'section',
+                   'title' => __('Tab 2', 'accelerated-mobile-pages'),
+                   'end'  => true,
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
                     ),
-                    'required' => array(
-                      array('primary-menu','=',1)
-                    )       
-            ),
-            array(
-                'id'        => 'primary-menu-text-scheme',
-                'title'     => __('Primary Menu Text Color Scheme', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Primary Text Menu','ampswifttheme'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgba(102, 102, 102, 1)',
-                    ),
-                    'required' => array(
-                      array('primary-menu','=',1)
-                    )  
-              ),
-
-            array(
-                'id'        => 'primary-menu-background-scheme',
-                'title'     => __('Primary Menu Background Color Scheme', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Primary Menu Background','ampswifttheme'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgb(239, 239, 239)',
-                    ),
-                    'required' => array(
-                      array('primary-menu','=',1)
-                    )  
-              ),
-
-            array(
-                'id'        => 'signin-button',
-                'title'     => __('Button Customize', 'ampswifttheme'),
-                'subtitle'  => __('You can do the customization here ','ampswifttheme'),
-                'type'      => 'switch',
-                'default'   => '0',
-                    'required' => array(
-                      array('header-type','=',2)
-                    )  
-              ),
-
-            array(
-                'id'        => 'signin-button-text',
-                'title'     => __('Button Text', 'ampswifttheme'),
-                'subtitle'  => __('You can write your required text ','ampswifttheme'),
-                'type'      => 'text',
-                'default'   => 'Sign up free',
-                    'required' => array(
-                      array('signin-button','=',1)
-                    )  
-              ),
-
-            array(
-                'id'        => 'signin-button-link',
-                'title'     => __('Button Link', 'ampswifttheme'),
-                'subtitle'  => __('You can add the Link here ','ampswifttheme'),
-                'type'      => 'text',
-                'default'   => '#',
-                    'required' => array(
-                      array('signin-button','=',1)
-                    )  
-              ),
-
-            array(
-                'id'        => 'signin-button-style',
-                'title'     => __('Button Styles', 'ampswifttheme'),
-                'subtitle'  => __('You can change the button here','ampswifttheme'),
-                'type'      => 'switch',
-                'default'   => '0',
-                    'required' => array(
-                      array('signin-button','=',1)
-                    )  
-              ),
-            array(
-                'id'        => 'signin-button-border-line',
-                'title'     => __('Button Border Line', 'ampswifttheme'),
-                'subtitle'  => __('You can change the button border line','ampswifttheme'),
-                'type'      => 'text',
-                'default'   => '2',
-                    'required' => array(
-                      array('signin-button-style','=',1)
-                    )  
-              ),
-            array(
-                'id'        => 'signin-button-text-color',
-                'title'     => __('Button Text Color', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Button Texxt','ampswifttheme'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgb(0, 0, 0)',
-                    ),
-                'required' => array(
-                  array('signin-button-style','=',1)
-                )  
-            ),
-             array(
-                'id'        => 'signin-button-border-color',
-                'title'     => __('Button Border Line Color', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Button Border Line','ampswifttheme'),
-                'type'      => 'color_rgba',
-                'default'   => array(
-                    'rgba'  => 'rgb(0, 0, 0)',
-                    ),
-                'required' => array(
-                  array('signin-button-style','=',1)
-                )  
-            ),
-
-            array(
-                    'id'    => 'border-type',
-                   'title'  => __('Border Type', 'amptechtheme'),
-                   'type'   => 'select',
-                   'options'=> array(
-                        '1' =>  'Square',
-                        '2' =>  'Round',
-                        '3' => 'Custom'
-                    ),
-                   'default'=> '1',
-                   'required' => array( array('signin-button', '=' ,1) ),
-            ),
-
-            array(
-                'id'        => 'border-radius',
-                'title'     => __('Customize Border Radius', 'ampswifttheme'),
-                'subtitle'  => __('You can change the border radius','ampswifttheme'),
-                'type'      => 'text',
-                'default'   => '10',
-                    'required' => array(
-                      array('border-type','=',3)
-                    )  
-              ),
-
-             array(
-                    'id'       => 'ampforwp-amp-menu',
-                    'type'     => 'switch',
-                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
-                    'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
-                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'default'   => 1
-            ),
-             array(
-                    'id'       => 'amp-design-3-search-feature',
-                    'type'     => 'switch',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '3')
-                    ),
-                    'default'  => '0'
-            ),
-             
-             array(
-                    'id'       => 'amp-design-2-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '2')
-                    ),
-                    'default'  => '0'
-            ),
-
-             array(
-                    'id'       => 'amp-design-1-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '1')
-                    ),
-                    'default'  => '0'
-            ),
-                 // Call Now button
-             array(
-                    'id'       => 'ampforwp-callnow-button',
-                    'type'     => 'switch',
-                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'required' => array(
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'default'   => 0
              ),
-             array(
-                    'id'        =>'enable-amp-call-numberfield',
-                    'type'      => 'text',
-                    'required'  => array(
-                        array('ampforwp-callnow-button', '=' , '1'),
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
-            array(
-                    'id'        => 'amp-opt-color-rgba-headercolor',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Background Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#FFFFFF',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-             array(
-                    'id'        => 'amp-opt-color-rgba-headerelements',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Elements Color','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => ampforwp_get_element_default_color(),
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-            array(
-                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                    'type'      => 'switch',
-                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
-             array(
-                    'id'        => 'amp-opt-sticky-head',
-                    'type'      => 'switch',
-                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    ),
-                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
-                    'default'  => '0'
-            ),
-          )
-        )
-      );
+         ),
+    )
+  );
 
 
   //code for fetching ctegories to show as a list in redux settings

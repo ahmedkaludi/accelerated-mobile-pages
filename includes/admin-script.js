@@ -98,24 +98,41 @@ jQuery(function($) {
         }
         
     });
+var dataTabRequired = function(){
+    $('[data-tab-required]').each(function(){
+        var tabRequired = $(this).attr('data-tab-required');
+        var  currentThis = $(this);
+        tabRequired = JSON.parse(tabRequired);
+        var showLi = true;
+        $.each(tabRequired,function(k, value){
+            var currentValue = jQuery('[name="redux_builder_amp['+value[0]+']"]').val();;
+            if(currentValue!=value[2]){
+                showLi = false;
+                return false; 
+            }
+        });
+        if(showLi==false){
+            currentThis.hide();
+        }else{
+            currentThis.show();
+        }
+
+    });
+}    
 var reduxOptionTab = function(){
     $('.redux-tab-selector').click(function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        var tabFields = $(this).attr('data-tabfields');
-        $(this).parents('.redux-group-tab').find('table tr').hide();
-        tabFields = JSON.parse(tabFields);
-        $.each(tabFields,function(index,value){
-        if ($('[name = "redux_builder_amp['+value+']"]').parents('tr').hasClass('hide')) {
-            $('[name = "redux_builder_amp['+value+']"]').parents('tr').hide();
-        }
-        else{
-            $('[name = "redux_builder_amp['+value+']"]').parents('tr').show();    
-        }    
-        })
+        var tabId = $(this).attr('data-tab');
+        var tabRequired = $(this).attr('data-tab-required');
+        $(this).parents().find('.custom-tab-container').hide();   
+        $('#parent-section-'+ tabId ).show();
     });
-    //$('.redux-tab-container').each(function(){
+    $('.redux-tabs-ul').each(function(){
         $(this).find('.redux-tab-selector:first').click();
-    //});
+    });
+    dataTabRequired();
+    $('select').change(function(){
+         dataTabRequired();
+    });
 } 
 reduxOptionTab();   
 });

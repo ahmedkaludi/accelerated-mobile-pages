@@ -32,14 +32,6 @@
         $section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';
         echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ) . '" data-rel="' . $k . '">';
         //echo '<div id="' . $k . '_nav-bar' . '"';
-        if ( !empty( $section['amp_tab'] ) ){
-            echo "<div class='redux-tab-container'>";
-            foreach ($section['amp_tab'] as $key => $value) {
-            echo "<div class='redux-tab-selector' data-tabfields='". json_encode($value['fields']) ."'>". $value['label']. "</div>";
-            }
-            echo "</div>";
-        }
-
         /*
     if ( !empty( $section['tab'] ) ) {
 
@@ -65,6 +57,17 @@
     } else {
         */
 
+
+        // Tabs
+        if( isset( $section['tab'] ) && true == $section['tab'] && !empty( $section['fields'] ) ) {
+            echo '<ul class="redux-tabs-ul">';
+            foreach ($section['fields'] as $key => $field) {
+                if( 'section' == $field['type'] && true == $field['start']){
+                    echo '<li class="redux-tab-selector" data-tab-required=\''. json_encode($field['required']). '\' data-tab="'. $field['id'] .'">'. $field['label'].' </li>';
+                }
+            }
+            echo "</ul>";
+        }
         // Don't display in the
         $display = true;
         if ( isset( $_GET['page'] ) && $_GET['page'] == $this->parent->args['page_slug'] ) {
