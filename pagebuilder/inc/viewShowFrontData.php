@@ -2,10 +2,9 @@
 /***
 Show Front Data
 ****/
-
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
- 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' ); // Run 
+ 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
 }
 
 function  ampforwp_insert_pb_content( $content ){
@@ -27,7 +26,7 @@ function amp_pagebuilder_content_styles(){
     .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 	<?php
 	//To load css of modules which are in use
-	global $redux_builder_amp, $moduleTemplate, $post;
+	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
 	$postId = $post->ID;
 	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
@@ -43,26 +42,104 @@ function amp_pagebuilder_content_styles(){
 			foreach ($previousData['rows'] as $key => $rowsData) {
 				$container = $rowsData['cell_data'];
 				if(count($container)>0){
+					//Module specific styles
 					foreach($container as $contentArray){
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							echo $moduleTemplate[$contentArray['type']]['front_css'];
 						}
 					}//foreach content closed 
 				}//ic container check closed
+				//Create row css
+			
+				$rowCss = array();
+				foreach ($rowsData['data'] as $dataKey => $dataValue) {
+					//All rows Settings
+					foreach($containerCommonSettings['fields'] as $fieldSetup){
+						
+						if($fieldSetup['content_type']=='css' && $fieldSetup['name'] == $dataKey){
+							$requiredResult = true;
+							if(isset($fieldSetup['required'])){
+								foreach ($fieldSetup['required'] as $requiredKey => $requiredValue) {
 
-			}//foreach closed
+									if($rowsData['data'][$requiredKey]!=$requiredValue && $requiredResult==true){
+										$requiredResult = false;
+									}
+								}
+							}
+							if($requiredResult==false){
+								continue;
+							}
+
+							switch ($fieldSetup['type']) {
+								case 'color-picker':
+								case 'radio':
+								case 'select':
+									if($dataValue!=""){
+										$rowCss[] = str_replace("%default%",
+													 	$dataValue, 
+														$fieldSetup['output_format']);
+									}
+								break;
+								case 'checkbox':
+									if($dataValue!="" && $fieldSetup['output_format']!=""){
+										foreach ($dataValue as $key => $value) {
+											$rowCss[] = str_replace("%default".$key."%",
+													 	$dataValue, 
+														$fieldSetup['output_format']);
+										}
+										/*echo $fieldSetup['output_format'];
+										$rowCss[] = str_replace("%default%",
+													 	$dataValue, 
+														$fieldSetup['output_format']);*/
+									}
+								break;
+								case 'gradient-selector':
+									if($dataValue!=""){
+										$rowCss[] = str_replace("%default%",
+													 	$dataValue, 
+														$fieldSetup['output_format']);
+									}
+								break;
+								case 'spacing':
+									if($dataValue!=""){
+										$rowCss[] = str_replace(
+														array("%left%","%right%","%top%","%bottom%"),
+													 	array($dataValue['left'],$dataValue['right'],$dataValue["top"],$dataValue["bottom"]), 
+														$fieldSetup['output_format']);
+									}
+
+								break;
+								default:
+									# code...
+									break;
+							}
+						}else{
+
+						}
+						
+					}
+				}
+				if(count($rowCss)>0){
+					echo '.row-setting-'.$rowsData['id'].'{
+						 '.implode(';', $rowCss) .';
+					}';	
+				}
+				
+
+			}//foreach closed complete data
 		}//if closed  count($previousData['rows'])>0
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 
 
 function amppb_post_content($content){
-	require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
-	global $containerCommonSettings;
-	global $moduleTemplate;
 	global $post,  $redux_builder_amp;
+	global $moduleTemplate, $layoutTemplate, $containerCommonSettings;
 	$postId = $post->ID;
-	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+	if( is_home() && 
+		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
+		ampforwp_get_blog_details() == false
+	){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 
@@ -70,6 +147,8 @@ function amppb_post_content($content){
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+
+
 		$html ="";
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
@@ -94,7 +173,12 @@ function amppb_post_content($content){
 					}else{
 						$replace = '';
 					}
-					$customClass = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
+					if($field['name'] == 'row_class'){
+						$replace .= ' row-setting-'.$rowsData['id'];
+					}
+					if(! is_array($field['name']) && $field['content_type']=='html'){
+						$customClass = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
+					}
 				}
 				$html .= $customClass;
 				//$html .= '<div class="row '.$customClass.'">';
@@ -171,7 +255,10 @@ function rowData($container,$col,$moduleTemplate){
 					default:
                         if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-							if(isset($contentArray[$field['name']]) && !empty($contentArray)){
+
+							
+							if(isset($contentArray[$field['name']]) 
+								&& !empty($contentArray) ){
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
 							}else{
 								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);

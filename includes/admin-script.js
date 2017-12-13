@@ -91,6 +91,26 @@ jQuery(function($) {
                $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
             });
         }
-        
+        reduxOptionTab();
     });
+	var reduxOptionTab = function(){
+		$('.redux-tab-selector').click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			var tabFields = $(this).attr('data-tabfields');
+			$(this).parents('.redux-group-tab').find('table tr').hide();
+			tabFields = JSON.parse(tabFields);
+			$.each(tabFields,function(index,value){
+			if ($('[name = "redux_builder_amp['+value+']"]').parents('tr').hasClass('fold hide')) {
+				$('[name = "redux_builder_amp['+value+']"]').parents('tr').hide();
+			}
+			else{
+				$('[name = "redux_builder_amp['+value+']"]').parents('tr').show();    
+			}    
+			})
+		});
+		$('.redux-tab-container').each(function(){
+			$(this).find('.redux-tab-selector:first').click();
+		});
+	}
+
 });

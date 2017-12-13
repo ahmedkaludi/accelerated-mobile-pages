@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'AMP_PAGE_BUILDER', plugin_dir_path(__FILE__) );
 define( 'AMP_PAGE_BUILDER_URL', plugin_dir_url(__FILE__) );
 
+require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+
 //Set Metabox
 add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register', 10 ,1);
 function ampforwp_pagebuilder_content_meta_register($post_type){
@@ -90,9 +92,7 @@ add_action("wp_ajax_call_page_builder", "call_page_builder");
 
 /* Add page builder form after editor */
 function call_page_builder(){
-	global $post;
-	global $moduleTemplate;
-	global $layoutTemplate;
+	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings;
 	if($post!=null){
 		$postId = $post->ID;
 	}
@@ -150,7 +150,7 @@ function call_page_builder(){
 				 						),
 							)
 						);
-	require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+	
 	$backendRowSetting = $containerCommonSettings;
 	unset($backendRowSetting['front_template_start']);
 	unset($backendRowSetting['front_template_end']);
@@ -290,7 +290,7 @@ function call_page_builder(){
 				
 		</div><!-- .amppb-rows -->
 
-	
+		<div class="modules-options">
          	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
 	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
@@ -321,7 +321,7 @@ function call_page_builder(){
 			    ?>
 			    <div class="clearfix"></div>
 			</div><!-- .amppb-module-actions -->
-
+		</div>
 
 
 

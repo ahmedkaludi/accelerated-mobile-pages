@@ -407,130 +407,129 @@ Redux::setArgs( "redux_builder_amp", $args );
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
         'id'         => 'opt-text-subsection',
         'subsection' => true,
-        'fields'     => array(
+        'tab'        => array(
+                            array(
+                            'title'=>'Home 1',
+                            'fields'     => array(
+                                        array(
+                                            'id'       => 'ampforwp-custom-logo-dimensions',
+                                            'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                                            'type'     => 'switch',
+                                            'default'  => 0,
+                                        ),
+                                        array(
+                                            'id'       => 'opt-media',
+                                            'type'     => 'media',
+                                            'url'      => true,
+                                            'title'    => __('Logo', 'accelerated-mobile-pages'),
+                                            'subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
+                                            'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages')
+                                        ),
+                                       array(
+                                            'id'       => 'ampforwp-custom-logo-dimensions',
+                                            'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                                            'type'     => 'switch',
+                                            'default'  => 0,
+                                        ),
+                                       array(
+                                            'id'       => 'opt-media-width',
+                                            'type'     => 'text',
+                                            'title'    => __('Logo Width', 'accelerated-mobile-pages'),
+                                            'desc'    => __('Default width is 190 pixels', 'accelerated-mobile-pages'),
+                                            'default' => '190',
+                                            'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                                        ),
+                                       array(
+                                            'id'       => 'opt-media-height',
+                                            'type'     => 'text',
+                                            'title'    => __('Logo Height', 'accelerated-mobile-pages'),
+                                            'desc'    => __('Default height is 36 pixels', 'accelerated-mobile-pages'),
+                                            'default' => '36',
+                                            'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
 
-             array(
-                'id'       => 'opt-media',
-                'type'     => 'media',
-                'url'      => true,
-                'title'    => __('Logo', 'accelerated-mobile-pages'),
-                'subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
-                'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages')
-            ),
-           array(
-                'id'       => 'ampforwp-custom-logo-dimensions',
-                'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
-                'type'     => 'switch',
-                'default'  => 0,
-            ),
-           array(
-                'id'       => 'opt-media-width',
-                'type'     => 'text',
-                'title'    => __('Logo Width', 'accelerated-mobile-pages'),
-                'desc'    => __('Default width is 190 pixels', 'accelerated-mobile-pages'),
-                'default' => '190',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
-            ),
-           array(
-                'id'       => 'opt-media-height',
-                'type'     => 'text',
-                'title'    => __('Logo Height', 'accelerated-mobile-pages'),
-                'desc'    => __('Default height is 36 pixels', 'accelerated-mobile-pages'),
-                'default' => '36',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                                        ),
+                                       array(
+                                                   'id' => 'amp-support',
+                                                   'type' => 'section',
+                                                   'title' => __('AMP Support', 'accelerated-mobile-pages'),
+                                                   'indent' => true,
+                                        ),
+                                       array(
+                                           'id'        =>'amp-on-off-for-all-posts',
+                                           'type'      => 'switch',
+                                           'title'     => __('Posts', 'accelerated-mobile-pages'),
+                                           'subtitle'  => __('Enable AMP Support on Posts', 'accelerated-mobile-pages'),
+                                           'default'   => 1,
+                            //               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
+                                        ),
+                                        array(
+                                           'id'        =>'amp-on-off-for-all-pages',
+                                           'type'      => 'switch',
+                                           'title'     => __('Pages', 'accelerated-mobile-pages'),
+                                           'subtitle'  => __('Enable AMP Support on Pages.', 'accelerated-mobile-pages'),
+                                           'default'   => 1,
+                            //               'subtitle'      => __( '<a href="https://ampforwp.com/flush-rewrite-urls/">Re-Save permalink</a> if you make changes in this option, please have a look here on how to do it', 'accelerated-mobile-pages' ),
+                                        ),
+                                       array(
+                                           'id'       => 'ampforwp-homepage-on-off-support',
+                                           'type'     => 'switch',
+                                           'title'    => __('Homepage', 'accelerated-mobile-pages'),
+                                           'subtitle' => __('Enable AMP Support on Homepage.', 'accelerated-mobile-pages'),
+                                           'default'  => '1'
+                                        ),
+                                       array(
+                                            'id'        =>'amp-frontpage-select-option',
+                                            'type'      => 'switch',
+                                            'title'     => __('Custom Front Page', 'accelerated-mobile-pages'),
+                                            'default'   => 0,
+                                            'subtitle'  => __('Set Custom Front Page as Homepage', 'accelerated-mobile-pages'),
+                                            'true'      => 'true',
+                                            'false'     => 'false',
+                                            'required'  => array('ampforwp-homepage-on-off-support','=','1'),
+                            //                'desc'      => __( 'Re-Save permalink if front page or custom post page\'s pagination is not working. Please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
+                                        ),
+                                       array(
+                                            'id'       => 'amp-frontpage-select-option-pages',
+                                            'type'     => 'select',
+                                            'title'    => __('Select Page as Front Page', 'accelerated-mobile-pages'),
+                                            'required' => array('amp-frontpage-select-option', '=' , '1'),
+                                            // Must provide key => value pairs for select options
+                                            'data'     => 'page',
+                                            'args'     => array(
+                                                'post_type' => 'page',
+                                                'posts_per_page' => 500
+                                            ),
+                                            'default'  => '2',
+                                        ),
+                                       array(
+                                           'id'       => 'ampforwp-title-on-front-page',
+                                           'type'     => 'switch',
+                                           'url'      => true,
+                                           'title'    => __('Title on Static Front Page', 'accelerated-mobile-pages'),
+                                           'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'accelerated-mobile-pages'),
+                                           'default' => 0,
+                                           'required' => array('amp-frontpage-select-option', '=' , '1'),
+                                        ),
+                                       array(
+                                           'id'       => 'ampforwp-archive-support',
+                                           'type'     => 'switch',
+                                           'title'    => __('Archives [Category & Tags]', 'accelerated-mobile-pages'),
+                                           'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
+                                           'default'  => '0'
+                                         ),
+                                       array(
+                                           'id'       => 'ampforwp-sub-categories-support',
+                                           'type'     => 'switch',
+                                           'title'    => __('Sub-Categories', 'accelerated-mobile-pages'),
+                                           'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
+                                           'default'  => '0'
+                                         ),
 
-            ),
-           array(
-                       'id' => 'amp-support',
-                       'type' => 'section',
-                       'title' => __('AMP Support', 'accelerated-mobile-pages'),
-                       'indent' => true,
-            ),
-           array(
-               'id'        =>'amp-on-off-for-all-posts',
-               'type'      => 'switch',
-               'title'     => __('Posts', 'accelerated-mobile-pages'),
-               'subtitle'  => __('Enable AMP Support on Posts', 'accelerated-mobile-pages'),
-               'default'   => 1,
-//               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
-            ),
-			array(
-               'id'        =>'amp-on-off-for-all-pages',
-               'type'      => 'switch',
-               'title'     => __('Pages', 'accelerated-mobile-pages'),
-               'subtitle'  => __('Enable AMP Support on Pages.', 'accelerated-mobile-pages'),
-               'default'   => 1,
-//               'subtitle'      => __( '<a href="https://ampforwp.com/flush-rewrite-urls/">Re-Save permalink</a> if you make changes in this option, please have a look here on how to do it', 'accelerated-mobile-pages' ),
-            ),
-           array(
-               'id'       => 'ampforwp-homepage-on-off-support',
-               'type'     => 'switch',
-               'title'    => __('Homepage', 'accelerated-mobile-pages'),
-               'subtitle' => __('Enable AMP Support on Homepage.', 'accelerated-mobile-pages'),
-               'default'  => '1'
-            ),
-           array(
-                'id'        =>'amp-frontpage-select-option',
-                'type'      => 'switch',
-                'title'     => __('Custom Front Page', 'accelerated-mobile-pages'),
-                'default'   => 0,
-                'subtitle'  => __('Set Custom Front Page as Homepage', 'accelerated-mobile-pages'),
-                'true'      => 'true',
-                'false'     => 'false',
-                'required'  => array('ampforwp-homepage-on-off-support','=','1'),
-//                'desc'      => __( 'Re-Save permalink if front page or custom post page\'s pagination is not working. Please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
-            ),
-           array(
-                'id'       => 'amp-frontpage-select-option-pages',
-                'type'     => 'select',
-                'title'    => __('Select Page as Front Page', 'accelerated-mobile-pages'),
-                'required' => array('amp-frontpage-select-option', '=' , '1'),
-                // Must provide key => value pairs for select options
-                'data'     => 'page',
-                'args'     => array(
-                    'post_type' => 'page',
-                    'posts_per_page' => 500
-                ),
-                'default'  => '2',
-            ),
-           array(
-               'id'       => 'ampforwp-title-on-front-page',
-               'type'     => 'switch',
-               'url'      => true,
-               'title'    => __('Title on Static Front Page', 'accelerated-mobile-pages'),
-               'subtitle' => __('Enable/Disable display of title on the Static Front Page.', 'accelerated-mobile-pages'),
-               'default' => 0,
-               'required' => array('amp-frontpage-select-option', '=' , '1'),
-            ),
-           array(
-               'id'       => 'ampforwp-archive-support',
-               'type'     => 'switch',
-               'title'    => __('Archives [Category & Tags]', 'accelerated-mobile-pages'),
-               'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
-               'default'  => '0'
-             ),
-           array(
-               'id'       => 'ampforwp-sub-categories-support',
-               'type'     => 'switch',
-               'title'    => __('Sub-Categories', 'accelerated-mobile-pages'),
-               'subtitle' => __('Display sub-categories on category pages', 'accelerated-mobile-pages'),
-               'default'  => '0'
-             ),
-
-          //  array(
-          //      'id'       => 'amp-ad-places',
-          //      'type'     => 'select',
-          //      'title'    => __( 'Ads on Page', 'accelerated-mobile-pages' ),
-          //      'subtitle' => __( 'select your preferece for Ads on Post Types', 'accelerated-mobile-pages' ),
-          //      'options'  => array(
-          //          '1' => __('Only on Posts', 'accelerated-mobile-pages' ),
-          //          '2' => __('Only on Pages', 'accelerated-mobile-pages' ),
-          //          '3' => __('on Both', 'accelerated-mobile-pages' ),
-          //      ),
-          //      'default'  => '3'
-          //  ),
-
-      )
+                                    )
+                            ),
+                            
+                        ),
+        
     ) );//END
 
    // AMP Content Page Builder SECTION

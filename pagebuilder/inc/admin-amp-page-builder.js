@@ -122,6 +122,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 					}
 				});
 			}
+			app.call_default_functions();
 			this.hideModulePopUp();
 	},
 	saveModulePopupdata: function(fields){
@@ -146,9 +147,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 				}
 			}
 		});
+		app.call_default_functions();
 		this.hideModulePopUp();
-		return false;
-	//	app.call_default_functions();
+		return true;
 	}
   }
 })
@@ -226,131 +227,18 @@ Vue.component('text-editor',{
 	props: [],
 	mounted: function () {//On ready State for component
 		this.$nextTick(function () {
-			this.buildEditor();
+			
 		});
 	},
 	methods:{
 		buildEditor:function() {
-				var id  = 'hello_editor';
-
-				// Abort building if the textarea is gone, likely due to the widget having been deleted entirely.
-				if ( ! document.getElementById( id ) ) {
-					return;
 				}
-
-				// The user has disabled TinyMCE.
-				if ( typeof window.tinymce === 'undefined' ) {
-					wp.ampeditor.initialize( id, {
-						quicktags: true
-					});
-
-					return;
-				}
-
-				// Destroy any existing editor so that it can be re-initialized after a widget-updated event.
-				if ( tinymce.get( id ) ) {
-					restoreTextMode = tinymce.get( id ).isHidden();
-					wp.editor.remove( id );
-				}
-
-				wp.editor.initialize( id, {
-					tinymce: {
-						wpautop: true
-					},
-					quicktags: true
-				});
-
-				/**
-				 * Show a pointer, focus on dismiss, and speak the contents for a11y.
-				 *
-				 * @param {jQuery} pointerElement Pointer element.
-				 * @returns {void}
-				 */
-				showPointerElement = function( pointerElement ) {
-					pointerElement.show();
-					pointerElement.find( '.close' ).focus();
-					wp.a11y.speak( pointerElement.find( 'h3, p' ).map( function() {
-						return $( this ).text();
-					} ).get().join( '\n\n' ) );
-				};
-
-				editor = window.tinymce.get( id );
-				if ( ! editor ) {
-					throw new Error( 'Failed to initialize editor' );
-				}
-				onInit = function() {
-
-					// When a widget is moved in the DOM the dynamically-created TinyMCE iframe will be destroyed and has to be re-built.
-					$( editor.getWin() ).on( 'unload', function() {
-						_.defer( buildEditor );
-					});
-
-					// If a prior mce instance was replaced, and it was in text mode, toggle to text mode.
-					if ( restoreTextMode ) {
-						switchEditors.go( id, 'html' );
-					}
-
-					// Show the pointer.
-					$( '#' + id + '-html' ).on( 'click', function() {
-						control.pasteHtmlPointer.hide(); // Hide the HTML pasting pointer.
-
-						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_custom_html' ) ) {
-							return;
-						}
-						showPointerElement( control.customHtmlWidgetPointer );
-					});
-
-					// Hide the pointer when switching tabs.
-					$( '#' + id + '-tmce' ).on( 'click', function() {
-						control.customHtmlWidgetPointer.hide();
-					});
-
-					// Show pointer when pasting HTML.
-					editor.on( 'pastepreprocess', function( event ) {
-						var content = event.content;
-						if ( -1 !== component.dismissedPointers.indexOf( 'text_widget_paste_html' ) || ! content || ! /&lt;\w+.*?&gt;/.test( content ) ) {
-							return;
-						}
-
-						// Show the pointer after a slight delay so the user sees what they pasted.
-						_.delay( function() {
-							showPointerElement( control.pasteHtmlPointer );
-						}, 250 );
-					});
-				};
-
-				if ( editor.initialized ) {
-					onInit();
-				} else {
-					editor.on( 'init', onInit );
-				}
-
-				control.editorFocused = false;
-
-				editor.on( 'focus', function onEditorFocus() {
-					control.editorFocused = true;
-				});
-				editor.on( 'paste', function onEditorPaste() {
-					editor.setDirty( true ); // Because pasting doesn't currently set the dirty state.
-					triggerChangeIfDirty();
-				});
-				editor.on( 'NodeChange', function onNodeChange() {
-					needsTextareaChangeTrigger = true;
-				});
-				editor.on( 'NodeChange', _.debounce( triggerChangeIfDirty, changeDebounceDelay ) );
-				editor.on( 'blur hide', function onEditorBlur() {
-					control.editorFocused = false;
-					triggerChangeIfDirty();
-				});
-
-				control.editor = editor;
-			}
 	}
-})
+});
 
 Vue.component('fields-data',{
 	template: '#fields-data-template',
-	props: ['field', 'fieldkey', 'defaulttab'],
+	props: ['field', 'fieldkey', 'defaulttab', 'completeFields'],
 	data:function(){
 		return {
 			iconSearch:'',
@@ -364,8 +252,9 @@ Vue.component('fields-data',{
 	  this.$nextTick(function () {
 	  		var self = this;
 	  		this.filteredList = [{name:'3d_rotation'},{name:'ac_unit'},{name:'alarm'},{name:'access_alarms'},{name:'schedule'},{name:'accessibility'},{name:'accessible'},{name:'account_balance'},{name:'account_balance_wallet'},{name:'account_box'},{name:'account_circle'},{name:'add'},];
-	  		console.log(this.el)
-	  	//jQuery(this.el).find('input#color-picker-box').wpColorPicker();
+
+	  		this.callChangeEnvent();
+	  
 
 	  })
 	},
@@ -464,9 +353,7 @@ Vue.component('fields-data',{
 										data.default = response.data.detail[2];
 									}
 								})
-								/*currentSelectfield.parents('.form-control').find('#ampforwp-preview-image').replaceWith( response.data.image ).attr('id','ampforwp-preview-image');
-								var src = jQuery(currentSelectfield).parents('.form-control').find('#ampforwp-preview-image').attr('src');
-								jQuery(currentSelectfield).parents('.form-control').find('input[type=hidden]').val(src);*/
+								
 							}
 						 }
 						
@@ -475,23 +362,128 @@ Vue.component('fields-data',{
 					 function(){
 					 	alert('connection not establish');
 					 });
-
 		       
 		},
-		selectIcon: function(icon, field){
-			field.default = icon.name;
+		iconSelected: function(icon, field){
+			this.field.default = icon.name;
+		},
+		callChangeEnvent: function(field){
+			//get All fields with require conditions
+			jQuery(this.$el).parents('div.modal-body').find('[data-require]').each(function(e,v){
+				var fieldPointer = jQuery(this)
+				var requiredData = jQuery(this).attr('data-require');
+				
+				if(requiredData!=''){
+					requiredData = JSON.parse( requiredData );
+					//Show or hide Based on condition
+					jQuery.each(requiredData,function(key,selectedValue){
+						var fieldType = jQuery('#'+key).attr('data-type');
+						switch(fieldType){
+							case 'text':
+								var currentValue = jQuery('#'+key).find('input[type=text]').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'number':
+								var currentValue = jQuery('#'+key).find('input[type=number]').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'textarea':
+								var currentValue = jQuery('#'+key).find('textarea').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'text-editor':
+								var currentValue = jQuery('#'+key).find('textarea').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'select':
+								var currentValue = jQuery('#'+key).find('select').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'checkbox':
+								var allCheckbox = jQuery('#'+key).find('input[type=checkbox]');
+								allCheckbox.each(function(k,v){
+									if(jQuery(this).is(":checked") && jQuery(this).val()==selectedValue){
+										fieldPointer.show();
+										return false;
+									}else{
+										fieldPointer.hide();
+									}
+								});
+								
+							break;
+							case 'radio':
+								var currentValue = jQuery('#'+key).find('input[type=radio]:checked').val();
+								if(currentValue==selectedValue){
+									fieldPointer.show();
+								}else{
+									fieldPointer.hide();
+								}
+							break;
+							case 'spacing':
+							break;
+							case 'upload':
+							break;
+							case 'color-picker':
+							break;
+							case 'icon-selector':
+							break;
+							case 'gradient-selector':
+							break;
+						}
+					});
+				}
+			});
 		}
+
 	}
 });
 
 Vue.component('color-picker', {
-  template: '<input/>',
-   props: [ 'defaultColor' ],
-  mounted: function() {
-    jQuery(this.$el).wpColorPicker();
+  template: '#fields-colorPicker-template',
+   props: [ 'colorfield' ],
+   data: function(){
+   	return {} 
+   },
+   mounted: function() {
+   	var componentPoint = this;
+   	console.log(componentPoint.colorfield);
+   	console.log(jQuery(this.$el).find('input'));
+    jQuery(this.$el).parent('div').find('input').wpColorPicker({
+    	change: function(event, ui) {
+	        var element = event.target;
+        	var color = ui.color.toString();
+        	componentPoint.colorfield.default = color;
+        	
+	    }
+    });
+  },
+  methods: {
+  	selectedColorPicker: function(){
+  		alert("called")
+  	}
   },
   beforeDestroy: function() {
-    jQuery(this.$el).wpColorPicker('hide').dwpColorPickeratepicker('destroy');
+    jQuery(this.$el).wpColorPicker('destroy');
   }
 });
 Vue.component('textarea-wysiwyg', {

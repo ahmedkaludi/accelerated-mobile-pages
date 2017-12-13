@@ -31,11 +31,12 @@
         //$active = ( ( is_numeric($this->parent->current_tab) && $this->parent->current_tab == $k ) || ( !is_numeric($this->parent->current_tab) && $this->parent->current_tab === $k )  ) ? ' style="display: block;"' : '';
         $section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';
         echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ) . '" data-rel="' . $k . '">';
+       // echo "<div>hello</div>";
         //echo '<div id="' . $k . '_nav-bar' . '"';
-        /*
+        
     if ( !empty( $section['tab'] ) ) {
 
-        echo '<div id="' . $k . '_section_tabs' . '" class="redux-section-tabs">';
+        echo '<div id="' . $k . '_section_tabs' . '" class="redux-section-tabs redux-group-tab-link-a">';
 
         echo '<ul>';
 
@@ -45,17 +46,18 @@
         }
 
         echo '</ul>';
+       // echo '<div id="' . $k .'sub-'.$subkey. '_section_group' . '" class="redux-group-tab" style="display:block;">';
         foreach ($section['tab'] as $subkey => $subsection) {
-            echo '<div id="' . $k .'sub-'.$subkey. '_section_group' . '" class="redux-group-tab" style="display:block;">';
-            echo '<div id="' . $k . '_section-tab-' . $subkey . '">';
-            echo "hello ".$subkey;
-            do_settings_sections( $this->parent->args['opt_name'] . $k . '_tab_' . $subkey . '_section_group' );
-            echo "</div>";
-            echo "</div>";
+                 echo '<div id="' . $k . '_section-tab-' . $subkey . '">';
+                     echo "hello". $subkey;
+                    echo do_settings_sections( $this->parent->args['opt_name'] . $k . '_tab_' . $subkey . '_section_group' );
+
+                 echo "</div>";
         }
+         .//   echo "</div>";
         echo "</div>";
     } else {
-        */
+        
 
         // Don't display in the
         $display = true;
@@ -70,7 +72,7 @@
             $this->output_section( $k );
             do_action( "redux/page/{$this->parent->args['opt_name']}/section/after", $section );
         }
-        //}
+        }
     ?></div><?php
     //print '</div>';
     }

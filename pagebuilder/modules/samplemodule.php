@@ -1,6 +1,6 @@
 <?php $output = '<div class="amp_pb_module amp_text {{css_class}}">
 <p>{{text_editor}}</p>
-<p>{{checkboxs0}}:{{checkboxs1}}: :{{checkboxs2}}</p><p>{{radio0}}:{{radio1}}: :{{radio2}}</p></div>';
+<p>{{checkboxs0}}:{{checkboxs1}}: :{{checkboxs2}}</p><p>{{selected_radio_option}}</p></div>';
 return array(
 		'label' =>'Sample Module',
 		'name' =>'samplemodule',
@@ -22,18 +22,45 @@ return array(
 						'name'		=>"color_picker",
 						'label'		=>'Color Picker',
 						'tab'		=>'customizer',
-						'default'	=>'Content Goes Here',
+						'default'	=>'#dd0000',
 						),
 					array(
 						'type'		=>'icon-selector',
 						'name'		=>"icon_selector_one",
 						'label'		=>'Icone selector',
 						'tab'		=>'customizer',
-						'default'	=>'Content Goes Here',
+						'default'	=>'',
+						),
+					array(
+						'type'		=>'gradient-selector',
+						'name'		=>"slected_gradient",
+						'label'		=>'Select gradient',
+						'tab'		=>'customizer',
+						'default'	=>'background: linear-gradient(45deg, rgb(48, 73, 107), rgb(48, 184, 210));',
+						),
+					array(
+						'type'		=>'margin-padding',
+						'name'		=>"margin_padding_css",
+						'label'		=>'Set Margin Padding',
+						'tab'		=>'container_css',
+						'default'	=>array(
+										'margin'=> array(
+													'left'=>0,
+													'right'=>0,
+													'top'=>0,
+													'bottom'=>0
+													),
+										'padding'=> array(
+													'left'=>0,
+													'right'=>0,
+													'top'=>0,
+													'bottom'=>0
+													),
+										),
 						),
 					array(
 						'type'		=>'checkbox',
-						'name'		=>"checkboxs",
+						'name'		=>array("checkboxs0", "checkboxs1", "checkboxs2"),
 						'label'		=>'Select types',
 						'tab'		=>'container_css',
 						'default'	=>array('jack'),//Chackbox for AMP
@@ -54,7 +81,7 @@ return array(
 						),
 					array(
 						'type'		=>'radio',
-						'name'		=>"radio",
+						'name'		=>"selected_radio_option",
 						'label'		=>'Select types',
 						'tab'		=>'container_css',
 						'default'	=>'',

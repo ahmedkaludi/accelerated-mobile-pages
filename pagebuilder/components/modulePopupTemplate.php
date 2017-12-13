@@ -24,6 +24,7 @@
                                 :field="field" 
                                 :key="key"
                                 :fieldkey="key"
+                                :completeFields="modalcontent.fields"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
                         </div>
