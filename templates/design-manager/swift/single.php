@@ -5,9 +5,11 @@
 		<?php amp_breadcrumb();?>
 		<?php amp_categories_list();?>
 		<?php amp_title(); ?>
-		<div class="tl-exc">
-		   <?php amp_excerpt(20); ?>
-	    </div>
+		<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
+			<div class="tl-exc">
+			   <?php amp_excerpt(20); ?>
+		    </div>
+	    <?php } ?>
 	</div>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
@@ -45,9 +47,11 @@
 		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
 		            	<?php amp_author_box(); ?>
 		            </div>
-		            <div class="tags">
-		            	<?php amp_tags_list();?>
-		            </div>
+		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] ){ ?>
+			            <div class="tags">
+			            	<?php amp_tags_list();?>
+			            </div>
+		            <?php } ?>
 		            <div class="post-date">
 		            	<?php amp_date(); ?><?php edit_post_link(); ?>
 		            </div>
