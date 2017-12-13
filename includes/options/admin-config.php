@@ -3297,7 +3297,7 @@ Redux::setSection( $opt_name, array(
             'id'       => 'amp-pagination',
             'type'     => 'switch',
             'title'    => __( 'Post Pagination', 'accelerated-mobile-pages' ),
-           'default'   => 0,
+           'default'   => 1,
            'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
           // Related Post
