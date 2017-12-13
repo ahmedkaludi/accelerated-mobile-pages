@@ -629,14 +629,20 @@ display: none;
 * Loop
 *****/
 /**** Big post ***/
+.hmp{
+  margin-top:34px;  
+}
 .loop-wrapper{
-    margin-top:34px;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: -15px;
 }
 .fbp{
     width:100%;
     display:inline-block;
     clear:both;
-    margin:0px 0px 44px 0px;
+    margin:15px 15px 59px 15px;
 }
 .fbp-img a{
     display:block;
@@ -710,20 +716,14 @@ display: none;
 
 
 /**** Small post ***/
-.b-w .fsp:nth-child(4), .b-w .fsp:nth-child(7), .b-w .fsp:nth-child(10){
-    margin-right:0;
-}
-.archive .fsp:nth-child(3), .archive .fsp:nth-child(6), .archive .fsp:nth-child(9), .archive .fsp:nth-child(12){
-    margin-right:0;
-}
+
 .r-pf .fsp:nth-child(3), .r-pf .fsp:nth-child(6){
     margin-right:0;
 }
 .fsp{
-    display: inline-flex;
-    margin: 0px 28px 40px 0px;
-    width: 31.3%;
-    flex-direction: column;
+    margin: 15px;
+    -ms-flex-preferred-size: calc(33.333% - 20px);
+    flex-basis: calc(33.33% - 30px);
 }
 .fsp-cnt{
     margin-top:10px;
@@ -757,7 +757,7 @@ display: none;
 .amp-archive-title, .amp-loop-label{
     font-size:18px;
     font-weight:600;
-    margin-top:20px;
+    margin:20px 0px;
 }
 .amp-archive-desc{
     font-size: 14px;
@@ -884,12 +884,21 @@ display: none;
 .shr-txt, .athr-tx, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title, .r-pf h3{
     margin-bottom: 12px;
 }
-.shr-txt, .athr-tx, .r-pf h3, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date .loop-date, .related-title{
+.shr-txt, .athr-tx, .r-pf h3, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{
+    display: block;
+}
+.shr-txt, .athr-tx, .r-pf h3, .tags .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .loop-date, .related-title{
     text-transform: uppercase;
     font-size: 12px;
     color: #666;
-    display: block;
     font-weight: 400;
+}
+.loop-date, .post-edit-link{
+    display:inline-block;
+}
+.post-date .post-edit-link{
+    color:#005be2;
+    float: right;
 }
 .sp-athr, .tags, .post-date, .srp{
     margin-top:20px;
@@ -1052,6 +1061,9 @@ display: none;
 }
 <?php } ?>
 /** Pagination**/
+.loop-pagination{
+    margin-top:30px;
+}
 #pagination{
     margin-top: 30px;
     border-top: 1px dotted #ccc;
@@ -1081,7 +1093,6 @@ display: none;
     font-size: 12px;
     color: #666;
     display: block;
-    font-weight: 400;
     position: absolute;
     top: -26px;
 }
@@ -1090,6 +1101,7 @@ display: none;
     font-size: 12px;
     color: #666;
     display: block;
+     font-weight: 400;
     position: absolute;
     top: -26px;
     right:0
@@ -1376,9 +1388,6 @@ display: none;
     font-size: 28px;
     line-height: 34px;
 }
-.fsp{
-    width:31%;
-}
 .sp-rt {
     margin-left: 30px;
 }
@@ -1388,9 +1397,7 @@ display: none;
 
 }
 @media(max-width:980px){
-.fsp {
-    width: 30%;
-}
+
 
 
 }
@@ -1399,6 +1406,9 @@ display: none;
     width: 100%;
     float:none;
 }
+.hmp{
+    margin:0;
+}
 .fbp-cnt {
     float: none;
     width: 100%;
@@ -1406,15 +1416,14 @@ display: none;
     margin-top:15px;
     display:inline-block;
 }
+.fbp{
+    margin: 15px 15px 15px 15px;
+}
 .fbp-cnt p{
     margin-top:8px;
 }
 .fsp{
-   width: 100%;
-    margin:0px;
-    display: inline-block;
-    clear: both;
-    padding: 20px 0px 15px;
+  flex-basis: calc(100% - 30px);
     border-top: 1px solid #f1f1f1;
 }
 .fsp-img{
@@ -1436,9 +1445,7 @@ display: none;
     width: 100%;
     margin-left: 0;
 }
-.fbp {
-    margin: 0px 0px 20px 0px;
-}
+
 .fsp h2{
     margin: 0px 0px 3px 0px;
 }
@@ -1478,7 +1485,7 @@ display: none;
     margin-top:20px;
 }
 .loop-wrapper {
-    margin-top: 17px;
+    margin-top: 10px;
 }
 .amp-archive-desc {
     font-size: 13px;
@@ -1535,9 +1542,7 @@ display: none;
     margin-top:15px;
 }
 .fsp{
-    margin: 0;  
     border:none; 
-    padding:20px 0px 10px;
 }
 .h-sing {
     font-size: 13px;

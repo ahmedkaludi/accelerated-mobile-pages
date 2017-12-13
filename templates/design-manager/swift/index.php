@@ -1,6 +1,7 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <div class="cntr b-w">
+	<div class="hmp">
 	<?php
 	if (is_home() ){
 	 if (get_query_var( 'paged' ) ) {
@@ -56,8 +57,8 @@
 		<?php } $i++; ?>
 		<?php endwhile; amp_loop('end');  ?>
 	<?php amp_pagination(); ?>
+   </div>
 </div>
-
 <?php //amp_loop_template(); ?>
 
 <?php amp_footer(); ?>
