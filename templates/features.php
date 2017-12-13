@@ -4481,7 +4481,13 @@ function ampforwp_inline_related_posts(){
 				           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
 			            
 								if ( ampforwp_has_post_thumbnail() ) {
-									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									if( 4 == $redux_builder_amp['amp-design-selector'] ){
+										$thumb_url_2 = aq_resize( $thumb_url_2, 220 , 134 , true, false );
+										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
+									}
+									else{
+										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									}
 								} 
 								$inline_related_posts .='</a>';
 								$inline_related_posts .='<div class="related_link">';

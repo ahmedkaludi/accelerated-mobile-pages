@@ -979,6 +979,7 @@ display: none;
 .r-pf .loop-wrapper{
     margin-top:0;
 }
+<?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
 /** In content releated post desing styles **/
 .related_posts .has_related_thumbnail{
     display: inline-flex;
@@ -1000,6 +1001,7 @@ display: none;
     margin: 0;
     padding-top: 10px;
 }
+<?php } ?>
 <?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
 .sp-rt .amp-author {
     padding: 20px 20px;
