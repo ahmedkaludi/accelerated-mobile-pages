@@ -11,15 +11,17 @@
                 <?php amp_logo(); ?>
             </div><!-- /.logo -->
             <div class="h-1">
-                <div class="h-srch h-ic">
-                    <a class="lb" href="#search"></a>
-                    <div class="lb-btn"> 
-                        <div class="lb-t" id="search">
-                           <?php amp_search();?>
-                           <a class="lb-x" href="#"></a>
-                        </div> 
-                    </div>
-                </div><!-- /.search -->
+                <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
+                    <div class="h-srch h-ic">
+                        <a class="lb" href="#search"></a>
+                        <div class="lb-btn"> 
+                            <div class="lb-t" id="search">
+                               <?php amp_search();?>
+                               <a class="lb-x" href="#"></a>
+                            </div> 
+                        </div>
+                    </div><!-- /.search -->
+                <?php } ?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>
@@ -71,15 +73,17 @@
                 <?php amp_logo(); ?>
             </div>
             <div class="h-3">
-                <div class="h-srch h-ic">
-                    <a class="lb" href="#search"></a>
-                    <div class="lb-btn"> 
-                        <div class="lb-t" id="search">
-                           <?php amp_search();?>
-                           <a class="lb-x" href="#"></a>
-                        </div> 
-                    </div>
-                </div><!-- /.search -->
+                <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
+                    <div class="h-srch h-ic">
+                        <a class="lb" href="#search"></a>
+                        <div class="lb-btn"> 
+                            <div class="lb-t" id="search">
+                               <?php amp_search();?>
+                               <a class="lb-x" href="#"></a>
+                            </div> 
+                        </div>
+                    </div><!-- /.search -->
+                <?php } ?>
                 <div class="h-shop h-ic">
                     <a href="#"></a>
                 </div>

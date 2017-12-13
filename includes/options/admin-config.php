@@ -2719,6 +2719,17 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
+
+             array(
+                    'id'       => 'amp-swift-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                    ),
+                    'default'  => '0'
+            ),
                
             array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
