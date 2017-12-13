@@ -83,7 +83,14 @@
 			<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 		<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 			<div class="fsp">
-				<?php $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'amp-featured-small', 'responsive'=> true); ?>
+				<?php
+				$width 	= 346;
+				$height = 188;
+				if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+					$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+					$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+				}
+				 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 			    <div class="fsp-img">
 			    	<?php amp_loop_image($args); ?>
 			    </div>
