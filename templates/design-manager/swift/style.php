@@ -305,9 +305,6 @@ amp-sidebar {
     line-height:1;
     display:block;
 }
-.h-srch .lb:after{
-    content: "\e8b6";
-}
 .amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px;}
 
 .amp-sidebar-close:after{

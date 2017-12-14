@@ -1,6 +1,7 @@
 <?php
 	
-	return array( 'widgets' => '.icon-widgets:before { content: "\e1bd";}' );
+	return array( 'widgets' => '.icon-widgets:before { content: "\e1bd";}',
+                'search'  => '.icon-search:after{ content: "\e8b6"; }' );
 
 ?>
 

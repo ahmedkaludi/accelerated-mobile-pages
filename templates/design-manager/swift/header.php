@@ -13,7 +13,7 @@
             <div class="h-1">
                 <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                     <div class="h-srch h-ic">
-                        <a class="lb" href="#search"></a>
+                        <a class="lb icon-search" href="#search"></a>
                         <div class="lb-btn"> 
                             <div class="lb-t" id="search">
                                <?php amp_search();?>
@@ -75,7 +75,7 @@
             <div class="h-3">
                 <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                     <div class="h-srch h-ic">
-                        <a class="lb" href="#search"></a>
+                        <a class="lb icon-search" href="#search"></a>
                         <div class="lb-btn"> 
                             <div class="lb-t" id="search">
                                <?php amp_search();?>
