@@ -407,10 +407,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
         'id'         => 'opt-text-subsection',
         'subsection' => true,
-        'tab'        => array(
-                            array(
-                            'title'=>'Home 1',
-                            'fields'     => array(
+        'fields'     => array(
                                         array(
                                             'id'       => 'ampforwp-custom-logo-dimensions',
                                             'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
@@ -526,9 +523,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                                          ),
 
                                     )
-                            ),
-                            
-                        ),
+                           
         
     ) );//END
 
