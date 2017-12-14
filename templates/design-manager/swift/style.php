@@ -1,3 +1,4 @@
+<?php global $redux_builder_amp; ?>
 /**** 
 * AMP Framework Reset
 *****/

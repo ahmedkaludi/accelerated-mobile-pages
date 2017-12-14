@@ -117,7 +117,7 @@
                 </script>
             <?php
            if($this->field['end']  == true || isset($this->field['end'])){
-                    echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '-marker"></td></tr></table></div><table id="section-table-' . esc_attr($this->field['id']) . '" data-id="' . esc_attr($this->field['id']) . '" class="form-table form-table-section no-border' . esc_attr($add_class) . '"><tbody><tr><th></th><td id="' . esc_attr($guid) . '">';
+                    echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '-marker"></td></tr></table></div><table id="section-table-' . esc_attr($this->field['id']) . '" data-id="' . esc_attr($this->field['id']) . '" class="form-table form-table-section no-border' . esc_attr($add_class) . '"><tbody><tr><th></th><td>';
                 }
             }
 
