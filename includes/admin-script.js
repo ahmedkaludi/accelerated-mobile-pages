@@ -75,6 +75,106 @@ jQuery(function($) {
             });
         }
     $(document).ready(function() {
+
+/*---------Google Fonts ------------*/
+// Google Font details 
+    var gURL, gAPIkey;
+
+    gAPIkey = $('#google-font-api-key').val();
+
+
+    // $('#google-font-api-key').on('keyup keypress change', function(){
+    //     let gAPIkey = $(this).val();
+
+    //     gURL = "https://www.googleapis.com/webfonts/v1/webfonts?key=" + gAPIkey;
+        
+    // });
+
+
+    gURL = "https://www.googleapis.com/webfonts/v1/webfonts?key=" + gAPIkey;
+
+        if ( gURL ) {
+
+            $.get( gURL, function( data ) {
+               // console.log( data.items );
+                var values = Object.values(data.items);
+                var allFonts = [];
+
+                for (var i = 0; i < values.length; i++) {     
+                    allFonts.push({fontFamily: values[i].family }); 
+                }
+
+               // var output =  data.items.find('Basic');
+               // console.log ( output );
+
+
+                // let selectedFontDetails = data.items.find((o, i) => {
+
+                //     if (o.family === 'Keania One') {
+                //         //arr[i] = { name: 'new string', value: 'this', other: 'that' };
+                //         return data.items[i]; // stop searching
+                //     }
+                // });
+
+                // We have all the Font details from Google API in object selectedFontDetails
+                //console.log(selectedFontDetails);
+
+
+                // We have all the font names in the an array allFonts
+                //console.log( allFonts );
+
+                // Creating a select 
+                var s = $('<select/>');
+
+                for (var i in allFonts) {
+
+                    var fontDetail = allFonts[i].fontFamily;                   
+
+                   $('#amp-font-selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
+                }
+
+
+                //console.log( values.length);
+                //console.log( values[0].family );
+                //console.table(  values);
+           
+
+
+            $('#amp-font-selector-select').on('change', function() {
+
+                var select = $('option:selected', this).attr('data-font-number');
+
+                var fontVariants = data.items[select].variants ;
+
+                var fontFile = data.items[select].files ;
+
+                if ( fontVariants) {
+                    $('.select2-search-choice').remove();
+                    $('#amp-font-type-select').html('<option></option>');
+
+                }
+
+                console.log( data.items[select] );
+
+                //if ( data.items[select] ) {
+                    $('#google-current-font-data').val( JSON.stringify(data.items[select]) );
+                //}
+               
+               
+                for (var i in fontVariants) {
+                     // var fontArray = {};
+                     // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
+
+                    $('#amp-font-type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
+                }
+
+                });
+
+            });
+        }
+/*---------Google Fonts Ends -------*/
+
+
         $('.redux-container').each(function() {
             if (!$(this).hasClass('redux-no-sections')) {
                 $(this).find('.redux-main').prepend('<input style="float:right" class="redux_field_search" name="" type="text" placeholder="Search the controls"/>');

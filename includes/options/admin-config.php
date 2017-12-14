@@ -2299,7 +2299,52 @@ Redux::setSection( $opt_name, array(
                 'type' => 'info',
                 'style' => 'success',
                 'desc' => $amptfad
-            )
+            ),
+
+
+/*---------------------*/
+          array(
+                'id'        =>'google-font-api-key',
+                'type'      =>'text',
+                'title'     =>__('Google Font API key','accelerated-mobile-pages'),
+                'default'   =>'',
+            ),
+
+            array(
+                'id'       => 'amp-font-selector',
+                'type'     => 'select',
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'Normal',
+                    '2' => 'Google Fonts'
+                ),
+                'default'  => ''
+            ),
+
+            array(
+                'id'       => 'amp-font-type',
+                'type'     => 'select',
+                'multi'    => true,
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'none',
+                ),
+                'default'  => ''
+            ),
+
+          array(
+                'id'        =>'google-current-font-data',
+                'type'      =>'text',
+                'class'     => 'hide',
+                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'default'   =>'',
+            ),
+
+
+/*---------------------*/
+
             
             )
         ) );
@@ -2435,25 +2480,7 @@ Redux::setSection( $opt_name, array(
         }
       return $default_value;
     }
-    $cartbutton_option = ampforwp_redux_cart_button_option();
-    function ampforwp_redux_cart_button_option(){
-        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-        if( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
-        $cartbutton_field = array(
-                    'id'       => 'amp-swift-cart-btn',
-                    'subtitle' => __('Enable/Disable Cart Button in Header', 'accelerated-mobile-pages'),
-                    'type'     => 'switch',
-                    'title'    => __( 'Cart Button', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '4'),
-                    ),
-                    'default'  => '0'
-            );
-        }
-        else
-            $cartbutton_field = array(); 
-        return $cartbutton_field;
-    }
+
   // Header Section
   Redux::setSection( $opt_name, array(
                 'title'      => __( 'Header', 'accelerated-mobile-pages' ),
@@ -2748,8 +2775,7 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
-            // Swift Cart Button 
-            $cartbutton_option,              
+               
             array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
