@@ -37,4 +37,4 @@ add_amp_theme_support('AMP-related-posts');
 // Post Pagination
 add_amp_theme_support('AMP-post-pagination');
 // Icons example
-add_amp_icon( array( 'widgets', 'search' ) );
+add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );

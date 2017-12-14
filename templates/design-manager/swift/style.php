@@ -248,8 +248,7 @@ amp-sidebar {
     align-self: center;
 }
 .h-shop a:after{
-    content: "\e8cc";
-    align-self: center;
+     align-self: center;
 }
 .h-nav{
     order: -1;

@@ -23,7 +23,7 @@
                     </div><!-- /.search -->
                 <?php } ?>
                 <div class="h-shop h-ic">
-                    <a href="#"></a>
+                    <a href="#" class="icon-shopping-cart"></a>
                 </div>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
@@ -53,7 +53,7 @@
                 </div>
                 <?php } ?>
                 <div class="h-shop h-ic">
-                    <a href="#"></a>
+                    <a href="#" class="icon-shopping-cart"></a>
                 </div>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
@@ -85,7 +85,7 @@
                     </div><!-- /.search -->
                 <?php } ?>
                 <div class="h-shop h-ic">
-                    <a href="#"></a>
+                    <a href="#" class="icon-shopping-cart"></a>
                 </div>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
