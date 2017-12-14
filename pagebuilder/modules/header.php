@@ -45,6 +45,24 @@ return array(
 	 							'output_format'=>''
 	 						),
 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>"font_style",		
+	 							'label' =>"Select Font Style",
+								'tab'     =>'customizer',
+	 							'default' =>'',
+	 							'options_details'=>array(
+	 												'regular'		  	=>'Regular',
+	 												'regular-italic'  	=>'Regular Italic',
+	 												'medium'		 	=>'Medium',
+	 												'semi-bold'		  	=>'Semi Bold',
+	 												'semi-bold-italic'	=>'Semi Bold Italic',
+	 												'extra-bold'		=>'Extra Bold',
+	 												'extra-bold-italic'	=>'Extra Bold Italic',
+	 													),
+	 							'content_type'=>'html',
+	 							'output_format'=>''
+	 						),
+						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Header Title',
@@ -72,7 +90,7 @@ return array(
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Header Title Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'60px',	
+		 						'default'	=>'70px',	
 		           				'content_type'=>'css',
 	 							'output_format'=>'font-size: %default%',
 		           				'required'  => array('text-size-enable'=>1),
