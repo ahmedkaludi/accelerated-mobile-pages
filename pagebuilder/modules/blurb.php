@@ -19,6 +19,7 @@ return array(
 						'label'		=>"Title",
 						'tab'		=>'customizer',
 						'default'	=>'Heart Of The Landing Page',
+						'content_type'=>'html'
 						),
 					array(
 						'type'		=>'textarea',
@@ -26,6 +27,7 @@ return array(
 						'label'		=>"Description",
 						'tab'		=>'customizer',
 						'default'	=>'This is a sample text which is being used for the dummy purpose to avoid confusion.',
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'upload',
@@ -33,27 +35,31 @@ return array(
 						'label'		=>"Image",
 						'tab'		=>'customizer',
 						'default'	=>plugins_url('accelerated-mobile-pages/images/150x150.png'),
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'text',
 						'name'		=>"img_width",
 						'label'		=>"Image Width",
 						'tab'		=>'customizer',
-						'default'	=>'80px'
+						'default'	=>'80px',
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'text',
 						'name'		=>"img_height",
 						'label'		=>"Image Height",
 						'tab'		=>'customizer',
-						'default'	=>'80px'
+						'default'	=>'80px',
+						'content_type'=>'html',
 						),
 				 	array(
 	                    'type'    	=> 'text',
 	                    'name'    	=> 'css_class',
 	                    'label'   	=> 'Custom CSS Class',
 	                    'tab'	 	=>'container_css',
-	                    'default' 	=> ''
+	                    'default' 	=> '',
+	                    'content_type'=>'html',
 						)  
 					),
 		'front_template'=> $output,

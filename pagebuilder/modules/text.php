@@ -16,6 +16,7 @@ return array(
 						'label'		=>'Content',
 						'tab'		=>'customizer',
 						'default'	=>'Content Goes Here',
+						'content_type'=>'html'
 						),
 					array(
 						'type'		=>'text',
@@ -23,6 +24,7 @@ return array(
 						'label'		=>'Custom CSS Class',
 						'tab'		=> "customizer",
 						'default'	=>'Content Goes Here',
+						'content_type'=>'html'
 						)
         ),
 		'front_template'=>$output,

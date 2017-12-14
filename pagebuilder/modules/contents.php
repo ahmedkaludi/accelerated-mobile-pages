@@ -38,7 +38,8 @@
  						'name'		=>"content_title",		
  						'label'		=>'Category Block Title',
             'tab'     =>'customizer',
- 						'default'	=>'Category',		
+ 						'default'	=>'Category',	
+            'content_type'=>'html',
  						),		
  						array(		
  							'type'	=>'select',		
@@ -47,14 +48,16 @@
               'tab'     =>'customizer',
  							'default' =>'recent_option',		
  							'options' => $options,		
- 							'options_details'=>$categoriesArray		
+ 							'options_details'=>$categoriesArray	,
+              'content_type'=>'html',
  						),		
  						array(		
  						'type'		=>'text',		
  						'name'		=>"show_total_posts",
  						'label'		=>'Count',		
             'tab'     =>'customizer',
- 						'default'	=>'3',		
+ 						'default'	=>'3',
+            'content_type'=>'html',
  						),
  						array(		
  						'type'		=>'select',
@@ -63,7 +66,8 @@
             'tab'     =>'customizer',
 						'default'	=>'yes',		
 						'options'	=> '<option value="yes">Yes</option><option value="no">No</option>',		
-						'options_details'=>array('yes'=>'Yes', 'no'=>'No')
+						'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
+            'content_type'=>'html',
  						),
  					),		
  		'front_template'=> $output,

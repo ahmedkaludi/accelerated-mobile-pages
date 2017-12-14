@@ -190,7 +190,7 @@ $containerCommonSettings = array(
 								'name'		=>"grid_type",
 								'label'		=>'Grid type',
 								'tab'		=>'customizer',
-								'default'	=>'',
+								'default'	=>'width:80%',
 								'options'	=>array(
 												array(
 													'label'=>'Fixed',
@@ -217,7 +217,7 @@ $containerCommonSettings = array(
 												),
 											),
 								'content_type'=>'css',
-	 							'output_format'=>'%default0%'
+	 							'output_format'=>'%default%'
 							),
 						),
 			'front_template_start'=>$output,

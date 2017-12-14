@@ -60,9 +60,14 @@ function amp_pagebuilder_content_styles(){
 							$requiredResult = true;
 							if(isset($fieldSetup['required'])){
 								foreach ($fieldSetup['required'] as $requiredKey => $requiredValue) {
-
-									if($rowsData['data'][$requiredKey]!=$requiredValue && $requiredResult==true){
-										$requiredResult = false;
+									if(!is_array($rowsData['data'][$requiredKey])){
+										if($rowsData['data'][$requiredKey]!=$requiredValue && $requiredResult!=false){
+											$requiredResult = false;
+										}
+									}else{
+										if(in_array($requiredValue, $rowsData['data'][$requiredKey]) && $requiredResult!=false){
+											$requiredResult = false;
+										}
 									}
 								}
 							}
@@ -83,8 +88,9 @@ function amp_pagebuilder_content_styles(){
 								case 'checkbox':
 									if($dataValue!="" && $fieldSetup['output_format']!=""){
 										foreach ($dataValue as $key => $value) {
-											$rowCss[] = str_replace("%default".$key."%",
-													 	$dataValue, 
+											
+											$rowCss[] = str_replace("%default%",
+													 	$value, 
 														$fieldSetup['output_format']);
 										}
 										/*echo $fieldSetup['output_format'];
@@ -124,6 +130,11 @@ function amp_pagebuilder_content_styles(){
 						 '.implode(';', $rowCss) .';
 					}';	
 				}
+
+
+
+
+
 				
 
 			}//foreach closed complete data
@@ -255,14 +266,16 @@ function rowData($container,$col,$moduleTemplate){
 					default:
                         if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-
-							
-							if(isset($contentArray[$field['name']]) 
+							if($field['content_type']=='html'){
+								if(isset($contentArray[$field['name']]) 
 								&& !empty($contentArray) ){
-								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
-							}else{
-								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+									$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+								}else{
+									$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+								}
 							}
+							
+							
 						}
                     }
 					break;

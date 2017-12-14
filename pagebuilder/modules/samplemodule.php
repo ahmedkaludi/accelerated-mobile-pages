@@ -16,6 +16,7 @@ return array(
 						'label'		=>'Content Text Editor',
 						'tab'		=>'customizer',
 						'default'	=>'Content Goes Here',
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'color-picker',
@@ -23,6 +24,7 @@ return array(
 						'label'		=>'Color Picker',
 						'tab'		=>'customizer',
 						'default'	=>'#dd0000',
+						'content_type'=>'css',
 						),
 					array(
 						'type'		=>'icon-selector',
@@ -30,6 +32,7 @@ return array(
 						'label'		=>'Icone selector',
 						'tab'		=>'customizer',
 						'default'	=>'',
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'gradient-selector',
@@ -37,6 +40,7 @@ return array(
 						'label'		=>'Select gradient',
 						'tab'		=>'customizer',
 						'default'	=>'background: linear-gradient(45deg, rgb(48, 73, 107), rgb(48, 184, 210));',
+						'content_type'=>'css',
 						),
 					array(
 						'type'		=>'margin-padding',
@@ -57,6 +61,7 @@ return array(
 													'bottom'=>0
 													),
 										),
+						'content_type'=>'css',
 						),
 					array(
 						'type'		=>'checkbox',
@@ -77,7 +82,8 @@ return array(
 											'label'=>'Mike',
 											'value'=>'mike',
 										),
-									)
+									),
+						'content_type'=>'css',
 						),
 					array(
 						'type'		=>'radio',
@@ -98,7 +104,8 @@ return array(
 											'label'=>'Mike',
 											'value'=>'mike',
 										),
-									)
+									),
+						'content_type'=>'html',
 						),
 					array(
 						'type'		=>'text',
@@ -106,6 +113,7 @@ return array(
 						'label'		=>'Custom CSS Class',
 						'tab'		=> "container_css",
 						'default'	=>'Content Goes Here',
+						'content_type'=>'html',
 						)
         ),
 		'front_template'=>$output,

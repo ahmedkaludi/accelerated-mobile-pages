@@ -34,7 +34,7 @@
        // echo "<div>hello</div>";
         //echo '<div id="' . $k . '_nav-bar' . '"';
         
-    if ( !empty( $section['tab'] ) ) {
+  /*  if ( !empty( $section['tab'] ) ) {
 
         echo '<div id="' . $k . '_section_tabs' . '" class="redux-section-tabs redux-group-tab-link-a">';
 
@@ -56,7 +56,7 @@
         }
          .//   echo "</div>";
         echo "</div>";
-    } else {
+    } else {*/
         
 
         // Don't display in the
@@ -72,7 +72,7 @@
             $this->output_section( $k );
             do_action( "redux/page/{$this->parent->args['opt_name']}/section/after", $section );
         }
-        }
+        //}
     ?></div><?php
     //print '</div>';
     }
