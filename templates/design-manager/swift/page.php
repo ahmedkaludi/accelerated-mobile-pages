@@ -9,7 +9,6 @@
 			<div class="cmts">
 				<?php amp_comments();?>
 			</div>
-			<?php amp_post_navigation();?>
 		</div>
 	</div>
 </div>
