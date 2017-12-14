@@ -221,7 +221,7 @@ amp-sidebar {
     clear:both;
     display: inline-flex;
     <?php if($redux_builder_amp['swift-height-control']){?>
-        height:<?php echo $redux_builder_amp['swift-height-control']?>px;
+        height:<?php echo $redux_builder_amp['swift-height-control']?>;
     <?php } ?>
 }
 .h-ic a:after{
