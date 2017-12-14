@@ -22,7 +22,7 @@ if( true == $redux_builder_amp['wordpress-comments-support'] ){ ?>
 		));
 		if ( $comments ) { ?>
 			<div class="amp-comments-wrapper">
-	            <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></h3>
+	            <h3><span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
 	            <ul>
 						<?php
 						// Display the list of comments
