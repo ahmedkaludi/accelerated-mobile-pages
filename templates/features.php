@@ -4564,7 +4564,8 @@ function ampforwp_new_gallery_images($images, $image){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 		// To enable the carousel magic
-		add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
+		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
+		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
 		add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 		$caption = $image['caption'];
 		// Append the caption with image
@@ -4623,11 +4624,9 @@ if( !function_exists('ampforwp_carousel_bind_script')){
 	}
 }
 if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
-	function ampforwp_carousel_class_magic($data){
-		$content = $data->get('post_amp_content');
+	function ampforwp_carousel_class_magic($content){
 		$content = str_replace(array(':openbrack:',':closebrack:'), array('[',']'), $content);
-		$data->set('post_amp_content',$content);
-		return $data;
+	return $content;
 	}
 }
 // 86. minify the content of pages
