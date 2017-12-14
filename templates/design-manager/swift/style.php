@@ -58,6 +58,8 @@ amp-vine {
 amp-carousel > amp-img > img {
     object-fit: contain;
 }
+.amp-carousel-container {position: relative;width: 100%;height: 100%;} 
+.amp-carousel-img img {object-fit: contain;}
 /****
 * Google fonts
 *****/
@@ -1954,12 +1956,3 @@ amp-user-notification button {
 
 }
 <?php } ?>
-
-
-
-
-
-
-
-
-
