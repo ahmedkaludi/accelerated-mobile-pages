@@ -1,0 +1,7 @@
+<?php
+return array(
+    'name'=> 'Consultant',
+    'preview_url'=>'http://localhost/magzine/wordpress/wp-content/uploads/2017/10/Federer-and-Tiafoe.jpg',
+    'layout_json'=>'{"rows":[{"id":8,"index":1,"cells":"2","cell_data":[],"data":{"row_label":"Addhererow1","row_class":"Addhere"},"cell_left":[],"cell_right":[]},{"id":9,"index":2,"cells":"1","cell_data":[{"cell_id":17,"index":1,"type":"contents","container_id":9,"cell_container":1,"content_title":"Category","category_selection":"recent_option","show_total_posts":"3","ampforwp_show_excerpt":"yes"},{"cell_id":18,"index":2,"type":"image","container_id":9,"cell_container":1,"selected_image":"http: //localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png","image_height":"150","image_width":"150","css_class":""}],"data":{"row_label":"Addhererow2","row_class":"Addhere"},"cell_left":[{"cell_id":18,"index":2,"type":"image","container_id":9,"cell_container":1,"selected_image":"http: //localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages/images/150x150.png","image_height":"150","image_width":"150","css_class":""}]},{"id":10,"index":3,"cells":"1","cell_data":[{"cell_id":19,"index":1,"type":"button","container_id":10,"cell_container":1,"button_txt":"ClickHere","button_link":"#","css_class":""}],"data":{"row_label":"Addhererow3","row_class":"Addhere"},"cell_left":[{"cell_id":19,"index":1,"type":"button","container_id":10,"cell_container":1,"button_txt":"ClickHere","button_link":"#","css_class":""}]}],"totalrows":"11","totalmodules":"20"}'
+);
+?>

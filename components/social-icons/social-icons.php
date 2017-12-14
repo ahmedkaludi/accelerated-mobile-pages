@@ -28,38 +28,38 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$social_icons_names[] = $key;	 
 	 }
 
-	if( empty($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
+	if( isset($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
 	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $twitter_url.'&text='. $title .' ';
 	 	//https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}
 	}
 
-	if( empty($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
+	if( isset($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
 	 	$selected_social_icons['facebook'] = 'https://www.facebook.com/sharer.php?u='. $url. '';
 	 	//or https://www.facebook.com/dialog/share?app_id={app_id}&display=page&href={url}&redirect_uri={redirect_url}
 	}
-	if( empty($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
+	if( isset($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
 	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.' &url='. $url.'&description='. $title .'';
 	 	//https://pinterest.com/pin/create/bookmarklet/?media={img}&url={url}&is_video={is_video}&description={title}
 	}
-	if( empty($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
+	if( isset($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
 	 	$selected_social_icons['google-plus'] = 'https://plus.google.com/share?url='. $url. '';
 	 	//https://plus.google.com/share?url={url}
 	}
-	if( empty($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
+	if( isset($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
 	 	$selected_social_icons['linkedin'] = 'https://www.linkedin.com/shareArticle?url='. $url. '&title='. $title .'';
 	 	//https://www.linkedin.com/shareArticle?url={url}&title={title}
 	}
 
-	if( empty($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
+	if( isset($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
 	 	$selected_social_icons['reddit'] = 'https://reddit.com/submit?url='. $url. '&title='. $title .'';
 	 	//https://reddit.com/submit?url={url}&title={title}
 	}
-	if( empty($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
+	if( isset($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
 	 	$selected_social_icons['VKontakte'] = 'http://vk.com/share.php?url='. $url. '';
 	 	//http://vk.com/share.php?url={url}
 	}
 	
-	if( empty($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
+	if( isset($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
 	 	$selected_social_icons['tumblr'] = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl='. $url. '&title='. $title .'&caption='.$desc.'';
 	 	//https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}
 	}

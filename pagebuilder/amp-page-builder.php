@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'AMP_PAGE_BUILDER', plugin_dir_path(__FILE__) );
 define( 'AMP_PAGE_BUILDER_URL', plugin_dir_url(__FILE__) );
 
+require_once(AMP_PAGE_BUILDER."config/moduleTemplate.php");
+
 //Set Metabox
 add_action('add_meta_boxes','ampforwp_pagebuilder_content_meta_register', 10 ,1);
 function ampforwp_pagebuilder_content_meta_register($post_type){
@@ -90,8 +92,7 @@ add_action("wp_ajax_call_page_builder", "call_page_builder");
 
 /* Add page builder form after editor */
 function call_page_builder(){
-	global $post;
-	global $moduleTemplate;
+	global $post, $moduleTemplate, $layoutTemplate, $containerCommonSettings;
 	if($post!=null){
 		$postId = $post->ID;
 	}
@@ -125,65 +126,243 @@ function call_page_builder(){
 			$previousData = json_encode($jsonData);
 		}
 	}
+	$pageBuilderData = array(
+						'title'=>'Pagebuilder Settings',
+						'default_tab'=> 'customizer',
+						'tabs' => array(
+						  'customizer'=>'Customizer',
+						  'container_css'=>'Container css'
+						),
+						'fields' => array(
+								array(		
+				 						'type'		=>'text',		
+				 						'name'		=>"content_title",		
+				 						'label'		=>'Category Block Title',
+				           				'tab'     =>'customizer',
+				 						'default'	=>'Category',		
+				 						),
+								array(		
+				 						'type'		=>'text',		
+				 						'name'		=>"content_title",		
+				 						'label'		=>'Category Block Title',
+				           				'tab'     =>'container_css',
+				 						'default'	=>'Category',		
+				 						),
+							)
+						);
+	
+	$backendRowSetting = $containerCommonSettings;
+	unset($backendRowSetting['front_template_start']);
+	unset($backendRowSetting['front_template_end']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	?>
-	<div class="enable_ampforwp_page_builder">
-		<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
-	</div>
-	<div id="amp-page-builder">
- 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
-        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" value='<?php echo $previousData; ?>'>
-        <?php /* This is where we gonna add & manage rows */ ?>
-		
-        <div id="sorted_rows" class="amppb-rows droppable">
-            <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>
-        </div><!-- .amppb-rows -->
-        <?php /* This is where our action buttons to add rows 
-			Modules
-        */ ?>
-        <div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
-			    <span id="action-col-1" class="amppb-add-row button-primary button-large draggable module-col-1" data-template="col-1">1 Column</span>
-			    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2">2 Columns</span>
-        </div><!-- .amppb-actions -->
-       
-        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
-		    <?php
-		    foreach ($moduleTemplate as $key => $module) {
-		    	echo '<span class="amppb-add-row button-primary button-large draggable module-'.strtolower($module['name']).'" data-template="'.strtolower($module['name']).'">'.$module['label'].'</span>';
-		    }
-		    ?>
-		</div><!-- .amppb-module-actions -->
-        
-        
-    </div>
-    <div id="my-amppb-dialog" class="hidden" style="max-width:800px">
+	<div id="ampForWpPageBuilder_container">
+		{{message}}
+		<div class="enable_ampforwp_page_builder">
+			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
+			<label  @click="showModal = true;">settings</label>
+		</div>
+		<div id="amp-page-builder">
+	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
+	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
+	        <?php /* This is where we gonna add & manage rows */ ?>
+			<div id="sorted_rows" class="amppb-rows drop">
+				<drop class="drop" @drop="handleDrop" >
+					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
+					<draggable :element="'div'" class="dragrow"
+						v-model="mainContent.rows" 
+						:options="{
+							animation:200,
+							draggable:'.amppb-row',
+							handle: '.amppb-handle',
+							ghostClass: 'ghost',
+							group:{name:'.amppb-row'}
+						}"
+						@start="rowdrag=true"
+						@end="rowdrag=false;rows_moved($event)"
+						>
+						<div v-for="(row, key, index) in mainContent.rows" :key="row.id" class="amppb-row" :id="'conatiner-'+row.id">
+							<div v-if="row.cells==1" :id="'conatiner-'+row.id">
+						 		<input type="hidden" name="column-data" value="">
+						        <div class="amppb-row-title">
+						            <span class="amppb-handle dashicons dashicons-move"></span>
+						            <span class="amppb-row-title-text">1 Column</span>
+						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
+						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            :data-container_id="row.id"
+						            >
+						            	<i class="tools-icon dashicons dashicons-menu"></i>
+						            </span>
+						        </div><!-- .amppb-row-title -->
+						 
+						        <div class="amppb-row-fields col" data-cell="1">
+						        	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
+						        		<draggable  
+							        		:element="'div'"
+							        		class="modules-drop"
+							        		:class="{'ui-droppable': row.cell_data.length==0 }"
+							        		v-model="row.cell_data" 
+							        			:options="{
+							        				animation:100,
+							        				draggable:'.amppb-module',
+					        						handle: '.amppb-module',
+					        						group:{name:'.amppb-module'},
+					        						ghostClass: 'ghost',
+					        					  }"
+							        		 @start="moduledrag=true"
+							        		 @end="moduledrag=false;modulesort($event)"
+											:data-rowid="row.id" :data-cellid="1"
+											>
+							        			<module-data v-for="(cell, key, index)  in row.cell_data" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
+								        	</draggable>
+								    </drop>
+						        </div><!-- .amppb-row-fields -->
+						    </div><!-- .amppb-row.amppb-col-1 -->
 
-    	<div class="amp-pb-module-content">
-	    	
-	 	</div>
- 		<div class="amppb-tc-footer">
- 			<div class="amppb-status remove-module buttons-groups">
- 				<a class="dashicons dashicons-trash button" href="javascript:void(0)">Delete</a>
- 			</div>
- 			<div class="buttons-groups">
- 				<input type="button" class="button amppb-rowData-content" data-current-container="" data-current-module="" id="amppb-rowData-content-text" data-type="text" value="Submit">
+						    <div v-if="row.cells==2" class="amppb-col-2" :id="'conatiner-'+row.id">
+						 		<input type="hidden" name="column-data" value="">
+						        <div class="amppb-row-title">
+						            <span class="amppb-handle dashicons dashicons-move"></span>
+						            <span class="amppb-row-title-text">2 Columns</span> 
+						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
+						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            :data-container_id="row.id"
+						            >
+						            	<span class="tools-icon dashicons dashicons-menu"></span>
+						            </span>
+						        </div><!-- .amppb-row-title -->
+						 
+						        <div class="amppb-row-fields ">
+					        	    <div class="amppb-column-2-left col" data-cell="1">
+					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
+							            	<div class="modules-drop">
+							            		
+							            		<draggable :element="'div'"class="module-drop-zone"
+												:class="{'ui-droppable': row.cell_left.length==0 }" v-model="row.cell_left" 
+												:options="{
+														animation:200,
+														draggable:'.amppb-module',
+														handle: '.amppb-module',
+														group:{name:'.amppb-module'},
+														ghostClass: 'ghost'
+												}"
+												@start="moduledrag=true"
+												@end="moduledrag=false;modulesort($event)"
+												:data-rowid="row.id" :data-cellid="1"
+												>
+							            				<module-data v-for="(cell, key, index)  in row.cell_left" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="1"></module-data>
+									        	</draggable>
+										        
+							            	</div>
+						            	</drop>
+						            </div><!-- .amppb-col-2-left -->
+						            <div class="amppb-column-2-right col" data-cell="2">
+						            	<div class="resize-handle"></div>
+						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
+											<div class="modules-drop" >
+											
+												<draggable :element="'div'"class="module-drop-zone"
+												:class="{'ui-droppable': row.cell_right.length==0 }"
+												 v-model="row.cell_right" 
+													:options="{	
+													animation:200,
+													draggable:'.amppb-module',
+													handle: '.amppb-module',
+													group:{name:'.amppb-module'},
+													ghostClass: 'ghost',
+													}"
+												@start="moduledrag=true"
+												@end="moduledrag=false;modulesort($event)"
+												:data-rowid="row.id" :data-cellid="2"
+												>
+														<module-data v-for="(cell, key, index)  in row.cell_right" :key="cell.cell_id" :modulekey="key" :cell="cell" :cellcontainer="2"></module-data>
+									        	</draggable>
+											
+											</div>
+										</drop>
+						            </div><!-- .amppb-col-2-right -->
+						        </div><!-- .amppb-row-fields -->
+						    </div><!-- .amppb-row.amppb-col-2 -->
+			          	</div>
+		         	</draggable>
+		        </drop>	
+				    
+				
+		</div><!-- .amppb-rows -->
 
- 				<span id="ampb-parents-dialog" data-container=""></span>
- 				
- 			</div>
- 		</div>
-	</div>
-	<div id="amppb-row-setting-dialog" class="hidden" style="max-width:800px">
+		<div class="modules-options">
+         	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
+	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true" :effect-allowed="'copy'">
+				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
+				    >1 Column</span>
+				    <span slot="image">Col 1 dragged</span>
+				</drag>
+				<drag class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true" :effect-allowed="'copy'">
+				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
+				    >2 Columns</span>
+				    <span slot="image">Col 2 dragged</span>
+				</drag>
+	       		<div class="clearfix"></div>
+	        </div><!-- .amppb-actions -->
+	        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
+			    <?php
+			    foreach ($moduleTemplate as $key => $module) {
+			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
+			    	echo '
+			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
+				    	<span class="amppb-add-row button-primary button-large draggable module-'.strtolower($module['name']).'"
+				    	>
+				    		'.$module['label'].'
+				    	</span>
+				    	<span class="module-button amppb-module-'.strtolower($module['name']).'" slot="image">'.$module['label'].' dragged</span>
+			    	</drag>
+			    	';
+			    }
+			    ?>
+			    <div class="clearfix"></div>
+			</div><!-- .amppb-module-actions -->
+		</div>
 
-    	<div class="amp-pb-rowsetting-content">
-			
-	 	</div>
- 		<div class="amppb-tc-footer">
- 			<div class="buttons-groups">
- 				<input type="button" class="button amppb-rowsetting" data-current-container="" data-current-module="" id="amppb-rowsetting" data-type="text" value="Submit">
- 				
- 			</div>
- 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		        
+	        
+	        <?php /* This is where our action buttons to add rows 
+				Modules
+	        */ ?>
+
+			<!-- use the modal component, pass in the prop -->
+			<amp-pagebuilder-modal v-if="showModal" @close="showModal = false">
+				<!--
+				  you can use custom content here to overwrite
+				  default content
+				-->
+				<h3 slot="header">custom header</h3>
+			</amp-pagebuilder-modal>
+			<amp-pagebuilder-module-modal v-if="showmoduleModal" @close="showmoduleModal = false">
+				<!--
+				  you can use custom content here to overwrite
+				  default content
+				-->
+				
+			</amp-pagebuilder-module-modal>
+	        
+	        
+	    </div>
+	    
+	
 	</div>
     <?php
     if(isset($_GET['post_id'])){
@@ -191,34 +370,28 @@ function call_page_builder(){
 	}
 }
 
-// Ajax action to refresh the user image
-add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');
-function ampforwp_get_image() {
-    if(isset($_GET['id']) ){
-		if(strpos($_GET['id'],",") !== false){
-			$get_ids = explode(",", $_GET['id']);
-			
-			if(count($get_ids)>0){
-				foreach($get_ids as $id){
-					$image = wp_get_attachment_image( $id, 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-					$image_src = wp_get_attachment_image_src($id, 'medium', false);
-					$data[] = array(
-						'image'    => $image,
-						'detail'	   => $image_src
-					);
 
-				}
-			}
-		}else{
-			$image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-			$data = array(
-				'image'    => $image,
-			);
-		}
-        wp_send_json_success( $data );
-    } else {
-        wp_send_json_error();
-    }
+
+
+function create_posttype_amppb_layout(){
+	register_post_type( 'amppb_layout',
+	    array(
+	      'labels' => array(
+		        'name' => __( 'AMP Layouts' ),
+		        'singular_name' => __( 'AMP Layout' )
+		      ),
+	    /*'public' => true,
+      	'has_archive' => false,*/
+	    'public' => false,  // it's not public, it shouldn't have it's own permalink, and so on
+		'publicly_queriable' => true,  // you should be able to query it
+		'show_ui' => true,  // you should be able to edit it in wp-admin
+		'exclude_from_search' => true,  // you should exclude it from search results
+		'show_in_nav_menus' => false,  // you shouldn't be able to add it to menus
+		'has_archive' => false,  // it shouldn't have archive page
+		'rewrite' => false,  // it shouldn't have rewrite rules
+	      'rewrite' => array('slug' => 'amppb-layout'),
+	    )
+	  );
 }
-
+add_action( 'init', 'create_posttype_amppb_layout' );
 require_once AMP_PAGE_BUILDER.'functions.php';
