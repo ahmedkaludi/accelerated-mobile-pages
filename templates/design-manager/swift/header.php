@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp?>
+<?php global $redux_builder_amp ?>
 <?php amp_header_core() ?>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
   <header class="header">
@@ -22,9 +22,11 @@
                         </div>
                     </div><!-- /.search -->
                 <?php } ?>
-                <div class="h-shop h-ic">
-                    <a href="#" class="icon-shopping-cart"></a>
-                </div>
+                <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
+                    <div class="h-shop h-ic">
+                        <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                    </div>
+                <?php } ?>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
                         <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
@@ -52,9 +54,11 @@
                     <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo $redux_builder_amp['signin-button-text'] ?></a>
                 </div>
                 <?php } ?>
-                <div class="h-shop h-ic">
-                    <a href="#" class="icon-shopping-cart"></a>
-                </div>
+                <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
+                    <div class="h-shop h-ic">
+                        <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                    </div>
+                <?php } ?>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
                         <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
@@ -84,9 +88,11 @@
                         </div>
                     </div><!-- /.search -->
                 <?php } ?>
-                <div class="h-shop h-ic">
-                    <a href="#" class="icon-shopping-cart"></a>
-                </div>
+                <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
+                    <div class="h-shop h-ic">
+                        <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                    </div>
+                <?php } ?>
                 <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                     <div class="h-call h-ic">
                         <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>

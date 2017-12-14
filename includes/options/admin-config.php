@@ -2435,7 +2435,25 @@ Redux::setSection( $opt_name, array(
         }
       return $default_value;
     }
-
+    $cartbutton_option = ampforwp_redux_cart_button_option();
+    function ampforwp_redux_cart_button_option(){
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+        $cartbutton_field = array(
+                    'id'       => 'amp-swift-cart-btn',
+                    'subtitle' => __('Enable/Disable Cart Button in Header', 'accelerated-mobile-pages'),
+                    'type'     => 'switch',
+                    'title'    => __( 'Cart Button', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4'),
+                    ),
+                    'default'  => '0'
+            );
+        }
+        else
+            $cartbutton_field = array(); 
+        return $cartbutton_field;
+    }
   // Header Section
   Redux::setSection( $opt_name, array(
                 'title'      => __( 'Header', 'accelerated-mobile-pages' ),
@@ -2730,7 +2748,8 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
-               
+            // Swift Cart Button 
+            $cartbutton_option,              
             array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',

@@ -5274,3 +5274,18 @@ function amp_vimeo_parse_url_video_id($tok){
         return end($tok);
       }
 }
+
+// Cart Page URL
+if( ! function_exists( 'ampforwp_wc_cart_page_url' ) ){
+	function ampforwp_wc_cart_page_url(){
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	 	if( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+		    global $woocommerce;
+		    $cart_url = $woocommerce->cart->get_cart_url();
+		    $cart_url = ampforwp_url_controller($cart_url);
+		    return $cart_url;;
+	 	}
+	 	else
+	 		return '#'; 
+	}
+}
