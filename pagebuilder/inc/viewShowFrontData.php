@@ -4,7 +4,13 @@ Show Front Data
 ****/
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
+	add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
  	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
+}
+
+function bodyClassForAMPPagebuilder($classes, $class){
+	$classes[] = 'amppb-pages';
+	return $classes;
 }
 
 function  ampforwp_insert_pb_content( $content ){
