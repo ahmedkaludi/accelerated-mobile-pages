@@ -2304,26 +2304,25 @@ Redux::setSection( $opt_name, array(
 
 /*---------------------*/
           array(
-                'id'        =>'google-font-api-key',
+                'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>__('Google Font API key','accelerated-mobile-pages'),
                 'default'   =>'',
             ),
 
             array(
-                'id'       => 'amp-font-selector',
+                'id'       => 'amp_font_selector',
                 'type'     => 'select',
                 'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
-                    '1' => 'Normal',
-                    '2' => 'Google Fonts'
+                    '1' => 'None',
                 ),
                 'default'  => ''
             ),
 
             array(
-                'id'       => 'amp-font-type',
+                'id'       => 'amp_font_type',
                 'type'     => 'select',
                 'multi'    => true,
                 'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
@@ -2335,7 +2334,7 @@ Redux::setSection( $opt_name, array(
             ),
 
           array(
-                'id'        =>'google-current-font-data',
+                'id'        =>'google_current_font_data',
                 'type'      =>'text',
                 'class'     => 'hide',
                 'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),

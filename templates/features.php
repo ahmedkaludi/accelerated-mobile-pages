@@ -5292,15 +5292,18 @@ if( ! function_exists( 'ampforwp_wc_cart_page_url' ) ){
 // Add Google Font support
 add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
-	function ampforwp_google_fonts_generator() {
-		global $redux_builder_amp;
-	
-		$font_data = json_decode($redux_builder_amp['google-current-font-data']);
+  function ampforwp_google_fonts_generator() {
+    global $redux_builder_amp;
+  
+    $font_data = json_decode($redux_builder_amp['google_current_font_data']);
 
-		$font_weight = "";
-		$font_output = "";
+    $font_weight = "";
+    $font_output = "";
 
-		foreach ($redux_builder_amp['amp-font-type'] as $key => $value) {
+    $font_type = $redux_builder_amp['amp_font_type'];
+
+    if ( $font_type ) {
+	    foreach ($font_type as $key => $value) {
 			// Font Weight generator
 			$font_weight = (int) $value;
 			$font_weight =  ( $font_weight != 0 ? $font_weight : 400 );
@@ -5349,20 +5352,21 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 				$font_local_weight = 'Black';
 			}
 
-			// Font Style 
-			$font_local_type = '';
-			if ('italic' === $font_style) {
-				$font_local_type = 'Italic';
-			}
+	      	// Font Style 
+	     	$font_local_type = '';
+	      	if ('italic' === $font_style) {
+	        	$font_local_type = 'Italic';
+	      	}
 
-		  	$font_output .= "@font-face {  ";
-		  	$font_output .= "font-family: " . $redux_builder_amp['amp-font-selector']. ';' ;
-		  	$font_output .= "font-style: " . $font_style . ';';
-		  	$font_output .= "font-weight: " . $font_weight . ';' ;
-		  	$font_output .= "src: local('". $redux_builder_amp['amp-font-selector']." ".$font_local_weight." ".$font_local_type."'), local('". $redux_builder_amp['amp-font-selector']."-".$font_local_weight.$font_local_type."'), url(" .$font_data->files->$value . ');' ;
-		  	$font_output .= "}";
-		}
+	        $font_output .= "@font-face {  ";
+	        $font_output .= "font-family: " . $redux_builder_amp['amp_font_selector']. ';' ;
+	        $font_output .= "font-style: " . $font_style . ';';
+	        $font_output .= "font-weight: " . $font_weight . ';' ;
+	        $font_output .= "src: local('". $redux_builder_amp['amp_font_selector']." ".$font_local_weight." ".$font_local_type."'), local('". $redux_builder_amp['amp_font_selector']."-".$font_local_weight.$font_local_type."'), url(" .$font_data->files->$value . ');' ;
+	        $font_output .= "}";
+	    }
+    }
 
-		echo $font_output;
-	}
+    echo $font_output;
+  }
 }

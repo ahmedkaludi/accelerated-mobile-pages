@@ -80,7 +80,11 @@ jQuery(function($) {
 // Google Font details 
     var gURL, gAPIkey;
 
-    gAPIkey = $('#google-font-api-key').val();
+
+    gAPIkey = redux_data.google_font_api_key;    
+
+
+    // Append data into selects
 
 
     // $('#google-font-api-key').on('keyup keypress change', function(){
@@ -104,6 +108,12 @@ jQuery(function($) {
                     allFonts.push({fontFamily: values[i].family }); 
                 }
 
+                // Adding Default Font Family
+                $('#s2id_amp_font_selector-select a').removeClass('select2-default');
+                $('#select2-chosen-3').html(redux_data.amp_font_selector);
+                
+
+
                // var output =  data.items.find('Basic');
                // console.log ( output );
 
@@ -123,6 +133,8 @@ jQuery(function($) {
                 // We have all the font names in the an array allFonts
                 //console.log( allFonts );
 
+
+
                 // Creating a select 
                 var s = $('<select/>');
 
@@ -130,7 +142,7 @@ jQuery(function($) {
 
                     var fontDetail = allFonts[i].fontFamily;                   
 
-                   $('#amp-font-selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
+                   $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                 }
 
 
@@ -140,7 +152,7 @@ jQuery(function($) {
            
 
 
-            $('#amp-font-selector-select').on('change', function() {
+            $('#amp_font_selector-select').on('change', function() {
 
                 var select = $('option:selected', this).attr('data-font-number');
 
@@ -150,14 +162,14 @@ jQuery(function($) {
 
                 if ( fontVariants) {
                     $('.select2-search-choice').remove();
-                    $('#amp-font-type-select').html('<option></option>');
+                    $('#amp_font_type-select').html('<option></option>');
 
                 }
 
                 console.log( data.items[select] );
 
                 //if ( data.items[select] ) {
-                    $('#google-current-font-data').val( JSON.stringify(data.items[select]) );
+                    $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
                 //}
                
                
@@ -165,7 +177,7 @@ jQuery(function($) {
                      // var fontArray = {};
                      // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
 
-                    $('#amp-font-type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
+                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
                 }
 
                 });
