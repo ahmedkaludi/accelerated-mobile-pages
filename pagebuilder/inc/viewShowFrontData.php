@@ -45,168 +45,35 @@ function amp_pagebuilder_content_styles(){
 				if(count($container)>0){
 					//Module specific styles
 					foreach($container as $contentArray){
+						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
-							echo $moduleTemplate[$contentArray['type']]['front_css'];
+							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
 						}
+
+
+						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
+							if($modulefield['content_type']=='css'){
+								switch ($modulefield['type']) {
+									default:
+										if(is_array($contentArray[$modulefield['name']])){
+											/*foreach ($contentArray[$modulefield['name']] as $key => $cssValue) {
+												# code...
+											}()*/
+										}else{
+											$completeCss = str_replace('{{'.$modulefield['name'].'}}', $contentArray[$modulefield['name']], $completeCss);
+										}
+									break;
+								}
+							}
+
+						}
+						echo $completeCss;
+						
 					}//foreach content closed 
 				}//ic container check closed
 				//Create row css
 			
-				$rowCss = array();
-				foreach ($rowsData['data'] as $dataKey => $dataValue) {
-					//All rows Settings
-					foreach($containerCommonSettings['fields'] as $fieldSetup){
-						
-						if($fieldSetup['content_type']=='css' && $fieldSetup['name'] == $dataKey){
-							$requiredResult = true;
-							if(isset($fieldSetup['required'])){
-								foreach ($fieldSetup['required'] as $requiredKey => $requiredValue) {
-									if(!is_array($rowsData['data'][$requiredKey])){
-										if($rowsData['data'][$requiredKey]!=$requiredValue && $requiredResult!=false){
-											$requiredResult = false;
-										}
-									}else{
-										if(in_array($requiredValue, $rowsData['data'][$requiredKey]) && $requiredResult!=false){
-											$requiredResult = false;
-										}
-									}
-								}
-							}
-							if($requiredResult==false){
-								continue;
-							}
-
-							switch ($fieldSetup['type']) {
-								case 'color-picker':
-								case 'radio':
-								case 'select':
-									if($dataValue!=""){
-										$rowCss[] = str_replace("%default%",
-													 	$dataValue, 
-														$fieldSetup['output_format']);
-									}
-								break;
-								case 'checkbox':
-									if($dataValue!="" && $fieldSetup['output_format']!=""){
-										foreach ($dataValue as $key => $value) {
-											
-											$rowCss[] = str_replace("%default%",
-													 	$value, 
-														$fieldSetup['output_format']);
-										}
-										/*echo $fieldSetup['output_format'];
-										$rowCss[] = str_replace("%default%",
-													 	$dataValue, 
-														$fieldSetup['output_format']);*/
-									}
-								break;
-								case 'gradient-selector':
-									if($dataValue!=""){
-										$rowCss[] = str_replace("%default%",
-													 	$dataValue, 
-														$fieldSetup['output_format']);
-									}
-								break;
-								case 'spacing':
-									if($dataValue!=""){
-										$rowCss[] = str_replace(
-														array("%left%","%right%","%top%","%bottom%"),
-													 	array($dataValue['left'],$dataValue['right'],$dataValue["top"],$dataValue["bottom"]), 
-														$fieldSetup['output_format']);
-									}
-
-								break;
-								default:
-									# code...
-									break;
-							}
-						}
-						
-					}
-				}
-				if(count($rowCss)>0){
-					echo '.row-setting-'.$rowsData['id'].'{
-						 '.implode(';', $rowCss) .';
-					}';	
-				}
-
-				//Module Size
-				foreach ($rowsData['cell_data'] as $dataKey => $currentModule) {
-					$moduleDataCss = array();
-					foreach($moduleTemplate[$currentModule['type']]['fields'] as $modulefield){
-						
-						if($modulefield['content_type']=='css' && $modulefield['name'] == $dataKey){
-							$requiredResult = true;
-							if(isset($modulefield['required'])){
-								foreach ($modulefield['required'] as $requiredKey => $requiredValue) {
-									if(!is_array($rowsData['data'][$requiredKey])){
-										if($rowsData['data'][$requiredKey]!=$requiredValue && $requiredResult!=false){
-											$requiredResult = false;
-										}
-									}else{
-										if(in_array($requiredValue, $rowsData['data'][$requiredKey]) && $requiredResult!=false){
-											$requiredResult = false;
-										}
-									}
-								}
-							}
-							if($requiredResult==false){
-								continue;
-							}
-
-							switch ($modulefield['type']) {
-								case 'color-picker':
-								case 'radio':
-								case 'select':
-									if($dataValue!=""){
-										/*$moduleDataCss[] = str_replace("%default%",
-													 	$currentModule[$modulefield['type']], 
-														$modulefield['output_format']);*/
-									}
-								break;
-								case 'checkbox':
-									if($dataValue!="" && $modulefield['output_format']!=""){
-										foreach ($dataValue as $key => $value) {
-											
-										   $moduleDataCss[] = str_replace("%default%",
-													 				$value, 
-														$modulefield['output_format']);
-										}
-										
-									}
-								break;
-								case 'gradient-selector':
-									if($dataValue!=""){
-										$moduleDataCss[] = str_replace("%default%",
-													 	$dataValue, 
-														$modulefield['output_format']);
-									}
-								break;
-								case 'spacing':
-									if($dataValue!=""){
-										$moduleDataCss[] = str_replace(
-														array("%left%","%right%","%top%","%bottom%"),
-													 	array($dataValue['left'],$dataValue['right'],$dataValue["top"],$dataValue["bottom"]), 
-														$modulefield['output_format']);
-									}
-
-								break;
-								default:
-									# code...
-									break;
-							}
-						}
-
-					}
-					//$moduleTemplate
-					if(count($moduleDataCss)>0){
-						echo '.module-setting-'.$currentModule['cell_id'].'{
-							 '.implode(';', $moduleDataCss) .';
-						}';	
-					}
-				}
-
-
+				
 
 				
 
@@ -308,6 +175,7 @@ function rowData($container,$col,$moduleTemplate){
 		$container = sortByIndex($container);
 		if(count($container)>0){
 			foreach($container as $contentArray){
+				
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				switch($moduleName){
@@ -353,7 +221,8 @@ function rowData($container,$col,$moduleTemplate){
                     }
 					break;
 				}
-				$html .= $moduleFrontHtml;
+				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id']."'>".$moduleFrontHtml;
+				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
 					$html .= "<p class='col-wrapper'>".$contentArray['value']."</div>";
 				}else{
