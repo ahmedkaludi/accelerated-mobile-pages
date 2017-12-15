@@ -185,6 +185,28 @@ jQuery(function($) {
             $('#s2id_amp_font_selector-select a').removeClass('select2-default');
             $('#select2-chosen-3').html(redux_data.amp_font_selector);
             $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+
+            // Build select data
+            let fontData  = redux_data.google_current_font_data;
+            fontData = JSON.parse(fontData);
+            if ( fontData.variants ) {
+
+                $('.select2-search-choice').remove();
+                $('#amp_font_type-select').html('<option></option>');
+
+                for (var i in fontData.variants) {
+                    $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
+                }
+            }
+            
+            // Add Default selected
+            if ( redux_data.amp_font_type ) {
+                $('#s2id_autogen4').remove();
+                for (var i in redux_data.amp_font_type) {
+                    $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
+                }
+            }
+            
         });
 
 /*---------Google Fonts Ends -------*/
