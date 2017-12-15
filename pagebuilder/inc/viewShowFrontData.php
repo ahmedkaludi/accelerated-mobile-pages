@@ -58,6 +58,7 @@ function amp_pagebuilder_content_styles(){
 						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
+							$completeCss = str_replace("{{module-class}}", '.amppb-module-setting-'.$contentArray['cell_id'], $completeCss );
 						}
 
 
