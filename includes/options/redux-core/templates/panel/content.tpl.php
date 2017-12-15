@@ -59,7 +59,7 @@
 
 
         // Tabs
-        if( isset( $section['tab'] ) && true == $section['tab'] && !empty( $section['fields'] ) ) {
+        /*if( isset( $section['tab'] ) && true == $section['tab'] && !empty( $section['fields'] ) ) {
             echo '<ul class="redux-tabs-ul">';
             foreach ($section['fields'] as $key => $field) {
                 if( 'section' == $field['type'] && true == $field['start']){
@@ -67,7 +67,7 @@
                 }
             }
             echo "</ul>";
-        }
+        }*/
         // Don't display in the
         $display = true;
         if ( isset( $_GET['page'] ) && $_GET['page'] == $this->parent->args['page_slug'] ) {

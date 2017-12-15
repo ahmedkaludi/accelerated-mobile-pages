@@ -2494,9 +2494,9 @@ Redux::setSection( $opt_name, array(
                    'id' => 'header-tab-1',
                    'type' => 'section',
                    'title' => __('', 'accelerated-mobile-pages'),
-                   'label'  => 'Tab 1',
+                   //'label'  => 'Tab 1',
                    'indent' => true,
-                   'start'  => true,
+                   //'start'  => true,
                    /*'required' => array(
                             array('amp-design-selector', '=' , '4')
                     ),*/
@@ -2799,23 +2799,23 @@ Redux::setSection( $opt_name, array(
                     )
             ),
              // Tab 1 end    
-             array(
+             /* array(
                    'id' => 'header-tab-1-end',
                    'type' => 'section',
                    'title' => __('Tab 1', 'accelerated-mobile-pages'),
                    'end'  => true,
                    /*'required' => array(
                             array('amp-design-selector', '=' , '4')
-                    ),*/
-               ),
+                    ),
+               ),*/
             // Tab 2
             array(
                    'id' => 'header-tab-2',
                    'type' => 'section',
-                   'title' => __('', 'accelerated-mobile-pages'),
+                   'title' => __('Advanced Header Options', 'accelerated-mobile-pages'),
                    'indent' => true,
-                   'start'  => true,
-                   'label' => 'Tab 2',
+                   //'start'  => true,
+                   //'label' => 'Tab 2',
                    'required' => array(
                             array('amp-design-selector', '=' , '4')
                     ),
@@ -3007,7 +3007,7 @@ Redux::setSection( $opt_name, array(
                     )    
             ),
             // Tab 2 end
-            array(
+            /*array(
                    'id' => 'header-tab-2-end',
                    'type' => 'section',
                    'title' => __('Tab 2', 'accelerated-mobile-pages'),
@@ -3015,7 +3015,7 @@ Redux::setSection( $opt_name, array(
                    'required' => array(
                             array('amp-design-selector', '=' , '4')
                     ),
-             ),
+             ),*/
          ),
     )
   );

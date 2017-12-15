@@ -234,5 +234,5 @@ var reduxOptionTab = function(){
          dataTabRequired();
     });
 } 
-reduxOptionTab();   
+//reduxOptionTab();   
 });
