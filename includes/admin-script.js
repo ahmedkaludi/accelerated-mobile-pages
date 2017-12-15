@@ -81,9 +81,8 @@ jQuery(function($) {
     var gURL, gAPIkey;
 
 
-    gAPIkey = redux_data.google_font_api_key;    
-
-
+    gAPIkey = redux_data.google_font_api_key;  
+ 
     // Append data into selects
 
 
@@ -107,11 +106,6 @@ jQuery(function($) {
                 for (var i = 0; i < values.length; i++) {     
                     allFonts.push({fontFamily: values[i].family }); 
                 }
-
-                // Adding Default Font Family
-                $('#s2id_amp_font_selector-select a').removeClass('select2-default');
-                $('#select2-chosen-3').html(redux_data.amp_font_selector);
-                
 
 
                // var output =  data.items.find('Basic');
@@ -184,6 +178,15 @@ jQuery(function($) {
 
             });
         }
+
+
+        $(window).load(function() {
+            // Adding Default Font Family
+            $('#s2id_amp_font_selector-select a').removeClass('select2-default');
+            $('#select2-chosen-3').html(redux_data.amp_font_selector);
+            $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+        });
+
 /*---------Google Fonts Ends -------*/
 
 
