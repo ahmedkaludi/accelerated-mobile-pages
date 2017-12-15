@@ -9,7 +9,7 @@ $css = '
 {{}}.head-tlt{
    width:100%;
    display:inline-block;
-   text-align:center;
+   text-align:{{align_type}};
 }
 .head-tlt .h-txt{
    font-size:{{text-size}};
@@ -63,6 +63,18 @@ return array(
 	 													),
 	 							'content_type'=>'html',
 	 							'output_format'=>''
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Alignment",
+								'tab'     =>'customizer',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
 	 						),		
 						array(
 								'type'		=>'color-picker',

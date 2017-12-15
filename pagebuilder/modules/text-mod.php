@@ -9,13 +9,12 @@ $css = '
 .text-tlt{
    width:100%;
    display:inline-block;
-   text-align:center;
+   text-align:{{align_type}};
 }
 .text-tlt .t-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
-   text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
