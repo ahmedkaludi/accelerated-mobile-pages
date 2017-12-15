@@ -803,10 +803,11 @@ div.drag{
     cursor: pointer;
 }
 .ghost {
-    opacity: .5;
-  background: #C8EBFB;
+   width: 100%;
 }
-
+.sortable-chosen{ 
+    cursor: all-scroll;
+ }
 
 
 

@@ -114,10 +114,10 @@ function amppb_post_content($content){
 
 			//rander its html
 			foreach ($previousData as $key => $rowsData) {
+
 				$customClass = '';
 				$rowStartTemplate = $containerCommonSettings['front_template_start'];
 				$rowEndTemplate = $containerCommonSettings['front_template_end'];
-				
 				foreach ($containerCommonSettings['fields'] as $key => $field) {
 					if(isset($rowsData['data'][$field['name']])){
 						$replace = $rowsData['data'][$field['name']];
@@ -128,10 +128,10 @@ function amppb_post_content($content){
 						$replace .= ' row-setting-'.$rowsData['id'];
 					}
 					if(! is_array($field['name']) && $field['content_type']=='html'){
-						$customClass = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
+						$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 					}
 				}
-				$html .= $customClass;
+				$html .= $rowStartTemplate;
 				//$html .= '<div class="row '.$customClass.'">';
 				if(count($rowsData['cell_data'])>0){
 					switch ($rowsData['cells']) {

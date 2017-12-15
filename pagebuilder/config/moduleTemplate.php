@@ -30,7 +30,7 @@ if (is_dir($dir)) {
 
 
 //Row Contents
-$output = '<section class="amp_pb_module {{row_class}}">';
+$output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '';
 $containerCommonSettings = array(
@@ -190,19 +190,18 @@ $containerCommonSettings = array(
 								'name'		=>"grid_type",
 								'label'		=>'Grid type',
 								'tab'		=>'customizer',
-								'default'	=>'width:80%',
+								'default'	=>'amppb-fixed',
 								'options'	=>array(
 												array(
 													'label'=>'Fixed',
-													'value'=>'width:80%',
+													'value'=>'amppb-fixed',
 												),
 												array(
 													'label'=>'Fluid',
-													'value'=>'width:100%',
+													'value'=>'amppb-fluid',
 												),
 											),
-								'content_type'=>'css',
-	 							'output_format'=>'%default%',
+								'content_type'=>'html',
 							),
 							array(
 								'type'		=>'checkbox',
