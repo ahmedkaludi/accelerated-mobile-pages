@@ -1,7 +1,7 @@
 <?php 
 $output = '
 <div class="image-blk">
-	<amp-img src="{{img_upload}}"</amp-img>
+	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
 </div>
 
 
@@ -34,6 +34,37 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
+						array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'label'		=>'Enable for Responsive Image',
+								'tab'		=>'customizer',
+								'default'	=>'responsive',
+								'options'	=>array(
+												array(
+													'label'=>'Enable',
+													'value'=>0,
+												),
+											),
+								'content_type'=>'html',
+							),
+
+						array(
+				               'type'  =>'text',
+				              'name'=>"image_height",
+				              'label'=>"Image height",
+				              'tab'  => "customizer",
+				              'default'=>'150',
+				              'content_type'=>'html',
+				              ),
+				        array(
+				               'type'  =>'text',
+				              'name'=>"image_width",
+				              'label'=>"Image width",
+				              'tab'  => "customizer",
+				              'default'=>'150',
+				              'content_type'=>'html',
+				              ),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
