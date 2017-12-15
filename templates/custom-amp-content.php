@@ -22,10 +22,10 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
               $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
             }
       }
-    	$amp_custom_post_content_input 	= get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
+      $amp_custom_post_content_input  = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
       $amp_custom_post_content_check  = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
 
-      	if ( empty( $amp_custom_post_content_input ) ) {
+        if ( empty( $amp_custom_post_content_input ) ) {
             $data['ampforwp_amp_content'] = false;
             return $data;
         }
@@ -33,34 +33,34 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
         if ( $amp_custom_post_content_check === 'yes') {
           $amp_custom_content = new AMP_Content( $amp_custom_post_content_input,
               apply_filters( 'amp_content_embed_handlers', array(
-          				'AMP_Twitter_Embed_Handler' => array(),
-          				'AMP_YouTube_Embed_Handler' => array(),
+                  'AMP_Twitter_Embed_Handler' => array(),
+                  'AMP_YouTube_Embed_Handler' => array(),
                   'AMP_DailyMotion_Embed_Handler' => array(),
                   'AMP_Vimeo_Embed_Handler' => array(),
                   'AMP_SoundCloud_Embed_Handler' => array(),
-          				'AMP_Instagram_Embed_Handler' => array(),
-          				'AMP_Vine_Embed_Handler' => array(),
-          				'AMP_Facebook_Embed_Handler' => array(),
+                  'AMP_Instagram_Embed_Handler' => array(),
+                  'AMP_Vine_Embed_Handler' => array(),
+                  'AMP_Facebook_Embed_Handler' => array(),
                   'AMP_Pinterest_Embed_Handler' => array(),
-          				'AMP_Gallery_Embed_Handler' => array(),
+                  'AMP_Gallery_Embed_Handler' => array(),
               ) ),
               apply_filters(  'amp_content_sanitizers', array(
-          				 'AMP_Style_Sanitizer' => array(),
-          				 'AMP_Blacklist_Sanitizer' => array(),
-          				 'AMP_Img_Sanitizer' => array(),
-          				 'AMP_Video_Sanitizer' => array(),
-          				 'AMP_Audio_Sanitizer' => array(),
+                   'AMP_Style_Sanitizer' => array(),
+                   'AMP_Blacklist_Sanitizer' => array(),
+                   'AMP_Img_Sanitizer' => array(),
+                   'AMP_Video_Sanitizer' => array(),
+                   'AMP_Audio_Sanitizer' => array(),
                    'AMP_Playbuzz_Sanitizer' => array(),
-          				 'AMP_Iframe_Sanitizer' => array(
-          					 'add_placeholder' => true,
-          				 ),
+                   'AMP_Iframe_Sanitizer' => array(
+                     'add_placeholder' => true,
+                   ),
               )  )
           );
 
           if ( $amp_custom_content ) {
-          	$data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
-          	$data['amp_component_scripts'] 	= $amp_custom_content->get_amp_scripts();
-          	$data['post_amp_styles'] 		= $amp_custom_content->get_amp_styles();
+            $data[ 'ampforwp_amp_content' ] = $amp_custom_content->get_amp_content();
+            $data['amp_component_scripts']  = $amp_custom_content->get_amp_scripts();
+            $data['post_amp_styles']    = $amp_custom_content->get_amp_styles();
           }
         }
 
@@ -128,16 +128,16 @@ function amp_content_editor_title_callback( $post ) {
   <!--HTML content starts here-->
 
     <label for="meta-checkbox">
-    	<p>
+      <p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
-    		<?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
+        <?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
         <?php echo __('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
     </label>
 
   <!--HTML content Ends here-->
   <?php
-  $content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
-  $editor_id 	= 'ampforwp_custom_content_editor';
+  $content    = get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
+  $editor_id  = 'ampforwp_custom_content_editor';
   wp_editor( $content, $editor_id );
 }
 
@@ -184,7 +184,15 @@ function ampforwp_add_my_tc_button() {
     return;
     }
     // verify the post type
-    if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+    $posts = array();
+    $post_types = ampforwp_get_all_post_types();
+    if ( $post_types ){
+      foreach ( $post_types  as $post_type ) {
+        $posts[] = $post_type;
+      }
+    }
+       
+    if( ! in_array( $typenow, $posts ) )
         return;
     // check if WYSIWYG is enabled
     if ( get_user_option('rich_editing') == 'true') {
