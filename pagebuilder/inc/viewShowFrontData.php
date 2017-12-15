@@ -4,8 +4,7 @@ Show Front Data
 ****/
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
-	add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
- 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
+	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
 }
 
 function bodyClassForAMPPagebuilder($classes, $class){
@@ -44,6 +43,7 @@ function amp_pagebuilder_content_styles(){
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
 		if(count($previousData['rows'])>0){
