@@ -1,7 +1,6 @@
 <?php 
 $output = '
 <div class="image-blk">
-	<img src="">
 </div>
 
 
@@ -31,7 +30,7 @@ return array(
 		 						'name'		=>"img_upload",		
 		 						'label'		=>'Image Upload',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
 	 					array(		
