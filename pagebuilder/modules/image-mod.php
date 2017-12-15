@@ -1,6 +1,7 @@
 <?php 
 $output = '
 <div class="image-blk">
+	<amp-img src="{{img_upload}}"</amp-img>
 </div>
 
 
