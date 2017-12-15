@@ -6,12 +6,12 @@ $output = '
 
 ';
 $css = '
-.text-tlt{
+{{module-class}} .text-tlt{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};
 }
-.text-tlt .t-txt{
+{{module-class}} .text-tlt .t-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
