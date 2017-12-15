@@ -1,29 +1,29 @@
 <?php 
 $output = '
-<div class="head-tlt">
-	<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>
+<div class="text-tlt">
+	<span class="t-txt">{{content_title}}</span>
 </div>
 
 ';
 $css = '
-.head-tlt{
+.text-tlt{
    width:100%;
    display:inline-block;
    text-align:center;
 }
-.head-tlt .h-txt{
+.text-tlt .t-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
-   font-weight:{{font_type}};
+   text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
 
 ';
 return array(
-		'label' =>'Header',
-		'name' =>'header',
+		'label' =>'Text',
+		'name' =>'text-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Customizer',
@@ -42,53 +42,35 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
-		 						'label'		=>'Heading Font Size',
+		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'70px',	
+		 						'default'	=>'20px',	
 		           				'content_type'=>'css',
-		           				'required'  => array('text-size-enable'=>1),
-	 						),		
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Alignment",
+								'tab'     =>'customizer',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 						),	
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Font color',
+								'label'		=>'Color',
 								'tab'		=>'customizer',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
-						array(		
-	 							'type'	=>'select',		
-	 							'name'  =>"header_type",		
-	 							'label' =>"Heading Type",
-								'tab'     =>'customizer',
-	 							'default' =>'h1',
-	 							'options_details'=>array(
-	 												'h1'=>'H1',
-	 												'h2'=>'H2',
-	 												'h3'=>'H3',
-	 												'h4'=>'H4',
-	 												'h5'=>'H5',
-	 												'h6'=>'H6'
-	 													),
-	 							'content_type'=>'html',
-	 							'output_format'=>''
-	 						),
-						array(		
-	 							'type'	=>'select',		
-	 							'name'  =>'font_type',		
-	 							'label' =>"Font Style",
-								'tab'     =>'customizer',
-	 							'default' =>'normal',
-	 							'options_details'=>array(
-	 												'normal'    =>'Normal',
-	 												'bold'  	=>'Bold',
-	 												'itlic'    =>'Italic', 													),
-	 							'content_type'=>'css',
-	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
-								'label'		=>'Set Margin',
+								'label'		=>'Margin',
 								'tab'		=>'customizer',
 								'default'	=>array(
 													'left'=>0,
@@ -101,7 +83,7 @@ return array(
 							array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
-								'label'		=>'Set Padding',
+								'label'		=>'Padding',
 								'tab'		=>'customizer',
 								'default'	=>array(
 													'left'=>0,

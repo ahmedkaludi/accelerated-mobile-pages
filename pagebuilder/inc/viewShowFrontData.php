@@ -26,7 +26,7 @@ function amp_pagebuilder_content_styles(){
     .amp_btn{text-align:center}
     .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 	.amppb-fixed{width:1100px;margin: 0 auto;}
-	.amppb-fluid{width:100%;margin: 0 auto;}
+	.amppb-fluid{width:100%;margin: 0 auto;padding: 0 5%;}
 	<?php
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
