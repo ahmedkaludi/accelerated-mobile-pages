@@ -5337,7 +5337,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 			}
 
 			if ( $font_weight === 600 ) {
-				$font_local_weight = 'Semi Bold';
+				$font_local_weight = 'SemiBold';
 			}
 
 			if ( $font_weight === 700 ) {
@@ -5345,7 +5345,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
 			}
 
 			if ( $font_weight === 800 ) {
-				$font_local_weight = 'Extra Bold';
+				$font_local_weight = 'ExtraBold';
 			}
 
 			if ( $font_weight === 900 ) {
