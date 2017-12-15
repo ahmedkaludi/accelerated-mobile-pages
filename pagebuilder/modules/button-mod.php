@@ -21,9 +21,7 @@ $css = '
    font-weight:bold;
    padding: 10px 60px;
 }
-{{module-class}} .button-blk .btn-txt:hover{
 
-}
 ';
 return array(
 		'label' =>'Button',
