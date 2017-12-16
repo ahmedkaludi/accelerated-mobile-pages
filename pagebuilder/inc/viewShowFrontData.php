@@ -69,6 +69,19 @@ function amp_pagebuilder_content_styles(){
 								$replaceRow = $rowContainer[$rowfield['name']];
 							}
 							switch ($rowfield['type']) {
+								case 'spacing':
+								$replaceSpacing ='';
+									if(
+										isset($replaceRow['top'])&&
+										isset($replaceRow['right'])&&
+										isset($replaceRow['bottom'])&&
+										isset($replaceRow['left'])
+									){
+										$replaceSpacing = $replaceRow['top']."px ".$replaceRow['right']."px ".$replaceRow['bottom']."px ".$replaceRow['left']."px ";
+									}
+									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceSpacing, $rowCss);
+
+								break;
 								default:
 									if(is_array($replaceRow)){
 										/*foreach ($rowContainer[$rowfield['name']] as $key => $cssValue) {
@@ -91,18 +104,25 @@ function amp_pagebuilder_content_styles(){
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
 							$completeCss = str_replace("{{module-class}}", '.amppb-module-setting-'.$contentArray['cell_id'], $completeCss );
-
-							
 						}
 
 
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
+							//LOAD Icon Css 
+							if($modulefield['type']=='icon-selector'){
+								add_amp_icon($contentArray[$modulefield['name']]);
+							}
 							if($modulefield['content_type']=='css'){
 								$replaceModule = "";
 								if(isset($contentArray[$modulefield['name']])){
 									$replaceModule = $contentArray[$modulefield['name']];
 								}
 								switch ($modulefield['type']) {
+									case 'spacing':
+										$replaceRow = $replaceRow['top']."px ".$replaceRow['right']."px ".$replaceRow['bottom']."px ".$replaceRow['left']."px ";
+										$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
+										
+									break;
 									default:
 										if(is_array($replaceModule)){
 											/*foreach ($contentArray[$modulefield['name']] as $key => $cssValue) {

@@ -91,3 +91,35 @@ function ampforwp_get_image() {
         exit;
     }
 }
+
+
+add_action( 'wp_ajax_ampforwp_icons_list_format', 'ampforwp_icons_list_format');
+function ampforwp_icons_list_format(){
+	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+
+	foreach ($amp_icons_css_array as $key=>$value ) {
+		$amp_icons_list[] = array('name'=>$key); 
+	}
+	echo json_encode(array('success'=>true,'data'=>$amp_icons_list));
+	exit;
+}
+
+add_action( 'admin_enqueue_scripts', 'dynamic_css_enqueue' );
+add_action( 'wp_ajax_dynamic_css', 'dynaminc_css' );
+add_action( 'wp_ajax_nopriv_dynamic_css', 'dynaminc_css' );
+
+function dynamic_css_enqueue(){
+
+		wp_enqueue_style('dynamic-css', admin_url('admin-ajax.php?action=dynamic_css'), array(), null, 'all' );
+	
+}
+
+
+    function dynaminc_css() {
+        $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+
+		foreach ($amp_icons_css_array as $key=>$value ) {
+			echo  '\n'.$value;
+		}
+        exit;
+    }

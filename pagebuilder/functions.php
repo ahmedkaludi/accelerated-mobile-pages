@@ -13,6 +13,10 @@ function amppbbase_admin_scripts( $hook_suffix ){
     //if( 'page' == $post_type && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
+ 	    //wp_enqueue_style('dynamic-css', admin_url('admin-ajax.php?action=amppb_fontclass_css'));
+
+
+
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
         $amp_current_post_id = $postId = get_the_ID();
@@ -47,7 +51,6 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$totalRows = 1;
 			$totalmodules = 1;
 			if(!empty($previousData)){
-				//echo ' sdcds '.json_encode($previousData);die;
 				$jsonData = json_decode($previousData,true);
 				if(count($jsonData['rows'])>0){
 					$totalRows = $jsonData['totalrows'];
