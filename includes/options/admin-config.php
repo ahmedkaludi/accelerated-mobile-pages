@@ -2313,6 +2313,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'amp_font_selector',
                 'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
                 'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
@@ -2324,6 +2325,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'amp_font_type',
                 'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
                 'multi'    => true,
                 'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
