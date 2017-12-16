@@ -2,8 +2,14 @@
 /***
 Show Front Data
 ****/
+
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
+	if (empty_content(get_post()->post_content)) { 
+		$arr['ID'] = get_post()->ID;
+		$arr['post_content'] = '&nbsp;';
+		wp_update_post($arr);
+	}
 	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
 }
 
@@ -52,6 +58,32 @@ function amp_pagebuilder_content_styles(){
 
 			foreach ($previousData['rows'] as $key => $rowsData) {
 				$container = $rowsData['cell_data'];
+				$rowContainer = $rowsData['data'];
+				if(isset($containerCommonSettings['front_css'])){
+					$rowCss = $containerCommonSettings['front_css'];
+					$rowCss = str_replace('{{row-class}}', '.row-setting-'.$rowsData['id'], $rowCss);
+					foreach($containerCommonSettings['fields'] as $rowfield){
+						if($rowfield['content_type']=='css'){
+							$replaceRow = '';
+							if(isset($rowContainer[$rowfield['name']])){
+								$replaceRow = $rowContainer[$rowfield['name']];
+							}
+							switch ($rowfield['type']) {
+								default:
+									if(is_array($replaceRow)){
+										/*foreach ($rowContainer[$rowfield['name']] as $key => $cssValue) {
+											# code...
+										}()*/
+									}else{
+										$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
+									}
+								break;
+							}
+						}
+					}
+					echo $rowCss;
+				}
+
 				if(count($container)>0){
 					//Module specific styles
 					foreach($container as $contentArray){
@@ -59,19 +91,25 @@ function amp_pagebuilder_content_styles(){
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
 							$completeCss = str_replace("{{module-class}}", '.amppb-module-setting-'.$contentArray['cell_id'], $completeCss );
+
+							
 						}
 
 
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
 							if($modulefield['content_type']=='css'){
+								$replaceModule = "";
+								if(isset($contentArray[$modulefield['name']])){
+									$replaceModule = $contentArray[$modulefield['name']];
+								}
 								switch ($modulefield['type']) {
 									default:
-										if(is_array($contentArray[$modulefield['name']])){
+										if(is_array($replaceModule)){
 											/*foreach ($contentArray[$modulefield['name']] as $key => $cssValue) {
 												# code...
 											}()*/
 										}else{
-											$completeCss = str_replace('{{'.$modulefield['name'].'}}', $contentArray[$modulefield['name']], $completeCss);
+											$completeCss = str_replace('{{'.$modulefield['name'].'}}', $replaceModule, $completeCss);
 										}
 									break;
 								}

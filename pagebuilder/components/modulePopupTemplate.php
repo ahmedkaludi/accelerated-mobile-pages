@@ -33,7 +33,7 @@
 
                     <div class="modal-footer">
                         <slot name="footer form-control">
-                            <input type="button" v-if="modalcontent.settingType=='row'" class="button button-info" value="Delete module" @click="removeModule()">
+                            <input type="button" v-if="modalcontent.settingType!='row'" class="button button-info" value="Delete module" @click="removeModule()">
 
                             <button type="button" @click="saveModulePopupdata(modalcontent.fields)" class="button modal-default-button">
                                 Save
