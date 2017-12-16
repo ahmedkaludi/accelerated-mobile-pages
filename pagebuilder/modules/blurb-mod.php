@@ -1,7 +1,7 @@
 <?php 
 $output = '
 <div class="blurb-mod">
-	<span class="ico-pic">{{icon-picker}}</span>
+	<span class="ico-pic icon-{{icon-picker}}"></span>
 	<h3 class="blurb-txt">{{content_title}}</h3>
 	<p>{{content}}</p>
 </div>
@@ -13,7 +13,7 @@ $css = '
 	width:100%;
 }
 .amppb-module-setting-35, .amppb-module-setting-33, .amppb-module-setting-34{
-      display: flex;
+     display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
@@ -86,8 +86,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>10,
+													'bottom'=>10
 													),
 								'content_type'=>'css',
 							),
