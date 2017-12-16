@@ -39,11 +39,11 @@ return array(
 								'name'		=>"image_layout",
 								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'customizer',
-								'default'	=>'responsive',
+								'default'	=>array(),
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
-													'value'=>0,
+													'value'=>'responsive',
 												),
 											),
 								'content_type'=>'html',
