@@ -35,6 +35,7 @@ $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '';
 $containerCommonSettings = array(
 			'label'	=> 'Row Settings',
+			'settingType'  =>'row',
 			'default_tab'=> 'customizer',
 			'tabs' => array(
 			  'customizer'=>'Customizer',

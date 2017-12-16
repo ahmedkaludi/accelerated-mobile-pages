@@ -1,4 +1,3 @@
-
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
   props: ['dataContent'],
@@ -193,7 +192,7 @@ function openModulePopup(event,type){
 							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								Vue.set( fieldData, 
 										'default', 
-										decodeURIComponent(moduleData[fieldData.name]) );
+										moduleData[fieldData.name] );
 							}
 							
 						})
@@ -331,16 +330,12 @@ Vue.component('fields-data',{
 						response =response.body;
 						 if(response.success === true) {
 						 	if(currentSelectfield.getAttribute("data-imageselactor")=='multiple'){
-						 		/*
-								jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').html("");
-								var imageSrc = '';
-								jQuery.each(response.data, function(keys,imageValue){
-									//console.log(imageValue.image);
-									jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
-									jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
-									imageSrc += imageValue.detail[0]+",";
-								});
-								jQuery(currentSelectfield).parents('.form-control').find('input[type=hidden]').val(imageSrc)*/
+						 		var imageList = [];
+						 		response.data.forEach(function(imageDetails,key){
+						 			console.log(imageDetails);
+							 		imageList.push(imageDetails.detail[0]);
+							 	});
+							 	Vue.set(field,'default',imageList);
 							}else{
 								
 								currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
