@@ -32,9 +32,21 @@ if (is_dir($dir)) {
 //Row Contents
 $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
-$front_css = '';
+$front_css = '
+{{row-class}}{
+	font-color: {{font_color_picker}};
+	background-color: {{color_picker}};
+	{{selected_gradient}};
+	margin: {{margin_css}};
+	padding:{{padding_css}};
+	bodrer: {{border_css}};
+	border-style:{{border_type}};
+	{{shadow}}
+}
+';
 $containerCommonSettings = array(
 			'label'	=> 'Row Settings',
+			'settingType'  =>'row',
 			'default_tab'=> 'customizer',
 			'tabs' => array(
 			  'customizer'=>'Customizer',
@@ -74,7 +86,7 @@ $containerCommonSettings = array(
 	 							'name'  =>"background_type",		
 	 							'label' =>"Select background type",
 								'tab'     =>'customizer',
-	 							'default' =>'',
+	 							'default' =>'color',
 	 							'options_details'=>array(
 	 												'color'=>'Color',
 	 												'gradient'=>'Gradient'
@@ -114,7 +126,6 @@ $containerCommonSettings = array(
 													'bottom'=>30
 													),
 								'content_type'=>'css',
-								'output_format'=>"margin: %left%px %right%px %top%px %bottom%px"
 							),
 							array(
 								'type'		=>'spacing',
@@ -165,7 +176,7 @@ $containerCommonSettings = array(
 							),
 							array(		
 	 							'type'	=>'select',		
-	 							'name'  =>"Border_type",		
+	 							'name'  =>"border_type",		
 	 							'label' =>"Select border type",
 								'tab'     =>'customizer',
 	 							'default' =>'none',

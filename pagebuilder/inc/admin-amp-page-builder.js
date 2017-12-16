@@ -1,4 +1,5 @@
 
+if(jQuery('#ampForWpPageBuilder_container').css('display') !='none'){
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
   props: ['dataContent'],
@@ -144,6 +145,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 						}
 						Vue.set( rowData.data, fieldData.name, fieldData.default );
 					});
+					console.log(rowData.data);
 				}
 			}
 		});
@@ -193,7 +195,7 @@ function openModulePopup(event,type){
 							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								Vue.set( fieldData, 
 										'default', 
-										decodeURIComponent(moduleData[fieldData.name]) );
+										moduleData[fieldData.name] );
 							}
 							
 						})
@@ -244,15 +246,15 @@ Vue.component('fields-data',{
 			iconSearch:'',
 			text_editor_wysiwig: '',
 			text_color_picker: '',
-			filteredList : [],
+			filteredList : app.filteredList,
 			openIconOptions: false
 		};
 	},
 	mounted: function () {//On ready State for component
 	  this.$nextTick(function () {
 	  		var self = this;
-	  		this.filteredList = [{name:'3d_rotation'},{name:'ac_unit'},{name:'alarm'},{name:'access_alarms'},{name:'schedule'},{name:'accessibility'},{name:'accessible'},{name:'account_balance'},{name:'account_balance_wallet'},{name:'account_box'},{name:'account_circle'},{name:'add'},];
-
+	  		//this.filteredList = ;
+	  		
 	  		this.callChangeEnvent();
 	  
 
@@ -331,16 +333,12 @@ Vue.component('fields-data',{
 						response =response.body;
 						 if(response.success === true) {
 						 	if(currentSelectfield.getAttribute("data-imageselactor")=='multiple'){
-						 		/*
-								jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').html("");
-								var imageSrc = '';
-								jQuery.each(response.data, function(keys,imageValue){
-									//console.log(imageValue.image);
-									jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').append(imageValue.image);
-									jQuery(currentSelectfield).parents('.form-control').find('.sample-gallery-template').find('img:last').attr("width",100).attr("height",100);
-									imageSrc += imageValue.detail[0]+",";
-								});
-								jQuery(currentSelectfield).parents('.form-control').find('input[type=hidden]').val(imageSrc)*/
+						 		var imageList = [];
+						 		response.data.forEach(function(imageDetails,key){
+						 			console.log(imageDetails);
+							 		imageList.push(imageDetails.detail[0]);
+							 	});
+							 	Vue.set(field,'default',imageList);
 							}else{
 								
 								currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
@@ -506,6 +504,7 @@ var app = new Vue({
     modalcontent: [],
     modalType:'',//module/rowSetting
     modalTypeData: {},
+    filteredList: [],
 
     rowdrag: false,
     moduledrag: false,
@@ -733,8 +732,32 @@ var app = new Vue({
 			//this.mainContent.$forceUpdate()
 		},
 
-	}/*module close*/
+	},/*module close*/
+	beforeMount:function(){
+		this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_icons_list_format', 
+			{}
+			,{
+				headers:{
+					responseType:'json'
+				},
+				responseType:'json',
+				emulateHTTP:true,
+				emulateJSON:true,
+			}
+		).then(function(response){
+			response =response.body;
+			 if(response.success === true) {
+			 	this.filteredList = response.data;
+			 }
+			
+		},
+		//errorCallback
+		function(){
+			alert('connection not establish');
+		});
+	}
 });
 
 app.mainContent = amppb_data;
 app.call_default_functions();
+}

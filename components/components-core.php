@@ -59,14 +59,14 @@ function add_amp_icon($args=array()){
 		$amp_icons_css[] = $amp_icons_css_array[$key]; 
 	}
 	add_action('amp_css', 'amp_icon_css');
-	function amp_icon_css(){
+	
+}
+function amp_icon_css(){
 		global $amp_icons_css;
 		foreach ($amp_icons_css as $key => $value) {
 	        echo $value;
 	    }
 	}
-}
-
 /**
  * Component Functions
  **/
