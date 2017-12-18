@@ -37,16 +37,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	global $post;
 	$amp_current_post_id = $post->ID;
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );
-	$editor_id 	= 'ampforwp_custom_content_editor';
-	//wp_editor( $content, $editor_id );
 	
-	//echo "<textarea style='display:none' id='amp-content-preview'>$content</textarea>";
-	/*echo "<div class='rander_amp_html'>";
-		echo html_entity_decode($content);	
-	echo "</div>";*/
-	
-
-
 	//previous data stored compatible
 	//echo get_post_meta( $amp_current_post_id, 'amp-page-builder', true );
 	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)==null && 
@@ -62,33 +53,25 @@ function amp_content_pagebuilder_title_callback( $post ){
 	if(isset($_GET['use_amp_pagebuilder']) && $_GET['use_amp_pagebuilder']=='1'){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 	}
-	if(get_post_meta($amp_current_post_id ,'use_ampforwp_page_builder',true)=='yes'){
-		$url = remove_query_arg('use_amp_pagebuilder');
+	
+	if(empty($content)){
+		echo "<div class='amppb_welcome'>
+                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
+                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
 
-		if(empty($content)){
-			echo "<div class='amppb_welcome'>
-	                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
-	                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
-
-	                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
-				</div>";
-		}
-
-		wp_enqueue_script( 'jquery-ui-dialog' ); // jquery and jquery-ui should be dependencies, didn't check though...
-		wp_enqueue_style( 'wp-jquery-ui-dialog' );
+                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
+			</div>";
+	}
 
 		// echo "<div class='amppb_welcome'>
 		// 	 <a class='amppb_helper_btn' href='".add_query_arg('ramppb','1',$url)."' style='margin-right:285px;'><span>Remove</span></a>
 		// </div>";
 
 		call_page_builder();
-	}else{
-		$url = remove_query_arg('ramppb');
-		echo '<div href="'.add_query_arg('use_amp_pagebuilder','1',$url).'" id="start_amp_pb_post" class="start_amp_pb" data-postId="'.get_the_ID().'" onclick="">Start the AMP Page Builder</div>';
-	}
+	
 }
 
-add_action("wp_ajax_call_page_builder", "call_page_builder");
+
 
 /* Add page builder form after editor */
 function call_page_builder(){
@@ -100,9 +83,7 @@ function call_page_builder(){
 		$postId = $_GET['post_id'];
 	}
 	add_thickbox();
-	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder')!='yes'){
-		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
-	}
+	
 
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
@@ -155,14 +136,16 @@ function call_page_builder(){
 	unset($backendRowSetting['front_template_start']);
 	unset($backendRowSetting['front_template_end']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
+	//'.add_query_arg('use_amp_pagebuilder','1',$url).'
 	?>
 	<div id="ampForWpPageBuilder_container">
-		{{message}}
-		<div class="enable_ampforwp_page_builder">
+		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo get_the_ID() ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)">Start the AMP Page Builder</div>
+		{{message+' '+startPagebuilder}}
+		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 			<label  @click="showModal = true;">settings</label>
 		</div>
-		<div id="amp-page-builder">
+		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>

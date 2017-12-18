@@ -490,6 +490,8 @@ Vue.component('textarea-wysiwyg', {
   
 });
 
+
+
 var app = new Vue({
   el: '#ampForWpPageBuilder_container',
   http: {
@@ -498,6 +500,7 @@ var app = new Vue({
     },
   data: {
     message: 'Hello AMP Page builder वासियों',
+    startPagebuilder: amppb_panel_options.startPagebuilder,
     showModal: false,
     //Module data
     showmoduleModal: false,
@@ -662,8 +665,6 @@ var app = new Vue({
 			});
 			this.mainContent.totalmodules = modulesid+1;
 			this.call_default_functions();
-
-			
 		},
 		showRowSettingPopUp: function(event){
 			openModulePopup(event,'rowSetting');
@@ -731,6 +732,33 @@ var app = new Vue({
 			//Vue.$forceUpdate();
 			//this.mainContent.$forceUpdate()
 		},
+		amppb_startFunction: function(event){
+			var postId = event.target.getAttribute('data-postId');
+			alert(postId);
+			this.$http.post(amppb_panel_options.ajaxUrl+'?action=enable_amp_pagebuilder', 
+			{
+				postId
+			}
+			,{
+				headers:{
+					responseType:'json'
+				},
+				responseType:'json',
+				emulateHTTP:true,
+				emulateJSON:true,
+			}
+		).then(function(response){
+			response =response.body;
+			 if(response.status === 200) {
+			 	this.startPagebuilder = 1;
+			 }
+			
+		},
+		//errorCallback
+		function(){
+			alert('connection not establish');
+		});
+		}
 
 	},/*module close*/
 	beforeMount:function(){
