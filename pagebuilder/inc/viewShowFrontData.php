@@ -282,35 +282,36 @@ function rowData($container,$col,$moduleTemplate){
 					break;
 					default:
                         if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
-						foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-							if($field['content_type']=='html'){
-								if(isset($contentArray[$field['name']]) 
-								&& !empty($contentArray) ){
+							foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
+								if($field['content_type']=='html'){
+									if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
 
-									if(!is_array($contentArray[$field['name']])){
-										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
-									}else{
-										if(count($contentArray[$field['name']])>0){
-											foreach ($contentArray[$field['name']] as $key => $userValue) {
-												if(count($contentArray[$field['name']])==1){
-													$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
-												}else{
-													$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+										if(!is_array($contentArray[$field['name']])){
+											$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+										}else{
+											if(count($contentArray[$field['name']])>0){
+												foreach ($contentArray[$field['name']] as $key => $userValue) {
+													if(count($contentArray[$field['name']])==1){
+														$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
+													}else{
+														$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+													}
 												}
+													
+											}else{
+												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 											}
-												
 										}
+
+
+									}else{
+										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 									}
-
-
-								}else{
-									$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
-								}
-							}
-							
-							
-						}
-                    }
+								}//If Closed content type html
+								
+								
+							}//Foreach closed
+	                    }//If closed
 					break;
 				}
 				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;

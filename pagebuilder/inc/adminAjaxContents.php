@@ -81,8 +81,8 @@ function ampforwp_get_image() {
 			
 			if(count($get_ids)>0){
 				foreach($get_ids as $id){
-					$image = wp_get_attachment_image( $id, 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-					$image_src = wp_get_attachment_image_src($id, 'medium', false);
+					$image = wp_get_attachment_image( $id, 'full', false, array( 'id' => 'ampforwp-preview-image' ) );
+					$image_src = wp_get_attachment_image_src($id, 'full', false);
 					$data[] = array(
 						'image'    => $image,
 						'detail'	   => $image_src
@@ -91,8 +91,8 @@ function ampforwp_get_image() {
 				}
 			}
 		}else{
-			$image = wp_get_attachment_image( $_GET['id'], 'medium', false, array( 'id' => 'ampforwp-preview-image' ) );
-			$image_src = wp_get_attachment_image_src($_GET['id'], 'medium', false);
+			$image = wp_get_attachment_image( $_GET['id'], 'full', false, array( 'id' => 'ampforwp-preview-image' ) );
+			$image_src = wp_get_attachment_image_src($_GET['id'], 'full', false);
 			$data = array(
 				'image'    => $image,
 				'detail'   => $image_src

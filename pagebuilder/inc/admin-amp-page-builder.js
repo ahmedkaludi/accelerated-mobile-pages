@@ -346,9 +346,9 @@ Vue.component('fields-data',{
 								console.log(app.modalcontent.fields)
 								app.modalcontent.fields.forEach(function(data,key){
 									if(data.name=='image_height'){
-										data.default = response.data.detail[1];
-									}else if(data.name=="image_width"){
 										data.default = response.data.detail[2];
+									}else if(data.name=="image_width"){
+										data.default = response.data.detail[1];
 									}
 								})
 								
