@@ -115,11 +115,11 @@ function dynamic_css_enqueue(){
 }
 
 
-    function dynaminc_css() {
-        $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
-
-		foreach ($amp_icons_css_array as $key=>$value ) {
-			echo  '\n'.$value;
-		}
-        exit;
-    }
+function dynaminc_css() {
+    $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+    header("Content-type: text/css; charset: UTF-8");
+	foreach ($amp_icons_css_array as $key=>$value ) {
+		echo  $value;
+	}
+    exit;
+}

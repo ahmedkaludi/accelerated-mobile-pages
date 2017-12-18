@@ -103,14 +103,14 @@ function amp_pagebuilder_content_styles(){
 						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
-							$completeCss = str_replace("{{module-class}}", '.amppb-module-setting-'.$contentArray['cell_id'], $completeCss );
+							$completeCss = str_replace("{{module-class}}", '.amppb-module-'.$contentArray['cell_id'], $completeCss );
 						}
 
 
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
 							//LOAD Icon Css 
 							if($modulefield['type']=='icon-selector'){
-								add_amp_icon($contentArray[$modulefield['name']]);
+								add_amp_icon(array($contentArray[$modulefield['name']]));
 							}
 							if($modulefield['content_type']=='css'){
 								$replaceModule = "";
@@ -119,7 +119,14 @@ function amp_pagebuilder_content_styles(){
 								}
 								switch ($modulefield['type']) {
 									case 'spacing':
+										$replaceRow ="";
+										if(isset($replaceRow['top']) 
+											&& isset($replaceRow['right'])
+											&& isset($replaceRow['bottom'])
+											&& isset($replaceRow['left'])
+										){
 										$replaceRow = $replaceRow['top']."px ".$replaceRow['right']."px ".$replaceRow['bottom']."px ".$replaceRow['left']."px ";
+								}
 										$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
 										
 									break;
@@ -279,7 +286,23 @@ function rowData($container,$col,$moduleTemplate){
 							if($field['content_type']=='html'){
 								if(isset($contentArray[$field['name']]) 
 								&& !empty($contentArray) ){
-									$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+
+									if(!is_array($contentArray[$field['name']])){
+										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+									}else{
+										if(count($contentArray[$field['name']])>0){
+											foreach ($contentArray[$field['name']] as $key => $userValue) {
+												if(count($contentArray[$field['name']])==1){
+													$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+												}else{
+													$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+												}
+											}
+												
+										}
+									}
+
+
 								}else{
 									$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 								}
@@ -290,7 +313,7 @@ function rowData($container,$col,$moduleTemplate){
                     }
 					break;
 				}
-				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id']."'>".$moduleFrontHtml;
+				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
 					$html .= "<p class='col-wrapper'>".$contentArray['value']."</div>";
