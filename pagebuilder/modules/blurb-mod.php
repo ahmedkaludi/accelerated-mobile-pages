@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="blurb-mod">
+<div class="blu-mod">
 	<span class="ico-pic icon-{{icon-picker}}"></span>
 	<h3 class="blurb-txt">{{content_title}}</h3>
 	<p>{{content}}</p>
@@ -13,7 +13,7 @@ $css = '
 	width:100%;
 }
 .blurb-mod{
-     display: flex;
+    display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
@@ -21,20 +21,29 @@ $css = '
     justify-content: space-between;
     text-align:center;
     background:#eee;
-    padding:20px;
+	padding:30px 50px;
+	margin:20px;
 }
-.blurb-mod{
-	padding:15px 30px;
-	background:#fff;
-}
-.blurb-mod .blurb-txt{
+.blu-mod .blurb-txt{
    font-size:30px;
    line-height:1.5;
+   font-weight:500;
+   margin-bottom:30px;
    color:{{font_color_picker}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-
+.blu-mod .ico-pic{
+	font-size:{{ico-size}};
+	color:{{ic_color_picker}};
+	margin-bottom:30px;
+	display:inline-block;
+}
+.blu-mod .ico-pic:before, .blu-mod .ico-pic:after{
+	background:{{bg_color_picker}};
+	border-radius:50%;
+	padding:10px;
+}
 ';
 return array(
 		'label' =>'Blurb',
@@ -53,6 +62,30 @@ return array(
 		 						'default'	=>'Title',	
 		           				'content_type'=>'html',
 	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"ico-size",		
+		 						'label'		=>'Icon Size',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'30px',	
+		           				'content_type'=>'css',
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"ic_color_picker",
+								'label'		=>'Icon Color',
+								'tab'		=>'customizer',
+								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"bg_color_picker",
+								'label'		=>'Icon Background color',
+								'tab'		=>'customizer',
+								'default'	=>'#333',
+								'content_type'=>'css',
+							),
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
