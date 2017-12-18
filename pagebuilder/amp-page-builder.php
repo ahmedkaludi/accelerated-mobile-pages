@@ -140,7 +140,7 @@ function call_page_builder(){
 	?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo get_the_ID() ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)">Start the AMP Page Builder</div>
-		{{message+' '+startPagebuilder}}
+		{{message}}
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 			<label  @click="showModal = true;">settings</label>
