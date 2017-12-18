@@ -734,7 +734,6 @@ var app = new Vue({
 		},
 		amppb_startFunction: function(event){
 			var postId = event.target.getAttribute('data-postId');
-			alert(postId);
 			this.$http.post(amppb_panel_options.ajaxUrl+'?action=enable_amp_pagebuilder', 
 			{
 				postId
