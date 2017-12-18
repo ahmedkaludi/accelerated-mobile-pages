@@ -8,26 +8,40 @@ $output = '
 
 ';
 $css = '
-.row-setting-9{
+.row-setting-21 .col.col-1{
 	display:inline-flex;
 	width:100%;
 }
 .feature-mod{
-	background:#ccc;
-	 display: flex;
+	background:#eee;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 25%;
 }
-.feature-mod .fea-mod{
-   width:100%;
-   display:inline-block;
-   text-align:{{align_type}};
-   padding: 20px 40px;
+.fea-mod{
+	background: #fff;
+    padding: 30px;
+    margin: 5% 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-.feature-mod .fea-mod .t-txt{
+.fea-mod p{
+	padding-top:30px;
+}
+.feature-mod .fea-mod h3{
    font-size:30px;
    line-height:1.5;
    color:{{font_color_picker}};
    margin:{{margin_css}};
    padding:{{padding_css}};
+   font-weight:500;
+   padding-bottom:30px;
 }
 
 ';
