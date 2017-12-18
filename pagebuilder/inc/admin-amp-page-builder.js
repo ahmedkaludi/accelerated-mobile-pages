@@ -690,9 +690,9 @@ var app = new Vue({
 						row.cell_right = [];
 						row.cell_data.forEach(function(module,k){
 							if(parseInt(module.cell_container)==1){
-								row.cell_left = module;
+								row.cell_left.push(module);
 							}else if(parseInt(module.cell_container)==2){
-								row.cell_right = module;
+								row.cell_right.push(module);
 							}
 						});
 					}
