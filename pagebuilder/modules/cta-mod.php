@@ -1,6 +1,6 @@
 <?php 
 $output = '
-<div class="cta-mod">
+<div class="cta-module">
 <div class="cta-tlt">
 	<h2>{{content_title}}</h2>
 </div>
@@ -13,7 +13,7 @@ $output = '
 ';
 $css = '
 
-.cta-mod {
+.cta-module {
     display: inline-flex;
     width: 100%;
     padding: 5% 5%;
@@ -21,11 +21,11 @@ $css = '
     margin-top: 50px;
     align-items: center;
 }
-.cta-mod .cta-btn{
+.cta-module .cta-btn{
 	width: 55%;
     text-align: right;
 }
-.cta-mod .cta-tlt h2{
+.cta-module .cta-tlt h2{
    font-size:{{text-size}};
    line-height:1.5;
    font-weight:normal;
@@ -33,7 +33,7 @@ $css = '
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-.cta-mod .cta-btn .btn-txt{
+.cta-module .cta-btn .btn-txt{
 	display: inline-block;
     color: #000;
     padding: 10px 20px;
@@ -41,7 +41,7 @@ $css = '
     border: 3px solid #333;
     font-weight: 500;
 }
-.cta-mod .cta-btn .txt{
+.cta-module .cta-btn .txt{
 	display: block;
     color: #888e94;
     font-size: 16px;
