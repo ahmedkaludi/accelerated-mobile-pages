@@ -87,7 +87,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			}
 			$components_options = array(
 									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
-									"savedLayouts"=>$allPostLayout
+									"savedLayouts"=>$allPostLayout,
+									"startPagebuilder"=>(get_post_meta($postId,'use_ampforwp_page_builder',true)=='yes'? 1:0)
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
 			add_action( 'admin_footer', 'js_templates',9999);

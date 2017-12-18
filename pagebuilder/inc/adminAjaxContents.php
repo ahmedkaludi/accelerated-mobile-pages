@@ -9,6 +9,20 @@ add_action('wp_ajax_amppb_textEditor', function(){
    echo wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
 });
 
+add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
+function enable_amp_pagebuilder(){
+	if(isset($_POST['postId'])){
+		$postId = $_POST['postId'];
+	}else{
+		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
+	}
+	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder', true)!='yes'){
+		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
+		echo json_encode(array('status'=>200, 'Message'=>"Pagebuilder Started successfully"));
+	}
+	exit;
+}
+
 add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
 function amppb_export_layout_data(){
 	header( 'content-type: application/json' );
