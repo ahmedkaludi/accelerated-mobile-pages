@@ -8,13 +8,21 @@ $output = '
 
 ';
 $css = '
-{{module-class}} .fea-mod{
+.row-setting-9{
+	display:inline-flex;
+	width:100%;
+}
+.feature-mod{
+	background:#ccc;
+	 display: flex;
+}
+.feature-mod .fea-mod{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};
    padding: 20px 40px;
 }
-{{module-class}} .fea-mod .t-txt{
+.feature-mod .fea-mod .t-txt{
    font-size:30px;
    line-height:1.5;
    color:{{font_color_picker}};

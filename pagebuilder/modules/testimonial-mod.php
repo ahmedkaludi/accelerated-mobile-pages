@@ -23,7 +23,7 @@ $css = '
 	background:#eee;
 	padding:4% 2%;
 }
-.amppb-module-setting-39, .amppb-module-setting-40, .amppb-module-setting-41, .amppb-module-setting-43, .testi-mod{
+.testimonial-mod .testi-mod{
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;

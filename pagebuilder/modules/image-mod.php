@@ -7,7 +7,7 @@ $output = '
 
 ';
 $css = '
-{{module-class}} .image-blk{
+.image-mod .image-blk{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};

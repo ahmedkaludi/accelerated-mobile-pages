@@ -7,12 +7,12 @@ $output = '
 
 ';
 $css = '
-{{module-class}} .button-blk{
+.button-mod .button-blk{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};
 }
-{{module-class}} .button-blk .btn-txt{
+.button-mod .button-blk .btn-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};

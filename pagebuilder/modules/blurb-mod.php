@@ -12,7 +12,7 @@ $css = '
 	display:inline-flex;
 	width:100%;
 }
-.amppb-module-setting-35, .amppb-module-setting-33, .amppb-module-setting-34{
+.blurb-mod{
      display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
@@ -27,7 +27,7 @@ $css = '
 	padding:15px 30px;
 	background:#fff;
 }
-{{module-class}} .blurb-mod .blurb-txt{
+.blurb-mod .blurb-txt{
    font-size:30px;
    line-height:1.5;
    color:{{font_color_picker}};

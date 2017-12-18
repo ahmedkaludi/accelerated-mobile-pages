@@ -6,12 +6,12 @@ $output = '
 
 ';
 $css = '
-{{module-class}} .head-tlt{
+.heading .head-tlt{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};
 }
-{{module-class}} .head-tlt .h-txt{
+.heading .head-tlt .h-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
