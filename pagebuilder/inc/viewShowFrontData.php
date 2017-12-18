@@ -195,16 +195,19 @@ function amppb_post_content($content){
 				$rowStartTemplate = $containerCommonSettings['front_template_start'];
 				$rowEndTemplate = $containerCommonSettings['front_template_end'];
 				foreach ($containerCommonSettings['fields'] as $key => $field) {
-					if(isset($rowsData['data'][$field['name']])){
-						$replace = $rowsData['data'][$field['name']];
-					}else{
-						$replace = '';
-					}
-					if($field['name'] == 'row_class'){
-						$replace .= ' row-setting-'.$rowsData['id'];
-					}
-					if(! is_array($field['name']) && $field['content_type']=='html'){
-						$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
+					if($field['content_type']=='html'){
+						$replace ='';
+						if($field['name'] == 'row_class'){
+							$replace .= ' row-setting-'.$rowsData['id'];
+						}
+						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
+							$replace .= $rowsData['data'][$field['name']];
+						}else{
+							$replace .= '';
+						}
+						if(! is_array($field['name']) && $field['content_type']=='html'){
+							$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
+						}
 					}
 				}
 				$html .= $rowStartTemplate;

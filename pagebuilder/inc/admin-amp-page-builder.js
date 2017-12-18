@@ -139,13 +139,12 @@ Vue.component('amp-pagebuilder-module-modal', {
 						}
 					});
 				}else if(app.modalType=='rowSetting'){
+					var a = {};
 					fields.forEach(function(fieldData,fieldKey){
-						if(rowData.data){
-							rowData.data[fieldData.name] = fieldData.default;
-						}
-						Vue.set( rowData.data, fieldData.name, fieldData.default );
+						a[fieldData.name] = fieldData.default
 					});
-					console.log(rowData.data);
+					
+					Vue.set( rowData, 'data', a );
 				}
 			}
 		});
@@ -560,7 +559,8 @@ var app = new Vue({
 					}
 					
   				});
-				this.call_default_functions();
+  				var isModuleDragDrop = true;
+				this.call_default_functions(isModuleDragDrop);
 				//console.log(this.mainContent);
   			}
   			return true;
@@ -664,7 +664,8 @@ var app = new Vue({
 				}
 			});
 			this.mainContent.totalmodules = modulesid+1;
-			this.call_default_functions();
+			var isModuleDragDrop = true;
+			this.call_default_functions(isModuleDragDrop);
 		},
 		showRowSettingPopUp: function(event){
 			openModulePopup(event,'rowSetting');
@@ -672,7 +673,7 @@ var app = new Vue({
 		setcontentData: function(){
   			this.mainContent_Save = JSON.stringify(this.mainContent);
   		},
-		re_process_rawdata: function(){
+		re_process_rawdata: function(isModuleDragDrop="false"){
 			this.mainContent.rows.sort(function(a, b){
 					var a1= a.index, b1= b.index;
 					if(a1== b1) return 0;
@@ -681,7 +682,10 @@ var app = new Vue({
 			this.mainContent.rows.forEach(function(row,key){
 				if(row.cells && row.cells=="2"){
 					
-					if(!row.cell_left && !row.cell_right){
+					if(isModuleDragDrop===true){
+						console.log("row moved "+isModuleDragDrop)
+						row.cell_data = row.cell_left.concat(row.cell_right)
+					}else {//if(!row.cell_left && !row.cell_right)
 						row.cell_left  = [];
 						row.cell_right = [];
 						row.cell_data.forEach(function(module,k){
@@ -691,8 +695,6 @@ var app = new Vue({
 								row.cell_right = module;
 							}
 						});
-					}else{
-						row.cell_data = row.cell_left.concat(row.cell_right)
 					}
 					if(row.cell_data.length>0){
 						row.cell_data.sort(function(a, b){
@@ -726,8 +728,8 @@ var app = new Vue({
 			}
 			
 		},
-		call_default_functions:function(){
-			this.re_process_rawdata();
+		call_default_functions:function(isModuleDragDrop){
+			this.re_process_rawdata(isModuleDragDrop);
 			this.setcontentData();
 			//Vue.$forceUpdate();
 			//this.mainContent.$forceUpdate()

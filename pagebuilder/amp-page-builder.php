@@ -171,7 +171,7 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">1 Column</span>
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove dashicons dashicons-trash"></span>
-						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            <span @click="showRowSettingPopUp($event)" class="rowBoxContainer" title="Row settings column 1" :data-popupContent='JSON.stringify(<?php echo json_encode($backendRowSetting); ?>)'
 						            :data-container_id="row.id"
 						            >
 						            	<i class="tools-icon dashicons dashicons-menu"></i>
@@ -208,7 +208,7 @@ function call_page_builder(){
 						            <span class="amppb-handle dashicons dashicons-move"></span>
 						            <span class="amppb-row-title-text">2 Columns</span> 
 						            <span @click="reomve_row(key)" data-confirm="Delete Row?" class="amppb-remove amppb-item-remove dashicons dashicons-trash"></span>
-						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" data-popupContent='<?php echo json_encode($backendRowSetting); ?>'
+						            <span href="#" class="rowBoxContainer" title="Row settings column 2" @click="showRowSettingPopUp($event)" :data-popupContent='JSON.stringify(<?php echo json_encode($backendRowSetting); ?>)'
 						            :data-container_id="row.id"
 						            >
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
