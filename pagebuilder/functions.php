@@ -105,7 +105,14 @@ function js_templates() {
     global $savedlayoutTemplate;
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
-
+function checkAMPforPageBuilderStatus($postId){
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if($ampforwp_pagebuilder_enable=='yes'){
+		return true;
+	}else{
+		return false;
+	}
+}
  
 require_once AMP_PAGE_BUILDER.'inc/amppb_save_data.php';
 require_once AMP_PAGE_BUILDER.'inc/viewShowFrontData.php';
