@@ -39,7 +39,8 @@ function amp_pagebuilder_content_styles(){
 	.amppb-fixed{width:1100px;margin: 0 auto;}
 	.amppb-fluid{width:100%;margin: 0 auto;padding: 0 5%;}
 	.amppb-pages .cntr{max-width:100%;}
-	.amppb-pages .amp-post-title{display:none;}
+	.amp_pb_module{display:inline-flex; width:100%;}
+	.col.col-1{margin:0 auto;width: 100%;display: flex;}
 	<?php
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
