@@ -44,6 +44,7 @@ $css = '
 	color:#333;
 }
 .pri-mod .btn-txt{
+	background:{{btn_bg_color}};
     color: {{font_color_picker}};
     padding: 10px 20px;
     display: inline-block;
