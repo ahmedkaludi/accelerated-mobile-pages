@@ -1,7 +1,9 @@
 <?php amp_header(); ?>
 <div class="sp">
 	<div class="cntr">
-		<?php amp_title(); ?>
+		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+		 	<?php amp_title(); ?>
+		<?php } ?>
        <div class="pg">
 			<div class="cntn-wrp">
 				<?php amp_content(); ?>

@@ -2,6 +2,7 @@
 $output = '
 <div class="pri-mod">
 	<h4 class="pri-tlt">{{content_title}}</h4>
+	<span class="pri-recom">TIMESAVER</span>
 	<span class="pri-lbl">{{price_label}}</span>
 	<span class="pri-desc">{{price_desc}}</span>
 	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
@@ -22,8 +23,11 @@ $css = '
     justify-content: space-between;
     text-align:center;
     background:#eee;
-	padding:30px 50px;
 	margin:20px;
+	position:relative;
+}
+.pri-mod{
+	padding:30px 50px;
 }
 .pri-mod .pri-tlt{
 	font-size: 26px;
@@ -49,6 +53,44 @@ $css = '
     padding: 10px 20px;
     display: inline-block;
     font-size: {{text-size}};
+}
+.pricing-mod:after{
+	content:"";
+	border-style: solid;
+	border-width: 30px 240px 0 250px;
+	border-color: #eee transparent transparent transparent;
+	position:absolute;
+	left:0;
+	right:0;
+	top:auto;
+	bottom:-28px;
+	width: calc(100% - 1px);
+}
+.pri-recom{
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    display: block;
+    font-weight: 700;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    z-index: 1;
+    min-width: 80px;
+    -webkit-transform: rotate(45deg) translate(23%,57%);
+    transform: rotate(45deg) translate(23%,57%);
+ }
+ .pri-recom:after{
+    content: "";
+    position: absolute;
+    border-bottom: 32px solid #2cbf55;
+    border-left: 32px solid transparent;
+    border-right: 32px solid transparent;
+    height: 0;
+    width: 188%;
+    z-index: -1;
+    left: -47%;
 }
 ';
 return array(
