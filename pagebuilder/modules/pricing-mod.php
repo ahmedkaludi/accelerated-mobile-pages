@@ -54,18 +54,6 @@ $css = '
     display: inline-block;
     font-size: {{text-size}};
 }
-.pricing-mod:after{
-	content:"";
-	border-style: solid;
-	border-width: 30px 240px 0 250px;
-	border-color: #eee transparent transparent transparent;
-	position:absolute;
-	left:0;
-	right:0;
-	top:auto;
-	bottom:-28px;
-	width: calc(100% - 1px);
-}
 .pri-recom{
     font-size: 12px;
     position: absolute;
