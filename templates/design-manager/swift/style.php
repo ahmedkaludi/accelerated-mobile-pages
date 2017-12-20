@@ -227,7 +227,7 @@ amp-sidebar {
         height:<?php echo $redux_builder_amp['swift-height-control']?>;
     <?php } ?>
 }
-.h-ic a:after{
+.h-ic a:after, .h-ic a:before{
     <?php if($redux_builder_amp['swift-element-color-control'] ['rgba']){?>
         color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
     <?php } ?>

@@ -39,6 +39,7 @@ function amp_pagebuilder_content_styles(){
 	.amppb-fixed{width:1100px;margin: 0 auto;}
 	.amppb-fluid{width:100%;margin: 0 auto;padding: 0 5%;}
 	.amppb-pages .cntr{max-width:100%;}
+	.amppb-pages header .cntr{max-width: 1100px;}
 	
 	<?php
 	//To load css of modules which are in use
