@@ -6,6 +6,9 @@ $output = '
 	<span class="pri-lbl">{{price_label}}</span>
 	<span class="pri-desc">{{price_desc}}</span>
 	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
+	<div class="pri-cnt">
+		{{text_desc}}
+	</div>
 </div>
 
 ';
@@ -155,7 +158,14 @@ return array(
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
-						
+						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"text_desc",		
+		 						'label'		=>'Content',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Content',	
+		           				'content_type'=>'html',
+	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
