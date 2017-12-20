@@ -2,7 +2,11 @@
 /**** 
 * AMP Framework Reset
 *****/
-body{ font-family: 'Montserrat'; font-size: 16px; line-height:1.4; }
+body{ 
+    <?php if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ ?>
+    font-family: '<?php echo $redux_builder_amp['amp_font_selector']; } 
+    else { echo "font-family: 'Montserrat';"; } ?>';
+ font-size: 16px; line-height:1.4; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
 a, a:active, a:visited{ color:#ed1c24; text-decoration: none }
