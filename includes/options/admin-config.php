@@ -2359,8 +2359,8 @@ Redux::setSection( $opt_name, array(
              // Swift
             array(
                     'id'        => 'swift-color-scheme',
-                    'title'     => __('Global Color Scheme', 'ampswifttheme'),
-                    'subtitle'  => __('Choose the color for title, anchor link','ampswifttheme'),
+                    'title'     => __('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for title, anchor link','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                     'rgba'      => '(255,61,37,1)',
@@ -2528,9 +2528,9 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',
-                    'title'    => __('Primary Menu', 'ampswifttheme'),
-                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'ampswifttheme'),
-                    'subtitle' => __('Enable/Disable Menu from header', 'ampswifttheme'),
+                    'title'    => __('Primary Menu', 'accelerated-mobile-pages'),
+                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => '1'
@@ -2542,9 +2542,9 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'padding',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Primary Menu Padding Option', 'ampswifttheme'),
-                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'ampswifttheme'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'title'          => __('Primary Menu Padding Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'padding-top'     => '12px', 
                         'padding-right'   => '25px', 
@@ -2558,8 +2558,8 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'primary-menu-text-scheme',
-                'title'     => __('Primary Menu Text Color Scheme', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Primary Text Menu','ampswifttheme'),
+                'title'     => __('Primary Menu Text Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Primary Text Menu','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgba(102, 102, 102, 1)',
@@ -2571,8 +2571,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'primary-menu-background-scheme',
-                'title'     => __('Primary Menu Background Color Scheme', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Primary Menu Background','ampswifttheme'),
+                'title'     => __('Primary Menu Background Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Primary Menu Background','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgb(239, 239, 239)',
@@ -2584,8 +2584,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'signin-button',
-                'title'     => __('Button Customize', 'ampswifttheme'),
-                'subtitle'  => __('You can do the customization here ','ampswifttheme'),
+                'title'     => __('Button Customize', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can do the customization here ','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
                     'required' => array(
@@ -2595,8 +2595,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'signin-button-text',
-                'title'     => __('Button Text', 'ampswifttheme'),
-                'subtitle'  => __('You can write your required text ','ampswifttheme'),
+                'title'     => __('Button Text', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can write your required text ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => 'Sign up free',
                     'required' => array(
@@ -2606,8 +2606,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'signin-button-link',
-                'title'     => __('Button Link', 'ampswifttheme'),
-                'subtitle'  => __('You can add the Link here ','ampswifttheme'),
+                'title'     => __('Button Link', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can add the Link here ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '#',
                     'required' => array(
@@ -2617,8 +2617,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'signin-button-style',
-                'title'     => __('Button Styles', 'ampswifttheme'),
-                'subtitle'  => __('You can change the button here','ampswifttheme'),
+                'title'     => __('Button Styles', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
                     'required' => array(
@@ -2627,8 +2627,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-border-line',
-                'title'     => __('Button Border Line', 'ampswifttheme'),
-                'subtitle'  => __('You can change the button border line','ampswifttheme'),
+                'title'     => __('Button Border Line', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the button border line','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '2',
                     'required' => array(
@@ -2637,8 +2637,8 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-text-color',
-                'title'     => __('Button Text Color', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Button Texxt','ampswifttheme'),
+                'title'     => __('Button Text Color', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Button Texxt','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgb(0, 0, 0)',
@@ -2649,8 +2649,8 @@ Redux::setSection( $opt_name, array(
             ),
              array(
                 'id'        => 'signin-button-border-color',
-                'title'     => __('Button Border Line Color', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Button Border Line','ampswifttheme'),
+                'title'     => __('Button Border Line Color', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgb(0, 0, 0)',
@@ -2675,8 +2675,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'border-radius',
-                'title'     => __('Customize Border Radius', 'ampswifttheme'),
-                'subtitle'  => __('You can change the border radius','ampswifttheme'),
+                'title'     => __('Customize Border Radius', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the border radius','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '10',
                     'required' => array(
@@ -2824,8 +2824,8 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'customize-options',
                     'type'  => 'switch',
-                    'title' => __('Customize Header Options', 'ampswifttheme'),
-                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'ampswifttheme'),
+                    'title' => __('Customize Header Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
@@ -2833,10 +2833,10 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'swift-height-control',
                     'type'     => 'text',
-                    'title'    => __('Dimensions (Height) Option', 'ampswifttheme'),
-                    'subtitle' => __('Allow your users to choose height', 'ampswifttheme'),
-                    'desc'     => __('Here you can give the height of the Header in Numbers', 'ampswifttheme'),
-                    'default'  => '60',
+                    'title'    => __('Dimensions (Height) Option', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Allow your users to choose height', 'accelerated-mobile-pages'),
+                    'desc'     => __('Here you can give the height of the Header in Numbers', 'accelerated-mobile-pages'),
+                    'default'  => '60px',
                     'required' => array(
                       array('customize-options','=',1)
                     )           
@@ -2845,8 +2845,8 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'margin-padding-options',
                     'type'  => 'switch',
-                    'title' => __('Customize Margin/Padding Options', 'ampswifttheme'),
-                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'ampswifttheme'),
+                    'title' => __('Customize Margin/Padding Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
                       array('customize-options','=',1)
@@ -2860,9 +2860,9 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'padding',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Padding Option', 'ampswifttheme'),
-                    'subtitle'       => __('Allow your users to choose the spacing or padding they want.', 'ampswifttheme'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'title'          => __('Padding Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding they want.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'padding-top'     => '0px', 
                         'padding-right'   => '0px', 
@@ -2882,9 +2882,9 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'margin',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Margin Option', 'ampswifttheme'),
-                    'subtitle'       => __('Allow your users to choose the spacing or margin they want.', 'ampswifttheme'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'ampswifttheme'),
+                    'title'          => __('Margin Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or margin they want.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'margin-top'     => '0px', 
                         'margin-right'   => '0px', 
@@ -2900,8 +2900,8 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'    => 'border-line',
                     'type'  => 'switch',
-                    'title' => __('Customize Borderline and Boxshadow Options', 'ampswifttheme'),
-                    'subtitle'  => __('Here you can add the border line and color', 'ampswifttheme'),
+                    'title' => __('Customize Borderline and Boxshadow Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Here you can add the border line and color', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
                       array('customize-options','=',1)
@@ -2911,9 +2911,9 @@ Redux::setSection( $opt_name, array(
             array(
                   'id'       => 'swift-border-line-control',
                   'type'     => 'text',
-                  'title'    => __('Border Bottom Line', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Border Bottom Line, Please give number', 'ampswifttheme'),
+                  'title'    => __('Border Bottom Line', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Border Bottom Line, Please give number', 'accelerated-mobile-pages'),
                   'default'  => '1',
                   'required' => array(
                         array('border-line','=',1)
@@ -2922,9 +2922,9 @@ Redux::setSection( $opt_name, array(
             array(
                   'id'       => 'swift-border-color-control',
                   'type'     => 'color_rgba',
-                  'title'    => __('Border Color', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Border Color, Please select', 'ampswifttheme'),
+                  'title'    => __('Border Color', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Border Color, Please select', 'accelerated-mobile-pages'),
                   'default'  => array(
                         'rgba'     => 'rgba(0,0,0,0.12)', 
                     ),
@@ -2935,9 +2935,9 @@ Redux::setSection( $opt_name, array(
             array(
                   'id'       => 'swift-boxshadow-checkbox-control',
                   'type'     => 'switch',
-                  'title'    => __('Box Shadow Option', 'ampswifttheme'), 
-                  'subtitle' => __('No validation can be done on this field type', 'ampswifttheme'),
-                  'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'ampswifttheme'),
+                  'title'    => __('Box Shadow Option', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'accelerated-mobile-pages'),
                   'default'  => 0,
                   'required' => array(
                         array('border-line','=',1)
@@ -2947,8 +2947,8 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'swift-background-scheme',
-                'title'     => __('Header Background Color Scheme', 'ampswifttheme'),
-                'subtitle'  => __('Choose the color for Header Background','ampswifttheme'),
+                'title'     => __('Header Background Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Header Background','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgba(255, 255, 255, 255)',
@@ -2959,8 +2959,8 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-header-overlay',
-                    'title'     => __('Header Overlay Color Scheme', 'ampswifttheme'),
-                    'subtitle'  => __('Choose the color for Header Ovelay Background','ampswifttheme'),
+                    'title'     => __('Header Overlay Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Ovelay Background','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'rgba'  => 'rgba(20, 20, 22, 0.9)',
@@ -2971,11 +2971,11 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-element-color-control',
-                    'title'     => __('Header Element Color Scheme', 'ampswifttheme'),
-                    'subtitle'  => __('Choose the color for Header Elements','ampswifttheme'),
+                    'title'     => __('Header Element Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Elements','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgb(17, 17, 17)',
+                        'color'  => '#333',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
@@ -2983,8 +2983,8 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-element-overlay-color-control',
-                    'title'     => __('Header Overlay Element Color Scheme', 'ampswifttheme'),
-                    'subtitle'  => __('Choose the color for Header Overlay  Elements','ampswifttheme'),
+                    'title'     => __('Header Overlay Element Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Overlay  Elements','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'rgba'  => 'rgba(255, 255, 255, 0.8)',
@@ -2996,7 +2996,7 @@ Redux::setSection( $opt_name, array(
               
             array(
                     'id'    => 'header-position-type',
-                   'title'  => __('Header Overlay Position Type', 'ampswifttheme'),
+                   'title'  => __('Header Overlay Position Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Left',
@@ -3230,32 +3230,32 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
-                    'title' => __('Date', 'ampswifttheme'),
-                    'subtitle'  => __('Enable to show Post Date', 'ampswifttheme'),
+                    'title' => __('Date', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Enable to show Post Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'    => 'swift-social-icons',
                     'type'  => 'switch',
-                    'title' => __('Social Icons', 'ampswifttheme'),
-                    'subtitle'  => __('Switch to show/hide Social Icons', 'ampswifttheme'),
+                    'title' => __('Social Icons', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Switch to show/hide Social Icons', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'    => 'swift-comment',
                     'type'  => 'switch',
-                    'title' => __('Comments', 'ampswifttheme'),
-                    'subtitle'  => __('Switch to show/hide Comments', 'ampswifttheme'),
+                    'title' => __('Comments', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Switch to show/hide Comments', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
                array(
                     'id'    => 'swift-taxonomy',
                     'type'  => 'switch',
-                    'title' => __('Taxonomy Tags', 'ampswifttheme'),
-                    'subtitle'  => __('switch to show/hide taxonomy tags', 'ampswifttheme'),
+                    'title' => __('Taxonomy Tags', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('switch to show/hide taxonomy tags', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),   
@@ -3432,8 +3432,8 @@ Redux::setSection( $opt_name, array(
                  array(
                         'id'    => 'swift-menu',
                         'type'  => 'switch',
-                        'title' => __('Menu', 'ampswifttheme'),
-                        'subtitle'  => __('switch to show/hide Menu', 'ampswifttheme'),
+                        'title' => __('Menu', 'accelerated-mobile-pages'),
+                        'subtitle'  => __('switch to show/hide Menu', 'accelerated-mobile-pages'),
                         'default'   => 1,
                         'required' => array( array('amp-design-selector', '=' , '4') ),
                 ),
