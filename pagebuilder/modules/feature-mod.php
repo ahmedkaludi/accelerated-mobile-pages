@@ -2,7 +2,7 @@
 $output = '
 <div class="fea-mod">
 	<h3 class="t-txt">{{content_title}}</h3>
-	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}"></amp-img>
+	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
 	<p>{{content}}</p>
 </div>
 
@@ -78,6 +78,20 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 					),
+	 					array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'label'		=>'Enable for Responsive Image',
+								'tab'		=>'customizer',
+								'default'	=>array(),
+								'options'	=>array(
+												array(
+													'label'=>'Enable',
+													'value'=>'responsive',
+												),
+											),
+								'content_type'=>'html',
+							),
 	 					array(
 				               'type'  =>'text',
 				              'name'=>"image_height",
