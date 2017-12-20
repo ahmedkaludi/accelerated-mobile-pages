@@ -30,8 +30,8 @@
     <div :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}</label>
-            <textarea class="full textarea-editor" :id="field.id" :name="field.name" v-model="field.default"></textarea>
-           <!--  <textarea-wysiwyg default-text="field.default"></textarea-wysiwyg> -->
+            <!--  <textarea class="full textarea-editor" id="ed123" :name="field.name" v-model="field.default"></textarea>  -->
+            <textarea-wysiwyg :default-text="field"></textarea-wysiwyg>
             <?php //wp_editor( '', 'My_TextAreaID_22',     array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, 'textarea_rows'=>5)   ); ?>
         </p>
         <div class="clearfix"></div>
@@ -405,4 +405,11 @@
 </script>
 <script type="text/x-template" id="fields-colorPicker-template">
     <input name="amppb-color-picker" v-model="colorfield.default"/>
+</script>
+<script type="text/x-template" id="fields-textarea-template">
+    <div class="complete_text_area">
+        <div class="editor_area">
+            <textarea class="full textarea-editor" :id="defaultText.name+'_editor'" v-model="defaultText.default"></textarea>
+        </div>
+    </div>
 </script>

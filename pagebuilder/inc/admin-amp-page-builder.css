@@ -901,10 +901,10 @@ Layout css
 }
 .select-icons{
     position: absolute;
-    width: 400px;
-    height: 200px;
-    top: 30%;
-    left: 35%;
+    width: 500px;
+    height: 370px;
+    top: 20%;
+    left: 33%;
     overflow-x: hidden;
     overflow-y: hidden;
     z-index: 999999;

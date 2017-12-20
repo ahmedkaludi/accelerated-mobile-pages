@@ -15,6 +15,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
+        //To add page
+        if ( ! class_exists( '_WP_Editors', false ) ) {
+		    require( ABSPATH . WPINC . '/class-wp-editor.php' );
+		}
+		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
         $amp_current_post_id = $postId = get_the_ID();
             
 			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );

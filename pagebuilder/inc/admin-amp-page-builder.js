@@ -1,5 +1,3 @@
-
-if(jQuery('#ampForWpPageBuilder_container').css('display') !='none'){
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
   props: ['dataContent'],
@@ -255,7 +253,7 @@ Vue.component('fields-data',{
 	  		//this.filteredList = ;
 	  		
 	  		this.callChangeEnvent();
-	  
+	  	
 
 	  })
 	},
@@ -475,18 +473,45 @@ Vue.component('color-picker', {
     });
   },
   methods: {
-  	selectedColorPicker: function(){
-  		alert("called")
-  	}
+  	
   },
   beforeDestroy: function() {
     jQuery(this.$el).wpColorPicker('destroy');
   }
 });
 Vue.component('textarea-wysiwyg', {
-  template: '<textarea></textarea>',
-   props: [ 'defaultText' ],
+  template: '#fields-textarea-template',
+  props: [ 'defaultText' ],
+  mounted: function() {
+  	var componentPoint = this;
+	console.log(jQuery(this.$el));
+	var textareaId = jQuery(this.$el).find('textarea').attr('id');
+	if(wp.editor){
+		wp.editor.initialize(textareaId, {
+									tinymce: true,
+									quicktags: true,
+								})
+		var editor = window.tinymce.get( textareaId );
+		editor.on( 'blur hide', function onEditorBlur() {
+				componentPoint.defaultText.default = wp.editor.getContent(textareaId);
+		});
+
+	}
+  	
+  },
   
+  beforeDestroy: function() {
+  	var componentPoint = this;
+  	if(wp.editor){
+  		var textareaId = jQuery(this.$el).find('textarea').attr('id');
+  		//alert(wp.editor.getContent(textareaId));
+	  	/*componentPoint.defaultText.default = wp.editor.getContent(textareaId);
+	  	console.log(componentPoint.defaultText.default);*/
+	  	wp.editor.remove(textareaId);
+	  }
+  	console.log(componentPoint.defaultText);
+  	
+  }
 });
 
 
@@ -683,7 +708,7 @@ var app = new Vue({
 				if(row.cells && row.cells=="2"){
 					
 					if(isModuleDragDrop===true){
-						console.log("row moved "+isModuleDragDrop)
+						//console.log("row moved "+isModuleDragDrop)
 						row.cell_data = row.cell_left.concat(row.cell_right)
 					}else {//if(!row.cell_left && !row.cell_right)
 						row.cell_left  = [];
@@ -789,4 +814,3 @@ var app = new Vue({
 
 app.mainContent = amppb_data;
 app.call_default_functions();
-}
