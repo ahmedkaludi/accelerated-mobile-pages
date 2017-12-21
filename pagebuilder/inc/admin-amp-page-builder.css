@@ -1072,4 +1072,16 @@ Layout css
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.amppb_accordion__panel {
+  padding: .9rem;
+  background: #e3e3e3;
+  display: block;
+  cursor:pointer;
+}
+a.amppb_accordion__panel:hover {
+  background: #e8e8e8;
+  }
 
+.amppb_accordion__panel.active {
+    background: #e8e8e8;
+}

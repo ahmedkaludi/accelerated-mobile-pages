@@ -1,5 +1,5 @@
  <script type="text/x-template" id="fields-data-template">
-    <div :id="field.name" data-type="text" v-if="field.type=='text' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
             <input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
@@ -8,7 +8,7 @@
          <div class="clearfix"></div>
     </div>
    
-    <div :id="field.name" data-type="number" v-else-if="field.type=='number' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
             <input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
@@ -18,7 +18,7 @@
     </div>
     
     <?php /*Normal Textarea*/?>
-    <div :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
                <textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea>
@@ -27,17 +27,17 @@
         <div class="clearfix"></div>
     </div>
     
-    <div :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}</label>
             <!--  <textarea class="full textarea-editor" id="ed123" :name="field.name" v-model="field.default"></textarea>  -->
-            <textarea-wysiwyg :default-text="field"></textarea-wysiwyg>
+            <textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
             <?php //wp_editor( '', 'My_TextAreaID_22',     array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, 'textarea_rows'=>5)   ); ?>
         </p>
         <div class="clearfix"></div>
     </div>
     
-    <div :id="field.name" data-type="select" v-else-if="field.type=='select' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}:
             <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" @change="callChangeEnvent();">
@@ -55,7 +55,7 @@
          <div class="clearfix"></div>
     </div>
    
-    <div :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <span>{{field.label}}:</span><br><br>      
         <?php 
         //:id="val.value+'-'+index+'-checkbox'" 
@@ -68,7 +68,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div :id="field.name" data-type="radio" v-else-if="field.type=='radio' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
 
         <span>{{field.label}}:</span><br><br>
         <?php 
@@ -83,7 +83,7 @@
         <div class="clearfix"></div>
     </div>
   
-    <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <label class="amppb-mar-padd">{{field.label}}:</label>
         <div class="clearfix"></div>
         <p>
@@ -113,7 +113,7 @@
     
     
     
-    <div :id="field.name" data-type="upload" v-else-if="field.type=='upload' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
               <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
@@ -124,7 +124,7 @@
         </p>
         <div class="clearfix"></div>
     </div>
-    <div :id="field.name" data-type="multiupload" v-else-if="field.type=='multiupload' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="multiupload" v-else-if="field.type=='multiupload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
               <input type="button" class="button" value="Select image" id="" data-imageselactor="multiple" @click="selectimages(field,$event)">
@@ -137,7 +137,7 @@
     </div>
     
 
-    <div :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
              
@@ -158,7 +158,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
          <p class="">
             <label class="form-label">{{field.label}}:
             <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div><br/>
@@ -392,7 +392,7 @@
         <div class="clearfix"></div>
     </div>
 
-    <div :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && field.tab==defaulttab" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <label  class="form-label">{{field.label}}: 
             
             <div style="line-height: 35px">
@@ -408,8 +408,8 @@
 </script>
 <script type="text/x-template" id="fields-textarea-template">
     <div class="complete_text_area">
-        <div class="editor_area">
-            <textarea class="full textarea-editor" :id="defaultText.name+'_editor'" v-model="defaultText.default"></textarea>
+        <div class="editor_area" style="position: relative;">
+            <textarea class="full textarea-editor" :id="defaultText.name+'_editor'+fieldindex" v-model="defaultText.default"></textarea>
         </div>
     </div>
 </script>

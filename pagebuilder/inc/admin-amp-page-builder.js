@@ -95,10 +95,28 @@ Vue.component('amp-pagebuilder-module-modal', {
   props: [],
   data: function(){
   	return {
-	  	modalcontent: app.modalcontent
+	  	modalcontent: app.modalcontent,
+	  	repeaterTabs:{}
 	  };
   },
+  mounted: function () {//On ready State for component
+		if(app.modalcontent.repeater){
+			this.repeaterAcoordian();
+		}
+	},
   methods:{
+  	repeaterAcoordian: function(){
+  		app.modalcontent.repeater.showFields.forEach(function(rowData, rowKey){
+  			var show = false; 
+			if(rowKey==0){
+				 show = true;
+  			}
+	  			/*this.repeaterTabs['test'+rowKey] = {};
+	  			this.repeaterTabs['test'+rowKey] = show;*/
+  			/*if(this.repeaterTabs[rowKey] == undefined ){
+	  		}*/
+  		});
+  	},
   	hideModulePopUp: function(event){
 			app.showmoduleModal = false;
 		},
@@ -149,7 +167,16 @@ Vue.component('amp-pagebuilder-module-modal', {
 		app.call_default_functions();
 		this.hideModulePopUp();
 		return true;
+	},
+	duplicateRepeaterField: function(repeater){
+		var text = repeater.showFields;
+		text.push(repeater.fields);
+		//app.modalcontent.repeater.$set('showFields',text);
+		Vue.set(app.modalcontent.repeater,'showFields',text);
+		this.repeaterAcoordian();
+		this.$forceUpdate();
 	}
+
   }
 })
 
@@ -181,13 +208,20 @@ function openModulePopup(event,type){
 							'containerId': currentcontainerId
 						}
 
-
+		if(app.modalcontent.repeater){
+			var allRepeaterFileds = app.modalcontent.repeater;
+			app.modalcontent.repeater.showFields = [];
+			app.modalcontent.repeater.showFields.push(allRepeaterFileds.fields);
+			//console.log(app.modalcontent.repeater.showFields);
+			//moduleData.repeater.push(app.modalcontent.fields);
+		}
 
 		//Save Values to main content
 		app.mainContent.rows.forEach(function(rowData, rowKey){
 			if(rowData.id==currentcontainerId){
 				rowData.cell_data.forEach(function(moduleData, moduleKey){
 					if(moduleData.cell_id==currentModuleId){
+						
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								Vue.set( fieldData, 
@@ -237,7 +271,7 @@ Vue.component('text-editor',{
 
 Vue.component('fields-data',{
 	template: '#fields-data-template',
-	props: ['field', 'fieldkey', 'defaulttab', 'completeFields'],
+	props: ['field', 'fieldkey', 'defaulttab', 'completeFields','repeater'],
 	data:function(){
 		return {
 			iconSearch:'',
@@ -481,7 +515,7 @@ Vue.component('color-picker', {
 });
 Vue.component('textarea-wysiwyg', {
   template: '#fields-textarea-template',
-  props: [ 'defaultText' ],
+  props: [ 'defaultText','fieldindex' ],
   mounted: function() {
   	var componentPoint = this;
 	console.log(jQuery(this.$el));
@@ -504,13 +538,8 @@ Vue.component('textarea-wysiwyg', {
   	var componentPoint = this;
   	if(wp.editor){
   		var textareaId = jQuery(this.$el).find('textarea').attr('id');
-  		//alert(wp.editor.getContent(textareaId));
-	  	/*componentPoint.defaultText.default = wp.editor.getContent(textareaId);
-	  	console.log(componentPoint.defaultText.default);*/
-	  	wp.editor.remove(textareaId);
-	  }
-  	console.log(componentPoint.defaultText);
-  	
+  		wp.editor.remove(textareaId);
+	}
   }
 });
 

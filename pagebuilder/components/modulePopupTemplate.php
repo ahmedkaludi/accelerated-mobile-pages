@@ -25,8 +25,27 @@
                                 :key="key"
                                 :fieldkey="key"
                                 :completeFields="modalcontent.fields"
+                                :repeater="0"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
+                            <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab">
+
+                                <div class="heading">
+                                    Repeater Fields Started
+                                    <input type="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Duplicate">
+                                </div>
+                                
+                                <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" :class="'repeater-'+key" >
+                                    <fields-data v-for="(rfield, key, index) in repeaterfields"
+                                        :field="rfield" 
+                                        :key="key"
+                                        :fieldkey="key"
+                                        :completeFields="modalcontent.fields"
+                                        :repeater="1"
+                                        :defaulttab="modalcontent.default_tab"
+                                    ></fields-data>
+                                </div>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
