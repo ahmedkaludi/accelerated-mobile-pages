@@ -6,9 +6,6 @@ $output = '
 
 ';
 $css = '
-.head-sec{
-	margin:40px 0px 0px 0px;
-}
 .heading .head-tlt{
    width:100%;
    display:inline-block;
@@ -31,15 +28,7 @@ $css = '
 	padding:0;
 	margin:0;
 }
-.crm-tlt .icons-mod .ico-mod span{
-	display: inline-block;
-    background: #2cbf55;
-    border-radius: 50%;
-    padding: 25px;
-    color: #fff;
-    margin: 0 0px 10px 0px;
-    font-size: 45px;
-}
+
 .head-txt{
     margin: 20px 0px 20px;
     width: 100%;
