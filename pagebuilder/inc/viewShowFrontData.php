@@ -202,7 +202,7 @@ function amppb_post_content($content){
 							$replace .= ' row-setting-'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
-							$replace .= $rowsData['data'][$field['name']];
+							$replace .= ' '.$rowsData['data'][$field['name']];
 						}else{
 							$replace .= '';
 						}
