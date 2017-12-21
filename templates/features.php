@@ -4963,7 +4963,7 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 
 		$permission_dialog_url = $onesignal_domain .'amp-permission-dialog.html?appId=' . $onesignal_app_id;
 
-		$service_worker_url = $onesignal_domain_sw .'OneSignalSDKWorker.js?appId=' . $onesignal_app_id;
+		$service_worker_url = plugins_url('onesignal-free-web-push-notifications/sdk_files/OneSignalSDKWorker.js.php?appId=' . $onesignal_app_id);
 		// HTTP sites
 		if(isset($redux_builder_amp['ampforwp-onesignal-http-site'] ) && $redux_builder_amp['ampforwp-onesignal-http-site'] ){
 			$onesignal_subdomain = $redux_builder_amp['ampforwp-onesignal-subdomain'];

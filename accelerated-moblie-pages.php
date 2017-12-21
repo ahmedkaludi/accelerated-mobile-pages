@@ -177,10 +177,6 @@ function ampforwp_add_custom_rewrite_rules() {
 	    );
 	  }
 	}
-	// For OneSignal
-	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){
-		add_rewrite_rule('OneSignalSDKWorker.js','wp-content/plugins/accelerated-mobile-pages/includes/onesignal-integration/OneSignalSDKWorker.js','top');
-	}
 }
 add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 
