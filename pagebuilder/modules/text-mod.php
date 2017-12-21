@@ -25,8 +25,9 @@ return array(
 		'name' =>'text-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(		
@@ -50,7 +51,7 @@ return array(
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
 	 							'label' =>"Alignment",
-								'tab'     =>'customizer',
+								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
 	 												'center'    =>'Center',
@@ -62,7 +63,7 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
 								'label'		=>'Color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
@@ -70,7 +71,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
@@ -83,7 +84,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,

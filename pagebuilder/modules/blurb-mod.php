@@ -55,8 +55,9 @@ return array(
 		'name' =>'blurb-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(		
@@ -79,7 +80,7 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"ic_color_picker",
 								'label'		=>'Icon Color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#fff',
 								'content_type'=>'css'
 							),
@@ -87,7 +88,7 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"bg_color_picker",
 								'label'		=>'Icon Background color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
 							),
@@ -103,7 +104,7 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
 								'label'		=>'Color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
@@ -111,7 +112,7 @@ return array(
 		 						'type'		=>'textarea',		
 		 						'name'		=>"content",		
 		 						'label'		=>'Content',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'design',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 					),
@@ -120,7 +121,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
@@ -133,7 +134,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,

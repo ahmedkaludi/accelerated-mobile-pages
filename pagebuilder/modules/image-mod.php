@@ -27,8 +27,9 @@ return array(
 		'name' =>'image-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(		
@@ -39,21 +40,6 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
-						array(
-								'type'		=>'checkbox',
-								'name'		=>"image_layout",
-								'label'		=>'Enable for Responsive Image',
-								'tab'		=>'customizer',
-								'default'	=>array(),
-								'options'	=>array(
-												array(
-													'label'=>'Enable',
-													'value'=>'responsive',
-												),
-											),
-								'content_type'=>'html',
-							),
-
 						array(
 				               'type'  =>'text',
 				              'name'=>"image_height",
@@ -70,11 +56,26 @@ return array(
 				              'default'=>'150',
 				              'content_type'=>'html',
 				              ),
+				        array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'label'		=>'Enable for Responsive Image',
+								'tab'		=>'customizer',
+								'default'	=>array(),
+								'options'	=>array(
+												array(
+													'label'=>'Enable',
+													'value'=>'responsive',
+												),
+											),
+								'content_type'=>'html',
+							),
+
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
 	 							'label' =>"Alignment",
-								'tab'     =>'customizer',
+								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
 	 												'center'    =>'Center',
@@ -86,7 +87,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
@@ -99,7 +100,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,

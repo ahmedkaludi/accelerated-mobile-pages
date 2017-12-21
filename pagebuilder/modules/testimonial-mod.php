@@ -86,8 +86,9 @@ return array(
 		'name' =>'testimonial-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 
@@ -127,7 +128,15 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Author Name',
-		           				'tab'       =>'customizer',
+		           				'tab'       =>'design',
+		 						'default'	=>'Title',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"auth_desig",		
+		 						'label'		=>'Designation',
+		           				'tab'       =>'design',
 		 						'default'	=>'Title',	
 		           				'content_type'=>'html',
 	 						),
@@ -135,23 +144,15 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
 								'label'		=>'Color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"auth_desig",		
-		 						'label'		=>'Designation',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
@@ -164,7 +165,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
