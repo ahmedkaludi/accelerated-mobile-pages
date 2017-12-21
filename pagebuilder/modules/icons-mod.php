@@ -27,8 +27,11 @@ $css = '
 	margin-bottom:30px;
 	display:inline-block;
 	color:{{ico_color_picker}};
-}
+	background: {{bg_color_picker}};
+	border-radius:{{border-size}};
+	padding: 25px;
 
+}
 ';
 return array(
 		'label' =>'Icons',
@@ -55,6 +58,14 @@ return array(
 		 						'default'	=>'30px',	
 		           				'content_type'=>'css',
 	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"border-size",		
+		 						'label'		=>'Border Radius',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'60px',	
+		           				'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"ico_color_picker",
@@ -62,6 +73,14 @@ return array(
 								'tab'		=>'customizer',
 								'default'	=>'#333',
 								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"bg_color_picker",
+								'label'		=>'Icon Background color',
+								'tab'		=>'customizer',
+								'default'	=>'#2cbf55',
+								'content_type'=>'css',
 							),
 						array(
 								'type'		=>'spacing',
