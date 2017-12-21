@@ -17,13 +17,18 @@ $output = '
 
 ';
 $css = '
-.row-setting-18 .col.col-1{
+.testimonials-sec .col.col-1{
 	display:inline-flex;
 	width:100%;
 	background:#eee;
-	padding:4% 2%;
+	padding:1% 2%;
 }
-.testimonial-mod .testi-mod{
+.testimonials-sec{
+	display:inline-flex;
+	width:100%;
+	margin:0 auto;
+}
+.testimonial-mod{
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;

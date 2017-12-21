@@ -7,6 +7,12 @@ $output = '
 
 ';
 $css = '
+.btn-bg{
+	background:#eee;
+	width:100%;
+	margin:0 auto;
+	padding:15px 0px;
+}
 .button-mod .button-blk{
    width:100%;
    display:inline-block;
@@ -19,7 +25,8 @@ $css = '
    background:{{bg_color_picker}};
    display: inline-block;
    font-weight:bold;
-   padding: 10px 60px;
+   padding: 10px 75px;
+   font-weight: 500;
 }
 
 ';

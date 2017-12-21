@@ -12,13 +12,14 @@ $output = '
 
 ';
 $css = '
-
+.cta-mod{
+	background: #eee;
+}
 .cta-module {
     display: inline-flex;
     width: 100%;
-    padding: 5% 5%;
+    padding: 4% 5% 1%;
     background: #eee;
-    margin-top: 50px;
     align-items: center;
 }
 .cta-module .cta-btn{

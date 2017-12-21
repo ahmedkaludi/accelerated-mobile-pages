@@ -8,9 +8,14 @@ $output = '
 
 ';
 $css = '
-.row-setting-15 .col.col-1{
+.blurb-sec .col.col-1{
 	display:inline-flex;
 	width:100%;
+}
+.blurb-sec{
+	display:inline-flex;
+	width:100%;
+	margin:0;
 }
 .blurb-mod{
     display: flex;

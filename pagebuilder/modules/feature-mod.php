@@ -12,6 +12,10 @@ $css = '
 	display:inline-flex;
 	width:100%;
 }
+.feature-sec{
+	width:100%;
+	margin:0 auto;
+}
 .feature-mod amp-img{
    width:100%;
    display:inline-block;

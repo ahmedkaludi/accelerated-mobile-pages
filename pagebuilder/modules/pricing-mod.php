@@ -13,9 +13,14 @@ $output = '
 
 ';
 $css = '
-.row-setting-24 .col.col-1{
+.price-sec .col.col-1{
 	display:inline-flex;
 	width:100%;
+}
+.price-sec{
+	width:100%;
+	margin:40px 0px 0px 0px;
+	display:inline-flex;
 }
 .pricing-mod{
 	display: flex;
@@ -82,6 +87,15 @@ $css = '
     width: 188%;
     z-index: -1;
     left: -47%;
+}
+.pri-cnt{
+	font-size:{{text-size}};
+	line-height:1.5;
+	color:#333;
+	margin-top:20px;
+}
+.pricing-mod .pri-cnt p{
+	margin-bottom:10px;
 }
 ';
 return array(
@@ -158,6 +172,14 @@ return array(
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Desc Font Size',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'20px',	
+		           				'content_type'=>'css',
+	 						),
 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"text_desc",		

@@ -6,6 +6,9 @@ $output = '
 
 ';
 $css = '
+.head-sec{
+	margin:40px 0px 0px 0px;
+}
 .heading .head-tlt{
    width:100%;
    display:inline-block;
@@ -19,7 +22,38 @@ $css = '
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-
+.crm-tlt{
+	background: #eee;
+    margin: 40px 0px 0px 0px;
+    padding: 30px;
+}
+.crm-tlt .icons-mod{
+	padding:0;
+	margin:0;
+}
+.crm-tlt .icons-mod .ico-mod span{
+	display: inline-block;
+    background: #2cbf55;
+    border-radius: 50%;
+    padding: 25px;
+    color: #fff;
+    margin: 0 0px 10px 0px;
+    font-size: 45px;
+}
+.head-txt{
+    margin: 20px 0px 20px;
+    width: 100%;
+}
+.review-sec{
+	width: 100%;
+	background:#eee;
+    padding: 40px 0px;
+    margin-left: 0;
+}
+.trail-sec{
+	margin:0 auto;
+	width:100%;
+}
 ';
 return array(
 		'label' =>'Heading',

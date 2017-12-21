@@ -7,6 +7,11 @@ $output = '
 
 ';
 $css = '
+.image-mod{
+	width:100%;
+	margin:20px 0px 0px;
+   padding:{{padding_css}};
+}
 .image-mod .image-blk{
    width:100%;
    display:inline-block;
