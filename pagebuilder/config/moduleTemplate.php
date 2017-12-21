@@ -120,10 +120,10 @@ $containerCommonSettings = array(
 								'label'		=>'Set Margin',
 								'tab'		=>'customizer',
 								'default'	=>array(
-													'left'=>64,
-													'right'=>50,
-													'top'=>65,
-													'bottom'=>30
+													'left'=>0,
+													'right'=>0,
+													'top'=>0,
+													'bottom'=>0
 													),
 								'content_type'=>'css',
 							),
