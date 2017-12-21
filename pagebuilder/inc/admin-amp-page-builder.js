@@ -111,8 +111,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 			if(rowKey==0){
 				 show = true;
   			}
-	  			/*this.repeaterTabs['test'+rowKey] = {};
-	  			this.repeaterTabs['test'+rowKey] = show;*/
+	  			//Vue.set(this.repeaterTabs,'test'+rowKey,show);
   			/*if(this.repeaterTabs[rowKey] == undefined ){
 	  		}*/
   		});
@@ -142,7 +141,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 			app.call_default_functions();
 			this.hideModulePopUp();
 	},
-	saveModulePopupdata: function(fields){
+	saveModulePopupdata: function(fields,repeater){
 		//Save Values to main content
 		app.mainContent.rows.forEach(function(rowData, rowKey){
 			if(rowData.id==app.modalTypeData.containerId){
@@ -152,6 +151,16 @@ Vue.component('amp-pagebuilder-module-modal', {
 							fields.forEach(function(fieldData,fieldKey){
 								Vue.set( moduleData, fieldData.name, fieldData.default );
 							})
+							if(app.modalcontent.repeater){
+								moduleData.repeater = [];
+								app.modalcontent.repeater.showFields.forEach(function(repeatWrapper,repKey){
+									var repeaterData = {};
+									repeatWrapper.forEach(function(repeatField,repFieldKey){
+										repeaterData[repeatField.name] = repeatField.default;
+									});
+									moduleData.repeater.push(repeaterData);
+								});
+							}
 						}
 					});
 				}else if(app.modalType=='rowSetting'){
@@ -169,13 +178,29 @@ Vue.component('amp-pagebuilder-module-modal', {
 		return true;
 	},
 	duplicateRepeaterField: function(repeater){
-		var text = repeater.showFields;
-		text.push(repeater.fields);
-		//app.modalcontent.repeater.$set('showFields',text);
-		Vue.set(app.modalcontent.repeater,'showFields',text);
+		
+		//app.modalcontent.repeater.showFields.push(repeater.fields);
+		//Vue.set(app.modalcontent.repeater,'showFields',repeater.fields);
+		var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
+
+		totalFields = app.modalcontent.repeater.showFields.length;
+		var lastName = app.modalcontent.repeater.showFields[totalFields-1][0]['name'];
+		var lastNamePieces = lastName.split("_");
+		var nextFieldCount = parseInt(lastNamePieces[lastNamePieces.length-1])+1;
+		allRepeaterFileds.forEach(function(newFields,newKey){
+			newFields.name = newFields.name+'_'+nextFieldCount;
+		})
+
+		app.modalcontent.repeater.showFields.push(allRepeaterFileds);
+
 		this.repeaterAcoordian();
 		this.$forceUpdate();
-	}
+	},
+	removeRepeaterSection:function(key,repeater){
+		alert(key)
+		Vue.delete( app.modalcontent.repeater.showFields, key );
+		this.$forceUpdate();
+	},
 
   }
 })
@@ -208,20 +233,12 @@ function openModulePopup(event,type){
 							'containerId': currentcontainerId
 						}
 
-		if(app.modalcontent.repeater){
-			var allRepeaterFileds = app.modalcontent.repeater;
-			app.modalcontent.repeater.showFields = [];
-			app.modalcontent.repeater.showFields.push(allRepeaterFileds.fields);
-			//console.log(app.modalcontent.repeater.showFields);
-			//moduleData.repeater.push(app.modalcontent.fields);
-		}
-
 		//Save Values to main content
 		app.mainContent.rows.forEach(function(rowData, rowKey){
 			if(rowData.id==currentcontainerId){
 				rowData.cell_data.forEach(function(moduleData, moduleKey){
 					if(moduleData.cell_id==currentModuleId){
-						
+						//app.modalcontent.repeater.showFields.forEach
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								Vue.set( fieldData, 
@@ -229,11 +246,32 @@ function openModulePopup(event,type){
 										moduleData[fieldData.name] );
 							}
 							
+
+							if(moduleData.repeater){
+								
+								app.modalcontent.repeater.showFields = [];
+								moduleData.repeater.forEach(function(savedREPValue,savedkey){
+									var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
+									allRepeaterFileds.forEach(function(newFields,newKey){
+										newFields.name = newFields.name+'_'+savedkey;
+										if(savedREPValue[newFields.name]){
+											console.log(savedREPValue[newFields.name],newFields.name)
+											newFields.default = savedREPValue[newFields.name];
+										}
+									})
+									app.modalcontent.repeater.showFields.push(Vue.util.extend([], allRepeaterFileds));
+								});
+							
+							}
+
 						})
 					}
 				});
 			}
 		});
+
+
+
 	}else if(type=='rowSetting'){
 		currentcontainerId = event.currentTarget.getAttribute('data-container_id'); 
 		app.modalTypeData = {
@@ -701,6 +739,14 @@ var app = new Vue({
 							moduleJson.fields.forEach(function(module,key){
 								cellData[module.name] = module.default;
 							});
+						}
+						if(moduleJson.repeater && moduleJson.repeater.fields.length > 0){
+							var repeaterArray = {};
+							moduleJson.repeater.fields.forEach(function(module,key){
+								repeaterArray[module.name+'_0'] = module.default;
+							});
+							cellData.repeater = [];
+							cellData.repeater.push(repeaterArray);
 						}
 						columnVal.cell_data.push(cellData);
 						if(cellid==1){
