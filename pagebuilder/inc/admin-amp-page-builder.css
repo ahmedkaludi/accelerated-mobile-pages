@@ -1085,3 +1085,6 @@ a.amppb_accordion__panel:hover {
 .amppb_accordion__panel.active {
     background: #e8e8e8;
 }
+.amppb_accordion__panel .right{
+    float: right
+}

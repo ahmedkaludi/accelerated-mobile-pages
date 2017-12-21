@@ -38,7 +38,8 @@
                                 <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" :class="'repeater-'+key" >
                                     <div class="amppb_accordion__panel"  v-bind:class="{active: repeaterTabs['test'+key]}" >Module {{key+1}}
 
-                                        <span v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove field</span>
+                                        <div class="right"
+                                             v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove field</div>
                                     </div>
                                     <div class="">
                                         <fields-data v-for="(rfield, key, index) in repeaterfields"
