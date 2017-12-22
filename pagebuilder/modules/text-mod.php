@@ -6,17 +6,20 @@ $output = '
 
 ';
 $css = '
-.text-mod .text-tlt{
-   width:100%;
-   display:inline-block;
-   text-align:{{align_type}};
+{{module-class}}{
+	width:100%;
+	display:inline-block;
 }
-.text-mod .text-tlt .t-txt{
-   font-size:{{text-size}};
-   line-height:1.5;
-   color:{{font_color_picker}};
+{{module-class}} .text-tlt{
+   width:100%;
+   text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
+}
+{{module-class}} .t-txt{
+   font-size:{{font-size}};
+   line-height:1.5;
+   color:{{text_color_picker}};
 }
 
 ';
@@ -41,7 +44,7 @@ return array(
 
 	 					array(		
 		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
+		 						'name'		=>"font-size",		
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'20px',	
@@ -61,7 +64,7 @@ return array(
 	 						),	
 						array(
 								'type'		=>'color-picker',
-								'name'		=>"font_color_picker",
+								'name'		=>"text_color_picker",
 								'label'		=>'Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
@@ -75,8 +78,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),

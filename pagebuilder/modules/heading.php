@@ -6,42 +6,21 @@ $output = '
 
 ';
 $css = '
-{{module-class}}.heading .head-tlt{
-   width:100%;
-   display:inline-block;
-   text-align:{{align_type}};
+{{module-class}}{
+	width:100%;
+	display:inline-block;
 }
-{{module-class}}.heading .head-tlt .h-txt{
+{{module-class}} .head-tlt{
+   width:100%;
+   text-align:{{align_type}};
+   margin:{{margin_css}};
+   padding:{{padding_css}};
+}
+{{module-class}} .h-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
    font-weight:{{font_type}};
-   margin:{{margin_css}};
-   padding:{{padding_css}};
-}
-.crm-tlt{
-	background: #eee;
-    margin: 40px 0px 0px 0px;
-    padding: 30px;
-}
-.crm-tlt .icons-mod{
-	padding:0;
-	margin:0;
-}
-
-{{module-class}} .head-txt{
-    margin: 20px 0px 20px;
-    width: 100%;
-}
-{{module-class}} .review-sec{
-	width: 100%;
-	background:#eee;
-    padding: 40px 0px;
-    margin-left: 0;
-}
-{{module-class}} .trail-sec{
-	margin:0 auto;
-	width:100%;
 }
 ';
 return array(
@@ -128,8 +107,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),

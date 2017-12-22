@@ -7,18 +7,16 @@ $output = '
 
 ';
 $css = '
-.image-mod{
+{{module-class}}{
 	width:100%;
-	margin:20px 0px 0px;
-   padding:{{padding_css}};
+	display:inline-block;
 }
-.image-mod .image-blk{
+{{module-class}} .image-blk{
    width:100%;
    text-align:{{align_type}};
+   	margin:{{margin_css}};
+    padding:{{padding_css}};
 }
-
-
-
 
 ';
 return array(
@@ -90,8 +88,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),

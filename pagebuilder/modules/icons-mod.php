@@ -6,11 +6,7 @@ $output = '
 
 ';
 $css = '
-.row-setting-27 .col.col-1{
-	display:inline-flex;
-	width:100%;
-}
-.icons-mod{
+{{module-class}}.icons-mod{
     display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
@@ -18,13 +14,9 @@ $css = '
     flex: 1 0 25%;
     justify-content: space-between;
     text-align:center;
-    background:#eee;
-	padding:30px 50px;
-	margin:20px;
 }
-.icons-mod .ico-mod .ico-pic{
+{{module-class}} .ico-mod .ico-pic{
 	font-size:{{ico-size}};
-	margin-bottom:30px;
 	display:inline-block;
 	color:{{ico_color_picker}};
 	background: {{bg_color_picker}};

@@ -7,24 +7,22 @@ $output = '
 
 ';
 $css = '
-.btn-bg{
-	background:#eee;
+{{module-class}}{
 	width:100%;
-	margin:0 auto;
-	padding:15px 0px;
+	display:inline-block;
 }
-.button-mod .button-blk{
+{{module-class}} .button-blk{
    width:100%;
-   display:inline-block;
    text-align:{{align_type}};
+   margin:{{margin_css}};
+   padding:{{padding_css}};
 }
-.button-mod .button-blk .btn-txt{
+{{module-class}} .button-blk .btn-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
    background:{{bg_color_picker}};
    display: inline-block;
-   font-weight:bold;
    padding: 10px 75px;
    font-weight: 500;
 }
@@ -101,8 +99,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),
