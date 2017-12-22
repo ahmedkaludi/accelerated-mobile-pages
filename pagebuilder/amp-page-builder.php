@@ -292,7 +292,17 @@ function call_page_builder(){
 	        </div><!-- .amppb-actions -->
 	        <div class="amppb-module-actions" id="amppb-module-actions-container" data-recentid="<?php echo $totalmodules; ?>">
 			    <?php
+			    //fallback support Hide old modules
+			    $oldModules = array(
+			    				'blurb',
+			    				'button',
+			    				'image',
+			    				'text'
+			    				);
 			    foreach ($moduleTemplate as $key => $module) {
+			    	if(in_array($key, $oldModules)){
+			    		continue;
+			    	}
 			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
 			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">

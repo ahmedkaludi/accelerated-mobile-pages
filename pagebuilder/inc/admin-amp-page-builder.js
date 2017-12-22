@@ -245,9 +245,14 @@ function openModulePopup(event,type){
 						//app.modalcontent.repeater.showFields.forEach
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
+								var userValues = moduleData[fieldData.name];
+								if('object' != typeof(moduleData[fieldData.name])){
+									userValues = decodeURI(userValues);
+								}
+								
 								Vue.set( fieldData, 
 										'default', 
-										moduleData[fieldData.name] );
+										userValues );
 							}
 							
 
@@ -605,6 +610,7 @@ var app = new Vue({
     filteredList: [],
 
     rowOverDrop:false,
+    modulesOverDrop:false,
     rowdrag: false,
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',

@@ -5294,13 +5294,16 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
-  
-    $font_data = json_decode($redux_builder_amp['google_current_font_data']);
+	if(isset($redux_builder_amp['google_current_font_data'])){
+		$font_data = json_decode($redux_builder_amp['google_current_font_data']);
+	}
 
     $font_weight = "";
     $font_output = "";
-
-    $font_type = $redux_builder_amp['amp_font_type'];
+    $font_type = "";
+    if(isset( $redux_builder_amp['amp_font_type'])){
+    	$font_type = $redux_builder_amp['amp_font_type'];
+    }
 
     if ( $font_type ) {
 	    foreach ($font_type as $key => $value) {

@@ -56,7 +56,8 @@ function add_amp_icon($args=array()){
 	global $amp_icons_css;
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 	foreach ($args as $key ) {
-		$amp_icons_css[] = $amp_icons_css_array[$key]; 
+		if(isset($amp_icons_css_array[$key]))
+			$amp_icons_css[] = $amp_icons_css_array[$key]; 
 	}
 	add_action('amp_css', 'amp_icon_css');
 	
