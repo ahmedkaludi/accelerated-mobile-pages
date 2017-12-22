@@ -34,7 +34,7 @@ $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 {{row-class}}{
-	font-color: {{font_color_picker}};
+	color: {{font_color_picker}};
 	background-color: {{color_picker}};
 	{{selected_gradient}};
 	margin: {{margin_css}};

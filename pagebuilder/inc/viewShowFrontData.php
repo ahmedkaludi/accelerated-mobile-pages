@@ -95,7 +95,7 @@ function amp_pagebuilder_content_styles(){
 							}
 						}
 					}
-					echo $rowCss;
+					echo amppb_validateCss($rowCss);
 				}
 
 				if(count($container)>0){
@@ -144,7 +144,7 @@ function amp_pagebuilder_content_styles(){
 							}
 
 						}
-						echo $completeCss;
+						echo amppb_validateCss($completeCss);
 						
 					}//foreach content closed 
 				}//ic container check closed
@@ -158,6 +158,10 @@ function amp_pagebuilder_content_styles(){
 		}//if closed  count($previousData['rows'])>0
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
+function amppb_validateCss($css){
+	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{)|\s*{[\s]*})/', "", $css);
+	return $css;
+}
 
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
