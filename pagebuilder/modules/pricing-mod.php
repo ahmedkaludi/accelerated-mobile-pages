@@ -1,28 +1,14 @@
 <?php 
 $output = '
-<div class="pri-mod">
-	<h4 class="pri-tlt">{{content_title}}</h4>
-	<span class="pri-recom">TIMESAVER</span>
-	<span class="pri-lbl">{{price_label}}</span>
-	<span class="pri-desc">{{price_desc}}</span>
-	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
-	<div class="pri-cnt">
-		{{text_desc}}
-	</div>
-</div>
-
-';
+<div class="ln-fx">{{repeater}}</div>';
 $css = '
-.price-sec .col.col-1{
-	display:inline-flex;
+.ln-fx{
 	width:100%;
-}
-.price-sec{
-	width:100%;
-	margin:40px 0px 0px 0px;
 	display:inline-flex;
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
 }
-.pricing-mod{
+.pri-mod{
 	display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
@@ -33,8 +19,6 @@ $css = '
     background:#eee;
 	margin:20px;
 	position:relative;
-}
-.pri-mod{
 	padding:30px 50px;
 }
 .pri-mod .pri-tlt{
@@ -108,12 +92,62 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						array(		
+						
+	 					array(
+								'type'		=>'color-picker',
+								'name'		=>"font_color_picker",
+								'label'		=>'Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
+	 					array(
+								'type'		=>'color-picker',
+								'name'		=>"btn_bg_color",
+								'label'		=>'Button Background',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'spacing',
+								'name'		=>"margin_css",
+								'label'		=>'Margin',
+								'tab'		=>'advanced',
+								'default'	=>array(
+													'left'=>0,
+													'right'=>0,
+													'top'=>15,
+													'bottom'=>15
+													),
+								'content_type'=>'css',
+							),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"padding_css",
+								'label'		=>'Padding',
+								'tab'		=>'advanced',
+								'default'	=>array(
+													'left'=>0,
+													'right'=>0,
+													'top'=>0,
+													'bottom'=>0
+												),
+								'content_type'=>'css',
+							),
+
+			),
+		'front_template'=> $output,
+		'front_css'=> $css,
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+		               array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Heading',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
 	 						),
 						array(		
@@ -137,26 +171,9 @@ return array(
 		 						'name'		=>"btn_title",		
 		 						'label'		=>'Button',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'Button',	
 		           				'content_type'=>'html',
 	 						),
-	 					array(
-								'type'		=>'color-picker',
-								'name'		=>"font_color_picker",
-								'label'		=>'Color',
-								'tab'		=>'design',
-								'default'	=>'#fff',
-								'content_type'=>'css'
-							),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"btn_link",		
-		 						'label'		=>'Link (Make sure its will link Or #)',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'#',	
-		           				'content_type'=>'html',
-	 						),
-
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
@@ -165,18 +182,18 @@ return array(
 		 						'default'	=>'20px',	
 		           				'content_type'=>'css',
 	 						),
-	 					array(
-								'type'		=>'color-picker',
-								'name'		=>"btn_bg_color",
-								'label'		=>'Button Background',
-								'tab'		=>'design',
-								'default'	=>'#333',
-								'content_type'=>'css'
-							),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn_link",		
+		 						'label'		=>'Link (Make sure its will link Or #)',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'#',	
+		           				'content_type'=>'html',
+	 						),
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
-		 						'label'		=>'COntent Font Size',
+		 						'label'		=>'Content Font Size',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'20px',	
 		           				'content_type'=>'css',
@@ -189,36 +206,21 @@ return array(
 		 						'default'	=>'Content',	
 		           				'content_type'=>'html',
 	 						),
-						array(
-								'type'		=>'spacing',
-								'name'		=>"margin_css",
-								'label'		=>'Margin',
-								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>10,
-													'bottom'=>10
-													),
-								'content_type'=>'css',
-							),
-							array(
-								'type'		=>'spacing',
-								'name'		=>"padding_css",
-								'label'		=>'Padding',
-								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
-												),
-								'content_type'=>'css',
-							),
+                
+              ),
+          'front_template'=>
+          '<div class="pri-mod">
+				<h4 class="pri-tlt">{{content_title}}</h4>
+				<span class="pri-recom">TIMESAVER</span>
+				<span class="pri-lbl">{{price_label}}</span>
+				<span class="pri-desc">{{price_desc}}</span>
+				<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
+				<div class="pri-cnt">
+					{{text_desc}}
+				</div>
+			</div>'
+          ),
 
-			),
-		'front_template'=> $output,
-		'front_css'=> $css,
 	);
 
 ?>

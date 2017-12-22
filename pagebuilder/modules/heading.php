@@ -1,22 +1,16 @@
 <?php 
 $output = '
-<div class="head-tlt">
 	<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>
-</div>
 
 ';
 $css = '
-{{module-class}}{
-	width:100%;
-	display:inline-block;
-}
-{{module-class}} .head-tlt{
+.heading{
    width:100%;
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-{{module-class}} .h-txt{
+.heading .h-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
@@ -38,7 +32,7 @@ return array(
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Heading',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
 	 						),
 
@@ -95,8 +89,7 @@ return array(
 	 							'default' =>'normal',
 	 							'options_details'=>array(
 	 												'normal'    =>'Normal',
-	 												'bold'  	=>'Bold',
-	 												'itlic'    =>'Italic', 													),
+	 												'bold'  	=>'Bold',												),
 	 							'content_type'=>'css',
 	 						),
 						array(

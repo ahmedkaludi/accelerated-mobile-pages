@@ -9,16 +9,11 @@ function ampforwp_framework_pagebuilder_accordions_scripts( $data ) {
 	
 		return $data;
 }
-$output = '
-<div class="accr-mod">
-<amp-accordion>
-	  <section>
-	    <h5 class="acc-lbl">{{acc_title}}</h5>
-	    <p class="acc-desc">{{ass_desc}}</p>
-	  </section>
-</amp-accordion>
+$output = 
+'<div class="accr-mod">
+	<amp-accordion>{{repeater}}
+	</amp-accordion>
 </div>
-
 ';
 $css = '
 
@@ -43,65 +38,33 @@ amp-accordion section:not([expanded]) .show-less {
 }
 ';
 return array(
-		'label' =>'Accordions',
+		'label' =>'Accordion',
 		'name' =>'accordion-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"acc_title",		
-		 						'label'		=>'Text',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"acc-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'22px',	
-		           				'content_type'=>'css',
-	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"acc_color_picker",
 								'label'		=>'Color',
-								'tab'		=>'customizer',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
-						array(		
-		 						'type'		=>'textarea',		
-		 						'name'		=>"ass_desc",		
-		 						'label'		=>'Text',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Desc',	
-		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'16px',	
-		           				'content_type'=>'css',
-	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>10,
-													'bottom'=>10
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),
@@ -109,7 +72,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
@@ -122,6 +85,49 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+		                array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"acc_title",		
+		 						'label'		=>'Text',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Heading',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"acc-size",		
+		 						'label'		=>'Font Size',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'22px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+		 						'type'		=>'textarea',		
+		 						'name'		=>"ass_desc",		
+		 						'label'		=>'Description',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Description',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Font Size',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'16px',	
+		           				'content_type'=>'css',
+	 						),
+                
+              ),
+          'front_template'=>
+        	'<section>
+			    <h5 class="acc-lbl">{{acc_title}}</h5>
+			    <p class="acc-desc">{{ass_desc}}</p>
+			</section>'
+          ),
 	);
 
 

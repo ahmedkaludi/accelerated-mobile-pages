@@ -1,23 +1,16 @@
 <?php 
 $output = '
-<div class="button-blk">
 	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{content_title}}</a>
-</div>
-
-
 ';
 $css = '
-{{module-class}}{
-	width:100%;
-	display:inline-block;
-}
-{{module-class}} .button-blk{
+.button-mod{
    width:100%;
+   display: inline-block;
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-{{module-class}} .button-blk .btn-txt{
+.button-mod .btn-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
@@ -43,7 +36,7 @@ return array(
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Heading',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'Get started free',	
 		           				'content_type'=>'html',
 	 						),
 						array(		

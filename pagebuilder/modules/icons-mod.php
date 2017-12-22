@@ -1,25 +1,24 @@
 <?php 
 $output = '
-<div class="ico-mod">
-	<span class="ico-pic icon-{{icon-picker}}"></span>
-</div>
-
-';
+<div class="ln-fx">{{repeater}}</div>';
 $css = '
-{{module-class}}{
+.ln-fx{
 	width:100%;
-	display:inline-block;
+	display:inline-flex;
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
 }
-{{module-class}}.icons-mod{
+.ico-mod{
     display: flex;
     flex-direction: column;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
-    justify-content: space-between;
-    text-align:center;
+    margin: 0 auto;
+    text-align: center;
 }
-{{module-class}} .ico-mod .ico-pic{
+.ico-mod .ico-pic{
 	font-size:{{ico-size}};
 	display:inline-block;
 	color:{{ico_color_picker}};
@@ -39,22 +38,6 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						array(		
-		 						'type'		=>'icon-selector',		
-		 						'name'		=>"icon-picker",		
-		 						'label'		=>'Icons',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"ico-size",		
-		 						'label'		=>'Icon Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'30px',	
-		           				'content_type'=>'css',
-	 						),
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"border-size",		
@@ -87,8 +70,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>10,
-													'bottom'=>10
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),
@@ -109,6 +92,33 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+		                array(		
+		 						'type'		=>'icon-selector',		
+		 						'name'		=>"icon-picker",		
+		 						'label'		=>'Icons',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Title',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"ico-size",		
+		 						'label'		=>'Icon Size',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'30px',	
+		           				'content_type'=>'css',
+	 						),
+                
+              ),
+          'front_template'=>
+        '<div class="ico-mod">
+          <span class="ico-pic icon-{{icon-picker}}"></span>
+        </div> '
+          ),
+
 	);
 
 ?>

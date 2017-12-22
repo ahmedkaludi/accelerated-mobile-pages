@@ -1,22 +1,15 @@
 <?php 
 $output = '
-<div class="text-tlt">
 	<span class="t-txt">{{content_title}}</span>
-</div>
-
 ';
 $css = '
-{{module-class}}{
-	width:100%;
-	display:inline-block;
-}
-{{module-class}} .text-tlt{
+.text-mod{
    width:100%;
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-{{module-class}} .t-txt{
+.text-mod .t-txt{
    font-size:{{font-size}};
    line-height:1.5;
    color:{{text_color_picker}};
@@ -38,7 +31,7 @@ return array(
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Heading',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'The leading sales management tool..',	
 		           				'content_type'=>'html',
 	 						),
 

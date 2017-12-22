@@ -1,34 +1,17 @@
 <?php 
 $output = '
-<div class="testi-mod">
-	<div class="testi-cont">
-		<p>{{content}}</p>
-	</div>
-	<div class="auth-info">
-		<div class="auth-img">
-			<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}"></amp-img>
-		</div>
-		<div class="auth-cntn">
-			<h5>{{content_title}}</h5>
-			<span>{{auth_desig}}</span>
-		</div>
-	</div>
-</div>
-
-';
+<div class="ln-fx">{{repeater}}</div>';
 $css = '
-.testimonials-sec .col.col-1{
-	display:inline-flex;
+.ln-fx{
 	width:100%;
-	background:#eee;
-	padding:1% 2%;
-}
-.testimonials-sec{
 	display:inline-flex;
-	width:100%;
-	margin:0 auto;
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
 }
 .testimonial-mod{
+	background:#eee;
+}
+.testi-mod{
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
@@ -91,55 +74,6 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-
-						array(		
-		 						'type'		=>'textarea',		
-		 						'name'		=>"content",		
-		 						'label'		=>'Testimonial',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'',	
-		           				'content_type'=>'html',
-	 					),
-	 					array(		
-		 						'type'		=>'upload',		
-		 						'name'		=>"img_upload",		
-		 						'label'		=>'Avatar',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'',	
-		           				'content_type'=>'html',
-	 						),
-	 					array(
-				               'type'  =>'text',
-				              'name'=>"image_height",
-				              'label'=>"Image height",
-				              'tab'  => "customizer",
-				              'default'=>'50',
-				              'content_type'=>'html',
-				              ),
-				        array(
-				               'type'  =>'text',
-				              'name'=>"image_width",
-				              'label'=>"Image width",
-				              'tab'  => "customizer",
-				              'default'=>'50',
-				              'content_type'=>'html',
-				              ),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"content_title",		
-		 						'label'		=>'Author Name',
-		           				'tab'       =>'design',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"auth_desig",		
-		 						'label'		=>'Designation',
-		           				'tab'       =>'design',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
@@ -178,6 +112,75 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+		                array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"content",		
+		 						'label'		=>'Testimonial',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'Testimonial',	
+		           				'content_type'=>'html',
+	 					),
+	 					array(		
+		 						'type'		=>'upload',		
+		 						'name'		=>"img_upload",		
+		 						'label'		=>'Avatar',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'',	
+		           				'content_type'=>'html',
+	 						),
+	 					array(
+				               'type'  =>'text',
+				              'name'=>"image_height",
+				              'label'=>"Image height",
+				              'tab'  => "customizer",
+				              'default'=>'50',
+				              'content_type'=>'html',
+				              ),
+				        array(
+				               'type'  =>'text',
+				              'name'=>"image_width",
+				              'label'=>"Image width",
+				              'tab'  => "customizer",
+				              'default'=>'50',
+				              'content_type'=>'html',
+				              ),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"content_title",		
+		 						'label'		=>'Author Name',
+		           				'tab'       =>'design',
+		 						'default'	=>'Name',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"auth_desig",		
+		 						'label'		=>'Designation',
+		           				'tab'       =>'design',
+		 						'default'	=>'Designation',	
+		           				'content_type'=>'html',
+	 						),
+                
+              ),
+          'front_template'=>
+        '<div class="testi-mod">
+			<div class="testi-cont">
+				{{content}}
+			</div>
+			<div class="auth-info">
+				<div class="auth-img">
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}"></amp-img>
+				</div>
+				<div class="auth-cntn">
+					<h5>{{content_title}}</h5>
+					<span>{{auth_desig}}</span>
+				</div>
+			</div>
+		</div> '
+          ),
 	);
 
 ?>

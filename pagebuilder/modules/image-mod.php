@@ -1,19 +1,10 @@
 <?php 
 $output = '
-<div class="image-blk">
 	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
-</div>
-
-
 ';
 $css = '
-{{module-class}}{
-	width:100%;
-	display:inline-block;
-}
-{{module-class}} .image-blk{
-   width:100%;
-   text-align:{{align_type}};
+.image-mod{
+	text-align:{{align_type}};
    	margin:{{margin_css}};
     padding:{{padding_css}};
 }
@@ -33,7 +24,7 @@ return array(
 		 						'type'		=>'upload',		
 		 						'name'		=>"img_upload",		
 		 						'label'		=>'Image Upload',
-		           				 'tab'     =>'customizer',
+		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),

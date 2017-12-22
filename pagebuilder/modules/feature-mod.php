@@ -1,27 +1,14 @@
 <?php 
 $output = '
-<div class="fea-mod">
-	<h3 class="t-txt">{{content_title}}</h3>
-	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
-	<p>{{content}}</p>
-</div>
-
-';
+	<div class="ln-fx">{{repeater}}</div>';
 $css = '
-.row-setting-21 .col.col-1{
+.ln-fx{
+	width:100%;
 	display:inline-flex;
-	width:100%;
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
 }
-.feature-sec{
-	width:100%;
-	margin:0 auto;
-}
-.feature-mod amp-img{
-   width:100%;
-   display:inline-block;
-}
-.feature-mod{
-	background:#eee;
+.feat-blk{
     display: flex;
     flex-direction: column;
     -ms-flex-pack: justify;
@@ -29,20 +16,12 @@ $css = '
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
     flex: 1 0 25%;
-}
-.fea-mod{
-	background: #fff;
-    padding: 30px;
-    margin: 5% 4%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
 }
-.fea-mod p{
+.feat-blk p{
 	padding-top:30px;
 }
-.feature-mod .fea-mod h3{
+.feat-blk h3{
    font-size:30px;
    line-height:1.5;
    color:{{font_color_picker}};
@@ -63,14 +42,7 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"content_title",		
-		 						'label'		=>'Heading',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
+
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
@@ -78,44 +50,6 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
-							),
-	 					array(		
-		 						'type'		=>'upload',		
-		 						'name'		=>"img_upload",		
-		 						'label'		=>'Image Upload',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'',	
-		           				'content_type'=>'html',
-	 					),
-	 					array(
-				               'type'  =>'text',
-				              'name'=>"image_height",
-				              'label'=>"Image height",
-				              'tab'  => "customizer",
-				              'default'=>'150',
-				              'content_type'=>'html',
-				            ),
-				        array(
-				               'type'  =>'text',
-				              'name'=>"image_width",
-				              'label'=>"Image width",
-				              'tab'  => "customizer",
-				              'default'=>'150',
-				              'content_type'=>'html',
-				            ),
-				        array(
-								'type'		=>'checkbox',
-								'name'		=>"image_layout",
-								'label'		=>'Enable for Responsive Image',
-								'tab'		=>'customizer',
-								'default'	=>array(),
-								'options'	=>array(
-												array(
-													'label'=>'Enable',
-													'value'=>'responsive',
-												),
-											),
-								'content_type'=>'html',
 							),
 	 					array(		
 	 							'type'	=>'select',		
@@ -129,14 +63,7 @@ return array(
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
 	 						),
-	 					array(		
-		 						'type'		=>'textarea',		
-		 						'name'		=>"content",		
-		 						'label'		=>'Content',
-		           				 'tab'     =>'design',
-		 						'default'	=>'',	
-		           				'content_type'=>'html',
-	 					),						
+					
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -145,8 +72,8 @@ return array(
 								'default'	=>array(
 													'left'=>0,
 													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>15,
+													'bottom'=>15
 													),
 								'content_type'=>'css',
 							),
@@ -167,6 +94,72 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+                		array(		
+	 						'type'		=>'text',		
+	 						'name'		=>"content_title",		
+	 						'label'		=>'Heading',
+	           				'tab'       =>'customizer',
+	 						'default'	=>'Your Feature Title',	
+	           				'content_type'=>'html',
+	 						),
+	 					array(		
+	 						'type'		=>'upload',		
+	 						'name'		=>"img_upload",		
+	 						'label'		=>'Image Upload',
+	           				 'tab'     =>'customizer',
+	 						'default'	=>'',	
+	           				'content_type'=>'html',
+	 					),
+	 					array(
+			               'type'  =>'text',
+			              'name'=>"image_height",
+			              'label'=>"Image height",
+			              'tab'  => "customizer",
+			              'default'=>'150',
+			              'content_type'=>'html',
+				            ),
+				        array(
+			               'type'  =>'text',
+			              'name'=>"image_width",
+			              'label'=>"Image width",
+			              'tab'  => "customizer",
+			              'default'=>'150',
+			              'content_type'=>'html',
+				            ),
+				        array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'label'		=>'Enable for Responsive Image',
+								'tab'		=>'customizer',
+								'default'	=>array(),
+								'options'	=>array(
+												array(
+													'label'=>'Enable',
+													'value'=>'responsive',
+												),
+											),
+								'content_type'=>'html',
+							),
+				        array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"content",		
+		 						'label'		=>'Content',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'Your Description',	
+		           				'content_type'=>'html',
+	 					),
+                
+              ),
+          'front_template'=>
+        '<div class="feat-blk">
+      		<h3 class="t-txt">{{content_title}}</h3>
+			<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
+			{{content}}
+      	</div> '
+          ),
 
 	);
 
