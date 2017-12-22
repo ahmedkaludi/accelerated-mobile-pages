@@ -158,6 +158,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 									repeatWrapper.forEach(function(repeatField,repFieldKey){
 										repeaterData[repeatField.name] = repeatField.default;
 									});
+									repeaterData[index] = (repKey+1);
 									moduleData.repeater.push(repeaterData);
 								});
 							}

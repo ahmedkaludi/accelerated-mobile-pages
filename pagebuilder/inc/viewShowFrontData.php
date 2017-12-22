@@ -318,6 +318,34 @@ function rowData($container,$col,$moduleTemplate){
 	                    }//If closed
 					break;
 				}
+
+				$repeaterFields = '';
+				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
+					
+					$repeaterUserContents = $contentArray['repeater'];
+					foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+						$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
+						//reset($repeaterUserValues);
+						$repeaterVarIndex = key($repeaterUserValues);
+						$repeaterVarIndex = explode('_', $repeaterVarIndex);
+						$repeaterVarIndex = end($repeaterVarIndex);
+						
+						foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+							if($moduleField['content_type']=='html'){
+								
+								$repeaterFrontTemplate = str_replace(
+												'{{'.$moduleField['name'].'}}', 
+												$repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex] , 
+												$repeaterFrontTemplate
+											);
+							}
+						}
+						$repeaterFields .= $repeaterFrontTemplate;
+					}
+					
+				}
+				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
+
 				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
