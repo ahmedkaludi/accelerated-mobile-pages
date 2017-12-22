@@ -120,15 +120,15 @@ function amp_pagebuilder_content_styles(){
 								}
 								switch ($modulefield['type']) {
 									case 'spacing':
-										$replaceRow ="";
-										if(isset($replaceRow['top']) 
-											&& isset($replaceRow['right'])
-											&& isset($replaceRow['bottom'])
-											&& isset($replaceRow['left'])
+									 	$replacespacing ="";
+										if(isset($replaceModule['top']) 
+											&& isset($replaceModule['right'])
+											&& isset($replaceModule['bottom'])
+											&& isset($replaceModule['left'])
 										){
-										$replaceRow = $replaceRow['top']."px ".$replaceRow['right']."px ".$replaceRow['bottom']."px ".$replaceRow['left']."px ";
-								}
-										$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
+										$replacespacing = $replaceModule['top']."px ".$replaceModule['right']."px ".$replaceModule['bottom']."px ".$replaceModule['left']."px ";
+										}
+										$completeCss = str_replace('{{'.$modulefield['name'].'}}', $replacespacing, $completeCss);
 										
 									break;
 									default:
@@ -158,7 +158,6 @@ function amp_pagebuilder_content_styles(){
 		}//if closed  count($previousData['rows'])>0
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
-
 
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
@@ -322,28 +321,30 @@ function rowData($container,$col,$moduleTemplate){
 				$repeaterFields = '';
 				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
 					
-					$repeaterUserContents = $contentArray['repeater'];
-					foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
-						$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
-						//reset($repeaterUserValues);
-						$repeaterVarIndex = key($repeaterUserValues);
-						$repeaterVarIndex = explode('_', $repeaterVarIndex);
-						$repeaterVarIndex = end($repeaterVarIndex);
-						
-						foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
-							if($moduleField['content_type']=='html'){
-								
-								$repeaterFrontTemplate = str_replace(
-												'{{'.$moduleField['name'].'}}', 
-												$repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex] , 
-												$repeaterFrontTemplate
-											);
+					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
+						$repeaterUserContents = $contentArray['repeater'];
+						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
+							//reset($repeaterUserValues);
+							$repeaterVarIndex = key($repeaterUserValues);
+							$repeaterVarIndex = explode('_', $repeaterVarIndex);
+							$repeaterVarIndex = end($repeaterVarIndex);
+							
+							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+								if($moduleField['content_type']=='html'){
+									
+									$repeaterFrontTemplate = str_replace(
+													'{{'.$moduleField['name'].'}}', 
+													$repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex] , 
+													$repeaterFrontTemplate
+												);
+								}
 							}
+							$repeaterFields .= $repeaterFrontTemplate;
 						}
-						$repeaterFields .= $repeaterFrontTemplate;
-					}
+					}//If Check for Fall back
 					
-				}
+				}//If for Module is repeater or not
 				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
 
 				$html .= "<div class='amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
