@@ -185,9 +185,13 @@ Vue.component('amp-pagebuilder-module-modal', {
 		var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
 
 		totalFields = app.modalcontent.repeater.showFields.length;
-		var lastName = app.modalcontent.repeater.showFields[totalFields-1][0]['name'];
-		var lastNamePieces = lastName.split("_");
-		var nextFieldCount = parseInt(lastNamePieces[lastNamePieces.length-1])+1;
+		if(totalFields>0){
+			var lastName = app.modalcontent.repeater.showFields[totalFields-1][0]['name'];
+			var lastNamePieces = lastName.split("_");
+			var nextFieldCount = parseInt(lastNamePieces[lastNamePieces.length-1])+1;
+		}else{
+			var nextFieldCount = 0;
+		}
 		allRepeaterFileds.forEach(function(newFields,newKey){
 			newFields.name = newFields.name+'_'+nextFieldCount;
 		})
@@ -198,7 +202,6 @@ Vue.component('amp-pagebuilder-module-modal', {
 		this.$forceUpdate();
 	},
 	removeRepeaterSection:function(key,repeater){
-		alert(key)
 		Vue.delete( app.modalcontent.repeater.showFields, key );
 		this.$forceUpdate();
 	},

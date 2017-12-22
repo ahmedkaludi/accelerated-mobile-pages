@@ -3,7 +3,10 @@
 		<?php $i=0;
     		foreach ($moduleTemplate as $key => $module) {
     			unset($module['front_template']);
-    			unset($module['front_css']);
+                unset($module['front_css']);
+                if(isset($module['repeater'])){
+    			    unset($module['repeater']['front_template']);
+                }
     			$conditioner = 'v-else-if';
     			if($i==0){
     				$conditioner = 'v-if';

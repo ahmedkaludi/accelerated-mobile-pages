@@ -32,7 +32,6 @@
 
                                 <div class="heading">
                                     Repeater Fields Started
-                                    <input type="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Duplicate">
                                 </div>
                                 
                                 <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" :class="'repeater-'+key" >
@@ -51,6 +50,10 @@
                                             :defaulttab="modalcontent.default_tab"
                                         ></fields-data>
                                     </div>
+                                   
+                                </div>
+                                 <div style="text-align:right;">
+                                    <input type="button" class="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Duplicate Create Fields">
                                 </div>
                             </div>
                         </div>
