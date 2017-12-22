@@ -346,7 +346,7 @@ function rowData($container,$col,$moduleTemplate){
 				}
 				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
 
-				$html .= "<div class='amppb-module-setting-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
+				$html .= "<div class='amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
 					$html .= "<p class='col-wrapper'>".$contentArray['value']."</div>";
