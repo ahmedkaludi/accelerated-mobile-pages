@@ -6,12 +6,12 @@ $output = '
 
 ';
 $css = '
-.heading .head-tlt{
+{{module-class}}.heading .head-tlt{
    width:100%;
    display:inline-block;
    text-align:{{align_type}};
 }
-.heading .head-tlt .h-txt{
+{{module-class}}.heading .head-tlt .h-txt{
    font-size:{{text-size}};
    line-height:1.5;
    color:{{font_color_picker}};
@@ -29,17 +29,17 @@ $css = '
 	margin:0;
 }
 
-.head-txt{
+{{module-class}} .head-txt{
     margin: 20px 0px 20px;
     width: 100%;
 }
-.review-sec{
+{{module-class}} .review-sec{
 	width: 100%;
 	background:#eee;
     padding: 40px 0px;
     margin-left: 0;
 }
-.trail-sec{
+{{module-class}} .trail-sec{
 	margin:0 auto;
 	width:100%;
 }
