@@ -86,7 +86,6 @@ function amppbbase_admin_scripts( $hook_suffix ){
 				foreach ($posts_array as $key => $layoutData) {
 				$allPostLayout[] = array('post_title'=>$layoutData->post_title,
 										'post_content'=>$layoutData->post_content,
-										'post_excerpt'=>$layoutData->post_excerpt
 											);
 				}
 			}

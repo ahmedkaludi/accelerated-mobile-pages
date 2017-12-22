@@ -49,8 +49,8 @@ $containerCommonSettings = array(
 			'settingType'  =>'row',
 			'default_tab'=> 'customizer',
 			'tabs' => array(
-			  'customizer'=>'Customizer',
-			  'container_css'=>'Container css'
+			  'customizer'=>'General',
+			  'container_css'=>'Advance'
 			),
 			'fields' => array(
 							array(
@@ -58,7 +58,7 @@ $containerCommonSettings = array(
 								'name'		=>"row_label",
 								'label'		=>'Row label',
 								'tab'    	=>'customizer',
-								'default'	=>'Add here',
+								'default'	=>'',
 								'content_type'=>'html',
 								),
 					
@@ -67,7 +67,7 @@ $containerCommonSettings = array(
 								'name'		=>"row_class",
 								'label'		=>'Row class',
 								'tab'     	=>'customizer',
-								'default'	=>'Add here',
+								'default'	=>'',
 								'content_type'=>'html',
 								),
 

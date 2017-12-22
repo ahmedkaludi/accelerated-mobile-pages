@@ -4,7 +4,7 @@ Vue.component('amp-pagebuilder-modal', {
   data: function(){
   	return {
   		currentLayoutData: app.mainContent,
-  		modalCrrentTab: 'customize',
+  		modalCrrentTab: 'save_layout',
   		ajaxurl: amppb_panel_options.ajaxUrl,
   		save_layout:{name:'',
   					url:''
@@ -31,7 +31,6 @@ Vue.component('amp-pagebuilder-modal', {
 		var saveLayoutData = {
 							action: 'amppb_save_layout_data',
 							layoutname:this.save_layout.name,
-							layouturl: this.save_layout.url,
 							layoutdata: JSON.stringify(this.currentLayoutData)
 							};
 		this.$http.post(amppb_panel_options.ajaxUrl+'?action=amppb_save_layout_data', 
@@ -60,6 +59,7 @@ Vue.component('amp-pagebuilder-modal', {
 					 });
 	},
 	layoutFileSelected: function(event){
+		//jQuery(event.target).
 		var filename  = event.target.name;
 		var files = event.target.files;
 		var fileCount = event.target.files.length;

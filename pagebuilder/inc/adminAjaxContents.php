@@ -38,12 +38,10 @@ function amppb_export_layout_data(){
 add_action( 'wp_ajax_amppb_save_layout_data', 'amppb_save_layout_data');
 function amppb_save_layout_data(){
 	$layoutname = $_POST['layoutname'];
-	$layouturl = $_POST['layouturl'];
 	$layoutdata = $_POST['layoutdata'];
 	$postarr = array(
 				'post_title'   =>$layoutname,
 				'post_content' =>$layoutdata,
-				'post_excerpt' =>$layouturl,
 				'post_author'  => 1,
 				'post_status'  =>'publish',
 				'post_type'    =>'amppb_layout'
@@ -64,7 +62,6 @@ function amppb_save_layout_data(){
 		foreach ($posts_array as $key => $layoutData) {
 		$allPostLayout[] = array('post_title'=>$layoutData->post_title,
 								'post_content'=>$layoutData->post_content,
-								'post_excerpt'=>$layoutData->post_excerpt
 									);
 		}
 	}

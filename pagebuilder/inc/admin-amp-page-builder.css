@@ -863,7 +863,7 @@ Layout css
     bottom: 0;
     right: 0;
     height: 100%;
-    visibility: hidden;
+    visibility: visible;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -880,9 +880,9 @@ Layout css
     border-color: #999;
     color: #23282d;
 }
-.amppb-layout-layout:hover .amppb-layout-button{
+/*.amppb-layout-layout:hover .amppb-layout-button{
     visibility: visible;
-}
+}*/
 
 .amppb-modal-row{
     width:100%;
