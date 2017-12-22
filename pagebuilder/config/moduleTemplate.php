@@ -76,7 +76,7 @@ $containerCommonSettings = array(
 								'name'		=>"font_color_picker",
 								'label'		=>'Font color',
 								'tab'		=>'customizer',
-								'default'	=>'#ffc0cb',
+								'default'	=>'#000',
 								'content_type'=>'css',
 								'output_format'=>"color: %default%"
 							),
