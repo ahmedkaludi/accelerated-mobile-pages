@@ -140,7 +140,6 @@ function call_page_builder(){
 	?>
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo get_the_ID() ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)">Start the AMP Page Builder</div>
-		{{message}}
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
 			<label  @click="showModal = true;">settings</label>
@@ -149,8 +148,9 @@ function call_page_builder(){
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
 	        <?php /* This is where we gonna add & manage rows */ ?>
-			<div id="sorted_rows" class="amppb-rows drop">
-				<drop class="drop" @drop="handleDrop" >
+			<div id="sorted_rows" class="amppb-rows drop" >
+				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
+			@dragleave="rowOverDrop = false">
 					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
 					<draggable :element="'div'" class="dragrow"
 						v-model="mainContent.rows" 
@@ -179,7 +179,8 @@ function call_page_builder(){
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields col" data-cell="1">
-						        	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
+						        	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1" :class="{'module-dropping':modulesOverDrop}" @drop="handleDrop" @dragover="modulesOverDrop = true"
+									@dragleave="modulesOverDrop = false">
 						        		<draggable  
 							        		:element="'div'"
 							        		class="modules-drop"
@@ -217,7 +218,8 @@ function call_page_builder(){
 						 
 						        <div class="amppb-row-fields ">
 					        	    <div class="amppb-column-2-left col" data-cell="1">
-					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1">
+					        	    	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="1" :class="{'module-dropping':modulesOverDrop}" @drop="handleDrop" @dragover="modulesOverDrop = true"
+									@dragleave="modulesOverDrop = false">
 							            	<div class="modules-drop">
 							            		
 							            		<draggable :element="'div'"class="module-drop-zone"
@@ -241,7 +243,8 @@ function call_page_builder(){
 						            </div><!-- .amppb-col-2-left -->
 						            <div class="amppb-column-2-right col" data-cell="2">
 						            	<div class="resize-handle"></div>
-						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2">
+						            	<drop class="drop" @drop="handleModuleDrop" :data-rowid="row.id" :data-cellid="2" :class="{'module-dropping':modulesOverDrop}" @drop="handleDrop" @dragover="modulesOverDrop = true"
+									@dragleave="modulesOverDrop = false">
 											<div class="modules-drop" >
 											
 												<draggable :element="'div'"class="module-drop-zone"

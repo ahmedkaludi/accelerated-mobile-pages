@@ -604,6 +604,7 @@ var app = new Vue({
     modalTypeData: {},
     filteredList: [],
 
+    rowOverDrop:false,
     rowdrag: false,
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',

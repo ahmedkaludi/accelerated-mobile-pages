@@ -152,8 +152,6 @@ function amp_pagebuilder_content_styles(){
 			
 				
 
-				
-
 			}//foreach closed complete data
 		}//if closed  count($previousData['rows'])>0
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
