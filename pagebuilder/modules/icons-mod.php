@@ -6,6 +6,10 @@ $output = '
 
 ';
 $css = '
+{{module-class}}{
+	width:100%;
+	display:inline-block;
+}
 {{module-class}}.icons-mod{
     display: flex;
     flex-direction: column;

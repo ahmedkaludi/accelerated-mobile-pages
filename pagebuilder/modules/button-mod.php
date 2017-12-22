@@ -23,7 +23,7 @@ $css = '
    color:{{font_color_picker}};
    background:{{bg_color_picker}};
    display: inline-block;
-   padding: 10px 75px;
+   padding: {{btn-hgt}} {{btn-wdt}};
    font-weight: 500;
 }
 
@@ -74,6 +74,22 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn-hgt",		
+		 						'label'		=>'Button Height',
+		           				 'tab'     =>'design',
+		 						'default'	=>'10px',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn-wdt",		
+		 						'label'		=>'Button Width',
+		           				 'tab'     =>'design',
+		 						'default'	=>'75px',	
+		           				'content_type'=>'css',
 	 						),	
 						array(
 								'type'		=>'color-picker',
