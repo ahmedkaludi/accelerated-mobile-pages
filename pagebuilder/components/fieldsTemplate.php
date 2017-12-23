@@ -125,7 +125,7 @@
               <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
               <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
             </label>
-             <img v-if="field.default!=''" :src="field.default" class="amppbimageuploadField"/>
+             <img v-if="field.default!=''" :src="refresh_image(field.default,this)" class="amppbimageuploadField"/>
            
         </p>
         <div class="clearfix"></div>

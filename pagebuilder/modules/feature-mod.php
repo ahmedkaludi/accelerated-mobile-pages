@@ -113,22 +113,6 @@ return array(
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
 	 					),
-	 					array(
-			               'type'  =>'text',
-			              'name'=>"image_height",
-			              'label'=>"Image height",
-			              'tab'  => "customizer",
-			              'default'=>'150',
-			              'content_type'=>'html',
-				            ),
-				        array(
-			               'type'  =>'text',
-			              'name'=>"image_width",
-			              'label'=>"Image width",
-			              'tab'  => "customizer",
-			              'default'=>'150',
-			              'content_type'=>'html',
-				            ),
 				        array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
@@ -138,7 +122,7 @@ return array(
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
-													'value'=>'responsive',
+													'value'=>'layout="responsive"',
 												),
 											),
 								'content_type'=>'html',
@@ -156,7 +140,7 @@ return array(
           'front_template'=>
         '<div class="feat-blk">
       		<h3 class="t-txt">{{content_title}}</h3>
-			<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
+			<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}}></amp-img>
 			{{content}}
       	</div> '
           ),

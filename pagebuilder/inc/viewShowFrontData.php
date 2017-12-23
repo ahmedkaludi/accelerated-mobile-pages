@@ -68,6 +68,16 @@ function amp_pagebuilder_content_styles(){
 							$replaceRow = '';
 							if(isset($rowContainer[$rowfield['name']])){
 								$replaceRow = $rowContainer[$rowfield['name']];
+								
+							}
+							if(isset($rowfield['required']) && count($rowfield['required'])>0){
+								foreach($rowfield['required'] as $requiredKey=>$requiredValue){
+									$userSelectedvalue = $rowContainer[$requiredKey];
+									if($userSelectedvalue != $requiredValue){
+										$replaceRow ='';
+									} 
+								}
+
 							}
 							switch ($rowfield['type']) {
 								case 'spacing':
@@ -85,6 +95,14 @@ function amp_pagebuilder_content_styles(){
 								break;
 								default:
 									if(is_array($replaceRow)){
+										if(count($replaceRow)>0){
+											if(count($replaceRow)==1){
+												$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow[0], $rowCss);
+											}
+										}else{
+											$rowCss = str_replace('{{'.$rowfield['name'].'}}', '', $rowCss);
+										}
+										
 										/*foreach ($rowContainer[$rowfield['name']] as $key => $cssValue) {
 											# code...
 										}()*/
@@ -114,9 +132,20 @@ function amp_pagebuilder_content_styles(){
 								add_amp_icon(array($contentArray[$modulefield['name']]));
 							}
 							if($modulefield['content_type']=='css'){
+								
+
 								$replaceModule = "";
 								if(isset($contentArray[$modulefield['name']])){
 									$replaceModule = $contentArray[$modulefield['name']];
+								}
+								if(isset($modulefield['required']) && count($modulefield['required'])>0){
+									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
+										$userSelectedvalue = $contentArray[$requiredKey];
+										if($userSelectedvalue != $requiredValue){
+											$replaceModule ='';
+										} 
+									}
+
 								}
 								switch ($modulefield['type']) {
 									case 'spacing':
@@ -157,7 +186,9 @@ function amp_pagebuilder_content_styles(){
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 function amppb_validateCss($css){
-	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{)|\s*{[\s]*})/', "", $css);
+	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
+	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
+	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	return $css;
 }
 
@@ -326,6 +357,7 @@ function rowData($container,$col,$moduleTemplate){
 					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
 						$repeaterUserContents = $contentArray['repeater'];
 						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+
 							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
 							//reset($repeaterUserValues);
 							$repeaterVarIndex = key($repeaterUserValues);
@@ -334,12 +366,43 @@ function rowData($container,$col,$moduleTemplate){
 							
 							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
 								if($moduleField['content_type']=='html'){
-									
-									$repeaterFrontTemplate = str_replace(
+									$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+									if(is_array($replace)){
+										if(count($replace)>0){
+											$replace = $replace[0];
+										}else{
+											$replace ='';
+										}
+									}
+									if($moduleField['type']=="upload"){
+										$imageDetails = get_attachment_id( $replace);
+										$imageUrl = $imageDetails[0];
+										$imageWidth = $imageDetails[1];
+										$imageHeight = $imageDetails[2];
+										$repeaterFrontTemplate = str_replace(
 													'{{'.$moduleField['name'].'}}', 
-													$repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex] , 
+													 $imageUrl, 
 													$repeaterFrontTemplate
 												);
+										$repeaterFrontTemplate = str_replace(
+													'{{image_width}}', 
+													 $imageWidth, 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = str_replace(
+													'{{image_height}}', 
+													 $imageHeight, 
+													$repeaterFrontTemplate
+												);
+									}else{
+										$repeaterFrontTemplate = str_replace(
+													'{{'.$moduleField['name'].'}}', 
+													 $replace, 
+													$repeaterFrontTemplate
+												);
+									}
+
+									
 								}
 							}
 							$repeaterFields .= $repeaterFrontTemplate;
@@ -380,4 +443,42 @@ function sortByIndex($contentArray){
 }
 function empty_content($str) {
     return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
+}
+
+function get_attachment_id( $url ) {
+	if(filter_var($url, FILTER_VALIDATE_URL) === FALSE){
+		$attachment_id = $url;
+	}else{
+		$attachment_id = 0;
+		$dir = wp_upload_dir();
+		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) { // Is URL in uploads directory?
+			$file = basename( $url );
+			$query_args = array(
+				'post_type'   => 'attachment',
+				'post_status' => 'inherit',
+				'fields'      => 'ids',
+				'meta_query'  => array(
+					array(
+						'value'   => $file,
+						'compare' => 'LIKE',
+						'key'     => '_wp_attachment_metadata',
+					),
+				)
+			);
+			$query = new WP_Query( $query_args );
+			if ( $query->have_posts() ) {
+				foreach ( $query->posts as $post_id ) {
+					$meta = wp_get_attachment_metadata( $post_id );
+					$original_file       = basename( $meta['file'] );
+					$cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
+					if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
+						$attachment_id = $post_id;
+						break;
+					}
+				}
+			}
+		}
+
+	}
+	return wp_get_attachment_image_src($attachment_id,'full',false);
 }

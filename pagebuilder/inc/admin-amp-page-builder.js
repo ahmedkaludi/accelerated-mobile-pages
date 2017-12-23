@@ -377,26 +377,27 @@ Vue.component('fields-data',{
                      my_index++;
                   });
                   var ids = gallery_ids.join(",");
-                  //field.default = ids;
-                 
-                  componentPointer.refresh_image(ids,currentSelectfield,field);
+                  
+                  field.default = ids;
+
+                  componentPointer.refresh_image(ids,currentSelectfield);
                });
 			image_frame.on('open',function() {
 	            // On open, get the id from the hidden input
 	            // and select the appropiate images in the media manager
 	            var selection =  image_frame.state().get('selection');
-	            /*ids = currentSelectfield.parents('.form-control').find('input[type=hidden]').val().split(',');
+	            ids =  field.default.split(',');
 	            ids.forEach(function(id) {
 	              attachment = wp.media.attachment(id);
 	              attachment.fetch();
 	              selection.add( attachment ? [ attachment ] : [] );
-	            });*/
+	            });
 
 	          });
 	        image_frame.open();
 
 		},
-		refresh_image: function(the_id,currentSelectfield,field){
+		refresh_image: function(the_id,currentSelectfield){
 		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id, 
 						{}
 						,{
@@ -410,27 +411,27 @@ Vue.component('fields-data',{
 					).then(function(response){
 						response =response.body;
 						 if(response.success === true) {
-						 	if(currentSelectfield.getAttribute("data-imageselactor")=='multiple'){
+						 	/*if(currentSelectfield.getAttribute("data-imageselactor")=='multiple'){
 						 		var imageList = [];
 						 		response.data.forEach(function(imageDetails,key){
 						 			console.log(imageDetails);
 							 		imageList.push(imageDetails.detail[0]);
 							 	});
 							 	Vue.set(field,'default',imageList);
-							}else{
+							}else{*/
+								jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0])
+								//currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
+								//field.default = response.data.detail[0];
 								
-								currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
-								field.default = response.data.detail[0];
-								console.log(app.modalcontent.fields)
-								app.modalcontent.fields.forEach(function(data,key){
+								/*app.modalcontent.fields.forEach(function(data,key){
 									if(data.name=='image_height'){
 										data.default = response.data.detail[2];
 									}else if(data.name=="image_width"){
 										data.default = response.data.detail[1];
 									}
-								})
+								})*/
 								
-							}
+							//}
 						 }
 						
 					},

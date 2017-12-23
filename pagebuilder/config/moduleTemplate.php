@@ -39,7 +39,7 @@ $front_css = '
 	{{selected_gradient}};
 	margin: {{margin_css}};
 	padding:{{padding_css}};
-	bodrer: {{border_css}};
+	border: {{border_css}};
 	border-style:{{border_type}};
 	{{shadow}}
 }
@@ -57,7 +57,7 @@ $containerCommonSettings = array(
 								'type'		=>'text',
 								'name'		=>"row_label",
 								'label'		=>'Row label',
-								'tab'    	=>'customizer',
+								'tab'    	=>'container_css',
 								'default'	=>'',
 								'content_type'=>'html',
 								),
@@ -66,7 +66,7 @@ $containerCommonSettings = array(
 								'type'		=>'text',
 								'name'		=>"row_class",
 								'label'		=>'Row class',
-								'tab'     	=>'customizer',
+								'tab'     	=>'container_css',
 								'default'	=>'',
 								'content_type'=>'html',
 								),
