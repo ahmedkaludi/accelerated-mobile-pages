@@ -290,6 +290,7 @@ function rowData($container,$col,$moduleTemplate){
 				
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
+				
 				switch($moduleName){
 					case 'gallery_image':
 						$moduleDetails = $moduleTemplate[$contentArray['type']];
@@ -323,7 +324,31 @@ function rowData($container,$col,$moduleTemplate){
 									if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
 
 										if(!is_array($contentArray[$field['name']])){
-											$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode($contentArray[$field['name']]), $moduleFrontHtml);
+											 $replace = $contentArray[$field['name']];
+											if($field['type']=="upload"){
+											 
+												$imageDetails = get_attachment_id( $replace);
+												$imageUrl = $imageDetails[0];
+												$imageWidth = $imageDetails[1];
+												$imageHeight = $imageDetails[2];
+												$moduleFrontHtml = str_replace(
+															'{{'.$field['name'].'}}', 
+															 $imageUrl, 
+															$moduleFrontHtml
+														);
+												$moduleFrontHtml = str_replace(
+															'{{image_width}}', 
+															 $imageWidth, 
+															$moduleFrontHtml
+														);
+												$moduleFrontHtml = str_replace(
+															'{{image_height}}', 
+															 $imageHeight, 
+															$moduleFrontHtml
+														);
+											}else{
+												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode( $replace), $moduleFrontHtml);
+											}
 										}else{
 											if(count($contentArray[$field['name']])>0){
 												foreach ($contentArray[$field['name']] as $key => $userValue) {

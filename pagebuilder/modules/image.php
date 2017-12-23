@@ -19,22 +19,6 @@ return array(
 						),
 				 	array(
 			 			'type'	=>'text',
-						'name'=>"image_height",
-						'label'=>"Image height",
-						'tab'	=> "customizer",
-						'default'=>'150',
-						'content_type'=>'html',
-						),
-					array(
-			 			'type'	=>'text',
-						'name'=>"image_width",
-						'label'=>"Image width",
-						'tab'	=> "customizer",
-						'default'=>'150',
-						'content_type'=>'html',
-						),
-					array(
-			 			'type'	=>'text',
 						'name'=>"css_class",
 						'label'=>"Custom CSS Class",
 						'tab'	=> "container_css",

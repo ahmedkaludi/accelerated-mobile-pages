@@ -380,24 +380,32 @@ Vue.component('fields-data',{
                   
                   field.default = ids;
 
-                  componentPointer.refresh_image(ids,currentSelectfield);
+                  componentPointer.refresh_image(ids,currentSelectfield,"button");
                });
 			image_frame.on('open',function() {
 	            // On open, get the id from the hidden input
 	            // and select the appropiate images in the media manager
 	            var selection =  image_frame.state().get('selection');
 	            ids =  field.default.split(',');
-	            ids.forEach(function(id) {
-	              attachment = wp.media.attachment(id);
-	              attachment.fetch();
-	              selection.add( attachment ? [ attachment ] : [] );
-	            });
+	            if(ids){
+		            ids.forEach(function(id) {
+		              attachment = wp.media.attachment(id);
+		              attachment.fetch();
+		              selection.add( attachment ? [ attachment ] : [] );
+		            });
+	            }
 
 	          });
 	        image_frame.open();
 
 		},
-		refresh_image: function(the_id,currentSelectfield){
+		refresh_image: function(the_id,currentSelectfield,type){
+			if(type=='tag'){
+				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
+			}else{
+				console.log(jQuery(currentSelectfield).parents('p'))
+				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
+			}
 		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id, 
 						{}
 						,{
@@ -419,7 +427,19 @@ Vue.component('fields-data',{
 							 	});
 							 	Vue.set(field,'default',imageList);
 							}else{*/
-								jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0])
+								/*console.log(currentSelectfield);
+								if(!currentSelectfield){
+									.find('img').attr('src',response.data.detail[0]);
+								}
+								*/
+								console.log(currentSelectfield);
+								if(type=='tag'){
+									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
+								}else{
+									console.log(jQuery(currentSelectfield).parents('p'))
+									jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0]);
+								}
+								
 								//currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
 								//field.default = response.data.detail[0];
 								

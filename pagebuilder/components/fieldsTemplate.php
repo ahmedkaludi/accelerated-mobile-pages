@@ -7,7 +7,7 @@
         </p>
          <div class="clearfix"></div>
     </div>
-    <div :id="field.name" data-type="hidden" v-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+    <div :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
             <label class="form-label">{{field.label}}
             <input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
@@ -125,7 +125,7 @@
               <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
               <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
             </label>
-             <img v-if="field.default!=''" :src="refresh_image(field.default,this)" class="amppbimageuploadField"/>
+             <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag')" class="amppbimageuploadField"/>
            
         </p>
         <div class="clearfix"></div>
