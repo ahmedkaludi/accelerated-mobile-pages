@@ -280,8 +280,7 @@ function amppb_post_content($content){
 			$content = $html;	
 		}
 	}
-	//do_shortcode($content);
-	return $content;
+	return do_shortcode($content);
 }
 
 function rowData($container,$col,$moduleTemplate){
