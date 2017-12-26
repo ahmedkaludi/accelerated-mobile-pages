@@ -4520,9 +4520,14 @@ function ampforwp_add_inline_related_posts(){
 }
 function ampforwp_generate_inline_related_posts($content){
 	global $post;
-		
 	$break_point = '</p>';
 	$content_parts = explode($break_point, $content);
+	array_walk($content_parts, function(&$value, $key) { 
+										if(!empty(trim($value))){
+											$value .= '</p>';
+										} 
+									}
+				);
 	$no_of_parts = count($content_parts);
 	$half_index = floor($no_of_parts / 2);
 	$half_content = array_chunk($content_parts, $half_index);
@@ -4532,7 +4537,7 @@ function ampforwp_generate_inline_related_posts($content){
 	$firs_content = $half_content[0];
 	$second_content = $half_content[1];
 	$final_content = array_merge($firs_content,$html,$second_content);
-	$final_content = implode($break_point, $final_content);
+	$final_content = implode("", $final_content);
 	$content = $final_content;
 	return $content;
 }
@@ -5373,3 +5378,19 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
     echo $font_output;
   }
 }
+
+function swifttheme_footer_widgets_init() {
+ 	if(ampforwp_design_selector()==4){
+	    register_sidebar( array(
+	        'name' => __( 'Swift Footer Widget Area', 'swifttheme' ),
+	        'id' => 'swift-footer-widget-area',
+	        'description' => __( 'The Swift footer widget area', 'swifttheme' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	}
+}
+add_action( 'init', 'swifttheme_footer_widgets_init' );

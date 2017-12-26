@@ -293,6 +293,9 @@ function rowData($container,$col,$moduleTemplate){
 		$container = sortByIndex($container);
 		if(count($container)>0){
 			foreach($container as $contentKey=>$contentArray){
+				if(!isset($moduleTemplate[$contentArray['type']])){
+					continue;
+				}
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				

@@ -2,10 +2,48 @@
 /**** 
 * AMP Framework Reset
 *****/
+<?php   if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] == 1 && empty($redux_builder_amp['amp_font_selector'])){
+?>
+/****
+* Google fonts
+*****/
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src:  local('Montserrat Regular'), local('Montserrat-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    src:  local('Montserrat Medium'), local('Montserrat-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Medium.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    src:  local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src:  local('Montserrat Bold'), local('Montserrat-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    src:  local('Montserrat Black'), local('Montserrat-Black'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Black.ttf');
+}
+<?php } ?>
 body{ 
-    <?php if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ ?>
-    font-family: '<?php echo $redux_builder_amp['amp_font_selector']; ?>' <?php } 
-    else { echo "font-family: 'Montserrat'"; } ?>;
+    <?php 
+    $fontFamily= "";
+    if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
+        $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; } 
+    else { $fontFamily = "font-family: 'Montserrat';"; } ?>
  font-size: 16px; line-height:1.4; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
@@ -64,39 +102,6 @@ amp-carousel > amp-img > img {
 }
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
-/****
-* Google fonts
-*****/
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    src:  local('Montserrat Regular'), local('Montserrat-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Regular.ttf');
-}
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    src:  local('Montserrat Medium'), local('Montserrat-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Medium.ttf');
-}
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    src:  local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-SemiBold.ttf');
-}
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    src:  local('Montserrat Bold'), local('Montserrat-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Bold.ttf');
-}
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 900;
-    src:  local('Montserrat Black'), local('Montserrat-Black'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Black.ttf');
-}
 
 /*** Font-icons ***/
 @font-face {

@@ -164,6 +164,7 @@ jQuery(function($) {
                          // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
                         $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
                     }
+
                 }); 
             });
 
@@ -176,32 +177,42 @@ jQuery(function($) {
 
 
         $(window).load(function() {
-            // Adding Default Font Family
-            $('#s2id_amp_font_selector-select a').removeClass('select2-default');
-            $('#select2-chosen-3').html(redux_data.amp_font_selector);
-            $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+            if($('#amp_font_selector-select').length>0){
+                // Adding Default Font Family
+                $('#s2id_amp_font_selector-select a').removeClass('select2-default');
+                $('#select2-chosen-3').html(redux_data.amp_font_selector);
+                if(redux_data.amp_font_selector==''){
+                    redux_data.amp_font_selector = 'Montserrat'
+                }
 
-            // Build select data
-            let fontData  = redux_data.google_current_font_data;
-            fontData = JSON.parse(fontData);
-            if ( fontData.variants && $("#amp_font_type-select").length>0) {
-                $("#amp_font_type-select").select2("val", "");
-                //$('.select2-search-choice').remove();
-                $('#amp_font_type-select').html('<option></option>');
+                $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+                $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector);
 
-                for (var i in fontData.variants) {
-                    $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
+                // Build select data
+                let fontData  = redux_data.google_current_font_data;
+                fontData = JSON.parse(fontData);
+                if ( fontData.variants) {
+                    //$('.select2-search-choice').remove();
+                    $('#amp_font_type-select').html('<option></option>');
+
+                    for (var i in fontData.variants) {
+                        $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
+                    }
+                }
+                
+                if(redux_data.amp_font_type==''){
+                    redux_data.amp_font_type = ['regular'];
+                }
+                // Add Default selected
+                if ( redux_data.amp_font_type ) {
+                    $('#s2id_autogen4').remove();
+                    for (var i in redux_data.amp_font_type) {
+                        $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
+                        //s2.append($('<option>').text(e));
+                    }
+                    $('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                 }
             }
-            
-            // Add Default selected
-            if ( redux_data.amp_font_type ) {
-                $('#s2id_autogen4').remove();
-                for (var i in redux_data.amp_font_type) {
-                    $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
-                }
-            }
-            
         });
 
 /*---------Google Fonts Ends -------*/
