@@ -1,5 +1,5 @@
 <?php
-$output = '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{img_width}}" height="{{img_height}}" />
+$output = '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{image_width}}" height="{{image_height}}" />
 <h4>{{text_title}}</h4>
 <p>{{text_description}}</p>
 </div>'; 
@@ -38,22 +38,6 @@ return array(
 						'content_type'=>'html',
 						),
 					array(
-						'type'		=>'text',
-						'name'		=>"img_width",
-						'label'		=>"Image Width",
-						'tab'		=>'customizer',
-						'default'	=>'80px',
-						'content_type'=>'html',
-						),
-					array(
-						'type'		=>'text',
-						'name'		=>"img_height",
-						'label'		=>"Image Height",
-						'tab'		=>'customizer',
-						'default'	=>'80px',
-						'content_type'=>'html',
-						),
-				 	array(
 	                    'type'    	=> 'text',
 	                    'name'    	=> 'css_class',
 	                    'label'   	=> 'Custom CSS Class',

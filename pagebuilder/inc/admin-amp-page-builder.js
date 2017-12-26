@@ -264,7 +264,7 @@ function openModulePopup(event,type){
 									allRepeaterFileds.forEach(function(newFields,newKey){
 										newFields.name = newFields.name+'_'+savedkey;
 										if(savedREPValue[newFields.name]){
-											console.log(savedREPValue[newFields.name],newFields.name)
+											//console.log(savedREPValue[newFields.name],newFields.name)
 											newFields.default = savedREPValue[newFields.name];
 										}
 									})

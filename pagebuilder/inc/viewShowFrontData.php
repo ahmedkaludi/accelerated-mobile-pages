@@ -28,20 +28,6 @@ function  ampforwp_insert_pb_content( $content ){
 
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
-	?>.amp_pb{display: inline-block;width: 100%;}
-    .row{display: inline-flex;width: 100%;}
-	.col-2{width:50%;float:left;}
-	.cb{clear:both;}
-    .amp_blurb{text-align:center}
-    .amp_blurb amp-img{margin: 0 auto;}
-    .amp_btn{text-align:center}
-    .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
-	.amppb-fixed{width:1100px;margin: 0 auto;}
-	.amppb-fluid{width:100%;margin: 0 auto;padding: 0 5%;}
-	.amppb-pages .cntr{max-width:100%;}
-	.amppb-pages header .cntr{max-width: 1100px;}
-	.amp_pb_module{width:100%; margin:0 auto;}
-	<?php
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
 	$postId = $post->ID;
@@ -52,6 +38,21 @@ function amp_pagebuilder_content_styles(){
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+
+	echo '.amp_pb{display: inline-block;width: 100%;}
+.row{display: inline-flex;width: 100%;}
+.col-2{width:50%;float:left;}
+.cb{clear:both;}
+.amp_blurb{text-align:center}
+.amp_blurb amp-img{margin: 0 auto;}
+.amp_btn{text-align:center}
+.amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
+.amppb-fixed{width:1100px;margin: 0 auto;}
+.amppb-fluid{width:100%;margin: 0 auto;padding: 0 5%;}
+.amppb-pages .cntr{max-width:100%;}
+.amppb-pages header .cntr{max-width: 1100px;}
+.amp_pb_module{width:100%; margin:0 auto;}';
+
 		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
@@ -72,8 +73,7 @@ function amp_pagebuilder_content_styles(){
 							}
 							if(isset($rowfield['required']) && count($rowfield['required'])>0){
 								foreach($rowfield['required'] as $requiredKey=>$requiredValue){
-									$userSelectedvalue = $rowContainer[$requiredKey];
-									if($userSelectedvalue != $requiredValue){
+									if(isset($rowContainer[$requiredKey]) && $rowContainer[$requiredKey] != $requiredValue){
 										$replaceRow ='';
 									} 
 								}
@@ -118,11 +118,15 @@ function amp_pagebuilder_content_styles(){
 
 				if(count($container)>0){
 					//Module specific styles
+					$moduleCommonCss = array();
 					foreach($container as $contentArray){
 						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
 							$completeCss = str_replace("{{module-class}}", '.amppb-module-'.$contentArray['cell_id'], $completeCss );
+						}
+						if(isset($moduleTemplate[$contentArray['type']]['front_common_css'])){
+							$moduleCommonCss[$moduleTemplate[$contentArray['type']]['name']] = $moduleTemplate[$contentArray['type']]['front_common_css'];
 						}
 
 
@@ -176,6 +180,9 @@ function amp_pagebuilder_content_styles(){
 						echo amppb_validateCss($completeCss);
 						
 					}//foreach content closed 
+					if(count($moduleCommonCss)>0){
+						echo implode(" ", $moduleCommonCss);
+					}
 				}//ic container check closed
 				//Create row css
 			
@@ -273,12 +280,11 @@ function amppb_post_content($content){
 			$content = $html;	
 		}
 	}
-
+	//do_shortcode($content);
 	return $content;
 }
 
 function rowData($container,$col,$moduleTemplate){
-	
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
@@ -286,10 +292,11 @@ function rowData($container,$col,$moduleTemplate){
 		//sort modules by index
 		$container = sortByIndex($container);
 		if(count($container)>0){
-			foreach($container as $contentArray){
-				
+			foreach($container as $contentKey=>$contentArray){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
+				
+				
 				
 				switch($moduleName){
 					case 'gallery_image':
@@ -458,7 +465,12 @@ function sortByIndex($contentArray){
 	$completeSortedArray = array();
 	if(count($contentArray)>0){
 		foreach ($contentArray as $key => $singleContent) {
-			$completeSortedArray[$singleContent['index']] = $singleContent;
+			if(!isset($completeSortedArray[$singleContent['index']])){
+				$completeSortedArray[$singleContent['index']] = $singleContent;
+			}else{
+				$completeSortedArray[] = $singleContent;
+			}
+			
 		}
 		ksort($completeSortedArray);
 		return $completeSortedArray;

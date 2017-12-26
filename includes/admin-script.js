@@ -184,7 +184,7 @@ jQuery(function($) {
             // Build select data
             let fontData  = redux_data.google_current_font_data;
             fontData = JSON.parse(fontData);
-            if ( fontData.variants ) {
+            if ( fontData.variants && $("#amp_font_type-select").length>0) {
                 $("#amp_font_type-select").select2("val", "");
                 //$('.select2-search-choice').remove();
                 $('#amp_font_type-select').html('<option></option>');

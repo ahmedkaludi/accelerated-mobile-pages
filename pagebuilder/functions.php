@@ -23,16 +23,16 @@ function amppbbase_admin_scripts( $hook_suffix ){
         $amp_current_post_id = $postId = get_the_ID();
             
 			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js' );
-			wp_enqueue_script( 'vuejs-resource', 'https://cdn.jsdelivr.net/npm/vue-resource@1.3.4' );
-			wp_enqueue_script( 'vue-toasted', 'https://unpkg.com/vue-toasted' );
+			wp_enqueue_script( 'vuejs-resource', 'https://cdn.jsdelivr.net/npm/vue-resource@1.3.4' );//For Http Clients
+			//wp_enqueue_script( 'vue-toasted', 'https://unpkg.com/vue-toasted' );
 			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
 			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
 			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
 			
-			wp_enqueue_script( 'amppb-amppbeditor-admin', AMP_PAGE_BUILDER_URL. 'inc/amppbeditor.js', array(),AMPFORWP_VERSION, true );
+			//wp_enqueue_script( 'amppb-amppbeditor-admin', AMP_PAGE_BUILDER_URL. 'inc/amppbeditor.js', array(),AMPFORWP_VERSION, true );
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
-						'amppb-amppbeditor-admin',
+						//'amppb-amppbeditor-admin',
 						'wp-color-picker',
 						'vuejs',
 						'vuejs-resource',

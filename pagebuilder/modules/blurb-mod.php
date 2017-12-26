@@ -8,15 +8,7 @@ $css = '
 	margin:{{margin_css}};
    	padding:{{padding_css}};
 }
-.blu-mod{
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
-    justify-content: space-between;
-    text-align:center;
-	padding:30px 50px;
-}
+
 .blu-mod .blurb-txt{
    font-size:30px;
    line-height:1.5;
@@ -35,6 +27,15 @@ $css = '
 	padding:10px;
 }
 ';
+$commonCss = '.blu-mod{
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 25%;
+    justify-content: space-between;
+    text-align:center;
+	padding:30px 50px;
+}';
 return array(
 		'label' =>'Blurb',
 		'name' =>'blurb-mod',
@@ -102,7 +103,7 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
-
+		'front_common_css'=>$commonCss,
 		'repeater'=>array(
           'tab'=>'customizer',
           'fields'=>array(
