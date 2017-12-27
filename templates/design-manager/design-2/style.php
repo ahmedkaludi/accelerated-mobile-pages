@@ -114,7 +114,7 @@ header{line-height: 0;}
 .amp-logo amp-img{ margin: 15px 0px 10px 0px; }
 .amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;}
 main { padding: 30px 15% 10px 15%; }
-.amp-wp-content.widget-wrapper{padding: 0px 15%;}
+.amp-wp-content.widget-wrapper{padding:12px 10px 10px 10px;}
 main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 .amp-loop-list, .featured-image-content, .the_content, .taxonomy-description{background: #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 2px 3px rgba(0,0,0,.05); -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.05); box-shadow: 0 2px 3px rgba(0,0,0,.05);}
 .home-post_image{ float: right; margin-left: 15px; margin-bottom: -6px; }

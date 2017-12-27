@@ -19,6 +19,9 @@ function ampforwp_additional_style_input_3( $amp_template ) {
   $header_background_color = $get_customizer->get_customizer_setting( 'header_background_color' );
   $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
   ?>
+/*  Widgets styling */
+.amp-wp-content.widget-wrapper { margin: 20px 17px 17px 17px;}
+
 
 /* Global Styling */
 body{ font: 16px/1.4 Sans-serif; }
