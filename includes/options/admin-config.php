@@ -1900,6 +1900,15 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 1,                        
                     ),
+                    // End-point option
+                     array(
+                        'id'       => 'amp-core-end-point',
+                        'type'     => 'switch',
+                        'title'    => __('End Point', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Changes default endpoint "amp" to "?amp=1"','accelerated-mobile-pages'),
+                        'default' => 0,
+
+                    ),
 
    ),
 

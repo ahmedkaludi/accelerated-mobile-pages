@@ -10,8 +10,16 @@ function amp_get_permalink( $post_id ) {
 	$structure = get_option( 'permalink_structure' );
 	if ( empty( $structure ) ) {
 		$amp_url = add_query_arg( AMP_QUERY_VAR, 1, get_permalink( $post_id ) );
+
 	} else {
-		$amp_url = trailingslashit( get_permalink( $post_id ) ) . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
+		global $redux_builder_amp;
+		if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+				$amp_url = trailingslashit( get_permalink( $post_id ) );
+				$amp_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $amp_url);
+			}
+		else{
+			$amp_url = trailingslashit( get_permalink( $post_id ) ) . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
+		}
 	}
 
 	return apply_filters( 'amp_get_permalink', $amp_url, $post_id );
