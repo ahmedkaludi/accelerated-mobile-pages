@@ -198,6 +198,14 @@ amp-sidebar {
 /**** 
 * Header
 *****/
+.header{
+    position:fixed;
+    z-index:9999;
+    top:0px;
+}
+.content-wrapper{
+    margin-top:60px;
+}
 .header, .header-2, .header-3{
     width:100%;
     display:inline-block;

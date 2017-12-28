@@ -1,5 +1,59 @@
 <?php global $redux_builder_amp ?>
 <?php amp_header_core() ?>
+<amp-animation id="shrinkAnim" layout="nodisplay">
+    <script type="application/json">
+      {
+        "duration": "500ms",
+          "fill": "both",
+            "iterations": "1",
+              "direction": "alternate",
+                "animations": [
+                  {
+                    "selector": "header",
+                    "keyframes": [
+                      { "transform": "translateY(-80px)" }
+                    ]
+                  },
+                  {
+                    "selector": "header h1", 
+                    "keyframes": [
+                      { "transform": "translateY(40px)" }
+                    ]
+                  }
+                ]
+      }
+    </script>
+  </amp-animation>
+  <amp-animation id="expandAnim" layout="nodisplay">
+    <script type="application/json">
+      {
+        "duration": "500ms",
+          "fill": "both",
+            "iterations": "1",
+              "direction": "alternate",
+                "animations": [
+                  {
+                    "selector": "header",
+                    "keyframes": [
+                      { "transform": "translateY(0)"}
+                    ]
+                  },
+                  {
+                    "selector": "header h1", 
+                    "keyframes": [
+                      { "transform": "translateY(0)" }
+                    ]
+                  }
+                ]
+      }
+    </script>
+  </amp-animation>
+  <div id="marker">
+      <amp-position-observer
+          on="enter:expandAnim.start; exit:shrinkAnim.start;"
+          layout="nodisplay">
+      </amp-position-observer>
+    </div>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
   <header class="header">
     <div class="cntr">
@@ -106,6 +160,7 @@
     </div>
 </header>
 <?php } ?>
+
 <?php if($redux_builder_amp['header-position-type'] == '1'){?>
 <?php amp_sidebar(['action'=>'start',
     'id'=>'sidebar',
