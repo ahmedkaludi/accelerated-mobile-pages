@@ -41,7 +41,7 @@ return array(
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'70px',	
+		 						'default'	=>'64px',	
 		           				'content_type'=>'css',
 	 						),
 	 					array(		

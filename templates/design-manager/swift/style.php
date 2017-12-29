@@ -2,48 +2,47 @@
 /**** 
 * AMP Framework Reset
 *****/
-<?php   if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] == 1 && empty($redux_builder_amp['amp_font_selector'])){
+<?php    if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){
 ?>
-/****
-* Google fonts
-*****/
 @font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    src:  local('Montserrat Regular'), local('Montserrat-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Regular.ttf');
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');
 }
 @font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    src:  local('Montserrat Medium'), local('Montserrat-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Medium.ttf');
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Regular.ttf');
 }
 @font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    src:  local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-SemiBold.ttf');
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Medium.ttf');
+} 
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-SemiBold.ttf'); 
 }
 @font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    src:  local('Montserrat Bold'), local('Montserrat-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Bold.ttf');
-}
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 900;
-    src:  local('Montserrat Black'), local('Montserrat-Black'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Montserrat-Black.ttf');
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); 
 }
 <?php } ?>
 body{ 
     <?php 
-    $fontFamily= "";
+    $fontFamily = "font-family: 'Poppins', sans-serif;";
     if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
         $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; } 
-    else { $fontFamily = "font-family: 'Montserrat';"; } ?>
+   
+echo $fontFamily;
+?>
  font-size: 16px; line-height:1.4; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }

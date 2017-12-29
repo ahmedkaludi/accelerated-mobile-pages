@@ -120,10 +120,10 @@ $containerCommonSettings = array(
 								'label'		=>'Set Margin',
 								'tab'		=>'customizer',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>'0px',
+													'right'=>'auto',
+													'bottom'=>'0px',
+													'left'=>'auto'
 													),
 								'content_type'=>'css',
 							),
@@ -133,13 +133,13 @@ $containerCommonSettings = array(
 								'label'		=>'Set Padding',
 								'tab'		=>'customizer',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'top'=>'0',
+													'right'=>'1%',
+													'bottom'=>'0',
+													'left'=>'1%'
 												),
 								'content_type'=>'css',
-								'output_format'=>"padding: %left%px %right%px %top%px %bottom%px"
+								'output_format'=>"padding: %left% %right% %top% %bottom%"
 							),
 
 							array(

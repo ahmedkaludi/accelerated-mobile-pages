@@ -25,7 +25,7 @@ amp-accordion section:not([expanded]) .show-less {
 }
 .accr-mod .acc-lbl{
     padding: 10px;
-    font-size: {{acc-size}};
+    font-size: {{acc_size}};
     color: {{acc_color_picker}};
     margin-bottom: 10px;
     font-weight:500;
@@ -98,10 +98,10 @@ return array(
 	 						),
 						array(		
 		 						'type'		=>'text',		
-		 						'name'		=>"acc-size",		
+		 						'name'		=>'acc_size',		
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'22px',	
+		 						'default'	=>'16px',	
 		           				'content_type'=>'css',
 	 						),
 						array(		

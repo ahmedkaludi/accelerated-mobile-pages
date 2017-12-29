@@ -49,7 +49,9 @@
     </script>
   </amp-animation>
   <div id="marker">
-      <amp-position-observer
+      <amp-position-observer    intersection-ratios="0.5"
+
+                         viewport-margins="100vh"
           on="enter:expandAnim.start; exit:shrinkAnim.start;"
           layout="nodisplay">
       </amp-position-observer>

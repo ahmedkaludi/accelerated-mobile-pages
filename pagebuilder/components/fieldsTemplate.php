@@ -97,19 +97,19 @@
         <p>
             <label class="form-label amppb-mar-padd">
                <span class="dashicons dashicons-arrow-up-alt ampforwp-up-arrow"></span>
-                <input type="number"  data-type="margin" data-pos="top" v-model="field.default.top">
+                <input type="text"  data-type="margin" data-pos="top" v-model="field.default.top">
             </label>
             <label class="form-label amppb-mar-padd">
                 <span class="dashicons dashicons-arrow-right-alt ampforwp-right-arrow"></span>
-                <input type="number"  data-type="margin" data-pos="right"  v-model="field.default.right">
+                <input type="text"  data-type="margin" data-pos="right"  v-model="field.default.right">
             </label>
              <label class="form-label amppb-mar-padd">
                 <span class="dashicons dashicons-arrow-down-alt ampforwp-down-arrow"></span>
-                <input type="number" data-type="margin" data-pos="bottom" v-model="field.default.bottom">
+                <input type="text" data-type="margin" data-pos="bottom" v-model="field.default.bottom">
             </label>
             <label class="form-label amppb-mar-padd">                 
                 <span class="dashicons dashicons-arrow-left-alt ampforwp-left-arrow"></span>
-                <input type="number"  data-type="margin" data-pos="left"  v-model="field.default.left">
+                <input type="text"  data-type="margin" data-pos="left"  v-model="field.default.left">
             </label>
             <div class="clearfix"></div>
         </p>
