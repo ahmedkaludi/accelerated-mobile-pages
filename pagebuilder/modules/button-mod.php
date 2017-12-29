@@ -1,6 +1,7 @@
 <?php 
 $output = '
 	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{content_title}}</a>
+<span>{{sub_heading}}</span> 
 ';
 $css = '
 .button-mod{
@@ -12,14 +13,19 @@ $css = '
 }
 .button-mod .btn-txt{
    font-size:{{text-size}};
-   line-height:1.5;
    color:{{font_color_picker}};
    background:{{bg_color_picker}};
    display: inline-block;
    padding: {{btn-hgt}} {{btn-wdt}};
-   font-weight: 500;
+   font-weight: {{font_weight}};
 }
-
+.button-mod span{
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-weight: 300;
+    margin-top: 10px;
+}
 ';
 return array(
 		'label' =>'Button',
@@ -53,8 +59,31 @@ return array(
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'26px',	
+		 						'default'	=>'20px',	
 		           				'content_type'=>'css',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"sub_heading",		
+		 						'label'		=>'Small Heading',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'No Credit card required',	
+		           				'content_type'=>'html', 
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'font_weight',		
+	 							'label' =>"Font Style",
+								'tab'     =>'design',
+	 							'default' =>'400',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
 	 						),
 	 					array(		
 	 							'type'	=>'select',		
@@ -71,7 +100,7 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn-hgt",		
-		 						'label'		=>'Button Height',
+		 						'label'		=>'Vertical Gap',
 		           				 'tab'     =>'design',
 		 						'default'	=>'10px',	
 		           				'content_type'=>'css',
@@ -79,9 +108,9 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn-wdt",		
-		 						'label'		=>'Button Width',
+		 						'label'		=>'Horizontal Gap',
 		           				 'tab'     =>'design',
-		 						'default'	=>'75px',	
+		 						'default'	=>'80px',	
 		           				'content_type'=>'css',
 	 						),	
 						array(
@@ -106,10 +135,10 @@ return array(
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'10px',
+													'bottom'=>'10px'
 													),
 								'content_type'=>'css',
 							),
@@ -119,10 +148,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
