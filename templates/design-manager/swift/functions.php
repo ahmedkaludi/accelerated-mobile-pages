@@ -39,14 +39,3 @@ add_amp_theme_support('AMP-post-pagination');
 // Icons example
 add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );
 
-
-add_filter( 'amp_post_template_data', 'ampforwp_framework_header_scripts' ,20);
-function ampforwp_framework_header_scripts( $data ) {
-	if ( empty( $data['amp_component_scripts']['amp-animation'] ) ) {
-		$data['amp_component_scripts']['amp-animation'] = 'https://cdn.ampproject.org/v0/amp-animation-0.1.js';
-	}
-	if ( empty( $data['amp_component_scripts']['amp-position-observer'] ) ) {
-		$data['amp_component_scripts']['amp-position-observer'] = 'https://cdn.ampproject.org/v0/amp-position-observer-0.1.js';
-	}
-	return $data;
-}

@@ -116,7 +116,7 @@ function amp_pagebuilder_content_styles(){
 						}
 					}
 					echo amppb_validateCss($rowCss);
-				}
+				}//Row Settings Css foreach closed
 
 				if(count($container)>0){
 					//Module specific styles
@@ -181,10 +181,73 @@ function amp_pagebuilder_content_styles(){
 						}
 						echo amppb_validateCss($completeCss);
 						
+						//For Repeater Fields
+						$repeaterFieldsCss = '';
+			            if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
+			              
+			              if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
+			                $repeaterUserContents = $contentArray['repeater'];
+			                foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+			 
+			                  $repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
+			                  //reset($repeaterUserValues);
+			                  $repeaterVarIndex = key($repeaterUserValues);
+			                  $repeaterVarIndex = explode('_', $repeaterVarIndex);
+			                  $repeaterVarIndex = end($repeaterVarIndex);
+			                  
+			                  foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+			                   
+			                    //LOAD Icon Css 
+			                    if($moduleField['type']=='icon-selector'){
+			                      add_amp_icon(array( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex]));
+			                    }
+			                    if($moduleField['content_type']=='css'){
+			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+				                    if(is_array($replace)){
+				                      if(count($replace)>0){
+				                        $replace = $replace[0];
+				                      }else{
+				                        $replace ='';
+				                      }
+				                    }
+			                      $repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater'];
+			                      if($modulefield['type']=='spacing'){
+			                        $replacespacing ="";
+			                        if(isset($replaceModule['top']) 
+			                          && isset($replaceModule['right'])
+			                          && isset($replaceModule['bottom'])
+			                          && isset($replaceModule['left'])
+			                        ){
+			                        $replacespacing = $replaceModule['top']." ".$replaceModule['right']." ".$replaceModule['bottom']." ".$replaceModule['left']." ";
+			                        }
+			                        $repeaterFrontCss = str_replace('{{'.$modulefield['name'].'}}', $replacespacing, $repeaterFrontCss);
+			                      }else{
+			                        $repeaterFrontCss = str_replace(
+			                              '{{'.$moduleField['name'].'}}', 
+			                               $replace, 
+			                              $repeaterFrontCss
+			                            );
+			                      }
+			 
+			                      
+			                    }
+			                  }
+			                  $repeaterFieldsCss .= $repeaterFrontCss;
+			                }
+			              }//If Check for Fall back
+			              
+			            }//If for Module is repeater or not
+			            echo $repeaterFieldsCss;
+
+
+
 					}//foreach content closed 
+
+					//For Comon CSS
 					if(count($moduleCommonCss)>0){
 						echo implode(" ", $moduleCommonCss);
 					}
+					
 				}//ic container check closed
 				//Create row css
 			

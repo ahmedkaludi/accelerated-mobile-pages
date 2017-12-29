@@ -1,6 +1,13 @@
 Vue.component('amp-pagebuilder-modal', {
   template: '#amp-pagebuilder-modal-template',
   props: ['dataContent'],
+  mounted: function(){
+  	document.body.addEventListener('keyup', e => {
+  		 if (e.keyCode === 27) {
+  		 	this.hidePageBuilderPopUp();
+  		 }
+  	});
+  },
   data: function(){
   	return {
   		currentLayoutData: app.mainContent,
@@ -103,6 +110,11 @@ Vue.component('amp-pagebuilder-module-modal', {
 		if(app.modalcontent.repeater){
 			this.repeaterAcoordian();
 		}
+		document.body.addEventListener('keyup', e => {
+			if (e.keyCode === 27) {
+				this.hideModulePopUp();
+			}
+	  	});
 	},
   methods:{
   	repeaterAcoordian: function(){
@@ -723,6 +735,7 @@ var app = new Vue({
 			var containerid = parseInt(this.mainContent.totalrows);
 			
 			var noOfCell = parseInt(columnData['value'].replace('col-',""));
+			var rowSettingJson = columnData['rowSettingJson'];
 			var newRow   = {
 							'id':containerid,
 							'index':containerid,
@@ -730,6 +743,11 @@ var app = new Vue({
 							'cell_data': [],
 							'data':{}
 							};
+			if(rowSettingJson.fields.length > 0){
+				rowSettingJson.fields.forEach(function(module,key){
+					newRow['data'][module.name] = module.default;
+				});
+			}
 			if(noOfCell==2){
 				newRow.cell_left = [];
 				newRow.cell_right = [];

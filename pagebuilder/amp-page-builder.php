@@ -278,12 +278,12 @@ function call_page_builder(){
 
 		<div class="modules-options">
          	<div class="amppb-actions" id="amppb-actions-container" data-containerid="<?php echo $totalRows; ?>">
-	        	<drag class="drag" :transfer-data="{type: 'column',value: 'col-1'}" :draggable="true" :effect-allowed="'copy'">
+	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
 				    <span slot="image">Col 1 dragged</span>
 				</drag>
-				<drag class="drag" :transfer-data="{type: 'column',value: 'col-2'}" :draggable="true" :effect-allowed="'copy'">
+				<drag class="drag" :transfer-data='{type: "column",value: "col-2", rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
 				    >2 Columns</span>
 				    <span slot="image">Col 2 dragged</span>
@@ -379,8 +379,8 @@ function create_posttype_amppb_layout(){
 	    /*'public' => true,
       	'has_archive' => false,*/
 	    'public' => false,  // it's not public, it shouldn't have it's own permalink, and so on
-		'publicly_queriable' => true,  // you should be able to query it
-		'show_ui' => true,  // you should be able to edit it in wp-admin
+		'publicly_queriable' => false,  // you should be able to query it
+		'show_ui' => false,  // you should be able to edit it in wp-admin
 		'exclude_from_search' => true,  // you should exclude it from search results
 		'show_in_nav_menus' => false,  // you shouldn't be able to add it to menus
 		'has_archive' => false,  // it shouldn't have archive page
