@@ -61,10 +61,10 @@ return array(
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'15px',
+													'bottom'=>'15px'
 													),
 								'content_type'=>'css',
 							),
@@ -74,10 +74,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0',
+													'right'=>'0',
+													'top'=>'0',
+													'bottom'=>'0'
 												),
 								'content_type'=>'css',
 							),

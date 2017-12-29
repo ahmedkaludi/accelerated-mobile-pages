@@ -12,8 +12,7 @@ $css = '
 }
 .heading .h-txt{
    font-size:{{text-size}};
-   line-height:1.5;
-   color:{{font_color_picker}};
+   color:{{font_color_picker}}; 
    font-weight:{{font_type}};
 }
 ';
@@ -41,10 +40,10 @@ return array(
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'64px',	
+		 						'default'	=>'54px',	
 		           				'content_type'=>'css',
 	 						),
-	 					array(		
+	 					array(
 	 							'type'	=>'select',		
 	 							'name'  =>"header_type",		
 	 							'label' =>"Heading Type",
@@ -78,7 +77,7 @@ return array(
 								'name'		=>"font_color_picker",
 								'label'		=>'Color',
 								'tab'		=>'design',
-								'default'	=>'#333',
+								'default'	=>'#26292c',
 								'content_type'=>'css'
 							),
 						array(		
@@ -86,10 +85,14 @@ return array(
 	 							'name'  =>'font_type',		
 	 							'label' =>"Font Style",
 								'tab'     =>'design',
-	 							'default' =>'normal',
+	 							'default' =>'500',
 	 							'options_details'=>array(
-	 												'normal'    =>'Normal',
-	 												'bold'  	=>'Bold',												),
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
 	 							'content_type'=>'css',
 	 						),
 						array(
@@ -98,10 +101,10 @@ return array(
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'25px',
+													'bottom'=>'25px'
 													),
 								'content_type'=>'css',
 							),
@@ -111,10 +114,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),

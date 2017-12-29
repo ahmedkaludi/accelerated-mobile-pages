@@ -43,7 +43,7 @@ body{
    
 echo $fontFamily;
 ?>
- font-size: 16px; line-height:1.4; }
+ font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
 a, a:active, a:visited{ color:#ed1c24; text-decoration: none }

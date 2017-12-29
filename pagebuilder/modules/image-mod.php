@@ -7,6 +7,7 @@ $css = '
 	text-align:{{align_type}};
    	margin:{{margin_css}};
     padding:{{padding_css}};
+    width:{{width}}
 }
 
 ';
@@ -28,12 +29,21 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
+                            array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"width",		
+		 						'label'		=>'Width',
+		           				 'tab'      =>'customizer',
+		 						'default'	=>'500px',	
+		           				'content_type'=>'css',
+	 						),
+
 				        array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
 								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'customizer',
-								'default'	=>array(),
+								'default'	=>array('responsive'),
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
@@ -61,10 +71,10 @@ return array(
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
+													'left'=>'auto',
+													'right'=>'auto',
+													'top'=>'15px',
+													'bottom'=>'15px'
 													),
 								'content_type'=>'css',
 							),
@@ -74,10 +84,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
