@@ -420,27 +420,33 @@ function rowData($container,$col,$moduleTemplate){
 															 $imageHeight, 
 															$moduleFrontHtml
 														);
+												$moduleFrontHtml = replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
 											}else{
 												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode( $replace), $moduleFrontHtml);
+												$moduleFrontHtml = replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
 											}
 										}else{
 											if(count($contentArray[$field['name']])>0){
 												foreach ($contentArray[$field['name']] as $key => $userValue) {
 													if(count($contentArray[$field['name']])==1){
 														$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
+														$moduleFrontHtml = replaceIfContentConditional($field['name'], $userValue, $moduleFrontHtml);
 													}else{
 														$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+														$moduleFrontHtml = replaceIfContentConditional($field['name'].$key, $userValue, $moduleFrontHtml);
 													}
 												}
 													
 											}else{
 												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+												$moduleFrontHtml = replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
 											}
 										}
 
 
 									}else{
 										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+										$moduleFrontHtml = replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
 									}
 								}//If Closed content type html
 								
@@ -493,12 +499,14 @@ function rowData($container,$col,$moduleTemplate){
 													 $imageHeight, 
 													$repeaterFrontTemplate
 												);
+										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 									}else{
 										$repeaterFrontTemplate = str_replace(
 													'{{'.$moduleField['name'].'}}', 
 													 $replace, 
 													$repeaterFrontTemplate
 												);
+										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
 									}
 
 									
@@ -585,4 +593,15 @@ function get_attachment_id( $url , $imagetype='full') {
 
 	}
 	return wp_get_attachment_image_src($attachment_id, $imagetype, false);
+}
+
+function replaceIfContentConditional($byReplace, $replaceWith, $string){
+	if(strpos($string,'{{if_'.$byReplace.'}}')!=false){
+		$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
+		if(trim($replaceWith)==""){
+			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
+		}
+		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
+	}
+	return $string;
 }

@@ -1,7 +1,7 @@
 <?php 
 $output = '
 	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{content_title}}</a>
-<span>{{sub_heading}}</span> 
+{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
 ';
 $css = '
 .button-mod{

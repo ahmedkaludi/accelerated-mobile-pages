@@ -257,7 +257,7 @@ function openModulePopup(event,type){
 					if(moduleData.cell_id==currentModuleId){
 						//app.modalcontent.repeater.showFields.forEach
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
-							if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
+							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								var userValues = moduleData[fieldData.name];
 								if('object' != typeof(moduleData[fieldData.name])){
 									userValues = decodeURI(userValues);
@@ -266,7 +266,7 @@ function openModulePopup(event,type){
 								Vue.set( fieldData, 
 										'default', 
 										userValues );
-							}
+							//}
 							
 
 							if(moduleData.repeater){
@@ -567,6 +567,14 @@ Vue.component('color-picker', {
         	var color = ui.color.toString();
         	componentPoint.colorfield.default = color;
         	
+	    },
+	    clear: function(event){
+	    	var element = jQuery(event.target).siblings('.wp-color-picker')[0];
+	        var color = '';
+
+	        if (element) {
+        		componentPoint.colorfield.default = color;
+	        }
 	    }
     });
     console.log(componentPoint.colorfield);
