@@ -91,7 +91,7 @@ function ampforwp_get_image() {
 			}
 		}else{
 			$image = wp_get_attachment_image( $_GET['id'], 'full', false, array( 'id' => 'ampforwp-preview-image' ) );
-			$image_src = get_attachment_id($_GET['id']);
+			$image_src = get_attachment_id($_GET['id'],'thumbnail');
 			$data = array(
 				'image'    => $image,
 				'detail'   => $image_src

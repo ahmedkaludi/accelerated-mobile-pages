@@ -17,6 +17,9 @@ global $savedlayoutTemplate;
         <div class="modal-mask">
           <div class="modal-wrapper">
             <div class="modal-container">
+                    <button  type="button" class="media-modal-close" @click="hidePageBuilderPopUp()">
+                        <span class="media-modal-icon"></span>
+                    </button>
                     <div class="modal-header">
                         <h3>Page Builder Settings</h3>
                     </div>

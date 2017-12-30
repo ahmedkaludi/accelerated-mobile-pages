@@ -130,17 +130,7 @@
         </p>
         <div class="clearfix"></div>
     </div>
-    <div :id="field.name" data-type="multiupload" v-else-if="field.type=='multiupload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-              <input type="button" class="button" value="Select image" id="" data-imageselactor="multiple" @click="selectimages(field,$event)">
-              <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
-            </label>
-             <img v-for="image in field.default" v-if="image!=''" :src="image" class="amppbimageuploadField"/>
-           
-        </p>
-        <div class="clearfix"></div>
-    </div>
+    
     
 
     <div :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">

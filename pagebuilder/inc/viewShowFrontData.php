@@ -549,7 +549,7 @@ function empty_content($str) {
     return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
 }
 
-function get_attachment_id( $url ) {
+function get_attachment_id( $url , $imagetype='full') {
 	if(filter_var($url, FILTER_VALIDATE_URL) === FALSE){
 		$attachment_id = $url;
 	}else{
@@ -584,5 +584,5 @@ function get_attachment_id( $url ) {
 		}
 
 	}
-	return wp_get_attachment_image_src($attachment_id,'full',false);
+	return wp_get_attachment_image_src($attachment_id, $imagetype, false);
 }

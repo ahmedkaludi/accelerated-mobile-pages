@@ -4,7 +4,9 @@
         <div class="modal-mask">
           <div class="modal-wrapper">
             <div class="modal-container">
-                
+                    <button type="button" class="media-modal-close" @click="hideModulePopUp()">
+                        <span class="media-modal-icon"></span>
+                    </button>
                     <div class="modal-header">
                         <h3>{{modalcontent.label}}</h3>
                     </div>

@@ -238,6 +238,7 @@ Vue.component('module-data',{
 });
 
 function openModulePopup(event,type){
+	app.showmoduleModal = true;
 	popupContent = event.currentTarget.getAttribute('data-popupContent'); 
 	app.modalType = type;
 	app.modalcontent = JSON.parse(popupContent);
@@ -312,7 +313,7 @@ function openModulePopup(event,type){
 		});
 	}
 	
-	app.showmoduleModal = true;
+	
 }
 Vue.component('text-editor',{
 	template: '#text-editor-template',
@@ -391,8 +392,8 @@ Vue.component('fields-data',{
                   var ids = gallery_ids.join(",");
                   
                   field.default = ids;
-
                   componentPointer.refresh_image(ids,currentSelectfield,"button");
+                  componentPointer.$forceUpdate();
                });
 			image_frame.on('open',function() {
 	            // On open, get the id from the hidden input
@@ -439,12 +440,6 @@ Vue.component('fields-data',{
 							 	});
 							 	Vue.set(field,'default',imageList);
 							}else{*/
-								/*console.log(currentSelectfield);
-								if(!currentSelectfield){
-									.find('img').attr('src',response.data.detail[0]);
-								}
-								*/
-								console.log(currentSelectfield);
 								if(type=='tag'){
 									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
 								}else{
@@ -452,16 +447,6 @@ Vue.component('fields-data',{
 									jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0]);
 								}
 								
-								//currentSelectfield.nextElementSibling.setAttribute('src',response.data.detail[0]);
-								//field.default = response.data.detail[0];
-								
-								/*app.modalcontent.fields.forEach(function(data,key){
-									if(data.name=='image_height'){
-										data.default = response.data.detail[2];
-									}else if(data.name=="image_width"){
-										data.default = response.data.detail[1];
-									}
-								})*/
 								
 							//}
 						 }
@@ -575,7 +560,6 @@ Vue.component('color-picker', {
    },
    mounted: function() {
    	var componentPoint = this;
-   	console.log(componentPoint.colorfield);
    	console.log(jQuery(this.$el).find('input'));
     jQuery(this.$el).parent('div').find('input').wpColorPicker({
     	change: function(event, ui) {
@@ -585,6 +569,7 @@ Vue.component('color-picker', {
         	
 	    }
     });
+    console.log(componentPoint.colorfield);
   },
   methods: {
   	
