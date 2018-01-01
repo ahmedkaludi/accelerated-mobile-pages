@@ -2,7 +2,7 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
-.blurb-mod{
+.pricing-mod{
 	margin:{{margin_css}};
    	padding:{{padding_css}};
 }

@@ -3,14 +3,13 @@ $output = '
 	<div class="ln-fx">{{repeater}}</div>';
 $css = '
 .feature-mod{
-
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
 }
 {{module-class}} .ln-fx{
 	width:100%;
 	display:flex; 
     flex-wrap:wrap;
-	margin:{{margin_css}};
-   	padding:{{padding_css}};
 }
 .feat-blk{ 
     margin: 0 3% 3% 0; 
@@ -97,7 +96,7 @@ return array(
 								'default'	=>array(
 													'left'=>'0px',
 													'right'=>'0px',
-													'top'=>'20px',
+													'top'=>'0px',
 													'bottom'=>'0px'
 												),
 								'content_type'=>'css',

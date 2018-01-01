@@ -15,7 +15,7 @@ $css = '
     -ms-flex: 1 0 100%;
     flex: 1 0 25%;
     justify-content: space-between;
-	margin:20px;
+	margin:{{margin_css}};
 }
 .list-mod .li-mod .ico-pic{
 	font-size:{{ico-size}};

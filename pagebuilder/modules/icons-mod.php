@@ -2,11 +2,13 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
+.icons-mod{
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
+}
 .ln-fx{
 	width:100%;
 	display:inline-flex;
-	margin:{{margin_css}};
-   	padding:{{padding_css}};
 }
 .ico-mod{
     display: flex;

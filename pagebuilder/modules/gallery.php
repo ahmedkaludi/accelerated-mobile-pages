@@ -6,9 +6,10 @@ $output =
 ';
 $commoncss = '';
 $css = '
-.amp-gallery-mod{
+.gal-mod{
 	text-align:{{align_type}};
     padding:{{padding_css}};
+    margin:{{margin_css}};
 }
 .amp_gallery_wrapper amp-img{
     width:{{width}};
@@ -18,7 +19,7 @@ $css = '
 ';
 return array(
 		'label' =>'Gallery',
-		'name' =>'gallery',
+		'name' =>'gal-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',

@@ -24,7 +24,7 @@ return array(
 						array(		
 		 						'type'		=>'upload',		
 		 						'name'		=>"img_upload",		
-		 						'label'		=>'Image Upload',
+		 						'label'		=>'Upload',
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
@@ -32,7 +32,7 @@ return array(
                             array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"width",		
-		 						'label'		=>'Width',
+		 						'label'		=>'Image Size',
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'500px',	
 		           				'content_type'=>'css',
