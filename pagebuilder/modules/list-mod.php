@@ -1,8 +1,7 @@
 <?php 
 $output = '
 <div class="li-mod">
-	<span class="ico-pic icon-{{icon-picker}}"></span>
-	<span class="li-txt">{{list_title}}</span>
+	{{repeater}}
 </div>
 
 ';
@@ -53,7 +52,7 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"ico-size",		
 		 						'label'		=>'Icon Size',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'container_css',
 		 						'default'	=>'23px',	
 		           				'content_type'=>'css',
 	 						),
@@ -61,23 +60,15 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"ico_color_picker",
 								'label'		=>'Icon Color',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
 						array(		
 		 						'type'		=>'text',		
-		 						'name'		=>"list_title",		
-		 						'label'		=>'Text',
-		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
-		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'container_css',
 		 						'default'	=>'22px',	
 		           				'content_type'=>'css',
 	 						),
@@ -85,7 +76,7 @@ return array(
 								'type'		=>'color-picker',
 								'name'		=>"text_color_picker",
 								'label'		=>'Color',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
@@ -93,7 +84,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>
                             array(
                                 'top'=>'20px',
@@ -107,7 +98,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>array(
 													'left'=>'0px',
 													'right'=>'0px',
@@ -121,6 +112,24 @@ return array(
 		'front_template'=> $output,
 		'front_css'=> $css,
 		'front_common_css'=>'',
+		'repeater'=>array(
+          'tab'=>'customizer',
+          'fields'=>array(
+		                array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"list_title",		
+		 						'label'		=>'List text',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Title',	
+		           				'content_type'=>'html',
+	 						),
+						
+                
+              ),
+          'front_template'=>
+        	'<span class="ico-pic icon-{{icon-picker}}"></span>
+				<span class="li-txt">{{list_title}}</span>'
+          ),
 	);
 
 ?>

@@ -36,8 +36,8 @@
     </div>
     
     <div :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}</label>
+        <p class="" style="position:relative;">
+            <label class="form-label" style="position: absolute;margin-top: 10px;">{{field.label}}</label>
             <!--  <textarea class="full textarea-editor" id="ed123" :name="field.name" v-model="field.default"></textarea>  -->
             <textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
             <?php //wp_editor( '', 'My_TextAreaID_22',     array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, 'textarea_rows'=>5)   ); ?>

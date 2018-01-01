@@ -366,6 +366,69 @@ function rowData($container,$col,$moduleTemplate){
 				$moduleFrontHtml = $moduleTemplate[$contentArray['type']]['front_template'];
 				$moduleName = $moduleTemplate[$contentArray['type']]['name'];
 				
+
+				$repeaterFields = '';
+				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
+					
+					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
+						$repeaterUserContents = $contentArray['repeater'];
+						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+
+							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
+							//reset($repeaterUserValues);
+							$repeaterVarIndex = key($repeaterUserValues);
+							$repeaterVarIndex = explode('_', $repeaterVarIndex);
+							$repeaterVarIndex = end($repeaterVarIndex);
+							
+							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+								if($moduleField['content_type']=='html'){
+									$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+									if(is_array($replace)){
+										if(count($replace)>0){
+											$replace = $replace[0];
+										}else{
+											$replace ='';
+										}
+									}
+									if($moduleField['type']=="upload"){
+										$imageDetails = get_attachment_id( $replace);
+										$imageUrl = $imageDetails[0];
+										$imageWidth = $imageDetails[1];
+										$imageHeight = $imageDetails[2];
+										$repeaterFrontTemplate = str_replace(
+													'{{'.$moduleField['name'].'}}', 
+													 $imageUrl, 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = str_replace(
+													'{{image_width}}', 
+													 $imageWidth, 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = str_replace(
+													'{{image_height}}', 
+													 $imageHeight, 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
+									}else{
+										$repeaterFrontTemplate = str_replace(
+													'{{'.$moduleField['name'].'}}', 
+													 $replace, 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
+									}
+
+									
+								}
+							}
+							$repeaterFields .= $repeaterFrontTemplate;
+						}
+					}//If Check for Fall back
+					
+				}//If for Module is repeater or not
+				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
 				
 				
 				switch($moduleName){
@@ -459,68 +522,7 @@ function rowData($container,$col,$moduleTemplate){
 					break;
 				}
 
-				$repeaterFields = '';
-				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
-					
-					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
-						$repeaterUserContents = $contentArray['repeater'];
-						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
-
-							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
-							//reset($repeaterUserValues);
-							$repeaterVarIndex = key($repeaterUserValues);
-							$repeaterVarIndex = explode('_', $repeaterVarIndex);
-							$repeaterVarIndex = end($repeaterVarIndex);
-							
-							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
-								if($moduleField['content_type']=='html'){
-									$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
-									if(is_array($replace)){
-										if(count($replace)>0){
-											$replace = $replace[0];
-										}else{
-											$replace ='';
-										}
-									}
-									if($moduleField['type']=="upload"){
-										$imageDetails = get_attachment_id( $replace);
-										$imageUrl = $imageDetails[0];
-										$imageWidth = $imageDetails[1];
-										$imageHeight = $imageDetails[2];
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $imageUrl, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													'{{image_width}}', 
-													 $imageWidth, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													'{{image_height}}', 
-													 $imageHeight, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
-									}else{
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $replace, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
-									}
-
-									
-								}
-							}
-							$repeaterFields .= $repeaterFrontTemplate;
-						}
-					}//If Check for Fall back
-					
-				}//If for Module is repeater or not
-				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
+				
 
 				$html .= "<div class='amp_mod amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
