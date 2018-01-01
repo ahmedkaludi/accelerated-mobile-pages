@@ -256,7 +256,7 @@ function openModulePopup(event,type){
 								if('object' != typeof(moduleData[fieldData.name])){
 									userValues = decodeURI(userValues);
 								}
-								
+
 								if(fieldData['type']=='color-picker'){
 									Vue.set( fieldData, 
 										'default_reset_val', 
@@ -563,9 +563,16 @@ Vue.component('color-picker', {
    },
    mounted: function() {
    	var componentPoint = this;
-   	console.log(jQuery(this.$el).find('input'));
-    jQuery(this.$el).parent('div').find('input').wpColorPicker({
-    	change: function(event, ui) {
+   	jQuery(this.$el).parent('div').find('input').wpColorPicker({
+    	// you can declare a default color here,
+	    // or in the data-default-color attribute on the input
+	    defaultColor: componentPoint.colorfield.default_reset_val,
+	    // hide the color picker controls on load
+	    hide: true,
+	    // show a group of common colors beneath the square
+	    // or, supply an array of colors to customize further
+	    palettes: true,
+		change: function(event, ui) {
 	        var element = event.target;
         	var color = ui.color.toString();
         	componentPoint.colorfield.default = color;
@@ -573,7 +580,6 @@ Vue.component('color-picker', {
 	    },
 	    clear: function(event){
 	    	componentPoint.colorfield.default = componentPoint.colorfield.default_reset_val;
-	    	this.default = componentPoint.colorfield.default;
 	    	/*var element = jQuery(event.target).siblings('.wp-color-picker')[0];
 	        var color = '';
 

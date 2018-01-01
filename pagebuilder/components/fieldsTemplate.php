@@ -393,7 +393,7 @@
     <div :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <label  class="form-label">{{field.label}}: 
             
-            <div style="line-height: 35px">
+            <div style="line-height: 35px" class="color-wrapper">
               <color-picker :colorfield="field"></color-picker>
             </div>
    
