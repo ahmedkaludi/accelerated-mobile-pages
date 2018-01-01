@@ -144,7 +144,7 @@ return array(
 		 						'name'		=>"content",		
 		 						'label'		=>'Content',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'Your Description',	
+		 						'default'	=>'We’ve built our activity-based selling methodology right into the software. You’ll always know which actions need your attention next, as you focus on the aspects of selling that are under your control.',	
 		           				'content_type'=>'html',
 	 					),
                 
@@ -152,7 +152,7 @@ return array(
           'front_template'=>
         '<div class="feat-blk">
       		<h3 class="t-txt">{{content_title}}</h3>
-			<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}}></amp-img>
+			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}}></amp-img>{{ifend_img_upload}}
 			{{content}}
       	</div> '
           ),

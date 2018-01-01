@@ -15,7 +15,7 @@ $css = '
 ';
 return array(
 		'label' =>'Heading',
-		'name' =>'h-mod',
+		'name' =>'heading',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',
@@ -123,5 +123,6 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'front_common_css'=>'',
 	);
 ?>

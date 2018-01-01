@@ -120,14 +120,16 @@
     
     
     <div :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
+        <p></p>
+            <label class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}
               <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
               <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
             </label>
-             <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag')" class="amppbimageuploadField"/>
-           
-        </p>
+            <div v-if="field.default!=''" style="position: relative;display: inline-block;">
+                 <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag')" class="amppbimageuploadField"/>
+                <span class="dashicons-before dashicons-no link" @click="removeSelectedImage(field)"></span>
+            </div>
+        <p></p>
         <div class="clearfix"></div>
     </div>
     

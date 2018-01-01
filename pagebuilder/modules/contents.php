@@ -1,5 +1,5 @@
 <?php		
-require_once  realpath(plugin_dir_path( __FILE__ ).'../../../../../').'/wp-includes/category.php';
+require_once  ABSPATH . WPINC . '/category.php';
  $output = '<div class="pb_mod cat_mod"><h4>{{content_title}}</h4>		
  			<div class="wrap">{{category_selection}}</div>		
  	</div>';		

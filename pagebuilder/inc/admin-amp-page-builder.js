@@ -452,6 +452,10 @@ Vue.component('fields-data',{
 					 });
 		       
 		},
+		removeSelectedImage: function(field){
+			field.default = '';
+            this.$forceUpdate();
+		},
 		iconSelected: function(icon, field){
 			this.field.default = icon.name;
 		},
