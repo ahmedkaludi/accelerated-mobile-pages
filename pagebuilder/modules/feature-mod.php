@@ -2,34 +2,37 @@
 $output = '
 	<div class="ln-fx">{{repeater}}</div>';
 $css = '
-.ln-fx{
+.feature-mod{
+
+}
+{{module-class}} .ln-fx{
 	width:100%;
-	display:inline-flex;
+	display:flex; 
+    flex-wrap:wrap;
 	margin:{{margin_css}};
    	padding:{{padding_css}};
 }
-.feat-blk{
-    display: flex;
-    flex-direction: column;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
+.feat-blk{ 
+    margin: 0 3% 3% 0; 
+    background: {{background_color_picker}}; 
+    width: 47%; 
     text-align: center;
+    padding: 40px; 
+    position: relative;
+    color: #26292c;
 }
 .feat-blk p{
-	padding-top:30px;
+    color: #333;
+    font-size: 18px;
+    padding-top:15px;
 }
 .feat-blk h3{
-   font-size:30px;
-   line-height:1.5;
+   font-size:28px;
    color:{{font_color_picker}};
-   margin:{{margin_css}};
-   padding:{{padding_css}};
-   font-weight:500;
-   padding-bottom:30px;
+   font-weight:400;
+   padding-bottom:15px;
 }
+.feat-blk amp-img{margin:0 auto;width:100%}
 
 ';
 return array(
@@ -43,6 +46,14 @@ return array(
             ),
 		'fields' => array(
 
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"background_color_picker",
+								'label'		=>'Background',
+								'tab'		=>'design',
+								'default'	=>'#f4f4f4',
+								'content_type'=>'css'
+							),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
@@ -69,12 +80,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -83,10 +95,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'20px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
@@ -118,10 +130,10 @@ return array(
 								'name'		=>"image_layout",
 								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'customizer',
-								'default'	=>array(),
+								'default'	=>array('layout="responsive"'), 
 								'options'	=>array(
 												array(
-													'label'=>'Enable',
+													'label'=>'Enable', 
 													'value'=>'layout="responsive"',
 												),
 											),

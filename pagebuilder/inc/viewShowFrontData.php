@@ -49,6 +49,7 @@ function amp_pagebuilder_content_styles(){
 .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 .amppb-fixed{width:1125px;}
 .amppb-fluid{width:100%;}
+.amppb-fluid .col{margin:0 auto;max-width:90%}
 .amppb-pages .cntr{max-width:100%;}
 .amppb-pages header .cntr{max-width: 1100px;}
 ';
@@ -161,7 +162,7 @@ function amp_pagebuilder_content_styles(){
 											&& isset($replaceModule['bottom'])
 											&& isset($replaceModule['left'])
 										){
-										$replacespacing = $replaceModule['top']."px ".$replaceModule['right']."px ".$replaceModule['bottom']."px ".$replaceModule['left']."px ";
+										$replacespacing = $replaceModule['top']." ".$replaceModule['right']." ".$replaceModule['bottom']." ".$replaceModule['left']." ";
 										}
 										$completeCss = str_replace('{{'.$modulefield['name'].'}}', $replacespacing, $completeCss);
 										
@@ -519,7 +520,7 @@ function rowData($container,$col,$moduleTemplate){
 				}//If for Module is repeater or not
 				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
 
-				$html .= "<div class='amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
+				$html .= "<div class='amp_mod amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
 					$html .= "<p class='col-wrapper'>".$contentArray['value']."</div>";

@@ -119,12 +119,13 @@ $containerCommonSettings = array(
 								'name'		=>"margin_css",
 								'label'		=>'Set Margin',
 								'tab'		=>'customizer',
-								'default'	=>array(
-													'top'=>'0px',
-													'right'=>'auto',
-													'bottom'=>'0px',
-													'left'=>'auto'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'auto',
+                                'bottom'=>'20px',
+                                'left'=>'auto',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -133,9 +134,9 @@ $containerCommonSettings = array(
 								'label'		=>'Set Padding',
 								'tab'		=>'customizer',
 								'default'	=>array(
-													'top'=>'0',
+													'top'=>'20px',
 													'right'=>'1%',
-													'bottom'=>'0',
+													'bottom'=>'20px',
 													'left'=>'1%'
 												),
 								'content_type'=>'css',
@@ -201,7 +202,7 @@ $containerCommonSettings = array(
 								'name'		=>"grid_type",
 								'label'		=>'Grid type',
 								'tab'		=>'customizer',
-								'default'	=>'amppb-fixed',
+								'default'	=>'amppb-fluid',
 								'options'	=>array(
 												array(
 													'label'=>'Fixed',
@@ -223,7 +224,7 @@ $containerCommonSettings = array(
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
-													'value'=>'box-shadow: 5px 10px #888888;',
+													'value'=>'box-shadow:-5px 2px 32px 0 rgba(61,69,74,.12);z-index: 100; position: relative;', 
 												),
 											),
 								'content_type'=>'css',

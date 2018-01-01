@@ -18,7 +18,7 @@
     					'.$conditioner.'="cell.type==\''.strtolower($module['name']).'\'
     					 &&
     					  cellcontainer==cell.cell_container"
-    					 class="amppb-module amppb-module-'.strtolower($module['name']).'"
+    					 class="amp_mod amppb-module amppb-module-'.strtolower($module['name']).'"
     					  data-tooltip="'.$module['name'].' Module"
                           :data-module_id="cell.cell_id"
 					>

@@ -3,14 +3,14 @@ $output = '
 	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
 ';
 $css = '
-.image-mod{
+{{module-class}}{
 	text-align:{{align_type}};
    	margin:{{margin_css}};
     padding:{{padding_css}};
     width:{{width}}
 }
-
 ';
+
 return array(
 		'label' =>'Image',
 		'name' =>'image-mod',
@@ -70,12 +70,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>'auto',
-													'right'=>'auto',
-													'top'=>'15px',
-													'bottom'=>'15px'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'auto',
+                                'bottom'=>'20px',
+                                'left'=>'auto',
+                            ),
 								'content_type'=>'css',
 							),
 							array(

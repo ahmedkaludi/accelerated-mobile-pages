@@ -2,41 +2,44 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
-.ln-fx{
-	width:100%;
-	display:inline-flex;
-	margin:{{margin_css}};
+.testimonial-mod{
+    margin:{{margin_css}};
    	padding:{{padding_css}};
 }
-.testimonial-mod{
-	background:#eee;
+{{module-class}} .ln-fx{
+	width:100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .testi-mod{
-    flex-direction: column;
-    -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
-    flex: 1 0 33%;
-    justify-content: space-between;
-    padding:10px;
+    margin: 0 3% 2% 0px;
+    width: 31.3%;
+    position: relative;
+    color: #26292c;
 }
 .testi-cont{
-	width:100%;
-	padding:30px;
-	font-size:20px;
-	line-height:1.5;
-	color:#000;
-	background:#fff;
-	position:relative;
+    width: 100%;
+    padding: 30px 30px 25px 30px;
+    font-size: 18px;
+    background: #f4f4f4;
+    position: relative;
+}
+{{module-class}} .testi-cont p{
+    margin-bottom:5px
 }
 .testi-cont:after{
 	content:"";
 	width: 0;
 	height: 0;
-	border-style: solid;
+	border-style: solid; 
 	border-width: 20px 20px 0 20px;
-	border-color: #ffffff transparent transparent transparent;
+	border-color: #f4f4f4 transparent transparent transparent;
 	bottom:-20px;
 	position:absolute;
+}
+.testi-mod:nth-child(3),.testi-mod:nth-child(6),.testi-mod:nth-child(9){
+    margin-right:0;
 }
 .auth-info{
 	width:100%;
@@ -46,16 +49,20 @@ $css = '
 }
 .auth-img{
 	float:left;
-	margin-right:20px;
+	margin-right:15px;
 }
 .auth-img amp-img{
 	border-radius:50%;
+    max-width:50px;
+    max-height:50px;
 }
 .auth-cntn{
-	float:left;
-	font-size:16px;
-	color:#888e94;
-	font-weight:500;
+    float: left;
+    font-size: 13px;
+    color: #888e94;
+    line-height: 1.8;
+    font-weight: 500;
+    margin-top: 2px;
 }
 .auth-cntn h5{
 	font-weight:500;
@@ -88,10 +95,10 @@ return array(
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>10,
-													'bottom'=>10
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'10px',
+													'bottom'=>'10px'
 													),
 								'content_type'=>'css',
 							),
@@ -101,10 +108,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),

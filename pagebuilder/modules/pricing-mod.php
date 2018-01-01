@@ -2,49 +2,51 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
-.ln-fx{
-	width:100%;
-	display:inline-flex;
+.blurb-mod{
 	margin:{{margin_css}};
    	padding:{{padding_css}};
 }
+{{module-class}} .ln-fx{
+	width:100%;
+	display:inline-flex; 
+    display: flex;
+    flex-wrap: wrap;
+} 
 .pri-mod{
 	display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
     flex: 1 0 25%;
-    justify-content: space-between;
     text-align:center;
-    background:#eee;
+    background:#f4f4f4;
 	margin:20px;
 	position:relative;
 	padding:30px 50px;
 }
 .pri-mod .pri-tlt{
-	font-size: 26px;
-    line-height: 1.5;
+	font-size: 20px;
     font-weight: 400;
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
 .pri-mod span{
 	display:block;
-	margin-bottom: 30px;
 }
 .pri-lbl{
 	font-size: 45px;
     font-weight: 500;
 }
 .pri-desc{
-	font-size:16px;
-	color:#333;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
 }
 .pri-mod .btn-txt{
 	background:{{btn_bg_color}};
     color: {{font_color_picker}};
-    padding: 10px 20px;
-    display: inline-block;
-    font-size: {{text-size}};
+    padding: 10px 30px;
+    display: block;
+    margin: 24px auto 0 auto;
 }
 .pri-recom{
     font-size: 12px;
@@ -73,10 +75,9 @@ $css = '
     left: -47%;
 }
 .pri-cnt{
-	font-size:{{text-size}};
-	line-height:1.5;
-	color:#333;
-	margin-top:20px;
+    color: #444;
+    margin-top: 25px;
+    font-size: 14px;
 }
 .pricing-mod .pri-cnt p{
 	margin-bottom:10px;
@@ -114,12 +115,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -128,10 +130,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
@@ -176,28 +178,13 @@ return array(
 	 						),
 	 					array(		
 		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'20px',	
-		           				'content_type'=>'css',
-	 						),
-	 					array(		
-		 						'type'		=>'text',		
 		 						'name'		=>"btn_link",		
 		 						'label'		=>'Link (Make sure its will link Or #)',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
 	 						),
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Content Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'20px',	
-		           				'content_type'=>'css',
-	 						),
+
 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"text_desc",		

@@ -7,10 +7,7 @@ $output = '
 
 ';
 $css = '
-.row-setting-27 .col.col-1{
-	display:inline-flex;
-	width:100%;
-}
+
 .list-mod{
     display: flex;
     flex-direction: column;
@@ -18,8 +15,6 @@ $css = '
     -ms-flex: 1 0 100%;
     flex: 1 0 25%;
     justify-content: space-between;
-    background:#eee;
-	padding:30px 50px;
 	margin:20px;
 }
 .list-mod .li-mod .ico-pic{
@@ -99,12 +94,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'customizer',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>10,
-													'bottom'=>10
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -113,10 +109,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'customizer',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),

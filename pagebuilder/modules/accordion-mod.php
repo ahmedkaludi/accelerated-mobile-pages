@@ -10,31 +10,46 @@ function ampforwp_framework_pagebuilder_accordions_scripts( $data ) {
 		return $data;
 }
 $output = 
-'<div class="accr-mod">
-	<amp-accordion>{{repeater}}
-	</amp-accordion>
-</div>
-';
+'<amp-accordion>{{repeater}}</amp-accordion>';
 $css = '
-
+.accordion-mod{
+	margin:{{margin_css}};
+   	padding:{{padding_css}};
+}
 amp-accordion section[expanded] .show-more {
   display: none;
 }
 amp-accordion section:not([expanded]) .show-less {
   display: none;
 }
-.accr-mod .acc-lbl{
-    padding: 10px;
-    font-size: {{acc_size}};
-    color: {{acc_color_picker}};
-    margin-bottom: 10px;
-    font-weight:500;
+.accordion-mod h5:before{
+    content: "+";
+    font-size: 24px;
+    color: #999;
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
 }
-.accr-mod amp-accordion .acc-desc{
+.accordion-mod section[expanded] h5:before{
+    content:"-"
+}
+.accordion-mod .acc-lbl{
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 20px 0 20px 0;
+    color: {{acc_color_picker}};
+    font-size: 22px;
+    line-height: 1.5em;
+    font-weight: normal;    
+}
+.accordion-mod .acc-desc{
 	margin-bottom:0;
-	padding:0px 10px 5px 20px;
-	font-size:{{text-size}};
-	color:#666;
+    margin:-10px 0px 20px 23px;
+    padding: 0;
+    color:#666;
+    font-size: 14px;
+    line-height: 1.5em;
 }
 ';
 return array(
@@ -52,7 +67,7 @@ return array(
 								'name'		=>"acc_color_picker",
 								'label'		=>'Color',
 								'tab'		=>'design',
-								'default'	=>'#333',
+								'default'	=>'#555555',
 								'content_type'=>'css'
 							),
 						array(
@@ -60,12 +75,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>'0px',
-													'right'=>'0px',
-													'top'=>'15px',
-													'bottom'=>'15px'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(

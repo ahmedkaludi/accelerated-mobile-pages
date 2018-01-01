@@ -5,11 +5,19 @@ require_once  realpath(plugin_dir_path( __FILE__ ).'../../../../../').'/wp-inclu
  	</div>';		
  
 
- $frontCss = '.cat_mod_l{float:left;margin-right: 10px;}
- .cat_mod ul{padding:0;list-style-type:none}
- .cat_mod li {display:inline-block;width:100%;margin-bottom:15px;}
- .cat_mod li amp-img{ max-width:100px; width:100px;}
- .cat_mod p{margin-bottom: 0;font-size: 14px;line-height: 1.5;}';
+ $frontCss = '
+.cat_mod ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+    list-style-type:none;
+ }
+.cat_mod ul li {
+    margin: 15px 15px 25px 15px;
+    -ms-flex-preferred-size: calc(33.333% - 20px);
+    flex-basis: calc(33.33% - 30px);
+}
+';
 
  $categories = get_categories( array(		
                    'orderby' => 'name',		

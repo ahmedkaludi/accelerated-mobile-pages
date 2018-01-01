@@ -203,8 +203,11 @@ amp-sidebar {
     top:0px;
 }
 .content-wrapper{
-    margin-top:60px;
+<?php if($redux_builder_amp['swift-height-control']){?>
+margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
+<?php } ?>
 }
+
 .header, .header-2, .header-3{
     width:100%;
     display:inline-block;
@@ -710,7 +713,7 @@ display: none;
  .fsp h2 a{
     color:#191919;
 }
-.fbp-cnt h2:hover a, .fsp-cnt h2:hover a{
+.fbp:hover h2 a, .fsp:hover h2 a{
     color:#005be2;
 }
 .fbp-cnt p, .fsp-cnt p{

@@ -134,12 +134,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>'0px',
-													'right'=>'0px',
-													'top'=>'10px',
-													'bottom'=>'10px'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(

@@ -1,16 +1,13 @@
 <?php 
-$output = '
-	<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>
-
-';
+$output = '<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>';
 $css = '
-.heading{
+{{module-class}}{
    width:100%;
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-.heading .h-txt{
+{{module-class}} .h-txt{
    font-size:{{text-size}};
    color:{{font_color_picker}}; 
    font-weight:{{font_type}};
@@ -100,24 +97,25 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>'0px',
-													'right'=>'0px',
-													'top'=>'25px',
-													'bottom'=>'25px'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'advanced',
+								'tab'		=>'advanced', 
 								'default'	=>array(
 													'left'=>'0px',
 													'right'=>'0px',
-													'top'=>'0px',
-													'bottom'=>'0px'
+													'top'=>'25px',
+													'bottom'=>'25px'
 												),
 								'content_type'=>'css',
 							),
@@ -126,5 +124,4 @@ return array(
 		'front_template'=> $output,
 		'front_css'=> $css,
 	);
-
 ?>

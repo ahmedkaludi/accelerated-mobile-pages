@@ -6,12 +6,16 @@ $output =
 ';
 $commoncss = '';
 $css = '
-{{module-class}}.image-mod{
+.amp-gallery-mod{
 	text-align:{{align_type}};
-   	margin:{{margin_css}};
     padding:{{padding_css}};
-    width:{{width}}
-}';
+}
+.amp_gallery_wrapper amp-img{
+    width:{{width}};
+    margin:0 10px;
+    display:inline-flex;
+}
+';
 return array(
 		'label' =>'Gallery',
 		'name' =>'gallery',
@@ -47,12 +51,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>'auto',
-													'right'=>'auto',
-													'top'=>'15px',
-													'bottom'=>'15px'
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'auto',
+                                'bottom'=>'20px',
+                                'left'=>'auto',
+                            ),
 								'content_type'=>'css',
 							),
 							array(

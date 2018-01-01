@@ -19,12 +19,12 @@ $css = '
     text-align: center;
 }
 .ico-mod .ico-pic{
-	font-size:{{ico-size}};
+	font-size:40px;
 	display:inline-block;
 	color:{{ico_color_picker}};
 	background: {{bg_color_picker}};
 	border-radius:{{border-size}};
-	padding: 25px;
+	padding: 20px;
 
 }
 ';
@@ -51,7 +51,7 @@ return array(
 								'name'		=>"ico_color_picker",
 								'label'		=>'Icon Color',
 								'tab'		=>'design',
-								'default'	=>'#333',
+								'default'	=>'#ffffff',
 								'content_type'=>'css'
 							),
 						array(
@@ -67,12 +67,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -81,10 +82,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
@@ -102,14 +103,6 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Title',	
 		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"ico-size",		
-		 						'label'		=>'Icon Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'30px',	
-		           				'content_type'=>'css',
 	 						),
                 
               ),

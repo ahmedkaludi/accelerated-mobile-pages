@@ -1,41 +1,47 @@
 <?php 
-$output = '
-<div class="ln-fx">{{repeater}}</div>';
-$css = '
-.ln-fx{
+$output = '<div class="ln-fx">{{repeater}}</div>';
+$css = '.blu-mod{
+    margin: 0 3% 3% 0;
+    width: 31%;
+    text-align: center;
+    padding: 50px 30px;
+    position: relative;
+    color: #26292c;
+    background: #f4f4f4;
+}
+.blu-mod:nth-child(3){
+    margin-right:0;
+}
+{{module-class}} .ln-fx{
 	width:100%;
-	display:inline-flex;
+	display:flex; 
+    flex-wrap:wrap;
 	margin:{{margin_css}};
    	padding:{{padding_css}};
 }
 
 .blu-mod .blurb-txt{
-   font-size:30px;
-   line-height:1.5;
-   font-weight:500;
-   color:{{font_color_picker}};
+    font-size: 26px;
+    font-weight: 500;
+    color:{{font_color_picker}};
 }
 .blu-mod .ico-pic{
-	font-size:{{ico-size}};
+	font-size:35px;
 	color:{{ic_color_picker}};
 	margin-bottom:30px;
 	display:inline-block;
-}
-.blu-mod .ico-pic{
 	background:{{bg_color_picker}};
 	border-radius:50%;
-	padding:10px;
+	padding:15px;
+}
+{{module-class}} .blu-mod p{
+    margin: 15px 0px 0px 0px;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
 }
 ';
-$commonCss = '.blu-mod{
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
-    justify-content: space-between;
-    text-align:center;
-	padding:30px 50px;
-}';
+//$commonCss = '';
 return array(
 		'label' =>'Blurb',
 		'name' =>'blurb-mod',
@@ -46,7 +52,7 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
-						
+						 
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"ic_color_picker",
@@ -60,7 +66,7 @@ return array(
 								'name'		=>"bg_color_picker",
 								'label'		=>'Icon Background color',
 								'tab'		=>'design',
-								'default'	=>'#333',
+								'default'	=>'#43c45d',
 								'content_type'=>'css',
 							),
 
@@ -69,7 +75,7 @@ return array(
 								'name'		=>"font_color_picker",
 								'label'		=>'Color',
 								'tab'		=>'design',
-								'default'	=>'#333',
+								'default'	=>'#222222',
 								'content_type'=>'css'
 							),
 						
@@ -78,12 +84,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -92,20 +99,20 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
 
 			),
+//		'front_common_css'=>$commonCss,
 		'front_template'=> $output,
 		'front_css'=> $css,
-		'front_common_css'=>$commonCss,
 		'repeater'=>array(
-          'tab'=>'customizer',
+          'tab'=>'customizer', 
           'fields'=>array(
 		               array(		
 		 						'type'		=>'icon-selector',		
@@ -145,7 +152,7 @@ return array(
         '<div class="blu-mod">
 			<span class="ico-pic icon-{{icon-picker}}"></span>
 			<h3 class="blurb-txt">{{content_title}}</h3>
-			{{content}}
+			<p>{{content}}</p>
 		</div> '
           ),
 	);

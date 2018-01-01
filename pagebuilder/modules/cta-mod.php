@@ -10,24 +10,23 @@ $output = '
 ';
 $css = '
 .cta-mod{
+   margin:{{margin_css}};
+    padding:{{padding_css}};
     display: inline-flex;
     width: 100%;
-    padding: 4% 5% 1%;
     align-items: center;
 }
 .cta-mod .cta-btn{
 	width: 55%;
     text-align: right;
 }
-.cta-mod .cta-tlt h2{
+.cta-mod h2{
    font-size:{{text-size}};
    line-height:1.5;
    font-weight:normal;
    color:{{font_color_picker}};
-   margin:{{margin_css}};
-   padding:{{padding_css}};
 }
-.cta-mod .cta-btn .btn-txt{
+.cta-mod .btn-txt{
 	display: inline-block;
     color: #000;
     padding: 10px 20px;
@@ -35,11 +34,11 @@ $css = '
     border: 3px solid #333;
     font-weight: 500;
 }
-.cta-mod .cta-btn .txt{
-	display: block;
+.cta-mod .txt{
+    display: block;
     color: #888e94;
     font-size: 16px;
-    margin-top: 31px;
+    margin-top: 20px;
 }
 
 ';
@@ -108,12 +107,13 @@ return array(
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
 								'tab'		=>'advanced',
-								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>15,
-													'bottom'=>15
-													),
+								'default'	=>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -122,10 +122,10 @@ return array(
 								'label'		=>'Padding',
 								'tab'		=>'advanced',
 								'default'	=>array(
-													'left'=>0,
-													'right'=>0,
-													'top'=>0,
-													'bottom'=>0
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'0px',
+													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
 							),
