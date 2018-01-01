@@ -26,9 +26,9 @@ return array(
             ),
 		'fields' => array(
 						array(		
-		 						'type'		=>'text',		
+		 						'type'		=>'text-editor',		
 		 						'name'		=>"content_title",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Content',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'The leading sales management tool..',	
 		           				'content_type'=>'html',
@@ -93,6 +93,7 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'front_common_css'=>'',
 	);
 
 ?>

@@ -89,9 +89,7 @@ function amp_pagebuilder_content_styles(){
 										isset($replaceRow['bottom'])&&
 										isset($replaceRow['left'])
 									){
-										$replaceSpacing = $replaceRow['top']." ".$replaceRow['right']."
-                                        ".$replaceRow['bottom']."
-                                        ".$replaceRow['left']." ";
+										$replaceSpacing = $replaceRow['top']." ".$replaceRow['right']." ".$replaceRow['bottom']." ".$replaceRow['left']." ";
 									}
 									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceSpacing, $rowCss);
 
@@ -189,7 +187,11 @@ function amp_pagebuilder_content_styles(){
 			              if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
 			                $repeaterUserContents = $contentArray['repeater'];
 			                foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
-			 
+			 					
+			 					//Check if there is no front css
+			 					if(!isset($moduleTemplate[$contentArray['type']]['repeater']['front_css'])){
+			 						continue;
+			 					}
 			                  $repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 			                  //reset($repeaterUserValues);
 			                  $repeaterVarIndex = key($repeaterUserValues);
@@ -211,7 +213,7 @@ function amp_pagebuilder_content_styles(){
 				                        $replace ='';
 				                      }
 				                    }
-			                      $repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater'];
+
 			                      if($modulefield['type']=='spacing'){
 			                        $replacespacing ="";
 			                        if(isset($replaceModule['top']) 

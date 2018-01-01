@@ -28,4 +28,5 @@ return array(
 					),
 		'front_template'=> $output,
 		'front_css'=>'',	
+		'front_common_css'=>'',
 );

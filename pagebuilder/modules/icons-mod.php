@@ -95,6 +95,7 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'front_common_css'=>'',
 		'repeater'=>array(
           'tab'=>'customizer',
           'fields'=>array(
@@ -103,7 +104,7 @@ return array(
 		 						'name'		=>"icon-picker",		
 		 						'label'		=>'Icons',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'check_circle',	
 		           				'content_type'=>'html',
 	 						),
                 

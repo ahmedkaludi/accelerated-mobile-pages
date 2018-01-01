@@ -101,6 +101,7 @@ return array(
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
+		'front_common_css'=>'',
 		'repeater'=>array(
           'tab'=>'customizer',
           'fields'=>array(

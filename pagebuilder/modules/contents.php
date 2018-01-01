@@ -79,7 +79,8 @@ require_once  realpath(plugin_dir_path( __FILE__ ).'../../../../../').'/wp-inclu
  						),
  					),		
  		'front_template'=> $output,
-    'front_css'=>$frontCss,	
+    'front_css'=>$frontCss,
+    'front_common_css'=>'',	
  );		
  function contentHtml($the_query,$fieldValues){		
  	$contenthtml = '';		
