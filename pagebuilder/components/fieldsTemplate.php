@@ -91,7 +91,7 @@
         <div class="clearfix"></div>
     </div>
   
-    <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clear: both;">
+    <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix">
         <label class="amppb-mar-padd">{{field.label}}:</label>
         <div class="clearfix"></div>
         <p>

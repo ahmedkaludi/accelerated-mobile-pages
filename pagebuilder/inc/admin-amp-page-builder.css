@@ -1012,28 +1012,28 @@ Layout css
 .ampforwp-left-arrow:before{
     content: "\f340";
     background: #ccc;
-    padding: 5px 1px 3px 2px;
+    padding: 5px 3px 5px 2px;
     position: relative;
     top: 6px;
 }
 .ampforwp-right-arrow:before{
     content: "\f344";
     background: #ccc;
-    padding: 5px 1px 3px 2px;
+    padding: 5px 3px 5px 2px;
     position: relative;
     top: 6px;
 }
 .ampforwp-down-arrow:before{
     content: "\f346";
     background: #ccc;
-    padding: 5px 1px 3px 2px;
+    padding: 5px 3px 5px 2px;
     position: relative;
     top: 6px;
 }
 .ampforwp-up-arrow:before{
     content: "\f342";
     background: #ccc;
-    padding: 5px 2px 3px 2px;
+    padding: 5px 3px 5px 2px;
     position: relative;
     top: 6px;
 }
@@ -1045,7 +1045,9 @@ Layout css
 
 
 
-
+.clearfix{
+    clear:both;
+}
 
 /**** Font-Icons ****/
 @font-face {

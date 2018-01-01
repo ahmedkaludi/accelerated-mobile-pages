@@ -69,20 +69,14 @@ Vue.component('amp-pagebuilder-modal', {
 		//jQuery(event.target).
 		var filename  = event.target.name;
 		var files = event.target.files;
+		// console.log(files);
 		var fileCount = event.target.files.length;
 		if(fileCount>0){
 			var rawFile = files[0];
-			rawFile.onreadystatechange = function()
-		    {
-		        if(rawFile.readyState === 4)
-		        {
-		            if(rawFile.status === 200 || rawFile.status == 0)
-		            {
-		              var allText = rawFile.responseText;
-		              alert(allText);
-		            }
-		        }
-		    }
+
+			var fr = new FileReader();
+			fr.readAsText(rawFile);
+			
 		}//if closed
 		
 	
