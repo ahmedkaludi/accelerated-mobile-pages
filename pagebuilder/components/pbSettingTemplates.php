@@ -104,10 +104,11 @@ global $savedlayoutTemplate;
                                     <div class="fileupload">
                                         <label class="">
                                             Select Layout File
-                                            <input type="file" accept=".json" @change="">
+                                            <input type="file" accept=".json" @change="layoutFileSelected($event)">
                                         </label>
                                     </div>
-                                    <button type="button" class="button" @click="layoutFileSelected($event)">
+                                    <br/>
+                                    <button type="button" class="button" v-if="importLayoutfromFile.length>0" @click="replacelayoutFromSelectedFile()">
                                         import
                                     </button>
                                 </div>

@@ -17,6 +17,7 @@ Vue.component('amp-pagebuilder-modal', {
   					url:''
   					},
   		showsavedLayouts :amppb_panel_options.savedLayouts,
+  		importLayoutfromFile: '',
   	}
   },
   methods:{
@@ -67,6 +68,7 @@ Vue.component('amp-pagebuilder-modal', {
 	},
 	layoutFileSelected: function(event){
 		//jQuery(event.target).
+		var currentComponent = this;
 		var filename  = event.target.name;
 		var files = event.target.files;
 		// console.log(files);
@@ -74,12 +76,25 @@ Vue.component('amp-pagebuilder-modal', {
 		if(fileCount>0){
 			var rawFile = files[0];
 
-			var fr = new FileReader();
-			fr.readAsText(rawFile);
+			var reader = new FileReader();
+			reader.readAsText(rawFile, "UTF-8");
+			 	reader.onload = function (evt) {
+		        currentComponent.importLayoutfromFile = evt.target.result;
+		        
+		    }
+		    reader.onerror = function (evt) {
+		        alert("error reading file");
+		    }
 			
 		}//if closed
-		
-	
+	},
+	replacelayoutFromSelectedFile :function(){
+		var response = confirm("Replace current layout. \n Do you want to import new layout?");
+		if(response){
+			app.mainContent = JSON.parse(this.importLayoutfromFile);
+			app.call_default_functions();
+		}
+		this.hidePageBuilderPopUp();
 	},
 	importLayout: function(event){
 		var response = confirm("Replace current layout. \n Do you want to import new layout?");
