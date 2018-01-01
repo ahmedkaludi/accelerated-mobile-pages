@@ -257,6 +257,11 @@ function openModulePopup(event,type){
 									userValues = decodeURI(userValues);
 								}
 								
+								if(fieldData['type']=='color-picker'){
+									Vue.set( fieldData, 
+										'default_reset_val', 
+										fieldData['default'] );
+								}
 								Vue.set( fieldData, 
 										'default', 
 										userValues );
@@ -270,10 +275,10 @@ function openModulePopup(event,type){
 									var allRepeaterFileds = JSON.parse(JSON.stringify(app.modalcontent.repeater.fields));
 									allRepeaterFileds.forEach(function(newFields,newKey){
 										newFields.name = newFields.name+'_'+savedkey;
-										if(savedREPValue[newFields.name]){
+										//if(savedREPValue[newFields.name]){
 											//console.log(savedREPValue[newFields.name],newFields.name)
 											newFields.default = savedREPValue[newFields.name];
-										}
+										//}
 									})
 									app.modalcontent.repeater.showFields.push(Vue.util.extend([], allRepeaterFileds));
 								});
@@ -567,12 +572,14 @@ Vue.component('color-picker', {
         	
 	    },
 	    clear: function(event){
-	    	var element = jQuery(event.target).siblings('.wp-color-picker')[0];
+	    	componentPoint.colorfield.default = componentPoint.colorfield.default_reset_val;
+	    	this.default = componentPoint.colorfield.default;
+	    	/*var element = jQuery(event.target).siblings('.wp-color-picker')[0];
 	        var color = '';
 
 	        if (element) {
         		componentPoint.colorfield.default = color;
-	        }
+	        }*/
 	    }
     });
     console.log(componentPoint.colorfield);

@@ -140,22 +140,7 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
-	 					array(
-				               'type'  =>'text',
-				              'name'=>"image_height",
-				              'label'=>"Image height",
-				              'tab'  => "customizer",
-				              'default'=>'50',
-				              'content_type'=>'html',
-				              ),
-				        array(
-				               'type'  =>'text',
-				              'name'=>"image_width",
-				              'label'=>"Image width",
-				              'tab'  => "customizer",
-				              'default'=>'50',
-				              'content_type'=>'html',
-				              ),
+	 					
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
@@ -181,7 +166,7 @@ return array(
 			</div>
 			<div class="auth-info">
 				<div class="auth-img">
-					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}"></amp-img>
+					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"></amp-img>{{ifend_img_upload}}
 				</div>
 				<div class="auth-cntn">
 					<h5>{{content_title}}</h5>

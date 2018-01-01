@@ -194,12 +194,20 @@ return array(
 		 						'default'	=>'Content',	
 		           				'content_type'=>'html',
 	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"recommended_text",		
+		 						'label'		=>'Recommended Text',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'TIMESAVER',	
+		           				'content_type'=>'html',
+	 						),
                 
               ),
           'front_template'=>
           '<div class="pri-mod">
 				<h4 class="pri-tlt">{{content_title}}</h4>
-				<span class="pri-recom">TIMESAVER</span>
+				{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
 				<span class="pri-lbl">{{price_label}}</span>
 				<span class="pri-desc">{{price_desc}}</span>
 				<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
