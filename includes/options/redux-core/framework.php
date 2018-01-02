@@ -55,8 +55,8 @@
         // ThemeCheck checks
         require_once dirname( __FILE__ ) . '/inc/themecheck/class.redux_themecheck.php';
 
-        // Welcome
-        require_once dirname( __FILE__ ) . '/inc/welcome/welcome.php';
+        // Welcome page removed #1526
+//        require_once dirname( __FILE__ ) . '/inc/welcome/welcome.php';
 
         /**
          * Main ReduxFramework class
