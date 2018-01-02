@@ -1038,8 +1038,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				 $content = preg_replace('/<ul(.*?)\btype=".*?"(.*?)/','<ul $1',$content);
 				
 				 // Proper sanitizing the <ul> tag for itemtype and itemscope #1210
-				 $content = preg_replace('/<ul(.*?)(\w+=".*?")(.*?)(\btype=".*?")(.*?)(\w+=".*?")/','<ul $2 $6',$content);
-				 $content = preg_replace('/<ul(.*?)\btype=".*?"/','<ul $1',$content);
+				 //$content = preg_replace('/<ul(.*?)(\w+=".*?")(.*?)(\btype=".*?")(.*?)(\w+=".*?")/','<ul $2 $6',$content);
+				 //$content = preg_replace('/<ul(.*?)\btype=".*?"/','<ul $1',$content);
 
 
 				 //Convert the Twitter embed into url for better sanitization #1010
