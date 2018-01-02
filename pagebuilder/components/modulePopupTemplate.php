@@ -30,19 +30,19 @@
                                 :repeater="0"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
-                            <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab">
+                            <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab" class="amp-repeaters">
 
                                 <div class="heading">
                                     Repeater Fields Started
                                 </div>
                                 
-                                <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" :class="'repeater-'+key" >
-                                    <div class="amppb_accordion__panel"  v-bind:class="{active: repeaterTabs['test'+key]}" >Module {{key+1}}
+                                <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" class="amp-repeat-field" :class="'repeater-'+key" >
+                                    <div class="amp-accordion-head amppb_accordion__panel"  v-bind:class="{active: repeaterTabs['test'+key]}" >{{key+1}}
 
                                         <div class="right"
                                              v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove field</div>
                                     </div>
-                                    <div class="">
+                                    <div class="amp-accordion-content">
                                         <fields-data v-for="(rfield, key, index) in repeaterfields"
                                             :field="rfield" 
                                             :key="key"
