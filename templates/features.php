@@ -4408,6 +4408,10 @@ function ampforwp_inline_related_posts(){
 
 		// declaring this variable here to prevent debug errors
 		$args = null;
+		$orderby = 'ID';
+		if( isset( $redux_builder_amp['ampforwp-inline-related-posts-order'] ) && $redux_builder_amp['ampforwp-inline-related-posts-order'] ){
+			$orderby = 'rand';
+		}
 
 		// Custom Post types 
        if( $current_post_type = get_post_type( $post )) {
@@ -4417,7 +4421,7 @@ function ampforwp_inline_related_posts(){
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
-                    'orderby' => 'ID',
+                    'orderby' => $orderby,
                     'post_type' => $current_post_type,
                     'post__not_in' => array( $post->ID )
 
@@ -4425,7 +4429,7 @@ function ampforwp_inline_related_posts(){
             } 			
 		}//end of block for custom Post types
 
-		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
+		if($redux_builder_amp['ampforwp-inline-related-posts-type']==2){
 		    $categories = get_the_category($post->ID);
 					if ($categories) {
 							$category_ids = array();
@@ -4435,13 +4439,14 @@ function ampforwp_inline_related_posts(){
 							    'post__not_in' => array($post->ID),
 							    'posts_per_page'=> $int_number_of_related_posts,
 							    'ignore_sticky_posts'=>1,
-									'has_password' => false ,
-									'post_status'=> 'publish'
+								'has_password' => false ,
+								'post_status'=> 'publish',
+								'orderby'    => $orderby
 							);
 						}
 			} //end of block for categories
 			//code block for tags
-		 if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
+		 if($redux_builder_amp['ampforwp-inline-related-posts-type']==1) {
 					$ampforwp_tags = get_the_tags($post->ID);
 						if ($ampforwp_tags) {
 										$tag_ids = array();
@@ -4451,8 +4456,9 @@ function ampforwp_inline_related_posts(){
 										    'post__not_in' => array($post->ID),
 										    'posts_per_page'=> $int_number_of_related_posts,
 										    'ignore_sticky_posts'=>1,
-												'has_password' => false ,
-												'post_status'=> 'publish'
+											'has_password' => false ,
+											'post_status'=> 'publish',
+											'orderby'    => $orderby
 										);
 					}
 			}//end of block for tags

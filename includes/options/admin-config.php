@@ -2838,6 +2838,28 @@ Redux::setSection( $opt_name, array(
                 'default'  => 0,
             ),
             array(
+                    'id'       => 'ampforwp-inline-related-posts-type',
+                    'type'     => 'select',
+                    'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),
+                    'data'     => 'page',
+                'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                        '1' => 'Tags',
+                        '2' => 'Categories',
+                    ),
+               'default'  => '2',
+               'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+
+            ),
+            array(
+                    'id'       => 'ampforwp-inline-related-posts-order',
+                    'type'     => 'switch',
+                    'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
+                'subtitle' => __('In-content Related posts by random order', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+            ),
+            array(
                     'id'       => 'ampforwp-number-of-inline-related-posts',
                     'type'     => 'text',
                     'title'    => __('Number of In-Content Related Post', 'accelerated-mobile-pages'),
