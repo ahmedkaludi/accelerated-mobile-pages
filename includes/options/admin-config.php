@@ -2824,6 +2824,13 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
             ),
             array(
+                    'id'       => 'ampforwp-related-posts-on-pages',
+                    'type'     => 'switch',
+                    'title'    => __('Related Posts on Pages', 'accelerated-mobile-pages'),
+                'subtitle' => __('Enable/Disable Related Posts on Pages', 'accelerated-mobile-pages'),
+                'default'  => 0,
+            ),
+            array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
                     'title'    => __('In-Content Related Post', 'accelerated-mobile-pages'),
