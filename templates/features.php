@@ -4568,7 +4568,7 @@ function ampforwp_new_gallery_images($images, $image){
 		// To enable the carousel magic
 		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
 		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
-		add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
+		//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 		$caption = $image['caption'];
 		// Append the caption with image
 		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
