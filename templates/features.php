@@ -3408,12 +3408,15 @@ function ampforwp_builder_checker() {
 	$pagebuilder_check 	= '';
 	$post_id 			= '';
 
-	$post_id = $post->ID;
-	if ( is_home() ) {
+	if ( $post ) {
+		$post_id = $post->ID;
+	}
+	if ( ampforwp_is_front_page() ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-	$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
-
+	if ( $post_id ) {
+		$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+	}
 	if ( $pagebuilder_check === 'layout-builder' ) {
 		return ampforwp_generate_pagebuilder_data(); 
 	}
