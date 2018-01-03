@@ -4635,7 +4635,7 @@ function ampforwp_minify_html_output($content_buffer){
     $minify_javascript = 'yes';
     $minify_html_comments = 'yes';
     $minify_html_utf8 = 'yes';
-    if ( $minify_html_utf8 == 'yes' && mb_detect_encoding($buffer, 'UTF-8', true) )
+    if ( $minify_html_utf8 == 'yes' && function_exists('mb_detect_encoding') && mb_detect_encoding($buffer, 'UTF-8', true) )
         $mod = '/u';
     else
         $mod = '/s';
