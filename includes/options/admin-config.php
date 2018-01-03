@@ -1265,7 +1265,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'Recipe'        => 'Recipe',
                 'Product'       => 'Product',
                 'VideoObject'   => 'VideoObject',
-                'Article'       => 'Article'
+                'Article'       => 'Article',
+                'WebPage'       => 'WebPage'
             );
             return $options;
         }
