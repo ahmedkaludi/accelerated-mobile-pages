@@ -39,3 +39,10 @@ function ampforwp_framework_get_logo(){
         <?php } ?>
  </div>
  <?php }
+
+add_action('amp_post_template_css','amp_framework_logo_styles',11); 
+if( !function_exists( 'amp_framework_logo_styles' ) ){
+ function amp_framework_logo_styles(){ ?>
+    .amp-logo amp-img{max-width: 190px;width:<?php echo ampforwp_default_logo('width');?>px ;}
+ <?php }
+}

@@ -112,7 +112,7 @@ header.container{line-height: 0;}
 #header h1{ text-align: center; font-size: 20px; font-weight: bold; line-height: 1; padding: 4px 3px; margin: 0; }
 .amp-logo{left: 0;right: 0;display:inline-block} 
 .amp-logo amp-img{ margin: 15px 0px 10px 0px; }
-.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;}
+.amp-logo amp-img{margin: 0 auto;}
 main { padding: 30px 15% 10px 15%; }
 .amp-wp-content.widget-wrapper{padding: 0px 15%;}
 main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
