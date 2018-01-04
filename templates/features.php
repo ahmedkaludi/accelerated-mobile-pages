@@ -15,11 +15,17 @@
 	8. Add Main tag as a Wrapper ( removed in 0.8.9 )
 	9. Advertisement code
 	10. Analytics Area
-		10.1 Analytics Support added for Google Analytics
-		10.2 Analytics Support added for segment.com
-		10.3 Analytics Support added for Piwik
-		10.4 Analytics Support added for quantcast
-		10.5 Analytics Support added for comscore
+		10.1  Analytics Support added for Google Analytics
+		10.2  Analytics Support added for segment.com
+		10.3  Analytics Support added for Piwik
+		10.4  Analytics Support added for quantcast
+		10.5  Analytics Support added for comscore
+		10.6  Analytics Support added for Effective Measure
+		10.7  Analytics Support added for StatCounter
+		10.8  Analytics Support added for Histats Analytics
+		10.9  Analytics Support added for Yandex Metrika
+		10.10 Analytics Support added for Chartbeat Analytics
+		10.11 Analytics Support added for Alexa Metrics
 	11. Strip unwanted codes and tags from the_content
 	12. Add Logo URL in the structured metadata
 	13. Add Custom Placeholder Image for Structured Data.
@@ -957,6 +963,22 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						</amp-analytics>
 						<?php
 					}//code ends for supporting Chartbeat Analytics
+			// 10.11 Analytics Support added for Alexa Metrics
+					if ( '11' == $redux_builder_amp['amp-analytics-select-option'] ) { ?>
+						<!-- Start Alexa AMP Certify Javascript -->
+							<amp-analytics type="alexametrics">
+								<script type="application/json">
+								{
+								  "vars": {
+								    "atrk_acct": "<?php echo $redux_builder_amp['ampforwp-alexa-account']; ?>",
+								    "domain": "<?php echo $redux_builder_amp['ampforwp-alexa-domain']; ?>"
+								  }
+								}
+								</script>
+							</amp-analytics>
+						<!-- End Alexa AMP Certify Javascript -->
+							<?php
+						}
 		}//analytics function ends here
 	// For Setting up Google AMP Client ID API
 	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	

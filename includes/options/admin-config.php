@@ -1034,6 +1034,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
                             '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
                             '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
+                            '11' => __('Alexa Metrics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1184,6 +1185,29 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('amp-analytics-select-option', '=' , '10')),
                         'subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
                       ),
+                     // Alexa
+                     array(
+                          'id'       => 'ampforwp-alexa-account',
+                          'type'     => 'text',
+                          'title'    => __( 'Alexa Metrics Account', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '11')
+                          ),
+                          'subtitle' => __( 'Enter Account Number given by Alexa Metrics', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                      ),
+                      array(
+                          'id'       => 'ampforwp-alexa-domain',
+                          'type'     => 'text',
+                          'title'    => __( 'Alexa Metrics Domain', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '11')
+                          ),
+                          'subtitle' => __( 'Enter the domain', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                      ),   
 
                       //GTM
                         array(
