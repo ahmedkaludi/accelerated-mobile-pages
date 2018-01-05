@@ -229,28 +229,28 @@ function amp_header_core(){
 	
 	$bodyClass = '';
     if ( is_single() || is_page() ) {
-			$bodyClass = 'single-post';
+			$bodyClass = 'single-post rtl ';
 			$bodyClass .= ( is_page()? 'amp-single-page' : 'amp-single');
   		
 	}
 	// Archive
 	if ( is_archive() ) {
-        $bodyClass = 'amp-archive';
+        $bodyClass = 'amp-archive rtl ';
     }
     $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
     // Homepage
 	if ( is_home() ) {
 		
-    	$bodyClass = 'amp-index amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
+    	$bodyClass = 'amp-index rtl amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
     	if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-			$bodyClass = 'single-post design_3_wrapper';
+			$bodyClass = 'single-post rtl design_3_wrapper';
         }
         if ( $ampforwp_custom_post_page == "page" && ampforwp_name_blog_page() ) {
 			$current_url = home_url( $GLOBALS['wp']->request );
 			$current_url_in_pieces = explode( '/', $current_url );
 		
 			if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
-				 $bodyClass = 'amp-index '.esc_attr( $thisTemplate->get( 'body_class' ) ); 
+				 $bodyClass = 'amp-index rtl ' .esc_attr( $thisTemplate->get( 'body_class' ) ); 
 			}  
 		}
     
@@ -258,7 +258,7 @@ function amp_header_core(){
     // is_search
 	if ( is_search() ) {
         if ( 'single' === $type ) {
-            $bodyClass = 'amp_home_body archives_body design_3_wrapper';
+            $bodyClass = 'amp_home_body archives_body design_3_wrapper rtl ';
         }
     }
 	?><!doctype html>
@@ -270,8 +270,8 @@ function amp_header_core(){
 		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
 			<style amp-custom>
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
-				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
+				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 			</style>
 
 		</head>
@@ -381,3 +381,15 @@ function amp_date($args=array()){
 		global $fontComponent;
 		$fontComponent[] = $fontName;
 	}
+
+// RTL Styling
+add_action('amp_css', 'amp_theme_framework_rtl_styles');
+if( ! function_exists('amp_theme_framework_rtl_styles') ){
+	function amp_theme_framework_rtl_styles(){
+		global $redux_builder_amp;
+		if( true == $redux_builder_amp['amp-rtl-select-option'] ){ ?>
+			body.rtl {direction: rtl;}
+			body amp-carousel{ direction: ltr;}
+		<?php }
+	}
+}
