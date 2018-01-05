@@ -1705,6 +1705,16 @@ Redux::setSection( $opt_name, array(
                          'desc' => __('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1),
                         'default'   => '50'
+                    ),
+                    array(
+                        'id'       => 'ampforwp-instant-article-author-bio',
+                        'type'      => 'switch',
+                        'title'     => __('Author Bio', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'subtitle' => __('Enable/Disable Author Bio', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
                     array(
                         'id'       => 'fb-instant-article-ads',
