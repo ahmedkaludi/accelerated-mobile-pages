@@ -1034,6 +1034,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '8' => __('Histats Analytics', 'accelerated-mobile-pages'),
                             '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
                             '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
+                            '11' => __('Alexa Metrics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1184,6 +1185,29 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('amp-analytics-select-option', '=' , '10')),
                         'subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
                       ),
+                     // Alexa
+                     array(
+                          'id'       => 'ampforwp-alexa-account',
+                          'type'     => 'text',
+                          'title'    => __( 'Alexa Metrics Account', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '11')
+                          ),
+                          'subtitle' => __( 'Enter Account Number given by Alexa Metrics', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                      ),
+                      array(
+                          'id'       => 'ampforwp-alexa-domain',
+                          'type'     => 'text',
+                          'title'    => __( 'Alexa Metrics Domain', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('amp-analytics-select-option', '=' , '11')
+                          ),
+                          'subtitle' => __( 'Enter the domain', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                      ),   
 
                       //GTM
                         array(
@@ -1265,7 +1289,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'Recipe'        => 'Recipe',
                 'Product'       => 'Product',
                 'VideoObject'   => 'VideoObject',
-                'Article'       => 'Article'
+                'Article'       => 'Article',
+                'WebPage'       => 'WebPage'
             );
             return $options;
         }
@@ -1466,6 +1491,26 @@ Redux::setArgs( "redux_builder_amp", $args );
                                             array('ampforwp-onesignal-http-site', '=','1')),
                             ),
                     array(
+                            'id'        => 'ampforwp-web-push-onesignal-below-content',
+                            'type'      => 'switch',
+                            'title'     => 'Below the Content',
+                            'true'      => 'true',
+                            'false'     => 'false', 
+                            'default'   =>  1,
+                            'subtitle'  => 'Show Subscribe Button Below the Content',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            ),                   
+                    array(
+                            'id'        => 'ampforwp-web-push-onesignal-above-content',
+                            'type'      => 'switch',
+                            'title'     => 'Above the Content',
+                            'true'      => 'true',
+                            'false'     => 'false', 
+                            'default'   =>  0,
+                            'subtitle'  => 'Show Subscribe Button Above the Content',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            ),
+                    array(
                        'id' => 'translation',
                        'type' => 'section',
                        'title' => __('Translation', 'accelerated-mobile-pages'),
@@ -1660,6 +1705,16 @@ Redux::setSection( $opt_name, array(
                          'desc' => __('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1),
                         'default'   => '50'
+                    ),
+                    array(
+                        'id'       => 'ampforwp-instant-article-author-bio',
+                        'type'      => 'switch',
+                        'title'     => __('Author Bio', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'subtitle' => __('Enable/Disable Author Bio', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
                     array(
                         'id'       => 'fb-instant-article-ads',
@@ -2830,6 +2885,28 @@ Redux::setSection( $opt_name, array(
                 'default'  => 0,
             ),
             array(
+                    'id'       => 'ampforwp-inline-related-posts-type',
+                    'type'     => 'select',
+                    'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),
+                    'data'     => 'page',
+                'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                        '1' => 'Tags',
+                        '2' => 'Categories',
+                    ),
+               'default'  => '2',
+               'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+
+            ),
+            array(
+                    'id'       => 'ampforwp-inline-related-posts-order',
+                    'type'     => 'switch',
+                    'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
+                'subtitle' => __('In-content Related posts by random order', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+            ),
+            array(
                     'id'       => 'ampforwp-number-of-inline-related-posts',
                     'type'     => 'text',
                     'title'    => __('Number of In-Content Related Post', 'accelerated-mobile-pages'),
@@ -2932,6 +3009,13 @@ Redux::setSection( $opt_name, array(
                       'title'    => __('Meta Information', 'accelerated-mobile-pages'),
                       'subtitle' => __('Enable or disable the Meta info on Pages'),                  
                   ),
+             array(
+                    'id'       => 'ampforwp-related-posts-on-pages',
+                    'type'     => 'switch',
+                    'title'    => __('Related Posts on Pages', 'accelerated-mobile-pages'),
+                'subtitle' => __('Enable/Disable Related Posts on Pages', 'accelerated-mobile-pages'),
+                'default'  => 0,
+            ),
             )
     ));
 

@@ -15,11 +15,17 @@
 	8. Add Main tag as a Wrapper ( removed in 0.8.9 )
 	9. Advertisement code
 	10. Analytics Area
-		10.1 Analytics Support added for Google Analytics
-		10.2 Analytics Support added for segment.com
-		10.3 Analytics Support added for Piwik
-		10.4 Analytics Support added for quantcast
-		10.5 Analytics Support added for comscore
+		10.1  Analytics Support added for Google Analytics
+		10.2  Analytics Support added for segment.com
+		10.3  Analytics Support added for Piwik
+		10.4  Analytics Support added for quantcast
+		10.5  Analytics Support added for comscore
+		10.6  Analytics Support added for Effective Measure
+		10.7  Analytics Support added for StatCounter
+		10.8  Analytics Support added for Histats Analytics
+		10.9  Analytics Support added for Yandex Metrika
+		10.10 Analytics Support added for Chartbeat Analytics
+		10.11 Analytics Support added for Alexa Metrics
 	11. Strip unwanted codes and tags from the_content
 	12. Add Logo URL in the structured metadata
 	13. Add Custom Placeholder Image for Structured Data.
@@ -957,6 +963,22 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						</amp-analytics>
 						<?php
 					}//code ends for supporting Chartbeat Analytics
+			// 10.11 Analytics Support added for Alexa Metrics
+					if ( '11' == $redux_builder_amp['amp-analytics-select-option'] ) { ?>
+						<!-- Start Alexa AMP Certify Javascript -->
+							<amp-analytics type="alexametrics">
+								<script type="application/json">
+								{
+								  "vars": {
+								    "atrk_acct": "<?php echo $redux_builder_amp['ampforwp-alexa-account']; ?>",
+								    "domain": "<?php echo $redux_builder_amp['ampforwp-alexa-domain']; ?>"
+								  }
+								}
+								</script>
+							</amp-analytics>
+						<!-- End Alexa AMP Certify Javascript -->
+							<?php
+						}
 		}//analytics function ends here
 	// For Setting up Google AMP Client ID API
 	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
@@ -1038,8 +1060,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				 $content = preg_replace('/<ul(.*?)\btype=".*?"(.*?)/','<ul $1',$content);
 				
 				 // Proper sanitizing the <ul> tag for itemtype and itemscope #1210
-				 $content = preg_replace('/<ul(.*?)(\w+=".*?")(.*?)(\btype=".*?")(.*?)(\w+=".*?")/','<ul $2 $6',$content);
-				 $content = preg_replace('/<ul(.*?)\btype=".*?"/','<ul $1',$content);
+				 //$content = preg_replace('/<ul(.*?)(\w+=".*?")(.*?)(\btype=".*?")(.*?)(\w+=".*?")/','<ul $2 $6',$content);
+				 //$content = preg_replace('/<ul(.*?)\btype=".*?"/','<ul $1',$content);
 
 
 				 //Convert the Twitter embed into url for better sanitization #1010
@@ -3408,12 +3430,15 @@ function ampforwp_builder_checker() {
 	$pagebuilder_check 	= '';
 	$post_id 			= '';
 
-	$post_id = $post->ID;
-	if ( is_home() ) {
+	if ( $post ) {
+		$post_id = $post->ID;
+	}
+	if ( ampforwp_is_front_page() ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-	$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
-
+	if ( $post_id ) {
+		$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+	}
 	if ( $pagebuilder_check === 'layout-builder' ) {
 		return ampforwp_generate_pagebuilder_data(); 
 	}
@@ -4408,6 +4433,10 @@ function ampforwp_inline_related_posts(){
 
 		// declaring this variable here to prevent debug errors
 		$args = null;
+		$orderby = 'ID';
+		if( isset( $redux_builder_amp['ampforwp-inline-related-posts-order'] ) && $redux_builder_amp['ampforwp-inline-related-posts-order'] ){
+			$orderby = 'rand';
+		}
 
 		// Custom Post types 
        if( $current_post_type = get_post_type( $post )) {
@@ -4417,7 +4446,7 @@ function ampforwp_inline_related_posts(){
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
-                    'orderby' => 'ID',
+                    'orderby' => $orderby,
                     'post_type' => $current_post_type,
                     'post__not_in' => array( $post->ID )
 
@@ -4425,7 +4454,7 @@ function ampforwp_inline_related_posts(){
             } 			
 		}//end of block for custom Post types
 
-		if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
+		if($redux_builder_amp['ampforwp-inline-related-posts-type']==2){
 		    $categories = get_the_category($post->ID);
 					if ($categories) {
 							$category_ids = array();
@@ -4435,13 +4464,14 @@ function ampforwp_inline_related_posts(){
 							    'post__not_in' => array($post->ID),
 							    'posts_per_page'=> $int_number_of_related_posts,
 							    'ignore_sticky_posts'=>1,
-									'has_password' => false ,
-									'post_status'=> 'publish'
+								'has_password' => false ,
+								'post_status'=> 'publish',
+								'orderby'    => $orderby
 							);
 						}
 			} //end of block for categories
 			//code block for tags
-		 if($redux_builder_amp['ampforwp-single-select-type-of-related']==1) {
+		 if($redux_builder_amp['ampforwp-inline-related-posts-type']==1) {
 					$ampforwp_tags = get_the_tags($post->ID);
 						if ($ampforwp_tags) {
 										$tag_ids = array();
@@ -4451,8 +4481,9 @@ function ampforwp_inline_related_posts(){
 										    'post__not_in' => array($post->ID),
 										    'posts_per_page'=> $int_number_of_related_posts,
 										    'ignore_sticky_posts'=>1,
-												'has_password' => false ,
-												'post_status'=> 'publish'
+											'has_password' => false ,
+											'post_status'=> 'publish',
+											'orderby'    => $orderby
 										);
 					}
 			}//end of block for tags
@@ -4517,16 +4548,18 @@ function ampforwp_generate_inline_related_posts($content){
 	$break_point = '</p>';
 	$content_parts = explode($break_point, $content);
 	$no_of_parts = count($content_parts);
-	$half_index = floor($no_of_parts / 2);
-	$half_content = array_chunk($content_parts, $half_index);
-	
-	$html[] ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+	if( $no_of_parts > 1 ){
+		$half_index = floor($no_of_parts / 2);
+		$half_content = array_chunk($content_parts, $half_index);
+		
+		$html[] ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
 
-	$firs_content = $half_content[0];
-	$second_content = $half_content[1];
-	$final_content = array_merge($firs_content,$html,$second_content);
-	$final_content = implode($break_point, $final_content);
-	$content = $final_content;
+		$firs_content = $half_content[0];
+		$second_content = $half_content[1];
+		$final_content = array_merge($firs_content,$html,$second_content);
+		$final_content = implode($break_point, $final_content);
+		$content = $final_content;
+	}
 	return $content;
 }
 
@@ -4557,8 +4590,9 @@ function ampforwp_new_gallery_images($images, $image){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
 		// To enable the carousel magic
-		add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
-		add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
+		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
+		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
+		//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 		$caption = $image['caption'];
 		// Append the caption with image
 		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
@@ -4616,11 +4650,9 @@ if( !function_exists('ampforwp_carousel_bind_script')){
 	}
 }
 if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
-	function ampforwp_carousel_class_magic($data){
-		$content = $data->get('post_amp_content');
+	function ampforwp_carousel_class_magic($content){
 		$content = str_replace(array(':openbrack:',':closebrack:'), array('[',']'), $content);
-		$data->set('post_amp_content',$content);
-		return $data;
+	return $content;
 	}
 }
 // 86. minify the content of pages
@@ -4636,7 +4668,7 @@ function ampforwp_minify_html_output($content_buffer){
     $minify_javascript = 'yes';
     $minify_html_comments = 'yes';
     $minify_html_utf8 = 'yes';
-    if ( $minify_html_utf8 == 'yes' && mb_detect_encoding($buffer, 'UTF-8', true) )
+    if ( $minify_html_utf8 == 'yes' && function_exists('mb_detect_encoding') && mb_detect_encoding($buffer, 'UTF-8', true) )
         $mod = '/u';
     else
         $mod = '/s';
@@ -4983,7 +5015,20 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	}
 }
 // OneSignal Push Notifications Widget
-add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
+add_action('pre_amp_render_post', 'ampforwp_onesignal_notifications_widget_position');
+if( ! function_exists( 'ampforwp_onesignal_notifications_widget_position' ) ){
+	function ampforwp_onesignal_notifications_widget_position(){
+		global $redux_builder_amp; 
+		if( true == $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] ){
+			add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
+		}
+
+		if( true == $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] ){
+			add_action('ampforwp_inside_post_content_before', 'ampforwp_onesignal_notifications_widget');
+			add_action('ampforwp_before_post_content', 'ampforwp_onesignal_notifications_widget');
+		}
+	}
+}
 if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
 	global $redux_builder_amp;
@@ -5173,7 +5218,13 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 			else{
 				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
 			}
+
+			// To Suppress Warnings
+			libxml_use_internal_errors(true);
+
 			$dom->loadHTML($menu);
+
+			libxml_use_internal_errors(false);
 
 			// get all the img's
 			$nodes 		= $dom->getElementsByTagName( 'img' );

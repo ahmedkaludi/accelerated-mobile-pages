@@ -1,4 +1,5 @@
 <?php
+global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
 $supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now');
@@ -230,7 +231,7 @@ function amp_header_core(){
 	$bodyClass = '';
     if ( is_single() || is_page() ) {
 			$bodyClass = 'single-post';
-			$bodyClass .= ( is_page()? 'amp-single-page' : 'amp-single');
+			$bodyClass .= ( is_page()? ' amp-single-page ' : ' amp-single ');
   		
 	}
 	// Archive
@@ -250,7 +251,7 @@ function amp_header_core(){
 			$current_url_in_pieces = explode( '/', $current_url );
 		
 			if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
-				 $bodyClass = 'amp-index '.esc_attr( $thisTemplate->get( 'body_class' ) ); 
+				 $bodyClass = 'amp-index' .esc_attr( $thisTemplate->get( 'body_class' ) ); 
 			}  
 		}
     
@@ -261,6 +262,9 @@ function amp_header_core(){
             $bodyClass = 'amp_home_body archives_body design_3_wrapper';
         }
     }
+    if( true == $redux_builder_amp['amp-rtl-select-option'] ){
+    	$bodyClass .= ' rtl ';
+    }
 	?><!doctype html>
 	<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
@@ -270,8 +274,8 @@ function amp_header_core(){
 		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
 			<style amp-custom>
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
-				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
+				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 			</style>
 
 		</head>
@@ -381,3 +385,15 @@ function amp_date($args=array()){
 		global $fontComponent;
 		$fontComponent[] = $fontName;
 	}
+
+// RTL Styling
+add_action('amp_css', 'amp_theme_framework_rtl_styles');
+if( ! function_exists('amp_theme_framework_rtl_styles') ){
+	function amp_theme_framework_rtl_styles(){
+		global $redux_builder_amp;
+		if( true == $redux_builder_amp['amp-rtl-select-option'] ){ ?>
+			body.rtl {direction: rtl;}
+			body amp-carousel{ direction: ltr;}
+		<?php }
+	}
+}

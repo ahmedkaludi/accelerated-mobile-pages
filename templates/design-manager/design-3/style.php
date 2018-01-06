@@ -250,7 +250,7 @@ pre{ white-space: pre-wrap; }
 .amp-category-block li:nth-child(3){ margin: 0 1%; }
 .searchmenu{ margin-right: 15px; margin-top: 11px; position: absolute; top: 0; right: 0; }
 .searchmenu button{ background:transparent; border:none }
-.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px ;position:relative;top:9px;}
+.amp-logo amp-img{margin: 0 auto; position:relative;top:9px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
 .headerlogo a{ color:#F42; }
 
@@ -300,7 +300,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 if( is_singular() || is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
 /* Tables */
 table { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; overflow-x: auto; }
-table a:link { color: #666; font-weight: bold; text-decoration: none; }
+table a:link { font-weight: bold; text-decoration: none; }
 table a:visited { color: #999999; font-weight: bold; text-decoration: none; }
 table a:active, table a:hover { color: #bd5a35; text-decoration: underline; }
 table { font-family: Arial, Helvetica, sans-serif; color: #666; font-size: 12px; text-shadow: 1px 1px 0px #fff; background: #eee; margin: 0px; width: 100%; }

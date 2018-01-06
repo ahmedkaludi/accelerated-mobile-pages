@@ -184,7 +184,16 @@ function ampforwp_add_my_tc_button() {
     return;
     }
     // verify the post type
-    if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+
+    $posts = array();
+    $post_types = ampforwp_get_all_post_types();
+    if ( $post_types ){
+      foreach ( $post_types  as $post_type ) {
+        $posts[] = $post_type;
+      }
+    }
+       
+    if( ! in_array( $typenow, $posts ) )
         return;
     // check if WYSIWYG is enabled
     if ( get_user_option('rich_editing') == 'true') {

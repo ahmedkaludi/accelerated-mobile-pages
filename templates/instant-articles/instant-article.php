@@ -29,13 +29,12 @@
 
 				<!-- modification date/time -->
 				<time class="op-modified" datetime="<?php echo get_the_modified_date("c"); ?>"><?php echo get_the_modified_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
-
+        
 				<!-- author(s) -->
                 <address>
                     <a><?php the_author_meta('display_name'); ?></a>
-                    <?php the_author_meta('description'); ?>
                 </address>
-
+        
 				<!-- cover -->
 				<?php if(has_post_thumbnail($post->ID)):
 					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
@@ -77,6 +76,12 @@
                           </figure>
             <?php } } ?>
             <footer>
+              <?php if( true == $redux_builder_amp['ampforwp-instant-article-author-bio']){ ?>
+                <aside>
+                  <p><?php the_author_meta('display_name'); ?></p> 
+                  <p><?php the_author_meta('description'); ?></p>
+                </aside>
+              <?php } ?>
             </footer>
         </article>
     </body>
