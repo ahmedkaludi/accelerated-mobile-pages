@@ -72,14 +72,18 @@
 									$related_post_permalink = "";
 									$related_post_permalink = ampforwp_url_controller( get_permalink() );?>
 									<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
+										<div class="related-post_image">
                                         <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 									<?php if ( ampforwp_has_post_thumbnail() ) { 
 									$thumb_url = ampforwp_get_post_thumbnail();
+									$thumb_width  	= ampforwp_get_post_thumbnail('width');
+									$thumb_height 	= ampforwp_get_post_thumbnail('height');
 									if($thumb_url){?>
-						            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="150" height="150" layout="responsive"></amp-img>
+						            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> layout="responsive"></amp-img>
 									<?php } 
 									}?>
                               		</a>
+                              	</div>
 					                <div class="related_link">
 					                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 					                    <?php if(has_excerpt()){
