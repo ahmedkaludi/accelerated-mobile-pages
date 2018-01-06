@@ -1,4 +1,5 @@
 <?php
+global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
 $supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now');
@@ -229,19 +230,19 @@ function amp_header_core(){
 	
 	$bodyClass = '';
     if ( is_single() || is_page() ) {
-			$bodyClass = 'single-post rtl ';
-			$bodyClass .= ( is_page()? 'amp-single-page' : 'amp-single');
+			$bodyClass = 'single-post';
+			$bodyClass .= ( is_page()? ' amp-single-page ' : ' amp-single ');
   		
 	}
 	// Archive
 	if ( is_archive() ) {
-        $bodyClass = 'amp-archive rtl ';
+        $bodyClass = 'amp-archive';
     }
     $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
     // Homepage
 	if ( is_home() ) {
 		
-    	$bodyClass = 'amp-index rtl amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
+    	$bodyClass = 'amp-index amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
     	if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
 			$bodyClass = 'single-post rtl design_3_wrapper';
         }
@@ -250,7 +251,7 @@ function amp_header_core(){
 			$current_url_in_pieces = explode( '/', $current_url );
 		
 			if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
-				 $bodyClass = 'amp-index rtl ' .esc_attr( $thisTemplate->get( 'body_class' ) ); 
+				 $bodyClass = 'amp-index' .esc_attr( $thisTemplate->get( 'body_class' ) ); 
 			}  
 		}
     
@@ -258,8 +259,11 @@ function amp_header_core(){
     // is_search
 	if ( is_search() ) {
         if ( 'single' === $type ) {
-            $bodyClass = 'amp_home_body archives_body design_3_wrapper rtl ';
+            $bodyClass = 'amp_home_body archives_body design_3_wrapper';
         }
+    }
+    if( true == $redux_builder_amp['amp-rtl-select-option'] ){
+    	$bodyClass .= ' rtl ';
     }
 	?><!doctype html>
 	<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
