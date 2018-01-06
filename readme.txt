@@ -131,8 +131,33 @@ You can contact me using this url: http://ampforwp.com/contact/
 
 
 == Frequently Asked Questions ==
-**[View The Full FAQ at:](http://ampforwp.com/faq/)**
 
+= Can I add analytics? =
+
+Yes, you easily can. In fact, we have support for 12 Analytics companies. Including Google Analytics, Facebook Pixel, StatCounter, QuantCast, Chartbeat, comScore to list a few. Also, we have Google Tag Manager (GTM) support as well.
+
+= Can I add Ads in my AMP pages? =
+
+Yes, you can. We have 6 ad placement slots that are built in and strategically placed to get maximum views. Also, we have [an extension] (https://ampforwp.com/advanced-amp-ads/) from which you can insert ads between the content, will get more ad slots and also add custom banners to all the available slots.
+
+
+= Can I extend/Change the AMP design, so it suits my needs? =
+
+Yes, you easily can. We have created this plugin in such a way that it can easily be extended. Check out our [AMP Theme Framework](https://ampforwp.com/tutorials/article/getting-started-amp-framework/)
+
+
+= Do you have any prebuilt designs? =
+
+Yes, we have AMP themes section where we have free and paid designs available. We also update it regularly. You can check it out our [AMP Themes](https://ampforwp.com/themes)
+
+
+= What about ads and shortcodes and such? =
+
+Check out https://github.com/Automattic/amp-wp/blob/master/readme.md#handling-media
+
+= What about ads and shortcodes and such? =
+
+Check out https://github.com/Automattic/amp-wp/blob/master/readme.md#handling-media
 
 == Screenshots ==
 1. AMP Homepage
