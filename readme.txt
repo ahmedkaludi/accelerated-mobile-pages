@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.1
-Stable tag: 0.9.71
+Stable tag: 0.9.72
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Alexa Metrics Compatibility added 
 * NEW - OneSignal Push Notifications integration 
 * NEW - Structured Data Options
 * NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
@@ -185,6 +186,26 @@ You can contact me using this URL: http://ampforwp.com/contact/
 
 
 == Changelog ==
+
+= 0.9.72 (6th January 2018, Happy New Year) =
+* View More details on https://ampforwp.com/0-9-72-released-stability-update-77th-update
+* Related Posts Image stretching in Design 3 AMP theme Framework #1482
+* RTL option must be integrated into AMP theme Framework #1562
+* `DOMDocument::loadHTML():` Attribute itemprop redefined warning fixed #1539
+* Created an option to add Author bio article in Facebook Instant Article #1521
+* Options to add push notification button above and below the content #1571
+* Copy the Content button for Custom Post types #1532
+* Alexa Metrics Compatibility added #1536
+* Logo styling added with amp_logo. So styling can work with AMP Theme Framework. #1520
+* Content parsing login improved, so it will not through any warnings if the content has only 1 paragraph. #1523
+* Debug Warnings removed #1564
+* Caption in the Gallery creating validation errors Fixed. #1549
+* Tables Link color should be as same as the link of the body #1559
+* Separate options for In-Content related posts #1546
+* WebPage Schema Type added in Structured Data options #1558
+* Fatal Error fixed with `mb_detect_encoding()` after enabling the minify option #1494
+* Content blank or fatal errors due to itemscope and itemtype, fixed. #1570
+* Performance improved. Due to `_transient__redux_activation_redirect` transient. #1526
 
 = 0.9.71 (1st December 2017) =
 * Design 2 Post Titles issue fixed
