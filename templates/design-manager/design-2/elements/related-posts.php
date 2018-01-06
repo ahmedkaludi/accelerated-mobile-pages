@@ -13,14 +13,7 @@
 		// Custom Post types 
        if( $current_post_type = get_post_type( $post )) {
             // The query arguments
-       		$checker = false;
        		if($current_post_type != 'page'){
-       			$checker = true;
-       		}
-       		if($current_post_type == 'page' && 1 == $redux_builder_amp['ampforwp-related-posts-on-pages']){
-       			$checker = true;
-       		}
-       		if($checker){
                 $args = array(
                     'posts_per_page'=> $int_number_of_related_posts,
                     'order' => 'DESC',
