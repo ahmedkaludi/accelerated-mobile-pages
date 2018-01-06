@@ -5218,7 +5218,13 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 			else{
 				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
 			}
+
+			// To Suppress Warnings
+			libxml_use_internal_errors(true);
+
 			$dom->loadHTML($menu);
+
+			libxml_use_internal_errors(false);
 
 			// get all the img's
 			$nodes 		= $dom->getElementsByTagName( 'img' );
