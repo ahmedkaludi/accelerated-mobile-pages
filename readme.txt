@@ -151,13 +151,24 @@ Yes, you easily can. We have created this plugin in such a way that it can easil
 Yes, we have AMP themes section where we have free and paid designs available. We also update it regularly. You can check it out our [AMP Themes](https://ampforwp.com/themes)
 
 
-= What about ads and shortcodes and such? =
+= I'm a developer and I want to add custom functionality for a client, can I do that? =
 
-Check out https://github.com/Automattic/amp-wp/blob/master/readme.md#handling-media
+Yes, of course. This plugin is very developer friendly, we have lots of hooks and filters that you can use to extend and customize according to the requirements. Also, we have [developer documentation](https://ampforwp.com/tutorials/article-categories/developer-documentation/) which we update regularly.
 
-= What about ads and shortcodes and such? =
 
-Check out https://github.com/Automattic/amp-wp/blob/master/readme.md#handling-media
+= How do I report bugs and suggest new features? =
+
+You can report the bugs [here](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues)
+
+= Will you Add New features to my request? =
+
+Yes, Absolutely! We would suggest you send your feature request by creating an issue in [Github](https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/) . It helps us organize the feedback easily.
+
+
+= How do I get in touch? =
+
+You can contact me using this URL: http://ampforwp.com/contact/
+
 
 == Screenshots ==
 1. AMP Homepage
