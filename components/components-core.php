@@ -244,7 +244,7 @@ function amp_header_core(){
 		
     	$bodyClass = 'amp-index amp-home'.esc_attr( $thisTemplate->get( 'body_class' ) ); 
     	if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
-			$bodyClass = 'single-post rtl design_3_wrapper';
+			$bodyClass = 'single-post design_3_wrapper';
         }
         if ( $ampforwp_custom_post_page == "page" && ampforwp_name_blog_page() ) {
 			$current_url = home_url( $GLOBALS['wp']->request );
