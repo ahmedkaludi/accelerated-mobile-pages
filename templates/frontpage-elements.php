@@ -65,12 +65,13 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {
-				echo $template->get('post_amp_content');
+				$ampforwp_the_content = $template->get('post_amp_content');
 			} else {
 				// Custom/Alternative AMP content added through post meta
-				echo $template->get('ampforwp_amp_content');
+				$ampforwp_the_content = $template->get('ampforwp_amp_content');
 			}
-
+			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+			echo $ampforwp_the_content;
 			do_action( 'ampforwp_after_post_content', $template );
 			?>
 
@@ -118,12 +119,13 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 			<?php 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {
-				echo $template->get('post_amp_content');
+				$ampforwp_the_content = $template->get('post_amp_content');
 			} else {
 				// Custom/Alternative AMP content added through post meta
-				echo $template->get('ampforwp_amp_content');
+				$ampforwp_the_content = $template->get('ampforwp_amp_content');
 			}
-
+			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+			echo $ampforwp_the_content;
 			do_action( 'ampforwp_after_post_content', $template ); ?>
 
 		</div>
@@ -173,12 +175,13 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 				<?php 
 				// Normal Front Page Content
 				if ( ! $amp_custom_content_enable ) {
-					echo $template->get('post_amp_content');
+					$ampforwp_the_content = $template->get('post_amp_content');
 				} else {
 					// Custom/Alternative AMP content added through post meta
-					echo $template->get('ampforwp_amp_content');
-				}
-
+					$ampforwp_the_content = $template->get('ampforwp_amp_content');
+				}	
+				$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+				echo $ampforwp_the_content;
 				do_action( 'ampforwp_after_post_content', $template ); ?>
 
 			</div>
