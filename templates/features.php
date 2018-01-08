@@ -5308,3 +5308,13 @@ if( ! function_exists(' ampforwp_envira_lazy_load ') ){
 	return $data;
 	}
 }	
+
+#1581 Instagram Sanitizer 
+
+add_filter( 'amp_content_sanitizers', 'ampforwp_instagram_sanitizer', 10, 1 );
+
+function ampforwp_instagram_sanitizer( $sanitizer_classes ) {
+  require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-instagram-sanitizer.php' );
+  $sanitizer_classes[ 'AMP_Instagram_Embed_Sanitizer' ] = array(); 
+  return $sanitizer_classes;
+}
