@@ -3544,9 +3544,9 @@ function ampforwp_remove_sq_seo() {
 
 //67 View Non AMP
 function ampforwp_view_nonamp(){
-	global $redux_builder_amp;
-	 global $post;
-  $ampforwp_backto_nonamp = '';
+	global $redux_builder_amp, $post;
+  	$ampforwp_backto_nonamp = '';
+  	$nofollow 				= '';
   if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
   	$post_id = get_option('page_for_posts');
 		if($redux_builder_amp['amp-mobile-redirection']==1)
@@ -3582,8 +3582,11 @@ function ampforwp_view_nonamp(){
         $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
         $ampforwp_backto_nonamp = preg_replace('/amp/','',$ampforwp_backto_nonamp);
       }
-  } ?>
-<?php if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo $ampforwp_backto_nonamp; ?>" rel="nofollow"><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+  }
+   if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
+   		$nofollow = 'rel="nofollow"';
+   } 
+   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo $ampforwp_backto_nonamp; ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
  }
 
  //68. Facebook Instant Articles

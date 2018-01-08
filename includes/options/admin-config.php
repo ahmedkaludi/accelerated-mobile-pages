@@ -2985,6 +2985,15 @@ Redux::setSection( $opt_name, array(
                         ),
                         'default'  => '1'
                 ),
+                array(
+                        'id'       => 'ampforwp-nofollow-view-nonamp',
+                        'type'     => 'switch',
+                        'title'    => __('rel nofollow in View Non-AMP', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Enable / Disable rel nofollow from View Non-AMP', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0
+                ),
         )
     ));
 
