@@ -1681,6 +1681,7 @@ function ampforwp_remove_schema_data() {
 		//Neglect SOPB If Custom AMP Editor is checked
 	      if ( $amp_custom_content_enable === 'yes') {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
+				ampforwp_remove_filters_for_class( 'the_content', 'Elementor\Frontend', 'apply_builder_in_content', 9 );
 			}
 	}
 	//Removing the WPTouch Pro social share links from AMP
