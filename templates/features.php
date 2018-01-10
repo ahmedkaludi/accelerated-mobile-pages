@@ -3434,7 +3434,7 @@ function ampforwp_builder_checker() {
 	if ( $post ) {
 		$post_id = $post->ID;
 	}
-	if ( ampforwp_is_front_page() ) {
+	if ( ampforwp_is_home() || ampforwp_is_front_page() ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	if ( $post_id ) {
