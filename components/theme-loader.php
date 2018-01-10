@@ -68,6 +68,79 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	        }
 	    }
 	    
+	    switch ( true ) {
+	    	case ( is_tax() ):
+	    			$term = get_queried_object();
+					$templates = array();
+					if ( ! empty( $term->slug ) ) {
+						$taxonomy = $term->taxonomy;
+						$slug_decoded = urldecode( $term->slug );
+						if ( $slug_decoded !== $term->slug ) {
+							$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy-$taxonomy-{$slug_decoded}.php";
+						}
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy-$taxonomy-{$term->slug}.php";
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy-$taxonomy.php";
+					}
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy.php";
+					foreach ($templates as $key => $value) {
+						if(file_exists($value)){
+							$file = $value;
+						}
+					}
+	    	break;
+	    	case ( is_category() ):
+	    		$category = get_queried_object();
+				$templates = array();
+				if ( ! empty( $category->slug ) ) {
+					$slug_decoded = urldecode( $category->slug );
+					if ( $slug_decoded !== $category->slug ) {
+						$templates[] = "category-{$slug_decoded}.php";
+					}
+					$templates[] = "category-{$category->slug}.php";
+					$templates[] = "category-{$category->term_id}.php";
+				}
+				$templates[] = 'category.php';
+				foreach ($templates as $key => $value) {
+					if(file_exists($value)){
+						$file = $value;
+					}
+				}
+	    	break;
+	    	case ( is_tag() ):
+	    		$tag = get_queried_object();
+				$templates = array();
+				if ( ! empty( $tag->slug ) ) {
+					$slug_decoded = urldecode( $tag->slug );
+					if ( $slug_decoded !== $tag->slug ) {
+						$templates[] = "tag-{$slug_decoded}.php";
+					}
+					$templates[] = "tag-{$tag->slug}.php";
+					$templates[] = "tag-{$tag->term_id}.php";
+				}
+				$templates[] = 'tag.php';
+				foreach ($templates as $key => $value) {
+					if(file_exists($value)){
+						$file = $value;
+					}
+				}
+	    	break;
+	    	case ( is_archive() ):
+	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+				$templates = array();
+				if ( count( $post_types ) == 1 ) {
+					$post_type = reset( $post_types );
+					$templates[] = "archive-{$post_type}.php";
+				}
+				$templates[] = 'archive.php';
+				foreach ($templates as $key => $value) {
+					if(file_exists($value)){
+						$file = $value;
+					}
+				}
+	    	break;
+			
+	    }
+	    
 	 	return $file;
 	}
 
