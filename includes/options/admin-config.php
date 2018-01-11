@@ -3114,10 +3114,7 @@ Redux::setSection( $opt_name, array(
                 array(
                         'id'       => 'ampforwp-nofollow-view-nonamp',
                         'type'     => 'switch',
-                        'title'    => __('rel nofollow in View Non-AMP', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Enable / Disable rel nofollow from View Non-AMP', 'accelerated-mobile-pages'),
-                        'true'      => 'true',
-                        'false'     => 'false',
+                        'title'    => __('Make "View Non-AMP" link nofollow', 'accelerated-mobile-pages'),
                         'default'   => 0
                 ),
         )
