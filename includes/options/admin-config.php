@@ -1031,6 +1031,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'id'       => 'amp-analytics-select-option',
                         'type'     => 'select',
                         'title'    => __( 'Analytics Type', 'accelerated-mobile-pages' ),
+                        'class'    => 'hide',
                         'subtitle' => __( 'Select your Analytics provider.', 'accelerated-mobile-pages' ),
                         'options'  => array(
                             '1' => __('Google Analytics', 'accelerated-mobile-pages' ),
