@@ -67,7 +67,7 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	            $file = AMPFORWP_CUSTOM_THEME . '/search.php';
 	        }
 	    }
-	    
+	    //For template pages
 	    switch ( true ) {
 	    	case ( is_tax() ):
 	    			$term = get_queried_object();
@@ -85,6 +85,7 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					foreach ($templates as $key => $value) {
 						if(file_exists($value)){
 							$file = $value;
+							break;
 						}
 					}
 	    	break;
@@ -94,15 +95,16 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 				if ( ! empty( $category->slug ) ) {
 					$slug_decoded = urldecode( $category->slug );
 					if ( $slug_decoded !== $category->slug ) {
-						$templates[] = "category-{$slug_decoded}.php";
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/category-{$slug_decoded}.php";
 					}
-					$templates[] = "category-{$category->slug}.php";
-					$templates[] = "category-{$category->term_id}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/category-{$category->slug}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/category-{$category->term_id}.php";
 				}
-				$templates[] = 'category.php';
+				$templates[] = AMPFORWP_CUSTOM_THEME . '/category.php';
 				foreach ($templates as $key => $value) {
 					if(file_exists($value)){
 						$file = $value;
+						break;
 					}
 				}
 	    	break;
@@ -112,15 +114,16 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 				if ( ! empty( $tag->slug ) ) {
 					$slug_decoded = urldecode( $tag->slug );
 					if ( $slug_decoded !== $tag->slug ) {
-						$templates[] = "tag-{$slug_decoded}.php";
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/tag-{$slug_decoded}.php";
 					}
-					$templates[] = "tag-{$tag->slug}.php";
-					$templates[] = "tag-{$tag->term_id}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/tag-{$tag->slug}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/tag-{$tag->term_id}.php";
 				}
-				$templates[] = 'tag.php';
+				$templates[] = AMPFORWP_CUSTOM_THEME . '/tag.php';
 				foreach ($templates as $key => $value) {
 					if(file_exists($value)){
 						$file = $value;
+						break;
 					}
 				}
 	    	break;
@@ -129,12 +132,69 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 				$templates = array();
 				if ( count( $post_types ) == 1 ) {
 					$post_type = reset( $post_types );
-					$templates[] = "archive-{$post_type}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/archive-{$post_type}.php";
 				}
-				$templates[] = 'archive.php';
+				$templates[] = AMPFORWP_CUSTOM_THEME . '/archive.php';
 				foreach ($templates as $key => $value) {
 					if(file_exists($value)){
 						$file = $value;
+						break;
+					}
+				}
+	    	break;
+	    	case (is_post_type_archive()):
+	    		$post_type = get_query_var( 'post_type' );
+				if ( is_array( $post_type ) )
+					$post_type = reset( $post_type );
+
+				$obj = get_post_type_object( $post_type );
+				if ( ! ( $obj instanceof WP_Post_Type ) || ! $obj->has_archive ) {
+					//return '';
+					break;
+				}
+
+				$post_types = array_filter( (array) get_query_var( 'post_type' ) );
+
+				$templates = array();
+
+				if ( count( $post_types ) == 1 ) {
+					$post_type = reset( $post_types );
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/archive-{$post_type}.php";
+				}
+				$templates[] = AMPFORWP_CUSTOM_THEME . '/archive.php';
+				foreach ($templates as $key => $value) {
+					if(file_exists($value)){
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
+	    	case is_single(): 
+	    		$object = get_queried_object();
+
+				$templates = array();
+
+				if ( ! empty( $object->post_type ) ) {
+					$template = get_page_template_slug( $object );
+					if ( $template && 0 === validate_file( $template ) ) {
+						$templates[] = $template;
+					}
+
+					$name_decoded = urldecode( $object->post_name );
+					if ( $name_decoded !== $object->post_name ) {
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/single-{$object->post_type}-{$name_decoded}.php";
+					}
+
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/single-{$object->post_type}-{$object->post_name}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/single-{$object->post_type}.php";
+				}
+
+				$templates[] = AMPFORWP_CUSTOM_THEME . "/single.php";
+				
+				foreach ($templates as $key => $value) {
+					if(file_exists($value)){
+						$file = $value;
+						break;
 					}
 				}
 	    	break;
