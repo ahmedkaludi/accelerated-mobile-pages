@@ -5162,9 +5162,16 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 	if( is_home() || is_archive() ){
 		if( 2 == $redux_builder_amp['ampforwp-post-date-format'] ){	
 			$full_date =  get_the_date();
+			if( true == $redux_builder_amp['ampforwp-post-date-global'] ){
+				$full_date =  get_the_modified_date();
+			}
 		}
 		if( 1 == $redux_builder_amp['ampforwp-post-date-format'] ){
-			$date = human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') );
+			$time = get_the_time('U', get_the_ID() );
+			if( true == $redux_builder_amp['ampforwp-post-date-global'] ){
+					$time = get_the_modified_time('U', get_the_ID() );
+			}
+			$date = human_time_diff( $time, current_time('timestamp') );
 			if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
 				$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
 				// Change the % days into the actual number of days
@@ -5173,8 +5180,12 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 		}
 	}
 	if(is_single() && 1 == $redux_builder_amp['ampforwp-post-date-format']){
-		$date 		= human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') );
-		$full_date 	=  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
+		$time = get_the_time('U', get_the_ID() );
+		if( true == $redux_builder_amp['ampforwp-post-date-global'] ){
+			$time = get_the_modified_time('U', get_the_ID() );
+		}
+		$date 		= human_time_diff( $time, current_time('timestamp') );
+		$full_date 	= human_time_diff( $time, current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago');
 		if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
 			$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
 			// Change the % days into the actual number of days

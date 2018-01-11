@@ -2530,6 +2530,13 @@ Redux::setSection( $opt_name, array(
                     )
              ),
             // Date Format
+             array(
+                    'id'       => 'ampforwp-post-date-global',
+                    'type'     => 'switch',
+                    'subtitle' => __('To Show Modified Date Instead Of Published Date', 'accelerated-mobile-pages'),
+                    'title'    => __( 'Post Modified Date', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
+            ),
             array(
                     'id'        =>'ampforwp-post-date-format',
                     'type'      =>'select',
