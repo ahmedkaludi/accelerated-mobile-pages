@@ -115,17 +115,20 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		ampforwp_installer_init();
 	}
 	function ampforwp_installer_init(){
+		// Exit if the user does not have proper permissions
+		if(! current_user_can( 'manage_options' ) ) {
+			return ;
+		}
+		
 		global $ampforwp_install_config;
 		instller_admin_init();
 	}
 	function instller_admin_init(){
 		if(isset($_GET['ampforwp_install']) && $_GET['ampforwp_install']=='1' && is_admin()){
 			steps_call();
-			
 		}
 	}
-	
-	
+		
 	
 	function steps_call(){
 		global $ampforwp_install_config;
