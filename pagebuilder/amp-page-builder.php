@@ -55,12 +55,7 @@ function amp_content_pagebuilder_title_callback( $post ){
 	}
 	
 	if(empty($content)){
-		echo "<div class='amppb_welcome'>
-                    <a class='amppb_helper_btn beta_btn' href='https://ampforwp.com/tutorials/article/page-builder-is-in-beta/' target='_blank'><span>Beta Feature</span></a>
-                    <a class='amppb_helper_btn video_btn' href='https://ampforwp.com/tutorials/article/amp-page-builder-installation/' target='_blank'><span>Video Tutorial</span></a>
-
-                    <a class='amppb_helper_btn leave_review' href='https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post' target='_blank'><span>Rate</span></a>
-			</div>";
+		echo " ";
 	}
 
 		// echo "<div class='amppb_welcome'>
@@ -141,8 +136,8 @@ function call_page_builder(){
 	<div id="ampForWpPageBuilder_container">
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo get_the_ID() ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)">Start the AMP Page Builder</div>
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
-			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Enable Builder</label>
-			<label  @click="showModal = true;">settings</label>
+			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Use Builder</label>
+			<label  @click="showModal = true;">Pre-built Layouts</label>
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>

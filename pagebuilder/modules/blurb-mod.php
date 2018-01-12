@@ -40,6 +40,7 @@ $css = '.blu-mod{
     color: #555;
     line-height: 1.7;
 }
+@media(max-width:768px){.blu-mod{width: 100%;margin-right:0}}
 ';
 //$commonCss = '';
 return array(
@@ -64,7 +65,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"bg_color_picker",
-								'label'		=>'Icon Background color',
+								'label'		=>'Icon Background',
 								'tab'		=>'design',
 								'default'	=>'#43c45d',
 								'content_type'=>'css',
@@ -73,7 +74,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Color',
+								'label'		=>'Text Color',
 								'tab'		=>'design',
 								'default'	=>'#222222',
 								'content_type'=>'css'
@@ -118,18 +119,10 @@ return array(
 		               array(		
 		 						'type'		=>'icon-selector',		
 		 						'name'		=>"icon-picker",		
-		 						'label'		=>'Icons',
+		 						'label'		=>'Icon',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'check_circle',	
 		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"ico-size",		
-		 						'label'		=>'Icon Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'30px',	
-		           				'content_type'=>'css',
 	 						),
 						array(		
 		 						'type'		=>'text',		

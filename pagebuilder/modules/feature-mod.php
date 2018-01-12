@@ -32,7 +32,9 @@ $css = '
    padding-bottom:15px;
 }
 .feat-blk amp-img{margin:0 auto;width:100%}
-
+@media(max-width:768px){
+    .feat-blk{width: 100%;margin-right: 0;}
+}
 ';
 return array(
 		'label' =>'Feature',
@@ -48,7 +50,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"background_color_picker",
-								'label'		=>'Background',
+								'label'		=>'Background Color',
 								'tab'		=>'design',
 								'default'	=>'#f4f4f4',
 								'content_type'=>'css'
@@ -56,7 +58,7 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Color',
+								'label'		=>'Text Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
@@ -64,7 +66,7 @@ return array(
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
+	 							'label' =>"Align",
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
@@ -120,7 +122,7 @@ return array(
 	 					array(		
 	 						'type'		=>'upload',		
 	 						'name'		=>"img_upload",		
-	 						'label'		=>'Image Upload',
+	 						'label'		=>'Image',
 	           				 'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
@@ -128,12 +130,11 @@ return array(
 				        array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
-								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'customizer',
 								'default'	=>array('layout="responsive"'), 
 								'options'	=>array(
 												array(
-													'label'=>'Enable', 
+													'label'=>'Responsive', 
 													'value'=>'layout="responsive"',
 												),
 											),
@@ -144,7 +145,7 @@ return array(
 		 						'name'		=>"content",		
 		 						'label'		=>'Content',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'We’ve built our activity-based selling methodology right into the software. You’ll always know which actions need your attention next, as you focus on the aspects of selling that are under your control.',	
+		 						'default'	=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.',	
 		           				'content_type'=>'html',
 	 					),
                 

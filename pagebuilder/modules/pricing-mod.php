@@ -20,7 +20,6 @@ $css = '
     flex: 1 0 25%;
     text-align:center;
     background:#f4f4f4;
-	margin:20px;
 	position:relative;
 	padding:30px 50px;
 }
@@ -97,7 +96,7 @@ return array(
 	 					array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Color',
+								'label'		=>'Button Text',
 								'tab'		=>'design',
 								'default'	=>'#fff',
 								'content_type'=>'css'
@@ -164,7 +163,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"price_desc",		
-		 						'label'		=>'Descrption',
+		 						'label'		=>'Description',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Price Desc',	
 		           				'content_type'=>'html',
@@ -180,7 +179,7 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_link",		
-		 						'label'		=>'Link (Make sure its will link Or #)',
+		 						'label'		=>'URL',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
@@ -197,9 +196,9 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"recommended_text",		
-		 						'label'		=>'Recommended Text',
+		 						'label'		=>'Recommended Text (Leave Empty to remove)',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'TIMESAVER',	
+		 						'default'	=>'RECOMMENEDED',	
 		           				'content_type'=>'html',
 	 						),
                 

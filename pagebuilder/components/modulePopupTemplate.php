@@ -7,9 +7,6 @@
                     <button type="button" class="media-modal-close" @click="hideModulePopUp()">
                         <span class="media-modal-icon"></span>
                     </button>
-                    <div class="modal-header">
-                        <h3>{{modalcontent.label}}</h3>
-                    </div>
                     <div class="modal-content">
                         <div class="modal-sidebar">
                             <ul>
@@ -22,6 +19,10 @@
                             </ul>
                         </div>
                         <div class="modal-body">
+                        <div class="modal-header">
+                            <h3>{{modalcontent.label}}</h3>
+                        </div>
+                        <div class="modal-settings">
                             <fields-data v-for="(field, key, index) in modalcontent.fields"
                                 :field="field" 
                                 :key="key"
@@ -33,7 +34,6 @@
                             <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab" class="amp-repeaters">
 
                                 <div class="heading">
-                                    Repeater Fields Started
                                 </div>
                                 
                                 <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" class="amp-repeat-field" :class="'repeater-'+key" >
@@ -57,6 +57,7 @@
                                  <div style="text-align:right;">
                                     <input type="button" class="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Duplicate Create Fields">
                                 </div>
+                                </div>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -64,12 +65,12 @@
 
                     <div class="modal-footer">
                         <slot name="footer form-control">
-                            <input type="button" v-if="modalcontent.settingType!='row'" class="button button-info" value="Delete module" @click="removeModule()">
+                            <input type="button" v-if="modalcontent.settingType!='row'" class="button button-info del-btn-modal" value="Delete" @click="removeModule()">
 
-                            <button type="button" @click="saveModulePopupdata(modalcontent.fields)" class="button modal-default-button">
-                                Save
+                            <button type="button" @click="saveModulePopupdata(modalcontent.fields)" class="button modal-default-button save-btn-modal button-primary">
+                                Save Module
                             </button>
-                            <button type="button" class="button modal-default-button" @click="hideModulePopUp()">
+                            <button type="button" class="button close-btn-modal modal-default-button" @click="hideModulePopUp()">
                                 Close
                             </button>
                         </slot>

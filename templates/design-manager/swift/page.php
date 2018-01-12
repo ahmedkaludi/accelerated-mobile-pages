@@ -1,6 +1,6 @@
 <?php amp_header(); ?>
 <div class="sp">
-	<div class="cntr">
+	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		 	<?php amp_title(); ?>
 		<?php } ?>

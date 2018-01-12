@@ -1395,11 +1395,12 @@ display: none;
 }
 
 /*** Responsive ***/
-@media(max-width:1024px){
+@media(max-width:1110px){
 .cntr{
     width:100%;
     padding:0px 40px;
 }
+.amppb-fluid .col{max-width:95%}
 .sf-img .wp-caption-text{
     width:100%;
     padding:10px 40px;

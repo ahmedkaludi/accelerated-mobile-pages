@@ -50,19 +50,19 @@ return array(
 	 						),
 						array(
 								'type'		=>'color-picker',
-								'name'		=>"ico_color_picker",
-								'label'		=>'Icon Color',
-								'tab'		=>'design',
-								'default'	=>'#ffffff',
-								'content_type'=>'css'
-							),
-						array(
-								'type'		=>'color-picker',
 								'name'		=>"bg_color_picker",
 								'label'		=>'Icon Background color',
 								'tab'		=>'design',
 								'default'	=>'#2cbf55',
 								'content_type'=>'css',
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"ico_color_picker",
+								'label'		=>'Icon Color',
+								'tab'		=>'design',
+								'default'	=>'#ffffff',
+								'content_type'=>'css'
 							),
 						array(
 								'type'		=>'spacing',

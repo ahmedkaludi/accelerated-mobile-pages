@@ -36,14 +36,15 @@ return array(
 		'name' =>'list-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'design'=>'Design',
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(		
 		 						'type'		=>'icon-selector',		
 		 						'name'		=>"icon-picker",		
-		 						'label'		=>'Icons',
+		 						'label'		=>'Icon',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'check_circle',	
 		           				'content_type'=>'html',
@@ -52,31 +53,31 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"ico-size",		
 		 						'label'		=>'Icon Size',
-		           				 'tab'     =>'container_css',
+		           				 'tab'     =>'design',
 		 						'default'	=>'23px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'22px',	
 		           				'content_type'=>'css',
 	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"ico_color_picker",
 								'label'		=>'Icon Color',
-								'tab'		=>'container_css',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'container_css',
-		 						'default'	=>'22px',	
-		           				'content_type'=>'css',
-	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"text_color_picker",
-								'label'		=>'Color',
-								'tab'		=>'container_css',
+								'label'		=>'Font Color',
+								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
@@ -84,7 +85,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
-								'tab'		=>'container_css',
+								'tab'		=>'advanced',
 								'default'	=>
                             array(
                                 'top'=>'20px',
@@ -98,7 +99,7 @@ return array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Padding',
-								'tab'		=>'container_css',
+								'tab'		=>'advanced',
 								'default'	=>array(
 													'left'=>'0px',
 													'right'=>'0px',
@@ -118,7 +119,7 @@ return array(
 		                array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"list_title",		
-		 						'label'		=>'List text',
+		 						'label'		=>'List Title',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Title',	
 		           				'content_type'=>'html',

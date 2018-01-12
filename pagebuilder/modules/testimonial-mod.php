@@ -70,6 +70,7 @@ $css = '
 .auth-cntn span{
 	font-weight:normal;
 }
+@media(max-width:768px){.testi-mod{width: 100%;margin-right:0}}
 ';
 return array(
 		'label' =>'Testimonial',

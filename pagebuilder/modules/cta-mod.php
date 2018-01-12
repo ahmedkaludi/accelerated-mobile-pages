@@ -40,10 +40,13 @@ $css = '
     font-size: 16px;
     margin-top: 20px;
 }
-
+@media(max-width:768px){
+.cta-mod{display:inline-block;width:100%;text-align:center}
+.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
+}
 ';
 return array(
-		'label' =>'CTA',
+		'label' =>'Call To Action',
 		'name' =>'cta-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
@@ -65,7 +68,7 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'design',
 		 						'default'	=>'45px',	
 		           				'content_type'=>'css',
 	 						),
@@ -80,7 +83,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"button-text",		
-		 						'label'		=>'Button',
+		 						'label'		=>'Button Text',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Get started free',	
 		           				'content_type'=>'html',
@@ -88,7 +91,7 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_link",		
-		 						'label'		=>'Link (Make sure its will link Or #)',
+		 						'label'		=>'Button URL',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
@@ -97,7 +100,7 @@ return array(
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text_title",		
-		 						'label'		=>'Text',
+		 						'label'		=>'Description',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Free, easy to set up, no credit card required',	
 		           				'content_type'=>'html',

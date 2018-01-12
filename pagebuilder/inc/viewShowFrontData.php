@@ -50,7 +50,6 @@ function amp_pagebuilder_content_styles(){
 .amppb-fixed{width:1125px;}
 .amppb-fluid{width:100%;}
 .amppb-fluid .col{margin:0 auto;max-width:90%}
-.amppb-pages .cntr{max-width:100%;}
 .amppb-pages header .cntr{max-width: 1100px;}
 ';
 

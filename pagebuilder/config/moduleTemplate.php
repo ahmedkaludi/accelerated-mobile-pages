@@ -49,8 +49,8 @@ $containerCommonSettings = array(
 			'settingType'  =>'row',
 			'default_tab'=> 'customizer',
 			'tabs' => array(
-			  'customizer'=>'General',
-			  'container_css'=>'Advance'
+			  'customizer'=>'Basic',
+			  'container_css'=>'Advance',
 			),
 			'fields' => array(
 							array(
@@ -70,11 +70,29 @@ $containerCommonSettings = array(
 								'default'	=>'',
 								'content_type'=>'html',
 								),
+	 						array(
+								'type'		=>'radio',
+								'name'		=>"grid_type",
+								'label'		=>'Grid type',
+								'tab'		=>'customizer',
+								'default'	=>'amppb-fluid',
+								'options'	=>array(
+												array(
+													'label'=>'Fixed',
+													'value'=>'amppb-fixed',
+												),
+												array(
+													'label'=>'Fluid',
+													'value'=>'amppb-fluid',
+												),
+											),
+								'content_type'=>'html',
+							),
 
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Font color',
+								'label'		=>'Text Font',
 								'tab'		=>'customizer',
 								'default'	=>'#000',
 								'content_type'=>'css',
@@ -84,7 +102,7 @@ $containerCommonSettings = array(
 							array(		
 	 							'type'	=>'select',		
 	 							'name'  =>"background_type",		
-	 							'label' =>"Select background type",
+	 							'label' =>"Background Type",
 								'tab'     =>'customizer',
 	 							'default' =>'color',
 	 							'options_details'=>array(
@@ -97,7 +115,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"color_picker",
-								'label'		=>'Background color',
+								'label'		=>'Background Color',
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
@@ -107,46 +125,18 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'gradient-selector',
 								'name'		=>"selected_gradient",
-								'label'		=>'Select gradient',
+								'label'		=>'Background Gradient',
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'css',
 								'output_format'=>"%default%",
 								'required'  => array('background_type'=>'gradient')
 							),
-							array(
-								'type'		=>'spacing',
-								'name'		=>"margin_css",
-								'label'		=>'Set Margin',
-								'tab'		=>'customizer',
-								'default'	=>
-                            array(
-                                'top'=>'20px',
-                                'right'=>'auto',
-                                'bottom'=>'20px',
-                                'left'=>'auto',
-                            ),
-								'content_type'=>'css',
-							),
-							array(
-								'type'		=>'spacing',
-								'name'		=>"padding_css",
-								'label'		=>'Set Padding',
-								'tab'		=>'customizer',
-								'default'	=>array(
-													'top'=>'20px',
-													'right'=>'1%',
-													'bottom'=>'20px',
-													'left'=>'1%'
-												),
-								'content_type'=>'css',
-								'output_format'=>"padding: %left% %right% %top% %bottom%"
-							),
 
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"want_border",
-								'label'		=>'Border ?',
+								'label'		=>'Border',
 								'tab'		=>'customizer',
 								'default'	=>array(0),
 								'options'	=>array(
@@ -197,24 +187,6 @@ $containerCommonSettings = array(
 	 							'output_format'=>'border-style: %default%',
 	 							'required'  => array('want_border'=>1),
 	 						),
-	 						array(
-								'type'		=>'radio',
-								'name'		=>"grid_type",
-								'label'		=>'Grid type',
-								'tab'		=>'customizer',
-								'default'	=>'amppb-fluid',
-								'options'	=>array(
-												array(
-													'label'=>'Fixed',
-													'value'=>'amppb-fixed',
-												),
-												array(
-													'label'=>'Fluid',
-													'value'=>'amppb-fluid',
-												),
-											),
-								'content_type'=>'html',
-							),
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"shadow",
@@ -224,11 +196,39 @@ $containerCommonSettings = array(
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
-													'value'=>'box-shadow:-5px 2px 32px 0 rgba(61,69,74,.12);z-index: 100; position: relative;', 
+													'value'=>'box-shadow:-5px 2px 32px 0 rgba(61,69,74,.12);z-index: 10;position: relative;', 
 												),
 											),
 								'content_type'=>'css',
 	 							'output_format'=>'%default%'
+							),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"margin_css",
+								'label'		=>'Set Margin',
+								'tab'		=>'customizer',
+								'default'	=>
+                            array(
+                                'top'=>'0px',
+                                'right'=>'auto',
+                                'bottom'=>'0px',
+                                'left'=>'auto',
+                            ),
+								'content_type'=>'css',
+							),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"padding_css",
+								'label'		=>'Set Padding',
+								'tab'		=>'customizer',
+								'default'	=>array(
+													'top'=>'20px',
+													'right'=>'0px',
+													'bottom'=>'20px',
+													'left'=>'0px'
+												),
+								'content_type'=>'css',
+								'output_format'=>"padding: %left% %right% %top% %bottom%"
 							),
 						),
 			'front_template_start'=>$output,

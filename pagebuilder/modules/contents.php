@@ -44,7 +44,7 @@ require_once  ABSPATH . WPINC . '/category.php';
  						array(		
  						'type'		=>'text',		
  						'name'		=>"content_title",		
- 						'label'		=>'Category Block Title',
+ 						'label'		=>'Category Block',
             'tab'     =>'customizer',
  						'default'	=>'Category',	
             'content_type'=>'html',

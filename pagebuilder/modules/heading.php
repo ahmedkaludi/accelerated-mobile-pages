@@ -31,12 +31,11 @@ return array(
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
 	 						),
-
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
 		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'design',
 		 						'default'	=>'54px',	
 		           				'content_type'=>'css',
 	 						),
@@ -57,30 +56,10 @@ return array(
 	 							'content_type'=>'html',
 	 							'output_format'=>''
 	 						),
-	 					array(		
-	 							'type'	=>'select',		
-	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
-								'tab'     =>'design',
-	 							'default' =>'center',
-	 							'options_details'=>array(
-	 												'center'    =>'Center',
-	 												'left'  	=>'Left',
-	 												'right'    =>'Right', 													),
-	 							'content_type'=>'css',
-	 						),		
-						array(
-								'type'		=>'color-picker',
-								'name'		=>"font_color_picker",
-								'label'		=>'Color',
-								'tab'		=>'design',
-								'default'	=>'#26292c',
-								'content_type'=>'css'
-							),
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'font_type',		
-	 							'label' =>"Font Style",
+	 							'label' =>"Font Weight",
 								'tab'     =>'design',
 	 							'default' =>'500',
 	 							'options_details'=>array(
@@ -92,6 +71,26 @@ return array(
                                 ),
 	 							'content_type'=>'css',
 	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"font_color_picker",
+								'label'		=>'Color',
+								'tab'		=>'design',
+								'default'	=>'#26292c',
+								'content_type'=>'css'
+							),
+	 					array(
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Align",
+								'tab'     =>'design',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 						),		
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

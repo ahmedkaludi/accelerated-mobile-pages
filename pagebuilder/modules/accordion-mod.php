@@ -37,7 +37,7 @@ amp-accordion section:not([expanded]) .show-less {
     background: none;
     border: 0;
     padding: 0;
-    margin: 20px 0 20px 0;
+    margin:10px 0px 10px 0;
     color: {{acc_color_picker}};
     font-size: 22px;
     line-height: 1.5em;
@@ -45,7 +45,7 @@ amp-accordion section:not([expanded]) .show-less {
 }
 .accordion-mod .acc-desc{
 	margin-bottom:0;
-    margin:-10px 0px 20px 23px;
+    margin:-5px 0px 20px 23px;
     padding: 0;
     color:#666;
     font-size: 14px;
@@ -114,30 +114,13 @@ return array(
 		           				'content_type'=>'html',
 	 						),
 						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>'acc_size',		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'16px',	
-		           				'content_type'=>'css',
-	 						),
-						array(		
 		 						'type'		=>'textarea',		
 		 						'name'		=>"ass_desc",		
 		 						'label'		=>'Description',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Description',	
 		           				'content_type'=>'html',
-	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'16px',	
-		           				'content_type'=>'css',
-	 						),
-                
+	 						),                
               ),
           'front_template'=>
         	'<section>

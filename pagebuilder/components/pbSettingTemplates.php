@@ -20,9 +20,6 @@ global $savedlayoutTemplate;
                     <button  type="button" class="media-modal-close" @click="hidePageBuilderPopUp()">
                         <span class="media-modal-icon"></span>
                     </button>
-                    <div class="modal-header">
-                        <h3>Page Builder Settings</h3>
-                    </div>
                     <div class="modal-content">
                         <div class="modal-sidebar">
                             <ul>
@@ -38,6 +35,9 @@ global $savedlayoutTemplate;
                             </ul>
                         </div>
                         <div class="modal-body">
+                    <div class="modal-header">
+                        <h3>Page Builder Settings</h3>
+                    </div>
                             <div v-if="modalCrrentTab=='customize'">
                               
                             </div><!-- customize closed -->

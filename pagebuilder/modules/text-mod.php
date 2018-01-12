@@ -30,7 +30,7 @@ return array(
 		 						'name'		=>"content_title",		
 		 						'label'		=>'Content',
 		           				 'tab'     =>'customizer',
-		 						'default'	=>'The leading sales management tool..',	
+		 						'default'	=>'Write your content in Text Editor',	
 		           				'content_type'=>'html',
 	 						),
 
@@ -38,22 +38,10 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"font-size",		
 		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
+		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
 	 						),
-	 					array(		
-	 							'type'	=>'select',		
-	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
-								'tab'     =>'design',
-	 							'default' =>'center',
-	 							'options_details'=>array(
-	 												'center'    =>'Center',
-	 												'left'  	=>'Left',
-	 												'right'    =>'Right', 													),
-	 							'content_type'=>'css',
-	 						),	
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"text_color_picker",
@@ -62,6 +50,18 @@ return array(
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Align",
+								'tab'     =>'design',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 						),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

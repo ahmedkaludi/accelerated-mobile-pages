@@ -31,14 +31,14 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"width",		
 		 						'label'		=>'Width',
-		           				 'tab'      =>'design',
+		           				 'tab'      =>'customizer',
 		 						'default'	=>'500px',	
 		           				'content_type'=>'css',
 	 						),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
+	 							'label' =>"Align",
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
@@ -85,7 +85,7 @@ return array(
 		                array(		
 	 						'type'		=>'upload',		
 	 						'name'		=>"img_upload",		
-	 						'label'		=>'Image Upload',
+	 						'label'		=>'Image',
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
@@ -93,12 +93,11 @@ return array(
  						array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
-								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'design',
 								'default'	=>array('responsive'),
 								'options'	=>array(
 												array(
-													'label'=>'Enable',
+													'label'=>'Responsive',
 													'value'=>'responsive',
 												),
 											),

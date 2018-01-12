@@ -40,7 +40,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"content_title",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Button Text',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Get started free',	
 		           				'content_type'=>'html',
@@ -48,32 +48,32 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_link",		
-		 						'label'		=>'Link (Make sure its will link Or #)',
+		 						'label'		=>'URL',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
 	 						),
 
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'20px',	
-		           				'content_type'=>'css',
-	 						),
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"sub_heading",		
-		 						'label'		=>'Small Heading',
+		 						'label'		=>'Sub Heading',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'No Credit card required',	
 		           				'content_type'=>'html', 
 	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'20px',	
+		           				'content_type'=>'css',
+	 						),
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'font_weight',		
-	 							'label' =>"Font Style",
+	 							'label' =>"Font Weight",
 								'tab'     =>'design',
 	 							'default' =>'400',
 	 							'options_details'=>array(
@@ -85,10 +85,26 @@ return array(
                                 ),
 	 							'content_type'=>'css',
 	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"bg_color_picker",
+								'label'		=>'Background Color',
+								'tab'		=>'design',
+								'default'	=>'#2cbf55',
+								'content_type'=>'css',
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"font_color_picker",
+								'label'		=>'Text Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
+	 							'label' =>"Align",
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
@@ -113,22 +129,6 @@ return array(
 		 						'default'	=>'80px',	
 		           				'content_type'=>'css',
 	 						),	
-						array(
-								'type'		=>'color-picker',
-								'name'		=>"font_color_picker",
-								'label'		=>'Color',
-								'tab'		=>'design',
-								'default'	=>'#fff',
-								'content_type'=>'css'
-							),
-						array(
-								'type'		=>'color-picker',
-								'name'		=>"bg_color_picker",
-								'label'		=>'Background color',
-								'tab'		=>'design',
-								'default'	=>'#2cbf55',
-								'content_type'=>'css',
-							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

@@ -41,12 +41,11 @@ return array(
 				        array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
-								'label'		=>'Enable for Responsive Image',
 								'tab'		=>'customizer',
 								'default'	=>array('responsive'),
 								'options'	=>array(
 												array(
-													'label'=>'Enable',
+													'label'=>'Responsive',
 													'value'=>'responsive',
 												),
 											),
@@ -56,7 +55,7 @@ return array(
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>"Alignment",
+	 							'label' =>"Align",
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(

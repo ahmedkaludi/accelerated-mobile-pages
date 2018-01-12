@@ -47,7 +47,7 @@
     
     <div :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <p class="">
-            <label class="form-label">{{field.label}}:
+            <label class="form-label">{{field.label}}
             <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" @change="callChangeEnvent();">
                 <option value="">Select option</option>
                 <option 
@@ -64,7 +64,7 @@
     </div>
    
     <div :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <span>{{field.label}}:</span><br><br>      
+        <span>{{field.label}}</span>     
         <?php 
         //:id="val.value+'-'+index+'-checkbox'" 
         //:for="val.value+'-'+index+'-checkbox'"
@@ -73,12 +73,11 @@
             <input type="checkbox" :value="val.value" v-model="field.default" @change="callChangeEnvent();">
             {{val.label}}
         </label>
-        <div class="clearfix"></div>
     </div>
     
     <div :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
 
-        <span>{{field.label}}:</span><br><br>
+        <div class="label_txt">{{field.label}}:</div>
         <?php 
         //:for="val.value+'-radio'"
         //:id="val.value+'-'+index+'-radio'"
@@ -88,11 +87,10 @@
             {{val.label}}
         </label>
       
-        <div class="clearfix"></div>
     </div>
   
     <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix">
-        <label class="amppb-mar-padd">{{field.label}}:</label>
+        <label class="amppb-mar-padd">{{field.label}}</label>
         <div class="clearfix"></div>
         <p>
             <label class="form-label amppb-mar-padd">
@@ -158,7 +156,7 @@
 
     <div :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
          <p class="">
-            <label class="form-label">{{field.label}}:
+            <label class="form-label">{{field.label}}
             <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div><br/>
             <div class="clearfix"></div>
               <span class="button" @click="openIconOptions=!openIconOptions;">
@@ -391,9 +389,9 @@
     </div>
 
     <div :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <label  class="form-label">{{field.label}}: 
+        <label><div class="label_txt">{{field.label}}</div>
             
-            <div style="line-height: 35px" class="color-wrapper">
+            <div style="line-height: 35px" class="color-wrapper form-label">
               <color-picker :colorfield="field"></color-picker>
             </div>
    
