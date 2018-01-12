@@ -114,20 +114,25 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		global $ampforwp_install_config;
 		ampforwp_installer_init();
 	}
+
 	function ampforwp_installer_init(){
+		// Exit if the user does not have proper permissions
+		if(! current_user_can( 'manage_options' ) ) {
+			return ;
+		}
+		
 		global $ampforwp_install_config;
-		instller_admin_init();
+		ampforwp_instller_admin_init();
 	}
-	function instller_admin_init(){
+
+	function ampforwp_instller_admin_init(){
 		if(isset($_GET['ampforwp_install']) && $_GET['ampforwp_install']=='1' && is_admin()){
-			steps_call();
+			ampforwp_steps_call();
 			
 		}
 	}
 	
-	
-	
-	function steps_call(){
+	function ampforwp_steps_call(){
 		global $ampforwp_install_config;
 		if ( empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
 			return;
@@ -169,7 +174,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				}
 
 				if ( $show_content ) {
-					show_ampforwp_steps_body();
+					ampforwp_show_steps_body();
 				} ?>
 
 			<?php step_output_bottom_dots(); ?>
@@ -184,7 +189,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		exit;
 	}
 	
-	function show_ampforwp_steps_body(){
+	function ampforwp_show_steps_body(){
 		global $ampforwp_install_config;
 		if($ampforwp_install_config['total_steps']==$ampforwp_install_config['current_step']['step_id']){
 			call_user_func('ampforwp_finish_page');
