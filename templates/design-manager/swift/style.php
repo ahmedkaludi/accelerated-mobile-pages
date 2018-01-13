@@ -1583,11 +1583,11 @@ display: none;
 .cmts{
     margin:20px 0px 20px 0px;
 }
-.loop-wrapper {
+.hmp .loop-wrapper {
     margin-top: 10px;
 }
 .arch-tlt{
-    margin-bottom:20px;
+    margin:20px 0px;
 }
 .amp-loop-label {
     font-size: 16px;
@@ -1609,7 +1609,9 @@ display: none;
 .footer {
     margin-top: 60px;
 }
-
+.w-bl{
+    flex:1 0 22%;
+}
 
 }
 @media(max-width:767px){
@@ -1622,7 +1624,7 @@ display: none;
     width: 100%;
     padding: 0px 20px;
 }
-.loop-wrapper {
+.hmp .loop-wrapper {
     margin-top: 0;
 }
 .sf-img .wp-caption-text{
