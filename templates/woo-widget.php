@@ -91,7 +91,7 @@
                $content = '<div class="ampforwp_wc_star_rating" class="star-rating" title="Rated '.$rating.' out of 5' . '">';
                $content .= '<span class="ampforwp_wc_star_rating_text" ><strong>'.$rating.'</strong>'.__(' out of 5 </span>','accelerated-mobile-pages');
                $content .= '</div>';
-               echo esc_html( $content );
+               echo wp_kses( $content, $allowed_tags );
              }
 
            }  ?>
