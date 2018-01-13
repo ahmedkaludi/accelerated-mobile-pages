@@ -36,7 +36,7 @@ function sidebar_close_button($data=array() ){
 	if(isset($data['class'])){
 		$class .= $data['class'];
 	}
-	return esc_html( '<div role="button" tabindex="0" on="tap:'.$id.'.close" class="'.$class.'">X</div>' );
+	return '<div role="button" tabindex="0" on="tap:'.esc_attr( $id ).'.close" class="'.esc_attr( $class ).'">X</div>';
 }
 function sidebar_opening_button($data=array()){
 	$id = 'sidebar';
@@ -47,28 +47,28 @@ function sidebar_opening_button($data=array()){
 	if(isset($data['class'])){
 		$class = $data['class'];
 	}
-	return esc_html( '<div on="tap:'.$id.'.toggle" role="button" tabindex="0" class="'.$class.'">
+	return '<div on="tap:'.esc_attr( $id ).'.toggle" role="button" tabindex="0" class="'. esc_attr( $class ) .'">
 						<a href="#" class="amp-sidebar-toggle">
 							<span></span>
 							<span></span>
 							<span></span>
 						</a>
-				</div>' );
+				</div>';
 }
 function sideber_begin($data=array()){
 	$attribute = '';
 	if(count($data)>0){
 		foreach ($data as $key => $value) {
-			$attribute .= $key.'="'.$value.'" ';
+			$attribute .= esc_attr($key).'="'.esc_attr($value).'" ';
 		}
 	}else{
 		$attribute = "id='sidebar' layout='nodisplay' side='right'";
 	}
-	return esc_html( '<amp-sidebar '.$attribute.'>' );
+	return '<amp-sidebar '. $attribute .'>';
 }
 
 function sideber_end(){
-	return esc_html( '</amp-sidebar>' );
+	return '</amp-sidebar>';
 }
 ampforwp_add_sidebar_scripts();
 function ampforwp_add_sidebar_scripts(){
