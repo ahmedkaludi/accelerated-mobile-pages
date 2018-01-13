@@ -24,6 +24,7 @@
 		</div>
 	</div>
 </footer>
+<?php if(is_single()){ ?>
 <div class="swift-sticky-social">
 	<ul>
 		<li><a class="ic-fb" href="https://facebook.com/ampforwp"><span class="icon-facebook"></span></a></li>
@@ -33,4 +34,5 @@
 		<li><a class="ic-li" href="https://linkedin.com/ampforwp"><span class="icon-linkedin"></span></a></li>
 	</ul>
 </div>
+<?php } ?>
 <?php amp_footer_core(); ?>

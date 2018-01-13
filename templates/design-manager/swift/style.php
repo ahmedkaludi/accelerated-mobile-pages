@@ -1410,6 +1410,12 @@ display: none;
 /** Sticky Social Icons **/
 .swift-sticky-social{
     background:#f1f1f1;
+    display:inline-block;
+    width:100%;
+}
+.rr {
+    margin-bottom: 30px;
+    display: inline-block;
 }
 .swift-sticky-social ul li{
     display:inline-block;
