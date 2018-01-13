@@ -35,11 +35,12 @@
     $ampforwp_show_price          = $instance[ 'show_price' ];
 
     $exclude_ids = get_option('ampforwp_exclude_post');
+    $exclude_ids = (array) $exclude_ids;
 
      $q = new WP_Query( array(
       'post_type'           => 'product',
       'orderby'             => 'date',
-      'post__not_in' 		    => esc_attr( $exclude_ids ),
+      'post__not_in' 		    => $exclude_ids,
       'has_password'        => false,
       'post_status'         => 'publish',
       'posts_per_page'      => esc_attr( $ampforwp_number_of_products )
