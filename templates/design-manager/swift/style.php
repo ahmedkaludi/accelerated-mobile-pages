@@ -1412,10 +1412,11 @@ display: none;
     display:none;
 }
 .swift-sticky-social{
-    background:#ccc;
+    background:#f1f1f1;
 }
 .swift-sticky-social ul li{
-    float:left;
+    display:inline-block;
+    margin:0 -2px;
     list-style-type:none;
     width:153px;
 }
