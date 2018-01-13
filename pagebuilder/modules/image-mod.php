@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>
+	{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>{{ifend_img_upload}}
 ';
 $css = '
 {{module-class}}{

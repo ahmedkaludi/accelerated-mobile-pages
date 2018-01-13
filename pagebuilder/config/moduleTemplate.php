@@ -39,11 +39,12 @@ $front_css = '
 	{{selected_gradient}};
 	margin: {{margin_css}};
 	padding:{{padding_css}};
-	border: {{border_css}};
-	border-style:{{border_type}};
+	
 	{{shadow}}
 }
 ';
+/*border-size: {{border_css}};
+	border-style:{{border_type}};*/
 $containerCommonSettings = array(
 			'label'	=> 'Row Settings',
 			'settingType'  =>'row',
@@ -133,12 +134,12 @@ $containerCommonSettings = array(
 								'required'  => array('background_type'=>'gradient')
 							),
 
-							array(
+							/*array(
 								'type'		=>'checkbox',
 								'name'		=>"want_border",
 								'label'		=>'Border',
 								'tab'		=>'customizer',
-								'default'	=>array(0),
+								'default'	=>array(),
 								'options'	=>array(
 												array(
 													'label'=>'Enable',
@@ -162,7 +163,6 @@ $containerCommonSettings = array(
 													'bottom'=>0
 												),
 								'content_type'=>'css',
-								'output_format'=>"bodrer: %left%px %right%px %top%px %bottom%px",
 								'required'  => array('want_border'=>1),
 							),
 							array(		
@@ -186,7 +186,7 @@ $containerCommonSettings = array(
 	 							'content_type'=>'css',
 	 							'output_format'=>'border-style: %default%',
 	 							'required'  => array('want_border'=>1),
-	 						),
+	 						),*/
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"shadow",

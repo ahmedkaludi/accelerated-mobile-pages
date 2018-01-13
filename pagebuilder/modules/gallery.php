@@ -104,7 +104,7 @@ return array(
 								'content_type'=>'html',
 							),
               ),
-          'front_template'=>'<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>'
+          'front_template'=>'{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="{{image_layout}}"></amp-img>{{ifend_img_upload}}'
           ),
 	);
 

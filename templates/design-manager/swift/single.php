@@ -37,11 +37,11 @@
 				<div class="sp-lt">
 					<div class="ss-icons">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
-						<?php amp_social([
-		                'twitter' => 'https://twitter.com/ampforwp',
-		                'facebook' => 'https://facebook.com/ampforwp',
-		                'linkedin'  => 'https://linkedin.com/ampforwp'
-		            	]);?> 
+						<?php amp_social(array(
+		                'twitter' => '',
+		                'facebook' => '',
+		                'linkedin' => '',
+		            	));?> 
 		            </div>
 		            <div class="sp-athr">
 		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
@@ -70,7 +70,8 @@
 					                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 								</div>
 								<div class="rlp-cnt">
-									<?php ampforwp_get_relatedpost_content($argsdata); ?> 
+									<?php $argsdata = array();
+									ampforwp_get_relatedpost_content($argsdata); ?> 
 						        </div>
 					        </li><?php
 					        }

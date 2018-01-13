@@ -701,7 +701,7 @@ position: fixed;
 .modal-body {
     /* width: 100%; */
     overflow-y: auto;
-    height: 98%;
+    height: 92%;
     position: absolute;
     left: 0;
     top: 0;
@@ -710,6 +710,7 @@ position: fixed;
 }
 .modal-settings{
     padding: 0px 20px;
+    margin-top: 50px;
 }
 .modal-content{
     height: 100vh;
@@ -739,9 +740,12 @@ position: fixed;
 .modal-footer .close-btn-modal{display: none}
 .modal-body .modal-header{
     padding-left: 20px;
-    padding-right: 30px;
+    height: 50px;
+    /* padding-right: 30px; */
     background-color: #fafafa;
     border-bottom: 1px solid #D8D8D8;
+    width: 79%;
+    position: fixed;
 }
 .modal-wrapper .media-modal-close{
     background: #fafafa;

@@ -61,6 +61,7 @@ function amp_pagebuilder_content_styles(){
 			foreach ($previousData['rows'] as $key => $rowsData) {
 				$container = $rowsData['cell_data'];
 				$rowContainer = $rowsData['data'];
+				
 				if(isset($containerCommonSettings['front_css'])){
 					$rowCss = $containerCommonSettings['front_css'];
 					$rowCss = str_replace('{{row-class}}', '.row-setting-'.$rowsData['id'], $rowCss);
@@ -73,7 +74,14 @@ function amp_pagebuilder_content_styles(){
 							}
 							if(isset($rowfield['required']) && count($rowfield['required'])>0){
 								foreach($rowfield['required'] as $requiredKey=>$requiredValue){
-									if(isset($rowContainer[$requiredKey]) && $rowContainer[$requiredKey] != $requiredValue){
+									$valueCheckWith = '';
+									if(isset($rowContainer[$requiredKey])){
+										$valueCheckWith = $rowContainer[$requiredKey];
+									}
+									if( is_array($valueCheckWith) ) {
+										$valueCheckWith = $rowContainer[$requiredKey][0];
+									}
+									if( $valueCheckWith !== $requiredValue){
 										$replaceRow ='';
 									} 
 								}
@@ -567,7 +575,8 @@ function get_attachment_id( $url , $imagetype='full') {
 	}else{
 		$attachment_id = 0;
 		$dir = wp_upload_dir();
-		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) { // Is URL in uploads directory?
+			// Is URL in uploads directory?
+		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
 			$file = basename( $url );
 			$query_args = array(
 				'post_type'   => 'attachment',
