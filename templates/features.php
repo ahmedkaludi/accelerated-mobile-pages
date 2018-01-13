@@ -212,6 +212,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if(post_password_required( $post )){
 				return;
 			}
+		// #1443 AMP should be skip on the check out page  
+		if(class_exists( 'WooCommerce' )){
+		      if(function_exists('is_checkout') && is_checkout()){
+		        return;
+		      }
+		    }
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
 			$selected_cats = array();
