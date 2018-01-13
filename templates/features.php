@@ -5344,3 +5344,15 @@ function ampforwp_instagram_sanitizer( $sanitizer_classes ) {
   $sanitizer_classes[ 'AMP_Instagram_Embed_Sanitizer' ] = array(); 
   return $sanitizer_classes;
 }
+
+// Allowed Tags
+if ( ! function_exists('ampforwp_allowed_tags') ) {
+	function ampforwp_allowed_tags() {
+		$allowed_tags = '';
+		$allowed_tags = wp_kses_allowed_html('post');
+		$allowed_tags['a']['itemprop'] = true;
+      	$allowed_tags['span']['itemprop'] = true;
+
+      	return $allowed_tags;
+	}
+}
