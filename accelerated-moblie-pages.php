@@ -25,7 +25,7 @@ define('AMPFORWP_VERSION','0.9.72');
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
     $get_permalink_structure = '';
-    
+
    	$ampforwp_slug = "amp";
 
     return $ampforwp_slug;
@@ -89,13 +89,11 @@ function ampforwp_add_custom_rewrite_rules() {
         'top'
     );
 	// For /Blog page with Pagination
-	//if ( ampforwp_custom_post_page() && ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
 	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
-	//}
 
     // For Author pages
     add_rewrite_rule(
