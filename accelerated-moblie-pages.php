@@ -632,3 +632,25 @@ if( ! function_exists( 'ampforwp_redirect_old_slug_to_new_url' ) ){
 		return $link;
 	}
 }
+
+/**
+ * This function allows you to track usage of your plugin
+ * Place in your main plugin file
+ * Refer to https://wisdomplugin.com/support for help
+ */
+if( ! class_exists( 'Plugin_Usage_Tracker') ) {
+	require_once dirname( __FILE__ ) . '/tracking/class-plugin-usage-tracker.php';
+}
+if( ! function_exists( 'accelerated_moblie_pages_start_plugin_tracking' ) ) {
+	function accelerated_moblie_pages_start_plugin_tracking() {
+		$wisdom = new Plugin_Usage_Tracker(
+			__FILE__,
+			'http://wordpress-123147-405203.cloudwaysapps.com/',
+			array(),
+			true,
+			true,
+			1
+		);
+	}
+	accelerated_moblie_pages_start_plugin_tracking();
+}
