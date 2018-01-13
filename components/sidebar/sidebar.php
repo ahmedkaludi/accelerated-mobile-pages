@@ -2,27 +2,27 @@
 if(!function_exists('ampforwp_framework_get_sideabr')){
 	function ampforwp_framework_get_sideabr($data=array()){
 		if(!isset($data['action'])){
-			echo 'action not found';
+			echo esc_attr('action not found');
 		}
 		$action = $data['action'];
 		unset($data['action']);
 		switch(strtolower($action)) {
 			case 'start':
-				echo sideber_begin($data);
+				echo esc_html(sideber_begin($data));
 				do_action('amp_sidebar_start');
 				break;
 			case 'end':
 				do_action('amp_sidebar_end');
-				echo sideber_end();
+				echo esc_html(sideber_end());
 				break;
 			case 'open-button':
-				echo sidebar_opening_button($data);
+				echo esc_html(sidebar_opening_button($data));
 				break;
 			case 'close-button':
-				echo sidebar_close_button($data);
+				echo esc_html(sidebar_close_button($data));
 				break;
 			default:
-				echo 'action not found';
+				echo esc_html('action not found');
 				break;
 		}
 	}
@@ -59,7 +59,7 @@ function sideber_begin($data=array()){
 	$attribute = '';
 	if(count($data)>0){
 		foreach ($data as $key => $value) {
-			$attribute .= $key.'="'.$value.'" ' ;
+			$attribute .= $key.'="'.$value.'" ';
 		}
 	}else{
 		$attribute = "id='sidebar' layout='nodisplay' side='right'";
