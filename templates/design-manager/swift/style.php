@@ -955,7 +955,7 @@ display: none;
     padding:2px;
 }
 
-.swift-sticky-social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
+.swift-sticky-social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; position: fixed; margin: 0; z-index: 10; text-align: center; }
 .cntn-wrp{
     font-size:18px;
     color:#000;
@@ -1407,12 +1407,49 @@ display: none;
     display:inline-block;
 }
 
+/** Sticky Social Icons **/
+.swift-sticky-social{
+    display:none;
+}
+.swift-sticky-social{
+    background:#ccc;
+}
+.swift-sticky-social ul li{
+    float:left;
+    list-style-type:none;
+    width:153px;
+}
+.swift-sticky-social ul li a{
+    color:#fff;
+    width:100%;
+    display:inline-block;
+    font-size:20px;
+    padding:10px;
+}
+.swift-sticky-social .ic-fb{
+    background:#365899;
+}
+.swift-sticky-social .ic-tw{
+    background:#1da1f2;
+}
+.swift-sticky-social .ic-gl{
+    background-color:#dd4b39;
+}
+.swift-sticky-social .ic-pi{
+    background-color:#bd081c;
+}
+.swift-sticky-social .ic-li{
+    background-color:#0077b5;
+}
+
 /*** Transitions ***/
 .content-wrapper a, .breadcrumb ul li a, .srp ul li{
     transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
 }
-
+.single-postamp-single .swift-sticky-social{
+    display:block;
+}
 /*** Responsive ***/
 @media(max-width:1110px){
 .cntr{
@@ -1573,6 +1610,11 @@ display: none;
 }
 
 
+}
+@media(max-width:767px){
+.swift-sticky-social ul li{
+    width:20%;
+}
 }
 @media(max-width:480px){
 .cntr{

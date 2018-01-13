@@ -25,6 +25,12 @@
 	</div>
 </footer>
 <div class="swift-sticky-social">
-	<?php amp_social(); ?>
+	<ul>
+		<li><a class="ic-fb" href="https://facebook.com/ampforwp"><span class="icon-facebook"></span></a></li>
+		<li><a class="ic-tw" href="https://twitter.com/ampforwp"><span class="icon-twitter"></span></a></li>
+		<li><a class="ic-gl" href="#"><span class="icon-google-plus"></span></a></li>
+		<li><a class="ic-pi" href="https://www.pinterest.com/ampforwp/"><span class="icon-pinterest"></span></a></li>
+		<li><a class="ic-li" href="https://linkedin.com/ampforwp"><span class="icon-linkedin"></span></a></li>
+	</ul>
 </div>
 <?php amp_footer_core(); ?>
