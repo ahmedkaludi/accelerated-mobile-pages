@@ -3141,6 +3141,13 @@ Redux::setSection( $opt_name, array(
                       'title'    => __('Meta Information', 'accelerated-mobile-pages'),
                       'subtitle' => __('Enable or disable the Meta info on Pages'),                  
                   ),
+             array(
+                      'id'       => 'ampforwp_subpages_list',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Display Subpages/ChildPages', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Enable or disable the List of Subpages'),                  
+                  ),
             )
     ));
 

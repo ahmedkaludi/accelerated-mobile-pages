@@ -5356,3 +5356,21 @@ if ( ! function_exists('ampforwp_allowed_tags') ) {
       	return $allowed_tags;
 	}
 }
+
+// List of Subpages/Childpages on Pages
+add_action('ampforwp_after_post_content', 'ampforwp_list_subpages');
+if ( ! function_exists('ampforwp_list_subpages') ) {
+	function ampforwp_list_subpages() {
+		global $post, $redux_builder_amp;
+		if ( is_page() && true == $redux_builder_amp['ampforwp_subpages_list'] ) {
+			$pages = '';
+			$pages = wp_list_pages( array( 
+							'echo' => 0,
+							'child_of' => $post->ID,
+							'title_li' => '', 
+			) );
+			$pages = preg_replace('/href="(.*?)"/', 'href="$1/amp/"', $pages);
+			echo wp_kses($pages, ampforwp_allowed_tags());
+		}
+	}
+}
