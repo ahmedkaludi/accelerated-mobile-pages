@@ -1406,11 +1406,8 @@ display: none;
     color:#005be2;
     display:inline-block;
 }
-
+<?php if(is_single()){ ?>
 /** Sticky Social Icons **/
-.swift-sticky-social{
-    display:none;
-}
 .swift-sticky-social{
     background:#f1f1f1;
 }
@@ -1442,15 +1439,13 @@ display: none;
 .swift-sticky-social .ic-li{
     background-color:#0077b5;
 }
-
+<?php } ?>
 /*** Transitions ***/
 .content-wrapper a, .breadcrumb ul li a, .srp ul li{
     transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
 }
-.single-postamp-single .swift-sticky-social{
-    display:block;
-}
+
 /*** Responsive ***/
 @media(max-width:1110px){
 .cntr{
