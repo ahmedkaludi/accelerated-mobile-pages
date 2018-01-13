@@ -775,14 +775,15 @@ display: none;
 /****
 * Archives
 *****/
+.arch-tlt{
+    margin:30px 0px 30px;
+}
 .amp-archive-title, .amp-loop-label{
-    font-size:18px;
     font-weight:600;
-    margin:20px 0px;
 }
 .amp-archive-desc{
     font-size: 14px;
-    margin: 10px 0px 15px 0px;
+    margin:8px 0px 0px 0px;
     color: #333;
     line-height:20px;
 }
@@ -1373,6 +1374,7 @@ display: none;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
     flex: 1 0 25%;
+    margin:0 15px;
 }
 .w-bl h4{
     color: #999;
@@ -1385,15 +1387,15 @@ display: none;
 }
 .w-bl ul li{
     list-style-type: none;
-    font-size: 15px;
-    margin-bottom: 22px;
+    font-size: 14px;
+    line-height:1.5;
+    margin-bottom: 15px;
 }
 .w-bl ul li:last-child{
     margin-bottom:0;
 }
 .w-bl ul li a{
     text-decoration: none;
-    color: #333;
 }
 .sp-rt .amp-author {
     margin-top: 5px;
@@ -1584,14 +1586,11 @@ display: none;
 .loop-wrapper {
     margin-top: 10px;
 }
-.amp-archive-desc {
-    font-size: 13px;
-    margin-top: 5px;
-    line-height: 18px;
+.arch-tlt{
+    margin-bottom:20px;
 }
-.amp-archive-title, .amp-loop-label {
+.amp-loop-label {
     font-size: 16px;
-    margin: 15px 0px 0px;
 }
 .author-img amp-img {    
    margin: 0px 12px 5px 0px;
@@ -1721,9 +1720,11 @@ display: none;
 .footer {
     margin-top: 50px;
 }
+<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 .f-w-f1 {
     padding: 45px 0px 10px 0px;
 }
+<?php endif; ?>
 .f-w-f2 {
     padding: 25px 0px;
 }
@@ -1772,8 +1773,6 @@ display: none;
     padding: 0px 15px 0px 14px;
 }
 .amp-archive-title, .amp-loop-label{
-    margin-top:15px;
-    margin-bottom:10px;
     padding:0 20px;
 }
 .amp-sub-archives {
@@ -1791,9 +1790,11 @@ display: none;
 .footer {
     margin-top: 35px;
 }
+<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 .f-w-f1 {
     padding: 35px 0px 10px 0px;
 }
+<?php endif; ?>
 .w-bl h4 {
     margin-bottom: 15px;
 }
@@ -1817,7 +1818,7 @@ display: none;
 }
 @media(max-width:320px){
 .right a, .left a {
-    padding: 10px 30px;
+    padding: 10px 30px 14px;
 }
 .cntn-wrp p {
     font-size: 16px;
