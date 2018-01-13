@@ -8,18 +8,18 @@ if(!function_exists('ampforwp_framework_get_sideabr')){
 		unset($data['action']);
 		switch(strtolower($action)) {
 			case 'start':
-				echo esc_html(sideber_begin($data));
+				echo sideber_begin($data);
 				do_action('amp_sidebar_start');
 				break;
 			case 'end':
 				do_action('amp_sidebar_end');
-				echo esc_html(sideber_end());
+				echo sideber_end();
 				break;
 			case 'open-button':
-				echo esc_html(sidebar_opening_button($data));
+				echo sidebar_opening_button($data);
 				break;
 			case 'close-button':
-				echo esc_html(sidebar_close_button($data));
+				echo sidebar_close_button($data);
 				break;
 			default:
 				echo esc_html('action not found');
@@ -36,7 +36,7 @@ function sidebar_close_button($data=array() ){
 	if(isset($data['class'])){
 		$class .= $data['class'];
 	}
-	return '<div role="button" tabindex="0" on="tap:'.$id.'.close" class="'.$class.'">X</div>';
+	return esc_html( '<div role="button" tabindex="0" on="tap:'.$id.'.close" class="'.$class.'">X</div>' );
 }
 function sidebar_opening_button($data=array()){
 	$id = 'sidebar';
@@ -47,13 +47,13 @@ function sidebar_opening_button($data=array()){
 	if(isset($data['class'])){
 		$class = $data['class'];
 	}
-	return '<div on="tap:'.$id.'.toggle" role="button" tabindex="0" class="'.$class.'">
+	return esc_html( '<div on="tap:'.$id.'.toggle" role="button" tabindex="0" class="'.$class.'">
 						<a href="#" class="amp-sidebar-toggle">
 							<span></span>
 							<span></span>
 							<span></span>
 						</a>
-				</div>';
+				</div>' );
 }
 function sideber_begin($data=array()){
 	$attribute = '';
@@ -64,11 +64,11 @@ function sideber_begin($data=array()){
 	}else{
 		$attribute = "id='sidebar' layout='nodisplay' side='right'";
 	}
-	return '<amp-sidebar '.$attribute.'>';
+	return esc_html( '<amp-sidebar '.$attribute.'>' );
 }
 
 function sideber_end(){
-	return '</amp-sidebar>';
+	return esc_html( '</amp-sidebar>' );
 }
 ampforwp_add_sidebar_scripts();
 function ampforwp_add_sidebar_scripts(){
