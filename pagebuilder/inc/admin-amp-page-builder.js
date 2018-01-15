@@ -743,11 +743,12 @@ var app = new Vue({
   		//Rows drop details
 		handleDrop: function(columnData,Events) {
 			if(typeof columnData=='undefined' || typeof columnData.type=='undefined'){
-				alert("First drop columns");
 				return false;
 			}
 			if(columnData.type!="column"){
-				alert("First drop columns");
+				if(columnData.type=='module' && this.mainContent.rows.length==0){
+					alert("First drop columns");
+				}
 				return false;
 			}
 			this.dropover = false;

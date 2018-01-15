@@ -365,7 +365,7 @@
 
     <div class="amp-form-control" :id="field.name" data-type="color-picker" v-else-if="field.type=='color-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         <div class="form-label label_txt">{{field.label}}</div>
-        <div class="form-field" style="line-height: 35px" class="color-wrapper form-label">
+        <div class="form-field color-wrapper"  style="line-height: 35px" >
             <color-picker :colorfield="field"></color-picker>
         </div>
    
