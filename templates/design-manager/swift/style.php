@@ -1420,33 +1420,20 @@ display: none;
     margin-bottom: 30px;
     display: inline-block;
 }
-.swift-sticky-social ul li{
-    display:inline-block;
-    margin:0 -2px;
+.swift-sticky-social .amp-social ul a li{
+    display:block;
     list-style-type:none;
-    width:153px;
 }
-.swift-sticky-social ul li a{
-    color:#fff;
+.swift-sticky-social .amp-social ul a li:before{
     width:100%;
     display:inline-block;
-    font-size:20px;
-    padding:10px;
+    padding:10px 0px;
 }
-.swift-sticky-social .ic-fb{
-    background:#365899;
-}
-.swift-sticky-social .ic-tw{
-    background:#1da1f2;
-}
-.swift-sticky-social .ic-gl{
-    background-color:#dd4b39;
-}
-.swift-sticky-social .ic-pi{
-    background-color:#bd081c;
-}
-.swift-sticky-social .ic-li{
-    background-color:#0077b5;
+.swift-sticky-social .amp-social ul a{
+    color:#fff;
+    float:left;
+    font-size:20px; 
+    width:153px;
 }
 <?php } ?>
 /*** Transitions ***/
@@ -1616,9 +1603,13 @@ display: none;
 
 }
 @media(max-width:767px){
-.swift-sticky-social ul li{
-    width:20%;
+.amp-social{
+    width:100%;
 }
+.swift-sticky-social .amp-social ul a{
+    width: 20%;
+}
+
 }
 @media(max-width:480px){
 .cntr{
