@@ -2,7 +2,7 @@
 /**
  * Converts Instagram embeds to <amp-instagram>
  */
-class AMP_Instagram_Embed_Sanitizer extends AMP_Base_Sanitizer {
+class AMPFORWP_Instagram_Embed_Sanitizer extends AMP_Base_Sanitizer {
 private $instagram_medias = array();
 private static $script_slug = 'amp-instagram';
  private static $script_src = 'https://cdn.ampproject.org/v0/amp-instagram-0.1.js';
