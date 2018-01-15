@@ -61,6 +61,7 @@ position: absolute;
  
 .modules-drop{
     position: relative;
+    padding: 10px 13px;
 }
 
 .amppb-rows-message{
@@ -187,9 +188,8 @@ div#amppb-module-actions-container:before {
 }
 
 .amppb-row-fields{
-    width: 96%;
+    width: 100%;
     border-top: 0px solid #333;
-    padding: 10px 13px 15px 13px;
     clear: both;
     position: relative;
 }
@@ -1079,36 +1079,36 @@ Layout css
 .ampforwp-left-arrow:before{
     content: "\f340";
     background: #ddd;
-    padding: 9px 4px 9px 4px;
+    padding: 10px 4px 10px 4px;
     position: relative;
-    top: 5px;
+    top: 6px;
     font-size: 15px;
     left: 2px;
 }
 .ampforwp-right-arrow:before{
     content: "\f344";
     background: #ddd;
-    padding: 9px 4px 9px 4px;
+    padding: 10px 4px 10px 4px;
     position: relative;
-    top: 5px;
+    top: 6px;
     font-size: 15px;
     left: 2px;
 }
 .ampforwp-down-arrow:before{
     content: "\f346";
     background: #ddd;
-    padding: 9px 4px 9px 4px;
+    padding: 10px 4px 10px 4px;
     position: relative;
-    top: 5px;
+    top: 6px;
     font-size: 15px;
     left: 2px;
 }
 .ampforwp-up-arrow:before{
     content: "\f342";
     background: #ddd;
-    padding: 9px 4px 9px 4px;
+    padding: 10px 4px 10px 4px;
     position: relative;
-    top: 5px;
+    top: 6px;
     font-size: 15px;
     left: 2px;
 }

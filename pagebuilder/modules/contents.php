@@ -10,6 +10,7 @@ require_once  ABSPATH . WPINC . '/category.php';
     display: flex;
     flex-wrap: wrap;
     margin: -15px;
+    padding:0;
     list-style-type:none;
  }
 .cat_mod ul li {

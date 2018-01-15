@@ -55,7 +55,7 @@
                                    
                                 </div>
                                  <div style="text-align:right;">
-                                    <input type="button" class="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Duplicate Create Fields">
+                                    <input type="button" class="button" @click="duplicateRepeaterField(modalcontent.repeater)" value="Add Field">
                                 </div>
                                 </div>
                             </div>
