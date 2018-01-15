@@ -28,7 +28,7 @@
 		<?php if( is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
 			global $redux_builder_amp;
 			$date = get_the_date( get_option( 'date_format' ));
-			if( true == $redux_builder_amp['ampforwp-post-date-global'] ){
+			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
 				$date = get_the_modified_date( get_option( 'date_format' ));
 			}
 			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . $date );

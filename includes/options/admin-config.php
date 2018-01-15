@@ -2530,34 +2530,6 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-callnow-button', '=' , '1')
                     )
              ),
-            // Date Format
-             array(
-                    'id'       => 'ampforwp-post-date-global',
-                    'type'     => 'switch',
-                    'subtitle' => __('To Show Modified Date Instead Of Published Date', 'accelerated-mobile-pages'),
-                    'title'    => __( 'Post Modified Date', 'accelerated-mobile-pages' ),
-                    'default'  => '0'
-            ),
-            array(
-                    'id'        =>'ampforwp-post-date-format',
-                    'type'      =>'select',
-                    'title'     =>__('Date Format','accelerated-mobile-pages'),
-                    'subtitle' => __('Select the Date Format of Posts', 'accelerated-mobile-pages'),
-                    'options'   => array(
-                                    '1' => 'Ago',
-                                    '2' => 'Traditional view'
-                                    ), 
-                    'default'   =>'1',
-            ),
-            array(
-                    'id'        =>'ampforwp-post-date-format-text',
-                    'type'      =>'text',
-                    'title'     =>__('Text for the Date Format','accelerated-mobile-pages'),
-                    'desc'  =>__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
-                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
-                    'default'   =>'% days ago',
-            ), 
-
              array(
                     'id'       => 'css_editor',
                     'type'     => 'ace_editor',
@@ -2934,14 +2906,6 @@ Redux::setSection( $opt_name, array(
               'default'   => 1,
               'subtitle'  => __('Enable Next-Previous links in single', 'accelerated-mobile-pages'),
           ),
-          // Post Modified Date
-          array(
-              'id'        => 'post-modified-date',
-              'type'      => 'switch',
-              'title'     => __('Show Post Modified Date', 'accelerated-mobile-pages'),
-              'default'   => 0,
-              'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-          ),
           // Author Bio
          array(
              'id'       => 'amp-author-description',
@@ -2956,17 +2920,6 @@ Redux::setSection( $opt_name, array(
              'title'    => __( 'Link to Author Pages', 'accelerated-mobile-pages' ),
              'default'  => '0',
          ),
-         // Date on Single
-         array(
-            'id'       => 'amp-design-3-date-feature',
-            'type'     => 'switch',
-            'title'    => __( 'Published Date', 'accelerated-mobile-pages' ),
-            'required' => array(
-              array('amp-design-selector', '=' , '3')
-            ),
-            'subtitle'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
-            'default'  => '0'
-        ),
         // Pagination //#1015 
         array(
             'id'       => 'amp-pagination',
@@ -3497,6 +3450,66 @@ Redux::setSection( $opt_name, array(
         )
     ) );
 
+
+    // Date SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Date', 'accelerated-mobile-pages' ),
+       'id'         => 'ampforwp-date-section',
+       'subsection' => true,
+        'fields'     => array(
+            // Date on Single Design 3
+             array(
+                'id'       => 'amp-design-3-date-feature',
+                'type'     => 'switch',
+                'title'    => __( 'Date', 'accelerated-mobile-pages' ),
+                'required' => array(
+                  array('amp-design-selector', '=' , '3')
+                ),
+                'subtitle'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+                'default'  => '0'
+            ),
+            // Show Date As
+             array(
+                    'id'       => 'ampforwp-post-date-global',
+                    'type'     => 'select',
+                    'title'    => __( 'Show Date As', 'accelerated-mobile-pages' ),
+                    'options'  => array(
+                                    '1' => 'Published Date',
+                                    '2' => 'Modified Date'
+                                    ),
+                    'default'  => '1',
+            ), 
+            // Date Format
+             array(
+                    'id'        =>'ampforwp-post-date-format',
+                    'type'      =>'select',
+                    'title'     =>__('Date Format','accelerated-mobile-pages'),
+                    'subtitle' => __('Select the Date Format of Posts', 'accelerated-mobile-pages'),
+                    'options'   => array(
+                                    '1' => 'Ago',
+                                    '2' => 'Traditional view'
+                                    ), 
+                    'default'   =>'1',
+            ),
+            array(
+                    'id'        =>'ampforwp-post-date-format-text',
+                    'type'      =>'text',
+                    'title'     =>__('Text for the Date Format','accelerated-mobile-pages'),
+                    'desc'  =>__('Example: English - % days ago, Spain - ago % days','accelerated-mobile-pages'),
+                    'required' => array( array('ampforwp-post-date-format', '=', '1') ),
+                    'default'   =>'% days ago',
+            ),
+        // Post Modified Date
+          array(
+              'id'        => 'post-modified-date',
+              'type'      => 'switch',
+              'title'     => __('Modified Date Notice', 'accelerated-mobile-pages'),
+              'default'   => 0,
+              'subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
+          ),        
+        )
+
+    ) );
 
     // Misc SECTION
    Redux::setSection( $opt_name, array(
