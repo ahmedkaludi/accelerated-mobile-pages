@@ -112,16 +112,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 **[5. Frequently Asked Questions:](http://ampforwp.com/faq/)** Some of the Frequently Asked questions.
 
-= Issues & Bug Reports: =
-**How do I Report Bugs and Suggest New Features**
-<i>You</i> can report the bugs at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues
-
-**Will you Add New features upon my request?**
-Yes, Absolutely! I would suggest you to send your feature request by creating an issue in Github at https://github.com/ahmedkaludi/Accelerated-Mobile-Pages/issues/new/ . It helps us organize the feedback easily.
-
-**How do I get in touch?**
-You can contact me using this url: http://ampforwp.com/contact/
-
 
 == Installation ==
 **[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
@@ -186,6 +176,23 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.73 (15th January 2018) =
+* View More details on the [blog post](https://ampforwp.com/0-9-73-released-stability-update-78th-update/)
+* Added: Instagram Sanitizer added to process Instagram Embeds inside the BlockQuotes #1581
+* Added: Option Created to Enable/Disable rel="nofollow" for View Non-AMP link #1572
+* Fixed: Custom AMP Content was not working with Elementor Pagbuilder #1495
+* Fixed: ampforwp_is_front_page() is not working in the newspaper theme #1583
+* Added: Allow people to use multiple Analytics on AMP #1124
+* Fixed: 'https' error with PlayBuzz Embeds #1481
+* Added: Option to show last modified date instead of Published date #1496
+* Fixed: Add proper permission for ampforwptourinstaller page
+* Fixed: Debug warnings #1586 and #1459
+* Fixed: A lot of Security Fixes has been done #1497
+* Fixed: Removed lot of unused code #1497
+* Added: AMP skip for checkout page #1443
+* Added: Show the list of Child pages at the end in Parent Page with on/off #1551
+* Fixed: Properly strip shortcodes fom Structured data description #1512
 
 = 0.9.72 (6th January 2018, Happy New Year) =
 * View More details on https://ampforwp.com/0-9-72-released-stability-update-77th-update
