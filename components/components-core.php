@@ -145,7 +145,7 @@ function amp_social($social_icons=""){
 	global $loadComponent;
 	$amp_social = array();
 	//Supported social icons	 
-	$amp_social = array('twitter','facebook','pinterest','google-plus','linkedin','youtube','instagram','reddit','VKontakte','Odnoklassniki','snapchat','tumblr','facebook-like');
+	$amp_social = array('twitter','facebook','pinterest','google-plus','linkedin','youtube','instagram','reddit','VKontakte','Odnoklassniki','snapchat','tumblr');
 	if(isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true){
 		if($social_icons!=null){
 		 ampforwp_framework_get_social_icons($social_icons);
