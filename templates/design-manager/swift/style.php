@@ -1603,11 +1603,20 @@ display: none;
 
 }
 @media(max-width:767px){
-.amp-social{
+.swift-sticky-social .amp-social{
     width:100%;
 }
-.swift-sticky-social .amp-social ul a{
-    width: 20%;
+.swift-sticky-social .amp-social ul{
+    display:inline-flex;
+    width:100%;
+}
+.swift-sticky-social .amp-social ul a {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 100%;
+    width: auto;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
 }
 
 }
