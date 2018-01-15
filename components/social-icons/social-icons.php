@@ -16,6 +16,15 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$thumb_id = get_post_thumbnail_id($post_id);
 		$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
 	 }
+
+	if(!isAssoc($selected_social_icons)){
+		$icons_list_temp = array();
+		foreach ($selected_social_icons as $key => $icons) {
+			$icons_list_temp[$icons] = ''; 
+		}
+		$selected_social_icons = $icons_list_temp;
+	}
+
  	$social_icons_names = array();
 	$url = get_the_permalink();
 	$title = get_the_title();
@@ -27,6 +36,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	foreach ($selected_social_icons as $key => $value) {
 	 	$social_icons_names[] = $key;	 
 	 }
+	
 
 	if( isset($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
 	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $twitter_url.'&text='. $title .' ';
@@ -114,12 +124,18 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	  	</div>	
 <?php 
 }
+
+function isAssoc(array $arr)
+{
+    if (array() === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
+}
 //Load styling for social icons
 
 add_action('amp_post_template_css','amp_social_styles',11); 
 
 
-function amp_social_styles(){?>
+function amp_social_styles(){ ?>
 @font-face {
   font-family: 'icomoon';
   src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot');

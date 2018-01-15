@@ -38,17 +38,17 @@
 					<div class="ss-icons">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 						<?php amp_social(array(
-		                'twitter' => '',
-		                'facebook' => '',
-		                'pinterest' => '',
-		                'google-plus' => '',
-		                'linkedin' => '',
-		                'youtube' => '',
-		                'instagram' => '',
-		                'reddit' => '',
-		                'VKontakte' => '',
-		                'snapchat' => '',
-		                'tumblr' => ''
+		                'twitter' ,
+		                'facebook',
+		                'pinterest',
+		                'google-plus',
+		                'linkedin',
+		                'youtube',
+		                'instagram',
+		                'reddit',
+		                'VKontakte',
+		                'snapchat',
+		                'tumblr',
 ));?> 
 		            </div>
 		            <div class="sp-athr">
