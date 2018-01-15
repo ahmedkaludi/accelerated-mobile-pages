@@ -123,13 +123,16 @@ Vue.component('amp-pagebuilder-module-modal', {
 	},
   methods:{
   	repeaterAcoordian: function(event){
+  		var repeatHead = jQuery(event.target.parentElement).find("div.amp-accordion-head").find('span.amp-accordion-label');
   		var repeatContents = jQuery(event.target.parentElement).find("div.amp-accordion-content");
   		if(repeatContents.hasClass('active')){
   			repeatContents.removeClass('active');
   			repeatContents.addClass('hide');
+  			repeatHead.html('(Show)');
   		}else{
   			repeatContents.removeClass('hide');
   			repeatContents.addClass('active');
+  			repeatHead.html('(Hide)');
   		}
   	},
   	hideModulePopUp: function(event){
