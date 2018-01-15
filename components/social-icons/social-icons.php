@@ -17,7 +17,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 		$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
 	 }
 
-	if(!isAssoc($selected_social_icons)){
+	if(!ampforwp_is_associative($selected_social_icons)){
 		$icons_list_temp = array();
 		foreach ($selected_social_icons as $key => $icons) {
 			$icons_list_temp[$icons] = ''; 
@@ -141,7 +141,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 <?php 
 }
 
-function isAssoc(array $arr)
+function ampforwp_is_associative(array $arr)
 {
     if (array() === $arr) return false;
     return array_keys($arr) !== range(0, count($arr) - 1);
