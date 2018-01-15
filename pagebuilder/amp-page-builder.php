@@ -137,7 +137,7 @@ function call_page_builder(){
 		<div id="start_amp_pb_post" class="start_amp_pb" data-postId="<?php echo get_the_ID() ?>" v-if="startPagebuilder==0" @click="amppb_startFunction($event)">Start the AMP Page Builder</div>
 		<div class="enable_ampforwp_page_builder" v-if="startPagebuilder==1">
 			<label><input type="checkbox" name="ampforwp_page_builder_enable" value="yes" <?php if($ampforwp_pagebuilder_enable=='yes'){echo 'checked'; } ?> >Use Builder</label>
-			<label  @click="showModal = true;">Pre-built Layouts</label>
+			<label  @click="showModal = true;">Pre-built AMP Layouts</label>
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
@@ -146,7 +146,7 @@ function call_page_builder(){
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
 			@dragleave="rowOverDrop = false">
-					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Welcome to AMP Page Builder.</p>
+					<p class="dummy amppb-rows-message" v-if="mainContent.rows && mainContent.rows.length==0">Start by dragging a Column and then a Module.</p>
 					<draggable :element="'div'" class="dragrow"
 						v-model="mainContent.rows" 
 						:options="{

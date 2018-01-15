@@ -1,8 +1,8 @@
 <?php
 $arraySetting = array(
                    'tabs'=> array(
-                                'save_layout'=>'Save layout',
                                 'layout'=>'Layout Directory',
+                                'save_layout'=>'Save layout',
                                 'export'=>'Export'
                             ),
                    'defaulttab'=>'save_layout'

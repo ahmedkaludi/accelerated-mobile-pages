@@ -255,7 +255,6 @@ amppb-row-fields .amppb-column-2:not(:last-child){
     margin-bottom: 10px;
 }
 .amppb-module:hover {
-    border-color: #999;
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .amppb-row-fields .amppb-module:only-child{
@@ -445,6 +444,8 @@ font-size: 35px;
     width: 15%;
     margin-left: 2.5%;
     padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 #amppb-actions-container .drag{
     float: none
@@ -454,6 +455,8 @@ font-size: 35px;
     width: 77%;
     border-left: 1px solid #eee;
     padding-left: 3%;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 #amppb-actions-container .button-primary,
 #amppb-module-actions-container .button-primary{
@@ -543,7 +546,7 @@ font-size: 35px;
     
 .enable_ampforwp_page_builder{
     background: #f5f5f5;
-    padding: 14px 24px 0px 13px;
+    padding: 15px 24px 0px 13px;
 }
 .enable_ampforwp_page_builder label{
 
@@ -599,7 +602,7 @@ Form Styles
     position: relative;
     top: 3px;
     width: fit-content;
-    margin: 0 auto;
+    margin:10px auto 15px auto;
     display: block;
     border-radius: 3px;
 }
@@ -729,7 +732,14 @@ position: fixed;
 .modal-default-button {
   float: right;
 }
-.modal-footer{padding: 10px 0px;position: sticky;width: 100%; bottom: 0px;background: #f1f1f1;z-index: 100;}
+.modal-footer{
+    padding: 10px 0px;
+    position: sticky;
+    width: 100%;
+    bottom: 0px;
+    background: #f1f1f1;
+    z-index: 100;
+    display: inline-block;}
 .modal-footer .del-btn-modal{
     left: 215px;
     position: relative;
