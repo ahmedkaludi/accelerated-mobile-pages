@@ -136,7 +136,9 @@ function amp_pagebuilder_content_styles(){
 						if(isset($moduleTemplate[$contentArray['type']]['front_common_css'])){
 							$moduleCommonCss[$moduleTemplate[$contentArray['type']]['name']] = $moduleTemplate[$contentArray['type']]['front_common_css'];
 						}
-
+						if(!isset($moduleTemplate[$contentArray['type']])){
+							continue;
+						}
 
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
 							//LOAD Icon Css 

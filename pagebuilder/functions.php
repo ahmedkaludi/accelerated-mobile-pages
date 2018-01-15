@@ -22,11 +22,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
 		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
         $amp_current_post_id = $postId = get_the_ID();
             
-			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.min.js' );
-			wp_enqueue_script( 'vuejs-resource', 'https://cdn.jsdelivr.net/npm/vue-resource@1.3.4' );//For Http Clients
-			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js' );
-			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' );
-			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js' );
+			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.min.js', array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuejs-resource', 'https://cdn.jsdelivr.net/npm/vue-resource@1.3.4');//For Http Clients
+			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js', array(), AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' ,array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js', array(), AMPFORWP_VERSION, true);
 			
 			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
@@ -88,7 +88,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$components_options = array(
 									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
 									"savedLayouts"=>$allPostLayout,
-									"startPagebuilder"=>(get_post_meta($postId,'use_ampforwp_page_builder',true)=='yes'? 1:0)
+									"startPagebuilder"=>(get_post_meta($postId,'use_ampforwp_page_builder',true)=='yes'? 1:0),
+									"checkedPageBuilder"=>get_post_meta($postId,'ampforwp_page_builder_enable', true),
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
 			add_action( 'admin_footer', 'js_templates',9999);

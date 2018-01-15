@@ -651,7 +651,7 @@ var app = new Vue({
     message: '',
     loadingPagebuilder: 'display: block;',
     startPagebuilder: amppb_panel_options.startPagebuilder,
-    checkedPageBuilder: false,
+    checkedPageBuilder: amppb_panel_options.checkedPageBuilder,
     showModal: false,
     //Module data
     showmoduleModal: false,

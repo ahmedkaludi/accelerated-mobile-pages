@@ -94,7 +94,11 @@ jQuery(function($) {
             if ( ! gAPIkey){
                 gAPIkey = $('#google_font_api_key').val();
             }
-
+            if(gAPIkey==''){
+                 $('#redux_builder_amp-google_font_api_key').append('<p style="color:red">  Cound not connect to API, please double check your API key. </p> ');
+                $('.ampforwp-google-font-class').css({'display':'none'});
+                return ;
+            }
 
             gURL = "https://www.googleapis.com/webfonts/v1/webfonts?key=" + gAPIkey;
 
@@ -142,7 +146,7 @@ jQuery(function($) {
                 //console.log( values.length);
                 //console.log( values[0].family );
                 //console.table(  values);
-           
+                
                 $('#amp_font_selector-select').on('change', function() {
                     var select = $('option:selected', this).attr('data-font-number');
                     var fontVariants = data.items[select].variants ;
@@ -175,25 +179,34 @@ jQuery(function($) {
 
         }
 
+        function amp_font_selector_select_change(){
+
+               
+        }
 
         $(window).load(function() {
+            if($("#google_font_api_key").length>0){
+                $("#google_font_api_key").after("<input type='submit' value='Verify'>");
+            }
             if($('#amp_font_selector-select').length>0){
                 // Adding Default Font Family
                 $('#s2id_amp_font_selector-select a').removeClass('select2-default');
+                
                 $('#select2-chosen-3').html(redux_data.amp_font_selector);
                 if(redux_data.amp_font_selector==''){
-                    redux_data.amp_font_selector = 'Montserrat'
+                    redux_data.amp_font_selector = 'Poppins'
                 }
 
                 $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
-                $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector);
+                $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");
 
                 // Build select data
                 let fontData  = redux_data.google_current_font_data;
-                fontData = JSON.parse(fontData);
-                if ( fontData.variants) {
+               // fontData = JSON.parse(fontData);
+               console.log(fontData);
+                if (! fontData.variants) {
                     //$('.select2-search-choice').remove();
-                    $('#amp_font_type-select').html('<option></option>');
+                    //$('#amp_font_type-select').html('<option></option>');
 
                     for (var i in fontData.variants) {
                         $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
@@ -201,7 +214,7 @@ jQuery(function($) {
                 }
                 
                 if(redux_data.amp_font_type==''){
-                    redux_data.amp_font_type = ['regular'];
+                    redux_data.amp_font_type = ['regular','500','700'];
                 }
                 // Add Default selected
                 if ( redux_data.amp_font_type ) {
