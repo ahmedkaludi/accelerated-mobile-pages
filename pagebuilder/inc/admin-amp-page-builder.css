@@ -1150,10 +1150,11 @@ Layout css
   -moz-osx-font-smoothing: grayscale;
 }
 .amppb_accordion__panel {
-  padding: .9rem;
-  background: #e3e3e3;
+  padding: 1rem;
+  background: #ffffff;
   display: block;
   cursor:pointer;
+  position: relative;
 }
 a.amppb_accordion__panel:hover {
   background: #e8e8e8;
@@ -1169,11 +1170,35 @@ a.amppb_accordion__panel:hover {
 /*** Backend CSS ***/
 .amp-accordion-head .amp-accordion-label{
     display:none;
+    top: 17px;
+    right: 0;
+    position: absolute;
+    right: 79px;
+    text-transform: uppercase;
+    font-size: 10px;
+    z-index: 0;
 }
 .amp-accordion-head:hover .amp-accordion-label{
     display:inline-block;
-    
 }
 .amp-accordion-head:hover{
     background:#ded6d666;
+}
+.repeater_num {
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 60px;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+}
+.amp-repeat-active .amp-accordion-head{
+    background: #23282d;
+    color: #fff;
+    position: relative;
+}
+.amp-repeat-active .amp-accordion-content{
+    padding: 0px 10px;
+    border: 5px solid #23282d;
 }

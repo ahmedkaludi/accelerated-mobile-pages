@@ -40,7 +40,7 @@
                                     <div class="amp-accordion-head amppb_accordion__panel"   v-on:click="repeaterAcoordian($event);"><span class="repeater_num">{{key+1}}</span>
                                         <span class="amp-accordion-label"> {{(key==0)? '(Hide)': '(Show)'}}</span>
                                         <div class="right"
-                                             v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove field</div>
+                                             v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove</div>
                                     </div>
                                     <div class="amp-accordion-content" v-bind:class="{ active: (key==0),'hide': (key!=0) }">
                                         <fields-data v-for="(rfield, key, index) in repeaterfields"
