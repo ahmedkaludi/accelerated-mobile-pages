@@ -129,11 +129,11 @@ Vue.component('amp-pagebuilder-module-modal', {
   			repeatContents.removeClass('active');
   			repeatContents.addClass('hide');
   			repeatHead.html('(Show)');
-  			jQuery(event.target.parentElement).addClass("amp-repeat-active");
+  			jQuery(event.target.parentElement).removeClass("amp-repeat-active");
   		}else{
   			repeatContents.removeClass('hide');
   			repeatContents.addClass('active');
-  			jQuery(event.target.parentElement).removeClass("amp-repeat-active");
+  			jQuery(event.target.parentElement).addClass("amp-repeat-active");
   			repeatHead.html('(Hide)');
   		}
   	},
