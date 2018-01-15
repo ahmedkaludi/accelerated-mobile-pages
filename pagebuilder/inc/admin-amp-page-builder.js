@@ -648,8 +648,9 @@ var app = new Vue({
             emulateHTTP: true
     },
   data: {
-    message: 'Hello AMP Page builder वासियों',
+    message: '',
     startPagebuilder: amppb_panel_options.startPagebuilder,
+    checkedPageBuilder: false,
     showModal: false,
     //Module data
     showmoduleModal: false,
@@ -742,9 +743,11 @@ var app = new Vue({
   		//Rows drop details
 		handleDrop: function(columnData,Events) {
 			if(typeof columnData=='undefined' || typeof columnData.type=='undefined'){
+				alert("First drop columns");
 				return false;
 			}
 			if(columnData.type!="column"){
+				alert("First drop columns");
 				return false;
 			}
 			this.dropover = false;
@@ -918,6 +921,7 @@ var app = new Vue({
 			response =response.body;
 			 if(response.status === 200) {
 			 	this.startPagebuilder = 1;
+			 	this.checkedPageBuilder = 'yes';
 			 }
 			
 		},
