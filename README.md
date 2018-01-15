@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.1
-Stable tag: 0.9.72
+Stable tag: 0.9.72.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Alexa Metrics Compatibility added 
 * NEW - OneSignal Push Notifications integration 
 * NEW - Structured Data Options
 * NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
@@ -138,7 +139,7 @@ Yes, you easily can. In fact, we have support for 12 Analytics companies. Includ
 
 = Can I add Ads in my AMP pages? =
 
-Yes, you can. We have 6 ad placement slots that are built in and strategically placed to get maximum views. Also, we have [an extension] (https://ampforwp.com/advanced-amp-ads/) from which you can insert ads between the content, will get more ad slots and also add custom banners to all the available slots.
+Yes, you can. We have 6 ad placement slots that are built in and strategically placed to get maximum views. Also, we have [an extension](https://ampforwp.com/advanced-amp-ads/) from which you can insert ads between the content, will get more ad slots and also add custom banners to all the available slots.
 
 
 = Can I extend/Change the AMP design, so it suits my needs? =
@@ -167,7 +168,7 @@ Yes, Absolutely! We would suggest you send your feature request by creating an i
 
 = How do I get in touch? =
 
-You can contact me using this URL: http://ampforwp.com/contact/
+You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Screenshots ==
