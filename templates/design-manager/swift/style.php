@@ -961,7 +961,7 @@ display: none;
 .cntn-wrp{
     font-size:18px;
     color:#000;
-        line-height:1.5;
+        line-height:1.7;
 }
 .cntn-wrp p{
     margin:0px 0px 30px 0px;

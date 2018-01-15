@@ -718,7 +718,7 @@ position: fixed;
     right: 0px;
 }
 .modal-settings{
-    padding: 0px 20px;
+    padding: 0px 0px;
     margin-top: 50px;
     border-top: 1px solid #D8D8D8;
 }
@@ -819,10 +819,33 @@ position: fixed;
 .text-right {
     text-align: right;
 }
-
+.amp-form-control {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 15px 10px 15px 15px;
+}
 .form-label {
-    display: block;
-    margin-bottom: 1em;
+    float: left;
+    width: 15%;
+    margin-bottom: 0;
+    margin-top: 6px;
+    font-size: 14px;
+}
+.amp-form-control {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 15px 10px 15px 15px;
+}
+.amp-form-control:hover {
+    background: #f3f3f3;
+}
+.amp-form-control:hover .form-label{
+    color: #000
+}
+.form-field {
+    float: left;
+    width: 50%;
+}
+.form-field input, .form-field select, .form-field textarea{    
+    padding: 7px 8px;
 }
 .form-label > input[type=text], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=week], input[type=password], input[type=checkbox], input[type=color], input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=month], input[type=number], .form-label > select, .form-label > textarea{
     padding: 0.3em 1em;
@@ -1048,38 +1071,46 @@ Layout css
     border-top-right-radius: 10px;
 }
 .amppb-mar-padd{
-    float:left;
+    float:left;position: relative;margin-right: 6px;
 }
-.amppb-mar-padd input{
-    width:70px;
+.modal-wrapper .amppb-mar-padd input{
+    width:65px; text-align: center
 }
 .ampforwp-left-arrow:before{
     content: "\f340";
-    background: #ccc;
-    padding: 5px 3px 5px 2px;
+    background: #ddd;
+    padding: 9px 4px 9px 4px;
     position: relative;
-    top: 6px;
+    top: 5px;
+    font-size: 15px;
+    left: 2px;
 }
 .ampforwp-right-arrow:before{
     content: "\f344";
-    background: #ccc;
-    padding: 5px 3px 5px 2px;
+    background: #ddd;
+    padding: 9px 4px 9px 4px;
     position: relative;
-    top: 6px;
+    top: 5px;
+    font-size: 15px;
+    left: 2px;
 }
 .ampforwp-down-arrow:before{
     content: "\f346";
-    background: #ccc;
-    padding: 5px 3px 5px 2px;
+    background: #ddd;
+    padding: 9px 4px 9px 4px;
     position: relative;
-    top: 6px;
+    top: 5px;
+    font-size: 15px;
+    left: 2px;
 }
 .ampforwp-up-arrow:before{
     content: "\f342";
-    background: #ccc;
-    padding: 5px 3px 5px 2px;
+    background: #ddd;
+    padding: 9px 4px 9px 4px;
     position: relative;
-    top: 6px;
+    top: 5px;
+    font-size: 15px;
+    left: 2px;
 }
  
 
