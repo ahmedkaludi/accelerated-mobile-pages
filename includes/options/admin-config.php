@@ -3461,11 +3461,11 @@ Redux::setSection( $opt_name, array(
              array(
                 'id'       => 'amp-design-3-date-feature',
                 'type'     => 'switch',
-                'title'    => __( 'Date', 'accelerated-mobile-pages' ),
+                'title'    => __( 'Date in Posts', 'accelerated-mobile-pages' ),
                 'required' => array(
                   array('amp-design-selector', '=' , '3')
                 ),
-                'subtitle'     => __('Display date along with author and category', 'accelerated-mobile-pages' ),
+                'subtitle'     => __('Display date along with author and category in posts', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
             // Show Date As

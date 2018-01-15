@@ -37,8 +37,9 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
 	<span class="ampforwp-design3-single-date"><?php global $redux_builder_amp;
   $date = get_the_date( get_option( 'date_format' ));
   if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
-    $date = get_the_modified_date( get_option( 'date_format' ));
+    $date = get_the_modified_date( get_option( 'date_format' ) ) . ', ' . get_the_modified_time() ;
   }
+
   echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . $date ) ?></span>
 <?php endif; ?>
 
