@@ -23,12 +23,12 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	 global $redux_builder_amp;
 		// Single file
 	    if ( is_single() ) {
-			if('single' === $type && !('product' === $post->post_type )) {
+			if( 'single' === $type && ! ('product' === $post->post_type) ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/single.php';
 		 	}
 		}
 		if ( is_page() ) {
-			if('single' === $type && !('product' === $post->post_type )) {
+			if( 'single' === $type && ! ('product' === $post->post_type) ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		 	}
 		}
@@ -68,11 +68,12 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	        }
 	    }
 	    
+	    
 	 	return $file;
 	}
 
 	// Custom Footer
-	function ampforwp_custom_footer_file($file, $type ){
+	function ampforwp_custom_footer_file($file, $type) {
 		if ( 'footer' === $type ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/footer.php';
 		}
@@ -86,13 +87,4 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 		// Custom CSS
 		echo $redux_builder_amp['css_editor']; 
 	}
-
-	// Loading Custom Google Fonts in the theme
-	/*add_action( 'amp_post_template_head', 'amp_post_template_add_custom_google_font');
-	function amp_post_template_add_custom_google_font( $amp_template ) {
-	    $font_urls = $amp_template->get( 'font_urls', array() );
-		$font_urls['source_serif_pro'] = 'https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600|Source+Sans+Pro:400,700';  ?>
-	<link rel="stylesheet" href="<?php echo esc_url( $font_urls['source_serif_pro'] ); ?>">
-	<?php }*/
-
 

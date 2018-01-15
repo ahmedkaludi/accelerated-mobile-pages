@@ -127,8 +127,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 
 	function ampforwp_instller_admin_init(){
 		if(isset($_GET['ampforwp_install']) && $_GET['ampforwp_install']=='1' && is_admin()){
-			ampforwp_steps_call();
-			
+			ampforwp_steps_call();			
 		}
 	}
 	

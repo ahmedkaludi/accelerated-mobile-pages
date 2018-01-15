@@ -27,7 +27,11 @@
 		<time datetime="<?php echo esc_attr( date( 'c', $this->get( 'post_publish_timestamp' ) ) ); ?>">
 		<?php if( is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
 			global $redux_builder_amp;
-			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . get_the_date( get_option( 'date_format' )) );
+			$date = get_the_date( get_option( 'date_format' ));
+			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
+				$date = get_the_modified_date( get_option( 'date_format' )) . ', ' . get_the_modified_time() ;
+			}
+			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . $date );
 			}?>
 		</time>
 	</div>

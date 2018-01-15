@@ -391,7 +391,7 @@ add_action('amp_css', 'amp_theme_framework_rtl_styles');
 if( ! function_exists('amp_theme_framework_rtl_styles') ){
 	function amp_theme_framework_rtl_styles(){
 		global $redux_builder_amp;
-		if( true == $redux_builder_amp['amp-rtl-select-option'] ){ ?>
+		if( true === $redux_builder_amp['amp-rtl-select-option'] ){ ?>
 			body.rtl {direction: rtl;}
 			body amp-carousel{ direction: ltr;}
 		<?php }
