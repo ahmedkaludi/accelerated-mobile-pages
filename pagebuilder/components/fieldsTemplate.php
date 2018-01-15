@@ -1,54 +1,38 @@
  <script type="text/x-template" id="fields-data-template">
-    <div :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-            <input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
-            </label>
-        </p>
+    <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
          <div class="clearfix"></div>
     </div>
-    <div :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-            <input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
-            </label>
-        </p>
-         <div class="clearfix"></div>
+    <div class="amp-form-control" :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
+        <div class="clearfix"></div>
     </div>
    
-    <div :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-            <input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
-            </label>
-        </p>
+    <div class="amp-form-control" :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field"><input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
         <div class="clearfix"></div>
     </div>
     
     <?php /*Normal Textarea*/?>
-    <div :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-               <textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea>
-            </label>
-        </p>
+    <div class="amp-form-control" :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field"><textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea></div>
         <div class="clearfix"></div>
     </div>
     
-    <div :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="" style="position:relative;">
-            <label class="form-label" style="position: absolute;margin-top: 10px;">{{field.label}}</label>
-            <!--  <textarea class="full textarea-editor" id="ed123" :name="field.name" v-model="field.default"></textarea>  -->
-            <textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
-            <?php //wp_editor( '', 'My_TextAreaID_22',     array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, 'textarea_rows'=>5)   ); ?>
-        </p>
+    <div class="amp-form-control" :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label" style="position: absolute;margin-top: 10px;">{{field.label}}</div>
+        <div class="form-field"><textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg></div>
         <div class="clearfix"></div>
     </div>
     
-    <div :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-            <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" @change="callChangeEnvent();">
+    <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field"><select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" @change="callChangeEnvent();">
                 <option value="">Select option</option>
                 <option 
                     v-for="(option, key, index) in field.options_details"
@@ -58,111 +42,103 @@
                 {{option}}
                 </option>
             </select>
-            </label>
-        </p>
-         <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
     </div>
    
-    <div :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <span>{{field.label}}</span>     
-        <?php 
-        //:id="val.value+'-'+index+'-checkbox'" 
-        //:for="val.value+'-'+index+'-checkbox'"
-        ?>
-        <label class="form-label" v-for="(val,index) in field.options"  >
-            <input type="checkbox" :value="val.value" v-model="field.default" @change="callChangeEnvent();">
-            {{val.label}}
-        </label>
+    <div class="amp-form-control" :id="field.name" data-type="checkbox" v-else-if="field.type=='checkbox' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>     
+        <div class="form-field">
+            <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
+                <input type="checkbox" :value="val.value" v-model="field.default" @change="callChangeEnvent();">
+                {{val.label}}
+            </label>
+        </div>
     </div>
     
-    <div :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-
-        <div class="label_txt">{{field.label}}:</div>
-        <?php 
-        //:for="val.value+'-radio'"
-        //:id="val.value+'-'+index+'-radio'"
-        ?>
-        <label class="form-label" v-for="(val,index) in field.options" >
-            <input type="radio"  :value="val.value" v-model="field.default" @change="callChangeEnvent();">
-            {{val.label}}
-        </label>
+    <div class="amp-form-control" :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field">
+            <label  class="form-label-radio" v-for="(val,index) in field.options" >
+                <input type="radio"  :value="val.value" v-model="field.default" @change="callChangeEnvent();">
+                {{val.label}}
+            </label>
+        </div>
       
     </div>
   
-    <div :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix">
-        <label class="amppb-mar-padd">{{field.label}}</label>
-        <div class="clearfix"></div>
-        <p>
-            <label class="form-label amppb-mar-padd">
+    <div class="amp-form-control" :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field">
+            <label class="amppb-mar-padd">
                <span class="dashicons dashicons-arrow-up-alt ampforwp-up-arrow"></span>
                 <input type="text"  data-type="margin" data-pos="top" v-model="field.default.top">
             </label>
-            <label class="form-label amppb-mar-padd">
+            <label class="amppb-mar-padd">
                 <span class="dashicons dashicons-arrow-right-alt ampforwp-right-arrow"></span>
                 <input type="text"  data-type="margin" data-pos="right"  v-model="field.default.right">
             </label>
-             <label class="form-label amppb-mar-padd">
+             <label class="amppb-mar-padd">
                 <span class="dashicons dashicons-arrow-down-alt ampforwp-down-arrow"></span>
                 <input type="text" data-type="margin" data-pos="bottom" v-model="field.default.bottom">
             </label>
-            <label class="form-label amppb-mar-padd">                 
+            <label class="amppb-mar-padd">                 
                 <span class="dashicons dashicons-arrow-left-alt ampforwp-left-arrow"></span>
                 <input type="text"  data-type="margin" data-pos="left"  v-model="field.default.left">
             </label>
             <div class="clearfix"></div>
-        </p>
+        </div>
         
         <div class="clearfix"></div>
     </div>
     
     
     
-    <div :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p></p>
-            <label class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}
-              <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
-              <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
-            </label>
+    <div class="amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        
+        <div class="form-label" class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}</div>
+        <div class="form-field">
+            <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
+            <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
+        
             <div v-if="field.default!=''" style="position: relative;display: inline-block;">
                  <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag')" class="amppbimageuploadField"/>
                 <span class="dashicons-before dashicons-no link" @click="removeSelectedImage(field)"></span>
             </div>
-        <p></p>
+        </div>
         <div class="clearfix"></div>
     </div>
     
     
 
-    <div :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-        <p class="">
-            <label class="form-label">{{field.label}}
-             
-             <span class="button" @click="openIconOptions=!openIconOptions;">Select Icon</span>
-             <i v-if="field.default!=''" class="amppb-icon " :class="'icon-'+field.default"></i>
-             <input type="hidden" v-model="field.default">
-            </label>
-            <div class="select-icons" :class="{'hide': (!openIconOptions)}">
-                <span class="amppb-icon-close" @click="openIconOptions=!openIconOptions;"><i class=" icon-close"></i></span>
-                <input type="text" v-model="iconSearch" placeholder="Search Icon.."/>
-                <div class="icon-wrapper">
-                    <div class="icon-card" v-for="icon in filteredIcons" @click="iconSelected(icon,field)" :class="{'active' : (field.default==icon.name)}" :title="icon.name">
-                        <i class="icon" :class="'icon-'+icon.name"></i>
-                    </div>
+    <div class="amp-form-control" :id="field.name" data-type="icon-selector" v-else-if="field.type=='icon-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label">{{field.label}}</div>
+        <div class="form-field">
+            <span class="button" @click="openIconOptions=!openIconOptions;">Select Icon</span>
+            <i v-if="field.default!=''" class="amppb-icon " :class="'icon-'+field.default"></i>
+            <input type="hidden" v-model="field.default">
+        </div>
+        <div class="select-icons" :class="{'hide': (!openIconOptions)}">
+            <span class="amppb-icon-close" @click="openIconOptions=!openIconOptions;"><i class=" icon-close"></i></span>
+            <input type="text" v-model="iconSearch" placeholder="Search Icon.."/>
+            <div class="icon-wrapper">
+                <div class="icon-card" v-for="icon in filteredIcons" @click="iconSelected(icon,field)" :class="{'active' : (field.default==icon.name)}" :title="icon.name">
+                    <i class="icon" :class="'icon-'+icon.name"></i>
                 </div>
             </div>
-        </p>
+        </div>
         <div class="clearfix"></div>
     </div>
 
-    <div :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
-         <p class="">
-            <label class="form-label">{{field.label}}
-            <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div><br/>
-            <div class="clearfix"></div>
-              <span class="button" @click="openIconOptions=!openIconOptions;">
-               Select Gradient</span>
-              <input type="hidden" v-model="field.default">
-            </label>
+    <div class="amp-form-control" :id="field.name" data-type="gradient-selector" v-else-if="field.type=='gradient-selector' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+            <div class="form-label">{{field.label}}</div>
+            <div class="form-field">
+                <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div>
+                <div class="clearfix"></div>
+                <span class="button" @click="openIconOptions=!openIconOptions;">
+                   Select Gradient</span>
+                <input type="hidden" v-model="field.default">
+            </div>
             <div class="select-icons select-gradient-box" :class="{'hide': (!openIconOptions)}" :style="field.default">
                  <span class="amppb-icon-close" @click="openIconOptions=!openIconOptions;"><i class=" icon-close"></i></span>
 
@@ -384,7 +360,6 @@
 
 
             </div>
-        </p>
         <div class="clearfix"></div>
     </div>
 
