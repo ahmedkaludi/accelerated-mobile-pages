@@ -68,6 +68,9 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$selected_social_icons['VKontakte'] = 'http://vk.com/share.php?url='. $url. '';
 	 	//http://vk.com/share.php?url={url}
 	}
+	if( isset($selected_social_icons['Odnoklassniki']) && $selected_social_icons['Odnoklassniki'] == null){
+	 	$selected_social_icons['Odnoklassniki'] = 'https://ok.ru/dk?st.cmd=addShare&st._surl='. $url. '';
+	}
 	
 	if( isset($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
 	 	$selected_social_icons['tumblr'] = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl='. $url. '&title='. $title .'&caption='.$desc.'';
@@ -111,7 +114,11 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
 	        <?php if( ( in_array( 'VKontakte' , $selected_social_icons,true ) || in_array( 'VKontakte' , $social_icons_names,true ) ) && !empty($selected_social_icons['VKontakte']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['VKontakte']  ?>" target ="_blank"><li class="icon-vk"></li></a>
-	        <?php } ?> 
+	        <?php } ?>
+
+	        <?php if( ( in_array( 'Odnoklassniki' , $selected_social_icons,true ) || in_array( 'Odnoklassniki' , $social_icons_names,true ) ) && !empty($selected_social_icons['Odnoklassniki']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['Odnoklassniki'])  ?>" target ="_blank"><li class="icon-Odnoklassniki"></li></a>
+	        <?php } ?>  
 
 	        <?php if( (in_array( 'snapchat' , $selected_social_icons,true ) || in_array( 'snapchat' , $social_icons_names,true ) ) && !empty($selected_social_icons['snapchat']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['snapchat']  ?>" target ="_blank"><li class="icon-snapchat-ghost"></li></a>
@@ -119,6 +126,15 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  			<?php if( (in_array( 'tumblr' , $selected_social_icons,true ) || in_array( 'tumblr' , $social_icons_names,true )) && !empty($selected_social_icons['tumblr']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['tumblr']  ?>" target ="_blank"><li class="icon-tumblr"></li></a>
+	        <?php } ?>
+
+	        <?php if( (in_array( 'facebook-like' , $selected_social_icons,true ) || in_array( 'facebook-like' , $social_icons_names,true ))  ) { ?>
+	        	<amp-facebook-like width=90 height=28
+				 	layout="fixed"
+				 	data-size="large"
+				    data-layout="button_count"
+				    data-href="<?php echo esc_url(get_the_permalink()); ?>">
+				</amp-facebook-like>
 	        <?php } ?> 
 	        </ul>
 	  	</div>	
@@ -169,5 +185,6 @@ function amp_social_styles(){ ?>
 .amp-social ul{ list-style-type:none; padding:0;margin:0; text-align:center }
 .amp-social li{ box-sizing: initial; display:inline-block; }
 .amp-social li:before{box-sizing: initial;color: #fff;display: inline-block;width: 18px;height: 18px;line-height: 18px;}
+amp-facebook-like{top:8px;}
 
 <?php }

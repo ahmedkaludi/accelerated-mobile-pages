@@ -39,3 +39,40 @@ add_amp_theme_support('AMP-post-pagination');
 // Icons example
 add_amp_icon( array( 'widgets', 'search', 'shopping-cart' ) );
 
+function ampforwp_swift_social_icons(){
+	global $redux_builder_amp;
+	if( true == $redux_builder_amp['enable-single-facebook-share'] ) {
+		$social_icons[] = 'facebook';
+	}
+	if( true == $redux_builder_amp['enable-single-twitter-share'] ) {
+		$social_icons[] = 'twitter';
+	}
+	if( true == $redux_builder_amp['enable-single-gplus-share'] ) {
+		$social_icons[] = 'google-plus';
+	}
+	if( true == $redux_builder_amp['enable-single-email-share'] ) {
+		$social_icons[] = 'email';
+	}
+	if( true == $redux_builder_amp['enable-single-pinterest-share'] ) {
+		$social_icons[] = 'pinterest';
+	}
+	if( true == $redux_builder_amp['enable-single-linkedin-share'] ) {
+		$social_icons[] = 'linkedin';
+	}
+	if( true == $redux_builder_amp['enable-single-whatsapp-share'] ) {
+		$social_icons[] = 'whatsapp';
+	}
+	if( true == $redux_builder_amp['enable-single-line-share'] ) {
+		$social_icons[] = 'line';
+	}
+	if( true == $redux_builder_amp['enable-single-vk-share'] ) {
+		$social_icons[] = 'VKontakte';
+	}
+	if( true == $redux_builder_amp['enable-single-odnoklassniki-share'] ) {
+		$social_icons[] = 'Odnoklassniki';
+	}
+	if( true == $redux_builder_amp['ampforwp-facebook-like-button'] ) {
+		$social_icons[] = 'facebook-like';
+	}
+	return $social_icons;
+}

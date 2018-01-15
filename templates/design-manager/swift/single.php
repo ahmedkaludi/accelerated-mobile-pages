@@ -37,19 +37,8 @@
 				<div class="sp-lt">
 					<div class="ss-icons">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
-						<?php amp_social(array(
-		                'twitter' ,
-		                'facebook',
-		                'pinterest',
-		                'google-plus',
-		                'linkedin',
-		                'youtube',
-		                'instagram',
-		                'reddit',
-		                'VKontakte',
-		                'snapchat',
-		                'tumblr',
-));?> 
+						<?php $social_icons = ampforwp_swift_social_icons();
+						amp_social($social_icons);?> 
 		            </div>
 		            <div class="sp-athr">
 		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
