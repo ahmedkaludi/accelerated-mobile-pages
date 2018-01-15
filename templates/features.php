@@ -3039,7 +3039,6 @@ function ampforwp_meta_description() {
 	}
 	$desc = "" ;
 	$desc = ampforwp_generate_meta_desc();
-
 	if( $desc ) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
@@ -3949,8 +3948,9 @@ function ampforwp_generate_meta_desc(){
 				} else {
 					global $post;
 					$id = $post->ID;
-					$desc = get_post($id)->post_content;
+					$desc = $post->post_content;
 				}
+				$desc= preg_replace('/\[(.*?)\]/',' ', $desc);
 				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
 		}
 
@@ -3997,7 +3997,7 @@ function ampforwp_generate_meta_desc(){
 	}
 	// strip_shortcodes  strategy not working here so had to do this way
 	// strips shortcodes
-	$desc= preg_replace('/\[(.*)?\]/','', $desc);
+	$desc= preg_replace('/\[(.*?)\]/','', $desc);
 	return $desc;	
 }
 
