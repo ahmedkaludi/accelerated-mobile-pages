@@ -112,13 +112,9 @@ Vue.component('amp-pagebuilder-module-modal', {
   data: function(){
   	return {
 	  	modalcontent: app.modalcontent,
-	  	repeaterTabs:{}
 	  };
   },
   mounted: function () {//On ready State for component
-		if(app.modalcontent.repeater){
-			this.repeaterAcoordian();
-		}
 		document.body.addEventListener('keyup', e => {
 			if (e.keyCode === 27) {
 				this.hideModulePopUp();
@@ -126,16 +122,15 @@ Vue.component('amp-pagebuilder-module-modal', {
 	  	});
 	},
   methods:{
-  	repeaterAcoordian: function(){
-  		app.modalcontent.repeater.showFields.forEach(function(rowData, rowKey){
-  			var show = false; 
-			if(rowKey==0){
-				 show = true;
-  			}
-	  			//Vue.set(this.repeaterTabs,'test'+rowKey,show);
-  			/*if(this.repeaterTabs[rowKey] == undefined ){
-	  		}*/
-  		});
+  	repeaterAcoordian: function(event){
+  		var repeatContents = jQuery(event.target.parentElement).find("div.amp-accordion-content");
+  		if(repeatContents.hasClass('active')){
+  			repeatContents.removeClass('active');
+  			repeatContents.addClass('hide');
+  		}else{
+  			repeatContents.removeClass('hide');
+  			repeatContents.addClass('active');
+  		}
   	},
   	hideModulePopUp: function(event){
 			app.showmoduleModal = false;
@@ -219,7 +214,6 @@ Vue.component('amp-pagebuilder-module-modal', {
 
 		app.modalcontent.repeater.showFields.push(allRepeaterFileds);
 
-		this.repeaterAcoordian();
 		this.$forceUpdate();
 	},
 	removeRepeaterSection:function(key,repeater){

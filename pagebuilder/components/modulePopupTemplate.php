@@ -37,12 +37,12 @@
                                 </div>
                                 
                                 <div v-for="(repeaterfields, key, index) in modalcontent.repeater.showFields" class="amp-repeat-field" :class="'repeater-'+key" >
-                                    <div class="amp-accordion-head amppb_accordion__panel"  v-bind:class="{active: repeaterTabs['test'+key]}" >{{key+1}}
+                                    <div class="amp-accordion-head amppb_accordion__panel"   v-on:click="repeaterAcoordian($event);">{{key+1}}
 
                                         <div class="right"
                                              v-on:click="removeRepeaterSection(key, modalcontent.repeater.showFields)">Remove field</div>
                                     </div>
-                                    <div class="amp-accordion-content">
+                                    <div class="amp-accordion-content" v-bind:class="{ active: (key==0),'hide': (key!=0) }">
                                         <fields-data v-for="(rfield, key, index) in repeaterfields"
                                             :field="rfield" 
                                             :key="key"

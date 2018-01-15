@@ -96,7 +96,7 @@
     
     <div class="amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         
-        <div class="form-label" class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}</div>
+        <div class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}</div>
         <div class="form-field">
             <input type="button" class="button" value="Select image" id="" data-imageselactor="single" @click="selectimages(field,$event)">
             <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
