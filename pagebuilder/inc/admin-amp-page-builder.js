@@ -600,7 +600,7 @@ Vue.component('color-picker', {
 	        }*/
 	    }
     });
-    console.log(componentPoint.colorfield);
+    //console.log(componentPoint.colorfield);
   },
   methods: {
   	
@@ -649,6 +649,7 @@ var app = new Vue({
     },
   data: {
     message: '',
+    loadingPagebuilder: 'display: block;',
     startPagebuilder: amppb_panel_options.startPagebuilder,
     checkedPageBuilder: false,
     showModal: false,
