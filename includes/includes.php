@@ -24,16 +24,12 @@
 	add_action( 'init', 'ampforwp_footermenu' );
 	if (! function_exists( 'ampforwp_footermenu') ) {
 		function ampforwp_footermenu() {
-			global $redux_builder_amp;	 
-			if ( isset($redux_builder_amp['amp-design-selector']) && ($redux_builder_amp['amp-design-selector'] == 1 ||
-				 $redux_builder_amp['amp-design-selector'] == 2 || 
-				 $redux_builder_amp['amp-design-selector'] == 3 )) {			
-				register_nav_menus(
-					array(
-					  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
-					)
-				);
-			}
+			global $redux_builder_amp;	 			
+			register_nav_menus(
+				array(
+				  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
+				)
+			);
 		}
 	}
 
