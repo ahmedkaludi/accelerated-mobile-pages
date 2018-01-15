@@ -120,22 +120,18 @@ add_action('amp_post_template_css','amp_social_styles',11);
 
 
 function amp_social_styles(){?>
-
-/* Social icons */
 @font-face {
   font-family: 'icomoon';
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot?b9qrme');
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot?b9qrme#iefix') format('embedded-opentype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf?b9qrme') format('truetype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff?b9qrme') format('woff'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg?b9qrme#icomoon') format('svg');
+  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot');
+  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot') format('embedded-opentype'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf') format('truetype'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff') format('woff'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"]{ font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1;
-
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -156,6 +152,6 @@ function amp_social_styles(){?>
 .amp-social{ font-size: 15px; display: inline-block; }
 .amp-social ul{ list-style-type:none; padding:0;margin:0; text-align:center }
 .amp-social li{ box-sizing: initial; display:inline-block; }
-.amp-social li:before{ box-sizing: initial; color:#fff; padding: 6px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
+.amp-social li:before{box-sizing: initial;color: #fff;display: inline-block;width: 18px;height: 18px;line-height: 18px;}
 
 <?php }

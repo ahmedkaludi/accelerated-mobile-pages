@@ -942,18 +942,19 @@ display: none;
 .amp-tags .amp-tag:last-child:after{
     display:none;
 }
-.ss-icons .amp-social .icon-twitter :before{
+.ss-icons .icon-twitter :before{
     color:#1da1f2;
 }
-.ss-icons .amp-social {
-    font-size: 16px;
+.ss-icons ul{
+    text-align:left;
 }
-.ss-icons .amp-social li{
-    margin-right: 15px;
+.ss-icons li{
+    margin: 0px 10px 10px 0px;
 }
-.ss-icons .amp-social li:before{
+.ss-icons li:before{
     border-radius: 2px;
-    padding:2px;
+    text-align:center;
+    padding: 4px 6px;
 }
 
 .swift-sticky-social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; position: fixed; margin: 0; z-index: 10; text-align: center; }
