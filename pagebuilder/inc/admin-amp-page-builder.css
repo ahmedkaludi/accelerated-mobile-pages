@@ -75,6 +75,12 @@ position: absolute;
     position: relative
 }
 .modules-options{display: inline-block}
+.modules-options .drag span{
+    cursor: move; 
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
 div#amppb-actions-container:before {
     content: "Columns";
     display: inline-block;
@@ -711,6 +717,7 @@ position: fixed;
 .modal-settings{
     padding: 0px 20px;
     margin-top: 50px;
+    border-top: 1px solid #D8D8D8;
 }
 .modal-content{
     height: 100vh;
@@ -741,10 +748,9 @@ position: fixed;
 .modal-body .modal-header{
     padding-left: 20px;
     height: 50px;
-    /* padding-right: 30px; */
-    background-color: #fafafa;
-    border-bottom: 1px solid #D8D8D8;
-    width: 79%;
+     background-color: #fafafa; 
+     border-bottom: 1px solid #D8D8D8; 
+    width: 78%;
     position: fixed;
 }
 .modal-wrapper .media-modal-close{
