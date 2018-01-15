@@ -1165,3 +1165,15 @@ a.amppb_accordion__panel:hover {
 .amppb_accordion__panel .right{
     float: right
 }
+
+/*** Backend CSS ***/
+.amp-accordion-head .amp-accordion-label{
+    display:none;
+}
+.amp-accordion-head:hover .amp-accordion-label{
+    display:inline-block;
+    
+}
+.amp-accordion-head:hover{
+    background:#ded6d666;
+}
