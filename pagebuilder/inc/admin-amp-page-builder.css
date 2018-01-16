@@ -850,7 +850,10 @@ position: fixed;
 }
 .form-field {
     float: left;
-    width: 50%;
+    width: 70%;
+}
+label.form-label-radio {
+    margin-right: 15px;
 }
 .form-field input, .form-field textarea{    
     padding: 7px 8px;
@@ -1048,6 +1051,14 @@ Layout css
     text-align: right;
     font-size: 15px;
     display:inline-block;
+    height:30px;
+}
+.icon-close {
+    background: #000;
+    color: #fff;
+    padding: 8px 9px;
+    display: inline-block;
+    cursor: pointer;
 }
 .del-btn-modal{
     
@@ -1056,7 +1067,7 @@ Layout css
 .select-gradient-box{
     overflow-y: auto;
     width:50%;
-    height:50%;
+    height:75%;
 }
 .select-gradient-box .gradient-card{
     position: relative;
@@ -1185,7 +1196,10 @@ a.amppb_accordion__panel:hover {
 .amppb_accordion__panel .right{
     float: right
 }
-
+.amppb-fixed .col {
+    max-width: 95%;
+    margin: 0 auto;
+}
 /*** Backend CSS ***/
 .amp-accordion-head .amp-accordion-label{
     display:none;

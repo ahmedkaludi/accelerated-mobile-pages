@@ -135,7 +135,6 @@
             <div class="form-label">{{field.label}}</div>
             <div class="form-field">
                 <div style="width:40px;height:20px;display: inline-block;" :style="field.default"></div>
-                <div class="clearfix"></div>
                 <span class="button" @click="openIconOptions=!openIconOptions;">
                    Select Gradient</span>
                 <input type="hidden" v-model="field.default">

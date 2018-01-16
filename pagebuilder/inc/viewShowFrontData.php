@@ -51,6 +51,10 @@ function amp_pagebuilder_content_styles(){
 .amppb-fluid{width:100%;}
 .amppb-fluid .col{margin:0 auto;max-width:90%}
 .amppb-pages header .cntr{max-width: 1100px;}
+.amppb-fixed .col {max-width: 95%;margin: 0 auto;}
+@media(max-width:1024px){
+.amppb-fixed{width:100%;}
+}
 ';
 
 		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);
