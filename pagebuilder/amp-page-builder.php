@@ -271,12 +271,10 @@ function call_page_builder(){
 	        	<drag class="drag" :transfer-data='{type: "column",value: "col-1",rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-1" class="amppb-add-row button-primary button-large module-col-1" data-template="col-1"
 				    >1 Column</span>
-				    <span slot="image">Col 1 dragged</span>
 				</drag>
 				<drag class="drag" :transfer-data='{type: "column",value: "col-2", rowSettingJson:<?php echo json_encode($backendRowSetting); ?>}' :draggable="true" :effect-allowed="'copy'">
 				    <span id="action-col-2" class="amppb-add-row button-primary button-large draggable module-col-2" data-template="col-2"
 				    >2 Columns</span>
-				    <span slot="image">Col 2 dragged</span>
 				</drag>
 	       		<div class="clearfix"></div>
 	        </div><!-- .amppb-actions -->
@@ -300,7 +298,6 @@ function call_page_builder(){
 				    	>
 				    		'.$module['label'].'
 				    	</span>
-				    	<span class="module-button amppb-module-'.strtolower($module['name']).'" slot="image">'.$module['label'].' dragged</span>
 			    	</drag>
 			    	';
 			    }
