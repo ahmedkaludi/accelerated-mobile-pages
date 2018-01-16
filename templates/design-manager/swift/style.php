@@ -1331,23 +1331,25 @@ display: none;
     display:inline-block;
     margin-right:20px;
 }
-.f-menu .amp-menu > li a {
+.f-menu ul li a {
     padding:0;
     font-size:14px;
     color:#7a7a7a;
 }
-.f-menu .amp-menu > li:hover a{
+.f-menu ul > li:hover a{
     color: #005be2;
 }
+.f-menu{
+    margin-bottom:30px;
+}
 .rr{
-    margin-top: 30px;
     font-size: 12px;
     color: #333;
 }
-.f-menu .amp-menu li.menu-item-has-children:hover > ul{
+.f-menu ul li.menu-item-has-children:hover > ul{
     display:none;
 }
-.f-menu .amp-menu li.menu-item-has-children:after{
+.f-menu ul li.menu-item-has-children:after{
     display:none;
 }
 <?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
