@@ -139,7 +139,6 @@ function amp_pagebuilder_content_styles(){
 						if(!isset($moduleTemplate[$contentArray['type']])){
 							continue;
 						}
-
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
 							//LOAD Icon Css 
 							if($modulefield['type']=='icon-selector'){
@@ -197,22 +196,24 @@ function amp_pagebuilder_content_styles(){
 			                $repeaterUserContents = $contentArray['repeater'];
 			                foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
 			 					
-			 					//Check if there is no front css
-			 					if(!isset($moduleTemplate[$contentArray['type']]['repeater']['front_css'])){
-			 						continue;
-			 					}
-			                  $repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 			                  //reset($repeaterUserValues);
 			                  $repeaterVarIndex = key($repeaterUserValues);
 			                  $repeaterVarIndex = explode('_', $repeaterVarIndex);
 			                  $repeaterVarIndex = end($repeaterVarIndex);
-			                  
+			                  $repeaterFrontCss = '';
 			                  foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
 			                   
 			                    //LOAD Icon Css 
 			                    if($moduleField['type']=='icon-selector'){
-			                      add_amp_icon(array( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex]));
+			                    	add_amp_icon(array( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex]));
 			                    }
+
+			                    //Check if there is no front css
+			 					if(!isset($moduleTemplate[$contentArray['type']]['repeater']['front_css'])){
+			 						continue;
+			 					}
+			                  	$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
+
 			                    if($moduleField['content_type']=='css'){
 			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 				                    if(is_array($replace)){

@@ -476,7 +476,9 @@ Vue.component('fields-data',{
             this.$forceUpdate();
 		},
 		iconSelected: function(icon, field){
-			this.field.default = icon.name;
+			//this.field.default = icon.name;
+			field.default = icon.name;
+			this.$forceUpdate();
 		},
 		callChangeEnvent: function(field){
 			//get All fields with require conditions
