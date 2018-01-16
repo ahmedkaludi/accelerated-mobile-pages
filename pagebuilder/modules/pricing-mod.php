@@ -86,6 +86,15 @@ $css = '
 .feature-pri{
 	top: -30px;
 }
+@media(max-width:768px){
+.pri-mod{
+	flex:1 0 100%;
+	margin:0px 0px 20px 0px;
+}
+.feature-pri{
+	top:0;
+}
+}
 ';
 return array(
 		'label' =>'Pricing',

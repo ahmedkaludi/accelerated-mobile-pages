@@ -34,10 +34,10 @@ global $savedlayoutTemplate;
                                 <?php } ?>
                             </ul>
                         </div>
-                        <div class="modal-body">
                     <div class="modal-header">
                         <h3>Page Builder Settings</h3>
                     </div>
+                        <div class="modal-body">
                             <div v-if="modalCrrentTab=='customize'">
                               
                             </div><!-- customize closed -->
@@ -103,11 +103,10 @@ global $savedlayoutTemplate;
                                 <div class="amppb-modal-col-2">
                                     <div class="fileupload">
                                         <label class="">
-                                            Select Layout File
+                                            <span class="import-export-label">Select Layout File</span>
                                             <input type="file" accept=".json" @change="layoutFileSelected($event)">
                                         </label>
                                     </div>
-                                    <br/>
                                     <button type="button" class="button" v-if="importLayoutfromFile.length>0" @click="replacelayoutFromSelectedFile()">
                                         import
                                     </button>
@@ -116,7 +115,7 @@ global $savedlayoutTemplate;
                                     <div class="exportcompleteData">
                                         <iframe id="amppb-panels-export-iframe" style="display: none;" name="amppb-panels-export-iframe"></iframe>
                                         <form action="<?php echo admin_url('admin-ajax.php?action=amppb_export_layout_data') ?>" target="amppb-panels-export-iframe"  method="post">
-                                            <label>Export Current Layout</label>
+                                            <label class="import-export-label">Export Current Layout</label>
                                             <button type="submit" class="button button-primary button-large">
                                                 Export
                                             </button>

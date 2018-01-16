@@ -18,10 +18,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="modal-body">
                         <div class="modal-header">
                             <h3>{{modalcontent.label}}</h3>
                         </div>
+                        <div class="modal-body">
                         <div class="modal-settings">
                             <fields-data v-for="(field, key, index) in modalcontent.fields"
                                 :field="field" 
