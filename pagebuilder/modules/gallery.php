@@ -11,6 +11,9 @@ $css = '
     padding:{{padding_css}};
     margin:{{margin_css}};
 }
+.gallery{
+	text-align:{{align_type}};
+}
 .amp_gallery_wrapper amp-img{
     width:{{width}};
     margin:0 10px;

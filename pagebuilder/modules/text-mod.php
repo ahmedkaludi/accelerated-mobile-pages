@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<span class="t-txt">{{content_title}}</span>
+	{{content_title}}
 ';
 $css = '
 .text-mod{
@@ -8,8 +8,6 @@ $css = '
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
-}
-.text-mod .t-txt{
    font-size:{{font-size}};
    color:{{text_color_picker}};
 }

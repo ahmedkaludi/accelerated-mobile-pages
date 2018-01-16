@@ -22,6 +22,8 @@ $css = '
     background:#f4f4f4;
 	position:relative;
 	padding:30px 50px;
+	margin:0 10px;
+	overflow: hidden;
 }
 .pri-mod .pri-tlt{
 	font-size: 20px;
@@ -48,10 +50,10 @@ $css = '
     margin: 24px auto 0 auto;
 }
 .pri-recom{
-    font-size: 12px;
+    font-size: 11px;
     position: absolute;
     right: 0;
-    top: 2px;
+    top: 0px;
     display: block;
     font-weight: 700;
     height: 32px;
@@ -80,6 +82,9 @@ $css = '
 }
 .pricing-mod .pri-cnt p{
 	margin-bottom:10px;
+}
+.feature-pri{
+	top: -30px;
 }
 ';
 return array(
@@ -198,13 +203,13 @@ return array(
 		 						'name'		=>"recommended_text",		
 		 						'label'		=>'Recommended Text (Leave Empty to remove)',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'RECOMMENEDED',	
+		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
                 
               ),
           'front_template'=>
-          '<div class="pri-mod">
+          '<div class="pri-mod {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
 				<h4 class="pri-tlt">{{content_title}}</h4>
 				{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
 				<span class="pri-lbl">{{price_label}}</span>

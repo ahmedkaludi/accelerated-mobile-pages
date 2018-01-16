@@ -30,6 +30,9 @@ amp-accordion section:not([expanded]) .show-less {
     position: relative;
     top: 1px;
 }
+.accordion-mod h5:hover{
+	color:#000;
+}
 .accordion-mod section[expanded] h5:before{
     content:"-"
 }
