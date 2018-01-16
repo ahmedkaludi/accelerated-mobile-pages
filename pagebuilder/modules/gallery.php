@@ -19,7 +19,7 @@ $css = '
 ';
 return array(
 		'label' =>'Gallery',
-		'name' =>'gal-mod',
+		'name' =>'gallery',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',

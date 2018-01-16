@@ -611,7 +611,7 @@ function get_attachment_id( $url , $imagetype='full') {
 }
 
 function replaceIfContentConditional($byReplace, $replaceWith, $string){
-	if(strpos($string,'{{if_'.$byReplace.'}}')!=false){
+	if(strpos($string,'{{if_'.$byReplace.'}}')!==false){
 		$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
 		if(trim($replaceWith)==""){
 			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
