@@ -5049,6 +5049,7 @@ if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 	global $redux_builder_amp;
 	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] ){ ?>
 		<!-- A subscription widget -->
+	<div class="amp-web-push-container">
 		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="245" height="45">
 		  <button class="subscribe" on="tap:amp-web-push.subscribe">
 		    <amp-img
@@ -5067,6 +5068,7 @@ if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 		   	<?php echo ampforwp_translation( $redux_builder_amp['ampforwp-onesignal-translator-unsubscribe'], 'Unsubscribe from updates' ); ?>
 		   </button>
 		</amp-web-push-widget>
+	</div>
 	<?php }
 	}
 }
@@ -5094,6 +5096,7 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
     amp-web-push-widget button.subscribe:active {transform: scale(0.99);}
     amp-web-push-widget button.unsubscribe {display: inline-flex; align-items: center; justify-content: center; height: 45px; border: 0; margin: 0; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4a90e2; color: #fff; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; padding: 10px 15px;}
     amp-web-push-widget.amp-invisible{ display:none;}
+    .amp-web-push-container{width: 245px; margin:0 auto}
 <?php }
 	}	
 }
