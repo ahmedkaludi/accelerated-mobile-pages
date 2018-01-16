@@ -54,6 +54,7 @@
                 {{val.label}}
             </label>
         </div>
+        <div class="clearfix"></div>
     </div>
     
     <div class="amp-form-control" :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
@@ -64,7 +65,7 @@
                 {{val.label}}
             </label>
         </div>
-      
+        <div class="clearfix"></div>
     </div>
   
     <div class="amp-form-control" :id="field.name" data-type="spacing" v-else-if="field.type=='spacing' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" style="clearfix">
