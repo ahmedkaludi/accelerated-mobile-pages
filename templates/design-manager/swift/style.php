@@ -1323,10 +1323,17 @@ display: none;
 /**** 
 * Footer
 *****/
+
 .footer{
     font-size: 12px;
     margin-top: 80px;
 }
+<?php if(checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+.footer{
+    margin-top: 0px;
+}
+<?php } ?>
+
 .f-menu ul li{
     display:inline-block;
     margin-right:20px;
@@ -1376,7 +1383,7 @@ display: none;
     position: relative;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
+    flex: 1 0 22%;
     margin:0 15px;
 }
 .w-bl h4{
