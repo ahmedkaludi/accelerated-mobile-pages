@@ -206,7 +206,7 @@ $containerCommonSettings = array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Set Margin',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>
                             array(
                                 'top'=>'0px',
@@ -220,7 +220,7 @@ $containerCommonSettings = array(
 								'type'		=>'spacing',
 								'name'		=>"padding_css",
 								'label'		=>'Set Padding',
-								'tab'		=>'customizer',
+								'tab'		=>'container_css',
 								'default'	=>array(
 													'top'=>'20px',
 													'right'=>'0px',

@@ -1196,10 +1196,6 @@ a.amppb_accordion__panel:hover {
 .amppb_accordion__panel .right{
     float: right
 }
-.amppb-fixed .col {
-    max-width: 95%;
-    margin: 0 auto;
-}
 /*** Backend CSS ***/
 .amp-accordion-head .amp-accordion-label{
     display:none;
