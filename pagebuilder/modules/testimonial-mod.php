@@ -53,8 +53,8 @@ $css = '
 }
 .auth-img amp-img{
 	border-radius:50%;
-    max-width:50px;
-    max-height:50px;
+    width:50px;
+	height:50px;
 }
 .auth-cntn{
     float: left;
