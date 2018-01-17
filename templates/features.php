@@ -1363,12 +1363,12 @@ function ampforwp_title_callback( $post ) {
         ?>
     <p>
         <div class="prfx-row-content">
-            <label class="meta-radio-two" for="meta-radio-one">
-                <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'default' ); ?>>
+            <label class="meta-radio-two" for="ampforwp-meta-radio-one">
+                <input type="radio" name="ampforwp-amp-on-off" id="ampforwp-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'default' ); ?>>
                 <?php _e( 'Show' )?>
             </label>
-            <label class="meta-radio-two" for="meta-radio-two">
-                <input type="radio" name="ampforwp-amp-on-off" id="meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
+            <label class="meta-radio-two" for="ampforwp-meta-radio-two">
+                <input type="radio" name="ampforwp-amp-on-off" id="ampforwp-meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
                 <?php _e( 'Hide' )?>
             </label>
              <?php
