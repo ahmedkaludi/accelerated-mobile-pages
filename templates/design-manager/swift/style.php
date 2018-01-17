@@ -117,7 +117,6 @@ amp-carousel > amp-img > img {
     max-width: 1100px;
     margin: 0 auto;
 }
-
 /****
 * AMP Sidebar
 *****/
