@@ -231,7 +231,7 @@ function amp_header_core(){
 	$bodyClass = '';
     if ( is_single() || is_page() ) {
 			$bodyClass = 'single-post';
-			$bodyClass .= ( is_page()? ' amp-single-page ' : ' amp-single ');
+			$bodyClass .= ( is_page()? 'amp-single-page' : 'amp-single');
   		
 	}
 	// Archive
