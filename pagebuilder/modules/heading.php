@@ -11,6 +11,7 @@ $css = '
    font-size:{{text-size}};
    color:{{font_color_picker}}; 
    font-weight:{{font_type}};
+   line-height:1.4;
 }
 ';
 return array(

@@ -17,7 +17,7 @@ $css = '
     align-items: center;
 }
 .cta-mod .cta-btn{
-	width: 55%;
+	width: 40%;
     text-align: right;
 }
 .cta-mod h2{

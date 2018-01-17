@@ -1327,7 +1327,7 @@ display: none;
     font-size: 12px;
     margin-top: 80px;
 }
-<?php if(checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 .footer{
     margin-top: 0px;
 }
@@ -1408,9 +1408,6 @@ display: none;
 }
 .sp-rt .amp-author {
     margin-top: 5px;
-}
-.cntn-wrp{
-    margin-bottom: 5px;
 }
 .cntn-wrp a{
     margin:10px 0px;
