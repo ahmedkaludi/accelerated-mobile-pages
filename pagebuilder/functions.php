@@ -107,6 +107,15 @@ function js_templates() {
 	include plugin_dir_path( __FILE__ ) . '/inc/js-templates.php';
 }
 function checkAMPforPageBuilderStatus($postId){
+	global $post, $redux_builder_amp;
+	$postId = $post->ID;
+	if( is_home() && 
+		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
+		ampforwp_get_blog_details() == false
+	){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($ampforwp_pagebuilder_enable=='yes'){
 		return true;
