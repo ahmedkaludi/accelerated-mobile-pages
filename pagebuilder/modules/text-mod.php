@@ -3,7 +3,7 @@ $output = '
 	{{content_title}}
 ';
 $css = '
-{{module-class}} .text-mod{
+{{module-class}}.text-mod{
    width:100%;
    text-align:{{align_type}};
    margin:{{margin_css}};
