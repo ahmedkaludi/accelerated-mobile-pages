@@ -32,6 +32,9 @@ $css = '
    padding-bottom:15px;
 }
 .feat-blk amp-img{margin:0 auto;width:100%}
+.feat-blk amp-img{
+	width:{{img_width}};
+}
 @media(max-width:768px){
     .feat-blk{width: 100%;margin-right: 0;}
 }
@@ -46,6 +49,28 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
+						 array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'tab'		=>'customizer',
+								'label'		=>'Image Type',
+								'default'	=>array('layout="responsive"'), 
+								'options'	=>array(
+												array(
+													'label'=>'Responsive', 
+													'value'=>'layout="responsive"',
+												),
+											),
+								'content_type'=>'html',
+							),
+				         array(		
+		 						'type'		=>'text',		
+		 						'name'		=>'img_width',		
+		 						'label'		=>'Image Size',
+		           				 'tab'      =>'customizer',
+		 						'default'	=>'300px',	
+		           				'content_type'=>'css',
+	 						),
 
 						array(
 								'type'		=>'color-picker',
@@ -127,19 +152,6 @@ return array(
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
 	 					),
-				        array(
-								'type'		=>'checkbox',
-								'name'		=>"image_layout",
-								'tab'		=>'customizer',
-								'default'	=>array('layout="responsive"'), 
-								'options'	=>array(
-												array(
-													'label'=>'Responsive', 
-													'value'=>'layout="responsive"',
-												),
-											),
-								'content_type'=>'html',
-							),
 				        array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content",		

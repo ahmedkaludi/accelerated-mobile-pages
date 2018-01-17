@@ -1,18 +1,14 @@
 </div>
 <footer class="footer">
+	<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 	<div class="f-w-f1">
 		<div class="cntr">
 			<div class="f-w">
-				
-				<?php 
-				if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : 
-					dynamic_sidebar( 'swift-footer-widget-area' ); 
-				endif;
-				?>
-
+				<?php dynamic_sidebar( 'swift-footer-widget-area' ); ?>
 			</div>
 		</div>
 	</div>
+	<?php endif; ?>
 	<div class="f-w-f2">
 		<div class="cntr">
 			<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>

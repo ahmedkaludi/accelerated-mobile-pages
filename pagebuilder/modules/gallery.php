@@ -16,7 +16,7 @@ $css = '
 }
 .amp_gallery_wrapper amp-img{
     width:{{width}};
-    margin:0 10px;
+    margin:0 2%;
     display:inline-flex;
 }
 ';

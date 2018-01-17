@@ -34,7 +34,7 @@ return array(
 		 						'name'		=>"width",		
 		 						'label'		=>'Image Size',
 		           				 'tab'      =>'customizer',
-		 						'default'	=>'500px',	
+		 						'default'	=>'90%',	
 		           				'content_type'=>'css',
 	 						),
 

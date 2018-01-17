@@ -1221,6 +1221,7 @@ a.amppb_accordion__panel:hover {
     width: 20px;
     display: inline-block;
     text-align: center;
+    margin-right:10px;
 }
 .amp-repeat-active .amp-accordion-head{
     background: #23282d;

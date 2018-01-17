@@ -4,20 +4,22 @@ $output = '
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
 ';
 $css = '
-.button-mod{
+{{module-class}} {
    width:100%;
    display: inline-block;
    text-align:{{align_type}};
    margin:{{margin_css}};
    padding:{{padding_css}};
 }
-.button-mod .btn-txt{
-   font-size:{{text-size}};
+{{module-class}} .btn-txt{
+   font-size:{{text-size}}; 
    color:{{font_color_picker}};
    background:{{bg_color_picker}};
    display: inline-block;
-   padding: {{btn-hgt}} {{btn-wdt}};
+   padding: 10px 20px;
+   width: {{button-width}};
    font-weight: {{font_weight}};
+   box-sizing: initial;
 }
 .button-mod span{
     display: block;
@@ -25,6 +27,12 @@ $css = '
     color: #888;
     font-weight: 300;
     margin-top: 10px;
+}
+@media(max-width:425px){
+{{module-class}} .btn-txt{
+	width:100%;
+	box-sizing: inherit;
+}
 }
 ';
 return array(
@@ -115,20 +123,12 @@ return array(
 	 						),
 	 					array(		
 		 						'type'		=>'text',		
-		 						'name'		=>"btn-hgt",		
-		 						'label'		=>'Vertical Gap',
+		 						'name'		=>'button-width',		
+		 						'label'		=>'Width',
 		           				 'tab'     =>'design',
-		 						'default'	=>'10px',	
+		 						'default'	=>'200px',	
 		           				'content_type'=>'css',
 	 						),
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"btn-wdt",		
-		 						'label'		=>'Horizontal Gap',
-		           				 'tab'     =>'design',
-		 						'default'	=>'80px',	
-		           				'content_type'=>'css',
-	 						),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
