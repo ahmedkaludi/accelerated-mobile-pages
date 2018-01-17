@@ -5386,3 +5386,7 @@ function ampforwp_yoast_robots_meta(){
 	    $robotsstr = $class_instance->robots();
 	}
 }
+
+// Disable wptextturize #1458
+remove_filter('the_content', 'wptexturize');
+remove_filter('the_title', 'wptexturize');
