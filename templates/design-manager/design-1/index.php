@@ -80,7 +80,7 @@
 					</div>
 
 						<?php if ( ampforwp_has_post_thumbnail() ) {  
-							$thumb_url = ampforwp_get_post_thumbnail();
+							$thumb_url = ampforwp_get_post_thumbnail('url','medium');
 							if($thumb_url){ ?>
 								<div class="home-post-image">
 									<a href="<?php echo ampforwp_url_controller( $ampforwp_post_url );?>">

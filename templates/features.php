@@ -4357,7 +4357,7 @@ function ampforwp_enable_post_and_featured_image($show_image){
 	return $show_image; 
 }
 // 82. Grab Featured Image from The Content
-function ampforwp_get_featured_image_from_content($featured_image = "") {
+function ampforwp_get_featured_image_from_content($featured_image = "", $size="") {
 	global $post, $posts;
 	$image_url 				= '';
 	$image_width 			= '';
@@ -4384,6 +4384,13 @@ function ampforwp_get_featured_image_from_content($featured_image = "") {
 	    // Filter to remove that image from the content
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 
+	}
+	if ( isset( $size ) && 'medium' === $size ) {
+		$image_id = attachment_url_to_postid( $image_url );
+		$image_array = wp_get_attachment_image_src($image_id, 'medium', true);
+		$image_url = $image_array[0];
+		$image_width = $image_array[1];
+		$image_height = $image_array[2]; 
 	}
 	switch ($featured_image) {
 			case 'image':
@@ -4768,7 +4775,7 @@ if( !function_exists('ampforwp_has_post_thumbnail')){
 }
 // Get Post Thumbnail URL
 if( !function_exists('ampforwp_get_post_thumbnail')){
-	function ampforwp_get_post_thumbnail($param=""){
+	function ampforwp_get_post_thumbnail($param="", $size=""){
 		global $post, $redux_builder_amp;
 		$thumb_url 		= '';
 		$thumb_width 	= '';
@@ -4787,9 +4794,9 @@ if( !function_exists('ampforwp_get_post_thumbnail')){
 			$thumb_height 	= ampforwp_cf_featured_image_src('height');
 		}
 		if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content('url') ){
-			$thumb_url 		= ampforwp_get_featured_image_from_content('url');
-			$thumb_width 	= ampforwp_get_featured_image_from_content('width');
-			$thumb_height 	= ampforwp_get_featured_image_from_content('height');
+			$thumb_url 		= ampforwp_get_featured_image_from_content('url', $size);
+			$thumb_width 	= ampforwp_get_featured_image_from_content('width', $size);
+			$thumb_height 	= ampforwp_get_featured_image_from_content('height', $size);
 		}
 		switch ($param) {
 			case 'url':

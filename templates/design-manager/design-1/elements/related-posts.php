@@ -75,8 +75,8 @@
 									<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
                                         <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( ampforwp_has_post_thumbnail() ) {
-											$thumb_url = ampforwp_get_post_thumbnail();
-											if($thumb_url){ ?>
+											$thumb_url = ampforwp_get_post_thumbnail('url','medium');
+											if($thumb_url){  ?>
 							            	<amp-img src="<?php echo $thumb_url ?>" width="150" height="150" layout="responsive"></amp-img>
 											<?php } 
 										}?>

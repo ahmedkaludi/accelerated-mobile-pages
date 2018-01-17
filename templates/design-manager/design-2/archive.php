@@ -106,7 +106,7 @@
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
-				$thumb_url = ampforwp_get_post_thumbnail();
+				$thumb_url = ampforwp_get_post_thumbnail('url','medium');
 				if($thumb_url){ ?>
 					<div class="home-post_image">
 						<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
