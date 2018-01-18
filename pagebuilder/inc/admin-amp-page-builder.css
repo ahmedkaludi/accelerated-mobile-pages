@@ -913,7 +913,10 @@ Layout css
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
 }
+.amppb-layout-library-wrapper .amppb-layout-layout:hover .amppb-layout-title{
+    color:#000;
 
+}   
 .amppb-layout-layout .amppb-layout-wrapper .amppb-layout-screenshot{
     background: #ffffff;
     margin-bottom: 10px;

@@ -2310,12 +2310,20 @@ Redux::setSection( $opt_name, array(
                 'desc' => $amptfad
             ),
 
-
+         )
+    ) );
 /*---------------------*/
+    // Typography Theme Settings
+  Redux::setSection($opt_name, array(
+        'title'      => __( 'Typography', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-theme-typography',
+        'subsection' => true,
+        'fields'     => array(
           array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>__('Google Font API key','accelerated-mobile-pages'),
+                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1">form here</a>','accelerated-mobile-pages'),
                 'default'   =>'',
             ),
 

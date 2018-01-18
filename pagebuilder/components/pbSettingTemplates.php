@@ -86,7 +86,7 @@ global $savedlayoutTemplate;
                                                     <img src="<?php echo $lay['preview_img']; ?>">
                                                 </div>
                                                 <div class="amppb-layout-bottom">
-                                                    <h4 class="amppb-layout-title">Consult</h4>
+                                                    <h4 class="amppb-layout-title"><?php echo $lay['name']; ?></h4>
                                                     <div class="amppb-layout-button">
                                                         <a target="_blank" href="<?php echo $lay['preview_demo']; ?>" class="button" >Preview</a>
                                                         <button type="button" class="button" data-layout='<?php echo $lay['layout_json'] ?>'@click="importLayout($event)">Import</button>
