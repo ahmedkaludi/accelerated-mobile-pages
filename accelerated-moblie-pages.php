@@ -38,9 +38,16 @@ load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFO
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
 	global $redux_builder_amp;
+	add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_AUTHORS | EP_ALL_ARCHIVES | EP_ROOT );
+	// Pages
 	if ( isset($redux_builder_amp['amp-on-off-for-all-pages']) && $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		add_rewrite_endpoint( AMPFORWP_AMP_QUERY_VAR, EP_PAGES | EP_PERMALINK | EP_AUTHORS | EP_ALL_ARCHIVES | EP_ROOT );
 		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
+	}
+	// Custom Post Types
+	if ( isset($redux_builder_amp['ampforwp-custom-type'] ) && $redux_builder_amp['ampforwp-custom-type'] ) {
+	        foreach ( $redux_builder_amp['ampforwp-custom-type'] as $custom_post ) {
+	            add_post_type_support( $custom_post, AMP_QUERY_VAR );
+	        }
 	}
 }
 add_action( 'init', 'ampforwp_add_custom_post_support',11);

@@ -132,7 +132,9 @@ add_amp_theme_support('AMP-logo');
 	// Custom Frontpage items
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
- 	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php'; 
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
+ 	// Custom Post Types
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php'; 
 
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
@@ -264,8 +266,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         if(  is_singular() && $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
           //dont Echo anything
         } else {
-			$supported_types = array('post','page');
-
+			$supported_types = ampforwp_get_all_post_types();
+			
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
