@@ -299,6 +299,7 @@ $args = array(
     'footer_text'           => "",
     'show_import_export'    => true,
     'system_info'           => true,
+	'wisdom_registered_setting' => 1
 
 );
 
