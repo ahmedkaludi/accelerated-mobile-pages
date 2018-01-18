@@ -2518,20 +2518,20 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Header 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
                                 ),
                         '2' => array(
                                 'alt'=>' Header 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
                                 ),
                         '3' => array(
                                 'alt'=>' Header 3 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-3.png',
                                 ),
                     ),
                    'default'=> '1',
                    'width' => 200,
-                   'height'=> 200,
+                   'height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
