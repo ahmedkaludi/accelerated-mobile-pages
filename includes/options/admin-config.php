@@ -2530,8 +2530,8 @@ Redux::setSection( $opt_name, array(
                                 ),
                     ),
                    'default'=> '1',
-                   'width' => 200,
-                   'height'=> 60,
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
