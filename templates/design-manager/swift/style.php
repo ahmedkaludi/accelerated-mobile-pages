@@ -371,7 +371,6 @@ margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
 .amp-menu > li a{
     color:#fff;
     padding: 13px 7px;
-    display: block;
     margin-bottom:0;
 }
 .menu-btn{
