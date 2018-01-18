@@ -19,10 +19,11 @@ if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
 
         while (($file = readdir($dh)) !== false) {
-        	if(is_file($dir.$file)){
+        	if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
         		$layoutTemplate[str_replace(".php", "", $file)] = include $dir.$file;
         	}
         }
+
         closedir($dh);
         $layoutTemplate = array_filter($layoutTemplate);
     }

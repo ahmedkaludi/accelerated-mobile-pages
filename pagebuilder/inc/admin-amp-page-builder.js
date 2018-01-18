@@ -11,7 +11,7 @@ Vue.component('amp-pagebuilder-modal', {
   data: function(){
   	return {
   		currentLayoutData: app.mainContent,
-  		modalCrrentTab: 'save_layout',
+  		modalCrrentTab: 'layout',
   		ajaxurl: amppb_panel_options.ajaxUrl,
   		save_layout:{name:'',
   					url:''

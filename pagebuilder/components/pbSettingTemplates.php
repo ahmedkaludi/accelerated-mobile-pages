@@ -3,9 +3,8 @@ $arraySetting = array(
                    'tabs'=> array(
                                 'layout'=>'Layout Directory',
                                 'save_layout'=>'Save layout',
-                                'export'=>'Import / Export'
+                                'export'=>'Import / Export',
                             ),
-                   'defaulttab'=>'save_layout'
                );
 global $layoutTemplate;
 global $savedlayoutTemplate;
@@ -84,12 +83,12 @@ global $savedlayoutTemplate;
                                         <div class="amppb-layout-layout">
                                             <div class="amppb-layout-wrapper">
                                                 <div class="amppb-layout-screenshot">
-                                                    <img src="<?php echo $lay['preview_url']; ?>">
+                                                    <img src="<?php echo $lay['preview_img']; ?>">
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <h4 class="amppb-layout-title">Consult</h4>
                                                     <div class="amppb-layout-button">
-                                                        <a href="<?php echo @$lay['preview_demo_url']; ?>" class="button" >Preview</a>
+                                                        <a target="_blank" href="<?php echo $lay['preview_demo']; ?>" class="button" >Preview</a>
                                                         <button type="button" class="button" data-layout='<?php echo $lay['layout_json'] ?>'@click="importLayout($event)">Import</button>
                                                     </div>
                                                 </div>
