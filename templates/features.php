@@ -267,7 +267,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
           //dont Echo anything
         } else {
 			$supported_types = ampforwp_get_all_post_types();
-			
+
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
@@ -418,7 +418,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		// Custom Single file
 	    if ( is_single() || is_page() ) {
 
-			if('single' === $type && !('product' === $post->post_type )) {
+			if('single' === $type ) {
 			 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 	}
 		}
