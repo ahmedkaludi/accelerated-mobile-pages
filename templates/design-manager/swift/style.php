@@ -1835,8 +1835,7 @@ header .cntr, .footer .cntr, .sp .cntr{
 /**** Font-Icons ****/
 
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1844,7 +1843,6 @@ header .cntr, .footer .cntr, .sp .cntr{
   text-transform: none;
   line-height: 1;
 
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

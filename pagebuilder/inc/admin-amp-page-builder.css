@@ -738,7 +738,9 @@ position: fixed;
     overflow-x: hidden;
 } 
 .modal-default-button {
-  float: right;
+    float: right;
+    position: relative;
+    right: 10px;
 }
 .modal-footer{
     padding: 10px 0px;
@@ -899,7 +901,7 @@ Layout css
     box-sizing: border-box;
     float: left;
     padding: 0px;
-    width: 18%;
+    width: 25%;
     margin-right:30px;
 }
 .amppb-layout-library-wrapper{
@@ -941,9 +943,11 @@ Layout css
 }
 .amppb-layout-title {
     margin: 0;
-    padding: 0;
+    padding: 10px 0px 10px 0px;
     text-align: center;
+    border-bottom: 1px solid #eee;
     font-size: 16px;
+    background: #fcfcfc;
 }
 .amppb-layout-button{
     z-index: 2;
@@ -1185,7 +1189,7 @@ Layout css
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
