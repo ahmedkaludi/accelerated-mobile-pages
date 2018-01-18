@@ -196,7 +196,7 @@ amp-sidebar {
 /**** 
 * Header
 *****/
-.header{
+header{
     position:fixed;
     z-index:9999;
     top:0px;
@@ -309,7 +309,7 @@ margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
     align-self: center;
     z-index:2;
 }
-.logo .amp-logo a{
+.amp-logo a{
     line-height:0;
    display:inline-block;
     color:#000;
@@ -518,6 +518,7 @@ a.lb-x:after {
     order:-1;
     align-self: center;
    flex-grow:1;
+   text-align:center;
 }
 .amp-logo{
     line-height:0;
@@ -526,7 +527,6 @@ a.lb-x:after {
     font-size: 18px;
     font-weight: 600;
     align-self: center;
-    margin:0 10px 0px 0px;
 }
 .h-sing a{
     <?php if($redux_builder_amp['signin-button-border-line']){?>
@@ -535,7 +535,7 @@ a.lb-x:after {
     <?php if($redux_builder_amp['signin-button-border-color']['rgba']){?>
         border-color: <?php echo $redux_builder_amp['signin-button-border-color']['rgba']?>;
     <?php } ?>
-    padding:10px 25px;
+    padding:9px 15px;
     <?php if($redux_builder_amp['signin-button-text-color']['rgba']){?>
         color: <?php echo $redux_builder_amp['signin-button-text-color']['rgba']?>;
     <?php } ?>
@@ -1521,9 +1521,6 @@ display: none;
     position:relative;
     top:-5px;
 }
-.h-sing {
-    font-size:15px;
-}
 .sp-rt {
     width: 100%;
     margin-left: 0;
@@ -1547,6 +1544,11 @@ display: none;
 .sp-rl {
     display: inline-block;
     width: 100%;
+}
+.srp .related_link{
+    font-size:20px;
+    line-height:1.4;
+    font-weight:600;
 }
 .sp-lt {
     width: 100%;
@@ -1667,9 +1669,7 @@ display: none;
 .h-sing {
     font-size: 13px;
 }
-.h-sing a {
-    padding: 8px 15px;
-}
+
 /** Single Page **/
 .cntn-wrp p{
     line-height:1.65;
@@ -1761,7 +1761,7 @@ display: none;
 }
 }
 @media(max-width:425px){
-.header .cntr, .footer .cntr, .sp .cntr{
+header .cntr, .footer .cntr, .sp .cntr{
     padding:0 20px;
 }
 .cntr.b-w, .cntr{

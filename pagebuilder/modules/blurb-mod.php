@@ -9,7 +9,7 @@ $css = '.blu-mod{
     color: #26292c;
     background: #f4f4f4;
 }
-.blu-mod:nth-child(3){
+.blu-mod:nth-child(3), .blu-mod:nth-child(6){
     margin-right:0;
 }
 {{module-class}} .ln-fx{

@@ -38,6 +38,11 @@ $css = '
 @media(max-width:768px){
     .feat-blk{width: 100%;margin-right: 0;}
 }
+@media(max-width:425px){
+.feat-blk amp-img{
+	width:100%;
+}
+}
 ';
 return array(
 		'label' =>'Feature',

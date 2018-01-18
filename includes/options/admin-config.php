@@ -2571,7 +2571,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle'  => __('Choose the color for Primary Text Menu','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgba(102, 102, 102, 1)',
+                    'rgba'  => 'rgb(53, 53, 53)',
                     ),
                     'required' => array(
                       array('primary-menu','=',1)

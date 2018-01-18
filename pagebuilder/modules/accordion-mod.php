@@ -40,7 +40,7 @@ amp-accordion section:not([expanded]) .show-less {
     background: none;
     border: 0;
     padding: 0;
-    margin:10px 0px 10px 0;
+    margin:10px 0px 15px 0;
     color: {{acc_color_picker}};
     font-size: 22px;
     line-height: 1.5em;
