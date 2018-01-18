@@ -93,8 +93,8 @@ jQuery(function($) {
         if ( ! gAPIkey){
             gAPIkey = $('#google_font_api_key').val();
         }
-        if(gAPIkey=='' || typeof myVar == 'undefined'){
-             $('#redux_builder_amp-google_font_api_key').append('<p style="color:red">  Could not connect to API, please double check your API key. </p> ');
+        if(gAPIkey=='' || typeof gAPIkey == 'undefined'){
+             $('#redux_builder_amp-google_font_api_key').append('<p style="color:red"> Could not connect to API, please double check your API key. </p> ');
             $('.ampforwp-google-font-class').css({'display':'none'});
             return ;
         }
