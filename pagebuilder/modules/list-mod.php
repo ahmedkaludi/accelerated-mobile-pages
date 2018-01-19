@@ -1,9 +1,6 @@
 <?php 
 $output = '
-<div class="li-mod">
 	{{repeater}}
-</div>
-
 ';
 $css = '
 
@@ -28,6 +25,9 @@ $css = '
 	font-size:{{text-size}};
 	line-height:1.5;
 	color:{{text_color_picker}};
+}
+.li-mod{
+	margin-bottom:15px;
 }
 
 ';
@@ -117,7 +117,7 @@ return array(
           'tab'=>'customizer',
           'fields'=>array(
 		                array(		
-		 						'type'		=>'text-editor',		
+		 						'type'		=>'text',		
 		 						'name'		=>"list_title",		
 		 						'label'		=>'List Title',
 		           				'tab'       =>'customizer',
@@ -128,8 +128,10 @@ return array(
                 
               ),
           'front_template'=>
-        	'<span class="ico-pic icon-{{icon-picker}}"></span>
-				<span class="li-txt">{{list_title}}</span>'
+        	'<div class="li-mod">
+        		<span class="ico-pic icon-{{icon-picker}}"></span>
+				<span class="li-txt">{{list_title}}</span>
+			</div>'
           ),
 	);
 
