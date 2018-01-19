@@ -13,8 +13,10 @@ $css = '
 }
 .gallery{
 	text-align:{{align_type}};
+	padding:{{padding_css}};
+    margin:{{margin_css}};
 }
-.amp_gallery_wrapper amp-img{
+{{module-class}} .amp_gallery_wrapper amp-img{
     width:{{width}};
     margin:0 2%;
     display:inline-flex;
