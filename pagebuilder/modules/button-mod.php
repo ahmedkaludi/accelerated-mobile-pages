@@ -24,7 +24,7 @@ $css = '
 .button-mod span{
     display: block;
     font-size: 12px;
-    color: #888;
+    color: {{sub_color_picker}};
     font-weight: 300;
     margin-top: 10px;
 }
@@ -104,9 +104,17 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Text Color',
+								'label'		=>'Button Text Color',
 								'tab'		=>'design',
 								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"sub_color_picker",
+								'label'		=>'Subheading Text Color',
+								'tab'		=>'design',
+								'default'	=>'#888',
 								'content_type'=>'css'
 							),
 	 					array(		

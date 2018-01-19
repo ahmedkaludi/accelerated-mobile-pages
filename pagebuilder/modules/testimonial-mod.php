@@ -59,7 +59,7 @@ $css = '
 .auth-cntn{
     float: left;
     font-size: 13px;
-    color: #888e94;
+    color: {{aut_color_picker}};
     line-height: 1.8;
     font-weight: 500;
     margin-top: 2px;
@@ -84,8 +84,8 @@ return array(
 		'fields' => array(
 						array(
 								'type'		=>'color-picker',
-								'name'		=>"font_color_picker",
-								'label'		=>'Color',
+								'name'		=>"aut_color_picker",
+								'label'		=>'Author Details Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
