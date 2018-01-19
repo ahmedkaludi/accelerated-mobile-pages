@@ -562,37 +562,37 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-1'] == true) {
-				if($redux_builder_amp['enable-amp-ads-select-1'] == 1)  {
+			if ( true == $redux_builder_amp['enable-amp-ads-1'] ) {
+				if ( 1 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 					$advert_width  = '300';
 					$advert_height = '250';
-	           	} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 2) {
+	           	} elseif ( 2 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '336';
 					$advert_height = '280';
-				} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 3)  {
+				} elseif ( 3 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '728';
 					$advert_height = '90';
-	           	} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 4)  {
+	           	} elseif ( 4 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '300';
 					$advert_height = '600';
-	            } elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 5)  {
+	            } elseif ( 5 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '320';
 					$advert_height = '100';
-	      		} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 6)  {
+	      		} elseif ( 6 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '200';
 					$advert_height = '50';
-	      		} elseif ($redux_builder_amp['enable-amp-ads-select-1'] == 7)  {
+	      		} elseif ( 7 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_1">';
-				$output	.=	'<amp-ad class="amp-ad-1"
+				$output .= '<amp-ad class="amp-ad-1"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'">';
-				$output	.=	'</amp-ad>';
-				$output	.=   ' </div>';
+				$output .= '</amp-ad>';
+				$output .= ' </div>';
 				echo $output;
 			}
 		}
