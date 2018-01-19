@@ -3033,15 +3033,17 @@ function ampforwp_change_default_amp_page_meta() {
 add_action('amp_post_template_head','ampforwp_meta_description');
 function ampforwp_meta_description() {
 	global $redux_builder_amp;
-	if( !$redux_builder_amp['ampforwp-seo-meta-description'] ){
+	if ( ! $redux_builder_amp['ampforwp-seo-meta-description'] ) {
 		return;
 	}
-	$desc = "" ;
+	$desc = "";
 	$desc = ampforwp_generate_meta_desc();
-	if( $desc ) {
+	if ( $desc ) {
 		echo '<meta name="description" content="'. esc_attr( convert_chars( stripslashes( $desc ) ) )  .'"/>';
 	}
 }
+// All in One Seo Compatibility #1557
+add_filter('aioseop_amp_description', '__return_false');
 
 // 55. Call Now Button Feature added
 add_action('ampforwp_call_button','ampforwp_call_button_html_output');
@@ -3903,7 +3905,7 @@ function ampforwp_generate_meta_desc(){
 	$desc = '';
 	$post_id = '';
 	$genesis_description = '';
-	if( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend')  ){
+	if ( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend') ) {
 		// general Description of everywhere
 		$front = WPSEO_Frontend::get_instance();
 		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
@@ -3912,7 +3914,7 @@ function ampforwp_generate_meta_desc(){
 		// Code for Custom Frontpage Yoast SEO Description
 		//WPML Static Front Page Support for title and description with Yoast #1143 
 			 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
+			 if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php') ) {
 
 			 	$post_id = get_option( 'page_on_front' );
 			 }
@@ -3926,46 +3928,46 @@ function ampforwp_generate_meta_desc(){
 				}
 			}
 		// for search
-		if( is_search() ) {
+		if ( is_search() ) {
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
 		}
 	} 
 		
 	else {
-		if( is_home() ) {
+		if ( is_home() ) {
 			// normal home page
-			$desc= addslashes( strip_tags( get_bloginfo( 'description' ) ) );
+			$desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
 		}
 
-		if( is_archive() ) {
-			$desc= addslashes( strip_tags( get_the_archive_description() ) );
+		if ( is_archive() ) {
+			$desc = addslashes( strip_tags( get_the_archive_description() ) );
 		}
 
-		if( is_single() || is_page() ) {
-				if( has_excerpt() ){
+		if ( is_single() || is_page() ) {
+				if ( has_excerpt() ) {
 					$desc = get_the_excerpt();
 				} else {
 					global $post;
 					$id = $post->ID;
 					$desc = $post->post_content;
 				}
-				$desc= preg_replace('/\[(.*?)\]/',' ', $desc);
+				$desc = preg_replace('/\[(.*?)\]/',' ', $desc);
 				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
 		}
 
-		if( is_search() ) {
+		if ( is_search() ) {
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
 
-		if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false) {
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'] ;
+		if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) {
+			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
 	}
 
 	//Genesis #1013
-	if(function_exists('genesis_meta')){
-		if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
+	if ( function_exists('genesis_meta') ) {
+		if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
 		}
 		elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
@@ -3973,13 +3975,13 @@ function ampforwp_generate_meta_desc(){
 			if ( null !== $post_id || is_singular() ) {
 				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
 					$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
-					if($genesis_description){
+					if ( $genesis_description ) {
 						$desc = $genesis_description;
 					}
 				}
 			}
 		}
-		elseif(is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' )){
+		elseif ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' ) ) {
 			$post_id = get_option('page_on_front');
 			if ( null !== $post_id || is_singular() ) {
 				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
@@ -3987,17 +3989,22 @@ function ampforwp_generate_meta_desc(){
 					}
 				}
 			}
-		else{
+		else {
 			$genesis_description = genesis_get_seo_meta_description();
 		}
-		if($genesis_description){
+		if ( $genesis_description ) {
 				$desc = $genesis_description;
 			}
 	}
+	// All in One SEO
+	if ( class_exists('All_in_One_SEO_Pack') ) {
+		$aisop_class = new All_in_One_SEO_Pack();
+		$desc = $aisop_class->get_main_description();
+	}
 	// strip_shortcodes  strategy not working here so had to do this way
 	// strips shortcodes
-	$desc= preg_replace('/\[(.*?)\]/','', $desc);
-	return $desc;	
+	$desc = preg_replace('/\[(.*?)\]/','', $desc);
+	return $desc;
 }
 
 //Compatibility with WP User Avatar #975
