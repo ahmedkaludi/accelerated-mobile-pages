@@ -927,6 +927,7 @@ Layout css
     display: block;
     width: 100%;
     height: auto;
+    cursor:pointer;
 }
 .amppb-layout-bottom{
     position: relative;

@@ -84,7 +84,7 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-wrapper">
                                                     <h4 class="amppb-layout-title"><?php echo $lay['name']; ?></h4>
                                                 <div class="amppb-layout-screenshot">
-                                                    <img src="<?php echo $lay['preview_img']; ?>">
+                                                    <img src="<?php echo $lay['preview_img']; ?>" onclick="window.open('<?php echo $lay['preview_demo']; ?>')">
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
