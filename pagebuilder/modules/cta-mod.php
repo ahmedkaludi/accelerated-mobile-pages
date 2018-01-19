@@ -28,15 +28,16 @@ $css = '
 }
 .cta-mod .btn-txt{
 	display: inline-block;
-    color: #000;
+    color: {{txt_color_picker}};
     padding: 10px 20px;
     font-size: 26px;
-    border: 3px solid #333;
+    border: 3px solid {{brd_color_picker}};
     font-weight: 500;
+    background: {{bg_color_picker}};
 }
 .cta-mod .txt{
     display: block;
-    color: #888e94;
+    color: {{subh_color_picker}};
     font-size: 16px;
     margin-top: 20px;
 }
@@ -78,6 +79,38 @@ return array(
 								'label'		=>'Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"txt_color_picker",
+								'label'		=>'Button Text Color',
+								'tab'		=>'design',
+								'default'	=>'#000',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"brd_color_picker",
+								'label'		=>'Button Border Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"bg_color_picker",
+								'label'		=>'Button Background Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"subh_color_picker",
+								'label'		=>'Subheading Text Color',
+								'tab'		=>'design',
+								'default'	=>'#888e94',
 								'content_type'=>'css'
 							),
 						array(		
