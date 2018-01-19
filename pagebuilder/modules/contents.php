@@ -18,6 +18,36 @@ require_once  ABSPATH . WPINC . '/category.php';
     -ms-flex-preferred-size: calc(33.333% - 20px);
     flex-basis: calc(33.33% - 30px);
 }
+.cat_mod .cat_mod_l{
+  line-height:0;
+}
+.cat_mod h4{
+  border-bottom: 2px solid {{border_color_picker}};
+  padding-bottom: 8px;
+  margin-bottom: 5px;
+}
+.cat_mod_l amp-img{
+  width:150px;
+  height:150px;
+}
+.cat_mod .cat_mod_r{
+  display:flex;
+  flex-direction: column;
+}
+.cat_mod .cat_mod_r a{
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 500;
+  color: #191919;
+  margin: 0px 0px 5px 0px;
+}
+.cat_mod .cat_mod_r p{
+  color: #444;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.10px;
+  margin-bottom:0;
+}
 ';
 
  $categories = get_categories( array(		
@@ -38,8 +68,8 @@ require_once  ABSPATH . WPINC . '/category.php';
  		'name' => 'contents',
     'default_tab'=> 'customizer',
     'tabs' => array(
-              'customizer'=>'Customizer',
-              'container_css'=>'Container css'
+              'customizer'=>'Content',
+              'container_css'=>'Design'
             ),
  		'fields' => array(
  						array(		
@@ -49,7 +79,15 @@ require_once  ABSPATH . WPINC . '/category.php';
             'tab'     =>'customizer',
  						'default'	=>'Category',	
             'content_type'=>'html',
- 						),		
+ 						),
+            array(
+                'type'    =>'color-picker',
+                'name'    =>'border_color_picker',
+                'label'   =>'Border Color',
+                'tab'   =>'container_css',
+                'default' =>'#eee',
+                'content_type'=>'css'
+              ),		
  						array(		
  							'type'	=>'select',		
  							'name'  =>"category_selection",		
@@ -97,9 +135,9 @@ require_once  ABSPATH . WPINC . '/category.php';
                    <div class="cat_mod_l">
                    ';		             
                    $thumb_id = get_post_thumbnail_id();		
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);		
-                   $thumb_url = $thumb_url_array[0];		
-                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="150" height="150" layout="responsive"></amp-img></a>';	
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);		
+                   $thumb_url = $thumb_url_array[0];	
+                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" layout="responsive"></amp-img></a>';	
                     $contenthtml.= '
                     </div>
                     ';		             
