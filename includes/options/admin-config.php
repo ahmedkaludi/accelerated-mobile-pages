@@ -3215,6 +3215,55 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Odnoklassniki', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+          // Reddit
+          array(
+              'id'        =>  'enable-single-reddit-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Reddit', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Tumblr
+          array(
+              'id'        =>  'enable-single-tumblr-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Tumblr', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Telegram
+          array(
+              'id'        =>  'enable-single-telegram-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Telegram', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Digg
+          array(
+              'id'        =>  'enable-single-digg-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Digg', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // StumbleUpon
+          array(
+              'id'        =>  'enable-single-stumbleupon-share',
+              'type'      =>  'switch',
+              'title'     =>  __('StumbleUpon', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Wechat
+          array(
+              'id'        =>  'enable-single-wechat-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Wechat', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+          // Viber
+          array(
+              'id'        =>  'enable-single-viber-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Viber', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
