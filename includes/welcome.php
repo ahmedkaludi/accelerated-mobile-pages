@@ -337,7 +337,11 @@ function ampforwp_offline_admin_notice() {
 
 
 add_action('admin_footer','afdfddf');
-function afdfddf(){?>
+function afdfddf(){
+$current = get_current_screen();
+if ( 'amp_page_ampforwp-welcome-page' !== $current->base ) {
+	return;
+} ?>
     <style>
     .getstarted_wrapper{ display: inline-block; margin: 0px 0px 5px 0px; }
     .getstarted_options{float: left; margin-right: 15px;
