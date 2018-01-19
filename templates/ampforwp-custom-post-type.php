@@ -57,7 +57,9 @@ if ( ! function_exists('ampforwp_cpt_modify_rel_canonical') ) {
         global $redux_builder_amp, $wp;
         $post_types = "";
         $current_cpt_url = "";
-        $post_types = $redux_builder_amp['ampforwp-custom-type'];
+        if ( isset($redux_builder_amp['ampforwp-custom-type']) ) {
+            $post_types = $redux_builder_amp['ampforwp-custom-type'];
+        }
         // If Option "Make endpoint ?amp" is Off then return.
         if ( ! $redux_builder_amp['ampforwp-custom-type-amp-endpoint'] ) {
             return $url;
