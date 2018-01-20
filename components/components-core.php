@@ -283,19 +283,28 @@ function amp_header_core(){
             $bodyClass = 'amp_home_body archives_body design_3_wrapper';
         }
     }
+    $set = 'amp';
+    if(is_non_amp()){
+    	$set = '';
+    }
 	?><!doctype html>
-	<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
+	<html <?php echo $set; ?> <?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
 		<meta charset="utf-8">
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
-		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
+		    <?php 
+		    if( !is_non_amp() ){
+			    do_action( 'amp_post_template_head', $thisTemplate ); 
+			}else{
+				wp_head();
+			}
+		    ?>			
 			<style amp-custom>
 				<?php //$thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
 			</style>
-
 		</head>
 		<body <?php ampforwp_body_class($bodyClass); ?>>
 		<?php do_action('amp_start', $thisTemplate); ?>

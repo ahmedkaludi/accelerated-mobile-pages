@@ -5416,3 +5416,14 @@ function swifttheme_footer_widgets_init() {
 	}
 }
 add_action( 'init', 'swifttheme_footer_widgets_init' );
+
+function is_non_amp($type="non_amp_check"){
+	//check for theme
+	if( 'Twenty Fifteen' != wp_get_theme() ){
+		return false;
+	}
+	if(false !== get_query_var( 'amp', false )){
+		return false;
+	}
+	return true;
+}

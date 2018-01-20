@@ -406,7 +406,11 @@ if ( is_admin() ) {
 
 	// AMP endpoint Verifier
 	function ampforwp_is_amp_endpoint() {
-		return false !== get_query_var( 'amp', false );
+		if( is_non_amp() ){
+			return is_non_amp();
+		}else{
+			return false !== get_query_var( 'amp', false );
+		}
 	}
 
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
