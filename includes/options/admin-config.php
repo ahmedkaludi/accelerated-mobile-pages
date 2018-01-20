@@ -413,6 +413,15 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
         return $value;
     }
+    function ampforwp_custom_logo_dimensions_options(){
+        $selectedOption = get_option('redux_builder_amp',true);
+        $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
+        if($opCheck==1){
+            return 'prescribed';
+        }else{
+            return 'flexible';
+        }
+    }
     Redux::setSection( $opt_name, array(
         'title'      => __( 'General', 'accelerated-mobile-pages' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
@@ -445,7 +454,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'flexible'   => 'Flexible width',
                     'prescribed' => 'Prescribed Format'
                 ),
-                'default' => 'flexible',
+                'default' => ampforwp_custom_logo_dimensions_options(),
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
             ),
             array(
