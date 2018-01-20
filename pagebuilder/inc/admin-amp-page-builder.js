@@ -163,6 +163,10 @@ Vue.component('amp-pagebuilder-module-modal', {
 			this.hideModulePopUp();
 	},
 	saveModulePopupdata: function(fields,repeater){
+		if(app.stopModuleModalClose==true){
+			alert('Please wait till load image.');
+			return false;
+		}
 		//Save Values to main content
 		app.mainContent.rows.forEach(function(rowData, rowKey){
 			if(rowData.id==app.modalTypeData.containerId){
@@ -379,6 +383,7 @@ Vue.component('fields-data',{
 	},
 	methods:{
 		selectimages:function(field,event){
+			app.stopModuleModalClose = true;
 			var currentSelectfield = event.target;
 			var componentPointer = this;
 			var selectorType = currentSelectfield.getAttribute("data-imageselactor");
@@ -470,8 +475,13 @@ Vue.component('fields-data',{
 								
 								
 							//}
+						 }else{
+						 	if(field[field['name']+'_image_data']){
+						 		var demoImage = field[field['name']+'_image_data'];
+						 	 	jQuery(currentSelectfield).parents('p').find('img').attr('src',demoImage[0]);
+						 	}
 						 }
-						
+						app.stopModuleModalClose = false;
 					},
 					 //errorCallback
 					 function(){
@@ -667,6 +677,7 @@ var app = new Vue({
     showModal: false,
     //Module data
     showmoduleModal: false,
+    stopModuleModalClose:false,
     modalcontent: [],
     modalType:'',//module/rowSetting
     modalTypeData: {},
