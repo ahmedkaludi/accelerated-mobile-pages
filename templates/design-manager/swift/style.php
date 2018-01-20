@@ -325,7 +325,17 @@ margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
     line-height:1;
     display:block;
 }
-.amp-logo amp-img{max-width: 190px;margin: 0 auto;width:<?php echo ampforwp_default_logo('width');?>px;}
+<?php
+$logoStyle = "max-width:190px;width:". ampforwp_default_logo('width')."px;";
+if( isset($redux_builder_amp['ampforwp-custom-logo-dimensions-options']) && 
+    $redux_builder_amp['ampforwp-custom-logo-dimensions-options']=='flexible' && 
+    $redux_builder_amp['ampforwp-custom-logo-dimensions-slider']){
+
+   $logoStyle = "max-width: ".$redux_builder_amp['ampforwp-custom-logo-dimensions-slider']."%;
+width:". ampforwp_default_logo('width')."px;";
+}
+?>
+.amp-logo amp-img{ <?php echo $logoStyle; ?>margin: 0 auto;}
 
 .amp-sidebar-close:after{
     content: "\e5cd";

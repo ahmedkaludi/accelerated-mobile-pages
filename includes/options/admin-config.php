@@ -436,12 +436,36 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => 0,
             ),
            array(
+                'id'       => 'ampforwp-custom-logo-dimensions-options',
+                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => '100',
+                'desc'     => __('Select option', 'redux_builder_amp'),
+                'options'     => array(
+                    'flexible'   => 'Flexible width',
+                    'prescribed' => 'Prescribed Format'
+                ),
+                'default' => 'flexible',
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+            ),
+            array(
+                'id'       => 'ampforwp-custom-logo-dimensions-slider',
+                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'type'     => 'amp_slider',
+                'default'  => '100',
+                'min'      => 0,
+                'max'      => 100,
+                'subtitle' => '',
+                'desc'      => __('Slider description. Min: 1, max: 100, step: 100, default value: 250', 'redux_builder_amp'),
+                'required'=>array('ampforwp-custom-logo-dimensions-options','=','flexible'),
+            ),
+           array(
                 'id'       => 'opt-media-width',
                 'type'     => 'text',
                 'title'    => __('Logo Width', 'accelerated-mobile-pages'),
                 'desc'    => __('Default width is 190 pixels', 'accelerated-mobile-pages'),
                 'default' => '190',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                 'required'=>array('ampforwp-custom-logo-dimensions-options','=','prescribed'),
             ),
            array(
                 'id'       => 'opt-media-height',
@@ -449,7 +473,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __('Logo Height', 'accelerated-mobile-pages'),
                 'desc'    => __('Default height is 36 pixels', 'accelerated-mobile-pages'),
                 'default' => '36',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                'required'=>array('ampforwp-custom-logo-dimensions-options','=','prescribed'),
 
             ),
            array(

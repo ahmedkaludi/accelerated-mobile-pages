@@ -5247,14 +5247,14 @@ function ampforwp_default_logo($param=""){
 					$value = $logo_url;
 				break;
 			case 'width':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
 					$value = $redux_builder_amp['opt-media-width'];
 				}
 				else 
 					$value = $image[1];
 				break;
 			case 'height':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
 					$value = $redux_builder_amp['opt-media-height'];
 				}
 				else
