@@ -158,12 +158,12 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .amp-wp-article-tags .ampforwp-tax-tag, .amp-wp-article-tags .ampforwp-tax-tag a{ font-size: 12px; color: #555; font-family: sans-serif; margin: 20px 0 0 0; }
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
-.ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; height: 40px; }
+.ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; min-height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
 .custom-amp-socialsharing-icon-rounded{margin-right:6px;padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; background: #5cbe4a; display: inline-block; height: inherit; border-radius: 60px; }
 .custom-amp-socialsharing-line{background:#00b900}
 .custom-amp-social-sharing-vk{background:#45668e}
-.custom-amp-social-sharing-odnoklassniki{background:#ed812b}
+.custom-amp-social-sharing-odnoklassniki{background:#ed812b}.custom-amp-social-sharing-reddit{background:#ff4500}.custom-amp-social-sharing-telegram{background:#0088cc}.custom-amp-social-sharing-tumblr{background:#35465c}.custom-amp-social-sharing-digg{background:#005be2}.custom-amp-social-sharing-stumbleupon{background:#eb4924}.custom-amp-social-sharing-wechat{background:#7bb32e}.custom-amp-social-sharing-viber{background:#8f5db7}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }

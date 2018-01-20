@@ -104,7 +104,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 .custom-amp-socialsharing-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
-.custom-amp-social-sharing-odnoklassniki{background:#ed812b}
+.custom-amp-social-sharing-odnoklassniki{background:#ed812b}.custom-amp-social-sharing-reddit{background:#ff4500}.custom-amp-social-sharing-telegram{background:#0088cc}.custom-amp-social-sharing-tumblr{background:#35465c}.custom-amp-social-sharing-digg{background:#005be2}.custom-amp-social-sharing-stumbleupon{background:#eb4924}.custom-amp-social-sharing-wechat{background:#7bb32e}.custom-amp-social-sharing-viber{background:#8f5db7}
 <?php }?>
 /* Header */
 header.container{line-height: 0;}
