@@ -5117,8 +5117,10 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
 add_filter( 'nav_menu_link_attributes', 'ampforwp_nav_menu_link_attributes', 10, 3 );
 if( ! function_exists( 'ampforwp_nav_menu_link_attributes' ) ) {
 	function ampforwp_nav_menu_link_attributes( $atts, $item, $args ) {
+		if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
 	    // Manipulate link attributes
-	    $atts['itemprop'] = "url";
+	    	$atts['itemprop'] = "url";
+	    }
 	    return $atts;
 	}
 }
