@@ -27,7 +27,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  	$social_icons_names = array();
 	$url = get_the_permalink();
-	$title = get_the_title();
+	$title = esc_attr(get_the_title());
 	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 		$twitter_url = get_the_permalink();
 	}
@@ -89,8 +89,8 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	//http://www.stumbleupon.com/submit?url={url}&title={title}
 	}
 	if ( isset($selected_social_icons['Wechat']) && null == $selected_social_icons['Wechat'] ) {
-	 	$selected_social_icons['Wechat'] = ' ';
-	 	// 
+	 	$selected_social_icons['Wechat'] = 'http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url='. $url. '';
+	 	// http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url={url}
 	}
 	if ( isset($selected_social_icons['Viber']) && null == $selected_social_icons['Viber'] ) {
 	 	$selected_social_icons['Viber'] = 'viber://forward?text='. $url. '';
@@ -165,7 +165,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	        <?php } ?> 
 
 	        <?php if ( (in_array( 'Viber' , $selected_social_icons,true ) || in_array( 'Viber' , $social_icons_names,true )) && ! empty($selected_social_icons['Viber']) ) { ?>
-	        <a href="<?php echo esc_url($selected_social_icons['Viber']); ?>" target ="_blank"><li class="icon-Viber"></li></a>
+	        <a href="<?php echo ($selected_social_icons['Viber']); ?>" target ="_blank"><li class="icon-Viber"></li></a>
 	        <?php } ?> 
 
 	        <?php if( (in_array( 'facebook-like' , $selected_social_icons,true ) || in_array( 'facebook-like' , $social_icons_names,true ))  ) { ?>
