@@ -128,13 +128,13 @@ function amp_menu(){
 	}
 
 // Social Icons component
-function amp_social($social_icons=""){
+function amp_social( $social_icons="" ) {
 	global $loadComponent;
 	$amp_social = array();
 	//Supported social icons	 
-	$amp_social = array('twitter','facebook','pinterest','google-plus','linkedin','youtube','instagram','reddit','VKontakte','snapchat','tumblr');
-	if(isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true){
-		if($social_icons!=null){
+	$amp_social = array( 'twitter', 'facebook', 'pinterest', 'google-plus', 'linkedin', 'youtube', 'instagram', 'reddit', 'VKontakte', 'snapchat', 'tumblr', 'telegram', 'digg', 'StumbleUpon', 'Wechat', 'Viber' );
+	if ( isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true ) {
+		if ( null != $social_icons ) {
 		 ampforwp_framework_get_social_icons($social_icons);
 		}
 		else 

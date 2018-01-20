@@ -1,7 +1,6 @@
 <?php 
 
 function ampforwp_framework_get_social_icons($selected_social_icons){
-
 	/* TODO: 
     1: Connect with options panel
 	2: Add icons for email, line and whatsapp
@@ -28,40 +27,60 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$social_icons_names[] = $key;	 
 	 }
 
-	if( empty($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
+	if( isset($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
 	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $twitter_url.'&text='. $title .' ';
 	 	//https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}
 	}
 
-	if( empty($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
+	if( isset($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
 	 	$selected_social_icons['facebook'] = 'https://www.facebook.com/sharer.php?u='. $url. '';
 	 	//or https://www.facebook.com/dialog/share?app_id={app_id}&display=page&href={url}&redirect_uri={redirect_url}
 	}
-	if( empty($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
+	if( isset($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
 	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.' &url='. $url.'&description='. $title .'';
 	 	//https://pinterest.com/pin/create/bookmarklet/?media={img}&url={url}&is_video={is_video}&description={title}
 	}
-	if( empty($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
+	if( isset($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
 	 	$selected_social_icons['google-plus'] = 'https://plus.google.com/share?url='. $url. '';
 	 	//https://plus.google.com/share?url={url}
 	}
-	if( empty($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
+	if( isset($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
 	 	$selected_social_icons['linkedin'] = 'https://www.linkedin.com/shareArticle?url='. $url. '&title='. $title .'';
 	 	//https://www.linkedin.com/shareArticle?url={url}&title={title}
 	}
 
-	if( empty($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
+	if( isset($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
 	 	$selected_social_icons['reddit'] = 'https://reddit.com/submit?url='. $url. '&title='. $title .'';
 	 	//https://reddit.com/submit?url={url}&title={title}
 	}
-	if( empty($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
+	if( isset($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
 	 	$selected_social_icons['VKontakte'] = 'http://vk.com/share.php?url='. $url. '';
 	 	//http://vk.com/share.php?url={url}
 	}
 	
-	if( empty($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
+	if( isset($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
 	 	$selected_social_icons['tumblr'] = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl='. $url. '&title='. $title .'&caption='.$desc.'';
 	 	//https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}
+	}
+	if ( isset($selected_social_icons['telegram']) && null == $selected_social_icons['telegram'] ) {
+	 	$selected_social_icons['telegram'] = 'https://telegram.me/share/url?url='. $url. '&text='. $title .'';
+	 	//https://telegram.me/share/url?url={url}&text={title}
+	}
+	if ( isset($selected_social_icons['digg']) && null == $selected_social_icons['digg'] ) {
+	 	$selected_social_icons['digg'] = 'http://digg.com/submit?url='. $url. '&title='. $title .'';
+	 	//http://digg.com/submit?url={url}&title={title}
+	}
+	if ( isset($selected_social_icons['StumbleUpon']) && null == $selected_social_icons['StumbleUpon'] ) {
+	 	$selected_social_icons['StumbleUpon'] = 'http://www.stumbleupon.com/submit?url='. $url. '&title='. $title .'';
+	 	//http://www.stumbleupon.com/submit?url={url}&title={title}
+	}
+	if ( isset($selected_social_icons['Wechat']) && null == $selected_social_icons['Wechat'] ) {
+	 	$selected_social_icons['Wechat'] = ' ';
+	 	// 
+	}
+	if ( isset($selected_social_icons['Viber']) && null == $selected_social_icons['Viber'] ) {
+	 	$selected_social_icons['Viber'] = 'viber://forward?text='. $url. '';
+	 	//viber://forward?text={url}
 	}
  
 	 	 ?>	
@@ -109,7 +128,27 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  			<?php if( (in_array( 'tumblr' , $selected_social_icons,true ) || in_array( 'tumblr' , $social_icons_names,true )) && !empty($selected_social_icons['tumblr']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['tumblr']  ?>" target ="_blank"><li class="icon-tumblr"></li></a>
+	        <?php } ?>
+
+	        <?php if ( (in_array( 'telegram' , $selected_social_icons,true ) || in_array( 'telegram' , $social_icons_names,true )) && ! empty($selected_social_icons['telegram']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['telegram']); ?>" target ="_blank"><li class="icon-telegram"></li></a>
 	        <?php } ?> 
+
+	        <?php if ( (in_array( 'digg' , $selected_social_icons,true ) || in_array( 'digg' , $social_icons_names,true )) && ! empty($selected_social_icons['digg']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['digg']); ?>" target ="_blank"><li class="icon-digg"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'StumbleUpon' , $selected_social_icons,true ) || in_array( 'StumbleUpon' , $social_icons_names,true )) && ! empty($selected_social_icons['StumbleUpon']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['StumbleUpon']); ?>" target ="_blank"><li class="icon-StumbleUpon"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'Wechat' , $selected_social_icons,true ) || in_array( 'Wechat' , $social_icons_names,true )) && !empty($selected_social_icons['Wechat']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['Wechat']); ?>" target ="_blank"><li class="icon-Wechat"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'Viber' , $selected_social_icons,true ) || in_array( 'Viber' , $social_icons_names,true )) && ! empty($selected_social_icons['Viber']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['Viber']); ?>" target ="_blank"><li class="icon-Viber"></li></a>
+	        <?php } ?>  
 	        </ul>
 	  	</div>	
 <?php 
