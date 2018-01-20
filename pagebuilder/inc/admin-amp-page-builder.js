@@ -171,6 +171,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 						if(moduleData.cell_id==app.modalTypeData.moduleId){
 							fields.forEach(function(fieldData,fieldKey){
 								Vue.set( moduleData, fieldData.name, fieldData.default );
+								if(fieldData[fieldData.name+"_image_data"]){
+									Vue.set( moduleData, fieldData.name+"_image_data", fieldData[fieldData.name+"_image_data"] );
+								}
 							})
 							if(app.modalcontent.repeater){
 								moduleData.repeater = [];
@@ -178,6 +181,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 									var repeaterData = {};
 									repeatWrapper.forEach(function(repeatField,repFieldKey){
 										repeaterData[repeatField.name] = repeatField.default;
+										if(repeatField[repeatField.name+"_image_data"]){
+											repeaterData[repeatField.name+"_image_data"] = repeatField[repeatField.name+"_image_data"];
+										}
 									});
 									repeaterData['index'] = (repKey+1);
 									moduleData.repeater.push(repeaterData);
@@ -268,7 +274,8 @@ function openModulePopup(event,type){
 							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 								var userValues = moduleData[fieldData.name];
 								if('object' != typeof(moduleData[fieldData.name])){
-									userValues = decodeURI(userValues);
+									userValues = decodeURIComponent(encodeURIComponent(userValues));
+									
 								}
 
 								if(fieldData['type']=='color-picker'){
@@ -405,7 +412,7 @@ Vue.component('fields-data',{
                   var ids = gallery_ids.join(",");
                   
                   field.default = ids;
-                  componentPointer.refresh_image(ids,currentSelectfield,"button");
+                  componentPointer.refresh_image(ids,currentSelectfield,"button",field);
                   componentPointer.$forceUpdate();
                });
 			image_frame.on('open',function() {
@@ -425,7 +432,7 @@ Vue.component('fields-data',{
 	        image_frame.open();
 
 		},
-		refresh_image: function(the_id,currentSelectfield,type){
+		refresh_image: function(the_id,currentSelectfield,type,field){
 			if(type=='tag'){
 				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
 			}else{
@@ -456,7 +463,8 @@ Vue.component('fields-data',{
 								if(type=='tag'){
 									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
 								}else{
-									console.log(jQuery(currentSelectfield).parents('p'))
+									//console.log(jQuery(currentSelectfield).parents('p'))
+									field[field['name']+'_image_data'] = response.data.front_image;
 									jQuery(currentSelectfield).parents('p').find('img').attr('src',response.data.detail[0]);
 								}
 								

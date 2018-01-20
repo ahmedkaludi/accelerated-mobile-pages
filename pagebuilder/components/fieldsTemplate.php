@@ -103,7 +103,7 @@
             <input type="hidden" name="ampforwp_image_id" class="regular-text" v-model="field.default"/>
         
             <div v-if="field.default!=''" style="position: relative;display: inline-block;">
-                 <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag')" class="amppbimageuploadField"/>
+                 <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag',field)" class="amppbimageuploadField"/>
                 <span class="dashicons-before dashicons-no link" @click="removeSelectedImage(field)"></span>
             </div>
         </div>

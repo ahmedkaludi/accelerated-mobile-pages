@@ -405,10 +405,18 @@ function rowData($container,$col,$moduleTemplate){
 										}
 									}
 									if($moduleField['type']=="upload"){
-										$imageDetails = get_attachment_id( $replace);
-										$imageUrl = $imageDetails[0];
-										$imageWidth = $imageDetails[1];
-										$imageHeight = $imageDetails[2];
+										if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
+											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
+										 	$imageUrl = $replace[0];
+											$imageWidth = $replace[1];
+											$imageHeight = $replace[2];
+										}else{
+											$imageDetails = get_attachment_id( $replace);
+											$imageUrl = $imageDetails[0];
+											$imageWidth = $imageDetails[1];
+											$imageHeight = $imageDetails[2];	
+										}
+
 										$repeaterFrontTemplate = str_replace(
 													'{{'.$moduleField['name'].'}}', 
 													 $imageUrl, 
@@ -480,11 +488,17 @@ function rowData($container,$col,$moduleTemplate){
 										if(!is_array($contentArray[$field['name']])){
 											 $replace = $contentArray[$field['name']];
 											if($field['type']=="upload"){
-											 
-												$imageDetails = get_attachment_id( $replace);
-												$imageUrl = $imageDetails[0];
-												$imageWidth = $imageDetails[1];
-												$imageHeight = $imageDetails[2];
+												if(isset($contentArray[$field['name']."_image_data"])){
+												 	$replace= $contentArray[$field['name']."_image_data"];
+												 	$imageUrl = $replace[0];
+													$imageWidth = $replace[1];
+													$imageHeight = $replace[2];
+												}else{
+													$imageDetails = get_attachment_id( $replace);
+													$imageUrl = $imageDetails[0];
+													$imageWidth = $imageDetails[1];
+													$imageHeight = $imageDetails[2];	
+												}
 												$moduleFrontHtml = str_replace(
 															'{{'.$field['name'].'}}', 
 															 $imageUrl, 

@@ -70,12 +70,26 @@ add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
 
     global $redux_builder_amp;
-    if ( $redux_builder_amp['amp-design-selector'] ) {
-        return $redux_builder_amp['amp-design-selector'];
-    } else {
-        return 4;
+    if( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ){
+      return $redux_builder_amp['amp-design-selector'];
+    }elseif($redux_builder_amp['amp-design-selector']==4 && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php')){
+    	return $redux_builder_amp['amp-design-selector'];
+    }else{
+      $pluginData = get_plugins();
+        if(count($pluginData)>0){
+          foreach($pluginData as $key=>$data){
+            if($data['TextDomain']==$redux_builder_amp['amp-design-selector']){
+              
+              if(file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
+                return $redux_builder_amp['amp-design-selector'];
+              }
+              break;
+            }
+          }
+        }
     }
-
+      return 2;
+   
 }
 
 add_action('pre_amp_render_post','ampforwp_stylesheet_file_insertion', 12 );
