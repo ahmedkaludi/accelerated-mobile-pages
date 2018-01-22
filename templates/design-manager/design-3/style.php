@@ -160,10 +160,12 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-wp-article-tags span{ background: #eee; margin-right: 10px; padding: 5px 12px 5px 12px; border-radius: 3px; display: inline-block; margin: 5px; }
 .ampforwp-social-icons{ margin-bottom: 70px; margin-top: 25px; min-height: 40px; }
 .ampforwp-social-icons amp-social-share{ border-radius:60px; background-size:22px; margin-right:6px; }
-.custom-amp-socialsharing-icon-rounded{margin-right:6px;padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; background: #5cbe4a; display: inline-block; height: inherit; border-radius: 60px; }
-.custom-amp-socialsharing-line{background:#00b900}
-.custom-amp-social-sharing-vk{background:#45668e}
-.custom-amp-social-sharing-odnoklassniki{background:#ed812b}.custom-amp-social-sharing-reddit{background:#ff4500}.custom-amp-social-sharing-telegram{background:#0088cc}.custom-amp-social-sharing-tumblr{background:#35465c}.custom-amp-social-sharing-digg{background:#005be2}.custom-amp-social-sharing-stumbleupon{background:#eb4924}.custom-amp-social-sharing-wechat{background:#7bb32e}.custom-amp-social-sharing-viber{background:#8f5db7}
+.amp-social-icon-rounded{padding: 11px 12px 9px 12px; top: -13px; position: relative; line-height: 1; display: inline-block; height: inherit; border-radius: 60px; }
+.amp-social-line{background:#00b900}
+.amp-social-vk{background:#45668e}
+.amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#0088cc}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}
+.amp-social-facebook{background:#3b5998}.amp-social-twitter{background:#1da1f2}.amp-social-gplus{background:#dd4b39}.amp-social-email{background:#000000}.amp-social-pinterest{background:#bd081c}.amp-social-linkedin{background:#0077b5}.amp-social-whatsapp{background:#5cbe4a}
+.ampforwp-custom-social{display:inline-block; margin-bottom:5px}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }
 figure amp-img{ max-width:100%; }
