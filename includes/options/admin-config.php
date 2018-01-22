@@ -2074,6 +2074,15 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 1,                        
                     ),
+                    array(
+                        'id'       => 'ampforwp-wptexturize',
+                        'type'     => 'switch',
+                        'title'    => __('Disable wptexturize'),
+                        'subtitle' => __('Enable this option to Disable wptexturize Globally', 'accelerated-mobile-pages'),
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'default'   => 0,                        
+                    ),  
 
    ),
 

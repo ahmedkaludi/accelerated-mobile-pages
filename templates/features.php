@@ -5457,5 +5457,13 @@ function ampforwp_yoast_robots_meta(){
 }
 
 // Disable wptextturize #1458
-remove_filter('the_content', 'wptexturize');
-remove_filter('the_title', 'wptexturize');
+add_action('init','ampforwp_wptexturize_disabler');
+if ( ! function_exists('ampforwp_wptexturize_disabler') ) {
+	function ampforwp_wptexturize_disabler(){
+		global $redux_builder_amp;
+		if ( true == $redux_builder_amp['ampforwp-wptexturize'] ) {
+			remove_filter('the_content', 'wptexturize');
+			remove_filter('the_title', 'wptexturize');
+		}
+	}
+}
