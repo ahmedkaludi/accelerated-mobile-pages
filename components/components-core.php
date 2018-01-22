@@ -363,7 +363,7 @@ $thisTemplate = new AMP_Post_Template($post_id);
 
 function amp_date($args=array()){
 		global $redux_builder_amp;
-		if(isset($args['format']) && $args['format']=='traditional'){
+		if ( (isset($args['format']) && $args['format']=='traditional') || 'time' == $args ) {
 			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
         }else{
         	$post_date =  human_time_diff(
@@ -371,7 +371,11 @@ function amp_date($args=array()){
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
         }
-        echo '<div class="loop-date">'.$post_date.'</div>';
+        if ( 'date' === $args || 'time' == $args ) {
+        	echo $post_date .' ';
+        }
+        else
+        	echo '<div class="loop-date">'.$post_date.'</div>';
 	}
 
 //Load font Compoment
@@ -404,4 +408,38 @@ if( ! function_exists('amp_theme_framework_rtl_styles') ){
 			body amp-carousel{ direction: ltr;}
 		<?php }
 	}
+}
+
+// Author Meta
+function amp_author_meta( $args ) {
+	global $post;
+	$author_name = false;
+	$avatar = false;
+	$avatar_size = 40;
+	if ( isset($args['name']) ) {
+		$author_name = $args['name'];
+	}
+	if ( 'name' === $args ) {
+		$author_name = true;
+	}
+	if ( 'avatar' === $args || 'image' === $args ) {
+		$avatar = true;
+	}
+	if ( isset($args['image']) ) {
+		$avatar = $args['image'];
+	}
+	if ( isset($args['image_size']) ) {
+		$avatar_size = $args['image_size'];
+	}
+	$post_author = get_userdata($post->post_author);
+	$author_link = get_author_posts_url($post_author->ID);
+	if ( $author_name ) {
+		echo ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $post_author->display_name ).'</a>';
+ 	}
+ 	if ( $avatar ) {
+		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
+            ?>
+        <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+    <?php } 
+	 
 }
