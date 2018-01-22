@@ -1712,7 +1712,10 @@ function ampforwp_remove_schema_data() {
     // Jannah Theme Lazy Load Compatibility
     	remove_filter( 'wp_get_attachment_image_attributes', 'jannah_lazyload_image_attributes', 8, 3 );
     // Goodlife Theme Lazy Load Compatibility
-    	remove_filter( 'post_thumbnail_html', 'thb_src_attribute', 10, 3 );	
+    	remove_filter( 'post_thumbnail_html', 'thb_src_attribute', 10, 3 );
+    // MediaAce lazy load compatibility
+    	remove_filter( 'wp_get_attachment_image_attributes', 'mace_lazy_load_attachment', 10, 3);
+		remove_filter( 'the_content', 'mace_lazy_load_content_image' );	
 }
 
 // 22. Removing author links from comments Issue #180
