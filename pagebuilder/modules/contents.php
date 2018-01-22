@@ -21,10 +21,21 @@ require_once  ABSPATH . WPINC . '/category.php';
 .cat_mod .cat_mod_l{
   line-height:0;
 }
+.cat_mod {
+  margin:{{margin_css}};
+   padding:{{padding_css}};
+}
+.cat_mod{
+  background:{{bg_color_picker}};
+  padding:40px;
+}
 .cat_mod h4{
   border-bottom: 2px solid {{border_color_picker}};
   padding-bottom: 8px;
   margin-bottom: 5px;
+  font-size:{{label-size}};
+  color: {{label_color_picker}};
+  font-weight: {{label-weight}}
 }
 .cat_mod_l amp-img{
   width:150px;
@@ -35,14 +46,14 @@ require_once  ABSPATH . WPINC . '/category.php';
   flex-direction: column;
 }
 .cat_mod .cat_mod_r a{
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 500;
-  color: #191919;
+  font-size: {{cat-size}};
+  line-height: 1.3;
+  font-weight: {{cat-weight}};
+  color: {{text_color_picker}};
   margin: 0px 0px 5px 0px;
 }
 .cat_mod .cat_mod_r p{
-  color: #444;
+  color: {{text_color_picker}};
   font-size: 13px;
   line-height: 20px;
   letter-spacing: 0.10px;
@@ -69,7 +80,8 @@ require_once  ABSPATH . WPINC . '/category.php';
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
-              'container_css'=>'Design'
+              'container_css'=>'Design',
+              'advanced' => 'Advanced'
             ),
  		'fields' => array(
  						array(		
@@ -81,13 +93,111 @@ require_once  ABSPATH . WPINC . '/category.php';
             'content_type'=>'html',
  						),
             array(
+                'type'    =>'checkbox',
+                'name'    =>"bg_clr",
+                'tab'   =>'container_css',
+                'label'   =>'Background Type',
+                'default' =>array(), 
+                'options' =>array(
+                        array(
+                          'label'=>'', 
+                          'value'=>"yes",
+                        ),
+                      ),
+                'content_type'=>'css',
+              ),
+            array(
+                'type'    =>'color-picker',
+                'name'    =>'bg_color_picker',
+                'label'   =>'Background Color',
+                'tab'   =>'container_css',
+                'default' =>'#fff',
+                'content_type'=>'css',
+                'required'  => array('bg_clr'=>"yes")
+              ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"label-size",    
+            'label'   =>'label Font Size ',
+            'tab'     =>'container_css',
+            'default' =>'18px', 
+            'content_type'=>'css',
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"label-weight",    
+            'label'   =>'label Font Weight ',
+            'tab'     =>'container_css',
+            'default' =>'600', 
+            'content_type'=>'css',
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"cat-size",    
+            'label'   =>'Font Size ',
+            'tab'     =>'container_css',
+            'default' =>'20px', 
+            'content_type'=>'css',
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"cat-weight",    
+            'label'   =>'Font Weight ',
+            'tab'     =>'container_css',
+            'default' =>'500', 
+            'content_type'=>'css',
+            ),
+            array(
                 'type'    =>'color-picker',
                 'name'    =>'border_color_picker',
                 'label'   =>'Border Color',
                 'tab'   =>'container_css',
                 'default' =>'#eee',
                 'content_type'=>'css'
-              ),		
+              ),
+            array(
+              'type'    =>'color-picker',
+              'name'    =>'label_color_picker',
+              'label'   =>'Lable Color',
+              'tab'   =>'container_css',
+              'default' =>'#000',
+              'content_type'=>'css'
+            ),
+            array(
+              'type'    =>'color-picker',
+              'name'    =>'text_color_picker',
+              'label'   =>'Text Color',
+              'tab'   =>'container_css',
+              'default' =>'#191919',
+              'content_type'=>'css'
+            ),
+            array(
+                'type'    =>'spacing',
+                'name'    =>"margin_css",
+                'label'   =>'Margin',
+                'tab'   =>'advanced',
+                'default' =>
+                            array(
+                                'top'=>'20px',
+                                'right'=>'0px',
+                                'bottom'=>'20px',
+                                'left'=>'0px',
+                            ),
+                'content_type'=>'css',
+              ),
+              array(
+                'type'    =>'spacing',
+                'name'    =>"padding_css",
+                'label'   =>'Padding',
+                'tab'   =>'advanced',
+                'default' =>array(
+                          'left'=>'0px',
+                          'right'=>'0px',
+                          'top'=>'0px',
+                          'bottom'=>'0px'
+                        ),
+                'content_type'=>'css',
+              ),  		
  						array(		
  							'type'	=>'select',		
  							'name'  =>"category_selection",		
