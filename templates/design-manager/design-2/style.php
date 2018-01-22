@@ -100,11 +100,11 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 /* Sticky Social bar in Single */
 .ampforwp-social-icons-wrapper{ margin: 0.65em 0px 0.65em 0px; height: 28px; }
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
-.custom-amp-socialsharing-icon amp-img{ top: 4px; }
+.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; margin-bottom:5px; }
+.amp-social-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
 .ampforwp-social-icons custom-amp-socialsharing-vk{background:#45668e}
-.custom-amp-social-sharing-odnoklassniki{background:#ed812b}.custom-amp-social-sharing-reddit{background:#ff4500}.custom-amp-social-sharing-telegram{background:#0088cc}.custom-amp-social-sharing-tumblr{background:#35465c}.custom-amp-social-sharing-digg{background:#005be2}.custom-amp-social-sharing-stumbleupon{background:#eb4924}.custom-amp-social-sharing-wechat{background:#7bb32e}.custom-amp-social-sharing-viber{background:#8f5db7}
+.amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#0088cc}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}
 <?php }?>
 /* Header */
 header.container{line-height: 0;}

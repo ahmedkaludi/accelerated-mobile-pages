@@ -92,8 +92,8 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
  if ( is_single() ) {?>
 /* Sticky Social bar in Single */
 .sticky_social{ width: 100%; bottom: 0; display: block; left: 0; box-shadow: 0px 4px 7px #000; background: #fff; padding: 7px 0px 0px 0px; position: fixed; margin: 0; z-index: 10; text-align: center; }
-.custom-amp-socialsharing-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
-.custom-amp-socialsharing-icon amp-img{ top: 4px; }
+.amp-social-icon{ width: 50px; height: 28px; display: inline-block; background: #5cbe4a;position: relative; top: -8px; padding-top: 0px; }
+.amp-social-icon amp-img{ top: 4px; }
 .custom-amp-socialsharing-line{background:#00b900}
 .sticky_social .whatsapp-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
 .sticky_social .line-share-icon{ padding: 4px 0px 14px 0px; height: 28px; top: -4px; position: relative; }
