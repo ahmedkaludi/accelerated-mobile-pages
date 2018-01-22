@@ -1690,6 +1690,10 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'the_content', 'ICWP_WPTB_CssProcessor_V1', 'run', 10 );
 		//Perfect SEO url + Yoast SEO Compatibility #982
 		ampforwp_remove_filters_for_class( 'wpseo_canonical', 'PSU', 'canonical', 10 );
+		//SiteOrigin Page builder compatibilty with AMP Frontpage
+		if ( ampforwp_is_front_page() ) {
+				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
+		}
 		//SiteOrigin Page builder compatibilty
 		//Neglect SOPB If Custom AMP Editor is checked
 	      if ( $amp_custom_content_enable === 'yes') {
