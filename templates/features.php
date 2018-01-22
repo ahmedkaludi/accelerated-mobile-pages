@@ -562,7 +562,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if ( true == $redux_builder_amp['enable-amp-ads-1'] ) {
+			if ( isset($redux_builder_amp['enable-amp-ads-1']) && true == $redux_builder_amp['enable-amp-ads-1'] ) {
 				if ( 1 == $redux_builder_amp['enable-amp-ads-select-1'] ) {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -604,7 +604,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-2'] == true) {
+			if ( isset($redux_builder_amp['enable-amp-ads-2']) && true == $redux_builder_amp['enable-amp-ads-2'] ) {
 				if($redux_builder_amp['enable-amp-ads-select-2'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -647,7 +647,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-3'] == true) {
+			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] ) {
 				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -690,7 +690,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-4'] == true) {
+			if ( isset($redux_builder_amp['enable-amp-ads-4']) && true == $redux_builder_amp['enable-amp-ads-4'] ) {
 				if($redux_builder_amp['enable-amp-ads-select-4'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -734,7 +734,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-5'] == true) {
+			if ( isset($redux_builder_amp['enable-amp-ads-5']) && true == $redux_builder_amp['enable-amp-ads-5'] ) {
 				if($redux_builder_amp['enable-amp-ads-select-5'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -779,7 +779,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			global $redux_builder_amp;
 			$optimize = '';
 			$optimize = ampforwp_ad_optimize();
-			if($redux_builder_amp['enable-amp-ads-6'] == true) {
+			if( isset($redux_builder_amp['enable-amp-ads-6']) && true == $redux_builder_amp['enable-amp-ads-6'] ) {
 				if($redux_builder_amp['enable-amp-ads-select-6'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
