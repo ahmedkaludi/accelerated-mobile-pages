@@ -1715,7 +1715,11 @@ function ampforwp_remove_schema_data() {
     	remove_filter( 'post_thumbnail_html', 'thb_src_attribute', 10, 3 );
     // MediaAce lazy load compatibility
     	remove_filter( 'wp_get_attachment_image_attributes', 'mace_lazy_load_attachment', 10, 3);
-		remove_filter( 'the_content', 'mace_lazy_load_content_image' );	
+		remove_filter( 'the_content', 'mace_lazy_load_content_image' );
+	// SEO Post Content Links compatibility
+	if ( class_exists('cl_core') ) {
+		remove_action('the_content', array( 'cl_core', 'getPost' ) );
+	}
 }
 
 // 22. Removing author links from comments Issue #180
