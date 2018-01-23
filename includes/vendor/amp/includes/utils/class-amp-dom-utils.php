@@ -34,6 +34,7 @@ class AMP_DOM_Utils {
 		foreach ( $body->childNodes as $node ) {
 			$out .= $dom->saveXML( $node );
 		}
+		$out = apply_filters('amp_get_content_from_dom', $out);
 		return $out;
 	}
 

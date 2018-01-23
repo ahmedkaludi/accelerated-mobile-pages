@@ -71,13 +71,29 @@ function ampforwp_design_selector() {
 
     global $redux_builder_amp;
     if ( $redux_builder_amp['amp-design-selector'] ) {
-        return $redux_builder_amp['amp-design-selector'];
-    } else {
-        return 2;
-    }
-
+		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
+			return $redux_builder_amp['amp-design-selector'];
+		}
+		elseif ( 4 == $redux_builder_amp['amp-design-selector'] && file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift/style.php') ) {
+      			return $redux_builder_amp['amp-design-selector'];
+    	}
+		else {
+			$plugin_data = get_plugins();
+	    	if ( count($plugin_data) > 0 ) {
+	    		foreach ( $plugin_data as $key=>$data ) {
+	    			if ( $data['TextDomain'] ==$redux_builder_amp['amp-design-selector'] ) {
+	    				if ( file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key) ) {
+	    					return $redux_builder_amp['amp-design-selector'];
+	    				}
+	    				break;
+	    			}
+	    		}
+	    	}
+		}
+    	return 2;
+    } 
+    return 2;
 }
-
 
 add_action('pre_amp_render_post','ampforwp_stylesheet_file_insertion', 12 );
 function ampforwp_stylesheet_file_insertion() {
@@ -87,26 +103,23 @@ function ampforwp_stylesheet_file_insertion() {
         } else {
           $ampforwp_design_selector  = ampforwp_design_selector();
         }
-
         // Add StyleSheet
-        if(file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php')){
+        if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php') ) {
 	        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
-	    }else{
+	    }else {
 
-	    	$pluginData = get_plugins();
-	    	if(count($pluginData)>0){
-	    		foreach($pluginData as $key=>$data){
-	    			if($data['TextDomain']==$ampforwp_design_selector){
-	    				if(!file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key)){
-	    					echo "plugin theme not exists";	
+	    	$plugin_data = get_plugins();
+	    	if ( count($plugin_data) > 0 ) {
+	    		foreach ( $plugin_data as $key => $data ) {
+	    			if ( $data['TextDomain'] == $ampforwp_design_selector ) {
+	    				if ( ! file_exists(AMPFORWP_MAIN_PLUGIN_DIR."/".$key) ) {
+	    					echo "plugin theme not exists";
 	    				}
 	    				break;
 	    			}
 	    		}
 	    	}
-	    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
-
-
+    	require AMPFORWP_PLUGIN_DIR."/components/theme-loader.php";
 	    }
 }
 

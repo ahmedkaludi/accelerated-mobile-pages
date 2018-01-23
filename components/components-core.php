@@ -2,8 +2,8 @@
 global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
-$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now');
-//$removeScriptComponent = array('amp-carousel');
+$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb');
+//$removeScriptComponent = array('amp-carousel');'
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
 	global $scriptComponent, $loadComponent; //$removeScriptComponent;
@@ -128,13 +128,13 @@ function amp_menu(){
 	}
 
 // Social Icons component
-function amp_social($social_icons=""){
+function amp_social( $social_icons="" ) {
 	global $loadComponent;
 	$amp_social = array();
 	//Supported social icons	 
-	$amp_social = array('twitter','facebook','pinterest','google-plus','linkedin','youtube','instagram','reddit','VKontakte','snapchat','tumblr');
-	if(isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true){
-		if($social_icons!=null){
+	$amp_social = array( 'twitter', 'facebook', 'pinterest', 'google-plus', 'linkedin', 'youtube', 'instagram', 'reddit', 'VKontakte', 'snapchat', 'tumblr' );
+	if ( isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true ) {
+		if ( null != $social_icons ) {
 		 ampforwp_framework_get_social_icons($social_icons);
 		}
 		else 
@@ -209,7 +209,7 @@ function amp_related_posts($argsdata = array()){
 function amp_post_pagination($args='' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-post-pagination']) && $loadComponent['AMP-post-pagination']==true){
-		  ampforwp_framework_get_post_pagination();
+		  ampforwp_framework_get_post_pagination($args);
 	}
 }
 
@@ -218,6 +218,14 @@ function amp_call_now(){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-call-now']) && $loadComponent['AMP-call-now']==true){
 		amp_call_button_html_output();
+	}
+}
+
+// Breadcrumb
+function amp_breadcrumb(){
+	global $loadComponent;
+	if ( isset($loadComponent['AMP-breadcrumb']) && true == $loadComponent['AMP-breadcrumb'] ) {
+		echo amp_breadcrumb_output();
 	}
 }
 
@@ -355,7 +363,7 @@ $thisTemplate = new AMP_Post_Template($post_id);
 
 function amp_date($args=array()){
 		global $redux_builder_amp;
-		if(isset($args['format']) && $args['format']=='traditional'){
+		if ( (isset($args['format']) && $args['format']=='traditional') || 'time' == $args ) {
 			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
         }else{
         	$post_date =  human_time_diff(
@@ -363,7 +371,11 @@ function amp_date($args=array()){
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
         }
-        echo '<div class="loop-date">'.$post_date.'</div>';
+        if ( 'date' === $args || 'time' == $args ) {
+        	echo $post_date .' ';
+        }
+        else
+        	echo '<div class="loop-date">'.$post_date.'</div>';
 	}
 
 //Load font Compoment
@@ -396,4 +408,44 @@ if( ! function_exists('amp_theme_framework_rtl_styles') ){
 			body amp-carousel{ direction: ltr;}
 		<?php }
 	}
+}
+
+// Author Meta
+function amp_author_meta( $args ) {
+	global $post;
+	$author_name = false;
+	$avatar = false;
+	$avatar_size = 40;
+	if ( isset($args['name']) ) {
+		$author_name = $args['name'];
+	}
+	if ( 'name' === $args ) {
+		$author_name = true;
+	}
+	if ( 'avatar' === $args || 'image' === $args ) {
+		$avatar = true;
+	}
+	if ( isset($args['image']) ) {
+		$avatar = $args['image'];
+	}
+	if ( isset($args['image_size']) ) {
+		$avatar_size = $args['image_size'];
+	}
+	$post_author = get_userdata($post->post_author);
+	$author_link = get_author_posts_url($post_author->ID);
+	if ( $author_name ) {
+		echo ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $post_author->display_name ).'</a>';
+ 	}
+ 	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
+		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
+            ?>
+        <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+    <?php }
+    elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
+    	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
+    	$amp_html_sanitizer = new AMPFORWP_Content( $avatar_img, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+	    $amp_html =  $amp_html_sanitizer->get_amp_content();
+		echo $amp_html;
+     } 
+	 
 }

@@ -48,7 +48,7 @@
 		<?php
 			if( is_author() ){
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
-				if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
+				if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="author-archive">
@@ -106,7 +106,7 @@
 
 		<div class="amp-wp-content amp-loop-list">
 			<?php if ( ampforwp_has_post_thumbnail() ) {  
-				$thumb_url = ampforwp_get_post_thumbnail();
+				$thumb_url = ampforwp_get_post_thumbnail('url','medium');
 				if($thumb_url){ ?>
 					<div class="home-post_image">
 						<a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>">
