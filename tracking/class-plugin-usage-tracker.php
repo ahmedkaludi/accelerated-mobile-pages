@@ -2,7 +2,7 @@
 /**
  * This is the class that sends all the data back to the home site
  * It also handles opting in and deactivation
- * @version 1.2.0
+ * @version 1.2.2
  */
 
 // Exit if accessed directly
@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if( ! class_exists( 'Plugin_Usage_Tracker') ) {
-	
+
 	class Plugin_Usage_Tracker {
-		
-		private $wisdom_version = '1.2.0';
+
+		private $wisdom_version = '1.2.2';
 		private $home_url = '';
 		private $plugin_file = '';
 		private $plugin_name = '';
@@ -25,7 +25,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		private $collect_email = false;
 		private $what_am_i = 'plugin';
 		private $theme_allows_tracking = 0;
-		
+
 		/**
 		 * Class constructor
 		 *
@@ -49,7 +49,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 
 			$this->plugin_file = $_plugin_file;
 			$this->home_url = trailingslashit( $_home_url );
-			
+
 			// If the filename is 'functions' then we're tracking a theme
 			if( basename( $this->plugin_file, '.php' ) != 'functions' ) {
 				$this->plugin_name = basename( $this->plugin_file, '.php' );
@@ -60,15 +60,15 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 					$this->plugin_name = sanitize_text_field( $theme->Name );
 				}
 			}
-			
+
 			$this->options = $_options;
 			$this->require_optin = $_require_optin;
 			$this->include_goodbye_form = $_include_goodbye_form;
 			$this->marketing = $_marketing;
-			
+
 			// Only use this on switching theme
 			$this->theme_allows_tracking = get_theme_mod( 'wisdom-allow-tracking', 0 );
-			
+
 			// Schedule / deschedule tracking when activated / deactivated
 			if( $this->what_am_i == 'theme' ) {
 				// Need to think about scheduling for sites that have already activated the theme
@@ -78,18 +78,18 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				register_activation_hook( $this->plugin_file, array( $this, 'schedule_tracking' ) );
 				register_deactivation_hook( $this->plugin_file, array( $this, 'deactivate_this_plugin' ) );
 			}
-			
+
 			// Get it going
 			$this->init();
 
 		}
-		
+
 		public function init() {
 			// Check marketing
 			if( $this->marketing == 3 ) {
 				$this->set_can_collect_email( true, $this->plugin_name );
 			}
-			
+
 			// Check whether opt-in is required
 			// If not, then tracking is allowed
 			if( ! $this->require_optin ) {
@@ -104,7 +104,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 
 			// Use this action for local testing
 			// add_action( 'admin_init', array( $this, 'do_tracking' ) );
-			
+
 			// Display the admin notice on activation
 			add_action( 'admin_notices', array( $this, 'optin_notice' ) );
 			add_action( 'admin_notices', array( $this, 'marketing_notice' ) );
@@ -113,9 +113,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			add_filter( 'plugin_action_links_' . plugin_basename( $this->plugin_file ), array( $this, 'filter_action_links' ) );
 			add_action( 'admin_footer-plugins.php', array( $this, 'goodbye_ajax' ) );
 			add_action( 'wp_ajax_goodbye_form', array( $this, 'goodbye_form_callback' ) );
-			
+
 		}
-		
+
 		/**
 		 * When the plugin is activated
 		 * Create scheduled event
@@ -128,8 +128,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			if ( ! wp_next_scheduled( 'put_do_weekly_action' ) ) {
 				wp_schedule_event( time(), 'daily', 'put_do_weekly_action' );
 			}
+			$this->do_tracking( true );
 		}
-		
+
 		/**
 		 * This is our function to get everything going
 		 * Check that user has opted in
@@ -140,26 +141,26 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		 * @param $force	Force tracking if it's not time
 		 */
 		public function do_tracking( $force=false ) {
-			
+
 			// If the home site hasn't been defined, we just drop out. Nothing much we can do.
 			if ( ! $this->home_url ) {
 				return;
 			}
-			
+
 			// Check to see if the user has opted in to tracking
 			$allow_tracking = $this->get_is_tracking_allowed();
 			if( ! $allow_tracking ) {
 				return;
 			}
-			
+
 			// Check to see if it's time to track
 			$track_time = $this->get_is_time_to_track();
 			if( ! $track_time && ! $force ) {
 				return;
 			}
-			
+
 			$this->set_admin_email();
-	
+
 			// Get our data
 			$body = $this->get_data();
 
@@ -167,7 +168,17 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			$this->send_data( $body );
 
 		}
-		
+
+		/**
+		 * We hook this to admin_init when the user accepts tracking
+		 * Ensures the email address is available
+		 *
+		 * @since 1.2.1
+		 */
+		public function force_tracking() {
+			$this->do_tracking( true ); // Run this straightaway
+		}
+
 		/**
 		 * Send the data to the home site
 		 *
@@ -175,7 +186,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		 */
 		public function send_data( $body ) {
 
-			$request = wp_remote_post( 
+			$request = wp_remote_post(
 				esc_url( $this->home_url . '?usage_tracker=hello' ),
 				array(
 					'method'      => 'POST',
@@ -187,46 +198,46 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 					'user-agent'  => 'PUT/1.0.0; ' . home_url()
 				)
 			);
-			
+
 			$this->set_track_time();
-	
+
 			if( is_wp_error( $request ) ) {
 				return $request;
 			}
-			
+
 		}
-		
+
 		/**
 		 * Here we collect most of the data
-		 * 
+		 *
 		 * @since 1.0.0
 		 */
 		public function get_data() {
-	
+
 			// Use this to pass error messages back if necessary
 			$body['message'] = '';
-	
+
 			// Use this array to send data back
 			$body = array(
-				'plugin_slug'		=> sanitize_text_field( $this->plugin_name ),
-				'url'				=> home_url(),
-				'site_name' 		=> get_bloginfo( 'name' ),
+				'plugin_slug'			=> sanitize_text_field( $this->plugin_name ),
+				'url'							=> home_url(),
+				'site_name' 			=> get_bloginfo( 'name' ),
 				'site_version'		=> get_bloginfo( 'version' ),
 				'site_language'		=> get_bloginfo( 'language' ),
-				'charset'			=> get_bloginfo( 'charset' ),
+				'charset'					=> get_bloginfo( 'charset' ),
 				'wisdom_version'	=> $this->wisdom_version,
-				'php_version'		=> phpversion(),
-				'multisite'			=> is_multisite(),
+				'php_version'			=> phpversion(),
+				'multisite'				=> is_multisite(),
 				'file_location'		=> __FILE__,
 				'product_type'		=> esc_html( $this->what_am_i )
 			);
-			
+
 			// Collect the email if the correct option has been set
 			if( $this->get_can_collect_email() ) {
 				$body['email'] = $this->get_admin_email();
 			}
 			$body['marketing_method'] = $this->marketing;
-	
+
 			$body['server'] = isset( $_SERVER['SERVER_SOFTWARE'] ) ? $_SERVER['SERVER_SOFTWARE'] : '';
 
 			// Retrieve current plugin information
@@ -256,7 +267,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			} else {
 				$body['text_direction']	= 'not set';
 			}
-	
+
 			/**
 			 * Get our plugin data
 			 * Currently we grab plugin name and version
@@ -264,6 +275,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			 * @since 1.0.0
 			 */
 			$plugin = $this->plugin_data();
+			$body['status'] = 'Active'; // Never translated
 			if( empty( $plugin ) ) {
 				// We can't find the plugin data
 				// Send a message back to our home site
@@ -276,7 +288,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				if( isset( $plugin['Version'] ) ) {
 					$body['version'] = sanitize_text_field( $plugin['Version'] );
 				}
-				$body['status'] = 'Active'; // Never translated
+
 			}
 
 			/**
@@ -298,7 +310,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			$body['plugin_options'] = $this->options; // Returns array
 			$body['plugin_options_fields'] = $plugin_options; // Returns object
-	
+
 			/**
 			 * Get our theme data
 			 * Currently we grab theme name and version
@@ -317,9 +329,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 
 			// Return the data
 			return $body;
-	
+
 		}
-		
+
 		/**
 		 * Return plugin data
 		 * @since 1.0.0
@@ -345,15 +357,15 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			} else {
 				$allow_tracking = $this->get_is_tracking_allowed();
 			}
-			
+
 			if( ! $allow_tracking ) {
 				return;
 			}
-			
+
 			$body = $this->get_data();
 			$body['status'] = 'Deactivated'; // Never translated
 			$body['deactivated_date'] = time();
-			
+
 			// Add deactivation form data
 			if( false !== get_option( 'wisdom_deactivation_reason_' . $this->plugin_name ) ) {
 				$body['deactivation_reason'] = get_option( 'wisdom_deactivation_reason_' . $this->plugin_name );
@@ -361,45 +373,54 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			if( false !== get_option( 'wisdom_deactivation_details_' . $this->plugin_name ) ) {
 				$body['deactivation_details'] = get_option( 'wisdom_deactivation_details_' . $this->plugin_name );
 			}
-			
+
 			$this->send_data( $body );
 			// Clear scheduled update
 			wp_clear_scheduled_hook( 'put_do_weekly_action' );
+
+			// Clear the wisdom_last_track_time value for this plugin
+			// @since 1.2.2
+			$track_time = get_option( 'wisdom_last_track_time' );
+			if( isset( $track_time[$this->plugin_name]) ) {
+				unset( $track_time[$this->plugin_name] );
+			}
+			update_option( 'wisdom_last_track_time', $track_time );
+
 		}
-		
+
 		/**
 		 * Is tracking allowed?
 		 * @since 1.0.0
 		 */
 		public function get_is_tracking_allowed() {
-			
+
 			// First, check if the user has changed their mind and opted out of tracking
 			if( $this->has_user_opted_out() ) {
 				$this->set_is_tracking_allowed( false, $this->plugin_name );
 				return false;
 			}
-			
+
 			if( $this->what_am_i == 'theme' ) {
-				
+
 				$mod = get_theme_mod( 'wisdom-allow-tracking', 0 );
 				if( $mod ) {
 					return true;
 				}
-				
+
 			} else {
-				
+
 				// The wisdom_allow_tracking option is an array of plugins that are being tracked
 				$allow_tracking = get_option( 'wisdom_allow_tracking' );
 				// If this plugin is in the array, then tracking is allowed
 				if( isset( $allow_tracking[$this->plugin_name] ) ) {
 					return true;
 				}
-				
+
 			}
-			
+
 			return false;
 		}
-		
+
 		/**
 		 * Set if tracking is allowed
 		 * Option is an array of all plugins with tracking permitted
@@ -408,14 +429,14 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		 * @param $is_allowed	Boolean		true if tracking is allowed, false if not
 		 */
 		public function set_is_tracking_allowed( $is_allowed, $plugin=null ) {
-			
+
 			if( empty( $plugin ) ) {
 				$plugin = $this->plugin_name;
 			}
-			
+
 			// The wisdom_allow_tracking option is an array of plugins that are being tracked
 			$allow_tracking = get_option( 'wisdom_allow_tracking' );
-			
+
 			// If the user has decided to opt out
 			if( $this->has_user_opted_out() ) {
 				if( $this->what_am_i == 'theme' ) {
@@ -425,10 +446,10 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 						unset( $allow_tracking[$plugin] );
 					}
 				}
-				
+
 			} else if( $is_allowed || ! $this->require_optin ) {
 				// If the user has agreed to allow tracking or if opt-in is not required
-				
+
 				if( $this->what_am_i == 'theme' ) {
 					set_theme_mod( 'wisdom-allow-tracking', 1 );
 				} else {
@@ -440,9 +461,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 						$allow_tracking[$plugin] = $plugin;
 					}
 				}
-				
+
 			} else {
-				
+
 				if( $this->what_am_i == 'theme' ) {
 					set_theme_mod( 'wisdom-allow-tracking', 0 );
 				} else {
@@ -450,13 +471,13 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 						unset( $allow_tracking[$plugin] );
 					}
 				}
-				
+
 			}
-			
+
 			update_option( 'wisdom_allow_tracking', $allow_tracking );
-			
+
 		}
-		
+
 		/**
 		 * Has the user opted out of allowing tracking?
 		 * Note that themes are opt in / plugins are opt out
@@ -487,7 +508,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Check if it's time to track
 		 * @since 1.1.1
@@ -506,7 +527,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Record the time we send tracking data
 		 * @since 1.1.1
@@ -518,7 +539,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			$track_times[$this->plugin_name] = time();
 			update_option( 'wisdom_last_track_time', $track_times );
 		}
-		
+
 		/**
 		 * Set if we should block the opt-in notice for this plugin
 		 * Option is an array of all plugins that have received a response from the user
@@ -538,7 +559,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			update_option( 'wisdom_block_notice', $block_notice );
 		}
-		
+
 		/**
 		 * Can we collect the email address?
 		 * @since 1.0.0
@@ -552,7 +573,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Set if user has allowed us to collect their email address
 		 * Option is an array of all plugins with email collection permitted
@@ -582,7 +603,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			update_option( 'wisdom_collect_email', $collect_email );
 		}
-		
+
 		/**
 		 * Get the correct email address to use
 		 * @since 1.1.2
@@ -597,7 +618,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Set the correct email address to use
 		 * There might be more than one admin on the site
@@ -629,7 +650,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			update_option( 'wisdom_admin_emails', $admin_emails );
 		}
-		
+
 		/**
 		 * Display the admin notice to users to allow them to opt in
 		 *
@@ -642,13 +663,14 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				$action = sanitize_text_field( $_GET['plugin_action'] );
 				if( $action == 'yes' ) {
 					$this->set_is_tracking_allowed( true, $plugin );
-					$this->do_tracking( true ); // Run this straightaway
+					// Run this straightaway
+					add_action( 'admin_init', array( $this, 'force_tracking' ) );
 				} else {
 					$this->set_is_tracking_allowed( false, $plugin );
 				}
 				$this->update_block_notice( $plugin );
 			}
-			
+
 			// Check whether to block the notice, e.g. because we're in a local environment
 			// wisdom_block_notice works the same as wisdom_allow_tracking, an array of plugin names
 			$block_notice = get_option( 'wisdom_block_notice' );
@@ -666,18 +688,18 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			if ( stristr( network_site_url( '/' ), 'dev' ) !== false || stristr( network_site_url( '/' ), 'localhost' ) !== false || stristr( network_site_url( '/' ), ':8888' ) !== false ) {
 				$this->update_block_notice();
 			} else {
-				
+
 				// Display the notice requesting permission to track
 				// Retrieve current plugin information
 				$plugin = $this->plugin_data();
 				$plugin_name = $plugin['Name'];
-				
+
 				// Args to add to query if user opts in to tracking
 				$yes_args = array(
 					'plugin' 		=> $this->plugin_name,
 					'plugin_action'	=> 'yes'
 				);
-				
+
 				// Decide how to request permission to collect email addresses
 				if( $this->marketing == 1 ) {
 					// Option 1 combines permissions to track and collect email
@@ -691,7 +713,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 					'plugin' 		=> $this->plugin_name,
 					'plugin_action'	=> 'no'
 				) );
-				
+
 				// Decide on notice text
 				if( $this->marketing != 1 ) {
 					// Standard notice text
@@ -708,7 +730,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				}
 				// And we allow you to filter the text anyway
 				$notice_text = apply_filters( 'wisdom_notice_text_' . esc_attr( $this->plugin_name ), $notice_text ); ?>
-				
+
 				<div class="notice notice-info updated put-dismiss-notice">
 					<p><?php echo '<strong>' . esc_html( $plugin_name ) . '</strong>'; ?></p>
 					<p><?php echo esc_html( $notice_text ); ?></p>
@@ -719,9 +741,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				</div>
 			<?php
 			}
-			
+
 		}
-		
+
 		/**
 		 * Display the marketing notice to users if enabled
 		 * Only displays after the user has opted in to tracking
@@ -749,13 +771,13 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 					'plugin' 			=> $this->plugin_name,
 					'marketing_optin'	=> 'no'
 				) );
-				
+
 				$marketing_text = sprintf(
 					__( 'Thank you for opting in to tracking. Would you like to receive occasional news about this %s, including details of new features and special offers?', 'singularity' ),
 					$this->what_am_i
 				);
 				$marketing_text = apply_filters( 'wisdom_marketing_text_' . esc_attr( $this->plugin_name ), $marketing_text ); ?>
-				
+
 				<div class="notice notice-info updated put-dismiss-notice">
 					<p><?php echo '<strong>' . esc_html( $plugin_name ) . '</strong>'; ?></p>
 					<p><?php echo esc_html( $marketing_text ); ?></p>
@@ -766,7 +788,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				</div>
 				<?php }
 		}
-		
+
 		/**
 		 * Filter the deactivation link to allow us to present a form when the user deactivates the plugin
 		 * @since 1.0.0
@@ -784,7 +806,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			}
 			return $links;
 		}
-		
+
 		/*
 		 * Form text strings
 		 * These are non-filterable and used as fallback in case filtered strings aren't set correctly
@@ -806,7 +828,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			$form['details'] = __( 'Details (optional)', 'singularity' );
 			return $form;
 		}
-		
+
 		/**
 		 * Form text strings
 		 * These can be filtered
@@ -817,7 +839,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			$form = $this->form_default_text();
 			return apply_filters( 'wisdom_form_text_' . esc_attr( $this->plugin_name ), $form );
 		}
-		
+
 		/**
 		 * Form text strings
 		 * These can be filtered
@@ -940,7 +962,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				});
 			</script>
 		<?php }
-		
+
 		/**
 		 * AJAX callback when the form is submitted
 		 * @since 1.0.0
@@ -959,7 +981,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 			echo 'success';
 			wp_die();
 		}
-		
+
 	}
-	
+
 }
