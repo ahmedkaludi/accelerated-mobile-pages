@@ -4956,7 +4956,7 @@ function ampforwp_addAmpLastModifiedHeader($headers) {
 if( ! function_exists('ampforwp_get_comments_gravatar') ){
 	function ampforwp_get_comments_gravatar( $comment ) {
 	$gravatar_exists = '';
-	$gravatar_exists = ampforwp_comment_gravatar_checker($comment->comment_author_email);
+	$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
 	if($gravatar_exists == true){
 		return get_avatar_url( $comment, apply_filters( 'ampforwp_get_comments_gravatar', '60' ), '' );
 	}
@@ -4965,8 +4965,8 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 	}
 }
 // Gravatar Checker
-if( ! function_exists('ampforwp_comment_gravatar_checker') ){
-	function ampforwp_comment_gravatar_checker($email) {
+if ( ! function_exists('ampforwp_gravatar_checker') ) {
+	function ampforwp_gravatar_checker( $email ) {
 		// Craft a potential url and test its headers
 		$hash = md5(strtolower(trim($email)));
 		$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
