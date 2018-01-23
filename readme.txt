@@ -97,6 +97,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * NEW - AMP Installation Wizard that makes it easy to setup for new users.
 * NEW - Category base remover support
 * NEW - Tag base remover support
+* NEW - 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
 * NEW - AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
@@ -176,6 +177,35 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.74 (23rd January 2018) =
+* View More details on the [blog post](https://ampforwp.com/0-9-74-released-stability-update-79th-update/)
+Fixed: Push Notifications button alligned in center #1500
+Added: Meta robots tag support from Yoast #1563
+Added: Option to Disable wptexturize/smart-quotes Support #1458
+Fixed: Changed the label id to avoid conflict with Advanced AMP Ads #1591
+Fixed: esc_attr causing validation issues with single and double quotes #1616
+Fixed: Image stretching problem resolved when "Featured Image from the content" was set #1580 #1582
+Added: Create Template by Custom taxonomy name like product-jeans.php in AMP Theme FrameWork #1594
+Added: Custom Post type support added in the Core #1612
+Fixed: custom-amp-content.php cleaned with PHPCS #1497
+Added: Basic Product(WooCommerce) support added #992 #1276 for full WooCommerce Support please check this [Extension](https://ampforwp.com/woocommerce/#utm_source=readme-log&utm_medium=0.9.74-readme&utm_campaign=AMP%20Plugin)
+Added: Proper fallback support added if the current active AMP theme is not available #1624
+Fixed: Resolved debug errors #1622
+Added: All in One SEO compatibility #1557
+Fixed: Load AMP Styling only on AMP pages #1441 
+Added: 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) #1265
+Fixed: itemprop="url" was adding in non-amp #1626
+Fixed: SiteOrigin Pagebuilder compatibility with Custom Frontpage #1592 #1593
+Added: MediaAce lazy load compatibility of Bibmer Theme #1472
+Fixed: Content Links plugin was causing validation errors #1569
+Added: Filter added called get_content_from_dom to modify the output in AMP function #1462
+Added: amp_breadcrumb component added in AMP Theme Framework #1636
+Fixed: Sidebar Styling and proper sanitizer updated 
+Added: amp_author_meta component added in AMP Theme Framework #1641
+Fixed: amp_post_pagination component improvement in AMP Theme Framework 
+Added: Ability to add link classes in amp_post_pagination in AMP Theme Framework 
+Fixed: amp_author_meta image code improvement in AMP Theme Framework
 
 = 0.9.73 (15th January 2018) =
 * View More details on the [blog post](https://ampforwp.com/0-9-73-released-stability-update-78th-update/)
