@@ -440,6 +440,9 @@ function amp_author_meta( $args ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
         <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
-    <?php } 
+    <?php }
+    elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
+    	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
+     } 
 	 
 }
