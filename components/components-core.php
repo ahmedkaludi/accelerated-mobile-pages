@@ -443,6 +443,9 @@ function amp_author_meta( $args ) {
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
+    	$amp_html_sanitizer = new AMPFORWP_Content( $avatar_img, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+	    $amp_html =  $amp_html_sanitizer->get_amp_content();
+		echo $amp_html;
      } 
 	 
 }
