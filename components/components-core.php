@@ -209,7 +209,7 @@ function amp_related_posts($argsdata = array()){
 function amp_post_pagination($args='' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-post-pagination']) && $loadComponent['AMP-post-pagination']==true){
-		  ampforwp_framework_get_post_pagination();
+		  ampforwp_framework_get_post_pagination($args);
 	}
 }
 

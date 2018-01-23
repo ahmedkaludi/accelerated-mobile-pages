@@ -71,13 +71,10 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	 * @param array  $args   An array of arguments.
 	 */
 	$html = apply_filters( 'ampforwp_framework_get_post_pagination', $output, $args );
-	if($redux_builder_amp['amp-pagination']) {
 		if ( $r['echo'] ) {
 			echo $html;
 		}
 		return $html;
-	}	
-
 }
 
 /**
@@ -157,20 +154,21 @@ function amp_paginated_post_rel_canonical(){
 add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
 function ampforwp_post_paginated_content($content){
 	global $redux_builder_amp;
-	$ampforwp_new_content = '';
-	$ampforwp_the_content = '';
+	$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 	$ampforwp_the_content = $content;
-		if($redux_builder_amp['amp-pagination']) {
-			$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
-		    $queried_var = get_query_var('page');
-		    if ( $queried_var > 1 ) {
-		      $queried_var = $queried_var -1   ;
-		    }
-		    else{
-		    	 $queried_var = 0;
-		    }
-		    return $ampforwp_new_content[$queried_var];
-	 	} else{
-	 		return $ampforwp_the_content;
-	 	}
+	$checker = preg_match('/<!--nextpage-->/', $ampforwp_the_content);
+	if ( 1 === $checker ) {		
+		$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
+	    $queried_var = get_query_var('page');
+	    if ( $queried_var > 1 ) {
+	      $queried_var = $queried_var -1   ;
+	    }
+	    else {
+	    	 $queried_var = 0;
+	    }
+	    return $ampforwp_new_content[$queried_var];
+	}
+	else {
+		return $ampforwp_the_content;
+	}
 }
