@@ -16,9 +16,18 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	$thumb_id = get_post_thumbnail_id($post_id);
 		$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
 	 }
+
+	if(!ampforwp_is_associative($selected_social_icons)){
+		$icons_list_temp = array();
+		foreach ($selected_social_icons as $key => $icons) {
+			$icons_list_temp[$icons] = ''; 
+		}
+		$selected_social_icons = $icons_list_temp;
+	}
+
  	$social_icons_names = array();
 	$url = get_the_permalink();
-	$title = get_the_title();
+	$title = esc_attr(get_the_title());
 	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 		$twitter_url = get_the_permalink();
 	}
@@ -27,41 +36,65 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	foreach ($selected_social_icons as $key => $value) {
 	 	$social_icons_names[] = $key;	 
 	 }
+	
 
-	if( empty($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
+	if( isset($selected_social_icons['twitter'] ) && null == $selected_social_icons['twitter'] ){
 	 	$selected_social_icons['twitter'] = 'https://twitter.com/intent/tweet?url='. $twitter_url.'&text='. $title .' ';
 	 	//https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}
 	}
 
-	if( empty($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
+	if( isset($selected_social_icons['facebook'] ) && null == $selected_social_icons['facebook'] ){
 	 	$selected_social_icons['facebook'] = 'https://www.facebook.com/sharer.php?u='. $url. '';
 	 	//or https://www.facebook.com/dialog/share?app_id={app_id}&display=page&href={url}&redirect_uri={redirect_url}
 	}
-	if( empty($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
+	if( isset($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
 	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.' &url='. $url.'&description='. $title .'';
 	 	//https://pinterest.com/pin/create/bookmarklet/?media={img}&url={url}&is_video={is_video}&description={title}
 	}
-	if( empty($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
+	if( isset($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){
 	 	$selected_social_icons['google-plus'] = 'https://plus.google.com/share?url='. $url. '';
 	 	//https://plus.google.com/share?url={url}
 	}
-	if( empty($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
+	if( isset($selected_social_icons['linkedin']) && $selected_social_icons['linkedin'] == null){
 	 	$selected_social_icons['linkedin'] = 'https://www.linkedin.com/shareArticle?url='. $url. '&title='. $title .'';
 	 	//https://www.linkedin.com/shareArticle?url={url}&title={title}
 	}
 
-	if( empty($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
+	if( isset($selected_social_icons['reddit']) && $selected_social_icons['reddit'] == null){
 	 	$selected_social_icons['reddit'] = 'https://reddit.com/submit?url='. $url. '&title='. $title .'';
 	 	//https://reddit.com/submit?url={url}&title={title}
 	}
-	if( empty($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
+	if( isset($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
 	 	$selected_social_icons['VKontakte'] = 'http://vk.com/share.php?url='. $url. '';
 	 	//http://vk.com/share.php?url={url}
 	}
+	if( isset($selected_social_icons['Odnoklassniki']) && $selected_social_icons['Odnoklassniki'] == null){
+	 	$selected_social_icons['Odnoklassniki'] = 'https://ok.ru/dk?st.cmd=addShare&st._surl='. $url. '';
+	}
 	
-	if( empty($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
+	if( isset($selected_social_icons['tumblr']) && $selected_social_icons['tumblr'] == null){
 	 	$selected_social_icons['tumblr'] = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl='. $url. '&title='. $title .'&caption='.$desc.'';
 	 	//https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}
+	}
+	if ( isset($selected_social_icons['telegram']) && null == $selected_social_icons['telegram'] ) {
+	 	$selected_social_icons['telegram'] = 'https://telegram.me/share/url?url='. $url. '&text='. $title .'';
+	 	//https://telegram.me/share/url?url={url}&text={title}
+	}
+	if ( isset($selected_social_icons['digg']) && null == $selected_social_icons['digg'] ) {
+	 	$selected_social_icons['digg'] = 'http://digg.com/submit?url='. $url. '&title='. $title .'';
+	 	//http://digg.com/submit?url={url}&title={title}
+	}
+	if ( isset($selected_social_icons['StumbleUpon']) && null == $selected_social_icons['StumbleUpon'] ) {
+	 	$selected_social_icons['StumbleUpon'] = 'http://www.stumbleupon.com/submit?url='. $url. '&title='. $title .'';
+	 	//http://www.stumbleupon.com/submit?url={url}&title={title}
+	}
+	if ( isset($selected_social_icons['Wechat']) && null == $selected_social_icons['Wechat'] ) {
+	 	$selected_social_icons['Wechat'] = 'http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url='. $url. '';
+	 	// http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url={url}
+	}
+	if ( isset($selected_social_icons['Viber']) && null == $selected_social_icons['Viber'] ) {
+	 	$selected_social_icons['Viber'] = 'viber://forward?text='. $url. '';
+	 	//viber://forward?text={url}
 	}
  
 	 	 ?>	
@@ -101,7 +134,11 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
 	        <?php if( ( in_array( 'VKontakte' , $selected_social_icons,true ) || in_array( 'VKontakte' , $social_icons_names,true ) ) && !empty($selected_social_icons['VKontakte']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['VKontakte']  ?>" target ="_blank"><li class="icon-vk"></li></a>
-	        <?php } ?> 
+	        <?php } ?>
+
+	        <?php if( ( in_array( 'Odnoklassniki' , $selected_social_icons,true ) || in_array( 'Odnoklassniki' , $social_icons_names,true ) ) && !empty($selected_social_icons['Odnoklassniki']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['Odnoklassniki'])  ?>" target ="_blank"><li class="icon-Odnoklassniki"></li></a>
+	        <?php } ?>  
 
 	        <?php if( (in_array( 'snapchat' , $selected_social_icons,true ) || in_array( 'snapchat' , $social_icons_names,true ) ) && !empty($selected_social_icons['snapchat']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['snapchat']  ?>" target ="_blank"><li class="icon-snapchat-ghost"></li></a>
@@ -109,33 +146,64 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  			<?php if( (in_array( 'tumblr' , $selected_social_icons,true ) || in_array( 'tumblr' , $social_icons_names,true )) && !empty($selected_social_icons['tumblr']) ) { ?>
 	        <a href="<?php echo $selected_social_icons['tumblr']  ?>" target ="_blank"><li class="icon-tumblr"></li></a>
+	        <?php } ?>
+
+	        <?php if ( (in_array( 'telegram' , $selected_social_icons,true ) || in_array( 'telegram' , $social_icons_names,true )) && ! empty($selected_social_icons['telegram']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['telegram']); ?>" target ="_blank"><li class="icon-telegram"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'digg' , $selected_social_icons,true ) || in_array( 'digg' , $social_icons_names,true )) && ! empty($selected_social_icons['digg']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['digg']); ?>" target ="_blank"><li class="icon-digg"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'StumbleUpon' , $selected_social_icons,true ) || in_array( 'StumbleUpon' , $social_icons_names,true )) && ! empty($selected_social_icons['StumbleUpon']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['StumbleUpon']); ?>" target ="_blank"><li class="icon-StumbleUpon"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'Wechat' , $selected_social_icons,true ) || in_array( 'Wechat' , $social_icons_names,true )) && !empty($selected_social_icons['Wechat']) ) { ?>
+	        <a href="<?php echo esc_url($selected_social_icons['Wechat']); ?>" target ="_blank"><li class="icon-Wechat"></li></a>
+	        <?php } ?> 
+
+	        <?php if ( (in_array( 'Viber' , $selected_social_icons,true ) || in_array( 'Viber' , $social_icons_names,true )) && ! empty($selected_social_icons['Viber']) ) { ?>
+	        <a href="<?php echo ($selected_social_icons['Viber']); ?>" target ="_blank"><li class="icon-Viber"></li></a>
+	        <?php } ?> 
+
+	        <?php if( (in_array( 'facebook-like' , $selected_social_icons,true ) || in_array( 'facebook-like' , $social_icons_names,true ))  ) { ?>
+	        	<amp-facebook-like width=90 height=28
+				 	layout="fixed"
+				 	data-size="large"
+				    data-layout="button_count"
+				    data-href="<?php echo esc_url(get_the_permalink()); ?>">
+				</amp-facebook-like>
 	        <?php } ?> 
 	        </ul>
 	  	</div>	
 <?php 
+}
+
+function ampforwp_is_associative(array $arr)
+{
+    if (array() === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
 }
 //Load styling for social icons
 
 add_action('amp_post_template_css','amp_social_styles',11); 
 
 
-function amp_social_styles(){?>
-
-/* Social icons */
+function amp_social_styles(){ ?>
 @font-face {
   font-family: 'icomoon';
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot?b9qrme');
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot?b9qrme#iefix') format('embedded-opentype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf?b9qrme') format('truetype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff?b9qrme') format('woff'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg?b9qrme#icomoon') format('svg');
+  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot');
+  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot') format('embedded-opentype'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf') format('truetype'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff') format('woff'),
+    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"]{ font-family: 'icomoon'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1;
-
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -156,6 +224,7 @@ function amp_social_styles(){?>
 .amp-social{ font-size: 15px; display: inline-block; }
 .amp-social ul{ list-style-type:none; padding:0;margin:0; text-align:center }
 .amp-social li{ box-sizing: initial; display:inline-block; }
-.amp-social li:before{ box-sizing: initial; color:#fff; padding: 6px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
+.amp-social li:before{box-sizing: initial;color: #fff;display: inline-block;width: 18px;height: 18px;line-height: 18px;}
+amp-facebook-like{top:8px;}
 
 <?php }

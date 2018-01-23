@@ -71,7 +71,7 @@ if ( get_query_var( 'paged' ) ) {
  	<?php 
  			if( is_author() ){
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
-				if( true == ampforwp_comment_gravatar_checker($curauth->user_email) ){
+				if( true == ampforwp_gravatar_checker($curauth->user_email) ){
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="amp-wp-content author-img">
