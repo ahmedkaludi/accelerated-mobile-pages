@@ -1,14 +1,14 @@
 <?php 
 // Get all the post types and update them in the options
-add_action('admin_init', 'ampforwp_cpt_generate_postype');
-if ( ! function_exists('ampforwp_cpt_generate_postype' ) ) { 
-    function ampforwp_cpt_generate_postype(){
-        ampforwp_cpt_post_types();
+add_action('admin_init', 'ampforwp_cpt_generate_postype_new');
+if ( ! function_exists('ampforwp_cpt_generate_postype_new' ) ) { 
+    function ampforwp_cpt_generate_postype_new(){
+        ampforwp_cpt_post_types_new();
     }
 }
 
-if ( ! function_exists('ampforwp_cpt_post_types') ) {
-    function ampforwp_cpt_post_types(){
+if ( ! function_exists('ampforwp_cpt_post_types_new') ) {
+    function ampforwp_cpt_post_types_new(){
         $args       = "";
         $get_post_types = "";
         $post_types   = array();
@@ -51,9 +51,9 @@ if ( ! function_exists('ampforwp_cpt_post_types') ) {
 }
 
 // Endpoint
-add_filter('ampforwp_modify_rel_canonical','ampforwp_cpt_modify_rel_canonical');
-if ( ! function_exists('ampforwp_cpt_modify_rel_canonical') ) {
-    function ampforwp_cpt_modify_rel_canonical( $url ) {
+add_filter('ampforwp_modify_rel_canonical','ampforwp_cpt_modify_rel_canonical_new');
+if ( ! function_exists('ampforwp_cpt_modify_rel_canonical_new') ) {
+    function ampforwp_cpt_modify_rel_canonical_new( $url ) {
         global $redux_builder_amp, $wp;
         $post_types = "";
         $current_cpt_url = "";
