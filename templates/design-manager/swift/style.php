@@ -1958,10 +1958,16 @@ amp-user-notification button {
 }
 /** Single Page **/
 .breadcrumb, .amp-category{
-    text-align: right;
+   direction:rtl;
+}
+.item-home:after {
+    padding-right: 5px;
 }
 .amp-post-title{
     text-align: right;
+}
+.post-date .post-edit-link {
+    float: left;
 }
 .sp-rt{
     order: 0;
@@ -1987,6 +1993,9 @@ amp-user-notification button {
 .prev:after {
     left: -25px;
     right:auto;
+}
+.f-menu, .p-menu{
+    direction:rtl;
 }
 .r-pf .fsp:nth-child(3), .r-pf .fsp:nth-child(6){
     margin-left:0;
