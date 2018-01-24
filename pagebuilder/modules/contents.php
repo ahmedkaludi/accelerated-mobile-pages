@@ -15,7 +15,6 @@ require_once  ABSPATH . WPINC . '/category.php';
  }
 .cat_mod ul li {
     margin: 15px 15px 25px 15px;
-    -ms-flex-preferred-size: calc(33.333% - 20px);
     flex-basis: calc(33.33% - 30px);
 }
 .cat_mod .cat_mod_l{
@@ -24,11 +23,12 @@ require_once  ABSPATH . WPINC . '/category.php';
 .cat_mod {
   margin:{{margin_css}};
    padding:{{padding_css}};
-}
-.cat_mod{
-  background:{{bg_color_picker}};
+{{if_bg_clr}}
+ background:{{bg_color_picker}};
   padding:40px;
+{{ifend_bg_clr}}
 }
+
 .cat_mod h4{
   border-bottom: 2px solid {{border_color_picker}};
   padding-bottom: 8px;
@@ -37,9 +37,7 @@ require_once  ABSPATH . WPINC . '/category.php';
   color: {{label_color_picker}};
   font-weight: {{label-weight}}
 }
-.cat_mod_l amp-img{
- 
-}
+
 .cat_mod .cat_mod_r{
   display:flex;
   flex-direction: column;

@@ -46,7 +46,7 @@ echo $fontFamily;
  font-size: 16px; line-height:1.25; }
 ol, ul{ list-style-position: inside }
 p, ol, ul, figure{ margin: 0 0 1em; padding: 0; }
-a, a:active, a:visited{ color:#ed1c24; text-decoration: none }
+a, a:active, a:visited{ text-decoration: none; color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 a:hover, a:active, a:focus{}
 pre{ white-space: pre-wrap;}
 .left{float:left}
@@ -722,7 +722,7 @@ display: none;
     color:#191919;
 }
 .fbp:hover h2 a, .fsp:hover h2 a{
-    color:#005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
 }
 .fbp-cnt p, .fsp-cnt p{
     color:#444;
@@ -823,7 +823,7 @@ display: none;
     display: none;
 }
 .amp-category span a, .amp-category span{
-    color: #005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
@@ -926,7 +926,7 @@ display: none;
     display:inline-block;
 }
 .post-date .post-edit-link{
-    color:#005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     float: right;
 }
 .sp-athr, .amp-tags, .post-date, .srp{
@@ -934,7 +934,7 @@ display: none;
 }
 .sp-athr .author-details a, .sp-athr .author-details, .amp-tags span a, .amp-tag {
     font-size: 15px;
-    color: #005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-weight: 400;
     line-height: 1.5;
 }
@@ -1000,7 +1000,7 @@ display: none;
     opacity:0.7;
 }
 .has_thumbnail:hover .related_link a{
-    color:#005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
 }
 .srp .related_link{
     margin-top:10px;
@@ -1186,7 +1186,7 @@ display: none;
 }
 /*** loop-pagination ***/
 .right a, .left a{
-    background: #005be2;
+    background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     padding: 8px 22px 12px 25px;
     color: #fff;
     line-height: 1;
@@ -1355,7 +1355,7 @@ display: none;
     color:#7a7a7a;
 }
 .f-menu ul > li:hover a{
-    color: #005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
 }
 .f-menu{
     margin-bottom:30px;
@@ -1423,7 +1423,7 @@ display: none;
 }
 .cntn-wrp a{
     margin:10px 0px;
-    color:#005be2;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     display:inline-block;
 }
 <?php if(is_single()){ ?>

@@ -2413,7 +2413,7 @@ Redux::setSection( $opt_name, array(
                     'subtitle'  => __('Choose the color for title, anchor link','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                    'rgba'      => '(255,61,37,1)',
+                    'color'      => '#005be2',
                      ),
                     'required' => array(
                         array('amp-design-selector', '=' , '4')
