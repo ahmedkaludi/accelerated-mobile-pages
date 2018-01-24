@@ -260,12 +260,15 @@ require_once  ABSPATH . WPINC . '/category.php';
                    <div class="cat_mod_l">
                    ';		             
                    $thumb_id = get_post_thumbnail_id();		
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);		
-                   $thumb_url = $thumb_url_array[0];	
-                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="346" height="188" layout="fixed"></amp-img></a>';	
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);	
+                   $thumb_url = $thumb_url_array[0];
+                   $width = $fieldValues['img-width'];
+                   $height = $fieldValues['img-height'];
+                   $thumb_url_array = aq_resize( $thumb_url, $width, $height, true, false ); //resize & crop the image
+                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url_array[0].'" width="'. $thumb_url_array[1] . '" height="' . $thumb_url_array[2] . '" layout="fixed"></amp-img></a>';
                     $contenthtml.= '
                     </div>
-                    ';		             
+                    ';	             
                  }
              $contenthtml.= '<div class="cat_mod_r">';		             
                $contenthtml.= '<a href="'. trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR.'">'.get_the_title().'</a>'; 		
