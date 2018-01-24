@@ -1336,6 +1336,9 @@ display: none;
     font-size: 12px;
     margin-top: 80px;
 }
+.f-menu ul li .sub-menu{
+    display:none;
+}
 <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 .footer{
     margin-top: 0px;
@@ -1429,6 +1432,7 @@ display: none;
     background:#f1f1f1;
     display:inline-block;
     width:100%;
+    line-height:0;
 }
 .rr {
     margin-bottom: 30px;

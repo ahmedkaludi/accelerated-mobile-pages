@@ -38,8 +38,7 @@ require_once  ABSPATH . WPINC . '/category.php';
   font-weight: {{label-weight}}
 }
 .cat_mod_l amp-img{
-  width:150px;
-  height:150px;
+ 
 }
 .cat_mod .cat_mod_r{
   display:flex;
@@ -226,6 +225,22 @@ require_once  ABSPATH . WPINC . '/category.php';
 						'options_details'=>array('yes'=>'Yes', 'no'=>'No'),
             'content_type'=>'html',
  						),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-width",    
+            'label'   =>'Image Width',
+            'tab'     =>'customizer',
+            'default' =>'346', 
+            'content_type'=>'html',
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-height",    
+            'label'   =>'Image Height',
+            'tab'     =>'customizer',
+            'default' =>'188', 
+            'content_type'=>'html',
+            ),
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,
@@ -247,7 +262,7 @@ require_once  ABSPATH . WPINC . '/category.php';
                    $thumb_id = get_post_thumbnail_id();		
                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);		
                    $thumb_url = $thumb_url_array[0];	
-                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" layout="responsive"></amp-img></a>';	
+                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url.'" width="346" height="188" layout="fixed"></amp-img></a>';	
                     $contenthtml.= '
                     </div>
                     ';		             
