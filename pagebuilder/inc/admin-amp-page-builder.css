@@ -1260,3 +1260,15 @@ a.amppb_accordion__panel:hover {
 .rtl .amppb-module .module_label {
     left: -35px;
 }
+.rtl .form-label{
+ margin-right:10px;
+}
+.rtl .amp-accordion-head .amp-accordion-label {
+    position: static;
+    float: left;
+}
+
+.rtl .amppb_accordion__panel .right {
+    float: left;
+    margin-left: 20px;
+}
