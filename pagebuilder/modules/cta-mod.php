@@ -41,6 +41,10 @@ $css = '
     font-size: 16px;
     margin-top: 20px;
 }
+/** RTL CSS **/
+.cta-mod .cta-btn {
+    text-align: left;
+}
 @media(max-width:768px){
 .cta-mod{display:inline-block;width:100%;text-align:center}
 .cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}

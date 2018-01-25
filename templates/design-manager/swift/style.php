@@ -1909,6 +1909,9 @@ amp-user-notification button {
 *****/
 <?php  if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
 /*** Header ***/
+.body{
+    direction:rtl;
+}
 .h-1 {
     order: -1;
 }

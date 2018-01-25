@@ -9,7 +9,7 @@ $css = '.blu-mod{
     color: #26292c;
     background: #f4f4f4;
 }
-.blu-mod:nth-child(3), .blu-mod:nth-child(6){
+.blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){
     margin-right:0;
 }
 {{module-class}} .ln-fx{
@@ -40,7 +40,24 @@ $css = '.blu-mod{
     color: #555;
     line-height: 1.7;
 }
-@media(max-width:768px){.blu-mod{width: 100%;margin-right:0}}
+/** RTL CSS **/
+.blu-mod{
+    margin: 0 0% 3% 3%;
+}
+.blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){
+    margin-left:0;
+}
+@media(max-width:768px){
+.blu-mod{
+	width: 100%;
+	margin-right:0
+}
+/** RTL CSS **/
+.blu-mod{
+	width: 100%;
+	margin-left:0
+}
+}
 ';
 //$commonCss = '';
 return array(

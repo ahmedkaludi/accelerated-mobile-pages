@@ -70,6 +70,21 @@ $css = '
 .auth-cntn span{
 	font-weight:normal;
 }
+/** RTL CSS **/
+.testi-mod{
+    margin: 0 0 2% 3%;
+}
+.testi-mod:nth-child(3),.testi-mod:nth-child(6),.testi-mod:nth-child(9){
+    margin-left:0;
+}
+.auth-cntn {
+    float: right;
+}
+.auth-img {
+    float: right;
+    margin-left: 15px;
+}
+
 @media(max-width:768px){.testi-mod{width: 100%;margin-right:0}}
 ';
 return array(
