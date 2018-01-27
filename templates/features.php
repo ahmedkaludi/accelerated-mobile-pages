@@ -2817,9 +2817,17 @@ function ampforwp_auto_add_amp_in_link_check() {
 }
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
+	global $redux_builder_amp;
+	
+  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
+		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
+	}
+  else{
+     	$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
+    }
 
-    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
-    return $atts;
+	return $atts;
 }
 
 // 45. searchpage, frontpage, homepage structured data
@@ -5287,7 +5295,14 @@ function ampforwp_url_controller($url){
 
 	$get_permalink_structure = get_option('permalink_structure');
 	if ( $get_permalink_structure ) {
-		$new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
+		global $redux_builder_amp;
+ 		if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+	     		$new_url = user_trailingslashit( trailingslashit($url));
+	 			$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
+ 			}
+ 		else{
+ 				$new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
+ 			}
 	} else {
 		$new_url = add_query_arg( 'amp', '1', $url );
 	}

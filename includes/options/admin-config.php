@@ -2084,6 +2084,16 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,                        
                     ),  
 
+                    // End-point option
+                     array(
+                        'id'       => 'amp-core-end-point',
+                        'type'     => 'switch',
+                        'title'    => ('End Point'),
+                        'default' => 0,
+                        'subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
+                        'desc'     => __( 'Making endpoints ?amp=1 is required for directory based themes or have multiple taxonomies in the url. Question mark in the url will not make any difference in the SEO.' ),
+                    ),
+
    ),
 
 ) );
@@ -3615,16 +3625,7 @@ Redux::setSection( $opt_name, array(
             'multi'   => true,
             //'data' => 'post_type',
             'options' => ampforwp_get_cpt_generated_post_types(),
-        ),
-        array(
-            'id'       => 'ampforwp-custom-type-amp-endpoint',
-            'type'     => 'switch',
-            'title'    => __('Make endpoint ?amp=1', 'redux-framework-demo'),
-            'default'  => 0,
-            'subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
-            'desc'     => __( 'Making endpoints ?amp=1 is required for directory based themes or have multiple taxonomies in the url. Question mark in the url will not make any difference in the SEO.' ),
-
-        ),
+        )
     ),
 ) );
 
