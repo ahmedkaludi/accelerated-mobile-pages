@@ -95,24 +95,22 @@ function amp_title(){
 }
 
 // Excerpt
-function amp_excerpt(){
-		global $redux_builder_amp, $post;
-	$ID = '';
-	if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
-		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
-			$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		}
+function amp_excerpt( $no_of_words=15 ) {
+	global $redux_builder_amp, $post;
+	$post_id = '';
+	if ( ampforwp_is_front_page() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	else
-		$ID = $post->ID;
-	if( $ID!=null ){  ?>
+		$post_id = $post->ID;
+	if ( $post_id != null ) {  ?>
 			<p><?php 
-				 if(has_excerpt()){
+				 if ( has_excerpt() ) {
 					$content = get_the_excerpt();
-				}else{
+				} else {
 					$content = get_the_content();
 				}
-				echo wp_trim_words( strip_shortcodes( $content ) , '15' ); 
+				echo wp_trim_words( strip_shortcodes( $content ) , $no_of_words ); 
 			?></p>
 <?php
     }
@@ -133,7 +131,7 @@ function amp_social( $social_icons="" ) {
 	$amp_social = array();
 	//Supported social icons	 
 	$amp_social = array( 'twitter', 'facebook', 'pinterest', 'google-plus', 'linkedin', 'youtube', 'instagram', 'reddit', 'VKontakte', 'snapchat', 'tumblr' );
-	if ( isset($loadComponent['AMP-social-icons']) && $loadComponent['AMP-social-icons']==true ) {
+	if ( isset($loadComponent['AMP-social-icons']) && true == $loadComponent['AMP-social-icons'] ) {
 		if ( null != $social_icons ) {
 		 ampforwp_framework_get_social_icons($social_icons);
 		}
@@ -281,7 +279,7 @@ function amp_header_core(){
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
 			<style amp-custom>
-				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
+				<?php //$thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 			</style>
@@ -328,6 +326,14 @@ function amp_non_amp_link(){
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }
 }
 
+// Back to Top
+function amp_back_to_top_link(){
+	 global $redux_builder_amp;
+    if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
+        <a href="#top"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
+      <?php }
+}
+
 function amp_loop_template(){
 	$post_id = get_queried_object_id();
 	$thisTemplate = new AMP_Post_Template($post_id);
@@ -340,9 +346,9 @@ function amp_loop_template(){
 function amp_content(){ 
 global $redux_builder_amp, $post;
 $post_id = get_queried_object_id();
-if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	}
+if ( ampforwp_is_front_page() ) {
+	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+}
 $thisTemplate = new AMP_Post_Template($post_id);
 	 ?>
 	<div>
@@ -361,16 +367,20 @@ $thisTemplate = new AMP_Post_Template($post_id);
 	</div>
 <?php }
 
-function amp_date($args=array()){
+function amp_date( $args=array() ) {
 		global $redux_builder_amp;
-		if ( (isset($args['format']) && $args['format']=='traditional') || 'time' == $args ) {
+		if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
+		$args['format'] = 'traditional';
+		}
+		if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
 			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
-        }else{
-        	$post_date =  human_time_diff(
+        } else {
+        	$post_date = human_time_diff(
         						get_the_time('U', get_the_ID() ), 
         						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
         						'ago');
         }
+        $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
         if ( 'date' === $args || 'time' == $args ) {
         	echo $post_date .' ';
         }

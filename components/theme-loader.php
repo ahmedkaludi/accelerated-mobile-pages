@@ -1,8 +1,10 @@
 <?php
-if(!defined('AMPFORWP_CUSTOM_THEME')){
-	define('AMPFORWP_CUSTOM_THEME',AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+if ( 4 == $ampforwp_design_selector ) {
+	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_PLUGIN_DIR . 'templates/design-manager/swift' );
 }
-
+elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
+	define('AMPFORWP_CUSTOM_THEME', AMPFORWP_MAIN_PLUGIN_DIR."/".$ampforwp_design_selector);
+}
 
 	require_once(  AMPFORWP_CUSTOM_THEME . '/functions.php' );
 	//Filter the Template files to override previous ones
@@ -42,20 +44,20 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	            $file = AMPFORWP_CUSTOM_THEME . '/archive.php';
 	        }
 	    }
-	    $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
+	    $ampforwp_custom_post_page = ampforwp_custom_post_page();
 	    // Homepage
 		if ( is_home() ) {
 			if ( 'single' === $type ) {
 	        	$file = AMPFORWP_CUSTOM_THEME . '/index.php';
 	        
-		        if ($redux_builder_amp['amp-frontpage-select-option'] == 1) {
+		        if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
 					$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		        }
-		        if ( $ampforwp_custom_post_page == "page" && ampforwp_name_blog_page() ) {
+		        if ( 'page' == $ampforwp_custom_post_page && ampforwp_name_blog_page() ) {
 					$current_url = home_url( $GLOBALS['wp']->request );
 					$current_url_in_pieces = explode( '/', $current_url );
 				
-					if( in_array( ampforwp_name_blog_page() , $current_url_in_pieces )  ) {
+					if ( in_array(ampforwp_name_blog_page(), $current_url_in_pieces ) ) {
 						 $file = AMPFORWP_CUSTOM_THEME . '/index.php';
 					}  
 				}
@@ -69,7 +71,7 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 	    }
 	    //For template pages
 	    switch ( true ) {
-	    	case ( is_tax() ):
+	    	case (is_tax()):
 	    			$term = get_queried_object();
 					$templates = array();
 					if ( ! empty( $term->slug ) ) {
@@ -82,14 +84,14 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 						$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy-$taxonomy.php";
 					}
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/taxonomy.php";
-					foreach ($templates as $key => $value) {
-						if('single' === $type && file_exists($value)){
+					foreach ( $templates as $key => $value ) {
+						if ( 'single' === $type && file_exists($value) ) {
 							$file = $value;
 							break;
 						}
 					}
 	    	break;
-	    	case ( is_category() ):
+	    	case (is_category()):
 	    		$category = get_queried_object();
 				$templates = array();
 				if ( ! empty( $category->slug ) ) {
@@ -101,14 +103,14 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/category-{$category->term_id}.php";
 				}
 				$templates[] = AMPFORWP_CUSTOM_THEME . '/category.php';
-				foreach ($templates as $key => $value) {
-					if('single' === $type && file_exists($value)){
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
 				}
 	    	break;
-	    	case ( is_tag() ):
+	    	case (is_tag()):
 	    		$tag = get_queried_object();
 				$templates = array();
 				if ( ! empty( $tag->slug ) ) {
@@ -120,14 +122,14 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/tag-{$tag->term_id}.php";
 				}
 				$templates[] = AMPFORWP_CUSTOM_THEME . '/tag.php';
-				foreach ($templates as $key => $value) {
-					if('single' === $type && file_exists($value)){
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
 				}
 	    	break;
-	    	case ( is_archive() ):
+	    	case (is_archive()):
 	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 				$templates = array();
 				if ( count( $post_types ) == 1 ) {
@@ -135,8 +137,8 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/archive-{$post_type}.php";
 				}
 				$templates[] = AMPFORWP_CUSTOM_THEME . '/archive.php';
-				foreach ($templates as $key => $value) {
-					if('single' === $type && file_exists($value)){
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
@@ -148,7 +150,7 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					$post_type = reset( $post_type );
 
 				$obj = get_post_type_object( $post_type );
-				if ( ! ( $obj instanceof WP_Post_Type ) || ! $obj->has_archive ) {
+				if ( ! ($obj instanceof WP_Post_Type) || ! $obj->has_archive ) {
 					//return '';
 					break;
 				}
@@ -162,8 +164,8 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/archive-{$post_type}.php";
 				}
 				$templates[] = AMPFORWP_CUSTOM_THEME . '/archive.php';
-				foreach ($templates as $key => $value) {
-					if('single' === $type && file_exists($value)){
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
@@ -191,20 +193,19 @@ if(!defined('AMPFORWP_CUSTOM_THEME')){
 
 				$templates[] = AMPFORWP_CUSTOM_THEME . "/single.php";
 				
-				foreach ($templates as $key => $value) {
-					if('single' === $type && file_exists($value) ) {
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
 				}
 	    	break;
 	    }
-	    
 	 	return $file;
 	}
 
 	// Custom Footer
-	function ampforwp_custom_footer_file($file, $type) {
+	function ampforwp_custom_footer_file( $file, $type ) {
 		if ( 'footer' === $type ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/footer.php';
 		}
