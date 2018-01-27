@@ -2423,7 +2423,15 @@ Redux::setSection( $opt_name, array(
 				'value'=>3,
 				'alt'=>__('Design Three', 'accelerated-mobile-pages' ),
 				'img'=>AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png',
-			)
+			),
+            array(
+                'demo_link' => 'https://ampforwp.com/demo/amp-pagebuilder/amp/',
+                'upgrade' => true,
+                'title' => __('Swift', 'accelerated-mobile-pages' ),
+                'value' => 4,
+                'alt' => __('Swift', 'accelerated-mobile-pages' ),
+                'img' => AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png',
+            ),
         );
     if(count(get_plugins())>0){
         foreach (get_plugins() as $key => $value) {
