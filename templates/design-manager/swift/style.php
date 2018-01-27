@@ -1162,7 +1162,7 @@ display: none;
     font-size: 12px;
     color: #666;
     display: block;
-     font-weight: 400;
+    font-weight: 400;
     position: absolute;
     top: -26px;
     right:0
@@ -1467,8 +1467,6 @@ display: none;
 }
 @media(max-width:980px){
 
-
-
 }
 @media(max-width:768px){
 .fbp-img {
@@ -1514,7 +1512,6 @@ display: none;
     width: 100%;
     margin-left: 0;
 }
-
 .fsp h2{
     margin: 0px 0px 7px 0px;
 }
@@ -1975,9 +1972,6 @@ amp-user-notification button {
 }
 .f-menu, .p-menu{
     direction:rtl;
-}
-.r-pf .fsp:nth-child(3), .r-pf .fsp:nth-child(6){
-    margin-left:0;
 }
 .sp-lt {
     direction: rtl;
