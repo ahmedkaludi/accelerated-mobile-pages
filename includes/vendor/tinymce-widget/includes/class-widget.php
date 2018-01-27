@@ -54,7 +54,7 @@ if ( ! class_exists( 'WP_Widget_Black_Studio_TinyMCE' ) ) {
             $title = empty( $instance['title'] ) ? '' : $instance['title'];
 			$title = apply_filters( 'widget_title', $title , $instance, $this->id_base );
 			$text = apply_filters( 'widget_text', empty( $instance['text'] ) ? '' : $instance['text'], $instance, $this );
-            $markup_title = '<div class="amp_module_title">' . $title . '</div>';
+            $markup_title = '<div class="amp_module_title"><span>' . $title . '</span></div>';
             $markup_text = '<div class="amp_cb_text_content">' . $text . '</div>';
 			$hide_empty = apply_filters( 'black_studio_tinymce_hide_empty', false, $instance );
 			if ( ! ( $hide_empty && empty( $text ) ) ) {
