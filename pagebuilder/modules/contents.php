@@ -22,11 +22,9 @@ require_once  ABSPATH . WPINC . '/category.php';
 }
 .cat_mod {
   margin:{{margin_css}};
-   padding:{{padding_css}};
-{{if_bg_clr}}
- background:{{bg_color_picker}};
+  padding:{{padding_css}};
+  background:{{bg_color_picker}};
   padding:40px;
-{{ifend_bg_clr}}
 }
 
 .cat_mod h4{
