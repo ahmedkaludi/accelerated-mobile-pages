@@ -7,6 +7,7 @@ jQuery(function($) {
                     var parent = $(this).parents('.redux-container:first');
                     var expanded_options = parent.find('.expand_options');
                     if (searchString != "") {
+                        $('.redux-tab-container').hide();
                         if (!expanded_options.hasClass('expanded')) {
                             expanded_options.click();
                             parent.find('.redux-main').addClass('redux-search');
@@ -41,6 +42,10 @@ jQuery(function($) {
                     });
                     parent.find('.form-table tr').filter(function () {
                         if(searchString==''){
+                            $('.redux-tab-container').show();
+                            $('.redux-tab-container').each(function(){
+                                $(this).find('.redux-tab-selector:first').click();
+                            });
                             return false;
                         }
                         var item = $(this);
@@ -70,6 +75,161 @@ jQuery(function($) {
             });
         }
     $(document).ready(function() {
+
+/*---------Google Fonts ------------*/
+// Google Font details 
+
+
+ 
+    var gURL, gAPIkey;
+
+
+    gAPIkey = redux_data.google_font_api_key;  
+ 
+    // Append data into selects
+    ampforwp_font_generator();
+    function ampforwp_font_generator() {
+
+        if ( ! gAPIkey){
+            gAPIkey = $('#google_font_api_key').val();
+        }
+        if(gAPIkey=='' || typeof gAPIkey == 'undefined'){
+             $('#redux_builder_amp-google_font_api_key').append('<p style="color:red"> Could not connect to API, please double check your API key. </p> ');
+            $('.ampforwp-google-font-class').css({'display':'none'});
+            return ;
+        }
+
+        gURL = "https://www.googleapis.com/webfonts/v1/webfonts?key=" + gAPIkey;
+
+        var gfontData = $.get( gURL );
+
+        gfontData.done(function( data ) {
+            var values = Object.values(data.items);
+            var allFonts = [];
+
+            for (var i = 0; i < values.length; i++) {     
+                allFonts.push({fontFamily: values[i].family }); 
+            }
+
+
+           // var output =  data.items.find('Basic');
+           // console.log ( output );
+
+
+            // let selectedFontDetails = data.items.find((o, i) => {
+
+            //     if (o.family === 'Keania One') {
+            //         //arr[i] = { name: 'new string', value: 'this', other: 'that' };
+            //         return data.items[i]; // stop searching
+            //     }
+            // });
+
+            // We have all the Font details from Google API in object selectedFontDetails
+            //console.log(selectedFontDetails);
+
+
+            // We have all the font names in the an array allFonts
+            //console.log( allFonts );
+
+
+            // Creating a select 
+            var s = $('<select/>');
+
+            for (var i in allFonts) {
+
+                var fontDetail = allFonts[i].fontFamily;                   
+
+               $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
+            }
+
+            //console.log( values.length);
+            //console.log( values[0].family );
+            //console.table(  values);
+            
+            $('#amp_font_selector-select').on('change', function() {
+                var select = $('option:selected', this).attr('data-font-number');
+                var fontVariants = data.items[select].variants ;
+                var fontFile = data.items[select].files ;
+
+                if ( fontVariants) {
+                    $('.select2-search-choice').remove();
+                    $('#amp_font_type-select').html('<option></option>');
+                }
+
+               // console.log( data.items[select] );
+
+                //if ( data.items[select] ) {
+                    $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
+                //}
+               
+                for (var i in fontVariants) {
+                     // var fontArray = {};
+                     // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
+                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
+                }
+
+            }); 
+        });
+
+        gfontData.fail(function(data) {
+            $('#redux_builder_amp-google_font_api_key').append('<p style="color:red">  Cound not connect to API, please double check your API key. </p> ');
+            $('.ampforwp-google-font-class').css({'display':'none'});
+        });
+
+    }
+
+        function amp_font_selector_select_change(){
+
+               
+        }
+
+        $(window).load(function() {
+            if($("#google_font_api_key").length>0){
+                $("#google_font_api_key").after("<input type='submit' value='Verify'>");
+            }
+            if($('#amp_font_selector-select').length>0){
+                // Adding Default Font Family
+                $('#s2id_amp_font_selector-select a').removeClass('select2-default');
+                
+                $('#select2-chosen-3').html(redux_data.amp_font_selector);
+                if(redux_data.amp_font_selector==''){
+                    redux_data.amp_font_selector = 'Poppins'
+                }
+
+                $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+                $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");
+
+                // Build select data
+                let fontData  = redux_data.google_current_font_data;
+               // fontData = JSON.parse(fontData);
+               console.log(fontData);
+                if (! fontData.variants) {
+                    //$('.select2-search-choice').remove();
+                    //$('#amp_font_type-select').html('<option></option>');
+
+                    for (var i in fontData.variants) {
+                        $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
+                    }
+                }
+                
+                if(redux_data.amp_font_type==''){
+                    redux_data.amp_font_type = ['regular','500','700'];
+                }
+                // Add Default selected
+                if ( redux_data.amp_font_type ) {
+                    $('#s2id_autogen4').remove();
+                    for (var i in redux_data.amp_font_type) {
+                        $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
+                        //s2.append($('<option>').text(e));
+                    }
+                    $('#amp_font_type-select').select2('val',redux_data.amp_font_type)
+                }
+            }
+        });
+
+/*---------Google Fonts Ends -------*/
+
+
         $('.redux-container').each(function() {
             if (!$(this).hasClass('redux-no-sections')) {
                 $(this).find('.redux-main').prepend('<input style="float:right" class="redux_field_search" name="" type="text" placeholder="Search the controls"/>');
@@ -93,4 +253,41 @@ jQuery(function($) {
         }
         
     });
+var dataTabRequired = function(){
+    $('[data-tab-required]').each(function(){
+        var tabRequired = $(this).attr('data-tab-required');
+        var  currentThis = $(this);
+        tabRequired = JSON.parse(tabRequired);
+        var showLi = true;
+        $.each(tabRequired,function(k, value){
+            var currentValue = jQuery('[name="redux_builder_amp['+value[0]+']"]').val();;
+            if(currentValue!=value[2]){
+                showLi = false;
+                return false; 
+            }
+        });
+        if(showLi==false){
+            currentThis.hide();
+        }else{
+            currentThis.show();
+        }
+
+    });
+}    
+var reduxOptionTab = function(){
+    $('.redux-tab-selector').click(function(){
+        var tabId = $(this).attr('data-tab');
+        var tabRequired = $(this).attr('data-tab-required');
+        $(this).parents().find('.custom-tab-container').hide();   
+        $('#parent-section-'+ tabId ).show();
+    });
+    $('.redux-tabs-ul').each(function(){
+        $(this).find('.redux-tab-selector:first').click();
+    });
+    dataTabRequired();
+    $('select').change(function(){
+         dataTabRequired();
+    });
+} 
+//reduxOptionTab();   
 });
