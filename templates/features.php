@@ -133,6 +133,7 @@ add_amp_theme_support('AMP-logo');
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
  	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
+ 	require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
  	// Custom Post Types
  	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php'; 
 
@@ -1753,7 +1754,7 @@ function ampforwp_sticky_social_icons(){
 			else
 				$permalink = wp_get_shortlink();
 			?>
-			<div class="sticky_social">
+			<!-- <div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			  	<?php } ?>
@@ -1855,7 +1856,7 @@ function ampforwp_sticky_social_icons(){
 				</div>
 			</a>
 		<?php } ?>
-	</div>
+	</div> -->
 	<?php }
 		//}
 }
@@ -2565,8 +2566,8 @@ function ampforwp_add_widget_support() {
 			'description'   => 'This Widget will be display after the header bar',
 			'before_widget' => '',
 			'after_widget'  => '',
-			'before_title'  => '<h4>',
-			'after_title'   => '</h4>'
+			'before_title'  => '<h4><span>',
+			'after_title'   => '</h4></span>'
 		));
 
 		register_sidebar(array(
@@ -2575,8 +2576,8 @@ function ampforwp_add_widget_support() {
 			'description'   => 'This Widget display Above the Footer',
 			'before_widget' => '',
 			'after_widget'  => '',
-			'before_title'  => '<h4>',
-			'after_title'   => '</h4>'
+			'before_title'  => '<h4><span>',
+			'after_title'   => '</h4></span>'
 		));
 
 		if ( isset($redux_builder_amp['ampforwp-content-builder']) && $redux_builder_amp['ampforwp-content-builder'] ) {
@@ -4459,7 +4460,7 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 
 	}
-	if ( isset( $size ) ) {
+	if ( isset( $size ) && null != $size ) {
 		$image_id = attachment_url_to_postid( $image_url );
 		$image_array = wp_get_attachment_image_src($image_id, $size, true);
 		$image_url = $image_array[0];
@@ -4607,7 +4608,13 @@ function ampforwp_inline_related_posts(){
 				           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
 			            
 								if ( ampforwp_has_post_thumbnail() ) {
-									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									if( 4 == $redux_builder_amp['amp-design-selector'] ){
+										$thumb_url_2 = aq_resize( $thumb_url_2, 220 , 134 , true, false );
+										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
+									}
+									else{
+										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+									}
 								} 
 								$inline_related_posts .='</a>';
 								$inline_related_posts .='<div class="related_link">';
@@ -4643,8 +4650,14 @@ function ampforwp_generate_inline_related_posts($content){
 		
 	$break_point = '</p>';
 	$content_parts = explode($break_point, $content);
-	$no_of_parts = count($content_parts);
-	if( $no_of_parts > 1 ){
+	array_walk($content_parts, function(&$value, $key) { 
+			if(!empty(trim($value))){
+				$value .= '</p>';
+			} 
+		}
+	);
+	if(count($content_parts)>1){
+		$no_of_parts = count($content_parts);
 		$half_index = floor($no_of_parts / 2);
 		$half_content = array_chunk($content_parts, $half_index);
 		
@@ -4653,7 +4666,7 @@ function ampforwp_generate_inline_related_posts($content){
 		$firs_content = $half_content[0];
 		$second_content = $half_content[1];
 		$final_content = array_merge($firs_content,$html,$second_content);
-		$final_content = implode($break_point, $final_content);
+		$final_content = implode("", $final_content);
 		$content = $final_content;
 	}
 	return $content;
@@ -5033,13 +5046,13 @@ function ampforwp_url_purifier($url){
 		$endpoint 					= "";
 		$queried_var				= "";
 		$quried_value				= "";
-		$endpoint = AMPFORWP_AMP_QUERY_VAR;
+		$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
 		$get_permalink_structure = get_option('permalink_structure');
     
 		if ( empty( $get_permalink_structure ) ) {
 			$endpoint = '?' . $endpoint;
 			if (is_home() || is_archive() ) {
-				$url  = trailingslashit($url) . $endpoint;
+				$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
 			}
 			if ( is_archive() ) {
 
@@ -5385,14 +5398,14 @@ function ampforwp_default_logo($param=""){
 					$value = $logo_url;
 				break;
 			case 'width':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
 					$value = $redux_builder_amp['opt-media-width'];
 				}
 				else 
 					$value = $image[1];
 				break;
 			case 'height':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions']) {
+				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
 					$value = $redux_builder_amp['opt-media-height'];
 				}
 				else
@@ -5489,3 +5502,130 @@ if ( ! function_exists('ampforwp_wptexturize_disabler') ) {
 		}
 	}
 }
+
+// amp-vimeo proper video id for 3 parameter url
+add_filter('amp_vimeo_parse_url','amp_vimeo_parse_url_video_id');
+function amp_vimeo_parse_url_video_id($tok){
+
+	  if(sizeof($tok)==3){
+       return $tok[1];
+      }else{
+        return end($tok);
+      }
+}
+
+// Cart Page URL
+if( ! function_exists( 'ampforwp_wc_cart_page_url' ) ){
+	function ampforwp_wc_cart_page_url(){
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	 	if( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+		    global $woocommerce;
+		    $cart_url = $woocommerce->cart->get_cart_url();
+		    $cart_url = ampforwp_url_controller($cart_url);
+		    return $cart_url;;
+	 	}
+	 	else
+	 		return '#'; 
+	}
+}
+
+// Add Google Font support
+add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
+if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
+  function ampforwp_google_fonts_generator() {
+    global $redux_builder_amp;
+	if(isset($redux_builder_amp['google_current_font_data'])){
+		$font_data = json_decode($redux_builder_amp['google_current_font_data']);
+	}
+
+    $font_weight = "";
+    $font_output = "";
+    $font_type = "";
+    if(isset( $redux_builder_amp['amp_font_type'])){
+    	$font_type = $redux_builder_amp['amp_font_type'];
+    }
+
+    if ( $font_type ) {
+	    foreach ($font_type as $key => $value) {
+			// Font Weight generator
+			$font_weight = (int) $value;
+			$font_weight =  ( $font_weight != 0 ? $font_weight : 400 );
+
+			// Font Stlye Generator
+			$font_style = preg_replace('/\d+/u', '', $value);
+			$font_style = ( $font_style == 'italic' ? 'italic' : 'normal' );
+
+			// Local Generator
+			// Font Weight 
+			$font_local_weight = '';
+
+			if ( $font_weight === 100 ) {
+				$font_local_weight = 'Thin';
+			}
+
+			if ( $font_weight === 200 ) {
+				$font_local_weight = 'Ultra Light';
+			}
+
+			if ( $font_weight === 300 ) {
+				$font_local_weight = 'Light';
+			}
+
+			if ( $font_weight === 400 ) {
+				$font_local_weight = 'Regular';
+			}
+
+			if ( $font_weight === 500 ) {
+				$font_local_weight = 'Medium';
+			}
+
+			if ( $font_weight === 600 ) {
+				$font_local_weight = 'SemiBold';
+			}
+
+			if ( $font_weight === 700 ) {
+				$font_local_weight = 'Bold';
+			}
+
+			if ( $font_weight === 800 ) {
+				$font_local_weight = 'ExtraBold';
+			}
+
+			if ( $font_weight === 900 ) {
+				$font_local_weight = 'Black';
+			}
+
+	      	// Font Style 
+	     	$font_local_type = '';
+	      	if ('italic' === $font_style) {
+	        	$font_local_type = 'Italic';
+	      	}
+
+	        $font_output .= "@font-face {  ";
+	        $font_output .= "font-family: " . $redux_builder_amp['amp_font_selector']. ';' ;
+	        $font_output .= "font-style: " . $font_style . ';';
+	        $font_output .= "font-weight: " . $font_weight . ';' ;
+	        $font_output .= "src: local('". $redux_builder_amp['amp_font_selector']." ".$font_local_weight." ".$font_local_type."'), local('". $redux_builder_amp['amp_font_selector']."-".$font_local_weight.$font_local_type."'), url(" .$font_data->files->$value . ');' ;
+	        $font_output .= "}";
+	    }
+    }
+
+    echo $font_output;
+  }
+}
+
+function swifttheme_footer_widgets_init() {
+ 	if(ampforwp_design_selector()==4){
+	    register_sidebar( array(
+	        'name' => __( 'Swift Footer Widget Area', 'swifttheme' ),
+	        'id' => 'swift-footer-widget-area',
+	        'description' => __( 'The Swift footer widget area', 'swifttheme' ),
+	        'class'=>'w-bl',
+	        'before_widget' => '<div class="w-bl">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ) );
+	}
+}
+add_action( 'init', 'swifttheme_footer_widgets_init' );
