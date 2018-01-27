@@ -56,9 +56,9 @@
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_blurb">';
         
 		if ( $title ) {
-            $output .=  '<div class="amp_module_title">';
+            $output .=  '<div class="amp_module_title"><span>';
             $output .=  $title;
-            $output .=  '</div>';
+            $output .=  '</span></div>';
             }
 
         $output .= '<div class="flex-grid">'; 
