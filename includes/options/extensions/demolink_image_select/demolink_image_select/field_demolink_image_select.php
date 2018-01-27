@@ -90,7 +90,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 
                 // Enum through the options array
                 foreach ( $this->field['options'] as $k => $v ) {
-					if($v['upgreade']==1){
+					if($v['upgrade']==1){
 						$selected = selected( $this->value, $v['value'], false );
 						
 						// If selected returns something other than a blank space, we
