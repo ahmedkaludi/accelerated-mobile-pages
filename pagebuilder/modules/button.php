@@ -3,27 +3,40 @@
 return array(
 		'label' =>'Button',
 		'name' =>'button',
+          'default_tab'=> 'customizer',
+          'tabs' => array(
+              'customizer'=>'Customizer',
+              'container_css'=>'Container css'
+            ),
 		'fields'=> array(
 				 	array(
                     'type'    => 'text',
                     'name'    => 'button_txt',
                     'label'   => 'Button Text',
-                    'default' => 'Click Here'
+                    'tab'     => 'customizer',
+                    'default' => 'Click Here',
+                    'content_type'=>'html',
 						),
 				 	array(
                     'type'    => 'text',
                     'name'    => 'button_link',
                     'label'   => 'Button Link',
-                    'default' => '#'
+                    'tab'     =>'customizer',
+                    'default' => '#',
+                    'content_type'=>'html',
 						),
 				 	array(
                     'type'    => 'text',
                     'name'    => 'css_class',
                     'label'   => 'Custom CSS Class',
-                    'default' => ''
+                    'tab'     =>'container_css',
+                    'default' => '',
+                    'content_type'=>'html',
 						)
             
         ),
-		'front_template'=>$output
+		'front_template'=>$output,
+        'front_css'=>'', 
+        'front_common_css'=>'',
 	);
 ?>
