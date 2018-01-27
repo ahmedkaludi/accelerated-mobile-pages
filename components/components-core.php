@@ -50,6 +50,25 @@ function loadComponents($componentName){
 	}
 	include_once($file);
 }
+
+// Icons
+$amp_icons_css = array();
+function add_amp_icon($args=array()){
+	global $amp_icons_css;
+	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
+	foreach ($args as $key ) {
+		if(isset($amp_icons_css_array[$key]))
+			$amp_icons_css[] = $amp_icons_css_array[$key]; 
+	}
+	add_action('amp_css', 'amp_icon_css');
+	
+}
+function amp_icon_css(){
+	global $amp_icons_css;
+	foreach ($amp_icons_css as $key => $value) {
+	    echo $value;
+	}
+}
 	
 /**
  * Component Functions
@@ -73,7 +92,7 @@ function amp_logo(){
 
 // Title
 function amp_title(){
-		global $redux_builder_amp, $post;
+	global $redux_builder_amp, $post;
 	$ID = '';
 	if(is_home() && $redux_builder_amp['amp-frontpage-select-option'] == 1){
 		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
@@ -130,7 +149,7 @@ function amp_social( $social_icons="" ) {
 	global $loadComponent;
 	$amp_social = array();
 	//Supported social icons	 
-	$amp_social = array( 'twitter', 'facebook', 'pinterest', 'google-plus', 'linkedin', 'youtube', 'instagram', 'reddit', 'VKontakte', 'snapchat', 'tumblr' );
+	$amp_social = array( 'twitter', 'facebook', 'pinterest', 'google-plus', 'linkedin', 'youtube', 'instagram', 'reddit', 'VKontakte', 'Odnoklassniki', 'snapchat', 'tumblr' );
 	if ( isset($loadComponent['AMP-social-icons']) && true == $loadComponent['AMP-social-icons'] ) {
 		if ( null != $social_icons ) {
 		 ampforwp_framework_get_social_icons($social_icons);
@@ -349,22 +368,19 @@ $post_id = get_queried_object_id();
 if ( ampforwp_is_front_page() ) {
 	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 }
-$thisTemplate = new AMP_Post_Template($post_id);
-	 ?>
-	<div>
-	    <?php do_action('ampforwp_before_post_content',$thisTemplate); 
-		$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
-		// Normal Content
-		if ( ! $amp_custom_content_enable ) {
-				$ampforwp_the_content = $thisTemplate->get( 'post_amp_content' ); // amphtml content; no kses
-			} else {
-				// Custom/Alternative AMP content added through post meta  
-				$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
-			} 
-		$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
-		echo $ampforwp_the_content;
-    	do_action('ampforwp_after_post_content',$thisTemplate); ?>
-	</div>
+$thisTemplate = new AMP_Post_Template($post_id); ?>
+    <?php do_action('ampforwp_before_post_content',$thisTemplate); 
+	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
+	// Normal Content
+	if ( ! $amp_custom_content_enable ) {
+			$ampforwp_the_content = $thisTemplate->get( 'post_amp_content' ); // amphtml content; no kses
+		} else {
+			// Custom/Alternative AMP content added through post meta  
+			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
+		} 
+	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
+	echo $ampforwp_the_content;
+	do_action('ampforwp_after_post_content',$thisTemplate); ?>
 <?php }
 
 function amp_date( $args=array() ) {
