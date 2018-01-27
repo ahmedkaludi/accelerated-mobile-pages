@@ -12,7 +12,9 @@ function ampforwp_framework_get_search_form() {
 					<label class="screen-reader-text" for="s">' . $label . '</label>
 					<input type="text" placeholder="AMP" value="1" name="amp" class="hidden"/>
 					<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
-					<input type="submit" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					<div class="overlay-search">
+					</div>
 				</div>
 				</form>';
 	    echo $form;		
