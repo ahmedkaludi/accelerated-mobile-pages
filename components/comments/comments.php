@@ -1,20 +1,16 @@
 <?php
 function ampforwp_framework_get_comments(){
 global $redux_builder_amp;
-if ( !comments_open() ){
-		return;
-	}
+if ( ! comments_open() || false == $redux_builder_amp['wordpress-comments-support'] ) {
+	return;
+}
 if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 	echo ampforwp_framework_get_facebook_comments();
 }
-elseif ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
+if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
-else {
-	if (!comments_open() || $redux_builder_amp['ampforwp-disqus-comments-support'] || $redux_builder_amp['ampforwp-facebook-comments-support']) {
-	  return;
-	}
-	?>
+if ( true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
@@ -26,7 +22,7 @@ else {
 		));
 		if ( $comments ) { ?>
 			<div class="amp-comments-wrapper">
-	            <h3><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></h3>
+	            <h3><span><?php global $redux_builder_amp; echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
 	            <ul>
 						<?php
 						// Display the list of comments
@@ -66,6 +62,7 @@ else {
 							                         $sanitized_comment_content =  $sanitizer->get_amp_content();
 							                          echo make_clickable( $sanitized_comment_content );   ?>
 												</div>
+											<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
 											</article>
 										</li>
 										<?php }
