@@ -5303,13 +5303,15 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 }
 
 // 98. Create Dynamic url of amp according to the permalink structure #1318
-function ampforwp_url_controller($url){
-	$new_url 					= "";
-	$get_permalink_structure 	=  "";
-
+function ampforwp_url_controller( $url, $nonamp = '' ) {
+	global $redux_builder_amp;
+	$new_url					= "";
+	$get_permalink_structure	=  "";
+	if ( isset($nonamp) && 'nonamp' == $nonamp ) {
+		return $url;
+	}
 	$get_permalink_structure = get_option('permalink_structure');
 	if ( $get_permalink_structure ) {
-		global $redux_builder_amp;
  		if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
 	     		$new_url = user_trailingslashit( trailingslashit($url));
 	 			$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
