@@ -2003,11 +2003,11 @@ function ampforwp_replace_title_tags() {
 			// Custom frontpage
 			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 
-			if( get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ){
+			if ( get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ) {
 				//WPML Static Front Page Support for title and description with Yoast #1143
 
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				 if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php')){
+				 if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php') ) {
 
 				 	$ID = get_option( 'page_on_front' );
 				$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
@@ -2015,25 +2015,26 @@ function ampforwp_replace_title_tags() {
 				$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 				 }
 
-
-
-				else{
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+				else {
+					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 				}
 			}
 			// Blog page 
-			if ( get_option( 'page_for_posts' ) && get_queried_object_id() ) {
-				$ID = get_option( 'page_for_posts' );
+			if ( ampforwp_is_blog() ) {
+				$ID = ampforwp_get_blog_details('id');
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 			}
 
 			// Custom Front Page Title From Yoast SEO #1163
-			if (class_exists('WPSEO_Meta_Columns')) {
+			if ( class_exists('WPSEO_Meta_Columns') ) {
 				 	Global $redux_builder_amp;
 				 	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				 	if ( ampforwp_is_blog() ) {
+				 		$ID = ampforwp_get_blog_details('id');
+				 	}
 				 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
-				 	if($fixed_title){
+				 	if ( $fixed_title ) {
 				 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
 				 	}
 			}
