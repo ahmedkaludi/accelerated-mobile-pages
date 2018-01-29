@@ -18,6 +18,7 @@ Vue.component('amp-pagebuilder-modal', {
   					},
   		showsavedLayouts :amppb_panel_options.savedLayouts,
   		importLayoutfromFile: '',
+  		innerLayouts: '',
   	}
   },
   methods:{
@@ -103,6 +104,12 @@ Vue.component('amp-pagebuilder-modal', {
 			app.call_default_functions();
 		}
 		this.hidePageBuilderPopUp();
+	},
+	viewSpacialLayouts: function(event){
+		this.innerLayouts = JSON.parse(event.target.getAttribute('data-info'));
+	},
+	loadLayOutFolder: function(){
+		this.innerLayouts = '';
 	},
   }
 })

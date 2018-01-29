@@ -76,26 +76,46 @@ global $savedlayoutTemplate;
 
                             <div v-else-if="modalCrrentTab=='layout'">
                                 <h4>List Of Layouts</h4>
-                                <div class="amppb-layout-library-wrapper">
+                                <div class="amppb-layout-library-wrapper"  v-if="innerLayouts==''">
                                     <?php
                                     if(count($layoutTemplate)>0){
-                                     foreach($layoutTemplate as $lay){ ?>
+                                        $layoutTemplate = apply_filters("ampforwp_pb_layouts",$layoutTemplate);
+                                     foreach($layoutTemplate as $layoutName => $lay){ 
+                                        reset($lay);
+                                        $firstLayout = key($lay);
+                                        ?>
                                         <div class="amppb-layout-layout">
                                             <div class="amppb-layout-wrapper">
-                                                    <h4 class="amppb-layout-title"><?php echo $lay['name']; ?></h4>
+                                                <h4 class="amppb-layout-title"><?php echo ucfirst($layoutName); ?></h4>
                                                 <div class="amppb-layout-screenshot">
-                                                    <img src="<?php echo $lay['preview_img']; ?>" onclick="window.open('<?php echo $lay['preview_demo']; ?>')">
+                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" onclick="window.open('<?php echo $lay[$firstLayout]['preview_demo']; ?>')">
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
-                                                        <a target="_blank" href="<?php echo $lay['preview_demo']; ?>" class="button" >Preview</a>
-                                                        <button type="button" class="button" data-layout='<?php echo $lay['layout_json'] ?>'@click="importLayout($event)">Import</button>
+                                                        <a target="_blank" href="<?php echo $lay[$firstLayout]['preview_demo']; ?>" class="button" >Preview</a>
+                                                        <button type="button" class="button"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'>View Layouts</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     <?php } 
                                     } ?>
+                                </div>
+                                <div v-if="innerLayouts!=''">
+                                    <div class="amppb-layout-layout" v-for="(layout, key, index) in innerLayouts">
+                                        <div class="amppb-layout-wrapper">
+                                                <h4 class="amppb-layout-title">{{layout.name}}</h4>
+                                            <div class="amppb-layout-screenshot">
+                                                <img src="" :src="layout.preview_img" onclick="window.open('layout.preview_demo')">
+                                            </div>
+                                            <div class="amppb-layout-bottom">
+                                                <div class="amppb-layout-button">
+                                                    <a target="_blank" href="layout.preview_demo" class="button" >Preview</a>
+                                                    <button type="button" class="button" :data-layout='JSON.stringify(layout.layout_json)'@click="importLayout($event)">Import</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div><!-- Layout Closed-->
                             <div v-else-if="modalCrrentTab=='export'" class="amppb-modal-row">
@@ -132,12 +152,13 @@ global $savedlayoutTemplate;
 
                     <div class="modal-footer">
                         <slot name="footer">
-                            
-                            
+                            <span class="button button-primary button-large  del-btn-modal" @click="loadLayOutFolder()" v-if="innerLayouts!=''">
+                                Back
+                            </span>
                             <button type="button"  class="button modal-default-button" v-if="modalCrrentTab=='customize'" @click="savePagebuilderSettings(currentLayoutData)">
                                 Save
                             </button>
-                             <button type="button"  class="button modal-default-button"  @click="hidePageBuilderPopUp()">
+                             <button type="button"  class="button modal-default-button preview button"  @click="hidePageBuilderPopUp()">
                                 Close
                             </button>
                         </slot>

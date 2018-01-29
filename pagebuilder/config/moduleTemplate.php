@@ -19,11 +19,22 @@ if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
 
         while (($file = readdir($dh)) !== false) {
-        	if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
-        		$layoutTemplate[str_replace(".php", "", $file)] = include $dir.$file;
+        	if(is_dir($dir.$file) && strpos($file, '-layouts') == true){
+        		$layoutTemplate[str_replace('-layouts', "", $file)] = array();
+        		$layoutdir = $dir.$file."/";
+        		if ($dhInside = opendir($layoutdir)) {
+        			$layOutPreview = "";
+        			while (($layoutfile = readdir($dhInside)) !== false) {
+	        			if(is_file($layoutdir.$layoutfile) && strpos($layoutfile, '-layout.php') == true){
+			        		$layoutTemplate[str_replace('-layouts', "", $file)][str_replace(".php", "", $layoutfile)] = include $layoutdir.$layoutfile;
+			        	}
+			        }
+        		}
         	}
+        	/*if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
+        		$layoutTemplate[str_replace(".php", "", $file)] = include $dir.$file;
+        	}*/
         }
-
         closedir($dh);
         $layoutTemplate = array_filter($layoutTemplate);
     }
