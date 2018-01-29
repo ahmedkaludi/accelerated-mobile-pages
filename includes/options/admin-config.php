@@ -413,6 +413,15 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
         return $value;
     }
+    function ampforwp_custom_logo_dimensions_options(){
+        $selectedOption = get_option('redux_builder_amp',true);
+        $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
+        if($opCheck==1){
+            return 'prescribed';
+        }else{
+            return 'flexible';
+        }
+    }
     Redux::setSection( $opt_name, array(
         'title'      => __( 'General', 'accelerated-mobile-pages' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
@@ -435,13 +444,37 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'switch',
                 'default'  => 0,
             ),
+            array(
+                'id'       => 'ampforwp-custom-logo-dimensions-options',
+                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'type'     => 'select',
+                'default'  => '100',
+                'desc'     => __('Select option', 'redux_builder_amp'),
+                'options'     => array(
+                    'flexible'   => 'Flexible width',
+                    'prescribed' => 'Prescribed Format'
+                ),
+                'default' => ampforwp_custom_logo_dimensions_options(),
+                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+            ),
            array(
+                'id'       => 'ampforwp-custom-logo-dimensions-slider',
+                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'type'     => 'amp_slider',
+                'default'  => '100',
+                'min'      => 0,
+                'max'      => 100,
+                'subtitle' => '',
+                'desc'      => __('Slider description. Min: 1, max: 100, step: 100, default value: 250', 'redux_builder_amp'),
+                'required'=>array('ampforwp-custom-logo-dimensions-options','=','flexible'),
+            ),
+            array(
                 'id'       => 'opt-media-width',
                 'type'     => 'text',
                 'title'    => __('Logo Width', 'accelerated-mobile-pages'),
                 'desc'    => __('Default width is 190 pixels', 'accelerated-mobile-pages'),
                 'default' => '190',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                 'required'=>array('ampforwp-custom-logo-dimensions-options','=','prescribed'),
             ),
            array(
                 'id'       => 'opt-media-height',
@@ -449,7 +482,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __('Logo Height', 'accelerated-mobile-pages'),
                 'desc'    => __('Default height is 36 pixels', 'accelerated-mobile-pages'),
                 'default' => '36',
-                'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
+                'required'=>array('ampforwp-custom-logo-dimensions-options','=','prescribed'),
 
             ),
            array(
@@ -2163,6 +2196,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-recent-text',
+                       'type'     => 'text',
+                       'title'    => __('Recent Posts', 'accelerated-mobile-pages'),
+                       'default'  => __('Recent Posts','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-navigate-text',
                        'type'     => 'text',
                        'title'    => __('Navigate', 'accelerated-mobile-pages'),
@@ -2338,6 +2379,14 @@ Redux::setSection( $opt_name, array(
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
+                     array(
+                       'id'       => 'amp-translator-share-text',
+                       'type'     => 'text',
+                       'title'    => __('Share', 'accelerated-mobile-pages'),
+                       'default'  => __('Share','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
                    array(
                        'id'       => 'amp-translator-search-text',
                        'type'     => 'text',
@@ -2402,7 +2451,7 @@ Redux::setSection( $opt_name, array(
     $themeDesign = array(
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#one',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design One', 'accelerated-mobile-pages' ),
 				'value'=>1,
 				'alt'=>__('Design One', 'accelerated-mobile-pages' ),
@@ -2410,7 +2459,7 @@ Redux::setSection( $opt_name, array(
 			),
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#two',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design Two', 'accelerated-mobile-pages' ),
 				'value'=>2,
 				'alt'=>__('Design Two', 'accelerated-mobile-pages' ),
@@ -2418,7 +2467,7 @@ Redux::setSection( $opt_name, array(
 			),
 			array(
                 'demo_link' => 'https://ampforwp.com/demo/#three',
-				'upgreade'=>true,
+				'upgrade'=>true,
 				'title'=>__('Design Three', 'accelerated-mobile-pages' ),
 				'value'=>3,
 				'alt'=>__('Design Three', 'accelerated-mobile-pages' ),
@@ -2443,7 +2492,7 @@ Redux::setSection( $opt_name, array(
 				}
                 $themeDesign[] = array(
                                     'demo_link' => $plugin['AMP Demo'],
-									'upgreade'=>true,
+									'upgrade'=>true,
 									'title'=>$plugin['AMP'],
 									'value'=>$value['TextDomain'],
 									'alt'=>$plugin['AMP'],
@@ -2480,14 +2529,79 @@ Redux::setSection( $opt_name, array(
             
             )
         ) );
+/*---------------------*/
+    // Typography Theme Settings
+  Redux::setSection($opt_name, array(
+        'title'      => __( 'Typography', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-theme-typography',
+        'subsection' => true,
+        'fields'     => array(
+          array(
+                'id'        =>'google_font_api_key',
+                'type'      =>'text',
+                'title'     =>__('Google Font API key','accelerated-mobile-pages'),
+                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1">form here</a>','accelerated-mobile-pages'),
+                'default'   =>'',
+            ),
 
+            array(
+                'id'       => 'amp_font_selector',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'None',
+                ),
+                'default'  => ''
+            ),
+
+            array(
+                'id'       => 'amp_font_type',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'multi'    => true,
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'none',
+                ),
+                'default'  => ''
+            ),
+
+          array(
+                'id'        =>'google_current_font_data',
+                'type'      =>'text',
+                'class'     => 'hide',
+                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'default'   =>'',
+            ),
+
+
+/*---------------------*/
+
+            
+            )
+        ) );
     // Global Theme Settings
   Redux::setSection($opt_name, array(
         'title'      => __( 'Global', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-global-subsection',
         'subsection' => true,
         'fields'     => array(
-
+            // Swift
+            array(
+                    'id'        => 'swift-color-scheme',
+                    'title'     => __('Global Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for title, anchor link','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                    'color'      => '#005be2',
+                     ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                     )
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-colorscheme',
                     'type'      => 'color_rgba',
@@ -2585,7 +2699,195 @@ Redux::setSection( $opt_name, array(
                 'title'      => __( 'Header', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-header-settings',
         'subsection' => true,
+        'tab'       => true,
         'fields'     => array(
+            // Swift
+            // Tab 1
+            array(
+                   'id' => 'header-tab-1',
+                   'type' => 'section',
+                   'title' => __('', 'accelerated-mobile-pages'),
+                   //'label'  => 'Tab 1',
+                   'indent' => true,
+                   //'start'  => true,
+                   /*'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),*/
+             ),
+            array(
+                    'id'    => 'header-type',
+                   'title'  => __('Header Type', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Header 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Header 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Header 3 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-3.png',
+                                ),
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'primary-menu',
+                    'type'     => 'switch',
+                    'title'    => __('Primary Menu', 'accelerated-mobile-pages'),
+                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => '1'
+            ),
+            array(
+                    'id'             => 'primary-menu-padding-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.p-menu'),
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Primary Menu Padding Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'default'            => array(
+                        'padding-top'     => '12px', 
+                        'padding-right'   => '25px', 
+                        'padding-bottom'  => '12px', 
+                        'padding-left'    => '25px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )       
+            ),
+            array(
+                'id'        => 'primary-menu-text-scheme',
+                'title'     => __('Primary Menu Text Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Primary Text Menu','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(53, 53, 53)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'primary-menu-background-scheme',
+                'title'     => __('Primary Menu Background Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Primary Menu Background','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(239, 239, 239)',
+                    ),
+                    'required' => array(
+                      array('primary-menu','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button',
+                'title'     => __('Button Customize', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can do the customization here ','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('header-type','=',2)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-text',
+                'title'     => __('Button Text', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can write your required text ','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => 'Sign up free',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-link',
+                'title'     => __('Button Link', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can add the Link here ','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '#',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-style',
+                'title'     => __('Button Styles', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the button here','accelerated-mobile-pages'),
+                'type'      => 'switch',
+                'default'   => '0',
+                    'required' => array(
+                      array('signin-button','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-border-line',
+                'title'     => __('Button Border Line', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the button border line','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '2',
+                    'required' => array(
+                      array('signin-button-style','=',1)
+                    )  
+              ),
+            array(
+                'id'        => 'signin-button-text-color',
+                'title'     => __('Button Text Color', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Button Texxt','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+            array(
+                'id'        => 'signin-button-border-color',
+                'title'     => __('Button Border Line Color', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Button Border Line','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgb(0, 0, 0)',
+                    ),
+                'required' => array(
+                  array('signin-button-style','=',1)
+                )  
+            ),
+            array(
+                    'id'    => 'border-type',
+                   'title'  => __('Border Type', 'amptechtheme'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Square',
+                        '2' =>  'Round',
+                        '3' => 'Custom'
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('signin-button', '=' ,1) ),
+            ),
+            array(
+                'id'        => 'border-radius',
+                'title'     => __('Customize Border Radius', 'accelerated-mobile-pages'),
+                'subtitle'  => __('You can change the border radius','accelerated-mobile-pages'),
+                'type'      => 'text',
+                'default'   => '10',
+                    'required' => array(
+                      array('border-type','=',3)
+                    )  
+              ),
              array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',
@@ -2595,7 +2897,46 @@ Redux::setSection( $opt_name, array(
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => 1
-            ),   
+            ),
+            // Call Now button
+             array(
+                    'id'       => 'ampforwp-callnow-button',
+                    'type'     => 'switch',
+                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                    'type'      => 'text',
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
+             ),
+             array(
+                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                    'type'      => 'switch',
+                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+             array(
+                    'id'        => 'amp-opt-sticky-head',
+                    'type'      => 'switch',
+                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    ),
+                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
+            ),
              array(
                     'id'       => 'amp-design-3-search-feature',
                     'type'     => 'switch',
@@ -2628,29 +2969,18 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
-                 // Call Now button
-             array(
-                    'id'       => 'ampforwp-callnow-button',
+              array(
+                    'id'       => 'amp-swift-search-feature',
+                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
                     'type'     => 'switch',
-                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
-                        array('amp-design-selector', '!=' , '1')
+                        array('amp-design-selector', '=' , '4')
                     ),
-                    'default'   => 0
-             ),
+                    'default'  => '1'
+            ),
+
              array(
-                    'id'        =>'enable-amp-call-numberfield',
-                    'type'      => 'text',
-                    'required'  => array(
-                        array('ampforwp-callnow-button', '=' , '1'),
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
-            array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
                     'title'     => __('Header Background Color','accelerated-mobile-pages'),
@@ -2661,7 +2991,7 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
-             array(
+              array(
                     'id'        => 'amp-opt-color-rgba-headerelements',
                     'type'      => 'color_rgba',
                     'title'     => __('Header Elements Color','accelerated-mobile-pages'),
@@ -2672,24 +3002,220 @@ Redux::setSection( $opt_name, array(
                       array('amp-design-selector', '=' , '3')
                     )
             ),
+             // Tab 1 end    
+             /* array(
+                   'id' => 'header-tab-1-end',
+                   'type' => 'section',
+                   'title' => __('Tab 1', 'accelerated-mobile-pages'),
+                   'end'  => true,
+                   /*'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+               ),*/
+            // Tab 2
             array(
-                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                    'type'      => 'switch',
-                    'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                   'id' => 'header-tab-2',
+                   'type' => 'section',
+                   'title' => __('Advanced Header Options', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   //'start'  => true,
+                   //'label' => 'Tab 2',
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+             ),
+            array(
+                    'id'    => 'customize-options',
+                    'type'  => 'switch',
+                    'title' => __('Customize Header Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
                     'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'swift-height-control',
+                    'type'     => 'text',
+                    'title'    => __('Dimensions (Height) Option', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Allow your users to choose height', 'accelerated-mobile-pages'),
+                    'desc'     => __('Here you can give the height of the Header in Numbers', 'accelerated-mobile-pages'),
+                    'default'  => '60px',
+                    'required' => array(
+                      array('customize-options','=',1)
+                    )           
+            ),
+            array(
+                    'id'    => 'margin-padding-options',
+                    'type'  => 'switch',
+                    'title' => __('Customize Margin/Padding Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array(
+                      array('customize-options','=',1)
+                    ) 
+            ),
+            array(
+                    'id'             => 'swift-padding-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.header'),
+                    'mode'           => 'padding',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Padding Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or padding they want.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'default'            => array(
+                        'padding-top'     => '0px', 
+                        'padding-right'   => '0px', 
+                        'padding-bottom'  => '0px', 
+                        'padding-left'    => '0px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('margin-padding-options','=',1)
+                    )       
+            ),
+            array(
+                    'id'             => 'swift-margin-control',
+                    'type'           => 'spacing',
+                    'output'         => array('.header'),
+                    'mode'           => 'margin',
+                    'units'          => array('px'),
+                    'units_extended' => 'false',
+                    'title'          => __('Margin Option', 'accelerated-mobile-pages'),
+                    'subtitle'       => __('Allow your users to choose the spacing or margin they want.', 'accelerated-mobile-pages'),
+                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'default'            => array(
+                        'margin-top'     => '0px', 
+                        'margin-right'   => '0px', 
+                        'margin-bottom'  => '0px', 
+                        'margin-left'    => '0px',
+                        'units'          => 'px', 
+                    ),
+                    'required' => array(
+                      array('margin-padding-options','=',1)
+                    )       
             ),
              array(
-                    'id'        => 'amp-opt-sticky-head',
-                    'type'      => 'switch',
-                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'id'    => 'border-line',
+                    'type'  => 'switch',
+                    'title' => __('Customize Borderline and Boxshadow Options', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Here you can add the border line and color', 'accelerated-mobile-pages'),
+                    'default'   => 0,
                     'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    ),
-                    'subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
-                    'default'  => '0'
+                      array('customize-options','=',1)
+                    ) 
             ),
- 
+
+            array(
+                  'id'       => 'swift-border-line-control',
+                  'type'     => 'text',
+                  'title'    => __('Border Bottom Line', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Border Bottom Line, Please give number', 'accelerated-mobile-pages'),
+                  'default'  => '1',
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+            array(
+                  'id'       => 'swift-border-color-control',
+                  'type'     => 'color_rgba',
+                  'title'    => __('Border Color', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Border Color, Please select', 'accelerated-mobile-pages'),
+                  'default'  => array(
+                        'rgba'     => 'rgba(0,0,0,0.12)', 
+                    ),
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+            array(
+                  'id'       => 'swift-boxshadow-checkbox-control',
+                  'type'     => 'switch',
+                  'title'    => __('Box Shadow Option', 'accelerated-mobile-pages'), 
+                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
+                  'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'accelerated-mobile-pages'),
+                  'default'  => 0,
+                  'required' => array(
+                        array('border-line','=',1)
+                      )  
+              ),
+
+
+            array(
+                'id'        => 'swift-background-scheme',
+                'title'     => __('Header Background Color Scheme', 'accelerated-mobile-pages'),
+                'subtitle'  => __('Choose the color for Header Background','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'rgba'  => 'rgba(255, 255, 255, 255)',
+                    ),
+                    'required' => array(
+                      array('customize-options','=',1)
+                    )  
+              ),
+              array(
+                    'id'        => 'swift-header-overlay',
+                    'title'     => __('Header Overlay Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Ovelay Background','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(20, 20, 22, 0.9)',
+                         ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+              array(
+                    'id'        => 'swift-element-color-control',
+                    'title'     => __('Header Element Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Elements','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#333',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+              array(
+                    'id'        => 'swift-element-overlay-color-control',
+                    'title'     => __('Header Overlay Element Color Scheme', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Choose the color for Header Overlay  Elements','accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgba(255, 255, 255, 0.8)',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
+
+              
+            array(
+                    'id'    => 'header-position-type',
+                   'title'  => __('Header Overlay Position Type', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'Left',
+                        '2' =>  'Right'
+                    ),
+                   'default'=> '1',
+                  'required' => array(
+                      array('customize-options','=',1)
+                    )    
+            ),
+            // Tab 2 end
+            /*array(
+                   'id' => 'header-tab-2-end',
+                   'type' => 'section',
+                   'title' => __('Tab 2', 'accelerated-mobile-pages'),
+                   'end'  => true,
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+             ),*/
 
           )
         )
@@ -2852,6 +3378,7 @@ Redux::setSection( $opt_name, array(
                         'default'  => 100,
                         'required' => array(
                           array('amp-design-selector','!=',3),
+                          array('amp-design-selector','!=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
@@ -2863,9 +3390,33 @@ Redux::setSection( $opt_name, array(
                         'default'  => 75,
                         'required' => array(
                           array('amp-design-selector','!=',3),
+                          array('amp-design-selector','!=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
+                array(
+                        'id'       => 'ampforwp-swift-homepage-posts-width',
+                        'type'     => 'text',
+                        'title'    => __('Image Width', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Defaults to 346', 'accelerated-mobile-pages'),
+                        'default'  => 346,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+                array(
+                        'id'       => 'ampforwp-swift-homepage-posts-height',
+                        'type'     => 'text',
+                        'title'    => __('Image Height', 'accelerated-mobile-pages'),
+                        'subtitle' => __('Defaults to 188', 'accelerated-mobile-pages'),
+                        'default'  => 188,
+                        'required' => array(
+                          array('amp-design-selector','=',4),
+                          array('ampforwp-homepage-posts-image-modify-size','=',1)
+                        )
+                ),
+
         )
     ));
 
@@ -2876,6 +3427,39 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-single',
         'subsection' => true,
         'fields'     => array(
+            // Swift
+            array(
+                    'id'    => 'swift-date',
+                    'type'  => 'switch',
+                    'title' => __('Date', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Enable to show Post Date', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'    => 'swift-social-icons',
+                    'type'  => 'switch',
+                    'title' => __('Social Icons', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Switch to show/hide Social Icons', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'    => 'swift-comment',
+                    'type'  => 'switch',
+                    'title' => __('Comments', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Switch to show/hide Comments', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'    => 'swift-taxonomy',
+                    'type'  => 'switch',
+                    'title' => __('Taxonomy Tags', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('switch to show/hide taxonomy tags', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
          //Breadcrumb ON/OFF
           array(
               'id'       => 'ampforwp-bread-crumb',
@@ -2952,7 +3536,7 @@ Redux::setSection( $opt_name, array(
             'id'       => 'amp-pagination',
             'type'     => 'switch',
             'title'    => __( 'Post Pagination', 'accelerated-mobile-pages' ),
-           'default'   => 0,
+           'default'   => 1,
            'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
           // Related Post
@@ -3048,7 +3632,15 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-footer-settings',
         'subsection' => true,
         'fields'     => array(
-
+                // Swift
+                 array(
+                        'id'    => 'swift-menu',
+                        'type'  => 'switch',
+                        'title' => __('Menu', 'accelerated-mobile-pages'),
+                        'subtitle'  => __('switch to show/hide Menu', 'accelerated-mobile-pages'),
+                        'default'   => 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
                 array(
                         'id'       => 'amp-footer-link-non-amp-page',
                         'type'     => 'switch',
