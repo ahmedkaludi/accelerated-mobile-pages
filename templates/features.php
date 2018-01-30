@@ -1754,7 +1754,7 @@ function ampforwp_sticky_social_icons(){
 			else
 				$permalink = wp_get_shortlink();
 			?>
-			<!-- <div class="sticky_social">
+			 <div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			  	<?php } ?>
@@ -1856,7 +1856,7 @@ function ampforwp_sticky_social_icons(){
 				</div>
 			</a>
 		<?php } ?>
-	</div> -->
+	</div> 
 	<?php }
 		//}
 }

@@ -76,3 +76,5 @@ function ampforwp_swift_social_icons(){
 	}
 	return $social_icons;
 }
+// Remove default sticky social from Swift
+//remove_action('amp_post_template_footer','ampforwp_sticky_social_icons');
