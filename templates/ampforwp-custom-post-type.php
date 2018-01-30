@@ -11,7 +11,7 @@ if ( ! function_exists('ampforwp_cpt_post_types_new') ) {
     function ampforwp_cpt_post_types_new(){
         $args       = "";
         $get_post_types = "";
-        $post_types   = array();
+        $post_types   = $options = array();
 
         $args = array(
             'public' => true,
@@ -30,7 +30,12 @@ if ( ! function_exists('ampforwp_cpt_post_types_new') ) {
         $post_types = apply_filters( 'ampforwp_cpt_modify_post_types', $post_types );
 
         $options = get_option('ampforwp_cpt_generated_post_types');
-
+        if ( ! is_array($post_types) ) {
+            $post_types = (array) $post_types;
+        }
+        if ( ! is_array($options) ) {
+            $options = (array) $options;
+        }
             $count_current_pt = count( $post_types );
             $count_saved_pt = count( $options);
 
