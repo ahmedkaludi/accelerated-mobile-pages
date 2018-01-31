@@ -133,9 +133,14 @@ if ( get_query_var( 'paged' ) ) {
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
-					<?php foreach((get_the_category()) as $category) { ?>
+					<?php foreach((get_the_category()) as $category) { 
+					if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
+						<li><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo $category->cat_name ?></a></li>
+					<?php }
+					else { ?>
 					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
-					<?php } ?>
+					<?php } 
+					} ?>
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 

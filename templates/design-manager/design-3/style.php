@@ -119,6 +119,7 @@ h2.amp-wp-title{ font-family: 'Roboto Slab', serif; font-weight: 700; font-size:
 h2.amp-wp-title a{ color: #000; }
 .amp-wp-tags{ list-style-type: none; padding: 0; margin: 0 0 9px 0; display: inline-flex; }
 .amp-wp-tags li{ display: inline; background: #F6F6F6; color: #9e9e9e; line-height: 1; border-radius: 50px; padding: 8px 18px; font-size: 12px; margin-right: 8px; top: -3px; position: relative; }
+.amp-wp-tags li a{ color: #9e9e9e; }
 .amp-loop-list{ position:relative; border-bottom: 1px solid #ededed; padding: 25px 15px 25px 15px }
 body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .amp-loop-list .amp-wp-post-content{ float: left; width: 65%; }
