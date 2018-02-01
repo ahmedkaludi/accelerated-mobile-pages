@@ -1,45 +1,56 @@
 <?php
 $moduleTemplate = array();
-$dir = AMP_PAGE_BUILDER.'/modules/';
-if (is_dir($dir)) {
-    if ($dh = opendir($dir)) {
-        while (($file = readdir($dh)) !== false) {
-        	if(is_file($dir.$file) && strpos($file, '-module.php') == true){
-        		$moduleTemplate[str_replace("-module.php", "", $file)] = include $dir.$file;
-        	}
-        }
-        closedir($dh);
-        $moduleTemplate = array_filter($moduleTemplate);
-    }
-}
-
 $layoutTemplate = array();
-$dir = AMP_PAGE_BUILDER.'/layouts/';
-if (is_dir($dir)) {
-    if ($dh = opendir($dir)) {
-
-        while (($file = readdir($dh)) !== false) {
-        	if(is_dir($dir.$file) && strpos($file, '-layouts') == true){
-        		$layoutTemplate[str_replace('-layouts', "", $file)] = array();
-        		$layoutdir = $dir.$file."/";
-        		if ($dhInside = opendir($layoutdir)) {
-        			$layOutPreview = "";
-        			while (($layoutfile = readdir($dhInside)) !== false) {
-	        			if(is_file($layoutdir.$layoutfile) && strpos($layoutfile, '-layout.php') == true){
-			        		$layoutTemplate[str_replace('-layouts', "", $file)][str_replace(".php", "", $layoutfile)] = include $layoutdir.$layoutfile;
-			        	}
-			        }
-        		}
-        	}
-        	/*if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
-        		$layoutTemplate[str_replace(".php", "", $file)] = include $dir.$file;
-        	}*/
-        }
-        closedir($dh);
-        $layoutTemplate = array_filter($layoutTemplate);
-    }
+if(is_admin()){
+	add_action("plugins_loaded", "ampforwp_module_templates");
 }
 
+if(!function_exists("ampforwp_module_templates")){
+	function ampforwp_module_templates(){
+		global $moduleTemplate, $layoutTemplate;
+
+		$dir = AMP_PAGE_BUILDER.'/modules/';
+		if (is_dir($dir)) {
+		    if ($dh = opendir($dir)) {
+		        while (($file = readdir($dh)) !== false) {
+		        	if(is_file($dir.$file) && strpos($file, '-module.php') == true){
+		        		$moduleTemplate[str_replace("-module.php", "", $file)] = include $dir.$file;
+		        	}
+		        }
+		        closedir($dh);
+		        $moduleTemplate = array_filter($moduleTemplate);
+		    }
+		}
+
+
+		$dir = AMP_PAGE_BUILDER.'/layouts/';
+		if (is_dir($dir)) {
+		    if ($dh = opendir($dir)) {
+
+		        while (($file = readdir($dh)) !== false) {
+		        	if(is_dir($dir.$file) && strpos($file, '-layouts') == true){
+		        		$layoutTemplate[str_replace('-layouts', "", $file)] = array();
+		        		$layoutdir = $dir.$file."/";
+		        		if ($dhInside = opendir($layoutdir)) {
+		        			$layOutPreview = "";
+		        			while (($layoutfile = readdir($dhInside)) !== false) {
+			        			if(is_file($layoutdir.$layoutfile) && strpos($layoutfile, '-layout.php') == true){
+					        		$layoutTemplate[str_replace('-layouts', "", $file)][str_replace(".php", "", $layoutfile)] = include $layoutdir.$layoutfile;
+					        	}
+					        }
+					         closedir($dhInside);
+		        		}
+		        	}
+		        	/*if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
+		        		$layoutTemplate[str_replace(".php", "", $file)] = include $dir.$file;
+		        	}*/
+		        }
+		        closedir($dh);
+		        $layoutTemplate = apply_filters("ampforwp_pagebuilder_layout_filter", $layoutTemplate);
+		    }
+		}
+	}//Function closed
+}//If Fucntion check closed
 
 //Row Contents
 $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
