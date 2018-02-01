@@ -1721,6 +1721,10 @@ function ampforwp_remove_schema_data() {
 	if ( class_exists('cl_core') ) {
 		remove_action('the_content', array( 'cl_core', 'getPost' ) );
 	}
+	// Theia Post Slider compatibility
+	if ( class_exists('TpsContent') ) {
+		remove_action('the_post', 'TpsContent::the_post', 999999);
+	}
 }
 
 // 22. Removing author links from comments Issue #180
