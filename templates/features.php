@@ -5054,7 +5054,7 @@ function ampforwp_url_purifier($url){
 			$endpoint = '?' . $endpoint;
 			if ( is_home() || is_archive() || is_front_page() ) {
 				$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
-				if ( get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
+				if ( is_home() && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
 					$quried_value = get_query_var('page_id');
 					$url  = add_query_arg('page_id',$quried_value, $url);
 				}
@@ -5078,7 +5078,8 @@ function ampforwp_url_purifier($url){
 					$queried_var 	= 'author';
 				}
 				$quried_value 	= get_query_var($queried_var);
-				$url = $url .'&'. $queried_var .'='. $quried_value;
+				$url  = add_query_arg($queried_var,$quried_value, $url);
+				//$url = $url .'&'. $queried_var .'='. $quried_value;
 			}
 			/*if ( is_home() && get_query_var('paged') > 1 ) {
 				$quried_value = get_query_var('paged');
