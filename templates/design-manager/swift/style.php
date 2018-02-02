@@ -950,9 +950,6 @@ display: none;
 .amp-tags .amp-tag:last-child:after{
     display:none;
 }
-.ss-icons .icon-twitter :before{
-    color:#1da1f2;
-}
 .ss-icons ul{
     text-align:left;
 }
