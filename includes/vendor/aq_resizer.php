@@ -239,9 +239,22 @@ if(!function_exists('aq_resize')) {
             $url = $sitepress->convert_url( $url, $sitepress->get_default_language() );
         }
         /* WPML Fix */
-
-        $aq_resize = Aq_Resize::getInstance();
-        return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
+        /* Jetpack Compatible*/
+        if( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) ) {
+            $args = array(
+                'resize' => "$width,$height"
+            );
+             $image = array (
+                        0 => jetpack_photon_url( $url, $args ),
+                        1 => $width,
+                        2 => $height
+                    );
+            //print_r(jetpack_photon_url( $url, $args ));die;
+            return $image;
+        } else {
+            $aq_resize = Aq_Resize::getInstance();
+            return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
+        }
     }
 }
 
