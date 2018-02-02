@@ -385,7 +385,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		           
 		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
 	            }
-	                       
+
 	            if ( ampforwp_is_blog() ) {
 				 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 	            }
@@ -2002,7 +2002,7 @@ function ampforwp_replace_title_tags() {
 			// Custom frontpage
 			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 
-			if ( get_option( 'page_on_front' ) && $redux_builder_amp['amp-frontpage-select-option'] ) {
+			if ( ampforwp_is_front_page() ) {
 				//WPML Static Front Page Support for title and description with Yoast #1143
 
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -4351,7 +4351,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 						$output = $blog_id;
 						break;
 					default:
-						if( in_array( $slug , $current_url_in_pieces , true ) ){
+						if( in_array( $slug , $current_url_in_pieces , true ) || get_query_var('page_id') == $blog_id ) {
 							$output = true;
 						}
 						else
