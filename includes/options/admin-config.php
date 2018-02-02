@@ -2576,6 +2576,25 @@ Redux::setSection( $opt_name, array(
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'    => 'menu-type',
+                   'title'  => __('Menu Type', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Menu overlay 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Menu overlay 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
+                                ),
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',
                     'title'    => __('Primary Menu', 'accelerated-mobile-pages'),
