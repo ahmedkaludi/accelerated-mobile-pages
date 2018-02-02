@@ -295,8 +295,17 @@
 		var imageUrl = jQuery('#redux_builder_amp-opt-media').find('input[type=text]').val();
 		if(imageUrl!="" && typeof imageUrl != 'undefined'){
 			var dimension = jQuery("#ampforwp-custom-logo-dimensions-slider").val();
-			jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').remove();
-			jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').append("<div class='logo_preview'><img src='"+imageUrl+"' style='width:"+dimension+"% !important'></div>");
+			
+          
+            var img = new Image();
+            img.src = imageUrl;
+            img.onload = function(){
+                //alert( this.width+' '+ this.height );
+               // return this.width;
+                jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').remove();
+                 jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').append("<div class='logo_preview'><img src='"+imageUrl+"' style='width:"+dimension+"% !important;max-width: "+this.width+"px;'></div>");
+            };
+            //jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').append("<div class='logo_preview'><img src='"+imageUrl+"' style='width:"+dimension+"% !important'></div>");
 
 		   
 		}
