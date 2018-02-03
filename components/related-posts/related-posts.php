@@ -20,7 +20,12 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 					<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			            <?php
 			            $related_post_permalink = ampforwp_url_controller( get_permalink() );
-			            ampforwp_get_relatedpost_image('thumbnail');
+			            if ( isset($argsdata['image_size']) && '' != $argsdata['image_size'] ) {
+			            	ampforwp_get_relatedpost_image($argsdata['image_size']);
+			            }
+			            else {
+			            	ampforwp_get_relatedpost_image('thumbnail');
+			            }
 			            ampforwp_get_relatedpost_content($argsdata);
 			            ?> 
 			        </li><?php
