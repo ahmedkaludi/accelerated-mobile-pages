@@ -1382,6 +1382,67 @@ display: none;
 .w-bl ul li a{
     text-decoration: none;
 }
+@media(max-width:768px){
+.footer {
+    margin-top: 60px;
+}
+.w-bl{
+    flex:1 0 22%;
+}
+.f-menu ul li {
+    margin-bottom:10px;
+}
+}
+@media(max-width:480px){
+.footer {
+    margin-top: 50px;
+}
+<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+.f-w-f1 {
+    padding: 45px 0px 10px 0px;
+}
+<?php endif; ?>
+.f-w-f2 {
+    padding: 25px 0px;
+}
+.f-w{
+    display:block;
+}
+.w-bl{
+    margin-bottom:40px;
+}
+.w-bl ul li {
+    margin-bottom: 11px;
+}
+.f-menu ul li {
+    display: inline-block;
+    line-height: 1.8;
+    margin-right: 13px;
+}
+.f-menu .amp-menu > li a {
+    padding: 0;
+    font-size: 12px;
+    color: #7a7a7a;
+}
+.rr {
+    margin-top: 15px;
+    font-size: 11px;
+}
+}
+@media(max-width:425px){
+.footer {
+    margin-top: 35px;
+}
+<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
+.f-w-f1 {
+    padding: 35px 0px 10px 0px;
+}
+<?php endif; ?>
+.w-bl h4 {
+    margin-bottom: 15px;
+}
+
+}
 <?php } ?>
 .sp-rt .amp-author {
     margin-top: 5px;
@@ -1575,13 +1636,7 @@ display: none;
 .amp-post-title{
     padding-top:10px;
 }
-/*** Footer ***/
-.footer {
-    margin-top: 60px;
-}
-.w-bl{
-    flex:1 0 22%;
-}
+
 }
 @media(max-width:767px){
 .swift-sticky-social .amp-social{
@@ -1698,41 +1753,7 @@ display: none;
     font-size: 12px;
     line-height: 18px;
 }
-/** Footer **/
-.footer {
-    margin-top: 50px;
-}
-<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
-.f-w-f1 {
-    padding: 45px 0px 10px 0px;
-}
-<?php endif; ?>
-.f-w-f2 {
-    padding: 25px 0px;
-}
-.f-w{
-    display:block;
-}
-.w-bl{
-    margin-bottom:40px;
-}
-.w-bl ul li {
-    margin-bottom: 11px;
-}
-.f-menu ul li {
-    display: inline-block;
-    line-height: 1.8;
-    margin-right: 13px;
-}
-.f-menu .amp-menu > li a {
-    padding: 0;
-    font-size: 12px;
-    color: #7a7a7a;
-}
-.rr {
-    margin-top: 15px;
-    font-size: 11px;
-}
+
 }
 @media(max-width:425px){
 header .cntr, .footer .cntr, .sp .cntr{
@@ -1768,17 +1789,6 @@ header .cntr, .footer .cntr, .sp .cntr{
 }
 .loop-pagination {
     margin-top: 15px;
-}
-.footer {
-    margin-top: 35px;
-}
-<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
-.f-w-f1 {
-    padding: 35px 0px 10px 0px;
-}
-<?php endif; ?>
-.w-bl h4 {
-    margin-bottom: 15px;
 }
 .fbp-cnt h2, .fsp h2 {
     font-size: 24px;
