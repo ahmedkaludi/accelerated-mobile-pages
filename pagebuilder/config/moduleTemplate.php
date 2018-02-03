@@ -1,9 +1,9 @@
 <?php
 $moduleTemplate = array();
 $layoutTemplate = array();
-if(is_admin()){
+
 	add_action("plugins_loaded", "ampforwp_module_templates");
-}
+
 
 if(!function_exists("ampforwp_module_templates")){
 	function ampforwp_module_templates(){

@@ -70,8 +70,8 @@ function amp_pagebuilder_content_styles(){
 					$rowCss = $containerCommonSettings['front_css'];
 					$rowCss = str_replace('{{row-class}}', '.row-setting-'.$rowsData['id'], $rowCss);
 					foreach($containerCommonSettings['fields'] as $rowfield){
-						if($rowfield['content_type']=='css'){
 							$replaceRow = '';
+						if($rowfield['content_type']=='css'){
 							if(isset($rowContainer[$rowfield['name']])){
 								$replaceRow = $rowContainer[$rowfield['name']];
 								
@@ -124,6 +124,7 @@ function amp_pagebuilder_content_styles(){
 								break;
 							}
 						}
+						$rowCss = replaceIfContentConditional($rowfield['name'], $replaceRow, $rowCss);
 					}
 					echo amppb_validateCss($rowCss);
 				}//Row Settings Css foreach closed
@@ -148,10 +149,10 @@ function amp_pagebuilder_content_styles(){
 							if($modulefield['type']=='icon-selector'){
 								add_amp_icon(array($contentArray[$modulefield['name']]));
 							}
+							$replaceModule = "";
 							if($modulefield['content_type']=='css'){
 								
 
-								$replaceModule = "";
 								if(isset($contentArray[$modulefield['name']])){
 									$replaceModule = $contentArray[$modulefield['name']];
 								}
@@ -188,7 +189,7 @@ function amp_pagebuilder_content_styles(){
 									break;
 								}
 							}
-
+							$completeCss = replaceIfContentConditional($modulefield['name'], $replaceModule, $completeCss);
 						}
 						echo amppb_validateCss($completeCss);
 						
@@ -472,11 +473,18 @@ function rowData($container,$col,$moduleTemplate){
 							);
 						//The Query
 						$the_query = new WP_Query( $args );
-						 $totalLoopHtml = contentHtml($the_query,$fieldValues);
+						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
+						$totalLoopHtml = contentHtml($the_query,$fieldValues,$totalLoopHtml);
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
+						//print_r($moduleFrontHtml);die;
 						/* Restore original Post Data */
 						wp_reset_postdata();
+						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
+							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+								$moduleFrontHtml = replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $moduleFrontHtml);
+							}
+						}
 						
 					break;
 					default:
@@ -630,9 +638,24 @@ function get_attachment_id( $url , $imagetype='full') {
 }
 
 function replaceIfContentConditional($byReplace, $replaceWith, $string){
+	preg_match_all("{{if_condition_".$byReplace."==(.*?)}}", $string,$matches);
+	if(isset($matches[1]) && count($matches[1])>0){
+		foreach ($matches[1] as $key => $matchValue) {
+			if($matchValue != $replaceWith){
+				$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("<amp-condition>","</amp-condition>"), $string);
+				
+				$string = preg_replace_callback('/(<amp-condition>)(.*?)(<\/amp-condition>)/s', function($match){
+					return "";
+				}, $string);
+			}else{
+				$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("",""), $string);
+			}
+		}//FOreach Closed
+	}//If Closed
+
 	if(strpos($string,'{{if_'.$byReplace.'}}')!==false){
 		$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
-		if(trim($replaceWith)==""){
+		if($replaceWith=="" && trim($replaceWith)==""){
 			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
 		}
 		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);

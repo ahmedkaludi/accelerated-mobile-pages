@@ -1272,3 +1272,12 @@ a.amppb_accordion__panel:hover {
     float: left;
     margin-left: 20px;
 }
+
+
+.layout-image-picker img{
+    width:100%;
+}
+.layout-image-picker.active{
+    width:100%;
+    border: 1px solid blue;
+}

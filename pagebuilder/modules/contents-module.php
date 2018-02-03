@@ -1,8 +1,10 @@
 <?php		
 require_once  ABSPATH . WPINC . '/category.php';
- $output = '<div class="pb_mod cat_mod"><h4>{{content_title}}</h4>		
- 			<div class="wrap">{{category_selection}}</div>		
- 	</div>';		
+ $output = '
+           <div class="pb_mod cat_mod">Step 1:<h4>{{content_title}}</h4>   
+                <div class="wrap"><ul>{{category_selection}}</ul></div>    
+            </div>
+          ';
  
 
  $frontCss = '
@@ -81,7 +83,27 @@ require_once  ABSPATH . WPINC . '/category.php';
               'advanced' => 'Advanced'
             ),
  		'fields' => array(
- 						array(		
+            array(    
+            'type'    =>'layout-image-picker',
+            'name'    =>"content_layout_type",
+            'label'   =>"Select Layout",
+            'tab'     =>'customizer',
+            'default' =>'1',    
+            'options_details'=>array(
+                            array(
+                              'value'=>'1',
+                              'label'=>'First',
+                              'demo_image'=> 'http://localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages//images/head-1.png'
+                            ),
+                            array(
+                              'value'=>'2',
+                              'label'=>'Second',
+                              'demo_image'=> 'http://localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages//images/head-2.png'
+                            ),
+                          ),
+            'content_type'=>'html',
+            ),
+            array(		
  						'type'		=>'text',		
  						'name'		=>"content_title",		
  						'label'		=>'Category Block',
@@ -243,50 +265,93 @@ require_once  ABSPATH . WPINC . '/category.php';
  		'front_template'=> $output,
     'front_css'=>$frontCss,
     'front_common_css'=>'',	
+    'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
+                          <li> 
+                              <div class="cat_mod_l First"> 
+                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="fixed"></amp-img></a> 
+                              </div>
+                              <div class="cat_mod_r">
+                                <a href="{{ampforwp_post_url}}">{{title}}</a>
+                                {{excerptContent}}
+                                </div>
+                            </li>
+                       {{ifend_condition_content_layout_type_1}}
+
+
+                      {{if_condition_content_layout_type==2}}
+                          <li> 
+                              <div class="cat_mod_l Second"> 
+                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="fixed"></amp-img></a> 
+                              </div>
+                              <div class="cat_mod_r">
+                                <a href="{{ampforwp_post_url}}">{{title}}</a>
+                                {{excerptContent}}
+                                </div>
+                            </li>
+                      {{ifend_condition_content_layout_type_2}}
+                          ',
  );		
- function contentHtml($the_query,$fieldValues){		
+ function contentHtml($the_query,$fieldValues,$loopHtml){		
  	$contenthtml = '';		
  	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');		
- 	if ( $the_query->have_posts() ) {		
-         $contenthtml.= '<ul>';		
+ 	if ( $the_query->have_posts() ) {	
          while ( $the_query->have_posts() ) {		
              $the_query->the_post();		
-             $ampforwp_post_url = get_permalink();		
-             $contenthtml.='<li>';		
-                 if ( has_post_thumbnail() ) {	
-                   $contenthtml.= '
-                   <div class="cat_mod_l">
-                   ';		             
-                   $thumb_id = get_post_thumbnail_id();		
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);	
+             $ampforwp_post_url = get_permalink();	
+             $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
+             $image = $height = $width = "";	
+             if ( has_post_thumbnail() ) {  
+                   $thumb_id = get_post_thumbnail_id();   
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);  
                    $thumb_url = $thumb_url_array[0];
                    $width = $fieldValues['img-width'];
                    $height = $fieldValues['img-height'];
                    $thumb_url_array = aq_resize( $thumb_url, $width, $height, true, false ); //resize & crop the image
-                   $contenthtml.= '<a href="'.trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $thumb_url_array[0].'" width="'. $thumb_url_array[1] . '" height="' . $thumb_url_array[2] . '" layout="fixed"></amp-img></a>';
-                    $contenthtml.= '
-                    </div>
-                    ';	             
-                 }
-             $contenthtml.= '<div class="cat_mod_r">';		             
-               $contenthtml.= '<a href="'. trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR.'">'.get_the_title().'</a>'; 		
- 		
-               if( $ampforwp_show_excerpt == 'yes' ) { 		
- 				if( has_excerpt() ) {		
-                     $content = get_the_excerpt();		
-                   } else {		
-                     $content = get_the_content();		
-                   }	
-                 $contenthtml.= ' 
-                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ).'</p>';		
- 			} 		
-             $contenthtml.= '</div>';		
- 		
-             $contenthtml.= '</li>';		
+                   $image   =  $thumb_url_array[0];
+                   $width   =  $thumb_url_array[1];
+                   $height  =  $thumb_url_array[2];
+
+              }
+              $excerptContent = "";
+              if( $ampforwp_show_excerpt == 'yes' ) {     
+                   if( has_excerpt() ) {    
+                     $content = get_the_excerpt();    
+                   } else {   
+                     $content = get_the_content();    
+                   }  
+                 $excerptContent = ' 
+                 <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ).'</p>';   
+              }
+               $title = get_the_title();
+             $contenthtml .= str_replace(array(
+                                "{{ampforwp_post_url}}",
+                                "{{image}}",
+                                "{{width}}",
+                                "{{height}}",
+                                "{{title}}",
+                                "{{excerptContent}}"
+                                ), 
+                              array(
+                                $ampforwp_post_url,
+                                $image,
+                                $width,
+                                $height,
+                                $title,
+                                $excerptContent
+                              ), 
+                              $loopHtml);
+             /* $contenthtml.='<li> 
+                              <div class="cat_mod_l"> 
+                                <a href="'. $ampforwp_post_url .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $image.'" width="'. $width . '" height="' . $height . '" layout="fixed"></amp-img></a> 
+                              </div>
+                              <div class="cat_mod_r">
+                                <a href="'. $ampforwp_post_url.'">'.get_the_title().'</a>'.
+                                $excerptContent.
+                                '</div>
+                            </li>';		*/
          }		
  		
        		
-         $contenthtml.= '</ul>';		
  		
      }		
      /* Restore original Post Data */		

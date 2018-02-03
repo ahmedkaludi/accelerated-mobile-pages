@@ -371,6 +371,19 @@
    
         <div class="clearfix"></div>
     </div>
+    <div class="amp-form-control" :id="field.name" data-type="layout-image-picker" v-else-if="field.type=='layout-image-picker' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+        <div class="form-label label_txt">{{field.label}}</div>
+        <div class="form-field color-wrapper"  style="line-height: 35px" >
+            <div  class="layout-image-picker" v-for="(option, key, index) in field.options_details"
+                    :data-value="option.value"
+                    :class="{'active': (field.default==option.value)}" v-on:click="select_layout_type(field, $event)">
+                <label  :data-value="option.value">{{option.label}}</label>
+                <img  :data-value="option.value" :src="option.demo_image">
+            </div>
+        </div>
+   
+        <div class="clearfix"></div>
+    </div>
 </script>
 <script type="text/x-template" id="fields-colorPicker-template">
     <input name="amppb-color-picker" v-model="colorfield.default"/>

@@ -375,11 +375,7 @@ Vue.component('fields-data',{
 	mounted: function () {//On ready State for component
 	  this.$nextTick(function () {
 	  		var self = this;
-	  		//this.filteredList = ;
-	  		
 	  		this.callChangeEnvent();
-	  	
-
 	  })
 	},
 	computed: {
@@ -389,6 +385,13 @@ Vue.component('fields-data',{
 		}
 	},
 	methods:{
+		select_layout_type: function(field,event){
+			var currentSelectfield = event.target;
+			selectedValue = currentSelectfield.getAttribute("data-value");
+			console.log(currentSelectfield);
+			console.log(selectedValue);
+			field.default = selectedValue;
+		},
 		selectimages:function(field,event){
 			app.stopModuleModalClose = true;
 			var currentSelectfield = event.target;
