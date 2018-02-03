@@ -6,7 +6,8 @@
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
 	<style amp-custom>
-	<?php do_action( 'amp_post_template_css', $this ); ?>
+		<?php $this->load_parts( array( 'style' ) ); ?>
+		<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
  

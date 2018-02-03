@@ -105,7 +105,7 @@ function ampforwp_stylesheet_file_insertion() {
         }
         // Add StyleSheet
         if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php') && 4 != $ampforwp_design_selector ) {
-	        require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
+	        //require AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. $ampforwp_design_selector . '/style.php';
 	    }else {
 	    	if ( 4 != $ampforwp_design_selector ) {
 		    	$plugin_data = get_plugins();

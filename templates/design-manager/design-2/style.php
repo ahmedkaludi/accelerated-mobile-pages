@@ -1,11 +1,10 @@
-<?php global $redux_builder_amp; ?>
-<?php
-add_action( 'amp_post_template_head', function() {
-    remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
-}, 9 );
-add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
+<?php global $redux_builder_amp; 
+// add_action( 'amp_post_template_head', function() {
+//     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+// }, 9 );
+// add_action('amp_post_template_css', 'ampforwp_additional_style_input_2');
 
-function ampforwp_additional_style_input_2( $amp_template ) {
+// function ampforwp_additional_style_input_2( $amp_template ) {
 	global $redux_builder_amp;
 	global $post;
 	$post_id = '';
@@ -338,4 +337,5 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 .amp-carousel-img img {object-fit: contain;}
 <?php // Ads (sitewide)
 if( ( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) || ( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) ){ ?> .amp-ad-wrapper{ text-align: center } .amp-ad-wrapper{ text-align: center; margin-left: -13px; } .amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; } .amp-ad-2{ margin-bottom: 50px; } .amp_home_body .amp_ad_1{ margin-top: 10px; margin-bottom: -20px; }<?php } 
-echo $redux_builder_amp['css_editor']; } ?>
+echo $redux_builder_amp['css_editor']; 
+//} ?>

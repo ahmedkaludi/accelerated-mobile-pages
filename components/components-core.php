@@ -298,7 +298,7 @@ function amp_header_core(){
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
 			<style amp-custom>
-				<?php //$thisTemplate->load_parts( array( 'style' ) ); ?>
+				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 			</style>

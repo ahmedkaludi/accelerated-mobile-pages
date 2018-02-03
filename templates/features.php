@@ -365,7 +365,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
 	   	// Custom Homepage and Archive file
 
@@ -422,13 +422,24 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
 
 	// 3. Custom Style files
-	add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_set_custom_style', 10, 3 );
 	function ampforwp_set_custom_style( $file, $type, $post ) {
 		if ( 'style' === $type ) {
 			$file = '';
 		}
 		return $file;
 	}
+add_filter('amp_post_template_dir','ampforwp_new_dir');
+function ampforwp_new_dir( $dir ) {
+		global $redux_builder_amp;
+		if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+			$dir = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector();
+		}
+		else {
+			$dir = AMPFORWP_CUSTOM_THEME;
+		}
+		return $dir;
+}
 
 	//3.5
 	add_filter( 'amp_post_template_file', 'ampforwp_empty_filter', 10, 3 );
@@ -525,7 +536,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	}
 
 	// 7. Footer for AMP Pages
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
 	function ampforwp_custom_footer( $file, $type, $post ) {
 		if ( 'footer' === $type ) {
 			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/footer.php';

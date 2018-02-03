@@ -8,9 +8,9 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 
 	require_once(  AMPFORWP_CUSTOM_THEME . '/functions.php' );
 	//Filter the Template files to override previous ones
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_header_file', 10, 2 );
-	add_filter( 'amp_post_template_file', 'ampforwp_designing_custom_template', 10, 3 );
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_footer_file', 10, 2 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_header_file', 10, 2 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_designing_custom_template', 10, 3 );
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_footer_file', 10, 2 );
 
 	// Custom Header
 	function ampforwp_custom_header_file( $file, $type ) {
@@ -212,7 +212,7 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 		return $file;
 	}
 	// Load the Core Styles of Custom Theme
-	add_action('amp_css', 'ampforwp_custom_style');
+	//add_action('amp_css', 'ampforwp_custom_style');
 	function ampforwp_custom_style() { 
 		global $redux_builder_amp; 
 		require_once( AMPFORWP_CUSTOM_THEME . '/style.php' );
