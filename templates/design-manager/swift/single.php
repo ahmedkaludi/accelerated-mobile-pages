@@ -82,15 +82,31 @@
 		</div>
 	</div>
 </div>
-<?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '2'){?>
+<?php } 
+	if ( $redux_builder_amp['single-design-type'] == '2') { ?>
 	<div class="sd-2">
 		<div class="cntr">
 			<?php amp_breadcrumb();?>
+			<?php amp_categories_list();?>
+				<?php amp_title(); ?>
+				<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
+					<div class="exc">
+					   <?php amp_excerpt(20); ?>
+				    </div>
+			    <?php } ?>
+				<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+					<?php amp_author_box( 
+						array(	'avatar'=>true,
+								'avatar_size'=>32)
+						); ?>
+				<?php } ?>
 			<div class="artl">
 				<div class="lft">
-					<?php amp_categories_list();?>
-					<?php amp_title(); ?>
+					<?php amp_featured_image();?>
+					<div class="cntn-wrp">
+						<?php amp_content(); ?>
+					</div>
+
 				</div>
 				<div class="rft">
 

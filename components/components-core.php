@@ -120,7 +120,7 @@ function amp_excerpt($no_of_words=15){
 	}
 	else
 		$ID = $post->ID;
-	if( $ID != null && true == $redux_builder_amp['enable-excerpt-single'] ){  ?>
+	if( $ID != null ){  ?>
 			<p><?php 
 				 if( has_excerpt() ){
 					$content = get_the_excerpt();
