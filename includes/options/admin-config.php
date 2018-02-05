@@ -1078,6 +1078,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '9' => __('Yandex Metrika', 'accelerated-mobile-pages'),
                             '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
                             '11' => __('Alexa Metrics', 'accelerated-mobile-pages'),
+                            '12' => __('AFS Analytics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -1359,6 +1360,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                           ),
                           'subtitle' => __( 'Enter the domain', 'accelerated-mobile-pages' ),
                           'default'  => '',
+                      ),
+                    // AFS Analytics
+                         array(
+                        'id' => 'ampforwp-afs-analytics-switch',
+                        'type'  => 'switch',
+                        'title' => 'AFS Analytics',
+                        'default' => ampforwp_get_default_analytics('12'),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                    ),
+                    array(
+                          'id'       => 'ampforwp-afs-siteid',
+                          'type'     => 'text',
+                          'title'    => __( 'Website ID', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-afs-analytics-switch', '=' , '1')
+                          ),
+                          'subtitle' => __( 'Enter the Website ID', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                          'desc' => 'example: 00000003',
                       ),   
 
                       //GTM

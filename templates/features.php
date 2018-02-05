@@ -999,6 +999,46 @@ function ampforwp_new_dir( $dir ) {
 						<!-- End Alexa AMP Certify Javascript -->
 							<?php
 						}
+			// 10.12 Analytics Support added for AFS Analytics
+					if ( isset($redux_builder_amp['ampforwp-afs-analytics-switch']) && true == $redux_builder_amp['ampforwp-afs-analytics-switch'] ) {
+						$afs_account = $redux_builder_amp['ampforwp-afs-siteid'];
+						$afs_server = "www";
+						if ($afs_account > 99999)
+							$afs_server = 'www1';
+						if ($afs_account > 199999)
+							$afs_server = 'www2';
+						if ($afs_account > 299999)
+							$afs_server = 'www3';
+						if ($afs_account > 399999)
+							$afs_server = 'www4';
+						if ($afs_account > 499999)
+							$afs_server = 'www5';
+						if ($afs_account > 599999)
+							$afs_server = 'www6';
+						if ($afs_account > 699999)
+							$afs_server = 'www7';
+						if ($afs_account > 799999)
+							$afs_server = 'www8';
+						if ($afs_account > 899999)
+							$afs_server = 'www9';
+						if ($afs_account > 999999)
+							$afs_server = 'www10'; ?>
+						<!-- Start AFS Analytics Javascript -->
+							<amp-analytics type="afsanalytics">
+								<script type="application/json">
+								{
+								  "vars": {
+								    "server": "<?php echo $afs_server; ?>",
+								    "websiteid": "<?php echo $afs_account; ?>"
+								    "title": "<?php echo esc_attr(get_the_title()); ?>"
+								    "url": "<?php echo esc_url(get_the_permalink()); ?>"
+								  }
+								}
+								</script>
+							</amp-analytics>
+						<!-- End AFS Analytics Javascript -->
+							<?php
+						}			
 		}//analytics function ends here
 	// For Setting up Google AMP Client ID API
 	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
