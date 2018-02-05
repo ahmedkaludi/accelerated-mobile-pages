@@ -3576,6 +3576,20 @@ Redux::setSection( $opt_name, array(
                'default'  => '2',
             ),
             array(
+                    'id'       => 'ampforwp-single-related-posts-image',
+                    'type'     => 'switch',
+                    'title'    => __('Image in Related Post', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Show/Hide Image in Related Post', 'accelerated-mobile-pages'),
+                    'default'  => 1,
+            ),
+            array(
+                    'id'       => 'ampforwp-single-related-posts-excerpt',
+                    'type'     => 'switch',
+                    'title'    => __('Excerpt in Related Post', 'accelerated-mobile-pages'),
+                    'subtitle' => __('Show/Hide Excerpt in Related Post', 'accelerated-mobile-pages'),
+                    'default'  => 1,
+            ),
+            array(
                     'id'       => 'ampforwp-single-order-of-related-posts',
                     'type'     => 'switch',
                     'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
