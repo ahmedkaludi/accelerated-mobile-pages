@@ -2683,6 +2683,7 @@ display: none;
 
 /*** Single ***/
 <?php if($redux_builder_amp['single-design-type'] == '2'){?>
+<?php if(is_single()){ ?>
 <?php if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 /** Breadcrumbs **/
 .breadcrumb{
@@ -2734,7 +2735,7 @@ display: none;
     width:100%
 }
 .amp-category span a, .amp-category span {
-    color: #000;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-size: 16px;
     font-weight: 900;
     text-transform: uppercase;
@@ -2766,7 +2767,7 @@ display: none;
     vertical-align:middle;
 }
 .author-details, .author-details a{
-    color: #424242;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-weight: 700;
     text-transform: capitalize;
 }
@@ -2792,6 +2793,11 @@ display: none;
     color: #000;
     line-height: 1.7;
     margin-top:20px;
+}
+.cntn-wrp a{
+    margin:10px 0px;
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+    display:inline-block;
 }
 .cntn-wrp p {
     margin: 0px 0px 30px 0px;
@@ -2869,6 +2875,9 @@ display: none;
 }
 .next a, .prev a {
     color: #333;
+}
+.next:hover a, .prev:hover a {
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
 }
 .prev {
     float: left;
@@ -2972,7 +2981,6 @@ display: none;
 .amp-comment-button {
     background-color: #005be2;
     font-size: 15px;
-    font-family: 'Open Sans',sans-serif;
     float: none;
     width: 100%;
     margin: 0 auto;
@@ -3020,7 +3028,7 @@ display: none;
     color: #777;
     font-size: 12px;
     text-transform: uppercase;
-    margin-bottom:6px;
+    margin-bottom:10px;
 }
 .amp-tag a{
     padding: 6px 12px;
@@ -3040,7 +3048,6 @@ display: none;
 .rl-p{
     width:100%;
     display:inline-flex;
-    margin-top:20px;
 }
 .rl-p .has_thumbnail {
     list-style-type: none;
@@ -3056,12 +3063,12 @@ display: none;
     margin-top:10px;
 }
 .related_link a{
-    font-weight: 800;
+    font-weight: bold;
     color: #000;
     font-size: 17px;
-    line-height:1.5;
+    line-height:1.4;
 }
 .rlp-cnt .amp-author, .rlp-cnt p{
     display:none;
 }
-<?php } ?>
+<?php } } ?>
