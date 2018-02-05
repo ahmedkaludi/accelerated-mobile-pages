@@ -2832,7 +2832,7 @@ display: none;
 }
 /** post pagination **/
 #pagination {
-    margin-top: 30px;
+    margin-top: 10px;
     border-top: 1px dotted #ccc;
     padding: 20px 5px 0px 5px;
     font-size: 16px;
@@ -2846,6 +2846,16 @@ display: none;
     display: block;
     position: absolute;
     top: -26px;
+}
+.next span {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #666;
+    display: block;
+    font-weight: 400;
+    position: absolute;
+    top: -26px;
+    right: 0;
 }
 .prev:after {
     border-left: 1px dotted #ccc;
