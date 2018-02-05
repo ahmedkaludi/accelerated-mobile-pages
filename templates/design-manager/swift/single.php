@@ -6,11 +6,9 @@
 		<?php amp_breadcrumb();?>
 		<?php amp_categories_list();?>
 		<?php amp_title(); ?>
-		<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
-			<div class="tl-exc">
-			   <?php amp_excerpt(20); ?>
-		    </div>
-	    <?php } ?>
+		<div class="tl-exc">
+		   <?php amp_excerpt(20); ?>
+	    </div>
 	</div>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
@@ -88,23 +86,44 @@
 		<div class="cntr">
 			<?php amp_breadcrumb();?>
 			<?php amp_categories_list();?>
-				<?php amp_title(); ?>
-				<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
-					<div class="exc">
-					   <?php amp_excerpt(20); ?>
-				    </div>
-			    <?php } ?>
-				<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
-					<?php amp_author_box( 
-						array(	'avatar'=>true,
-								'avatar_size'=>32)
-						); ?>
-				<?php } ?>
+			<!-- <div class="author-details">
+	            <span><?php amp_author_meta(array('name'=>'true')); ?></span>
+	            <span>UPDATED</span> <?php amp_date('date'); ?>
+		    </div> -->
+			<?php amp_title(); ?>
+				<div class="exc">
+				   <?php amp_excerpt(20); ?>
+			    </div>
+			<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+				<?php amp_author_box( 
+					array(	'avatar'=>true,
+							'avatar_size'=>32)
+					); ?>
+			<?php } ?>
 			<div class="artl">
 				<div class="lft">
 					<?php amp_featured_image();?>
 					<div class="cntn-wrp">
 						<?php amp_content(); ?>
+					</div>
+					<?php amp_post_navigation();?>
+					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+						<div class="artl-atr">
+						<?php amp_author_box( 
+							array(	'avatar'=>true,
+									'avatar_size'=>50,
+									'author_description'=>true)
+							); ?>
+						</div>
+					<?php } ?>
+					<?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
+			            <div class="tags">
+			            	<?php amp_tags_list();?>
+			            </div>
+		            <?php } ?>
+					<div class="cmts">
+						<?php amp_comments();?>
+						<?php do_action('ampforwp_post_after_design_elements'); ?>
 					</div>
 
 				</div>
