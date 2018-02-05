@@ -2720,13 +2720,13 @@ display: none;
 .shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{
     display: block;
 }
-.shr-txt, .athr-tx, .r-pf h3, .amp-related-posts-title, .post-date, .related-title{
+.shr-txt, .athr-tx, .r-pf h3, .post-date, .related-title{
     text-transform: uppercase;
     font-size: 12px;
     color: #666;
     font-weight: 400;
 }
-.shr-txt, .athr-tx, .amp-related-posts-title, .related-title, .r-pf h3 {
+.shr-txt, .athr-tx, .related-title, .r-pf h3 {
     margin-bottom: 12px;
 }
 .sd-2{
@@ -2907,17 +2907,16 @@ display: none;
     width: 100%;
     display: inline-block;
     clear: both;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 .cmts h3 {
     margin: 0;
     font-size: 12px;
     padding-bottom: 6px;
     border-bottom: 1px solid #eee;
-    font-weight: 400;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #444;
+    color: #777;
 }
 .cmts ul {
     margin-top: 16px;
@@ -3006,14 +3005,12 @@ display: none;
 .amp-tags{
     margin-top:30px;
 }
-.amp-tags > span:nth-child(1){
-       font-weight: 900;
-    color: #838383;
-    letter-spacing: .6px;
-    font-size: 22px;
-    line-height: 1.5;
+.amp-tags > span:nth-child(1), .amp-related-posts-title{
+    font-weight: 700;
+    color: #777;
+    font-size: 12px;
     text-transform: uppercase;
-    margin-bottom:10px;
+    margin-bottom:6px;
 }
 .amp-tag a{
     padding: 6px 12px;
@@ -3025,5 +3022,36 @@ display: none;
     display: inline-block;
     color: #9c9c9c;
     border: 1px solid #9c9c9c;
+}
+/** Related posts **/
+.srp {
+    margin-top: 30px;
+}
+.rl-p{
+    width:100%;
+    display:inline-flex;
+    margin-top:20px;
+}
+.rl-p .has_thumbnail {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 31%;
+    margin: 0 3% 3% 0;
+}
+.rl-p .has_thumbnail:last-child{
+    margin-right:0;
+}
+.rlp-cnt{
+    margin-top:10px;
+}
+.related_link a{
+    font-weight: 800;
+    color: #000;
+    font-size: 17px;
+    line-height:1.5;
+}
+.rlp-cnt .amp-author, .rlp-cnt p{
+    display:none;
 }
 <?php } ?>

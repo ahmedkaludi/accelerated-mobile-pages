@@ -127,11 +127,36 @@
 			            	<?php amp_tags_list();?>
 			            </div>
 		            <?php } ?>
+		            <?php
+					$my_query = related_post_loop_query();
+				  	if( $my_query->have_posts() ) { ?>
+				  	<div class="srp">
+			            <ul class="clearfix">
+					        <?php ampforwp_related_post(); ?>
+					        <div class="rl-p">
+					        <?php
+					          while( $my_query->have_posts() ) {
+					            $my_query->the_post();
+					        ?>
+					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+					            <div class="rlp-image">     
+					                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
+								</div>
+								<div class="rlp-cnt">
+									<?php $argsdata = array();
+									ampforwp_get_relatedpost_content($argsdata); ?> 
+						        </div>
+					        </li><?php
+					        } ?>
+					        </div>
+					    <?php  } ?>
+	      				</ul>
+	      			</div>
+		            <?php wp_reset_postdata(); ?>
 					<div class="cmts">
 						<?php amp_comments();?>
 						<?php do_action('ampforwp_post_after_design_elements'); ?>
 					</div>
-
 				</div>
 				<div class="rft">
 
