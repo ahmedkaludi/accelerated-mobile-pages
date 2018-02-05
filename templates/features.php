@@ -365,59 +365,52 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
-	//add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
 	   	// Custom Homepage and Archive file
 
         global $redux_builder_amp;
 		$slug = array();
 		$current_url_in_pieces = array();
-
 		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
 		        
-        // Homepage and FrontPage
-        if ( is_home() ) {
-        	if ( 'single' === $type ) {
+    	if ( 'single' === $type ) {
+	        // Homepage and FrontPage
+	        if ( is_home() ) {
 
-        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 
-		       if ( ampforwp_is_front_page() && 1 == $redux_builder_amp['amp-frontpage-select-option'] ) {
-		           
-		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-	            }
+			       if ( ampforwp_is_front_page()  ) {
+			           
+			            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+		            }
 
-	            if ( ampforwp_is_blog() ) {
-				 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-	            }
-			}
+		            if ( ampforwp_is_blog() ) {
+					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+		            }
+				}
+	        // Archive Pages
+	        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
+
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
+	        }
+			// Search pages
+	      	if ( is_search() &&
+							( $redux_builder_amp['amp-design-1-search-feature'] ||
+							  $redux_builder_amp['amp-design-2-search-feature'] ||
+								$redux_builder_amp['amp-design-3-search-feature'] )
+							)  {
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
+	        }
 		}
 
-
-
-        // Archive Pages
-        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
-
-            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
-        }
-
-
-				// Search pages
-      	if ( is_search() &&
-						( $redux_builder_amp['amp-design-1-search-feature'] ||
-						  $redux_builder_amp['amp-design-2-search-feature'] ||
-							$redux_builder_amp['amp-design-3-search-feature'] )
-						)  {
-            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
-        }
-
-
 		// Custom Single file
-	    if ( is_single() || is_page() ) {
+	    /*if ( is_single() || is_page() ) {
 
 			if('single' === $type ) {
 			 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 	}
-		}
+		}*/
 	    return $file;
 	}
 
@@ -539,7 +532,13 @@ function ampforwp_new_dir( $dir ) {
 	//add_filter( 'amp_post_template_file', 'ampforwp_custom_footer', 10, 3 );
 	function ampforwp_custom_footer( $file, $type, $post ) {
 		if ( 'footer' === $type ) {
-			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/footer.php';
+			if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/footer.php';
+			}
+		else {
+			$file = AMPFORWP_CUSTOM_THEME .'/footer.php';
+		}
+			//$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/footer.php';
 		}
 		return $file;
 	}

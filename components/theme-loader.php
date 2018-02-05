@@ -9,7 +9,7 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	require_once(  AMPFORWP_CUSTOM_THEME . '/functions.php' );
 	//Filter the Template files to override previous ones
 	//add_filter( 'amp_post_template_file', 'ampforwp_custom_header_file', 10, 2 );
-	//add_filter( 'amp_post_template_file', 'ampforwp_designing_custom_template', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_designing_custom_template', 10, 3 );
 	//add_filter( 'amp_post_template_file', 'ampforwp_custom_footer_file', 10, 2 );
 
 	// Custom Header
@@ -24,11 +24,11 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	function ampforwp_designing_custom_template( $file, $type, $post ) { 
 	 global $redux_builder_amp;
 		// Single file
-	    if ( is_single() ) {
+	    /*if ( is_single() ) {
 			if( 'single' === $type && ! ('product' === $post->post_type) ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/single.php';
 		 	}
-		}
+		}*/
 		if ( is_page() ) {
 			if( 'single' === $type && ! ('product' === $post->post_type) ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/page.php';
@@ -53,13 +53,8 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 		        if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
 					$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		        }
-		        if ( 'page' == $ampforwp_custom_post_page && ampforwp_name_blog_page() ) {
-					$current_url = home_url( $GLOBALS['wp']->request );
-					$current_url_in_pieces = explode( '/', $current_url );
-				
-					if ( in_array(ampforwp_name_blog_page(), $current_url_in_pieces ) ) {
-						 $file = AMPFORWP_CUSTOM_THEME . '/index.php';
-					}  
+		        if ( ampforwp_is_blog() ) {
+				 	$file = AMPFORWP_CUSTOM_THEME . '/index.php';
 				}
 		    }
 	    }
