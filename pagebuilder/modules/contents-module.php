@@ -1,13 +1,14 @@
 <?php		
 require_once  ABSPATH . WPINC . '/category.php';
  $output = '
-           <div class="pb_mod cat_mod">Step 1:<h4>{{content_title}}</h4>   
+           <div class="pb_mod cat_mod"><h4>{{content_title}}</h4>   
                 <div class="wrap"><ul>{{category_selection}}</ul></div>    
             </div>
           ';
  
 
  $frontCss = '
+
 .cat_mod ul{
     display: flex;
     flex-wrap: wrap;
@@ -57,6 +58,19 @@ require_once  ABSPATH . WPINC . '/category.php';
   line-height: 20px;
   letter-spacing: 0.10px;
   margin-bottom:0;
+}
+
+/*** design-cat-2-styles ***/
+.cat_mod ul li {
+  list-style-type:none;
+}
+.wrap .cat-img a{
+  margin:0;
+  padding:0;
+  line-height:0;
+}
+.cat-cntn a{
+  margin:0; 
 }
 ';
 
@@ -248,7 +262,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-width",    
-            'label'   =>'Image Width',
+            'label'   =>'Image Width(1)',
             'tab'     =>'customizer',
             'default' =>'346', 
             'content_type'=>'html',
@@ -256,11 +270,43 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-height",    
-            'label'   =>'Image Height',
+            'label'   =>'Image Height(1)',
             'tab'     =>'customizer',
             'default' =>'188', 
             'content_type'=>'html',
             ),
+
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-width",    
+            'label'   =>'Image Width(2)',
+            'tab'     =>'customizer',
+            'default' =>'346', 
+            'content_type'=>'html',
+            'required'  => array('content_layout_type' => 2),
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-height",    
+            'label'   =>'Image Height(2)',
+            'tab'     =>'customizer',
+            'default' =>'188', 
+            'content_type'=>'html',
+            'required'  => array('content_layout_type' => 2),
+            ),
+            array(
+                'type'    =>'checkbox',
+                'name'    =>"image_layout",
+                'tab'   =>'customizer',
+                'default' =>array('responsive'),
+                'options' =>array(
+                        array(
+                          'label'=>'Responsive',
+                          'value'=>'responsive',
+                        ),
+                      ),
+                'content_type'=>'html',
+              ),
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,
@@ -280,14 +326,13 @@ require_once  ABSPATH . WPINC . '/category.php';
 
                       {{if_condition_content_layout_type==2}}
                           <li> 
-                              <div class="cat_mod_l Second"> 
-                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="fixed"></amp-img></a> 
-                              </div>
-                              <div class="cat_mod_r">
+                            <div class="cat-img 2">
+                              <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}"  layout="{{image_layout}}"></amp-img></a> 
+                            </div>
+                            <div class="cat-cntn 2">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
-                                {{excerptContent}}
-                                </div>
-                            </li>
+                            </div>
+                          </li>
                       {{ifend_condition_content_layout_type_2}}
                           ',
  );		
