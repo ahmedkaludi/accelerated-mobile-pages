@@ -19,209 +19,169 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
 }
+
+$extension_listing_array = array(
+                        array(
+                            'name'=>'Advanced AMP ADS',
+                            'desc'=>'Add Advertisement directly in the content',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
+                            'item_name'=>'advanced-amp-ads',
+                            'store_url'=>'http://magazine3.com/garage/',
+                        ),
+                        array(
+                            'name'=>'Contact Form 7',
+                            'desc'=>'Add Contact Us Form in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cf7.png',
+                            'price'=>'$39',
+                            'url_link'=>'http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-cf7/amp-cf7.php',
+                            'item_name'=>'contact-form-7',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Gravity Forms',
+                            'desc'=>'Add Gravity Forms Support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/gf.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-gravity-forms/amp-gravity-forms.php',
+                            'item_name'=>'Gravity Forms',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Email Opt-in Forms',
+                            'desc'=>'Capture Leads with Email Subscription.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-optin/amp-optin.php',
+                            'item_name'=>'Email Opt-in Forms',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Call To Action (CTA)',
+                            'desc'=>'Higher Visibility & More Conversions',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'AMP-cta/amp-cta.php',
+                            'item_name'=>'Call To Action (CTA)',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Custom Post Type',
+                            'desc'=>'Enable Custom Post type support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
+                            'price'=>'$19',
+                            'url_link'=>'http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-custom-post-type/amp-custom-post-type.php',
+                            'item_name'=>'Custom Post Type',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Advanced Custom Fields',
+                            'desc'=>'Easily add ACF support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/acf.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'advanced-custom-fields/acf.php',
+                            'item_name'=>'Advanced Custom Fields',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'Star Ratings',
+                            'desc'=>'Star Review Ratings for AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/star.png',
+                            'price'=>'$19',
+                            'url_link'=>'http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-rating/amp-rating.php',
+                            'item_name'=>'Star Ratings',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'AMP WooCommerce Pro',
+                            'desc'=>'Advanced WooCommerce in AMP in two clicks.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/woo.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/woocommerce/',
+                            'plugin_active_path'=> 'amp-woocommerce-pro/amp-woocommerce.php',
+                            'item_name'=>'AMP WooCommerce Pro',
+                            'store_url'=>'',
+                        ),
+                         array(
+                            'name'=>'Category Base Removal',
+                            'desc'=>'Remove Category Base Support in AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/puzzel.png',
+                            'price'=>'FREE',
+                            'url_link'=>'http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> '',
+                            'item_name'=>'Category Base Removal',
+                            'store_url'=>'',
+                        ),
+                        array(
+                            'name'=>'View All Extensions',
+                            'desc'=>'See all the extensions available for AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
+                            'price'=>'FREE',
+                            'url_link'=>'https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> '',
+                            'item_name'=>'',
+                            'store_url'=>'',
+                        ),
+                    );
+$extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
+$ampforwp_extension_list_html = '';
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+foreach ($extension_listing_array as $key => $extension) {
+    $currentStatus = "";
+
+    $onclickUrl = 'window.open(\''.$extension['url_link'].'\', \'_blank\');';
+    $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
+    if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
+        $currentStatus = "not-active invalid";
+        $onclickUrl = "";
+        $pathExploded = explode("/", $extension['plugin_active_path']);
+        $pathExploded = $pathExploded[0];
+
+        $amplicense = '';
+        $selectedOption = get_option('redux_builder_amp',true);
+        if(isset($selectedOption['amp-license'][$pathExploded])){
+            $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
+        }
+        if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
+             $currentStatus = 'active valid';
+        }
+
+        $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" onclick="return false;" value="'.$amplicense.'"> 
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'"> 
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
+
+        <button type="submit" id="'.$pathExploded.'">Verify</button>';
+         
+    }
+    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'" onclick="'.$onclickUrl.'"><a href="#">
+        <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
+        <div class="extension_desc">
+        <h2>'.$extension['name'].'</h2>
+        <p>'.$extension['desc'].'</p>
+        '.$pluginReview.'
+        </div>
+    </a></li>';
+}
+
 $extension_listing = '
 <div class="extension_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
 <ul>
-    <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
-        <div class="extension_desc">
-        <h2>Advanced AMP ADS</h2>
-        <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/cf7.png" /></div>
-        <div class="extension_desc">
-        <h2>Contact Form 7</h2>
-        <p>Add Contact Us Form in AMP.</p>
-        <div class="extension_btn">From: $39</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/gf.png" /></div>
-        <div class="extension_desc">
-        <h2>Gravity Forms</h2>
-        <p>Add Gravity Forms Support in AMP.</p>
-        <div class="extension_btn">From: $79</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
-        <div class="extension_desc">
-        <h2>Email Opt-in Forms</h2>
-        <p>Capture Leads with Email Subscription.</p>
-        <div class="extension_btn">From: $79</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
-        <div class="extension_desc">
-        <h2>Call To Action (CTA)</h2>
-        <p>Higher Visibility & More Conversions</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
-        <div class="extension_desc">
-        <h2>Custom Post Type</h2>
-        <p>Enable Custom Post type support in AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-
-    <li class="second"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
-        <div class="extension_desc">
-        <h2>Advanced Custom Fields</h2>
-        <p>Easily add ACF support in AMP.</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=extension-tab_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
-        <div class="extension_desc">
-        <h2>DoubleClick For Publishers</h2>
-        <p>Enable DFP Support for AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-
-
-    <li class="second"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
-        <div class="extension_desc">
-        <h2>Star Ratings</h2>
-        <p>Star Review Ratings for AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="https://ampforwp.com/woocommerce/" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
-        <div class="extension_desc">
-        <h2>AMP WooCommerce Pro</h2>
-        <p>Advanced WooCommerce in AMP in two clicks.</p>
-        <div class="extension_btn">From: $79</div>
-        </div>
-    </a></li>
-
-    <li class="second"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
-        <div class="extension_desc">
-        <h2>Category Base Removal</h2>
-        <p>Remove Category Base Support in AMP</p>
-        <div class="extension_btn">FREE</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=extension-tab_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
-        <div class="extension_desc">
-        <h2>View All Extensions</h2>
-        <p>See all the extensions available for AMP</p>
-        </div>
-    </a></li>
-
+   
+'.$ampforwp_extension_list_html.'
 
 </ul>
 </div>
 ';
-
-
-$gettingstarted_extension_listing = '
-<div class="extension_listing getting_started_listing">
-<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
-<ul>
-    <li class="first"><a href="http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=gettingstarted-amp-ads&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/click.png" /></div>
-        <div class="extension_desc">
-        <h2>Advanced AMP ADS</h2>
-        <p>Add Advertisement directly in the content</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=gettingstarted_opt-in-forms&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/email.png" /></div>
-        <div class="extension_desc">
-        <h2>Email Opt-in Forms</h2>
-        <p>Capture Leads with Email Subscription.</p>
-        <div class="extension_btn">From: $79</div>
-        </div>
-    </a></li>
-    <li class="first"><a href="http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=gettingstarted_amp-cta&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/mac-click.png" /></div>
-        <div class="extension_desc">
-        <h2>Call To Action (CTA)</h2>
-        <p>Higher Visibility & More Conversions</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=gettingstarted_custom-post-type&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
-        <div class="extension_desc">
-        <h2>Custom Post Type</h2>
-        <p>Enable Custom Post type support in AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-
-    <li class="first"><a href="http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=gettingstarted_acf&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/acf.png" /></div>
-        <div class="extension_desc">
-        <h2>Advanced Custom Fields</h2>
-        <p>Easily add ACF support in AMP.</p>
-        <div class="extension_btn">From: $29</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="http://ampforwp.com/doubleclick-for-publishers/#utm_source=options-panel&utm_medium=gettingstarted_doubleclick&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/dfp.png" /></div>
-        <div class="extension_desc">
-        <h2>DoubleClick For Publishers</h2>
-        <p>Enable DFP Support for AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-
-
-    <li class="first"><a href="http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=gettingstarted_amp-ratings&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/star.png" /></div>
-        <div class="extension_desc">
-        <h2>Star Ratings</h2>
-        <p>Star Review Ratings for AMP.</p>
-        <div class="extension_btn">From: $19</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="https://ampforwp.com/woocommerce/" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/woo.png" /></div>
-        <div class="extension_desc">
-        <h2>AMP WooCommerce Pro</h2>
-        <p>Advanced WooCommerce in AMP in two clicks.</p>
-        <div class="extension_btn">From: $79</div>
-        </div>
-    </a></li>
-
-    <li class="first"><a href="http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=gettingstarted_amp-category-base-remove-support&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/puzzel.png" /></div>
-        <div class="extension_desc">
-        <h2>Category Base Removal</h2>
-        <p>Remove Category Base Support in AMP</p>
-        <div class="extension_btn">FREE</div>
-        </div>
-    </a></li>
-    <li class="second"><a href="https://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=gettingstarted_amp-more-comingsoon&utm_campaign=AMP%20Plugin" target="_blank">
-        <div class="align_left"><img src="'.AMPFORWP_IMAGE_DIR . '/comments.png" /></div>
-        <div class="extension_desc">
-        <h2>View All Extensions</h2>
-        <p>See all the extensions available for AMP</p>
-<div class="extension_btn">View All</div>        </div>
-    </a></li>
-
-
-</ul>
-</div>
-';
-
 
 
 

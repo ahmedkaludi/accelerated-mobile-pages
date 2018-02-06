@@ -205,3 +205,28 @@ body #toplevel_page_amp_options .wp-menu-image{
 .amp-update-notice-review-box span{
     font-size: 11px;text-transform: uppercase;
 }
+li.first{
+    position: relative;
+}
+.active.valid:before{
+    content: "✓";
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+    left: 20px;
+    background: green;
+    top: 15px;
+    padding: 4px 7px;
+    border-radius: 100%;
+}
+.not-active.invalid:before{
+    content: "X";
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+    left: 20px;
+    background: #f32a56;
+    top: 15px;
+    padding: 4px 7px;
+    border-radius: 100%;
+}
