@@ -2737,6 +2737,7 @@ display: none;
 .amp-category span a, .amp-category span {
     color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-size: 16px;
+    line-height:1.4;
     font-weight: 900;
     text-transform: uppercase;
     font-style:italic;
