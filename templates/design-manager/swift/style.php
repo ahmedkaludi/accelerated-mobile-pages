@@ -2743,19 +2743,17 @@ display: none;
 }
 .amp-post-title {
     font-size: 50px;
-    line-height: 1.4;
+    line-height: 1.2;
     color: #000;
     margin: 0;
     padding-top: 15px;
     font-weight: 900;
-    max-width:900px;
 }
 .exc {
     font-size: 20px;
     margin-top: 10px;
     color: #313131;
-    max-width: 700px;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 .amp-author {
     width:100%;
@@ -3066,6 +3064,7 @@ display: none;
 }
 /** right sidebar  css **/
 .rft{
+    width:30%;
     margin-top:30px;
 }
 .rc-p {
@@ -3150,6 +3149,10 @@ display: none;
 }
 .amp-post-title {
     font-size: 42px;
+}
+.rft {
+    width: 100%;
+    margin-top: 40px;
 }
 }
 @media(max-width:767px){
