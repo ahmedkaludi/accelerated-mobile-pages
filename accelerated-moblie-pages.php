@@ -310,10 +310,15 @@ if ( is_admin() ) {
  	}
 } // is_admin() closing
 
-	// AMP endpoint Verifier
-	function ampforwp_is_amp_endpoint() {
+// AMP endpoint Verifier
+function ampforwp_is_amp_endpoint() {
+	if ( ampforwp_is_non_amp() ) {
+		return ampforwp_is_non_amp();
+	}
+	else {
 		return false !== get_query_var( 'amp', false );
 	}
+}
 
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {

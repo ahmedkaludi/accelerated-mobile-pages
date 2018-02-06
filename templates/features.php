@@ -5703,3 +5703,37 @@ function swifttheme_footer_widgets_init() {
 	}
 }
 add_action( 'init', 'swifttheme_footer_widgets_init' );
+
+// AMP Takeover
+function ampforwp_is_non_amp( $type="non_amp_check" ) {
+	global $redux_builder_amp;
+	$non_amp = false;
+	if ( true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
+		$non_amp = true;
+	}
+	//check for theme
+	if ( 'Twenty Fifteen' != wp_get_theme() ) {
+		return false;
+	}
+	if ( false !== get_query_var( 'amp', false ) ) {
+		return false;
+	}
+	// Check for Posts
+	if ( is_single() && false == $redux_builder_amp['amp-on-off-for-all-posts'] ) {
+		return false;
+	}
+	// Archives
+	if ( is_archive() && false == $redux_builder_amp['ampforwp-archive-support'] ) {
+		return false;
+	}
+	// Pages
+	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+		return false;
+	}
+	// Homepage
+	if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+		return false;
+	}
+
+	return $non_amp;
+}

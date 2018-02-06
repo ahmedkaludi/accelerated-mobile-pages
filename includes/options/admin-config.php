@@ -554,6 +554,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
+           array(
+               'id'       => 'ampforwp-amp-takeover',
+               'type'     => 'switch',
+               'title'    => __('AMP Takeover', 'accelerated-mobile-pages'),
+               //'subtitle' => __('Make your whole site as AMP.', 'accelerated-mobile-pages'),
+               'default'  => '0'
+             ),
 
           //  array(
           //      'id'       => 'amp-ad-places',
