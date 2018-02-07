@@ -118,7 +118,7 @@ function ampForWP_extension_activate_license() {
             }
             update_option( 'redux_builder_amp', $selectedOption );
             
-            wp_redirect( admin_url( '?page=amp_options&tab=2' ) );
+            //wp_redirect( admin_url( '?page=amp_options&tab=2' ) );
 
         }
 
