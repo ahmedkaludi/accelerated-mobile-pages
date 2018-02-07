@@ -57,8 +57,9 @@ blockquote p:last-child {margin-bottom: 0;}
 .amp-wp-enforced-sizes{ max-width: 100% }
 /* CSS Reset */
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
-*,*:after,*:before {box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}
-
+*,*:after,*:before {
+box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}
+ 
 /* Image Alignment */
 .alignright {
     float: right;
@@ -119,11 +120,12 @@ amp-sidebar, .lb-t {
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
  <?php } ?>
 }
-amp-sidebar {
-    width: 100%;
-    padding-left:5%;
-    padding-right:5%;
+<?php if($redux_builder_amp['menu-type'] == '1'){?>
+amp-sidebar{
+    width:100%;
+    padding:0 5% 0 5%;
 }
+<?php } ?>
 /* AMP Sidebar Toggle button */
 .amp-sidebar-button{
     position:relative;
@@ -2037,4 +2039,27 @@ amp-user-notification button {
 }
 
 }
+<?php } ?>
+/*** Extra CSS for New designs ***/
+<?php if($redux_builder_amp['menu-type'] == '2'){?>
+amp-sidebar {
+    width: 100%;
+    box-sizing: content-box;
+    -webkit-box-sizing:  content-box;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top:77px;
+}
+.m-menu ul li a{
+    color:red;
+}
+.amp-sidebar-close:after {
+    content: "\e5cd";
+    font-family: 'icomoon';
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    text-indent: 1px;
+    cursor: pointer;
+    padding: 12px 16px;
+ }
 <?php } ?>
