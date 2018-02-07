@@ -5,210 +5,137 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function amp_ads_license_menu() {
-    add_plugins_page( 'Plugin License', 'Plugin License', 'manage_options', AMP_ADS_LICENSE_PAGE, 'AMP_ADS_LICENSE_PAGE' );
-}
-add_action( 'admin_menu', 'amp_ads_license_menu');
-
-function AMP_ADS_LICENSE_PAGE() {
-    $license = get_option( 'amp_ads_license_key' );
-    $status  = get_option( 'amp_ads_license_status' );
-    ?>
-    <div class="wrap">
-        <h2><?php _e( 'License', 'advanced-amp-ads' ); ?></h2>
-        <form method="post" action="options.php">
-
-            <?php settings_fields( 'amp_ads_plugin_license'); ?>
-
-            <table class="form-table">
-                <tbody>
-                    <tr valign="top">
-                        <th scope="row" valign="top">
-                            <?php _e( 'License Key', 'advanced-amp-ads' ); ?>
-                        </th>
-                        <td>
-                            <input id="amp_ads_license_key" name="amp_ads_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license ); ?>" />
-                            <p class="description" for="amp_ads_license_key"><?php _e( 'Enter your license key', 'advanced-amp-ads' ); ?></p>
-                        </td>
-                    </tr>
-                    <?php if( false !== $license && '' != $license ) { ?>
-                        <tr valign="top">
-                            <th scope="row" valign="top">
-                                <?php _e( 'Action', 'advanced-amp-ads' ); ?>
-                            </th>
-                            <td>
-                                <?php if( $status !== false && $status == 'valid' ) { ?>
-                                    <?php wp_nonce_field( 'advanced_amp_ads_nonce', 'advanced_amp_ads_nonce' ); ?>
-                                    <input type="submit" class="button-secondary" name="amp_ads_license_deactivate" value="<?php _e( 'Deactivate License', 'advanced-amp-ads' ); ?>"/>
-                                <?php } else {
-                                    wp_nonce_field( 'advanced_amp_ads_nonce', 'advanced_amp_ads_nonce' ); ?>
-                                    <input type="submit" class="button-secondary" name="amp_ads_license_activate" value="<?php _e( 'Activate License', 'advanced-amp-ads' ); ?>"/>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    <?php if( false !== $license && '' != $license ) { ?>
-                        <tr valign="top">
-                            <th scope="row" valign="top">
-                                <?php _e( 'Status', 'advanced-amp-ads' ); ?>
-                            </th>
-                            <td>
-                                <?php if( $status !== false && $status == 'valid' ) { ?>
-                                    <span style="color: green;"><span class="dashicons dashicons-yes"></span> <?php _e( 'Active', 'advanced-amp-ads' ); ?></span>
-                                <?php } else { ?>
-                                    <span style="color: red;"><span class="dashicons dashicons-no-alt"></span> <?php _e( 'Inactive', 'advanced-amp-ads' ); ?></span>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    
-                </tbody>
-            </table>
-            <?php submit_button(); ?>
-
-        </form>
-    <?php
-}
-
-function amp_ads_register_option() {
-    // creates our settings in the options table
-    register_setting( 'amp_ads_plugin_license', 'amp_ads_license_key', 'amp_ads_sanitize_license' );
-}
-add_action( 'admin_init', 'amp_ads_register_option');
-
-function amp_ads_sanitize_license( $new ) {
-    $old = get_option( 'amp_ads_license_key' );
-    if( $old && $old != $new ) {
-        delete_option( 'amp_ads_license_status' ); // new license has been entered, so must reactivate
-    }
-    return $new;
-}
 
 /**
  * Activate the license
  */
-function amp_ads_activate_license() {
+function ampForWP_extension_activate_license() {
+    /*if(!isset($_POST['redux_builder_amp']['amp-license'])){
+        print_r($_POST);die;
+        echo "yes";die;
+        return;
+    }
+*/
+    $selectedOption = get_option('redux_builder_amp',true);
+      if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
+            foreach ($selectedOption['amp-license'] as $ext_key => $ext_value) {
+                $amplicense = $ext_value['license'];
+                $item_name  = $ext_value['item_name'];
+                $store_url  = $ext_value['store_url'];
+                if($store_url!="" && isset($ext_value['status']) && $ext_value['status']==='valid'){
+                    continue;
+                }
+                // data to send in our API request
+                $api_params = array(
+                    'edd_action' => 'activate_license',
+                    'license'    => $amplicense,
+                    'item_name'  => urlencode( $item_name ), // the name of our product in EDD
+                    'url'        => home_url()
+                );
 
-    // listen for our activate button to be clicked
-    if( isset( $_POST['amp_ads_license_activate'] ) ) {
+                // Call the custom API.
+                $response = wp_remote_post( $store_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+                // make sure the response came back okay
+                if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 
-        // run a quick security check
-        if( ! check_admin_referer( 'advanced_amp_ads_nonce', 'advanced_amp_ads_nonce' ) )
-            return; // get out if we didn't click the Activate button
-
-        // retrieve the license from the database
-        $license = trim( get_option( 'amp_ads_license_key' ) );
-
-        // data to send in our API request
-        $api_params = array(
-            'edd_action' => 'activate_license',
-            'license'    => $license,
-            'item_name'  => urlencode( AMP_ADS_ITEM_NAME ), // the name of our product in EDD
-            'url'        => home_url()
-        );
-
-        // Call the custom API.
-        $response = wp_remote_post( AMP_ADS_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-
-        // make sure the response came back okay
-        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-
-            if ( is_wp_error( $response ) ) {
-                $message = $response->get_error_message();
-            } else {
-                $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
-            }
-
-        } else {
-
-            $license_data = json_decode( wp_remote_retrieve_body( $response ) );
-
-            if ( false === $license_data->success ) {
-
-                switch( $license_data->error ) {
-
-                    case 'expired' :
-
-                        $message = sprintf(
-                            __( 'Your license key expired on %s.', 'advanced-amp-ads' ),
-                            date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
-                        );
-                        break;
-
-                    case 'revoked' :
-
-                        $message = __( 'Your license key has been disabled.', 'advanced-amp-ads' );
-                        break;
-
-                    case 'missing' :
-
-                        $message = __( 'Invalid license.', 'advanced-amp-ads' );
-                        break;
-
-                    case 'invalid' :
-                    case 'site_inactive' :
-
-                        $message = __( 'Your license is not active for this URL.', 'advanced-amp-ads' );
-                        break;
-
-                    case 'item_name_mismatch' :
-
-                        $message = sprintf( 
-                            __( 'This appears to be an invalid license key for %s.', 'advanced-amp-ads' ),
-                            AMP_ADS_ITEM_NAME
-                        );
-                        break;
-
-                    case 'no_activations_left':
-
-                        $message = __( 'Your license key has reached its activation limit.', 'advanced-amp-ads' );
-                        break;
-
-                    default :
-
+                    if ( is_wp_error( $response ) ) {
+                        $message = $response->get_error_message();
+                    } else {
                         $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
-                        break;
+                    }
+
+                } else {
+                    $license_data = json_decode( wp_remote_retrieve_body( $response ) );
+                    if ( false === $license_data->success ) {
+                        switch( $license_data->error ) {
+                            case 'expired' :
+                                $message = sprintf(
+                                    __( 'Your license key expired on %s.', 'advanced-amp-ads' ),
+                                    date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
+                                );
+                                break;
+
+                            case 'revoked' :
+
+                                $message = __( 'Your license key has been disabled.', 'advanced-amp-ads' );
+                                break;
+
+                            case 'missing' :
+
+                                $message = __( 'Invalid license.', 'advanced-amp-ads' );
+                                break;
+
+                            case 'invalid' :
+                            case 'site_inactive' :
+
+                                $message = __( 'Your license is not active for this URL.', 'advanced-amp-ads' );
+                                break;
+
+                            case 'item_name_mismatch' :
+
+                                $message = sprintf( 
+                                    __( 'This appears to be an invalid license key for %s.', 'advanced-amp-ads' ),
+                                    AMP_ADS_ITEM_NAME
+                                );
+                                break;
+
+                            case 'no_activations_left':
+
+                                $message = __( 'Your license key has reached its activation limit.', 'advanced-amp-ads' );
+                                break;
+
+                            default :
+
+                                $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
+                                break;
+                        }
+
+                    }
+
+                }//else Closed
+                // Check if anything passed on a message constituting a failure
+                $status = false;
+                if ( ! empty( $message ) ) {
+                    $status = false;
+                }else{
+                    $status = $license_data->license;
+                    amp_ads_set_plugin_limit( true, $license_data );
+                    $selectedOption['amp-license'][$ext_key]['message'] =  json_decode($license_data,true);
                 }
 
+                // Set the license limit
+                // First parameter must be true to force an update (e.g. after upgrading)
+               
+
+                // $license_data->license will be either "valid" or "invalid"
+                /*update_option( 'amp_ads_license_status', $license_data->license );
+                wp_redirect( admin_url( 'edit.php?post_type=tracked-plugin&page=' . AMP_ADS_LICENSE_PAGE ) );
+                exit();*/
+
+                $selectedOption['amp-license'][$ext_key]['status'] =  $status;
+                $selectedOption['amp-license'][$ext_key]['message'] =  $message;
+                
             }
+            update_option( 'redux_builder_amp', $selectedOption );
+            
+            //wp_redirect( admin_url( '?page=amp_options&tab=2' ) );
 
         }
 
-        // Check if anything passed on a message constituting a failure
-        if ( ! empty( $message ) ) {
-            $base_url = admin_url( 'base_url' . AMP_ADS_LICENSE_PAGE );
-            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 
-            wp_redirect( $redirect );
-            exit();
-        }
-        
-        // Set the license limit
-        // First parameter must be true to force an update (e.g. after upgrading)
-        amp_ads_set_plugin_limit( true, $license_data );
 
-        // $license_data->license will be either "valid" or "invalid"
-        update_option( 'amp_ads_license_status', $license_data->license );
-        wp_redirect( admin_url( 'edit.php?post_type=tracked-plugin&page=' . AMP_ADS_LICENSE_PAGE ) );
-        exit();
-    }
 }
-add_action( 'admin_init', 'amp_ads_activate_license');
-
+add_action( 'redux/options/redux_builder_amp/saved', 'ampForWP_extension_activate_license');
 
 /***********************************************
 * Illustrates how to deactivate a license key.
 * This will decrease the site count
 ***********************************************/
 
-function amp_ads_deactivate_license() {
+function ampforwp_deactivate_license() {
 
     // listen for our activate button to be clicked
-    if( isset( $_POST['amp_ads_license_deactivate'] ) ) {
-
-        // run a quick security check
-        if( ! check_admin_referer( 'advanced_amp_ads_nonce', 'advanced_amp_ads_nonce' ) )
-            return; // get out if we didn't click the Activate button
+    if( isset( $_POST['ampforwp_license_deactivate'] ) ) {
 
         // retrieve the license from the database
         $license = trim( get_option( 'amp_ads_license_key' ) );
@@ -254,7 +181,7 @@ function amp_ads_deactivate_license() {
 
     }
 }
-add_action( 'admin_init', 'amp_ads_deactivate_license');
+//add_action( 'admin_init', 'ampforwp_deactivate_license');
 
 
 /************************************

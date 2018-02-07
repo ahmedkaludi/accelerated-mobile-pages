@@ -4310,21 +4310,25 @@ function ampforwp_get_cpt_generated_post_types() {
     $options = get_option('ampforwp_cpt_generated_post_types');
     return $options;
 }
-Redux::setSection( $opt_name, array(
-    'title'  => __( 'Custom Post Type', 'accelerated-mobile-pages' ),
-    'id'     => 'ampforwp-custom-post-type-section',
-    'icon'   => 'el el-th-large',
-    'fields' => array(
-        array(
-            'id'      => 'ampforwp-custom-type',
-            'type'    => 'select',
-            'title'   => __('Number of Custom Types', 'redux-framework-demo'),
-            'multi'   => true,
-            //'data' => 'post_type',
-            'options' => ampforwp_get_cpt_generated_post_types(),
-        )
-    ),
-) );
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+$ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
+if ( false == $ampforwp_cpt_plugin_check ) {   
+    Redux::setSection( $opt_name, array(
+        'title'  => __( 'Custom Post Type', 'accelerated-mobile-pages' ),
+        'id'     => 'ampforwp-custom-post-type-section',
+        'icon'   => 'el el-th-large',
+        'fields' => array(
+            array(
+                'id'      => 'ampforwp-custom-type',
+                'type'    => 'select',
+                'title'   => __('Number of Custom Types', 'redux-framework-demo'),
+                'multi'   => true,
+                //'data' => 'post_type',
+                'options' => ampforwp_get_cpt_generated_post_types(),
+            ),
+        ),
+    ) );
+}
 
     
 // Extension Section
