@@ -136,7 +136,7 @@ if ( get_query_var( 'paged' ) ) {
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 					if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
-						<li><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo $category->cat_name ?></a></li>
+						<li class="amp-cat-<?php echo $category->term_id;?>"><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo $category->cat_name ?></a></li>
 					<?php }
 					else { ?>
 					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
