@@ -2730,13 +2730,14 @@ display: none;
 .amp-category span a, .amp-category span {
     color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
     font-size: 16px;
+    line-height:1.4;
     font-weight: 900;
     text-transform: uppercase;
     font-style:italic;
 }
 .amp-post-title {
     font-size: 50px;
-    line-height: 1.4;
+    line-height: 1.2;
     color: #000;
     margin: 0;
     padding-top: 15px;
@@ -2748,7 +2749,7 @@ display: none;
     margin-top: 10px;
     color: #313131;
     max-width: 700px;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 .amp-author {
     width:100%;
@@ -3059,6 +3060,7 @@ display: none;
 }
 /** right sidebar  css **/
 .rft{
+    width:30%;
     margin-top:30px;
 }
 .rc-p {
@@ -3144,6 +3146,10 @@ display: none;
 .amp-post-title {
     font-size: 42px;
 }
+.rft {
+    width: 100%;
+    margin-top: 40px;
+}
 }
 @media(max-width:767px){
 .swift-sticky-social .amp-social {
@@ -3207,4 +3213,4 @@ display: none;
     font-size: 15px;
 }
 }
-<?php } ?>
+<?php } } ?>
