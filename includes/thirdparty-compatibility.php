@@ -30,5 +30,41 @@ function schema_lazy_load_remover(){
 require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 
 
-
-
+if(!function_exists('ampforwp_amp_nonamp_convert')){
+	function ampforwp_amp_nonamp_convert($ampData, $type=""){
+		$returnData = '';
+		if("check" === $type){
+			return ampforwp_is_non_amp('non_amp_check_convert');
+		}
+		if(!ampforwp_is_non_amp('non_amp_check_convert')){
+			return $ampData;
+		}
+		switch($type){
+			case 'filter':
+				$returnData = str_replace(array(
+												"amp-img",
+												"<style amp-custom>",
+												"<amp-sidebar ",
+												"</amp-sidebar>",
+												),
+											array(
+												"img",
+												"<style>",
+												"<sidebar ",
+												"</sidebar>",
+												)
+											, $ampData);
+				/*$returnData = preg_replace("/<style>(.*?)<\/style>/i", function($match){
+					
+										$match[0] .= '.cntr img{width:100%;height:auto;}';
+																	return $match[0];
+																}, $returnData);*/
+				$nonampCss = '.cntr img{width:100% !important;height:auto !important;}';
+				$re = '/<style type="text\/css">(.*?)<\/style>/';
+				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
+				$returnData = preg_replace($re, $subst, $returnData);
+			break;
+		}
+		return $returnData;
+	}
+}

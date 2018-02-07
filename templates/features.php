@@ -2182,6 +2182,9 @@ function ampforwp_frontpage_title_markup () {
 				$content_buffer = apply_filters('ampforwp_the_content_last_filter', $content_buffer);
 
             }
+            if(ampforwp_amp_nonamp_convert("", "check")){
+            	$content_buffer = ampforwp_amp_nonamp_convert($content_buffer, "filter");
+            }
             return $content_buffer;
 		}
 	   ob_start('ampforwp_the_content_filter_full');
@@ -5379,6 +5382,9 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
 	global $redux_builder_amp;
 	$new_url					= "";
 	$get_permalink_structure	=  "";
+	if(ampforwp_amp_nonamp_convert("", "check")){
+		$nonamp = 'nonamp';
+	}
 	if ( isset($nonamp) && 'nonamp' == $nonamp ) {
 		return $url;
 	}
@@ -5706,35 +5712,49 @@ function swifttheme_footer_widgets_init() {
 add_action( 'init', 'swifttheme_footer_widgets_init' );
 
 // AMP Takeover
-function ampforwp_is_non_amp( $type="non_amp_check" ) {
+function ampforwp_is_non_amp( $type="" ) {
 	global $redux_builder_amp;
 	$non_amp = false;
-	if ( true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
-		$non_amp = true;
-	}
-	//check for theme
-	if ( 'Twenty Fifteen' != wp_get_theme() ) {
-		return false;
-	}
 	if ( false !== get_query_var( 'amp', false ) ) {
 		return false;
 	}
-	// Check for Posts
-	if ( is_single() && false == $redux_builder_amp['amp-on-off-for-all-posts'] ) {
-		return false;
-	}
-	// Archives
-	if ( is_archive() && false == $redux_builder_amp['ampforwp-archive-support'] ) {
-		return false;
-	}
-	// Pages
-	if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-		return false;
-	}
-	// Homepage
-	if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
-		return false;
-	}
+	if (""===$type  && isset( $redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
+		$non_amp = true;
 
+		
+		// Check for Posts
+		if ( is_single() && false == $redux_builder_amp['amp-on-off-for-all-posts'] ) {
+			return false;
+		}
+		// Archives
+		if ( is_archive() && false == $redux_builder_amp['ampforwp-archive-support'] ) {
+			return false;
+		}
+		// Pages
+		if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return false;
+		}
+		// Homepage
+		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+			return false;
+		}
+	}elseif(	(
+				isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
+				&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp'] 
+				) 
+				|| 
+				(
+					'non_amp_check_convert' === $type
+					&& isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
+					&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp']  
+				) ) {
+		$non_amp = true;
+
+	}
+	//check for theme
+	/*if ( 'Twenty Fifteen' != wp_get_theme() ) {
+		return false;
+	}*/
+	
 	return $non_amp;
 }

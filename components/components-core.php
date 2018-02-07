@@ -291,12 +291,17 @@ function amp_header_core(){
     	$bodyClass .= ' rtl ';
     }
 	?><!doctype html>
-	<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
+	<html <?php echo ampforwp_amp_nonamp_convert('amp '); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
 		<meta charset="utf-8">
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
-		    <?php do_action( 'amp_post_template_head', $thisTemplate ); ?>			
+		    <?php 
+		    	if(ampforwp_amp_nonamp_convert("", "check")){
+		    		wp_head();
+		    	}else{
+		    		do_action( 'amp_post_template_head', $thisTemplate );
+		    	} ?>		
 			<style amp-custom>
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
@@ -324,7 +329,10 @@ function amp_footer(){
 	do_action( 'amp_before_footer', $thisTemplate );
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
 	$thisTemplate->load_parts( array( 'footer' ) );
-	
+
+	if(ampforwp_amp_nonamp_convert("", "check")){
+		wp_footer();
+	}
 }
 
 function amp_footer_core(){
