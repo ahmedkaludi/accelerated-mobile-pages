@@ -1,9 +1,15 @@
 <?php		
 require_once  ABSPATH . WPINC . '/category.php';
- $output = '
+ $output = '{{if_condition_content_layout_type==1}}
            <div class="pb_mod cat_mod"><h4>{{content_title}}</h4>   
                 <div class="wrap"><ul>{{category_selection}}</ul></div>    
             </div>
+            {{ifend_condition_content_layout_type_1}}
+            {{if_condition_content_layout_type==2}}
+              <div class="cat-desing-2">{{category_selection}}</div>
+            {{ifend_condition_content_layout_type_1}}
+
+
           ';
  
 
@@ -71,6 +77,34 @@ require_once  ABSPATH . WPINC . '/category.php';
 }
 .cat-cntn a{
   margin:0; 
+}
+.cat-desing-2 .dsg-2{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  position:relative;
+}
+.cat-2-img{
+  position:relative;
+}
+.dsg-2:hover .cat-2-tlt{
+  text-decoration:underline #0DBE98;
+}
+.cat-2-tlt{
+  max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1.4;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 20px;
+    color: #fff;
+
 }
 ';
 
@@ -278,19 +312,19 @@ require_once  ABSPATH . WPINC . '/category.php';
 
             array(    
             'type'    =>'text',   
-            'name'    =>"img-width",    
+            'name'    =>"img-width-2",    
             'label'   =>'Image Width(2)',
             'tab'     =>'customizer',
-            'default' =>'346', 
+            'default' =>'1000', 
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 2),
             ),
             array(    
             'type'    =>'text',   
-            'name'    =>"img-height",    
+            'name'    =>"img-height-2",    
             'label'   =>'Image Height(2)',
             'tab'     =>'customizer',
-            'default' =>'188', 
+            'default' =>'480', 
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 2),
             ),
@@ -325,14 +359,12 @@ require_once  ABSPATH . WPINC . '/category.php';
 
 
                       {{if_condition_content_layout_type==2}}
-                          <li> 
-                            <div class="cat-img 2">
-                              <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}"  layout="{{image_layout}}"></amp-img></a> 
+                        <a class="dsg-2" href="{{ampforwp_post_url}}">
+                            <div class="cat-2-img">
+                              <amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}"  {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img> 
                             </div>
-                            <div class="cat-cntn 2">
-                                <a href="{{ampforwp_post_url}}">{{title}}</a>
-                            </div>
-                          </li>
+                            <div class="cat-2-tlt">{{title}}</div>
+                        </a>
                       {{ifend_condition_content_layout_type_2}}
                           ',
  );		
