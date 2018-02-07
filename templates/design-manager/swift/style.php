@@ -2866,6 +2866,34 @@ display: none;
     position: relative;
     margin-top: 10px;
 }
+.cat-aud{
+    width:100%;
+    display:inline-block;
+}
+.cat-aud .amp-category, .cat-aud .author-details{
+    display:inline-block;
+    vertical-align:middle;
+}
+.cat-aud .author-details{
+    margin-left:10px;
+    font-size: .8125rem;
+    display: inline-block;
+    height: 20px;
+    letter-spacing: .4px;
+    color: #757575;
+    line-height: 1.83;
+    font-weight: 400;
+}
+.cat-aud .author-details strong{
+    padding-right: 6px;
+    font-weight: 900;
+}
+.cat-aud .author-details strong:before{
+    content: "|";
+    display: inline-block;
+    font-weight: normal;
+    padding-right: 5px;
+}
 /** Comments **/
 .cmts {
     width: 100%;
