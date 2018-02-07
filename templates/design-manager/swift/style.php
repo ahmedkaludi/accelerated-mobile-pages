@@ -1,7 +1,5 @@
 <?php global $redux_builder_amp; ?>
-/**** 
-* AMP Framework Reset
-*****/
+/***** AMP Framework Reset *****/
 <?php    if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){
 ?>
 @font-face {
@@ -110,16 +108,12 @@ amp-carousel > amp-img > img {
     src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');
 }
 
-/****
-* Container
-*****/
+/***** Container *****/
 .cntr {
     max-width: 1100px;
     margin: 0 auto;
 }
-/****
-* AMP Sidebar
-*****/
+/***** AMP Sidebar *****/
 amp-sidebar, .lb-t {
 <?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
@@ -144,7 +138,6 @@ amp-sidebar {
         background: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
     <?php } ?>
 }
-
 .amp-sidebar-toggle span:last-child{
     margin-bottom:0;
 }
@@ -161,9 +154,7 @@ amp-sidebar {
     top: 10px;
     color: transparent;
 }
-/****
-* AMP Navigation Menu with Dropdown Support
-*****/
+/***** AMP Navigation Menu with Dropdown Support *****/
 .toggle-navigation ul{
     list-style-type: none;
     margin: 0;
@@ -191,11 +182,7 @@ amp-sidebar {
     display: none;
     background: #444;
 }
-
-
-/**** 
-* Header
-*****/
+/***** Header *****/
 header{
     position:fixed;
     z-index:9999;
@@ -206,7 +193,6 @@ header{
 margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
 <?php } ?>
 }
-
 .header, .header-2, .header-3{
     width:100%;
     display:inline-block;
@@ -393,7 +379,7 @@ width:". ampforwp_default_logo('width')."px;";
     text-align:center;
 }
 .menu-btn a{
-    color:#ffffff;
+    color:#fff;
     border:2px solid #ccc;
     padding:15px 30px;
     display:inline-block;
@@ -517,11 +503,10 @@ a.lb-x:after {
     background: transparent;
     border: none;
     border-bottom: 1px solid #504c4c;
-    color: #ffffff;
+    color: #fff;
     width:100%;
 }
 /*** Header - Styles ***/
-
 .head-2 .h-logo{
     order:-1;
     align-self: center;
@@ -1234,7 +1219,7 @@ display: none;
     margin: 12px 0;
 }
 .amp-comment-button a{
-    color: #ffffff;
+    color: #fff;
     display: block;
     padding: 7px 0px 8px 0px;
 }
@@ -1839,25 +1824,37 @@ header .cntr, .footer .cntr, .sp .cntr{
     width:100%;
     text-align:center;
 }
-.amp-ad-1{
-   margin: -2px 0px -17px 0px;
-}
-.amp-ad-2{
-   margin: 20px 0px -23px 0px; 
-}
-.amp-ad-3{
-    margin: 0px 0px -4px 0px;
-}
-.amp-ad-4{
-    margin: 20px 0px 20px 0px;
-}
-.amp-ad-5{
-    margin: 10px 0px -17px 0px;
-}
-.amp-ad-6{
-    margin: 0px 0px 20px 0px;
-}
-
+<?php if( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) { ?>
+ .amp-ad-1{
+    margin: -2px 0px -17px 0px;
+ }
+<?php } 
+if( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) { ?>
+ .amp-ad-2{
+    margin: 20px 0px -23px 0px; 
+ }
+<?php } 
+if( isset($redux_builder_amp['enable-amp-ads-3'] ) && $redux_builder_amp['enable-amp-ads-3'] ) { ?>
+ .amp-ad-3{
+     margin: 0px 0px -4px 0px;
+ }
+<?php }
+if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable-amp-ads-4'] ) { ?>
+ .amp-ad-4{
+     margin: 20px 0px 20px 0px;
+ }
+<?php }
+if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>
+ .amp-ad-5{
+     margin: 10px 0px -17px 0px;
+ }
+<?php }
+if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6'] ) { ?>
+ .amp-ad-6{
+     margin: 0px 0px 20px 0px;
+ }
+-
++<?php } ?>
 /*** Notification styles ***/
 #amp-user-notification1{
     padding: 5px;
