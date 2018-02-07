@@ -22,7 +22,7 @@ function ampForWP_extension_activate_license() {
                 $amplicense = $ext_value['license'];
                 $item_name  = $ext_value['item_name'];
                 $store_url  = $ext_value['store_url'];
-                if($store_url!="" && $ext_value['status']==='valid'){
+                if($store_url!="" && isset($ext_value['status']) && $ext_value['status']==='valid'){
                     continue;
                 }
                 // data to send in our API request
