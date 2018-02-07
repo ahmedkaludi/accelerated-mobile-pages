@@ -173,7 +173,6 @@ function ampforwp_deactivate_license() {
             $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 
             wp_redirect( $redirect );*/
-            $selectedOption['']
             echo json_encode(array('status'=>500,"message"=>$message));
             exit();
         }
