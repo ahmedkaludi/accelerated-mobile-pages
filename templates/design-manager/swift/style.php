@@ -336,7 +336,7 @@ width:". ampforwp_default_logo('width')."px;";
     cursor: pointer;
     padding: 12px 16px;
 }
-
+<?php if($redux_builder_amp['menu-type'] == '1'){?>
 .m-menu ul li.menu-item-has-children:after{
     content: "\e313";
     font-family: 'icomoon';
@@ -376,6 +376,7 @@ width:". ampforwp_default_logo('width')."px;";
     padding: 13px 7px;
     margin-bottom:0;
 }
+<?php } ?>
 .menu-btn{
     margin-top:30px;
     text-align:center;
@@ -1580,7 +1581,6 @@ display: none;
 .w-bl{
     flex:1 0 22%;
 }
-
 }
 @media(max-width:767px){
 .swift-sticky-social .amp-social{
@@ -2051,7 +2051,7 @@ amp-sidebar {
     margin-top:77px;
 }
 .m-menu ul li a{
-    color:red;
+    color:#fff;
 }
 .amp-sidebar-close:after {
     content: "\e5cd";
@@ -2062,4 +2062,76 @@ amp-sidebar {
     cursor: pointer;
     padding: 12px 16px;
  }
+.m-menu li.menu-item-has-children ul {
+    display: block;
+}
+.m-menu ul li.menu-item-has-children:after{
+    display:none;
+}
+.m-menu .menu-item-has-children > a{
+    font-size:18px;
+    position:relative;
+    display:inline-block;
+    font-weight:600;
+    margin-bottom:15px;
+    font-style: italic;
+    letter-spacing:1px;
+    padding: 6px 0;
+    text-transform: uppercase;
+}
+.m-menu .menu-item-has-children{
+    margin-bottom: 50px;
+    width: 33%;
+    float: left;
+}
+.m-menu .menu-item-has-children > a:after {
+    position: absolute;
+    background-color: #0DBE98;
+    content: "";
+    height: 3px;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+    opacity: 1;
+}
+.m-menu .sub-menu li a{
+    font-size: 15px;
+    padding:8px 0px;
+    letter-spacing: 0.4px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-transition-property: padding-left, color;
+    transition-property: padding-left, color;
+}
+.m-menu .sub-menu li a:hover {
+    color: #0DBE98;
+    padding-left: 12px;
+}
+.m-menu .amp-menu li.menu-item-has-children>ul>li {
+    padding-left: 0px;
+}
+.m-menu{
+    list-style-type: none;
+    margin: 45px 0 0 0;
+    padding: 0;
+    display:inline-block;
+    width:100%;
+}
+.m-menu .amp-menu li:hover a {background: transparent none repeat scroll 0 0;}
+.m-menu .amp-menu li:hover li:hover>a{background:transparent;}
+.m-menu .amp-menu{
+    margin-bottom:20%;
+}
+
+@media(max-width:768px){
+.m-menu .menu-item-has-children{
+    width: 100%;
+    float: none;
+    display:inline-block;
+}
+.sub-menu li{
+    float:left;
+    width:50%;
+}
+}
 <?php } ?>
