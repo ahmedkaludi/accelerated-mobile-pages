@@ -842,6 +842,7 @@ function ampforwp_new_dir( $dir ) {
 					$ampforwp_ga_fields = array();
 					$ga_account = '';
 					$ga_account = $redux_builder_amp['ga-feild'];
+					$ga_account = str_replace(' ', '', $ga_account);
 					$ga_fields = array(
 									'vars'=>array(
 										'account'=>$ga_account
