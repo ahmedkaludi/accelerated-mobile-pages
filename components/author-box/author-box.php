@@ -13,6 +13,7 @@ $class = $author_prefix = $author_wrapper_class = '';
 $show_date = false;
 $show_time = false;
 $author_link = get_author_posts_url($post_author->ID);
+$author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {
     $avatar = $args['avatar'];
