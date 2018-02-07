@@ -2710,10 +2710,10 @@ display: none;
     top: 1px;
 }
 <?php } ?>
-.shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{
+.shr-txt, .athr-tx, .r-pf h3, .amp-related-posts-title, .post-date, .related-title{
     display: block;
 }
-.shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{
+.shr-txt, .athr-tx, .r-pf h3, .amp-related-posts-title, .post-date, .related-title{
     text-transform: uppercase;
     font-size: 12px;
     color: #666;
@@ -2784,6 +2784,7 @@ display: none;
     font-size: 18px;
     color: #000;
     line-height: 1.7;
+    margin-top:20px;
 }
 .cntn-wrp p {
     margin: 0px 0px 30px 0px;
@@ -2813,5 +2814,180 @@ display: none;
     margin: 0;
     z-index: 10;
     text-align: center;
+}
+.r-pf{
+    margin-top: 40px;
+    display: inline-block;
+    width: 100%;
+}
+.r-pf .loop-wrapper{
+    margin-top:0;
+}
+/** post pagination **/
+#pagination {
+    margin-top: 30px;
+    border-top: 1px dotted #ccc;
+    padding: 20px 5px 0px 5px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.prev span {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #666;
+    display: block;
+    position: absolute;
+    top: -26px;
+}
+.prev:after {
+    border-left: 1px dotted #ccc;
+    content: "";
+    height: calc(100% - -10px);
+    right: -50px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    width: 2px;
+}
+.next a, .prev a {
+    color: #333;
+}
+.prev {
+    float: left;
+    width: 45%;
+    position: relative;
+    margin-top: 10px;
+}
+.next {
+    float: right;
+    width: 45%;
+    text-align: right;
+    position: relative;
+    margin-top: 10px;
+}
+/** Comments **/
+.cmts {
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    margin-top: 40px;
+}
+.cmts h3 {
+    margin: 0;
+    font-size: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #444;
+}
+.cmts ul {
+    margin-top: 16px;
+}
+.cmts ul li {
+    list-style: none;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.comment-meta amp-img {
+    float: left;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.cmts .comment-metadata {
+    font-size: 11px;
+    margin-top: 8px;
+}
+.cmts .comment-author.vcard .fn {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+}
+.cmts .comment-author.vcard .says {
+    display: none;
+}
+.cmts .comment-metadata a {
+    color: #999;
+}
+.comment-content {
+    margin-top: 6px;
+    width: 100%;
+    display: inline-block;
+}
+.comment-content p {
+    font-size: 14px;
+    color: #333;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0;
+}
+.amp-comment-button {
+    background-color: #005be2;
+    font-size: 15px;
+    font-family: 'Open Sans',sans-serif;
+    float: none;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+    width: 250px;
+}
+.amp-comment-button a {
+    color: #fff;
+    display: block;
+    padding: 7px 0px 8px 0px;
+}
+/** article info **/
+.artl-atr{
+    margin-top: 30px;
+    border-top: 1px solid #d8d8d8;
+}
+.artl-atr .amp-author .amp-author-image {
+    float:left;
+}
+.artl-atr .author-details {
+    display:block;
+}
+.artl-atr .author-name{
+    color: #424242;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom:10px;
+    display:inline-block;
+}
+.artl-atr .author-details p{
+    font-size: 12px;
+    letter-spacing: .6px;
+    line-height: 16px;
+    color: #424242;
+    font-weight:400;
+}
+/** Tags **/
+.amp-tags{
+    margin-top:30px;
+}
+.amp-tags > span:nth-child(1){
+       font-weight: 900;
+    color: #838383;
+    letter-spacing: .6px;
+    font-size: 22px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin-bottom:10px;
+}
+.amp-tag a{
+    padding: 6px 12px;
+    margin: 5px 5px 5px 0;
+    text-decoration: none;
+    font-size: .9375rem;
+    letter-spacing: .4px;
+    border-radius: 50px;
+    display: inline-block;
+    color: #9c9c9c;
+    border: 1px solid #9c9c9c;
 }
 <?php } ?>
