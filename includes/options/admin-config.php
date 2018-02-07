@@ -3781,6 +3781,25 @@ Redux::setSection( $opt_name, array(
                                         array('amp-design-selector', '!=' , '3') 
                                     )
                 ),
+                  array(
+                    'id'    => 'footer-type',
+                   'title'  => __('Footer Type', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Footer Design 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Footer Design 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
+                                ),
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
                 array(
                         'id'       => 'ampforwp-footer-top-design3',
                         'type'     => 'switch',
