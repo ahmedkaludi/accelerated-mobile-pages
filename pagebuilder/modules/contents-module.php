@@ -8,7 +8,11 @@ require_once  ABSPATH . WPINC . '/category.php';
             {{if_condition_content_layout_type==2}}
               <div class="cat-desing-2">{{category_selection}}</div>
             {{ifend_condition_content_layout_type_1}}
-
+            {{if_condition_content_layout_type==3}}
+             <div class="pb_mod cat_mod-3"><h5>{{content_title}}</h5>   
+                  <div class="cat-design-3"><ul>{{category_selection}}</ul></div>    
+              </div>
+            {{ifend_condition_content_layout_type_3}}
 
           ';
  
@@ -78,7 +82,7 @@ require_once  ABSPATH . WPINC . '/category.php';
 .cat-cntn a{
   margin:0; 
 }
-.cat-desing-2 .dsg-2{
+.cat-desing-2 .dsg-2 a{
   width:100%;
   height:100%;
   margin:0;
@@ -104,6 +108,78 @@ require_once  ABSPATH . WPINC . '/category.php';
     top: auto;
     bottom: 20px;
     color: #fff;
+
+}
+
+/*** design-cat-3-styles ***/
+.cat_mod-3{
+  width:950px;
+  margin:0 auto;
+}
+.cat-3-img a{
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    display: block;
+}
+.cat_mod-3 ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+    padding:0;
+    list-style-type:none;
+ }
+.cat_mod-3 ul li {
+    margin: 15px 10px 20px 10px;
+    flex-basis: calc(34.33% - 30px);
+}
+.cat-3-tlt{
+  font-size:16px;
+  line-height:1.4;
+  font-weight: 600;
+}
+.cat-3-tlt a{
+    color: #000;
+}
+.cat_mod-3 h5{
+    text-transform: uppercase;
+    padding: 10px 0px 15px 0px;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: 800;
+    border-top:3px solid #0DBE98;
+}
+@media(max-width:786px){
+.cat_mod-3{
+  width:100%;
+  padding:0px 20px;
+}
+.cat_mod-3 ul li {
+    flex-basis: calc(100% - 30px);
+    margin: 10px 15px;
+}
+.cat_mod-3 .cat-3-img {
+    width: 40%;
+    float: left;
+    margin-right: 20px;
+}
+.cat_mod-3 .cat-3-tlt {
+    width: 54%;
+    float: left;
+    margin-top: 0;
+}
+}
+@media (max-width: 480px){
+.cat_mod-3 .cat-3-img {
+    width: 100%;
+    float: none;
+    margin-right: 0px;
+}
+.cat_mod-3 .cat-3-tlt {
+    width: 100%;
+    float: none;
+}
 
 }
 ';
@@ -146,6 +222,11 @@ require_once  ABSPATH . WPINC . '/category.php';
                             array(
                               'value'=>'2',
                               'label'=>'Second',
+                              'demo_image'=> 'http://localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages//images/head-2.png'
+                            ),
+                            array(
+                              'value'=>'3',
+                              'label'=>'Third',
                               'demo_image'=> 'http://localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages//images/head-2.png'
                             ),
                           ),
@@ -341,6 +422,25 @@ require_once  ABSPATH . WPINC . '/category.php';
                       ),
                 'content_type'=>'html',
               ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-width",    
+            'label'   =>'Image Width(3)',
+            'tab'     =>'customizer',
+            'default' =>'286', 
+            'content_type'=>'html',
+            'required'  => array('content_layout_type' => 3),
+            ),
+            array(    
+            'type'    =>'text',   
+            'name'    =>"img-height",    
+            'label'   =>'Image Height(3)',
+            'tab'     =>'customizer',
+            'default' =>'161', 
+            'content_type'=>'html',
+            'required'  => array('content_layout_type' => 3),
+            ),
+
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,
@@ -359,13 +459,25 @@ require_once  ABSPATH . WPINC . '/category.php';
 
 
                       {{if_condition_content_layout_type==2}}
-                        <a class="dsg-2" href="{{ampforwp_post_url}}">
+                        <div class="dsg-2">
+                        <a href="{{ampforwp_post_url}}">
                             <div class="cat-2-img">
                               <amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}"  {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img> 
                             </div>
                             <div class="cat-2-tlt">{{title}}</div>
-                        </a>
+                        </a></div>
                       {{ifend_condition_content_layout_type_2}}
+
+                       {{if_condition_content_layout_type==3}}
+                        <li> 
+                          <div class="cat-3-img"> 
+                            <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive"></amp-img></a> 
+                          </div>
+                          <div class="cat-3-tlt">
+                            <a href="{{ampforwp_post_url}}">{{title}}</a>
+                          </div>
+                        </li>
+                      {{ifend_condition_content_layout_type_3}}
                           ',
  );		
  function contentHtml($the_query,$fieldValues,$loopHtml){		
