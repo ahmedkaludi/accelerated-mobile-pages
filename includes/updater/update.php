@@ -138,19 +138,27 @@ function ampforwp_deactivate_license() {
     if( isset( $_POST['ampforwp_license_deactivate'] ) ) {
 
         // retrieve the license from the database
-        $license = trim( get_option( 'amp_ads_license_key' ) );
-
+        $selectedOption = get_option('redux_builder_amp',true);
+        $license = '';//trim( get_option( 'amp_ads_license_key' ) );
+        $pluginItemName = '';
+        $pluginItemStoreUrl = '';
+        if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
+           $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
+           $license = $pluginItemName['license'];
+           $pluginItemName = $pluginItemName['item_name'];
+           $pluginItemStoreUrl = $pluginItemName['store_url'];
+        }
 
         // data to send in our API request
         $api_params = array(
             'edd_action' => 'deactivate_license',
             'license'    => $license,
-            'item_name'  => urlencode( AMP_ADS_ITEM_NAME ), // the name of our product in EDD
+            'item_name'  => urlencode( $pluginItemName ), // the name of our product in EDD
             'url'        => home_url()
         );
 
         // Call the custom API.
-        $response = wp_remote_post( AMP_ADS_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+        $response = wp_remote_post( $pluginItemStoreUrl, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
         // make sure the response came back okay
         if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -161,26 +169,33 @@ function ampforwp_deactivate_license() {
                 $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
             }
 
-            $base_url = admin_url( 'plugins.php?page=' . AMP_ADS_LICENSE_PAGE );
+            /*$base_url = admin_url( 'plugins.php?page=' . AMP_ADS_LICENSE_PAGE );
             $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 
-            wp_redirect( $redirect );
+            wp_redirect( $redirect );*/
+            $selectedOption['']
+            echo json_encode(array('status'=>500,"message"=>$message));
             exit();
         }
 
         // decode the license data
-        $license_data = json_decode( wp_remote_retrieve_body( $response ) );
+        $license_data = json_decode( wp_remote_retrieve_body( $response ) ,true);
 
         // $license_data->license will be either "deactivated" or "failed"
         if( $license_data->license == 'deactivated' ) {
             delete_option( 'amp_ads_license_status' );
         }
-
-        wp_redirect( admin_url( 'edit.php?post_type=tracked-plugin&page=' . AMP_ADS_LICENSE_PAGE ) );
+        if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
+           $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']]['status']= 'invalid';
+           update_option( 'redux_builder_amp', $selectedOption );
+        }
+        echo json_encode(array('status'=>200,"message"=>$message));
+       /* wp_redirect( admin_url( 'edit.php?post_type=tracked-plugin&page=' . AMP_ADS_LICENSE_PAGE ) );*/
         exit();
 
     }
 }
+add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license' );
 //add_action( 'admin_init', 'ampforwp_deactivate_license');
 
 
