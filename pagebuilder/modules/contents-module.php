@@ -113,7 +113,7 @@ require_once  ABSPATH . WPINC . '/category.php';
 
 /*** design-cat-3-styles ***/
 .cat_mod-3{
-  width:950px;
+  width:{{dsg3-width}};
   margin:0 auto;
 }
 .cat-3-img a{
@@ -440,7 +440,15 @@ require_once  ABSPATH . WPINC . '/category.php';
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 3),
             ),
-
+            array(    
+            'type'    =>'text',   
+            'name'    =>"dsg3-width",    
+            'label'   =>'Design 3 Container ',
+            'tab'     =>'container_css',
+            'default' =>'950px', 
+            'content_type'=>'css',
+            'required'  => array('content_layout_type' => 3),
+            ),
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,
