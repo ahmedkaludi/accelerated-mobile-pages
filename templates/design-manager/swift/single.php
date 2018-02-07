@@ -163,7 +163,7 @@
  		</div>
  	</div>
 <?php } ?>
-<div class="r-pf">
+<!-- <div class="r-pf">
 	<div class="cntr">
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
@@ -190,6 +190,6 @@
 		</div>
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
-</div>
+</div> -->
 	<?php amp_footer()?>
 </div>
