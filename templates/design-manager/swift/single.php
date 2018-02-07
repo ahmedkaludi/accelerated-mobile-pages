@@ -88,20 +88,22 @@
  		<div class="cntr">
  			<?php amp_breadcrumb();?>
  			<?php amp_categories_list();?>
-				<?php amp_title(); ?>
-					<div class="exc">
-					   <?php amp_excerpt(20); ?>
-				    </div>
-				<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
-					<?php amp_author_box( 
-						array(	'avatar'=>true,
-								'avatar_size'=>32)
-						); ?>
-				<?php } ?>
+ 			<div class="author-details">
+ 				<span><?php amp_author_meta(array('name'=>'true')); ?></span>
+	         	<span>UPDATED</span> <?php amp_date('date'); ?>
+	         </div>
+			<?php amp_title(); ?>
+				<div class="exc">
+				   <?php amp_excerpt(20); ?>
+			    </div>
+			<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+				<?php amp_author_box( 
+					array(	'avatar'=>true,
+							'avatar_size'=>32)
+					); ?>
+			<?php } ?>
 			<div class="artl">
 				<div class="lft">
-					<?php amp_categories_list();?>
-					<?php amp_title(); ?>
 					<?php amp_featured_image();?>
 					<div class="cntn-wrp">
 						<?php amp_content(); ?>
