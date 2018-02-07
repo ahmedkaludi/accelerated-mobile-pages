@@ -2848,7 +2848,8 @@ Redux::setSection( $opt_name, array(
                     'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
-                    'default'   => '1'
+                    'default'   => '1',
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'             => 'primary-menu-padding-control',
@@ -2999,7 +3000,9 @@ Redux::setSection( $opt_name, array(
                     'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
-                    'default'   => 1
+                    'default'   => 1,
+                    'required' => array(array('amp-design-selector', '!=' , '4')),
+
             ),
             // Call Now button
              array(
