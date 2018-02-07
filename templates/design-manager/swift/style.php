@@ -1296,7 +1296,7 @@ display: none;
     border-radius:50%;
 }
 <?php } ?>
-<?php if($redux_builder_amp['footer-type'] == '1'){?>
+<?php if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 /***** Footer*****/
 .footer{
     font-size: 12px;
@@ -2602,7 +2602,7 @@ display: none;
 }
 <?php } ?>
 /** Footer **/
-<?php if($redux_builder_amp['footer-type'] == '2'){?>
+<?php if ( isset($redux_builder_amp['footer-type']) && '2' == $redux_builder_amp['footer-type'] ) {?>
 .ftr{
     background:#000;
     padding:10px 0px;

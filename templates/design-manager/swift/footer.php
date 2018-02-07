@@ -1,6 +1,6 @@
 </div>
 <?php global $redux_builder_amp ?>
-<?php if($redux_builder_amp['footer-type'] == '1'){?>
+<?php if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 <footer class="footer">
 	<?php if ( is_active_sidebar( 'swift-footer-widget-area'  ) ) : ?>
 	<div class="f-w-f1">
@@ -43,7 +43,7 @@
 						amp_social($social_icons);?> 
 </div>
 <?php } ?>
-<?php if($redux_builder_amp['footer-type'] == '2'){?>
+<?php if ( isset($redux_builder_amp['footer-type']) && '2' == $redux_builder_amp['footer-type'] ) { ?>
 <footer class="ftr">
 	<div class="cntr">
 		<div class="f-t-2">
