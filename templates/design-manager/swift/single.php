@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
+<?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <div class="sp">
 	<div class="cntr">
 		<?php amp_breadcrumb();?>
@@ -82,33 +83,51 @@
 		    </div>
 		</div>
 	</div>
-	<div class="r-pf">
-		<div class="cntr">
-			<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
-		<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
-			<div class="fsp">
-				<?php
-				$width 	= 346;
-				$height = 188;
-				if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-					$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-					$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-				}
-				 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-			    <div class="fsp-img">
-			    	<?php amp_loop_image($args); ?>
+</div>
+<?php } ?>
+<?php if ( $redux_builder_amp['single-design-type'] == '2') { ?>
+	<div class="sd-2">
+ 		<div class="cntr">
+ 			<?php amp_breadcrumb();?>
+			<div class="artl">
+				<div class="lft">
+					<?php amp_categories_list();?>
+					<?php amp_title(); ?>
+				</div>
+				<div class="rft">
+
+				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+<?php } ?>
+<div class="r-pf">
+	<div class="cntr">
+		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
+	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
+		<div class="fsp">
+			<?php
+			$width 	= 346;
+			$height = 188;
+			if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+				$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+				$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+			}
+			 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+		    <div class="fsp-img">
+		    	<?php amp_loop_image($args); ?>
+		    </div>
+		    <div class="fsp-cnt">
+		    	<?php amp_loop_category(); ?>
+			    <?php amp_loop_title(); ?>
+			    <?php amp_loop_excerpt(20); ?>
+			    <div class="pt-dt">
+			    	<?php amp_loop_date(); ?>
 			    </div>
-			    <div class="fsp-cnt">
-			    	<?php amp_loop_category(); ?>
-				    <?php amp_loop_title(); ?>
-				    <?php amp_loop_excerpt(20); ?>
-				    <div class="pt-dt">
-				    	<?php amp_loop_date(); ?>
-				    </div>
-			    </div>
-			</div>
-		<?php endwhile; amp_loop('end');  ?>
+		    </div>
 		</div>
+	<?php endwhile; amp_loop('end');  ?>
 	</div>
+</div>
 	<?php amp_footer()?>
 </div>

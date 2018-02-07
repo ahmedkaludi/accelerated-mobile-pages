@@ -2202,3 +2202,27 @@ amp-sidebar {
 }
 }
 <?php } ?>
+/*** Single ***/
+<?php if($redux_builder_amp['single-design-type'] == '2'){?>
+.sd-2{
+    margin-top: 20px;
+    width:100%
+}
+.artl{
+    width:100%;
+}
+.amp-category span a, .amp-category span {
+    color: #000;
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style:italic;
+}
+.amp-post-title {
+    font-size: 50px;
+    line-height: 58px;
+    color: #000;
+    margin: 0;
+    padding-top: 15px;
+    font-weight: 900;
+}
