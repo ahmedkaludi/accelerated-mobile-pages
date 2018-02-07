@@ -122,7 +122,7 @@ function amp_excerpt( $no_of_words=15 ) {
 	}
 	else
 		$post_id = $post->ID;
-	if ( $post_id != null ) {  ?>
+	if ( $post_id != null && true == $redux_builder_amp['enable-excerpt-single'] ) {  ?>
 			<p><?php 
 				 if ( has_excerpt() ) {
 					$content = get_the_excerpt();
@@ -384,25 +384,26 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 <?php }
 
 function amp_date( $args=array() ) {
-		global $redux_builder_amp;
-		if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
-		$args['format'] = 'traditional';
-		}
-		if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
-			$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+
+    global $redux_builder_amp;
+    if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
+    	$args['format'] = 'traditional';
+    }
+    if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
+      $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
         } else {
-        	$post_date = human_time_diff(
-        						get_the_time('U', get_the_ID() ), 
-        						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
-        						'ago');
+          $post_date = human_time_diff(
+                    get_the_time('U', get_the_ID() ), 
+                    current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
+                    'ago');
         }
         $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
-        if ( 'date' === $args || 'time' == $args ) {
-        	echo $post_date .' ';
+        if ( 'date' == $args || 'time' == $args ) {
+          echo $post_date .' ';
         }
         else
-        	echo '<div class="loop-date">'.$post_date.'</div>';
-	}
+          echo '<div class="loop-date">'.$post_date.'</div>';
+  }
 
 //Load font Compoment
 	$fontComponent = array();
