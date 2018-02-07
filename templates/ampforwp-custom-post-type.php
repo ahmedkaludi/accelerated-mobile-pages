@@ -2,7 +2,6 @@
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
 if ( false == $ampforwp_cpt_plugin_check ) {   
-echo "hello";die;
     // Get all the post types and update them in the options
     add_action('admin_init', 'ampforwp_cpt_generate_postype_new');
     if ( ! function_exists('ampforwp_cpt_generate_postype_new' ) ) { 
