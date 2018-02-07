@@ -169,7 +169,7 @@ function ampforwp_add_custom_rewrite_rules() {
     if ( $permalink_structure ) {
 	  	add_rewrite_rule(
 	      $permalink_structure.'\/'.$rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-	      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+	      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
   	}
