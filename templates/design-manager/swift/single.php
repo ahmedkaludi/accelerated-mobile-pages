@@ -92,6 +92,9 @@
  			<div class="cat-aud">
 	 			<?php amp_categories_list();?>
 	 			<div class="author-details">
+		            <span><?php amp_date('time'); ?></span>
+		            <strong>Updated</strong><span><?php amp_date('date'); ?></span>
+			    </div>
 		    </div>
 			<?php amp_title(); ?>
 			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
