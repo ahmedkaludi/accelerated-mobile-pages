@@ -69,7 +69,7 @@ if ( false == $ampforwp_cpt_plugin_check ) {
                 $post_types = $redux_builder_amp['ampforwp-custom-type'];
             }
             // If Option "Make endpoint ?amp" is Off then return.
-            if ( ! $redux_builder_amp['ampforwp-custom-type-amp-endpoint'] ) {
+            if ( isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && false == $redux_builder_amp['ampforwp-custom-type-amp-endpoint'] ) {
                 return $url;
             }
             if ( is_post_type_archive( $post_types ) || is_singular( $post_types ) ) {
