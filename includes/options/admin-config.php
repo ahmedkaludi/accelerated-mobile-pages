@@ -3754,9 +3754,10 @@ Redux::setSection( $opt_name, array(
                         'id'    => 'swift-menu',
                         'type'  => 'switch',
                         'title' => __('Menu', 'accelerated-mobile-pages'),
-                        'subtitle'  => __('switch to show/hide Menu', 'accelerated-mobile-pages'),
+                        'subtitle'  => __('switch to show/hide Footer Menu', 'accelerated-mobile-pages'),
                         'default'   => 1,
                         'required' => array( array('amp-design-selector', '=' , '4') ),
+                        'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
                 ),
                 array(
                         'id'       => 'amp-footer-link-non-amp-page',
