@@ -358,7 +358,7 @@ width:". ampforwp_default_logo('width')."px;";
 .amp-menu li.menu-item-has-children ul{
     font-size:13px;
 }
-.amp-menu li:hover a {background: transparent none repeat scroll 0 0;}
+.m-menu .amp-menu li:hover a {background: transparent none repeat scroll 0 0;}
 .m-menu .amp-menu {
     list-style-type: none;
     margin: 45px 0 0 0;
@@ -584,7 +584,9 @@ a.lb-x:after {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
-
+.amp-menu li.menu-item-has-children>ul>li {
+    width: 90%;
+}
 /*** Primary Menu ***/
 .content-wrapper{
     <?php if($redux_builder_amp['swift-height-control']){?>
@@ -2482,13 +2484,13 @@ a.lb-x:after {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
-.m-menu li.menu-item-has-children ul {
-    display: block;
-}
-.m-menu ul li.menu-item-has-children:after{
+ .m-menu ul li.menu-item-has-children:after{
     display:none;
 }
-.m-menu .menu-item-has-children > a{
+.m-menu .amp-menu li.menu-item-has-children ul {
+    display: block;
+}
+.m-menu .amp-menu .menu-item-has-children > a{
     font-size:18px;
     position:relative;
     display:inline-block;
@@ -2504,9 +2506,9 @@ a.lb-x:after {
     width: 33%;
    display:inline-block;
 }
-.m-menu .menu-item-has-children > a:after {
+.m-menu .amp-menu .menu-item-has-children > a:after {
     position: absolute;
-    background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>
+    background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;
     content: "";
     height: 3px;
     width: 100%;
