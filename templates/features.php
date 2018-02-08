@@ -199,6 +199,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	function ampforwp_amphtml_generator(){
 		global $redux_builder_amp;
 		global $wp, $post;
+		$endpoint_check = false;
+		$endpoint_check = $redux_builder_amp['amp-core-end-point'];
 	    if( is_attachment() ) {
         return;
 	    }
@@ -279,7 +281,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				if ( (is_home() || is_archive()) && $wp->query_vars['paged'] >= '2' ) {
 					$new_url 		=  home_url('/');
 					$category_path 	= $wp->request;
-					if ( null != $category_path ) {
+					if ( null != $category_path && true != $endpoint_check) {
 						$explode_path  	= explode("/",$category_path);
 						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
 						array_splice( $explode_path, -2, 0, $inserted );
@@ -300,7 +302,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 
 			$amp_url = ampforwp_url_purifier($amp_url);
-
 
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if( get_option('permalink_structure') && is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
@@ -5095,22 +5096,25 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 }
 //93. added AMP url purifire for amphtml
 function ampforwp_url_purifier($url){
-		global $wp_query,$wp;
+		global $wp_query,$wp,$redux_builder_amp;
 		$get_permalink_structure 	= "";
 		$endpoint 					= "";
+		$endpointq					= "";
 		$queried_var				= "";
 		$quried_value				= "";
 		$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
 		$get_permalink_structure = get_option('permalink_structure');
+		$checker = $redux_builder_amp['amp-core-end-point'];
+		$endpointq = '?' . $endpoint;
     
 		if ( empty( $get_permalink_structure ) ) {
 
-			$endpoint = '?' . $endpoint;
 			if ( is_home() || is_archive() || is_front_page() ) {
 				$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
 				if ( is_home() && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
 					$quried_value = get_query_var('page_id');
-					$url  = add_query_arg('page_id',$quried_value, $url);
+					if ( '' != $quried_value)
+						$url  = add_query_arg('page_id',$quried_value, $url);
 				}
 				if ( get_query_var('paged') >= 2 ) {
 					$quried_value = get_query_var('paged');
@@ -5148,11 +5152,20 @@ function ampforwp_url_purifier($url){
 				$url = add_query_arg('page_id',$quried_value2, $url);
 			}*/
 		} else {
+			if ( is_single() && true == $checker ) {
+				$url = untrailingslashit($url);
+			}
 			if ( is_home() || is_archive() || is_front_page() ) {
 		        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
-		          	$url = user_trailingslashit( trailingslashit($url) );
+		        	if ( true == $checker )
+		        		$url = trailingslashit($url).$endpointq;
+		        	else
+		          		$url = user_trailingslashit( trailingslashit($url) );
 		        } else {
-		          	$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+		        	if ( true == $checker )
+		        		$url =  trailingslashit($url) . $endpointq;
+		        	else
+		          		$url = user_trailingslashit( trailingslashit($url) . $endpoint );
 		        }
 	      	}
 		}
@@ -5380,9 +5393,9 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 // 98. Create Dynamic url of amp according to the permalink structure #1318
 function ampforwp_url_controller( $url, $nonamp = '' ) {
 	global $redux_builder_amp;
-	$new_url					= "";
-	$get_permalink_structure	=  "";
-	if(ampforwp_amp_nonamp_convert("", "check")){
+	$new_url = "";
+	$get_permalink_structure = "";
+	if ( ampforwp_amp_nonamp_convert("", "check") ) {
 		$nonamp = 'nonamp';
 	}
 	if ( isset($nonamp) && 'nonamp' == $nonamp ) {
@@ -5390,11 +5403,12 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
 	}
 	$get_permalink_structure = get_option('permalink_structure');
 	if ( $get_permalink_structure ) {
- 		if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
-	     		$new_url = user_trailingslashit( trailingslashit($url));
-	 			$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
+ 		if ( isset($redux_builder_amp['amp-core-end-point']) && 1 == $redux_builder_amp['amp-core-end-point'] ) {
+	     		$new_url = trailingslashit($url);
+	     		$new_url = $new_url.'?'.AMPFORWP_AMP_QUERY_VAR;
+	 			//$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
  			}
- 		else{
+ 		else {
  				$new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
  			}
 	} else {
@@ -5757,4 +5771,19 @@ function ampforwp_is_non_amp( $type="" ) {
 	}*/
 	
 	return $non_amp;
+}
+
+// END Point
+function ampforwp_end_point_controller( $url, $check='' ) {
+	global $redux_builder_amp;
+	$checker = '';
+	$endpoint = AMPFORWP_AMP_QUERY_VAR;
+	$endpoint = '?' . $endpoint;
+	if ( isset($redux_builder_amp['amp-core-end-point']) && true == $redux_builder_amp['amp-core-end-point'] ) {
+		$url = untrailingslashit($url.$endpoint);
+	}
+	else 
+		$url = $url . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
+
+	return $url;
 }

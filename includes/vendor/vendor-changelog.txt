@@ -40,3 +40,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 13. Foo Gallery Support code added in class-amp-img-sanitizer.php in line no 35 #1424
 14. Filter added in class-amp-dom-utils.php on line no 37 #1462
 15. amp_vimeo_parse_url filter applied in class-amp-vimeo-embed.php in line no 108
+16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
