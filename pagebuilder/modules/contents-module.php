@@ -382,7 +382,7 @@ require_once  ABSPATH . WPINC . '/category.php';
  						),
             array(    
             'type'    =>'text',   
-            'name'    =>"img-width",    
+            'name'    =>"img-width-1",    
             'label'   =>'Image Width(1)',
             'tab'     =>'customizer',
             'default' =>'346', 
@@ -390,7 +390,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             ),
             array(    
             'type'    =>'text',   
-            'name'    =>"img-height",    
+            'name'    =>"img-height-1",    
             'label'   =>'Image Height(1)',
             'tab'     =>'customizer',
             'default' =>'188', 
@@ -399,7 +399,7 @@ require_once  ABSPATH . WPINC . '/category.php';
 
             array(    
             'type'    =>'text',   
-            'name'    =>"img-width",    
+            'name'    =>"img-width-2",    
             'label'   =>'Image Width(2)',
             'tab'     =>'customizer',
             'default' =>'1000', 
@@ -408,7 +408,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             ),
             array(    
             'type'    =>'text',   
-            'name'    =>"img-height",    
+            'name'    =>"img-height-2",    
             'label'   =>'Image Height(2)',
             'tab'     =>'customizer',
             'default' =>'480', 

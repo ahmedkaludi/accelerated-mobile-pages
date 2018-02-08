@@ -12,9 +12,14 @@
 		    </div>
 		<?php } ?>
 	</div>
+	<?php if ( has_post_thumbnail() ) {?>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
 	</div>
+	<?php }
+	else{
+		//
+	}?>
 	<div class="sp-cnt">
 		<div class="cntr">
 			<div class="sp-rl">
@@ -110,7 +115,9 @@
 			<?php } ?>
 			<div class="artl">
 				<div class="lft">
-					<?php amp_featured_image();?>
+					<?php if ( has_post_thumbnail() ) {?>
+						<?php amp_featured_image();?>
+					<?php } else{ // }?>
 					<div class="cntn-wrp">
 						<?php amp_content(); ?>
 					</div>
