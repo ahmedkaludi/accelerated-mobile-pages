@@ -128,7 +128,7 @@ require_once  ABSPATH . WPINC . '/category.php';
  }
 .cat_mod-3 ul li {
     margin: 15px 10px 20px 10px;
-    flex-basis: calc(34.33% - 30px);
+    flex-basis: calc(34% - 30px);
 }
 .cat-3-tlt{
   font-size:16px;
@@ -146,6 +146,15 @@ require_once  ABSPATH . WPINC . '/category.php';
     font-size: 18px;
     font-weight: 800;
     border-top:3px solid #0DBE98;
+}
+.cat_mod-3 .cat-3-img {
+  width:100%;
+}
+@media(max-width:1200px){
+.cat_mod-3{
+  width:auto;
+  padding:0px 20px;
+}
 }
 @media(max-width:786px){
 .cat_mod-3{
@@ -390,7 +399,7 @@ require_once  ABSPATH . WPINC . '/category.php';
 
             array(    
             'type'    =>'text',   
-            'name'    =>"img-width-2",    
+            'name'    =>"img-width",    
             'label'   =>'Image Width(2)',
             'tab'     =>'customizer',
             'default' =>'1000', 
@@ -399,7 +408,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             ),
             array(    
             'type'    =>'text',   
-            'name'    =>"img-height-2",    
+            'name'    =>"img-height",    
             'label'   =>'Image Height(2)',
             'tab'     =>'customizer',
             'default' =>'480', 
