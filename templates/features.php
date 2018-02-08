@@ -244,7 +244,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				} 
 			}
 		}	
-      	if( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) {
+      	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
 		}
 			$query_arg_array = $wp->query_vars;
