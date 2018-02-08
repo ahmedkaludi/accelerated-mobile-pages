@@ -22,7 +22,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
         $amp_current_post_id = $postId = get_the_ID();
             
-			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.js', array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.min.js', array(),AMPFORWP_VERSION, true);
 			wp_enqueue_script( 'vuejs-resource', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-resource/dist/vue-resource.min.js', array(), AMPFORWP_VERSION, true);//For Http Clients
 			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js', array(), AMPFORWP_VERSION, true);
 			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' ,array(),AMPFORWP_VERSION, true);

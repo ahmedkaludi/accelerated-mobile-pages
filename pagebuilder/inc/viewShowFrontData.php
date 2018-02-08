@@ -150,12 +150,11 @@ function amp_pagebuilder_content_styles(){
 								add_amp_icon(array($contentArray[$modulefield['name']]));
 							}
 							$replaceModule = "";
-							if($modulefield['content_type']=='css'){
-								
-
-								if(isset($contentArray[$modulefield['name']])){
+							if(isset($contentArray[$modulefield['name']])){
 									$replaceModule = $contentArray[$modulefield['name']];
 								}
+							if($modulefield['content_type']=='css'){
+								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
 										$userSelectedvalue = $contentArray[$requiredKey];
@@ -276,9 +275,9 @@ function amp_pagebuilder_content_styles(){
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 function amppb_validateCss($css){
-	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
+	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
 	return $css;
 }
 
@@ -475,6 +474,12 @@ function rowData($container,$col,$moduleTemplate){
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
 						$totalLoopHtml = contentHtml($the_query,$fieldValues,$totalLoopHtml);
+						
+						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
+							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+								$moduleFrontHtml = replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $moduleFrontHtml);
+							}
+						}
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
 						//print_r($moduleFrontHtml);die;
@@ -488,77 +493,77 @@ function rowData($container,$col,$moduleTemplate){
 						
 					break;
 					default:
-                        if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
-							foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
-								if($field['content_type']=='html'){
-									if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
+                        
+					break;
+				}
 
-										if(!is_array($contentArray[$field['name']])){
-											 $replace = $contentArray[$field['name']];
-											if($field['type']=="upload"){
-												if(isset($contentArray[$field['name']."_image_data"])){
-												 	$replace= $contentArray[$field['name']."_image_data"];
-												 	$imageUrl = $replace[0];
-													$imageWidth = $replace[1];
-													$imageHeight = $replace[2];
-												}else{
-													$imageDetails = get_attachment_id( $replace);
-													$imageUrl = $imageDetails[0];
-													$imageWidth = $imageDetails[1];
-													$imageHeight = $imageDetails[2];	
-												}
-												$moduleFrontHtml = str_replace(
-															'{{'.$field['name'].'}}', 
-															 $imageUrl, 
-															$moduleFrontHtml
-														);
-												$moduleFrontHtml = str_replace(
-															'{{image_width}}', 
-															 $imageWidth, 
-															$moduleFrontHtml
-														);
-												$moduleFrontHtml = str_replace(
-															'{{image_height}}', 
-															 $imageHeight, 
-															$moduleFrontHtml
-														);
-												$moduleFrontHtml = replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
-											}else{
-												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode( $replace), $moduleFrontHtml);
-												$moduleFrontHtml = replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
-											}
+				if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
+					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
+						if($field['content_type']=='html'){
+							if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
+
+								if(!is_array($contentArray[$field['name']])){
+									 $replace = $contentArray[$field['name']];
+									if($field['type']=="upload"){
+										if(isset($contentArray[$field['name']."_image_data"])){
+										 	$replace= $contentArray[$field['name']."_image_data"];
+										 	$imageUrl = $replace[0];
+											$imageWidth = $replace[1];
+											$imageHeight = $replace[2];
 										}else{
-											if(count($contentArray[$field['name']])>0){
-												foreach ($contentArray[$field['name']] as $key => $userValue) {
-													if(count($contentArray[$field['name']])==1){
-														$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
-														$moduleFrontHtml = replaceIfContentConditional($field['name'], $userValue, $moduleFrontHtml);
-													}else{
-														$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
-														$moduleFrontHtml = replaceIfContentConditional($field['name'].$key, $userValue, $moduleFrontHtml);
-													}
-												}
-													
+											$imageDetails = get_attachment_id( $replace);
+											$imageUrl = $imageDetails[0];
+											$imageWidth = $imageDetails[1];
+											$imageHeight = $imageDetails[2];	
+										}
+										$moduleFrontHtml = str_replace(
+													'{{'.$field['name'].'}}', 
+													 $imageUrl, 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = str_replace(
+													'{{image_width}}', 
+													 $imageWidth, 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = str_replace(
+													'{{image_height}}', 
+													 $imageHeight, 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
+									}else{
+										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode( $replace), $moduleFrontHtml);
+										$moduleFrontHtml = replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
+									}
+								}else{
+									if(count($contentArray[$field['name']])>0){
+										foreach ($contentArray[$field['name']] as $key => $userValue) {
+											if(count($contentArray[$field['name']])==1){
+												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
+												$moduleFrontHtml = replaceIfContentConditional($field['name'], $userValue, $moduleFrontHtml);
 											}else{
-												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
-												$moduleFrontHtml = replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
+												$moduleFrontHtml = str_replace('{{'.$field['name'].$key.'}}', $userValue, $moduleFrontHtml);
+												$moduleFrontHtml = replaceIfContentConditional($field['name'].$key, $userValue, $moduleFrontHtml);
 											}
 										}
-
-
+											
 									}else{
 										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 										$moduleFrontHtml = replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
 									}
-								}//If Closed content type html
-								
-								
-							}//Foreach closed
-	                    }//If closed
-					break;
-				}
+								}
 
-				
+
+							}else{
+								$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
+								$moduleFrontHtml = replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
+							}
+						}//If Closed content type html
+						
+						
+					}//Foreach closed
+                }//If closed
 
 				$html .= "<div class='amp_mod amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
@@ -640,6 +645,7 @@ function get_attachment_id( $url , $imagetype='full') {
 function replaceIfContentConditional($byReplace, $replaceWith, $string){
 	preg_match_all("{{if_condition_".$byReplace."==(.*?)}}", $string,$matches);
 	if(isset($matches[1]) && count($matches[1])>0){
+		$matches[1] = array_unique($matches[1]);
 		foreach ($matches[1] as $key => $matchValue) {
 			if($matchValue != $replaceWith){
 				$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("<amp-condition>","</amp-condition>"), $string);

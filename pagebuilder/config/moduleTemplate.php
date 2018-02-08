@@ -59,7 +59,7 @@ $front_css = '
 {{row-class}}{
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
-	{{selected_gradient}};
+	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
 	margin: {{margin_css}};
 	padding:{{padding_css}};
 	

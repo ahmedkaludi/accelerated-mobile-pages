@@ -376,7 +376,7 @@
         <div class="form-field color-wrapper"  style="line-height: 35px" >
             <div  class="layout-image-picker" v-for="(option, key, index) in field.options_details"
                     :data-value="option.value"
-                    :class="{'active': (field.default==option.value)}" v-on:click="select_layout_type(field, $event)">
+                    :class="{'active': (field.default==option.value)}" @click="select_layout_type(field, $event)">
                 <label  :data-value="option.value">{{option.label}}</label>
                 <img  :data-value="option.value" :src="option.demo_image">
             </div>

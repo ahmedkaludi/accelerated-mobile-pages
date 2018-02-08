@@ -388,9 +388,8 @@ Vue.component('fields-data',{
 		select_layout_type: function(field,event){
 			var currentSelectfield = event.target;
 			selectedValue = currentSelectfield.getAttribute("data-value");
-			console.log(currentSelectfield);
-			console.log(selectedValue);
 			field.default = selectedValue;
+			this.callChangeEnvent();
 		},
 		selectimages:function(field,event){
 			app.stopModuleModalClose = true;
@@ -508,7 +507,7 @@ Vue.component('fields-data',{
 			field.default = icon.name;
 			this.$forceUpdate();
 		},
-		callChangeEnvent: function(field){
+		callChangeEnvent: function(){
 			//get All fields with require conditions
 			jQuery(this.$el).parents('div.modal-body').find('[data-require]').each(function(e,v){
 				var fieldPointer = jQuery(this)
@@ -589,6 +588,15 @@ Vue.component('fields-data',{
 							case 'icon-selector':
 							break;
 							case 'gradient-selector':
+							break;
+							default:
+								app.modalcontent.fields.forEach(function(maindata){
+									if(maindata.name==key && maindata.default==selectedValue){
+										fieldPointer.show();
+									}else if(maindata.name==key){
+										fieldPointer.hide();
+									}
+								});
 							break;
 						}
 					});

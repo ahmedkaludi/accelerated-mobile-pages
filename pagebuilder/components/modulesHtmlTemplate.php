@@ -4,6 +4,12 @@
     		foreach ($moduleTemplate as $key => $module) {
     			unset($module['front_template']);
                 unset($module['front_css']);
+                if(isset($module['front_loop_content'])){
+                    unset($module['front_loop_content']);
+                }
+                if(isset($module['front_common_css'])){
+                    unset($module['front_common_css']);
+                }
                 if(isset($module['repeater'])){
     			    unset($module['repeater']['front_template']);
                 }
