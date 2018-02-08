@@ -354,11 +354,9 @@ width:". ampforwp_default_logo('width')."px;";
     top:4px;
     right:0px;
 }
-.m-menu .amp-menu li:hover li:hover>a{background:transparent;}
 .amp-menu li.menu-item-has-children ul{
     font-size:13px;
 }
-.m-menu .amp-menu li:hover a {background: transparent none repeat scroll 0 0;}
 .m-menu .amp-menu {
     list-style-type: none;
     margin: 45px 0 0 0;
@@ -2539,8 +2537,6 @@ a.lb-x:after {
     display:inline-block;
     width:100%;
 }
-.m-menu .amp-menu li:hover a {background: transparent none repeat scroll 0 0;}
-.m-menu .amp-menu li:hover li:hover>a{background:transparent;}
 .m-menu .amp-menu{
     margin-bottom:20%;
 }
