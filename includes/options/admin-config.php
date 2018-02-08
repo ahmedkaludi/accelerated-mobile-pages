@@ -480,27 +480,18 @@ Redux::setArgs( "redux_builder_amp", $args );
         $options = get_option('ampforwp_cpt_generated_post_types');
         return $options;
     }
-    $amp_cpt_option_switch = array();
     $amp_cpt_option = array();
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     $ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
     if ( false == $ampforwp_cpt_plugin_check ) {   
-    
-        $amp_cpt_option_switch = array(
-               'id'       => 'ampforwp-cpt-support-switch',
-               'type'     => 'switch',
-               'title'    => __('Custom Post Type', 'accelerated-mobile-pages'),
-               'subtitle' => __('Enable AMP Support on Custom Post Type.', 'accelerated-mobile-pages'),
-               'default'  => '0'
-            );
         $amp_cpt_option = array(
                     'id'      => 'ampforwp-custom-type',
                     'type'    => 'select',
                     'title'   => __('Number of Custom Types', 'redux-framework-demo'),
+                    'subtitle'   => __('Enable AMP Support on Custom Post Types', 'redux-framework-demo'),
                     'multi'   => true,
                     //'data' => 'post_type',
                     'options' => ampforwp_get_cpt_generated_post_types(),
-                    'required'=>array('ampforwp-cpt-support-switch','=','1'),
                 );
     }
         Redux::setSection( $opt_name, array(
@@ -635,7 +626,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'subtitle' => __('Enable AMP Support on Archives.', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
-           $amp_cpt_option_switch,
            $amp_cpt_option,
             array(
                'id'       => 'ampforwp-amp-convert-to-wp',
