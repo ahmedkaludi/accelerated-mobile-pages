@@ -190,7 +190,7 @@ header{
     top:0px;
 }
 .header, .header-2, .header-3{
-    width:100%;
+    width: 100vw;
     display:inline-block;
     <?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;
@@ -1636,7 +1636,7 @@ display: none;
 }
 <?php } ?>
 /*** Transitions ***/
-.content-wrapper a, .breadcrumb ul li a, .srp ul li{
+.content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{
     transition: all 0.3s ease-in-out 0s;
   -webkit-transition: all 0.3s ease-in-out 0s;
 }
@@ -2128,7 +2128,7 @@ header{
     top:0px;
 }
 .header, .header-2, .header-3{
-    width:100%;
+    width: 100vw;
     display:inline-block;
     <?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;
@@ -2505,7 +2505,8 @@ a.lb-x:after {
 .m-menu .menu-item-has-children{
     margin-bottom: 50px;
     width: 33%;
-   display:inline-block;
+    display:inline-block;
+    vertical-align: top;
 }
 .m-menu .amp-menu .menu-item-has-children > a:after {
     position: absolute;
@@ -2548,6 +2549,7 @@ a.lb-x:after {
     <?php if($redux_builder_amp['swift-height-control']){?>
     margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
     <?php } ?>
+    width: 100vw;
 }
 .p-m-fl{
     display:none;
@@ -2584,13 +2586,13 @@ a.lb-x:after {
     width:17%;
 }
 .f-mnu{
-    width: 50%;
+    width: 70%;
     display: inline-block;
     vertical-align: middle;
 }
 .f-mnu ul li{
     float:left;
-    width:50%;
+    width:33%;
     font-size:14px;
     margin-bottom:15px;
 }
@@ -2598,21 +2600,30 @@ a.lb-x:after {
     color:#aaa;
 }
 .rr{
-    text-align:right;
-    padding:10px 0px;
-    border-top:1px solid #333;
+    padding:20px 0px 10px 0px;
+    border-top:1px solid rgba(255, 255, 255, 0.20);
     font-size: 12px;
+}
+.rr a{
+    float:right;
 }
 .rr, .rr a{
     color:#aaa;
+}
+.rr a:hover{
+  color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;  
 }
 
 @media(max-width:768px){
 .f-lg{
     width:auto;
+    margin-right:4%;
+}
+.f-mnu {
+    width: 60%;
 }
 }
-@media(max-width:500px){
+@media(max-width:600px){
 .f-lg{
     width:100%;
     margin:0;
@@ -2621,13 +2632,16 @@ a.lb-x:after {
 .f-t-2{
     padding:20px;
 }
+.f-mnu ul li {
+    width: 50%;
+}
 .f-mnu {
     width: 100%;
     margin-top:20px;
     padding:0px 30px;
 }
 .rr {
-    padding-right:20px;
+    padding:15px 20px;
 }
 }
 <?php } ?>
