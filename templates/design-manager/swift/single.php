@@ -98,7 +98,7 @@
 	 			<?php amp_categories_list();?>
 	 			<div class="author-details">
 		            <span><?php amp_date('time'); ?></span>
-		            <strong>Updated</strong><span><?php amp_date('date'); ?></span>
+		            | <strong>Updated</strong> <span><?php amp_date('date'); ?></span>
 			    </div>
 		    </div>
 			<?php amp_title(); ?>
@@ -110,7 +110,8 @@
 			<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
 				<?php amp_author_box( 
 					array(	'avatar'=>true,
-							'avatar_size'=>32)
+							'avatar_size'=>38,
+							'author_prefix'=>by)
 					); ?>
 			<?php } ?>
 			<div class="artl">

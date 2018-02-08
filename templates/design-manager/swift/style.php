@@ -1085,8 +1085,6 @@ display: none;
 <?php if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 /** Breadcrumbs **/
 .breadcrumb{
-    width: 100%;
-    display: inline-block;
     padding-bottom: 8px;
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
@@ -1198,9 +1196,8 @@ display: none;
     margin-top:40px;
 }
 .amp-comment-button{
-    background-color: #005be2;
+    background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;
     font-size: 15px;
-    font-family: 'Open Sans',sans-serif;
     float: none;
     width: 100%;
     margin: 0 auto;
@@ -1277,7 +1274,7 @@ display: none;
     margin-top: 8px;
 }
 .amp-comments-wrapper ul li:hover .comment-meta .comment-metadata a{
-    color:#005be2;
+    color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;;
 }
 .cmts .comment-metadata a{
     color: #999;
@@ -2696,48 +2693,41 @@ a.lb-x:after {
 }
 .sd-2{
     margin-top: 20px;
-    width:100%
+    width:100%;
+    display: inline-block;
 }
 .amp-category span a, .amp-category span {
-    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
-    font-size: 16px;
-    line-height:1.4;
-    font-weight: 900;
+    color: #000;
+    font-weight: bold;
     text-transform: uppercase;
     font-style:italic;
 }
 .amp-post-title {
     font-size: 50px;
     line-height: 1.2;
-    color: #000;
-    margin: 0;
-    padding-top: 15px;
+    margin: 15px 0 12px 0;
     font-weight: 900;
-    max-width:900px;
 }
 .exc {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 19px;
     color: #313131;
-    max-width: 700px;
-    line-height: 1.2;
+    line-height: 1.45;
 }
 .amp-author {
     width:100%;
     display:inline-block;
-    margin-top:20px;
+    margin: 15px 0 18px 0;
 }
 .amp-author-image, .author-details {
     display:inline-block;
     vertical-align:middle;
 }
 .author-details, .author-details a{
-    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
-    font-weight: 700;
-    text-transform: capitalize;
+    color: #444;
+    font-weight: bold;
+    font-size: 14px;
 }
 .amp-featured-image{
-    margin-top:20px;
     width:100%;
 }
 .artl{
@@ -2752,7 +2742,8 @@ a.lb-x:after {
 }
 .amp-author-image amp-img {
     border-radius: 50%;
-    margin: 0px 12px 0px 0px;
+    margin: 0px 7px 0px 0px;
+    border: 1px solid #ccc;
 }
 .cntn-wrp {
     font-size: 18px;
@@ -2774,9 +2765,7 @@ a.lb-x:after {
 .amp-category span:after {
     content: "/";
     display: inline-block;
-    margin: 0px 5px 0px 5px;
-    position: relative;
-    top: 1px;
+    margin: 0px 2px 0px 7px;
     color: rgba(0, 0, 0, 0.25);
 }
 .amp-category span:last-child:after{
@@ -2851,32 +2840,19 @@ a.lb-x:after {
     margin-top: 10px;
 }
 .cat-aud{
-    width:100%;
-    display:inline-block;
+    font-size: 16px;
 }
 .cat-aud .amp-category, .cat-aud .author-details{
     display:inline-block;
     vertical-align:middle;
 }
 .cat-aud .author-details{
-    margin-left:10px;
-    font-size: .8125rem;
-    display: inline-block;
-    height: 20px;
-    letter-spacing: .4px;
     color: #757575;
-    line-height: 1.83;
     font-weight: 400;
-}
-.cat-aud .author-details strong{
-    padding-right: 6px;
-    font-weight: 900;
-}
-.cat-aud .author-details strong:before{
-    content: "|";
-    display: inline-block;
-    font-weight: normal;
-    padding-right: 5px;
+    font-size: 12px;
+    position: relative;
+    margin-left: 5px;
+    top: 1px;
 }
 /** Comments **/
 .cmts {
@@ -2937,7 +2913,7 @@ a.lb-x:after {
     margin: 0;
 }
 .amp-comment-button {
-    background-color: #005be2;
+    background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;;
     font-size: 15px;
     float: none;
     width: 100%;
@@ -3032,7 +3008,6 @@ a.lb-x:after {
 /** right sidebar  css **/
 .rft{
     width:30%;
-    margin-top:30px;
 }
 .rc-p {
     width:100%;
@@ -3060,7 +3035,7 @@ a.lb-x:after {
     font-size: 16px;
     padding: 5px 15px;
     font-style: italic;
-    background: #f83371;
+    background: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;
     color: #fff;
     position: relative;
     letter-spacing: 1px;
@@ -3099,6 +3074,10 @@ a.lb-x:after {
     font-weight:700;
     line-height:1.4;
 }
+.rp-cnt h2 a{
+    color:#000;
+}
+
 .rp-cnt h2 a:hover{
     text-decoration:underline;
 }
