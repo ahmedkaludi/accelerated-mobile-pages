@@ -645,7 +645,9 @@ display: none;
 *****/
 /**** Big post ***/
 .hmp{
-  margin-top:34px;  
+  margin-top:34px;
+  display:inline-block;
+  width:100%;  
 }
 .fbp{
     width:100%;
@@ -855,6 +857,7 @@ display: none;
 .sp{
     width:100%;
     margin-top:20px;
+    display:inline-block;
 }
 .amp-post-title{
     font-size:48px;
@@ -2547,50 +2550,6 @@ a.lb-x:after {
     <?php } ?>
 }
 .p-m-fl{
-    width:100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    <?php if($redux_builder_amp['primary-menu-background-scheme']['rgba']){?>
-        background:<?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>
-    <?php } ?>
-}
-.p-menu{
-    width:100%;
-    text-align:center;
-    margin: 0px auto;
-    max-width: 1100px;
-    overflow-x: scroll;
-    overflow-y:hidden;
-    white-space: nowrap;
-    <?php if($redux_builder_amp['primary-menu-padding-control']){?>
-         padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-top'] .' '. 
-                             $redux_builder_amp['primary-menu-padding-control']['padding-right'] .' '. 
-                             $redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' '. 
-                             $redux_builder_amp['primary-menu-padding-control']['padding-left'] ; ?>;
-    <?php } ?>
-}
-::-webkit-scrollbar {
-display: none;
-}
-.p-menu ul li{
-    display: inline-block;
-    margin-right: 21px;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 1px;
-    font-weight: 400;
-}
-.p-menu ul li a{
-    padding:0;
-    <?php if($redux_builder_amp['primary-menu-text-scheme']['rgba']){?>
-    color:<?php echo $redux_builder_amp['primary-menu-text-scheme']['rgba']?>;
-    <?php } ?>
-    text-transform:uppercase;
-}
-.p-menu .amp-menu li.menu-item-has-children:hover > ul{
-    display:none;
-    font-size:13px;
-}
-.p-menu .amp-menu li.menu-item-has-children:after{
     display:none;
 }
 /*** Responsive ***/
