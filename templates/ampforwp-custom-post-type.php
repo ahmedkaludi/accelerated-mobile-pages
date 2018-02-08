@@ -57,27 +57,3 @@ if ( false == $ampforwp_cpt_plugin_check ) {
                 }
         }
     }
-
-    // Endpoint
-    add_filter('ampforwp_modify_rel_canonical','ampforwp_cpt_modify_rel_canonical_new');
-    if ( ! function_exists('ampforwp_cpt_modify_rel_canonical_new') ) {
-        function ampforwp_cpt_modify_rel_canonical_new( $url ) {
-            global $redux_builder_amp, $wp;
-            $post_types = "";
-            $current_cpt_url = "";
-            if ( isset($redux_builder_amp['ampforwp-custom-type']) ) {
-                $post_types = $redux_builder_amp['ampforwp-custom-type'];
-            }
-            // If Option "Make endpoint ?amp" is Off then return.
-            if ( isset($redux_builder_amp['ampforwp-custom-type-amp-endpoint']) && false == $redux_builder_amp['ampforwp-custom-type-amp-endpoint'] ) {
-                return $url;
-            }
-            if ( is_post_type_archive( $post_types ) || is_singular( $post_types ) ) {
-                $current_cpt_url = home_url( $wp->request );
-                $url      = trailingslashit( $current_cpt_url ) . '?amp=1';
-                return $url;
-            }
-            return $url;
-        }
-    }
-}
