@@ -475,6 +475,11 @@ Redux::setArgs( "redux_builder_amp", $args );
             return 'flexible';
         }
     }
+    function ampforwp_get_cpt_generated_post_types() {
+        $options = '';
+        $options = get_option('ampforwp_cpt_generated_post_types');
+        return $options;
+    }
     $amp_cpt_option_switch = array();
     $amp_cpt_option = array();
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -4399,11 +4404,6 @@ Redux::setSection( $opt_name, array(
         )
 
     ) );
-function ampforwp_get_cpt_generated_post_types() {
-    $options = '';
-    $options = get_option('ampforwp_cpt_generated_post_types');
-    return $options;
-}
     
 // Extension Section
     Redux::setSection( $opt_name, array(
