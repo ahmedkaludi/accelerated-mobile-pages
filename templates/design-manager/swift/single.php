@@ -117,7 +117,8 @@
 				<div class="lft">
 					<?php if ( has_post_thumbnail() ) {?>
 						<?php amp_featured_image();?>
-					<?php } else{ // }?>
+					<?php } else{ // 
+					}?>
 					<div class="cntn-wrp">
 						<?php amp_content(); ?>
 					</div>
