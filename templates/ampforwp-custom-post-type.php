@@ -57,3 +57,4 @@ if ( false == $ampforwp_cpt_plugin_check ) {
                 }
         }
     }
+}
