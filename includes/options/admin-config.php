@@ -151,16 +151,19 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
+        $verify = '<button type="submit" id="'.$pathExploded.'">Verify</button>';
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
              $currentStatus = 'active valid';
+             $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-desctivate">DeActivate</button>';
         }
 
-        $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" onclick="return false;" value="'.$amplicense.'"> 
+        $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" value="'.$amplicense.'" onclick="return false;"> 
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'"> 
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
-
-        <button type="submit" id="'.$pathExploded.'">Verify</button>';
-         
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> ';
+        
+        $pluginReview .= $verify;
+        $onclickUrl = '';
+        
     }
     $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'" onclick="'.$onclickUrl.'"><a href="#">
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
@@ -182,7 +185,6 @@ $extension_listing = '
 </ul>
 </div>
 ';
-
 
 
 
