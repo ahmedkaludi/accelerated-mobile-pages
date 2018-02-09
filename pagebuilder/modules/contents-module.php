@@ -147,8 +147,29 @@ require_once  ABSPATH . WPINC . '/category.php';
         top: auto;
         bottom: 20px;
         color: #fff;
-
     }
+@media(max-width:1024px){
+.cat-2-tlt{
+  max-width:100%;
+  font-size:50px;
+  padding:0px 10px;
+}
+}
+@media(max-width:1024px){
+.cat-2-tlt{
+    font-size:38px;
+}
+}
+@media(max-width:600px){
+.cat-2-tlt{
+    font-size:28px;
+}
+}
+@media(max-width:425px){
+.cat-2-tlt{
+    font-size:22px;
+}
+}
 {{ifend_condition_content_layout_type_2}}
 {{if_condition_content_layout_type==3}}
     /*** design-cat-3-styles ***/
@@ -555,9 +576,10 @@ require_once  ABSPATH . WPINC . '/category.php';
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);  
-                   $thumb_url = $thumb_url_array[0];
+                   $image = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
                    $height = $thumb_url_array[2];
+
                    switch($fieldValues['content_layout_type']){
                     case 1:
                       $width = $fieldValues['img-width-1'];
@@ -574,11 +596,17 @@ require_once  ABSPATH . WPINC . '/category.php';
                     default:
                     break;
                    }
-                   $thumb_url_array = aq_resize( $thumb_url, $width, $height, true, false ); //resize & crop the image
-                   $image   =  $thumb_url_array[0];
-                   $width   =  $thumb_url_array[1];
-                   $height  =  $thumb_url_array[2];
-
+                   try{
+                     $thumb_url = aq_resize( $image, $width, $height, true, false ); //resize & crop the image
+                    if($thumb_url!=false){
+                      $image   =  $thumb_url[0];
+                      $width   =  $thumb_url[1];
+                      $height  =  $thumb_url[2];
+                    }
+                   }catch(Exception $e){
+                      error_log($e);
+                   }
+                  
               }
               $excerptContent = "";
               if( $ampforwp_show_excerpt == 'yes' ) {     
