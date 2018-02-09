@@ -126,6 +126,7 @@ $containerCommonSettings = array(
 								'name'		=>"fixed-width",
 								'label'		=>'Width',
 								'tab'		=>'customizer',
+								'default'	=>'1100px',
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fixed')
 							),
