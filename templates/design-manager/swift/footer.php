@@ -73,5 +73,5 @@
 		</div>
 	</div>
 </footer>
-+<?php } ?>
+<?php } ?>
 <?php amp_footer_core(); ?>
