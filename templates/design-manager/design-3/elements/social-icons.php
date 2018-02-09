@@ -1,4 +1,5 @@
-<?php global $redux_builder_amp, $post; ?>
+<?php global $redux_builder_amp, $post; 
+$image = ''; ?>
 <?php if ( is_single() ) { 
 	 if ( has_post_thumbnail( $post->ID ) ) {
 	 	$thumb_id = get_post_thumbnail_id($post->ID);

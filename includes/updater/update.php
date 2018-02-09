@@ -30,6 +30,7 @@ function ampForWP_extension_activate_license() {
 
                 // Call the custom API.
                 $response = wp_remote_post( $store_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+                 $message = '';
                 // make sure the response came back okay
                 if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 
@@ -40,7 +41,8 @@ function ampForWP_extension_activate_license() {
                     }
 
                 } else {
-                    $license_data = json_decode( wp_remote_retrieve_body( $response ) );
+                    $response = wp_remote_retrieve_body( $response );
+                    $license_data = json_decode( $response );
                     if ( false === $license_data->success ) {
                         switch( $license_data->error ) {
                             case 'expired' :
@@ -94,9 +96,9 @@ function ampForWP_extension_activate_license() {
                     $status = false;
                 }else{
                     $status = $license_data->license;
-                    $limit = ampforwp_set_plugin_limit( true, $license_data );
+                    $limit = ampforwp_set_plugin_limit( true, $license_data, $ext_value);
                     $selectedOption['amp-license'][$ext_key]['limit'] =  $limit;
-                    $selectedOption['amp-license'][$ext_key]['message'] =  json_decode($license_data,true);
+                    $selectedOption['amp-license'][$ext_key]['message'] =  json_decode($response,true);
                 }
 
                 // Set the license limit
@@ -202,7 +204,7 @@ add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license'
 * want to do something custom
 *************************************/
 
-function amp_ads_check_license() {
+function ampforwp_check_extension_license() {
 
     global $wp_version;
 

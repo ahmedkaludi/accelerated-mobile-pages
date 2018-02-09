@@ -571,14 +571,14 @@ Vue.component('fields-data',{
 								});
 								
 							break;
-							case 'radio':
+							/*case 'radio':
 								var currentValue = jQuery('#'+key).find('input[type=radio]:checked').val();
 								if(currentValue==selectedValue){
 									fieldPointer.show();
 								}else{
 									fieldPointer.hide();
 								}
-							break;
+							break;*/
 							case 'spacing':
 							break;
 							case 'upload':
