@@ -70,20 +70,24 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 }
 
 //Facility to create child theme For AMP
-	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_header_file', 10, 2 );
+	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_header_file', 20, 3 );
 	add_filter( 'amp_post_template_file', 'ampforwp_child_designing_custom_template', 10, 3 );
-	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 10, 2 );
+	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 20, 3 );
 	function ampforwp_theme_template_directry(){
 		return get_template_directory() . '/amp/';
 	}
 	// Custom Header
-	function ampforwp_child_custom_header_file( $file, $type ) {
+	function ampforwp_child_custom_header_file( $file, $type, $post ) {
 		$currentFile = $file;
 		if ( 'header' === $type ) {
 			$file = ampforwp_theme_template_directry() . '/header.php';
-			if(!file_exists($file)){
-				$file = $currentFile;
-			}
+			
+		}
+		if ( 'header-bar' === $type ) {
+			$file = ampforwp_theme_template_directry() . '/header-bar.php';
+		}
+		if(!file_exists($file)){
+			$file = $currentFile;
 		}
 		return $file;
 	}
@@ -273,7 +277,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 	}
 
 	// Custom Footer
-	function ampforwp_child_custom_footer_file( $file, $type ) {
+	function ampforwp_child_custom_footer_file( $file, $type, $post ) {
 		$currentFile = $file;
 		if ( 'footer' === $type ) {
 			$file = ampforwp_theme_template_directry() . '/footer.php';
