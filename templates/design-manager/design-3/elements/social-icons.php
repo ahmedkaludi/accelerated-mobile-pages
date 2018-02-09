@@ -2,7 +2,8 @@
 <?php if ( is_single() ) { 
 	 if ( has_post_thumbnail( $post->ID ) ) {
 	 	$thumb_id = get_post_thumbnail_id($post->ID);
-		$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
+		$image = wp_get_attachment_image_src( $thumb_id, 'full' );
+		$image = $image[0]; 
 	 }
 	$permalink = '';
 	if ( isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link'] ) {
