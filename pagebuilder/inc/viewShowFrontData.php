@@ -474,12 +474,12 @@ function rowData($container,$col,$moduleTemplate){
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
 						$totalLoopHtml = contentHtml($the_query,$fieldValues,$totalLoopHtml);
-						
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
-								$moduleFrontHtml = replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $moduleFrontHtml);
+								$totalLoopHtml = replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $totalLoopHtml);
 							}
 						}
+
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
 						//print_r($moduleFrontHtml);die;
