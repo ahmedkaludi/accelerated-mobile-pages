@@ -68,7 +68,7 @@ if ( get_query_var( 'paged' ) ) {
 		) ); ?>
 
  	<?php if ( is_archive() ) { ?>
- 		<div class="amp-wp-content archive-heading">
+ 		<div class="amp-wp-content">
  	<?php 
  			if( is_author() ){
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
@@ -81,7 +81,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 				}
 			}
- 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
+ 			the_archive_title( '<h1 class="amp-wp-content page-title archive-heading">', '</h1>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
