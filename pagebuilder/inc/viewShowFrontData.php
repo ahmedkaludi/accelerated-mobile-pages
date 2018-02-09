@@ -48,10 +48,7 @@ function amp_pagebuilder_content_styles(){
 .amp_btn{text-align:center}
 .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 
-.amppb-fluid{width:100%;}
-.amppb-fluid .col{margin:0 auto;max-width:90%}
 .amppb-pages header .cntr{max-width: 1100px;}
-.amppb-fixed .col {max-width: 95%;width:1125px;margin: 0 auto;}
 @media(max-width:1024px){
 .amppb-fixed{width:100%;}
 }

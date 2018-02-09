@@ -56,6 +56,11 @@ if(!function_exists("ampforwp_module_templates")){
 $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
+
+.amppb-fluid{width:100%;}
+.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
+.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
+
 {{row-class}}{
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
@@ -65,7 +70,10 @@ $front_css = '
 	
 	{{shadow}}
 }
+
 ';
+$front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
+.amppb-fixed .col {max-width: {{fixed-width}};width:1125px;margin: 0 auto;}';
 /*border-size: {{border_css}};
 	border-style:{{border_type}};*/
 $containerCommonSettings = array(
@@ -113,6 +121,25 @@ $containerCommonSettings = array(
 								'content_type'=>'html',
 							),
 
+							array(
+								'type'		=>'text',
+								'name'		=>"fixed-width",
+								'label'		=>'Width',
+								'tab'		=>'customizer',
+								'default'	=>'1100px',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fixed')
+							),
+
+							array(
+								'type'		=>'text',
+								'name'		=>"fluid-width",
+								'label'		=>'Width',
+								'tab'		=>'customizer',
+								'default'	=>'100%',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fluid')
+							),
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
@@ -257,4 +284,5 @@ $containerCommonSettings = array(
 			'front_template_start'=>$output,
 			'front_template_end'=>$outputEnd,
 			'front_css'=>$front_css,
+			'front_common_css' => $front_common_css,
 			);
