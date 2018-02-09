@@ -21,6 +21,11 @@ require_once  ABSPATH . WPINC . '/category.php';
 
  $frontCss = '
 {{if_condition_content_layout_type==1}}
+.wrap{
+  width:100%;
+  display:inline-block;
+  margin-top:10px;
+}
     .cat_mod ul{
         display: flex;
         flex-wrap: wrap;
@@ -40,7 +45,6 @@ require_once  ABSPATH . WPINC . '/category.php';
       padding:{{padding_css}};
       padding:40px;
     }
-
     .cat_mod h4{
       border-bottom: 2px solid {{border_color_picker}};
       padding-bottom: 8px;
@@ -49,10 +53,10 @@ require_once  ABSPATH . WPINC . '/category.php';
       color: {{label_color_picker}};
       font-weight: {{label-weight}}
     }
-
     .cat_mod .cat_mod_r{
       display:flex;
       flex-direction: column;
+      margin-top: 6px;
     }
     .cat_mod .cat_mod_r a{
       font-size: {{cat-size}};
@@ -68,6 +72,41 @@ require_once  ABSPATH . WPINC . '/category.php';
       letter-spacing: 0.10px;
       margin-bottom:0;
     }
+    .cat_mod .cat_mod_l{
+      width:100%;
+    }
+@media(max-width:768px){
+.cat_mod ul li {
+    flex-basis: calc(100% - 30px);
+    margin: 10px 15px;
+}
+.cat_mod_l amp-img{
+  width:100%;
+}
+.cat_mod .cat_mod_l{
+  width: 40%;
+  float: left;
+  margin-right: 20px;
+}
+.cat_mod .cat_mod_r{
+    width: 54%;
+    float: left;
+    margin-top: 0;
+}
+}
+@media (max-width: 480px){
+.cat_mod .cat_mod_l{
+  width: 100%;
+  float: none;
+  margin-right: 0px;
+}
+.cat_mod .cat_mod_r{
+  width: 100%;
+  float: none;
+  margin-top:6px;
+}
+
+}
 {{ifend_condition_content_layout_type_1}}
 {{if_condition_content_layout_type==2}}
     /*** design-cat-2-styles ***/
@@ -82,7 +121,7 @@ require_once  ABSPATH . WPINC . '/category.php';
     .cat-cntn a{
       margin:0; 
     }
-    .cat-desing-2 .dsg-2 a{
+    .cat-desing-2 .dsg-2{
       width:100%;
       height:100%;
       margin:0;
@@ -189,6 +228,7 @@ require_once  ABSPATH . WPINC . '/category.php';
       .cat_mod-3 .cat-3-tlt {
           width: 100%;
           float: none;
+          margin-top:6px;
       }
 
     }
@@ -471,7 +511,7 @@ require_once  ABSPATH . WPINC . '/category.php';
     'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
                           <li> 
                               <div class="cat_mod_l First"> 
-                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="fixed"></amp-img></a> 
+                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive"></amp-img></a> 
                               </div>
                               <div class="cat_mod_r">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
@@ -514,11 +554,10 @@ require_once  ABSPATH . WPINC . '/category.php';
              $image = $height = $width = "";	
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
-                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);  
+                   $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);  
                    $thumb_url = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
                    $height = $thumb_url_array[2];
-
                    switch($fieldValues['content_layout_type']){
                     case 1:
                       $width = $fieldValues['img-width-1'];
@@ -535,10 +574,6 @@ require_once  ABSPATH . WPINC . '/category.php';
                     default:
                     break;
                    }
-                   
-
-
-
                    $thumb_url_array = aq_resize( $thumb_url, $width, $height, true, false ); //resize & crop the image
                    $image   =  $thumb_url_array[0];
                    $width   =  $thumb_url_array[1];
@@ -588,6 +623,6 @@ require_once  ABSPATH . WPINC . '/category.php';
  		
      }		
      /* Restore original Post Data */		
-     wp_reset_postdata();		
+     wp_reset_postdata();
      return $contenthtml;		
  }
