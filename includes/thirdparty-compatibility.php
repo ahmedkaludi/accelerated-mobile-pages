@@ -59,7 +59,66 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 										$match[0] .= '.cntr img{width:100%;height:auto;}';
 																	return $match[0];
 																}, $returnData);*/
-				$nonampCss = '.cntr img{width:100% !important;height:auto !important;}';
+				$nonampCss = '
+				.cntr img{width:100% !important;height:auto !important;}
+				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
+				/*----------  HIDE SELECT CHECKBOX  ----------*/
+				.toggle, .full-screen-close{
+					display: none;
+				}
+				.test{
+					width: 100%;
+				    height: 100%;
+				    overflow-x: hidden;
+				}
+				.full-screen-close{
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					cursor: pointer;
+					top:0;
+					left:0;
+				}
+				.toggle:checked + .test .menu-container {
+				  	margin-left: 0;
+				}
+				.toggle:checked + .test .full-screen-close{
+				  	display: block;
+				  	background: rgba(0,0,0,.5);
+				}
+				.toggle-btn, .close-btn{
+					cursor: pointer;
+				}
+				.toggle-btn{
+					font-size: 2.25rem;
+					color:#fff;
+				}
+				.close-btn{
+					float: right;
+					font-size: 1.5rem;
+					padding: 1.5rem;
+					color: #ededed;
+				}
+				.menu-container{
+					transition: margin 0.3s ease-in-out;
+				}
+				.menu-container{
+					background: #333;
+					width: 85%;
+					margin-left: -100%;
+					float: left;
+					height: 100%;
+					position: absolute;
+					margin-top:56px;
+					z-index:99;
+				}
+				/** My css **/
+				.m-menu{
+					background:#333;
+					margin-top:0 !important;
+					padding:40px 0px 0px 0px;
+				}
+				';
 				$re = '/<style type="text\/css">(.*?)<\/style>/';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
 				$returnData = preg_replace($re, $subst, $returnData);
