@@ -62,16 +62,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				$nonampCss = '
 				.cntr img{width:100% !important;height:auto !important;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-				/*----------  HIDE SELECT CHECKBOX  ----------*/
-				.toggle, .full-screen-close{
+
+				.tg, .fsc{
 					display: none;
 				}
-				.test{
-					width: 100%;
-				    height: 100%;
-				    overflow-x: hidden;
-				}
-				.full-screen-close{
+				.fsc{
 					width: 100%;
 					height: 100%;
 					position: absolute;
@@ -79,53 +74,51 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 					top:0;
 					left:0;
 				}
-				.toggle:checked + .hamb-mnu .menu-container {
+				.tg:checked + .hamb-mnu .m-ctr {
 				  	margin-left: -16%;
-					padding: 0px 7% 0px 10%;
+					padding: 0px 1% 0px 0%;
 				}
-				.toggle:checked + .hamb-mnu .full-screen-close{
+				.tg:checked + .hamb-mnu .fsc{
 				  	display: block;
 				  	background: rgba(0,0,0,.5);
 				}
-				.toggle-btn, .close-btn{
+				.t-btn, .c-btn{
 					cursor: pointer;
 				}
-				.toggle-btn{
-					font-size: 2.25rem;
-					color:#fff;
+				.t-btn{
+					font-size: 28px;
 				}
-				.close-btn{
+				.c-btn{
 					float: right;
 					font-size: 1.5rem;
 					padding: 1.5rem;
 					color: #ededed;
 				}
-				.menu-container{
+				.m-ctr{
 					transition: margin 0.3s ease-in-out;
 				}
-				.menu-container{
+				.m-ctr{
 					background: #333;
-					width: 84%;
-					margin-left: -100%;
+					width: 100%;
+					margin-left: -120%;
 					float: left;
 					height: auto;
 					position: absolute;
-					margin-top:56px;
+					margin-top:52px;
 					box-sizing: content-box;
     				-webkit-box-sizing: content-box;
 				}
 				/** My css **/
 				.m-menu{
-					margin-top:0 !important;
 					padding:40px 0px 0px 0px;
 				}
-				.toggle-btn:after{
+				.t-btn:after{
 					content:"\e5d2";
 					display:inline-block;
 				    color: rgba(119,119,119,1);
     				font-family: "icomoon";
 				}
-				.close-btn:after{
+				.c-btn:after{
 				    content: "\e5cd";
 				    font-family: "icomoon";
 				    font-size: 30px;
