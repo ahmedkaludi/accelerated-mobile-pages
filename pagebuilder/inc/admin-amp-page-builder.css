@@ -46,7 +46,7 @@ position: absolute;
  
 .amppb-row-fields .ui-droppable{
     min-height: 35px;
-    width: 100%;
+    width: 96%;
     border: 1px dashed #999;
     border-radius: 60px;
     line-height: 0;
@@ -61,7 +61,7 @@ position: absolute;
  
 .modules-drop{
     position: relative;
-    padding: 10px 13px;
+    margin: 10px 13px;
 }
 
 .amppb-rows-message{
@@ -487,9 +487,9 @@ font-size: 35px;
 }
 #amppb-actions-container .button-primary, #amppb-module-actions-container .button-primary{
     font-size: 13px;
-    font-weight: 600; margin-bottom: 10px;
+    font-weight: 600;
 }
-#amppb-module-actions-container .drag{margin-right: 10px;}
+#amppb-module-actions-container .drag{margin-right: 10px;margin-bottom: 10px;}
 /* Button Img Default Values */
 /* Module img defaults */
 .amppb-module:before {
