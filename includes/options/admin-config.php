@@ -142,7 +142,6 @@ foreach ($extension_listing_array as $key => $extension) {
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
         $currentStatus = "not-active invalid";
-        $onclickUrl = "";
         $pathExploded = explode("/", $extension['plugin_active_path']);
         $pathExploded = $pathExploded[0];
 
@@ -151,7 +150,7 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
-        $verify = '<button type="submit" id="'.$pathExploded.'">Verify</button>';
+        $verify = '<button type="submit" id="'.$pathExploded.'">Activate</button>';
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
              $currentStatus = 'active valid';
              $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-desctivate">DeActivate</button>';
@@ -162,10 +161,13 @@ foreach ($extension_listing_array as $key => $extension) {
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> ';
         
         $pluginReview .= $verify;
+        if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
+            $pluginReview .= "<br/>".$selectedOption['amp-license'][$pathExploded]['message'];
+        }
         $onclickUrl = '';
         
     }
-    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'" onclick="'.$onclickUrl.'"><a href="#">
+    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'" onclick="'.$onclickUrl.'"><a href="javascript:void(0);">
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
         <div class="extension_desc">
         <h2>'.$extension['name'].'</h2>
