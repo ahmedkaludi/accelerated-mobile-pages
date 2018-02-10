@@ -290,4 +290,24 @@ var reduxOptionTab = function(){
     });
 } 
 //reduxOptionTab();   
+
+$(".redux-ampforwp-ext-desctivate").click(function(){
+    var plugin_id = $(this).attr("id");
+    $deactivateConfirm = confirm("Are you sure you want to Deactivate ?");
+    if($deactivateConfirm){
+        $.ajax({
+            url: ajaxurl,
+            method: 'post',
+            data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id},
+            dataType: 'json',
+            success: function(response){
+                if(response.status=='200'){
+                    alert("success");
+                }else{
+                    alert(response.message);
+                }
+            }
+        })
+    }
+});
 });
