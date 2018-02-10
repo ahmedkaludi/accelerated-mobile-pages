@@ -62,61 +62,50 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				$nonampCss = '
 				.cntr img{width:100% !important;height:auto !important;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-
 				.tg, .fsc{
-					display: none;
+				    display: none;
 				}
 				.fsc{
-					width: 100%;
-					height: 100%;
-					position: absolute;
-					cursor: pointer;
-					top:0;
-					left:0;
+				    width: 100%;
+				    height: 100%;
+				    position: absolute;
+				    cursor: pointer;
+				    top:0;
+				    left:0;
 				}
-				.tg:checked + .hamb-mnu .m-ctr {
-				  	margin-left: -16%;
-					padding: 0px 1% 0px 0%;
+				.tg:checked + .hamb-mnu > .m-ctr {
+				    margin-left: 0;
 				}
-				.tg:checked + .hamb-mnu .fsc{
-				  	display: block;
-				  	background: rgba(0,0,0,.5);
+				.tg:checked + .hamb-mnu > .fsc{
+				    display: block;
+				    background: rgba(0,0,0,.5);
 				}
 				.t-btn, .c-btn{
-					cursor: pointer;
-				}
-				.t-btn{
-					font-size: 28px;
+				    cursor: pointer;
 				}
 				.c-btn{
-					float: right;
-					font-size: 1.5rem;
-					padding: 1.5rem;
-					color: #ededed;
+				    float: right;
+				    padding: 1.5rem;
 				}
 				.m-ctr{
-					transition: margin 0.3s ease-in-out;
+				    transition: margin 0.3s ease-in-out;
 				}
 				.m-ctr{
-					background: #333;
-					width: 100%;
-					margin-left: -120%;
-					float: left;
-					height: auto;
-					position: absolute;
-					margin-top:52px;
-					box-sizing: content-box;
-    				-webkit-box-sizing: content-box;
-				}
-				/** My css **/
-				.m-menu{
-					padding:40px 0px 0px 0px;
+				    width: 100%;
+				    margin-left: -100%;
+				    float: left;
+				    height: auto;
+				    position: absolute;
+				    z-index:99;
+				    
+				    padding: 0% 3% 100vh 5%;
 				}
 				.t-btn:after{
 					content:"\e5d2";
 					display:inline-block;
 				    color: rgba(119,119,119,1);
     				font-family: "icomoon";
+    				font-size:28px;
 				}
 				.c-btn:after{
 				    content: "\e5cd";

@@ -3333,6 +3333,15 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     )    
             ),
+            array(
+                    'id'       => 'header-overlay-width',
+                    'type'     => 'text',
+                    'title'    => __('Menu Overlay Width', 'accelerated-mobile-pages'),
+                    'default'  => '90%',
+                    'required' => array(
+                      array('customize-options','=',1)
+                    )           
+            ),
             // Tab 2 end
             /*array(
                    'id' => 'header-tab-2-end',

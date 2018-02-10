@@ -121,7 +121,69 @@ amp-carousel > amp-img > img {
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
  <?php } ?>
 }
-
+.tg, .fsc{
+    display: none;
+}
+.fsc{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left:0;
+}
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-left: 0;
+}
+.tg:checked + .hamb-mnu > .fsc{
+    display: block;
+    background: rgba(0,0,0,.5);
+}
+.t-btn, .c-btn{
+    cursor: pointer;
+}
+.t-btn:after{
+    content:"\e5d2";
+    display:inline-block;
+    <?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
+        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
+    <?php } ?>
+    font-family: "icomoon";
+    font-size:28px;
+}
+.c-btn:after{
+    content: "\e5cd";
+    font-family: "icomoon";
+    font-size: 30px;
+    <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
+        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+    <?php } ?>
+    line-height: 0;
+    display: block;
+    text-indent: 1px;
+}
+.c-btn{
+    float: right;
+    padding: 20px 10px;
+}
+.m-ctr{
+    transition: margin 0.3s ease-in-out;
+}
+.m-ctr{
+    <?php if($redux_builder_amp['header-overlay-width']){?>
+        width:<?php echo $redux_builder_amp['header-overlay-width']?>;
+    <?php } ?>
+    margin-left: -100%;
+    float: left;
+    height: auto;
+    position: absolute;
+    z-index:99;
+    padding: 2% 3% 100vh 3%;
+}
+m-menu{
+    display: inline-block;
+    width: 100%;
+}
 /***** Header *****/
 header{
     position:fixed;
@@ -1983,42 +2045,15 @@ amp-user-notification button {
     top:0;
     left:0;
 }
-.tg:checked + .hamb-mnu .m-ctr {
-    margin-left: -16%;
-    padding: 0px 1% 0px 0%;
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-left: 0;
 }
-.tg:checked + .hamb-mnu .fsc{
+.tg:checked + .hamb-mnu > .fsc{
     display: block;
     background: rgba(0,0,0,.5);
 }
 .t-btn, .c-btn{
     cursor: pointer;
-}
-.t-btn{
-    font-size: 28px;
-}
-.c-btn{
-    float: right;
-    font-size: 1.5rem;
-    padding: 1.5rem;
-    color: #ededed;
-}
-.m-ctr{
-    transition: margin 0.3s ease-in-out;
-}
-.m-ctr{
-    width: 100%;
-    margin-left: -120%;
-    float: left;
-    height: auto;
-    position: absolute;
-    margin-top:52px;
-    box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-}
-/** My css **/
-.m-menu{
-    padding:40px 0px 0px 0px;
 }
 .t-btn:after{
     content:"\e5d2";
@@ -2027,6 +2062,7 @@ amp-user-notification button {
         color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
     <?php } ?>
     font-family: "icomoon";
+    font-size:28px;
 }
 .c-btn:after{
     content: "\e5cd";
@@ -2038,6 +2074,25 @@ amp-user-notification button {
     line-height: 0;
     display: block;
     text-indent: 1px;
+}
+.c-btn{
+    float: right;
+    padding: 1.5rem;
+}
+.m-ctr{
+    transition: margin 0.3s ease-in-out;
+}
+.m-ctr{
+    <?php if($redux_builder_amp['header-overlay-width']){?>
+        width:<?php echo $redux_builder_amp['header-overlay-width']?>;
+    <?php } ?>
+    margin-left: -100%;
+    float: left;
+    height: auto;
+    position: absolute;
+    z-index:99;
+    margin-top:77px;
+    padding: 0% 3% 100vh 5%;
 }
 /***** Header *****/
 header{
@@ -3074,57 +3129,3 @@ a.lb-x:after {
 }
 }
 <?php } } ?>
-
-
-
-
-
-
-
-
-.tg, .fsc{
-    display: none;
-}
-.fsc{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    cursor: pointer;
-    top:0;
-    left:0;
-}
-.tg:checked + .hamb-mnu > .m-ctr {
-    margin-left: 0;
-}
-.tg:checked + .hamb-mnu > .fsc{
-    display: block;
-    background: rgba(0,0,0,.5);
-}
-.t-btn, .c-btn{
-    cursor: pointer;
-}
-.t-btn:after{
-    content:"\e5d2";
-    display:inline-block;
-    color: rgba(119,119,119,1);
-    font-family: "icomoon";
-    font-size:28px;
-}
-.c-btn{
-    float: right;
-    font-size: 1.5rem;
-    padding: 1.5rem;
-    color: #ededed;
-}
-.m-ctr{
-    transition: margin 0.3s ease-in-out;
-}
-.m-ctr{
-    background: #333;
-    width: 100%;
-    margin-left: -100%;
-    float: left;
-    height: auto;
-    position: absolute;
-    z-index:99;
-}
