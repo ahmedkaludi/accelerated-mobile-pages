@@ -5,7 +5,22 @@
     <div class="cntr">
         <div class="head">
             <div class="h-nav">
-               <?php amp_sidebar(['action'=>'open-button']); ?>
+               <input type="checkbox" id="offcanvas-menu" class="tg" />
+               <div class="hamb-mnu">
+                    <aside class="m-ctr">
+                        <div class="m-hd clearfix">
+                            <label for="offcanvas-menu" class="c-btn"></label>
+                        </div>
+                        <nav class="m-menu">
+                            <?php amp_menu(); ?>
+                        </nav>
+                    </aside>
+                </div>
+                    <label for="offcanvas-menu" class="fsc"></label>
+                    <div class="menu">
+                        <label for="offcanvas-menu" class="t-btn"></label>
+                    </div>
+                
             </div><!-- /.left-nav -->
             <div class="logo">
                 <?php amp_logo(); ?>
@@ -106,29 +121,6 @@
     </div>
 </header>
 <?php } ?>
-
-<?php if($redux_builder_amp['header-position-type'] == '1'){?>
-<?php amp_sidebar(['action'=>'start',
-    'id'=>'sidebar',
-    'layout'=>'nodisplay',
-    'side'=>'left'
-] ); ?>
-<?php } ?>
-<?php if($redux_builder_amp['header-position-type'] == '2'){?>
-<?php amp_sidebar(['action'=>'start',
-    'id'=>'sidebar',
-    'layout'=>'nodisplay',
-    'side'=>'right'
-] ); ?>
-<?php } ?>
-<div class="amp-close-btn">
-    <?php amp_sidebar(['action'=>'close-button']); ?>
-</div>
-<div class="m-menu">
-    <?php amp_menu(); ?>
-</div>
-<?php amp_sidebar(['action'=>'end']); ?>
-
 <div class="content-wrapper">
 <?php if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">

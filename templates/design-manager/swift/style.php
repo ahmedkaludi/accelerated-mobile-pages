@@ -116,72 +116,76 @@ amp-carousel > amp-img > img {
 }
 /***** AMP Sidebar *****/
 <?php if($redux_builder_amp['menu-type'] == '1'){?>
-amp-sidebar, .lb-t {
+.m-ctr, .lb-t {
 <?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
  <?php } ?>
 }
-amp-sidebar{
-    width:100%;
-    padding:0 5% 0 5%;
-}
-/* AMP Sidebar Toggle button */
-.amp-sidebar-button{
-    position:relative;
-}
-.amp-sidebar-toggle span  {
-    display: block;
-    height: 2px;
-    margin-bottom: 5px;
-    width: 22px;
-    <?php 
-    if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
-        background: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
-    <?php } ?>
-}
-.amp-sidebar-toggle span:last-child{
-    margin-bottom:0;
-}
-.amp-sidebar-toggle span:nth-child(2){
-    top: 7px;
-}
-.amp-sidebar-toggle span:nth-child(3){
-    top:14px;
-}
-/* AMP Sidebar close button */
-.amp-sidebar-close{
-    position: absolute;
-    right: -3px;
-    top: 10px;
-    color: transparent;
-}
-/***** AMP Navigation Menu with Dropdown Support *****/
-.toggle-navigation ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    width: 100%
-}
-.toggle-navigation ul li{
-    font-size: 13px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
-    padding: 11px 0px;
-    width: 25%;
-    float: left;
-    text-align: center;
-    margin-top: 6px
-}
-.toggle-navigation ul ul{
-    display: none
-}
-.toggle-navigation ul li a{
-    color: #eee;
-    padding: 15px;
-}
-.toggle-navigation{
+.tg, .fsc{
     display: none;
-    background: #444;
+}
+.fsc{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left:0;
+}
+.tg:checked + .hamb-mnu .m-ctr {
+    margin-left: -16%;
+    padding: 0px 1% 0px 0%;
+}
+.tg:checked + .hamb-mnu .fsc{
+    display: block;
+    background: rgba(0,0,0,.5);
+}
+.t-btn, .c-btn{
+    cursor: pointer;
+}
+.t-btn{
+    font-size: 28px;
+}
+.c-btn{
+    float: right;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    color: #ededed;
+}
+.m-ctr{
+    transition: margin 0.3s ease-in-out;
+}
+.m-ctr{
+    width: 100%;
+    margin-left: -120%;
+    float: left;
+    height: auto;
+    position: absolute;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    margin-top:-25px;
+}
+.m-menu{
+    padding: 5% 5% 100% 5%;
+}
+.t-btn:after{
+    content:"\e5d2";
+    display:inline-block;
+    <?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
+        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
+    <?php } ?>
+    font-family: "icomoon";
+}
+.c-btn:after{
+    content: "\e5cd";
+    font-family: "icomoon";
+    font-size: 30px;
+    <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
+        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+    <?php } ?>
+    line-height: 0;
+    display: block;
+    text-indent: 1px;
 }
 /***** Header *****/
 header{
@@ -319,17 +323,6 @@ width:". ampforwp_default_logo('width')."px;";
 ?>
 .amp-logo amp-img{ <?php echo $logoStyle; ?>margin: 0 auto;}
 
-.amp-sidebar-close:after{
-    content: "\e5cd";
-    font-family: 'icomoon';
-    font-size: 16px;
-   <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
-        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
-    <?php } ?>
-    text-indent: 1px;
-    cursor: pointer;
-    padding: 12px 16px;
-}
 .m-menu ul li.menu-item-has-children:after{
     content: "\e313";
     font-family: 'icomoon';
@@ -2047,76 +2040,77 @@ amp-user-notification button {
 <?php } ?>
 /*** Extra CSS for New designs ***/
 <?php if($redux_builder_amp['menu-type'] == '2'){?>
-amp-sidebar, .lb-t {
+.m-ctr, .lb-t {
 <?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
  <?php } ?>
 }
-amp-sidebar {
-    width: 100%;
-    box-sizing: content-box;
-    -webkit-box-sizing:  content-box;
-    padding-left: 10%;
-    padding-right: 10%;
-    margin-top:77px;
-}
- /* AMP Sidebar Toggle button */
-.amp-sidebar-button{
-    position:relative;
-}
-.amp-sidebar-toggle span  {
-    display: block;
-    height: 2px;
-    margin-bottom: 5px;
-    width: 22px;
-    <?php 
-    if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
-        background: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
-    <?php } ?>
-}
-.amp-sidebar-toggle span:last-child{
-    margin-bottom:0;
-}
-.amp-sidebar-toggle span:nth-child(2){
-    top: 7px;
-}
-.amp-sidebar-toggle span:nth-child(3){
-    top:14px;
-}
-/* AMP Sidebar close button */
-.amp-sidebar-close{
-    position: absolute;
-    right: -3px;
-    top: 10px;
-    color: transparent;
-}
-/***** AMP Navigation Menu with Dropdown Support *****/
-.toggle-navigation ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    width: 100%
-}
-.toggle-navigation ul li{
-    font-size: 13px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
-    padding: 11px 0px;
-    width: 25%;
-    float: left;
-    text-align: center;
-    margin-top: 6px
-}
-.toggle-navigation ul ul{
-    display: none
-}
-.toggle-navigation ul li a{
-    color: #eee;
-    padding: 15px;
-}
-.toggle-navigation{
+.tg, .fsc{
     display: none;
-    background: #444;
+}
+.fsc{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left:0;
+}
+.tg:checked + .hamb-mnu .m-ctr {
+    margin-left: -16%;
+    padding: 0px 1% 0px 0%;
+}
+.tg:checked + .hamb-mnu .fsc{
+    display: block;
+    background: rgba(0,0,0,.5);
+}
+.t-btn, .c-btn{
+    cursor: pointer;
+}
+.t-btn{
+    font-size: 28px;
+}
+.c-btn{
+    float: right;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    color: #ededed;
+}
+.m-ctr{
+    transition: margin 0.3s ease-in-out;
+}
+.m-ctr{
+    width: 100%;
+    margin-left: -120%;
+    float: left;
+    height: auto;
+    position: absolute;
+    margin-top:52px;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+/** My css **/
+.m-menu{
+    padding:40px 0px 0px 0px;
+}
+.t-btn:after{
+    content:"\e5d2";
+    display:inline-block;
+    <?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
+        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
+    <?php } ?>
+    font-family: "icomoon";
+}
+.c-btn:after{
+    content: "\e5cd";
+    font-family: "icomoon";
+    font-size: 30px;
+    <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
+        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+    <?php } ?>
+    line-height: 0;
+    display: block;
+    text-indent: 1px;
 }
 /***** Header *****/
 header{
@@ -2251,17 +2245,6 @@ width:". ampforwp_default_logo('width')."px;";
 }
 ?>
 .amp-logo amp-img{ <?php echo $logoStyle; ?>margin: 0 auto;}
-.amp-sidebar-close:after {
-    content: "\e5cd";
-    font-family: 'icomoon';
-    font-size: 30px;
-   <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
-        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
-    <?php } ?>
-    text-indent: 1px;
-    cursor: pointer;
-    padding: 12px 16px;
- }
  .amp-menu > li a{
     <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
         color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;

@@ -18,8 +18,6 @@ add_amp_theme_support('AMP-menu');
 add_amp_theme_support('AMP-call-now');
 //Breadcrumb
 add_amp_theme_support('AMP-breadcrumb');
-//Sidebar
-add_amp_theme_support('AMP-sidebar');
 // Featured Image
 add_amp_theme_support('AMP-featured-image');
 //Author box
