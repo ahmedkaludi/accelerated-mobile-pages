@@ -329,7 +329,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('View Documentation','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/support/#utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Contact','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="http://ampforwp.com/extensions/#utm_source=options-panel&utm_medium=view_premium_features_btn&utm_campaign=AMP%20Plugin">VIEW PREMIUM FEATURES</a> ',
+    'intro_text'            => '<a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('View Documentation','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/support/#utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Contact','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin">Get PRO Version</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
@@ -522,26 +522,24 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
             array(
                 'id'       => 'ampforwp-custom-logo-dimensions-options',
-                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'title'    => __('Resize Method', 'accelerated-mobile-pages'),
                 'type'     => 'select',
                 'default'  => '100',
-                'desc'     => __('Select option', 'redux_builder_amp'),
                 'options'     => array(
-                    'flexible'   => 'Flexible width',
-                    'prescribed' => 'Prescribed Format'
+                    'flexible'   => 'Flexible Width',
+                    'prescribed' => 'Fixed Width'
                 ),
                 'default' => ampforwp_custom_logo_dimensions_options(),
                 'required'=>array('ampforwp-custom-logo-dimensions','=','1'),
             ),
            array(
                 'id'       => 'ampforwp-custom-logo-dimensions-slider',
-                'title'    => __('Custom Logo Slider', 'accelerated-mobile-pages'),
+                'title'    => __('Resize Your Logo', 'accelerated-mobile-pages'),
                 'type'     => 'amp_slider',
                 'default'  => '100',
                 'min'      => 0,
                 'max'      => 100,
                 'subtitle' => '',
-                'desc'      => __('Slider description. Min: 1, max: 100, step: 100, default value: 250', 'redux_builder_amp'),
                 'required'=>array('ampforwp-custom-logo-dimensions-options','=','flexible'),
             ),
             array(
@@ -635,14 +633,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-amp-convert-to-wp',
                'type'     => 'switch',
                'title'    => __('Convert AMP to WP theme', 'accelerated-mobile-pages'),
-               //'subtitle' => __('Make your whole site as AMP.', 'accelerated-mobile-pages'),
+               'subtitle' => __('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',
                'title'    => __('AMP Takeover', 'accelerated-mobile-pages'),
-               //'subtitle' => __('Make your whole site as AMP.', 'accelerated-mobile-pages'),
+               'subtitle' => __('Make your non-amp to load the AMP (AMP & NON-AMP both will be AMP with same design)', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
 
@@ -665,9 +663,9 @@ Redux::setArgs( "redux_builder_amp", $args );
    // AMP Content Page Builder SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
-       'desc'       => __( 'With AMP Content Builder, you can easily build landing pages for AMP. <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/">(See Video Tutorial)</a>' , 'accelerated-mobile-pages'),
+      'class'       =>'',
        'id'         => 'amp-content-builder',
-       'class' => 'amp_content_builder',
+       'class' => 'amp_content_builder ampforwp-new-element',
        'subsection' => true,
        'fields' => array(
 
@@ -685,7 +683,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     line-height: 1.6;
     position: absolute;
     left: 20px;
-    font-size: 15px;"><b>Introducing  AMP Page Builder 2.0</b>, Re-Engineered! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
+    font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
     <iframe style="    position: absolute;
     left: 20px;
@@ -1720,7 +1718,6 @@ Redux::setArgs( "redux_builder_amp", $args );
           'id'          => 'ampforwp-push-notifications',
           'desc'        => " ",
           'subsection'  => true,
-          'class'       =>'ampforwp-new-element',
           'fields'      => array(
                     array(
                             'id'        => 'ampforwp-web-push-onesignal',
@@ -2090,6 +2087,15 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
 
                     ),
+                    // End-point option
+                     array(
+                        'id'       => 'amp-core-end-point',
+                        'type'     => 'switch',
+                        'title'    => ('Change End Point to ?amp'),
+                        'default' => 0,
+                        'subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
+                        'desc'     => __( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.' ),
+                    ),
                     array(
                         'id'       => 'amp-header-text-area-for-html',
                         'type'     => 'textarea',
@@ -2231,15 +2237,6 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,                        
                     ),  
 
-                    // End-point option
-                     array(
-                        'id'       => 'amp-core-end-point',
-                        'type'     => 'switch',
-                        'title'    => ('End Point'),
-                        'default' => 0,
-                        'subtitle' => 'Enable this option when /amp/ is giving 404 after resaving the permalink settings.',
-                        'desc'     => __( 'Making endpoints ?amp=1 is required for directory based themes or have multiple taxonomies in the url. Question mark in the url will not make any difference in the SEO.' ),
-                    ),
 
    ),
 
@@ -2874,9 +2871,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',
-                    'title'    => __('Primary Menu', 'accelerated-mobile-pages'),
-                    'desc'       => __( 'If you want to diaplay the Menu, click on Enable', 'accelerated-mobile-pages'),
-                    'subtitle' => __('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
+                    'title'    => __('Alternative Menu', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
                     'default'   => '1',
@@ -2889,9 +2884,7 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'padding',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Primary Menu Padding Option', 'accelerated-mobile-pages'),
-                    'subtitle'       => __('Allow your users to choose the spacing or padding.', 'accelerated-mobile-pages'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'title'          => __('Alt Menu Padding', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'padding-top'     => '12px', 
                         'padding-right'   => '25px', 
@@ -2905,8 +2898,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'primary-menu-text-scheme',
-                'title'     => __('Primary Menu Text Color Scheme', 'accelerated-mobile-pages'),
-                'subtitle'  => __('Choose the color for Primary Text Menu','accelerated-mobile-pages'),
+                'title'     => __('Alt Menu Text', 'accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgb(53, 53, 53)',
@@ -2917,8 +2909,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'primary-menu-background-scheme',
-                'title'     => __('Primary Menu Background Color Scheme', 'accelerated-mobile-pages'),
-                'subtitle'  => __('Choose the color for Primary Menu Background','accelerated-mobile-pages'),
+                'title'     => __('Alt Menu Background', 'accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgb(239, 239, 239)',
@@ -3061,7 +3052,7 @@ Redux::setSection( $opt_name, array(
                     'id'        =>'amp-on-off-support-for-non-amp-home-page',
                     'type'      => 'switch',
                     'title'     => __('Non-AMP HomePage link in Header and Logo', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header, then you can enable this option', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('If you want users in header to go to non-AMP website from the Header', 'accelerated-mobile-pages'),
                     'default'   => 0,
             ),
              array(
@@ -3077,7 +3068,6 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'       => 'amp-design-3-search-feature',
                     'type'     => 'switch',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
                     'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
                         array('amp-design-selector', '=' , '3')
@@ -3087,7 +3077,6 @@ Redux::setSection( $opt_name, array(
              
              array(
                     'id'       => 'amp-design-2-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
                     'type'     => 'switch',
                     'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
@@ -3098,7 +3087,6 @@ Redux::setSection( $opt_name, array(
 
              array(
                     'id'       => 'amp-design-1-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
                     'type'     => 'switch',
                     'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
@@ -3108,7 +3096,6 @@ Redux::setSection( $opt_name, array(
             ),
               array(
                     'id'       => 'amp-swift-search-feature',
-                    'subtitle' => __('HTTPS is recommened for Search', 'accelerated-mobile-pages'),
                     'type'     => 'switch',
                     'title'    => __( 'Search', 'accelerated-mobile-pages' ),
                     'required' => array(
@@ -3120,7 +3107,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
-                    'title'     => __('Header Background Color','accelerated-mobile-pages'),
+                    'title'     => __('Header Background','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => '#FFFFFF',
                     ),
@@ -3131,7 +3118,7 @@ Redux::setSection( $opt_name, array(
               array(
                     'id'        => 'amp-opt-color-rgba-headerelements',
                     'type'      => 'color_rgba',
-                    'title'     => __('Header Elements Color','accelerated-mobile-pages'),
+                    'title'     => __('Header Elements','accelerated-mobile-pages'),
                     'default'   => array(
                         'color'     => ampforwp_get_element_default_color(),
                     ),
@@ -3164,17 +3151,14 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'customize-options',
                     'type'  => 'switch',
-                    'title' => __('Customize Header Options', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
+                    'title' => __('Advanced Header Design', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'       => 'swift-height-control',
                     'type'     => 'text',
-                    'title'    => __('Dimensions (Height) Option', 'accelerated-mobile-pages'),
-                    'subtitle' => __('Allow your users to choose height', 'accelerated-mobile-pages'),
-                    'desc'     => __('Here you can give the height of the Header in Numbers', 'accelerated-mobile-pages'),
+                    'title'    => __('Header Height', 'accelerated-mobile-pages'),
                     'default'  => '60px',
                     'required' => array(
                       array('customize-options','=',1)
@@ -3183,8 +3167,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'margin-padding-options',
                     'type'  => 'switch',
-                    'title' => __('Customize Margin/Padding Options', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('If you are Familiar with CSS then, Do the Changes', 'accelerated-mobile-pages'),
+                    'title' => __('Margin / Padding ', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
                       array('customize-options','=',1)
@@ -3197,9 +3180,7 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'padding',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Padding Option', 'accelerated-mobile-pages'),
-                    'subtitle'       => __('Allow your users to choose the spacing or padding they want.', 'accelerated-mobile-pages'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'title'          => __('Padding', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'padding-top'     => '0px', 
                         'padding-right'   => '0px', 
@@ -3218,9 +3199,7 @@ Redux::setSection( $opt_name, array(
                     'mode'           => 'margin',
                     'units'          => array('px'),
                     'units_extended' => 'false',
-                    'title'          => __('Margin Option', 'accelerated-mobile-pages'),
-                    'subtitle'       => __('Allow your users to choose the spacing or margin they want.', 'accelerated-mobile-pages'),
-                    'desc'           => __('You can enable or disable any piece of this field. Top, Right, Bottom, Left.', 'accelerated-mobile-pages'),
+                    'title'          => __('Margin', 'accelerated-mobile-pages'),
                     'default'            => array(
                         'margin-top'     => '0px', 
                         'margin-right'   => '0px', 
@@ -3235,8 +3214,7 @@ Redux::setSection( $opt_name, array(
              array(
                     'id'    => 'border-line',
                     'type'  => 'switch',
-                    'title' => __('Customize Borderline and Boxshadow Options', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Here you can add the border line and color', 'accelerated-mobile-pages'),
+                    'title' => __('Border and Boxshadow', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
                       array('customize-options','=',1)
@@ -3246,9 +3224,8 @@ Redux::setSection( $opt_name, array(
             array(
                   'id'       => 'swift-border-line-control',
                   'type'     => 'text',
-                  'title'    => __('Border Bottom Line', 'accelerated-mobile-pages'), 
-                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
-                  'desc'     => __('If you want the Border Bottom Line, Please give number', 'accelerated-mobile-pages'),
+                  'title'    => __('Border', 'accelerated-mobile-pages'), 
+                  'subtitle'     => __('Border at the bottom', 'accelerated-mobile-pages'),
                   'default'  => '1',
                   'required' => array(
                         array('border-line','=',1)
@@ -3258,8 +3235,6 @@ Redux::setSection( $opt_name, array(
                   'id'       => 'swift-border-color-control',
                   'type'     => 'color_rgba',
                   'title'    => __('Border Color', 'accelerated-mobile-pages'), 
-                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
-                  'desc'     => __('If you want the Border Color, Please select', 'accelerated-mobile-pages'),
                   'default'  => array(
                         'rgba'     => 'rgba(0,0,0,0.12)', 
                     ),
@@ -3270,9 +3245,7 @@ Redux::setSection( $opt_name, array(
             array(
                   'id'       => 'swift-boxshadow-checkbox-control',
                   'type'     => 'switch',
-                  'title'    => __('Box Shadow Option', 'accelerated-mobile-pages'), 
-                  'subtitle' => __('No validation can be done on this field type', 'accelerated-mobile-pages'),
-                  'desc'     => __('If you want the Boxshadow for the Header Bottom, Please Enable', 'accelerated-mobile-pages'),
+                  'title'    => __('Box Shadow', 'accelerated-mobile-pages'), 
                   'default'  => 0,
                   'required' => array(
                         array('border-line','=',1)
@@ -3282,8 +3255,7 @@ Redux::setSection( $opt_name, array(
 
             array(
                 'id'        => 'swift-background-scheme',
-                'title'     => __('Header Background Color Scheme', 'accelerated-mobile-pages'),
-                'subtitle'  => __('Choose the color for Header Background','accelerated-mobile-pages'),
+                'title'     => __('Header Background', 'accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
                     'rgba'  => 'rgba(255, 255, 255, 255)',
@@ -3294,8 +3266,7 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-header-overlay',
-                    'title'     => __('Header Overlay Color Scheme', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Choose the color for Header Ovelay Background','accelerated-mobile-pages'),
+                    'title'     => __('Menu Background', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'rgba'  => 'rgba(20, 20, 22, 0.9)',
@@ -3306,8 +3277,8 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-element-color-control',
-                    'title'     => __('Header Element Color Scheme', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Choose the color for Header Elements','accelerated-mobile-pages'),
+                    'title'     => __('Header Elements', 'accelerated-mobile-pages'),
+                    'subtitle'  => __('Color of the Text and Icons on top of Header','accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'color'  => '#333',
@@ -3318,8 +3289,7 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-element-overlay-color-control',
-                    'title'     => __('Header Overlay Element Color Scheme', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Choose the color for Header Overlay  Elements','accelerated-mobile-pages'),
+                    'title'     => __('Menu Elements', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'rgba'  => 'rgba(255, 255, 255, 0.8)',
@@ -3332,7 +3302,7 @@ Redux::setSection( $opt_name, array(
               
             array(
                     'id'    => 'header-position-type',
-                   'title'  => __('Header Overlay Position Type', 'accelerated-mobile-pages'),
+                   'title'  => __('Menu Overlay Position', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Left',
@@ -3807,7 +3777,6 @@ Redux::setSection( $opt_name, array(
                         'id'    => 'swift-menu',
                         'type'  => 'switch',
                         'title' => __('Menu', 'accelerated-mobile-pages'),
-                        'subtitle'  => __('switch to show/hide Footer Menu', 'accelerated-mobile-pages'),
                         'default'   => 1,
                         'required' => array( array('amp-design-selector', '=' , '4') ),
                         'desc'       => __( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
@@ -3816,7 +3785,6 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'amp-footer-link-non-amp-page',
                         'type'     => 'switch',
                         'title'    => __('Link to Non-AMP page in Footer', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Enable / Disable Link to Non-AMP page in the footer', 'accelerated-mobile-pages'),
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1
@@ -3826,7 +3794,6 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-footer-top',
                         'type'     => 'switch',
                         'title'    => __('Back to Top link', 'accelerated-mobile-pages'),
-                        'subtitle' => __('Enable / Disable Link to top of the page in the footer', 'accelerated-mobile-pages'),
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 1,
@@ -3901,14 +3868,13 @@ Redux::setSection( $opt_name, array(
                       'type'     => 'switch',
                       'default'  =>  '0',
                       'title'    => __('Meta Information', 'accelerated-mobile-pages'),
-                      'subtitle' => __('Enable or disable the Meta info on Pages'),                  
                   ),
              array(
                       'id'       => 'ampforwp_subpages_list',
                       'type'     => 'switch',
                       'default'  =>  '0',
-                      'title'    => __('Display Subpages/ChildPages', 'accelerated-mobile-pages'),
-                      'subtitle' => __('Enable or disable the List of Subpages'),                  
+                      'title'    => __('Subpages/ChildPages', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Shows a List of Subpages'),                  
                   ),
             )
     ));
