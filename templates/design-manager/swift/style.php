@@ -246,17 +246,8 @@ header{
     line-height:1;
     display:block;
 }
-<?php
-$logoStyle = "max-width:190px;width:". ampforwp_default_logo('width')."px;";
-if( isset($redux_builder_amp['ampforwp-custom-logo-dimensions-options']) && 
-    $redux_builder_amp['ampforwp-custom-logo-dimensions-options']=='flexible' && 
-    $redux_builder_amp['ampforwp-custom-logo-dimensions-slider']){
 
-   $logoStyle = "max-width: ".$redux_builder_amp['ampforwp-custom-logo-dimensions-slider']."%;
-width:". ampforwp_default_logo('width')."px;";
-}
-?>
-.amp-logo amp-img{ <?php echo $logoStyle; ?>margin: 0 auto;}
+.amp-logo amp-img{margin: 0 auto;}
 
 .m-menu ul li.menu-item-has-children:after{
     content: "\e313";

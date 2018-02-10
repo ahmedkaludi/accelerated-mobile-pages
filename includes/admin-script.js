@@ -291,8 +291,10 @@ var reduxOptionTab = function(){
 } 
 //reduxOptionTab();   
 
-$(".redux-ampforwp-ext-desctivate").click(function(){
-    var plugin_id = $(this).attr("id");
+$(".redux-ampforwp-ext-deactivate").click(function(){
+    var currentThis = $(this);
+    var plugin_id = currentThis.attr("id");
+    currentThis.val("Please Wait...");
     $deactivateConfirm = confirm("Are you sure you want to Deactivate ?");
     if($deactivateConfirm){
         $.ajax({
@@ -302,7 +304,8 @@ $(".redux-ampforwp-ext-desctivate").click(function(){
             dataType: 'json',
             success: function(response){
                 if(response.status=='200'){
-                    alert("success");
+                    currentThis.parents(".extension_desc").find("input[name='redux_builder_amp[amp-license][amp-ads-google-adsense][license]']").val("");
+                    window.location.href = window.location.href;
                 }else{
                     alert(response.message);
                 }

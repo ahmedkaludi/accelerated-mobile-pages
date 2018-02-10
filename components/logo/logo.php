@@ -42,7 +42,13 @@ function ampforwp_framework_get_logo(){
 
 add_action('amp_post_template_css','amp_framework_logo_styles',11); 
 if( !function_exists( 'amp_framework_logo_styles' ) ){
- function amp_framework_logo_styles(){ ?>
-    .amp-logo amp-img{max-width: 190px;width:<?php echo ampforwp_default_logo('width');?>px ;}
+ function amp_framework_logo_styles(){
+  global $redux_builder_amp;
+  $max_width = '190px';
+  if ( true == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] && isset($redux_builder_amp['ampforwp-custom-logo-dimensions-options']) && 'flexible' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] ) {
+      $max_width = $redux_builder_amp['ampforwp-custom-logo-dimensions-slider'].'%';
+  }
+  $width = ampforwp_default_logo('width').'px'; ?>
+    .amp-logo amp-img{max-width:<?php echo $max_width; ?>;width:<?php echo $width;?>;}
  <?php }
 }
