@@ -217,9 +217,9 @@ function ampforwp_check_extension_license() {
     $pluginItemStoreUrl = '';
     if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
        $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
-       $license = $pluginItemName['license'];
-       $pluginItemName = $pluginItemName['item_name'];
-       $pluginItemStoreUrl = $pluginItemName['store_url'];
+       $license = $pluginsDetail['license'];
+       $pluginItemName = $pluginsDetail['item_name'];
+       $pluginItemStoreUrl = $pluginsDetail['store_url'];
     }
 
     $api_params = array(
