@@ -492,7 +492,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'id'      => 'ampforwp-custom-type',
                     'type'    => 'select',
                     'title'   => __('Custom Post Types', 'accelerated-mobile-pages'),
-                    'subtitle'   => __('Enable AMP Support on Custom Post Types', 'redux-framework-demo'),
+                    'subtitle'   => __('Enable AMP Support on Custom Post Types', 'accelerated-mobile-pages'),
                     'multi'   => true,
                     //'data' => 'post_type',
                     'options' => ampforwp_get_cpt_generated_post_types(),

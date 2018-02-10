@@ -59,7 +59,82 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 										$match[0] .= '.cntr img{width:100%;height:auto;}';
 																	return $match[0];
 																}, $returnData);*/
-				$nonampCss = '.cntr img{width:100% !important;height:auto !important;}';
+				$nonampCss = '
+				.cntr img{width:100% !important;height:auto !important;}
+				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
+				/*----------  HIDE SELECT CHECKBOX  ----------*/
+				.toggle, .full-screen-close{
+					display: none;
+				}
+				.test{
+					width: 100%;
+				    height: 100%;
+				    overflow-x: hidden;
+				}
+				.full-screen-close{
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					cursor: pointer;
+					top:0;
+					left:0;
+				}
+				.toggle:checked + .hamb-mnu .menu-container {
+				  	margin-left: -16%;
+					padding: 0px 7% 0px 10%;
+				}
+				.toggle:checked + .hamb-mnu .full-screen-close{
+				  	display: block;
+				  	background: rgba(0,0,0,.5);
+				}
+				.toggle-btn, .close-btn{
+					cursor: pointer;
+				}
+				.toggle-btn{
+					font-size: 2.25rem;
+					color:#fff;
+				}
+				.close-btn{
+					float: right;
+					font-size: 1.5rem;
+					padding: 1.5rem;
+					color: #ededed;
+				}
+				.menu-container{
+					transition: margin 0.3s ease-in-out;
+				}
+				.menu-container{
+					background: #333;
+					width: 84%;
+					margin-left: -100%;
+					float: left;
+					height: auto;
+					position: absolute;
+					margin-top:56px;
+					box-sizing: content-box;
+    				-webkit-box-sizing: content-box;
+				}
+				/** My css **/
+				.m-menu{
+					margin-top:0 !important;
+					padding:40px 0px 0px 0px;
+				}
+				.toggle-btn:after{
+					content:"\e5d2";
+					display:inline-block;
+				    color: rgba(119,119,119,1);
+    				font-family: "icomoon";
+				}
+				.close-btn:after{
+				    content: "\e5cd";
+				    font-family: "icomoon";
+				    font-size: 30px;
+				    color: rgba(255,255,255,1);
+				    line-height: 0;
+				    display: block;
+				    text-indent: 1px;
+				}
+				';
 				$re = '/<style type="text\/css">(.*?)<\/style>/';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
 				$returnData = preg_replace($re, $subst, $returnData);
@@ -71,7 +146,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 
 //Facility to create child theme For AMP
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_header_file', 20, 3 );
-	add_filter( 'amp_post_template_file', 'ampforwp_child_designing_custom_template', 10, 3 );
+	add_filter( 'amp_post_template_file', 'ampforwp_child_designing_custom_template', 20, 3 );
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 20, 3 );
 	function ampforwp_theme_template_directry(){
 		return get_template_directory() . '/amp/';
