@@ -121,72 +121,7 @@ amp-carousel > amp-img > img {
     background: <?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
  <?php } ?>
 }
-.tg, .fsc{
-    display: none;
-}
-.fsc{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    cursor: pointer;
-    top:0;
-    left:0;
-}
-.tg:checked + .hamb-mnu .m-ctr {
-    margin-left: -16%;
-    padding: 0px 1% 0px 0%;
-}
-.tg:checked + .hamb-mnu .fsc{
-    display: block;
-    background: rgba(0,0,0,.5);
-}
-.t-btn, .c-btn{
-    cursor: pointer;
-}
-.t-btn{
-    font-size: 28px;
-}
-.c-btn{
-    float: right;
-    font-size: 1.5rem;
-    padding: 1.5rem;
-    color: #ededed;
-}
-.m-ctr{
-    transition: margin 0.3s ease-in-out;
-}
-.m-ctr{
-    width: 100%;
-    margin-left: -120%;
-    float: left;
-    height: auto;
-    position: absolute;
-    box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    margin-top:-25px;
-}
-.m-menu{
-    padding: 5% 5% 100% 5%;
-}
-.t-btn:after{
-    content:"\e5d2";
-    display:inline-block;
-    <?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>
-        color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;
-    <?php } ?>
-    font-family: "icomoon";
-}
-.c-btn:after{
-    content: "\e5cd";
-    font-family: "icomoon";
-    font-size: 30px;
-    <?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>
-        color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
-    <?php } ?>
-    line-height: 0;
-    display: block;
-    text-indent: 1px;
-}
+
 /***** Header *****/
 header{
     position:fixed;
@@ -631,6 +566,7 @@ display: none;
 .p-menu .amp-menu li.menu-item-has-children:after{
     display:none;
 }
+
 <?php } ?>
 <?php if(is_home() || is_archive()){ ?>
 /**** 
@@ -3147,3 +3083,57 @@ a.lb-x:after {
 }
 }
 <?php } } ?>
+
+
+
+
+
+
+
+
+.tg, .fsc{
+    display: none;
+}
+.fsc{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left:0;
+}
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-left: 0;
+}
+.tg:checked + .hamb-mnu > .fsc{
+    display: block;
+    background: rgba(0,0,0,.5);
+}
+.t-btn, .c-btn{
+    cursor: pointer;
+}
+.t-btn:after{
+    content:"\e5d2";
+    display:inline-block;
+    color: rgba(119,119,119,1);
+    font-family: "icomoon";
+    font-size:28px;
+}
+.c-btn{
+    float: right;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    color: #ededed;
+}
+.m-ctr{
+    transition: margin 0.3s ease-in-out;
+}
+.m-ctr{
+    background: #333;
+    width: 100%;
+    margin-left: -100%;
+    float: left;
+    height: auto;
+    position: absolute;
+    z-index:99;
+}
