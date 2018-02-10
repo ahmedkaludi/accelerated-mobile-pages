@@ -79,10 +79,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 					top:0;
 					left:0;
 				}
-				.toggle:checked + .test .menu-container {
-				  	margin-left: 0;
+				.toggle:checked + .hamb-mnu .menu-container {
+				  	margin-left: -16%;
+					padding: 0px 7% 0px 10%;
 				}
-				.toggle:checked + .test .full-screen-close{
+				.toggle:checked + .hamb-mnu .full-screen-close{
 				  	display: block;
 				  	background: rgba(0,0,0,.5);
 				}
@@ -104,19 +105,34 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				}
 				.menu-container{
 					background: #333;
-					width: 85%;
+					width: 84%;
 					margin-left: -100%;
 					float: left;
-					height: 100%;
+					height: auto;
 					position: absolute;
 					margin-top:56px;
-					z-index:99;
+					box-sizing: content-box;
+    				-webkit-box-sizing: content-box;
 				}
 				/** My css **/
 				.m-menu{
-					background:#333;
 					margin-top:0 !important;
 					padding:40px 0px 0px 0px;
+				}
+				.toggle-btn:after{
+					content:"\e5d2";
+					display:inline-block;
+				    color: rgba(119,119,119,1);
+    				font-family: "icomoon";
+				}
+				.close-btn:after{
+				    content: "\e5cd";
+				    font-family: "icomoon";
+				    font-size: 30px;
+				    color: rgba(255,255,255,1);
+				    line-height: 0;
+				    display: block;
+				    text-indent: 1px;
 				}
 				';
 				$re = '/<style type="text\/css">(.*?)<\/style>/';
