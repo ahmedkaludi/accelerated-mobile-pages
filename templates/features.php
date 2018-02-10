@@ -4650,7 +4650,7 @@ function ampforwp_inline_related_posts(){
 						    $my_query->the_post();
 								$related_post_permalink = get_permalink();
 								$related_post_permalink = trailingslashit($related_post_permalink);
-								$related_post_permalink = user_trailingslashit( $related_post_permalink . AMPFORWP_AMP_QUERY_VAR );
+								$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
 								if ( ampforwp_has_post_thumbnail() ) {
 									$title_class = 'has_related_thumbnail';
 								} else {
@@ -5395,7 +5395,7 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
 	global $redux_builder_amp;
 	$new_url = "";
 	$get_permalink_structure = "";
-	if ( ampforwp_amp_nonamp_convert("", "check") ) {
+	if ( ampforwp_amp_nonamp_convert("", "check") || (isset($redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover']) ) {
 		$nonamp = 'nonamp';
 	}
 	if ( isset($nonamp) && 'nonamp' == $nonamp ) {
