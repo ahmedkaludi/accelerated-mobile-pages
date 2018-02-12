@@ -43,15 +43,14 @@ require_once  ABSPATH . WPINC . '/category.php';
     .cat_mod {
       margin:{{margin_css}};
       padding:{{padding_css}};
-      padding:40px;
     }
     .cat_mod h4{
-      border-bottom: 2px solid {{border_color_picker}};
+      border-bottom: 2px solid #eee;
       padding-bottom: 8px;
       margin-bottom: 5px;
-      font-size:{{label-size}};
-      color: {{label_color_picker}};
-      font-weight: {{label-weight}}
+      font-size:18px;
+      color: #191919;
+      font-weight: 600;
     }
     .cat_mod .cat_mod_r{
       display:flex;
@@ -59,10 +58,10 @@ require_once  ABSPATH . WPINC . '/category.php';
       margin-top: 6px;
     }
     .cat_mod .cat_mod_r a{
-      font-size: {{cat-size}};
+      font-size: 16px;
       line-height: 1.3;
-      font-weight: {{cat-weight}};
-      color: {{text_color_picker}};
+      font-weight: 500;
+      color: #000;
       margin: 0px 0px 5px 0px;
     }
     .cat_mod .cat_mod_r p{
@@ -110,6 +109,10 @@ require_once  ABSPATH . WPINC . '/category.php';
 {{ifend_condition_content_layout_type_1}}
 {{if_condition_content_layout_type==2}}
     /*** design-cat-2-styles ***/
+    .cat-desing-2{
+      margin:{{margin_css}};
+      padding:{{padding_css}};
+    }
     .cat_mod ul li {
       list-style-type:none;
     }
@@ -127,6 +130,7 @@ require_once  ABSPATH . WPINC . '/category.php';
       margin:0;
       padding:0;
       position:relative;
+      line-height:0;
     }
     .cat-2-img{
       position:relative;
@@ -177,9 +181,14 @@ require_once  ABSPATH . WPINC . '/category.php';
 {{ifend_condition_content_layout_type_2}}
 {{if_condition_content_layout_type==3}}
     /*** design-cat-3-styles ***/
+    {{module-class}}{
+       margin:{{margin_css}};
+       padding:{{padding_css}};
+    }
     .cat_mod-3{
       width:{{dsg3-width}};
       margin:0 auto;
+      
     }
     .cat-3-img a{
         margin: 0;
@@ -202,6 +211,7 @@ require_once  ABSPATH . WPINC . '/category.php';
       font-size:16px;
       line-height:1.4;
       font-weight: 600;
+      margin-top: 8px;
     }
     .cat-3-tlt a{
         color: #000;
@@ -317,85 +327,6 @@ require_once  ABSPATH . WPINC . '/category.php';
             'content_type'=>'html',
  						),
             array(
-                'type'    =>'checkbox',
-                'name'    =>"bg_clr",
-                'tab'   =>'container_css',
-                'label'   =>'Background Type',
-                'default' =>array(), 
-                'options' =>array(
-                        array(
-                          'label'=>'', 
-                          'value'=>"yes",
-                        ),
-                      ),
-                'content_type'=>'css',
-              ),
-            array(
-                'type'    =>'color-picker',
-                'name'    =>'bg_color_picker',
-                'label'   =>'Background Color',
-                'tab'   =>'container_css',
-                'default' =>'#fff',
-                'content_type'=>'css',
-                'required'  => array('bg_clr'=>"yes")
-              ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"label-size",    
-            'label'   =>'label Font Size ',
-            'tab'     =>'container_css',
-            'default' =>'18px', 
-            'content_type'=>'css',
-            ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"label-weight",    
-            'label'   =>'label Font Weight ',
-            'tab'     =>'container_css',
-            'default' =>'600', 
-            'content_type'=>'css',
-            ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"cat-size",    
-            'label'   =>'Font Size ',
-            'tab'     =>'container_css',
-            'default' =>'20px', 
-            'content_type'=>'css',
-            ),
-            array(    
-            'type'    =>'text',   
-            'name'    =>"cat-weight",    
-            'label'   =>'Font Weight ',
-            'tab'     =>'container_css',
-            'default' =>'500', 
-            'content_type'=>'css',
-            ),
-            array(
-                'type'    =>'color-picker',
-                'name'    =>'border_color_picker',
-                'label'   =>'Border Color',
-                'tab'   =>'container_css',
-                'default' =>'#eee',
-                'content_type'=>'css'
-              ),
-            array(
-              'type'    =>'color-picker',
-              'name'    =>'label_color_picker',
-              'label'   =>'Lable Color',
-              'tab'   =>'container_css',
-              'default' =>'#000',
-              'content_type'=>'css'
-            ),
-            array(
-              'type'    =>'color-picker',
-              'name'    =>'text_color_picker',
-              'label'   =>'Text Color',
-              'tab'   =>'container_css',
-              'default' =>'#191919',
-              'content_type'=>'css'
-            ),
-            array(
                 'type'    =>'spacing',
                 'name'    =>"margin_css",
                 'label'   =>'Margin',
@@ -453,7 +384,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-width-1",    
-            'label'   =>'Image Width(1)',
+            'label'   =>'Image Width',
             'tab'     =>'customizer',
             'default' =>'346', 
             'content_type'=>'html',
@@ -462,7 +393,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-height-1",    
-            'label'   =>'Image Height(1)',
+            'label'   =>'Image Height',
             'tab'     =>'customizer',
             'default' =>'188', 
             'content_type'=>'html',
@@ -472,7 +403,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-width-2",    
-            'label'   =>'Image Width(2)',
+            'label'   =>'Image Width',
             'tab'     =>'customizer',
             'default' =>'1000', 
             'content_type'=>'html',
@@ -481,7 +412,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-height-2",    
-            'label'   =>'Image Height(2)',
+            'label'   =>'Image Height',
             'tab'     =>'customizer',
             'default' =>'480', 
             'content_type'=>'html',
@@ -505,7 +436,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-width-3",    
-            'label'   =>'Image Width(3)',
+            'label'   =>'Image Width',
             'tab'     =>'customizer',
             'default' =>'286', 
             'content_type'=>'html',
@@ -514,7 +445,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"img-height-3",    
-            'label'   =>'Image Height(3)',
+            'label'   =>'Image Height',
             'tab'     =>'customizer',
             'default' =>'161', 
             'content_type'=>'html',
@@ -523,8 +454,8 @@ require_once  ABSPATH . WPINC . '/category.php';
             array(    
             'type'    =>'text',   
             'name'    =>"dsg3-width",    
-            'label'   =>'Design 3 Container ',
-            'tab'     =>'container_css',
+            'label'   =>'Container Width ',
+            'tab'     =>'customizer',
             'default' =>'950px', 
             'content_type'=>'css',
             'required'  => array('content_layout_type' => 3),
