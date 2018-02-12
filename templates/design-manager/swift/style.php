@@ -1449,7 +1449,7 @@ display: none;
 .f-menu ul li .sub-menu{
     display:none;
 }
-<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+<?php if(checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 .footer{
     margin-top: 0px;
 }
