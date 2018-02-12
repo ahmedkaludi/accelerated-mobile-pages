@@ -75,7 +75,10 @@
 									</div>
 								<?php } ?>	
 								<div class="rlp-cnt">
-									<?php $argsdata = array();
+									<?php $argsdata = array(
+											'show_author' => false,
+											'show_excerpt' =>false
+												);
 									ampforwp_get_relatedpost_content($argsdata); ?> 
 						        </div>
 					        </li><?php

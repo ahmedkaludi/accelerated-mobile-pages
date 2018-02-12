@@ -1017,9 +1017,6 @@ display: none;
 .sp-rt p strong, .pg p strong{
     font-weight: 700;
 }
-.rlp-cnt .related_link p, .rlp-cnt .amp-author{
-    display:none;
-}
 .srp .amp-related-posts amp-img{
     float: left;
     width: 100%;
