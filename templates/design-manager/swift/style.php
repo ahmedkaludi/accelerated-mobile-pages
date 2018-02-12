@@ -824,8 +824,11 @@ display: none;
 <?php }?>
 /*** page styles with out pagebuilder ***/
 <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-.breadcrumbs {
+.breadcrumb {
+    padding-bottom: 8px;
     border-bottom: 1px solid #eee;
+}
+.breadcrumbs {
     padding-bottom: 10px;
     display: inline-block;
     width: 100%;
