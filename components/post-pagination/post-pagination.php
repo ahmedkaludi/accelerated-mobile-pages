@@ -135,7 +135,7 @@ function amp_paginated_post_modify_amphtml($url) {
 	return $url;
 }
 
-add_action('amp_post_template_head','amp_paginated_post_modify_canonical',9);
+//add_action('amp_post_template_head','amp_paginated_post_modify_canonical',9);
 function amp_paginated_post_modify_canonical(){
 		if(is_single()){
 			$post_paginated_page='';

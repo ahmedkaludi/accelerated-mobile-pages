@@ -65,6 +65,7 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 					                          echo make_clickable( $sanitized_comment_content ); ?>
                         
 											</div>
+												<?php  do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 												<!-- .comment-content -->
 										</article>
 									 <!-- .comment-body -->

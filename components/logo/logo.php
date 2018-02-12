@@ -11,11 +11,12 @@ function ampforwp_framework_get_logo(){
                   $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
                   $set_rel_to_noamp = true;
                   } else {
-                    $ampforwp_home_url = trailingslashit( get_bloginfo('url') );
+                    $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
-                    $ampforwp_home_url = user_trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
+                    $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
+                    //$ampforwp_home_url = user_trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
                           $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
@@ -41,7 +42,13 @@ function ampforwp_framework_get_logo(){
 
 add_action('amp_post_template_css','amp_framework_logo_styles',11); 
 if( !function_exists( 'amp_framework_logo_styles' ) ){
- function amp_framework_logo_styles(){ ?>
-    .amp-logo amp-img{max-width: 190px;width:<?php echo ampforwp_default_logo('width');?>px ;}
+ function amp_framework_logo_styles(){
+  global $redux_builder_amp;
+  $max_width = '190px';
+  if ( true == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] && isset($redux_builder_amp['ampforwp-custom-logo-dimensions-options']) && 'flexible' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] ) {
+      $max_width = $redux_builder_amp['ampforwp-custom-logo-dimensions-slider'].'%';
+  }
+  $width = ampforwp_default_logo('width').'px'; ?>
+    .amp-logo amp-img{max-width:<?php echo $max_width; ?>;width:<?php echo $width;?>;}
  <?php }
 }

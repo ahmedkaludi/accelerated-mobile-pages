@@ -105,7 +105,8 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 		$video_id = "";
 		if ( $path ) {
 			$tok = explode( '/', $parsed_url['path'] );
-			$video_id = end($tok);
+			$tok = apply_filters('amp_vimeo_parse_url',$tok);
+			$video_id = $tok;
 		}
 
 		return $video_id;

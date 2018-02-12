@@ -29,6 +29,7 @@
 		}
 	}?>
 	<style amp-custom>
+	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
 </head>
@@ -67,7 +68,7 @@ if ( get_query_var( 'paged' ) ) {
 		) ); ?>
 
  	<?php if ( is_archive() ) { ?>
- 		<div class="amp-wp-content archive-heading">
+ 		<div class="amp-wp-content">
  	<?php 
  			if( is_author() ){
 			$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
@@ -80,7 +81,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 				}
 			}
- 			the_archive_title( '<h1 class="amp-wp-content page-title">', '</h1>' );
+ 			the_archive_title( '<h1 class="amp-wp-content page-title archive-heading">', '</h1>' );
 			$arch_desc 		= $sanitizer->get_amp_content();
 			if( $arch_desc ) {  
 				if($paged <= '1') {?>
@@ -138,9 +139,14 @@ if ( get_query_var( 'paged' ) ) {
 
 			<div class="amp-wp-post-content">
                 <ul class="amp-wp-tags">
-					<?php foreach((get_the_category()) as $category) { ?>
-					    <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
-					<?php } ?>
+					<?php foreach((get_the_category()) as $category) { 
+						if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
+						<li class="amp-cat-<?php echo $category->term_id;?>"><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo $category->cat_name ?></a></li>
+					<?php }
+					else { ?>
+					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
+					<?php }
+					} ?> 
                 </ul>
 				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 

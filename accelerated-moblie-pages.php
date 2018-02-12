@@ -135,6 +135,18 @@ function ampforwp_add_custom_rewrite_rules() {
       'top'
     );
 
+    // For category pages with Pagination (Custom Permalink Structure)
+	$permalink_structure = get_option('permalink_structure');
+	$permalink_structure = preg_replace('/(%.*%)/', '', $permalink_structure);
+	$permalink_structure = preg_replace('/\//', '', $permalink_structure);
+	if ( $permalink_structure ) {
+	  	add_rewrite_rule(
+	      $permalink_structure.'\/'.$rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+	      'top'
+	    );
+  	}
+
     // For tag pages
 	$rewrite_tag = get_option('tag_base');
     if ( ! empty($rewrite_tag) ) {
@@ -153,6 +165,14 @@ function ampforwp_add_custom_rewrite_rules() {
       'index.php?amp&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
+    // For tag pages with Pagination (Custom Permalink Structure)
+    if ( $permalink_structure ) {
+	  	add_rewrite_rule(
+	      $permalink_structure.'\/'.$rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+	      'top'
+	    );
+  	}
     
 	//Rewrite rule for custom Taxonomies
 	$args = array(
@@ -310,10 +330,15 @@ if ( is_admin() ) {
  	}
 } // is_admin() closing
 
-	// AMP endpoint Verifier
-	function ampforwp_is_amp_endpoint() {
+// AMP endpoint Verifier
+function ampforwp_is_amp_endpoint() {
+	if ( ampforwp_is_non_amp() ) {
+		return ampforwp_is_non_amp();
+	}
+	else {
 		return false !== get_query_var( 'amp', false );
 	}
+}
 
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {

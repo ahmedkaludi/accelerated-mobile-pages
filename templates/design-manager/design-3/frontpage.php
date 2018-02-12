@@ -15,7 +15,8 @@ $template = new AMP_Post_Template( $post_id );?>
 	<meta charset="utf-8"> 
 	<?php do_action( 'amp_post_template_head', $template ); ?>
 	<style amp-custom>
-	<?php do_action( 'amp_post_template_css', $template ); ?>
+		<?php $template->load_parts( array( 'style' ) ); ?>
+		<?php do_action( 'amp_post_template_css', $template ); ?>
 	</style>
 </head>
 <body <?php ampforwp_body_class('single-post design_3_wrapper');?>>

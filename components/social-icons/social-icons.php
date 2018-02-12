@@ -14,7 +14,8 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	$desc = $post->post_excerpt; 
 	 if (has_post_thumbnail( $post_id ) ){
 	 	$thumb_id = get_post_thumbnail_id($post_id);
-		$image = wp_get_attachment_image_src( $thumb_id, 'full' ); 
+		$image = wp_get_attachment_image_src( $thumb_id, 'full' );
+		$image = $image[0]; 
 	 }
 
 	if(!ampforwp_is_associative($selected_social_icons)){
@@ -48,7 +49,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	//or https://www.facebook.com/dialog/share?app_id={app_id}&display=page&href={url}&redirect_uri={redirect_url}
 	}
 	if( isset($selected_social_icons['pinterest'] ) && null == $selected_social_icons['pinterest'] ){
-	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.' &url='. $url.'&description='. $title .'';
+	 	$selected_social_icons['pinterest'] = 'https://pinterest.com/pin/create/bookmarklet/?media='.$image.'&url='.$url.'&description='.$title.'';
 	 	//https://pinterest.com/pin/create/bookmarklet/?media={img}&url={url}&is_video={is_video}&description={title}
 	}
 	if( isset($selected_social_icons['google-plus']) && $selected_social_icons['google-plus'] == null){

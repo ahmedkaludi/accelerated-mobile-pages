@@ -76,7 +76,7 @@
                                         <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( ampforwp_has_post_thumbnail() ) {
 											$thumb_url = ampforwp_get_post_thumbnail('url','medium');
-											if($thumb_url){  ?>
+											if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {  ?>
 							            	<amp-img src="<?php echo $thumb_url ?>" width="150" height="150" layout="responsive"></amp-img>
 											<?php } 
 										}?>
@@ -84,13 +84,14 @@
 						                <div class="related_link">
 						                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 						                    <?php
-																if(has_excerpt()){
-																	$content = get_the_excerpt();
-																}else{
-																	$content = get_the_content();
-																}
-																?>
-						                    <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+							                    if ( isset($redux_builder_amp['ampforwp-single-related-posts-excerpt']) && true == $redux_builder_amp['ampforwp-single-related-posts-excerpt'] ) {
+													if(has_excerpt()){
+														$content = get_the_excerpt();
+													}else{
+														$content = get_the_content();
+													} ?> 
+						                    		<p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+						                    	<?php } ?>
 						                </div>
 						            </li>
 										<?php
