@@ -680,7 +680,6 @@ display: none;
 .fbp-cnt .author-details a:hover{
     color: #005be2;
 }
-<?php }?>
 .loop-wrapper{
     display: flex;
     -ms-flex-wrap: wrap;
@@ -749,6 +748,7 @@ display: none;
 /***** Archives*****/
 .arch-tlt{
     margin:30px 0px 30px;
+    display:inline-block;
 }
 .amp-archive-title, .amp-loop-label{
     font-weight:600;
@@ -807,6 +807,41 @@ display: none;
     position: relative;
     top: -1px;
 }
+<?php }?>
+/*** page styles with out pagebuilder ***/
+<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+.breadcrumbs {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top:35px;
+}
+#breadcrumbs li{
+    list-style-type:none;
+}
+#breadcrumbs a {
+    color: #999;
+}
+#breadcrumbs a:hover {
+    color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+}
+.amp-post-title{
+    font-size: 48px;
+    line-height: 58px;
+    color: #333;
+    margin: 0;
+    padding-top: 15px;
+}
+.pg .cntn-wrp p {
+    font-size: 18px;
+    color: #000;
+    line-height: 1.7;
+    margin:20px 0px;
+}
+<?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <?php if(is_single()){ ?>
 /***** Single *****/
