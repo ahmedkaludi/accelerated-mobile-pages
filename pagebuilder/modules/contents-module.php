@@ -148,6 +148,10 @@ require_once  ABSPATH . WPINC . '/category.php';
         bottom: 20px;
         color: #fff;
     }
+    .cat-2-img img{
+      width:100%;
+      height:auto;
+    }
 @media(max-width:1024px){
 .cat-2-tlt{
   max-width:100%;
