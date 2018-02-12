@@ -4515,7 +4515,7 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 
 	}
-	if ( isset( $size ) && !empty($size) ) {
+if ( isset( $size ) && '' !== $size ) {
 		$image_id = attachment_url_to_postid( $image_url );
 		$image_array = wp_get_attachment_image_src($image_id, $size, true);
 		$image_url = $image_array[0];
