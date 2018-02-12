@@ -2875,11 +2875,11 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Menu overlay 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/menu-1.png'
                                 ),
                         '2' => array(
                                 'alt'=>' Menu overlay 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/menu-2.png'
                                 ),
                     ),
                    'default'=> '1',

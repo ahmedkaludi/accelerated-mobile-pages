@@ -115,6 +115,7 @@ amp-carousel > amp-img > img {
     margin: 0 auto;
 }
 /***** AMP Sidebar *****/
+
 <?php if($redux_builder_amp['menu-type'] == '1'){?>
 .m-ctr, .lb-t {
 <?php if($redux_builder_amp['swift-header-overlay']['rgba']){?>
@@ -132,9 +133,24 @@ amp-carousel > amp-img > img {
     top:0;
     left:0;
 }
+<?php if($redux_builder_amp['header-position-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {
     margin-left: 0;
 }
+.m-ctr{
+    margin-left: -100%;
+    float: left;
+}
+<?php } ?>
+<?php if($redux_builder_amp['header-position-type'] == '2'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-left: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);
+}
+.m-ctr{
+    margin-left: 100%;
+    float: right;
+}
+<?php } ?>
 .tg:checked + .hamb-mnu > .fsc{
     display: block;
     background: rgba(0,0,0,.5);
@@ -173,8 +189,6 @@ amp-carousel > amp-img > img {
     <?php if($redux_builder_amp['header-overlay-width']){?>
         width:<?php echo $redux_builder_amp['header-overlay-width']?>;
     <?php } ?>
-    margin-left: -100%;
-    float: left;
     height: auto;
     position: absolute;
     z-index:99;
@@ -2080,9 +2094,24 @@ amp-user-notification button {
     top:0;
     left:0;
 }
+<?php if($redux_builder_amp['header-position-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {
     margin-left: 0;
 }
+.m-ctr{
+    margin-left: -100%;
+    float: left;
+}
+<?php } ?>
+<?php if($redux_builder_amp['header-position-type'] == '2'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-left: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);
+}
+.m-ctr{
+    margin-left: 100%;
+    float: right;
+}
+<?php } ?>
 .tg:checked + .hamb-mnu > .fsc{
     display: block;
     background: rgba(0,0,0,.5);
@@ -2121,8 +2150,6 @@ amp-user-notification button {
     <?php if($redux_builder_amp['header-overlay-width']){?>
         width:<?php echo $redux_builder_amp['header-overlay-width']?>;
     <?php } ?>
-    margin-left: -100%;
-    float: left;
     height: auto;
     position: absolute;
     z-index:99;
@@ -2557,6 +2584,9 @@ a.lb-x:after {
     width: 100%;
     float: none;
     display:inline-block;
+}
+.m-menu {
+    margin: 20px 0 0 0;
 }
 .sub-menu li{
     float:left;
