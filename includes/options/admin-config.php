@@ -1743,36 +1743,27 @@ Redux::setArgs( "redux_builder_amp", $args );
                             'id'        => 'ampforwp-web-push-onesignal',
                             'type'      => 'switch',
                             'title'     => 'OneSignal Push Notifications',
+                            'subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a> (HTTPS is required)',
                             'true'      => 'true',
                             'false'     => 'false', 
                             'default'   =>  0,
                             ),
                     array(
                             'id'        => 'ampforwp-one-signal-app-id',
-                            'subtitle'  => '<a href="https://ampforwp.com/tutorials/one-signal-in-amp/" target="_blank">View Integration Tutorial</a>',
                             'type'      => 'text',
                             'title'     => 'APP ID',
                             'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
                             ),
                     array(
-                            'id'        => 'ampforwp-onesignal-http-site',
-                            'type'      => 'switch',
-                            'title'     => 'HTTP Site',
-                            'subtitle'  => 'For HTTP Sites Only',
-                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
-                            'true'      => 'true',
-                            'false'     => 'false',
-                            'default'   => 0
-                        ),
-                    array(
-                            'id'        => 'ampforwp-onesignal-subdomain',
-                            'type'      => 'text',
-                            'title'     => 'Subdomain',
-                            'desc'      => __('Example: ampforwp', 'accelerated-mobile-pages'),
-                            'required'  => array(
-                                            array('ampforwp-web-push-onesignal', '=' , '1'),
-                                            array('ampforwp-onesignal-http-site', '=','1')),
-                            ),
+                       'id' => 'ampforwp-onesignal-positioning',
+                       'type' => 'section',
+                       'title' => __('Positioning', 'accelerated-mobile-pages'),
+                       'required' => array( 
+                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'amp-use-pot', '=' , 0 )
+                                    ),   
+                       'indent' => true,
+                    ),
                     array(
                             'id'        => 'ampforwp-web-push-onesignal-below-content',
                             'type'      => 'switch',
@@ -1817,6 +1808,35 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'default'  => __('Unsubscribe from updates','accelerated-mobile-pages'),
                        'placeholder'=>__('Add some text','accelerated-mobile-pages'),
                    ),
+                   array(
+                       'id' => 'ampforwp-onesignal-exper',
+                       'type' => 'section',
+                       'title' => __('Experimental', 'accelerated-mobile-pages'),
+                       'required' => array( 
+                                        array( 'ampforwp-web-push-onesignal', '=' , 1 ),
+                                        array( 'amp-use-pot', '=' , 0 )
+                                    ),   
+                       'indent' => true,
+                    ),
+                   array(
+                            'id'        => 'ampforwp-onesignal-http-site',
+                            'type'      => 'switch',
+                            'title'     => 'HTTP Site',
+                            'subtitle'  => 'For HTTP Sites Only',
+                            'required'  => array('ampforwp-web-push-onesignal', '=' , '1'),
+                            'true'      => 'true',
+                            'false'     => 'false',
+                            'default'   => 0
+                        ),
+                    array(
+                            'id'        => 'ampforwp-onesignal-subdomain',
+                            'type'      => 'text',
+                            'title'     => 'Subdomain',
+                            'desc'      => __('Example: ampforwp', 'accelerated-mobile-pages'),
+                            'required'  => array(
+                                            array('ampforwp-web-push-onesignal', '=' , '1'),
+                                            array('ampforwp-onesignal-http-site', '=','1')),
+                        ),
                 )
             ) 
     );
