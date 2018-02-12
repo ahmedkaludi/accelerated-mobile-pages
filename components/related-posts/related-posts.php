@@ -5,6 +5,7 @@
 */
 function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
+ 	$show_image = (isset($argsdata['show_image']) ? $argsdata['show_image'] : true);
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$my_query = related_post_loop_query();
@@ -20,12 +21,14 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 					<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
 			            <?php
 			            $related_post_permalink = ampforwp_url_controller( get_permalink() );
-			            if ( isset($argsdata['image_size']) && '' != $argsdata['image_size'] ) {
-			            	ampforwp_get_relatedpost_image($argsdata['image_size']);
-			            }
-			            else {
-			            	ampforwp_get_relatedpost_image('thumbnail');
-			            }
+			            if ( $show_image ) {
+				            if ( isset($argsdata['image_size']) && '' != $argsdata['image_size'] ) {
+				            	ampforwp_get_relatedpost_image($argsdata['image_size']);
+				            }
+				            else {
+				            	ampforwp_get_relatedpost_image('thumbnail');
+				            }
+				        }
 			            ampforwp_get_relatedpost_content($argsdata);
 			            ?> 
 			        </li><?php
@@ -76,6 +79,9 @@ function related_post_loop_query(){
 									);
 				}
 		}
+		if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
+
+		}
 		$my_query = new wp_query( $args );
 		return $my_query;
 }
@@ -90,6 +96,7 @@ function ampforwp_related_post(){
 
 function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() ){
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
+	$show_image = (isset($data['show_image']) ? $data['show_image'] : true);
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
@@ -108,7 +115,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 			}
 	        $thumb_url_2 = $thumb_url_array_2[0];
 	    
-	     if ( has_post_thumbnail() ) { ?>
+	     if ( has_post_thumbnail() && $show_image ) { ?>
 	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="<?php echo $thumb_url_array_2[1]; ?>" height="<?php echo $thumb_url_array_2[2]; ?>" layout="responsive"></amp-img>
 		<?php } ?>
 	    </a>
