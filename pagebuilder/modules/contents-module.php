@@ -15,54 +15,54 @@ require_once  ABSPATH . WPINC . '/category.php';
   display:inline-block;
   margin-top:10px;
 }
-    .cat_mod ul{
-        display: flex;
-        flex-wrap: wrap;
-        margin: -15px;
-        padding:0;
-        list-style-type:none;
-     }
-    .cat_mod ul li {
-        margin: 15px 15px 25px 15px;
-        flex-basis: calc(33.33% - 30px);
-    }
-    .cat_mod .cat_mod_l{
-      line-height:0;
-    }
-    .cat_mod {
-      margin:{{margin_css}};
-      padding:{{padding_css}};
-    }
-    .cat_mod h4{
-      border-bottom: 2px solid #eee;
-      padding-bottom: 8px;
-      margin-bottom: 5px;
-      font-size:18px;
-      color: #191919;
-      font-weight: 600;
-    }
-    .cat_mod .cat_mod_r{
-      display:flex;
-      flex-direction: column;
-      margin-top: 6px;
-    }
-    .cat_mod .cat_mod_r a{
-      font-size: 16px;
-      line-height: 1.3;
-      font-weight: 500;
-      color: #000;
-      margin: 0px 0px 5px 0px;
-    }
-    .cat_mod .cat_mod_r p{
-      color: {{text_color_picker}};
-      font-size: 13px;
-      line-height: 20px;
-      letter-spacing: 0.10px;
-      margin-bottom:0;
-    }
-    .cat_mod .cat_mod_l{
-      width:100%;
-    }
+.cat_mod ul{
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+  padding:0;
+  list-style-type:none;
+ }
+.cat_mod ul li {
+  margin: 15px 15px 25px 15px;
+  flex-basis: calc(33.33% - 30px);
+}
+.cat_mod .cat_mod_l{
+  line-height:0;
+}
+.cat_mod {
+  margin:{{margin_css}};
+  padding:{{padding_css}};
+}
+.cat_mod h4{
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 5px;
+  font-size:18px;
+  color: #191919;
+  font-weight: 600;
+}
+.cat_mod .cat_mod_r{
+  display:flex;
+  flex-direction: column;
+  margin-top: 6px;
+}
+.cat_mod .cat_mod_r a{
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #000;
+  margin: 0px 0px 5px 0px;
+}
+.cat_mod .cat_mod_r p{
+  color: {{text_color_picker}};
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.10px;
+  margin-bottom:0;
+}
+.cat_mod .cat_mod_l{
+  width:100%;
+}
 @media(max-width:768px){
 .cat_mod ul li {
     flex-basis: calc(100% - 30px);
@@ -131,8 +131,8 @@ require_once  ABSPATH . WPINC . '/category.php';
             'options_details'=>array(
                             array(
                               'value'=>'1',
-                              'label'=>'First',
-                              'demo_image'=> 'http://localhost/magzine/wordpress/wp-content/plugins/accelerated-mobile-pages//images/head-1.png'
+                              'label'=>'',
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
                             ),
                             
                           ),
@@ -227,14 +227,16 @@ require_once  ABSPATH . WPINC . '/category.php';
     'front_common_css'=>'',	
     'front_loop_content'=>'  {{if_condition_content_layout_type==1}}
                           <li> 
-                              <div class="cat_mod_l First"> 
-                                <a href="{{ampforwp_post_url}}"><amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive"></amp-img></a> 
+
+                              <div class="cat_mod_l"> 
+                               <a href="{{ampforwp_post_url}}">
+                               <amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive"> </amp-img></a>
                               </div>
                               <div class="cat_mod_r">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
                                 {{excerptContent}}
                                 </div>
-                            </li>
+                            </li></a> 
                        {{ifend_condition_content_layout_type_1}}
 
 
