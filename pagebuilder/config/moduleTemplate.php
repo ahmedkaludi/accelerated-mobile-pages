@@ -58,8 +58,8 @@ $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 
 {{row-class}}.amppb-fluid{width:100%;}
-{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
-.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
+{{row-class}}.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	color: {{font_color_picker}};

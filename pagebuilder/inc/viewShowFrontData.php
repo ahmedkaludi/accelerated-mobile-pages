@@ -72,6 +72,8 @@ function amp_pagebuilder_content_styles(){
 							if(isset($rowContainer[$rowfield['name']])){
 								$replaceRow = $rowContainer[$rowfield['name']];
 								
+							}elseif(!isset($rowContainer[$rowfield['name']])){
+								$replaceRow = $rowfield['default'];
 							}
 							if(isset($rowfield['required']) && count($rowfield['required'])>0){
 								foreach($rowfield['required'] as $requiredKey=>$requiredValue){
