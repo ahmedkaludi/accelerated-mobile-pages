@@ -3600,14 +3600,6 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
-                    'id'    => 'swift-comment',
-                    'type'  => 'switch',
-                    'title' => __('Comments', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Switch to show/hide Comments', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
                     'id'    => 'swift-taxonomy',
                     'type'  => 'switch',
                     'title' => __('Taxonomy Tags', 'accelerated-mobile-pages'),
