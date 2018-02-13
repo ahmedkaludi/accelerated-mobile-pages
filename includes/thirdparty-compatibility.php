@@ -60,7 +60,9 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 																	return $match[0];
 																}, $returnData);*/
 				$nonampCss = '
-				.cntr img{width:100% !important;height:auto !important;}
+				.cntr img{width:100%;height:auto !important;}
+				img{height:auto;}
+				.amp-featured-image img{width:100%;height:auto;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
 				
 				';
