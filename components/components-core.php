@@ -58,7 +58,7 @@ function add_amp_icon($args=array()){
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 	foreach ($args as $key ) {
 		if(isset($amp_icons_css_array[$key]))
-			$amp_icons_css[] = $amp_icons_css_array[$key]; 
+			$amp_icons_css[$key] = $amp_icons_css_array[$key]; 
 	}
 	add_action('amp_css', 'amp_icon_css');
 	
@@ -304,8 +304,8 @@ function amp_header_core(){
 		    	} ?>		
 			<style amp-custom>
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
-				<?php do_action( 'amp_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
+				<?php do_action( 'amp_css', $thisTemplate ); ?>
 			</style>
 
 		</head>
