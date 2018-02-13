@@ -2648,7 +2648,7 @@ Redux::setSection( $opt_name, array(
     background: #eee;padding: 5px 8px 5px 9px;
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
                 'options'  => $themeDesign,
-                'default'  => '2'
+                'default'  => '4'
                 ),
 
             $fields = array(
