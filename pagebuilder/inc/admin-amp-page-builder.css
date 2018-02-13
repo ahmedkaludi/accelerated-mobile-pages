@@ -761,7 +761,7 @@ position: fixed;
 }
 
 .modal-footer .del-btn-modal:hover{
-        background: #bc0b0b; color: #fff
+        background: #455A64; color: #fff
 }
 .save-btn-modal{    position: relative;
     right: 15px;}
@@ -935,10 +935,11 @@ Layout css
     margin: 10px 0px 0px 0px;
 }
 .amppb-layout-button .button {
-    width: 49%;
+    width: 100%;
     text-align: center;
     padding: 2px 3px;
-    height: 32px;
+    border-radius: 0px;
+    height: 37px;
     background: #455A64;
     color: #fff;
     border: 0;
@@ -962,7 +963,7 @@ Layout css
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 11px 10px 10px 15px;
+    padding: 0px;
     background: #f6f6f6;
     -webkit-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: -1px 0 1px rgba(0, 0, 0, 0.05);
@@ -1085,7 +1086,9 @@ Layout css
     cursor: pointer;
 }
 .del-btn-modal{
-    
+    background: none;
+    text-shadow: none;
+    color: #777;
 }
 .amppbimageuploadField{width:50px;height:50px;}
 .select-gradient-box{
@@ -1282,3 +1285,31 @@ a.amppb_accordion__panel:hover {
     width:100%;
     border: 1px solid blue;
 }
+.amp-layout-breadcrumbs {
+    display: inline-block;
+    margin: 20px 0 10px 0;
+    width: 100;
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+}
+.amp-layout-breadcrumbs .dashicons{
+    font-size: 15px;
+    color: #666;
+    line-height: 20px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 40px;
+}
+.amp-layout-breadcrumbs_arrow {
+    color: #ccc;
+    margin: 0px 3px;
+    position: relative;
+    top: -1px;}
+body .modal-footer .del-btn-modal{ 
+    background: none;
+    text-shadow: none;
+    color: #777;
+}
+.amp-layout-breadcrumbs_last{font-weight: bold}
+.amp_l_preview_button{width: 49.2% !important}

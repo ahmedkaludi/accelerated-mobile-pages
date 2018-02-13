@@ -74,15 +74,13 @@ global $savedlayoutTemplate;
                             </div><!-- save custom layout Closed-->
 
                             <div class="amppb-layout-library-wrapper" v-else-if="modalCrrentTab=='layout'">
-                                <h4>
-                                <div v-if="innerLayouts==''">
-                                    <em class="link" @click="loadLayOutFolder()"> Layout Home </em>
+                                <div class="amp-layout-breadcrumbs" v-if="innerLayouts==''">
+                                    <span class="link" @click="loadLayOutFolder()"> Layout Home </span>
                                 </div>
-                                <div v-if="innerLayouts!=''">
+                                <div class="amp-layout-breadcrumbs"  v-if="innerLayouts!=''">
                                     <span class="dashicons dashicons-arrow-left-alt link" @click="loadLayOutFolder()"></span> 
-                                    <em class="link" @click="loadLayOutFolder()"> Layout Home </em> > {{innerLayoutsHeading}} 
+                                    <span class="link" @click="loadLayOutFolder()"> Layout Home </span> <span class="amp-layout-breadcrumbs_arrow">></span>  <span class="amp-layout-breadcrumbs_last">{{innerLayoutsHeading}}</span> 
                                 </div>
-                                </h4>
                                 <div v-if="innerLayouts==''">
                                     <?php
                                     if(count($layoutTemplate)>0){
@@ -102,7 +100,7 @@ global $savedlayoutTemplate;
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
                                                         <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'
-                                                        data-heading="<?php echo ucfirst($layoutName); ?>">View Layouts</button>
+                                                        data-heading="<?php echo ucfirst($layoutName); ?>">View Layout</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,8 +117,8 @@ global $savedlayoutTemplate;
                                             </div>
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
-                                                    <a target="_blank" href="layout.preview_demo" class="button" >Preview</a>
-                                                    <button type="button" class="button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
+                                                    <a target="_blank" href="layout.preview_demo" class="amp_l_preview_button button" >Preview</a>
+                                                    <button type="button" class="amp_l_preview_button button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
                                                 </div>
                                             </div>
                                         </div>
