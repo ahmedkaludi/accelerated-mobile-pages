@@ -2661,65 +2661,19 @@ Redux::setSection( $opt_name, array(
             )
         ) );
 /*---------------------*/
-    // Typography Theme Settings
-  Redux::setSection($opt_name, array(
-        'title'      => __( 'Typography', 'accelerated-mobile-pages' ),
-        'id'         => 'amp-theme-typography',
-        'subsection' => true,
-        'fields'     => array(
-          array(
-                'id'        =>'google_font_api_key',
-                'type'      =>'text',
-                'title'     =>__('Google Font API key','accelerated-mobile-pages'),
-                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1">form here</a>','accelerated-mobile-pages'),
-                'default'   =>'',
-            ),
 
-            array(
-                'id'       => 'amp_font_selector',
-                'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class',
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
-                'options'  => array(
-                    '1' => 'None',
-                ),
-                'default'  => ''
-            ),
-
-            array(
-                'id'       => 'amp_font_type',
-                'type'     => 'select',
-                'class'    => 'ampforwp-google-font-class',
-                'multi'    => true,
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
-                'options'  => array(
-                    '1' => 'none',
-                ),
-                'default'  => ''
-            ),
-
-          array(
-                'id'        =>'google_current_font_data',
-                'type'      =>'text',
-                'class'     => 'hide',
-                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
-                'default'   =>'',
-            ),
-
-
-/*---------------------*/
-
-            
-            )
-        ) );
     // Global Theme Settings
   Redux::setSection($opt_name, array(
         'title'      => __( 'Global', 'accelerated-mobile-pages' ),
         'id'         => 'amp-theme-global-subsection',
         'subsection' => true,
         'fields'     => array(
+           array(
+                       'id' => 'colorscheme-section',
+                       'type' => 'section',
+                       'title' => __('Color Scheme', 'accelerated-mobile-pages'),
+                       'indent' => true,
+            ),
             // Swift
             array(
                     'id'        => 'swift-color-scheme',
@@ -2802,6 +2756,79 @@ Redux::setSection( $opt_name, array(
                         array('ampforwp-callnow-button', '=' , '1')
                     )
              ),
+            
+   array(
+               'id' => 'typography-section',
+               'type' => 'section',
+               'title' => __('Typography', 'accelerated-mobile-pages'),
+               'indent' => true,
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+    ),
+          array(
+                'id'        =>'google_font_api_key',
+                'type'      =>'text',
+                'title'     =>__('Google Font API key','accelerated-mobile-pages'),
+                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1">form here</a>','accelerated-mobile-pages'),
+                'default'   =>'',
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+
+            ),
+
+            array(
+                'id'       => 'amp_font_selector',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'None',
+                ),
+                'default'  => '',
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+
+            ),
+
+            array(
+                'id'       => 'amp_font_type',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'multi'    => true,
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'none',
+                ),
+                'default'  => '',
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+
+            ),
+
+          array(
+                'id'        =>'google_current_font_data',
+                'type'      =>'text',
+                'class'     => 'hide',
+                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'default'   =>'',
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+            ),
+            
+           array(
+                       'id' => 'design-advanced',
+                       'type' => 'section',
+                       'title' => __('Advanced', 'accelerated-mobile-pages'),
+                       'indent' => true,
+            ),
+            
              array(
                     'id'       => 'css_editor',
                     'type'     => 'ace_editor',
@@ -3566,7 +3593,7 @@ Redux::setSection( $opt_name, array(
             // Swift
             array(
                     'id'    => 'single-design-type',
-                   'title'  => __('Single Design Type', 'accelerated-mobile-pages'),
+                   'title'  => __('Single Design', 'accelerated-mobile-pages'),
                    'type'   => 'image_select',
                    'options'=> array(
                         '1' => array(
@@ -3586,24 +3613,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
-                    'title' => __('Date', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Enable to show Post Date', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'    => 'swift-social-icons',
-                    'type'  => 'switch',
-                    'title' => __('Social Icons', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('Switch to show/hide Social Icons', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'    => 'swift-taxonomy',
-                    'type'  => 'switch',
-                    'title' => __('Taxonomy Tags', 'accelerated-mobile-pages'),
-                    'subtitle'  => __('switch to show/hide taxonomy tags', 'accelerated-mobile-pages'),
+                    'title' => __('Published Date', 'accelerated-mobile-pages'),
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
@@ -3612,8 +3622,7 @@ Redux::setSection( $opt_name, array(
               'id'       => 'ampforwp-bread-crumb',
               'type'     => 'switch',
               'default'  =>  '1',
-              'title'    => __('Breadcrumb', 'accelerated-mobile-pages'),
-              'subtitle' => __('Enable or Disable Breadcrumb'),                  
+              'title'    => __('Breadcrumbs', 'accelerated-mobile-pages'),
            ),
           //Categories  ON/OFF
          array(
@@ -3621,7 +3630,8 @@ Redux::setSection( $opt_name, array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => __('Categories', 'accelerated-mobile-pages'),
-              'subtitle' => __('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),                
+              'subtitle' => __('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),              
+             'required' => array( array('amp-design-selector', '!=' , '4') )
            ),
          //Tags  ON/OFF
          array(
@@ -3629,15 +3639,13 @@ Redux::setSection( $opt_name, array(
               'type'     => 'switch',
               'default'  =>  '1',
               'title'    => __('Tags', 'accelerated-mobile-pages'),
-              'subtitle' => __('Enable or Disable Tags in Single', 'accelerated-mobile-pages'),                 
            ),
           //Categories and Tags Links
           array(
               'id'       => 'ampforwp-cats-tags-links-single',
               'type'     => 'switch',
               'default'  =>  '1',
-              'title'    => __('Categories and Tags Links', 'accelerated-mobile-pages'),
-              'subtitle' => __('Enable or Disable Categories/Tags links in Single', 'accelerated-mobile-pages'),                  
+              'title'    => __('Categories & Tags Links', 'accelerated-mobile-pages'),
               'required'  => array('ampforwp-archive-support', '=' , '1'),
            ),
           // Social Icons ON/OFF
@@ -3646,7 +3654,6 @@ Redux::setSection( $opt_name, array(
               'type'      => 'switch',
               'title'     => __('Sticky Social Icons', 'accelerated-mobile-pages'),
               'default'   => 1,
-              'subtitle'  => __('Enable Social Icons in single', 'accelerated-mobile-pages'),
           ),
           // Excerpt ON/OFF
           array(
@@ -3654,7 +3661,7 @@ Redux::setSection( $opt_name, array(
               'type'      => 'switch',
               'title'     => __('Excerpt', 'accelerated-mobile-pages'),
               'default'   => 0,
-              'subtitle'  => __('Enable feature to add Excerpt above Content in single', 'accelerated-mobile-pages'),
+              'subtitle'  => __('Excerpt will be displayed above content', 'accelerated-mobile-pages'),
           ),
           //deselectable next previous links
           array(
@@ -3662,7 +3669,6 @@ Redux::setSection( $opt_name, array(
               'type'      => 'switch',
               'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
-              'subtitle'  => __('Enable Next-Previous links in single', 'accelerated-mobile-pages'),
           ),
           // Author Bio
          array(
@@ -3684,7 +3690,6 @@ Redux::setSection( $opt_name, array(
             'type'     => 'switch',
             'title'    => __( 'Post Pagination', 'accelerated-mobile-pages' ),
            'default'   => 1,
-           'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
         ),
           // Related Post
             array(
@@ -3703,28 +3708,24 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-single-related-posts-image',
                     'type'     => 'switch',
                     'title'    => __('Image in Related Post', 'accelerated-mobile-pages'),
-                    'subtitle' => __('Show/Hide Image in Related Post', 'accelerated-mobile-pages'),
                     'default'  => 1,
             ),
             array(
                     'id'       => 'ampforwp-single-related-posts-excerpt',
                     'type'     => 'switch',
                     'title'    => __('Excerpt in Related Post', 'accelerated-mobile-pages'),
-                    'subtitle' => __('Show/Hide Excerpt in Related Post', 'accelerated-mobile-pages'),
                     'default'  => 1,
             ),
             array(
                     'id'       => 'ampforwp-single-order-of-related-posts',
                     'type'     => 'switch',
                     'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
-                'subtitle' => __('Related posts by random order', 'accelerated-mobile-pages'),
                 'default'  => 0,
             ),
             array(
                     'id'       => 'ampforwp-number-of-related-posts',
                     'type'     => 'text',
                     'title'    => __('Number of Related Post', 'accelerated-mobile-pages'),
-                'subtitle' => __('Type the number of related posts you need, Eg : 2', 'accelerated-mobile-pages'),
                     'validate' => 'numeric',
                 'default'  => '3',
             ),
@@ -3740,7 +3741,6 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'select',
                     'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),
                     'data'     => 'page',
-                'subtitle' => __('select the type of related posts', 'accelerated-mobile-pages'),
                     'options'  => array(
                         '1' => 'Tags',
                         '2' => 'Categories',
@@ -3753,7 +3753,6 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-inline-related-posts-order',
                     'type'     => 'switch',
                     'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
-                'subtitle' => __('In-content Related posts by random order', 'accelerated-mobile-pages'),
                 'default'  => 0,
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
@@ -3761,7 +3760,6 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-number-of-inline-related-posts',
                     'type'     => 'text',
                     'title'    => __('Number of In-Content Related Post', 'accelerated-mobile-pages'),
-                'subtitle' => __('Type the number of In-Content related posts you need, Eg : 2', 'accelerated-mobile-pages'),
                     'validate' => 'numeric',
                 'default'  => '3',
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
