@@ -34,7 +34,7 @@ global $savedlayoutTemplate;
                             </ul>
                         </div>
                     <div class="modal-header">
-                        <h3>Page Builder Settings</h3>
+                        <h3>Layout Directory</h3>
                     </div>
                         <div class="modal-body">
                             <div v-if="modalCrrentTab=='customize'">

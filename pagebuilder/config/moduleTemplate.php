@@ -57,8 +57,8 @@ $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 
-.amppb-fluid{width:100%;}
-.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
+{{row-class}}.amppb-fluid{width:100%;}
+{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
 .amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{

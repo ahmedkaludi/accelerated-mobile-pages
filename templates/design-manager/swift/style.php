@@ -860,7 +860,7 @@ display: none;
 }
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
-<?php if(is_single()){ ?>
+<?php if(is_singular()){ ?>
 /***** Single *****/
 .tl-exc{
     font-size: 16px;
