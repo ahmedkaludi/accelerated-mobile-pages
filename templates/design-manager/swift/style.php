@@ -1333,7 +1333,6 @@ display: none;
 .cntn-wrp a{
     margin:10px 0px;
     color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
-    display:inline-block;
 }
 @media(max-width:1110px){
 .sp-rt {
