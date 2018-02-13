@@ -448,7 +448,8 @@ font-size: 35px;
     padding-bottom: 1%;
 }
 #amppb-actions-container .drag{
-    float: none
+    float: none;
+    margin-bottom: 10px;
 }
 #amppb-module-actions-container{
     float: right;
