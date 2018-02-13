@@ -866,7 +866,7 @@ display: none;
 }
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
-<?php if(is_singular()){ ?>
+<?php if(is_singular() || is_front_page() ) { ?>
 /***** Single *****/
 .tl-exc{
     font-size: 16px;
