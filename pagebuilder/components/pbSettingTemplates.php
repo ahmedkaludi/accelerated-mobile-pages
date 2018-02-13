@@ -88,7 +88,8 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-wrapper">
                                                 <h4 class="amppb-layout-title"><?php echo ucfirst($layoutName); ?></h4>
                                                 <div class="amppb-layout-screenshot">
-                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" onclick="window.open('<?php echo $lay[$firstLayout]['preview_demo']; ?>')">
+                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" @click="viewSpacialLayouts($event);"
+                                                    data-info='<?php echo json_encode($lay); ?>'>
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
@@ -111,7 +112,7 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
                                                     <a target="_blank" href="layout.preview_demo" class="button" >Preview</a>
-                                                    <button type="button" class="button" :data-layout='JSON.stringify(layout.layout_json)'@click="importLayout($event)">Import</button>
+                                                    <button type="button" class="button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
                                                 </div>
                                             </div>
                                         </div>

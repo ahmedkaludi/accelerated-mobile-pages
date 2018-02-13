@@ -18,7 +18,7 @@ if(!function_exists("ampforwp_module_templates")){
 		        	}
 		        }
 		        closedir($dh);
-		        $moduleTemplate = array_filter($moduleTemplate);
+		        $moduleTemplate = apply_filters("ampforwp_pagebuilder_modules_filter", $moduleTemplate);
 		    }
 		}
 
