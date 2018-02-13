@@ -1,7 +1,7 @@
 <?php global $redux_builder_amp ?>
 <?php amp_header_core() ?>
 <?php if($redux_builder_amp['header-type'] == '1'){?>
-<header class="header">
+<header class="header h_m h_m_1">
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
@@ -14,7 +14,7 @@
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
-            <div class="head">
+            <div class="head h_m_w">
                 <div class="h-nav">
                     <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!--end menu-->
@@ -51,7 +51,7 @@
 </header>
 <?php } ?>
 <?php if($redux_builder_amp['header-type'] == '2'){?>
-<header class="header-2">
+<header class="header-2 h_m h_m_1">
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
@@ -64,7 +64,7 @@
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
-            <div class="head-2">
+            <div class="head-2 h_m_w">
                 <div class="h-nav">
                    <label for="offcanvas-menu" class="t-btn"></label>
                 </div><!-- /.left-nav -->
@@ -94,7 +94,7 @@
 </header>
 <?php } ?>
 <?php if($redux_builder_amp['header-type'] == '3'){?>
-<header class="header-3">
+<header class="header-3 h_m h_m_1">
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
@@ -107,7 +107,7 @@
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
-            <div class="head-3">
+            <div class="head-3 h_m_w">
                 <div class="h-logo">
                     <?php amp_logo(); ?>
                 </div>
