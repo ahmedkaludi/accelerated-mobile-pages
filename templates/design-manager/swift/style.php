@@ -748,14 +748,13 @@ a.lb-x:after {
 }
 }
 <?php } ?>
-
-<?php if($redux_builder_amp['primary-menu']){?>
-/*** Primary Menu ***/
 .content-wrapper{
     <?php if($redux_builder_amp['swift-height-control']){?>
         margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;
     <?php } ?>
 }
+<?php if($redux_builder_amp['primary-menu']){?>
+/*** Primary Menu ***/
 .p-m-fl{
     width:100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
