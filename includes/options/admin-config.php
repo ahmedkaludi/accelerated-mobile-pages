@@ -3837,7 +3837,7 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Footer Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/footer-1.png'
                                 ),
                         '2' => array(
                                 'alt'=>' Footer Design 2 ',

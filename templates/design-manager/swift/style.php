@@ -1574,6 +1574,9 @@ display: none;
 .w-bl ul li a{
     text-decoration: none;
 }
+.w-bl .menu li .sub-menu{
+    display:none;
+}
 @media(max-width:768px){
 .footer {
     margin-top: 60px;
