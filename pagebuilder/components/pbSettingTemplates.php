@@ -74,9 +74,9 @@ global $savedlayoutTemplate;
                                 </div>
                             </div><!-- save custom layout Closed-->
 
-                            <div v-else-if="modalCrrentTab=='layout'">
+                            <div class="amppb-layout-library-wrapper" v-else-if="modalCrrentTab=='layout'">
                                 <h4>List Of Layouts</h4>
-                                <div class="amppb-layout-library-wrapper"  v-if="innerLayouts==''">
+                                <div v-if="innerLayouts==''">
                                     <?php
                                     if(count($layoutTemplate)>0){
                                         $layoutTemplate = apply_filters("ampforwp_pb_layouts",$layoutTemplate);
