@@ -5787,3 +5787,67 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 
 	return $url;
 }
+
+// Allow AMP Components in "The Content"
+// Check for amp-components in the_content
+add_filter('the_content','ampforwp_amp_component_checker');
+if ( ! function_exists('ampforwp_amp_component_checker') ) {
+	function ampforwp_amp_component_checker( $content ) {
+		if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+			global $post;
+			$dom = '';
+			$dom = AMP_DOM_Utils::get_dom_from_content($content);
+			$components = ampforwp_get_amp_components();
+			foreach ( $components as $component ) {		
+				$nodes = $dom->getElementsByTagName( $component );
+				$num_nodes = $nodes->length;
+				if ( 0 !== $num_nodes ) {
+					update_post_meta($post->ID,'ampforwp-wpautop', 'false');
+					// Update the Post meta with amp-component
+					update_post_meta($post->ID, $component , 'true');
+				}
+			}
+			$content = AMP_DOM_Utils::get_content_from_dom($dom);
+			return $content;
+		}
+		else
+			return $content;
+	}
+}
+
+// Remove wpautop from specific posts which contain amp-components
+remove_filter('the_content', 'wpautop');
+add_filter('the_content', 'ampforwp_custom_wpautop');
+if ( ! function_exists('ampforwp_custom_wpautop') ) {
+	function ampforwp_custom_wpautop( $content ) {
+		global $post;
+		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false' && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+	    	return $content;
+	  	}
+	 	else
+	    	return wpautop($content);
+	}
+}
+// Get the AMP components
+function ampforwp_get_amp_components() {
+	$components = array();
+	$components = array('amp-carousel','amp-selector');
+	return $components;
+}
+// Add the required scripts for amp-components
+add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
+if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
+	function ampforwp_add_amp_component_scripts( $data ) {
+		$components = ampforwp_get_amp_components();
+		foreach ( $components as $component ) {
+			// check if the post has amp-component meta
+			$post_meta = get_post_meta(get_the_ID(), $component , true);
+			if ( 'true' == $post_meta ) {
+				if ( empty( $data['amp_component_scripts'][$component] ) ) {
+							$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
+					}
+			}
+		}
+		return $data;
+	}
+}
