@@ -2904,10 +2904,6 @@ Redux::setSection( $opt_name, array(
                                 'alt'=>' Menu overlay 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/menu-1.png'
                                 ),
-                        '2' => array(
-                                'alt'=>' Menu overlay 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/menu-2.png'
-                                ),
                     ),
                    'default'=> '1',
 //                   'max-width' => 200,
@@ -3597,11 +3593,11 @@ Redux::setSection( $opt_name, array(
                    'type'   => 'image_select',
                    'options'=> array(
                         '1' => array(
-                                'alt'=>' Footer Design 1 ',
+                                'alt'=>' Single Design 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
                                 ),
                         '2' => array(
-                                'alt'=>' Footer Design 2 ',
+                                'alt'=>' Single Design 2 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
                                 ),
                     ),
@@ -3828,10 +3824,6 @@ Redux::setSection( $opt_name, array(
                         '1' => array(
                                 'alt'=>' Footer Design 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/footer-1.png'
-                                ),
-                        '2' => array(
-                                'alt'=>' Footer Design 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
                                 ),
                     ),
                    'default'=> '1',
