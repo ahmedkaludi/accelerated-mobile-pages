@@ -3596,10 +3596,7 @@ Redux::setSection( $opt_name, array(
                                 'alt'=>' Single Design 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
                                 ),
-                        '2' => array(
-                                'alt'=>' Single Design 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-2.png'
-                                ),
+                        
                     ),
                    'default'=> '1',
 //                   'max-width' => 200,
