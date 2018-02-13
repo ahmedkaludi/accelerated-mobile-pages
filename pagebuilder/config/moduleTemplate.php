@@ -57,7 +57,7 @@ $output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 
-{{row-class}}.amppb-fluid{width:90%;}
+{{row-class}}.amppb-fluid{width:100%;}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
 .amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
 
@@ -136,7 +136,7 @@ $containerCommonSettings = array(
 								'name'		=>"fluid-width",
 								'label'		=>'Width',
 								'tab'		=>'customizer',
-								'default'	=>'100%',
+								'default'	=>'90%',
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fluid')
 							),
