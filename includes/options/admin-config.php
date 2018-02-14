@@ -719,19 +719,18 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                 'id'       => 'ampforwp-page-builder-info',
                 'type'     => 'raw',
-                'desc' => '<div style="    background: #FFF9C4;
+                'desc' => '<div style="background: #FFF9C4;
     display: inline-block;
     padding: 10px 20px;
-    margin-top: 15px;
-    left: 0; 
+    margin-top: 0px;
+    left: 0;
     line-height: 1.6;
     position: absolute;
-    left: 20px;
+    left: 0px;
+    top: 40px;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
-    <iframe style="    position: absolute;
-    left: 20px;
-    margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
+    <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
     
     ',
             ),
