@@ -245,18 +245,20 @@ if(is_home() || is_archive()){ ?>
 <?php }?>
 <?php //page and frontpage
 if(is_page() || is_front_page() ){?>
-<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-.sp {width: 100%;margin-top: 20px;display: inline-block;}
-.breadcrumbs {padding-bottom: 10px;border-bottom: 1px solid #eee;display: inline-block;width: 100%;font-size: 10px;text-transform: uppercase;}
-#breadcrumbs li{list-style-type:none;}
-#breadcrumbs a {color: #999;}
-#breadcrumbs a:hover {color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
-.amp-post-title{font-size: 48px;line-height: 58px;color: #333;margin: 0;padding-top: 15px;}
-.cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
-.cntn-wrp p{margin:20px 0px;}
-<?php } else{ ?>
- .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}   
-<?php } ?>
+    <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
+        .sp {width: 100%;margin-top: 20px;display: inline-block;}
+        .breadcrumbs {padding-bottom: 10px;border-bottom: 1px solid #eee;display: inline-block;width: 100%;font-size: 10px;text-transform: uppercase;}
+        #breadcrumbs li{list-style-type:none;}
+        #breadcrumbs a {color: #999;}
+        #breadcrumbs a:hover {color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
+        .amp-post-title{font-size: 48px;line-height: 58px;color: #333;margin: 0;padding-top: 15px;}
+        .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
+        .cntn-wrp p{margin:0px 0px 30px 0px;}
+    <?php } else{ ?>
+        .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
+        .cntn-wrp p {margin: 0px 0px 30px 0px;}
+        .sp {width: 100%;margin-top: 20px;display: inline-block;}
+    <?php } ?>
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <?php 
@@ -498,166 +500,51 @@ if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable
 #amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
 #amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
 amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
-/***
-/****
-* RTL Styles
-*****/
-<?php  if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
-/*** Header ***/         
-.body{
-    direction:rtl;
-}
-.h-1 {
-    order: -1;
-}
-.h-nav{
-    order: 1;
-}
-.h-2 {
-    order: -2;
-}
-.h-3 {
-    order: -2;
-    justify-content: flex-start;
-}
-.h-3 .h-srch{
-    margin-left:0;
-}
-.h-3 .h-nav {
-    order: -1;
-    margin: 0px 10px 0px 0;
-}
-.fbp-img {
-    float: right;
-}
-.fbp-cnt {
-    margin-right: 30px;
-    margin-left:0
-}
-.fbp-cnt, .fsp-cnt{
-    text-align:right;
-}
-.right a, .left a{
-    direction:rtl;
-}
-.right a:after{
-    padding:0px 6px 0px 0px;
-    top:-1px;
-}
-.left a:before{
-    padding:0px 0px 0px 6px;
-    top:1px;
-}
-.w-bl{
-    direction:rtl;
-}
-.loop-wrapper{
-    direction:rtl;
-}
-/** Single Page **/
-.breadcrumb, .amp-category{
-   direction:rtl;
-}
-.item-home:after {
-    padding-right: 5px;
-}
-.amp-post-title{
-    text-align: right;
-}
-.post-date .post-edit-link {
-    float: left;
-}
-.sp-rt{
-    order: 0;
-    direction: rtl;
-    margin-right: 50px;
-    margin-left:0;
-}
-.sp-rt .amp-author .amp-author-image {
-    float: right;
-}
-.amp-author-image amp-img {
-    margin: 0px 0px 5px 12px;
-}
-.prev {
-    float: right;
-}
-.next {
-    float: left;
-}
-.r-pf{
-    direction:rtl;
-}
-.prev:after {
-    left: -25px;
-    right:auto;
-}
-.f-menu, .p-menu{
-    direction:rtl;
-}
-.sp-lt {
-    direction: rtl;
-}
-.comment-meta amp-img {
-    float: right;
-    margin-left: 10px;
-}
-/*** Archive ***/
-.archive .author-img {
-    float: right;
-}
-.archive  .author-img amp-img {
-    margin: 0px 0px 10px 12px;
-}
-.amp-archive-title, .amp-archive-desc{
-    text-align:right;
-}
-/** Responsive **/
+<?php //RTL Styles 
+if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
+.body{direction:rtl;}
+.h-1 {order: -1;}
+.h-nav{order: 1;}
+.h-2 {order: -2;}
+.h-3 {order: -2;justify-content: flex-start;}
+.h-3 .h-srch{margin-left:0;}
+.h-3 .h-nav {order: -1;margin: 0px 10px 0px 0;}
+.fbp-img {float: right;}
+.fbp-cnt {margin-right: 30px;margin-left:0}
+.fbp-cnt, .fsp-cnt{text-align:right;}
+.right a, .left a{direction:rtl;}
+.right a:after{padding:0px 6px 0px 0px;top:-1px;}
+.left a:before{padding:0px 0px 0px 6px;top:1px;}
+.w-bl{direction:rtl;}
+.loop-wrapper{direction:rtl;}
+.breadcrumb, .amp-category{direction:rtl;}
+.item-home:after {padding-right: 5px;}
+.amp-post-title{text-align: right;}
+.post-date .post-edit-link {float: left;}
+.sp-rt{order: 0;direction: rtl;margin-right: 50px;margin-left:0;}
+.sp-rt .amp-author .amp-author-image {float: right;}
+.amp-author-image amp-img {margin: 0px 0px 5px 12px;}
+.prev {float: right;}
+.next {float: left;}
+.r-pf{direction:rtl;}
+.prev:after {left: -25px;right:auto;}
+.f-menu, .p-menu{direction:rtl;}
+.sp-lt {direction: rtl;}
+.comment-meta amp-img {float: right;margin-left: 10px;}
+.archive .author-img {float: right;}
+.archive  .author-img amp-img {margin: 0px 0px 10px 12px;}
+.amp-archive-title, .amp-archive-desc{text-align:right;}
 @media(max-width:1024px){
-.fbp-img{
-    float:right;
-}
-.fbp-cnt{
-    width:33%;
-}
-}
+.fbp-img{float:right;}
+.fbp-cnt{width:33%;}}
 @media(max-width:768px){
-.fbp-cnt {
-    width:100%;
-    float:none;
-    margin-right:0;
-}
-.fsp-img {
-    float: right;
-    margin-right: 0;
-    margin-left:20px;
-}
-.rlp-image {
-   float: right;
-    margin-left: 15px;
-    margin-right: 0;
-}
-}
+.fbp-cnt {width:100%;float:none;margin-right:0;}
+.fsp-img {float: right;margin-right: 0;margin-left:20px;}
+.rlp-image {float: right;margin-left: 15px;margin-right: 0;}}
 @media(max-width:480px){
-.fbp-cnt{
-    width:100%;
-    margin-right:0;
-}
-.next a {
-    text-align: left;
-}
-.next span{
-    right:auto;
-    left:0;
-}
-.post-date .post-edit-link {
-    float: left;
-}
-.fsp-cnt{
-    width:100%;
-    float:none;
-    display:inline-block;
-}
-
-}
+.fbp-cnt{width:100%;margin-right:0;}
+.next a {text-align: left;}
+.next span{right:auto;left:0;}
+.post-date .post-edit-link {float: left;}
+.fsp-cnt{width:100%;float:none;display:inline-block;}}
 <?php } ?>
