@@ -198,7 +198,7 @@ img.ampforwp-post-builder-img{
     display: inline-block;}
 .extension_listing .align_left img{max-width:33px;opacity: 0.75}
 .extension_listing .align_left a{display: grid}
-.extension_listing li{margin-right: 9px;}
+.extension_listing li{margin-right: 9px;margin-bottom: 15px !important;}
 .extension_desc{        float: left;
     margin-top: 8px;
     margin-left: 15px;
@@ -219,7 +219,7 @@ img.ampforwp-post-builder-img{
 .extension_listing li{
 float:left;padding-bottom: 20px;
 }
-.extension_listing li a{
+.extension_listing li{
     background: #ffffff;
     float: left;
     padding: 15px 12px;
@@ -258,7 +258,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .premium_features_btn:hover{background: #fff;color:#eb3349 !important; }
 .getting_started_listing .align_left{display: none}
 .getting_started_listing li a{width: 288px}
-.extension_listing li a:hover{border-color:rgba(48, 63, 159, 0.35)}
+.extension_listing li:hover{border-color:rgba(48, 63, 159, 0.35)}
 .single_ex_listing li a{width: 228px;}
 .single_ex_listing .extension_desc{width: auto;}
 .single_ex_listing .align_left{    float: none;

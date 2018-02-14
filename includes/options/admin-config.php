@@ -345,17 +345,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> 
-    
-    
-<div class="message">
- <img src="https://ampforwp.com/wp-content/uploads/2017/03/chatbox-img-1.png" />
-
-</div>
-<div class="container">
-  <div class="tear"><span> <i class="fa fa-life-ring"></i></span></div>
-</div>
-    ',
+    'intro_text'            => '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
