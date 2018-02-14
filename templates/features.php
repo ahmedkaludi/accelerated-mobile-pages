@@ -204,7 +204,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	    if( is_attachment() ) {
         return;
 	    }
-	    if( is_home() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+	    if( is_home() && is_front_page() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
         return;
 	    }
 	    if( is_front_page() && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
