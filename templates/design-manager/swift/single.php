@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<div class="sp-lt">
-					<div class="ss-icons">
+					<div class="ss-ic">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
 						<?php $social_icons = ampforwp_swift_social_icons();
 						amp_social($social_icons);?> 
@@ -95,7 +95,7 @@
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
-<!-- <div class="r-pf">
+<div class="r-pf">
 	<div class="cntr">
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
@@ -122,6 +122,6 @@ do_action("ampforwp_single_design_type_handle");
 		</div>
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
-</div> -->
+</div>
 	<?php amp_footer()?>
 </div>
