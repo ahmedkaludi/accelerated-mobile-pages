@@ -94,7 +94,6 @@ body #toplevel_page_amp_options .wp-menu-image{
 .ampforwp-preview-container > iframe {
     height: 100%;
     width: 100%;
-    background-color: black;
     transform: scale(1, 1); 
     transform-origin: top left;
 }
