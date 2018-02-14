@@ -65,7 +65,7 @@ function amp_pagebuilder_content_styles(){
 				
 				if(isset($containerCommonSettings['front_css'])){
 					$rowCss = $containerCommonSettings['front_css'];
-					$rowCss = str_replace('{{row-class}}', '.row-setting-'.$rowsData['id'], $rowCss);
+					$rowCss = str_replace('{{row-class}}', '.ap_r_'.$rowsData['id'], $rowCss);
 					foreach($containerCommonSettings['fields'] as $rowfield){
 							$replaceRow = '';
 						if($rowfield['content_type']=='css'){
@@ -135,7 +135,7 @@ function amp_pagebuilder_content_styles(){
 						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
-							$completeCss = str_replace("{{module-class}}", '.amppb-module-'.$contentArray['cell_id'], $completeCss );
+							$completeCss = str_replace("{{module-class}}", '.ap_m_'.$contentArray['cell_id'], $completeCss );
 						}
 						if(isset($moduleTemplate[$contentArray['type']]['front_common_css'])){
 							$moduleCommonCss[$moduleTemplate[$contentArray['type']]['name']] = $moduleTemplate[$contentArray['type']]['front_common_css'];
@@ -319,7 +319,7 @@ function amppb_post_content($content){
 					if($field['content_type']=='html'){
 						$replace ='';
 						if($field['name'] == 'row_class'){
-							$replace .= ' row-setting-'.$rowsData['id'];
+							$replace .= 'ap_r_'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
 							$replace .= ' '.$rowsData['data'][$field['name']];
@@ -564,7 +564,7 @@ function rowData($container,$col,$moduleTemplate){
 					}//Foreach closed
                 }//If closed
 
-				$html .= "<div class='amp_mod amppb-module-".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
+				$html .= "<div class='amp_mod ap_m_".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
 					$html .= "<p class='col-wrapper'>".$contentArray['value']."</div>";
