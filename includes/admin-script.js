@@ -46,6 +46,7 @@ jQuery(function($) {
                             $('.redux-tab-container').each(function(){
                                 $(this).find('.redux-tab-selector:first').click();
                             });
+                            hideReduxFields();
                             return false;
                         }
                         var item = $(this);
@@ -313,4 +314,9 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
         })
     }
 });
+
+var hideReduxFields = function(){
+    $("#redux_builder_amp-single-design-type").parents("tr").hide();
+}
+hideReduxFields();
 });

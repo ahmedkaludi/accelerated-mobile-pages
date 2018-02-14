@@ -154,7 +154,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
-    $onclickUrl = 'window.open(\''.$extension['url_link'].'\', \'_blank\');';
+    $onclickUrl = '<a href="'.$extension['url_link'].'">';
+    $onclickUrlclose = '</a>';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
         $currentStatus = "not-active invalid";
@@ -162,6 +163,7 @@ foreach ($extension_listing_array as $key => $extension) {
         $pathExploded = $pathExploded[0];
 
         $amplicense = '';
+        $onclickUrl = $onclickUrlclose= '';
         $selectedOption = get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
@@ -174,23 +176,26 @@ foreach ($extension_listing_array as $key => $extension) {
 
         $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" value="'.$amplicense.'" onclick="return false;"> 
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'"> 
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> ';
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
+             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
+            ';
         
         $pluginReview .= $verify;
         if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
             $pluginReview .= "<br/>".$selectedOption['amp-license'][$pathExploded]['message'];
         }
-        $onclickUrl = '';
+        
         
     }
-    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'" onclick="'.$onclickUrl.'"><a href="javascript:void(0);">
+    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'">'.$onclickUrl.'
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
         <div class="extension_desc">
         <h2>'.$extension['name'].'</h2>
         <p>'.$extension['desc'].'</p>
         '.$pluginReview.'
         </div>
-    </a></li>';
+    '.$onclickUrlclose.'</li>';
 }
 
 $extension_listing = '
