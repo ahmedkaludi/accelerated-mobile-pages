@@ -287,6 +287,7 @@ function call_page_builder(){
 			    				'image',
 			    				'text'
 			    				);
+			    ksort($moduleTemplate);
 			    foreach ($moduleTemplate as $key => $module) {
 			    	if(in_array($key, $oldModules)){
 			    		continue;
