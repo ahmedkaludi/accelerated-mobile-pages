@@ -230,3 +230,98 @@ li.first{
     padding: 4px 7px;
     border-radius: 100%;
 }
+
+
+
+
+
+
+.a-f-wp-help-message {
+  width: 0em;
+  position: fixed;
+  /*left: 50%;*/
+  z-index: 99999;
+  border: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding: 0;
+  color: #333;
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.a-f-wp-help-message:focus {
+  outline: none;
+}
+.a-f-wp-help-message.active {
+  opacity: 1;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+  width: 20em;
+}
+
+.a-f-wp-help-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*height: 100vh;
+  min-height: 650px;*/
+  position: fixed;
+  z-index: 9999999999;
+  bottom: 0px;
+  right: 0pc;
+}
+.a-f-wp-help-container .a-f-wp-help-tear {
+  width: 10em;
+  height: 10em;
+  border-radius: 0 50% 50% 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: rotate(0deg);
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  background: dodgerblue;
+  box-shadow: 4px 4px 10px #b3b3b3;
+  position: relative;
+}
+.a-f-wp-help-container .tear.active {
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  background: black;
+}
+.a-f-wp-help-container .tear.active span {
+  position: absolute;
+  left: 38%;
+  top: 30%;
+  font-size: 3em; 
+  color: white;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.a-f-wp-help-container .tear.green {
+  background: green;
+  transform: rotate(0deg);
+  border-radius: 5px;
+}
+.a-f-wp-help-container span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 3em;
+  color: white;
+}

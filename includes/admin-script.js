@@ -319,4 +319,43 @@ var hideReduxFields = function(){
     $("#redux_builder_amp-single-design-type").parents("tr").hide();
 }
 hideReduxFields();
+
+
+var helpSection = function(){
+    var open;
+
+  open = true;
+
+  $('.a-f-wp-help-tear').click(function() {
+    if (open) {
+      $('.a-f-wp-help-tear').addClass('active');
+      $('.a-f-wp-help-message').addClass('active');
+      $('.a-f-wp-help-tear').html("<span><i class='fa fa-close'></i></span>");
+      return open = !open;
+    } else {
+      $('.a-f-wp-help-tear').removeClass('active green');
+      $('.a-f-wp-help-message').removeClass('active');
+      $('.a-f-wp-help-message').val('');
+      $('.a-f-wp-help-tear').html("<span><i class='fa fa-life-ring'></i></span>");
+      return open = !open;
+    }
+  });
+
+  $('input').on('input', function(e) {
+    var value;
+    value = $("input").val();
+    if (value.length >= 2) {
+      $('.a-f-wp-help-tear').addClass('green');
+      $('.a-f-wp-help-tear').removeClass('active');
+      return $('.a-f-wp-help-tear').html("<span><i class='fa fa-check'></i></span>");
+    } else {
+      $('.a-f-wp-help-tear').removeClass('green');
+      $('.a-f-wp-help-tear').addClass('active');
+      return $('.a-f-wp-help-tear').html("<span><i class='fa fa-close'></i></span>");
+    }
+  });
+}
+helpSection();
+
 });
+

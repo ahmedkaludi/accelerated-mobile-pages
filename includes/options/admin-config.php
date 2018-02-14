@@ -154,7 +154,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
-    $onclickUrl = '<a href="'.$extension['url_link'].'">';
+    $onclickUrl = '<a href="'.$extension['url_link'].'" target="_blank">';
     $onclickUrlclose = '</a>';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){

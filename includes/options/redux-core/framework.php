@@ -3275,6 +3275,15 @@
              */
             public function generate_panel() {
                 require_once 'core/panel.php';
+                if(is_admin()){
+                    echo '<div class="a-f-wp-help-message">
+                         <img src="https://ampforwp.com/wp-content/uploads/2017/03/chatbox-img-1.png" />
+
+                        </div>
+                        <div class="a-f-wp-help-container">
+                          <div class="a-f-wp-help-tear"><span> <i class="fa fa-life-ring"></i></span></div>
+                        </div>';
+                }
                 $panel = new reduxCorePanel ( $this );
                 $panel->init();
                 $this->set_transients();
