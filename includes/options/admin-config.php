@@ -12,6 +12,12 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
+// Display only If AMP Cache is Not Installed
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+   if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
+$cache_AD_URL = "http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=performance-tab&utm_campaign=AMP%20Plugin";
+$cache_desc = '<a href="'.$cache_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/amp_cache_b.png" width="560" height="85" /></a>';
+}
 // If CTA is not Activated
 $cta_desc = "";
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -62,6 +68,16 @@ $extension_listing_array = array(
                             'store_url'=>'',
                         ),
                         array(
+                            'name'=>'AMP Cache',
+                            'desc'=>'AMP Cache is a Revolutionary Cache System for AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$89',
+                            'url_link'=>'http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=extension-tab_cache&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-cache/ampforwp-cache.php',
+                            'item_name'=>'AMP Cache',
+                            'store_url'=>'',
+                        ),
+                        array(
                             'name'=>'Call To Action (CTA)',
                             'desc'=>'Higher Visibility & More Conversions',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
@@ -72,15 +88,16 @@ $extension_listing_array = array(
                             'store_url'=>'',
                         ),
                         array(
-                            'name'=>'Custom Post Type',
-                            'desc'=>'Enable Custom Post type support in AMP.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
-                            'price'=>'$19',
-                            'url_link'=>'http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'amp-custom-post-type/amp-custom-post-type.php',
-                            'item_name'=>'Custom Post Type',
+                            'name'=>'AMP WooCommerce Pro',
+                            'desc'=>'Advanced WooCommerce in AMP in two clicks.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/woo.png',
+                            'price'=>'$79',
+                            'url_link'=>'https://ampforwp.com/woocommerce/',
+                            'plugin_active_path'=> 'amp-woocommerce-pro/amp-woocommerce.php',
+                            'item_name'=>'AMP WooCommerce Pro',
                             'store_url'=>'',
                         ),
+
                         array(
                             'name'=>'Advanced Custom Fields',
                             'desc'=>'Easily add ACF support in AMP.',
@@ -101,16 +118,6 @@ $extension_listing_array = array(
                             'item_name'=>'Star Ratings',
                             'store_url'=>'',
                         ),
-                        array(
-                            'name'=>'AMP WooCommerce Pro',
-                            'desc'=>'Advanced WooCommerce in AMP in two clicks.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/woo.png',
-                            'price'=>'$79',
-                            'url_link'=>'https://ampforwp.com/woocommerce/',
-                            'plugin_active_path'=> 'amp-woocommerce-pro/amp-woocommerce.php',
-                            'item_name'=>'AMP WooCommerce Pro',
-                            'store_url'=>'',
-                        ),
                          array(
                             'name'=>'Category Base Removal',
                             'desc'=>'Remove Category Base Support in AMP',
@@ -122,6 +129,15 @@ $extension_listing_array = array(
                             'store_url'=>'',
                         ),
                         array(
+                            'name'=>'Custom Post Type',
+                            'desc'=>'Enable Custom Post type support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
+                            'price'=>'$19',
+                            'url_link'=>'http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-custom-post-type/amp-custom-post-type.php',
+                            'item_name'=>'Custom Post Type',
+                            'store_url'=>'',
+                        ),                        array(
                             'name'=>'View All Extensions',
                             'desc'=>'See all the extensions available for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
@@ -329,7 +345,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a href="http://ampforwp.com/tutorials/#utm_source=options-panel&utm_medium=tuts_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('View Documentation','accelerated-mobile-pages').'</a> | <a href="http://ampforwp.com/support/#utm_source=options-panel&utm_medium=contact_link_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Contact','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin">Get PRO Version</a> ',
+    'intro_text'            => '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ',
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
@@ -1131,10 +1147,11 @@ Redux::setArgs( "redux_builder_amp", $args );
 
   // SEO SECTION
   Redux::setSection( $opt_name, array(
-      'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
-      'id'         => 'amp-performance',
-      'subsection' => true,
-       'fields'     => array(
+        'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-performance',
+        'desc' => $cache_desc,
+        'subsection' => true,
+        'fields'     => array(
 
            array(
                'id'       => 'ampforwp_cache_minimize_mode',
