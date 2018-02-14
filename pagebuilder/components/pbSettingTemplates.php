@@ -113,7 +113,7 @@ global $savedlayoutTemplate;
                                         <div class="amppb-layout-wrapper">
                                                 <h4 class="amppb-layout-title">{{layout.name}}</h4>
                                             <div class="amppb-layout-screenshot">
-                                                <img src="" :src="layout.preview_img" onclick="window.open('layout.preview_demo')">
+                                                <img src="" :src="layout.preview_img" v-on:click="window.open(layout.preview_demo)">
                                             </div>
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
