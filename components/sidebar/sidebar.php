@@ -25,9 +25,6 @@ if(!function_exists('ampforwp_framework_get_sideabr')){
 				echo esc_html('action not found');
 				break;
 		}
-		if($data['sidebar_script']){
-			ampforwp_add_sidebar_scripts();
-		}
 	}
 }
 function sidebar_close_button($data=array() ){
@@ -74,6 +71,7 @@ function sideber_end(){
 	return '</amp-sidebar>';
 }
 
+ampforwp_add_sidebar_scripts();
 function ampforwp_add_sidebar_scripts(){
 	global $scriptComponent;
 	if ( empty( $scriptComponent['amp-sidebar'] ) ) {
