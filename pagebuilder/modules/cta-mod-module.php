@@ -9,38 +9,11 @@ $output = '
 </div>
 ';
 $css = '
-.cta-mod{
-   margin:{{margin_css}};
-    padding:{{padding_css}};
-    display: inline-flex;
-    width: 100%;
-    align-items: center;
-}
-.cta-mod .cta-btn{
-	width: 40%;
-    text-align: right;
-}
-.cta-mod h2{
-   font-size:{{text-size}};
-   line-height:1.5;
-   font-weight:normal;
-   color:{{font_color_picker}};
-}
-.cta-mod .btn-txt{
-	display: inline-block;
-    color: {{txt_color_picker}};
-    padding: 10px 20px;
-    font-size: 26px;
-    border: 3px solid {{brd_color_picker}};
-    font-weight: 500;
-    background: {{bg_color_picker}};
-}
-.cta-mod .txt{
-    display: block;
-    color: {{subh_color_picker}};
-    font-size: 16px;
-    margin-top: 20px;
-}
+.cta-mod{margin:{{margin_css}};padding:{{padding_css}};display: inline-flex;width: 100%;align-items: center;}
+.cta-mod .cta-btn{width: 40%;text-align: right;}
+.cta-mod h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
+.cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;font-size: 26px;border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
+.cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
 @media(max-width:768px){
 	.cta-mod{display:inline-block;width:100%;text-align:center}
 	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
@@ -48,14 +21,12 @@ $css = '
 global $redux_builder_amp;
 if($redux_builder_amp['amp-rtl-select-option']){
 $css .=	'
-	/** RTL CSS **/
-	.cta-mod .cta-btn {
-	    text-align: left;
-	}
-	@media(max-width:768px){
+/** RTL CSS **/
+.cta-mod .cta-btn { text-align: left;}
+@media(max-width:768px){
 	.cta-mod{display:inline-block;width:100%;text-align:center}
 	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
-	}
+}
 ';
 }
 return array(

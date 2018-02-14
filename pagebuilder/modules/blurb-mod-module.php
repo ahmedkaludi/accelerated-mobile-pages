@@ -1,50 +1,14 @@
 <?php 
 $output = '<div class="ln-fx">{{repeater}}</div>';
-$css = '.blu-mod{
-    margin: 0 3% 3% 0;
-    width: 31%;
-    text-align: center;
-    padding: 50px 30px;
-    position: relative;
-    color: #26292c;
-    background: #f4f4f4;
-}
-.blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){
-    margin-right:0;
-}
-{{module-class}} .ln-fx{
-	width:100%;
-	display:flex; 
-    flex-wrap:wrap;
-	margin:{{margin_css}};
-   	padding:{{padding_css}};
-}
-
-.blu-mod .blurb-txt{
-    font-size: 26px;
-    font-weight: 500;
-    color:{{font_color_picker}};
-}
-.blu-mod .ico-pic{
-	font-size:35px;
-	color:{{ic_color_picker}};
-	margin-bottom:30px;
-	display:inline-block;
-	background:{{bg_color_picker}};
-	border-radius:50%;
-	padding:15px;
-}
-{{module-class}} .blu-mod p{
-    margin: 15px 0px 0px 0px;
-    font-size: 15px;
-    color: #555;
-    line-height: 1.7;
-}
+$css = '
+.blu-mod{margin: 0 3% 3% 0;width: 31%;text-align: center;padding: 50px 30px;position: relative;color: #26292c;background: #f4f4f4;}
+.blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){margin-right:0;}
+{{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;margin:{{margin_css}};padding:{{padding_css}};}
+.blu-mod .blurb-txt{font-size: 26px;font-weight: 500;color:{{font_color_picker}};}
+.blu-mod .ico-pic{font-size:35px;color:{{ic_color_picker}};margin-bottom:30px;display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
+{{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
 @media(max-width:768px){
-	.blu-mod{
-		width: 100%;
-		margin-right:0
-	}
+	.blu-mod{width: 100%;margin-right:0}
 }
 
 

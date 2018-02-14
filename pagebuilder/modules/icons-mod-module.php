@@ -2,33 +2,10 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
-.icons-mod{
-	margin:{{margin_css}};
-   	padding:{{padding_css}};
-}
-.ln-fx{
-	width:100%;
-	display:inline-flex;
-}
-.ico-mod{
-    display: flex;
-    flex-direction: column;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 100%;
-    margin: 0 auto;
-    text-align: center;
-}
-.ico-mod .ico-pic{
-	font-size:40px;
-	display:inline-block;
-	color:{{ico_color_picker}};
-	background: {{bg_color_picker}};
-	border-radius:{{border-size}};
-	padding: 20px;
-
-}
+.icons-mod{margin:{{margin_css}};padding:{{padding_css}};}
+.ln-fx{width:100%;display:inline-flex;}
+.ico-mod{display: flex;flex-direction: column;justify-content: space-between;margin: 0 auto;text-align: center;}
+.ico-mod .ico-pic{font-size:40px;display:inline-block;color:{{ico_color_picker}};background: {{bg_color_picker}};border-radius:{{border-size}};padding: 20px;}
 ';
 return array(
 		'label' =>'Icons',
