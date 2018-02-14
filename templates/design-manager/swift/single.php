@@ -43,8 +43,24 @@
 				<div class="sp-lt">
 					<div class="ss-ic">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
-						<?php $social_icons = ampforwp_swift_social_icons();
-						amp_social($social_icons);?> 
+						<ul>
+							<li><a class="s_fb" href=""></a></li>
+							<li><a class="s_tw" href=""></a></li>
+							<li><a class="s_gp" href=""></a></li>
+							<li><a class="s_em" href=""></a></li>
+							<li><a class="s_pt" href=""></a></li>
+							<li><a class="s_lk" href=""></a></li>
+							<li><a class="s_wp" href=""></a></li>
+							<li><a class="s_od" href=""></a></li>
+							<li><a class="s_vk" href=""></a></li>
+							<li><a class="s_rd" href=""></a></li>
+							<li><a class="s_tb" href=""></a></li>
+							<li><a class="s_tg" href=""></a></li>
+							<li><a class="s_dg" href=""></a></li>
+							<li><a class="s_su" href=""></a></li>
+							<li><a class="s_wc" href=""></a></li>
+							<li><a class="s_vb" href=""></a></li>
+						</ul>
 		            </div>
 		            <div class="sp-athr">
 		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
