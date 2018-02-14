@@ -117,7 +117,7 @@ global $savedlayoutTemplate;
                                             </div>
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
-                                                    <a target="_blank" href="layout.preview_demo" class="amp_l_preview_button button" >Preview</a>
+                                                    <a target="_blank" :href="layout.preview_demo" class="amp_l_preview_button button" >Preview</a>
                                                     <button type="button" class="amp_l_preview_button button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
                                                 </div>
                                             </div>
