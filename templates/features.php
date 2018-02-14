@@ -5197,9 +5197,12 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 		// HTTP sites
 		if(isset($redux_builder_amp['ampforwp-onesignal-http-site'] ) && $redux_builder_amp['ampforwp-onesignal-http-site'] ){
 			$onesignal_subdomain = $redux_builder_amp['ampforwp-onesignal-subdomain'];
-			$helper_iframe_url = 'https://' . $onesignal_subdomain . '.os.tc/amp/helper_frame?appId=' . $onesignal_app_id . '';
-			$permission_dialog_url = 'https://' . $onesignal_subdomain . '.os.tc/amp/permission_dialog?appId=' . $onesignal_app_id . '';
-			$service_worker_url = 'https://' . $onesignal_subdomain . '.os.tc/OneSignalSDKWorker.js?appId=' . $onesignal_app_id . '';
+			if ( $onesignal_subdomain ) {
+				$onesignal_subdomain = $onesignal_subdomain.'.';
+			}
+			$helper_iframe_url = 'https://' . $onesignal_subdomain . 'os.tc/amp/helper_frame?appId=' . $onesignal_app_id . '';
+			$permission_dialog_url = 'https://' . $onesignal_subdomain . 'os.tc/amp/permission_dialog?appId=' . $onesignal_app_id . '';
+			$service_worker_url = 'https://' . $onesignal_subdomain . 'os.tc/OneSignalSDKWorker.js?appId=' . $onesignal_app_id . '';
 		}	?>
 	 <amp-web-push
 	    id="amp-web-push"
