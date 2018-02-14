@@ -1025,7 +1025,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
         ) );
 
-    //if ( ! function_exists('ampforwp_seo_default') ) {
+    if ( ! function_exists('ampforwp_seo_default') ) {
         function ampforwp_seo_default() {
             $default = '';
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
@@ -1037,7 +1037,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             }
             return $default;
         }
-    //}
+    }
  // SEO SECTION
   Redux::setSection( $opt_name, array(
       'title'      => __( 'SEO', 'accelerated-mobile-pages' ),
