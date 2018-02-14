@@ -85,6 +85,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 											<option value="1" '.($redux_builder_amp['amp-design-selector']==1? 'selected' : '').'>Design One</option>
 											<option value="2" '.($redux_builder_amp['amp-design-selector']==2? 'selected' : '').'>Design Two</option>
 											<option value="3" '.($redux_builder_amp['amp-design-selector']==3? 'selected' : '').'>Design Three</option>
+											<option value="4" '.($redux_builder_amp['amp-design-selector']==4? 'selected' : '').'>Swift</option>
 									</select>
  
 									<div>
