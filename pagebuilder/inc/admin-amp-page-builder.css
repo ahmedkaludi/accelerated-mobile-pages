@@ -807,7 +807,18 @@ position: fixed;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
+.amp_repeater_addmore .button{
+    float: right;
+    height: 50px;
+    background: #0185ba;
+    width: 170px;
+    border-color: #006799;
+    color: #fff;
+    position: relative;
+    right: 30px;
+    top: 20px;
+    margin-bottom: 60px;
+}
 
 
 
@@ -943,6 +954,7 @@ Layout css
     background: #455A64;
     color: #fff;
     border: 0;
+    line-height: 33px;
 }
 .amppb-layout-title {
     margin: 0;

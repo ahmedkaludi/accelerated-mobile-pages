@@ -239,8 +239,7 @@ li.first{
 .a-f-wp-help-message {
   width: 0em;
   position: fixed;
-  /*left: 50%;*/
-  z-index: 99999;
+right:0;  z-index: 99999;
   border: 0;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -253,6 +252,10 @@ li.first{
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   transition: 0.5s;
+    bottom: 85px;
+}
+.a-f-wp-help-message img{
+    width: 250px;
 }
 
 .a-f-wp-help-message:focus {
@@ -263,23 +266,27 @@ li.first{
   -webkit-transition: 1s;
   -moz-transition: 1s;
   transition: 1s;
-  width: 20em;
+  width: 170px;
 }
 
 .a-f-wp-help-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  /*height: 100vh;
-  min-height: 650px;*/
   position: fixed;
   z-index: 9999999999;
   bottom: 0px;
   right: 0pc;
 }
+.dashicons-sos:before, .dashicons-no-alt{
+    font-family: dashicons;
+    font-style: normal;
+}
 .a-f-wp-help-container .a-f-wp-help-tear {
-  width: 10em;
-  height: 10em;
+    width: 4em;
+    height: 4em;
+    right: 26px;
+    bottom: 27px;
   border-radius: 0 50% 50% 50%;
   border-radius: 50%;
   cursor: pointer;
@@ -291,16 +298,16 @@ li.first{
   box-shadow: 4px 4px 10px #b3b3b3;
   position: relative;
 }
-.a-f-wp-help-container .tear.active {
+.a-f-wp-help-container .a-f-wp-help-tear.active {
   border-radius: 0 50% 50% 50%;
   transform: rotate(45deg);
   background: black;
 }
-.a-f-wp-help-container .tear.active span {
+.a-f-wp-help-container .a-f-wp-help-tear.active span {
   position: absolute;
-  left: 38%;
-  top: 30%;
-  font-size: 3em; 
+    left: 12px;
+    top: 17px;
+    font-size: 2em;
   color: white;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -308,20 +315,20 @@ li.first{
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.a-f-wp-help-container .tear.green {
+.a-f-wp-help-container .a-f-wp-help-tear.green {
   background: green;
   transform: rotate(0deg);
   border-radius: 5px;
 }
 .a-f-wp-help-container span {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 26px;
+  top: 28px;
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
   -o-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  font-size: 3em;
+  font-size: 2em;
   color: white;
 }

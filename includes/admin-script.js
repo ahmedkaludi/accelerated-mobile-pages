@@ -330,13 +330,13 @@ var helpSection = function(){
     if (open) {
       $('.a-f-wp-help-tear').addClass('active');
       $('.a-f-wp-help-message').addClass('active');
-      $('.a-f-wp-help-tear').html("<span><i class='fa fa-close'></i></span>");
+      $('.a-f-wp-help-tear').html("<span><i class='dashicons-no-alt'></i></span>");
       return open = !open;
     } else {
       $('.a-f-wp-help-tear').removeClass('active green');
       $('.a-f-wp-help-message').removeClass('active');
       $('.a-f-wp-help-message').val('');
-      $('.a-f-wp-help-tear').html("<span><i class='fa fa-life-ring'></i></span>");
+      $('.a-f-wp-help-tear').html("<span><i class='dashicons-sos'></i></span>");
       return open = !open;
     }
   });
@@ -347,11 +347,11 @@ var helpSection = function(){
     if (value.length >= 2) {
       $('.a-f-wp-help-tear').addClass('green');
       $('.a-f-wp-help-tear').removeClass('active');
-      return $('.a-f-wp-help-tear').html("<span><i class='fa fa-check'></i></span>");
+      return $('.a-f-wp-help-tear').html("<span><i class='dashicons-sos'></i></span>");
     } else {
       $('.a-f-wp-help-tear').removeClass('green');
       $('.a-f-wp-help-tear').addClass('active');
-      return $('.a-f-wp-help-tear').html("<span><i class='fa fa-close'></i></span>");
+      return $('.a-f-wp-help-tear').html("<span><i class='dashicons-no-alt'></i></span>");
     }
   });
 }
