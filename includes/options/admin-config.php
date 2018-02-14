@@ -35,7 +35,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
                             'item_name'=>'advanced-amp-ads',
-                            'store_url'=>'http://magazine3.com/garage/',
+                            'store_url'=>'',
                         ),
                         array(
                             'name'=>'Contact Form 7',
