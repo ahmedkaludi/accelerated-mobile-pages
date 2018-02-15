@@ -140,7 +140,7 @@
 }
 .ampforwp-ad-img-banner{
     width: 560px;
-    height: 99px !important;
+    max-height: 99px;
 }
 .ampforwp-extension-ad-img-banner{
   width: 345px;

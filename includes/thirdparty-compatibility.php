@@ -60,62 +60,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 																	return $match[0];
 																}, $returnData);*/
 				$nonampCss = '
-				.cntr img{width:100% !important;height:auto !important;}
+				.cntr img{width:100%;height:auto !important;}
+				img{height:auto;}
+				.amp-featured-image img{width:100%;height:auto;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-				.tg, .fsc{
-				    display: none;
-				}
-				.fsc{
-				    width: 100%;
-				    height: 100%;
-				    position: absolute;
-				    cursor: pointer;
-				    top:0;
-				    left:0;
-				}
-				.tg:checked + .hamb-mnu > .m-ctr {
-				    margin-left: 0;
-				}
-				.tg:checked + .hamb-mnu > .fsc{
-				    display: block;
-				    background: rgba(0,0,0,.5);
-				}
-				.t-btn, .c-btn{
-				    cursor: pointer;
-				}
-				.c-btn{
-				    float: right;
-				    padding: 1.5rem;
-				}
-				.m-ctr{
-				    transition: margin 0.3s ease-in-out;
-				}
-				.m-ctr{
-				    width: 100%;
-				    margin-left: -100%;
-				    float: left;
-				    height: auto;
-				    position: absolute;
-				    z-index:99;
-				    
-				    padding: 0% 3% 100vh 5%;
-				}
-				.t-btn:after{
-					content:"\e5d2";
-					display:inline-block;
-				    color: rgba(119,119,119,1);
-    				font-family: "icomoon";
-    				font-size:28px;
-				}
-				.c-btn:after{
-				    content: "\e5cd";
-				    font-family: "icomoon";
-				    font-size: 30px;
-				    color: rgba(255,255,255,1);
-				    line-height: 0;
-				    display: block;
-				    text-indent: 1px;
-				}
+				
 				';
 				$re = '/<style type="text\/css">(.*?)<\/style>/';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";

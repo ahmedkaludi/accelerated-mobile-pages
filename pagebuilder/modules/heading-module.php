@@ -1,18 +1,8 @@
 <?php 
 $output = '<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>';
 $css = '
-{{module-class}}{
-   width:100%;
-   text-align:{{align_type}};
-   margin:{{margin_css}};
-   padding:{{padding_css}};
-}
-{{module-class}} .h-txt{
-   font-size:{{text-size}};
-   color:{{font_color_picker}}; 
-   font-weight:{{font_type}};
-   line-height:1.4;
-}
+{{module-class}}{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
+{{module-class}} .h-txt{font-size:{{text-size}};color:{{font_color_picker}}; font-weight:{{font_type}};line-height:1.4;}
 ';
 return array(
 		'label' =>'Heading',

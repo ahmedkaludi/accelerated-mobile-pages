@@ -2,98 +2,22 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
-.pricing-mod{
-	margin:{{margin_css}};
-   	padding:{{padding_css}};
-}
-{{module-class}} .ln-fx{
-	width:100%;
-	display:inline-flex; 
-    display: flex;
-    flex-wrap: wrap;
-} 
-.pri-mod{
-	display: flex;
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 100%;
-    flex: 1 0 25%;
-    text-align:center;
-    background:#f4f4f4;
-	position:relative;
-	padding:30px 50px;
-	margin:0 10px;
-	overflow: hidden;
-}
-.pri-mod .pri-tlt{
-	font-size: 20px;
-    font-weight: 400;
-    margin-bottom:10px;
-}
-.pri-mod span{
-	display:block;
-}
-.pri-lbl{
-	font-size: 45px;
-    font-weight: 500;
-}
-.pri-desc{
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-}
-.pri-mod .btn-txt{
-	background:{{btn_bg_color}};
-    color: {{font_color_picker}};
-    padding: 10px 30px;
-    display: block;
-    margin: 24px auto 0 auto;
-}
-.pri-recom{
-    font-size: 11px;
-    position: absolute;
-    right: 0;
-    top: 0px;
-    display: block;
-    font-weight: 700;
-    height: 32px;
-    line-height: 32px;
-    color: #fff;
-    z-index: 1;
-    min-width: 80px;
-    -webkit-transform: rotate(45deg) translate(23%,57%);
-    transform: rotate(45deg) translate(23%,57%);
- }
- .pri-recom:after{
-    content: "";
-    position: absolute;
-    border-bottom: 32px solid #2cbf55;
-    border-left: 32px solid transparent;
-    border-right: 32px solid transparent;
-    height: 0;
-    width: 188%;
-    z-index: -1;
-    left: -47%;
-}
-.pri-cnt{
-    color: #444;
-    margin-top: 25px;
-    font-size: 14px;
-}
-.pricing-mod .pri-cnt p{
-	margin-bottom:10px;
-}
-.feature-pri{
-	top: -30px;
-}
+.pricing-mod{margin:{{margin_css}};padding:{{padding_css}};}
+{{module-class}} .ln-fx{width:100%;display:inline-flex; display: flex;flex-wrap: wrap;} 
+.pri-mod{display: flex;flex-direction: column;flex: 1 0 25%;text-align:center;background:#f4f4f4;position:relative;padding:30px 50px;margin:0 10px;overflow: hidden;}
+.pri-mod .pri-tlt{font-size: 20px;font-weight: 400;margin-bottom:10px;}
+.pri-mod span{display:block;}
+.pri-lbl{font-size: 45px;font-weight: 500;}
+.pri-desc{font-size: 12px;color: #666;margin-top: 5px;}
+.pri-mod .btn-txt{background:{{btn_bg_color}};color: {{font_color_picker}};padding: 10px 30px;display: block;margin: 24px auto 0 auto;}
+.pri-recom{font-size: 11px;position: absolute;right: 0;top: 0px;display: block;font-weight: 700;height: 32px;line-height: 32px;color: #fff;z-index: 1;min-width: 80px;transform: rotate(45deg) translate(23%,57%);}
+.pri-recom:after{content: "";position: absolute;border-bottom: 32px solid #2cbf55;border-left: 32px solid transparent;border-right: 32px solid transparent;height: 0;width: 188%;z-index: -1;left: -47%;}
+.pri-cnt{color: #444;margin-top: 25px;font-size: 14px;}
+.pricing-mod .pri-cnt p{margin-bottom:10px;}
+.feature-pri{top: -30px;}
 @media(max-width:768px){
-.pri-mod{
-	flex:1 0 100%;
-	margin:0px 0px 20px 0px;
-}
-.feature-pri{
-	top:0;
-}
+	.pri-mod{flex:1 0 100%;margin:0px 0px 20px 0px;}
+	.feature-pri{top:0;}
 }
 ';
 return array(

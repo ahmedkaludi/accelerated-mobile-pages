@@ -94,7 +94,6 @@ body #toplevel_page_amp_options .wp-menu-image{
 .ampforwp-preview-container > iframe {
     height: 100%;
     width: 100%;
-    background-color: black;
     transform: scale(1, 1); 
     transform-origin: top left;
 }
@@ -229,4 +228,106 @@ li.first{
     top: 15px;
     padding: 4px 7px;
     border-radius: 100%;
+}
+
+
+
+
+
+
+.a-f-wp-help-message {
+  width: 0em;
+  position: fixed;
+right:0;  z-index: 99999;
+  border: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding: 0;
+  color: #333;
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+    bottom: 85px;
+}
+.a-f-wp-help-message img{
+    width: 250px;
+}
+
+.a-f-wp-help-message:focus {
+  outline: none;
+}
+.a-f-wp-help-message.active {
+  opacity: 1;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+  width: 170px;
+}
+
+.a-f-wp-help-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999999999;
+  bottom: 0px;
+  right: 0pc;
+}
+.dashicons-sos:before, .dashicons-no-alt{
+    font-family: dashicons;
+    font-style: normal;
+}
+.a-f-wp-help-container .a-f-wp-help-tear {
+    width: 4em;
+    height: 4em;
+    right: 26px;
+    bottom: 27px;
+  border-radius: 0 50% 50% 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+  background: dodgerblue;
+  box-shadow: 4px 4px 10px #b3b3b3;
+  position: relative;
+}
+.a-f-wp-help-container .a-f-wp-help-tear.active {
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  background: black;
+}
+.a-f-wp-help-container .a-f-wp-help-tear.active span {
+  position: absolute;
+    left: 12px;
+    top: 17px;
+    font-size: 2em;
+  color: white;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.a-f-wp-help-container .a-f-wp-help-tear.green {
+  background: green;
+  transform: rotate(0deg);
+  border-radius: 5px;
+}
+.a-f-wp-help-container span {
+  position: absolute;
+  left: 26px;
+  top: 28px;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 2em;
+  color: white;
 }

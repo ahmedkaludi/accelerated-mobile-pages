@@ -6,21 +6,9 @@ $output =
 ';
 $commoncss = '';
 $css = '
-.gal-mod{
-	text-align:{{align_type}};
-    padding:{{padding_css}};
-    margin:{{margin_css}};
-}
-.gallery{
-	text-align:{{align_type}};
-	padding:{{padding_css}};
-    margin:{{margin_css}};
-}
-{{module-class}} .amp_gallery_wrapper amp-img{
-    width:{{width}};
-    margin:0 2%;
-    display:inline-flex;
-}
+.gal-mod{text-align:{{align_type}};padding:{{padding_css}};margin:{{margin_css}};}
+.gallery{text-align:{{align_type}};padding:{{padding_css}};margin:{{margin_css}};}
+{{module-class}} .amp_gallery_wrapper amp-img{width:{{width}};margin:0 2%;display:inline-flex;}
 ';
 return array(
 		'label' =>'Gallery',

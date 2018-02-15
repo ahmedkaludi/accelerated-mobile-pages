@@ -34,7 +34,7 @@ global $savedlayoutTemplate;
                             </ul>
                         </div>
                     <div class="modal-header">
-                        <h3>Page Builder Settings</h3>
+                        <h3>Layout Directory</h3>
                     </div>
                         <div class="modal-body">
                             <div v-if="modalCrrentTab=='customize'">
@@ -42,21 +42,20 @@ global $savedlayoutTemplate;
                             </div><!-- customize closed -->
 
                             <div v-else-if="modalCrrentTab=='save_layout'">
-                                <div>
+                                <div class="amppb-layout-library-wrapper" style="margin: 40px 15px 10px 20px;">
                                     <h4>Save Your Current Layout</h4>
-                                        <div id="input">
-                                            <label class="form-label">Name of layout
-                                            <input type="text" class="full text" v-model="save_layout.name" name="save_layout_name">
-                                            </label>
-                                        </div>
-                                        
+                                    <div id="input">
+                                        <label class="form-label">Name of layout</label>
+                                        <input type="text" class="full text" v-model="save_layout.name" name="save_layout_name">
                                         <!-- save_layout -->
-                                        <button type="button"  class="button modal-default-button"  @click="savePagebuildercustomLayout($event)">
-                                            Save
-                                        </button>
+                                    </div>
+                                    <button type="button"  class="button" style="margin: 10px 5px 0px 0px;"  @click="savePagebuildercustomLayout($event)">
+                                        Save
+                                    </button>
+                                    
                                 </div>
-                                <h4>List Of Saved Layouts</h4>
                                 <div class="amppb-layout-library-wrapper" v-if="showsavedLayouts.length">
+                                <h4>List Of Saved Layouts</h4>
 
                                     <div class="amppb-layout-layout" v-for="(layout, key, index) in showsavedLayouts">
                                             <div class="amppb-layout-wrapper">
@@ -74,9 +73,15 @@ global $savedlayoutTemplate;
                                 </div>
                             </div><!-- save custom layout Closed-->
 
-                            <div v-else-if="modalCrrentTab=='layout'">
-                                <h4>List Of Layouts</h4>
-                                <div class="amppb-layout-library-wrapper"  v-if="innerLayouts==''">
+                            <div class="amppb-layout-library-wrapper" v-else-if="modalCrrentTab=='layout'">
+                                <div class="amp-layout-breadcrumbs" v-if="innerLayouts==''">
+                                    <span class="link" @click="loadLayOutFolder()"> Layout Home </span>
+                                </div>
+                                <div class="amp-layout-breadcrumbs"  v-if="innerLayouts!=''">
+                                    <span class="dashicons dashicons-arrow-left-alt link" @click="loadLayOutFolder()"></span> 
+                                    <span class="link" @click="loadLayOutFolder()"> Layout Home </span> <span class="amp-layout-breadcrumbs_arrow">></span>  <span class="amp-layout-breadcrumbs_last">{{innerLayoutsHeading}}</span> 
+                                </div>
+                                <div v-if="innerLayouts==''">
                                     <?php
                                     if(count($layoutTemplate)>0){
                                         $layoutTemplate = apply_filters("ampforwp_pb_layouts",$layoutTemplate);
@@ -88,12 +93,14 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-wrapper">
                                                 <h4 class="amppb-layout-title"><?php echo ucfirst($layoutName); ?></h4>
                                                 <div class="amppb-layout-screenshot">
-                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" onclick="window.open('<?php echo $lay[$firstLayout]['preview_demo']; ?>')">
+                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" @click="viewSpacialLayouts($event);"
+                                                    data-info='<?php echo json_encode($lay); ?>'
+                                                    data-heading="<?php echo ucfirst($layoutName); ?>">
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
-                                                        <a target="_blank" href="<?php echo $lay[$firstLayout]['preview_demo']; ?>" class="button" >Preview</a>
-                                                        <button type="button" class="button"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'>View Layouts</button>
+                                                        <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'
+                                                        data-heading="<?php echo ucfirst($layoutName); ?>">View Layout</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,12 +113,12 @@ global $savedlayoutTemplate;
                                         <div class="amppb-layout-wrapper">
                                                 <h4 class="amppb-layout-title">{{layout.name}}</h4>
                                             <div class="amppb-layout-screenshot">
-                                                <img src="" :src="layout.preview_img" onclick="window.open('layout.preview_demo')">
+                                                <img src="" :src="layout.preview_img" v-on:click="window.open(layout.preview_demo)">
                                             </div>
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
-                                                    <a target="_blank" href="layout.preview_demo" class="button" >Preview</a>
-                                                    <button type="button" class="button" :data-layout='JSON.stringify(layout.layout_json)'@click="importLayout($event)">Import</button>
+                                                    <a target="_blank" :href="layout.preview_demo" class="amp_l_preview_button button" >Preview</a>
+                                                    <button type="button" class="amp_l_preview_button button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
                                                 </div>
                                             </div>
                                         </div>

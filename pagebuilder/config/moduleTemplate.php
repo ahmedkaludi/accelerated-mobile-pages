@@ -18,7 +18,7 @@ if(!function_exists("ampforwp_module_templates")){
 		        	}
 		        }
 		        closedir($dh);
-		        $moduleTemplate = array_filter($moduleTemplate);
+		        $moduleTemplate = apply_filters("ampforwp_pagebuilder_modules_filter", $moduleTemplate);
 		    }
 		}
 
@@ -53,13 +53,13 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section class="amp_pb_module {{row_class}} {{grid_type}}">';
+$output = '<section class="ap_m {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 
-.amppb-fluid{width:100%;}
-.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}}
-.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}.amppb-fluid{width:100%;}
+{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
+{{row-class}}.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	color: {{font_color_picker}};
@@ -136,7 +136,7 @@ $containerCommonSettings = array(
 								'name'		=>"fluid-width",
 								'label'		=>'Width',
 								'tab'		=>'customizer',
-								'default'	=>'100%',
+								'default'	=>'90%',
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fluid')
 							),

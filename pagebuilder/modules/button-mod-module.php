@@ -4,35 +4,12 @@ $output = '
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
 ';
 $css = '
-{{module-class}} {
-   width:100%;
-   display: inline-block;
-   text-align:{{align_type}};
-   margin:{{margin_css}};
-   padding:{{padding_css}};
-}
+{{module-class}} {width:100%;display: inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .btn-txt{
-   font-size:{{text-size}}; 
-   color:{{font_color_picker}};
-   background:{{bg_color_picker}};
-   display: inline-block;
-   padding: 10px 20px;
-   width: {{button-width}};
-   font-weight: {{font_weight}};
-   box-sizing: initial;
-}
-.button-mod span{
-    display: block;
-    font-size: 12px;
-    color: {{sub_color_picker}};
-    font-weight: 300;
-    margin-top: 10px;
-}
+font-size:{{text-size}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width: {{button-width}};font-weight: {{font_weight}};box-sizing: initial;}
+.button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight: 300;margin-top: 10px;}
 @media(max-width:425px){
-{{module-class}} .btn-txt{
-	width:100%;
-	box-sizing: inherit;
-}
+	{{module-class}} .btn-txt{width:100%;box-sizing: inherit;}
 }
 ';
 return array(

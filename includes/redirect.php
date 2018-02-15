@@ -29,7 +29,7 @@ function ampforwp_page_template_redirect() {
   $supported_amp_post_types   = array();
   $url_to_redirect            = '';
 
-  $supported_types            = array('post','page');
+  $supported_types            = ampforwp_get_all_post_types();
   $supported_types            = apply_filters('get_amp_supported_post_types',$supported_types);
   $post_type                  = get_post_type();
   $supported_amp_post_types   = in_array( $post_type , $supported_types );

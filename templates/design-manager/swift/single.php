@@ -41,10 +41,92 @@
 					</div>
 				</div>
 				<div class="sp-lt">
-					<div class="ss-icons">
+					<div class="ss-ic">
 						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
-						<?php $social_icons = ampforwp_swift_social_icons();
-						amp_social($social_icons);?> 
+						<ul>
+							<?php if($redux_builder_amp['enable-single-facebook-share']){?>
+							<li>
+								<a class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-twitter-share']){?>
+							<li>
+								<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>">
+								</a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-gplus-share']){?>
+							<li>
+								<a class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-email-share']){?>
+							<li>
+								<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-pinterest-share']){?>
+							<li>
+								<a class="s_pt" target="_blank" href="http://pinterest.com/pin/create/button/?url=&media=&description=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
+							<li>
+								<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
+							<li>
+								<a class="s_wp" target="_blank" href="whatsapp://send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-vk-share']){?>
+							<li>
+								<a class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-odnoklassniki-share']){?>
+							<li>
+								<a class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-reddit-share']){?>
+							<li>
+								<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
+							<li>
+								<a class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-telegram-share']){?>
+							<li>
+								<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-digg-share']){?>
+							<li>
+								<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
+							<li>
+								<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-wechat-share']){?>
+							<li>
+								<a class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if($redux_builder_amp['enable-single-viber-share']){?>
+							<li>
+								<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
+							</li>
+							<?php } ?>
+
+						</ul>
 		            </div>
 		            <div class="sp-athr">
 		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
@@ -75,7 +157,10 @@
 									</div>
 								<?php } ?>	
 								<div class="rlp-cnt">
-									<?php $argsdata = array();
+									<?php $argsdata = array(
+											'show_author' => false,
+											'show_excerpt' =>false
+												);
 									ampforwp_get_relatedpost_content($argsdata); ?> 
 						        </div>
 					        </li><?php
@@ -90,89 +175,9 @@
 	</div>
 </div>
 <?php } 
-	if ( $redux_builder_amp['single-design-type'] == '2') { ?>
-	<div class="sd-2">
- 		<div class="cntr">
- 			<?php amp_breadcrumb();?>
- 			<div class="cat-aud">
-	 			<?php amp_categories_list();?>
-	 			<div class="author-details">
-		            <span><?php amp_date('time'); ?></span>
-		            | <strong>Updated</strong> <span><?php amp_date('date'); ?></span>
-			    </div>
-		    </div>
-			<?php amp_title(); ?>
-			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
-				<div class="exc">
-				   <?php amp_excerpt(20); ?>
-			    </div>
-			<?php } ?>
-			<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
-				<?php amp_author_box( 
-					array(	'avatar'=>true,
-							'avatar_size'=>38,
-							'author_prefix'=>by)
-					); ?>
-			<?php } ?>
-			<div class="artl">
-				<div class="lft">
-					<?php if ( has_post_thumbnail() ) {?>
-						<?php amp_featured_image();?>
-					<?php } else{ // 
-					}?>
-					<div class="cntn-wrp">
-						<?php amp_content(); ?>
-					</div>
-					<?php amp_post_navigation();?>
-					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
-						<div class="artl-atr">
-						<?php amp_author_box( 
-							array(	'avatar'=>true,
-									'avatar_size'=>50,
-									'author_description'=>true)
-							); ?>
-						</div>
-					<?php } ?>
-					<?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
-			            <div class="tags">
-			            	<?php amp_tags_list();?>
-			            </div>
-		            <?php } ?>
-					<div class="cmts">
-						<?php amp_comments();?>
-						<?php do_action('ampforwp_post_after_design_elements'); ?>
-					</div>
-				</div>
-				<div class="rft">
-					<div class="ads"></div>
-					<div class="rc-p">
-						<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
-							<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
-								<div class="rp">
-									<?php
-									$width 	= 65;
-									$height = 65;
-									if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-										$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-										$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-									}
-									 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-								    <div class="rp-img">
-								    	<?php amp_loop_image($args); ?>
-								    </div>
-								    <div class="rp-cnt">
-									    <?php amp_loop_title(); ?>
-								    </div>
-								</div>
-							<?php endwhile; amp_loop('end'); ?>
-						<?php wp_reset_postdata(); ?>
-					</div>
-				</div>
- 			</div>
- 		</div>
- 	</div>
-<?php } ?>
-<!-- <div class="r-pf">
+do_action("ampforwp_single_design_type_handle");
+	?>
+<div class="r-pf">
 	<div class="cntr">
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
@@ -199,6 +204,6 @@
 		</div>
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
-</div> -->
+</div>
 	<?php amp_footer()?>
 </div>

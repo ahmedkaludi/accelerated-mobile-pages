@@ -54,7 +54,7 @@
                                     </div>
                                    
                                 </div>
-                                 <div style="text-align:right;">
+                                 <div class="amp_repeater_addmore">
                                     <input type="button" class="button" @click="duplicateRepeaterField(modalcontent.repeater)" :value="'Add '+modalcontent.label+' Field'">
                                 </div>
                                 </div>

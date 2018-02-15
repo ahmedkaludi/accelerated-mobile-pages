@@ -70,6 +70,7 @@ function sideber_begin($data=array()){
 function sideber_end(){
 	return '</amp-sidebar>';
 }
+
 ampforwp_add_sidebar_scripts();
 function ampforwp_add_sidebar_scripts(){
 	global $scriptComponent;

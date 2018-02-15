@@ -17,6 +17,7 @@ function ampForWP_extension_activate_license() {
                 $amplicense = $ext_value['license'];
                 $item_name  = $ext_value['item_name'];
                 $store_url  = $ext_value['store_url'];
+                $plugin_active_path  = (isset($ext_value['plugin_active_path'])? $ext_value['plugin_active_path'] : "");
                 if($store_url!="" && isset($ext_value['status']) && $ext_value['status']==='valid'){
                     continue;
                 }
@@ -50,6 +51,7 @@ function ampForWP_extension_activate_license() {
                                     __( 'Your license key expired on %s.', 'ampforwp-extension-updater' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
+                                $message .= "<a href='".$store_url."/checkout-2/?edd_license_key=16ed15c13524cc7e00346eeb3f76e412'>Renew Link</a>";
                                 break;
 
                             case 'revoked' :
@@ -93,7 +95,7 @@ function ampForWP_extension_activate_license() {
                 // Check if anything passed on a message constituting a failure
                 $status = false;
                 if ( ! empty( $message ) ) {
-                    $status = false;
+                    $status = $license_data->error;
                 }else{
                     $status = $license_data->license;
                     $limit = ampforwp_set_plugin_limit( true, $license_data, $ext_value);
@@ -323,4 +325,29 @@ function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
     
     return $limit;
     
+}
+
+
+function ampforwp_plgins_update_message_according_pluginOpt( $plugin_data, $r )
+{
+    $selectedOption = get_option('redux_builder_amp',true);
+    $license_key = '';//trim( get_option( 'amp_ads_license_key' ) );
+    $pluginItemName = '';
+    $pluginItemStoreUrl = '';
+    $pluginstatus = '';
+    if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
+       $pluginsDetail = $selectedOption['amp-license']['amp-ads-google-adsense'];
+       $license_key = $pluginsDetail['license'];
+       $pluginItemName = $pluginsDetail['item_name'];
+       $pluginItemStoreUrl = $pluginsDetail['store_url'];
+       $pluginstatus = $pluginsDetail['status'];
+    }
+
+    if($license_key==""){
+        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter key</a>";
+    }
+    if($pluginstatus!="valid"){
+        echo "<a href='".self_admin_url("?page=amp_options&tab=29")."'>Please enter a valid key</a>";
+    }
+
 }
