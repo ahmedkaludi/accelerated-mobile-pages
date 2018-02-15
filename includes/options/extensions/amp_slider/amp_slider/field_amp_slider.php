@@ -250,7 +250,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                 true
             );
 
-            if ($this->parent->args['dev_mode']) {
+            //if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-slider-css',
                     $this->extension_url . '/field_amp_slider.css',
@@ -258,7 +258,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                     time(),
                     'all'
                 );
-            }
+            //}
         }
 
         //function
