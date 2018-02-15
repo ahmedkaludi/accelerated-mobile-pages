@@ -576,6 +576,7 @@ function rowData($container,$col,$moduleTemplate){
 		}
 		$html .= "</div>";
 	}
+	$html = htmlspecialchars_decode($html);
 	return $html;
 }
 function ampforwp_pagebuilder_module_style(){
