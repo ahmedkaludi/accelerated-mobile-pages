@@ -5858,3 +5858,24 @@ if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
 		return $data;
 	}
 }
+
+// Backward Compatibility for AMP Preview #1529
+if ( ! function_exists('get_preview_post_link') ) { 
+function get_preview_post_link( $post = null, $query_args = array(), $preview_link = '' ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return;
+	}
+
+	$post_type_object = get_post_type_object( $post->post_type );
+	if ( is_post_type_viewable( $post_type_object ) ) {
+		if ( ! $preview_link ) {
+			$preview_link = set_url_scheme( get_permalink( $post ) );
+		}
+
+		$query_args['preview'] = 'true';
+		$preview_link = add_query_arg( $query_args, $preview_link );
+	}
+	return apply_filters( 'preview_post_link', $preview_link, $post );
+}
+}
