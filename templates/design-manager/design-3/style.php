@@ -260,7 +260,7 @@ pre{ white-space: pre-wrap; }
 .searchmenu button{ background:transparent; border:none }
 .amp-logo amp-img{margin: 0 auto; position:relative;top:9px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
-.headerlogo a{ color:#F42; }
+.headerlogo a{ color:#F42; display:inline-block}
 
 /*Navigation Menu*/
 .toast { display: block; position: relative; height: 50px; padding-left: 20px; padding-right: 15px; width: 49px; background:none; border:0 }

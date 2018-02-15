@@ -317,7 +317,6 @@ function amp_loop_image( $data=array() ){
 		}
 		$thumb_url = $thumb_url_array[0];
 		
-
 		echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 		echo '<a href="'.amp_loop_permalink(true).'">';
 		echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_url_array[1].'" height="'.$thumb_url_array[2].'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';

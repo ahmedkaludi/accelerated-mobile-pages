@@ -537,7 +537,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
            array(
                 'id'       => 'ampforwp-custom-logo-dimensions',
-                'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                'title'    => __('Custom Logo Re-Size', 'accelerated-mobile-pages'),
                 'type'     => 'switch',
                 'default'  => 0,
             ),
@@ -2676,7 +2676,8 @@ Redux::setSection( $opt_name, array(
     }
     // Themes Section
  Redux::setSection( $opt_name, array(
-                'title'      => __( 'Themes', 'accelerated-mobile-pages' ),
+                'title'      => __( 'Themes', 'accelerated-mobile-pages' ),                'class' => 'ampforwp-new-element',
+
         'id'         => 'amp-theme-settings',
         'subsection' => true,
         'fields'     => array(

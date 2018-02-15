@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.1
-Stable tag: 0.9.74.1
+Tested up to: 4.9.4
+Stable tag: 0.9.80
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) func
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
-[youtube https://www.youtube.com/watch?v=vAGPFKKm5G4]
+[youtube https://www.youtube.com/watch?v=QTbkn2rHyqM]
 
 <strong>Extensions</strong><br>
 Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Contact Form 7 Support](https://ampforwp.com/contact-form-7/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
@@ -31,13 +31,15 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* NEW Default Theme for AMP called Swift
+* NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
 * NEW - Alexa Metrics Compatibility added 
 * NEW - OneSignal Push Notifications integration 
-* NEW - Structured Data Options
-* NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
-* NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
+* Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
+* Structured Data Options
 * Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * Facebook Comments Support
@@ -56,7 +58,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Custom Post Type Support 
 * Star Ratings
 * Drag & Drop Page builder Added 
-* 2 Designs Added 
+* 4 Designs for AMP 
 * Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages & Posts on AMP
@@ -94,16 +96,18 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Genesis SEO Support 
 * Breadcrumb Support added 
 * Facebook Instant Articles Support Added
-* NEW - AMP Installation Wizard that makes it easy to setup for new users.
-* NEW - Category base remover support
-* NEW - Tag base remover support
-* NEW - 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
-* NEW - AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
+* AMP Installation Wizard that makes it easy to setup for new users.
+* Category base remover support
+* Tag base remover support
+* 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
+* AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
+* NEW - Make AMP & Non-AMP Same with just one click! 
+* NEW - Allows you to use AMP as primary website!
 
 **[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
-**[1. User Documentation:](http://ampforwp.com/help/)** The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
+**[1. User Documentation:](http://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
 
@@ -177,6 +181,30 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.80 (15th February 2018) =
+* View More details on the [blog post](https://ampforwp.com/introducing-swift/)
+* AMP Page Builder 3.0: The AMP Page Builder is a lightweight and much stable than ever and works flawlessly! [Read More](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* Swift: The New Default Theme, which you can select from the design section of the Page builder.
+* A way to create a Child Theme for AMP [read more](https://ampforwp.com/tutorials/article/child-theme-amp/)
+* Make AMP & Non-AMP Same: We have an amazing new option called AMP to WP which will generate the WordPress version of the AMP design which will be viewed on the canonical version of the website.
+* AMP Takeover: You can deliver a fully AMP compatible website with this option. It will basically take over the non-amp version and deliver an AMP version to your desktop and mobile users, on WordPress & AMP version. That’s why it was called AMP Takeover
+* Logo Resizing made easy
+* Typography Options
+* 3 Headers design in swift theme
+* Error while sharing the image on Pinterest #1699
+* Homepage support was not working ( when page support is off ) #1695
+* Custom Permalinks rewrite issue solved #1689
+* Custom post type was appearing two types #1688
+* Theia Post Slider plugin incompatibility with post pagination fixed #1677
+* Link to the categories in loop of Design 3 #1632
+* amphtml was not working when plain permalink selected along with static page as homepage #1614
+* AFS Analytics Integration added  #1605
+* Removed the blank spaces from analytics id field to deliver a good UX. #1599
+* ?amp endpoint feature added #1561
+* Ability to remove the excerpt and image from related post #1510
+* Thumbnails on-the-fly generation added for better control over the design.
+
 
 = 0.9.74 (23rd January 2018) =
 * View More details on the [blog post](https://ampforwp.com/0-9-74-released-stability-update-79th-update/)
