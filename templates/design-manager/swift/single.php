@@ -125,6 +125,16 @@
 								<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
 							</li>
 							<?php } ?>
+							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
+							<li>
+								<amp-facebook-like width=90 height=28
+				 					layout="fixed"
+				 					data-size="large"
+				    				data-layout="button_count"
+				    				data-href="<?php echo esc_url(get_the_permalink());?>">
+								</amp-facebook-like>
+							</li>
+							<?php } ?>
 
 						</ul>
 		            </div>
