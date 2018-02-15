@@ -38,11 +38,93 @@
 </footer>
 <?php } ?>
 <?php if(is_single()){ ?>
-<div class="swift-sticky-social">
-	<?php $social_icons = ampforwp_swift_social_icons();
-						amp_social($social_icons);?> 
+<?php if($redux_builder_amp['enable-single-social-icons']){?>
+<div class="s_stk ss-ic">
+	<ul>
+		<?php if($redux_builder_amp['enable-single-facebook-share']){?>
+		<li>
+			<a class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-twitter-share']){?>
+		<li>
+			<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>">
+			</a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-gplus-share']){?>
+		<li>
+			<a class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-email-share']){?>
+		<li>
+			<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-pinterest-share']){?>
+		<li>
+			<a class="s_pt" target="_blank" href="http://pinterest.com/pin/create/button/?url=&media=&description=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
+		<li>
+			<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
+		<li>
+			<a class="s_wp" target="_blank" href="whatsapp://send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-vk-share']){?>
+		<li>
+			<a class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-odnoklassniki-share']){?>
+		<li>
+			<a class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-reddit-share']){?>
+		<li>
+			<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
+		<li>
+			<a class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-telegram-share']){?>
+		<li>
+			<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-digg-share']){?>
+		<li>
+			<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
+		<li>
+			<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-wechat-share']){?>
+		<li>
+			<a class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if($redux_builder_amp['enable-single-viber-share']){?>
+		<li>
+			<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
+		</li>
+		<?php } ?>
+	</ul>
 </div>
-<?php } 
+<?php } }
 do_action("ampforwp_advance_footer_options");
 ?>
 <?php amp_footer_core(); ?>
