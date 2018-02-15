@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.4
-Stable tag: 0.9.80
+Stable tag: 0.9.81
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,11 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.81 (15th February 2018) =
+* Edge case fatal error on features.php fixed
+* Admin dashboard messup CSS fix #1731
+* Custom CSS Output added in Swift
 
 = 0.9.80 (15th February 2018) =
 * View More details on the [blog post](https://ampforwp.com/introducing-swift/)
