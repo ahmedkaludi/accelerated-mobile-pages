@@ -313,7 +313,7 @@ function amp_loop_image( $data=array() ){
 			if(empty($height)){
 				$height = $thumb_url_array[2];
 			}
-			$thumb_url_array = aq_resize( $thumb_url_array[0], $width, $height, true, false ); //resize & crop the image
+			$thumb_url_array = aq_resize( $thumb_url_array[0], $width, $height, true, false, true ); //resize & crop the image
 		}
 		$thumb_url = $thumb_url_array[0];
 		
