@@ -623,3 +623,4 @@ if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?>
 .fsp-cnt{width:100%;float:none;display:inline-block;}
 }
 <?php } ?>
+<?php echo $redux_builder_amp['css_editor']; ?>
