@@ -845,7 +845,7 @@ position: fixed;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px 10px 15px 15px;
 }
-.form-label {
+#amp-page-builder .form-label {
     float: left;
     width: 15%;
     margin-bottom: 0;
@@ -862,26 +862,22 @@ position: fixed;
 .amp-form-control:hover .form-label{
     color: #000
 }
-.form-field {
+#amp-page-builder .form-field {
     float: left;
     width: 70%;
 }
-label.form-label-radio {
+#amp-page-builder label.form-label-radio {
     margin-right: 15px;
 }
-.form-field input, .form-field textarea{    
+#amp-page-builder .form-field input, #amp-page-builder .form-field textarea{    
     padding: 7px 8px;
 }
-.form-label > input[type=text], input[type=search], input[type=tel], input[type=time], input[type=url], input[type=week], input[type=password], input[type=checkbox], input[type=color], input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=month], input[type=number], .form-label > select, .form-label > textarea{
-    padding: 0.3em 1em;
-    line-height: 1.5;
-}
-
-.form-label > .form-control {
+ 
+#amp-page-builder .form-label > #amp-page-builder .form-control {
     margin-top: 0.5em;
 }
 
-.form-control {
+#amp-page-builder .form-control {
 
     display: block;
     padding: 0.5em 1em;
@@ -1276,7 +1272,7 @@ a.amppb_accordion__panel:hover {
 .rtl .amppb-module .module_label {
     left: -35px;
 }
-.rtl .form-label{
+.rtl #amp-page-builder .form-label{
  margin-right:10px;
 }
 .rtl .amp-accordion-head .amp-accordion-label {
