@@ -5884,3 +5884,20 @@ function get_preview_post_link( $post = null, $query_args = array(), $preview_li
 	return apply_filters( 'preview_post_link', $preview_link, $post );
 }
 }
+
+// Homepage Loop Modifier #1701
+add_filter('ampforwp_query_args','ampforwp_homepage_loop');
+function ampforwp_homepage_loop( $args ) {
+	global $redux_builder_amp;
+	$post_type = 'post';
+	// Check if Custom Post Type is selected
+	if ( isset($redux_builder_amp['ampforwp-homepage-loop-type']) && '' != $redux_builder_amp['ampforwp-homepage-loop-type'] ) {
+		$post_type = $redux_builder_amp['ampforwp-homepage-loop-type'];
+	}
+	$args['post_type'] = $post_type;
+	// Exclude Categories if any selected
+	if ( isset($redux_builder_amp['ampforwp-homepage-loop-cats']) && !empty($redux_builder_amp['ampforwp-homepage-loop-cats']) ) {
+		$args['category__not_in'] = $redux_builder_amp['ampforwp-homepage-loop-cats'];
+	}
+	return $args; 
+}
