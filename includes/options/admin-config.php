@@ -3763,7 +3763,6 @@ Redux::setSection( $opt_name, array(
             'id'       => 'ampforwp-pagination-select',
             'type'     => 'select',
             'title'    => __('Post Pagination Type', 'accelerated-mobile-pages'),
-            'subtitle' => __('Select The Type Of Post Pagination', 'accelerated-mobile-pages'),
             'options'  => array(
                 '1' => 'Numbering',
                 '2' => 'Next-Previous',
