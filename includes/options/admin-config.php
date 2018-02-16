@@ -1114,7 +1114,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
                'type'     => 'switch',
-               'title'    => __('Author Archive pages', 'accelerated-mobile-pages'),
+               'title'    => __('Author Archives', 'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1123,7 +1123,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-date-pages',
                'type'     => 'switch',
-               'title'    => __('Date Archive pages', 'accelerated-mobile-pages'),
+               'title'    => __('Date Archives', 'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
