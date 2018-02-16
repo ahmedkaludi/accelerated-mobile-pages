@@ -5903,3 +5903,14 @@ function ampforwp_homepage_loop( $args ) {
 	}
 	return $args; 
 }
+add_filter('get_comments_number', 'ampforwp_comment_count', 0);
+function ampforwp_comment_count( $count ) {
+	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+		global $id;
+		$comments_by_type = &separate_comments(get_comments('status=approve&post_id=' . $id));
+		return count($comments_by_type['comment']);
+	} 
+	else {
+		return $count;
+	}
+} 
