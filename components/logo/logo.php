@@ -53,6 +53,6 @@ if( !function_exists( 'amp_framework_logo_styles' ) ){
   }
    $width .= 'px';
   ?>
-    .amp-logo amp-img{max-width:<?php echo $max_width; ?>;width:<?php echo $width;?>;}
+    .amp-logo amp-img{width:<?php echo $max_width; ?>}
  <?php }
 }
