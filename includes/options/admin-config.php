@@ -1046,53 +1046,86 @@ Redux::setArgs( "redux_builder_amp", $args );
             ),
         ) );
 
+    if ( ! function_exists('ampforwp_seo_default') ) {
+        function ampforwp_seo_default() {
+            $default = '';
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+            if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+                $default = 1;
+            }
+            elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
+                $default = 2;
+            }
+            return $default;
+        }
+    }
  // SEO SECTION
   Redux::setSection( $opt_name, array(
       'title'      => __( 'SEO', 'accelerated-mobile-pages' ),
       'id'         => 'amp-seo',
       'subsection' => true,
        'fields'     => array(
-
-           array(
+            array(
+                  'id' => 'ampforwp-seo-general-section',
+                  'type' => 'section',
+                  'title' => __('General', 'accelerated-mobile-pages'),
+                  'indent' => true,
+              ),
+            array(
                'id'       => 'ampforwp-seo-meta-description',
                'type'     => 'switch',
                'title'     => __('Meta Description', 'accelerated-mobile-pages'),
                'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
                'default'  => 0
-           ),
+            ),
 
-           array(
+            array(
                'id'       => 'ampforwp-seo-custom-additional-meta',
                'type'     => 'textarea',
                'title'    => __('Additional tags for Head section AMP page', 'accelerated-mobile-pages'),
                'subtitle' => __('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
                'desc' => __('Only link and meta tags allowed', 'accelerated-mobile-pages'),
                'placeholder'  => __('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
-           ),
-
-
-           array(
-                  'id' => 'ampforwp-yoast-seo-sub-section',
+            ),
+            array(
+                  'id' => 'ampforwp-seo-plugins-section',
                   'type' => 'section',
-                  'title' => __('Yoast SEO Options', 'accelerated-mobile-pages'),
-                  'indent' => true
+                  'title' => __('SEO Plugin Integration', 'accelerated-mobile-pages'),
+                  'indent' => true,
               ),
-
+           array(
+                'id'       => 'ampforwp-seo-selection',
+                'type'     => 'select',
+                'title'    => __('Select SEO Plugin', 'accelerated-mobile-pages'),
+                'options'  => array(
+                    '1'       => 'Yoast',
+                    '2'     => 'All in One SEO'
+                ),
+                'default'  => ampforwp_seo_default(),
+            ),
            array(
                'id'       => 'ampforwp-seo-yoast-meta',
                'type'     => 'switch',
                'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
                'title'    => __( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
-               'default'  => '1'
+               'default'  => '1',
+               'required'  => array('ampforwp-seo-selection', '=' , '1'),
            ),
            array(
                'id'       => 'ampforwp-seo-yoast-description',
                'type'     => 'switch',
                'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
                'title'    => __( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
-               'default'  => 0
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , '1'),
            ),
-
+           array(
+                'id'       => 'ampforwp-seo-aioseo',
+                'type'     => 'info',
+                'style'    => 'success',
+                'desc'     => __("All in One SEO works out of the Box with our plugin. It deosn't requires any extra config.", 'accelerated-mobile-pages'),
+                'required' => array('ampforwp-seo-selection', '=', '2')
+                    ),
            array(
                   'id' => 'ampforwp-seo-index-noindex-sub-section',
                   'type' => 'section',
@@ -1111,7 +1144,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
                'type'     => 'switch',
-               'title'    => __('Author Archive pages', 'accelerated-mobile-pages'),
+               'title'    => __('Author Archives', 'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1120,7 +1153,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-robots-archive-date-pages',
                'type'     => 'switch',
-               'title'    => __('Date Archive pages', 'accelerated-mobile-pages'),
+               'title'    => __('Date Archives', 'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1150,7 +1183,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
   );
 
-  // SEO SECTION
+  // Performance SECTION
   Redux::setSection( $opt_name, array(
         'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
         'id'         => 'amp-performance',
