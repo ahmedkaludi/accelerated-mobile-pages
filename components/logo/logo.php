@@ -47,7 +47,7 @@ if( !function_exists( 'amp_framework_logo_styles' ) ){
   $max_width = '190px';
    $width = ampforwp_default_logo('width');
   if ( true == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] && isset($redux_builder_amp['ampforwp-custom-logo-dimensions-options']) && 'flexible' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options'] ) {
-       
+      $max_width = $redux_builder_amp['ampforwp-custom-logo-dimensions-slider'];
       $logoWidth = ampforwp_default_logo('width');
       $max_width = ceil(($width*$max_width)/100)."px";
   }
