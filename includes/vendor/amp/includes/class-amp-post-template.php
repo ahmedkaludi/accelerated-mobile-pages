@@ -159,6 +159,8 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_data() {
+		$post_author = '';
+		$post_author_name = '';
 		$post_title = get_the_title( $this->ID );
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
@@ -168,10 +170,6 @@ class AMP_Post_Template {
 			if ( $post_author ) {
 				$post_author_name = $post_author->display_name;
 			}
-		}
-		else {
-			$post_author = '';
-			$post_author_name = '';
 		}
 		$this->add_data( array(
 			'post' => $this->post,
@@ -437,7 +435,7 @@ class AMP_Post_Template {
 
 
 	private function locate_template( $file ) {
-		$search_file = sprintf( 'amp/%s', basename( $file ) );
+		$search_file = sprintf( 'ampforwp/%s', basename( $file ) );
 		return locate_template( array( $search_file ), false );
 	}
 

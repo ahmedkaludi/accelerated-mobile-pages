@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.4
-Stable tag: 0.9.81
+Stable tag: 0.9.82
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,29 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.82 (18th February 2018) =
+* View more details on https://ampforwp.com/0-9-82-released-stability-update-82nd-update/
+* Logo Resizing calculation by Pixels and resizing bug solved.
+* Update Notification in the Admin panel will only appear in the AMP options panel. So it will not annoy you anymore.
+* Glue underline is applying for some reason
+* Fatal error after 0.9.81 fixed
+* Facebook comments loading twice on swift
+* PHP Notice: Undefined variable: post_author_name
+* Pagebuilder fix in version 0.9.81 Compatibility with Yoast and other plugins #1749
+* Home loop modifier option added. Allows you to exclude the categories from the loop or include the Custom Post type in the homepage loop.
+* amphtml Conflict with Instant Article for Facebook resolved
+* /amp folder in the theme is applying changes in plugin, which causing a bug, but it’s been fixed
+* Backward Compatibility for AMP Preview
+* SEO Section Improvements
+* Wrong comments count on AMP pages
+* AMP Allow selector in the The Content. You can add tabs and AMP components directly into the loop.
+* If we turn off the Homepage Support then Blog is turned off as well, solved.
+* Post Pagination have two options like “Number of pages” and Previous & Next.
+* Removed the dot from the one Signal Service worker URL if the subdomain isn’t added (Causes Validation issues.)
+* Extra Space due to empty divs in Design 3
+* Remove alt from a tag in the AMP version caused many validation issues.
+
 
 = 0.9.81 (15th February 2018) =
 * Edge case fatal error on features.php fixed

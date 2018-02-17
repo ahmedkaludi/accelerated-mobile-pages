@@ -10,8 +10,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
     global $moduleTemplate;
     global $layoutTemplate;
     /* In Page Edit Screen */
-    //if( 'page' == $post_type && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
-    if($post_type=='post' || $post_type=='page'){
+    if( ($post_type=='post' || $post_type=='page') && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
+    //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
         wp_enqueue_media();
