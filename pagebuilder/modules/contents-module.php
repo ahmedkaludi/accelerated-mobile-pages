@@ -262,11 +262,11 @@ require_once  ABSPATH . WPINC . '/category.php';
                ) );		
  $categoriesArray = array('recent_option'=>'Recent Posts');		
  $options = '<option value="recent_option">Recent Posts</option>';		
- foreach($categories as $category){		
- 	$categoriesArray[$category->term_id] = $category->name;		
- 	$options.= '<option value="'.$category->term_id.'">'.$category->name.'</option>';		
- }		
-
+ foreach($categories as $category){		 
+  $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
+ 	$categoriesArray[$category->term_id] = $categoryName;		
+ 	$options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';		
+ }
 
 
  return array(		
