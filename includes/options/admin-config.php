@@ -3437,12 +3437,16 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-homepage-settings',
         'subsection' => true,
         'fields'     => array(
-
+                array(
+                       'id' => 'ampforwp-homepage-section',
+                       'type' => 'section',
+                       'title' => __('Homepage Loop Controls', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                ),
                 array(
                         'id'       => 'ampforwp-homepage-loop-type',
                         'type'     => 'select',
-                        'title'    => __( 'Type of Posts for Homepage/Blog', 'accelerated-mobile-pages' ),
-                        'subtitle'    => __( 'Select the Type of Posts for Homepage/Blog Loop', 'accelerated-mobile-pages' ),
+                        'title'    => __( 'Post Type in Loop', 'accelerated-mobile-pages' ),
                         'options'  => $ampforwp_home_loop,
                         'default'   => 'post',
                 ),
@@ -3450,7 +3454,6 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-homepage-loop-cats',
                         'type'     => 'select',
                         'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'subtitle'    => __( 'Select Categories to exclude from Home/Blog Loop', 'accelerated-mobile-pages' ),
                         'data'  => 'categories',
                         'multi'    => true
                 ),
