@@ -5791,3 +5791,127 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 
 	return $url;
 }
+
+// Allow AMP Components in "The Content" #1588
+// Check for amp-components in the_content
+add_filter('the_content','ampforwp_amp_component_checker');
+if ( ! function_exists('ampforwp_amp_component_checker') ) {
+	function ampforwp_amp_component_checker( $content ) {
+		if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+			global $post;
+			$dom = '';
+			$dom = AMP_DOM_Utils::get_dom_from_content($content);
+			$components = ampforwp_get_amp_components();
+			foreach ( $components as $component ) {		
+				$nodes = $dom->getElementsByTagName( $component );
+				$num_nodes = $nodes->length;
+				if ( 0 !== $num_nodes ) {
+					update_post_meta($post->ID,'ampforwp-wpautop', 'false');
+					// Update the Post meta with amp-component
+					update_post_meta($post->ID, $component , 'true');
+				}
+			}
+			$content = AMP_DOM_Utils::get_content_from_dom($dom);
+			return $content;
+		}
+		else
+			return $content;
+	}
+}
+
+// Remove wpautop from specific posts which contain amp-components
+remove_filter('the_content', 'wpautop');
+add_filter('the_content', 'ampforwp_custom_wpautop');
+if ( ! function_exists('ampforwp_custom_wpautop') ) {
+	function ampforwp_custom_wpautop( $content ) {
+		global $post;
+		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false' && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+	    	return $content;
+	  	}
+	 	else
+	    	return wpautop($content);
+	}
+}
+// Get the AMP components
+function ampforwp_get_amp_components() {
+	$components = array();
+	$components = array('amp-carousel','amp-selector');
+	return $components;
+}
+// Add the required scripts for amp-components
+add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
+if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
+	function ampforwp_add_amp_component_scripts( $data ) {
+		$components = ampforwp_get_amp_components();
+		foreach ( $components as $component ) {
+			// check if the post has amp-component meta
+			$post_meta = get_post_meta(get_the_ID(), $component , true);
+			if ( 'true' == $post_meta ) {
+				if ( empty( $data['amp_component_scripts'][$component] ) ) {
+							$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
+					}
+			}
+		}
+		return $data;
+	}
+}
+
+// Backward Compatibility for AMP Preview #1529
+if ( ! function_exists('get_preview_post_link') ) { 
+function get_preview_post_link( $post = null, $query_args = array(), $preview_link = '' ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return;
+	}
+
+	$post_type_object = get_post_type_object( $post->post_type );
+	if ( is_post_type_viewable( $post_type_object ) ) {
+		if ( ! $preview_link ) {
+			$preview_link = set_url_scheme( get_permalink( $post ) );
+		}
+
+		$query_args['preview'] = 'true';
+		$preview_link = add_query_arg( $query_args, $preview_link );
+	}
+	return apply_filters( 'preview_post_link', $preview_link, $post );
+}
+}
+
+// Homepage Loop Modifier #1701
+add_filter('ampforwp_query_args','ampforwp_homepage_loop');
+function ampforwp_homepage_loop( $args ) {
+	global $redux_builder_amp;
+	if ( is_home() ) {
+		$post_type = 'post';
+		// Check if Custom Post Type is selected
+		if ( isset($redux_builder_amp['ampforwp-homepage-loop-type']) && '' != $redux_builder_amp['ampforwp-homepage-loop-type'] ) {
+			$post_type = $redux_builder_amp['ampforwp-homepage-loop-type'];
+		}
+		$args['post_type'] = $post_type;
+		// Exclude Categories if any selected
+		if ( isset($redux_builder_amp['ampforwp-homepage-loop-cats']) && ! empty($redux_builder_amp['ampforwp-homepage-loop-cats']) ) {
+			$args['category__not_in'] = $redux_builder_amp['ampforwp-homepage-loop-cats'];
+		}
+	}
+	return $args; 
+}
+// To get correct comments count #1662
+add_filter('get_comments_number', 'ampforwp_comment_count', 0);
+function ampforwp_comment_count( $count ) {
+	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+		global $id;
+		$get_comments = get_comments('status=approve&post_id=' . $id); 	 
+ 		$comments_by_type = separate_comments($get_comments); 
+		return count($comments_by_type['comment']);
+	} 
+	else {
+		return $count;
+	}
+}
+// Glue underline css compatibility #1743
+add_action('amp_post_template_css', 'ampforwp_glue_css_comp', PHP_INT_MAX );
+if ( ! function_exists('ampforwp_glue_css_comp') ) {
+	function ampforwp_glue_css_comp() { ?>
+		a {text-decoration:none;}
+	<?php }
+} 
