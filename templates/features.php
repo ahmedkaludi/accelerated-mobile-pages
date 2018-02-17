@@ -2704,13 +2704,14 @@ function ampforwp_output_widget_content_below_the_header() {
      if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
-	}?>
-   	<div class="amp-wp-content widget-wrapper">
-	   	<div class="amp_widget_below_the_header">
-	  	<?php  if ( $sidebar_output) : echo $sidebar_output;  endif; ?> </div>
-  	</div> 
-
-<?php }
+	}
+	if ( $sidebar_output ) { ?>
+	   	<div class="amp-wp-content widget-wrapper">
+		   	<div class="amp_widget_below_the_header">
+		  	<?php echo $sidebar_output; ?> </div>
+	  	</div> 
+	<?php }
+}
 
 add_action( 'amp_post_template_above_footer' , 'ampforwp_output_widget_content_above_the_footer' );
 function ampforwp_output_widget_content_above_the_footer() {
@@ -2720,13 +2721,14 @@ function ampforwp_output_widget_content_above_the_footer() {
 	if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
-	}?>
-   	<div class="amp-wp-content widget-wrapper">
-		<div class="amp_widget_above_the_footer">
-		<?php  if ( $sidebar_output) : echo $sidebar_output;  endif; ?> </div>
-	</div>
-
-<?php }
+	}
+	if ( $sidebar_output ) { ?>
+	   	<div class="amp-wp-content widget-wrapper">
+			<div class="amp_widget_above_the_footer">
+			<?php echo $sidebar_output; ?> </div>
+		</div>
+	<?php }
+}
 // Filter the sidebars content to make it work properly with carousels
 add_filter('ampforwp_modify_sidebars_content','ampforwp_sidebars_carousel_content');
 function ampforwp_sidebars_carousel_content($content){
