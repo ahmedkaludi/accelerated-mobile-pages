@@ -3789,6 +3789,18 @@ Redux::setSection( $opt_name, array(
             'type'     => 'switch',
             'title'    => __( 'Post Pagination', 'accelerated-mobile-pages' ),
            'default'   => 1,
+           'subtitle'  => __('Enable the feature to add Pagination in single', 'accelerated-mobile-pages'),
+        ),
+        array(
+            'id'       => 'ampforwp-pagination-select',
+            'type'     => 'select',
+            'title'    => __('Post Pagination Type', 'accelerated-mobile-pages'),
+            'options'  => array(
+                '1' => 'Numbering',
+                '2' => 'Next-Previous',
+            ),
+            'default'  => '1',
+            'required' => array('amp-pagination' , '=' , '1'),
         ),
           // Related Post
             array(
