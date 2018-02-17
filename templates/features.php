@@ -2374,7 +2374,7 @@ function ampforwp_add_disqus_support() {
 	//if ( !comments_open() ){
 	//	return;
 	//}//931
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] ) {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && 4 != $redux_builder_amp['amp-design-selector'] ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			global $post; $post_slug=$post->post_name;
 
@@ -2421,7 +2421,10 @@ function ampforwp_add_disqus_scripts( $data ) {
 
 add_action('ampforwp_post_after_design_elements','ampforwp_facebook_comments_support');
 function ampforwp_facebook_comments_support() {
-	echo ampforwp_facebook_comments_markup();
+	global $redux_builder_amp;
+	if ( 4 != $redux_builder_amp['amp-design-selector'] ) {
+		echo ampforwp_facebook_comments_markup();
+	}
 }
 function ampforwp_facebook_comments_markup() {
 

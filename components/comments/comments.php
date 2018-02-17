@@ -108,9 +108,6 @@ if ( true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
 function ampforwp_framework_get_facebook_comments(){
 global $redux_builder_amp;
 	$facebook_comments_markup = '';
-	if ( !comments_open() ){
-		return;
-	}
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
@@ -127,9 +124,6 @@ global $redux_builder_amp;
 //Disqus Comments
 function ampforwp_framework_get_disqus_comments(){
 global $redux_builder_amp;
-	if ( !comments_open() ){
-		return;
-	}//931
 	if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 		global $post; $post_slug=$post->post_name;
 
