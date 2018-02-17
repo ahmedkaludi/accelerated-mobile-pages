@@ -5917,4 +5917,11 @@ function ampforwp_comment_count( $count ) {
 	else {
 		return $count;
 	}
+}
+
+add_action('amp_post_template_css', 'ampforwp_glue_css_comp', PHP_INT_MAX );
+if ( ! function_exists('ampforwp_glue_css_comp') ) {
+	function ampforwp_glue_css_comp() { ?>
+		a {text-decoration:none;}
+	<?php }
 } 
