@@ -159,19 +159,17 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_data() {
+		$post_author = '';
+		$post_author_name = '';
 		$post_title = get_the_title( $this->ID );
 		$post_publish_timestamp = get_the_date( 'U', $this->ID );
 		$post_publish_timestamp = intval( $post_publish_timestamp );
 		$post_modified_timestamp = get_post_modified_time( 'U', false, $this->post );
-		if(!empty($this->post)){
+		if ( ! empty($this->post) ) {
 			$post_author = get_userdata( $this->post->post_author );
 			if ( $post_author ) {
 				$post_author_name = $post_author->display_name;
 			}
-		}
-		else {
-			$post_author = '';
-			$post_author_name = '';
 		}
 		$this->add_data( array(
 			'post' => $this->post,
