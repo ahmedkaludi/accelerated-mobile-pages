@@ -304,7 +304,9 @@
                 img.src = imageUrl;
                 img.onload = function(){
                     if(jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').find('img').length==0){
-                        jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').append("<div class='logo_preview'><img src='"+imageUrl+"' style='width:"+dimension+"% !important;max-width: "+this.width+"px !important;'></div>");
+                         var widthPx = (dimension*this.width)/100;
+                        jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').append("<div class='logo_preview'><img src='"+imageUrl+"' style='width:"+widthPx+"px !important;'></div>");
+
                     }
                 }
             }
@@ -315,9 +317,11 @@
             img.onload = function(){
                 
                 if(previousImageUrl==imageUrl){
-                    jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').find('img').attr('style','width:'+dimension+'% !important; max-width: '+this.width+'px !important;');
+                    var widthPx = (dimension*this.width)/100;
+                    jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').find('img').attr('style','width:'+widthPx+'px !important;');
                 }else{
-                    jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').find('img').attr('src',imageUrl).attr('style','width:'+dimension+'% !important; max-width: '+this.width+'px !important;');
+                    var widthPx = (dimension*this.width)/100;
+                    jQuery('#redux_builder_amp-ampforwp-custom-logo-dimensions-slider').find('.logo_preview').find('img').attr('src',imageUrl).attr('style','width:'+widthPx+'px !important;');
                 }
 
                  

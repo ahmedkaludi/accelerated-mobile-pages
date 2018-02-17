@@ -258,7 +258,7 @@ pre{ white-space: pre-wrap; }
 .amp-category-block li:nth-child(3){ margin: 0 1%; }
 .searchmenu{ margin-right: 15px; margin-top: 11px; position: absolute; top: 0; right: 0; }
 .searchmenu button{ background:transparent; border:none }
-.amp-logo amp-img{margin: 0 auto; position:relative;top:9px;}
+.amp-logo amp-img{margin: 0 auto; position:relative;top:9px;max-width:190px;}
 .headerlogo{ margin: 0 auto; width: 80%; text-align: center; }
 .headerlogo a{ color:#F42; display:inline-block}
 
