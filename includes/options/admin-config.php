@@ -3438,24 +3438,10 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
                 array(
-                       'id' => 'ampforwp-homepage-section',
+                       'id' => 'ampforwp-homepage-section-general',
                        'type' => 'section',
-                       'title' => __('Homepage Loop Controls', 'accelerated-mobile-pages'),
+                       'title' => __('General', 'accelerated-mobile-pages'),
                        'indent' => true,
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-type',
-                        'type'     => 'select',
-                        'title'    => __( 'Post Type in Loop', 'accelerated-mobile-pages' ),
-                        'options'  => $ampforwp_home_loop,
-                        'default'   => 'post',
-                ),
-                array(
-                        'id'       => 'ampforwp-homepage-loop-cats',
-                        'type'     => 'select',
-                        'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
-                        'data'  => 'categories',
-                        'multi'    => true
                 ),
                 array(
                         'id'       => 'amp-design-3-featured-slider',
@@ -3628,6 +3614,26 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-selector','=',4),
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
+                ),
+                array(
+                       'id' => 'ampforwp-homepage-section-loop',
+                       'type' => 'section',
+                       'title' => __('Loop Display Controls', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-type',
+                        'type'     => 'select',
+                        'title'    => __( 'Post Type in Loop', 'accelerated-mobile-pages' ),
+                        'options'  => $ampforwp_home_loop,
+                        'default'   => 'post',
+                ),
+                array(
+                        'id'       => 'ampforwp-homepage-loop-cats',
+                        'type'     => 'select',
+                        'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
+                        'data'  => 'categories',
+                        'multi'    => true
                 ),
 
         )
