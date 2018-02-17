@@ -125,6 +125,8 @@ function call_page_builder(){
 	$backendRowSetting = $containerCommonSettings;
 	unset($backendRowSetting['front_template_start']);
 	unset($backendRowSetting['front_template_end']);
+	unset($backendRowSetting['front_css']);
+	unset($backendRowSetting['front_common_css']);
 	wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );
 	//'.add_query_arg('use_amp_pagebuilder','1',$url).'
 	?>
@@ -292,6 +294,17 @@ function call_page_builder(){
 			    	if(in_array($key, $oldModules)){
 			    		continue;
 			    	}
+			    	unset($module['front_template']);
+			    	unset($module['front_css']);
+			    	if(isset($module['front_loop_content'])){
+	                    unset($module['front_loop_content']);
+	                }
+	                if(isset($module['front_common_css'])){
+	                    unset($module['front_common_css']);
+	                }
+	                if(isset($module['repeater'])){
+	    			    unset($module['repeater']['front_template']);
+	                }
 			    	$moduleJson = array('type'=> 'module','moduleDraggable'=>true ,'modulename'=>strtolower($module['name']),'moduleJson'=>$module);
 			    	echo '
 			    	<drag class="drag" :transfer-data=\''.json_encode($moduleJson).'\' :draggable="true" :effect-allowed="\'copy\'">
