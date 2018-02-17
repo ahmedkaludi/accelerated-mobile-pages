@@ -186,7 +186,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( $ampforwp_is_amp_endpoint ) {
 			amp_prepare_render();
 		} else {
-			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		}
 
 		$cpage_var = get_query_var('cpage');
