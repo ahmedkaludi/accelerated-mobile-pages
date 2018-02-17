@@ -321,7 +321,8 @@ if ( is_admin() ) {
  			if ( ! isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ( $plugin === $plugin_file ) {
- 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/priority-support/#utm_source=options-panel&utm_medium=extension-tab_priority_support&utm_campaign=AMP%20Plugin">' . __('Premium Support', 'accelerated-mobile-pages') . '</a>' );
+ 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . __('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . __('Pro', 'accelerated-mobile-pages') . '</a>' );
+ 					
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					$actions = array_merge( $actions, $settings );
  				}
