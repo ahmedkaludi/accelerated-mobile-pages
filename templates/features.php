@@ -5832,18 +5832,18 @@ if ( ! function_exists('ampforwp_amp_component_checker') ) {
 }
 
 // Remove wpautop from specific posts which contain amp-components
-remove_filter('the_content', 'wpautop');
-add_filter('the_content', 'ampforwp_custom_wpautop');
-if ( ! function_exists('ampforwp_custom_wpautop') ) {
-	function ampforwp_custom_wpautop( $content ) {
-		global $post;
-		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false' && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
-	    	return $content;
-	  	}
-	 	else
-	    	return wpautop($content);
-	}
-}
+//remove_filter('the_content', 'wpautop');
+//add_filter('the_content', 'ampforwp_custom_wpautop');
+//if ( ! function_exists('ampforwp_custom_wpautop') ) {
+//	function ampforwp_custom_wpautop( $content ) {
+//		global $post;
+//		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false' && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+//	    	return $content;
+//	  	}
+//	 	else
+//	    	return wpautop($content);
+//	}
+//}
 // Get the AMP components
 function ampforwp_get_amp_components() {
 	$components = array();
