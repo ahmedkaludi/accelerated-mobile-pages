@@ -1044,7 +1044,34 @@ Redux::setArgs( "redux_builder_amp", $args );
       'id'         => 'amp-seo',
       'subsection' => true,
        'fields'     => array(
+            array(
+                  'id' => 'ampforwp-seo-general-section',
+                  'type' => 'section',
+                  'title' => __('General', 'accelerated-mobile-pages'),
+                  'indent' => true,
+              ),
+            array(
+               'id'       => 'ampforwp-seo-meta-description',
+               'type'     => 'switch',
+               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
+               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
+               'default'  => 0
+            ),
 
+            array(
+               'id'       => 'ampforwp-seo-custom-additional-meta',
+               'type'     => 'textarea',
+               'title'    => __('Additional tags for Head section AMP page', 'accelerated-mobile-pages'),
+               'subtitle' => __('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
+               'desc' => __('Only link and meta tags allowed', 'accelerated-mobile-pages'),
+               'placeholder'  => __('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
+            ),
+            array(
+                  'id' => 'ampforwp-seo-plugins-section',
+                  'type' => 'section',
+                  'title' => __('SEO Plugin Integration', 'accelerated-mobile-pages'),
+                  'indent' => true,
+              ),
            array(
                 'id'       => 'ampforwp-seo-selection',
                 'type'     => 'select',
@@ -1056,46 +1083,28 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'default'  => ampforwp_seo_default(),
             ),
            array(
-               'id'       => 'ampforwp-seo-meta-description',
-               'type'     => 'switch',
-               'title'     => __('Meta Description', 'accelerated-mobile-pages'),
-               'subtitle'     => __('The meta tag that displays in head', 'accelerated-mobile-pages'),
-               'default'  => 0
-           ),
-
-           array(
-               'id'       => 'ampforwp-seo-custom-additional-meta',
-               'type'     => 'textarea',
-               'title'    => __('Additional tags for Head section AMP page', 'accelerated-mobile-pages'),
-               'subtitle' => __('Adds additional Meta to the head section', 'accelerated-mobile-pages', 'accelerated-mobile-pages'),
-               'desc' => __('Only link and meta tags allowed', 'accelerated-mobile-pages'),
-               'placeholder'  => __('<!-- Paste your Additional HTML , that goes between <head> </head> tags -->','accelerated-mobile-pages')
-           ),
-
-
-           array(
-                  'id' => 'ampforwp-yoast-seo-sub-section',
-                  'type' => 'section',
-                  'title' => __('Yoast SEO Options', 'accelerated-mobile-pages'),
-                  'indent' => true,
-                  'required'  => array('ampforwp-seo-selection', '=' , '1'),
-              ),
-
-           array(
                'id'       => 'ampforwp-seo-yoast-meta',
                'type'     => 'switch',
                'subtitle'     => __('Adds Social and Open Graph Meta Tags from Yoast', 'accelerated-mobile-pages'),
                'title'    => __( 'Meta Tags from Yoast', 'accelerated-mobile-pages' ),
-               'default'  => '1'
+               'default'  => '1',
+               'required'  => array('ampforwp-seo-selection', '=' , '1'),
            ),
            array(
                'id'       => 'ampforwp-seo-yoast-description',
                'type'     => 'switch',
                'subtitle'     => __('Adds Yoast Custom description to ld+json for AMP page', 'accelerated-mobile-pages'),
                'title'    => __( 'Yoast Description in ld+json', 'accelerated-mobile-pages' ),
-               'default'  => 0
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , '1'),
            ),
-
+           array(
+                'id'       => 'ampforwp-seo-aioseo',
+                'type'     => 'info',
+                'style'    => 'success',
+                'desc'     => __("ALL in One SEO works out of the Box with our plugin. It deosn't requires any extra config.", 'accelerated-mobile-pages'),
+                'required' => array('ampforwp-seo-selection', '=', '2')
+                    ),
            array(
                   'id' => 'ampforwp-seo-index-noindex-sub-section',
                   'type' => 'section',
