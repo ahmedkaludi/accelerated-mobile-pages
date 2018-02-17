@@ -3756,8 +3756,8 @@ function ampforwp_post_pagination( $args = '' ) {
 		'link_after'       => '',
 		'next_or_number'   => 'number',
 		'separator'        => ' ',
-		'nextpagelink'     => __( 'Next page' ),
-		'previouspagelink' => __( 'Previous page' ),
+		'nextpagelink'     => __( 'Next' ),
+		'previouspagelink' => __( 'Previous' ),
 		'pagelink'         => '%',
 		'echo'             => 1
 	);
@@ -3769,7 +3769,11 @@ function ampforwp_post_pagination( $args = '' ) {
 	 * @param array $params An array of arguments for page links for paginated posts.
 	 */
 	$r = apply_filters( 'ampforwp_post_pagination_args', $params );
-
+	if ( isset($redux_builder_amp['ampforwp-pagination-select']) && 2 == $redux_builder_amp['ampforwp-pagination-select'] ) {
+		$r['next_or_number'] = 'next';
+		$r['before'] = '<div class="ampforwp_post_pagination" ><p>';
+		$r['after'] = '</p></div>';
+	}
 	$output = '';
 	if ( $multipage ) {
 		if ( 'number' == $r['next_or_number'] ) {
@@ -3798,11 +3802,12 @@ function ampforwp_post_pagination( $args = '' ) {
 				$link = ampforwp_post_paginated_link_generator( $prev ) . $r['link_before'] . $r['previouspagelink'] . $r['link_after'] . '</a>';
 				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $prev );
 			}
+			$output .= $r['separator'];
+			$text = $page . ' of ' . $numpages;
+			$output .= apply_filters( 'ampforwp_post_pagination_page', $text, $page, $numpages);
 			$next = $page + 1;
 			if ( $next <= $numpages ) {
-				if ( $prev ) {
-					$output .= $r['separator'];
-				}
+				$output .= $r['separator'];
 				$link = ampforwp_post_paginated_link_generator( $next ) . $r['link_before'] . $r['nextpagelink'] . $r['link_after'] . '</a>';
 				$output .= apply_filters( 'ampforwp_post_pagination_link', $link, $next );
 			}
