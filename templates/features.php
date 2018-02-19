@@ -5832,6 +5832,14 @@ if ( ! function_exists('ampforwp_amp_component_checker') ) {
 }
 
 // Remove wpautop from specific posts which contain amp-components
+add_action('pre_amp_render_post','ampforwp_custom_wpautop');
+function ampforwp_custom_wpautop(){
+	if ( is_single() ) {
+		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false') {
+			remove_filter('the_content', 'wpautop');
+		}
+	}
+}
 //remove_filter('the_content', 'wpautop');
 //add_filter('the_content', 'ampforwp_custom_wpautop');
 //if ( ! function_exists('ampforwp_custom_wpautop') ) {
@@ -5854,17 +5862,19 @@ function ampforwp_get_amp_components() {
 add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
 if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
 	function ampforwp_add_amp_component_scripts( $data ) {
-		$components = ampforwp_get_amp_components();
-		foreach ( $components as $component ) {
-			// check if the post has amp-component meta
-			$post_meta = get_post_meta(get_the_ID(), $component , true);
-			if ( 'true' == $post_meta ) {
-				if ( empty( $data['amp_component_scripts'][$component] ) ) {
-							$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
-					}
+		if ( is_single() ) {
+			$components = ampforwp_get_amp_components();
+			foreach ( $components as $component ) {
+				// check if the post has amp-component meta
+				$post_meta = get_post_meta(get_the_ID(), $component , true);
+				if ( 'true' == $post_meta ) {
+					if ( empty( $data['amp_component_scripts'][$component] ) ) {
+								$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
+						}
+				}
 			}
+			return $data;
 		}
-		return $data;
 	}
 }
 
@@ -5926,4 +5936,4 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 	function ampforwp_glue_css_comp() { ?>
 		a {text-decoration:none;}
 	<?php }
-} 
+}
