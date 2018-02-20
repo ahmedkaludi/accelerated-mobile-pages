@@ -5873,8 +5873,8 @@ if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
 						}
 				}
 			}
-			return $data;
 		}
+		return $data;
 	}
 }
 
