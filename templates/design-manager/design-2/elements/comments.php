@@ -35,7 +35,16 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 											<footer class="comment-meta">
 												<?php if($comment_author_img_url){ ?>
                      								<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-                     							<?php } ?>
+                     							<?php }  
+
+                     							else { 
+                     								$cmt = comment_ID();
+													$default_gravatar = get_avatar_data( $cmt ) ;
+													// var_dump( $result['url']) ;
+													?>
+                     							<amp-img src="<?php echo esc_url($default_gravatar['url']); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+                     							<?php }  ?>
+                     							
 												<div class="comment-author vcard">
 													 <?php
 													 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
