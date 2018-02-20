@@ -42,7 +42,7 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
                      							else { 
                      								$cmt = comment_ID();
 													$default_gravatar = get_avatar_data( $cmt ) ;
-													// var_dump( $result['url']) ;
+													 
 													?>
                      							<amp-img src="<?php echo esc_url($default_gravatar['url']); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
                      							<?php }  ?>
