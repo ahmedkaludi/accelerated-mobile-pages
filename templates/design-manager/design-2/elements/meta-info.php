@@ -29,7 +29,7 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
   		<span>
 				<?php global $redux_builder_amp;
 				
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'Categories:' ));
 							
 				?>
 			</span>

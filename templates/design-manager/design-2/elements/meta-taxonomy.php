@@ -8,7 +8,7 @@
 				<?php
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 							}
 
 				foreach ($ampforwp_tags as $tag) {
@@ -21,7 +21,7 @@
 
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 							}
 				?>
 

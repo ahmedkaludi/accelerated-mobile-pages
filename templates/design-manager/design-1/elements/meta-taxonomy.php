@@ -10,7 +10,7 @@
 	<?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-wp-meta amp-wp-tax-category">
-				<span><?php global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'accelerated-mobile-pages' )); ?></span>
+				<span><?php global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'] .' ', 'Categories:' )); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
 					if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] &&  isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
 							echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
@@ -29,7 +29,7 @@
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
 					<?php  if($redux_builder_amp['amp-rtl-select-option']==0) {
-					  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+					  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 							 		}
 						foreach ($ampforwp_tags as $tag) {
 							if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
@@ -39,7 +39,7 @@
 						}
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
-						  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+						  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 						}?>
 				</div>
 	<?php endif; }?>
