@@ -283,9 +283,7 @@ function amp_header_core(){
     }
     // is_search
 	if ( is_search() ) {
-        if ( 'single' === $type ) {
-            $bodyClass = 'amp_home_body archives_body design_3_wrapper';
-        }
+        $bodyClass = 'amp_home_body archives_body design_3_wrapper';
     }
     if( true == $redux_builder_amp['amp-rtl-select-option'] ){
     	$bodyClass .= ' rtl ';
