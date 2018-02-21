@@ -113,10 +113,8 @@
 					$width = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'];
 					$height = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'];
 				}
-				$image_args = array('image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
-					<div class="home-post_image">
+				$image_args = array("tag"=>'div',"tag_class"=>'home-post_image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
 						<?php amp_loop_image($image_args); ?>
-					</div>
 				<?php } ?>
 
 			<div class="amp-wp-post-content">

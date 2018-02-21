@@ -74,10 +74,8 @@
 				<?php if ( ampforwp_has_post_thumbnail() ) {  
 						$width = 100;
 						$height = 75;
-						$image_args = array('image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
-						<div class="home-post-image">
-							<?php amp_loop_image($image_args); ?>
-						</div>
+						$image_args = array("tag"=>'div',"tag_class"=>'home-post-image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
+						<?php amp_loop_image($image_args); ?>
 					<?php }
 
 						if( has_excerpt() ){
