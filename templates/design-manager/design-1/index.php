@@ -80,27 +80,19 @@
 						} ?>
 					</div>
 
-						<?php if ( ampforwp_has_post_thumbnail() ) {  
-							$thumb_url = ampforwp_get_post_thumbnail('url','medium');
-							if($thumb_url){ ?>
+						<?php if ( ampforwp_has_post_thumbnail() ) {
+						$width = 100;
+						$height = 75;
+						if ( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {
+							$width = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'];
+							$height = $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'];
+						}
+						$image_args = array('image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
 								<div class="home-post-image">
-									<a href="<?php echo ampforwp_url_controller( $ampforwp_post_url );?>">
-										<amp-img
-											src=<?php echo esc_url($thumb_url); ?>
-											<?php ampforwp_thumbnail_alt(); ?>
-											<?php if( $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) { ?>
-												width=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-width'] ?>
-												height=<?php global $redux_builder_amp; echo $redux_builder_amp['ampforwp-homepage-posts-design-1-2-height'] ?>
-											<?php } else { ?>
-												width=100
-												height=75
-											<?php } ?>
-										></amp-img>
-									</a>
+									<?php amp_loop_image($image_args); ?>
 								</div>
 							<?php }
-						}
-							
+														
 							if(has_excerpt()){
 								$content = get_the_excerpt();
 							}else{
