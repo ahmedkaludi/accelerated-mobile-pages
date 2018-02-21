@@ -118,7 +118,9 @@
 */
 // AMP Components	
 // AMP LOGO
-add_amp_theme_support('AMP-logo');	
+add_amp_theme_support('AMP-logo');
+// AMP Loop
+add_amp_theme_support('AMP-loop');
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 
