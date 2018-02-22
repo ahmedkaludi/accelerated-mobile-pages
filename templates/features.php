@@ -5860,7 +5860,7 @@ function ampforwp_custom_wpautop(){
 // Get the AMP components
 function ampforwp_get_amp_components() {
 	$components = array();
-	$components = array('amp-carousel','amp-selector');
+	$components = array('amp-carousel','amp-selector','amp-apester-media');
 	return $components;
 }
 // Add the required scripts for amp-components
