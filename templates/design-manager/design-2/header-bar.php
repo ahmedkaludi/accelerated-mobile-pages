@@ -28,6 +28,7 @@
                                       'theme_location' => 'amp-menu' ,
                                       'link_before'     => '<span itemprop="name">',
                                       'link_after'     => '</span>',
+                                      'menu'           =>'ul',
                                       'echo' => false,
                                       'menu_class' => 'menu amp-menu'
                                     ) );
