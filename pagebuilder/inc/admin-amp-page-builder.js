@@ -952,54 +952,61 @@ var app = new Vue({
 		amppb_startFunction: function(event){
 			var postId = event.target.getAttribute('data-postId');
 			this.$http.post(amppb_panel_options.ajaxUrl+'?action=enable_amp_pagebuilder', 
-			{
-				postId
-			}
-			,{
-				headers:{
-					responseType:'json'
-				},
-				responseType:'json',
-				emulateHTTP:true,
-				emulateJSON:true,
-			}
-		).then(function(response){
-			response =response.body;
-			 if(response.status === 200) {
-			 	this.startPagebuilder = 1;
-			 	this.checkedPageBuilder = 'yes';
-			 }
-			
+				{
+					postId
+				}
+				,{
+					headers:{
+						responseType:'json'
+					},
+					responseType:'json',
+					emulateHTTP:true,
+					emulateJSON:true,
+				}
+			).then(function(response){
+				response =response.body;
+				 if(response.status === 200) {
+				 	this.startPagebuilder = 1;
+				 	this.checkedPageBuilder = 'yes';
+				 	this.ampforwp_icon_list();
+				 }
+				
+			},
+			//errorCallback
+			function(){
+				alert('connection not establish');
+			});
 		},
-		//errorCallback
-		function(){
-			alert('connection not establish');
-		});
+		ampforwp_icon_list: function(){
+			if(this.startPagebuilder==1){
+
+				this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_icons_list_format', 
+					{}
+					,{
+						headers:{
+							responseType:'json'
+						},
+						responseType:'json',
+						emulateHTTP:true,
+						emulateJSON:true,
+					}
+				).then(function(response){
+					response =response.body;
+					 if(response.success === true) {
+					 	this.filteredList = response.data;
+					 }
+					
+				},
+				//errorCallback
+				function(){
+					alert('connection not establish');
+				});
+			}
 		}
 
 	},/*module close*/
 	beforeMount:function(){
-		this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_icons_list_format', 
-			{}
-			,{
-				headers:{
-					responseType:'json'
-				},
-				responseType:'json',
-				emulateHTTP:true,
-				emulateJSON:true,
-			}
-		).then(function(response){
-			response =response.body;
-			 if(response.success === true) {
-			 	this.filteredList = response.data;
-			 }
-			
-		},
-		//errorCallback
-		function(){
-			alert('connection not establish');
-		});
+		this.ampforwp_icon_list();
 	}
 });
 
