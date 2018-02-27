@@ -3697,25 +3697,25 @@ function ampforwp_view_nonamp(){
 		if($redux_builder_amp['amp-mobile-redirection']==1)
         $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id ));
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post_id ));
 }
   elseif ( is_home() ) {
     if($redux_builder_amp['amp-mobile-redirection']==1)
        $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
     else
-       $ampforwp_backto_nonamp = trailingslashit(home_url()) ;
+       $ampforwp_backto_nonamp = user_trailingslashit(home_url()) ;
   }
   if ( is_single() ){
     if($redux_builder_amp['amp-mobile-redirection']==1)
       $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )) ;
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID )) ;
   }
   if ( is_page() ){
     if($redux_builder_amp['amp-mobile-redirection']==1)
         $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID ));
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
   }
   if( is_archive() ) {
     global $wp;
