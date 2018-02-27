@@ -21,7 +21,7 @@ function ampforwp_structured_data_type( $metadata ) {
 		$metadata['@type'] = $set_sd_post;
 	}
 
-	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() ) {
+	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() || ampforwp_is_blog()) {
 		$metadata['@type'] = $set_sd_page;
 	} 
 	$post_types = ampforwp_get_all_post_types();
