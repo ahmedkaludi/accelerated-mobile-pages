@@ -129,6 +129,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .m-ctr{transition: margin 0.3s ease-in-out;}
 .m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: auto;position: absolute;z-index:99;padding: 2% 3% 100vh 3%;}
 .m-menu{display: inline-block;width: 100%;overflow-y: auto; max-height:90vh;}
+::-webkit-scrollbar { display: none; }
 .m-menu ul li.menu-item-has-children:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;background: rgba(255, 255, 255, 0.29);top: 4px;padding: 5px;font-size:16px;border-radius: 35px;color:#fff;}
 .m-menu li li.menu-item-has-children:after{right:10px;}
 .m-menu li li.menu-item-has-children:hover:after{right:10px;}
