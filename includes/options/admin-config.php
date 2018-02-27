@@ -707,9 +707,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
                 'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
                 'true'      => 'true',
-                'class'     =>'hide',
+                'class'     =>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? '': 'hide'),//,
                 'desc' => '<div style="    background: #FFF9C4;
-    display: inline-block;
+    display: none;
     padding: 10px 20px;
     margin-top: 15px;
     left: 0; 
@@ -718,7 +718,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     left: 20px;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
-    <iframe style="    position: absolute;
+    <iframe class="hide" style="    position: absolute;
     left: 20px;
     margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
     
@@ -737,7 +737,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     line-height: 1.6;
     position: absolute;
     left: 0px;
-    top: 40px;
+    top: 65%;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
     <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
