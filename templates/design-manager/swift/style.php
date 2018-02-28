@@ -552,6 +552,10 @@ if($redux_builder_amp['enable-single-wechat-share']){?>
 if($redux_builder_amp['enable-single-viber-share']){?>
 .s_vb{background:#59267c;}
 .s_vb:after{content: "\e943";}
+<?php }
+if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
+.s_ym{background:#e26426}
+.s_ym:after{content: "\e948";}
 <?php } ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
