@@ -27,6 +27,10 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
 				function ampforwp_custom_translated_comment($comment, $args, $depth){
 									$GLOBALS['comment'] = $comment;
 									global $redux_builder_amp;
+									$cmt = "";
+									$default_gravatar = "";
+									$cmt = get_comment_ID();
+									$default_gravatar = get_avatar_data($cmt ) ;
 									$comment_author_img_url = "";
 									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); ?>
 									<li id="li-comment-<?php comment_ID() ?>"
@@ -37,11 +41,7 @@ if (!comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']
                      								<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
                      							<?php }  
 
-                     							else { 
-                     								$cmt = comment_ID();
-													$default_gravatar = get_avatar_data( $cmt ) ;
-													// var_dump( $result['url']) ;
-													?>
+                     							else { ?>
                      							<amp-img src="<?php echo esc_url($default_gravatar['url']); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
                      							<?php }  ?>
                      							
