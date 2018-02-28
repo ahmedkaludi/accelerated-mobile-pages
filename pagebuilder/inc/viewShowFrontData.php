@@ -5,7 +5,18 @@ Show Front Data
 
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
-	if (ampforwp_empty_content(get_post()->post_content)) { 
+	global $post,  $redux_builder_amp;
+	$postId = $post->ID;
+	if( is_home() && 
+		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
+		ampforwp_get_blog_details() == false
+	){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	
+	if (ampforwp_empty_content(get_post()->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
 		$arr['ID'] = get_post()->ID;
 		$arr['post_content'] = '&nbsp;';
 		wp_update_post($arr);
@@ -600,7 +611,7 @@ function sortByIndex($contentArray){
 	}
 }
 function ampforwp_empty_content($str) {
-    return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
+    return trim(str_replace('&nbsp;','',$str)) == '';
 }
 
 function ampforwp_get_attachment_id( $url , $imagetype='full') {
