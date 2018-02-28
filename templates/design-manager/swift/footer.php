@@ -122,6 +122,11 @@
 			<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
 		</li>
 		<?php } ?>
+		<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share'] ) { ?>
+		<li>
+			<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>&yumtype=button"></a>
+		</li>
+		<?php } ?>
 	</ul>
 </div>
 <?php } }

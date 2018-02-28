@@ -4175,6 +4175,16 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Viber', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+          // Yummly
+          array(
+              'id'        =>  'enable-single-yummly-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Yummly', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '4')
+        ),
+          ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',
