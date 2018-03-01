@@ -3710,7 +3710,7 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Single Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-1.png'
                                 ),
                         
                     ),
