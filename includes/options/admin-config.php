@@ -775,6 +775,22 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'false'     => 'Disabled',
                 ),
                 array(
+                    'id'        =>'ampforwp-ads-sponsorship',
+                    'type'      => 'switch',
+                    'title'     => __('Sponsorship Label', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'true'      => 'Enabled',
+                    'false'     => 'Disabled',
+                ),
+                array(
+                        'id'        =>'ampforwp-ads-sponsorship-label',
+                        'type'      => 'text',
+                        'required'  => array('ampforwp-ads-sponsorship', '=' , '1'),
+                        'title'     => __('Sponsorship Label Text', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'placeholder'=> 'Sponsored'
+                    ),
+                array(
                     'id'        =>'enable-amp-ads-1',
                     'type'      => 'switch',
                     'title'     => __('AD #1', 'accelerated-mobile-pages'),

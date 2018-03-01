@@ -601,6 +601,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'">';
 				$output .= '</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output .= ' </div>';
 				echo $output;
 			}
@@ -643,6 +644,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -686,6 +688,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -729,6 +732,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -773,6 +777,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -818,11 +823,18 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
 		}
-
+	// Ads Sponsorship output
+		function ampforwp_ads_sponsorship(){
+			global $redux_builder_amp;
+			if ( isset($redux_builder_amp['ampforwp-ads-sponsorship']) && $redux_builder_amp['ampforwp-ads-sponsorship'] ) {
+				return '<span>'.$redux_builder_amp['ampforwp-ads-sponsorship-label'].'</span>';
+			}
+		}
 	// Ads Optimize For Viewability
 	if( !function_exists('ampforwp_ad_optimize')){
 		function ampforwp_ad_optimize(){
