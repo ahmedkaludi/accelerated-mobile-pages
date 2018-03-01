@@ -637,7 +637,7 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_2">';
 				$output	.=	'<amp-ad class="amp-ad-2"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
@@ -681,7 +681,7 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_3">';
 				$output	.=	'<amp-ad class="amp-ad-3"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
@@ -725,7 +725,7 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_4">';
 				$output	.=	'<amp-ad class="amp-ad-4"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
@@ -770,7 +770,7 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_5">';
 				$output	.=	'<amp-ad class="amp-ad-5"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
@@ -816,7 +816,7 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_6">';
 				$output	.=	'<amp-ad class="amp-ad-6"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
