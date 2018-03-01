@@ -61,7 +61,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 
 
 if($redux_builder_amp['header-type'] == '1'){?>
-.logo{z-index: 2;flex-grow: 1;align-self: center;text-align:center;}
+.logo{z-index: 2;flex-grow: 1;align-self: center;text-align:center;line-height:0;}
 .h-1{display:flex;order:1;}
 .h-nav{order: -1;align-self: center;}
 .h-ic:last-child{margin-right:0;}
