@@ -2543,7 +2543,7 @@ function ampforwp_talking_to_robots() {
 
   global $redux_builder_amp;
   global $wp;
-  $message_to_robots = '<meta name="robots" content="noindex,nofollow"/>';
+  $message_to_robots = '<meta name="robots" content="noindex,noarchive"/>';
   $talk_to_robots=false;
 
    //author arhives  index/noindex
