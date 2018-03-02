@@ -609,13 +609,6 @@
                 );
                 $( '#toplevel_page_' + redux.args.slug ).find( '.current' ).removeClass( 'current' );
 
-
-                var panelTitle = el.find( '#' + relid + '_section_group' ).find("h2:first").hide().html();
-                $('.redux-main').find("#info_bar h2#newTitle").remove();
-                if (typeof panelTitle !== 'undefined' || panelTitle){
-                    $('.redux-main').find("#info_bar a.expand_options").after('<h2 id="newTitle" style="float: left;margin: 0px;padding-left: 10px;">'+panelTitle+'</h2>');
-                }
-
             }
         );
 
