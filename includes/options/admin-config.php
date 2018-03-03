@@ -3874,6 +3874,13 @@ Redux::setSection( $opt_name, array(
                 'default'  => 0,
             ),
             array(
+                'id'       => 'ampforwp-swift-recent-posts',
+                'type'     => 'switch',
+                'title'    => __('Enable Recent Posts', 'accelerated-mobile-pages'),
+                'subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
+                'default'  => 1,
+            ),
+            array(
                     'id'       => 'ampforwp-inline-related-posts-type',
                     'type'     => 'select',
                     'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),

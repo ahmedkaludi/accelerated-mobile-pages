@@ -192,7 +192,7 @@
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
-<?php if($redux_builder_amp['single-design-type'] == '1'){?>
+<?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1'){?>
 <div class="r-pf">
 	<div class="cntr">
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
