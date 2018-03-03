@@ -6,7 +6,18 @@
 	<div class="f-w-f1">
 		<div class="cntr">
 			<div class="f-w">
-				<?php dynamic_sidebar( 'swift-footer-widget-area' ); ?>
+				<?php 
+				$sanitizer_obj = new AMPFORWP_Content( 
+									dynamic_sidebar( 'swift-footer-widget-area' ),
+									array(), 
+									apply_filters( 'ampforwp_content_sanitizers', 
+										array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
+										) 
+									) 
+								);
+				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
+	              echo $sanitized_footer_widget;
+				?>
 			</div>
 		</div>
 	</div>
