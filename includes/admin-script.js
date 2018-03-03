@@ -315,10 +315,10 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
     }
 });
 
-var hideReduxFields = function(){
+/*var hideReduxFields = function(){
     $("#redux_builder_amp-single-design-type").parents("tr").hide();
 }
-hideReduxFields();
+hideReduxFields();*/
 
 
 var helpSection = function(){
@@ -356,6 +356,32 @@ var helpSection = function(){
   });
 }
 helpSection();
+
+var redux_title_modify = function(){
+    $( '.redux-group-tab-link-a' ).click(function(){
+        var link = $( this );
+        if ( link.parent().hasClass( 'empty_section' ) && link.parent().hasClass( 'hasSubSections' ) ) {
+            var elements = $( this ).closest( 'ul' ).find( '.redux-group-tab-link-a' );
+            var index = elements.index( this );
+            link = elements.slice( index + 1, index + 2 );
+        }
+                
+        var el = link.parents( '.redux-container:first' );
+        var relid = link.data( 'rel' ); // The group ID of interest
+        var oldid = el.find( '.redux-group-tab-link-li.active:first .redux-group-tab-link-a' ).data( 'rel' );
+        
+        var panelTitle = el.find( '#' + relid + '_section_group' ).find("h2:first").hide().html();
+        $('.redux-main').find("#info_bar h2#newTitle").remove();
+        if (typeof panelTitle !== 'undefined' || panelTitle){
+            $('.redux-main').find("#info_bar a.expand_options").after('<h2 id="newTitle" style="float: left;margin: 0px;padding-left: 10px;">'+panelTitle+'</h2>');
+        }
+
+    });
+}
+if($( '.redux-group-tab-link-a' ).length){
+ redux_title_modify();    
+}
+
 
 });
 

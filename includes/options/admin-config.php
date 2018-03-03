@@ -28,6 +28,16 @@ $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-
 
 $extension_listing_array = array(
                         array(
+                            'name'=>'ADS for WP',
+                            'desc'=>'A Revolutionary way of adding ADS in your WordPress',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
+                            'item_name'=>'ads-for-wp',
+                            'store_url'=>'',
+                        ),
+                        array(
                             'name'=>'Advanced AMP ADS',
                             'desc'=>'Add Advertisement directly in the content',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
@@ -697,9 +707,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'title'    => __('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
                 'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
                 'true'      => 'true',
-                'class'     =>'hide',
+                'class'     =>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? '': 'hide'),//,
                 'desc' => '<div style="    background: #FFF9C4;
-    display: inline-block;
+    display: none;
     padding: 10px 20px;
     margin-top: 15px;
     left: 0; 
@@ -708,7 +718,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     left: 20px;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
-    <iframe style="    position: absolute;
+    <iframe class="hide" style="    position: absolute;
     left: 20px;
     margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
     
@@ -727,7 +737,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     line-height: 1.6;
     position: absolute;
     left: 0px;
-    top: 40px;
+    top: 65%;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
     <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>
@@ -764,6 +774,22 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'true'      => 'Enabled',
                     'false'     => 'Disabled',
                 ),
+                array(
+                    'id'        =>'ampforwp-ads-sponsorship',
+                    'type'      => 'switch',
+                    'title'     => __('Sponsorship Label', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'true'      => 'Enabled',
+                    'false'     => 'Disabled',
+                ),
+                array(
+                        'id'        =>'ampforwp-ads-sponsorship-label',
+                        'type'      => 'text',
+                        'required'  => array('ampforwp-ads-sponsorship', '=' , '1'),
+                        'title'     => __('Sponsorship Label Text', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'placeholder'=> 'Sponsored'
+                    ),
                 array(
                     'id'        =>'enable-amp-ads-1',
                     'type'      => 'switch',
@@ -3700,7 +3726,7 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Single Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-1.png'
                                 ),
                         
                     ),
@@ -3846,6 +3872,13 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('In-Content Related Post', 'accelerated-mobile-pages'),
                 'subtitle' => __('Insert Related Posts between the content', 'accelerated-mobile-pages'),
                 'default'  => 0,
+            ),
+            array(
+                'id'       => 'ampforwp-swift-recent-posts',
+                'type'     => 'switch',
+                'title'    => __('Enable Recent Posts', 'accelerated-mobile-pages'),
+                'subtitle' => __('To enable & disable recent posts', 'accelerated-mobile-pages'),
+                'default'  => 1,
             ),
             array(
                     'id'       => 'ampforwp-inline-related-posts-type',
@@ -4164,6 +4197,16 @@ Redux::setSection( $opt_name, array(
               'type'      =>  'switch',
               'title'     =>  __('Viber', 'accelerated-mobile-pages'),
               'default'   =>  0,
+          ),
+          // Yummly
+          array(
+              'id'        =>  'enable-single-yummly-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Yummly', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+              'required' => array(
+                array('amp-design-selector', '=' , '4')
+        ),
           ),
           array(
        'id' => 'social-media-profiles-subsection',

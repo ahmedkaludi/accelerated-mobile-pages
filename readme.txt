@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.4
-Stable tag: 0.9.82.1
+Stable tag: 0.9.83
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ AMP for WP is the most recommended AMP plugin by the community. Automatically ad
 == Description ==
 AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
-[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://demo.ampforwp.com/amp/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
+[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
@@ -181,6 +181,40 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.83 (03rd March 2018) =
+* Added: Ability to add amp-carousel and amp-selector directly into WYSIWYG Editor #1588
+* Fixed: Debug error caused by Playbuzz Sanitizer #1674
+* Added: Show default gravatar for comments #1758
+* Fixed: Implement Swift Thumbnail Regeneration in all the designs #1709
+* Fixed: To avoid debug error in swift
+* Fixed: Translation improved for some strings #1678
+* Fixed: Stop AMP takeover for Feed pages #1767
+* Fixed: Menu issues In Design 1 & Design 2 after changing from AMP-Sidebar #1565
+* Fixed: AMP Options panel Not Working After Update (0.9.82.1) version #1761
+* Fixed: Move the label to the top [UX improvement] #1746
+* Fixed: Error with Vue #1745
+* Added: Video Module added in AMP Page Builder #1750
+* Fixed: Sidebar menu is not scrollable swift theme #1769
+* Fixed: View Non-AMP should be usertrailingslashit #1772
+* Fixed: Proper structured data for Blogpage #1660
+* Fixed: Legacy Page Builder not working after the update #1773
+* Fixed: Content blank when only image in content #1778
+* Fixed: Comment ID display issue fixed #1758
+* Fixed: PHP Warning: A non-numeric value encountered in components/logo/logo.php on line 52 #1764
+* Fixed: Yummly support added in Swift #1708
+* Fixed: Demo Link updated #1781
+* Fixed: CSS is not loading in Swift Theme #1780
+* Added: Ability to add Advertisement or Sponsored label under ads #1710
+* Fixed: Featured images distortion in related posts #1684
+* Fixed: Implement Swift Thumbnail Regeneration in all the designs #1709
+* Fixed: noarchive instead of nofollow in Archive pages #1693
+* Fixed: Internal links of tags are showing “/amp” after changing the end point to “?amp” in design 2 #1752
+* Fixed: line height is added for the logo in Swift design
+* Added: Class for Custom Frontpage #1787
+* Fixed: Recent post enable disable for Swift theme #1784
+* Fixed: Connect Show/Hide AMP option with AMP takeover#1786
+* Fixed: Added sanitizer to footer Widget #1756
 
 = 0.9.82.1 (18th February 2018) =
 * Selector code reverted due to it's effect on carousel

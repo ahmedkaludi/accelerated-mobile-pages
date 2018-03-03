@@ -118,7 +118,9 @@
 */
 // AMP Components	
 // AMP LOGO
-add_amp_theme_support('AMP-logo');	
+add_amp_theme_support('AMP-logo');
+// AMP Loop
+add_amp_theme_support('AMP-loop');
 // Adding AMP-related things to the main theme
 	global $redux_builder_amp;
 
@@ -599,6 +601,7 @@ function ampforwp_new_dir( $dir ) {
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'">';
 				$output .= '</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output .= ' </div>';
 				echo $output;
 			}
@@ -634,13 +637,14 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_2">';
 				$output	.=	'<amp-ad class="amp-ad-2"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -677,13 +681,14 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_3">';
 				$output	.=	'<amp-ad class="amp-ad-3"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -720,13 +725,14 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_4">';
 				$output	.=	'<amp-ad class="amp-ad-4"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -764,13 +770,14 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_5">';
 				$output	.=	'<amp-ad class="amp-ad-5"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
@@ -809,18 +816,25 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
-				$output = '<div class="amp-ad-wrapper">';
+				$output = '<div class="amp-ad-wrapper amp_ad_6">';
 				$output	.=	'<amp-ad class="amp-ad-6"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'">';
 				$output	.=	'</amp-ad>';
+				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				echo $output;
 			}
 		}
-
+	// Ads Sponsorship output
+		function ampforwp_ads_sponsorship(){
+			global $redux_builder_amp;
+			if ( isset($redux_builder_amp['ampforwp-ads-sponsorship']) && $redux_builder_amp['ampforwp-ads-sponsorship'] ) {
+				return '<span>'.$redux_builder_amp['ampforwp-ads-sponsorship-label'].'</span>';
+			}
+		}
 	// Ads Optimize For Viewability
 	if( !function_exists('ampforwp_ad_optimize')){
 		function ampforwp_ad_optimize(){
@@ -2529,7 +2543,7 @@ function ampforwp_talking_to_robots() {
 
   global $redux_builder_amp;
   global $wp;
-  $message_to_robots = '<meta name="robots" content="noindex,nofollow"/>';
+  $message_to_robots = '<meta name="robots" content="noindex,noarchive"/>';
   $talk_to_robots=false;
 
    //author arhives  index/noindex
@@ -3695,25 +3709,25 @@ function ampforwp_view_nonamp(){
 		if($redux_builder_amp['amp-mobile-redirection']==1)
         $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id ));
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post_id ));
 }
   elseif ( is_home() ) {
     if($redux_builder_amp['amp-mobile-redirection']==1)
        $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
     else
-       $ampforwp_backto_nonamp = trailingslashit(home_url()) ;
+       $ampforwp_backto_nonamp = user_trailingslashit(home_url()) ;
   }
   if ( is_single() ){
     if($redux_builder_amp['amp-mobile-redirection']==1)
       $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )) ;
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID )) ;
   }
   if ( is_page() ){
     if($redux_builder_amp['amp-mobile-redirection']==1)
         $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
     else
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID ));
+      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
   }
   if( is_archive() ) {
     global $wp;
@@ -4342,6 +4356,10 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		   	} elseif ( is_home() ){
 		    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
 		   }
+		}
+
+		if ( ampforwp_is_front_page() ) {
+			$classes[] = 'amp-frontpage';
 		}
 
 	    $classes[] = $post_id;
@@ -5768,6 +5786,13 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
 		}
+		if ( is_feed() ) {
+			return false;
+		}
+		$ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
+		if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
+			return false;	
+		}
 	}elseif(	(
 				isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
 				&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp'] 
@@ -5832,6 +5857,14 @@ if ( ! function_exists('ampforwp_amp_component_checker') ) {
 }
 
 // Remove wpautop from specific posts which contain amp-components
+add_action('pre_amp_render_post','ampforwp_custom_wpautop');
+function ampforwp_custom_wpautop(){
+	if ( is_single() ) {
+		if ( get_post_meta(get_the_ID(), 'ampforwp-wpautop', true) == 'false') {
+			remove_filter('the_content', 'wpautop');
+		}
+	}
+}
 //remove_filter('the_content', 'wpautop');
 //add_filter('the_content', 'ampforwp_custom_wpautop');
 //if ( ! function_exists('ampforwp_custom_wpautop') ) {
@@ -5847,21 +5880,23 @@ if ( ! function_exists('ampforwp_amp_component_checker') ) {
 // Get the AMP components
 function ampforwp_get_amp_components() {
 	$components = array();
-	$components = array('amp-carousel','amp-selector');
+	$components = array('amp-carousel','amp-selector','amp-apester-media');
 	return $components;
 }
 // Add the required scripts for amp-components
 add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
 if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
 	function ampforwp_add_amp_component_scripts( $data ) {
-		$components = ampforwp_get_amp_components();
-		foreach ( $components as $component ) {
-			// check if the post has amp-component meta
-			$post_meta = get_post_meta(get_the_ID(), $component , true);
-			if ( 'true' == $post_meta ) {
-				if ( empty( $data['amp_component_scripts'][$component] ) ) {
-							$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
-					}
+		if ( is_single() ) {
+			$components = ampforwp_get_amp_components();
+			foreach ( $components as $component ) {
+				// check if the post has amp-component meta
+				$post_meta = get_post_meta(get_the_ID(), $component , true);
+				if ( 'true' == $post_meta ) {
+					if ( empty( $data['amp_component_scripts'][$component] ) ) {
+								$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
+						}
+				}
 			}
 		}
 		return $data;
@@ -5926,4 +5961,4 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 	function ampforwp_glue_css_comp() { ?>
 		a {text-decoration:none;}
 	<?php }
-} 
+}

@@ -73,14 +73,14 @@
 										$related_post_permalink = ampforwp_url_controller( get_permalink() );
 										  ?> 
 									<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
-                                        <a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 										<?php if ( ampforwp_has_post_thumbnail() ) {
-											$thumb_url = ampforwp_get_post_thumbnail('url','medium');
-											if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {  ?>
-							            	<amp-img src="<?php echo $thumb_url ?>" width="150" height="150" layout="responsive"></amp-img>
-											<?php } 
+											if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
+												$width = 150;
+												$height = 150;
+												$image_args = array("tag"=>'div','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height,'responsive'=> 'true' );
+												amp_loop_image($image_args);
+											} 
 										}?>
-                                        </a>
 						                <div class="related_link">
 						                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 						                    <?php

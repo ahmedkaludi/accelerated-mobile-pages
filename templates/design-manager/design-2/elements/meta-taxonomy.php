@@ -8,12 +8,12 @@
 				<?php
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 							}
 
 				foreach ($ampforwp_tags as $tag) {
 				if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-					   echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. user_trailingslashit( trailingslashit( get_tag_link( $tag->term_id ) ) . 'amp' ) . '" >'.$tag->name .'</a></span>');//#934
+					   echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
           		} else {
                       echo ('<span>'.$tag->name .'</span>');
           			}
@@ -21,7 +21,7 @@
 
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
 							}
 				?>
 

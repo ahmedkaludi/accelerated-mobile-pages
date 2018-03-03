@@ -72,16 +72,12 @@
 		          </div>
 
 				<?php if ( ampforwp_has_post_thumbnail() ) {  
-					$thumb_url = ampforwp_get_post_thumbnail();
-					
-					if($thumb_url){ ?>
-						<div class="home-post-image">
-							<a href="<?php echo ampforwp_url_controller( get_permalink() );?>">
-								<amp-img src=<?php echo esc_url($thumb_url); ?> width=100 height=75></amp-img>
-							</a>
-						</div>
+						$width = 100;
+						$height = 75;
+						$image_args = array("tag"=>'div',"tag_class"=>'home-post-image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
+						<?php amp_loop_image($image_args); ?>
 					<?php }
-				}
+
 						if( has_excerpt() ){
 							$content = get_the_excerpt();
 						}else{

@@ -125,6 +125,11 @@
 								<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
 							</li>
 							<?php } ?>
+							<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
+							<li>
+								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>&yumtype=button"></a>
+							</li>
+							<?php } ?>
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
 							<li>
 								<amp-facebook-like width=90 height=28
@@ -187,6 +192,7 @@
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
+<?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1'){?>
 <div class="r-pf">
 	<div class="cntr">
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
@@ -215,5 +221,6 @@ do_action("ampforwp_single_design_type_handle");
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
 </div>
+<?php } ?>
 	<?php amp_footer()?>
 </div>

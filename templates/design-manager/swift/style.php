@@ -61,7 +61,7 @@ amp-carousel > amp-img > img {object-fit: contain;}
 
 
 if($redux_builder_amp['header-type'] == '1'){?>
-.logo{z-index: 2;flex-grow: 1;align-self: center;text-align:center;}
+.logo{z-index: 2;flex-grow: 1;align-self: center;text-align:center;line-height:0;}
 .h-1{display:flex;order:1;}
 .h-nav{order: -1;align-self: center;}
 .h-ic:last-child{margin-right:0;}
@@ -128,7 +128,8 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .c-btn{float: right;padding: 20px 10px;}
 .m-ctr{transition: margin 0.3s ease-in-out;}
 .m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: auto;position: absolute;z-index:99;padding: 2% 3% 100vh 3%;}
-.m-menu{display: inline-block;width: 100%;}
+.m-menu{display: inline-block;width: 100%;overflow-y: auto; max-height:90vh;}
+::-webkit-scrollbar { display: none; }
 .m-menu ul li.menu-item-has-children:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;background: rgba(255, 255, 255, 0.29);top: 4px;padding: 5px;font-size:16px;border-radius: 35px;color:#fff;}
 .m-menu li li.menu-item-has-children:after{right:10px;}
 .m-menu li li.menu-item-has-children:hover:after{right:10px;}
@@ -244,7 +245,7 @@ if(is_home() || is_archive() || is_search()){ ?>
 <?php }?>
 <?php //page and frontpage
 
-if(is_page() || is_front_page() ){?>
+if( is_page() || ampforwp_is_front_page() ){?>
     <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
         .breadcrumbs {padding-bottom: 10px;border-bottom: 1px solid #eee;display: inline-block;width: 100%;font-size: 10px;text-transform: uppercase;}
@@ -551,6 +552,10 @@ if($redux_builder_amp['enable-single-wechat-share']){?>
 if($redux_builder_amp['enable-single-viber-share']){?>
 .s_vb{background:#59267c;}
 .s_vb:after{content: "\e943";}
+<?php }
+if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
+.s_ym{background:#e26426}
+.s_ym:after{content: "\e948";}
 <?php } ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
@@ -561,12 +566,14 @@ if($redux_builder_amp['enable-single-viber-share']){?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 .amp-ad-wrapper{width:100%;text-align:center;}
-<?php if( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) { ?>.amp-ad-1{margin: -2px 0px -17px 0px;}<?php } 
-if( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) { ?>.amp-ad-2{margin: 20px 0px -23px 0px; }<?php } 
+.amp-ad-wrapper span { display: inherit; font-size: 12px; line-height: 1;}
+<?php if( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) { ?>.amp_ad_1{margin: -2px 0px -17px 0px;}<?php } 
+if( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) { ?>.amp_ad_2{margin: 20px 0px -23px 0px; }<?php } 
 if( isset($redux_builder_amp['enable-amp-ads-3'] ) && $redux_builder_amp['enable-amp-ads-3'] ) { ?>.amp-ad-3{margin: 0px 0px -4px 0px;}<?php }
-if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable-amp-ads-4'] ) { ?>.amp-ad-4{margin: 20px 0px 20px 0px;}<?php }
-if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>.amp-ad-5{margin: 10px 0px -17px 0px;}<?php }
+if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable-amp-ads-4'] ) { ?>.amp_ad_4{margin: 20px 0px 20px 0px;}<?php }
+if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>.amp_ad_5{margin: 10px 0px -17px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6'] ) { ?>.amp-ad-6{ margin: 0px 0px 20px 0px;}<?php } ?>
+.amp-ad-wrapper {margin-top: 10px; margin-bottom: 10px}
 #amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
 #amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
 amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}

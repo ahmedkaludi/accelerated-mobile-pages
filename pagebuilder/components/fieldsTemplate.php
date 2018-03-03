@@ -95,7 +95,7 @@
     
     
     
-    <div class="amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
+    <div class="amppb-ftype-upload amp-form-control" :id="field.name" data-type="upload" v-else-if="field.type=='upload' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)">
         
         <div class="form-label" style="position: relative;display: inline-block; width: 30%;">{{field.label}}</div>
         <div class="form-field">

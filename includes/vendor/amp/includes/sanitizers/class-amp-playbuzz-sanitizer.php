@@ -52,7 +52,7 @@ class AMP_Playbuzz_Sanitizer extends AMP_Base_Sanitizer {
 				continue;
 			}
 
-			if ( $new_attributes['src'] ) {
+			if ( isset($new_attributes['src']) && $new_attributes['src'] ) {
 				$checker = preg_match("@^https?://@", $new_attributes['src'] ) ;
 				if ( empty( $checker ) ) {
 					$new_attributes['src'] = 'https:' . $new_attributes['src'];
