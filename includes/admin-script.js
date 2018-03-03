@@ -315,10 +315,10 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
     }
 });
 
-var hideReduxFields = function(){
+/*var hideReduxFields = function(){
     $("#redux_builder_amp-single-design-type").parents("tr").hide();
 }
-hideReduxFields();
+hideReduxFields();*/
 
 
 var helpSection = function(){
