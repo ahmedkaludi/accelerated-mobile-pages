@@ -40,9 +40,9 @@ return array(
 							'tab'     	=>'customizer',
  							'default' 	=>'youtube',
  							'options_details'=>array(
- 												'youtube'    =>'Youtube',
- 												'embed'  	=>'Embed iframe',
- 												'custom'    =>'custom',
+                                    'youtube'    =>'Youtube',
+                                    'custom'    =>'Self hosted',
+                                    'embed'  	=>'Embed iframe',
  											),
  							'content_type'=>'html',
  						),	

@@ -872,7 +872,9 @@ position: fixed;
 #amp-page-builder .form-field input, #amp-page-builder .form-field textarea{    
     padding: 7px 8px;
 }
- 
+.amppb-ftype-upload .button{
+    line-height: 0;
+}
 #amp-page-builder .form-label > #amp-page-builder .form-control {
     margin-top: 0.5em;
 }
