@@ -4358,6 +4358,10 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 		   }
 		}
 
+		if ( ampforwp_is_front_page() ) {
+			$classes[] = 'amp-frontpage';
+		}
+
 	    $classes[] = $post_id;
 
 	    if ( $post_id ) {
