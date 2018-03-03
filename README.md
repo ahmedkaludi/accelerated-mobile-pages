@@ -179,7 +179,7 @@ You can contact us from [here](http://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.83 (03rd March 2018) =
-* Added: Ability to add amp-carousel and amp-selector directly into WYSIWYG Editor#1588
+* Added: Ability to add amp-carousel and amp-selector directly into WYSIWYG Editor #1588
 * Fixed: Debug error caused by Playbuzz Sanitizer #1674
 * Added: Show default gravatar for comments #1758
 * Fixed: Implement Swift Thumbnail Regeneration in all the designs #1709
