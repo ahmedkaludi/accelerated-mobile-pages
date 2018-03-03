@@ -178,6 +178,94 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.83 (03rd March 2018) =
+* Added: Ability to add amp-carousel and amp-selector directly into WYSIWYG Editor#1588
+* Fixed: Debug error caused by Playbuzz Sanitizer #1674
+* Added: Show default gravatar for comments #1758
+* Fixed: Implement Swift Thumbnail Regeneration in all the designs #1709
+* Fixed: To avoid debug error in swift
+* Fixed: Translation improved for some strings #1678
+* Fixed: Stop AMP takeover for Feed pages #1767
+* Fixed: Menu issues In Design 1 & Design 2 after changing from AMP-Sidebar #1565
+* Fixed: AMP Options panel Not Working After Update (0.9.82.1) version #1761
+* Fixed: Move the label to the top [UX improvement] #1746
+* Fixed: Error with Vue #1745
+* Added: Video Module added in AMP Page Builder #1750
+* Fixed: Sidebar menu is not scrollable swift theme #1769
+* Fixed: View Non-AMP should be usertrailingslashit #1772
+* Fixed: Proper structured data for Blogpage #1660
+* Fixed: Legacy Page Builder not working after the update #1773
+* Fixed: Content blank when only image in content #1778
+* Fixed: Comment ID display issue fixed #1758
+* Fixed: PHP Warning: A non-numeric value encountered in components/logo/logo.php on line 52 #1764
+* Fixed: Yummly support added in Swift #1708
+* Fixed: Demo Link updated #1781
+* Fixed: CSS is not loading in Swift Theme #1780
+* Added: Ability to add Advertisement or Sponsored label under ads #1710
+* Fixed: Featured images distortion in related posts #1684
+* Fixed: Implement Swift Thumbnail Regeneration in all the designs #1709
+* Fixed: noarchive instead of nofollow in Archive pages #1693
+* Fixed: Internal links of tags are showing “/amp” after changing the end point to “?amp” in design 2 #1752
+* Fixed: line height is added for the logo in Swift design
+* Added: Class for Custom Frontpage #1787
+* Fixed: Recent post enable disable for Swift theme #1784
+* Fixed: Connect Show/Hide AMP option with AMP takeover#1786
+* Fixed: Added sanitizer to footer Widget #1756
+
+= 0.9.82.1 (18th February 2018) =
+* Selector code reverted due to it's effect on carousel
+
+= 0.9.82 (18th February 2018) =
+* View more details on https://ampforwp.com/0-9-82-released-stability-update-82nd-update/
+* Logo Resizing calculation by Pixels and resizing bug solved.
+* Update Notification in the Admin panel will only appear in the AMP options panel. So it will not annoy you anymore.
+* Glue underline is applying for some reason
+* Fatal error after 0.9.81 fixed
+* Facebook comments loading twice on swift
+* PHP Notice: Undefined variable: post_author_name
+* Pagebuilder fix in version 0.9.81 Compatibility with Yoast and other plugins #1749
+* Home loop modifier option added. Allows you to exclude the categories from the loop or include the Custom Post type in the homepage loop.
+* amphtml Conflict with Instant Article for Facebook resolved
+* /amp folder in the theme is applying changes in plugin, which causing a bug, but it’s been fixed
+* Backward Compatibility for AMP Preview
+* SEO Section Improvements
+* Wrong comments count on AMP pages
+* AMP Allow selector in the The Content. You can add tabs and AMP components directly into the loop.
+* If we turn off the Homepage Support then Blog is turned off as well, solved.
+* Post Pagination have two options like “Number of pages” and Previous & Next.
+* Removed the dot from the one Signal Service worker URL if the subdomain isn’t added (Causes Validation issues.)
+* Extra Space due to empty divs in Design 3
+* Remove alt from a tag in the AMP version caused many validation issues.
+
+
+= 0.9.81 (15th February 2018) =
+* Edge case fatal error on features.php fixed
+* Admin dashboard messup CSS fix #1731
+* Custom CSS Output added in Swift
+
+= 0.9.80 (15th February 2018) =
+* View More details on the [blog post](https://ampforwp.com/introducing-swift/)
+* AMP Page Builder 3.0: The AMP Page Builder is a lightweight and much stable than ever and works flawlessly! [Read More](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* Swift: The New Default Theme, which you can select from the design section of the Page builder.
+* A way to create a Child Theme for AMP [read more](https://ampforwp.com/tutorials/article/child-theme-amp/)
+* Make AMP & Non-AMP Same: We have an amazing new option called AMP to WP which will generate the WordPress version of the AMP design which will be viewed on the canonical version of the website.
+* AMP Takeover: You can deliver a fully AMP compatible website with this option. It will basically take over the non-amp version and deliver an AMP version to your desktop and mobile users, on WordPress & AMP version. That’s why it was called AMP Takeover
+* Logo Resizing made easy
+* Typography Options
+* 3 Headers design in swift theme
+* Error while sharing the image on Pinterest #1699
+* Homepage support was not working ( when page support is off ) #1695
+* Custom Permalinks rewrite issue solved #1689
+* Custom post type was appearing two types #1688
+* Theia Post Slider plugin incompatibility with post pagination fixed #1677
+* Link to the categories in loop of Design 3 #1632
+* amphtml was not working when plain permalink selected along with static page as homepage #1614
+* AFS Analytics Integration added  #1605
+* Removed the blank spaces from analytics id field to deliver a good UX. #1599
+* ?amp endpoint feature added #1561
+* Ability to remove the excerpt and image from related post #1510
+* Thumbnails on-the-fly generation added for better control over the design.
+
 = 0.9.74 (23rd January 2018) =
 * View More details on the [blog post](https://ampforwp.com/0-9-74-released-stability-update-79th-update/)
 * Fixed: Push Notifications button alligned in center #1500
