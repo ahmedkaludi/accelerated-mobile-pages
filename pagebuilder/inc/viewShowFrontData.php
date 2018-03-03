@@ -37,6 +37,66 @@ function  ampforwp_insert_pb_content( $content ){
 }
 
 
+add_action('amp_post_template_data','amp_pagebuilder_script_loader',100);
+function amp_pagebuilder_script_loader($scriptData){
+	//To load css of modules which are in use
+	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
+	$postId = $post->ID;
+	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$previousData = get_post_meta($postId,'amp-page-builder');
+	$previousData = isset($previousData[0])? $previousData[0]: null;
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+		$previousData = (str_replace("'", "", $previousData));
+		$previousData = json_decode($previousData,true);
+		if(count($previousData['rows'])>0){
+			foreach ($previousData['rows'] as $key => $rowsData) {
+				$container = $rowsData['cell_data'];
+				if(count($container)>0){
+					//Module specific styles
+					$moduleCommonCss = array();
+					foreach($container as $contentArray){
+						if(!isset($moduleTemplate[$contentArray['type']])){
+							continue;
+						}
+						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
+							$replaceModule = "";
+							if(isset($contentArray[$modulefield['name']])){
+								$replaceModule = $contentArray[$modulefield['name']];
+							}
+							if($modulefield['content_type']=='js'){
+
+								if(isset($modulefield['required']) && count($modulefield['required'])>0){
+									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
+										$userSelectedvalue = $contentArray[$requiredKey];
+										if($userSelectedvalue != $requiredValue){
+											$replaceModule ='';
+										} 
+									}
+								}//Require IF Closed
+
+								if ($replaceModule !="" && empty( $scriptData['amp_component_scripts'][$modulefield['label']] ) ) {
+									$scriptData['amp_component_scripts'][$modulefield['label']] = $replaceModule;
+								}
+							}//content_type Check if Closed
+						}
+
+					}
+				}
+			}
+		}
+
+
+	}
+
+
+
+	
+	return $scriptData;
+}
+
 add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
 	//To load css of modules which are in use
