@@ -629,5 +629,50 @@ if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?>
 .post-date .post-edit-link {float: left;}
 .fsp-cnt{width:100%;float:none;display:inline-block;}
 }
+<?php } // Menu RTL Styles 
+if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
+.h-nav {
+    order: -1;
+}
+.h-1 {
+    order: 0;
+}
+.c-btn {
+    float: left;
+}
+.overlay-search:before{
+	left:0;
+	right:auto;
+}
+a.lb-x{
+	left:0;
+	right:auto;
+}
+<?php if($redux_builder_amp['header-position-type'] == '1'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-right: 0%;
+}
+.m-ctr{
+    margin-right: -100%;
+    float: left;
+}
 <?php } ?>
+<?php if($redux_builder_amp['header-position-type'] == '2'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-right: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);
+}
+.m-ctr{
+    margin-right: 100%;
+    float: right;
+}
+<?php } ?>
+.m-menu li.menu-item-has-children:hover:after {
+    right: auto;
+    left:0;
+}
+.m-menu ul li.menu-item-has-children:after{
+    right: auto;
+    left:0;
+}
+<?php } //RTL End ?>
 <?php echo $redux_builder_amp['css_editor']; ?>
