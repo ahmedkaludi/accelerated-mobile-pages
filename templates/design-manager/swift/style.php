@@ -155,7 +155,7 @@ if($redux_builder_amp['primary-menu']){?>
 <?php } ?>
 <?php //Home and Archive
 
-if(is_home() || is_archive() || is_search()){ ?>
+if(is_home() || is_archive() || is_search() || is_shop() ){ ?>
 .hmp{margin-top:34px;display:inline-block;width:100%;  }
 .fbp{width:100%;display:inline-block;clear:both;margin:15px 15px 20px 15px;}
 .fbp-img a{display:block;line-height:0;}
