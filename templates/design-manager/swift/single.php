@@ -12,7 +12,7 @@
 		    </div>
 		<?php } ?>
 	</div>
-	<?php if ( has_post_thumbnail() ) {?>
+	<?php if ( ampforwp_has_post_thumbnail() ) {?>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
 	</div>
