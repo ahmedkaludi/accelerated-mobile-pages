@@ -1,7 +1,7 @@
 <?php
 function ampforwp_framework_get_comments(){
 global $redux_builder_amp;
-if ( ! comments_open() || false == $redux_builder_amp['wordpress-comments-support'] ) {
+if ( ! comments_open() ) {
 	return;
 }
 if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
