@@ -276,17 +276,16 @@ function ampforwp_parent_plugin_check() {
 		delete_option( 'ampforwp_parent_plugin_check');
 	}
 }
-
+if ( is_admin() ) {
 // Redux panel inclusion code
 	if ( ! class_exists( 'ReduxFramework' ) ) {
 	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 	}
-	// Register all the main options
+	// Register all the main options	
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
-	
-	
+}
 // Modules 
 add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {
