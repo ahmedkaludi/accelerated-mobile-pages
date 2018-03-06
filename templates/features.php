@@ -5972,5 +5972,9 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 // Adding broken code to test Travis CI
 add_action('pre_amp_render_post','ampforwp_test_func');
 function ampforwp_test_func(){
-	echo string;
+
+	// ampforwp_test_func_2() function is not created yet, but added to test.
+	if ( ampforwp_test_func_2() ) {
+		echo string;	
+	}
 }
