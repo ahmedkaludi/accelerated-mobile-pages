@@ -137,7 +137,8 @@ add_amp_theme_support('AMP-loop');
  	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
  	// Custom Post Types
  	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
- 	//aq resizer
+ 	
+ 	// Load aq resizer only in AMP mode
  	add_action('pre_amp_render_post','ampforwp_include_aqresizer');
  	function ampforwp_include_aqresizer(){
  		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
