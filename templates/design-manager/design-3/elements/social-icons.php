@@ -59,7 +59,7 @@ $image = ''; ?>
 		<?php } ?>
 		<?php if ( true == $redux_builder_amp['enable-single-pinterest-share'] ) { ?>
 			<div class="ampforwp-custom-social">
-				<a href="https://pinterest.com/pin/create/bookmarklet/?media='<?php echo esc_url($image); ?>'&url=<?php echo esc_url(get_the_permalink()); ?>&description=<?php echo esc_attr(get_the_title()); ?>" class="amp-social-icon-rounded amp-social-pinterest">
+				<a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo esc_url($image); ?>&url=<?php echo esc_url(get_the_permalink()); ?>&description=<?php echo esc_attr(get_the_title()); ?>" target="_blank" class="amp-social-icon-rounded amp-social-pinterest">
 				    <amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGZpbGw9IiNmZmZmZmYiID48cGF0aCBkPSJNOC42MTcgMTMuMjI3QzguMDkgMTUuOTggNy40NSAxOC42MiA1LjU1IDIwYy0uNTg3LTQuMTYyLjg2LTcuMjg3IDEuNTMzLTEwLjYwNS0xLjE0Ny0xLjkzLjEzOC01LjgxMiAyLjU1NS00Ljg1NSAyLjk3NSAxLjE3Ni0yLjU3NiA3LjE3MiAxLjE1IDcuOTIyIDMuODkuNzggNS40OC02Ljc1IDMuMDY2LTkuMkMxMC4zNy0uMjc0IDMuNzA4IDMuMTggNC41MjggOC4yNDZjLjIgMS4yMzggMS40NzggMS42MTMuNTEgMy4zMjItMi4yMy0uNDk0LTIuODk2LTIuMjU0LTIuODEtNC42LjEzOC0zLjg0IDMuNDUtNi41MjcgNi43Ny02LjkgNC4yMDItLjQ3IDguMTQ1IDEuNTQzIDguNjkgNS40OTQuNjEzIDQuNDYyLTEuODk2IDkuMjk0LTYuMzkgOC45NDYtMS4yMTctLjA5NS0xLjcyNy0uNy0yLjY4LTEuMjh6Ij48L3BhdGg+PC9zdmc+" width="16" height="16" />
 				</a>
 		    </div>
