@@ -5968,3 +5968,9 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 		a {text-decoration:none;}
 	<?php }
 }
+
+// Adding broken code to test Travis CI
+add_action('pre_amp_render_post','ampforwp_test_func');
+function ampforwp_test_func(){
+	echo string;
+}
