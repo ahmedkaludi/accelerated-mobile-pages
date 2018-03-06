@@ -5671,7 +5671,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
 	if(isset($redux_builder_amp['google_current_font_data'])){
-		$font_data = json_decode($redux_builder_amp['google_current_font_data']);
+		$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data']));
 	}
 
     $font_weight = "";
