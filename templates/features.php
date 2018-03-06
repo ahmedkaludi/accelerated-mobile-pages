@@ -4744,7 +4744,7 @@ function ampforwp_generate_inline_related_posts($content){
 	$content_parts = explode($break_point, $content);
 	array_walk($content_parts, function(&$value, $key) {
 		 	$value = trim($value);
-			if(!empty($value)){
+			if(!empty(trim($value))){
 			         $value .= '</p>';
 			}
 		}
