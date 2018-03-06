@@ -135,10 +135,13 @@ add_amp_theme_support('AMP-loop');
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
  	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
- 	require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
  	// Custom Post Types
- 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php'; 
-
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
+ 	//aq resizer
+ 	add_action('pre_amp_render_post','ampforwp_include_aqresizer');
+ 	function ampforwp_include_aqresizer(){
+ 		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
+ 	}
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		$amp_plugin_data;
