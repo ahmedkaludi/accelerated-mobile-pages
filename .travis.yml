@@ -1,21 +1,13 @@
 sudo: false
 dist: trusty
-
 language: php
 
 notifications:
+  on_success: never
+  on_failure: change
   email:
     on_success: never
     on_failure: change
-
-#branches:
-  #only:
-    #- master
-
-cache:
-  directories:
-    - vendor
-    - $HOME/.composer/cache
 
 matrix:
   include:
@@ -36,6 +28,14 @@ matrix:
     - php: 5.3
       env: WP_VERSION=latest
       dist: precise
+
+
+env:
+  - WP_PROJECT_TYPE=plugin WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
+
+matrix:
+  allow_failures:
+    - php: nightly
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
