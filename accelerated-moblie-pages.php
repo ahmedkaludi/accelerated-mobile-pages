@@ -13,7 +13,7 @@ Text Domain: accelerated-mobile-pages
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+echo hksjdc
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
