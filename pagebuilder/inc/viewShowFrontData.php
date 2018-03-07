@@ -531,7 +531,10 @@ function rowData($container,$col,$moduleTemplate){
 					case 'contents':
 						$fieldValues = array();
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
-							$fieldValues[$field['name']]= $contentArray[$field['name']];
+							$fieldValues[$field['name']] ='';
+							if(isset($contentArray[$field['name']])){
+								$fieldValues[$field['name']]= $contentArray[$field['name']];
+							}
 						}
 						
 						$args = array(
