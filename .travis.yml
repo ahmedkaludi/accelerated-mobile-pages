@@ -12,26 +12,26 @@ notifications:
 matrix:
   include:
     - php: 7.2
-      env: WP_VERSION=latest
+      env: WP_VERSION=latest WP_TRAVISCI=phpcs
     - php: 7.1
-      env: WP_VERSION=latest
+      env: WP_VERSION=latest WP_TRAVISCI=phpcs
     - php: 7.0
-      env: WP_VERSION=latest
+      env: WP_VERSION=latest WP_TRAVISCI=phpcs
     - php: 5.6
-      env: WP_VERSION=4.4
+      env: WP_VERSION=4.4 WP_TRAVISCI=phpcs
     - php: 5.6
-      env: WP_VERSION=latest
+      env: WP_VERSION=latest WP_TRAVISCI=phpcs
     - php: 5.6
-      env: WP_VERSION=trunk
+      env: WP_VERSION=trunk WP_TRAVISCI=phpcs
     - php: 5.6
-      env: WP_TRAVISCI=phpcs
+      env: WP_TRAVISCI=phpcs WP_VERSION=latest
     - php: 5.3
-      env: WP_VERSION=latest
+      env: WP_VERSION=latest WP_TRAVISCI=phpcs
       dist: precise
 
 
 env:
-  - WP_PROJECT_TYPE=plugin WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
+  - WP_PROJECT_TYPE=plugin $WP_VERSION WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
 
 matrix:
   allow_failures:
@@ -56,6 +56,17 @@ before_script:
       composer global require wp-coding-standards/wpcs
       phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
     fi
+
+  - export WP_DEVELOP_DIR=/tmp/wordpress/
+  - mkdir -p $WP_DEVELOP_DIR
+    # Use the Git mirror of WordPress.
+  - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
+
+  - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+  # Install WordPress Coding Standards.
+  - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
+  # Hop into CodeSniffer directory.
+  - cd php-codesniffer
 script:
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
@@ -66,3 +77,4 @@ script:
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
     fi
+  - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
