@@ -3,6 +3,8 @@ dist: trusty
 language: php
 
 notifications:
+  on_success: never
+  on_failure: change
   email:
     on_success: never
     on_failure: change
@@ -10,30 +12,26 @@ notifications:
 matrix:
   include:
     - php: 7.2
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
+      env: WP_VERSION=latest
     - php: 7.1
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
+      env: WP_VERSION=latest
     - php: 7.0
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
-    - php: 5.2
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
-      # As 'trusty' is not supporting PHP 5.2/5.3 anymore, we need to force using 'precise'.
-      dist: precise
+      env: WP_VERSION=latest
     - php: 5.6
-      env: WP_VERSION=4.4 WP_TRAVISCI=phpcs
+      env: WP_VERSION=4.4
     - php: 5.6
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
+      env: WP_VERSION=latest
     - php: 5.6
-      env: WP_VERSION=trunk WP_TRAVISCI=phpcs
+      env: WP_VERSION=trunk
     - php: 5.6
-      env: WP_TRAVISCI=phpcs 
+      env: WP_TRAVISCI=phpcs
     - php: 5.3
-      env: WP_VERSION=latest WP_TRAVISCI=phpcs
+      env: WP_VERSION=latest
       dist: precise
 
 
 env:
-  - WP_PROJECT_TYPE=plugin WP_MULTISITE=0 $WP_VERSION WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
+  - WP_PROJECT_TYPE=plugin WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
 
 matrix:
   allow_failures:
@@ -42,27 +40,6 @@ matrix:
 before_script:
   - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-  # Set up WordPress installation.
-  - export WP_DEVELOP_DIR=/tmp/wordpress/
-  - mkdir -p $WP_DEVELOP_DIR
-  # Use the Git mirror of WordPress.
-  - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
-  - plugin_slug=$(basename $(pwd))
-  - plugin_dir=$WP_DEVELOP_DIR/src/wp-content/plugins/$plugin_slug
-  - cd ..
-  - mv $plugin_slug $plugin_dir
-
-  # Install CodeSniffer for WordPress Coding Standards checks.
-  - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
-  # Install WordPress Coding Standards.
-  - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
-  # Hop into CodeSniffer directory.
-  - cd php-codesniffer
-  # Set install path for WordPress Coding Standards
-  # @link https://github.com/squizlabs/PHP_CodeSniffer/blob/4237c2fc98cc838730b76ee9cee316f99286a2a7/CodeSniffer.php#L1941
-  - scripts/phpcs --config-set installed_paths ../wordpress-coding-standards
-  
   - |
     if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
       phpenv config-rm xdebug.ini
@@ -79,22 +56,7 @@ before_script:
       composer global require wp-coding-standards/wpcs
       phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
     fi
-
-  # Install JSCS: JavaScript Code Style checker
-  # @link http://jscs.info/
-  - npm install -g jscs
-  # Install JSHint, a JavaScript Code Quality Tool
-  # @link http://jshint.com/docs/
-  - npm install -g jshint
-  - wget https://develop.svn.wordpress.org/trunk/.jshintrc
-
 script:
-  # Search theme for PHP syntax errors.
-  - find . \( -name '*.php' \) -exec php -lf {} \;
-  # Run the theme through JSHint
-  - jshint .
-  # Run the theme through JavaScript Code Style checker
-  - jscs .
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
       phpunit
@@ -104,4 +66,3 @@ script:
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
     fi
-   - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
