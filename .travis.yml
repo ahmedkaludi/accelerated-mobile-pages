@@ -66,10 +66,5 @@ script:
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
-  # Run against WordPress Coding Standards.
-  # If you use a custom ruleset, change `--standard=WordPress` to point to your ruleset file,
-  # for example: `--standard=wpcs.xml`.
-  # You can use any of the normal PHPCS command line arguments in the command:
-  # https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
       phpcs -p --standard=WordPress .
     fi
