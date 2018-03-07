@@ -53,20 +53,18 @@ before_script:
     fi
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      echo "Running Code Sniffer. phpcs"
       composer global require wp-coding-standards/wpcs
       phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
     fi
-
-  - export WP_DEVELOP_DIR=/tmp/wordpress/
-  - mkdir -p $WP_DEVELOP_DIR
-    # Use the Git mirror of WordPress.
-  - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
-
-  - mkdir php-codesniffer && curl -L https://github.com/squizlabs/PHP_CodeSniffer/archive/master.tar.gz | tar xz --strip-components=1 -C php-codesniffer
+  
+  - export SNIFFS_DIR=/tmp/sniffs;
   # Install WordPress Coding Standards.
-  - mkdir wordpress-coding-standards && curl -L https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/archive/master.tar.gz | tar xz --strip-components=1 -C wordpress-coding-standards
-  # Hop into CodeSniffer directory.
-  - cd php-codesniffer
+  - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR;
+  # Set install path for WordPress Coding Standards.
+  - $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR;
+  # After CodeSniffer install you should refresh your path.
+  - phpenv rehash;
 script:
   - |
     if [[ ! -z "$WP_VERSION" ]] ; then
@@ -76,5 +74,13 @@ script:
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
+      phpcs -p --standard=WordPress .
     fi
-  - $WP_DEVELOP_DIR/php-codesniffer/scripts/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php
+  
+
+  # Run against WordPress Coding Standards.
+  # If you use a custom ruleset, change `--standard=WordPress` to point to your ruleset file,
+  # for example: `--standard=wpcs.xml`.
+  # You can use any of the normal PHPCS command line arguments in the command:
+  # https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
+  - $PHPCS_DIR/bin/phpcs -p . --standard=WordPress;
