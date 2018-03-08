@@ -13,6 +13,12 @@ function amp_pagebuilder_content(){
 	){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
+	if ( ampforwp_polylang_front_page() ) {
+		$front_page_id = get_option('page_on_front');
+		if($front_page_id){
+			$postId = pll_get_post($front_page_id);
+		}
+	}
 
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	
@@ -104,6 +110,12 @@ function amp_pagebuilder_content_styles(){
 	$postId = $post->ID;
 	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	if ( ampforwp_polylang_front_page() ) {
+		$front_page_id = get_option('page_on_front');
+		if($front_page_id){
+			$postId = pll_get_post($front_page_id);
+		}
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -361,7 +373,12 @@ function amppb_post_content($content){
 	){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-
+	if ( ampforwp_polylang_front_page() ) {
+		$front_page_id = get_option('page_on_front');
+		if($front_page_id){
+			$postId = pll_get_post($front_page_id);
+		}
+	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);

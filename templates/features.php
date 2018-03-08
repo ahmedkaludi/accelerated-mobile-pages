@@ -5999,7 +5999,10 @@ if( ! function_exists('ampforwp_modified_frontpage_id') ) {
 	 	}
 	 	// Polylang Compatibility #1779
 	 	elseif( is_plugin_active( 'polylang/polylang.php' )){
-		 	$page_id = pll_get_post(get_option('page_on_front'));	
+	 		$frontpage_id = get_option('page_on_front');
+	 		if($frontpage_id){
+		 		$page_id = pll_get_post($frontpage_id);
+		 	}	
 	 	}
 	 return $page_id;
 	}
