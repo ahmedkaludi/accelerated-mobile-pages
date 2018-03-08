@@ -207,6 +207,14 @@ require_once  ABSPATH . WPINC . '/category.php';
                       $width = $fieldValues['img-width-3'];
                       $height = $fieldValues['img-height-3'];
                     break;
+                    case 4:
+                      $width = $fieldValues['img-width-4'];
+                      $height = $fieldValues['img-height-4'];
+                    break;
+                    case 5:
+                      $width = $fieldValues['img-width-5'];
+                      $height = $fieldValues['img-height-5'];
+                    break;
                     default:
                     break;
                    }
@@ -233,13 +241,19 @@ require_once  ABSPATH . WPINC . '/category.php';
                  <p>'.wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ).'</p>';   
               }
                $title = get_the_title();
+               $postid = get_the_ID();
+               $author = get_the_author();
+              // get_the_author_meta( string $field = '', int $user_id = false );
+               $postdate = get_the_date(  ' F j, Y', $postid );
              $contenthtml .= str_replace(array(
                                 "{{ampforwp_post_url}}",
                                 "{{image}}",
                                 "{{width}}",
                                 "{{height}}",
                                 "{{title}}",
-                                "{{excerptContent}}"
+                                "{{excerptContent}}",
+                                "{{authorname}}",
+                                "{{postdate}}"
                                 ), 
                               array(
                                 $ampforwp_post_url,
@@ -247,7 +261,9 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 $width,
                                 $height,
                                 $title,
-                                $excerptContent
+                                $excerptContent,
+                                $author,
+                                $postdate
                               ), 
                               $loopHtml);
              /* $contenthtml.='<li> 

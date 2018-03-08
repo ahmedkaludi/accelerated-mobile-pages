@@ -141,7 +141,9 @@
         </div>
     </div>
 </header>
-<?php } ?>
+<?php }
+do_action("ampforwp_advance_header_layout_options");
+ ?>
 <div class="content-wrapper">
 <?php if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">

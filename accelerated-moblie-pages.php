@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.83
+Version: 0.9.83.1
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 define('AMPFORWP_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
-define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.php');
+define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.83');
+define('AMPFORWP_VERSION','0.9.83.1');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -276,17 +276,16 @@ function ampforwp_parent_plugin_check() {
 		delete_option( 'ampforwp_parent_plugin_check');
 	}
 }
-
 // Redux panel inclusion code
-	if ( ! class_exists( 'ReduxFramework' ) ) {
-	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
-	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
-	}
-	// Register all the main options
+if ( ! class_exists( 'ReduxFramework' ) ) {
+    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+}
+if ( is_admin() ) {
+	// Register all the main options	
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
-	
-	
+}
 // Modules 
 add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {

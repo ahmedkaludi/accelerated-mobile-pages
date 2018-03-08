@@ -135,10 +135,14 @@ add_amp_theme_support('AMP-loop');
  	require AMPFORWP_PLUGIN_DIR  .'templates/frontpage-elements.php';
  	require AMPFORWP_PLUGIN_DIR . '/classes/class-ampforwp-youtube-embed.php' ;
  	require AMPFORWP_PLUGIN_DIR  .'templates/structured-data.php';
- 	require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
  	// Custom Post Types
- 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php'; 
-
+ 	require AMPFORWP_PLUGIN_DIR  .'templates/ampforwp-custom-post-type.php';
+ 	
+ 	// Load aq resizer only in AMP mode
+ 	add_action('pre_amp_render_post','ampforwp_include_aqresizer');
+ 	function ampforwp_include_aqresizer(){
+ 		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
+ 	}
  	// TODO: Update this function 
  	function ampforwp_include_customizer_files(){
  		$amp_plugin_data;
@@ -4544,13 +4548,16 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 	    // Filter to remove that image from the content
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
 
-	}
-if ( isset( $size ) && '' !== $size ) {
-		$image_id = attachment_url_to_postid( $image_url );
-		$image_array = wp_get_attachment_image_src($image_id, $size, true);
-		$image_url = $image_array[0];
-		$image_width = $image_array[1];
-		$image_height = $image_array[2]; 
+	
+		if ( isset( $size ) && '' !== $size ) {
+			$image_id = attachment_url_to_postid( $image_url );
+			if ($image_id) {
+				$image_array = wp_get_attachment_image_src($image_id, $size, true);
+				$image_url = $image_array[0];
+				$image_width = $image_array[1];
+				$image_height = $image_array[2]; 
+			}
+		}
 	}
 	switch ($featured_image) {
 			case 'image':
@@ -5664,7 +5671,7 @@ if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
 	if(isset($redux_builder_amp['google_current_font_data'])){
-		$font_data = json_decode($redux_builder_amp['google_current_font_data']);
+		$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data']));
 	}
 
     $font_weight = "";

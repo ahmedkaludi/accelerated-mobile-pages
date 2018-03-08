@@ -16,8 +16,8 @@ function amp_pagebuilder_content(){
 
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	
-	if (ampforwp_empty_content(get_post()->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
-		$arr['ID'] = get_post()->ID;
+	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
+		$arr['ID'] = get_post($postId)->ID;
 		$arr['post_content'] = '&nbsp;';
 		wp_update_post($arr);
 	}
@@ -531,7 +531,10 @@ function rowData($container,$col,$moduleTemplate){
 					case 'contents':
 						$fieldValues = array();
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
-							$fieldValues[$field['name']]= $contentArray[$field['name']];
+							$fieldValues[$field['name']] ='';
+							if(isset($contentArray[$field['name']])){
+								$fieldValues[$field['name']]= $contentArray[$field['name']];
+							}
 						}
 						
 						$args = array(

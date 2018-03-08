@@ -362,9 +362,6 @@ function call_page_builder(){
 	
 	</div>
     <?php
-    if(isset($_GET['post_id'])){
-		exit;
-	}
 }
 
 

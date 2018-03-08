@@ -12,7 +12,7 @@
 		    </div>
 		<?php } ?>
 	</div>
-	<?php if ( has_post_thumbnail() ) {?>
+	<?php if ( ampforwp_has_post_thumbnail() ) {?>
 	<div class="sf-img">
 		<?php amp_featured_image();?>
 	</div>
@@ -65,9 +65,15 @@
 								<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
 							</li>
 							<?php } ?>
-							<?php if($redux_builder_amp['enable-single-pinterest-share']){?>
+							<?php if($redux_builder_amp['enable-single-pinterest-share']){
+								$thumb_id = $image = '';
+								if (has_post_thumbnail( get_the_ID() ) ){
+	 								$thumb_id = get_post_thumbnail_id($post_id);
+									$image = wp_get_attachment_image_src( $thumb_id, 'full' );
+									$image = $image[0]; 
+	 							}?>
 							<li>
-								<a class="s_pt" target="_blank" href="http://pinterest.com/pin/create/button/?url=&media=&description=<?php the_permalink(); ?>"></a>
+								<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo $image; ?>&url=<?php the_permalink(); ?>&description=<?php the_title(); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-linkedin-share']){?>

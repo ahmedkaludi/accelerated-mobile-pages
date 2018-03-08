@@ -66,7 +66,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	 	//https://reddit.com/submit?url={url}&title={title}
 	}
 	if( isset($selected_social_icons['VKontakte']) && $selected_social_icons['VKontakte'] == null){
-	 	$selected_social_icons['VKontakte'] = 'http://vk.com/share.php?url='. $url. '';
+	 	$selected_social_icons['VKontakte'] = 'https://vk.com/share.php?url='. $url. '';
 	 	//http://vk.com/share.php?url={url}
 	}
 	if( isset($selected_social_icons['Odnoklassniki']) && $selected_social_icons['Odnoklassniki'] == null){

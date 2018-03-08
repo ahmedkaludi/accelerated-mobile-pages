@@ -155,7 +155,7 @@ if($redux_builder_amp['primary-menu']){?>
 <?php } ?>
 <?php //Home and Archive
 
-if(is_home() || is_archive() || is_search()){ ?>
+if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && is_shop()) ) { ?>
 .hmp{margin-top:34px;display:inline-block;width:100%;  }
 .fbp{width:100%;display:inline-block;clear:both;margin:15px 15px 20px 15px;}
 .fbp-img a{display:block;line-height:0;}
@@ -451,12 +451,24 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 <?php endif; ?>
 .f-w{display: inline-flex;width: 100%;}
 .f-w-f2{text-align: center;border-top: 1px solid #eee;padding:50px 0px;}
-.w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px;}
-.w-bl h4{color: #999;font-size: 12px;font-weight: 500;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
-.w-bl ul li{list-style-type: none;font-size: 14px;line-height:1.5;margin-bottom: 15px;}
+.w-bl, .f-w .amp_cb_module{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px;}
+.w-bl h4, .amp_module_title span{color: #999;font-size: 12px;font-weight: 500;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
+.w-bl ul li, .ampforwp_wc_shortcode_title{list-style-type: none;font-size: 14px;line-height:1.5;margin-bottom: 15px;}
 .w-bl ul li:last-child{margin-bottom:0;}
 .w-bl ul li a{text-decoration: none;}
 .w-bl .menu li .sub-menu{display:none;}
+.amp_cb_module ul li{
+	list-style-type:none;
+	margin-bottom:20px;
+}
+.ampforwp_wc_shortcode_title{
+	margin-top: 12px;
+    display: inline-block;
+}
+.ampforwp_wc_shortcode_excerpt{
+	font-size:15px;
+	line-height:1.4;
+}
 @media(max-width:768px){
     .footer {margin-top: 60px;}
     .w-bl{flex:1 0 22%;}
@@ -629,5 +641,50 @@ if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?>
 .post-date .post-edit-link {float: left;}
 .fsp-cnt{width:100%;float:none;display:inline-block;}
 }
+<?php } // Menu RTL Styles 
+if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?> 
+.h-nav {
+    order: -1;
+}
+.h-1 {
+    order: 0;
+}
+.c-btn {
+    float: left;
+}
+.overlay-search:before{
+	left:0;
+	right:auto;
+}
+a.lb-x{
+	left:0;
+	right:auto;
+}
+<?php if($redux_builder_amp['header-position-type'] == '1'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-right: 0%;
+}
+.m-ctr{
+    margin-right: -100%;
+    float: left;
+}
 <?php } ?>
+<?php if($redux_builder_amp['header-position-type'] == '2'){?>
+.tg:checked + .hamb-mnu > .m-ctr {
+    margin-right: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);
+}
+.m-ctr{
+    margin-right: 100%;
+    float: right;
+}
+<?php } ?>
+.m-menu li.menu-item-has-children:hover:after {
+    right: auto;
+    left:0;
+}
+.m-menu ul li.menu-item-has-children:after{
+    right: auto;
+    left:0;
+}
+<?php } //RTL End ?>
 <?php echo $redux_builder_amp['css_editor']; ?>

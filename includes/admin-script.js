@@ -166,7 +166,7 @@ jQuery(function($) {
                 for (var i in fontVariants) {
                      // var fontArray = {};
                      // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
-                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>"));
+                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');;
                 }
 
             }); 
@@ -209,7 +209,7 @@ jQuery(function($) {
                     //$('#amp_font_type-select').html('<option></option>');
 
                     for (var i in fontData.variants) {
-                        $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>"));
+                        $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>")).trigger('change');
                     }
                 }
                 
@@ -222,8 +222,9 @@ jQuery(function($) {
                     for (var i in redux_data.amp_font_type) {
                         $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
                         //s2.append($('<option>').text(e));
+                        $('#amp_font_type-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                     }
-                    $('#amp_font_type-select').select2('val',redux_data.amp_font_type)
+                    //$('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                 }
             }
         });
