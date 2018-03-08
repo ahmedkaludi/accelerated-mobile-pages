@@ -63,6 +63,6 @@ script:
     fi
 
   - phpcbf -n -p -v
-  - phpcs -n
-  - phpcs --standard=WordPress .
+  #- phpcs -n
+  #- phpcs --standard=WordPress .
   #- phpcs -p -s -v -n --standard=WordPress .
