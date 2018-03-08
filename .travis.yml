@@ -61,7 +61,8 @@ script:
       phpunit
       WP_MULTISITE=1 phpunit
     fi
- 
+
+  - phpcbf
   - phpcs -n
   - phpcs --standard=WordPress .
   #- phpcs -p -s -v -n --standard=WordPress .
