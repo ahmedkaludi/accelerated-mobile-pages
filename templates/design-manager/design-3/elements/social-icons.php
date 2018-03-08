@@ -66,7 +66,7 @@ $image = ''; ?>
 		<?php } ?>
 		<?php if ( true == $redux_builder_amp['enable-single-linkedin-share'] ) { ?>
 			<div class="ampforwp-custom-social">
-				<a href="whatsapp://send?text=<?php echo esc_url(get_the_permalink()); ?>" class="amp-social-icon-rounded amp-social-linkedin">
+				<a href="https://www.linkedin.com/shareArticle?url=<?php esc_url(the_permalink()); ?>&title=<?php the_title(); ?>" class="amp-social-icon-rounded amp-social-linkedin" target="_blank">
 				    <amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTA0NiAxMDA3IiBmaWxsPSIjZmZmZmZmIiA+PHBhdGggZD0iTTIzNyAxMDA1VjMzMEgxM3Y2NzVoMjI0ek0xMjUgMjM4Yzc4IDAgMTI3LTUyIDEyNy0xMTdDMjUxIDU1IDIwMyA0IDEyNyA0IDUwIDQgMCA1NCAwIDEyMWMwIDY1IDQ5IDExNyAxMjQgMTE3aDF6bTIzNiA3NjdoMjI0VjYyOGMwLTIwIDEtNDAgNy01NSAxNi00MCA1My04MiAxMTUtODIgODEgMCAxMTQgNjIgMTE0IDE1M3YzNjFoMjI0VjYxOGMwLTIwNy0xMTEtMzA0LTI1OC0zMDQtMTIxIDAtMTc0IDY4LTIwNCAxMTRoMXYtOThIMzYwYzMgNjMgMCA2NzUgMCA2NzV6Ij48L3BhdGg+PC9zdmc+" width="16" height="16" />
 				</a>
 		    </div>
