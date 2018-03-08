@@ -51,12 +51,7 @@ before_script:
       bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
       composer global require "phpunit/phpunit=4.8.*|5.7.*"
     fi
-  - |
-    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-      echo "Running Code Sniffer. phpcs"
-      composer global require wp-coding-standards/wpcs
-      phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
-    fi
+  
   - echo "Running Code Sniffer. phpcs"
   - composer global require wp-coding-standards/wpcs
   - phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
@@ -66,10 +61,7 @@ script:
       phpunit
       WP_MULTISITE=1 phpunit
     fi
-  - |
-    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-      phpcs
-      phpcs -p -s -v -n --standard=WordPress .
-    fi
-  - phpcs
-  - phpcs -p -s -v -n --standard=WordPress .
+ 
+  - phpcs -n
+  - phpcs --standard=WordPress .
+  #- phpcs -p -s -v -n --standard=WordPress .
