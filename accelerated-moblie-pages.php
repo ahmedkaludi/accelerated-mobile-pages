@@ -32,6 +32,12 @@ function ampforwp_generate_endpoint(){
 
 function callInWPCS(){
 	echo "<div><b>sdcsdc</b></div>";
+	$glass = 1;
+	if($glass){
+		echo "hello";
+	}else if($glass){
+		echo "condition 2";
+	}
 }
 
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
