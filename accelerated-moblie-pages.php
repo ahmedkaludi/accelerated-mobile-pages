@@ -30,6 +30,10 @@ function ampforwp_generate_endpoint(){
     return $ampforwp_slug;
 }
 
+function callInWPCS(){
+	echo "<div><b>sdcsdc</b></div>";
+}
+
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
 
 load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
