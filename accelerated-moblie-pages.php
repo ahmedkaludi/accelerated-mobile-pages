@@ -31,7 +31,9 @@ function ampforwp_generate_endpoint(){
 }
 
 function callInWPCS(){
-	echo "<div><b>sdcsdc</b></div>";
+	?><div><b>sdcsdc</b></div><br/>
+	<input type=text name=email disabled>
+	<?php
 	$glass = 1;
 	if($glass){
 		echo "hello";
