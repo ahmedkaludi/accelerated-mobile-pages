@@ -99,6 +99,9 @@ function amp_title(){
 			$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 		}
 	}
+	elseif ( ampforwp_polylang_front_page() ) {
+		$ID = pll_get_post(get_option('page_on_front'));
+	}
 	else
 		$ID = $post->ID;
 	if( $ID!=null ){
@@ -249,6 +252,9 @@ function amp_breadcrumb(){
 //Get Core of AMP HTML
 function amp_header_core(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
 	global $redux_builder_amp;
 	$html_tag_attributes = AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) );
@@ -314,6 +320,9 @@ function amp_header_core(){
 
 function amp_header(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'amp_after_header', $thisTemplate );
@@ -323,6 +332,9 @@ function amp_header(){
 
 function amp_footer(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);		
 	do_action( 'amp_before_footer', $thisTemplate );
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
@@ -335,6 +347,9 @@ function amp_footer(){
 
 function amp_footer_core(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
 	do_action( 'amp_post_template_footer', $thisTemplate );
 	do_action('ampforwp_global_after_footer');
@@ -373,6 +388,9 @@ global $redux_builder_amp, $post;
 $post_id = get_queried_object_id();
 if ( ampforwp_is_front_page() ) {
 	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+}
+elseif ( ampforwp_polylang_front_page() ) {
+	$post_id = pll_get_post(get_option('page_on_front'));
 }
 $thisTemplate = new AMP_Post_Template($post_id); ?>
     <?php do_action('ampforwp_before_post_content',$thisTemplate); 

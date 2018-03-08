@@ -374,9 +374,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// Add Homepage AMP file code
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
-	   	// Custom Homepage and Archive file
-
         global $redux_builder_amp;
+	   	// Custom Homepage and Archive file
 		$slug = array();
 		$current_url_in_pieces = array();
 		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
@@ -387,7 +386,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 
-			       if ( ampforwp_is_front_page()  ) {
+			       if ( ampforwp_is_front_page() ) {
 			           
 			            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
 		            }
@@ -418,6 +417,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 	}
 		}*/
+		// Polylang compatibility
+		if ( 'single' === $type && ampforwp_polylang_front_page() ) {
+			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+		}
 	    return $file;
 	}
 
@@ -5389,6 +5392,21 @@ function ampforwp_is_blog(){
 
   return $get_blog_details ;
 }
+// Polylang frontpage
+function ampforwp_polylang_front_page() {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if( is_plugin_active( 'polylang/polylang.php' )){
+		global $polylang;
+		$page_id = $polylang->curlang->page_on_front;
+		$frontpage_id = get_option('page_on_front');
+		// is_front_page is not working here so had to do this way
+		// Check current page id with translated page id
+		if ( $page_id == pll_get_post($frontpage_id) && ! is_page() && ! is_single() && ! is_archive() && ! is_search() && ! is_home() ){
+			return true;
+		}
+	}
+	return false;
+}
 // 97. Change the format of the post date on Loops #1384
 add_filter('ampforwp_modify_post_date', 'ampforwp_full_post_date_loops');
 if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
@@ -5968,4 +5986,21 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 	function ampforwp_glue_css_comp() { ?>
 		a {text-decoration:none;}
 	<?php }
+}
+
+// Filter for Frontpage id
+add_filter('ampforwp_frontpage_id', 'ampforwp_modified_frontpage_id');
+if( ! function_exists('ampforwp_modified_frontpage_id') ) {
+	function ampforwp_modified_frontpage_id($page_id){
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		// WPML Compatibility #1111
+	 	if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+		 	$page_id = get_option('page_on_front');	
+	 	}
+	 	// Polylang Compatibility #1779
+	 	elseif( is_plugin_active( 'polylang/polylang.php' )){
+		 	$page_id = pll_get_post(get_option('page_on_front'));	
+	 	}
+	 return $page_id;
+	}
 }

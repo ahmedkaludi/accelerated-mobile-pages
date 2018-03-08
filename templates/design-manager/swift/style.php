@@ -245,7 +245,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 <?php }?>
 <?php //page and frontpage
 
-if( is_page() || ampforwp_is_front_page() ){?>
+if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
     <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
         .breadcrumbs {padding-bottom: 10px;border-bottom: 1px solid #eee;display: inline-block;width: 100%;font-size: 10px;text-transform: uppercase;}

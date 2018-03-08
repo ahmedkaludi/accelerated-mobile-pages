@@ -22,6 +22,10 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
               $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
             }
       }
+      // Custom AMP Editor Support for Polylang #1779
+      if ( ampforwp_polylang_front_page() ) {
+        $amp_current_post_id = pll_get_post(get_option('page_on_front'));
+      }
     	$amp_custom_post_content_input = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor', true);
       $amp_custom_post_content_check  = get_post_meta($amp_current_post_id, 'ampforwp_custom_content_editor_checkbox', true);
 
