@@ -109,10 +109,7 @@ function js_templates() {
 function checkAMPforPageBuilderStatus($postId){
 	global $post, $redux_builder_amp;
 	$postId = $post->ID;
-	if( is_home() && 
-		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
-		ampforwp_get_blog_details() == false
-	){
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 

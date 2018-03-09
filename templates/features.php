@@ -2092,8 +2092,10 @@ function ampforwp_replace_title_tags() {
 				 }
 
 				else {
-					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-					$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+					if(isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+						$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+						$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+					}
 				}
 			}
 			// Blog page 
@@ -2944,7 +2946,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
 			$current_url_in_pieces = explode( '/', $current_url );
-			if( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) {
+			if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
 				 // ID of slected front page
 					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 					$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
@@ -3385,8 +3387,9 @@ function ampforwp_frontpage_comments() {
 	$enable_comments = false;
 	$post_id = "";
 
-
-	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	if (isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
 
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
@@ -3405,8 +3408,10 @@ function ampforwp_frontpage_comments() {
 		<div class="ampforwp-comment-wrapper">
 			<?php
 			$comment_button_url = "";
+			$postID = '';
 			// Gather comments for a Front from post id
-			$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			if ( isset($redux_builder_amp['amp-frontpage-select-option-pages']) )
+				$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			$comments = get_comments(array(
 					'post_id' => $postID,
 					'status' => 'approve' //Change this to the type of comments to be displayed
@@ -3514,7 +3519,7 @@ add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
 
-	if ( is_home() ) {
+	if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
@@ -3599,7 +3604,7 @@ function ampforwp_builder_checker() {
 	if ( $post ) {
 		$post_id = $post->ID;
 	}
-	if ( ampforwp_is_home() || ampforwp_is_front_page() ) {
+	if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	if ( $post_id ) {
@@ -4118,7 +4123,7 @@ function ampforwp_generate_meta_desc(){
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
 
-		if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) {
+		if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
 			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
@@ -4359,12 +4364,8 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 			$classes[] = 'single-post';
 		}
 
-		if ( $redux_builder_amp['amp-frontpage-select-option']) {
-		   	if ( is_home() &&  is_front_page() ) {
-		    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-		   	} elseif ( is_home() ){
-		    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];   
-		   }
+		if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 		}
 
 		if ( ampforwp_is_front_page() ) {
@@ -5358,7 +5359,9 @@ function ampforwp_is_front_page(){
     $get_custom_frontpage_settings    =  $redux_builder_amp['amp-frontpage-select-option'];
 
     // Frontpage id should be assigned
-    $get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
+    if ( isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+    	$get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
+    }
 
     // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
     if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings)

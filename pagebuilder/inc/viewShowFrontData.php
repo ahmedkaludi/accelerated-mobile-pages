@@ -7,10 +7,7 @@ add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
 	global $post,  $redux_builder_amp;
 	$postId = $post->ID;
-	if( is_home() && 
-		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
-		ampforwp_get_blog_details() == false
-	){
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	if ( ampforwp_polylang_front_page() ) {
@@ -48,7 +45,7 @@ function amp_pagebuilder_script_loader($scriptData){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
 	$postId = $post->ID;
-	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
@@ -108,7 +105,7 @@ function amp_pagebuilder_content_styles(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
 	$postId = $post->ID;
-	if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support']==1 && ampforwp_get_blog_details() == false){
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	if ( ampforwp_polylang_front_page() ) {
@@ -367,10 +364,7 @@ function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
 	global $moduleTemplate, $layoutTemplate, $containerCommonSettings;
 	$postId = $post->ID;
-	if( is_home() && 
-		$redux_builder_amp['ampforwp-homepage-on-off-support']==1 &&
-		ampforwp_get_blog_details() == false
-	){
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
 		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
 	if ( ampforwp_polylang_front_page() ) {

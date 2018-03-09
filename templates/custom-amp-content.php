@@ -11,7 +11,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
       global $post;
       $amp_current_post_id = get_the_ID();
-      if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
+      if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
           //Custom AMP Editor Support for WPML  #1138
            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
            if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) ) {
