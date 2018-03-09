@@ -194,7 +194,6 @@
 		    </div>
 		</div>
 	</div>
-</div>
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
@@ -227,6 +226,6 @@ do_action("ampforwp_single_design_type_handle");
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
 </div>
+</div>
 <?php } ?>
 	<?php amp_footer()?>
-</div>
