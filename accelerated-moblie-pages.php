@@ -535,3 +535,15 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 		return $link;
 	}
 }
+
+// Hide Post Builder if Swift is enabled
+add_filter('amp_customizer_is_enabled', 'ampforwp_customizer_is_enabled');
+if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
+	function ampforwp_customizer_is_enabled($value){
+		global $redux_builder_amp;
+		if ( 4 == $redux_builder_amp['amp-design-selector'] ) {
+			$value = false;
+		}
+		return $value;
+	}
+}

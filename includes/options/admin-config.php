@@ -4533,12 +4533,17 @@ Redux::setSection( $opt_name, array(
         )
 
     ) );
-
+   $redux_option = get_option('redux_builder_amp',true);
+   if ( 4 == $redux_option['amp-design-selector'] ) {
+    $post_builder = '';
+   }
+   else{
+    $post_builder = '<br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>';
+    }
     // Misc SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Misc', 'accelerated-mobile-pages' ),
-       'desc'       => '
-       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
+       'desc'       => $post_builder,
        'id'         => 'amp-design',
        'subsection' => true,
         'fields'     => array(
