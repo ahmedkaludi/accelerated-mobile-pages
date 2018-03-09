@@ -93,19 +93,35 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-wrapper">
                                                 <h4 class="amppb-layout-title"><?php echo ucfirst($layoutName); ?></h4>
                                                 <div class="amppb-layout-screenshot">
+                                                    <?php
+                                                     if(strtolower($layoutName)=='upcoming'){
+                                                            ?>
+                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>">
+                                                    <?php
+                                                        }else{
+                                                    ?>
                                                     <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" @click="viewSpacialLayouts($event);"
                                                     data-info='<?php echo json_encode($lay); ?>'
                                                     data-heading="<?php echo ucfirst($layoutName); ?>">
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
+                                                        <?php
+                                                        if(strtolower($layoutName)=='upcoming'){
+                                                            ?>
+                                                        <a target="_blank" class="button button-lg" href="<?php echo $lay[$firstLayout]["preview_demo"]; ?>">View Layout</a>
+                                                            <?php
+                                                        }else{
+                                                        ?>
                                                         <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'
                                                         data-heading="<?php echo ucfirst($layoutName); ?>">View Layout</button>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php } 
+                                    <?php }
                                     } ?>
                                 </div>
                                 <div v-if="innerLayouts!=''">

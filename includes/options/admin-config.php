@@ -347,6 +347,22 @@ $single_extension_listing = '
 </div>
 ';
 
+$upcomingLayoutsDesign = '';
+$layouts = ampforwp_upcomming_layouts_demo();
+foreach($layouts as $k=>$val){
+	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
+    <div class="amppb-layout-layout">
+        <div class="amppb-layout-wrapper">
+            <h4 class="amppb-layout-title">'.$val['name'].'</h4>
+            <div class="amppb-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
+            <div class="amppb-layout-button">
+                <a target="_blank" href="'.$val['link'].'" class="button">Check Now</a> 
+            </div>
+        </div>
+    </div>
+</div>';
+}
+
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 
@@ -2741,7 +2757,7 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
 
-             $fields =  array(
+            array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
@@ -2752,13 +2768,27 @@ Redux::setSection( $opt_name, array(
                 'options'  => $themeDesign,
                 'default'  => '4'
                 ),
-
-            $fields = array(
+            array(
+                'id'       => 'ampforwp_swift_layout_upcomming_design',
+                'type'     => 'raw',
+                'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
+                'full_width'=>true,
+                'markdown'=> true,
+                'content'      => '<div class="amp-layout-class">
+                                <div class="amp_layouts_container">
+                                    '.$upcomingLayoutsDesign.'
+                                </div>
+                            </div>',
+                
+                
+            ),
+            array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
                 'desc' => $amptfad
-            )
+            ),
+
             
             )
         ) );

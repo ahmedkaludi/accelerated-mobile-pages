@@ -276,6 +276,16 @@ function ampforwp_parent_plugin_check() {
 		delete_option( 'ampforwp_parent_plugin_check');
 	}
 }
+if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
+	function ampforwp_upcomming_layouts_demo(){
+		return array(array(
+			"name"=>'News Layouts',
+			"image"=>'http://localhost/magzine/wordpress/wp-content/plugins/amp-layouts/images/screenshot.png',
+			"link"=>'https://ampforwp.com/demo/layouts-news/amp',
+			)
+			);
+	}
+}
 // Redux panel inclusion code
 if ( ! class_exists( 'ReduxFramework' ) ) {
     require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';

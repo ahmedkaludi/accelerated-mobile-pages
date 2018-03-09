@@ -331,3 +331,14 @@ right:0;  z-index: 99999;
   font-size: 2em;
   color: white;
 }
+.amp_layout_upcomming .amppb-layout-button .button{
+    background: #455A64;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 5px 3px;
+    height: 37px;
+    border-radius: 0;
+    color: #fff;
+    border: 0;
+}
