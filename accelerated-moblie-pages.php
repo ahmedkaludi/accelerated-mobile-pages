@@ -101,6 +101,11 @@ function ampforwp_add_custom_rewrite_rules() {
 	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
+	     add_rewrite_rule(
+	        ampforwp_name_blog_page(). '(.+?)/amp/page/([0-9]{1,})/?$',
+	        'index.php?amp&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
+	        'top'
+	    );
 
     // For Author pages
     add_rewrite_rule(
