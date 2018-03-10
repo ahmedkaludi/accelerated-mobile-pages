@@ -436,9 +436,6 @@ if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['footer-type'] ) { ?>
 .footer{font-size: 12px;margin-top: 80px;}
 .f-menu ul li .sub-menu{display:none;}
-<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-.footer{margin-top: 0px;}
-<?php } ?>
 .f-menu ul li{display:inline-block;margin-right:20px;}
 .f-menu ul li a {padding:0;font-size:14px;color:#7a7a7a;}
 .f-menu ul > li:hover a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
@@ -494,6 +491,12 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
     <?php endif; ?>
     .w-bl h4 {margin-bottom: 15px;}
 }
+<?php if( checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_page()) ) { ?>
+.footer{margin-top: 0px;}
+<?php } ?>
+<?php if( ampforwp_is_home() || ampforwp_is_blog() ) { ?>
+.footer{margin-top: 40px;}
+<?php } ?>
 <?php } ?>
 <?php
 
