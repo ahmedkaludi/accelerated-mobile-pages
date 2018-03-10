@@ -751,6 +751,5 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 		}
 		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
 	}
-	$string = preg_replace("/<amp-img  class=\"(.*?)\"  src=\"\" width=\"(.*?)\" height=\"(.*?)\"(.*?)><\/amp-img>/i", "", $string);
 	return $string;
 }
