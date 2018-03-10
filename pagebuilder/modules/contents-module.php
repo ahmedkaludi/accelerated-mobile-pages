@@ -219,7 +219,7 @@ require_once  ABSPATH . WPINC . '/category.php';
                     break;
                    }
                    try{
-                    $thumb_url = aq_resize( $image, $width, $height, true, false ); //resize & crop the image
+                    $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
                     if($thumb_url!=false){
                       $image   =  $thumb_url[0];
                       $width   =  $thumb_url[1];
