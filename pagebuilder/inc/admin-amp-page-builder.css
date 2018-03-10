@@ -733,7 +733,7 @@ position: fixed;
 }
 .modal-content{
     height: 100vh;
-    max-height: 660px;
+/*  max-height: 660px;*/    
     overflow-y: hidden;
     padding: 0px 20px  0px 0px;
     overflow-x: hidden;
