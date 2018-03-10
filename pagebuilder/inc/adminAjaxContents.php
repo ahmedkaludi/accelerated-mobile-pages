@@ -120,12 +120,12 @@ function ampforwp_icons_list_format(){
 }
 
 add_action( 'admin_enqueue_scripts', 'ampforwp_dynamic_css_enqueue' );
-add_action( 'wp_ajax_dynamic_css', 'ampforwp_dynaminc_css' );
-add_action( 'wp_ajax_nopriv_dynamic_css', 'ampforwp_dynaminc_css' );
+add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
+add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 
 function ampforwp_dynamic_css_enqueue(){
 
-		wp_enqueue_style('dynamic-css', admin_url('admin-ajax.php?action=dynamic_css'), array(), null, 'all' );
+		wp_enqueue_style('ampforwp-dynamic-css', admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), array(), null, 'all' );
 	
 }
 
