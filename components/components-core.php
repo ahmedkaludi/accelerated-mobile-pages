@@ -310,6 +310,7 @@ function amp_header_core(){
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
+				<?php echo $redux_builder_amp['css_editor']; ?>
 			</style>
 
 		</head>

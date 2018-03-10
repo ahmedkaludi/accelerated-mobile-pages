@@ -687,4 +687,3 @@ a.lb-x{
     left:0;
 }
 <?php } //RTL End ?>
-<?php echo $redux_builder_amp['css_editor']; ?>
