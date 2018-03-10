@@ -154,6 +154,7 @@ class AMP_Image_Dimension_Extractor {
 	 */
 	private static function fetch_images( $urls_to_fetch, &$images, $mode ) {
 		// Use FasterImage when for compatible PHP versions
+		$mode_type = '';
 		$mode_type = 'synchronous';
 		$mode_type = apply_filters('amp_fetch_image_mode_type',$mode_type);
 		if ( $mode_type === $mode ||
