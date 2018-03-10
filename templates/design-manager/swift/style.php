@@ -448,16 +448,12 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 <?php endif; ?>
 .f-w{display: inline-flex;width: 100%;}
 .f-w-f2{text-align: center;border-top: 1px solid #eee;padding:50px 0px;}
-.w-bl, .f-w .amp_cb_module{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px;}
-.w-bl h4, .amp_module_title span{color: #999;font-size: 12px;font-weight: 500;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
+.w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px;}
+.w-bl h4{color: #999;font-size: 12px;font-weight: 500;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
 .w-bl ul li, .ampforwp_wc_shortcode_title{list-style-type: none;font-size: 14px;line-height:1.5;margin-bottom: 15px;}
 .w-bl ul li:last-child{margin-bottom:0;}
 .w-bl ul li a{text-decoration: none;}
 .w-bl .menu li .sub-menu{display:none;}
-.amp_cb_module ul li{
-	list-style-type:none;
-	margin-bottom:20px;
-}
 .ampforwp_wc_shortcode_title{
 	margin-top: 12px;
     display: inline-block;
