@@ -7,8 +7,12 @@
 		<div class="cntr">
 			<div class="f-w">
 				<?php 
+				ob_start();
+				dynamic_sidebar('swift-footer-widget-area');
+				$swift_footer_widget = ob_get_contents();
+				ob_end_clean();
 				$sanitizer_obj = new AMPFORWP_Content( 
-									dynamic_sidebar( 'swift-footer-widget-area' ),
+									$swift_footer_widget,
 									array(), 
 									apply_filters( 'ampforwp_content_sanitizers', 
 										array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
