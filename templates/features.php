@@ -3782,7 +3782,7 @@ function ampforwp_post_pagination( $args = '' ) {
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 
 	$defaults = array(
-		'before'           => '<div class="ampforwp_post_pagination" ><p>' . __( 'Page:' ),
+		'before'           => '<div class="ampforwp_post_pagination" ><p>' . __( '<span>Page:</span>' ),
 		'after'            => '</p></div>',
 		'link_before'      => '',
 		'link_after'       => '',
@@ -3811,7 +3811,7 @@ function ampforwp_post_pagination( $args = '' ) {
 		if ( 'number' == $r['next_or_number'] ) {
 			$output .= $r['before'];
 			for ( $i = 1; $i <= $numpages; $i++ ) {
-				$link = $r['link_before'] . str_replace( '%', $i, $r['pagelink'] ) . $r['link_after'];
+				$link = $r['link_before'] . str_replace( '%', '<span>'.$i.'</span>', $r['pagelink'] ) . $r['link_after'];
 				if ( $i != $page || ! $more && 1 == $page ) {
 					$link = ampforwp_post_paginated_link_generator( $i ) . $link . '</a>';
 				}

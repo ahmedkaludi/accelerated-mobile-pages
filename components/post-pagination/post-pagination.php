@@ -5,7 +5,7 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 	$next_class = $previous_class = '';
 	$defaults = array(
-		'before'           => '<p>' . __( 'Page:' ),
+		'before'           => '<p>' . __( '<span>Page:</span>' ),
 		'after'            => '</p>',
 		'link_before'      => '',
 		'link_after'       => '',
@@ -35,7 +35,7 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 		if ( 'number' == $r['next_or_number'] ) {
 			$output .= $r['before'];
 			for ( $i = 1; $i <= $numpages; $i++ ) {
-				$link = $r['link_before'] . str_replace( '%', $i, $r['pagelink'] ) . $r['link_after'];
+				$link = $r['link_before'] . str_replace( '%', '<span>'.$i.'</span>', $r['pagelink'] ) . $r['link_after'];
 				if ( $i != $page || ! $more && 1 == $page ) {
 					$link = ampforwp_framework_get_post_paginated_link( $i ) . $link . '</a>';
 				}
