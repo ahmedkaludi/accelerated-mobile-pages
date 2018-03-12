@@ -91,12 +91,17 @@ global $savedlayoutTemplate;
                                         ?>
                                         <div class="amppb-layout-layout">
                                             <div class="amppb-layout-wrapper">
-                                                <h4 class="amppb-layout-title"><?php echo ucfirst($layoutName); ?></h4>
+                                                <h4 class="amppb-layout-title"><?php
+                                                        if(strtolower($layoutName)=='upcoming'){
+                                                            echo "<a class='layouts_pro_lbl' href='https://ampforwp.com/amp-layouts' target='_blank'>PRO</a>".$lay[$firstLayout]['name'];
+                                                        }else{
+                                                            echo ucfirst($layoutName); 
+                                                        } ?></h4>
                                                 <div class="amppb-layout-screenshot">
                                                     <?php
                                                      if(strtolower($layoutName)=='upcoming'){
                                                             ?>
-                                                    <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>">
+                                                    <a href="<?php echo $lay[$firstLayout]["preview_demo"]; ?>" target="_blank"><img src="<?php echo $lay[$firstLayout]['preview_img']; ?>"></a>
                                                     <?php
                                                         }else{
                                                     ?>

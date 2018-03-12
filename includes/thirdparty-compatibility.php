@@ -302,7 +302,7 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 			foreach($layouts_demo as $k=>$val){
 				$layoutTemplate['upcoming'] =  array(
 									'Upcoming'=>array(
-											'name'=> $val['name'].'Up-coming',
+											'name'=> $val['name'],
 											'preview_demo'=>$val['link'],
 											'preview_img'=>$val['image'],
 											'layout_json'=>'{"rows":[],"totalrows":"23","totalmodules":"94",}',

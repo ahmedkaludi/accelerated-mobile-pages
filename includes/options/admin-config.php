@@ -351,12 +351,13 @@ $upcomingLayoutsDesign = '';
 $layouts = ampforwp_upcomming_layouts_demo();
 foreach($layouts as $k=>$val){
 	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
-    <div class="amppb-layout-layout">
-        <div class="amppb-layout-wrapper">
-            <h4 class="amppb-layout-title">'.$val['name'].'</h4>
-            <div class="amppb-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
-            <div class="amppb-layout-button">
-                <a target="_blank" href="'.$val['link'].'" class="button">Check Now</a> 
+    <div class="amppb_ad-layout-layout">
+        <div class="amppb_ad-layout-wrapper">
+        <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
+            <h4 class="amppb_ad-layout-title">'.$val['name'].'</h4>
+            <div class="amppb_ad-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
+            <div class="amppb_ad-layout-button">
+                <a target="_blank" href="'.$val['link'].'" class="button">View Theme</a> 
             </div>
         </div>
     </div>
@@ -2769,10 +2770,11 @@ Redux::setSection( $opt_name, array(
                 'default'  => '4'
                 ),
             array(
-                'id'       => 'ampforwp_swift_layout_upcomming_design',
+                'id'       => 'ampforwp_layouts_core',
                 'type'     => 'raw',
+                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
                 'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
-                'full_width'=>true,
+                'full_width'=>true, 
                 'markdown'=> true,
                 'content'      => '<div class="amp-layout-class">
                                 <div class="amp_layouts_container">
