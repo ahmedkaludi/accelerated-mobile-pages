@@ -4320,10 +4320,18 @@ function ampforwp_dev_mode(){
 	global $redux_builder_amp;
 	if(isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode']){
 		add_action( 'wp', 'ampforwp_dev_mode_remove_amphtml' );		
+		add_action( 'amp_post_template_head', 'ampforwp_dev_mode_add_noindex' );		
 	}
 }
+// Remove amphtml from non-AMP
 function ampforwp_dev_mode_remove_amphtml(){
 	remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+}
+// Add noindex,nofollow in the AMP
+if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
+	function ampforwp_dev_mode_add_noindex() {
+		echo '<meta name="robots" content="noindex,nofollow"/>';
+	}
 }
 // Notice for Dev Mode
 add_action('admin_notices', 'ampforwp_dev_mode_notice');
