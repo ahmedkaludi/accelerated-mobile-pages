@@ -1797,6 +1797,8 @@ function ampforwp_remove_schema_data() {
 	if ( class_exists('TpsContent') ) {
 		remove_action('the_post', 'TpsContent::the_post', 999999);
 	}
+	// Jarida Theme Compatibility #1842
+	remove_filter( 'option_posts_per_page', 'tie_option_posts_per_page' );
 }
 
 // 22. Removing author links from comments Issue #180
