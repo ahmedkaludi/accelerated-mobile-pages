@@ -3940,6 +3940,12 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
+            array(
+                    'id'       => 'ampforwp-underline-content-links',
+                    'type'     => 'switch',
+                    'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',

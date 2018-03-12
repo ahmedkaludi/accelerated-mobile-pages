@@ -6001,9 +6001,13 @@ function ampforwp_comment_count( $count ) {
 // Glue underline css compatibility #1743
 add_action('amp_post_template_css', 'ampforwp_glue_css_comp', PHP_INT_MAX );
 if ( ! function_exists('ampforwp_glue_css_comp') ) {
-	function ampforwp_glue_css_comp() { ?>
+	function ampforwp_glue_css_comp() {
+		global $redux_builder_amp; ?>
 		a {text-decoration:none;}
-	<?php }
+		<?php if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
+			.cntn-wrp a, .the_content a {text-decoration:underline;}
+		<?php }
+	}
 }
 
 // Filter for Frontpage id
