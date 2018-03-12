@@ -28,13 +28,13 @@ $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-
 
 $extension_listing_array = array(
                         // array(
-                        //     'name'=>'Advanced AMP Ads 2.0 Beta',
+                        //     'name'=>'ADS for WP',
                         //     'desc'=>'A Revolutionary way of adding ADS in your WordPress',
                         //     'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                         //     'price'=>'$29',
-                        //     'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
+                        //     'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
                         //     'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
-                        //     'item_name'=>'Advanced AMP Ads 2.0 Beta',
+                        //     'item_name'=>'ADS for WP',
                         //     'store_url'=>'https://accounts.ampforwp.com',
                         // ),
                         array(
