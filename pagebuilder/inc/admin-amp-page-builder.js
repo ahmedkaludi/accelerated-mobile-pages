@@ -20,6 +20,8 @@ Vue.component('amp-pagebuilder-modal', {
   		importLayoutfromFile: '',
   		innerLayouts: '',
   		innerLayoutsHeading: '',
+  		ampb_script_textarea: (app.mainContent.settingdata['scripts_data']? app.mainContent.settingdata['scripts_data']: ''),
+  		ampb_style_textarea: (app.mainContent.settingdata['style_data']? app.mainContent.settingdata['style_data']:'')
   	}
   },
   methods:{
@@ -30,7 +32,9 @@ Vue.component('amp-pagebuilder-modal', {
 		this.modalCrrentTab=key;
 	},
 	savePagebuilderSettings:function(currentLayoutData){
-		app.mainContent = currentLayoutData;
+		//app.mainContent = currentLayoutData;
+		app.mainContent.settingdata['scripts_data'] = this.ampb_script_textarea;
+		app.mainContent.settingdata['style_data'] = this.ampb_style_textarea;
 		this.hidePageBuilderPopUp();
 	},
 	savePagebuildercustomLayout: function(event){

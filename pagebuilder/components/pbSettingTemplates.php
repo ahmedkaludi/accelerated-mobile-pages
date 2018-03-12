@@ -4,6 +4,7 @@ $arraySetting = array(
                                 'layout'=>'Layout Directory',
                                 'save_layout'=>'Save layout',
                                 'export'=>'Import / Export',
+                                'advance'=>'Advance',
                             ),
                );
 global $layoutTemplate;
@@ -37,9 +38,18 @@ global $savedlayoutTemplate;
                         <h3>Layout Directory</h3>
                     </div>
                         <div class="modal-body">
-                            <div v-if="modalCrrentTab=='customize'">
-                              
-                            </div><!-- customize closed -->
+                           <div v-if="modalCrrentTab=='advance'" class="modal-settings">
+                                <div class="amp-form-control" id="ampb_script_handler" data-type='textarea' >
+                                    <div class="form-label">Enter HTML in Head</div>
+                                    <div class="form-field"><textarea class="full textarea" id="ampb_script_textarea" name="ampb_script_handler" v-model="ampb_script_textarea"></textarea></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="amp-form-control" id="ampb_style_handler" data-type='textarea' >
+                                    <div class="form-label">Enter Style in Head</div>
+                                    <div class="form-field"><textarea class="full textarea" id="ampb_style_textarea" name="ampb_style_handler" v-model="ampb_style_textarea"></textarea></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div><!-- Advance closed -->
 
                             <div v-else-if="modalCrrentTab=='save_layout'">
                                 <div class="amppb-layout-library-wrapper" style="margin: 40px 15px 10px 20px;">
@@ -183,7 +193,7 @@ global $savedlayoutTemplate;
                             <span class="button button-primary button-large  del-btn-modal" @click="loadLayOutFolder()" v-if="innerLayouts!=''">
                                 Back
                             </span>
-                            <button type="button"  class="button modal-default-button" v-if="modalCrrentTab=='customize'" @click="savePagebuilderSettings(currentLayoutData)">
+                            <button type="button"  class="button modal-default-button" v-if="modalCrrentTab=='advance'" @click="savePagebuilderSettings(currentLayoutData)">
                                 Save
                             </button>
                              <button type="button"  class="button modal-default-button preview button"  @click="hidePageBuilderPopUp()">

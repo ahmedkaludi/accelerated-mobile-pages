@@ -39,7 +39,25 @@ function  ampforwp_insert_pb_content( $content ){
 	return $content;
 }
 
-
+add_action('amp_post_template_head','ampforwp_pagebuilder_header_html_output',11);
+function ampforwp_pagebuilder_header_html_output(){
+	//To load css of modules which are in use
+	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
+	$postId = $post->ID;
+	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
+		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	$previousData = get_post_meta($postId,'amp-page-builder');
+	$previousData = isset($previousData[0])? $previousData[0]: null;
+	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
+		$previousData = (str_replace("'", "", $previousData));
+		$previousData = json_decode($previousData,true);
+		if(isset($previousData['settingdata']['scripts_data']) && $previousData['settingdata']['scripts_data']!=""){
+			echo $previousData['settingdata']['scripts_data'];
+		}
+	}
+}
 add_action('amp_post_template_data','amp_pagebuilder_script_loader',100);
 function amp_pagebuilder_script_loader($scriptData){
 	//To load css of modules which are in use
@@ -351,6 +369,10 @@ function amp_pagebuilder_content_styles(){
 
 			}//foreach closed complete data
 		}//if closed  count($previousData['rows'])>0
+
+		if(isset($previousData['settingdata']['style_data']) && $previousData['settingdata']['style_data']!=""){
+			echo amppb_validateCss($previousData['settingdata']['style_data']);
+		}
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 function amppb_validateCss($css){
