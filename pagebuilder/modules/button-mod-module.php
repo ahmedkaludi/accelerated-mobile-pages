@@ -41,12 +41,12 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'page_link_open',		
-	 							'label' =>"Show target option on",
+	 							'label' =>"Open link in",
 								'tab'     =>'customizer',
 	 							'default' =>'new_page',
 	 							'options_details'=>array(
-	 												'new_page'  	=>'Show on New page',
-	 												'same_page'    =>'Show on same page'
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
 	 											),
 	 							'content_type'=>'html',
 	 						),

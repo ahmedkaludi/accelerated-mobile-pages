@@ -856,6 +856,9 @@ position: fixed;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px 10px 15px 15px;
 }
+.meta-box-sortables .amp-form-control select {
+    max-width: 95%;
+}
 .amp-form-control:hover {
     background: #f3f3f3;
 }
