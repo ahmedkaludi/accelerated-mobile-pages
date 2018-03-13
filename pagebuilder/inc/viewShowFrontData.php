@@ -163,7 +163,7 @@ function amp_pagebuilder_content_styles(){
 				
 				if(isset($containerCommonSettings['front_css'])){
 					$rowCss = $containerCommonSettings['front_css'];
-					if( true == $redux_builder_amp['amp-rtl-select-option'] ) {
+					if( true == $redux_builder_amp['amp-rtl-select-option'] && isset($containerCommonSettings['front_rtl_css'])) {
 						$rowCss .= $containerCommonSettings['front_rtl_css'];
 					}
 					$rowCss = str_replace('{{row-class}}', '.ap_r_'.$rowsData['id'], $rowCss);
@@ -236,6 +236,9 @@ function amp_pagebuilder_content_styles(){
 						
 						if(isset($moduleTemplate[$contentArray['type']]['front_css'])){
 							$completeCss = $moduleTemplate[$contentArray['type']]['front_css'];
+							if( true == $redux_builder_amp['amp-rtl-select-option'] && isset($moduleTemplate[$contentArray['type']]['front_rtl_css'])) {
+								$completeCss .= $moduleTemplate[$contentArray['type']]['front_rtl_css'];
+							}
 							$completeCss = str_replace("{{module-class}}", '.ap_m_'.$contentArray['cell_id'], $completeCss );
 						}
 						if(isset($moduleTemplate[$contentArray['type']]['front_common_css'])){
