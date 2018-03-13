@@ -297,12 +297,15 @@ function amp_header_core(){
 	?><!doctype html>
 	<html <?php echo ampforwp_amp_nonamp_convert('amp '); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"> 
+
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 
 		    	if(ampforwp_amp_nonamp_convert("", "check")){
+		    		echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">';
 		    		wp_head();
+
 		    	}else{
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
