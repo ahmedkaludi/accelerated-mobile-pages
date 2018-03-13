@@ -163,6 +163,9 @@ function amp_pagebuilder_content_styles(){
 				
 				if(isset($containerCommonSettings['front_css'])){
 					$rowCss = $containerCommonSettings['front_css'];
+					if( true == $redux_builder_amp['amp-rtl-select-option'] ) {
+						$rowCss .= $containerCommonSettings['front_rtl_css'];
+					}
 					$rowCss = str_replace('{{row-class}}', '.ap_r_'.$rowsData['id'], $rowCss);
 					foreach($containerCommonSettings['fields'] as $rowfield){
 							$replaceRow = '';
