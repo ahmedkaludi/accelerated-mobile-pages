@@ -6051,7 +6051,7 @@ if( ! function_exists('ampforwp_modified_frontpage_id') ) {
 // AMP to WP Theme Ads
 add_filter('ampforwp_modify_ads', 'ampforwp_nonamp_ads',10, 5);
 if ( ! function_exists('ampforwp_nonamp_ads') ) {
-	function ampforwp_nonamp_ads($code, $width, $height, $client_id, $data_slot) {
+	function ampforwp_nonamp_ads($output, $width, $height, $client_id, $data_slot) {
 		if ( ampforwp_is_non_amp('non_amp_check_convert') ) {
 
 			$output = '	<div class="add-wrapper" style="text-align:center;">
