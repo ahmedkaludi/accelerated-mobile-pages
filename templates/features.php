@@ -1193,7 +1193,7 @@ function ampforwp_new_dir( $dir ) {
 
 
 	// 11.1 Strip unwanted codes and tags from wp_footer for better compatibility with Plugins
-		if ( ! is_customize_preview() ) {
+		if ( ! is_customize_preview() && ! ampforwp_is_non_amp("non_amp_check_convert") ) {
 			add_action( 'pre_amp_render_post','ampforwp_strip_invalid_content_footer');
 		}
 		function ampforwp_strip_invalid_content_footer() {
@@ -4643,7 +4643,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-field-advance'];
 	if($ampforwp_adv_ga_fields && $redux_builder_amp['ampforwp-ga-field-advance-switch'])	{
 		return $ampforwp_adv_ga_fields;
-	}
+	}	
 	return $ga_fields;	
 }
 
@@ -6065,5 +6065,25 @@ if ( ! function_exists('ampforwp_nonamp_ads') ) {
 						</div>';
 		}
 	return $output;
+	}
+}
+//AMP to WP Theme Analytics
+add_action('wp_footer','ampforwp_nonamp_analytics');
+if ( ! function_exists('ampforwp_nonamp_analytics') ) {
+	function ampforwp_nonamp_analytics() {
+		global $redux_builder_amp;
+		$ga_account = $redux_builder_amp['ga-feild'];
+		if ( ampforwp_is_non_amp("non_amp_check_convert") ) {
+			echo "	
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '$ga_account', 'auto');
+		ga('send', 'pageview');
+		</script>";
+		}
 	}
 }
