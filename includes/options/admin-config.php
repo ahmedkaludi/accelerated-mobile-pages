@@ -349,19 +349,21 @@ $single_extension_listing = '
 
 $upcomingLayoutsDesign = '';
 $layouts = ampforwp_upcomming_layouts_demo();
-foreach($layouts as $k=>$val){
-	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
-    <div class="amppb_ad-layout-layout">
-        <div class="amppb_ad-layout-wrapper">
-        <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
-            <h4 class="amppb_ad-layout-title">'.$val['name'].'</h4>
-            <div class="amppb_ad-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
-            <div class="amppb_ad-layout-button">
-                <a target="_blank" href="'.$val['link'].'" class="button">View Theme</a> 
+if(is_array($layouts)){
+    foreach($layouts as $k=>$val){
+    	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
+        <div class="amppb_ad-layout-layout">
+            <div class="amppb_ad-layout-wrapper">
+            <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
+                <h4 class="amppb_ad-layout-title">'.$val['name'].'</h4>
+                <div class="amppb_ad-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
+                <div class="amppb_ad-layout-button">
+                    <a target="_blank" href="'.$val['link'].'" class="button">View Theme</a> 
+                </div>
             </div>
         </div>
-    </div>
-</div>';
+    </div>';
+    }
 }
 
 // All the possible arguments for Redux.
@@ -2775,6 +2777,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
                 'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
                 'full_width'=>true, 
+                'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
                 'markdown'=> true,
                 'content'      => '<div class="amp-layout-class">
                                 <div class="amp_layouts_container">
