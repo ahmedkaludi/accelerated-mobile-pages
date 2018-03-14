@@ -2779,7 +2779,7 @@ Redux::setSection( $opt_name, array(
                 'full_width'=>true, 
                 'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
                 'markdown'=> true,
-                'content'      => '<div class="amp-layout-class">
+                'desc'      => '<div class="amp-layout-class">
                                 <div class="amp_layouts_container">
                                     '.$upcomingLayoutsDesign.'
                                 </div>
