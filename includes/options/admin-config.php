@@ -27,16 +27,16 @@ $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-
 }
 
 $extension_listing_array = array(
-                        // array(
-                        //     'name'=>'Advanced AMP Ads 2.0 Beta',
-                        //     'desc'=>'A Revolutionary way of adding ADS in your WordPress',
-                        //     'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
-                        //     'price'=>'$29',
-                        //     'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
-                        //     'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
-                        //     'item_name'=>'Advanced AMP Ads 2.0 Beta',
-                        //     'store_url'=>'https://accounts.ampforwp.com',
-                        // ),
+                        array(
+                            'name'=>'ADS for WP',
+                            'desc'=>'A Revolutionary way of adding ADS in your WordPress',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
+                            'item_name'=>'ADS for WP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                        ),
                         array(
                             'name'=>'Advanced AMP ADS',
                             'desc'=>'Add Advertisement directly in the content',
@@ -346,6 +346,25 @@ $single_extension_listing = '
  </ul>
 </div>
 ';
+
+$upcomingLayoutsDesign = '';
+$layouts = ampforwp_upcomming_layouts_demo();
+if(is_array($layouts)){
+    foreach($layouts as $k=>$val){
+    	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
+        <div class="amppb_ad-layout-layout">
+            <div class="amppb_ad-layout-wrapper">
+            <div class="amppb_ad-layout_pro"><a href="https://ampforwp.com/amp-layouts/" target="_blank">PRO</a></div>
+                <h4 class="amppb_ad-layout-title">'.$val['name'].'</h4>
+                <div class="amppb_ad-layout-screenshot"> <img src="'.$val['image'].'" onclick="window.open(\''.$val['link'].'\')"> </div>
+                <div class="amppb_ad-layout-button">
+                    <a target="_blank" href="'.$val['link'].'" class="button">View Theme</a> 
+                </div>
+            </div>
+        </div>
+    </div>';
+    }
+}
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
@@ -2741,7 +2760,7 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
 
-             $fields =  array(
+            array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
@@ -2752,13 +2771,29 @@ Redux::setSection( $opt_name, array(
                 'options'  => $themeDesign,
                 'default'  => '4'
                 ),
-
-            $fields = array(
+            array(
+                'id'       => 'ampforwp_layouts_core',
+                'type'     => 'raw',
+                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
+                'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
+                'full_width'=>true, 
+                'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
+                'markdown'=> true,
+                'desc'      => '<div class="amp-layout-class">
+                                <div class="amp_layouts_container">
+                                    '.$upcomingLayoutsDesign.'
+                                </div>
+                            </div>',
+                
+                
+            ),
+            array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
                 'desc' => $amptfad
-            )
+            ),
+
             
             )
         ) );
@@ -3908,6 +3943,12 @@ Redux::setSection( $opt_name, array(
                 'default'  => '3',
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
+            array(
+                    'id'       => 'ampforwp-underline-content-links',
+                    'type'     => 'switch',
+                    'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
@@ -4503,12 +4544,17 @@ Redux::setSection( $opt_name, array(
         )
 
     ) );
-
+   $redux_option = get_option('redux_builder_amp',true);
+   if ( 4 == $redux_option['amp-design-selector'] ) {
+    $post_builder = '';
+   }
+   else{
+    $post_builder = '<br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>';
+    }
     // Misc SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Misc', 'accelerated-mobile-pages' ),
-       'desc'       => '
-       <br /><a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"  target="_blank"><img class="ampforwp-post-builder-img" src="'.AMPFORWP_IMAGE_DIR . '/amp-post-builder.png" width="489" height="72" /></a>',
+       'desc'       => $post_builder,
        'id'         => 'amp-design',
        'subsection' => true,
         'fields'     => array(

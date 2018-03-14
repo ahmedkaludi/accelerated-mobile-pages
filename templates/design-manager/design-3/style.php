@@ -422,7 +422,7 @@ amp-user-notification button { background-color:  <?php echo esc_attr($redux_bui
 .toggle-navigationv2 a { color:#fff; }
 <?php } ?>
 <?php if ( $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
-.callnow{ position: relative; top: -37px; right: 39px }
+.callnow{ position: absolute; top: 15px; right: 20px }
 .callnow a:before { content: ""; position: absolute; right: 23px; width: 4px; height: 8px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 <?php

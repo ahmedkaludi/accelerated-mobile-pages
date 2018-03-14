@@ -111,7 +111,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 				if(empty($height)){
 					$height = $thumb_url_array_2[2];
 				}
-				$thumb_url_array_2 = aq_resize( $thumb_url_array_2[0], $width, $height, true, false ); //resize & crop the image
+				$thumb_url_array_2 = ampforwp_aq_resize( $thumb_url_array_2[0], $width, $height, true, false ); //resize & crop the image
 			}
 	        $thumb_url_2 = $thumb_url_array_2[0];
 	    

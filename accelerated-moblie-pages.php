@@ -101,6 +101,12 @@ function ampforwp_add_custom_rewrite_rules() {
 	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
+	    // Pagination to work with Extensions like.hml
+	    add_rewrite_rule(
+	        ampforwp_name_blog_page(). '(.+?)/amp/page/([0-9]{1,})/?$',
+	        'index.php?amp&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
+	        'top'
+	    );
 
     // For Author pages
     add_rewrite_rule(
@@ -274,6 +280,16 @@ function ampforwp_parent_plugin_check() {
 		// set_transient( 'ampforwp_parent_plugin_check', true, 30 );
 	} else {
 		delete_option( 'ampforwp_parent_plugin_check');
+	}
+}
+if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
+	function ampforwp_upcomming_layouts_demo(){
+		return array(array(
+			"name"=>'News',
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-1.png',
+			"link"=>'https://ampforwp.com/amp-layouts/',
+			)
+			);
 	}
 }
 // Redux panel inclusion code
@@ -523,5 +539,17 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 		}
 
 		return $link;
+	}
+}
+
+// Hide Post Builder if Swift is enabled
+add_filter('amp_customizer_is_enabled', 'ampforwp_customizer_is_enabled');
+if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
+	function ampforwp_customizer_is_enabled($value){
+		global $redux_builder_amp;
+		if ( 4 == $redux_builder_amp['amp-design-selector'] ) {
+			$value = false;
+		}
+		return $value;
 	}
 }

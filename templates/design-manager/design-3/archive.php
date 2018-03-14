@@ -121,6 +121,8 @@ if ( get_query_var( 'paged' ) ) {
 		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ) {  ?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( ampforwp_has_post_thumbnail() ) {
 				$thumb_url = ampforwp_get_post_thumbnail();
+				$thumb_width  	= ampforwp_get_post_thumbnail('width');
+				$thumb_height 	= ampforwp_get_post_thumbnail('height');
 				if($thumb_url){
 					?>
 					<div class="home-post_image">
@@ -129,8 +131,8 @@ if ( get_query_var( 'paged' ) ) {
 							layout="responsive"
 							src=<?php echo esc_url($thumb_url); ?>
 							<?php ampforwp_thumbnail_alt(); ?>
-							width=450
-							height=270
+							width=<?php echo $thumb_width; ?>
+							height=<?php echo $thumb_height; ?>
 						></amp-img>
 					</a>
 				</div>

@@ -122,7 +122,18 @@ return array(
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
 	 						),
-
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'page_link_open_price',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'     =>'Same page'
+	 											),
+	 							'content_type'=>'html',
+	 						),
 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"text_desc",		
@@ -147,7 +158,7 @@ return array(
 				{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
 				<span class="pri-lbl">{{price_label}}</span>
 				<span class="pri-desc">{{price_desc}}</span>
-				<a href="{{btn_link}}" target="_blank" class="btn-txt">{{btn_title}}</a>
+				<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
 				<div class="pri-cnt">
 					{{text_desc}}
 				</div>

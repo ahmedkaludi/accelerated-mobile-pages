@@ -67,8 +67,8 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-pinterest-share']){
 								$thumb_id = $image = '';
-								if (has_post_thumbnail( get_the_ID() ) ){
-	 								$thumb_id = get_post_thumbnail_id($post_id);
+								if (has_post_thumbnail( ) ){
+	 								$thumb_id = get_post_thumbnail_id(get_the_ID());
 									$image = wp_get_attachment_image_src( $thumb_id, 'full' );
 									$image = $image[0]; 
 	 							}?>
@@ -194,7 +194,6 @@
 		    </div>
 		</div>
 	</div>
-</div>
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
@@ -227,6 +226,6 @@ do_action("ampforwp_single_design_type_handle");
 	<?php endwhile; amp_loop('end');  ?>
 	</div>
 </div>
+</div>
 <?php } ?>
 	<?php amp_footer()?>
-</div>

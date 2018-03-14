@@ -99,6 +99,9 @@ function amp_title(){
 			$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
 		}
 	}
+	elseif ( ampforwp_polylang_front_page() ) {
+		$ID = pll_get_post(get_option('page_on_front'));
+	}
 	else
 		$ID = $post->ID;
 	if( $ID!=null ){
@@ -249,6 +252,9 @@ function amp_breadcrumb(){
 //Get Core of AMP HTML
 function amp_header_core(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
 	global $redux_builder_amp;
 	$html_tag_attributes = AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) );
@@ -291,12 +297,15 @@ function amp_header_core(){
 	?><!doctype html>
 	<html <?php echo ampforwp_amp_nonamp_convert('amp '); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"> 
+
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 
 		    	if(ampforwp_amp_nonamp_convert("", "check")){
+		    		echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">';
 		    		wp_head();
+
 		    	}else{
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
@@ -304,6 +313,7 @@ function amp_header_core(){
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
+				<?php echo $redux_builder_amp['css_editor']; ?>
 			</style>
 
 		</head>
@@ -314,6 +324,9 @@ function amp_header_core(){
 
 function amp_header(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'amp_after_header', $thisTemplate );
@@ -323,22 +336,31 @@ function amp_header(){
 
 function amp_footer(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);		
 	do_action( 'amp_before_footer', $thisTemplate );
 	do_action( 'amp_post_template_above_footer', $thisTemplate );
+
 	$thisTemplate->load_parts( array( 'footer' ) );
 
-	if(ampforwp_amp_nonamp_convert("", "check")){
-		wp_footer();
-	}
 }
 
 function amp_footer_core(){
 	$post_id = get_queried_object_id();
+	if ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 	$thisTemplate = new AMP_Post_Template($post_id);
-	do_action( 'amp_post_template_footer', $thisTemplate );
-	do_action('ampforwp_global_after_footer');
-	do_action('amp_end',$thisTemplate);
+	if(ampforwp_amp_nonamp_convert("", "check")){
+		wp_footer();
+	}
+	else {
+		do_action( 'amp_post_template_footer', $thisTemplate );
+		do_action('ampforwp_global_after_footer');
+		do_action('amp_end',$thisTemplate);
+	}
 	// Close the body and Html tags ?>
 	</body>
 		</html><?php
@@ -374,6 +396,9 @@ $post_id = get_queried_object_id();
 if ( ampforwp_is_front_page() ) {
 	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 }
+elseif ( ampforwp_polylang_front_page() ) {
+	$post_id = pll_get_post(get_option('page_on_front'));
+}
 $thisTemplate = new AMP_Post_Template($post_id); ?>
     <?php do_action('ampforwp_before_post_content',$thisTemplate); 
 	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
@@ -404,6 +429,9 @@ function amp_date( $args=array() ) {
                     'ago');
         }
         $post_date = apply_filters('ampforwp_modify_post_date', $post_date);
+        if(isset($args['custom_format']) && $args['custom_format']!=""){
+	    	$post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
+	    }
         if ( 'date' == $args || 'time' == $args ) {
           echo $post_date .' ';
         }

@@ -20,6 +20,8 @@ Vue.component('amp-pagebuilder-modal', {
   		importLayoutfromFile: '',
   		innerLayouts: '',
   		innerLayoutsHeading: '',
+  		ampb_script_textarea: (app.mainContent.settingdata['scripts_data']? app.mainContent.settingdata['scripts_data']: ''),
+  		ampb_style_textarea: (app.mainContent.settingdata['style_data']? app.mainContent.settingdata['style_data']:'')
   	}
   },
   methods:{
@@ -30,7 +32,9 @@ Vue.component('amp-pagebuilder-modal', {
 		this.modalCrrentTab=key;
 	},
 	savePagebuilderSettings:function(currentLayoutData){
-		app.mainContent = currentLayoutData;
+		//app.mainContent = currentLayoutData;
+		app.mainContent.settingdata['scripts_data'] = this.ampb_script_textarea;
+		app.mainContent.settingdata['style_data'] = this.ampb_style_textarea;
 		this.hidePageBuilderPopUp();
 	},
 	savePagebuildercustomLayout: function(event){
@@ -378,7 +382,7 @@ Vue.component('fields-data',{
 	mounted: function () {//On ready State for component
 	  this.$nextTick(function () {
 	  		var self = this;
-	  		this.callChangeEnvent();
+	  		//this.callChangeEnvent();
 	  })
 	},
 	computed: {
@@ -392,7 +396,8 @@ Vue.component('fields-data',{
 			var currentSelectfield = event.target;
 			selectedValue = currentSelectfield.getAttribute("data-value");
 			field.default = selectedValue;
-			this.callChangeEnvent();
+			this.fieldShowHideCheck(field);
+			//this.callChangeEnvent();
 		},
 		selectimages:function(field,event){
 			app.stopModuleModalClose = true;
@@ -510,102 +515,26 @@ Vue.component('fields-data',{
 			field.default = icon.name;
 			this.$forceUpdate();
 		},
-		callChangeEnvent: function(){
-			//get All fields with require conditions
-			jQuery(this.$el).parents('div.modal-body').find('[data-require]').each(function(e,v){
-				var fieldPointer = jQuery(this)
-				var requiredData = jQuery(this).attr('data-require');
-				
-				if(requiredData!=''){
-					requiredData = JSON.parse( requiredData );
-					//Show or hide Based on condition
-					jQuery.each(requiredData,function(key,selectedValue){
-						var fieldType = jQuery('#'+key).attr('data-type');
-						switch(fieldType){
-							case 'text':
-								var currentValue = jQuery('#'+key).find('input[type=text]').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;
-							case 'number':
-								var currentValue = jQuery('#'+key).find('input[type=number]').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;
-							case 'textarea':
-								var currentValue = jQuery('#'+key).find('textarea').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;
-							case 'text-editor':
-								var currentValue = jQuery('#'+key).find('textarea').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;
-							case 'select':
-								var currentValue = jQuery('#'+key).find('select').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;
-							case 'checkbox':
-								var allCheckbox = jQuery('#'+key).find('input[type=checkbox]');
-								allCheckbox.each(function(k,v){
-									if(jQuery(this).is(":checked") && jQuery(this).val()==selectedValue){
-										fieldPointer.show();
-										return false;
-									}else{
-										fieldPointer.hide();
-									}
-								});
-								
-							break;
-							/*case 'radio':
-								var currentValue = jQuery('#'+key).find('input[type=radio]:checked').val();
-								if(currentValue==selectedValue){
-									fieldPointer.show();
-								}else{
-									fieldPointer.hide();
-								}
-							break;*/
-							case 'spacing':
-							break;
-							case 'upload':
-							break;
-							case 'color-picker':
-							break;
-							case 'icon-selector':
-							break;
-							case 'gradient-selector':
-							break;
-							default:
-								app.modalcontent.fields.forEach(function(maindata){
-									if(maindata.name==key && maindata.default==selectedValue){
-										fieldPointer.show();
-									}else if(maindata.name==key){
-										fieldPointer.hide();
-									}
-								});
-							break;
+		fieldShowHideCheck: function(field){
+			var returnOpt = true;
+			if(field.required){
+				var requiredCondition = field.required;
+				//requiredCondition.forEach(function(conditionval,conditionKey){
+					//console.log(conditionval+' => '+conditionKey);
+					app.modalcontent.fields.forEach(function(maindata, key){
+						if(requiredCondition[maindata.name]){
+							if( maindata.default==requiredCondition[maindata.name]){
+								returnOpt = true;
+							}else{
+								returnOpt = false;
+							}
 						}
 					});
-				}
-			});
+				//})
+			}
+			return returnOpt;
 		}
+		
 
 	}
 });

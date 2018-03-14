@@ -201,7 +201,10 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
 
 // Register the widget.
 function ampforwp_register_categories_widget() {
-  register_widget( 'AMPFORWP_Categories_Widget' );
+  global $redux_builder_amp;
+  if ( isset($redux_builder_amp['amp-design-selector']) && 4 != $redux_builder_amp['amp-design-selector'] ) {
+    register_widget( 'AMPFORWP_Categories_Widget' );
+  }
 }
 add_action( 'widgets_init', 'ampforwp_register_categories_widget' );
 

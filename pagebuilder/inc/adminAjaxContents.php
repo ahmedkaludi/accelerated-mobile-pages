@@ -119,18 +119,18 @@ function ampforwp_icons_list_format(){
 	exit;
 }
 
-add_action( 'admin_enqueue_scripts', 'dynamic_css_enqueue' );
-add_action( 'wp_ajax_dynamic_css', 'dynaminc_css' );
-add_action( 'wp_ajax_nopriv_dynamic_css', 'dynaminc_css' );
+add_action( 'admin_enqueue_scripts', 'ampforwp_dynamic_css_enqueue' );
+add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
+add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 
-function dynamic_css_enqueue(){
+function ampforwp_dynamic_css_enqueue(){
 
-		wp_enqueue_style('dynamic-css', admin_url('admin-ajax.php?action=dynamic_css'), array(), null, 'all' );
+		wp_enqueue_style('ampforwp-dynamic-css', admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), array(), null, 'all' );
 	
 }
 
 
-function dynaminc_css() {
+function ampforwp_dynaminc_css() {
     $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
     header("Content-type: text/css; charset: UTF-8");
 	foreach ($amp_icons_css_array as $key=>$value ) {

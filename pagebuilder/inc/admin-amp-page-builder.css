@@ -733,7 +733,7 @@ position: fixed;
 }
 .modal-content{
     height: 100vh;
-    max-height: 660px;
+/*  max-height: 660px;*/    
     overflow-y: hidden;
     padding: 0px 20px  0px 0px;
     overflow-x: hidden;
@@ -856,6 +856,9 @@ position: fixed;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px 10px 15px 15px;
 }
+.meta-box-sortables .amp-form-control select {
+    max-width: 95%;
+}
 .amp-form-control:hover {
     background: #f3f3f3;
 }
@@ -921,6 +924,7 @@ Layout css
 }
 .amppb-layout-layout .amppb-layout-wrapper{
         padding: 0px;
+    position: relative; 
     background: #F7F7F7;
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
@@ -931,7 +935,6 @@ Layout css
 }   
 .amppb-layout-layout .amppb-layout-wrapper .amppb-layout-screenshot{
     background: #ffffff;
-    margin-bottom: 10px;
 }
 .amppb-layout-screenshot img{
     display: block;
@@ -941,7 +944,7 @@ Layout css
 }
 .amppb-layout-bottom{
     position: relative;
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 .amppb-layout-button .button {
     width: 100%;

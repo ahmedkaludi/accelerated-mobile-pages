@@ -18,9 +18,8 @@
        
     // Get the query & post information
     global $post,$wp_query;
-       
     // Do not display on the homepage
-    if ( !is_front_page() ) {
+    if ( !ampforwp_polylang_front_page() && !is_front_page() ) {
        
         // Build the breadcrums
         echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';

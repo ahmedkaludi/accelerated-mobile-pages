@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<a href="{{btn_link}}" target="_blank" class="btn-txt">{{content_title}}</a>
+	<a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
 ';
 $css = '
@@ -34,9 +34,21 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"btn_link",		
 		 						'label'		=>'URL',
-		           				 'tab'     =>'customizer',
+		           				'tab'     =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'page_link_open',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
+	 											),
+	 							'content_type'=>'html',
 	 						),
 
 						array(		

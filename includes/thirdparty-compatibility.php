@@ -293,3 +293,25 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 		}
 		return $file;
 	}
+
+add_action("ampforwp_pagebuilder_layout_filter","ampforwp_add_upcomminglayouts");
+function ampforwp_add_upcomminglayouts($layoutTemplate){
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if(function_exists('ampforwp_upcomming_layouts_demo') && !is_plugin_active('amp-layouts/amp-layouts.php') ){
+		$layouts_demo = ampforwp_upcomming_layouts_demo();
+		if(is_array($layouts_demo)){
+			foreach($layouts_demo as $k=>$val){
+				$layoutTemplate['upcoming'] =  array(
+									'Upcoming'=>array(
+											'name'=> $val['name'],
+											'preview_demo'=>$val['link'],
+											'preview_img'=>$val['image'],
+											'layout_json'=>'{"rows":[],"totalrows":"23","totalmodules":"94",}',
+												)
+										);
+			}
+		}
+	}
+		return $layoutTemplate;
+
+}

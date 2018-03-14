@@ -2,6 +2,7 @@
 <?php do_action('ampforwp_before_content_hook',$this); ?>
 
 <div class="amp-wp-article-content">
+	<div class="amp-wp-content the_content">
 	<?php
 	do_action('ampforwp_inside_post_content_before',$this);
 		$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
@@ -30,6 +31,7 @@
 		}//#1015 Pegazee
 
 		do_action('ampforwp_after_post_content',$this) ; ?>
+	</div>
 	<!--Post Next-Previous Links-->
 	<?php
 		if($redux_builder_amp['enable-single-next-prev'] && !is_page() ) { ?>
