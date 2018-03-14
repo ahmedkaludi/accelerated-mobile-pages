@@ -611,7 +611,7 @@ if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?>
 .item-home:after {padding-right: 5px;}
 .amp-post-title{text-align: right;}
 .post-date .post-edit-link {float: left;}
-.sp-rt{order: 0;direction: rtl;margin-right: 50px;margin-left:0;}
+.sp-rt{direction: rtl;margin-right: 50px;margin-left:0;}
 .sp-rt .amp-author .amp-author-image {float: right;}
 .amp-author-image amp-img {margin: 0px 0px 5px 12px;}
 .prev {float: right;}
@@ -632,6 +632,7 @@ if( true == $redux_builder_amp['amp-rtl-select-option'] ) {?>
 .fbp-cnt {width:100%;float:none;margin-right:0;}
 .fsp-img {float: right;margin-right: 0;margin-left:20px;}
 .rlp-image {float: right;margin-left: 15px;margin-right: 0;}
+.sp-rt{margin-right:0}
 }
 @media(max-width:480px){
 .fbp-cnt{width:100%;margin-right:0;}
