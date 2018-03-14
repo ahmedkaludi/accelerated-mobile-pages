@@ -197,7 +197,7 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	    	break;
 	    }
 	    // Polylang Frontpage #1779
-	    if ( 'single' === $type && ampforwp_polylang_front_page() ) {
+	    if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		}
 	 	return $file;
