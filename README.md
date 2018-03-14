@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.4
-Stable tag: 0.9.83.1
+Stable tag: 0.9.84
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -177,6 +177,43 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.84 (14th March 2018) =
+* Added: Polylang Frontpage compatibility added #1779
+* Fixed: Proper link for Linkedin added #1820 
+* Fixed: Incorrect function name was Added #1827
+* Fixed: Thumbnail resizing issue in Swift #1828 
+* Fixed: Thumbnail issue in Loops of Design 3 #1714 
+* Fixed: Hide post builder for Swift #1824 
+* Fixed: To avoid warnings when there are no pages in WordPress #1810 
+* Fixed: Condition for the Thumbnail for Swift #1733 
+* Fixed: Proper Styling for footer for Swift #1733 
+* Fixed: Line height issue and CSS editor not working in Swift #1821
+* Fixed: Renamed aq_resize to ampfrowp_aq_resize to avoid conflicts #1838
+* Fixed: Add the prefix to avoid conflicts #1817
+* Fixed: Added Custom format option in amp_date #1845
+* Fixed: Removed amp-img tag where blank SRC in Page builder #1843
+* Fixed: Pagebuilder modal max-height removed so it will become full width #1843
+* Added: An option for select target type in Button Module #1822
+* Fixed: Remove AMP category widget if swift is enabled #1790
+* Fixed: Filter added change mode type #1833
+* Added: Rewrite rule for .html blog page #1775
+* Fixed: Filter added change mode type #1833
+* Fixed: Swift Footer Widget Sanitizer Added #1800
+* Fixed: No OneSignal widget when PageBuilder is enabled #1840
+* Fixed: span tag added around the pagination text #1834
+* Added: Page specific option to add script/html and styles in page builder #1831
+* Fixed: noindex,nofollow in AMP when Dev mode is enabled #1839
+* Added: Jarida theme compatibility added #1842
+* Fixed: noindex,nofollow in AMP when Dev mode is enabled #1839
+* Fixed: Replace value attribute only from html tags. Otherwise it is removing value from * shortcodes which is breaking the whole page. #1738
+* Added: Underline option for content links added #1808
+* Added: Page specific option to add RTL in page builder #1858
+* Added: Converts AMP ads to normal so ads show when takeover is enabled in Normal Mode #1724
+* Added: Converts AMP Analytics to normal so Analytics works when takeover is enabled in Normal Mode #1724
+* Fixed: Phone icon proper alignment in Design3 #1730
+* Added: ADS for WP activation box in Extensions tab
+* Added: New design field added #1861
 
 = 0.9.83.1 (8th March 2018) =
 * Fixed: Pagebuilder contents not shows on custom home page #1794
