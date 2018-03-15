@@ -4,6 +4,11 @@ $output = '
 ';
 $css = '
 {{module-class}}.text-mod{width:100%;max-width:{{max-width}};text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};color:{{text_color_picker}};}
+@media(max-width:768px){
+{{module-class}}.text-mod{
+	max-width:100%;
+}
+}
 ';
 return array(
 		'label' =>'Text',

@@ -11,6 +11,11 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{if_condition_display_type==inline}}
 .btn{float:left;margin:0 15px 0 0}
 {{ifend_condition_display_type_inline}}
+@media(max-width:768px){
+.btn{
+	margin:0 15px 15px 0;
+}
+}
 @media(max-width:425px){
 	{{module-class}} .btn-txt{width:100%;box-sizing:inherit}
 }
