@@ -6008,7 +6008,7 @@ function ampforwp_homepage_loop( $args ) {
 // To get correct comments count #1662
 add_filter('get_comments_number', 'ampforwp_comment_count', 0);
 function ampforwp_comment_count( $count ) {
-	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && is_single() ) {
 		global $id;
 		$get_comments = get_comments('status=approve&post_id=' . $id); 	 
  		$comments_by_type = separate_comments($get_comments); 
