@@ -10,7 +10,7 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_display_type==inline}}
 .btn{float:left;margin:0 15px 0 0}
-{{if_condition_display_type_inline}}
+{{ifend_condition_display_type_inline}}
 @media(max-width:425px){
 	{{module-class}} .btn-txt{width:100%;box-sizing:inherit}
 }
