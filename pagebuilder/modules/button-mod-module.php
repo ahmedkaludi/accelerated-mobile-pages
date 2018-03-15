@@ -1,13 +1,16 @@
 <?php 
-$output = '
-	<a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
-{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
+$output = '{{repeater}}
+	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
+{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 ';
 $css = '
 {{module-class}} {width:100%;display: inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .btn-txt{
-font-size:{{text-size}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width: {{button-width}};font-weight: {{font_weight}};box-sizing: initial;}
+font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width: {{button-width}};font-weight: {{font_weight}};box-sizing: initial;}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight: 300;margin-top: 10px;}
+{{if_condition_display_type==inline}}
+.btn{float:left;margin:0px 10px;}
+{{if_condition_display_type_inline}}
 @media(max-width:425px){
 	{{module-class}} .btn-txt{width:100%;box-sizing: inherit;}
 }
@@ -126,6 +129,25 @@ return array(
 		 						'default'	=>'200px',	
 		           				'content_type'=>'css',
 	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>'border-rds',		
+		 						'label'		=>'Border Radius',
+		           				 'tab'     =>'design',
+		 						'default'	=>'3px',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'display_type',		
+	 							'label' =>"Display",
+								'tab'     =>'design',
+	 							'default' =>'block',
+	 							'options_details'=>array(
+	 												'block'    =>'Block',
+	 												'inline'  	=>'Inline', 													),
+	 							'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -158,6 +180,75 @@ return array(
 		'front_template'=> $output,
 		'front_css'=> $css,
 		'front_common_css'=>'',
+		'repeater'=> array(
+			'tab'=>'customizer',
+			'fields'=>array(
+				array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"content_title",		
+		 						'label'		=>'Button Text',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'Get started free',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn_link",		
+		 						'label'		=>'URL',
+		           				'tab'     =>'customizer',
+		 						'default'	=>'#',	
+		           				'content_type'=>'html',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'page_link_open',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
+	 											),
+	 							'content_type'=>'html',
+	 						),
+
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"sub_heading",		
+		 						'label'		=>'Sub Heading',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'No Credit card required',	
+		           				'content_type'=>'html', 
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'20px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'font_weight',		
+	 							'label' =>"Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'400',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
+							
+					),
+			'front_template'=> 
+			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
+			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>'
+			),
 	);
 
 ?>
