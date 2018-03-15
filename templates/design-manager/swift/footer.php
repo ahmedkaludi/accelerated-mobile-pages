@@ -77,9 +77,13 @@
 			<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
 		</li>
 		<?php } ?>
-		<?php if($redux_builder_amp['enable-single-pinterest-share']){?>
+		<?php if($redux_builder_amp['enable-single-pinterest-share']){
+			$image = '';
+			if (ampforwp_has_post_thumbnail( ) ){
+				$image = ampforwp_get_post_thumbnail( 'url', 'full' );
+			}?>
 		<li>
-			<a class="s_pt" target="_blank" href="http://pinterest.com/pin/create/button/?url=&media=&description=<?php the_permalink(); ?>"></a>
+			<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo $image; ?>&url=<?php the_permalink(); ?>&description=<?php the_title(); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-linkedin-share']){?>

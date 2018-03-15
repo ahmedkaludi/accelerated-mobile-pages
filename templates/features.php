@@ -1845,6 +1845,10 @@ function ampforwp_sticky_social_icons(){
 /*	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if( !is_plugin_active( 'amp-cta/amp-cta.php' ) )  {*/
 		if($redux_builder_amp['enable-single-social-icons'] == true && is_single() )  { 
+			$image = '';
+			if ( ampforwp_has_post_thumbnail( ) ){
+				$image = ampforwp_get_post_thumbnail( 'url', 'full' );
+			}
 			$permalink = '';
 			if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 				$permalink = get_the_permalink();
@@ -1872,7 +1876,7 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="email"      width="50" height="28"></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-pinterest-share'] == true)  { ?>
-			    	<amp-social-share type="pinterest"  width="50" height="28"></amp-social-share>
+			    	<amp-social-share type="pinterest"  width="50" height="28" data-param-media = "<?php echo esc_url($image); ?>"></amp-social-share>
 			  	<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-linkedin-share'] == true)  { ?>
 			    	<amp-social-share type="linkedin" width="50" height="28"></amp-social-share>

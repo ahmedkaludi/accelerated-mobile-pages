@@ -12,10 +12,8 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	$image 			= '';
 	$post_id = $post->ID;
 	$desc = $post->post_excerpt; 
-	 if (has_post_thumbnail( $post_id ) ){
-	 	$thumb_id = get_post_thumbnail_id($post_id);
-		$image = wp_get_attachment_image_src( $thumb_id, 'full' );
-		$image = $image[0]; 
+	 if (ampforwp_has_post_thumbnail( $post_id ) ){
+	 	$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 	 }
 
 	if(!ampforwp_is_associative($selected_social_icons)){
