@@ -257,7 +257,6 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         .cntn-wrp p{margin:0px 0px 30px 0px;}
     <?php } else{ ?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
-        .cntn-wrp p {margin: 0px 0px 30px 0px;}
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
     <?php } ?>
 <?php } ?>
