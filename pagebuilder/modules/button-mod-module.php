@@ -219,31 +219,7 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'No Credit card required',	
 		           				'content_type'=>'html', 
-	 						),
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'design',
-		 						'default'	=>'20px',	
-		           				'content_type'=>'css',
-	 						),
-						array(		
-	 							'type'	=>'select',		
-	 							'name'  =>'font_weight',		
-	 							'label' =>"Font Weight",
-								'tab'     =>'design',
-	 							'default' =>'400',
-	 							'options_details'=>array(
-                                    '300'   =>'Light',
-                                    '400'  	=>'Regular',
-                                    '500'  	=>'Medium',
-                                    '600'  	=>'Semi Bold',
-                                    '700'  	=>'Bold',
-                                ),
-	 							'content_type'=>'css',
-	 						),
-							
+	 						),	
 					),
 			'front_template'=> 
 			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
