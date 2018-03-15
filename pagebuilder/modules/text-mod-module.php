@@ -3,7 +3,7 @@ $output = '
 	{{content_title}}
 ';
 $css = '
-{{module-class}}.text-mod{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};color:{{text_color_picker}};}
+{{module-class}}.text-mod{width:100%;max-width:{{max-width}};text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};color:{{text_color_picker}};}
 ';
 return array(
 		'label' =>'Text',
@@ -51,7 +51,15 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),	
+	 						),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"max-width",
+								'label'		=>'Max Width',
+								'tab'		=>'design',
+								'default'	=>'100%',
+								'content_type'=>'css'
+							),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
