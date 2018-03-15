@@ -718,33 +718,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'id'         => 'amp-content-builder',
        'class' => 'amp_content_builder ampforwp-new-element',
        'subsection' => true,
-       'fields' => array(
-
-            array(
-                'id'       => 'ampforwp-content-builder',
-                'type'     => 'switch',
-                'title'    => __('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
-                'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
-                'true'      => 'true',
-                'class'     =>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? '': 'hide'),//,
-                'desc' => '<div style="    background: #FFF9C4;
-    display: none;
-    padding: 10px 20px;
-    margin-top: 15px;
-    left: 0; 
-    line-height: 1.6;
-    position: absolute;
-    left: 20px;
-    font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
-    
-    <iframe class="hide" style="    position: absolute;
-    left: 20px;
-    margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
-    
-    ',
-                'false'     => 'false',
-                'default'   => 0
-            ), 
+       'fields' => array( 
             array(
                 'id'       => 'ampforwp-page-builder-info',
                 'type'     => 'raw',
@@ -2375,7 +2349,32 @@ Redux::setSection( $opt_name, array(
                         'true'      => 'true',
                         'false'     => 'false',
                         'default'   => 0,                        
-                    ),  
+                    ), 
+                     array(
+                'id'       => 'ampforwp-content-builder',
+                'type'     => 'switch',
+                'title'    => __('Legacy Page Builder (widgets)', 'accelerated-mobile-pages'),
+                'subtitle' => __('Build AMP Landing pages in minutes.', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                //'class'     =>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? '': 'hide'),//,
+                'desc' => '<div style="    background: #FFF9C4;
+    display: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    left: 0; 
+    line-height: 1.6;
+    position: absolute;
+    left: 20px;
+    font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
+    
+    <iframe class="hide" style="    position: absolute;
+    left: 20px;
+    margin-top: 100px;" width="600" height="400" src="https://www.youtube.com/embed/vAGPFKKm5G4" frameborder="0" allowfullscreen></iframe>
+    
+    ',
+                'false'     => 'false',
+                'default'   => 0
+            ), 
 
 
    ),
