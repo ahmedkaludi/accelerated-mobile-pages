@@ -43,6 +43,7 @@
 
 <main>
 	<?php do_action('ampforwp_post_before_loop') ?>
+	<?php $count = 1; ?>
 
  	<?php if ( is_archive() ) { ?>
  		<div class="amp-wp-content amp-archive-heading">
@@ -95,8 +96,6 @@
  	} ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-		$count = "";
-		$count = 1;
 		$ampforwp_amp_post_url =  ampforwp_url_controller( get_permalink() );
 
 			if( in_array( "ampforwp-custom-type-amp-endpoint" , $redux_builder_amp ) ) {
