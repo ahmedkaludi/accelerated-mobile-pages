@@ -7,6 +7,13 @@ $css = '
 .blu-mod .blurb-txt{font-size: {{text-size}};font-weight: 500;color:{{font_color_picker}};}
 .blu-mod .ico-pic{font-size:35px;color:{{ic_color_picker}};margin-bottom:30px;display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
 {{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
+{{if_condition_check_for_border==1}}
+.blu-mod .ico-pic{
+	border:{{border_width}} solid {{border_color}};
+	border-radius:100%;
+	padding:20px;
+}
+{{ifend_condition_check_for_border_1}}
 @media(max-width:768px){
 	.blu-mod{width: 100%;margin-right:0}
 }
@@ -103,9 +110,18 @@ return array(
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"border_color",
-								'label'		=>'Background Color',
+								'label'		=>'Border Color',
 								'tab'		=>'design',
-								'default'	=>'#f4f4f4',
+								'default'	=>'#fff',
+								'content_type'=>'css',
+								'required'  => array('check_for_border'=>'1')
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"border_width",
+								'label'		=>'Border Width',
+								'tab'		=>'design',
+								'default'	=>'3px',
 								'content_type'=>'css',
 								'required'  => array('check_for_border'=>'1')
 							),
