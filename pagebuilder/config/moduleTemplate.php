@@ -133,6 +133,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"content-width",
+								'label'		=>'Content Width',
 								'tab'		=>'customizer',
 								'default'	=>'95%',
 								'content_type'=>'css',
