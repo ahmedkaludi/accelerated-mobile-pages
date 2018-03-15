@@ -59,7 +59,7 @@ $front_css = '
 
 {{row-class}}.amppb-fluid{width:100%;}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
-{{row-class}}.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	color: {{font_color_picker}};
@@ -127,6 +127,14 @@ $containerCommonSettings = array(
 								'label'		=>'Width',
 								'tab'		=>'customizer',
 								'default'	=>'1100px',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fixed')
+							),
+							array(
+								'type'		=>'text',
+								'name'		=>"content-width",
+								'tab'		=>'customizer',
+								'default'	=>'95%',
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fixed')
 							),
