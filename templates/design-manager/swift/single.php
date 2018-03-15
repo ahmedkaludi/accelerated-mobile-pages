@@ -160,6 +160,7 @@
 		            	<?php amp_date(); ?><?php edit_post_link(); ?>
 		            </div>
 		            <?php
+		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 					$my_query = related_post_loop_query();
 				  	if( $my_query->have_posts() ) { ?>
 				  	<div class="srp">
@@ -187,7 +188,7 @@
 					      } ?>
 	      				</ul>
 	      			</div>
-		            <?php wp_reset_postdata(); ?>
+		            <?php wp_reset_postdata(); } ?>
 				</div>
 		    </div>
 		</div>

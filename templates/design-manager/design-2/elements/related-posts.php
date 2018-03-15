@@ -57,7 +57,7 @@
 								);
 					}
 			}//end of block for tags
-			if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ) {
+			if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ) {
 				$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) { ?>
 						<div class="amp-wp-content relatedpost">

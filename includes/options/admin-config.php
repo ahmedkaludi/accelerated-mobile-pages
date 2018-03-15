@@ -3865,6 +3865,12 @@ Redux::setSection( $opt_name, array(
         ),
           // Related Post
             array(
+                    'id'       => 'ampforwp-single-related-posts-switch',
+                    'type'     => 'switch',
+                    'title'    => __( 'Related Posts', 'accelerated-mobile-pages' ),
+                   'default'   => 1,
+            ),
+            array(
                     'id'       => 'ampforwp-single-select-type-of-related',
                     'type'     => 'select',
                     'title'    => __('Related Post by', 'accelerated-mobile-pages'),
@@ -3875,31 +3881,46 @@ Redux::setSection( $opt_name, array(
                         '2' => 'Categories',
                     ),
                'default'  => '2',
+               'required' => array( 
+                                array('ampforwp-single-related-posts-switch', '=' , '1') 
+                            ),
             ),
             array(
                     'id'       => 'ampforwp-single-related-posts-image',
                     'type'     => 'switch',
                     'title'    => __('Image in Related Post', 'accelerated-mobile-pages'),
                     'default'  => 1,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
             ),
             array(
                     'id'       => 'ampforwp-single-related-posts-excerpt',
                     'type'     => 'switch',
                     'title'    => __('Excerpt in Related Post', 'accelerated-mobile-pages'),
                     'default'  => 1,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
             ),
             array(
                     'id'       => 'ampforwp-single-order-of-related-posts',
                     'type'     => 'switch',
                     'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
-                'default'  => 0,
+                    'default'  => 0,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
             ),
             array(
                     'id'       => 'ampforwp-number-of-related-posts',
                     'type'     => 'text',
                     'title'    => __('Number of Related Post', 'accelerated-mobile-pages'),
                     'validate' => 'numeric',
-                'default'  => '3',
+                    'default'  => '3',
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
             ),
             array(
                     'id'       => 'ampforwp-inline-related-posts',
