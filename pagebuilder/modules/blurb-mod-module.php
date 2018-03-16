@@ -11,7 +11,7 @@ $css = '
 {{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
 {{ifend_condition_blurb_layout_type_1}}
 {{if_condition_blurb_layout_type==2}}
-.ln-fx{
+{{module-class}} .ln-fx{
 	display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1px;
