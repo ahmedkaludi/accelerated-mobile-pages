@@ -14,6 +14,7 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
+		$max_page = '';
 		// Gather comments for a specific page/post
 		$postID = get_the_ID();
 		$comments = get_comments(array(
@@ -77,6 +78,18 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
                         'reverse_top_level' 	=> true //Show the latest comments at the top of the list
 					), $comments);  ?>
 			    </ul>
+			    <?php 
+		    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
+		    $args = array(
+				'base' => add_query_arg( 'cpage', '%#%' ),
+				'format' => '',
+				'total' => $max_page,
+				//'current' => 0,
+				'echo' => true,
+				'add_fragment' => '#comments',
+				'show_all' => true				
+			);
+     paginate_comments_links( $args ); ?>
 			</div>
 	    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
