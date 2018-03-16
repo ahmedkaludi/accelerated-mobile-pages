@@ -1819,6 +1819,9 @@ function ampforwp_remove_schema_data() {
 	}
 	// Jarida Theme Compatibility #1842
 	remove_filter( 'option_posts_per_page', 'tie_option_posts_per_page' );
+
+	// IWappPress Compatibility #1876 #1864
+	remove_action('loop_start', 'iWappPress_remove_post_date');
 }
 
 // 22. Removing author links from comments Issue #180

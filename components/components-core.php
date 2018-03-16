@@ -390,15 +390,21 @@ function amp_loop_template(){
 }
 
 // The Content
-function amp_content(){ 
+function amp_content($post_id= ''){ 
 global $redux_builder_amp, $post;
-$post_id = get_queried_object_id();
-if ( ampforwp_is_front_page() ) {
-	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+
+
+if ( empty( $post_id )) {
+	
+	$post_id = get_queried_object_id();
+	if ( ampforwp_is_front_page() ) {
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	elseif ( ampforwp_polylang_front_page() ) {
+		$post_id = pll_get_post(get_option('page_on_front'));
+	}
 }
-elseif ( ampforwp_polylang_front_page() ) {
-	$post_id = pll_get_post(get_option('page_on_front'));
-}
+
 $thisTemplate = new AMP_Post_Template($post_id); ?>
     <?php do_action('ampforwp_before_post_content',$thisTemplate); 
 	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
