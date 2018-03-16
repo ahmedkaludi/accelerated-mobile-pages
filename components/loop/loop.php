@@ -241,6 +241,9 @@ function amp_loop_title($data=array()){
 
 function amp_loop_date($args=array()){
 	global $redux_builder_amp;
+    if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
+    	$args['format'] = 'traditional';
+    }
 	if(isset($args['format']) && $args['format']=='traditional'){
 		$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
     }else{
