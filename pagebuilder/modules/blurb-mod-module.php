@@ -102,14 +102,15 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+			  'layout' => 'Layout'
             ),
 		'fields' => array(
 						array(    
 				            'type'    =>'layout-image-picker',
 				            'name'    =>"blurb_layout_type",
 				            'label'   =>"Select Layout",
-				            'tab'     =>'customizer',
+				            'tab'     =>'layout',
 				            'default' =>'1',    
 				            'options_details'=>array(
 				                            array(
