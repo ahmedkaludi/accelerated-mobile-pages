@@ -2,6 +2,7 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
+{{if_condition_pricing_layout_type==1}}
 .pricing-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .ln-fx{width:100%;display:inline-flex; display: flex;flex-wrap: wrap;} 
 .pri-mod{display: flex;flex-direction: column;flex: 1 0 25%;text-align:center;background:#f4f4f4;position:relative;padding:30px 50px;margin:0 10px;overflow: hidden;}
@@ -19,6 +20,76 @@ $css = '
 	.pri-mod{flex:1 0 100%;margin:0px 0px 20px 0px;}
 	.feature-pri{top:0;}
 }
+{{ifend_condition_pricing_layout_type_1}}
+{{if_condition_pricing_layout_type==2}}
+{{module-class}} .ln-fx{
+	display:inline-flex;
+	width:100%;
+	flex-wrap:wrap;
+}
+.pricing-mod{margin:{{margin_css}};padding:{{padding_css}};}
+.pri-mod-2{
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 25%;text-align:center;
+	background:#fff;
+	position:relative;
+	margin:10px;
+}
+.pri-mod-cntn{
+	padding:10px 20px;
+}
+.pri-mod-cntn span{
+	display:block;
+}
+.pri-tlt-2{
+	background: #182733;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+    padding:15px 0px;
+}
+.pri-lbl-2{
+	color: #555;
+    font-size: 40px;
+    font-weight: 300;
+}
+.pri-desc-2{
+	font-size: 13px;
+}
+.btn-txt-2{
+	background: #ffcd00;
+    color: #fff;
+    padding: 11px 37px;
+    font-weight: 700;
+    margin-top: 25px;
+    border: 2px solid #ffcd00;
+    display: inline-block;
+}
+.btn-txt-2:hover{
+	background-color: #FFF;
+	color:#ffcd00;
+}
+.pri-cnt-2{
+	padding:20px 0px;
+	text-align: left;
+}
+.pri-cnt-2 li{
+	border-top: 1px solid #e8e8e8;
+    font-size: 14px;
+    padding: 13px 20px;
+    list-style-type:none;
+}
+.pri-cnt-2 li:before{
+	content: "\e86c";
+	font-family: "icomoon";
+	font-size: 24px;
+    color: #4CAF50;
+    margin-right:15px;
+    position: relative;
+    top: 5px;
+}
+{{ifend_condition_pricing_layout_type_2}}
 ';
 return array(
 		'label' =>'Pricing',
@@ -30,6 +101,27 @@ return array(
               'advanced' => 'Advanced'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"pricing_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'customizer',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                            ),
+				                            array(
+				                              'value'=>'2',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                            ),
+				                            
+				                          ),
+				            'content_type'=>'html',
+				            ),
 						
 	 					array(
 								'type'		=>'color-picker',
@@ -153,16 +245,33 @@ return array(
                 
               ),
           'front_template'=>
-          '<div class="pri-mod {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
-				<h4 class="pri-tlt">{{content_title}}</h4>
-				{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
-				<span class="pri-lbl">{{price_label}}</span>
-				<span class="pri-desc">{{price_desc}}</span>
-				<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
-				<div class="pri-cnt">
-					{{text_desc}}
+          '{{if_condition_pricing_layout_type==1}}
+	          	<div class="pri-mod {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
+					<h4 class="pri-tlt">{{content_title}}</h4>
+					{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
+					<span class="pri-lbl">{{price_label}}</span>
+					<span class="pri-desc">{{price_desc}}</span>
+					<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
+					<div class="pri-cnt">
+						{{text_desc}}
+					</div>
 				</div>
-			</div>'
+			{{ifend_condition_pricing_layout_type_1}}
+			{{if_condition_pricing_layout_type==2}}
+				<div class="pri-mod-2 {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
+					<h4 class="pri-tlt-2">{{content_title}}</h4>
+					<div class="pri-mod-cntn">
+						{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
+						<span class="pri-lbl-2">{{price_label}}</span>
+						<span class="pri-desc-2">{{price_desc}}</span>
+						<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt-2">{{btn_title}}</a>
+					</div>
+					<div class="pri-cnt-2">
+						{{text_desc}}
+					</div>
+				</div>
+			{{ifend_condition_pricing_layout_type_2}}
+			'
           ),
 
 	);
