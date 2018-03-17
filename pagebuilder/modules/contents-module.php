@@ -54,14 +54,15 @@ require_once  ABSPATH . WPINC . '/category.php';
     'tabs' => array(
               'customizer'=>'Content',
               'container_css'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layout' => 'Layout'
             ),
  		'fields' => array(
             array(    
             'type'    =>'layout-image-picker',
             'name'    =>"content_layout_type",
             'label'   =>"Select Layout",
-            'tab'     =>'customizer',
+            'tab'     =>'layout',
             'default' =>'1',    
             'options_details'=>array(
                             array(
