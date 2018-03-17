@@ -31,7 +31,8 @@ $css = '
 .pri-mod-2{
 	display: flex;
 	flex-direction: column;
-	flex: 1 0 25%;text-align:center;
+	flex: 1 0 25%;
+	text-align:center;
 	background:#fff;
 	position:relative;
 	margin:10px;
@@ -43,10 +44,10 @@ $css = '
 	display:block;
 }
 .pri-tlt-2{
-	background: #182733;
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 700;
+	background: {{txt_bg_color}};
+    color: {{txt_color}};
+    font-size: {{txt-size}};
+    font-weight: {{font_type}};
     padding:15px 0px;
 }
 .pri-lbl-2{
@@ -57,18 +58,19 @@ $css = '
 .pri-desc-2{
 	font-size: 13px;
 }
-.btn-txt-2{
-	background: #ffcd00;
-    color: #fff;
+.pri-mod-cntn .btn-txt-2{
+    background:{{btn_bg_color}};
+    color: {{font_color_picker}};
     padding: 11px 37px;
     font-weight: 700;
     margin-top: 25px;
-    border: 2px solid #ffcd00;
+    border-radius:3px;
+    border: 2px solid {{btn_bg_color}};
     display: inline-block;
 }
-.btn-txt-2:hover{
-	background-color: #FFF;
-	color:#ffcd00;
+.pri-mod-cntn .btn-txt-2:hover{
+	background-color: {{font_color_picker}};
+	color:{{btn_bg_color}};
 }
 .pri-cnt-2{
 	padding:20px 0px;
@@ -98,14 +100,15 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layouts'=> 'Layouts'
             ),
 		'fields' => array(
 						array(    
 				            'type'    =>'layout-image-picker',
 				            'name'    =>"pricing_layout_type",
 				            'label'   =>"Select Layout",
-				            'tab'     =>'customizer',
+				            'tab'     =>'layouts',
 				            'default' =>'1',    
 				            'options_details'=>array(
 				                            array(
@@ -122,7 +125,49 @@ return array(
 				                          ),
 				            'content_type'=>'html',
 				            ),
-						
+						array(
+								'type'		=>'text',
+								'name'		=>"txt-size",
+								'label'		=>'Font Size',
+								'tab'		=>'design',
+								'default'	=>'20px',
+								'content_type'=>'css',
+								'required'  => array('pricing_layout_type'=>'2')
+							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'font_type',		
+	 							'label' =>"Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'700',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('pricing_layout_type'=>'2')
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"txt_color",
+								'label'		=>'Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css',
+								'required'  => array('pricing_layout_type'=>'2')
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"txt_bg_color",
+								'label'		=>'Background',
+								'tab'		=>'design',
+								'default'	=>'#182733',
+								'content_type'=>'css',
+								'required'  => array('pricing_layout_type'=>'2')
+							),
 	 					array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
