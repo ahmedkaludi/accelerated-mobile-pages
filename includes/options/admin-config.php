@@ -4059,6 +4059,104 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Make "View Non-AMP" link nofollow', 'accelerated-mobile-pages'),
                         'default'   => 0
                 ),
+            array(
+                   'id' => 'footer-tab-2',
+                   'type' => 'section',
+                   'title' => __('Advanced Footer Options', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   //'start'  => true,
+                   //'label' => 'Tab 2',
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+             ),
+            array(
+                    'id'    => 'footer-customize-options',
+                    'type'  => 'switch',
+                    'title' => __('Advanced Footer Design', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'        => 'swift-footer-bg',
+                    'title'     => __('Footer 1 Background', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#182733',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-heading-clr',
+                    'title'     => __('Heading Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#fff',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-txt-clr',
+                    'title'     => __('Text Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#888888',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-link-clr',
+                    'title'     => __('Link Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#fcc118',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-link-hvr',
+                    'title'     => __('Link Hover Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#888888',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer2-bg',
+                    'title'     => __('Footer 2 Background', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#2e2b2e',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'    => 'footer2-position-type',
+                   'title'  => __('Footer Menu Position', 'accelerated-mobile-pages'),
+                   'type'   => 'select',
+                   'options'=> array(
+                        '1' =>  'center',
+                        '2' =>  'Inline'
+                    ),
+                   'default'=> '1',
+                  'required' => array(
+                      array('customize-options','=',1)
+                    )    
+            ),
+
         )
     ));
 
