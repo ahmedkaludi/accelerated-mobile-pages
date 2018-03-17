@@ -547,6 +547,16 @@ font-size:15px;
 	display:inline-block;
 	float:left;
 }
+@media(max-width:768px){
+.f-menu{
+	float:none;
+}
+.rr {
+	float:none;
+    font-size: 13px;
+    margin-top:15px;
+}
+}
 <?php } ?>
 <?php } // New footer feature closed ?>
 @media(max-width:768px){
