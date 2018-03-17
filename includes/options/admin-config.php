@@ -1284,7 +1284,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'title'    => __( 'Google Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
-                            array('ampforwp-ga-switch', '=' , '1')
+                            array('ampforwp-ga-switch', '=' , '1'),
+                            array('ampforwp-ga-field-advance-switch', '=' , '0')
                           ),
                           'subtitle' => __( 'Enter your Google Analytics ID.', 'accelerated-mobile-pages' ),
                           'desc'     => __('Example: UA-XXXXX-Y', 'accelerated-mobile-pages' ),
@@ -1295,28 +1296,38 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array(
                           'id'       => 'ampforwp-ga-field-advance-switch',
                           'type'     => 'switch',
-                          'title'    => __( 'Advanced Analytics Tracking Event Options', 'accelerated-mobile-pages' ),
+                          'title'    => __( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-ga-switch', '=' , '1')
                           ),
-                          'subtitle' => __( 'Enable the Advance Tracking options', 'accelerated-mobile-pages' ),
                           'default'  => 0,
                       ),
                       array(
                         'id'       => 'ampforwp-ga-field-advance',
                         'type'     => 'ace_editor',
-                        'title'    => __('Advance Google Analytics', 'accelerated-mobile-pages'),
+                        'title'    => __('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
+                        'subtitle'    => __('Tutorial: <a href="https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/" target="_blank">How To Add Advanced Google Analytics in AMP?</a>', 'accelerated-mobile-pages'),
                         'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-ga-switch', '=' , '1'),
                             array('ampforwp-ga-field-advance-switch', '=' , '1')
                         ),
-                        'subtitle' => __('Enter the Advance Tracking options', 'accelerated-mobile-pages'),
                         'mode'     => 'javascript',
                         'theme'    => 'monokai',
                         'desc'     => '',
-                        'default'  => __('','accelerated-mobile-pages')
+                        'default'  => __('{
+    "vars": {
+        "account": "UA-xxxxxxx-x"  //Replace this with your Tracking ID
+    },
+    "triggers": {
+        "trackPageview": {
+            "on": "visible",
+            "request": "pageview",
+        },
+    // Enter your Advanced Analytics code here
+    }
+}','accelerated-mobile-pages')
                     ),
                      // Segment Analytics 
                       array(

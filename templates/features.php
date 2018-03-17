@@ -4648,9 +4648,16 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
 function ampforwp_add_advance_ga_fields($ga_fields){
 	global $redux_builder_amp;
+	$url = $title = $id = '';
+	$url = get_the_permalink();
+	$title = get_the_title();
+	$id = get_the_ID();
 	$ampforwp_adv_ga_fields = array();
 	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-field-advance'];
 	if($ampforwp_adv_ga_fields && $redux_builder_amp['ampforwp-ga-field-advance-switch'])	{
+		$ampforwp_adv_ga_fields = str_replace('{url}', $url, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{id}', $id, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{title}', $title, $ampforwp_adv_ga_fields);
 		return $ampforwp_adv_ga_fields;
 	}	
 	return $ga_fields;	
