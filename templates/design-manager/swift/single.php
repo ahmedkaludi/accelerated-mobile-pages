@@ -162,7 +162,7 @@
 		            <?php
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 					$my_query = related_post_loop_query();
-				  	if( $my_query->have_posts() ) { ?>
+				  	if( $my_query->have_posts() ) { $r_count = 1;?>
 				  	<div class="srp">
 			            <ul class="clearfix">
 					        <?php ampforwp_related_post(); ?>
@@ -184,6 +184,8 @@
 									ampforwp_get_relatedpost_content($argsdata); ?> 
 						        </div>
 					        </li><?php
+			            			do_action('ampforwp_between_related_post',$r_count);
+                 							 $r_count++;
 					        }
 					      } ?>
 	      				</ul>
