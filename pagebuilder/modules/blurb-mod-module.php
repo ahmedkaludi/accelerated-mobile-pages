@@ -180,20 +180,16 @@ return array(
 	 							'content_type'=>'css',
 	 						),
 						array(
-								'type'		=>'radio',
+								'type'		=>'checkbox_bool',
 								'name'		=>"check_for_border",
 								'label'		=> 'Border',
 								'tab'		=>'design',
-								'default'	=>array('0'),
+								'default'	=>1,
 								'options'	=>array(
 												array(
 													'label'=>'Yes',
-													'value'=>'1',
-												),
-												array(
-													'label'=>'No',
-													'value'=>'0',
-												),
+													'value'=>1,
+												)
 											),
 								'content_type'=>'html',
 							),
@@ -216,20 +212,16 @@ return array(
 								'required'  => array('check_for_border'=>'1')
 							),
 						array(
-								'type'		=>'radio',
+								'type'		=>'checkbox_bool',
 								'name'		=>"check_for_hover",
 								'label'		=> 'Hover',
 								'tab'		=>'design',
-								'default'	=>array('1'),
+								'default'	=>1,
 								'options'	=>array(
 												array(
 													'label'=>'Yes',
-													'value'=>'1',
-												),
-												array(
-													'label'=>'No',
-													'value'=>'0',
-												),
+													'value'=>1,
+												)
 											),
 								'content_type'=>'html',
 							),
