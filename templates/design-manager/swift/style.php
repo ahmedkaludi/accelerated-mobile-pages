@@ -429,6 +429,38 @@ if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
     .cntn-wrp p {font-size: 16px;}  
 }
 <?php } } ?>
+<?php if($redux_builder_amp['single-design-type'] == '4'){
+if(is_single() ) { ?>
+.sp-rt{
+	margin:0;
+	width:100%;
+}
+.sp-rt .amp-author {
+    margin-top: 20px;
+}
+.sp-artl{
+	display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    height: 100%;
+}
+.sp-artl .srp ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+}
+.sp-artl .srp .has_thumbnail{
+    margin: 15px;
+	flex-basis: calc(49.33% - 30px);
+}
+.sp-artl .fsp{
+	flex-basis: calc(49.33% - 30px);
+}
+.sp-right{
+	background:#2B3035;
+}
+<?php } //is_single condition is added
+} // single design 4 ends?>
 <?php 
 
 //Footer
