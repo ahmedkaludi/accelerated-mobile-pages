@@ -3755,6 +3755,10 @@ Redux::setSection( $opt_name, array(
                                 'alt'=>' Single Design 1 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-1.png'
                                 ),
+                        '4' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-1.png'
+                                ),
                         
                     ),
                    'default'=> '1',

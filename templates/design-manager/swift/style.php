@@ -260,7 +260,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
     <?php } ?>
 <?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '1'){?>
+<?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
 if(is_single() ) { ?>
