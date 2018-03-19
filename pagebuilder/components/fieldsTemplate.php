@@ -70,7 +70,6 @@
     <div class="amp-form-control" :id="field.name" data-type="radio" v-else-if="field.type=='radio' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
-            <spam>{{field.default}}=={{val.value}}</spam>
             <label  class="form-label-radio" v-for="(val,index) in field.options" >
                 <input type="radio"  :value="val.value" v-model="field.default" :checked="field.default==val.value">
                 {{val.label}}
