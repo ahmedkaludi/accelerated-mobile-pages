@@ -3767,6 +3767,13 @@ Redux::setSection( $opt_name, array(
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'    => 'swift-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
                     'title' => __('Published Date', 'accelerated-mobile-pages'),

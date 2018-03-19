@@ -445,9 +445,11 @@ do_action("ampforwp_single_design_type_handle");
 					<?php endwhile; amp_loop('end');  ?>
 				</div>
 			</div><!-- /.sp-left -->
+			<?php if($redux_builder_amp['swift-sidebar'] == '1'){ ?>
 			<div class="sp-right">
 				
 			</div>
+			<?php } ?>
 		</div><!-- /.sp-artl -->
 	</div><!-- /.container -->
 <?php } 
