@@ -290,7 +290,14 @@ function openModulePopup(event,type){
 						//app.modalcontent.repeater.showFields.forEach
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
-								var userValues = moduleData[fieldData.name];
+
+								if(fieldData.name in moduleData){
+									var userValues = moduleData[fieldData.name];
+								}else{
+									var userValues = fieldData.default;
+								}
+								
+								
 								if('object' != typeof(moduleData[fieldData.name])){
 									userValues = decodeURIComponent(encodeURIComponent(userValues));
 									

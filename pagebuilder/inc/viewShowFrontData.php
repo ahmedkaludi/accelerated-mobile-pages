@@ -260,7 +260,13 @@ function amp_pagebuilder_content_styles(){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
-										$userSelectedvalue = $contentArray[$requiredKey];
+										//if value not set than get default value
+										if(!isset($contentArray[$requiredKey])){
+											$userSelectedvalue = getdefaultValue($requiredKey,$moduleTemplate[$contentArray['type']]['fields']);
+										}else{
+											$userSelectedvalue = $contentArray[$requiredKey];
+											
+										}
 										if($userSelectedvalue != $requiredValue){
 											$replaceModule ='';
 										} 
@@ -505,7 +511,10 @@ function rowData($container,$col,$moduleTemplate){
 							
 							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
 								if($moduleField['content_type']=='html'){
-									$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+									$replace = "";
+									if(isset($repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex])){
+										$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
+									}
 									if(is_array($replace)){
 										if(count($replace)>0){
 											$replace = $replace[0];
@@ -780,4 +789,15 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
 	}
 	return $string;
+}
+/*
+* Required Key $requiredKey
+* Set of  field array $moduleTemplate[$contentArray['type']]['fields']
+*/
+function getdefaultValue($requiredKey, $fieldArray){
+	foreach ($fieldArray as $fieldKey => $fieldvalue) {
+		if($fieldvalue['name'] == $requiredKey){
+			return $fieldvalue['default'];
+		}
+	}
 }
