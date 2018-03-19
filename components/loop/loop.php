@@ -333,13 +333,13 @@ function amp_loop_image( $data=array() ) {
 
 // Category
 function amp_loop_category(){
-	echo ' <ul class="loop-category">';
 	if(count(get_the_category()) > 0){
+		echo ' <ul class="loop-category">';
 		foreach((get_the_category()) as $category) {
 			echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';
 		}
+		echo '</ul>';
 	}
-	echo '</ul>';
 }
 // author
 function amp_loop_author($args = array()){
