@@ -60,6 +60,11 @@
 		<?php endwhile; amp_loop('end');  ?>
 	<?php amp_pagination(); ?>
    </div>
+   <?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
+		<div class="hm-right">
+			
+		</div>
+	<?php } ?>
 </div>
 <?php //amp_loop_template(); ?>
 

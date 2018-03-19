@@ -2957,7 +2957,13 @@ Redux::setSection( $opt_name, array(
                        'title' => __('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
             ),
-            
+            array(
+                    'id'    => 'gbl-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
              array(
                     'id'       => 'css_editor',
                     'type'     => 'ace_editor',
@@ -2968,6 +2974,7 @@ Redux::setSection( $opt_name, array(
                     'desc'     => '',
                     'default'  => __('/******* Paste your Custom CSS in this Editor *******/','accelerated-mobile-pages')
             ),
+
         )
     ));
 
@@ -3734,6 +3741,7 @@ Redux::setSection( $opt_name, array(
                         'data'  => 'categories',
                         'multi'    => true
                 ),
+
 
         )
     ));

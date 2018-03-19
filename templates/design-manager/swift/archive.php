@@ -4,6 +4,9 @@
 	<div class="arch-tlt">
 		<?php amp_archive_title(); ?>
 	</div>
-	<?php amp_loop_template(); ?>
+	<div class="arch-psts">
+		<?php amp_loop_template(); ?>
+		<?php amp_pagination(); ?>
+	</div>
 </div>
 <?php amp_footer()?>

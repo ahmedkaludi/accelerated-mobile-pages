@@ -21,4 +21,8 @@ if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
     </div>
 </div>
 <?php endwhile; amp_loop('end');  ?>
-<?php amp_pagination(); ?>
+<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
+    <div class="hm-right">
+        
+    </div>
+<?php } ?>

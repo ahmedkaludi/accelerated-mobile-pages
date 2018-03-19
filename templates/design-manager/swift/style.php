@@ -482,6 +482,30 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
 }
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
+<?php // Header and Archive Sidebar
+if ($redux_builder_amp['gbl-sidebar']) { ?>
+.b-w, .arch-psts{
+	display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    height: 100%;
+}
+.hm-right{
+	background:#2B3035;
+}
+/*** Home page ***/
+.fbp-cnt {
+    float: left;
+    width: 30%;
+    margin-left: 20px;
+}
+.b-w .fsp, .arch-psts .fsp{
+	flex-basis: calc(49.33% - 30px);
+}
+.b-w .hm-right{
+	margin-top:34px;
+}
+<?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
 
 //Footer
