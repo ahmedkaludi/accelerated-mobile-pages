@@ -2958,11 +2958,47 @@ Redux::setSection( $opt_name, array(
                        'indent' => true,
             ),
             array(
-                    'id'    => 'gbl-sidebar',
+                    'id'    => 'sbr-customize-options',
                     'type'  => 'switch',
                     'title' => __('Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'    => 'gbl-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Enable Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('sbr-customize-options', '=',1) ),
+            ),
+            array(
+                    'id'        => 'sidebar-bgcolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#2B3035',
+                    ),
+                    'required' => array(
+                      array('sbr-customize-options', '=',1)
+                    )
+            ),
+            array(
+                    'id'       => 'sbr-heading-color',
+                    'type'     => 'color_rgba',
+                    'title'    => __('Heading', 'accelerated-mobile-pages'),
+                    'default'  => '#000',
+                    'required' => array(
+                      array('sbr-customize-options','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'sbr-text-color',
+                    'type'     => 'color_rgba',
+                    'title'    => __('Text', 'accelerated-mobile-pages'),
+                    'default'  => '#000',
+                    'required' => array(
+                      array('sbr-customize-options','=',1)
+                    )           
             ),
              array(
                     'id'       => 'css_editor',
