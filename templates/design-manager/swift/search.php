@@ -4,6 +4,5 @@
 		<?php amp_archive_title(); ?>
 	</div>
 	<?php amp_loop_template(); ?>
-	<?php amp_pagination(); ?>
 </div>
 <?php amp_footer()?>
