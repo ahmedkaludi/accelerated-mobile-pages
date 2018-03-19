@@ -440,8 +440,8 @@ if(is_single() ) { ?>
 }
 .sp-artl{
 	display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
     height: 100%;
 }
 .sp-artl .srp ul{
@@ -451,18 +451,36 @@ if(is_single() ) { ?>
 }
 .sp-artl .srp .has_thumbnail{
     margin: 15px;
+    flex-basis: calc(33.33% - 30px);
+}
+.sf-img .wp-caption-text{
+	width:100%;
+}
+@media(max-width:768px){
+.sp-artl .srp .has_thumbnail{
+    flex-basis: calc(100% - 30px);
+}
+}
+
+<?php } //is_single condition is added
+if ($redux_builder_amp['swift-sidebar']) { ?>
+.sp-artl{
+	display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    height: 100%;
+}
+.sp-right{
+	background:#2B3035;
+}
+.sp-artl .srp .has_thumbnail{
+    margin: 15px;
 	flex-basis: calc(49.33% - 30px);
 }
 .sp-artl .fsp{
 	flex-basis: calc(49.33% - 30px);
 }
-.sp-right{
-	background:#2B3035;
-}
-.sf-img .wp-caption-text{
-	width:100%;
-}
-<?php } //is_single condition is added
+<?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php 
 
