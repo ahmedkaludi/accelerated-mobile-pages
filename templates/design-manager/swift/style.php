@@ -357,7 +357,7 @@ if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 .cmts .comment-metadata a{color: #999;}
 .comment-content{margin-top:6px;width:100%;display:inline-block;}
 .comment-content p{font-size: 14px;color: #333;line-height: 22px;font-weight: 400;margin: 0;}
-.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;}
+.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;width:40px;}
 .sp-rt .amp-author {margin-top: 5px;}
 .cntn-wrp a{margin:10px 0px;color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .loop-wrapper{display: flex;flex-wrap: wrap;margin: -15px;}
@@ -458,6 +458,9 @@ if(is_single() ) { ?>
 }
 .sp-right{
 	background:#2B3035;
+}
+.sf-img .wp-caption-text{
+	width:100%;
 }
 <?php } //is_single condition is added
 } // single design 4 ends?>
