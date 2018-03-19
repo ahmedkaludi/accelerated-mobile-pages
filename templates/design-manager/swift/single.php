@@ -446,8 +446,23 @@ do_action("ampforwp_single_design_type_handle");
 				</div>
 			</div><!-- /.sp-left -->
 			<?php if($redux_builder_amp['swift-sidebar'] == '1'){ ?>
-			<div class="sp-right">
-				
+			<div class="sdbr-right">
+				<?php 
+					ob_start();
+					dynamic_sidebar('swift-sidebar');
+					$swift_footer_widget = ob_get_contents();
+					ob_end_clean();
+					$sanitizer_obj = new AMPFORWP_Content( 
+										$swift_footer_widget,
+										array(), 
+										apply_filters( 'ampforwp_content_sanitizers', 
+											array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
+											) 
+										) 
+									);
+					 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
+		              echo $sanitized_footer_widget;
+				?>
 			</div>
 			<?php } ?>
 		</div><!-- /.sp-artl -->

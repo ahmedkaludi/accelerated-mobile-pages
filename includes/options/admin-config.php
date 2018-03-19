@@ -4172,7 +4172,7 @@ Redux::setSection( $opt_name, array(
                     ),
                    'default'=> '1',
                   'required' => array(
-                      array('customize-options','=',1)
+                      array('footer-customize-options','=',1)
                     )    
             ),
 

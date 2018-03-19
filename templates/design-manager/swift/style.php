@@ -470,7 +470,7 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
     grid-gap: 20px;
     height: 100%;
 }
-.sp-right{
+.sdbr-right{
 	background:#2B3035;
 }
 .sp-artl .srp .has_thumbnail{
@@ -490,9 +490,6 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
     grid-gap: 20px;
     height: 100%;
 }
-.hm-right{
-	background:#2B3035;
-}
 /*** Home page ***/
 .fbp-cnt {
     float: left;
@@ -504,6 +501,35 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 }
 .b-w .hm-right{
 	margin-top:34px;
+}
+/*** Sidebar CSS ***/
+.sdbr-right{
+	background:#2B3035;
+}
+.amp-sidebar{
+	padding:20px;
+}
+.amp-sidebar ul li{
+	list-style-type: none;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+.amp-sidebar h4{
+<?php if( $redux_builder_amp['swift-footer-heading-clr']['rgba'] ) {?>
+	color: <?php echo $redux_builder_amp['swift-footer-heading-clr']['rgba'] ?>;
+<?php } ?>
+    font-weight: 600;
+    text-transform: none;
+    font-size: 16px;
+    margin-bottom:20px;
+}
+.amp-sidebar p{
+<?php if( $redux_builder_amp['swift-footer-txt-clr']['rgba'] ) {?>
+	color: <?php echo $redux_builder_amp['swift-footer-txt-clr']['rgba'] ?>;
+<?php } ?>
+	font-size: 15px;
+    line-height: 1.4;
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
