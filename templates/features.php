@@ -6008,7 +6008,11 @@ function ampforwp_homepage_loop( $args ) {
 // To get correct comments count #1662
 add_filter('get_comments_number', 'ampforwp_comment_count', 0);
 function ampforwp_comment_count( $count ) {
-	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+	
+	/* TODO: Allowed memory size exhausted #1865	 
+		get_comments() was trying to access by Id and because the ID is not present on amp frontpages. It is getting exhausted. Need to recreate issue and validate the hypothesis
+	*/
+	if ( ! is_admin() && function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && is_single() ) {
 		global $id;
 		$get_comments = get_comments('status=approve&post_id=' . $id); 	 
  		$comments_by_type = separate_comments($get_comments); 
