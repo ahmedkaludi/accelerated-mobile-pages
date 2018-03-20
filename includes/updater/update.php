@@ -94,8 +94,12 @@ function ampForWP_extension_activate_license() {
                 }//else Closed
                 // Check if anything passed on a message constituting a failure
                 $status = false;
-                if ( ! empty( $message ) && is_object($license_data) ) {
-                    $status = $license_data->error;
+                if ( ! empty( $message ) ) {
+                    if(is_object($license_data)){
+                        $status = $license_data->error;
+                    }else{
+                        $status = "An error occurred, Error type not found.";
+                    }
                 }else{
                     $status = $license_data->license;
                     $limit = ampforwp_set_plugin_limit( true, $license_data, $ext_value);

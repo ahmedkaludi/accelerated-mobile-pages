@@ -4065,10 +4065,36 @@ Redux::setSection( $opt_name, array(
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
             array(
+                   'id' => 'single-tab-2',
+                   'type' => 'section',
+                   'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   //'start'  => true,
+                   //'label' => 'Tab 2',
+                   'required' => array(
+                            array('amp-design-selector', '=' , '4')
+                    ),
+             ),
+            array(
+                    'id'    => 'single-new-features',
+                    'type'  => 'switch',
+                    'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'breadcrumb-border',
+                    'type'     => 'switch',
+                    'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1') ),
+            ),
+            array(
                     'id'       => 'ampforwp-underline-content-links',
                     'type'     => 'switch',
                     'title'    => __('Underline on Links', 'accelerated-mobile-pages'),
                     'default'  => 0,
+                    'required' => array( array('single-new-features', '=' , '1') ),
             ),
 
 //             array(

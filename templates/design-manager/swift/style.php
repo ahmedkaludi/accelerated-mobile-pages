@@ -322,7 +322,10 @@ if(is_single() ) { ?>
 <?php } ?>
 <?php //Breadcrumbs
 if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
-.breadcrumbs{padding-bottom: 8px;border-bottom: 1px solid #eee;margin-bottom: 20px;}
+.breadcrumbs{padding-bottom: 8px;margin-bottom: 20px;
+<?php if( 1 == $redux_builder_amp['breadcrumb-border'] ) {?>
+border-bottom: 1px solid #eee;
+<?php }?>}
 .breadcrumb ul li{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
 .breadcrumb ul li a{color: #999;letter-spacing: 1px;}
 .breadcrumb ul li a:hover{color:#005be2;}
