@@ -584,6 +584,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-1']) && $redux_builder_amp['enable-amp-ads-resp-1'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-1'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-1'];
 			$optimize = ampforwp_ad_optimize();
@@ -610,13 +614,23 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
+	      		if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_1">';
 				$output .= '<amp-ad class="amp-ad-1"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'">';
-				$output .= '</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output .= ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -633,6 +647,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-2']) && $redux_builder_amp['enable-amp-ads-resp-2'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-2'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-2'];
 			$optimize = ampforwp_ad_optimize();
@@ -659,13 +677,23 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
+	      		if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_2">';
 				$output	.=	'<amp-ad class="amp-ad-2"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'">';
-				$output	.=	'</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -683,6 +711,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_before_post_content_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-3']) && $redux_builder_amp['enable-amp-ads-resp-3'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
@@ -709,13 +741,23 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
+	      		if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_3">';
 				$output	.=	'<amp-ad class="amp-ad-3"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'">';
-				$output	.=	'</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -730,6 +772,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-4']) && $redux_builder_amp['enable-amp-ads-resp-4'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-4'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-4'];
 			$optimize = ampforwp_ad_optimize();
@@ -756,13 +802,23 @@ function ampforwp_new_dir( $dir ) {
 		          	$advert_width  = '320';
 					$advert_height = '50';
 	      		}
+	      		if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_4">';
 				$output	.=	'<amp-ad class="amp-ad-4"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'">';
-				$output	.=	'</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -778,6 +834,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_below_the_title_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-5']) && $redux_builder_amp['enable-amp-ads-resp-5'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-5'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-5'];
 			$optimize = ampforwp_ad_optimize();
@@ -804,13 +864,23 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
+				if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}		
 				$output = '<div class="amp-ad-wrapper amp_ad_5">';
 				$output	.=	'<amp-ad class="amp-ad-5"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'">';
-				$output	.=	'</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
@@ -827,6 +897,10 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_above_related_post_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$responsive = false;
+			if ( isset($redux_builder_amp['enable-amp-ads-resp-6']) && $redux_builder_amp['enable-amp-ads-resp-6'] ) {
+				$responsive = true;
+			}
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-6'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-6'];
 			$optimize = ampforwp_ad_optimize();
@@ -853,13 +927,23 @@ function ampforwp_new_dir( $dir ) {
 								$advert_width  = '320';
 					$advert_height = '50';
 						}
+				if ( $responsive ) {
+	      			$advert_width  = '100vw';
+					$advert_height = '320';
+	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_6">';
 				$output	.=	'<amp-ad class="amp-ad-6"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'">';
-				$output	.=	'</amp-ad>';
+							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'"';
+				if ( $responsive ) {
+					$output .= 'data-auto-format="rspv"
+							   data-full-width>';
+				   	$output .= '<div overflow></div></amp-ad>';
+				}
+				else
+					$output .= '></amp-ad>';
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);

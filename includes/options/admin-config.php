@@ -834,6 +834,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'required' => array('enable-amp-ads-1', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
                     ),
+                    array(
+                        'id'        =>'enable-amp-ads-resp-1',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-1', '=' , '1'),
+                    ),
             // Ad 1 ends
 
             // Ad 2 Starts
@@ -880,6 +887,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'default'   => '',
                         'required' => array('enable-amp-ads-2', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
+                    ),
+                    array(
+                        'id'        =>'enable-amp-ads-resp-2',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-2', '=' , '1'),
                     ),
             // Ad 2 ends
 
@@ -928,6 +942,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'required'  => array('enable-amp-ads-3', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
                     ),
+                    array(
+                        'id'        =>'enable-amp-ads-resp-3',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-3', '=' , '1'),
+                    ),
             // Ad 3 ends
 
             // Ad 4 Starts
@@ -974,6 +995,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'default'   => '',
                         'required'  => array('enable-amp-ads-4', '=' , '1'),
                         'placeholder'=> '70XXXXXX12'
+                    ),
+                    array(
+                        'id'        =>'enable-amp-ads-resp-4',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-4', '=' , '1'),
                     ),
             // Ad 4 ends
 
@@ -1022,6 +1050,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'required'  => array('enable-amp-ads-5', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
                 ),
+                array(
+                        'id'        =>'enable-amp-ads-resp-5',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-5', '=' , '1'),
+                    ),
 
             //Ad 6 Starts
             array(
@@ -1067,8 +1102,14 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'default'   => '',
                     'required'  => array('enable-amp-ads-6', '=' , '1'),
                     'placeholder'=> '70XXXXXX12'
-                )
-
+                ),
+                array(
+                        'id'        =>'enable-amp-ads-resp-6',
+                        'type'      => 'switch',
+                        'title'     => __('Responsive Ad unit', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'required' => array('enable-amp-ads-6', '=' , '1'),
+                ),
 
             ),
         ) );
