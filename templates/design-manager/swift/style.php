@@ -470,15 +470,41 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
     grid-gap: 20px;
     height: 100%;
 }
-.sdbr-right{
-	background:#2B3035;
-}
 .sp-artl .srp .has_thumbnail{
     margin: 15px;
 	flex-basis: calc(49.33% - 30px);
 }
 .sp-artl .fsp{
 	flex-basis: calc(49.33% - 30px);
+}
+/*** Sidebar CSS ***/
+.sdbr-right{
+	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
+		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
+	<?php } ?>
+	position: relative;
+    top: -20px
+}
+.amp-sidebar{
+	padding:20px;
+	font-size: 16px;
+    line-height: 1.5;
+   	<?php if( $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
+		color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
+	<?php } ?>
+}
+.amp-sidebar ul li{
+	list-style-type: none;
+    margin-bottom: 15px;
+}
+.amp-sidebar h4{
+<?php if( $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
+	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
+<?php } ?>
+    margin-bottom:15px;
+}
+.amp-sidebar p{
+	margin-bottom:15px;
 }
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
@@ -507,33 +533,29 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
 	<?php } ?>
+	position: relative;
+    top: -20px
 }
 .amp-sidebar{
 	padding:20px;
+	font-size: 16px;
+    line-height: 1.5;
+   	<?php if( $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
+		color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
+	<?php } ?>
 }
 .amp-sidebar ul li{
 	list-style-type: none;
-    font-size: 14px;
-    line-height: 1.5;
     margin-bottom: 15px;
 }
 .amp-sidebar h4{
 <?php if( $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
 	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
-<?php } else{ ?>
-	color:#fff;
 <?php } ?>
-    font-weight: 600;
-    text-transform: none;
-    font-size: 16px;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 .amp-sidebar p{
-<?php if( $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
-	color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
-<?php } ?>
-	font-size: 15px;
-    line-height: 1.4;
+	margin-bottom:15px;
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 

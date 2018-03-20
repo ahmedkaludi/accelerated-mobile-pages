@@ -2957,47 +2957,6 @@ Redux::setSection( $opt_name, array(
                        'title' => __('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
             ),
-
-            array(
-                    'id'    => 'gbl-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'        => 'sidebar-bgcolor',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#2B3035',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar', '=',1)
-                    )
-            ),
-            array(
-                    'id'       => 'sbr-heading-color',
-                    'type'     => 'color_rgba',
-                    'title'    => __('Heading', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#f1f1f1',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'sbr-text-color',
-                    'type'     => 'color_rgba',
-                    'title'    => __('Text', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#b1b1b1',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
              array(
                     'id'       => 'css_editor',
                     'type'     => 'ace_editor',
@@ -3755,6 +3714,46 @@ Redux::setSection( $opt_name, array(
                           array('ampforwp-homepage-posts-image-modify-size','=',1)
                         )
                 ),
+                array(
+                    'id'    => 'gbl-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'        => 'sidebar-bgcolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#f7f7f7',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar', '=',1)
+                    )
+            ),
+            array(
+                    'id'       => 'sbr-heading-color',
+                    'type'     => 'color_rgba',
+                    'title'    => __('Heading', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#f1f1f1',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'sbr-text-color',
+                    'type'     => 'color_rgba',
+                    'title'    => __('Text', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#b1b1b1',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
                 array(
                        'id' => 'ampforwp-homepage-section-loop',
                        'type' => 'section',
