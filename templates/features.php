@@ -255,6 +255,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
       	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
 		}
+		if ( ! ampforwp_is_blog() ) {
+			return;
+		}
 			$query_arg_array = $wp->query_vars;
 			if( in_array( "cpage" , $query_arg_array ) ) {
 				if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
@@ -4461,7 +4464,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 		$title 		 = '';
 		$blog_id 	 = '';
 		$current_url_in_pieces = array();
-		if(is_home() &&  $redux_builder_amp['amp-frontpage-select-option'] == 1 && get_option('show_on_front') == 'page'){
+		if(is_home() && get_option('show_on_front') == 'page' && isset($redux_builder_amp['ampforwp-blog-on-off-support']) && $redux_builder_amp['ampforwp-blog-on-off-support'] ) {
 			$current_url = home_url( $GLOBALS['wp']->request );
 			$current_url_in_pieces = explode( '/', $current_url );
 			$page_for_posts  =  get_option( 'page_for_posts' );
