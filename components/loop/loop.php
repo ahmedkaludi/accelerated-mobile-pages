@@ -318,12 +318,13 @@ function amp_loop_image( $data=array() ) {
 			$thumb_width = $thumb_url_array[1];
 			$thumb_height = $thumb_url_array[2];
 		}
-		
-		echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-		echo '<a href="'.amp_loop_permalink(true).'">';
-		echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
-		echo '</a>';
-		echo '</'.$tag.'>';
+		if ( $thumb_url ) {
+			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
+			echo '<a href="'.amp_loop_permalink(true).'">';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '</a>';
+			echo '</'.$tag.'>';
+		}
      } 
 } 
 

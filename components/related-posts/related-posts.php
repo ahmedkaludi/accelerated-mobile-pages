@@ -100,8 +100,10 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 	?>
 	<a href="<?php echo esc_url( $related_post_permalink ); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 	    <?php
-	        $thumb_id_2 = get_post_thumbnail_id();
-	        $thumb_url_array_2 = wp_get_attachment_image_src($thumb_id_2, $imagetype, true);
+	    if (ampforwp_has_post_thumbnail()  ) {
+	    	$thumb_url = ampforwp_get_post_thumbnail('url', $imagetype);
+			$thumb_width = ampforwp_get_post_thumbnail('width', $imagetype);
+			$thumb_height = ampforwp_get_post_thumbnail('height', $imagetype);
 	        if(isset($data['image_crop']) && $data['image_crop'] != ""){
 				$width 	= $data['image_crop_width'];
 				if(empty($width)){
@@ -111,16 +113,20 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 				if(empty($height)){
 					$height = $thumb_url_array_2[2];
 				}
-				$thumb_url_array_2 = ampforwp_aq_resize( $thumb_url_array_2[0], $width, $height, true, false ); //resize & crop the image
+				$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
+				$thumb_url = $thumb_url_array[0];
+				$thumb_width = $thumb_url_array[1];
+				$thumb_height = $thumb_url_array[2];
 			}
-	        $thumb_url_2 = $thumb_url_array_2[0];
 	    
-	     if ( has_post_thumbnail() && $show_image ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url_2 ); ?>" width="<?php echo $thumb_url_array_2[1]; ?>" height="<?php echo $thumb_url_array_2[2]; ?>" layout="responsive"></amp-img>
-		<?php } ?>
-	    </a>
+	     if ( $thumb_url && $show_image ) { ?>
+	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img>
+		<?php }
+		} ?>
+    </a>
 <?php
 }
+
 function ampforwp_get_relatedpost_content($argsdata=array()){
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 ?>

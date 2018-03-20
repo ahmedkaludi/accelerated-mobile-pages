@@ -96,8 +96,15 @@ if(!class_exists('Aq_Resize')) {
                 
 
                 // Check if $img_url is local.
-                if ( false === strpos( $url, $upload_url ) )
-                    throw new Aq_Exception('Image must be local: ' . $url);
+                if ( false === strpos( $url, $upload_url ) ) {
+                    // Return the original array
+                    return array (
+                        0 => $url,
+                        1 => $width,
+                        2 => $height
+                    );
+                    //throw new Aq_Exception('Image must be local: ' . $url);
+                }
 
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
