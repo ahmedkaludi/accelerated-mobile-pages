@@ -295,6 +295,7 @@ if(is_single() ) { ?>
 
 
 .cntn-wrp{font-size:18px;color:#000;line-height:1.7;}
+.sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
 .cntn-wrp p{margin:0px 0px 30px 0px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
