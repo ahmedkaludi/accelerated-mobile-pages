@@ -680,7 +680,7 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
-			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] ) {
+			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && is_single() ) {
 				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -727,7 +727,7 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-4'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-4'];
 			$optimize = ampforwp_ad_optimize();
-			if ( isset($redux_builder_amp['enable-amp-ads-4']) && true == $redux_builder_amp['enable-amp-ads-4'] ) {
+			if ( isset($redux_builder_amp['enable-amp-ads-4']) && true == $redux_builder_amp['enable-amp-ads-4'] && is_single() ) {
 				if($redux_builder_amp['enable-amp-ads-select-4'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
@@ -775,7 +775,7 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-5'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-5'];
 			$optimize = ampforwp_ad_optimize();
-			if ( isset($redux_builder_amp['enable-amp-ads-5']) && true == $redux_builder_amp['enable-amp-ads-5'] ) {
+			if ( isset($redux_builder_amp['enable-amp-ads-5']) && true == $redux_builder_amp['enable-amp-ads-5'] && is_single() ) {
 				if($redux_builder_amp['enable-amp-ads-select-5'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
