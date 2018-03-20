@@ -155,11 +155,12 @@
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
 			            </div>
-		            <?php } ?>
-		            <div class="post-date">
-		            	<?php amp_date(); ?><?php edit_post_link(); ?>
-		            </div>
-		            <?php
+		            <?php } 
+		            if( true == $redux_builder_amp['swift-date'] ) { ?>
+			            <div class="post-date">
+			            	<?php amp_date(); ?><?php edit_post_link(); ?>
+			            </div>
+		            <?php }
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 					$my_query = related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
@@ -366,11 +367,13 @@ do_action("ampforwp_single_design_type_handle");
 					            <div class="tags">
 					            	<?php amp_tags_list();?>
 					            </div>
-				            <?php } ?>
-				            <div class="post-date">
-				            	<?php amp_date(); ?><?php edit_post_link(); ?>
-				            </div>
-				            <?php if( $redux_builder_amp['amp-author-description'] ) { ?>
+				            <?php } 
+				            if( true == $redux_builder_amp['swift-date'] ) { ?>
+					            <div class="post-date">
+					            	<?php amp_date(); ?><?php edit_post_link(); ?>
+					            </div>
+				            <?php }
+				             if( $redux_builder_amp['amp-author-description'] ) { ?>
 								<?php amp_author_box( 
 									array(	'avatar'=>true,
 											'avatar_size'=>60,
