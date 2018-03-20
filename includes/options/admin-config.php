@@ -3820,7 +3820,7 @@ Redux::setSection( $opt_name, array(
                     'type'  => 'switch',
                     'title' => __('Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 1,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'required' => array( array('single-design-type', '=' , '4') ),
             ),
             array(
                     'id'    => 'swift-featued-image',
