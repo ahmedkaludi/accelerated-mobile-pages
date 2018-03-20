@@ -620,6 +620,9 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output .= ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+				if ( ampforwp_is_front_page() && checkAMPforPageBuilderStatus($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+					return;
+				}
 				echo $output;
 			}
 		}
@@ -666,6 +669,9 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+				if ( ampforwp_is_front_page() && checkAMPforPageBuilderStatus($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+					return;
+				}
 				echo $output;
 			}
 		}
