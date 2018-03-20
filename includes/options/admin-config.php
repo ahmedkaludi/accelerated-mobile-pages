@@ -2957,19 +2957,13 @@ Redux::setSection( $opt_name, array(
                        'title' => __('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
             ),
+
             array(
-                    'id'    => 'sbr-customize-options',
+                    'id'    => 'gbl-sidebar',
                     'type'  => 'switch',
                     'title' => __('Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'    => 'gbl-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Enable Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('sbr-customize-options', '=',1) ),
             ),
             array(
                     'id'        => 'sidebar-bgcolor',
@@ -2979,25 +2973,29 @@ Redux::setSection( $opt_name, array(
                         'color'     => '#2B3035',
                     ),
                     'required' => array(
-                      array('sbr-customize-options', '=',1)
+                      array('gbl-sidebar', '=',1)
                     )
             ),
             array(
                     'id'       => 'sbr-heading-color',
                     'type'     => 'color_rgba',
                     'title'    => __('Heading', 'accelerated-mobile-pages'),
-                    'default'  => '#000',
+                    'default'  => array(
+                        'color'     => '#f1f1f1',
+                    ),
                     'required' => array(
-                      array('sbr-customize-options','=',1)
+                      array('gbl-sidebar','=',1)
                     )           
             ),
             array(
                     'id'       => 'sbr-text-color',
                     'type'     => 'color_rgba',
                     'title'    => __('Text', 'accelerated-mobile-pages'),
-                    'default'  => '#000',
+                    'default'  => array(
+                        'color'     => '#b1b1b1',
+                    ),
                     'required' => array(
-                      array('sbr-customize-options','=',1)
+                      array('gbl-sidebar','=',1)
                     )           
             ),
              array(

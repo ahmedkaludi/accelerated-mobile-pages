@@ -520,6 +520,8 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 .amp-sidebar h4{
 <?php if( $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
 	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
+<?php } else{ ?>
+	color:#fff;
 <?php } ?>
     font-weight: 600;
     text-transform: none;
