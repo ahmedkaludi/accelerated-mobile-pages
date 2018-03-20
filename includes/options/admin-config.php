@@ -3745,7 +3745,7 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'color_rgba',
                     'title'    => __('Heading', 'accelerated-mobile-pages'),
                     'default'  => array(
-                        'color'     => '#f1f1f1',
+                        'color'     => '#333',
                     ),
                     'required' => array(
                       array('gbl-sidebar','=',1)
@@ -3756,7 +3756,7 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'color_rgba',
                     'title'    => __('Text', 'accelerated-mobile-pages'),
                     'default'  => array(
-                        'color'     => '#b1b1b1',
+                        'color'     => '#333',
                     ),
                     'required' => array(
                       array('gbl-sidebar','=',1)

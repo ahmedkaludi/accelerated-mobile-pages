@@ -482,8 +482,6 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
 	<?php } ?>
-	position: relative;
-    top: -20px
 }
 .amp-sidebar{
 	padding:20px;
@@ -510,7 +508,7 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
 if ($redux_builder_amp['gbl-sidebar']) { ?>
-.b-w, .arch-psts{
+.b-w, .arch-dsgn{
 	display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 20px;
@@ -526,15 +524,14 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 	flex-basis: calc(49.33% - 30px);
 }
 .b-w .sdbr-right{
-	margin-top:34px;
+	margin-top:30px;
 }
 /*** Sidebar CSS ***/
 .sdbr-right{
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
 	<?php } ?>
-	position: relative;
-    top: -20px
+
 }
 .amp-sidebar{
 	padding:20px;

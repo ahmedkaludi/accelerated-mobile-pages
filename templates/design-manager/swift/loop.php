@@ -21,23 +21,3 @@ if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
     </div>
 </div>
 <?php endwhile; amp_loop('end');  ?>
-<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
-    <div class="sdbr-right">
-        <?php 
-            ob_start();
-            dynamic_sidebar('swift-sidebar');
-            $swift_footer_widget = ob_get_contents();
-            ob_end_clean();
-            $sanitizer_obj = new AMPFORWP_Content( 
-                                $swift_footer_widget,
-                                array(), 
-                                apply_filters( 'ampforwp_content_sanitizers', 
-                                    array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
-                                    ) 
-                                ) 
-                            );
-             $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
-              echo $sanitized_footer_widget;
-        ?>
-    </div>
-<?php } ?>
