@@ -5079,23 +5079,37 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 	function ampforwp_get_author_details( $post_author , $params='' ){
 		global $redux_builder_amp, $post;
 		$post_author_url = '';
+		$post_author_name = '';
+		$post_author_name = $post_author->display_name;
 		$post_author_url = ampforwp_get_author_page_url();
+		if ( function_exists('coauthors') ) { 
+			$post_author_name = coauthors(null,null,null,null,false);
+		}
+		if ( function_exists('coauthors_posts_links') ) {
+			$post_author_url = coauthors_posts_links(null,null,null,null,false);
+		}
 		switch ($params) {
 			case 'meta-info':
-				if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { 
-					return	'<span class="amp-wp-author author vcard"><a href="'.esc_url($post_author_url).'">'.esc_html( $post_author->display_name ).'</a></span>';
+				if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) {
+					if ( function_exists('coauthors_posts_links') ) {
+						return '<span class="amp-wp-author author vcard">'. $post_author_url .'</span>';
+					}
+					return	'<span class="amp-wp-author author vcard"><a href="'.esc_url($post_author_url).'">'.esc_html( $post_author_name ).'</a></span>';
  				}
 				else { 
-					return '<span class="amp-wp-author author vcard">' .esc_html( $post_author->display_name ).'</span>';
+					return '<span class="amp-wp-author author vcard">' .esc_html( $post_author_name ).'</span>';
 				 } 
 				break;
 
 			case 'meta-taxonomy':
 				if( isset($redux_builder_amp['ampforwp-author-page-url']) && $redux_builder_amp['ampforwp-author-page-url'] ) { 
-	                return	'<a href="' . esc_url($post_author_url) . ' "><strong>' . esc_html( $post_author->display_name ) . ' </strong></a>:'; 
+					if ( function_exists('coauthors_posts_links') ) {
+						return	$post_author_url;
+					}
+	                return	'<a href="' . esc_url($post_author_url) . ' "><strong>' . esc_html( $post_author_name ) . ' </strong></a>:'; 
 	                 }
                 	else{ 
-                		return '<strong> ' . esc_html( $post_author->display_name) . ' </strong>:';
+                		return '<strong> ' . esc_html( $post_author_name) . ' </strong>:';
                 	}
 				break;
 		}
@@ -6126,4 +6140,12 @@ if ( ! function_exists('ampforwp_nonamp_analytics') ) {
 		</script>";
 		}
 	}
+}
+// Coauthors Compatibility #1895
+add_filter('coauthors_posts_link', 'ampforwp_coauthors_links');
+function ampforwp_coauthors_links($args){
+	if ( function_exists('ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+		$args['href'] = ampforwp_url_controller($args['href']);
+	}
+	return $args;
 }
