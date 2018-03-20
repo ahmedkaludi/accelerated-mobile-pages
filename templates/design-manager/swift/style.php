@@ -105,7 +105,8 @@ a.lb-x:after {content: "\e5cd";font-family: 'icomoon';font-size: 30px;line-heigh
 .overlay-search:before {content: "\e8b6";position: absolute;right:0;font-size: 24px;font-family: 'icomoon';cursor: pointer;top:4px;
 <?php if($redux_builder_amp['swift-element-overlay-color-control']['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php }  ?>}
 .lb-btn #amp-search-submit {cursor: pointer;background:transparent;border: none;display: inline-block;width: 30px;height: 30px;opacity: 0;position: absolute;z-index:100;right: 0;top: 0;}
-.lb-btn #s {padding: 10px;background: transparent;border: none;border-bottom: 1px solid #504c4c;color: #fff;width:100%;}
+.lb-btn #s {padding: 10px;background: transparent;border: none;border-bottom: 1px solid #504c4c;width:100%;
+color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;}
 <?php } ?>
 <?php //menu type-1 
 
