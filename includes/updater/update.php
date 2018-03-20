@@ -94,7 +94,7 @@ function ampForWP_extension_activate_license() {
                 }//else Closed
                 // Check if anything passed on a message constituting a failure
                 $status = false;
-                if ( ! empty( $message ) ) {
+                if ( ! empty( $message ) && is_object($license_data) ) {
                     $status = $license_data->error;
                 }else{
                     $status = $license_data->license;

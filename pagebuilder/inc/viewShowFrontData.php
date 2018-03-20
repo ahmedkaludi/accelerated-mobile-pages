@@ -205,6 +205,28 @@ function amp_pagebuilder_content_styles(){
 									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceSpacing, $rowCss);
 
 								break;
+								case 'upload':
+									$imageDetails = ampforwp_get_attachment_id( $replaceRow);
+									$imageUrl = $imageDetails[0];
+									$imageWidth = $imageDetails[1];
+									$imageHeight = $imageDetails[2];
+									$rowCss = str_replace(
+													'{{'.$rowfield['name'].'}}', 
+													 $imageUrl, 
+													$rowCss
+												);
+									$rowCss = str_replace(
+												array('{{image_width}}','{{image_width_'.$rowfield['name'].'}}'), 
+												array($imageWidth,$imageWidth), 
+												$rowCss
+											);
+									$rowCss = str_replace(
+												array('{{image_height}}','{{image_height_'.$rowfield['name'].'}}'), 
+												array($imageHeight,$imageHeight), 
+												$rowCss
+											);
+									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
+								break;
 								default:
 									if(is_array($replaceRow)){
 										if(count($replaceRow)>0){
@@ -541,13 +563,19 @@ function rowData($container,$col,$moduleTemplate){
 													$repeaterFrontTemplate
 												);
 										$repeaterFrontTemplate = str_replace(
-													'{{image_width}}', 
-													 $imageWidth, 
+													array('{{image_width}}',
+														  '{{image_width_'.$moduleField['name'].'}}',
+														), 
+													 array($imageWidth, $imageWidth), 
 													$repeaterFrontTemplate
 												);
 										$repeaterFrontTemplate = str_replace(
-													'{{image_height}}', 
-													 $imageHeight, 
+													array('{{image_height}}',
+														  '{{image_height'.$moduleField['name'].'}}'
+														 ), 
+													 array($imageHeight,
+													 	   $imageHeight
+													 	), 
 													$repeaterFrontTemplate
 												);
 										$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
@@ -643,13 +671,13 @@ function rowData($container,$col,$moduleTemplate){
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = str_replace(
-													'{{image_width}}', 
-													 $imageWidth, 
+													array('{{image_width}}','{{image_width_'.$field['name'].'}}'), 
+													 array($imageWidth,$imageWidth), 
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = str_replace(
-													'{{image_height}}', 
-													 $imageHeight, 
+													array('{{image_height}}','{{image_height_'.$field['name'].'}}'), 
+													 array($imageHeight,$imageHeight), 
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
