@@ -3816,6 +3816,13 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'    => 'swift-featued-image',
+                    'type'  => 'switch',
+                    'title' => __('Featured Image', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
                     'id'    => 'swift-date',
                     'type'  => 'switch',
                     'title' => __('Published Date', 'accelerated-mobile-pages'),

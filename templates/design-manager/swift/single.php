@@ -12,10 +12,10 @@
 		    </div>
 		<?php } ?>
 	</div>
-	<?php if ( ampforwp_has_post_thumbnail() ) {?>
-	<div class="sf-img">
-		<?php amp_featured_image();?>
-	</div>
+	<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
+		<div class="sf-img">
+			<?php amp_featured_image();?>
+		</div>
 	<?php }
 	else{
 		//
@@ -243,7 +243,7 @@ do_action("ampforwp_single_design_type_handle");
 					   <?php amp_excerpt(20); ?>
 				    </div>
 				<?php } ?>
-				<?php if ( ampforwp_has_post_thumbnail() ) {?>
+				<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
 					<div class="sf-img">
 						<?php amp_featured_image();?>
 					</div>
