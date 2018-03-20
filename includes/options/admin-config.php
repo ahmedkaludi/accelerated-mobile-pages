@@ -13,6 +13,7 @@ $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&ut
 $comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
 // Display only If AMP Cache is Not Installed
+$cache_desc ="";
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
    if(!is_plugin_active( 'amp-cache/ampforwp-cache.php' )){
 $cache_AD_URL = "http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=performance-tab&utm_campaign=AMP%20Plugin";
