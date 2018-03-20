@@ -477,33 +477,7 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
 .sp-artl .fsp{
 	flex-basis: calc(49.33% - 30px);
 }
-/*** Sidebar CSS ***/
-.sdbr-right{
-	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
-		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
-	<?php } ?>
-}
-.amp-sidebar{
-	padding:20px;
-	font-size: 16px;
-    line-height: 1.5;
-   	<?php if( $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
-		color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
-	<?php } ?>
-}
-.amp-sidebar ul li{
-	list-style-type: none;
-    margin-bottom: 15px;
-}
-.amp-sidebar h4{
-<?php if( $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
-	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
-<?php } ?>
-    margin-bottom:15px;
-}
-.amp-sidebar p{
-	margin-bottom:15px;
-}
+
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
@@ -526,6 +500,8 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 .b-w .sdbr-right{
 	margin-top:30px;
 }
+<?php }
+if ($redux_builder_amp['gbl-sidebar'] || $redux_builder_amp['swift-sidebar'] ) { ?>
 /*** Sidebar CSS ***/
 .sdbr-right{
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
