@@ -255,7 +255,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
       	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
 		}
-		if ( ! ampforwp_is_blog() ) {
+		if ( is_home() && ! ampforwp_is_blog() ) {
 			return;
 		}
 			$query_arg_array = $wp->query_vars;
