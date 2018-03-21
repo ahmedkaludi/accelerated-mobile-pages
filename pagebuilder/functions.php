@@ -10,7 +10,15 @@ function amppbbase_admin_scripts( $hook_suffix ){
     global $moduleTemplate;
     global $layoutTemplate, $redux_builder_amp;
     /* In Page Edit Screen */
-    if( ($post_type=='post' || $post_type=='page' || in_array($post_type, $redux_builder_amp['ampforwp-custom-type'])) && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
+    if( ($post_type=='post' 
+    	 || $post_type=='page' 
+    	 || (
+	    	 	isset($redux_builder_amp['ampforwp-custom-type'])
+	    	 	&& is_array($redux_builder_amp['ampforwp-custom-type'])
+	    	 	&& in_array($post_type, $redux_builder_amp['ampforwp-custom-type'])
+    	 	)
+    	)
+    	&& in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
