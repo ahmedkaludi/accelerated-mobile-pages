@@ -195,6 +195,39 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 					}
 				}
 	    	break;
+	    	case is_page():
+	    		$id = get_queried_object_id();
+				$template = get_page_template_slug();
+				$pagename = get_query_var('pagename');
+
+				if ( ! $pagename && $id ) {
+					// If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object
+					$post = get_queried_object();
+					if ( $post )
+						$pagename = $post->post_name;
+				}
+
+				$templates = array();
+				if ( $template && 0 === validate_file( $template ) )
+					$templates[] = $template;
+				if ( $pagename ) {
+					$pagename_decoded = urldecode( $pagename );
+					if ( $pagename_decoded !== $pagename ) {
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$pagename_decoded}.php";
+					}
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$pagename}.php";
+				}
+				if ( $id )
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$id}.php";
+				$templates[] = AMPFORWP_CUSTOM_THEME . "/page.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    }
 	    // Polylang Frontpage #1779
 	    if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
