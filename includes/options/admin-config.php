@@ -3377,6 +3377,15 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'       => 'swift-width-control',
+                    'type'     => 'text',
+                    'title'    => __('Header Width', 'accelerated-mobile-pages'),
+                    'default'  => '1100px',
+                    'required' => array(
+                      array('customize-options','=',1)
+                    )           
+            ),
+            array(
                     'id'       => 'swift-height-control',
                     'type'     => 'text',
                     'title'    => __('Header Height', 'accelerated-mobile-pages'),

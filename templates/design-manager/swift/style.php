@@ -39,6 +39,11 @@ amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-img img {object-fit: contain;}
 @font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');}
 .cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px}
+header .cntr{
+<?php if($redux_builder_amp['swift-width-control']){?>
+	max-width:<?php echo $redux_builder_amp['swift-width-control']?>;
+<?php }?>
+}
 .h_m{position:fixed;z-index:9999;top:0px;width: 100vw;display:inline-block;
 <?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;<?php }?>
 <?php if($redux_builder_amp['swift-border-line-control']){?>border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;<?php } ?>
