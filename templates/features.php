@@ -3436,11 +3436,14 @@ function ampforwp_comment_button_url(){
     else
       $ampforwp_nonamp = '';
 
+  	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+  		$button_url = user_trailingslashit(get_the_permalink()).'#comments';
+  	}
+  	else{
+  		$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
 
-  	$button_url = add_query_arg( array( 'nonamp' => '1' ), get_permalink() );
-
-  	$button_url = $button_url. '#commentform';
-
+  		$button_url = $button_url. '#commentform';
+  	}
   return $button_url; 
 }
 
