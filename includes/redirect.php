@@ -36,7 +36,10 @@ function ampforwp_page_template_redirect() {
 
 
   if ( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection'] ) {
-
+    // Return if Dev mode is enabled
+    if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
+      return;
+    }
     // Return if the set value is not met and do not start redirection
     if ( 'disable' == ampforwp_meta_redirection_status() ) {
         return;
