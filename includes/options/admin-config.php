@@ -3946,6 +3946,14 @@ Redux::setSection( $opt_name, array(
               'title'     => __('Next-Previous Links', 'accelerated-mobile-pages'),
               'default'   => 1,
           ),
+         // Author name 
+         array(
+             'id'       => 'amp-author-name',
+             'type'     => 'switch',
+             'title'    => __( 'Author Name', 'accelerated-mobile-pages' ),
+             'default'  => '1',
+             'required' => array('amp-design-selector' , '=' , '4')
+         ),
           // Author Bio
          array(
              'id'       => 'amp-author-description',

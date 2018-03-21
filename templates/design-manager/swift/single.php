@@ -147,10 +147,12 @@
 
 						</ul>
 		            </div>
-		            <div class="sp-athr">
-		            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
-		            	<?php amp_author_box(); ?>
-		            </div>
+		            <?php if( isset($redux_builder_amp['amp-author-name']) && $redux_builder_amp['amp-author-name'] ) { ?>
+			            <div class="sp-athr">
+			            	<span class="athr-tx"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-published-by'], 'Published by' ); ?></span>
+			            	<?php amp_author_box(); ?>
+			            </div>
+			         <?php } ?>   
 		            <?php if( true == $redux_builder_amp['ampforwp-tags-single'] && amp_tags_list()){ ?>
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
