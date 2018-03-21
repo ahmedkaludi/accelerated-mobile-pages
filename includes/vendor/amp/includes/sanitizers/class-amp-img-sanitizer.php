@@ -10,12 +10,17 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	const FALLBACK_WIDTH = 600;
 	const FALLBACK_HEIGHT = 400;
 
+	protected $is_lightbox = false;
+
 	public static $tag = 'img';
 
 	private static $anim_extension = '.gif';
 
 	private static $script_slug = 'amp-anim';
 	private static $script_src = 'https://cdn.ampproject.org/v0/amp-anim-0.1.js';
+	
+	private static $script_slug_lightbox = 'amp-image-lightbox';
+	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
 
 	public function sanitize() {
 
@@ -90,6 +95,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function adjust_and_replace_node( $node ) {
 		$old_attributes = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
+		$old_attributes = apply_filters('amp_img_attributes', $old_attributes);
 		$new_attributes = $this->filter_attributes( $old_attributes );
 		$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
 		if ( $this->is_gif_url( $new_attributes['src'] ) ) {
@@ -100,6 +106,10 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
 		$node->parentNode->replaceChild( $new_node, $node );
+		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
+			add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
+			$this->is_lightbox = true;
+		}
 	}
 
 	/**
@@ -116,10 +126,13 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	public function get_scripts() {
-		if ( ! $this->did_convert_elements ) {
+		if ( $this->is_lightbox ) {
+			return array( self::$script_slug_lightbox => self::$script_src_lightbox );
+
+		}
+		if (  ! $this->did_convert_elements ) {
 			return array();
 		}
-
 		return array( self::$script_slug => self::$script_src );
 	}
 
@@ -134,6 +147,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'srcset':
 				case 'sizes':
 				case 'on':
+				case 'role':
+				case 'tabindex':
 					$out[ $name ] = $value;
 					break;
 

@@ -3877,6 +3877,13 @@ Redux::setSection( $opt_name, array(
                     'default'   => 1,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
+          // Lightbox 
+           array(
+              'id'       => 'ampforwp-amp-img-lightbox',
+              'type'     => 'switch',
+              'default'  =>  '0',
+              'title'    => __('Lightbox for Images', 'accelerated-mobile-pages'),
+           ),   
          //Breadcrumb ON/OFF
           array(
               'id'       => 'ampforwp-bread-crumb',
