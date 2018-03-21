@@ -183,7 +183,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 .fsp h2{margin:0px 0px 5px 0px;font-size:20px;line-height:1.4;font-weight:500;}
 .at-dt{font-size:11px;color:#808080;margin:12px 0px 9px 0px; display: inline-flex;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
-.arch-tlt{margin:30px 0px 30px;display:inline-block;}
+.arch-tlt{margin:30px 0px 30px;display:inline-block;width:100%;}
 .amp-archive-title, .amp-loop-label{font-weight:600;}
 .amp-archive-desc{font-size: 14px;margin:8px 0px 0px 0px;color: #333;line-height:20px;}
 .author-img amp-img {border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}
