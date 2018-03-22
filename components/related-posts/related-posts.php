@@ -9,36 +9,38 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$my_query = related_post_loop_query();
-	if( $my_query->have_posts() ) { ?>
-		<div class="amp-related-posts">
-			<ul class="clearfix">
-				<?php ampforwp_related_post(); ?>
-				<?php
-			    while( $my_query->have_posts() ) {
-				    $my_query->the_post();
-				    
-				?>
-					<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-			            <?php
-			            $related_post_permalink = ampforwp_url_controller( get_permalink() );
-			            if ( $show_image ) {
-				            if ( isset($argsdata['image_size']) && '' != $argsdata['image_size'] ) {
-				            	ampforwp_get_relatedpost_image($argsdata['image_size']);
-				            }
-				            else {
-				            	ampforwp_get_relatedpost_image('thumbnail');
-				            }
-				        }
-			            ampforwp_get_relatedpost_content($argsdata);
-			            ?> 
-			        </li><?php
-				}
+	if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+		if( $my_query->have_posts() ) { ?>
+			<div class="amp-related-posts">
+				<ul class="clearfix">
+					<?php ampforwp_related_post(); ?>
+					<?php
+				    while( $my_query->have_posts() ) {
+					    $my_query->the_post();
+					    
+					?>
+						<li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+				            <?php
+				            $related_post_permalink = ampforwp_url_controller( get_permalink() );
+				            if ( $show_image ) {
+					            if ( isset($argsdata['image_size']) && '' != $argsdata['image_size'] ) {
+					            	ampforwp_get_relatedpost_image($argsdata['image_size']);
+					            }
+					            else {
+					            	ampforwp_get_relatedpost_image('thumbnail');
+					            }
+					        }
+				            ampforwp_get_relatedpost_content($argsdata);
+				            ?> 
+				        </li><?php
+					}
 
-			} ?>
-			</ul>
-		</div>
-<?php wp_reset_postdata(); ?>
-<?php do_action('ampforwp_below_related_post_hook'); 
+				} ?>
+				</ul>
+			</div>
+	<?php wp_reset_postdata(); ?>
+	<?php do_action('ampforwp_below_related_post_hook');
+	} 
 }
 
 
