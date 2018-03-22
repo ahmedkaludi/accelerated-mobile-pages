@@ -169,7 +169,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 
 	$facebook_comments_check = ampforwp_framework_get_facebook_comments();
 	global $redux_builder_amp;
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() && !is_front_page()) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
