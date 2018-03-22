@@ -62,7 +62,7 @@ $front_css = '
     background-size: cover;
     height: auto;
 }
-{{row-class}}.amppb-fluid{width:100%;}
+{{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
