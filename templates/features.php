@@ -6259,7 +6259,7 @@ add_action('ampforwp_body_beginning', 'ampforwp_amp2wp_fb');
 if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 	function ampforwp_amp2wp_fb(){
 		global $redux_builder_amp;
-		if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
+		if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp'] && ($redux_builder_amp['ampforwp-facebook-comments-support'] || $redux_builder_amp['ampforwp-facebook-like-button']) ) {
 			echo '<div id="fb-root"></div>
 					<script>(function(d, s, id) {
 		  				var js, fjs = d.getElementsByTagName(s)[0];

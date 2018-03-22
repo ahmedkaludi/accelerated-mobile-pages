@@ -136,12 +136,22 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
 							<li>
+							<?php if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) { ?>	
+								<div class="fb-like" 
+    								data-href="<?php echo esc_url(get_the_permalink());?>" 
+									data-layout="button_count" 
+    								data-action="like" 
+    								data-show-faces="true">
+  								</div>
+							<?php }
+							else { ?>
 								<amp-facebook-like width=90 height=28
 				 					layout="fixed"
 				 					data-size="large"
 				    				data-layout="button_count"
 				    				data-href="<?php echo esc_url(get_the_permalink());?>">
 								</amp-facebook-like>
+							<?php } ?>
 							</li>
 							<?php } ?>
 
