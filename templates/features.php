@@ -6254,3 +6254,20 @@ function ampforwp_img_new_attrs($attributes) {
 	}
 	return $attributes;
 }
+// Facebook Comments script for AMP2WP
+add_action('ampforwp_body_beginning', 'ampforwp_amp2wp_fb');
+if ( ! function_exists('ampforwp_amp2wp_fb') ) {
+	function ampforwp_amp2wp_fb(){
+		global $redux_builder_amp;
+		if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
+			echo '<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+		  				var js, fjs = d.getElementsByTagName(s)[0];
+		  				if (d.getElementById(id)) return;
+		  				js = d.createElement(s); js.id = id;
+		  				js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12";
+		  				fjs.parentNode.insertBefore(js, fjs);
+					}(document, "script", "facebook-jssdk"));</script>';
+		}
+	}
+}

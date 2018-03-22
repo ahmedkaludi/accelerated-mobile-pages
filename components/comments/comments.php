@@ -121,7 +121,11 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
 function ampforwp_framework_get_facebook_comments(){
 global $redux_builder_amp;
 	$facebook_comments_markup = '';
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
+	if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
+		$facebook_comments_markup = '<div class="fb-comments" data-href="' . get_permalink() . '" data-width="800px" data-numposts="'.$redux_builder_amp['ampforwp-number-of-fb-no-of-comments'].'"></div>';
+	}
+	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" data-numposts=';
@@ -129,7 +133,7 @@ global $redux_builder_amp;
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
 	    $facebook_comments_markup .= '></amp-facebook-comments>';
-
+	}
 		return $facebook_comments_markup;
 	}
 }
