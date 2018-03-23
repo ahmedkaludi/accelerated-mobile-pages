@@ -1,5 +1,5 @@
 <?php
-$output = '<amp-img src="{{selected_image}}" class="{{css_class}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"></amp-img>';
+$output = '<amp-img src="{{selected_image}}" class="{{css_class}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"  alt="{{image_alt}}"></amp-img>';
 return array(
 		'label' =>'Image',
 		'name' => 'image',
