@@ -165,11 +165,15 @@ return array(
 	              ),
 	          'front_template'=>
 	        	'{{if_condition_carousel_layout_type==1}}
-					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img>
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
 				{{ifend_condition_carousel_layout_type_1}}
 
+				{{if_condition_carousel_layout_type==2}}
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
+				{{ifend_condition_carousel_layout_type_2}}
+
 				{{if_condition_carousel_layout_type==3}}
-					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img>
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
 				{{ifend_condition_carousel_layout_type_3}}
 				'
 	          ),

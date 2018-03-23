@@ -91,7 +91,7 @@ function amp_pagebuilder_script_loader($scriptData){
 
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
-										$userSelectedvalue = $contentArray[$requiredKey];
+										$userSelectedvalue = (isset($contentArray[$requiredKey])? $contentArray[$requiredKey]: "");
 										if($userSelectedvalue != $requiredValue){
 											$replaceModule ='';
 										} 
@@ -607,6 +607,12 @@ function rowData($container,$col,$moduleTemplate){
 						}
 					}//If Check for Fall back
 					
+					//Conditional replacement for Repeaters
+					if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
+						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+							$repeaterFields = ampforwp_replaceIfContentConditional($field['name'], $contentArray[$field['name']], $repeaterFields);
+						}
+					}
 				}//If for Module is repeater or not
 				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
 				
