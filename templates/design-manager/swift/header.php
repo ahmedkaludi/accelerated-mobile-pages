@@ -11,6 +11,11 @@
             <nav class="m-menu">
                <?php amp_menu(); ?>
             </nav><!--end slide-menu -->
+        <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+            <div class="m-srch">
+                <?php amp_search();?>
+            </div>
+        <?php } ?>
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">

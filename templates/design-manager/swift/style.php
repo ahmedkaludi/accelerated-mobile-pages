@@ -470,8 +470,41 @@ blockquote p:before {
     line-height: 1;
     padding-right: 8px;
 }
-<?php } ?>
-<?php if($redux_builder_amp['single-design-type'] == '4'){
+<?php } //Drop Cap CSS ends
+// Menu Search CSS
+if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+.m-srch #amp-search-submit {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 0;
+}
+.m-srch .amp-search-wrapper{
+	border: 1px solid <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	background:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	margin-top:40px;
+}
+.m-srch #s{
+	padding:10px;
+	border:none;
+	width:85%;
+	color:<?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
+	background:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+}
+.m-srch .overlay-search:before{
+	color:<?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
+	padding-right:10px;
+	top:8px;
+}
+<?php } // Menu Search CSS Ends
+if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
 	margin:0;

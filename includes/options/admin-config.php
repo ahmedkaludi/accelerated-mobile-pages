@@ -3088,6 +3088,22 @@ Redux::setSection( $opt_name, array(
  //                   'max-height'=> 60,
                     'required' => array( array('amp-design-selector', '=' , '4') ),
              ),
+            array(
+                    'id'    => 'menu-options',
+                    'type'  => 'switch',
+                    'title' => __('Advanced Menu Options', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+            array(
+                    'id'       => 'menu-search',
+                    'type'     => 'switch',
+                    'title'    => __('Menu Search', 'accelerated-mobile-pages'),
+                    'default'  => '0',
+                    'required' => array(
+                      array('menu-options','=',1)
+                    )           
+            ),
 
             array(
                     'id'       => 'primary-menu',
