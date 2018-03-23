@@ -33,7 +33,6 @@ box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-bo
 amp-iframe { max-width: 100%; margin-bottom : 20px; }
 .wp-caption {padding: 0;}
 .wp-caption-text {font-size: 12px;line-height: 1.5em;margin: 0;padding: .66em 10px .75em;text-align: center;}
-amp-iframe,amp-youtube,amp-instagram,amp-vine {margin: 0 -16px 1.5em;}
 amp-carousel > amp-img > img {object-fit: contain;}
 .amp-carousel-container {position: relative;width: 100%;height: 100%;} 
 .amp-carousel-img img {object-fit: contain;}
