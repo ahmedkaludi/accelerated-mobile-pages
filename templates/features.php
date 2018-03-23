@@ -6287,7 +6287,7 @@ if ( ! function_exists('ampforwp_dropcapped_content') ) {
 			// select remaining letters of content
 			$remaining = mb_substr( $new_content, 1 );
 			// add <span> to the first letter for content
-			$spanned_first_letter = '<span class="amp-drop-cap">' . $first . '</span>';
+			$spanned_first_letter = '<span class="a-dc">' . $first . '</span>';
 			// Merge
 			$content = $spanned_first_letter . $remaining;
 		}
