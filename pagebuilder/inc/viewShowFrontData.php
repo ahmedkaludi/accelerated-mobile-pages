@@ -206,10 +206,21 @@ function amp_pagebuilder_content_styles(){
 
 								break;
 								case 'upload':
-									$imageDetails = ampforwp_get_attachment_id( $replaceRow);
-									$imageUrl = $imageDetails[0];
-									$imageWidth = $imageDetails[1];
-									$imageHeight = $imageDetails[2];
+									//$imageDetails = ampforwp_get_attachment_id( $replaceRow);
+									$image_alt = '';
+									if(isset($rowContainer[$rowfield['name']."_image_data"])){
+									 	$replace= $rowContainer[$rowfield['name']."_image_data"];
+									 	$imageUrl = $replace[0];
+										$imageWidth = $replace[1];
+										$imageHeight = $replace[2];
+										$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+									}else{
+										$imageDetails = ampforwp_get_attachment_id( $replaceRow);
+										$imageUrl = (isset($imageDetails[0])? $imageDetails[0]: "");
+										$imageWidth = (isset($imageDetails[1])? $imageDetails[1]: "");
+										$imageHeight = (isset($imageDetails[3])? $imageDetails[2]: "");	
+										$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+									}
 									$rowCss = str_replace(
 													'{{'.$rowfield['name'].'}}', 
 													 $imageUrl, 
@@ -223,6 +234,11 @@ function amp_pagebuilder_content_styles(){
 									$rowCss = str_replace(
 												array('{{image_height}}','{{image_height_'.$rowfield['name'].'}}'), 
 												array($imageHeight,$imageHeight), 
+												$rowCss
+											);
+									$rowCss = str_replace(
+												array('{{image_alt}}','{{image_alt_'.$rowfield['name'].'}}'), 
+												array($image_alt,$image_alt), 
 												$rowCss
 											);
 									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
