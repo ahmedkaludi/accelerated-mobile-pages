@@ -1,15 +1,42 @@
 <?php 
 $output = '
+{{if_condition_carousel_layout_type==1}}
 <amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="2000">
 	{{repeater}}
 </amp-carousel>
+{{ifend_condition_carousel_layout_type_1}}
+{{if_condition_carousel_layout_type==2}}
+<amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides">
+	{{repeater}}
+</amp-carousel>
+<div class="carousel-preview">
+
+</div>
+{{ifend_condition_carousel_layout_type_2}}
+{{if_condition_carousel_layout_type==3}}
+<amp-carousel width="300" height="300" layout="responsive" type="slides">
+	{{repeater}}
+</amp-carousel>
+{{ifend_condition_carousel_layout_type_3}}
 ';
 $css = '
+{{if_condition_carousel_layout_type==1}}
 .amp-img{
 	width:100%;
 	height:auto;
+	max-width:100%;
 }
 {{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
+{{ifend_condition_carousel_layout_type_1}}
+{{if_condition_carousel_layout_type==3}}
+.amp-img{
+	width:70%;
+	height:100%;
+	max-width:100%;
+}
+{{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
+{{ifend_condition_carousel_layout_type_3}}
+
 ';
 
 return array(
@@ -19,9 +46,36 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layout' => 'Layout'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"carousel_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layout',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                            ),
+				                            array(
+				                              'value'=>'2',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                            ),
+				                            array(
+				                              'value'=>'3',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                            ),
+				                            
+				                          ),
+				            'content_type'=>'html',
+				            ),
                         array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"width",		
@@ -110,8 +164,13 @@ return array(
 	                
 	              ),
 	          'front_template'=>
-	        	'
+	        	'{{if_condition_carousel_layout_type==1}}
 					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img>
+				{{ifend_condition_carousel_layout_type_1}}
+
+				{{if_condition_carousel_layout_type==3}}
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img>
+				{{ifend_condition_carousel_layout_type_3}}
 				'
 	          ),
 	);
