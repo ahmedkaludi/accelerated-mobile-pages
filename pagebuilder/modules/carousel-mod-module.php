@@ -111,7 +111,7 @@ return array(
 	              ),
 	          'front_template'=>
 	        	'
-					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}></amp-img>
+					<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
 				'
 	          ),
 	);

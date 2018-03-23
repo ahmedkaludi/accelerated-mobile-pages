@@ -142,7 +142,7 @@ return array(
           'front_template'=>
         '<div class="feat-blk">
       		<h3 class="t-txt">{{content_title}}</h3>
-			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}}></amp-img>{{ifend_img_upload}}
+			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
       	</div> '
           ),

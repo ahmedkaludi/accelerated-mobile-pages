@@ -545,16 +545,19 @@ function rowData($container,$col,$moduleTemplate){
 										}
 									}
 									if($moduleField['type']=="upload"){
+										$image_alt = "";
 										if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
 											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");
 										}else{
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											$imageUrl = $imageDetails[0];
 											$imageWidth = $imageDetails[1];
-											$imageHeight = $imageDetails[2];	
+											$imageHeight = $imageDetails[2];
+											$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
 										}
 
 										$repeaterFrontTemplate = str_replace(
@@ -571,10 +574,19 @@ function rowData($container,$col,$moduleTemplate){
 												);
 										$repeaterFrontTemplate = str_replace(
 													array('{{image_height}}',
-														  '{{image_height'.$moduleField['name'].'}}'
+														  '{{image_height_'.$moduleField['name'].'}}'
 														 ), 
 													 array($imageHeight,
 													 	   $imageHeight
+													 	), 
+													$repeaterFrontTemplate
+												);
+										$repeaterFrontTemplate = str_replace(
+													array('{{image_alt}}',
+														  '{{image_alt_'.$moduleField['name'].'}}'
+														 ), 
+													 array($image_alt,
+													 	   $image_alt
 													 	), 
 													$repeaterFrontTemplate
 												);
@@ -654,16 +666,19 @@ function rowData($container,$col,$moduleTemplate){
 								if(!is_array($contentArray[$field['name']])){
 									 $replace = $contentArray[$field['name']];
 									if($field['type']=="upload"){
+										$image_alt = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
 										 	$replace= $contentArray[$field['name']."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
 										}else{
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											$imageUrl = $imageDetails[0];
 											$imageWidth = $imageDetails[1];
 											$imageHeight = $imageDetails[2];	
+											$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
 										}
 										$moduleFrontHtml = str_replace(
 													'{{'.$field['name'].'}}', 
@@ -678,6 +693,15 @@ function rowData($container,$col,$moduleTemplate){
 										$moduleFrontHtml = str_replace(
 													array('{{image_height}}','{{image_height_'.$field['name'].'}}'), 
 													 array($imageHeight,$imageHeight), 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = str_replace(
+													array('{{image_alt}}',
+														  '{{image_alt_'.$field['name'].'}}'
+														 ), 
+													 array($image_alt,
+													 	   $image_alt
+													 	), 
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
@@ -789,7 +813,9 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 		}
 
 	}
-	return wp_get_attachment_image_src($attachment_id, $imagetype, false);
+	$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
+	$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
+	return $imageDetails;
 }
 
 function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string){
