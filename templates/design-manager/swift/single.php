@@ -471,7 +471,14 @@ do_action("ampforwp_single_design_type_handle");
 										$swift_footer_widget,
 										array(), 
 										apply_filters( 'ampforwp_content_sanitizers', 
-											array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
+											array( 'AMP_Img_Sanitizer' => array(), 
+												'AMP_Style_Sanitizer' => array(), 
+												'AMP_Blacklist_Sanitizer' => array(),
+												'AMP_Video_Sanitizer' => array(),
+						 						'AMP_Audio_Sanitizer' => array(),
+						 						'AMP_Iframe_Sanitizer' => array(
+													 'add_placeholder' => true,
+												 ),
 											) 
 										) 
 									);
