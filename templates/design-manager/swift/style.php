@@ -463,6 +463,14 @@ blockquote p:before {
     .cntn-wrp p {font-size: 16px;}  
 }
 <?php } } ?>
+<?php if ( isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) { ?>
+.a-dc{
+    float: left;
+    font-size: 75px;
+    line-height: 1;
+    padding-right: 8px;
+}
+<?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
