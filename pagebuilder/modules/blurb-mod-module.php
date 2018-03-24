@@ -20,6 +20,7 @@ $css = '
 {{module-class}}.blurb-mod{
 	margin:{{margin_css}};
 	padding:{{padding_css}};
+	display: grid
 }
 .blu-mod-2{
 	background: {{bg_color}};
