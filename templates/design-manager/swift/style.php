@@ -207,6 +207,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 .right a, .left a{background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
 .right a:after{content:"»";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
 .left a:before{content:"«";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
+.archive{display:grid;}
 @media(max-width:1110px){
     .amppb-fluid .col{max-width:95%}
     .sf-img .wp-caption-text{width:100%;padding:10px 40px;}
@@ -568,6 +569,7 @@ if(is_single() ) { ?>
 
 <?php } //is_single condition is added
 if ($redux_builder_amp['swift-sidebar']) { ?>
+.sp-wrap{display:inline-grid;}
 .sp-artl{
 	display: grid;
     grid-template-columns: 2fr 1fr;
@@ -611,7 +613,7 @@ if ($redux_builder_amp['gbl-sidebar'] || $redux_builder_amp['swift-sidebar'] ) {
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
 	<?php } ?>
-
+	column-width: 350px;
 }
 .amp-sidebar{
 	padding:20px;
@@ -708,6 +710,7 @@ if( true ==  $redux_builder_amp['footer-customize-options']) { ?>
 <?php } ?>
 	font-size: 15px;
     line-height: 1.4;
+    margin-bottom:15px;
 }
 .f-w-f2{
 <?php if( $redux_builder_amp['swift-footer2-bg']['rgba'] ) {?>
