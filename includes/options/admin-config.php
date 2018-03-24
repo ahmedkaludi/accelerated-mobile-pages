@@ -3114,7 +3114,7 @@ Redux::setSection( $opt_name, array(
                     )           
             ),
             array(
-                    'id'       => 'enable-fb',
+                    'id'       => 'enbl-fb',
                     'type'     => 'switch',
                     'title'    => __('Facebook', 'accelerated-mobile-pages'),
                     'default'  => '1',
@@ -3123,7 +3123,16 @@ Redux::setSection( $opt_name, array(
                     )           
             ),
             array(
-                    'id'       => 'enable-tw',
+                    'id'       => 'enbl-fb-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Facebook Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-fb','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-tw',
                     'type'     => 'switch',
                     'title'    => __('Twitter', 'accelerated-mobile-pages'),
                     'default'  => '1',
@@ -3132,7 +3141,16 @@ Redux::setSection( $opt_name, array(
                     )           
             ),
             array(
-                    'id'       => 'enable-gol',
+                    'id'       => 'enbl-tw-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Twitter Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-tw','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-gol',
                     'type'     => 'switch',
                     'title'    => __('Google', 'accelerated-mobile-pages'),
                     'default'  => '1',
@@ -3141,7 +3159,16 @@ Redux::setSection( $opt_name, array(
                     )           
             ),
             array(
-                    'id'       => 'enable-lk',
+                    'id'       => 'enbl-gol-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Google Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-gol','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-lk',
                     'type'     => 'switch',
                     'title'    => __('Linkedin', 'accelerated-mobile-pages'),
                     'default'  => '1',
@@ -3150,12 +3177,30 @@ Redux::setSection( $opt_name, array(
                     )           
             ),
             array(
-                    'id'       => 'enable-pt',
+                    'id'       => 'enbl-lk-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Linkedin Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-lk','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-pt',
                     'type'     => 'switch',
                     'title'    => __('Pinterest', 'accelerated-mobile-pages'),
-                    'default'  => '1',
+                    'default'  => '#',
                     'required' => array(
                       array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-pt-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Pinterest Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-pt','=',1)
                     )           
             ),
             array(
