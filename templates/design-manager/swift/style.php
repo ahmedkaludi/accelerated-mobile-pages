@@ -144,7 +144,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .amp-menu > li a{<?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?> padding: 13px 7px;margin-bottom:0;}
 .menu-btn{margin-top:30px;text-align:center;}
 .menu-btn a{color:#fff;border:2px solid #ccc;padding:15px 30px;display:inline-block;}
-.amp-menu li.menu-item-has-children>ul>li {width: 90%;}
+.amp-menu li.menu-item-has-children>ul>li {width:100%;}
 <?php } ?>
 .content-wrapper{<?php if($redux_builder_amp['swift-height-control']){?>margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;<?php } ?>}
 <?php //primary menu
@@ -504,6 +504,27 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 	top:8px;
 }
 <?php } // Menu Search CSS Ends
+if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+.menu-scol-ic {
+	margin-top:40px;
+	text-align: center;
+}
+.menu-scol-ic li{
+	font-family: 'icomoon';
+    list-style-type: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 0px 15px 10px 0px;
+    vertical-align: middle;
+}
+.menu-scol-ic li:last-child{
+	margin-right:0;
+}
+.menu-scol-ic li a{
+	background: transparent;
+	color:#fff;
+}
+<?php } // Menu social CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{

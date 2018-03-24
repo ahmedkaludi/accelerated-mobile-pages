@@ -3104,7 +3104,60 @@ Redux::setSection( $opt_name, array(
                       array('menu-options','=',1)
                     )           
             ),
-
+            array(
+                    'id'       => 'menu-social',
+                    'type'     => 'switch',
+                    'title'    => __('Menu Social Share', 'accelerated-mobile-pages'),
+                    'default'  => '0',
+                    'required' => array(
+                      array('menu-options','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enable-fb',
+                    'type'     => 'switch',
+                    'title'    => __('Facebook', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enable-tw',
+                    'type'     => 'switch',
+                    'title'    => __('Twitter', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enable-gol',
+                    'type'     => 'switch',
+                    'title'    => __('Google', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enable-lk',
+                    'type'     => 'switch',
+                    'title'    => __('Linkedin', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enable-pt',
+                    'type'     => 'switch',
+                    'title'    => __('Pinterest', 'accelerated-mobile-pages'),
+                    'default'  => '1',
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
             array(
                     'id'       => 'primary-menu',
                     'type'     => 'switch',

@@ -16,6 +16,39 @@
                 <?php amp_search();?>
             </div>
         <?php } ?>
+        <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+        <div class="menu-scol-ic">
+            <ul>
+                <?php if($redux_builder_amp['enable-fb']){?>
+                <li>
+                    <a class="s_fb" target="_blank" href="https://www.facebook.com"></a>
+                </li>
+                <?php } ?>
+                <?php if($redux_builder_amp['enable-tw']){?>
+                <li>
+                    <a class="s_tw" target="_blank" href="https://twitter.com">
+                    </a>
+                </li>
+                <?php } ?>
+                <?php if($redux_builder_amp['enable-gol']){?>
+                <li>
+                    <a class="s_gp" target="_blank" href="http://plus.google.com"></a>
+                </li>
+                <?php } ?>
+                <?php if($redux_builder_amp['enable-lk']){?>
+                <li>
+                    <a class="s_lk" target="_blank" href="https://www.linkedin.com"></a>
+                </li>
+                <?php } ?>
+                <?php if($redux_builder_amp['enable-pt']){?>
+                <li>
+                    <a class="s_pt" target="_blank" href="https://pinterest.com"></a>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php } ?>
+        <?php amp_footer_core(); ?>
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -66,6 +99,11 @@
             <nav class="m-menu">
                <?php amp_menu(); ?>
             </nav><!--end slide-menu -->
+            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+            <div class="m-srch">
+                <?php amp_search();?>
+            </div>
+            <?php } ?>
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -109,6 +147,11 @@
             <nav class="m-menu">
                <?php amp_menu(); ?>
             </nav><!--end slide-menu -->
+            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+            <div class="m-srch">
+                <?php amp_search();?>
+            </div>
+            <?php } ?>
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
