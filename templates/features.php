@@ -4118,7 +4118,7 @@ function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	}	
 	if( $skip_this_post ) {
 	  $skip = true;
-	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 	  // #999 Disable mobile redirection
 	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 	}
