@@ -3,7 +3,9 @@
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
 <div class="sp">
 	<div class="cntr">
-		<?php amp_breadcrumb();?>
+		<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+			amp_breadcrumb();
+		}?>
 		<?php amp_categories_list();?>
 		<?php amp_title(); ?>
 		<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
