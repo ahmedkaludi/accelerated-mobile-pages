@@ -4893,7 +4893,7 @@ function ampforwp_generate_inline_related_posts($content){
 	$content_parts = explode($break_point, $content);
 	array_walk($content_parts, function(&$value, $key) {
 		 	$value = trim($value);
-			if(!empty($value)){
+			if( !empty($value) && strpos($value, "<p>")!==false ){
 			         $value .= '</p>';
 			}
 		}
@@ -4903,12 +4903,12 @@ function ampforwp_generate_inline_related_posts($content){
 		$half_index = floor($no_of_parts / 2);
 		$half_content = array_chunk($content_parts, $half_index);
 		
-		$html[] ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
-
-		$firs_content = $half_content[0];
-		$second_content = $half_content[1];
-		$final_content = array_merge($firs_content,$html,$second_content);
-		$final_content = implode("", $final_content);
+		$html ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+		$half_content[0][] = $html;
+		$final_content ='';
+		foreach ($half_content as $key => $value) {
+			$final_content .= implode("", $value);
+		}
 		$content = $final_content;
 	}
 	return $content;
