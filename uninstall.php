@@ -16,6 +16,15 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 						'AMPforwp_db_version',
 						'AMP-category-base-removal-status',
 						'redux_support_hash',
+						'ampforwp_exclude_post',
+						'ampforwp_cpt_generated_post_types',
+						'ampforwp_custom_post_types',
+						'amp_customizer',
+						'ampforwp_design',
+						'ampforwp_default_pages_to',
+						'ampforwp_installer_completed',
+						'redux_builder_amp-transients',
+
 						);
 	if ( is_multisite() ) {
 
