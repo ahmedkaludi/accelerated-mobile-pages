@@ -39,6 +39,16 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                         ),
                         array(
+                            'name'=>'Structured Data',
+                            'desc'=>'Structured Data for your site and for AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'structured-data/structured-data.php',
+                            'item_name'=>'Structured Data',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                        ),
+                        array(
                             'name'=>'Advanced AMP ADS',
                             'desc'=>'Add Advertisement directly in the content',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
