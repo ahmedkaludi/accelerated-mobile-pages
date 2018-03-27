@@ -6264,6 +6264,7 @@ if ( ! function_exists('ampforwp_nonamp_analytics') ) {
 // Coauthors Compatibility #1895
 add_filter('coauthors_posts_link', 'ampforwp_coauthors_links');
 function ampforwp_coauthors_links($args){
+	global $redux_builder_amp;
 	if ( function_exists('ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() && true == $redux_builder_amp['ampforwp-archive-support']) {
 		$args['href'] = ampforwp_url_controller($args['href']);
 	}
