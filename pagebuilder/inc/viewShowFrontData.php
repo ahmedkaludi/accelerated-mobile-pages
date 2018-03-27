@@ -207,14 +207,14 @@ function amp_pagebuilder_content_styles(){
 								break;
 								case 'upload':
 									//$imageDetails = ampforwp_get_attachment_id( $replaceRow);
-									$image_alt = '';
+									$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
 									if(isset($rowContainer[$rowfield['name']."_image_data"])){
 									 	$replace= $rowContainer[$rowfield['name']."_image_data"];
 									 	$imageUrl = $replace[0];
 										$imageWidth = $replace[1];
 										$imageHeight = $replace[2];
 										$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
-									}else{
+									}elseif($replaceRow != ""){
 										$imageDetails = ampforwp_get_attachment_id( $replaceRow);
 										$imageUrl = (isset($imageDetails[0])? $imageDetails[0]: "");
 										$imageWidth = (isset($imageDetails[1])? $imageDetails[1]: "");
@@ -561,14 +561,14 @@ function rowData($container,$col,$moduleTemplate){
 										}
 									}
 									if($moduleField['type']=="upload"){
-										$image_alt = "";
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
 										if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
 											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
 											$image_alt = (isset($replace['alt'])? $replace['alt']: "");
-										}else{
+										}elseif($replace != ""){
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											$imageUrl = $imageDetails[0];
 											$imageWidth = $imageDetails[1];
@@ -688,14 +688,14 @@ function rowData($container,$col,$moduleTemplate){
 								if(!is_array($contentArray[$field['name']])){
 									 $replace = $contentArray[$field['name']];
 									if($field['type']=="upload"){
-										$image_alt = '';
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
 										 	$replace= $contentArray[$field['name']."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
 											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
-										}else{
+										}elseif( $replace != "" ){
 											$imageDetails = ampforwp_get_attachment_id( $replace);
 											$imageUrl = $imageDetails[0];
 											$imageWidth = $imageDetails[1];
