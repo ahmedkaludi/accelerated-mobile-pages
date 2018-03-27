@@ -66,7 +66,7 @@
             $thumb_width = ampforwp_get_post_thumbnail('width');
             $thumb_height = ampforwp_get_post_thumbnail('height'); ?>
 
-             <amp-img src='<?php echo esc_url( $thumb_url ); ?>' width="150" height="150" layout="responsive"></amp-img> <?php
+             <amp-img src='<?php echo esc_url( $thumb_url ); ?>' width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img> <?php
            }
 
            if ( $product->is_on_sale() && $on_sale_logo_on_product=='yes' ) { ?>
