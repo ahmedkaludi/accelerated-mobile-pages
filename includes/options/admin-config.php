@@ -2429,6 +2429,14 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0
                     ),
+                    // Delete Data on Deletion
+                    array(
+                        'id'       => 'ampforwp-delete-on-uninstall',
+                        'type'     => 'switch',
+                         'title'    => __('Delete Data on Deletion?', 'accelerated-mobile-pages'),
+                        'default'   => 0,
+                        'subtitle'      => __('Completely remove all of AMPforWP data upon Deletion via Plugins > Delete.', 'accelerated-mobile-pages'),
+                    ),
    ),
 
 ) );
@@ -5039,26 +5047,6 @@ Redux::setSection( $opt_name, array(
            ),
         )        
 ) );
-
-// Misc
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Misc', 'accelerated-mobile-pages' ),
-        'id'         => 'opt-misc-data',
-        'subsection' => false,
-        'desc'  => '',
-        'icon'  => 'el el-podcast',
-       'fields' => array(
-
-            array(
-                'id'       => 'ampforwp-delete-on-uninstall',
-                'type'     => 'switch',
-                 'title'    => __('Delete Data on Uninstall?', 'accelerated-mobile-pages'),
-                'default'   => 0,
-                'desc'      => __('Check this box if you would like Schema to completely remove all of its data when uninstalling via Plugins > Delete.', 'accelerated-mobile-pages'),
-            ),
-        )        
-) );
-
 
 Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 /*
