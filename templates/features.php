@@ -200,7 +200,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$cpage_var = get_query_var('cpage');
 
 		if ( $cpage_var >= 1) : 
-			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		endif;			
 	}
 
@@ -3825,7 +3825,7 @@ function ampforwp_remove_rel_on_bp(){
 		{
 			if(bp_is_activity_component()|| bp_is_members_component() || bp_is_groups_component()){
 				remove_action( 'wp_head', 'amp_frontend_add_canonical');
-				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' ); 
+				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 ); 
 			}
 		}
 
@@ -3845,7 +3845,7 @@ function ampforwp_remove_rel_on_forum(){
 		$fid = $wpforo->pageid;
 		if($foid==$fid){
 			remove_action( 'wp_head', 'amp_frontend_add_canonical');
-				remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+			remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		}
 		
 	}
@@ -4483,7 +4483,7 @@ function ampforwp_dev_mode(){
 }
 // Remove amphtml from non-AMP
 function ampforwp_dev_mode_remove_amphtml(){
-	remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical' );
+	remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 }
 // Add noindex,nofollow in the AMP
 if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
