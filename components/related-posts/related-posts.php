@@ -54,7 +54,8 @@ function related_post_loop_query(){
 	    $categories = get_the_category($post->ID);
 				if ($categories) {
 						$category_ids = array();
-						foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+						foreach($categories as $individual_category){ $category_ids[] = $individual_category->term_id;
+						}
 						$args=array(
 						    'category__in' => $category_ids,
 						    'post__not_in' => array($post->ID),
@@ -70,7 +71,9 @@ function related_post_loop_query(){
 				$ampforwp_tags = get_the_tags($post->ID);
 					if ($ampforwp_tags) {
 									$tag_ids = array();
-									foreach($ampforwp_tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+									foreach($ampforwp_tags as $individual_tag) {
+										$tag_ids[] = $individual_tag->term_id;
+									}
 									$args=array(
 									   'tag__in' => $tag_ids,
 									    'post__not_in' => array($post->ID),
