@@ -124,6 +124,24 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 					}
 				}
 	    	break;
+	    	case is_author():
+	    		$author = get_queried_object();
+
+				$templates = array();
+
+				if ( $author instanceof WP_User ) {
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->user_nicename}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->ID}.php";
+				}
+				$templates[] = AMPFORWP_CUSTOM_THEME . "/author.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    	case (is_archive()):
 	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 				$templates = array();
@@ -220,24 +238,6 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 				if ( $id )
 					$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$id}.php";
 				$templates[] = AMPFORWP_CUSTOM_THEME . "/page.php";
-
-				foreach ( $templates as $key => $value ) {
-					if ( 'single' === $type && file_exists($value) ) {
-						$file = $value;
-						break;
-					}
-				}
-	    	break;
-	    	case is_author():
-	    		$author = get_queried_object();
-
-				$templates = array();
-
-				if ( $author instanceof WP_User ) {
-					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->user_nicename}.php";
-					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->ID}.php";
-				}
-				$templates[] = AMPFORWP_CUSTOM_THEME . "/author.php";
 
 				foreach ( $templates as $key => $value ) {
 					if ( 'single' === $type && file_exists($value) ) {
