@@ -5202,11 +5202,13 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 		$post_author_name = '';
 		$post_author_name = $post_author->display_name;
 		$post_author_url = ampforwp_get_author_page_url();
+		$and_text = '';
+		$and_text = ampforwp_translation($redux_builder_amp['amp-translator-and-text'], 'and' );
 		if ( function_exists('coauthors') ) { 
-			$post_author_name = coauthors(null,null,null,null,false);
+			$post_author_name = coauthors($and_text,$and_text,null,null,false);
 		}
 		if ( function_exists('coauthors_posts_links') ) {
-			$post_author_url = coauthors_posts_links(null,null,null,null,false);
+			$post_author_url = coauthors_posts_links($and_text,$and_text,null,null,false);
 		}
 		switch ($params) {
 			case 'meta-info':

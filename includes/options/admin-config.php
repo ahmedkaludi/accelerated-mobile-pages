@@ -2713,6 +2713,14 @@ Redux::setSection( $opt_name, array(
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
+                     array(
+                       'id'       => 'amp-translator-and-text',
+                       'type'     => 'text',
+                       'title'    => __(' and ', 'accelerated-mobile-pages'),
+                       'default'  => __(' and ','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
                    array(
                        'id' => 'design-3-search-subsection',
                        'type' => 'section',

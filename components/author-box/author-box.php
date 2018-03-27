@@ -13,13 +13,16 @@ $class = $author_prefix = $author_wrapper_class = '';
 $show_date = false;
 $show_time = false;
 $author_name = $post_author->display_name;
+$and_text = '';
+$and_text = ampforwp_translation($redux_builder_amp['amp-translator-and-text'], 'and' );
 if ( function_exists('coauthors') ) { 
-    $author_name = coauthors(null,null,null,null,false);
+    $author_name = coauthors($and_text,$and_text,null,null,false);
 }
 $author_link = get_author_posts_url($post_author->ID);
 if ( function_exists('coauthors_posts_links') ) {
-    $author_link = coauthors_posts_links(null,null,null,null,false);
+    $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
+//var_dump($and);die;
 $author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {
