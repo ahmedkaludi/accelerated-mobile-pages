@@ -21,28 +21,28 @@
             <ul>
                 <?php if($redux_builder_amp['enbl-fb']){?>
                 <li>
-                    <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
+                    <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                 </li>
                 <?php } ?>
                 <?php if($redux_builder_amp['enbl-tw']){?>
                 <li>
-                    <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
+                    <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                     </a>
                 </li>
                 <?php } ?>
                 <?php if($redux_builder_amp['enbl-gol']){?>
                 <li>
-                    <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
+                    <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                 </li>
                 <?php } ?>
                 <?php if($redux_builder_amp['enbl-lk']){?>
                 <li>
-                    <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
+                    <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                 </li>
                 <?php } ?>
                 <?php if($redux_builder_amp['enbl-pt']){?>
                 <li>
-                    <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
+                    <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
                 </li>
                 <?php } ?>
             </ul>

@@ -135,7 +135,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: auto;position: absolute;z-index:99;padding: 2% 3% 100vh 3%;}
 .m-menu{display: inline-block;width: 100%;overflow-y: auto; max-height:90vh;}
 ::-webkit-scrollbar { display: none; }
-.m-menu ul li.menu-item-has-children:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;background: rgba(255, 255, 255, 0.29);top: 4px;padding: 5px;font-size:16px;border-radius: 35px;color:#fff;}
+.m-menu ul li.menu-item-has-children:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;background: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;top: 4px;padding: 5px;font-size:16px;border-radius: 35px;color:#fff;}
 .m-menu li li.menu-item-has-children:after{right:10px;}
 .m-menu li li.menu-item-has-children:hover:after{right:10px;}
 .m-menu li.menu-item-has-children:hover:after{transform:rotate(180deg);top:4px;right:0px;}
@@ -806,23 +806,23 @@ font-size:15px;
 if(is_single()){ ?>
 .ss-ic ul li{font-family: 'icomoon';list-style-type:none;display:inline-block;}
 .ss-ic li a{color: #fff;padding: 5px;border-radius: 3px;margin: 0px 10px 10px 0px;display: inline-block;}
-<?php if($redux_builder_amp['enable-single-facebook-share']){?>
+<?php if($redux_builder_amp['enable-single-facebook-share'] || $redux_builder_amp['enbl-fb'] ){?>
 .ss-ic ul li .s_fb{	color:#fff;background:#3b5998;}
 .s_fb:after{content: "\e92d";}
 <?php } 
-if($redux_builder_amp['enable-single-twitter-share']){?>
+if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
 .s_tw{background:#1da1f2;}
 .s_tw:after{content: "\e942";}
 <?php } 
-if($redux_builder_amp['enable-single-gplus-share']){?>
+if($redux_builder_amp['enable-single-gplus-share'] || $redux_builder_amp['enbl-gol']){?>
 .s_gp{background:#dd4b39;}
 .s_gp:after{content: "\e931";}
 <?php } 
-if($redux_builder_amp['enable-single-linkedin-share']){?>
+if($redux_builder_amp['enable-single-linkedin-share'] || $redux_builder_amp['enbl-lk']){?>
 .s_lk{background:#0077b5;}
 .s_lk:after{content: "\e934";}
 <?php }
-if($redux_builder_amp['enable-single-pinterest-share']){?>
+if($redux_builder_amp['enable-single-pinterest-share'] || $redux_builder_amp['enbl-pt']){?>
 .s_pt{background:#bd081c;}
 .s_pt:after{content:"\e937";}
 <?php } 
