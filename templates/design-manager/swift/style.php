@@ -207,7 +207,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 .right a, .left a{background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
 .right a:after{content:"»";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
 .left a:before{content:"«";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
-.archive{display:grid;}
+
 @media(max-width:1110px){
     .amppb-fluid .col{max-width:95%}
     .sf-img .wp-caption-text{width:100%;padding:10px 40px;}
@@ -543,12 +543,6 @@ if(is_single() ) { ?>
 .sp-rt .amp-author {
     margin-top: 20px;
 }
-.sp-artl{
-	display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 0px;
-    height: 100%;
-}
 .sp-artl .srp ul{
     display: flex;
     flex-wrap: wrap;
@@ -569,12 +563,15 @@ if(is_single() ) { ?>
 
 <?php } //is_single condition is added
 if ($redux_builder_amp['swift-sidebar']) { ?>
-.sp-wrap{display:inline-grid;}
 .sp-artl{
-	display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
-    height: 100%;
+	display:inline-flex;
+	width:100%;
+}
+.sp-left {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-right: 20px;
 }
 .sp-artl .srp .has_thumbnail{
     margin: 15px;
@@ -583,16 +580,31 @@ if ($redux_builder_amp['swift-sidebar']) { ?>
 .sp-artl .fsp{
 	flex-basis: calc(49.33% - 30px);
 }
+@media(max-width:768px){
+.sp-artl {
+    display: block;
+}
+.sp-left{
+	width:100%;
+	padding:0;
+}
+.sp-artl .srp .has_thumbnail, .sp-artl .fsp {
+    flex-basis: calc(100% - 30px);
+}
 
+}
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
 if ($redux_builder_amp['gbl-sidebar']) { ?>
 .b-w, .arch-dsgn{
-	display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
-    height: 100%;
+	display: flex;
+}
+.arch-psts, .b-w .hmp{
+	display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-right: 20px;
 }
 /*** Home page ***/
 .fbp-cnt {
@@ -606,6 +618,12 @@ if ($redux_builder_amp['gbl-sidebar']) { ?>
 .b-w .sdbr-right{
 	margin-top:30px;
 }
+@media(max-width:768px){
+.fbp-cnt{
+	width:100%;
+}
+
+}
 <?php }
 if ($redux_builder_amp['gbl-sidebar'] || $redux_builder_amp['swift-sidebar'] ) { ?>
 /*** Sidebar CSS ***/
@@ -613,7 +631,9 @@ if ($redux_builder_amp['gbl-sidebar'] || $redux_builder_amp['swift-sidebar'] ) {
 	<?php if( $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
 	<?php } ?>
-	column-width: 350px;
+	display:flex;
+	flex-direction:column;
+	width:30%;
 }
 .amp-sidebar{
 	padding:20px;
@@ -635,6 +655,21 @@ if ($redux_builder_amp['gbl-sidebar'] || $redux_builder_amp['swift-sidebar'] ) {
 }
 .amp-sidebar p{
 	margin-bottom:15px;
+}
+@media(max-width:768px){
+.sdbr-right{
+	width:100%;
+}
+.b-w .hmp, .arch-psts{
+	width:100%;
+	padding:0;
+}
+.b-w, .arch-dsgn{
+	display: block;
+}
+.b-w .fsp, .arch-psts .fsp{
+    flex-basis: calc(100% - 30px);
+}
 }
 <?php } //Header and Archive Sidebar CSS Ends ?>
 <?php 
