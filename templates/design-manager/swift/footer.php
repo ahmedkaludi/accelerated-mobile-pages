@@ -90,7 +90,7 @@
 				$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 			}?>
 		<li>
-			<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo $image; ?>&url=<?php the_permalink(); ?>&description=<?php the_title(); ?>"></a>
+			<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php the_permalink(); ?>&description=<?php the_title(); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
