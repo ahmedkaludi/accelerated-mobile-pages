@@ -9,7 +9,7 @@ $css = '
 font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_display_type==inline}}
-.btn{float:left;margin:0 15px 0 0}
+.btn{display:inline-block;margin:0 15px 0 0}
 {{ifend_condition_display_type_inline}}
 @media(max-width:768px){
 .btn{
