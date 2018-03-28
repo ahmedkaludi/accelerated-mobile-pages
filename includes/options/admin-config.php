@@ -4240,25 +4240,19 @@ Redux::setSection( $opt_name, array(
                    'type' => 'section',
                    'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
                    'indent' => true,
-                   //'start'  => true,
-                   //'label' => 'Tab 2',
-                   'required' => array(
-                            array('amp-design-selector', '=' , '4')
-                    ),
              ),
             array(
                     'id'    => 'single-new-features',
                     'type'  => 'switch',
                     'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
                     'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'       => 'breadcrumb-border',
                     'type'     => 'switch',
                     'title'    => __('Breadcrumbs Border', 'accelerated-mobile-pages'),
                     'default'  => 0,
-                    'required' => array( array('single-new-features', '=' , '1') ),
+                    'required' => array( array('single-new-features', '=' , '1'),array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'       => 'ampforwp-underline-content-links',
