@@ -508,8 +508,9 @@ function ampforwp_new_dir( $dir ) {
 					}
 				}
 			}
+
 		// Facebook Like Script
-		if( true == $redux_builder_amp['ampforwp-facebook-like-button'] && is_single() && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK ){
+		if( true == $redux_builder_amp['ampforwp-facebook-like-button'] && is_single() && defined('AMPFORWP_DM_SOCIAL_CHECK') && 'true' === AMPFORWP_DM_SOCIAL_CHECK && (! checkAMPforPageBuilderStatus( get_the_ID() ) ) ){
 			if(empty($data['amp_component_scripts']['amp-facebook-like'])){
 				$data['amp_component_scripts']['amp-facebook-like'] = 'https://cdn.ampproject.org/v0/amp-facebook-like-0.1.js';
 			}
@@ -3381,7 +3382,7 @@ function ampforwp_translation( $redux_style_translation , $pot_style_translation
 add_action('ampforwp_after_post_content','ampforwp_add_modified_date');
 function ampforwp_add_modified_date($post_object){
 	global $redux_builder_amp;
-	if ( is_single() && $redux_builder_amp['post-modified-date'] ) { ?>
+	if ( is_single() && $redux_builder_amp['post-modified-date'] && ( ! checkAMPforPageBuilderStatus( get_the_ID() ) ) ) { ?>
 		<div class="ampforwp-last-modified-date">
 			<p> <?php
 				if( $post_object->get( 'post_modified_timestamp' ) !== $post_object->get( 'post_publish_timestamp' ) ){
