@@ -132,7 +132,7 @@ global $redux_builder_amp;
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
-	    $facebook_comments_markup .= '></amp-facebook-comments>';
+	    $facebook_comments_markup .= '></amp-facebook-comments></section>';
 	}
 		return $facebook_comments_markup;
 	}
