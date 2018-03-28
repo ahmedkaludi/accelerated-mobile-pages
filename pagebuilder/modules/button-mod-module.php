@@ -180,13 +180,27 @@ return array(
 												),
 								'content_type'=>'css',
 							),
-
+							array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>'button_repeat_check',		
+		 						'label'		=>'Add another buttons',
+		           				'tab'     =>'customizer',
+		 						'default'	=>0,	
+		 						'options'	=>array(
+												array(
+													'label'=>'Yes',
+													'value'=>1,
+												)
+											),
+		           				'content_type'=>'html',
+	 						),
 			),
 		'front_template'=> $output,
 		'front_css'=> $css,
 		'front_common_css'=>'',
 		'repeater'=> array(
 			'tab'=>'customizer',
+			'required'=>array('button_repeat_check'=>1),
 			'fields'=>array(
 				array(		
 		 						'type'		=>'text',		

@@ -249,7 +249,22 @@ Vue.component('amp-pagebuilder-module-modal', {
 		Vue.delete( app.modalcontent.repeater.showFields, key );
 		this.$forceUpdate();
 	},
-
+	repeaterShowHideCheck:function(modalcontent){
+		var returnOpt = true;
+		if(modalcontent.repeater.required){
+			var requiredCondition = modalcontent.repeater.required;
+				app.modalcontent.fields.forEach(function(maindata, key){
+					if(requiredCondition[maindata.name]){
+						if( maindata.default==requiredCondition[maindata.name]){
+							returnOpt = true;
+						}else{
+							returnOpt = false;
+						}
+					}
+				});
+		}
+		return returnOpt;
+	}
   }
 })
 
@@ -312,8 +327,7 @@ function openModulePopup(event,type){
 										'default', 
 										userValues );
 							//}
-							
-
+							console.log(app.modalcontent.repeater);
 							if(moduleData.repeater){
 								
 								app.modalcontent.repeater.showFields = [];
@@ -329,6 +343,15 @@ function openModulePopup(event,type){
 									app.modalcontent.repeater.showFields.push(Vue.util.extend([], allRepeaterFileds));
 								});
 							
+							}else if(app.modalcontent.repeater){//Added support for pre-build layouts for repeater
+								if(app.modalcontent.repeater && app.modalcontent.repeater.fields.length > 0){
+									var repeaterArray = {};
+									app.modalcontent.repeater.fields.forEach(function(module,key){
+										repeaterArray[module.name+'_0'] = module.default;
+									});
+									moduleData.repeater = [];
+									moduleData.repeater.push(repeaterArray);
+								}
 							}
 
 						})
