@@ -1543,6 +1543,7 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
  * Outputs the content of the meta box for AMP on-off on specific pages
  */
 function ampforwp_title_callback( $post ) {
+	global $redux_builder_amp;
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = get_post_meta( $post->ID );
     $preview_query_args = array();
@@ -1575,6 +1576,10 @@ function ampforwp_title_callback( $post ) {
 				}
 			}
 
+		}
+
+		if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ( isset($redux_builder_amp['amp-pages-meta-default']) && $redux_builder_amp['amp-pages-meta-default'] == 'hide' ) ) {
+			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
 		}
         ?>
     <p>
@@ -3304,7 +3309,6 @@ function amp_latest_products_styling() {
 		.ampforwp-wc-price, .ampforwp_wc_star_rating{float:left;margin-right: 10px;}
 	<?php }
 }
-
 
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
