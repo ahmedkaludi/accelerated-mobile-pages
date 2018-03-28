@@ -3704,6 +3704,17 @@ Redux::setSection( $opt_name, array(
                         array('customize-options','=',1)
                       )
               ),
+              array(
+                    'id'        => 'swift-element-menu-border-color',
+                    'title'     => __('Menu Border Color ', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'rgba'  => 'rgb(47, 47, 47, 1)',
+                     ),
+                    'required' => array(
+                        array('customize-options','=',1)
+                      )
+              ),
 
               
             array(

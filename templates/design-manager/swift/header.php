@@ -5,50 +5,52 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
-        <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
-            <div class="m-srch">
-                <?php amp_search();?>
-            </div>
-        <?php } ?>
-        <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
-        <div class="menu-scol-ic">
-            <ul>
-                <?php if($redux_builder_amp['enbl-fb']){?>
-                <li>
-                    <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
-                </li>
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); ?>
+                </nav><!--end slide-menu -->
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
                 <?php } ?>
-                <?php if($redux_builder_amp['enbl-tw']){?>
-                <li>
-                    <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
-                    </a>
-                </li>
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="menu-scol-ic">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
                 <?php } ?>
-                <?php if($redux_builder_amp['enbl-gol']){?>
-                <li>
-                    <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
-                </li>
-                <?php } ?>
-                <?php if($redux_builder_amp['enbl-lk']){?>
-                <li>
-                    <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
-                </li>
-                <?php } ?>
-                <?php if($redux_builder_amp['enbl-pt']){?>
-                <li>
-                    <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
-                </li>
-                <?php } ?>
-            </ul>
-        </div>
-        <?php } ?>
-        <?php amp_footer_core(); ?>
+                <?php amp_footer_core(); ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -93,49 +95,51 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
-            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
-            <div class="m-srch">
-                <?php amp_search();?>
-            </div>
-            <?php } ?>
-            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
-            <div class="menu-scol-ic">
-                <ul>
-                    <?php if($redux_builder_amp['enbl-fb']){?>
-                    <li>
-                        <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-tw']){?>
-                    <li>
-                        <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
-                        </a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-gol']){?>
-                    <li>
-                        <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-lk']){?>
-                    <li>
-                        <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-pt']){?>
-                    <li>
-                        <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
-            <?php } ?>
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); ?>
+                </nav><!--end slide-menu -->
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                <div class="m-srch">
+                    <?php amp_search();?>
+                </div>
+                <?php } ?>
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="menu-scol-ic">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <?php } ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -173,49 +177,51 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
-            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
-            <div class="m-srch">
-                <?php amp_search();?>
-            </div>
-            <?php } ?>
-            <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
-            <div class="menu-scol-ic">
-                <ul>
-                    <?php if($redux_builder_amp['enbl-fb']){?>
-                    <li>
-                        <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-tw']){?>
-                    <li>
-                        <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
-                        </a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-gol']){?>
-                    <li>
-                        <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-lk']){?>
-                    <li>
-                        <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                    <?php if($redux_builder_amp['enbl-pt']){?>
-                    <li>
-                        <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
-            <?php } ?>
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); ?>
+                </nav><!--end slide-menu -->
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                <div class="m-srch">
+                    <?php amp_search();?>
+                </div>
+                <?php } ?>
+                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="menu-scol-ic">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <?php } ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
