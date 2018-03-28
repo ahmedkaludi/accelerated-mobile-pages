@@ -104,7 +104,7 @@ function ampForWP_extension_activate_license() {
                     $status = $license_data->license;
                     $limit = ampforwp_set_plugin_limit( true, $license_data, $ext_value);
                     $selectedOption['amp-license'][$ext_key]['limit'] =  $limit;
-                    $selectedOption['amp-license'][$ext_key]['message'] =  json_decode($response,true);
+                    $selectedOption['amp-license'][$ext_key]['all_data'] =  json_decode($response,true);
                 }
 
                 // Set the license limit

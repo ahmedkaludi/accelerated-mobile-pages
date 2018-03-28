@@ -37,6 +37,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
                             'item_name'=>'ADS for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
                         ),
                         array(
                             'name'=>'Structured Data',
@@ -47,6 +48,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'structured-data/structured-data.php',
                             'item_name'=>'Structured Data',
                             'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('structured-data/structured-data.php')? 1:2),
                         ),
                         array(
                             'name'=>'Advanced AMP ADS',
@@ -57,6 +59,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
                             'item_name'=>'advanced-amp-ads',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-ads-google-adsense/amptoolkit-incontent-ads.php')? 1:2),
                         ),
                         array(
                             'name'=>'Contact Form 7',
@@ -67,6 +70,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-cf7/amp-cf7.php',
                             'item_name'=>'contact-form-7',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-cf7/amp-cf7.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Gravity Forms',
@@ -77,6 +81,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-gravity-forms/amp-gravity-forms.php',
                             'item_name'=>'Gravity Forms',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Email Opt-in Forms',
@@ -87,6 +92,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-optin/amp-optin.php',
                             'item_name'=>'Email Opt-in Forms',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-optin/amp-optin.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'AMP Cache',
@@ -97,6 +103,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-cache/ampforwp-cache.php',
                             'item_name'=>'AMP Cache',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -107,6 +114,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'AMP-cta/amp-cta.php',
                             'item_name'=>'Call To Action (CTA)',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('AMP-cta/amp-cta.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'AMP WooCommerce Pro',
@@ -117,6 +125,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-woocommerce-pro/amp-woocommerce.php',
                             'item_name'=>'AMP WooCommerce Pro',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php')? 1 : 2),
                         ),
 
                         array(
@@ -128,6 +137,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'advanced-custom-fields/acf.php',
                             'item_name'=>'Advanced Custom Fields',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('advanced-custom-fields/acf.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Star Ratings',
@@ -138,6 +148,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-rating/amp-rating.php',
                             'item_name'=>'Star Ratings',
                             'store_url'=>'',
+                            'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
                         ),
                          array(
                             'name'=>'Category Base Removal',
@@ -148,6 +159,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> '',
                             'item_name'=>'Category Base Removal',
                             'store_url'=>'',
+                            'is_activated'=>2,
                         ),
                         array(
                             'name'=>'Custom Post Type',
@@ -158,7 +170,9 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'amp-custom-post-type/amp-custom-post-type.php',
                             'item_name'=>'Custom Post Type',
                             'store_url'=>'',
-                        ),                        array(
+                            'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
+                        ),                        
+                        array(
                             'name'=>'View All Extensions',
                             'desc'=>'See all the extensions available for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
@@ -167,11 +181,20 @@ $extension_listing_array = array(
                             'plugin_active_path'=> '',
                             'item_name'=>'',
                             'store_url'=>'',
+                            'is_activated'=>2,
                         ),
                     );
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
 $ampforwp_extension_list_html = '';
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+$ampforwp_nameOfUser = "";
+$ampforwp_is_productActivated = false;
+usort($extension_listing_array, function($a, $b){
+        if ($a['is_activated'] == $b['is_activated']) {
+            return 0;
+        }
+        return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
+    });
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
@@ -179,6 +202,7 @@ foreach ($extension_listing_array as $key => $extension) {
     $onclickUrlclose = '</a>';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
+        $ampforwp_is_productActivated = true;
         $currentStatus = "not-active invalid";
         $pathExploded = explode("/", $extension['plugin_active_path']);
         $pathExploded = $pathExploded[0];
@@ -193,6 +217,9 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
              $currentStatus = 'active valid';
              $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">DeActivate</button>';
+            if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
+                $ampforwp_nameOfUser = $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'];
+            }
         }
 
         $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" value="'.$amplicense.'" onclick="return false;"> 
@@ -207,7 +234,11 @@ foreach ($extension_listing_array as $key => $extension) {
             $pluginReview .= "<br/>".$selectedOption['amp-license'][$pathExploded]['message'];
         }
         
-        
+    }
+    if($extension['is_activated']==1 && strpos($ampforwp_extension_list_html, "Your Selected plugins")===false){
+        $ampforwp_extension_list_html .= "<h3 style='display:block;'>Your Selected plugins</h3><ul>";
+    }elseif($extension['is_activated']==2 && strpos($ampforwp_extension_list_html, "More plugins")===false){
+            $ampforwp_extension_list_html .= "</ul><h3 style='display:block;'>More plugins</h3><ul>";  
     }
     $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'">'.$onclickUrl.'
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
@@ -222,7 +253,7 @@ foreach ($extension_listing_array as $key => $extension) {
 $extension_listing = '
 <div class="extension_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
-<ul>
+
    
 '.$ampforwp_extension_list_html.'
 
@@ -379,7 +410,12 @@ if(is_array($layouts)){
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
-
+$proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
+if($ampforwp_nameOfUser!=""){
+    $proDetailsProvide = "Hello ".$ampforwp_nameOfUser.", <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Get more Benefits</a>";
+}elseif($ampforwp_is_productActivated){
+    $proDetailsProvide = "One more Step <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Enter license here</a>";
+}
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
@@ -390,7 +426,7 @@ $args = array(
     'page_title'            => __('Accelerated Mobile Pages Options','accelerated-mobile-pages'),
     'display_version'       => AMPFORWP_VERSION,
     'update_notice'         => false,
-    'intro_text'            => '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ',
+    'intro_text'            => $proDetailsProvide,
     'global_variable'       => '', // Set a different name for your global variable other than the opt_name
     'dev_mode'              => false, // Show the time the page took to load, etc
     'customizer'            => false, // Enable basic customizer support,
