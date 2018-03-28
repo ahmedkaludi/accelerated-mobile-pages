@@ -20,10 +20,7 @@
 				<?php amp_featured_image();?>
 			</div>
 		<?php }
-		else{
-			//
-		}
-	}?>
+	} ?>
 	<div class="sp-cnt">
 		<div class="cntr">
 			<div class="sp-rl">
