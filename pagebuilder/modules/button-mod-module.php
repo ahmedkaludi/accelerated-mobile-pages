@@ -139,7 +139,7 @@ return array(
 		 						'name'		=>'border-rds',		
 		 						'label'		=>'Border Radius',
 		           				 'tab'     =>'design',
-		 						'default'	=>'3px',	
+		 						'default'	=>'0px',	
 		           				'content_type'=>'css',
 	 						),
 	 					array(		
