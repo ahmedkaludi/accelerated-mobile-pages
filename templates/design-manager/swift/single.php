@@ -267,9 +267,6 @@ do_action("ampforwp_single_design_type_handle");
 								<?php amp_featured_image();?>
 							</div>
 						<?php }
-						else{
-							//
-						}
 					}?>
 					<div class="sp-cnt">
 						<div class="sp-rl">
