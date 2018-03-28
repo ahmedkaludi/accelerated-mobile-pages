@@ -183,7 +183,7 @@ $containerCommonSettings = array(
 								'name'		=>"row_background_image",
 								'label'		=>"Select Image",
 								'tab'		=>'customizer',
-								'default'	=>plugins_url('accelerated-mobile-pages/images/150x150.png'),
+								'default'	=>'',
 								'content_type'=>'css',
 								'required'  => array('background_type'=>'image')
 								),
