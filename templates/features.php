@@ -6198,14 +6198,17 @@ function ampforwp_comment_count( $count ) {
 		return $count;
 	}
 }
-// Glue underline css compatibility #1743
+// Glue underline css compatibility #1743 #1932
 add_action('amp_post_template_css', 'ampforwp_glue_css_comp', PHP_INT_MAX );
 if ( ! function_exists('ampforwp_glue_css_comp') ) {
 	function ampforwp_glue_css_comp() {
-		global $redux_builder_amp; ?>
-		a {text-decoration:none;}
-		<?php if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
-			.cntn-wrp a, .the_content a {text-decoration:underline;}
+		global $redux_builder_amp; 
+		if (class_exists('YoastSEO_AMP_Frontend') ) { ?>
+			a {text-decoration:none;}
+			html {background:none;}
+		<?php }
+		 if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
+			.the_content a {text-decoration:underline;}
 		<?php }
 	}
 }
