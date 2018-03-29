@@ -80,7 +80,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 	add_filter( 'amp_post_template_file', 'ampforwp_child_designing_custom_template', 20, 3 );
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 20, 3 );
 	function ampforwp_theme_template_directry(){
-		return get_template_directory() . '/ampforwp/';
+		return get_stylesheet_directory() . '/ampforwp/';
 	}
 	// Custom Header
 	function ampforwp_child_custom_header_file( $file, $type, $post ) {
