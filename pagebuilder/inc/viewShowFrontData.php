@@ -639,7 +639,7 @@ function rowData($container,$col,$moduleTemplate){
 					}
 				}//If for Module is repeater or not
 				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
-				
+				$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater', trim($repeaterFields), $moduleFrontHtml);
 				
 				switch($moduleName){
 					case 'gallery_image':
@@ -873,6 +873,7 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 		$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
 		if($replaceWith=="" && trim($replaceWith)==""){
 			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
+			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/s", "", $string);
 		}
 		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
 	}

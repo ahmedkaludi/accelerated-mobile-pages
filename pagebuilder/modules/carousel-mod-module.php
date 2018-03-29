@@ -167,14 +167,6 @@ return array(
 	        	'{{if_condition_carousel_layout_type==1}}
 					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 				{{ifend_condition_carousel_layout_type_1}}
-
-				{{if_condition_carousel_layout_type==2}}
-					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-				{{ifend_condition_carousel_layout_type_2}}
-
-				{{if_condition_carousel_layout_type==3}}
-					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-				{{ifend_condition_carousel_layout_type_3}}
 				'
 	          ),
 	);
