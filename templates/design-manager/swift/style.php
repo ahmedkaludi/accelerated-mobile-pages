@@ -129,7 +129,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 <?php } ?>
 .tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);}
 .t-btn, .c-btn{cursor: pointer;}
-.t-btn:after{content:"\e5d2";display:inline-block;<?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>font-family: "icomoon";font-size:28px;}
+.t-btn:after{content:"\e5d2";display:inline-block;font-family: "icomoon";font-size:28px;<?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .c-btn:after{content: "\e5cd";font-family: "icomoon";font-size: 20px;<?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
 .c-btn{float: right;padding: 20px 10px;}
 .m-ctr{transition: margin 0.3s ease-in-out;}
@@ -464,7 +464,7 @@ blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-he
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
-if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+if ( $redux_builder_amp['menu-search'] ) { ?>
 .m-srch #amp-search-submit {
     cursor: pointer;
     background: transparent;
@@ -487,7 +487,7 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 .m-srch #s{
 	padding:10px 15px;
 	border:none;
-	width:85%;
+	width:100%;
 	color:<?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
 	background:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
 	border-radius: 60px;
@@ -502,9 +502,9 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 	top:6px;
 }
 <?php } // Menu Search CSS Ends
-if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+if ( $redux_builder_amp['menu-social'] ) { ?>
 .menu-scol-ic {
-	padding-top:30px;
+	padding:25px 0px 15px 0px;
 	border-top: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
 	text-align: center;
 }
@@ -523,7 +523,27 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 	background: transparent;
 	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
 }
+.s_fb:after {content: "\e92d";}
+.s_tw:after{content: "\e942";}
+.s_gp:after {content: "\e931";}
+.s_lk:after {content: "\e934";}
+.s_pt:after {content: "\e937";}
 <?php } // Menu social CSS Ends
+if( $redux_builder_amp['amp-swift-menu-cprt']){?>
+.cp-rgt{
+	font-size:14px;
+	line-height:1.2;
+	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	padding: 20px;
+	border-top: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
+	border-bottom: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
+}
+.cp-rgt a{
+	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	border-bottom:1px solid <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	margin-left:10px;
+}
+<?php } //Menu Copy Right CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
@@ -806,6 +826,7 @@ font-size:15px;
     .f-w-f2 {padding: 25px 0px;}
     .f-w{display:block;}
     .w-bl{margin-bottom:40px;}
+    .w-bl{flex:100%;}
     .w-bl ul li {margin-bottom: 11px;}
     .f-menu ul li {display: inline-block;line-height: 1.8;margin-right: 13px;}
     .f-menu .amp-menu > li a {padding: 0;font-size: 12px;color: #7a7a7a;}

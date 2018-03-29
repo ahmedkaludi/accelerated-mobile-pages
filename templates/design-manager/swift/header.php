@@ -12,12 +12,12 @@
                 <nav class="m-menu">
                    <?php amp_menu(); ?>
                 </nav><!--end slide-menu -->
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                <?php if ($redux_builder_amp['menu-search'] ) { ?>
                     <div class="m-srch">
                         <?php amp_search();?>
                     </div>
                 <?php } ?>
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
                 <div class="menu-scol-ic">
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
@@ -49,7 +49,11 @@
                     </ul>
                 </div>
                 <?php } ?>
-                <?php amp_footer_core(); ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
+                </div>
+                <?php } ?>
             </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
@@ -102,15 +106,15 @@
                 <nav class="m-menu">
                    <?php amp_menu(); ?>
                 </nav><!--end slide-menu -->
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
                 <div class="m-srch">
                     <?php amp_search();?>
                 </div>
                 <?php } ?>
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
                 <div class="menu-scol-ic">
                     <ul>
-                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <?php if( $redux_builder_amp['enbl-fb']){?>
                         <li>
                             <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
                         </li>
@@ -137,6 +141,11 @@
                         </li>
                         <?php } ?>
                     </ul>
+                </div>
+                <?php } ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
                 </div>
                 <?php } ?>
             </div><!-- /.m-srl -->
@@ -184,12 +193,12 @@
                 <nav class="m-menu">
                    <?php amp_menu(); ?>
                 </nav><!--end slide-menu -->
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
                 <div class="m-srch">
                     <?php amp_search();?>
                 </div>
                 <?php } ?>
-                <?php if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
                 <div class="menu-scol-ic">
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
@@ -219,6 +228,11 @@
                         </li>
                         <?php } ?>
                     </ul>
+                </div>
+                <?php } ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
                 </div>
                 <?php } ?>
             </div><!-- /.m-srl -->
