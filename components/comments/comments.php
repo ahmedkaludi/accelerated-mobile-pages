@@ -81,7 +81,7 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
 			    <?php 
 		    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
 		    $args = array(
-				'base' => add_query_arg( 'cpage', '%#%' ),
+				'base' => add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
 				'format' => '',
 				'total' => $max_page,
 				//'current' => 0,
