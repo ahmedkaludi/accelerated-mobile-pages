@@ -322,7 +322,7 @@ if(is_single() ) { ?>
 .related_link a{color:#333;}
 .amp-related-posts ul{list-style-type:none;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
-.r-pf .loop-wrapper{margin-top:0;}
+.r-pf .loop-wrapper{margin:0;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
 /** In content releated post desing styles **/
 .related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;}
@@ -442,6 +442,7 @@ blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-he
     .fsp-cnt{width:100%;float:none;}
     .fsp{border:none; padding:0;}
     .fsp-cnt{padding: 0px 15px 0px 14px;}
+    .r-pf .fsp-cnt{padding: 0px;}
      blockquote p {font-size:20px;}
 }
 @media(max-width:425px){
