@@ -30,9 +30,6 @@ $css = '
     margin: 0 9px 0 0px;
     padding: 0;
 }
-.slid-prv button:focus{
-	border:2px solid #ff3f7f;
-}
 .slid-prv amp-img{
 	width:100%;
 	height:100%;
