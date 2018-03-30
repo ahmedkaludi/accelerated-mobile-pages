@@ -51,6 +51,17 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
                         ),
                         array(
+                            'name'=>'AMP Teaser',
+                            'desc'=>'AMP Teaser automatically clips the content based on your selection',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/amp-teaser/',
+                            'plugin_active_path'=> 'amp-teaser/amp-teaser.php',
+                            'item_name'=>'AMP Teaser',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-teaser/amp-teaser.php')? 1: 2),
+                        ),
+                        array(
                             'name'=>'Advanced AMP ADS',
                             'desc'=>'Add Advertisement directly in the content',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
