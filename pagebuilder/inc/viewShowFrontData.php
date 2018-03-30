@@ -597,6 +597,15 @@ function rowData($container,$col,$moduleTemplate){
 														 $imageUrl, 
 														$repeaterFrontTemplate
 													);
+											if(strpos($repeaterFrontTemplate, '{{'.$moduleField['name'].'-thumbnail}}')!==false){
+												$imageDetails = ampforwp_get_attachment_id( $replace, 'thumbnail');
+												$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
+												$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'-thumbnail}}', 
+														 $imageUrl, 
+														$repeaterFrontTemplate
+													);
+											}
 											$repeaterFrontTemplate = str_replace(
 														array('{{image_width}}',
 															  '{{image_width_'.$moduleField['name'].'}}',
@@ -739,6 +748,15 @@ function rowData($container,$col,$moduleTemplate){
 													 $imageUrl, 
 													$moduleFrontHtml
 												);
+										if(strpos($moduleFrontHtml, '{{'.$field['name'].'-thumbnail}}')!==false){
+												$imageDetails = ampforwp_get_attachment_id( $replace, 'thumbnail');
+												$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
+												$moduleFrontHtml = str_replace(
+														'{{'.$field['name'].'-thumbnail}}', 
+														 $imageUrl, 
+														$moduleFrontHtml
+													);
+											}
 										$moduleFrontHtml = str_replace(
 													array('{{image_width}}','{{image_width_'.$field['name'].'}}'), 
 													 array($imageWidth,$imageWidth), 
