@@ -538,95 +538,118 @@ function rowData($container,$col,$moduleTemplate){
 
 				$repeaterFields = '';
 				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
-					
-					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
-						$repeaterUserContents = $contentArray['repeater'];
-						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
 
-							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
-							//reset($repeaterUserValues);
-							$repeaterVarIndex = key($repeaterUserValues);
-							$repeaterVarIndex = explode('_', $repeaterVarIndex);
-							$repeaterVarIndex = end($repeaterVarIndex);
-							
-							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
-								if($moduleField['content_type']=='html'){
-									$replace = "";
-									if(isset($repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex])){
-										$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
-									}
-									if(is_array($replace)){
-										if(count($replace)>0){
-											$replace = $replace[0];
-										}else{
-											$replace ='';
+					$repeaterTemplates = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
+					$repeaterTemplatesArray = array();
+					if(!is_array($repeaterTemplates)){
+						$repeaterTemplatesArray[] = $repeaterTemplates;
+					}else{
+						$repeaterTemplatesArray = $repeaterTemplates;
+					}
+					
+					foreach ($repeaterTemplatesArray as $repeaterKey => $repeaterTemplate) {
+						
+						$repeaterFields = '';
+						if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
+							$repeaterUserContents = $contentArray['repeater'];
+							$repeaterUniqueId = 0;
+							foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+								$repeaterFrontTemplate = $repeaterTemplate;
+								//reset($repeaterUserValues);
+								$repeaterVarIndex = key($repeaterUserValues);
+								$repeaterVarIndex = explode('_', $repeaterVarIndex);
+								$repeaterVarIndex = end($repeaterVarIndex);
+
+								
+								foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+									if($moduleField['content_type']=='html'){
+										$replace = "";
+										if(isset($repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex])){
+											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 										}
-									}
-									if($moduleField['type']=="upload"){
-										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
-										if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
-											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
-										 	$imageUrl = $replace[0];
-											$imageWidth = $replace[1];
-											$imageHeight = $replace[2];
-											$image_alt = (isset($replace['alt'])? $replace['alt']: "");
-										}elseif($replace != ""){
-											$imageDetails = ampforwp_get_attachment_id( $replace);
-											if(is_array($imageDetails)){
-												$imageUrl = $imageDetails[0];
-												$imageWidth = $imageDetails[1];
-												$imageHeight = $imageDetails[2];
-												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+										if(is_array($replace)){
+											if(count($replace)>0){
+												$replace = $replace[0];
+											}else{
+												$replace ='';
 											}
 										}
+										if($moduleField['type']=="upload"){
+											$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+											if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
+												$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
+											 	$imageUrl = $replace[0];
+												$imageWidth = $replace[1];
+												$imageHeight = $replace[2];
+												$image_alt = (isset($replace['alt'])? $replace['alt']: "");
+											}elseif($replace != ""){
+												$imageDetails = ampforwp_get_attachment_id( $replace);
+												if(is_array($imageDetails)){
+													$imageUrl = $imageDetails[0];
+													$imageWidth = $imageDetails[1];
+													$imageHeight = $imageDetails[2];
+													$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+												}
+											}
 
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $imageUrl, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													array('{{image_width}}',
-														  '{{image_width_'.$moduleField['name'].'}}',
-														), 
-													 array($imageWidth, $imageWidth), 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													array('{{image_height}}',
-														  '{{image_height_'.$moduleField['name'].'}}'
-														 ), 
-													 array($imageHeight,
-													 	   $imageHeight
-													 	), 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													array('{{image_alt}}',
-														  '{{image_alt_'.$moduleField['name'].'}}'
-														 ), 
-													 array($image_alt,
-													 	   $image_alt
-													 	), 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
-									}else{
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $replace, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
+											$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'}}', 
+														 $imageUrl, 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_width}}',
+															  '{{image_width_'.$moduleField['name'].'}}',
+															), 
+														 array($imageWidth, $imageWidth), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_height}}',
+															  '{{image_height_'.$moduleField['name'].'}}'
+															 ), 
+														 array($imageHeight,
+														 	   $imageHeight
+														 	), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_alt}}',
+															  '{{image_alt_'.$moduleField['name'].'}}'
+															 ), 
+														 array($image_alt,
+														 	   $image_alt
+														 	), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
+										}else{
+											$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'}}', 
+														 $replace, 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
+										}
+
+									$repeaterFrontTemplate = str_replace('{{repeater_unique}}', $repeaterUniqueId, $repeaterFrontTemplate);
+										$repeaterUniqueId++;
 									}
-
-									
 								}
+								
+								$repeaterFields .= $repeaterFrontTemplate;
+
 							}
-							$repeaterFields .= $repeaterFrontTemplate;
+						}//If Check for Fall back
+						if(!is_numeric($repeaterKey)){
+							$moduleFrontHtml = str_replace('{{repeater_'.$repeaterKey.'}}', trim($repeaterFields), $moduleFrontHtml);
+							$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater_'.$repeaterKey, trim($repeaterFields), $moduleFrontHtml);
+						}else{
+							$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
+							$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater', trim($repeaterFields), $moduleFrontHtml);
 						}
-					}//If Check for Fall back
-					
+						
+					}	//FOreach closed
 					//Conditional replacement for Repeaters
 					if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
@@ -638,8 +661,7 @@ function rowData($container,$col,$moduleTemplate){
 						}
 					}
 				}//If for Module is repeater or not
-				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
-				$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater', trim($repeaterFields), $moduleFrontHtml);
+				//echo $moduleFrontHtml;die;
 				
 				switch($moduleName){
 					case 'gallery_image':
