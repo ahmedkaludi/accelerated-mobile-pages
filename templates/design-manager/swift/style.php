@@ -129,7 +129,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 <?php } ?>
 .tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);}
 .t-btn, .c-btn{cursor: pointer;}
-.t-btn:after{content:"\e5d2";display:inline-block;<?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>font-family: "icomoon";font-size:28px;}
+.t-btn:after{content:"\e5d2";display:inline-block;font-family: "icomoon";font-size:28px;<?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .c-btn:after{content: "\e5cd";font-family: "icomoon";font-size: 20px;<?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
 .c-btn{float: right;padding: 20px 10px;}
 .m-ctr{transition: margin 0.3s ease-in-out;}
@@ -355,13 +355,13 @@ border-bottom: 1px solid #eee;
 .prev{float: left;width: 45%;position:relative;margin-top:10px;}
 .prev span{text-transform: uppercase;font-size: 12px;color: #666;display: block;position: absolute;top: -26px;}
 .next span{text-transform: uppercase;font-size: 12px;color: #666;display: block;font-weight: 400;position: absolute;top: -26px;right:0}
-.next:hover a, .prev:hover a{color:#005be2;}
+.next:hover a, .prev:hover a{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
 .prev:after{border-left:1px dotted #ccc;content: "";height: calc(100% - -10px);right: -50px;position: absolute;top: 50%;transform: translate(0px, -50%);width: 2px;}
 .ampforwp_post_pagination{width:100%;text-align:center;display:inline-block;}
 .ampforwp_post_pagination p{margin: 0;font-size: 18px;color: #444;font-weight: 500;margin-bottom:10px;}
 .ampforwp_post_pagination p a{color:#005be2;padding:0px 10px;}
 .cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
-.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;width: 100%;margin: 0 auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
+.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;width: 100%;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
 .form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
 #respond p {margin: 12px 0;}
 .amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
@@ -394,9 +394,20 @@ border-bottom: 1px solid #eee;
 .fsp-cnt .loop-category{margin-bottom:8px;}
 .fsp-cnt .loop-category li {font-weight: 500;}
 .pt-dt{font-size:11px;color:#808080;margin: 8px 0px 0px 0px;display: inline-flex;}
- blockquote{margin-bottom:20px;}
+blockquote{margin-bottom:20px;}
 blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
 blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
+
+<?php // Comments Pagination 
+if( 1 == $redux_builder_amp['wordpress-comments-support']){?>
+.cmts-wrap{display:flex;width:100%;margin-top: 30px;padding-bottom:30px;border-bottom:1px solid #eee;}
+.cmts-wrap .page-numbers:after{display:none;}
+.cmts .page-numbers{margin:0px 10px;}
+.cmts .prev, .cmts .next{margin:0 auto;}
+.cmts-wrap a{color:#333;}
+.cmts-wrap a:hover{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
+.cmts-wrap .current{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
+<?php } // Comments Pagination CSS Ends ?>
 @media(max-width:1110px){
     .cntr{width:100%;padding:0px 20px;}
     .sp-rt {margin-left: 30px;}
@@ -464,7 +475,7 @@ blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-he
 }
 <?php } //Drop Cap CSS ends
 // Menu Search CSS
-if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-search'] ) { ?>
+if ( $redux_builder_amp['menu-search'] ) { ?>
 .m-srch #amp-search-submit {
     cursor: pointer;
     background: transparent;
@@ -487,7 +498,7 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 .m-srch #s{
 	padding:10px 15px;
 	border:none;
-	width:85%;
+	width:100%;
 	color:<?php echo $redux_builder_amp['swift-header-overlay'] ['rgba'] ?>;
 	background:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
 	border-radius: 60px;
@@ -502,9 +513,9 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 	top:6px;
 }
 <?php } // Menu Search CSS Ends
-if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['menu-social'] ) { ?>
+if ( $redux_builder_amp['menu-social'] ) { ?>
 .menu-scol-ic {
-	padding-top:30px;
+	padding:25px 0px 15px 0px;
 	border-top: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
 	text-align: center;
 }
@@ -523,7 +534,27 @@ if ( isset($redux_builder_amp['menu-options']) && '1' == $redux_builder_amp['men
 	background: transparent;
 	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
 }
+.s_fb:after {content: "\e92d";}
+.s_tw:after{content: "\e942";}
+.s_gp:after {content: "\e931";}
+.s_lk:after {content: "\e934";}
+.s_pt:after {content: "\e937";}
 <?php } // Menu social CSS Ends
+if( $redux_builder_amp['amp-swift-menu-cprt']){?>
+.cp-rgt{
+	font-size:14px;
+	line-height:1.2;
+	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	padding: 20px;
+	border-top: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
+	border-bottom: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
+}
+.cp-rgt a{
+	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	border-bottom:1px solid <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
+	margin-left:10px;
+}
+<?php } //Menu Copy Right CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
 .sp-rt{
@@ -806,6 +837,7 @@ font-size:15px;
     .f-w-f2 {padding: 25px 0px;}
     .f-w{display:block;}
     .w-bl{margin-bottom:40px;}
+    .w-bl{flex:100%;}
     .w-bl ul li {margin-bottom: 11px;}
     .f-menu ul li {display: inline-block;line-height: 1.8;margin-right: 13px;}
     .f-menu .amp-menu > li a {padding: 0;font-size: 12px;color: #7a7a7a;}

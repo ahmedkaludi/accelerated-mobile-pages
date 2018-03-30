@@ -1,23 +1,18 @@
 <?php 
 $output = '
 {{if_condition_carousel_layout_type==1}}
-<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="2000">
-	{{repeater}}
-</amp-carousel>
+	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="2000">
+		{{repeater_image}}
+	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
 {{if_condition_carousel_layout_type==2}}
-<amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides">
-	{{repeater}}
-</amp-carousel>
-<div class="carousel-preview">
-
-</div>
+	<amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides">
+		{{repeater_image}}
+	</amp-carousel>
+	<div class="slid-prv">
+		{{repeater_button}}
+	</div>
 {{ifend_condition_carousel_layout_type_2}}
-{{if_condition_carousel_layout_type==3}}
-<amp-carousel width="300" height="300" layout="responsive" type="slides">
-	{{repeater}}
-</amp-carousel>
-{{ifend_condition_carousel_layout_type_3}}
 ';
 $css = '
 {{if_condition_carousel_layout_type==1}}
@@ -28,19 +23,22 @@ $css = '
 }
 {{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
 {{ifend_condition_carousel_layout_type_1}}
-{{if_condition_carousel_layout_type==3}}
-.amp-img{
-	width:70%;
-	height:100%;
-	max-width:100%;
+{{if_condition_carousel_layout_type==2}}
+.slid-prv button{
+	height: 90px;
+    width: 90px;
+    margin: 0 9px 0 0px;
+    padding: 0;
 }
-{{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
-{{ifend_condition_carousel_layout_type_3}}
-
+.slid-prv amp-img{
+	width:100%;
+	height:100%;
+}
+{{ifend_condition_carousel_layout_type_2}}
 ';
 
 return array(
-		'label' =>'Carousel',
+		'label' =>'Slider',
 		'name' =>'carousel-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
@@ -60,19 +58,13 @@ return array(
 				                            array(
 				                              'value'=>'1',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
 				                            ),
 				                            array(
 				                              'value'=>'2',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
 				                            ),
-				                            array(
-				                              'value'=>'3',
-				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
-				                            ),
-				                            
 				                          ),
 				            'content_type'=>'html',
 				            ),
@@ -164,10 +156,15 @@ return array(
 	                
 	              ),
 	          'front_template'=>
-	        	'{{if_condition_carousel_layout_type==1}}
-					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-				{{ifend_condition_carousel_layout_type_1}}
-				'
+	          		array(
+	          			"image"=>'
+								{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+							',
+						"button"=>'<button on="tap:carousel-with-preview.goToSlide(index={{repeater_unique}})">
+			        {{if_img_upload}}<amp-img src="{{img_upload-thumbnail}}" width="150" height="150" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+			      </button>'
+	          		)
+	        	
 	          ),
 	);
 ?>

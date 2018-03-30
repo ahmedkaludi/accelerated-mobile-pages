@@ -85,11 +85,15 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
 				'format' => '',
 				'total' => $max_page,
 				//'current' => 0,
-				'echo' => true,
+				'echo' => false,
 				'add_fragment' => '#comments',
 				'show_all' => true				
 			);
-     paginate_comments_links( $args ); ?>
+		    if ( paginate_comments_links($args) ) { ?>
+				<div class="cmts-wrap">
+	     			<?php echo paginate_comments_links( $args ); ?>
+	     		</div>
+     		<?php } ?>
 			</div>
 	    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>

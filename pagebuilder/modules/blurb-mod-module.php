@@ -10,70 +10,16 @@ $css = '
 .blu-mod .ico-pic{font-size:35px;color:{{ic_color_picker}};margin-bottom:30px;display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
 {{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
 {{ifend_condition_blurb_layout_type_1}}
-{{if_condition_blurb_layout_type==2}}
-{{module-class}} .ln-fx{
-	display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1px;
-    height: 100%;
-}
-{{module-class}}.blurb-mod{
-	margin:{{margin_css}};
-	padding:{{padding_css}};
-	display: grid
-}
-.blu-mod-2{
-	background: {{bg_color}};
-	padding:20px;
-    border-style: solid;
-    border-color: #e8e8e8;
-    border-bottom-width: 1px;
-    border-right-width: 1px;
-    float: left;
-    width: 100%;
-    text-align: {{align_type}};
-}
-.blu-mod-2 .ico-pic{
-	font-size:35px;
-	color:{{ic_color_picker}};
-	display:inline-block;
-	background:{{bg_color_picker}};
-	padding:15px;
-	border-radius:50%;
-	float:left;
-}
-{{if_condition_check_for_hover==1}}
-.blu-mod-2:hover{
-	background-color: {{hover_color}};
-}
-{{ifend_condition_check_for_hover_1}}
-.blu-mod-2-cntn .blurb-txt{font-size: {{text-size}};font-weight: 500;color:{{font_color_picker}};}
-.blu-mod-2 p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
-{{ifend_condition_blurb_layout_type_2}}
 {{if_condition_check_for_border==1}}
 	{{if_condition_blurb_layout_type==1}}
-	.blu-mod .ico-pic{
-		border:{{border_width}} solid {{border_color}};
+	{{module-class}} .blu-mod .ico-pic{
 		border-radius:100%;
 		padding:20px;
 	}
 	{{ifend_condition_blurb_layout_type_1}}
-	{{if_condition_blurb_layout_type==2}}
-	.blu-mod-2 .ico-pic{
-		border:{{border_width}} solid {{border_color}};
-		border-radius:100%;
-		padding:20px;
-		margin-right:20px;
-	}
-	{{ifend_condition_blurb_layout_type_2}}
 {{ifend_condition_check_for_border_1}}
 @media(max-width:768px){
-	.blu-mod{width: 100%;margin-right:0}
-{{if_condition_blurb_layout_type==2}}
-.ln-fx{
-	grid-template-columns: 1fr;
-}
-{{ifend_condition_blurb_layout_type_2}}
+	{{module-class}} .blu-mod{width: 100%;margin-right:0}
 }
 
 
@@ -117,14 +63,8 @@ return array(
 				                            array(
 				                              'value'=>'1',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/blur-mod-1.png'
 				                            ),
-				                            array(
-				                              'value'=>'2',
-				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
-				                            ),
-				                            
 				                          ),
 				            'content_type'=>'html',
 				            ),
@@ -180,61 +120,6 @@ return array(
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
 	 						),
-						array(
-								'type'		=>'checkbox_bool',
-								'name'		=>"check_for_border",
-								'label'		=> 'Border',
-								'tab'		=>'design',
-								'default'	=>1,
-								'options'	=>array(
-												array(
-													'label'=>'Yes',
-													'value'=>1,
-												)
-											),
-								'content_type'=>'html',
-							),
-						array(
-								'type'		=>'text',
-								'name'		=>"border_width",
-								'label'		=>'Border Width',
-								'tab'		=>'design',
-								'default'	=>'3px',
-								'content_type'=>'css',
-								'required'  => array('check_for_border'=>'1')
-							),
-						array(
-								'type'		=>'color-picker',
-								'name'		=>"border_color",
-								'label'		=>'Border Color',
-								'tab'		=>'design',
-								'default'	=>'#fff',
-								'content_type'=>'css',
-								'required'  => array('check_for_border'=>'1')
-							),
-						array(
-								'type'		=>'checkbox_bool',
-								'name'		=>"check_for_hover",
-								'label'		=> 'Hover',
-								'tab'		=>'design',
-								'default'	=>1,
-								'options'	=>array(
-												array(
-													'label'=>'Yes',
-													'value'=>1,
-												)
-											),
-								'content_type'=>'html',
-							),
-						array(
-								'type'		=>'color-picker',
-								'name'		=>"hover_color",
-								'label'		=>'Hover Color',
-								'tab'		=>'design',
-								'default'	=>'#f4f3f3',
-								'content_type'=>'css',
-								'required'  => array('check_for_hover'=>'1')
-							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -305,15 +190,7 @@ return array(
 				{{content}}
 			</div> 
 		{{ifend_condition_blurb_layout_type_1}}
-		{{if_condition_blurb_layout_type==2}}
-			<div class="blu-mod-2">
-				<span class="ico-pic icon-{{icon-picker}}"></span>
-				<div class="blu-mod-2-cntn">
-					<h3 class="blurb-txt">{{content_title}}</h3>
-					{{content}}
-				</div>
-			</div> 
-		{{ifend_condition_blurb_layout_type_2}}'
+		'
           ),
 	);
 

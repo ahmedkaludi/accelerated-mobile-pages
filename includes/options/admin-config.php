@@ -3162,119 +3162,10 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
              ),
             array(
-                    'id'    => 'menu-options',
-                    'type'  => 'switch',
-                    'title' => __('Advanced Menu Options', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
                     'id'       => 'menu-search',
                     'type'     => 'switch',
-                    'title'    => __('Menu Search', 'accelerated-mobile-pages'),
-                    'default'  => '0',
-                    'required' => array(
-                      array('menu-options','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'menu-social',
-                    'type'     => 'switch',
-                    'title'    => __('Menu Social Share', 'accelerated-mobile-pages'),
-                    'default'  => '0',
-                    'required' => array(
-                      array('menu-options','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-fb',
-                    'type'     => 'switch',
-                    'title'    => __('Facebook', 'accelerated-mobile-pages'),
-                    'default'  => '1',
-                    'required' => array(
-                      array('menu-social','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-fb-prfl-url',
-                    'type'     => 'text',
-                    'title'    => __('Facebook Link', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('enbl-fb','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-tw',
-                    'type'     => 'switch',
-                    'title'    => __('Twitter', 'accelerated-mobile-pages'),
-                    'default'  => '1',
-                    'required' => array(
-                      array('menu-social','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-tw-prfl-url',
-                    'type'     => 'text',
-                    'title'    => __('Twitter Link', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('enbl-tw','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-gol',
-                    'type'     => 'switch',
-                    'title'    => __('Google', 'accelerated-mobile-pages'),
-                    'default'  => '1',
-                    'required' => array(
-                      array('menu-social','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-gol-prfl-url',
-                    'type'     => 'text',
-                    'title'    => __('Google Link', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('enbl-gol','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-lk',
-                    'type'     => 'switch',
-                    'title'    => __('Linkedin', 'accelerated-mobile-pages'),
-                    'default'  => '1',
-                    'required' => array(
-                      array('menu-social','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-lk-prfl-url',
-                    'type'     => 'text',
-                    'title'    => __('Linkedin Link', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('enbl-lk','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-pt',
-                    'type'     => 'switch',
-                    'title'    => __('Pinterest', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('menu-social','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'enbl-pt-prfl-url',
-                    'type'     => 'text',
-                    'title'    => __('Pinterest Link', 'accelerated-mobile-pages'),
-                    'default'  => '#',
-                    'required' => array(
-                      array('enbl-pt','=',1)
-                    )           
+                    'title'    => __('Navigation Menu Search', 'accelerated-mobile-pages'),
+                    'default'  => 1         
             ),
             array(
                     'id'       => 'primary-menu',
@@ -3502,7 +3393,7 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '0'
             ),
-              array(
+            array(
                     'id'       => 'amp-swift-search-feature',
                     'type'     => 'switch',
                     'title'    => __( 'Search', 'accelerated-mobile-pages' ),
@@ -3510,6 +3401,15 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '4')
                     ),
                     'default'  => '1'
+            ),
+            array(
+                'id'       => 'amp-swift-menu-cprt',
+                'type'     => 'switch',
+                'title'    => __( 'Menu Copyright', 'accelerated-mobile-pages' ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                ),
+                'default'  => '1'
             ),
 
              array(
@@ -4554,6 +4454,17 @@ Redux::setSection( $opt_name, array(
         'desc'      => __('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
+        array(
+           'id' => 'social-shre',
+           'type' => 'section',
+           'title' => __('Social share', 'accelerated-mobile-pages'),
+           'indent' => true,
+           //'start'  => true,
+           //'label' => 'Tab 2',
+           'required' => array(
+                    array('amp-design-selector', '=' , '4')
+            ),
+         ),
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
@@ -4717,6 +4628,113 @@ Redux::setSection( $opt_name, array(
                 array('amp-design-selector', '=' , '4')
         ),
           ),
+        array(
+               'id' => 'social-prfl',
+               'type' => 'section',
+               'title' => __('Social Profile', 'accelerated-mobile-pages'),
+               'indent' => true,
+               //'start'  => true,
+               //'label' => 'Tab 2',
+               'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                ),
+             ),
+             array(
+                'id'       => 'menu-social',
+                'type'     => 'switch',
+                'title'    => __('Menu Social Profile', 'accelerated-mobile-pages'),
+                'default'  => 1      
+            ),
+            array(
+                    'id'       => 'enbl-fb',
+                    'type'     => 'switch',
+                    'title'    => __('Facebook', 'accelerated-mobile-pages'),
+                    'default'  => 1,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )     
+            ),
+            array(
+                    'id'       => 'enbl-fb-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Facebook Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-fb','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-tw',
+                    'type'     => 'switch',
+                    'title'    => __('Twitter', 'accelerated-mobile-pages'),
+                    'default'  => 1,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-tw-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Twitter Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-tw','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-gol',
+                    'type'     => 'switch',
+                    'title'    => __('Google', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-gol-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Google Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-gol','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-lk',
+                    'type'     => 'switch',
+                    'title'    => __('Linkedin', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-lk-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Linkedin Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-lk','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-pt',
+                    'type'     => 'switch',
+                    'title'    => __('Pinterest', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-pt-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Pinterest Link', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-pt','=',1)
+                    )           
+            ),
           array(
        'id' => 'social-media-profiles-subsection',
        'type' => 'section',

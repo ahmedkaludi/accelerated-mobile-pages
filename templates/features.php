@@ -4782,17 +4782,21 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 // 83. Advance Analytics(Google Analytics)
 add_filter('ampforwp_advance_google_analytics','ampforwp_add_advance_ga_fields');
 function ampforwp_add_advance_ga_fields($ga_fields){
-	global $redux_builder_amp;
-	$url = $title = $id = '';
+	global $redux_builder_amp, $post;
+	$url = $title = $id = $author_id = $author_name = '';
 	$url = get_the_permalink();
-	$title = get_the_title();
-	$id = get_the_ID();
+	$title = $post->post_title;
+	$id = $post->ID;
+	$author_id = $post->post_author;
+	$author_name = get_the_author_meta( 'display_name' , $author_id );
 	$ampforwp_adv_ga_fields = array();
 	$ampforwp_adv_ga_fields = $redux_builder_amp['ampforwp-ga-field-advance'];
 	if($ampforwp_adv_ga_fields && $redux_builder_amp['ampforwp-ga-field-advance-switch'])	{
 		$ampforwp_adv_ga_fields = str_replace('{url}', $url, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{id}', $id, $ampforwp_adv_ga_fields);
 		$ampforwp_adv_ga_fields = str_replace('{title}', $title, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{author_name}', $author_name, $ampforwp_adv_ga_fields);
+		$ampforwp_adv_ga_fields = str_replace('{author_id}', $author_id, $ampforwp_adv_ga_fields);
 		return $ampforwp_adv_ga_fields;
 	}	
 	return $ga_fields;	
@@ -6198,14 +6202,17 @@ function ampforwp_comment_count( $count ) {
 		return $count;
 	}
 }
-// Glue underline css compatibility #1743
+// Glue underline css compatibility #1743 #1932
 add_action('amp_post_template_css', 'ampforwp_glue_css_comp', PHP_INT_MAX );
 if ( ! function_exists('ampforwp_glue_css_comp') ) {
 	function ampforwp_glue_css_comp() {
-		global $redux_builder_amp; ?>
-		a {text-decoration:none;}
-		<?php if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
-			.cntn-wrp a, .the_content a {text-decoration:underline;}
+		global $redux_builder_amp; 
+		if (class_exists('YoastSEO_AMP_Frontend') ) { ?>
+			a {text-decoration:none;}
+			html {background:none;}
+		<?php }
+		 if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
+			.the_content a {text-decoration:underline;}
 		<?php }
 	}
 }
