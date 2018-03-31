@@ -2492,9 +2492,9 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'ampforwp-delete-on-uninstall',
                         'type'     => 'switch',
-                         'title'    => __('Completely Uninstall', 'accelerated-mobile-pages'),
+                         'title'    => __('Delete Data on Uninstall?', 'accelerated-mobile-pages'),
                         'default'   => 0,
-                        'subtitle'      => __('Enable this option if you want to remove all of AMPforWP data stored. All the data will be cleaned once you delete the plugin.', 'accelerated-mobile-pages'),
+                        'subtitle'      => __('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.'),
                     ),
    ),
 
