@@ -2557,6 +2557,10 @@ add_action('amp_init','social_sharing_removal_code', 9);
 add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
+	$width = $height = 420;
+	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+		$height = $redux_builder_amp['ampforwp-disqus-height'];
+	}
 	//if ( !comments_open() ){
 	//	return;
 	//}//931
@@ -2574,8 +2578,8 @@ function ampforwp_add_disqus_support() {
 			?>
 			<section class="amp-wp-content post-comments amp-wp-article-content amp-disqus-comments" id="comments">
 				<amp-iframe
-					height=200
-					width=300
+					height=<?php echo $height ?>
+					width=<?php echo $width ?>
 					layout="responsive"
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 					frameborder="0"
