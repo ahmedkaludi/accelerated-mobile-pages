@@ -144,7 +144,13 @@ global $redux_builder_amp;
 
 //Disqus Comments
 function ampforwp_framework_get_disqus_comments(){
-global $redux_builder_amp;
+	global $redux_builder_amp;
+	$width = $height = 420;
+
+	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+		$height = $redux_builder_amp['ampforwp-disqus-height'];
+	}
+
 	if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 		global $post; $post_slug=$post->post_name;
 
@@ -158,8 +164,8 @@ global $redux_builder_amp;
 		?>
 		<section class="amp-disqus-comments">
 			<amp-iframe
-				height=200
-				width=300
+				height=<?php echo $height ?>
+				width=<?php echo $width ?>
 				layout="responsive"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
