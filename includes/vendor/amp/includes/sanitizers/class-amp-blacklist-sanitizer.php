@@ -212,6 +212,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			'option',
 			'link',
 			'picture',
+			'canvas',
 
 			// Sanitizers run after embed handlers, so if anything wasn't matched, it needs to be removed.
 			'embed',
