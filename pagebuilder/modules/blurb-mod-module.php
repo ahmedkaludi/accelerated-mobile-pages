@@ -15,6 +15,7 @@ $css = '
 	{{module-class}} .blu-mod .ico-pic{
 		border-radius:100%;
 		padding:20px;
+		border:{{border_width}} solid {{border_color}};
 	}
 	{{ifend_condition_blurb_layout_type_1}}
 {{ifend_condition_check_for_border_1}}
