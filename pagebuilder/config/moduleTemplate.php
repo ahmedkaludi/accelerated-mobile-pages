@@ -63,7 +63,7 @@ $front_css = '
     height: auto;
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
-{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
+{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
@@ -148,6 +148,15 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-width",
+								'label'		=>'Width',
+								'tab'		=>'customizer',
+								'default'	=>'100%',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fluid')
+							),
+							array(
+								'type'		=>'text',
+								'name'		=>"fluid-wrapper",
 								'label'		=>'Width',
 								'tab'		=>'customizer',
 								'default'	=>'90%',
