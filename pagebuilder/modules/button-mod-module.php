@@ -183,7 +183,7 @@ return array(
 							array(		
 		 						'type'		=>'checkbox_bool',		
 		 						'name'		=>'button_repeat_check',		
-		 						'label'		=>'Add another buttons',
+		 						'label'		=>'Add Another Button',
 		           				'tab'     =>'customizer',
 		 						'default'	=>0,	
 		 						'options'	=>array(
