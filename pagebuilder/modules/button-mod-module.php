@@ -17,15 +17,10 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{ifend_condition_button_repeat_check_1}}
 }
 @media(max-width:600px){
-{{module-class}} .btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+{{module-class}} .btn {display: flex;flex-direction: column;align-items: center;}
 }
 @media(max-width:425px){
 	{{module-class}} .btn-txt{width:100%;box-sizing:inherit;}
-
 }
 ';
 return array(
