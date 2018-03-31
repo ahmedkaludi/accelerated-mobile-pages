@@ -584,6 +584,13 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			if ( ampforwp_is_front_page() ) {
+				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		  	}
+		  	// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-1']) && $redux_builder_amp['enable-amp-ads-resp-1'] ) {
 				$responsive = true;
@@ -634,13 +641,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output .= ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				if ( ampforwp_is_front_page() ) {
-					$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-			  	}
-			  	// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}
@@ -652,6 +652,13 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			if ( ampforwp_is_front_page() ) {
+				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		  	}
+		  	// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-2']) && $redux_builder_amp['enable-amp-ads-resp-2'] ) {
 				$responsive = true;
@@ -702,13 +709,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				if ( ampforwp_is_front_page() ) {
-					$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-			  	}
-			  	// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}
@@ -721,6 +721,10 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-3']) && $redux_builder_amp['enable-amp-ads-resp-3'] ) {
 				$responsive = true;
@@ -771,10 +775,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}
@@ -787,6 +787,10 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-4']) && $redux_builder_amp['enable-amp-ads-resp-4'] ) {
 				$responsive = true;
@@ -837,10 +841,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}
@@ -854,6 +854,10 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-5']) && $redux_builder_amp['enable-amp-ads-resp-5'] ) {
 				$responsive = true;
@@ -904,10 +908,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}
@@ -922,6 +922,10 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			// If page builder is enabled then 'Return' and show no ads  
+		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
+			    return;
+		  	}
 			$responsive = false;
 			if ( isset($redux_builder_amp['enable-amp-ads-resp-6']) && $redux_builder_amp['enable-amp-ads-resp-6'] ) {
 				$responsive = true;
@@ -972,10 +976,6 @@ function ampforwp_new_dir( $dir ) {
 				$output .= ampforwp_ads_sponsorship();
 				$output	.=   ' </div>';
 				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				// If page builder is enabled then 'Return' and show no ads  
-			  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
-				    return;
-			  	}
 				echo $output;
 			}
 		}

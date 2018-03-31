@@ -9,15 +9,18 @@ $css = '
 font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_display_type==inline}}
-.btn{display:inline-block;margin:0 15px 0 0}
+.btn{display:inline-block;}
 {{ifend_condition_display_type_inline}}
 @media(max-width:768px){
-.btn{
-	margin:0 15px 15px 0;
+{{if_condition_button_repeat_check==1}}
+{{module-class}} .btn{margin:0 0 15px 0;}
+{{ifend_condition_button_repeat_check_1}}
 }
+@media(max-width:600px){
+{{module-class}} .btn {display: flex;flex-direction: column;align-items: center;}
 }
 @media(max-width:425px){
-	{{module-class}} .btn-txt{width:100%;box-sizing:inherit}
+	{{module-class}} .btn-txt{width:100%;box-sizing:inherit;}
 }
 ';
 return array(

@@ -39,7 +39,7 @@ $css = '
 
 return array(
 		'label' =>'Slider',
-		'name' =>'carousel-mod',
+		'name' =>'slider-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',

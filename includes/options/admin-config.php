@@ -5,6 +5,7 @@ if ( ! class_exists( 'Redux' ) ) {
 }
 // Option name where all the Redux data is stored.
 $opt_name = "redux_builder_amp";
+$comment_desc = "";
 $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/amp-theme-framework/"  target="_blank">You can create your own <strong>Custom theme with AMP Theme Framework</strong></a>';
 // #1093 Display only If AMP Comments is Not Installed
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -1431,7 +1432,10 @@ Redux::setArgs( "redux_builder_amp", $args );
             "on": "visible",
             "request": "pageview",
         },
-    // Enter your Advanced Analytics code here
+    /** 
+     * Enter your Advanced Analytics code here
+    */
+
     }
 }','accelerated-mobile-pages')
                     ),
@@ -2488,9 +2492,9 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'ampforwp-delete-on-uninstall',
                         'type'     => 'switch',
-                         'title'    => __('Delete Data on Deletion?', 'accelerated-mobile-pages'),
+                         'title'    => __('Delete Data on Uninstall?', 'accelerated-mobile-pages'),
                         'default'   => 0,
-                        'subtitle'      => __('Completely remove all of AMPforWP data upon Deletion via Plugins > Delete.', 'accelerated-mobile-pages'),
+                        'subtitle'      => __('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.'),
                     ),
    ),
 
