@@ -1,5 +1,5 @@
 <?php 
-$output = '{{repeater}}
+$output = '{{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
 	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 ';
@@ -149,8 +149,8 @@ return array(
 								'tab'     =>'design',
 	 							'default' =>'block',
 	 							'options_details'=>array(
-	 												'block'    =>'Block',
-	 												'inline'  	=>'Inline', 													),
+	 												'block'    =>'Block (Vertical)',
+	 												'inline'  	=>'Inline (Horizontal)', 													),
 	 							'content_type'=>'css',
 	 						),
 						array(
@@ -242,7 +242,8 @@ return array(
 					),
 			'front_template'=> 
 			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
-			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>'
+			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
+			'
 			),
 	);
 
