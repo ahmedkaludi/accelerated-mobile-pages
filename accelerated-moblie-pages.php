@@ -284,11 +284,18 @@ function ampforwp_parent_plugin_check() {
 }
 if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 	function ampforwp_upcomming_layouts_demo(){
-		return array(array(
+		return array(
+            array( 
 			"name"=>'News',
 			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-1.png',
-			"link"=>'https://ampforwp.com/amp-layouts/',
+			"link"=>'https://ampforwp.com/layouts-1/',
+			),
+            array(
+			"name"=>'Weekly Magazine',
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-2.png',
+			"link"=>'https://ampforwp.com/layouts-2/',
 			)
+
 			);
 	}
 }
