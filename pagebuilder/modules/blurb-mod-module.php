@@ -122,6 +122,41 @@ return array(
 	 							'content_type'=>'css',
 	 						),
 						array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_border",
+                                'label'     => 'Border',
+                                'tab'       =>'design',
+                                'default'   =>1,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+                                
+                            ),
+						array(
+                                'type'      =>'text',
+                                'name'      =>"border_width",
+                                'label'     =>'Border Width',
+                                'tab'       =>'design',
+                                'default'   =>'3px',
+                                'content_type'=>'css',
+                                'required'  => array('check_for_border'=>'1'),
+                                
+                            ),
+						array(
+                                'type'      =>'color-picker',
+                                'name'      =>"border_color",
+                                'label'     =>'Border Color',
+                                'tab'       =>'design',
+                                'default'   =>'#fff',
+                                'content_type'=>'css',
+                                'required'  => array('check_for_border'=>'1'),
+                                
+                            ),
+						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
 								'label'		=>'Margin',
