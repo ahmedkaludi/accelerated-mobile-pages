@@ -424,9 +424,9 @@ if(is_array($layouts)){
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "Hello ".$ampforwp_nameOfUser.", <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Get more Benefits</a>";
+    $proDetailsProvide = "<span class='extension-menu-call'>Hello ".$ampforwp_nameOfUser.", <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Get more Benefits</a></span>";
 }elseif($ampforwp_is_productActivated){
-    $proDetailsProvide = "One more Step <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Enter license here</a>";
+    $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Enter license here</a></span>";
 }
 $args = array(
     // TYPICAL -> Change these values as you need/desire
