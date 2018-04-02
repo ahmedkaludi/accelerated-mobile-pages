@@ -131,6 +131,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
     </a>
 <?php
 }
+
 function ampforwp_get_relatedpost_content($argsdata=array()){
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 ?>

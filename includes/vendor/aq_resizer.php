@@ -263,5 +263,3 @@ if(!function_exists('ampforwp_aq_resize')) {
         }
     }
 }
-
-
