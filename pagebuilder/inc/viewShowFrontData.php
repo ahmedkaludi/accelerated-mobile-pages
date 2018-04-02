@@ -294,8 +294,10 @@ function amp_pagebuilder_content_styles(){
 							}
 							$replaceModule = "";
 							if(isset($contentArray[$modulefield['name']])){
-									$replaceModule = $contentArray[$modulefield['name']];
-								}
+								$replaceModule = $contentArray[$modulefield['name']];
+							}else{
+								$replaceModule = getdefaultValue($modulefield['name'],$moduleTemplate[$contentArray['type']]['fields']);
+							}
 							if($modulefield['content_type']=='css'){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
@@ -722,10 +724,15 @@ function rowData($container,$col,$moduleTemplate){
 				if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 						if($field['content_type']=='html'){
-							if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
+							if(!empty($contentArray) || !isset($contentArray[$field['name']])){
+								$replace = getdefaultValue($field['name'], $moduleTemplate[$contentArray['type']]['fields']);
+							}else{
+								 $replace = $contentArray[$field['name']];
+							}
+							if($replace!=""){
 
-								if(!is_array($contentArray[$field['name']])){
-									 $replace = $contentArray[$field['name']];
+								if(!is_array($replace)){
+									
 									if($field['type']=="upload"){
 										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
@@ -782,7 +789,7 @@ function rowData($container,$col,$moduleTemplate){
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
 									}
 								}else{
-									if(count($contentArray[$field['name']])>0){
+									/*if(count($contentArray[$field['name']])>0){*/
 										foreach ($contentArray[$field['name']] as $key => $userValue) {
 											if(count($contentArray[$field['name']])==1){
 												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
@@ -793,10 +800,10 @@ function rowData($container,$col,$moduleTemplate){
 											}
 										}
 											
-									}else{
+									/*}else{
 										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
-									}
+									}*/
 								}
 
 
