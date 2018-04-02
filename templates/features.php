@@ -5754,15 +5754,12 @@ function ampforwp_default_logo($param=""){
 	$logo_alt		= '';
 	$logo_url		= $redux_builder_amp['opt-media']['url'];
 	if($logo_url){
-		$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
+		$logo_id  = get_theme_mod( 'custom_logo' );
 		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
-		$image 	 = wp_get_attachment_image_src( $logo_id , 'full');
+		$image 	  = getimagesize($redux_builder_amp['opt-media']['url']);
+
 		switch ($param) {
 			case 'url':
-				if( $logo_id == get_theme_mod( 'custom_logo' ) ){
-					$value = $image[0];
-				}
-				else
 					$value = $logo_url;
 				break;
 			case 'width':
@@ -5770,14 +5767,14 @@ function ampforwp_default_logo($param=""){
 					$value = $redux_builder_amp['opt-media-width'];
 				}
 				else 
-					$value = $image[1];
+					$value = $image[0];
 				break;
 			case 'height':
 				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
 					$value = $redux_builder_amp['opt-media-height'];
 				}
 				else
-					$value = $image[2];
+					$value = $image[1];
 				break;
 			case 'alt':
 				if($logo_alt){
@@ -5787,7 +5784,7 @@ function ampforwp_default_logo($param=""){
 					$value = get_bloginfo('name');
 				break;	
 			default:
-				$value = $image[0];
+				$value = $logo_url;
 				break;
 		}
 	}
