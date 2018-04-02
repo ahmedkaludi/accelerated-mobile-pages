@@ -1952,6 +1952,9 @@ function ampforwp_remove_schema_data() {
 
 	// IWappPress Compatibility #1876 #1864
 	remove_action('loop_start', 'iWappPress_remove_post_date');
+
+	// Facebook Button by BestWebSoft Compatibility #1740
+	remove_filter( 'the_content', 'fcbkbttn_display_button' );
 }
 
 // 22. Removing author links from comments Issue #180
