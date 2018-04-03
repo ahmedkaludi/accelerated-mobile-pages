@@ -3176,8 +3176,20 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'menu-search',
                     'type'     => 'switch',
-                    'title'    => __('Navigation Menu Search', 'accelerated-mobile-pages'),
-                    'default'  => 1         
+                    'title'    => __('Menu Search', 'accelerated-mobile-pages'),
+                    'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                    ),
+                    'default'  => '1'         
+            ),
+            array(
+                'id'       => 'amp-swift-menu-cprt',
+                'type'     => 'switch',
+                'title'    => __( 'Menu Copyright', 'accelerated-mobile-pages' ),
+                'required' => array(
+                    array('amp-design-selector', '=' , '4')
+                ),
+                'default'  => '1'
             ),
             array(
                     'id'       => 'primary-menu',
@@ -3413,15 +3425,6 @@ Redux::setSection( $opt_name, array(
                         array('amp-design-selector', '=' , '4')
                     ),
                     'default'  => '1'
-            ),
-            array(
-                'id'       => 'amp-swift-menu-cprt',
-                'type'     => 'switch',
-                'title'    => __( 'Menu Copyright', 'accelerated-mobile-pages' ),
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                ),
-                'default'  => '1'
             ),
 
              array(
@@ -4655,7 +4658,7 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'menu-social',
                 'type'     => 'switch',
                 'title'    => __('Menu Social Profile', 'accelerated-mobile-pages'),
-                'default'  => 1      
+                'default'  => 0      
             ),
             array(
                     'id'       => 'enbl-fb',
