@@ -724,7 +724,7 @@ function rowData($container,$col,$moduleTemplate){
 				if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 						if($field['content_type']=='html'){
-							if(!empty($contentArray) || !isset($contentArray[$field['name']])){
+							if(!empty($contentArray) && !isset($contentArray[$field['name']])){
 								$replace = getdefaultValue($field['name'], $moduleTemplate[$contentArray['type']]['fields']);
 							}else{
 								 $replace = $contentArray[$field['name']];
