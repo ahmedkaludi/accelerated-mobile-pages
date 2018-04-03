@@ -182,6 +182,93 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.85 (3rd April 2018) =
+Fixed: Fatal error: Allowed memory size on FrontPage #1865
+Fixed: Proper Parameters for Pinterest Sharing #1853
+Added: Extra settings added in Button Module 
+Added: Extra settings added in Text Module 
+Fixed: Proper Parameters for Pinterest Sharing
+Fixed: Unwanted fields are removed form the Repeater in Button module
+Added: Enable/disable option added Related Posts #1829 
+Fixed: Legacy PageBuilder option Repositioned #1851
+Fixed: Display the img tag only if source is present #1869
+Fixed: Huge design improvements in Swift theme #1818
+Added: Hook for Between Related Post is Added #1874
+Added: Blurb module text size and background color added
+Fixed: Comments Pagination issues #1816
+Added: Counter Module added
+Fixed: Date 48 years ago #1864 #1876 
+Added: Ability to pass post id in amp_content() #1872
+Fixed: Changed the way images we fetched in WooWidget #1847 
+Fixed: Changed the position of layout in Pagebuilder #1873
+Added: Pricing Module
+Fixed: Changed the position of layout in Pagebuilder #1873
+Fixed: amp_aq_resizer was not able to process the outside url #1881
+Fixed: Advanced Google Analytics improvements #1630 #1860 
+Added: Field Added For ON & OFF in Page builder #1870 
+Fixed: Two paginations in search pages in Swift theme #1855
+Fixed: Extra Div if categories not available #1856
+Fixed: removed debuged tags #1870
+Fixed: Published date connected with AMP options Panel #1888 
+Added: Featured Image option in Swift #1889 
+Added: Separate Blog settings #1887 
+Fixed: single post ads should not load on pages #1896
+Fixed: Ads should not load on FrontPage if PageBuilder is enabled #1885
+Fixed: Background Image Support for the Columns #1871
+Added: Blockquotes design for Swift #1894
+Added: Co-Authors Plus compatibility #1895
+Added: pagebuilder for custom post types #1884
+Added: Border option is connected to options panel #1818
+Added: Responsive AD unit support #1852
+Added: Sub category arrow symbol is added in Swift theme #1818
+Added: Search text color is connected to options panel #1818
+Fixed: Removed notice when no posttype selected #1884
+Added: Ability to overwrite page template the WordPress way like front-page.php and page-{id}.php  #1902
+Added: Ability to overwrite author page template the WordPress way like author.php and author author-name.php  #1902
+Added: Lightbox Support for the images #1892
+Fixed: No mobile redirection when Dev mode is enabled #1907
+Added: Option to hide Author name in Swift #1890 
+Fixed: Script facebook-comments should not load for Frontpage #1897
+Added: amp-facebook comments for AMP2WP #1911
+Added: Alt tag in all modules #1898
+Added: Sanitizers in Footer and sidebar widget in Swift #1835 
+Added: Dropcap support #1900
+Added: Proper styling for iframes and videos in Swift theme #1909
+Fixed: Non-AMP link fixed for AMP Takeover #1916
+Fixed: Swift connected with Breadcrumb option #1915
+Added: Uninstall option created to completely remove AMPforWP data #1903 
+Fixed: Recipe Structured Data requires name attribute #1917 
+Fixed: No amphtml when It is hidden from Categories #1919
+Fixed: Content is breaking when Inline Related Post option is enabled #1912
+Fixed: Proper redirection setup for AMP Takeover #1913 
+Added: Socail media profiles added in menu #1901
+Fixed: No Ads should display on Frontpage or Posts if Pagebuilder is enabled #1885 
+Added: #1899 Proper conditions for amp-analytics script
+Fixed: Turn off option not working by default fixed #1537
+Fixed: BreadCrumbs Should not load when PageBuilder is enabled #1925 
+Fixed: Removed unwanted elements loading while pagebuilder is enabled #1929
+Fixed: amp-web-push should not load on Homepage and Blog #1930
+Added: SmartMag theme Compatibility #1905
+Fixed: Template overriding not working in child theme #1920
+Fixed: Horizontal scrolling in Swift #1844
+Fixed: Home page title should not be visible in AMP takeover #1921
+Added: Carousel Module Added #1937
+Fixed: Comments pagination not working #1816
+Fixed: Comments pagination not working #1816
+Added: Glue html css compatibility #1932 
+Added: Data Caption Support on AMP Instagram Embed #1938
+Added: Ability to pass {author_name} and {author_id} added in Advance Analytics #1936 
+Fixed: Scrollbar in Header area in Swift in firefox #1818
+Added: Disqus iframe height adjustment option #1935 
+Fixed: Options panel conflict fixed with Mobius theme #1942
+Fixed: Problem with Button in Mobile view in Swift #1926
+Fixed: Removed canvas tag in AMP version causing validation errors #1880
+Fixed: Getting Conflict with Facebook Button by BestWebSoft #1740
+Added: Option to enter the "ID" on CTA button module #1931
+Added: Option for open same window in CTA module of page builder #1866
+Fixed: Logo fetch causing Huge performance issue #1679 
+Fixed: Blurb module's default values were not set #1952
+
 = 0.9.84 (14th March 2018) =
 * Added: Polylang Frontpage compatibility added #1779
 * Fixed: Proper link for Linkedin added #1820 
