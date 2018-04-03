@@ -514,12 +514,12 @@ if ( $redux_builder_amp['menu-search'] ) { ?>
 }
 <?php } // Menu Search CSS Ends
 if ( $redux_builder_amp['menu-social'] ) { ?>
-.menu-scol-ic {
+.m-s-i {
 	padding:25px 0px 15px 0px;
 	border-top: 1px solid <?php echo $redux_builder_amp['swift-element-menu-border-color']['rgba']?>;
 	text-align: center;
 }
-.menu-scol-ic li{
+.m-s-i li{
 	font-family: 'icomoon';
     list-style-type: none;
     font-size: 20px;
@@ -527,18 +527,43 @@ if ( $redux_builder_amp['menu-social'] ) { ?>
     margin: 0px 15px 10px 0px;
     vertical-align: middle;
 }
-.menu-scol-ic li:last-child{
+.m-s-i li:last-child{
 	margin-right:0;
 }
-.menu-scol-ic li a{
+.m-s-i li a{
 	background: transparent;
 	color:<?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;
 }
-.s_fb:after {content: "\e92d";}
-.s_tw:after{content: "\e942";}
-.s_gp:after {content: "\e931";}
-.s_lk:after {content: "\e934";}
-.s_pt:after {content: "\e937";}
+<?php if($redux_builder_amp['enbl-fb']){?>
+	.s_fb:after {content: "\e92d";}
+<?php } 
+if($redux_builder_amp['enbl-tw']){ ?>
+	.s_tw:after {content: "\e942";}
+<?php }
+if($redux_builder_amp['enbl-gol']){?>
+	.s_gp:after {content: "\e931";}
+<?php }
+if($redux_builder_amp['enbl-lk']){?>
+	.s_lk:after {content: "\e934";}
+<?php }
+if($redux_builder_amp['enbl-pt']){?>
+	.s_pt:after {content: "\e937";}
+<?php } 
+if($redux_builder_amp['enbl-yt']){?>
+	.s_yt:after {content: "\e947";}
+<?php }
+if($redux_builder_amp['enbl-inst']){?>
+	.s_inst:after {content: "\e932";}
+<?php }
+if($redux_builder_amp['enbl-vk']){?>
+	.s_vk:after {content: "\e944";}
+<?php }
+if($redux_builder_amp['enbl-rd']){?>
+	.s_rd:after {content: "\e938";}
+<?php }
+if($redux_builder_amp['enbl-tbl']){?>
+	.s_tbl:after {content: "\e940";}
+<?php } ?>
 <?php } // Menu social CSS Ends
 if( $redux_builder_amp['amp-swift-menu-cprt']){?>
 .cp-rgt{

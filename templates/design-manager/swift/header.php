@@ -18,7 +18,7 @@
                     </div>
                 <?php } ?>
                 <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
-                <div class="menu-scol-ic">
+                <div class="m-s-i">
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
@@ -44,6 +44,31 @@
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
                             <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>
@@ -112,32 +137,57 @@
                 </div>
                 <?php } ?>
                 <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
-                <div class="menu-scol-ic">
+                <div class="m-s-i">
                     <ul>
-                        <?php if( $redux_builder_amp['enbl-fb']){?>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
-                            <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tw']){?>
                         <li>
-                            <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                             </a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-gol']){?>
                         <li>
-                            <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-lk']){?>
                         <li>
-                            <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
-                            <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>
@@ -199,32 +249,57 @@
                 </div>
                 <?php } ?>
                 <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
-                <div class="menu-scol-ic">
+                <div class="m-s-i">
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
-                            <a class="s_fb" target="_blank" href="<?php echo $redux_builder_amp['enbl-fb-prfl-url']; ?>"></a>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tw']){?>
                         <li>
-                            <a class="s_tw" target="_blank" href="<?php echo $redux_builder_amp['enbl-tw-prfl-url']; ?>">
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                             </a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-gol']){?>
                         <li>
-                            <a class="s_gp" target="_blank" href="<?php echo $redux_builder_amp['enbl-gol-prfl-url']; ?>"></a>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-lk']){?>
                         <li>
-                            <a class="s_lk" target="_blank" href="<?php echo $redux_builder_amp['enbl-lk-prfl-url']; ?>"></a>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
-                            <a class="s_pt" target="_blank" href="<?php echo $redux_builder_amp['enbl-pt-prfl-url']; ?>"></a>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>

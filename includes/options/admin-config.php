@@ -4669,7 +4669,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'enbl-fb-prfl-url',
                     'type'     => 'text',
-                    'title'    => __('Facebook Link', 'accelerated-mobile-pages'),
+                    'title'    => __('Facebook URL', 'accelerated-mobile-pages'),
                     'default'  => '#',
                     'required' => array(
                       array('enbl-fb','=',1)
@@ -4687,7 +4687,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'enbl-tw-prfl-url',
                     'type'     => 'text',
-                    'title'    => __('Twitter Link', 'accelerated-mobile-pages'),
+                    'title'    => __('Twitter URL', 'accelerated-mobile-pages'),
                     'default'  => '#',
                     'required' => array(
                       array('enbl-tw','=',1)
@@ -4697,7 +4697,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'enbl-gol',
                     'type'     => 'switch',
                     'title'    => __('Google', 'accelerated-mobile-pages'),
-                    'default'  => 0,
+                    'default'  => 1,
                     'required' => array(
                       array('menu-social','=',1)
                     )          
@@ -4705,7 +4705,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'enbl-gol-prfl-url',
                     'type'     => 'text',
-                    'title'    => __('Google Link', 'accelerated-mobile-pages'),
+                    'title'    => __('Google URL', 'accelerated-mobile-pages'),
                     'default'  => '#',
                     'required' => array(
                       array('enbl-gol','=',1)
@@ -4715,7 +4715,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'enbl-lk',
                     'type'     => 'switch',
                     'title'    => __('Linkedin', 'accelerated-mobile-pages'),
-                    'default'  => 0,
+                    'default'  => 1,
                     'required' => array(
                       array('menu-social','=',1)
                     )           
@@ -4723,7 +4723,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'enbl-lk-prfl-url',
                     'type'     => 'text',
-                    'title'    => __('Linkedin Link', 'accelerated-mobile-pages'),
+                    'title'    => __('Linkedin URL', 'accelerated-mobile-pages'),
                     'default'  => '#',
                     'required' => array(
                       array('enbl-lk','=',1)
@@ -4741,10 +4741,100 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'enbl-pt-prfl-url',
                     'type'     => 'text',
-                    'title'    => __('Pinterest Link', 'accelerated-mobile-pages'),
+                    'title'    => __('Pinterest URL', 'accelerated-mobile-pages'),
                     'default'  => '#',
                     'required' => array(
                       array('enbl-pt','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-yt',
+                    'type'     => 'switch',
+                    'title'    => __('Youtube', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-yt-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Youtube URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-yt','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-inst',
+                    'type'     => 'switch',
+                    'title'    => __('Instagram', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-inst-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Instagram URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-inst','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-vk',
+                    'type'     => 'switch',
+                    'title'    => __('VKontakte', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-vk-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('VKontakte URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-vk','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-rd',
+                    'type'     => 'switch',
+                    'title'    => __('Reddit', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-rd-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Reddit URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-rd','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'enbl-tbl',
+                    'type'     => 'switch',
+                    'title'    => __('Tumblr', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array(
+                      array('menu-social','=',1)
+                    )          
+            ),
+            array(
+                    'id'       => 'enbl-tbl-prfl-url',
+                    'type'     => 'text',
+                    'title'    => __('Tumblr URL', 'accelerated-mobile-pages'),
+                    'default'  => '#',
+                    'required' => array(
+                      array('enbl-tbl','=',1)
                     )           
             ),
           array(
