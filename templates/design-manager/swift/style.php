@@ -127,7 +127,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);}
 .m-ctr{margin-left: 100%;float: right;}
 <?php } ?>
-.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);}
+.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:100vh;}
 .t-btn, .c-btn{cursor: pointer;}
 .t-btn:after{content:"\e5d2";display:inline-block;font-family: "icomoon";font-size:28px;<?php if($redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .c-btn:after{content: "\e5cd";font-family: "icomoon";font-size: 20px;<?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
@@ -141,7 +141,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .m-menu li li.menu-item-has-children:after{right:10px;}
 .m-menu li li.menu-item-has-children:hover:after{right:10px;}
 .m-menu li.menu-item-has-children:hover:after{transform:rotate(360deg);top:1px;right:0px;}
-.amp-menu li ul{font-size:13px;}
+.m-menu .amp-menu li ul{font-size:14px;}
 .m-menu .amp-menu {list-style-type: none;padding: 0;}
 .amp-menu > li a{<?php if($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?> padding: 13px 7px;margin-bottom:0;}
 .menu-btn{margin-top:30px;text-align:center;}
@@ -154,7 +154,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 }
 .m-menu .amp-menu .sub-menu li:last-child{border:none;}
 .m-menu .amp-menu>li a {padding: 12px 7px;}
-.m-menu li{font-size:17px;}
+.m-menu > li{font-size:17px;}
 <?php } ?>
 .content-wrapper{<?php if($redux_builder_amp['swift-height-control']){?>margin-top:<?php echo $redux_builder_amp['swift-height-control']?>;<?php } ?>}
 <?php //primary menu
