@@ -179,6 +179,7 @@ You can contact us from [here](http://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.85 (3rd April 2018) =
+For more detials check out [this blog post](https://ampforwp.com/0-9-85-released-stability-update-86th-update/)
 Fixed: Fatal error: Allowed memory size on FrontPage #1865
 Fixed: Proper Parameters for Pinterest Sharing #1853
 Added: Extra settings added in Button Module 
@@ -264,6 +265,7 @@ Added: Option to enter the "ID" on CTA button module #1931
 Added: Option for open same window in CTA module of page builder #1866
 Fixed: Logo fetch causing Huge performance issue #1679 
 Fixed: Blurb module's default values were not set #1952
+Fixed: Allow script with application/ld+json #1958
 
 = 0.9.84 (14th March 2018) =
 * Added: Polylang Frontpage compatibility added #1779
