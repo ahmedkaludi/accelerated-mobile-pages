@@ -269,4 +269,12 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	}
 	return $file;
 }
-?>
+// Empty meta parts when Pagebuilder is enabled
+add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements');
+function ampforwp_empty_design_elements($meta_parts) {
+	if( checkAMPforPageBuilderStatus(get_the_ID()) ){
+		$meta_parts = array();
+		$meta_parts[] = 'ampforwp-the-content';
+	}
+	return $meta_parts;
+} ?>

@@ -241,6 +241,9 @@ function amp_loop_title($data=array()){
 
 function amp_loop_date($args=array()){
 	global $redux_builder_amp;
+    if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
+    	$args['format'] = 'traditional';
+    }
 	if(isset($args['format']) && $args['format']=='traditional'){
 		$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
     }else{
@@ -330,13 +333,13 @@ function amp_loop_image( $data=array() ) {
 
 // Category
 function amp_loop_category(){
-	echo ' <ul class="loop-category">';
 	if(count(get_the_category()) > 0){
+		echo ' <ul class="loop-category">';
 		foreach((get_the_category()) as $category) {
 			echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';
 		}
+		echo '</ul>';
 	}
-	echo '</ul>';
 }
 // author
 function amp_loop_author($args = array()){

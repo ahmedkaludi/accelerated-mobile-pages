@@ -153,9 +153,8 @@
         );
 
 
-        $( '#toplevel_page_' + redux.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.args.slug + ' a.ab-item' ).click(
+        $( '#toplevel_page_' + redux.args.slug + ' .wp-submenu a, #wp-admin-bar-' + redux.args.slug + ' a.ab-item, .extension-menu-call a' ).click(
             function( e ) {
-
                 if ( ( $( '#toplevel_page_' + redux.args.slug ).hasClass( 'wp-menu-open' ) || $( this ).hasClass( 'ab-item' ) ) && !$( this ).parents( 'ul.ab-submenu:first' ).hasClass( 'ab-sub-secondary' ) && $( this ).attr( 'href' ).toLowerCase().indexOf( redux.args.slug + "&tab=" ) >= 0 ) {
                     e.preventDefault();
                     var url = $( this ).attr( 'href' ).split( '&tab=' );
@@ -600,7 +599,7 @@
                 el.find( '#' + oldid + '_section_group' ).hide();
 
                 el.find( '#' + relid + '_section_group' ).fadeIn(
-                    200, function() {
+                    0, function() {
                         if ( el.find( '#redux-footer' ).length !== 0 ) {
                             $.redux.stickyInfo(); // race condition fix
                         }

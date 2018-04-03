@@ -105,7 +105,6 @@ if(!class_exists('Aq_Resize')) {
                     );
                     //throw new Aq_Exception('Image must be local: ' . $url);
                 }
-
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
                 $img_path = $upload_dir . $rel_path;
@@ -264,5 +263,3 @@ if(!function_exists('ampforwp_aq_resize')) {
         }
     }
 }
-
-

@@ -1435,7 +1435,7 @@
                             $new_menu_sections = apply_filters("ampforwp_add_admin_subpages",$this->sections); 
                             foreach ( $new_menu_sections as $k => $section ) {
 
-                                if(isset($section['custom_amp_menu']) && $section['custom_amp_menu']){
+                                if(isset($section['custom_amp_menu']) && $section['custom_amp_menu'] && $this->args['page_slug'] == 'amp_options'){
                                    
                                     call_user_func( 'add_submenu_page',
                                         $this->args['page_slug'],

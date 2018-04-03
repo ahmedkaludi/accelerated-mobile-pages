@@ -8,12 +8,21 @@ add_action( 'admin_enqueue_scripts', 'amppbbase_admin_scripts' );
 function amppbbase_admin_scripts( $hook_suffix ){
     global $post_type;
     global $moduleTemplate;
-    global $layoutTemplate;
+    global $layoutTemplate, $redux_builder_amp;
     /* In Page Edit Screen */
-    if( ($post_type=='post' || $post_type=='page') && in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
+    if( ($post_type=='post' 
+    	 || $post_type=='page' 
+    	 || (
+	    	 	isset($redux_builder_amp['ampforwp-custom-type'])
+	    	 	&& is_array($redux_builder_amp['ampforwp-custom-type'])
+	    	 	&& in_array($post_type, $redux_builder_amp['ampforwp-custom-type'])
+    	 	)
+    	)
+    	&& in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
+        wp_enqueue_style('ampforwp-dynamic-css', admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), array(), AMPFORWP_VERSION, 'all' );
         wp_enqueue_media();
         //To add page
         if ( ! class_exists( '_WP_Editors', false ) ) {
@@ -48,7 +57,6 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			$totalRows = 1;
 			$totalmodules = 1;
 			if(!empty($previousData)){
-				//echo ' sdcds '.json_encode($previousData);die;
 				$jsonData = json_decode($previousData,true);
 				if(count($jsonData['rows'])>0){
 					$totalRows = $jsonData['totalrows'];

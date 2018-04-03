@@ -91,7 +91,7 @@ function amp_pagebuilder_script_loader($scriptData){
 
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
-										$userSelectedvalue = $contentArray[$requiredKey];
+										$userSelectedvalue = (isset($contentArray[$requiredKey])? $contentArray[$requiredKey]: "");
 										if($userSelectedvalue != $requiredValue){
 											$replaceModule ='';
 										} 
@@ -146,7 +146,7 @@ function amp_pagebuilder_content_styles(){
 .amp_btn{text-align:center}
 .amp_btn a{background: #f92c8b;color: #fff;padding: 9px 20px;border-radius: 3px;display: inline-block;box-shadow: 1px 1px 4px #ccc;}
 
-.amppb-pages header .cntr{max-width: 1100px;}
+
 @media(max-width:1024px){
 .amppb-fixed{width:100%;}
 }
@@ -205,6 +205,46 @@ function amp_pagebuilder_content_styles(){
 									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceSpacing, $rowCss);
 
 								break;
+								case 'upload':
+									//$imageDetails = ampforwp_get_attachment_id( $replaceRow);
+									$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+									if(isset($rowContainer[$rowfield['name']."_image_data"])){
+									 	$replace= $rowContainer[$rowfield['name']."_image_data"];
+									 	$imageUrl = $replace[0];
+										$imageWidth = $replace[1];
+										$imageHeight = $replace[2];
+										$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+									}elseif($replaceRow != ""){
+										$imageDetails = ampforwp_get_attachment_id( $replaceRow);
+										if(is_array($imageDetails)){
+											$imageUrl = (isset($imageDetails[0])? $imageDetails[0]: "");
+											$imageWidth = (isset($imageDetails[1])? $imageDetails[1]: "");
+											$imageHeight = (isset($imageDetails[3])? $imageDetails[2]: "");	
+											$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+										}
+									}
+									$rowCss = str_replace(
+													'{{'.$rowfield['name'].'}}', 
+													 $imageUrl, 
+													$rowCss
+												);
+									$rowCss = str_replace(
+												array('{{image_width}}','{{image_width_'.$rowfield['name'].'}}'), 
+												array($imageWidth,$imageWidth), 
+												$rowCss
+											);
+									$rowCss = str_replace(
+												array('{{image_height}}','{{image_height_'.$rowfield['name'].'}}'), 
+												array($imageHeight,$imageHeight), 
+												$rowCss
+											);
+									$rowCss = str_replace(
+												array('{{image_alt}}','{{image_alt_'.$rowfield['name'].'}}'), 
+												array($image_alt,$image_alt), 
+												$rowCss
+											);
+									$rowCss = str_replace('{{'.$rowfield['name'].'}}', $replaceRow, $rowCss);
+								break;
 								default:
 									if(is_array($replaceRow)){
 										if(count($replaceRow)>0){
@@ -254,13 +294,21 @@ function amp_pagebuilder_content_styles(){
 							}
 							$replaceModule = "";
 							if(isset($contentArray[$modulefield['name']])){
-									$replaceModule = $contentArray[$modulefield['name']];
-								}
+								$replaceModule = $contentArray[$modulefield['name']];
+							}else{
+								$replaceModule = getdefaultValue($modulefield['name'],$moduleTemplate[$contentArray['type']]['fields']);
+							}
 							if($modulefield['content_type']=='css'){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
-										$userSelectedvalue = $contentArray[$requiredKey];
+										//if value not set than get default value
+										if(!isset($contentArray[$requiredKey])){
+											$userSelectedvalue = getdefaultValue($requiredKey,$moduleTemplate[$contentArray['type']]['fields']);
+										}else{
+											$userSelectedvalue = $contentArray[$requiredKey];
+											
+										}
 										if($userSelectedvalue != $requiredValue){
 											$replaceModule ='';
 										} 
@@ -492,75 +540,139 @@ function rowData($container,$col,$moduleTemplate){
 
 				$repeaterFields = '';
 				if(isset($moduleTemplate[$contentArray['type']]['repeater'])){
+
+					$repeaterTemplates = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
+					$repeaterTemplatesArray = array();
+					if(!is_array($repeaterTemplates)){
+						$repeaterTemplatesArray[] = $repeaterTemplates;
+					}else{
+						$repeaterTemplatesArray = $repeaterTemplates;
+					}
 					
-					if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
-						$repeaterUserContents = $contentArray['repeater'];
-						foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+					foreach ($repeaterTemplatesArray as $repeaterKey => $repeaterTemplate) {
+						
+						$repeaterFields = '';
+						if(isset($contentArray['repeater']) && is_array($contentArray['repeater'])){
+							$repeaterUserContents = $contentArray['repeater'];
+							$repeaterUniqueId = 0;
+							foreach ($repeaterUserContents as $repeaterUserKey => $repeaterUserValues) {
+								$repeaterFrontTemplate = $repeaterTemplate;
+								//reset($repeaterUserValues);
+								$repeaterVarIndex = key($repeaterUserValues);
+								$repeaterVarIndex = explode('_', $repeaterVarIndex);
+								$repeaterVarIndex = end($repeaterVarIndex);
 
-							$repeaterFrontTemplate = $moduleTemplate[$contentArray['type']]['repeater']['front_template'];
-							//reset($repeaterUserValues);
-							$repeaterVarIndex = key($repeaterUserValues);
-							$repeaterVarIndex = explode('_', $repeaterVarIndex);
-							$repeaterVarIndex = end($repeaterVarIndex);
-							
-							foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
-								if($moduleField['content_type']=='html'){
-									$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
-									if(is_array($replace)){
-										if(count($replace)>0){
-											$replace = $replace[0];
-										}else{
-											$replace ='';
+								
+								foreach ($moduleTemplate[$contentArray['type']]['repeater']['fields'] as $moduleKey => $moduleField) {
+									if($moduleField['content_type']=='html'){
+										$replace = "";
+										if(isset($repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex])){
+											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 										}
-									}
-									if($moduleField['type']=="upload"){
-										if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
-											$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
-										 	$imageUrl = $replace[0];
-											$imageWidth = $replace[1];
-											$imageHeight = $replace[2];
+										if(is_array($replace)){
+											if(count($replace)>0){
+												$replace = $replace[0];
+											}else{
+												$replace ='';
+											}
+										}
+										if($moduleField['type']=="upload"){
+											$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+											if( isset( $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"] ) ) {
+												$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex."_image_data"];
+											 	$imageUrl = $replace[0];
+												$imageWidth = $replace[1];
+												$imageHeight = $replace[2];
+												$image_alt = (isset($replace['alt'])? $replace['alt']: "");
+											}elseif($replace != ""){
+												$imageDetails = ampforwp_get_attachment_id( $replace);
+												if(is_array($imageDetails)){
+													$imageUrl = $imageDetails[0];
+													$imageWidth = $imageDetails[1];
+													$imageHeight = $imageDetails[2];
+													$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+												}
+											}
+
+											$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'}}', 
+														 $imageUrl, 
+														$repeaterFrontTemplate
+													);
+											if(strpos($repeaterFrontTemplate, '{{'.$moduleField['name'].'-thumbnail}}')!==false){
+												$imageDetails = ampforwp_get_attachment_id( $replace, 'thumbnail');
+												$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
+												$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'-thumbnail}}', 
+														 $imageUrl, 
+														$repeaterFrontTemplate
+													);
+											}
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_width}}',
+															  '{{image_width_'.$moduleField['name'].'}}',
+															), 
+														 array($imageWidth, $imageWidth), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_height}}',
+															  '{{image_height_'.$moduleField['name'].'}}'
+															 ), 
+														 array($imageHeight,
+														 	   $imageHeight
+														 	), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = str_replace(
+														array('{{image_alt}}',
+															  '{{image_alt_'.$moduleField['name'].'}}'
+															 ), 
+														 array($image_alt,
+														 	   $image_alt
+														 	), 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 										}else{
-											$imageDetails = ampforwp_get_attachment_id( $replace);
-											$imageUrl = $imageDetails[0];
-											$imageWidth = $imageDetails[1];
-											$imageHeight = $imageDetails[2];	
+											$repeaterFrontTemplate = str_replace(
+														'{{'.$moduleField['name'].'}}', 
+														 $replace, 
+														$repeaterFrontTemplate
+													);
+											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
 										}
 
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $imageUrl, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													'{{image_width}}', 
-													 $imageWidth, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = str_replace(
-													'{{image_height}}', 
-													 $imageHeight, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
-									}else{
-										$repeaterFrontTemplate = str_replace(
-													'{{'.$moduleField['name'].'}}', 
-													 $replace, 
-													$repeaterFrontTemplate
-												);
-										$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $replace, $repeaterFrontTemplate);
+									$repeaterFrontTemplate = str_replace('{{repeater_unique}}', $repeaterUniqueId, $repeaterFrontTemplate);
+										$repeaterUniqueId++;
 									}
-
-									
 								}
+								
+								$repeaterFields .= $repeaterFrontTemplate;
+
 							}
-							$repeaterFields .= $repeaterFrontTemplate;
+						}//If Check for Fall back
+						if(!is_numeric($repeaterKey)){
+							$moduleFrontHtml = str_replace('{{repeater_'.$repeaterKey.'}}', trim($repeaterFields), $moduleFrontHtml);
+							$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater_'.$repeaterKey, trim($repeaterFields), $moduleFrontHtml);
+						}else{
+							$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
+							$moduleFrontHtml = ampforwp_replaceIfContentConditional('repeater', trim($repeaterFields), $moduleFrontHtml);
 						}
-					}//If Check for Fall back
-					
+						
+					}	//FOreach closed
+					//Conditional replacement for Repeaters
+					if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
+						foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
+							$repeaterReplcaement = '';
+							if(isset($contentArray[$field['name']])){
+								$repeaterReplcaement = $contentArray[$field['name']];
+							}
+							$repeaterFields = ampforwp_replaceIfContentConditional($field['name'], $repeaterReplcaement, $repeaterFields);
+						}
+					}
 				}//If for Module is repeater or not
-				$moduleFrontHtml = str_replace('{{repeater}}', $repeaterFields, $moduleFrontHtml);
-				
+				//echo $moduleFrontHtml;die;
 				
 				switch($moduleName){
 					case 'gallery_image':
@@ -612,35 +724,63 @@ function rowData($container,$col,$moduleTemplate){
 				if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 					foreach ($moduleTemplate[$contentArray['type']]['fields'] as $key => $field) {
 						if($field['content_type']=='html'){
-							if(isset($contentArray[$field['name']]) && !empty($contentArray) ){
+							if(!empty($contentArray) && !isset($contentArray[$field['name']])){
+								$replace = getdefaultValue($field['name'], $moduleTemplate[$contentArray['type']]['fields']);
+							}else{
+								 $replace = $contentArray[$field['name']];
+							}
+							if($replace!=""){
 
-								if(!is_array($contentArray[$field['name']])){
-									 $replace = $contentArray[$field['name']];
+								if(!is_array($replace)){
+									
 									if($field['type']=="upload"){
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
 										if(isset($contentArray[$field['name']."_image_data"])){
 										 	$replace= $contentArray[$field['name']."_image_data"];
 										 	$imageUrl = $replace[0];
 											$imageWidth = $replace[1];
 											$imageHeight = $replace[2];
-										}else{
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+										}elseif( $replace != "" ){
 											$imageDetails = ampforwp_get_attachment_id( $replace);
-											$imageUrl = $imageDetails[0];
-											$imageWidth = $imageDetails[1];
-											$imageHeight = $imageDetails[2];	
+											if(is_array($imageDetails)){
+												$imageUrl = $imageDetails[0];
+												$imageWidth = $imageDetails[1];
+												$imageHeight = $imageDetails[2];	
+												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+											}
 										}
 										$moduleFrontHtml = str_replace(
 													'{{'.$field['name'].'}}', 
 													 $imageUrl, 
 													$moduleFrontHtml
 												);
+										if(strpos($moduleFrontHtml, '{{'.$field['name'].'-thumbnail}}')!==false){
+												$imageDetails = ampforwp_get_attachment_id( $replace, 'thumbnail');
+												$imageUrl = isset($imageDetails[0])? $imageDetails[0] : '';
+												$moduleFrontHtml = str_replace(
+														'{{'.$field['name'].'-thumbnail}}', 
+														 $imageUrl, 
+														$moduleFrontHtml
+													);
+											}
 										$moduleFrontHtml = str_replace(
-													'{{image_width}}', 
-													 $imageWidth, 
+													array('{{image_width}}','{{image_width_'.$field['name'].'}}'), 
+													 array($imageWidth,$imageWidth), 
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = str_replace(
-													'{{image_height}}', 
-													 $imageHeight, 
+													array('{{image_height}}','{{image_height_'.$field['name'].'}}'), 
+													 array($imageHeight,$imageHeight), 
+													$moduleFrontHtml
+												);
+										$moduleFrontHtml = str_replace(
+													array('{{image_alt}}',
+														  '{{image_alt_'.$field['name'].'}}'
+														 ), 
+													 array($image_alt,
+													 	   $image_alt
+													 	), 
 													$moduleFrontHtml
 												);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
@@ -649,7 +789,7 @@ function rowData($container,$col,$moduleTemplate){
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
 									}
 								}else{
-									if(count($contentArray[$field['name']])>0){
+									/*if(count($contentArray[$field['name']])>0){*/
 										foreach ($contentArray[$field['name']] as $key => $userValue) {
 											if(count($contentArray[$field['name']])==1){
 												$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', $userValue, $moduleFrontHtml);
@@ -660,10 +800,10 @@ function rowData($container,$col,$moduleTemplate){
 											}
 										}
 											
-									}else{
+									/*}else{
 										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', "", $moduleFrontHtml);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], "", $moduleFrontHtml);
-									}
+									}*/
 								}
 
 
@@ -752,7 +892,11 @@ function ampforwp_get_attachment_id( $url , $imagetype='full') {
 		}
 
 	}
-	return wp_get_attachment_image_src($attachment_id, $imagetype, false);
+	$imageDetails = wp_get_attachment_image_src($attachment_id, $imagetype, false);
+	if($imageDetails){
+		$imageDetails['alt'] = get_post_meta($attachment_id,'_wp_attachment_image_alt', true);
+	}
+	return $imageDetails;
 }
 
 function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string){
@@ -776,8 +920,20 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 		$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
 		if($replaceWith=="" && trim($replaceWith)==""){
 			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
+			$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/s", "", $string);
 		}
 		$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
 	}
 	return $string;
+}
+/*
+* Required Key $requiredKey
+* Set of  field array $moduleTemplate[$contentArray['type']]['fields']
+*/
+function getdefaultValue($requiredKey, $fieldArray){
+	foreach ($fieldArray as $fieldKey => $fieldvalue) {
+		if($fieldvalue['name'] == $requiredKey){
+			return $fieldvalue['default'];
+		}
+	}
 }

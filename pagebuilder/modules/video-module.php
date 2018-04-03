@@ -171,12 +171,4 @@ return array(
 		'front_common_css'=>'',
 	);
 
-add_filter( 'amp_post_template_data', 'ampforwp_video_scripts' );
-function ampforwp_video_scripts( $data ) {
-	if ( empty( $data['amp_component_scripts']['amp-video'] ) ) {
-		$data['amp_component_scripts']['amp-video'] = 'https://cdn.ampproject.org/v0/amp-video-0.1.js';
-	}
-	return $data;
-}
-
 ?>

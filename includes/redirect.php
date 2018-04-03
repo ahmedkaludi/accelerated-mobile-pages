@@ -1,12 +1,11 @@
 <?php
 // Redirection for Homepage and Archive Pages when Turned Off from options panel
 function ampforwp_check_amp_page_status() {
-  global $redux_builder_amp;
+  global $redux_builder_amp, $wp;
   $hide_cats_amp = '';
   $hide_cats_amp = is_category_amp_disabled();
   if ( ampforwp_is_amp_endpoint() ) {
     if ( (is_archive() && 0 == $redux_builder_amp['ampforwp-archive-support']) || true == $hide_cats_amp || ((ampforwp_is_home() || ampforwp_is_front_page()) && 0 == $redux_builder_amp['ampforwp-homepage-on-off-support']) ) {
-      global $wp;
       $redirection_location = add_query_arg( '', '', home_url( $wp->request ) );
       
       $redirection_location = trailingslashit($redirection_location );
@@ -15,6 +14,22 @@ function ampforwp_check_amp_page_status() {
       wp_safe_redirect( $redirection_location );
       exit;
     }
+  }
+  // AMP Takeover
+  if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] && !ampforwp_is_non_amp() ) {
+    $redirection_location = '';
+    if ( is_singular() ) {
+      $redirection_location = get_the_permalink();
+    }
+    if ( ampforwp_is_home() || ampforwp_is_front_page() || is_archive() || ampforwp_is_blog() ) {
+      $redirection_location = add_query_arg( '', '', home_url( $wp->request ) );
+      
+      $redirection_location = trailingslashit($redirection_location );
+      
+      $redirection_location = dirname($redirection_location);
+    }
+    wp_safe_redirect( $redirection_location );
+    exit;
   }
 }
 add_action( 'template_redirect', 'ampforwp_check_amp_page_status', 10 );
@@ -36,7 +51,10 @@ function ampforwp_page_template_redirect() {
 
 
   if ( isset($redux_builder_amp['amp-mobile-redirection']) && $redux_builder_amp['amp-mobile-redirection'] ) {
-
+    // Return if Dev mode is enabled
+    if ( isset($redux_builder_amp['ampforwp-development-mode']) && $redux_builder_amp['ampforwp-development-mode'] ) {
+      return;
+    }
     // Return if the set value is not met and do not start redirection
     if ( 'disable' == ampforwp_meta_redirection_status() ) {
         return;

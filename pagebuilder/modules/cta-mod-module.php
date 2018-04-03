@@ -4,7 +4,7 @@ $output = '
 	<h2>{{content_title}}</h2>
 </div>
 <div class="cta-btn">
-	<a  class="btn-txt" href="{{btn_link}}" target="_blank">{{button-text}}</a>
+	<a  class="btn-txt" href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} {{if_cta_id}}id="{{cta_id}}"{{ifend_cta_id}}>{{button-text}}</a>
 	<span class="txt">{{text_title}}</span>
 </div>
 ';
@@ -119,6 +119,26 @@ return array(
 		 						'label'		=>'Description',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Free, easy to set up, no credit card required',	
+		           				'content_type'=>'html',
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'page_link_open',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
+	 											),
+	 							'content_type'=>'html',
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"cta_id",		
+		 						'label'		=>'CTA ID',
+		           				'tab'     =>'customizer',
+		 						'default'	=>' ',	
 		           				'content_type'=>'html',
 	 						),
 						array(

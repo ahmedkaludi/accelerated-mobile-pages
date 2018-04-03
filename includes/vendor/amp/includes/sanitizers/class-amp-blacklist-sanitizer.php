@@ -73,6 +73,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	private function strip_tags( $node, $tag_names ) {
+		$attr = '';
 		foreach ( $tag_names as $tag_name ) {
 			$elements = $node->getElementsByTagName( $tag_name );
 			$length = $elements->length;
@@ -82,6 +83,13 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 			for ( $i = $length - 1; $i >= 0; $i-- ) {
 				$element = $elements->item( $i );
+				// Allow script with application/ld+json #1958
+				if ( $element->hasAttributes() ) {
+					$attr = $element->getAttribute('type');
+					if ( '' !== $attr && 'application/ld+json' === $attr ) {
+						continue;
+					}
+				}
 				$parent_node = $element->parentNode;
 				$parent_node->removeChild( $element );
 
@@ -212,6 +220,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			'option',
 			'link',
 			'picture',
+			'canvas',
 
 			// Sanitizers run after embed handlers, so if anything wasn't matched, it needs to be removed.
 			'embed',

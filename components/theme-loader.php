@@ -124,6 +124,24 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 					}
 				}
 	    	break;
+	    	case is_author():
+	    		$author = get_queried_object();
+
+				$templates = array();
+
+				if ( $author instanceof WP_User ) {
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->user_nicename}.php";
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/author-{$author->ID}.php";
+				}
+				$templates[] = AMPFORWP_CUSTOM_THEME . "/author.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    	case (is_archive()):
 	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 				$templates = array();
@@ -188,6 +206,39 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 
 				$templates[] = AMPFORWP_CUSTOM_THEME . "/single.php";
 				
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
+	    	case is_page():
+	    		$id = get_queried_object_id();
+				$template = get_page_template_slug();
+				$pagename = get_query_var('pagename');
+
+				if ( ! $pagename && $id ) {
+					// If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object
+					$post = get_queried_object();
+					if ( $post )
+						$pagename = $post->post_name;
+				}
+
+				$templates = array();
+				if ( $template && 0 === validate_file( $template ) )
+					$templates[] = $template;
+				if ( $pagename ) {
+					$pagename_decoded = urldecode( $pagename );
+					if ( $pagename_decoded !== $pagename ) {
+						$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$pagename_decoded}.php";
+					}
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$pagename}.php";
+				}
+				if ( $id )
+					$templates[] = AMPFORWP_CUSTOM_THEME . "/page-{$id}.php";
+				$templates[] = AMPFORWP_CUSTOM_THEME . "/page.php";
+
 				foreach ( $templates as $key => $value ) {
 					if ( 'single' === $type && file_exists($value) ) {
 						$file = $value;

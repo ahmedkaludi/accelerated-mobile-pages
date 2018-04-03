@@ -50,7 +50,17 @@
         <div class="form-label">{{field.label}}</div>     
         <div class="form-field">
             <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
-                <input type="checkbox" :value="val.value" v-model="field.default">
+                <input type="checkbox" :value="val.value" v-model="field.default" >
+                {{val.label}}
+            </label>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="amp-form-control" :id="field.name" data-type="checkbox_bool" v-else-if="field.type=='checkbox_bool' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
+        <div class="form-label">{{field.label}}</div>     
+        <div class="form-field">
+            <label class="form-label-checkbox" v-for="(val,index) in field.options"  >
+                <input type="checkbox" :value="val.value" :checked="field.default" v-model="field.default"  v-bind:true-value="val.value" v-bind:false-value="0">
                 {{val.label}}
             </label>
         </div>
@@ -61,7 +71,7 @@
         <div class="form-label">{{field.label}}</div>
         <div class="form-field">
             <label  class="form-label-radio" v-for="(val,index) in field.options" >
-                <input type="radio"  :value="val.value" v-model="field.default" >
+                <input type="radio"  :value="val.value" v-model="field.default" :checked="field.default==val.value">
                 {{val.label}}
             </label>
         </div>

@@ -3,7 +3,13 @@ $output = '
 	{{content_title}}
 ';
 $css = '
-{{module-class}}.text-mod{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};color:{{text_color_picker}};}
+{{module-class}}.text-mod{width:100%;max-width:{{max-width}};text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};
+color:{{text_color_picker}};line-height:{{line-height}};letter-spacing:{{letter-spacing}};}
+@media(max-width:768px){
+{{module-class}}.text-mod{
+	max-width:100%;
+}
+}
 ';
 return array(
 		'label' =>'Text',
@@ -32,6 +38,22 @@ return array(
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
 	 						),
+	 					array(
+		 						'type'		=>'text',		
+		 						'name'		=>"line-height",		
+		 						'label'		=>'Line Height',
+		           				 'tab'     =>'design',
+		 						'default'	=>'1.7',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(
+		 						'type'		=>'text',		
+		 						'name'		=>"letter-spacing",		
+		 						'label'		=>'Letter Spacing',
+		           				 'tab'     =>'design',
+		 						'default'	=>'0px',	
+		           				'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"text_color_picker",
@@ -51,7 +73,15 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),	
+	 						),
+	 					array(
+								'type'		=>'text',
+								'name'		=>"max-width",
+								'label'		=>'Max Width',
+								'tab'		=>'design',
+								'default'	=>'100%',
+								'content_type'=>'css'
+							),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

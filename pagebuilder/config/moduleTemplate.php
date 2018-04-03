@@ -56,10 +56,15 @@ if(!function_exists("ampforwp_module_templates")){
 $output = '<section class="ap_m {{row_class}} {{grid_type}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
-
-{{row-class}}.amppb-fluid{width:100%;}
-{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
-{{row-class}}.amppb-fixed .col {max-width: 95%;width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}{
+	background-image: url({{row_background_image}});
+	background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+{{row-class}}.amppb-fluid{width:{{fluid-width}};}
+{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
+{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	color: {{font_color_picker}};
@@ -130,10 +135,28 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 								'required'  => array('grid_type'=>'amppb-fixed')
 							),
+							array(
+								'type'		=>'text',
+								'name'		=>"content-width",
+								'label'		=>'Content Width',
+								'tab'		=>'customizer',
+								'default'	=>'95%',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fixed')
+							),
 
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-width",
+								'label'		=>'Width',
+								'tab'		=>'customizer',
+								'default'	=>'100%',
+								'content_type'=>'css',
+								'required'  => array('grid_type'=>'amppb-fluid')
+							),
+							array(
+								'type'		=>'text',
+								'name'		=>"fluid-wrapper",
 								'label'		=>'Width',
 								'tab'		=>'customizer',
 								'default'	=>'90%',
@@ -158,11 +181,21 @@ $containerCommonSettings = array(
 	 							'default' =>'color',
 	 							'options_details'=>array(
 	 												'color'=>'Color',
-	 												'gradient'=>'Gradient'
+	 												'gradient'=>'Gradient',
+	 												'image'=>'Background Image'
 	 													),
 	 							'content_type'=>'css',
 	 							'output_format'=>''
 	 						),
+	 						array(
+								'type'		=>'upload',
+								'name'		=>"row_background_image",
+								'label'		=>"Select Image",
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'content_type'=>'css',
+								'required'  => array('background_type'=>'image')
+								),
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"color_picker",

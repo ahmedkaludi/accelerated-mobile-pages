@@ -30,6 +30,10 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
 	  	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
 	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
 	  	}
+	  	if( (isset($redux_builder_amp['ampforwp-custom-type']) && is_array($redux_builder_amp['ampforwp-custom-type'] ) ) && in_array($post_type, $redux_builder_amp['ampforwp-custom-type']) ){
+	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+	  	}
+	  	
 	}
 }
 

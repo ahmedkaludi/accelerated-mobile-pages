@@ -49,6 +49,7 @@ add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_video_thumb'
 if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 	function ampforwp_structured_data_video_thumb( $metadata ) {
 		global $redux_builder_amp, $post;
+		// VideoObject
 		if ( 'VideoObject' == $metadata['@type'] ) {
 			$post_image_id = '';
 			$post_image_id = get_post_thumbnail_id( get_the_ID() );
@@ -67,6 +68,10 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$metadata['name'] = $metadata['headline'];
 			$metadata['uploadDate'] = $metadata['datePublished'];
 			$metadata['thumbnailUrl'] = $structured_data_video_thumb_url;
+		}
+		// Recipe
+		if ( 'Recipe' == $metadata['@type'] ) {
+			$metadata['name'] = $metadata['headline'];
 		}
 		return $metadata;
 	}

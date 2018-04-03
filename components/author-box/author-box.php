@@ -12,7 +12,17 @@ $author_description = false;
 $class = $author_prefix = $author_wrapper_class = '';
 $show_date = false;
 $show_time = false;
+$author_name = $post_author->display_name;
+$and_text = '';
+$and_text = ampforwp_translation($redux_builder_amp['amp-translator-and-text'], 'and' );
+if ( function_exists('coauthors') ) { 
+    $author_name = coauthors($and_text,$and_text,null,null,false);
+}
 $author_link = get_author_posts_url($post_author->ID);
+if ( function_exists('coauthors_posts_links') ) {
+    $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
+}
+//var_dump($and);die;
 $author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {
@@ -62,10 +72,15 @@ $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_
         <?php } ?>
         <?php echo '<div class="author-details '. $author_wrapper_class .'">';
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
-            echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $post_author->display_name ).'</a></span>';
+            if ( function_exists('coauthors_posts_links') ) {
+                echo '<span class="author-name">' .$author_prefix . $author_link . ' </span>';
+            }
+            else {
+                echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+            }
         }
         else
-            echo '<span class="author-name">' . $author_prefix . esc_html( $post_author->display_name ) . '</span>';
+            echo '<span class="author-name">' . $author_prefix . esc_html( $author_name ) . '</span>';
 
         //to show date and time
         if ( $show_date || $show_time ) {

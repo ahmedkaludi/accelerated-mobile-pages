@@ -970,7 +970,6 @@ Layout css
     top: 0;
     bottom: 0;
     right: 0;
-    height: 100%;
     visibility: visible;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1301,7 +1300,7 @@ a.amppb_accordion__panel:hover {
 .amp-layout-breadcrumbs {
     display: inline-block;
     margin: 20px 0 10px 0;
-    width: 100;
+    width: 100%;
     font-size: 11px;
     color: #666;
     text-transform: uppercase;
