@@ -424,7 +424,7 @@ if(is_array($layouts)){
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#f2f2f2'>Hello ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tab=29')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#f2f2f2'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tab=29')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
     $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?page=amp_options&tab=29')."'>Enter license here</a></span>";
 }
