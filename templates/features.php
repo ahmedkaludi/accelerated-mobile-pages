@@ -5404,7 +5404,7 @@ function ampforwp_url_purifier($url){
 				$url = add_query_arg('page_id',$quried_value2, $url);
 			}*/
 		} else {
-			if ( is_single() && true == $checker ) {
+			if ( is_singular() && true == $checker ) {
 				$url = untrailingslashit($url);
 			}
 			if ( is_home() || is_archive() || is_front_page() ) {
