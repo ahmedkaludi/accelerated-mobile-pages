@@ -1,7 +1,8 @@
 <?php 
-$output = '{{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
+$output = '
 	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
+{{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
 ';
 $css = '
 {{module-class}} {width:100%;display:inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
