@@ -407,7 +407,11 @@ if( 1 == $redux_builder_amp['wordpress-comments-support']){?>
 .cmts-wrap a{color:#333;}
 .cmts-wrap a:hover{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
 .cmts-wrap .current{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
-<?php } // Comments Pagination CSS Ends ?>
+<?php } // Comments Pagination CSS Ends
+if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
+.amp-disqus-comments { text-align:center } <?php 
+} ?>
+
 @media(max-width:1110px){
     .cntr{width:100%;padding:0px 20px;}
     .sp-rt {margin-left: 30px;}
