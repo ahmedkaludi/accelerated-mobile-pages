@@ -2139,12 +2139,23 @@ $forms_support[]=  array(
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
                      ),
                      array(
+                         'id'       => 'ampforwp-disqus-layout',
+                         'title'    => __('Disqus Layout', 'accelerated-mobile-pages'),
+                         'type'     => 'select',
+                         'options'     => array(
+                            'fixed'   => 'Fixed',
+                            'responsive' => 'Responsive'
+                         ),
+                         'default' => 'responsive',
+                         'required'=>array('ampforwp-disqus-comments-support','=','1'),
+                    ),
+                     array(
                          'id'       => 'ampforwp-disqus-height',
                          'type'     => 'text',
                          'title'    => __('Disqus Iframe Height', 'accelerated-mobile-pages'),
                          'placeholder' => 'Enter the height',
                          'default' => '420',
-                         'required' => array('ampforwp-disqus-comments-support', '=' , '1'),
+                         'required' => array('ampforwp-disqus-layout', '=' , 'fixed'),
                      ),
                      array(
                          'id'       => 'ampforwp-facebook-comments-support',
