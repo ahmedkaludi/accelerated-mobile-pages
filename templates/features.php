@@ -311,7 +311,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
 				$amp_url = untrailingslashit($current_search_url);
 			}
-
+			
 			$amp_url = ampforwp_url_purifier($amp_url);
 
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -5404,7 +5404,7 @@ function ampforwp_url_purifier($url){
 				$url = add_query_arg('page_id',$quried_value2, $url);
 			}*/
 		} else {
-			if ( is_single() && true == $checker ) {
+			if ( is_singular() && true == $checker ) {
 				$url = untrailingslashit($url);
 			}
 			if ( is_home() || is_archive() || is_front_page() ) {
