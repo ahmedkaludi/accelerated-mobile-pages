@@ -199,6 +199,7 @@ $containerCommonSettings = array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
+	 							'required'  => array('background_type'=>'image')
 	 						),
 	 						array(
 								'type'		=>'upload',
