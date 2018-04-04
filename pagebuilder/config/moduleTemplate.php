@@ -61,6 +61,7 @@ $front_css = '
 	background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    background-position:{{align_type}};
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
@@ -186,6 +187,18 @@ $containerCommonSettings = array(
 	 													),
 	 							'content_type'=>'css',
 	 							'output_format'=>''
+	 						),
+	 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Background Position",
+								'tab'     =>'customizer',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
 	 						),
 	 						array(
 								'type'		=>'upload',
