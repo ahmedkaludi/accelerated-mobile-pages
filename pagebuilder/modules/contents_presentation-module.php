@@ -72,7 +72,6 @@
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
       width:{{img_width}};
-      padding:0 5% 0 0;
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
@@ -86,6 +85,7 @@
       color:{{heading_color}};
       font-size:16px;
       text-align: {{align_type}};
+      padding:{{padding_css}};
     }
     {{module-class}} .cntn-desc h1{
       font-size:{{font-size}};
@@ -124,7 +124,6 @@
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
       width:{{img_width}};
-      padding:0 0 0 5%;
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
@@ -136,7 +135,7 @@
     {{module-class}} .cntn-desc{
       width:{{cntn_width}};
       color:{{heading_color}};
-      padding:0 8%;
+      padding:{{padding_css}};
       font-size:16px;
       text-align: {{align_type}};
     }
@@ -178,7 +177,11 @@
   }
   {{module-class}} .cntn-blk{
     width:100%;
-    background:{{bg_clr}};
+    background-image: url({{blk_background_image}});
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+    background-position:center;
   }
   {{if_condition_check_for_content==1}}
     {{module-class}} .cntn-desc{
@@ -186,7 +189,7 @@
       color:{{heading_color}};
       font-size:16px;
       text-align: {{align_type}};
-      padding:5% 10%;
+      padding:{{padding_css}};
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
@@ -233,7 +236,11 @@
   }
   {{module-class}} .cntn-blk{
     width:100%;
-    background:{{bg_color}};
+    background-image: url({{blk_background_image}});
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+    background-position:center;
   }
   {{if_condition_check_for_content==1}}
     {{module-class}} .cntn-desc{
@@ -353,7 +360,7 @@
               array(
                 'type'    =>'checkbox_bool',
                 'name'    =>"check_for_image",
-                'label'   => 'Enable Image',
+                'label'   => 'Image',
                 'tab'   =>'customizer',
                 'default' =>1,
                 'options' =>array(
@@ -385,7 +392,7 @@
              array(    
               'type'    =>'text',   
               'name'    =>"ampimg_width",   
-              'label'   =>'Image Width',
+              'label'   =>'Image Wrapper',
               'tab'     =>'customizer',
               'default' =>'100%', 
               'content_type'=>'css',
@@ -394,7 +401,7 @@
             array(
                 'type'    =>'checkbox_bool',
                 'name'    =>"check_for_content",
-                'label'   => 'Enable Content',
+                'label'   => 'Content',
                 'tab'   =>'customizer',
                 'default' =>1,
                 'options' =>array(
@@ -423,6 +430,20 @@
               'content_type'=>'html',
               'required'  => array('check_for_content'=>'1')
             ),
+            array(
+                'type'    =>'spacing',
+                'name'    =>"padding_css",
+                'label'   =>'Gapping',
+                'tab'   =>'customizer',
+                'default' =>array(
+                          'left'=>'0px',
+                          'right'=>'0px',
+                          'top'=>'0px',
+                          'bottom'=>'0px'
+                        ),
+                'content_type'=>'html',
+              'required'  => array('check_for_content'=>'1')
+              ),
             array(    
               'type'    =>'text',   
               'name'    =>"font-size",   
@@ -496,6 +517,38 @@
               'content_type'=>'css',
               'required'  => array('check_for_content'=>'1')
             ),
+            array(    
+                'type'  =>'select',   
+                'name'  =>"background_type",    
+                'label' =>"Background Type",
+                'tab'     =>'container_css',
+                'default' =>'color',
+                'options_details'=>array(
+                          'color'=>'Color',
+                          'image'=>'Background Image'
+                            ),
+                'content_type'=>'css',
+                'required'  => array('content_layout_type'=>'3')
+              ),
+            array(
+                'type'    =>'upload',
+                'name'    =>"blk_background_image",
+                'label'   =>"Select Image",
+                'tab'   =>'container_css',
+                'default' =>'',
+                'content_type'=>'css',
+                'required'  => array('background_type'=>'image')
+                ),
+            array(
+                'type'    =>'color-picker',
+                'name'    =>"color_picker",
+                'label'   =>'Background Color',
+                'tab'   =>'customizer',
+                'default' =>'',
+                'content_type'=>'css',
+                'output_format'=>"background: %default%",
+                'required'  => array('background_type'=>'color')
+              ),
             array(
                 'type'    =>'color-picker',
                 'name'    =>"bg_clr",
@@ -503,7 +556,7 @@
                 'tab'   =>'container_css',
                 'default' =>'#fff',
                 'content_type'=>'css',
-                'required'  => array('content_layout_type'=>'3')
+                'required'  => array('background_type'=>'color')
               ),
             array(
                 'type'    =>'color-picker',
