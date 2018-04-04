@@ -43,4 +43,4 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	}
 }
 
-do_action('ampforwp_before_meta_taxonomy_hook',$this);
+do_action('ampforwp_after_meta_taxonomy_hook',$this);
