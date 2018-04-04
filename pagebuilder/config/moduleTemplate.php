@@ -158,7 +158,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-wrapper",
-								'label'		=>'Width',
+								'label'		=>'Wrapper',
 								'tab'		=>'customizer',
 								'default'	=>'90%',
 								'content_type'=>'css',
