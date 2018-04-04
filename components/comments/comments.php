@@ -11,6 +11,7 @@ if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
 if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
+	<?php do_action('ampforwp_before_comment_hook'); ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
