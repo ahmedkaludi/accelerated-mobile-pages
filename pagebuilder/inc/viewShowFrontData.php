@@ -526,7 +526,11 @@ function rowData($container,$col,$moduleTemplate){
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
-		$html .= "<div class='col col-".$col."'>";
+		$parentclass= "col-".$col;
+		if($col == 1){
+			$parentclass = 'col '.$parentclass;
+		}
+		$html .= "<div class='$parentclass'>";
 		//sort modules by index
 		$container = sortByIndex($container);
 		if(count($container)>0){
