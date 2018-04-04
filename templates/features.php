@@ -5761,6 +5761,12 @@ function ampforwp_default_logo($param=""){
 		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
 		$image 	  = getimagesize($redux_builder_amp['opt-media']['url']);
 
+		if(empty($image) || $image==false){
+			$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
+			$imageDetail 	 = wp_get_attachment_image_src( $logo_id , 'full');
+			$image[0] = $imageDetail[1];
+			$image[1] = $imageDetail[2];
+		}
 		switch ($param) {
 			case 'url':
 					$value = $logo_url;
