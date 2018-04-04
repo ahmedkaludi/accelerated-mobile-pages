@@ -585,7 +585,8 @@ Vue.component('color-picker', {
 	    hide: true,
 	    // show a group of common colors beneath the square
 	    // or, supply an array of colors to customize further
-	    palettes: true,
+	    //palettes: true,
+	    palettes: ['#000000', 'transparent','#ffffff','#dd3333','#dd9933','#eeee22','#81d742','#1e73be'],
 		change: function(event, ui) {
 	        var element = event.target;
         	var color = ui.color.toString();
