@@ -2561,6 +2561,11 @@ add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
 	$width = $height = 420;
+	$layout = "";
+	$layout = 'responsive';
+	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
+		$layout = 'fixed';
+	}
 	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
 		$height = $redux_builder_amp['ampforwp-disqus-height'];
 	}
@@ -2583,7 +2588,7 @@ function ampforwp_add_disqus_support() {
 				<amp-iframe
 					height=<?php echo $height ?>
 					width=<?php echo $width ?>
-					layout="responsive"
+					layout="<?php echo $layout ?>"
 					sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 					frameborder="0"
 					src="<?php echo $disqus_url ?>" >
