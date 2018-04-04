@@ -2565,9 +2565,10 @@ function ampforwp_add_disqus_support() {
 	$layout = 'responsive';
 	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
 		$layout = 'fixed';
-	}
-	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
-		$height = $redux_builder_amp['ampforwp-disqus-height'];
+	
+		if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+			$height = $redux_builder_amp['ampforwp-disqus-height'];
+		}
 	}
 	//if ( !comments_open() ){
 	//	return;

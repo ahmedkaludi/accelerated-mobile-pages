@@ -147,8 +147,14 @@ function ampforwp_framework_get_disqus_comments(){
 	global $redux_builder_amp;
 	$width = $height = 420;
 
-	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
-		$height = $redux_builder_amp['ampforwp-disqus-height'];
+	$layout = "";
+	$layout = 'responsive';
+	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
+		$layout = 'fixed';
+	
+		if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+			$height = $redux_builder_amp['ampforwp-disqus-height'];
+		}
 	}
 
 	if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
@@ -166,7 +172,7 @@ function ampforwp_framework_get_disqus_comments(){
 			<amp-iframe
 				height=<?php echo $height ?>
 				width=<?php echo $width ?>
-				layout="responsive"
+				layout="<?php echo $layout ?>"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
 				src="<?php echo $disqus_url ?>" >
