@@ -65,7 +65,7 @@ $front_css = '
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
-{{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
+{{row-class}}.amppb-fixed {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
 	color: {{font_color_picker}};
