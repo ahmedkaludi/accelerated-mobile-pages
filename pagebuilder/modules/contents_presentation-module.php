@@ -72,6 +72,7 @@
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
       width:{{img_width}};
+      line-height:0;
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
@@ -124,6 +125,7 @@
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
       width:{{img_width}};
+      line-height:0;
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
