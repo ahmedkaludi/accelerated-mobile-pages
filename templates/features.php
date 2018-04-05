@@ -6336,26 +6336,3 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 		}
 	}
 }
-
-// Dropcap Support in AMP
-add_filter('the_content', 'ampforwp_dropcapped_content',0);
-if ( ! function_exists('ampforwp_dropcapped_content') ) {
-	function ampforwp_dropcapped_content($content) {
-		global $redux_builder_amp;
-		$new_content = $first = $remaining = $spanned_first_letter = '';
-		if( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) {
-
-			// left trim $content
-			$new_content = ltrim ( $content );
-			// select first letter of $content
-			$first = mb_substr( $new_content, 0, 1 );
-			// select remaining letters of content
-			$remaining = mb_substr( $new_content, 1 );
-			// add <span> to the first letter for content
-			$spanned_first_letter = '<span class="a-dc">' . $first . '</span>';
-			// Merge
-			$content = $spanned_first_letter . $remaining;
-		}
-		return $content;
-	}
-}

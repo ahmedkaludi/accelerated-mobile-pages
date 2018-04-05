@@ -471,7 +471,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 }
 <?php } } ?>
 <?php if ( isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) { ?>
-.a-dc{
+.cntn-wrp:first-child::first-letter {
     float: left;
     font-size: 75px;
     line-height: 1;
