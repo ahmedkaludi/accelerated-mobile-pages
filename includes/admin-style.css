@@ -457,3 +457,101 @@ right:0;  z-index: 99999;
 .extension-menu-call .dashicons-admin-generic:before{
     font-size: 18px;
 }
+
+
+/*
+Accordion
+*/
+
+.afw-accordion-header > h3{
+    background: #7a84c3;
+    border: 1px solid #d0cfcf;
+    padding-top: 0px;
+    margin-top: 25px !important;
+}
+.afw-accordion-header{
+    position:relative;
+}
+.afw-accordion-tab-open:after{
+    content: ">";
+    font-weight:900;
+    font-size:20px;
+
+    right: 0px;
+    position: absolute;
+    bottom: 15%;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+.afw-accordion-tab-close:after{
+    content: ">";
+    font-weight:900;
+    line-height: 30px;
+    font-size:20px;
+    right: 0px;
+    position: absolute;
+    bottom: 15%;
+}
+
+/*TOOltip*/
+.afw-tooltip {
+    position: relative;
+    display: inline !important;
+    margin-left: 5px;
+}
+
+.afw-tooltip .afw-help-subtitle {
+    visibility: hidden;
+    width: 250px;
+    min-height:35px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 30%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.afw-tooltip .afw-help-subtitle::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.afw-tooltip:hover .afw-help-subtitle {
+    visibility: visible;
+    opacity: 1;
+    padding-bottom: 20px;
+}
+.afw-tooltip .afw-help-subtitle .afw-tootip-bottom{
+    position: absolute;
+    bottom: 3px;
+    border-top: 1px solid #fff;
+    left: 0px;
+    right: 0px;
+    top: auto;
+    padding: 3px 0px 0px;
+}
+.afw-tooltip .afw-help-subtitle .afw-tootip-bottom .help-wrap{
+    width: 49%;
+    float: left;
+    border-right: 1px solid #fff;
+    color:#fff;
+}
+.afw-tooltip .afw-help-subtitle .afw-tootip-bottom .help-wrap:last-child{
+    border:none;
+}
+.afw-tootip-bottom i:before{
+    font-size: 15px;
+}

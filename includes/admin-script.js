@@ -46,7 +46,7 @@ jQuery(function($) {
                             $('.redux-tab-container').each(function(){
                                 $(this).find('.redux-tab-selector:first').click();
                             });
-                            hideReduxFields();
+                            //hideReduxFields();
                             return false;
                         }
                         var item = $(this);
@@ -76,9 +76,69 @@ jQuery(function($) {
             });
         }
     $(document).ready(function() {
+        $('.afw-accordion-header').click(function(){
+            //Get Cookie Changes
+            if ( $.cookie( "redux_current_section_customize" )){
+                 var allReduxTabs = JSON.parse($.cookie( "redux_current_section_customize" ));   
+            }else{
+               var allReduxTabs = {};
+            }
+            
+            var section = $(this).attr("id");
+            section = section.replace("section-","section-table-");
+           
+            if($("#"+section).is(':visible')){
+                $("#"+section).hide();
+                $(this).removeClass("afw-accordion-tab-open").addClass("afw-accordion-tab-close");
+                allReduxTabs[section] = 'hide';
+            }else{
+                $("#"+section).show();
+                $(this).removeClass("afw-accordion-tab-close").addClass("afw-accordion-tab-open");
+                allReduxTabs[section] = 'show';
+            }
 
-/*---------Google Fonts ------------*/
-// Google Font details 
+            //Set Cookie Changes
+            $.cookie(
+                'redux_current_section_customize', JSON.stringify(allReduxTabs), {
+                    expires: 7,
+                    path: '/'
+                }
+            );
+        });
+        //While loading at first time
+        if($('.afw-accordion-header').length>0){
+            //console.log($.cookie( "redux_current_section_customize" ));
+            if ( $.cookie( "redux_current_section_customize" ) ){
+                var tabsValue = JSON.parse($.cookie( "redux_current_section_customize" ));
+            }else{
+                var tabsValue = "";
+            }
+            $('.afw-accordion-header').each(function(){
+
+                var reduxAccordianHeader = $(this);
+                var section = reduxAccordianHeader.attr("id");
+                section = section.replace("section-","section-table-");
+
+                if(tabsValue[section]){
+                    var currentSettings = tabsValue[section];
+                    if(currentSettings=='hide'){
+                        reduxAccordianHeader.removeClass("afw-accordion-tab-open").addClass("afw-accordion-tab-close");
+                    }else if(currentSettings=='show'){
+                        reduxAccordianHeader.removeClass("afw-accordion-tab-close").addClass("afw-accordion-tab-open");
+                    }
+                }
+
+                if(reduxAccordianHeader.hasClass('afw-accordion-tab-close')){
+                    $("#"+section).hide();
+                }else if(reduxAccordianHeader.hasClass('afw-accordion-tab-open')){
+                    $("#"+section).show();
+                }
+
+            })
+        }
+
+    /*---------Google Fonts ------------*/
+    // Google Font details 
 
 
  
