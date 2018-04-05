@@ -4468,7 +4468,15 @@ global $redux_builder_amp, $post;
 		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
 		if(in_array($featured_image_field, $custom_fields_name)){
 			$amp_img_src = $custom_fields[$featured_image_field][0];
-			$image = getimagesize($amp_img_src);
+			$image = @getimagesize($amp_img_src);
+			
+			if(empty($image) || $image==false){
+				$img_id  	 = attachment_url_to_postid($amp_img_src);
+				$imageDetail = wp_get_attachment_image_src( $img_id , 'full');
+				$image[0] 	 = $imageDetail[1];
+				$image[1] 	 = $imageDetail[2];
+			}
+
 			switch ($param) {
 				case 'url':
 					$output = $amp_img_src;
