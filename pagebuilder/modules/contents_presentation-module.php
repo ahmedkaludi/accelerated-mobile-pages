@@ -84,20 +84,21 @@
     {{module-class}} .cntn-desc{
       width:{{cntn_width}};
       color:{{heading_color}};
-      font-size:16px;
+      font-size:{{ctn-font-size}};
+      font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
     }
     {{module-class}} .cntn-desc h1{
       font-size:{{font-size}};
       line-height:1.2;
-      font-weight: 600;
+      font-weight: {{font_type}};
     }
     {{module-class}} .cntn-desc a{
       color:{{btn_color}};
       font-size:{{btn-font-size}};
       line-height:1.4;
-      font-weight:500;
+      font-weight:{{btn_font_type}};
       margin-top: 10px;
       display:block;
     }
@@ -138,20 +139,21 @@
       width:{{cntn_width}};
       color:{{heading_color}};
       padding:{{padding_gap}};
-      font-size:16px;
+      font-size:{{ctn-font-size}};
+      font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
     }
     {{module-class}} .cntn-desc h1{
       font-size:{{font-size}};
       line-height:1.2;
-      font-weight: 600;
+      font-weight: {{font_type}};
       margin-bottom:15px;
     }
     {{module-class}} .cntn-desc a{
       color:{{btn_color}};
       font-size:{{btn-font-size}};
       line-height:1.4;
-      font-weight:500;
+      font-weight:{{btn_font_type}};
       margin-top: 10px;
       display:block;
     }
@@ -189,21 +191,22 @@
     {{module-class}} .cntn-desc{
       width:100%;
       color:{{heading_color}};
-      font-size:16px;
+      font-size:{{ctn-font-size}};
+      font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
         line-height:1.2;
-        font-weight: 600;
+        font-weight: {{font_type}};
         margin-bottom:15px;
     }
     {{module-class}} .cntn-desc a{
       color:{{btn_color}};
       font-size:{{btn-font-size}};
       line-height:1.4;
-      font-weight:500;
+      font-weight:{{btn_font_type}};
       margin-top: 10px;
       display:block;
     }
@@ -248,21 +251,22 @@
     {{module-class}} .cntn-desc{
       width:100%;
       color:{{heading_color}};
-      font-size:16px;
+      font-size:{{ctn-font-size}};
+      font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
         line-height:1.2;
-        font-weight: 600;
+        font-weight: {{font_type}};
         margin-bottom:15px;
     }
     {{module-class}} .cntn-desc a{
       color:{{btn_color}};
       font-size:{{btn-font-size}};
       line-height:1.4;
-      font-weight:500;
+      font-weight:{{btn_font_type}};
       margin-top: 10px;
       display: block;
     }
@@ -451,12 +455,27 @@
             array(    
               'type'    =>'text',   
               'name'    =>"font-size",   
-              'label'   =>'Font Size',
+              'label'   =>'Heading Font Size',
               'tab'     =>'container_css',
               'default' =>'40px', 
               'content_type'=>'css',
               'required'  => array('check_for_content'=>'1')
-            ),    			
+            ),
+            array(    
+                'type'  =>'select',   
+                'name'  =>'font_type',    
+                'label' =>"Font Weight",
+                'tab'     =>'container_css',
+                'default' =>'500',
+                'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'   =>'Regular',
+                                    '500'   =>'Medium',
+                                    '600'   =>'Semi Bold',
+                                    '700'   =>'Bold',
+                                ),
+                'content_type'=>'css',
+              ),    			
             array(    
                 'type'    =>'text-editor',    
                 'name'    =>"content_title",    
@@ -465,6 +484,30 @@
                 'default' =>'Write your content in Text Editor',  
                 'content_type'=>'html',
                 'required'  => array('check_for_content'=>'1')
+              ),
+            array(    
+              'type'    =>'text',   
+              'name'    =>"ctn-font-size",   
+              'label'   =>'Content Font Size',
+              'tab'     =>'container_css',
+              'default' =>'16px', 
+              'content_type'=>'css',
+              'required'  => array('check_for_content'=>'1')
+            ),
+            array(    
+                'type'  =>'select',   
+                'name'  =>'ctn-font_type',    
+                'label' =>"Font Weight",
+                'tab'     =>'container_css',
+                'default' =>'400',
+                'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'   =>'Regular',
+                                    '500'   =>'Medium',
+                                    '600'   =>'Semi Bold',
+                                    '700'   =>'Bold',
+                                ),
+                'content_type'=>'css',
               ),
             array(    
               'type'    =>'text',   
@@ -521,6 +564,21 @@
               'content_type'=>'css',
               'required'  => array('check_for_content'=>'1')
             ),
+            array(    
+                'type'  =>'select',   
+                'name'  =>'btn_font_type',    
+                'label' =>"Font Weight",
+                'tab'     =>'container_css',
+                'default' =>'500',
+                'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'   =>'Regular',
+                                    '500'   =>'Medium',
+                                    '600'   =>'Semi Bold',
+                                    '700'   =>'Bold',
+                                ),
+                'content_type'=>'css',
+              ),
             array(
                 'type'    =>'upload',
                 'name'    =>"blk_background_image",
