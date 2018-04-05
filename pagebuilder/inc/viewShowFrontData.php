@@ -328,6 +328,46 @@ function amp_pagebuilder_content_styles(){
 										$completeCss = str_replace('{{'.$modulefield['name'].'}}', $replacespacing, $completeCss);
 										
 									break;
+									case 'upload':
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+										if(isset($contentArray[$modulefield['name']."_image_data"])){
+										 	$replace= $contentArray[$modulefield['name']."_image_data"];
+										 	$imageUrl = $replace[0];
+											$imageWidth = $replace[1];
+											$imageHeight = $replace[2];
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+										}elseif($replaceModule != ""){
+											$imageDetails = ampforwp_get_attachment_id( $replaceModule);
+											if(is_array($imageDetails)){
+												$imageUrl = (isset($imageDetails[0])? $imageDetails[0]: "");
+												$imageWidth = (isset($imageDetails[1])? $imageDetails[1]: "");
+												$imageHeight = (isset($imageDetails[3])? $imageDetails[2]: "");	
+												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+											}
+										}
+
+										$completeCss = str_replace(
+														'{{'.$modulefield['name'].'}}', 
+														 $imageUrl, 
+														$completeCss
+													);
+										$completeCss = str_replace(
+													array('{{image_width}}','{{image_width_'.$modulefield['name'].'}}'), 
+													array($imageWidth,$imageWidth), 
+													$completeCss
+												);
+										$completeCss = str_replace(
+													array('{{image_height}}','{{image_height_'.$modulefield['name'].'}}'), 
+													array($imageHeight,$imageHeight), 
+													$completeCss
+												);
+										$completeCss = str_replace(
+													array('{{image_alt}}','{{image_alt_'.$modulefield['name'].'}}'), 
+													array($image_alt,$image_alt), 
+													$completeCss
+												);
+
+									break;
 									default:
 										if(is_array($replaceModule)){
 											/*foreach ($contentArray[$modulefield['name']] as $key => $cssValue) {

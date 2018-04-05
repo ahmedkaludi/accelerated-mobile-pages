@@ -546,25 +546,47 @@ Vue.component('fields-data',{
 			this.$forceUpdate();
 		},
 		fieldShowHideCheck: function(field){
-			var returnOpt = true;
+			var returnOpt = [];
+			returnOpt.push(true);
 			if(field.required){
 				var requiredCondition = field.required;
-				//requiredCondition.forEach(function(conditionval,conditionKey){
-					//console.log(conditionval+' => '+conditionKey);
+
 					app.modalcontent.fields.forEach(function(maindata, key){
 						if(requiredCondition[maindata.name]){
-							if( maindata.default==requiredCondition[maindata.name]){
-								returnOpt = true;
+							if( Array.isArray(requiredCondition[maindata.name]) ){
+								var length = requiredCondition[maindata.name].length
+								var checkingInArray = false;
+								for(var i = 0; i < length; i++) {
+			                        if(requiredCondition[maindata.name][i] == maindata.default){
+			                        	checkingInArray = true;
+			                        	return false;	
+			                        } 
+			                    }
+			                    if(checkingInArray){
+			                    	returnOpt.push(true);
+			                    }else{
+			                    	returnOpt.push(false);
+			                    }
+							}else if( maindata.default==requiredCondition[maindata.name]){
+								returnOpt.push(true);
 							}else{
-								returnOpt = false;
+								returnOpt.push(false);
 							}
 						}
 					});
-				//})
 			}
-			return returnOpt;
+
+			returnOpt = returnOpt.filter(function(value, index, self) { 
+				    return self.indexOf(value) === index;
+					});
+
+			if(returnOpt.length==1 && returnOpt[0]==true){
+				return true;
+			}else{
+				return false;
+			}
+			return false;
 		}
-		
 
 	}
 });
