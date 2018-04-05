@@ -4,7 +4,7 @@ $output = '
 ';
 $css = '
 {{module-class}}.text-mod{width:100%;max-width:{{max-width}};text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};font-size:{{font-size}};
-color:{{text_color_picker}};line-height:{{line-height}};letter-spacing:{{letter-spacing}};}
+color:{{text_color_picker}};line-height:{{line-height}};letter-spacing:{{letter-spacing}};font-weight:{{font_type}};}
 @media(max-width:768px){
 {{module-class}}.text-mod{
 	max-width:100%;
@@ -38,6 +38,21 @@ return array(
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
 	 						),
+	 					array(    
+				                'type'  =>'select',   
+				                'name'  =>'font_type',    
+				                'label' =>"Font Weight",
+				                'tab'     =>'design',
+				                'default' =>'400',
+				                'options_details'=>array(
+				                                    '300'   =>'Light',
+				                                    '400'   =>'Regular',
+				                                    '500'   =>'Medium',
+				                                    '600'   =>'Semi Bold',
+				                                    '700'   =>'Bold',
+				                                ),
+				                'content_type'=>'css',
+			              	),
 	 					array(
 		 						'type'		=>'text',		
 		 						'name'		=>"line-height",		
