@@ -241,7 +241,7 @@
   }
   {{module-class}} .cntn-blk{
     width:100%;
-    background: {{bg_color}} url({{blk_background_image}});
+    background: {{bg_clr}} url({{blk_background_image}});
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
@@ -536,7 +536,7 @@
                 'options_details'=>array(
                           'center'    =>'Center',
                           'left'      =>'Left',
-                          'right'     =>'Right',                           ),
+                          'right'     =>'Right',),
                 'content_type'=>'css',
               ),  
             array(
@@ -586,7 +586,7 @@
                 'tab'   =>'container_css',
                 'default' =>'',
                 'content_type'=>'css',
-                'required'  => array('content_layout_type'=>'3')
+                'required'  => array( 'content_layout_type'=>array('3','4') )
                 ),
             array(
                 'type'    =>'color-picker',
@@ -595,16 +595,7 @@
                 'tab'   =>'container_css',
                 'default' =>'#fff',
                 'content_type'=>'css',
-                'required'  => array('content_layout_type'=>'3')
-              ),
-            array(
-                'type'    =>'color-picker',
-                'name'    =>"bg_color",
-                'label'   =>'Background',
-                'tab'   =>'container_css',
-                'default' =>'#fff',
-                'content_type'=>'css',
-                'required'  => array('content_layout_type'=>'4')
+                'required'  => array( 'content_layout_type'=>array('3','4') )
               ),
             
  					),		
