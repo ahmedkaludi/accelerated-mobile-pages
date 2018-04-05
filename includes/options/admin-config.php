@@ -607,6 +607,19 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
+
+    // AMP to WP Default value
+    function ampforwp_amp2wp_default(){
+        $default = 0;
+        $theme = '';
+        $theme = wp_get_theme(); // gets the current theme
+
+        if ( 'AMP WordPress Theme' == $theme->name || 'AMP WordPress Theme' == $theme->parent_theme ) {
+            $default = 1;
+        }
+        return $default;
+    }
+
         Redux::setSection( $opt_name, array(
         'title'      => __( 'General', 'accelerated-mobile-pages' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
@@ -752,7 +765,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'switch',
                'title'    => __('Convert AMP to WP theme', 'accelerated-mobile-pages'),
                'subtitle' => __('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
-               'default'  => '0',
+               'default'  => ampforwp_amp2wp_default(),
                'required' => array('amp-design-selector', '=' , '4'),
              ),
            array(
