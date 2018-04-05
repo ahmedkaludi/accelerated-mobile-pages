@@ -6343,7 +6343,7 @@ if ( ! function_exists('ampforwp_dropcapped_content') ) {
 		if( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) {
 
 			// left trim $content
-			$new_content = ltrim ( $content );
+			$new_content = ltrim ( wp_strip_all_tags($content) );
 			// select first letter of $content
 			$first = mb_substr( $new_content, 0, 1 );
 			// select remaining letters of content
