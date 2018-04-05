@@ -77,7 +77,18 @@
 
                 echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '-marker"></td></tr></table>';
 
-                echo '<div id="section-' . esc_attr($this->field['id']) . '" class="redux-section-field redux-field ' . esc_attr($this->field['style']) . ' ' . esc_attr($this->field['class']) . ' ">';
+                $classModify = "";
+                if(isset($this->field['layout_type']) && $this->field['layout_type']=='accordion'){
+                    $classModify .= " afw-accordion-header";
+                }
+                if(isset($this->field['accordion-open']) && $this->field['accordion-open']==1){
+                    $classModify .= " afw-accordion-tab-open";
+                }
+                elseif(isset($this->field['accordion-open']) && $this->field['accordion-open']==0){
+                    $classModify .= " afw-accordion-tab-close";
+                }
+
+                echo '<div id="section-' . esc_attr($this->field['id']) . '" class="redux-section-field redux-field ' . esc_attr($this->field['style']) . ' ' . esc_attr($this->field['class']) . ' '.$classModify.'">';
 
                 if ( ! empty( $this->field['title'] ) ) {
                     echo '<h3>' . esc_html($this->field['title']) . '</h3>';

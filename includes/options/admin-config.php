@@ -673,6 +673,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                        'type' => 'section',
                        'title' => __('AMP Support', 'accelerated-mobile-pages'),
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                       'accordion-open'=> 0,
             ),
            array(
                'id'        =>'amp-on-off-for-all-posts',
@@ -1196,6 +1198,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'type' => 'section',
                   'title' => __('General', 'accelerated-mobile-pages'),
                   'indent' => true,
+                  'layout_type' => 'accordion',
+                  'accordion-open'=> 0,
               ),
             array(
                'id'       => 'ampforwp-seo-meta-description',
@@ -1218,6 +1222,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'type' => 'section',
                   'title' => __('SEO Plugin Integration', 'accelerated-mobile-pages'),
                   'indent' => true,
+                  'layout_type' => 'accordion',
+                    'accordion-open'=> 0,
               ),
            array(
                 'id'       => 'ampforwp-seo-selection',
@@ -1256,7 +1262,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'id' => 'ampforwp-seo-index-noindex-sub-section',
                   'type' => 'section',
                   'title' => __('Advanced Index & No Index Options', 'accelerated-mobile-pages'),
-                  'indent' => true
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                   'accordion-open'=> 0,
               ),
            array(
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
@@ -1958,6 +1966,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                       'accordion-open'=> 0,
                     ),
                     array(
                             'id'        => 'ampforwp-web-push-onesignal-below-content',
@@ -1988,6 +1998,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
                     ),
                     array(
                        'id'       => 'ampforwp-onesignal-translator-subscribe',
@@ -2012,6 +2024,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                                         array( 'amp-use-pot', '=' , 0 )
                                     ),   
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                       'accordion-open'=> 0,
                     ),
                    array(
                             'id'        => 'ampforwp-onesignal-http-site',
@@ -2796,7 +2810,9 @@ Redux::setSection( $opt_name, array(
                        'type' => 'section',
                        'title' => __('Search bar Translation Text', 'accelerated-mobile-pages'),
                        'indent' => true,
-                       'required' => array( 'amp-use-pot', '=' , 0 )
+                       'required' => array( 'amp-use-pot', '=' , 0 ),
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
                    ),
                    array(
                       'id'       => 'ampforwp-search-placeholder',
@@ -2901,7 +2917,8 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
+                'subtitle' => 'Select your design from dropdown',
+                'subtitle-html' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
@@ -2911,7 +2928,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'ampforwp_layouts_core',
                 'type'     => 'raw',
-                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
+                'subtitle-html'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
                 'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
                 'full_width'=>true, 
                 'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,
@@ -2947,6 +2964,8 @@ Redux::setSection( $opt_name, array(
                        'type' => 'section',
                        'title' => __('Color Scheme', 'accelerated-mobile-pages'),
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
             ),
             // Swift
             array(
@@ -3038,7 +3057,9 @@ Redux::setSection( $opt_name, array(
                'indent' => true,
                 'required' => array(
                     array('amp-design-selector', '=' , '4')
-                )
+                ),
+                'layout_type' => 'accordion',
+                'accordion-open'=> 0,
     ),
           array(
                 'id'        =>'google_font_api_key',
@@ -3101,6 +3122,8 @@ Redux::setSection( $opt_name, array(
                        'type' => 'section',
                        'title' => __('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
             ),
              array(
                     'id'       => 'css_editor',
@@ -3141,6 +3164,8 @@ Redux::setSection( $opt_name, array(
                    'title' => __('', 'accelerated-mobile-pages'),
                    //'label'  => 'Tab 1',
                    'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 0,
                    //'start'  => true,
                    /*'required' => array(
                             array('amp-design-selector', '=' , '4')
@@ -3481,6 +3506,8 @@ Redux::setSection( $opt_name, array(
                    'required' => array(
                             array('amp-design-selector', '=' , '4')
                     ),
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 0,
              ),
             array(
                     'id'    => 'customize-options',
@@ -3723,6 +3750,8 @@ Redux::setSection( $opt_name, array(
                        'type' => 'section',
                        'title' => __('General', 'accelerated-mobile-pages'),
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
                 ),
                 array(
                         'id'       => 'amp-design-3-featured-slider',
@@ -3941,6 +3970,8 @@ Redux::setSection( $opt_name, array(
                        'type' => 'section',
                        'title' => __('Loop Display Controls', 'accelerated-mobile-pages'),
                        'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 0,
                 ),
                 array(
                         'id'       => 'ampforwp-homepage-loop-type',
@@ -4224,6 +4255,8 @@ Redux::setSection( $opt_name, array(
                    'type' => 'section',
                    'title' => __('Advanced Single Options', 'accelerated-mobile-pages'),
                    'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 0,
              ),
             array(
                     'id'    => 'single-new-features',
@@ -4352,6 +4385,8 @@ Redux::setSection( $opt_name, array(
                    'required' => array(
                             array('amp-design-selector', '=' , '4')
                     ),
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 0,
              ),
             array(
                     'id'    => 'footer-customize-options',
@@ -4490,6 +4525,8 @@ Redux::setSection( $opt_name, array(
            'required' => array(
                     array('amp-design-selector', '=' , '4')
             ),
+           'layout_type' => 'accordion',
+            'accordion-open'=> 0,
          ),
           // Facebook Like 
           array(
@@ -4664,6 +4701,8 @@ Redux::setSection( $opt_name, array(
                'required' => array(
                         array('amp-design-selector', '=' , '4')
                 ),
+               'layout_type' => 'accordion',
+                'accordion-open'=> 0,
              ),
              array(
                 'id'       => 'menu-social',
@@ -4860,6 +4899,8 @@ Redux::setSection( $opt_name, array(
        'required' => array(
                 array('amp-design-selector', '=' , '3')
         ),
+       'layout_type' => 'accordion',
+        'accordion-open'=> 0,
      ),
           //#1
           array(

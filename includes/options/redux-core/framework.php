@@ -1981,7 +1981,22 @@
                     }
 
                     if ( isset ( $field['subtitle'] ) ) {
-                        $th .= '<span class="description">' . $field['subtitle'] . '</span>';
+                       // $th .= '<span class="afw-tooltip"  title="' . $field['subtitle'] . ' <div><a targe="blank" href="https://google.com/">Create</a></div>"><i class="el el-question-sign "></i></span>';
+                        $th .= '<span class="afw-tooltip"><i class="el el-question-sign "></i> <span class="afw-help-subtitle">' . $field['subtitle'] .    '<div class="afw-tootip-bottom">
+                                    <span class="help-wrap">
+                                        <audio>
+                                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+                                          Your browser does not support the audio tag.
+                                        </audio>
+                                          Listen
+                                    </span>
+                                    <span class="help-wrap"><i class="dashicons-before dashicons-video-alt3"></i>  See Video
+                                    </span>
+                                </div>
+                            </span></span>';
+                    }
+                    if(isset($field['subtitle-html'])){
+                        $th .= '<span class="description">' . $field['subtitle-html'] . '</span>';
                     }
                 }
 
