@@ -5759,7 +5759,7 @@ function ampforwp_default_logo($param=""){
 	if($logo_url){
 		$logo_id  = get_theme_mod( 'custom_logo' );
 		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
-		$image 	  = getimagesize($redux_builder_amp['opt-media']['url']);
+		$image 	  = @getimagesize($redux_builder_amp['opt-media']['url']);
 
 		if(empty($image) || $image==false){
 			$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
