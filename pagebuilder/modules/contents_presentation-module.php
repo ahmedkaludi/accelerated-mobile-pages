@@ -45,6 +45,17 @@
               </div>
             </div>
             {{ifend_condition_content_layout_type_3}}
+            {{if_condition_content_layout_type==4}}
+            <div class="cntn-4">
+              <div class="cntn-blk">
+                <div class="cntn-desc">
+                  <h1>{{heading}}</h1>
+                  {{content_title}}
+                  <a href="{{btn_lnk}}">{{cntn_btn}}</a>
+                </div>
+              </div>
+            </div>
+            {{ifend_condition_content_layout_type_4}}
           ';
  
 
@@ -222,7 +233,6 @@
  {{module-class}} .cntn-4{
     width:100%;
     display:inline-block;
-    padding:20px;
   }
   {{module-class}} .cntn-blk{
     width:100%;
@@ -311,6 +321,11 @@
                               'label'=>'',
                               'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
                             ),
+                            array(
+                              'value'=>'4',
+                              'label'=>'',
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+                            ),
                           ),
             'content_type'=>'html',
             ),
@@ -354,6 +369,7 @@
                         )
                       ),
                 'content_type'=>'html',
+                'required'  => array( 'content_layout_type'=> array('1','2','3') )
               ),
             array(    
               'type'    =>'upload',   
@@ -362,7 +378,7 @@
               'tab'     =>'customizer',
               'default' =>'', 
               'content_type'=>'html',
-              'required'  => array('check_for_image'=>'1')
+              'required'  => array('check_for_image'=>'1', 'content_layout_type'=> array('1','2','3'))
             ),
             array(    
               'type'    =>'text',   
@@ -371,7 +387,7 @@
               'tab'     =>'customizer',
               'default' =>'50%', 
               'content_type'=>'css',
-              'required'  => array('check_for_image'=>'1')
+              'required'  => array('check_for_image'=>'1', 'content_layout_type'=> array('1','2','3'))
             ),
             array(    
               'type'    =>'text',   
@@ -380,7 +396,7 @@
               'tab'     =>'customizer',
               'default' =>'100%', 
               'content_type'=>'css',
-              'required'  => array('check_for_image'=>'1')
+              'required'  => array('check_for_image'=>'1', 'content_layout_type'=> array('1','2','3'))
             ),
             array(    
               'type'    =>'text',   
@@ -389,7 +405,7 @@
               'tab'     =>'customizer',
               'default' =>'0%', 
               'content_type'=>'css',
-              'required'  => array('check_for_image'=>'1')
+              'required'  => array('check_for_image'=>'1', 'content_layout_type'=> array('1','2','3'))
             ),
             array(
                 'type'    =>'checkbox_bool',
