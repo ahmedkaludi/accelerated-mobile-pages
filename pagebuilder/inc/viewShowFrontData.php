@@ -301,6 +301,7 @@ function amp_pagebuilder_content_styles(){
 							if($modulefield['content_type']=='css'){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
+									$requiredCheck[] = true;
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
 										//if value not set than get default value
 										if(!isset($contentArray[$requiredKey])){
@@ -309,9 +310,15 @@ function amp_pagebuilder_content_styles(){
 											$userSelectedvalue = $contentArray[$requiredKey];
 											
 										}
-										if($userSelectedvalue != $requiredValue){
-											$replaceModule ='';
+										if(is_array($requiredValue) && !in_array($userSelectedvalue, $requiredValue) ){
+											$requiredCheck[] = false;
+										}elseif($userSelectedvalue != $requiredValue){
+											$requiredCheck[] = false;
 										} 
+									}
+									$requiredCheck = array_unique($requiredCheck);
+									if(count($requiredCheck)>1 && $requiredCheck[0] != true){
+										$replaceModule ='';
 									}
 
 								}
