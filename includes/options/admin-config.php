@@ -130,6 +130,17 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('advanced-custom-fields/acf.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'AMP Comments',
+                            'desc'=>'You can now allow the same comment functionality on AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29.99',
+                            'url_link'=>'https://ampforwp.com/amp-comments/',
+                            'plugin_active_path'=> 'amp-comments/amp-comments.php',
+                            'item_name'=>'AMP Comments',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-comments/amp-comments.php')? 1: 2),
+                        ),
+                        array(
                             'name'=>'Star Ratings',
                             'desc'=>'Star Review Ratings for AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/star.png',
