@@ -92,7 +92,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/amp-cache/#utm_source=options-panel&utm_medium=extension-tab_cache&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-cache/ampforwp-cache.php',
                             'item_name'=>'AMP Cache',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
                         ),
                         array(
@@ -125,8 +125,8 @@ $extension_listing_array = array(
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'advanced-custom-fields/acf.php',
-                            'item_name'=>'Advanced Custom Fields',
-                            'store_url'=>'',
+                            'item_name'=>'ACF for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('advanced-custom-fields/acf.php')? 1 : 2),
                         ),
                         array(
@@ -136,8 +136,8 @@ $extension_listing_array = array(
                             'price'=>'$19',
                             'url_link'=>'http://ampforwp.com/amp-ratings/#utm_source=options-panel&utm_medium=extension-tab_amp-ratings&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-rating/amp-rating.php',
-                            'item_name'=>'Star Ratings',
-                            'store_url'=>'',
+                            'item_name'=>'AMP Rating',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
                         ),
                          array(
