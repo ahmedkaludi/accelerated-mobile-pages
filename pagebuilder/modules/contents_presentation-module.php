@@ -45,20 +45,6 @@
               </div>
             </div>
             {{ifend_condition_content_layout_type_3}}
-            {{if_condition_content_layout_type==4}}
-            <div class="cntn-4">
-              <div class="cntn-blk">
-                <div class="cntn-img">
-                  {{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-                </div>
-                <div class="cntn-desc">
-                  <h1>{{heading}}</h1>
-                  {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}</a>
-                </div>
-              </div>
-            </div>
-            {{ifend_condition_content_layout_type_4}}
           ';
  
 
@@ -322,11 +308,6 @@
                             ),
                             array(
                               'value'=>'3',
-                              'label'=>'',
-                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
-                            ),
-                            array(
-                              'value'=>'4',
                               'label'=>'',
                               'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
                             ),
