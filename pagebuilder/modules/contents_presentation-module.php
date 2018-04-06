@@ -10,7 +10,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}</a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
                 </div>
               {{ifend_condition_check_for_content_1}}
              </div>
@@ -21,7 +21,7 @@
               <div class="cntn-desc">
                 <h1>{{heading}}</h1>
                 {{content_title}}
-                <a href="{{btn_lnk}}">{{cntn_btn}}</a>
+                <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
               </div>
               {{ifend_condition_check_for_content_1}}
               {{if_condition_check_for_image==1}}
@@ -37,7 +37,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}</a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
                 </div>
                 <div class="cntn-img">
                   {{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
@@ -51,7 +51,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}</a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
                 </div>
               </div>
             </div>
@@ -98,6 +98,12 @@
       font-weight:{{btn_font_type}};
       margin-top: 10px;
       display:block;
+    }
+    {{module-class}} .cntn-desc .ico-pic{
+      font-size: 26px;
+      position: relative;
+      top: 6px;
+      padding-left: 5px;
     }
   {{ifend_condition_check_for_content_1}}
 @media(max-width:768px){
@@ -154,6 +160,12 @@
       margin-top: 10px;
       display:block;
     }
+    {{module-class}} .cntn-desc .ico-pic{
+      font-size: 26px;
+      position: relative;
+      top: 6px;
+      padding-left: 5px;
+    }
   {{ifend_condition_check_for_content_1}}
 @media(max-width:768px){
   {{module-class}} .cntn-2{
@@ -190,6 +202,7 @@
       text-align: {{align_type}};
       padding:{{padding_gap}};
       position: absolute;
+      z-index:2;
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
@@ -204,6 +217,12 @@
       font-weight:{{btn_font_type}};
       margin-top: 10px;
       display:block;
+    }
+    {{module-class}} .cntn-desc .ico-pic{
+      font-size: 26px;
+      position: relative;
+      top: 6px;
+      padding-left: 5px;
     }
   {{ifend_condition_check_for_content_1}}
   {{if_condition_check_for_image==1}}
@@ -261,6 +280,12 @@
       font-weight:{{btn_font_type}};
       margin-top: 10px;
       display: block;
+    }
+    {{module-class}} .cntn-desc .ico-pic{
+      font-size: 26px;
+      position: relative;
+      top: 6px;
+      padding-left: 5px;
     }
   {{ifend_condition_check_for_content_1}}
   {{if_condition_check_for_image==1}}
@@ -530,6 +555,15 @@
               'required'  => array('check_for_content'=>'1')
             ),
             array(    
+                'type'    =>'icon-selector',    
+                'name'    =>"icon-picker",    
+                'label'   =>'Icon',
+                'tab'       =>'customizer',
+                'default' =>'check_circle', 
+                'content_type'=>'html',
+                'required'  => array('check_for_content'=>'1')
+              ),
+            array(    
                 'type'  =>'select',   
                 'name'  =>'align_type',   
                 'label' =>"Align",
@@ -588,7 +622,7 @@
                 'tab'   =>'container_css',
                 'default' =>'#fff',
                 'content_type'=>'css',
-                'required'  => array( 'content_layout_type'=>'3' )
+                'required'  => array( 'content_layout_type'=>array('3','4') )
               ),
             
  					),		
