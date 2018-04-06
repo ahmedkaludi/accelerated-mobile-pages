@@ -1,6 +1,6 @@
 <?php 
 $output = '
-	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
+	<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
 {{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 {{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
 ';
@@ -9,6 +9,7 @@ $css = '
 {{module-class}} .btn-txt{
 font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
+{{module-class}} .btn-txt .ico-pic{font-size: 26px;position: relative;top: 5px;padding-left: 5px;}
 {{if_condition_display_type==inline}}
 .btn{display:inline-block;}
 {{ifend_condition_display_type_inline}}
@@ -71,6 +72,14 @@ return array(
 		 						'default'	=>'No Credit card required',	
 		           				'content_type'=>'html', 
 	 						),
+						array(    
+				                'type'    =>'icon-selector',    
+				                'name'    =>"icon-picker",    
+				                'label'   =>'Icon',
+				                'tab'       =>'customizer',
+				                'default' =>'check_circle', 
+				                'content_type'=>'html',
+				              ),
 	 					array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"text-size",		
@@ -242,10 +251,18 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'No Credit card required',	
 		           				'content_type'=>'html', 
-	 						),	
+	 						),
+	 					array(    
+				                'type'    =>'icon-selector',    
+				                'name'    =>"icon-picker",    
+				                'label'   =>'Icon',
+				                'tab'       =>'customizer',
+				                'default' =>'check_circle', 
+				                'content_type'=>'html',
+				            ),	
 					),
 			'front_template'=> 
-			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}</a>
+			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
 			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 			'
 			),
