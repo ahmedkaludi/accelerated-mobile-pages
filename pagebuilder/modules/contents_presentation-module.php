@@ -181,11 +181,8 @@
   }
   {{module-class}} .cntn-blk{
       width:100%;
-      background: {{bg_clr}} url({{blk_background_image}});
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: auto;
-      background-position:center;
+      position:relative;
+      background-color:{{background_clr}};
   }
   {{if_condition_check_for_content==1}}
     {{module-class}} .cntn-desc{
@@ -195,6 +192,7 @@
       font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
+      position: absolute;
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
@@ -216,6 +214,7 @@
        width:100%;
        height:auto;
       line-height:0;
+      padding-top:{{ampimg_adjust}};
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
@@ -241,11 +240,8 @@
   }
   {{module-class}} .cntn-blk{
     width:100%;
-    background: {{bg_clr}} url({{blk_background_image}});
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: auto;
-    background-position:center;
+    position:relative;
+    background-color: {{background_clr}};
   }
   {{if_condition_check_for_content==1}}
     {{module-class}} .cntn-desc{
@@ -396,12 +392,21 @@
               'content_type'=>'css',
               'required'  => array('check_for_image'=>'1')
             ),
-             array(    
+            array(    
               'type'    =>'text',   
               'name'    =>"ampimg_width",   
               'label'   =>'Image Wrapper',
               'tab'     =>'customizer',
               'default' =>'100%', 
+              'content_type'=>'css',
+              'required'  => array('check_for_image'=>'1')
+            ),
+            array(    
+              'type'    =>'text',   
+              'name'    =>"ampimg_adjust",   
+              'label'   =>'Image Adjustment',
+              'tab'     =>'customizer',
+              'default' =>'0%', 
               'content_type'=>'css',
               'required'  => array('check_for_image'=>'1')
             ),
@@ -580,22 +585,13 @@
                 'content_type'=>'css',
               ),
             array(
-                'type'    =>'upload',
-                'name'    =>"blk_background_image",
-                'label'   =>"Background Image",
-                'tab'   =>'container_css',
-                'default' =>'',
-                'content_type'=>'css',
-                'required'  => array( 'content_layout_type'=>array('3','4') )
-                ),
-            array(
                 'type'    =>'color-picker',
-                'name'    =>"bg_clr",
-                'label'   =>'Background',
+                'name'    =>"background_clr",
+                'label'   =>'Background Color',
                 'tab'   =>'container_css',
                 'default' =>'#fff',
                 'content_type'=>'css',
-                'required'  => array( 'content_layout_type'=>array('3','4') )
+                'required'  => array( 'content_layout_type'=>'3' )
               ),
             
  					),		
