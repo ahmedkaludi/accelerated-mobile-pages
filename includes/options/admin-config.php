@@ -119,6 +119,18 @@ $extension_listing_array = array(
                         ),
 
                         array(
+                            'name'=>'Newspaper AMP Theme',
+                            'desc'=>'Advanced News Magazine theme built for AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$49',
+                            'url_link'=>'https://ampforwp.com/themes/newspaper/',
+                            'plugin_active_path'=> 'AMP-Theme/ampforwp-custom-theme.php',
+                            'item_name'=>'Newspaper Theme for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('AMP-Theme/ampforwp-custom-theme.php')? 1 : 2),
+                        ),
+
+                        array(
                             'name'=>'Advanced Custom Fields',
                             'desc'=>'Easily add ACF support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/acf.png',
