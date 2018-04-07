@@ -1,18 +1,18 @@
 <?php		
  $output = '{{if_condition_content_layout_type==1}}
              <div class="cntn-1">
-              {{if_condition_check_for_image==1}}
-                <div class="cntn-img">
-                  {{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-                </div>
-              {{ifend_condition_check_for_image_1}}
-              {{if_condition_check_for_content==1}}
+             {{if_condition_check_for_content==1}}
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
                   <a href="{{btn_lnk}}">{{cntn_btn}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
                 </div>
               {{ifend_condition_check_for_content_1}}
+              {{if_condition_check_for_image==1}}
+                <div class="cntn-img">
+                  {{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+                </div>
+              {{ifend_condition_check_for_image_1}}
              </div>
             {{ifend_condition_content_layout_type_1}}
             {{if_condition_content_layout_type==2}}
@@ -60,6 +60,7 @@
  
 
  $frontCss = '
+ .contents_presentation{line-height:0;}
 {{if_condition_content_layout_type==1}}
 {{module-class}} .cntn-1{
   display:flex;
@@ -70,6 +71,7 @@
     {{module-class}} .cntn-img{
       width:{{img_width}};
       line-height:0;
+      order:-1;
     }
     {{module-class}} .cntn-img amp-img{
       max-width:{{ampimg_width}};
@@ -187,6 +189,7 @@
 }
 {{ifend_condition_content_layout_type_2}}
 {{if_condition_content_layout_type==3}}
+  .cntn-prstn{line-height:0;}
   {{module-class}} .cntn-3{
     width:100%;
     display:inline-block;
@@ -213,14 +216,14 @@
         font-size:{{font-size}};
         line-height:{{ln-height}};
         font-weight: {{font_type}};
-        margin-bottom:15px;
+        margin-bottom:20px;
     }
     {{module-class}} .cntn-desc a{
       color:{{btn_color}};
       font-size:{{btn-font-size}};
       line-height:1.4;
       font-weight:{{btn_font_type}};
-      margin-top: 10px;
+      margin-top: 15px;
       display:block;
     }
     {{if_condition_check_for_icon==1}}
@@ -266,7 +269,7 @@
   }
   {{if_condition_check_for_content==1}}
     {{module-class}} .cntn-desc{
-      width:100%;
+      width:{{cntn_width}};
       color:{{heading_color}};
       font-size:{{ctn-font-size}};
       font-weight: {{ctn-font_type}};
@@ -323,7 +326,7 @@
 
  return array(		
  		'label' =>'Content',		
- 		'name' => 'contents_presentation',
+ 		'name' => 'cntn-prstn',
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
