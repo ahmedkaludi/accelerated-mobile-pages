@@ -3200,8 +3200,6 @@ Redux::setSection( $opt_name, array(
                    'title' => __('', 'accelerated-mobile-pages'),
                    //'label'  => 'Tab 1',
                    'indent' => true,
-                   'layout_type' => 'accordion',
-                    'accordion-open'=> 0,
                    //'start'  => true,
                    /*'required' => array(
                             array('amp-design-selector', '=' , '4')
