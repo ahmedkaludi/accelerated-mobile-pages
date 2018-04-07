@@ -313,7 +313,7 @@ function openModulePopup(event,type){
 								}
 								
 								
-								if('object' != typeof(moduleData[fieldData.name])){
+								if('object' != typeof(userValues)){
 									userValues = decodeURIComponent(encodeURIComponent(userValues));
 									
 								}
