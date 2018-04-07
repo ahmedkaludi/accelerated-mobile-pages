@@ -7,10 +7,10 @@ $output = '
 $css = '
 {{module-class}} {width:100%;display:inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .btn-txt{
-font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
+font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_check_for_icon==1}}
-{{module-class}} .btn-txt .ico-pic{font-size: 26px;position: relative;top: 5px;}
+{{module-class}} .btn-txt .ico-pic{font-size: 26px;position: absolute; margin:{{margin_gap}};}
 {{ifend_condition_check_for_icon_1}}
 {{if_condition_display_type==inline}}
 .btn{display:inline-block;}
@@ -144,6 +144,21 @@ return array(
 								'default'	=>'#888',
 								'content_type'=>'css'
 							),
+						array(
+				                'type'    =>'spacing',
+				                'name'    =>"margin_gap",
+				                'label'   =>'Icon Adjustment',
+				                'tab'     =>'design',
+				                'default' =>
+				                            array(
+				                                'top'=>'0px',
+				                                'right'=>'0px',
+				                                'bottom'=>'0px',
+				                                'left'=>'0px',
+				                            ),
+				                'content_type'=>'css',
+				                'required'  => array('check_for_icon'=>'1')
+				              ),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
