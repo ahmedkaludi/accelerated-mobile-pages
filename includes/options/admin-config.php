@@ -159,7 +159,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> '',
                             'item_name'=>'Category Base Removal',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>2,
                         ),
                         array(
@@ -169,8 +169,8 @@ $extension_listing_array = array(
                             'price'=>'$19',
                             'url_link'=>'http://ampforwp.com/custom-post-type/#utm_source=options-panel&utm_medium=extension-tab_custom-post-type&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-custom-post-type/amp-custom-post-type.php',
-                            'item_name'=>'Custom Post Type',
-                            'store_url'=>'',
+                            'item_name'=>'Custom Post Type Support for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
                         ), 
                         array(
