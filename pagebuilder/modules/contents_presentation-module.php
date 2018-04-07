@@ -10,7 +10,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
                 </div>
               {{ifend_condition_check_for_content_1}}
              </div>
@@ -21,7 +21,7 @@
               <div class="cntn-desc">
                 <h1>{{heading}}</h1>
                 {{content_title}}
-                <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
+                <a href="{{btn_lnk}}">{{cntn_btn}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
               </div>
               {{ifend_condition_check_for_content_1}}
               {{if_condition_check_for_image==1}}
@@ -37,7 +37,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
                 </div>
                 <div class="cntn-img">
                   {{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
@@ -51,7 +51,7 @@
                 <div class="cntn-desc">
                   <h1>{{heading}}</h1>
                   {{content_title}}
-                  <a href="{{btn_lnk}}">{{cntn_btn}}<i class="ico-pic icon-{{icon-picker}}"></i></a>
+                  <a href="{{btn_lnk}}">{{cntn_btn}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
                 </div>
               </div>
             </div>
@@ -85,10 +85,11 @@
       font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
+      line-height:{{cnt-height}};
     }
     {{module-class}} .cntn-desc h1{
       font-size:{{font-size}};
-      line-height:1.2;
+      line-height:{{ln-height}};
       font-weight: {{font_type}};
     }
     {{module-class}} .cntn-desc a{
@@ -99,12 +100,13 @@
       margin-top: 10px;
       display:block;
     }
-    {{module-class}} .cntn-desc .ico-pic{
-      font-size: 26px;
-      position: relative;
-      top: 6px;
-      padding-left: 5px;
-    }
+    {{if_condition_check_for_icon==1}}
+      {{module-class}} .cntn-desc .ico-pic{
+        font-size: 26px;
+        position: absolute;
+        margin:{{margin_gap}};
+      }
+    {{ifend_condition_check_for_icon_1}}
   {{ifend_condition_check_for_content_1}}
 @media(max-width:768px){
     {{module-class}} .cntn-1{
@@ -145,10 +147,11 @@
       font-size:{{ctn-font-size}};
       font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
+      line-height:{{cnt-height}};
     }
     {{module-class}} .cntn-desc h1{
       font-size:{{font-size}};
-      line-height:1.2;
+      line-height:{{ln-height}};
       font-weight: {{font_type}};
       margin-bottom:15px;
     }
@@ -160,12 +163,13 @@
       margin-top: 10px;
       display:block;
     }
-    {{module-class}} .cntn-desc .ico-pic{
-      font-size: 26px;
-      position: relative;
-      top: 6px;
-      padding-left: 5px;
-    }
+    {{if_condition_check_for_icon==1}}
+      {{module-class}} .cntn-desc .ico-pic{
+        font-size: 26px;
+        position: absolute;
+        margin:{{margin_gap}};
+      }
+    {{ifend_condition_check_for_icon_1}}
   {{ifend_condition_check_for_content_1}}
 @media(max-width:768px){
   {{module-class}} .cntn-2{
@@ -203,10 +207,11 @@
       padding:{{padding_gap}};
       position: absolute;
       z-index:2;
+      line-height:{{cnt-height}};
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
-        line-height:1.2;
+        line-height:{{ln-height}};
         font-weight: {{font_type}};
         margin-bottom:15px;
     }
@@ -218,12 +223,13 @@
       margin-top: 10px;
       display:block;
     }
-    {{module-class}} .cntn-desc .ico-pic{
-      font-size: 26px;
-      position: relative;
-      top: 6px;
-      padding-left: 5px;
-    }
+    {{if_condition_check_for_icon==1}}
+      {{module-class}} .cntn-desc .ico-pic{
+        font-size: 26px;
+        position: absolute;
+        margin:{{margin_gap}};
+      }
+    {{ifend_condition_check_for_icon_1}}
   {{ifend_condition_check_for_content_1}}
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
@@ -266,10 +272,11 @@
       font-weight: {{ctn-font_type}};
       text-align: {{align_type}};
       padding:{{padding_gap}};
+      line-height:{{cnt-height}};
     }
     {{module-class}} .cntn-desc h1{
         font-size:{{font-size}};
-        line-height:1.2;
+        line-height:{{ln-height}};
         font-weight: {{font_type}};
         margin-bottom:15px;
     }
@@ -281,12 +288,13 @@
       margin-top: 10px;
       display: block;
     }
-    {{module-class}} .cntn-desc .ico-pic{
-      font-size: 26px;
-      position: relative;
-      top: 6px;
-      padding-left: 5px;
-    }
+    {{if_condition_check_for_icon==1}}
+      {{module-class}} .cntn-desc .ico-pic{
+        font-size: 26px;
+        position: absolute;
+        margin:{{margin_gap}};
+      }
+    {{ifend_condition_check_for_icon_1}}
   {{ifend_condition_check_for_content_1}}
   {{if_condition_check_for_image==1}}
     {{module-class}} .cntn-img{
@@ -489,6 +497,14 @@
               'required'  => array('check_for_content'=>'1')
             ),
             array(    
+                'type'    =>'text',   
+                'name'    =>"ln-height",    
+                'label'   =>'Line Height',
+                'tab'     =>'container_css',
+                'default' =>'1.2',  
+                'content_type'=>'css',
+              ),
+            array(    
                 'type'  =>'select',   
                 'name'  =>'font_type',    
                 'label' =>"Font Weight",
@@ -522,6 +538,14 @@
               'required'  => array('check_for_content'=>'1')
             ),
             array(    
+                'type'    =>'text',   
+                'name'    =>"cnt-height",    
+                'label'   =>'Content Line Height',
+                'tab'     =>'container_css',
+                'default' =>'1.5',  
+                'content_type'=>'css',
+              ),
+            array(    
                 'type'  =>'select',   
                 'name'  =>'ctn-font_type',    
                 'label' =>"Font Weight",
@@ -554,6 +578,20 @@
               'content_type'=>'html',
               'required'  => array('check_for_content'=>'1')
             ),
+            array(
+                'type'    =>'checkbox_bool',
+                'name'    =>"check_for_icon",
+                'label'   => 'Icon',
+                'tab'   =>'customizer',
+                'default' =>0,
+                'options' =>array(
+                        array(
+                          'label'=>'Yes',
+                          'value'=>1,
+                        )
+                      ),
+                'content_type'=>'html',
+              ),
             array(    
                 'type'    =>'icon-selector',    
                 'name'    =>"icon-picker",    
@@ -561,7 +599,7 @@
                 'tab'       =>'customizer',
                 'default' =>'check_circle', 
                 'content_type'=>'html',
-                'required'  => array('check_for_content'=>'1')
+                'required'  => array('check_for_content'=>'1', 'check_for_icon'=>'1')
               ),
             array(    
                 'type'  =>'select',   
@@ -574,7 +612,22 @@
                           'left'      =>'Left',
                           'right'     =>'Right',),
                 'content_type'=>'css',
-              ),  
+              ),
+              array(
+                  'type'    =>'spacing',
+                  'name'    =>"margin_gap",
+                  'label'   =>'Icon Adjustment',
+                  'tab'     =>'container_css',
+                  'default' =>
+                              array(
+                                  'top'=>'0px',
+                                  'right'=>'0px',
+                                  'bottom'=>'0px',
+                                  'left'=>'0px',
+                              ),
+                  'content_type'=>'css',
+                  'required'  => array('check_for_icon'=>'1')
+                ),  
             array(
                 'type'    =>'color-picker',
                 'name'    =>"heading_color",
