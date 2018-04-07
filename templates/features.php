@@ -5301,7 +5301,7 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 		return get_avatar_url( $comment, apply_filters( 'ampforwp_get_comments_gravatar', '60' ), '' );
 	}
 	else
-		return;    	
+		return apply_filters( 'ampforwp_get_comments_gravatar', '' );   	
 	}
 }
 // Gravatar Checker
