@@ -58,8 +58,8 @@ $extension_listing_array = array(
                             'price'=>'$39',
                             'url_link'=>'http://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=extension-tab_cf7&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-cf7/amp-cf7.php',
-                            'item_name'=>'contact-form-7',
-                            'store_url'=>'',
+                            'item_name'=>'Contact Form 7 for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cf7/amp-cf7.php')? 1 : 2),
                         ),
                         array(
@@ -70,7 +70,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-gravity-forms/amp-gravity-forms.php',
                             'item_name'=>'Gravity Forms',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')? 1 : 2),
                         ),
                         array(
@@ -81,7 +81,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/opt-in-forms/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-optin/amp-optin.php',
                             'item_name'=>'Email Opt-in Forms',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-optin/amp-optin.php')? 1 : 2),
                         ),
                         array(
@@ -103,7 +103,7 @@ $extension_listing_array = array(
                             'url_link'=>'http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'AMP-cta/amp-cta.php',
                             'item_name'=>'Call To Action (CTA)',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('AMP-cta/amp-cta.php')? 1 : 2),
                         ),
                         array(
@@ -114,7 +114,7 @@ $extension_listing_array = array(
                             'url_link'=>'https://ampforwp.com/woocommerce/',
                             'plugin_active_path'=> 'amp-woocommerce-pro/amp-woocommerce.php',
                             'item_name'=>'AMP WooCommerce Pro',
-                            'store_url'=>'',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php')? 1 : 2),
                         ),
 
