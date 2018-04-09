@@ -39,6 +39,7 @@ $extension_listing_array = array(
                             'item_name'=>'ADS for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
+                            'settingUrl'=>'{basic}',
                         ),
                         array(
                             'name'=>'Advanced AMP ADS',
@@ -50,6 +51,7 @@ $extension_listing_array = array(
                             'item_name'=>'advanced-amp-ads',
                             'store_url'=>'',
                             'is_activated'=>(is_plugin_active('amp-ads-google-adsense/amptoolkit-incontent-ads.php')? 1:2),
+                            'settingUrl'=>'{basic}',
                         ),
                         array(
                             'name'=>'Contact Form 7',
@@ -61,6 +63,7 @@ $extension_listing_array = array(
                             'item_name'=>'Contact Form 7 for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cf7/amp-cf7.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Gravity Forms',
@@ -72,6 +75,7 @@ $extension_listing_array = array(
                             'item_name'=>'Gravity Forms',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Email Opt-in Forms',
@@ -83,6 +87,7 @@ $extension_listing_array = array(
                             'item_name'=>'Opt-in-Forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-optin/amp-optin.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'AMP Cache',
@@ -94,6 +99,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Cache',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -105,6 +111,7 @@ $extension_listing_array = array(
                             'item_name'=>'Call To Action (CTA)',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('AMP-cta/amp-cta.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'AMP WooCommerce Pro',
@@ -116,6 +123,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP WooCommerce Pro',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
 
                         array(
@@ -128,6 +136,7 @@ $extension_listing_array = array(
                             'item_name'=>'Newspaper Theme for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('AMP-Theme/ampforwp-custom-theme.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
 
                         array(
@@ -140,6 +149,7 @@ $extension_listing_array = array(
                             'item_name'=>'ACF for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('advanced-custom-fields/acf.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'AMP Comments',
@@ -151,6 +161,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Comments',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-comments/amp-comments.php')? 1: 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Star Ratings',
@@ -162,6 +173,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Rating',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ),
                          array(
                             'name'=>'Category Base Removal',
@@ -173,6 +185,7 @@ $extension_listing_array = array(
                             'item_name'=>'Category Base Removal',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>2,
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Custom Post Type',
@@ -184,6 +197,7 @@ $extension_listing_array = array(
                             'item_name'=>'Custom Post Type Support for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
+                            'settingUrl'=>'',
                         ), 
                         array(
                             'name'=>'Structured Data for WP',
@@ -195,6 +209,7 @@ $extension_listing_array = array(
                             'item_name'=>'Structured Data for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'AMP Teaser',
@@ -206,6 +221,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Teaser',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-teaser/amp-teaser.php')? 1: 2),
+                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'View All Extensions',
@@ -217,9 +233,11 @@ $extension_listing_array = array(
                             'item_name'=>'',
                             'store_url'=>'',
                             'is_activated'=>2,
+                            'settingUrl'=>'',
                         ),
                     );
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
+
 $ampforwp_extension_list_html = '';
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $ampforwp_nameOfUser = "";
@@ -235,12 +253,17 @@ foreach ($extension_listing_array as $key => $extension) {
 
     $onclickUrl = '';//'<a href="'.$extension['url_link'].'" target="_blank">';
     $onclickUrlclose = '';//'</a>';
+    $settingPageUrl = '';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
         $ampforwp_is_productActivated = true;
         $currentStatus = "not-active invalid";
         $pathExploded = explode("/", $extension['plugin_active_path']);
         $pathExploded = $pathExploded[0];
+        if(isset($extension['settingUrl']) && $extension['settingUrl']!=""){
+
+            $settingPageUrl = '<div class="extension-menu-call"><a href="'.$extension['settingUrl'].'"><i class="dashicons-before dashicons-admin-generic"></i> Settings</a></div>';
+        }
 
         $amplicense = '';
         $onclickUrl = $onclickUrlclose= '';
@@ -285,7 +308,7 @@ foreach ($extension_listing_array as $key => $extension) {
         <p>'.$extension['desc'].'</p>
         '.$pluginReview.'
         </div>
-    '.$onclickUrlclose.'</li>';
+    '.$onclickUrlclose.' '.$settingPageUrl.'</li>';
 }
 
 $extension_listing = '
@@ -3162,7 +3185,7 @@ Redux::setSection( $opt_name, array(
                        'title' => __('Advanced', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
-                        'accordion-open'=> 0,
+                        'accordion-open'=> 1,
             ),
              array(
                     'id'       => 'css_editor',

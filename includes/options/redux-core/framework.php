@@ -3327,7 +3327,13 @@
                 $id = str_replace($this->args['opt_name'], '', $id);
 
                 if ( isset ( $this->sections[ $id ]['desc'] ) && ! empty ( $this->sections[ $id ]['desc'] ) ) {
-                    echo '<div class="redux-section-desc">' . $this->sections[ $id ]['desc'] . '</div>';
+                    $descriptions = $this->sections[ $id ]['desc'];
+                    foreach ($this->sections as $key => $value) {
+                        if(strpos($descriptions, '{'.$value['id'].'}')!==false){
+                           $descriptions = str_replace('{'.$value['id'].'}', 'admin.php?page=amp_options&tab='.$key, $descriptions);
+                        }
+                    }
+                    echo '<div class="redux-section-desc">' . $descriptions . '</div>';
                 }
             }
 
