@@ -4,6 +4,13 @@ $output = '
 ';
 $css = '
 {{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
+{{if_condition_check_for_fullwidth==1}}
+@media(max-width:425px){
+{{module-class}}{
+	width:100%;
+}	
+}
+{{ifend_condition_check_for_fullwidth_1}}
 ';
 
 return array(
@@ -58,7 +65,21 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
-	 						),	
+	 						),
+	 					array(
+				                'type'    =>'checkbox_bool',
+				                'name'    =>"check_for_fullwidth",
+				                'label'   => 'Full Width for Responsive',
+				                'tab'   =>'design',
+				                'default' =>1,
+				                'options' =>array(
+				                        array(
+				                          'label'=>'Yes',
+				                          'value'=>1,
+				                        )
+				                      ),
+				                'content_type'=>'html',
+			              	),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
