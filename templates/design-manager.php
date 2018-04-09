@@ -70,7 +70,7 @@ add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
 
     global $redux_builder_amp;
-    if ( $redux_builder_amp['amp-design-selector'] ) {
+    if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] ) {
 		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
 			return $redux_builder_amp['amp-design-selector'];
 		}
