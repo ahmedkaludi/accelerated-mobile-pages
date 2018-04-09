@@ -76,7 +76,9 @@ $front_css = '
 	
 	{{shadow}}
 }
-
+@media(max-width:768px){
+	{{row-class}}.amppb-fluid{width:100%;}
+}
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
 .amppb-fixed .col {max-width: {{fixed-width}};width:1125px;margin: 0 auto;}';
