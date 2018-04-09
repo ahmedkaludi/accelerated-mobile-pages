@@ -285,6 +285,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
+			if(is_home() || is_front_page()){
+		      if(isset($redux_builder_amp['ampforwp-homepage-on-off-support']) && $redux_builder_amp['ampforwp-homepage-on-off-support'] && !$redux_builder_amp['amp-on-off-for-all-posts'] && !$redux_builder_amp['amp-on-off-for-all-pages']){
+		          $supported_types['post'] = 'post';
+		      }
+		    }
 			$supported_amp_post_types = in_array( $type , $supported_types );
 
 			$query_arg_array = $wp->query_vars;
