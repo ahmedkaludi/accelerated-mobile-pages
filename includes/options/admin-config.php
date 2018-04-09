@@ -233,8 +233,8 @@ usort($extension_listing_array, function($a, $b){
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
-    $onclickUrl = '<a href="'.$extension['url_link'].'" target="_blank">';
-    $onclickUrlclose = '</a>';
+    $onclickUrl = '';//'<a href="'.$extension['url_link'].'" target="_blank">';
+    $onclickUrlclose = '';//'</a>';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
         $ampforwp_is_productActivated = true;
@@ -270,12 +270,15 @@ foreach ($extension_listing_array as $key => $extension) {
         }
         
     }
+    $secondPageClickClass = '';
     if($extension['is_activated']==1 && strpos($ampforwp_extension_list_html, "Your Installed Extensions")===false){
         $ampforwp_extension_list_html .= "<h3 style='display:block;'>Your Installed Extensions</h3><ul>";
-    }elseif($extension['is_activated']==2 && strpos($ampforwp_extension_list_html, "More Extensions")===false){
-            $ampforwp_extension_list_html .= "</ul><h3 style='display:block;'>More Extensions</h3><ul>";  
+    }elseif($extension['is_activated']==2 && strpos($ampforwp_extension_list_html, "All Extensions")===false){
+            $ampforwp_extension_list_html .= "</ul><h3 style='display:block;'>All Extensions</h3><ul>";  
+            $secondPageClickClass = 'goToSecondPage';
     }
-    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.'">'.$onclickUrl.'
+    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.' '.$secondPageClickClass.'" data-ext-details=\''.json_encode($extension).'\'>
+        '.$onclickUrl.'
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
         <div class="extension_desc">
         <h2>'.$extension['name'].'</h2>

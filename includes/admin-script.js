@@ -443,6 +443,57 @@ if($( '.redux-group-tab-link-a' ).length){
  redux_title_modify();    
 }
 
+    //Redux Extension part modify
+    $(".goToSecondPage").click(function(e){
+        var dataExtDetails = $(this).attr('data-ext-details');
+        console.log(dataExtDetails);
+        dataExtDetails = JSON.parse(dataExtDetails);
+        $(this).parents(".extension_listing").hide();
+        extensionListSeconPage("Add",dataExtDetails,$(this));
+        
+    });
+
+    jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
+        if(key>2){
+            jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
+        }
+    });
+    jQuery( '.redux-group-tab-link-a' ).click(function(){
+        if(jQuery(this).parent('li').hasClass('otherSectionFields')){
+            jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
+            if(!jQuery(this).parent('li').is(':visible')){
+                jQuery(this).parent('li').show();
+            }
+        }else{
+            console.log(jQuery(this).parent('li').siblings('li.otherSectionFields'));
+             jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
+        }
+    });
+
 
 });
 
+var extensionListSeconPage = function($operation, detailsArray,event){
+    switch($operation){
+        case 'Add':
+            var listDescriptionHtml = '<div>'+
+                                        '<h3>'+
+                                            '<span class="backtoextensionlist"><i class="dashicons dashicons-arrow-left-alt"></i>All Extensions</span>'+
+                                            ' > '+detailsArray['name']+'</h3>'+
+                                        '<img src="'+detailsArray['img_src']+'">'+
+                                        '<div>'+detailsArray['desc']+'</div>'+
+                                        '</div>';
+            event.parents(".extension_listing").after('<div class="extension_list_desc">'+listDescriptionHtml+'</div>');
+            descriptionOperation();
+        break;
+        default:
+        break;
+    }
+}
+
+var descriptionOperation = function(){
+    jQuery(".backtoextensionlist").click(function(){
+        jQuery(this).parents('.redux-section-desc').find('.extension_listing').show();
+        jQuery(this).parents('.redux-section-desc').find(".extension_list_desc").remove();
+    });
+}

@@ -532,7 +532,7 @@ Accordion
 .afw-tooltip:hover .afw-help-subtitle {
     visibility: visible;
     opacity: 1;
-    padding-bottom: 20px;
+    padding-bottom: 35px;
 }
 .afw-tooltip .afw-help-subtitle .afw-tootip-bottom{
     position: absolute;
@@ -554,4 +554,9 @@ Accordion
 }
 .afw-tootip-bottom i:before{
     font-size: 15px;
+}
+
+/**Option panel css For extension**/
+.backtoextensionlist{
+    cursor: pointer;
 }
