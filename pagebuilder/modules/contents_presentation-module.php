@@ -60,7 +60,6 @@
  
 
  $frontCss = '
- .contents_presentation{line-height:0;}
 {{if_condition_content_layout_type==1}}
 {{module-class}} .cntn-1{
   display:flex;
@@ -120,7 +119,8 @@
     }
     {{module-class}} .cntn-desc{
       width:100%;
-      margin-top:30px;
+      margin-bottom:40px;
+      padding:0;
     }
 }
 {{ifend_condition_content_layout_type_1}}
@@ -185,11 +185,12 @@
     {{module-class}} .cntn-desc{
       width:100%;
       padding:0;
+      margin-bottom:50px;
     }
 }
 {{ifend_condition_content_layout_type_2}}
 {{if_condition_content_layout_type==3}}
-  .cntn-prstn{line-height:0;}
+  .contents_presentation{line-height:0;}
   {{module-class}} .cntn-3{
     width:100%;
     display:inline-block;
@@ -255,6 +256,15 @@
   {{module-class}} .cntn-3{
     padding:0;
   }
+  {{module-class}} .cntn-desc{
+    position:relative;
+  }
+  {{module-class}} .cntn-img{
+    padding:0;
+  }
+  {{module-class}} .amppb-fluid{
+    width:100%;
+  }
 }
 {{ifend_condition_content_layout_type_3}}
 {{if_condition_content_layout_type==4}}
@@ -319,14 +329,20 @@
   {{module-class}} .cntn-4{
     padding:0;
   }
+  {{module-class}} .cntn-desc{
+    width:100%;
+    padding:0;
+  }
 }
 {{ifend_condition_content_layout_type_4}}
+@media(max-width:768px){
 
+}
 ';
 
  return array(		
  		'label' =>'Content',		
- 		'name' => 'cntn-prstn',
+ 		'name' => 'contents_presentation',
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
