@@ -7,7 +7,11 @@ $output = '
 $css = '
 {{module-class}} {width:100%;display:inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .btn-txt{
-font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: 10px 20px;width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial}
+font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: {{gapping_css}}; width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial;
+	{{if_condition_check_for_border==1}}
+		border:{{brdr-wdt}} solid {{border-clr_pkr}};
+	{{ifend_condition_check_for_border_1}}
+}
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_check_for_icon==1}}
 {{module-class}} .btn-txt .ico-pic{font-size: 26px;position: absolute; margin:{{margin_gap}};}
@@ -24,7 +28,7 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{module-class}} .btn {display: flex;flex-direction: column;align-items: center;}
 }
 @media(max-width:425px){
-	{{module-class}} .btn-txt{width:100%;box-sizing:inherit;}
+	{{module-class}} .btn-txt{width:{{resp-btn-width}};box-sizing:inherit;}
 }
 ';
 return array(
@@ -198,6 +202,59 @@ return array(
 	 												'inline'  	=>'Inline (Horizontal)', 													),
 	 							'content_type'=>'css',
 	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>'resp-btn-width',		
+		 						'label'		=>'Button Width',
+		           				 'tab'     =>'design',
+		 						'default'	=>'100%',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(
+								'type'		=>'spacing',
+								'name'		=>"gapping_css",
+								'label'		=>'Button Gapping',
+								'tab'		=>'design',
+								'default'	=>array(
+													'left'=>'20px',
+													'right'=>'20px',
+													'top'=>'10px',
+													'bottom'=>'10px'
+												),
+								'content_type'=>'css',
+							),
+	 					 array(
+				                'type'    =>'checkbox_bool',
+				                'name'    =>"check_for_border",
+				                'label'   => 'Border',
+				                'tab'   =>'design',
+				                'default' =>0,
+				                'options' =>array(
+				                        array(
+				                          'label'=>'Yes',
+				                          'value'=>1,
+				                        )
+				                      ),
+				                'content_type'=>'html',
+				              ),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>'brdr-wdt',		
+		 						'label'		=>'Border Width',
+		           				 'tab'     =>'design',
+		 						'default'	=>'2px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('check_for_border'=>'1')
+	 						),
+	 					array(
+								'type'		=>'color-picker',
+								'name'		=>"border-clr_pkr",
+								'label'		=>'Border Color',
+								'tab'		=>'design',
+								'default'	=>'#ccc',
+								'content_type'=>'css',
+								'required'  => array('check_for_border'=>'1')
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

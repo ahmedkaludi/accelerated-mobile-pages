@@ -121,6 +121,7 @@
       width:100%;
       margin-bottom:40px;
       padding:0;
+      text-align:center;
     }
 }
 {{ifend_condition_content_layout_type_1}}
