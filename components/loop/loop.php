@@ -45,6 +45,7 @@ $amp_q = '';
 $count = 1;
 function call_loops_standard($data=array()){
 	global $amp_q;
+	$post_type = get_post_type();
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -57,7 +58,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
 		$args =  array(
-			'post_type'           => 'post',
+			'post_type'           => $post_type,
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'tax_query' => array(
