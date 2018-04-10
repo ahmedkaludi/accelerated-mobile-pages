@@ -78,6 +78,7 @@ $front_css = '
 }
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
+	{{row-class}}.amppb-fluid .col{max-width:90%;}
 }
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }

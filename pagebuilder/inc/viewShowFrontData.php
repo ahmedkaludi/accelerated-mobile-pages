@@ -150,6 +150,9 @@ function amp_pagebuilder_content_styles(){
 @media(max-width:1024px){
 .amppb-fixed{width:100%;}
 }
+@media(max-width:425px){
+.col-2{width:100%;float:none;}
+}
 ';
 
 		add_filter('ampforwp_body_class', 'bodyClassForAMPPagebuilder',10,2);

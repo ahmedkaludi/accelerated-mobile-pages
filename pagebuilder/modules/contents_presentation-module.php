@@ -186,7 +186,6 @@
     {{module-class}} .cntn-desc{
       width:100%;
       padding:0;
-      margin-bottom:50px;
     }
 }
 {{ifend_condition_content_layout_type_2}}
