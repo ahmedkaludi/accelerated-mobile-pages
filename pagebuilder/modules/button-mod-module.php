@@ -14,7 +14,7 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 }
 .button-mod span{display: block;font-size: 12px;color: {{sub_color_picker}};font-weight:300;margin-top:10px}
 {{if_condition_check_for_icon==1}}
-{{module-class}} .btn-txt .ico-pic{font-size: 26px;position: absolute; margin:{{margin_gap}};}
+{{module-class}} .btn-txt .ico-pic{font-size: {{icon-size}};position: absolute; margin:{{margin_gap}};}
 {{ifend_condition_check_for_icon_1}}
 {{if_condition_display_type==inline}}
 .btn{display:inline-block;}
@@ -96,7 +96,7 @@ return array(
 				                'type'    =>'icon-selector',    
 				                'name'    =>"icon-picker",    
 				                'label'   =>'Icon',
-				                'tab'       =>'customizer',
+				                'tab'     =>'customizer',
 				                'default' =>'check_circle', 
 				                'content_type'=>'html',
 				                'required'  => array('check_for_icon'=>'1')
@@ -148,6 +148,15 @@ return array(
 								'default'	=>'#888',
 								'content_type'=>'css'
 							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"icon-size",		
+		 						'label'		=>'Icon Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'24px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('check_for_icon'=>'1')
+	 						),
 						array(
 				                'type'    =>'spacing',
 				                'name'    =>"margin_gap",
@@ -341,20 +350,6 @@ return array(
 		 						'default'	=>'No Credit card required',	
 		           				'content_type'=>'html', 
 	 						),
-	 					array(
-				                'type'    =>'checkbox_bool',
-				                'name'    =>"check_for_icon",
-				                'label'   => 'Icon',
-				                'tab'   =>'customizer',
-				                'default' =>0,
-				                'options' =>array(
-				                        array(
-				                          'label'=>'Yes',
-				                          'value'=>1,
-				                        )
-				                      ),
-				                'content_type'=>'html',
-				              ),
 						array(    
 				                'type'    =>'icon-selector',    
 				                'name'    =>"icon-picker",    

@@ -103,7 +103,7 @@
     }
     {{if_condition_check_for_icon==1}}
       {{module-class}} .cntn-desc .ico-pic{
-        font-size: 26px;
+        font-size: {{icon-size}};
         position: absolute;
         margin:{{margin_gap}};
       }
@@ -168,7 +168,7 @@
     }
     {{if_condition_check_for_icon==1}}
       {{module-class}} .cntn-desc .ico-pic{
-        font-size: 26px;
+        font-size: {{icon-size}};
         position: absolute;
         margin:{{margin_gap}};
       }
@@ -230,7 +230,7 @@
     }
     {{if_condition_check_for_icon==1}}
       {{module-class}} .cntn-desc .ico-pic{
-        font-size: 26px;
+        font-size: {{icon-size}};
         position: absolute;
         margin:{{margin_gap}};
       }
@@ -304,7 +304,7 @@
     }
     {{if_condition_check_for_icon==1}}
       {{module-class}} .cntn-desc .ico-pic{
-        font-size: 26px;
+        font-size: {{icon-size}};
         position: absolute;
         margin:{{margin_gap}};
       }
@@ -633,6 +633,15 @@
                           'right'     =>'Right',),
                 'content_type'=>'css',
               ),
+              array(    
+                  'type'    =>'text',   
+                  'name'    =>"icon-size",    
+                  'label'   =>'Icon Size',
+                  'tab'     =>'container_css',
+                  'default' =>'24px', 
+                  'content_type'=>'css',
+                  'required'  => array('check_for_icon'=>'1')
+                ),
               array(
                   'type'    =>'spacing',
                   'name'    =>"margin_gap",
