@@ -11,7 +11,7 @@ $amptfad = '<strong>DID YOU KNOW?</strong></br ><a href="https://ampforwp.com/am
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
    if(!is_plugin_active( 'amp-comments/amp-comments.php' )){
 $comment_AD_URL = "http://ampforwp.com/amp-comments/#utm_source=options-panel&utm_medium=comments-tab&utm_campaign=AMP%20Plugin";
-$comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
+$comment_desc = '<a href="'.$comment_AD_URL.'"  target="_blk"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/comments-banner.png" width="560" height="85" /></a>';
 }
 // Display only If AMP Cache is Not Installed
 $cache_desc ="";
@@ -236,7 +236,9 @@ $extension_listing_array = array(
                             'settingUrl'=>'',
                         ),
                     );
+
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
+
 
 $ampforwp_extension_list_html = '';
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -681,9 +683,10 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'media',
                 'url'      => true,
                 'title'    => __('Logo', 'accelerated-mobile-pages'),
-                'subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
                 'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages'),
                 'default' => array('url' => ampforwp_default_logo_settings() ),
+                'tooltip-subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
+                'audioUrl' => 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
             ),
            array(
                 'id'       => 'ampforwp-custom-logo-dimensions',
@@ -742,8 +745,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'        =>'amp-on-off-for-all-posts',
                'type'      => 'switch',
                'title'     => __('Posts', 'accelerated-mobile-pages'),
-               'subtitle'  => __('Enable AMP Support on Posts', 'accelerated-mobile-pages'),
                'default'   => 1,
+               'tooltip-subtitle'  => __('Enable AMP Support on Posts', 'accelerated-mobile-pages'),
+               'audioUrl' => 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
 //               'desc'      => __( 'Re-Save permalink if you make changes in this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages' ),
             ),
 			array(
@@ -2980,7 +2984,7 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
                 'subtitle' => 'Select your design from dropdown',
-                'subtitle-html' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
+                'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
@@ -2990,7 +2994,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'ampforwp_layouts_core',
                 'type'     => 'raw',
-                'subtitle-html'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
+                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
                 'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
                 'full_width'=>true, 
                 'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,

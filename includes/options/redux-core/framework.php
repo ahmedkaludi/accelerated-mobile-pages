@@ -1981,16 +1981,21 @@
                     }
 
                     if ( isset ( $field['subtitle'] ) ) {
-                       // $th .= '<span class="afw-tooltip"  title="' . $field['subtitle'] . ' <div><a targe="blank" href="https://google.com/">Create</a></div>"><i class="el el-question-sign "></i></span>';
-                        $th .= '<span class="afw-tooltip"><i class="el el-question-sign "></i> <span class="afw-help-subtitle">' . $field['subtitle'] .    '<div class="afw-tootip-bottom">
-                                    <span class="help-wrap">
-                                        <audio>
-                                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
-                                          Your browser does not support the audio tag.
-                                        </audio>
+                        $th .= '<span class="description">' . $field['subtitle'] . '</span>';
+                    }
+                    if( isset ( $field['tooltip-subtitle'] ) ) {
+                        if(!isset($field['audioUrl'])){
+                            $field['audioUrl'] = '';
+                        }
+                        if(!isset($field['videoUrl']) || $field['videoUrl']==""){
+                            $field['videoUrl'] = "#";
+                        }
+                        $th .= '<span class="afw-tooltip"><i class="el el-question-sign "></i> <span class="afw-help-subtitle">' . $field['tooltip-subtitle'] .    '<div class="afw-tootip-bottom">
+                                    <span class="help-wrap amp-opt-playAudio" data-audio-url="' . $field['audioUrl'] .    '">
+                                        <i class="dashicons-before dashicons-controls-play"></i>
                                           Listen
                                     </span>
-                                    <span class="help-wrap"><i class="dashicons-before dashicons-video-alt3"></i>  See Video
+                                    <span class="help-wrap"><a href="' . $field['videoUrl'] .'"><i class="dashicons-before dashicons-video-alt3"></i>  See Video
                                     </span>
                                 </div>
                             </span></span>';

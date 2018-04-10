@@ -465,8 +465,7 @@ if($( '.redux-group-tab-link-a' ).length){
                 jQuery(this).parent('li').show();
             }
         }else{
-            console.log(jQuery(this).parent('li').siblings('li.otherSectionFields'));
-             jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
+            jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
         }
     });
 
@@ -497,3 +496,101 @@ var descriptionOperation = function(){
         jQuery(this).parents('.redux-section-desc').find(".extension_list_desc").remove();
     });
 }
+
+
+
+
+//Trip Options added for a trip
+jQuery(document).ready(function($){
+    var options = {
+        tripTheme : "black",
+        onTripStart : function() {
+            var audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', 'http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3');
+            audioElement.setAttribute('id', 'tourSectionAudio');
+            audioElement.play();
+            
+        },
+        onTripEnd : function() {
+            console.log("onTripEnd");
+        },
+        onTripStop : function() {
+            alert("tour is Ended")
+            $('#tourSectionAudio').get(0).pause();
+            $('#tourSectionAudio').remove();
+            console.log("onTripStop");
+        },
+        onTripChange : function(index, tripBlock) {
+            console.log("onTripChange");
+        },
+        backToTopWhenEnded : true,
+        delay : 2000
+    };
+    var trip = new Trip([
+                { 
+                    sel : jQuery('.redux-group-menu > li:first'), 
+                    position : 'n', 
+                    content : 'Our First Setting Section', 
+                    delay : 3000,
+                    callback : function(i) {
+                        jQuery('.redux-group-menu > li:first').click();
+                        //$.highlightWindow('init').moveTo('.redux-group-menu > li:first');
+                    }
+                },
+                {
+                    sel : jQuery('.redux-group-menu > li:nth-child(2)'),
+                    position : 'e',
+                    content : 'This is a plugin that can help you make hint flow easily !',
+                    delay : 3000,
+                    callback : function(i) {
+                        console.log("step "+ i +" is finished");
+                    }
+                },
+            ], options);
+    jQuery('.ampforwp-take-a-tour button').click(function(){
+        if($(this).attr('data-status')=='started'){
+            $(this).attr('data-status', '');
+            $(this).text("Start Tour");
+            trip.stop()
+        }else{
+            $(this).attr('data-status', 'started');
+            $(this).text("End Tour");
+           trip.start();
+        }
+        
+    });
+
+
+    //Help Section audio player
+    $('.amp-opt-playAudio').click(function(){
+        var audioUrl = $(this).attr('data-audio-url'); 
+        if(audioUrl=="") { return false; }
+            if($(document).find("#helpSectionAudio").length>0){
+                var audioSrc = $(document).find("#helpSectionAudio").find('source').attr('src');
+                if(audioUrl != audioSrc){
+                   $("#helpSectionAudio").remove();
+                    //pause All other played Audio
+                    $('.amp-opt-playAudio').each(function(key,dataObj){
+                        if($(this).find('i').hasClass('dashicons-controls-pause')){
+                            $(this).find('i').removeClass('dashicons-controls-pause').addClass('dashicons-controls-play');
+                        }
+                    });
+                }
+            }
+            if($(document).find("#helpSectionAudio").length==0){
+                $('body').append('<audio id="helpSectionAudio"><source src="'+audioUrl+'" type="audio/mpeg">Your browser does not support the audio element.</audio>');
+            }
+            var audioElement = $(document).find("#helpSectionAudio").get(0);
+            console.log(audioElement);
+            
+
+            if($(this).find('i').hasClass('dashicons-controls-pause')){
+                audioElement.pause();
+                $(this).find('i').removeClass('dashicons-controls-pause').addClass('dashicons-controls-play');
+            }else{
+                audioElement.play();
+                $(this).find('i').removeClass('dashicons-controls-play').addClass('dashicons-controls-pause');
+            }
+            
+    })
+});

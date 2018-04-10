@@ -293,6 +293,21 @@
                     '1.5.0',
                     true
                 );
+
+                wp_register_script(
+                    'redux-trip-js',
+                    ReduxFramework::$_url . 'assets/js/trip.min.js',
+                    $depArray,
+                    $this->timestamp,
+                    true
+                );
+                wp_enqueue_style(
+                    'redux-trip-css',
+                    ReduxFramework::$_url . 'assets/css/trip.min.css',
+                    array( 'redux-admin-css' ),
+                    $this->timestamp,
+                    'all'
+                );
             }
 
             public function _enqueue_field($field) {
