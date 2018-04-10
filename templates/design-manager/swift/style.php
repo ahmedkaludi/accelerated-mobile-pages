@@ -89,7 +89,11 @@ if($redux_builder_amp['header-type'] == '3'){?>
 .h-srch a:after{position:relative;left:5px;}
 .h-3{order: 1;display: inline-flex;flex-grow: 1;justify-content: flex-end;}
 .h-ic:first-child {margin-left: 0;} 
-<?php } ?>
+<?php } //Header 4
+if($redux_builder_amp['header-type'] == '4'){?>
+	.h-ic{margin:0px 0px 0px 10px;}
+<?php }?>
+
 <?php //search overlay
 
 if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
