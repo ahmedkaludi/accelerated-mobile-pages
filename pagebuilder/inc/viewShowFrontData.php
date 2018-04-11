@@ -151,7 +151,7 @@ function amp_pagebuilder_content_styles(){
 .amppb-fixed{width:100%;}
 }
 @media(max-width:425px){
-.col-2{width:100%;float:none;}
+.col-2{width:100%;float:none;margin-bottom:10%;}
 }
 ';
 
