@@ -4570,9 +4570,6 @@ Redux::setSection( $opt_name, array(
            'indent' => true,
            //'start'  => true,
            //'label' => 'Tab 2',
-           'required' => array(
-                    array('amp-design-selector', '=' , '4')
-            ),
            'layout_type' => 'accordion',
             'accordion-open'=> 0,
          ),
