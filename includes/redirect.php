@@ -57,8 +57,14 @@ function ampforwp_page_template_redirect() {
   $post_type                  = get_post_type();
   
   if(is_home() || is_front_page()){
-      if(isset($redux_builder_amp['ampforwp-homepage-on-off-support']) && $redux_builder_amp['ampforwp-homepage-on-off-support'] && !$redux_builder_amp['amp-on-off-for-all-posts'] && !$redux_builder_amp['amp-on-off-for-all-pages']){
-          $supported_types['post'] = 'post';
+      if(isset($redux_builder_amp['ampforwp-homepage-on-off-support']) 
+          && $redux_builder_amp['ampforwp-homepage-on-off-support'] == 1 
+          && isset($redux_builder_amp['amp-on-off-for-all-posts']) 
+          && $redux_builder_amp['amp-on-off-for-all-posts'] == 0 
+          && isset($redux_builder_amp['amp-on-off-for-all-pages']) 
+          && $redux_builder_amp['amp-on-off-for-all-pages'] == 0 ){
+
+                  $supported_types['post'] = 'post';
       }
     }
   
