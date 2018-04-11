@@ -3751,6 +3751,15 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     )           
             ),
+            array(
+                'id'=> 'amp-sticky-header', 
+                "type"=>"switch",
+                'title'=>"Header Sticky",
+                'default' => 1,
+                'required' => array(
+                    array('customize-options', '=' , '1'),
+                )
+            ),
             // Tab 2 end
             /*array(
                    'id' => 'header-tab-2-end',
