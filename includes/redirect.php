@@ -18,23 +18,22 @@ function ampforwp_check_amp_page_status() {
   // AMP Takeover
   if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] && !ampforwp_is_non_amp() ) {
     $redirection_location = '';
+    $current_location     = '';
+    $home_url             = '';
+
+    $current_location     = home_url( $wp->request);
+    $home_url             = get_bloginfo('url');
+
+    if ( ( ampforwp_is_home() || $current_location == $home_url ) && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+      return;
+    }
+
+    if ( is_archive() && ! $redux_builder_amp['ampforwp-archive-support'] ) {
+      return;
+    }
+
     if ( is_singular() ) {
       $redirection_location = get_the_permalink();
-    }
-    if ( ampforwp_is_home() || ampforwp_is_front_page() || is_archive() || ampforwp_is_blog() ) {
-
-      if($redux_builder_amp['ampforwp-homepage-on-off-support'] == 1){
-      
-        $redirection_location = add_query_arg( '', '', home_url( $wp->request ) );
-        
-        $redirection_location = trailingslashit($redirection_location );
-        
-        $redirection_location = dirname($redirection_location);
-
-        wp_safe_redirect( $redirection_location );
-        exit;
-      }
-    
     }
 
     wp_safe_redirect( $redirection_location );
