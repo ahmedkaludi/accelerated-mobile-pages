@@ -20,20 +20,55 @@ function ampforwp_check_amp_page_status() {
     $redirection_location = '';
     $current_location     = '';
     $home_url             = '';
+    $blog_page_id         = '';
 
     $current_location     = home_url( $wp->request);
     $home_url             = get_bloginfo('url');
 
+    /*
+     * If certain conditions does not match then return early and exit from redirection
+     */
+    // Homepage
     if ( ( ampforwp_is_home() || $current_location == $home_url ) && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
       return;
     }
 
-    if ( is_archive() && ! $redux_builder_amp['ampforwp-archive-support'] ) {
+    // Frontpage
+    if ( is_front_page() && $current_location == $home_url ) {
       return;
     }
 
-    if ( is_singular() ) {
+    // Archive
+    if ( is_archive() && ! $redux_builder_amp['ampforwp-archive-support'] ) {
+      return;
+    }
+   
+    // AMP and non-amp Homepage
+    if ( is_home() && ampforwp_is_front_page() && ! ampforwp_is_home() ) {
+        return;
+    }
+
+    // Blog page
+    if ( ampforwp_is_blog() ) {
+      $blog_page_id         = get_option('page_for_posts');
+      $redirection_location = get_the_permalink($blog_page_id);
+    }
+
+    // if the current page is ampfrontpage or normal frontpage take it to homepage of site
+    if ( ampforwp_is_front_page() || is_front_page() ) {
+      $redirection_location = $home_url;
+    }
+
+    // Single.php and page.php
+    if ( ( is_single() && $redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] ) ) {
       $redirection_location = get_the_permalink();
+    }
+
+    /* Fallback, if for any reason, $redirection_location is still NULL
+     * then redirect it to homepage. 
+     */
+    if ( empty( $redirection_location ) ) {
+      $redirection_location = $home_url;
     }
 
     wp_safe_redirect( $redirection_location );
