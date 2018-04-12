@@ -188,11 +188,23 @@ function ampforwp_add_custom_rewrite_rules() {
 	$output = 'names'; // or objects
 	$operator = 'and'; // 'and' or 'or'
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
+	// print_r($taxonomies);
+
+	if(class_exists( 'WooCommerce' )){
+
+		$category_slug = get_option( 'woocommerce_product_category_slug' ) ? get_option( 'woocommerce_product_category_slug' ) : _x( 'product-category', 'slug', 'woocommerce' );
+		$tag_slug      = get_option( 'woocommerce_product_tag_slug' ) ? get_option( 'woocommerce_product_tag_slug' ) : _x( 'product-tag', 'slug', 'woocommerce' );
+		$taxonomies['product_cat'] = $category_slug;
+		$taxonomies['product_tag'] = $tag_slug;
+	}   
+	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
+	// print_r($taxonomies);die;
 	if ( $taxonomies ) {
-	  foreach ( $taxonomies  as $taxonomy ) {   
+	  foreach ( $taxonomies  as $key => $taxonomy ) { 
+  
 	    add_rewrite_rule(
 	      $taxonomy.'\/(.+?)\/amp/?$',
-	      'index.php?amp&'.$taxonomy.'=$matches[1]',
+	      'index.php?amp&'.$key.'=$matches[1]',
 	      'top'
 	    );
 	    // For Custom Taxonomies with pages
@@ -204,7 +216,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	  }
 	}
 }
-add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+add_action( 'init', 'ampforwp_add_custom_rewrite_rules',9999 );
 
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
