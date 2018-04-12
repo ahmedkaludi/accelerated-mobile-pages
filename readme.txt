@@ -182,6 +182,19 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.85.3 (12th April 2018) =
+* Added: Custom Post type Archive Page support #1995
+* Fixed: AMP TakeOver redirection issues #1994
+* Fixed: Debug errors #1976
+* Fixed: Social Profile pages were hidden for Design 1 to 3 #1996
+* Fixed: Structured Data insertion was adding CData causing validation error #1999
+
+= 0.9.85.2 =
+* Minor Bugs fixed 
+
+= 0.9.85.1 =
+* Minor Bugs fixed 
+
 = 0.9.85 (3rd April 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-85-released-stability-update-86th-update/)
 * Fixed: Fatal error: Allowed memory size on FrontPage #1865
