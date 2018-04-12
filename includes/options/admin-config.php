@@ -4453,6 +4453,39 @@ Redux::setSection( $opt_name, array(
                     'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
+                    'id'        => 'swift-footer-txt-clr',
+                    'title'     => __('Footer Text Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#888888',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-link-clr',
+                    'title'     => __('Footer Link Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#fcc118',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'        => 'swift-footer-link-hvr',
+                    'title'     => __('Footer Link Hover Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#888888',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
                     'id'        => 'swift-footer-bg',
                     'title'     => __('Footer 1 Background', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
@@ -4464,44 +4497,54 @@ Redux::setSection( $opt_name, array(
                       )
               ),
             array(
+                    'id'        =>"ftr1-gapping",
+                    'type'      =>'spacing',
+                    'title'     => __('Footer 1 Gapping', 'accelerated-mobile-pages'),
+                    'units'          => array('px','%'),
+                    'default'   =>array(
+                                        'padding-top'     => '70px', 
+                                        'padding-right'   => '0px', 
+                                        'padding-bottom'  => '70px', 
+                                        'padding-left'    => '0px',
+                                        'units'          => 'px', 
+                                    ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+             ),
+            array(
+                    'id'       => 'swift-footer1-cntnsize',
+                    'type'     => 'text',
+                    'title'    => __('Footer 1 Font Size', 'accelerated-mobile-pages'),
+                    'default'  => '14px',
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
+                    'id'       => 'swift-head-size',
+                    'type'     => 'text',
+                    'title'    => __('Footer 1 Heading Font Size', 'accelerated-mobile-pages'),
+                    'default'  => '12px',
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+            ),
+            array(
+                    'id'       => 'swift-head-fntwgth',
+                    'type'     => 'text',
+                    'title'    => __('Footer 1 Heading Font Weight', 'accelerated-mobile-pages'),
+                    'default'  => '500',
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+            ),
+            array(
                     'id'        => 'swift-footer-heading-clr',
-                    'title'     => __('Heading Color', 'accelerated-mobile-pages'),
+                    'title'     => __('Footer 1 Heading Color', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'color'  => '#fff',
-                         ),
-                    'required' => array(
-                        array('footer-customize-options','=',1)
-                      )
-              ),
-            array(
-                    'id'        => 'swift-footer-txt-clr',
-                    'title'     => __('Text Color', 'accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                        'color'  => '#888888',
-                         ),
-                    'required' => array(
-                        array('footer-customize-options','=',1)
-                      )
-              ),
-            array(
-                    'id'        => 'swift-footer-link-clr',
-                    'title'     => __('Link Color', 'accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                        'color'  => '#fcc118',
-                         ),
-                    'required' => array(
-                        array('footer-customize-options','=',1)
-                      )
-              ),
-            array(
-                    'id'        => 'swift-footer-link-hvr',
-                    'title'     => __('Link Hover Color', 'accelerated-mobile-pages'),
-                    'type'      => 'color_rgba',
-                    'default'   => array(
-                        'color'  => '#888888',
+                        'color'  => '#999',
                          ),
                     'required' => array(
                         array('footer-customize-options','=',1)
@@ -4519,11 +4562,47 @@ Redux::setSection( $opt_name, array(
                       )
               ),
             array(
+                    'id'        =>"ftr2-gapping",
+                    'type'      =>'spacing',
+                    'title'     => __('Footer 2 Gapping', 'accelerated-mobile-pages'),
+                    'units'          => array('px','%'),
+                    'default'   =>array(
+                                        'padding-top'     => '50px', 
+                                        'padding-right'   => '0px', 
+                                        'padding-bottom'  => '50px', 
+                                        'padding-left'    => '0px',
+                                        'units'          => 'px', 
+                                    ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+             ),
+            array(
+                    'id'       => 'swift-footer2-fntsize',
+                    'type'     => 'text',
+                    'title'    => __('Footer 2 Font Size', 'accelerated-mobile-pages'),
+                    'default'  => '12px',
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+            ),
+            array(
+                    'id'        => 'swift-footer-brdrclr',
+                    'title'     => __('Footer 2 Border Color', 'accelerated-mobile-pages'),
+                    'type'      => 'color_rgba',
+                    'default'   => array(
+                        'color'  => '#eee',
+                         ),
+                    'required' => array(
+                        array('footer-customize-options','=',1)
+                      )
+              ),
+            array(
                     'id'    => 'footer2-position-type',
-                   'title'  => __('Footer Menu Position', 'accelerated-mobile-pages'),
+                   'title'  => __('Footer 2 Menu Position', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
-                        '1' =>  'center',
+                        '1' =>  'Center',
                         '2' =>  'Inline'
                     ),
                    'default'=> '1',
