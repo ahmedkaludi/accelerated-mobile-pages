@@ -108,7 +108,7 @@ $extension_listing_array = array(
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'AMP-cta/amp-cta.php',
-                            'item_name'=>'Call To Action (CTA)',
+                            'item_name'=>'Call To Action for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('AMP-cta/amp-cta.php')? 1 : 2),
                             'settingUrl'=>'',
