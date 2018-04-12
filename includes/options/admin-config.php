@@ -47,8 +47,8 @@ $extension_listing_array = array(
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
-                            'item_name'=>'advanced-amp-ads',
-                            'store_url'=>'',
+                            'item_name'=>'Advanced AMP Ads',
+                            'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-ads-google-adsense/amptoolkit-incontent-ads.php')? 1:2),
                         ),
                         array(
@@ -139,17 +139,6 @@ $extension_listing_array = array(
                             'item_name'=>'Star Ratings',
                             'store_url'=>'',
                             'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
-                        ),
-                         array(
-                            'name'=>'Category Base Removal',
-                            'desc'=>'Remove Category Base Support in AMP',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/puzzel.png',
-                            'price'=>'FREE',
-                            'url_link'=>'http://ampforwp.com/amp-category-base-remove-support/#utm_source=options-panel&utm_medium=extension-tab_amp-category-base-remove-support&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> '',
-                            'item_name'=>'Category Base Removal',
-                            'store_url'=>'',
-                            'is_activated'=>2,
                         ),
                         array(
                             'name'=>'Custom Post Type',
