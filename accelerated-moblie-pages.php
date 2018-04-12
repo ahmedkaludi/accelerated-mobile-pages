@@ -188,7 +188,6 @@ function ampforwp_add_custom_rewrite_rules() {
 	$output = 'names'; // or objects
 	$operator = 'and'; // 'and' or 'or'
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
-	// print_r($taxonomies);
 
 	if(class_exists( 'WooCommerce' )){
 
@@ -198,7 +197,7 @@ function ampforwp_add_custom_rewrite_rules() {
 		$taxonomies['product_tag'] = $tag_slug;
 	}   
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
-	// print_r($taxonomies);die;
+	
 	if ( $taxonomies ) {
 	  foreach ( $taxonomies  as $key => $taxonomy ) { 
   
