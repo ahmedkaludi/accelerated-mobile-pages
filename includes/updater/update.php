@@ -95,7 +95,7 @@ function ampForWP_extension_activate_license() {
                 // Check if anything passed on a message constituting a failure
                 $status = false;
                 if ( ! empty( $message ) ) {
-                    if(is_object($license_data)){
+                    if(isset($license_data) && is_object($license_data)){
                         $status = $license_data->error;
                     }else{
                         $status = "An error occurred, Error type not found.";
