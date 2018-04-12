@@ -4650,9 +4650,6 @@ Redux::setSection( $opt_name, array(
                'indent' => true,
                //'start'  => true,
                //'label' => 'Tab 2',
-               'required' => array(
-                        array('amp-design-selector', '=' , '4')
-                ),
              ),
              array(
                 'id'       => 'menu-social',
