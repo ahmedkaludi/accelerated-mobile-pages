@@ -151,7 +151,7 @@ add_amp_theme_support('AMP-loop');
 
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-		if ( 4 != $redux_builder_amp['amp-design-selector'] ) {
+		if ( isset ($redux_builder_amp['amp-design-selector']) && 4 != $redux_builder_amp['amp-design-selector'] ) {
 			if ( $amp_plugin_activation_check ) {
 				$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
 		 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
@@ -395,7 +395,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 		            }
 				}
-		       if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page()) ) {
+		        if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
 		           
 		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
 	            }

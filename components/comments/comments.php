@@ -10,7 +10,7 @@ if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
-if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
+if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
