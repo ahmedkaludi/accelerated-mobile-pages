@@ -3510,7 +3510,15 @@ Redux::setSection( $opt_name, array(
                     ),
                     'default'  => '1'
             ),
-
+            array(
+                'id'        => 'amp-sticky-header', 
+                "type"      =>"switch",
+                'title'     =>"Sticky Header ",
+                'default'   => 0,
+                'required'  => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+            ),
              array(
                     'id'        => 'amp-opt-color-rgba-headercolor',
                     'type'      => 'color_rgba',
@@ -3707,7 +3715,7 @@ Redux::setSection( $opt_name, array(
               ),
               array(
                     'id'        => 'swift-element-overlay-color-control',
-                    'title'     => __('Menu Elements', 'accelerated-mobile-pages'),
+                    'title'     => __('Menu Color', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
                         'rgba'  => 'rgba(255, 255, 255, 0.8)',
@@ -3751,15 +3759,7 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     )           
             ),
-            array(
-                'id'=> 'amp-sticky-header', 
-                "type"=>"switch",
-                'title'=>"Header Sticky",
-                'default' => 1,
-                'required' => array(
-                    array('customize-options', '=' , '1'),
-                )
-            ),
+            
             // Tab 2 end
             /*array(
                    'id' => 'header-tab-2-end',
