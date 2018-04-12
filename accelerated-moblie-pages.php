@@ -188,23 +188,36 @@ function ampforwp_add_custom_rewrite_rules() {
 	$output = 'names'; // or objects
 	$operator = 'and'; // 'and' or 'or'
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
+
+
+	if( class_exists( 'WooCommerce' ) ) {
+		$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
+		
+		if ( $wc_permalinks ) {
+			$taxonomies = array_merge($taxonomies, $wc_permalinks);
+		}
+	}
+
+	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
-	  foreach ( $taxonomies  as $taxonomy ) {   
-	    add_rewrite_rule(
-	      $taxonomy.'\/(.+?)\/amp/?$',
-	      'index.php?amp&'.$taxonomy.'=$matches[1]',
-	      'top'
-	    );
-	    // For Custom Taxonomies with pages
-	    add_rewrite_rule(
-	      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-	      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
-	      'top'
-	    );
-	  }
+		foreach ( $taxonomies  as $key => $taxonomy ) { 
+			if ( ! empty( $taxonomy ) ) {
+			    add_rewrite_rule(
+			      $taxonomy.'\/(.+?)\/amp/?$',
+			      'index.php?amp&'.$key.'=$matches[1]',
+			      'top'
+			    );
+			    // For Custom Taxonomies with pages
+			    add_rewrite_rule(
+			      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+			      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
+			      'top'
+			    );
+			}
+		}
 	}
 }
-add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+add_action( 'admin_init', 'ampforwp_add_custom_rewrite_rules' );
 
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
