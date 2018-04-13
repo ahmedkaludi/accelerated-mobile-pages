@@ -291,16 +291,17 @@ function amp_pagebuilder_content_styles(){
 							continue;
 						}
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
-							//LOAD Icon Css 
-							if($modulefield['type']=='icon-selector'){
-								add_amp_icon(array($contentArray[$modulefield['name']]));
-							}
 							$replaceModule = "";
 							if(isset($contentArray[$modulefield['name']])){
 								$replaceModule = $contentArray[$modulefield['name']];
 							}else{
 								$replaceModule = getdefaultValue($modulefield['name'],$moduleTemplate[$contentArray['type']]['fields']);
 							}
+							//LOAD Icon Css 
+							if($modulefield['type']=='icon-selector'){
+								add_amp_icon(array($replaceModule));
+							}
+							
 							if($modulefield['content_type']=='css'){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
@@ -389,6 +390,7 @@ function amp_pagebuilder_content_styles(){
 									break;
 								}
 							}
+
 							$completeCss = ampforwp_replaceIfContentConditional($modulefield['name'], $replaceModule, $completeCss);
 						}
 						echo amppb_validateCss($completeCss);
