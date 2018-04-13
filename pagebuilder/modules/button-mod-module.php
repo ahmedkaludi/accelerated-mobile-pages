@@ -5,7 +5,7 @@ $output = '
 {{if_condition_button_repeat_check==1}}{{repeater}}{{ifend_condition_button_repeat_check_1}}
 ';
 $css = '
-{{module-class}} {width:100%;display:inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
+{{module-class}}.button-mod {width:100%;display:inline-block;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .btn-txt{
 font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker}};background:{{bg_color_picker}};display: inline-block;padding: {{gapping_css}}; width:{{button-width}};font-weight:{{font_weight}};box-sizing:initial;
 	{{if_condition_check_for_border==1}}
