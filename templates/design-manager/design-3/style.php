@@ -412,7 +412,7 @@ amp-user-notification button { background-color:  <?php echo esc_attr($redux_bui
 .social_icons ul{ list-style-type:none; padding:0;margin:0; text-align:center }
 .social_icons li{ box-sizing: initial; display:inline-block; margin:5px; }
 .social_icons li:before{ box-sizing: initial; color:#fff; padding: 10px; display: inline-block; border-radius: 70px; width: 18px; height: 18px; line-height: 20px; text-align: center; }
-#ampsomething { display: none; }
+#ampforwp_search_query_item { display: none; }
 #header, .headerlogo a{ background:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-headercolor']['color']); ?>  }
 .comment-button-wrapper a, #pagination .next a, #pagination .prev a{ background: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']); ?> ; }
 .toast:after, .toast:before, .toast span{ background: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-headerelements']['color']); ?> ; }

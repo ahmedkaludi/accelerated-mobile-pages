@@ -84,7 +84,7 @@ function ampforwp_get_search_form() {
 	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . $action_url  .'">
 <div>
 <label class="screen-reader-text" for="s">' . $label . '</label>
-<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hide" id="ampsomething" />
+<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hide" id="ampforwp_search_query_item" />
 <input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
 <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 </div>
