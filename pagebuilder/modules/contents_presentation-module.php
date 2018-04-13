@@ -1,4 +1,14 @@
 <?php		
+$frontCommonCss = '
+.contents_presentation{line-height:0;}
+@media(max-width:768px){
+  .col-2{
+    width:100%;
+    float:none;
+  }
+}
+                        
+';
  $output = '{{if_condition_content_layout_type==1}}
              <div class="cntn-1">
              {{if_condition_check_for_content==1}}
@@ -190,7 +200,6 @@
 }
 {{ifend_condition_content_layout_type_2}}
 {{if_condition_content_layout_type==3}}
-  .contents_presentation{line-height:0;}
   {{module-class}} .cntn-3{
     width:100%;
     display:inline-block;
@@ -249,10 +258,7 @@
     {{module-class}} .cntn-img img{width:100%;height:auto;}
   {{ifend_condition_check_for_image_1}}
 @media(max-width:768px){
-  .col-2{
-    width:100%;
-    float:none;
-  }
+  
   {{module-class}} .cntn-3{
     padding:0;
   }
@@ -322,10 +328,6 @@
     {{module-class}} .cntn-img img{width:100%;height:auto;}
   {{ifend_condition_check_for_image_1}}
 @media(max-width:768px){
-  .col-2{
-    width:100%;
-    float:none;
-  }
   {{module-class}} .cntn-4{
     padding:0;
   }
@@ -335,9 +337,6 @@
   }
 }
 {{ifend_condition_content_layout_type_4}}
-@media(max-width:768px){
-
-}
 ';
 
  return array(		
@@ -361,22 +360,22 @@
                             array(
                               'value'=>'1',
                               'label'=>'',
-                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/d-1.png'
                             ),
                             array(
                               'value'=>'2',
                               'label'=>'',
-                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/d-2.png'
                             ),
                             array(
                               'value'=>'3',
                               'label'=>'',
-                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/d-3.png'
                             ),
                             array(
                               'value'=>'4',
                               'label'=>'',
-                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/cat-dg-1.png'
+                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/d-4.png'
                             ),
                           ),
             'content_type'=>'html',
@@ -648,11 +647,11 @@
                   'tab'     =>'container_css',
                   'default' =>
                               array(
-                                  'top'=>'0px',
-                                  'right'=>'0px',
-                                  'bottom'=>'0px',
-                                  'left'=>'0px',
-                              ),
+                                'top'=>'0px',
+                                'right'=>'0px',
+                                'bottom'=>'0px',
+                                'left'=>'0px',
+                            ),
                   'content_type'=>'css',
                   'required'  => array('check_for_icon'=>'1')
                 ),  
@@ -709,5 +708,5 @@
  					),		
  		'front_template'=> $output,
     'front_css'=>$frontCss,
-    'front_common_css'=>'',	
+    'front_common_css'=>$frontCommonCss,	
  );
