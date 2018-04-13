@@ -4080,9 +4080,10 @@ function ampforwp_post_paginated_link_generator( $i ) {
 		}
 
 		$url = get_preview_post_link( $post, $query_args, $url );
-	}
 
-	return '<a href="' . esc_url( $url ) . '?amp">';
+	}
+	$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+	return '<a href="' . esc_url( $url ) . '">';
 }
 
 add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_rel_amphtml_paginated_post');
@@ -4090,9 +4091,18 @@ function ampforwp_modify_rel_amphtml_paginated_post($url) {
 	if(is_single()){
 			$post_paginated_page='';
 			$post_paginated_page = get_query_var('page');
+			$permalink_structure = '';
+			$permalink_structure = get_option('permalink_structure');
 			if($post_paginated_page){
 				$url = get_permalink();
-				$new_url = $url."$post_paginated_page/?amp";
+				if('' == $permalink_structure){
+					$new_url = add_query_arg('page',$post_paginated_page,$url);
+				}
+				else{
+					$new_url = trailingslashit($url).$post_paginated_page;
+				}
+
+				$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$new_url);
 				return $new_url;
 			}
 		} 
@@ -4113,13 +4123,22 @@ function ampforwp_modify_rel_canonical_paginated_post(){
 function ampforwp_rel_canonical_paginated_post(){
 		$post_paginated_page='';
 		$new_canonical_url = '';
+		$permalink_structure = '';
+		$permalink_structure = get_option('permalink_structure');
 		global $post;
 	    $current_post_id = $post->ID;
 	    $new_canonical_url = get_permalink($current_post_id);
 	    $new_canonical_url = trailingslashit($new_canonical_url);
 		$post_paginated_page = get_query_var('page');
-		if($post_paginated_page){?>
-			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
+		if($post_paginated_page){
+			if('' == $permalink_structure){
+				$new_canonical_url = add_query_arg('page',$post_paginated_page,$new_canonical_url);
+			}
+			else{
+				$new_canonical_url = $new_canonical_url.$post_paginated_page;
+			}
+			?>
+			<link rel="canonical" href="<?php echo $new_canonical_url ?>/" /><?php  } 
 }
 add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
