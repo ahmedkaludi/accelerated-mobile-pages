@@ -808,7 +808,6 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 <?php if( $redux_builder_amp['swift-footer-link-clr']['rgba'] ) {?>
 	color: <?php echo $redux_builder_amp['swift-footer-link-clr']['rgba'] ?>;
 <?php } ?>
-transition:0.3s ease-in-out 0s;
 }
 .w-bl a:hover, .f-menu ul li a:hover, .rr a:hover{
 <?php if( $redux_builder_amp['swift-footer-link-hvr']['rgba'] ) {?>
