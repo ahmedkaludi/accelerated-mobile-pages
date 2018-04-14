@@ -38,7 +38,7 @@ $extension_listing_array = array(
                             'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
                             'item_name'=>'ADS for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
+                            'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2), 
                         ),
                         array(
                             'name'=>'Advanced AMP ADS',
@@ -46,10 +46,10 @@ $extension_listing_array = array(
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
+'plugin_active_path'=> 'amp-incontent-ads/amptoolkit-incontent-ads.php',
                             'item_name'=>'Advanced AMP Ads',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('amp-ads-google-adsense/amptoolkit-incontent-ads.php')? 1:2),
+'is_activated'=>(is_plugin_active('amp-incontent-ads/amptoolkit-incontent-ads.php')? 1:2),
                         ),
                         array(
                             'name'=>'Contact Form 7',
