@@ -771,7 +771,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                'id'       => 'ampforwp-amp-convert-to-wp',
                'type'     => 'switch',
-               'title'    => __('Convert AMP to WP theme', 'accelerated-mobile-pages'),
+               'title'    => __('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
                'subtitle' => __('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
                'default'  => '0',
                'required' => array('amp-design-selector', '=' , '4'),
@@ -779,7 +779,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',
-               'title'    => __('AMP Takeover', 'accelerated-mobile-pages'),
+               'title'    => __('AMP Takeover (Beta)', 'accelerated-mobile-pages'),
                'subtitle' => __('Make your non-amp to load the AMP (AMP & NON-AMP both will be AMP with same design)', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
