@@ -213,6 +213,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 					var a = {};
 					fields.forEach(function(fieldData,fieldKey){
 						a[fieldData.name] = fieldData.default
+						if(fieldData[fieldData.name+"_image_data"]){
+							a[fieldData.name+"_image_data"] = fieldData[fieldData.name+"_image_data"];
+						}
 					});
 					
 					Vue.set( rowData, 'data', a );
@@ -485,8 +488,14 @@ Vue.component('fields-data',{
 
 		},
 		refresh_image: function(the_id,currentSelectfield,type,field){
+			console.log(type);
 			if(type=='tag'){
 				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
+				if(field[field['name']+'_image_data']){
+			 		var demoImage = field[field['name']+'_image_data'];
+			 	 	jQuery(currentSelectfield).parents('p').find('img').attr('src',demoImage[0]);
+			 	 	return ;
+			 	}
 			}else{
 				console.log(jQuery(currentSelectfield).parents('p'))
 				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
