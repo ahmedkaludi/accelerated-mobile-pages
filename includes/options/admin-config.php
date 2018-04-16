@@ -1329,6 +1329,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-robots-archive-author-pages',
                'type'     => 'switch',
                'title'    => __('Author Archives', 'accelerated-mobile-pages'),
+               'subtitle'  => __("Enable it to set Indexing for Author Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1338,6 +1339,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-robots-archive-date-pages',
                'type'     => 'switch',
                'title'    => __('Date Archives', 'accelerated-mobile-pages'),
+               'subtitle'  => __("Enable it to set Indexing for Date Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1347,6 +1349,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-robots-archive-category-pages',
                'type'     => 'switch',
                'title'    => __('Categories', 'accelerated-mobile-pages'),
+               'subtitle'  => __("Enable it to set Indexing for Categories",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
@@ -1355,6 +1358,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'ampforwp-robots-archive-tag-pages',
                'type'     => 'switch',
                'title'    => __('Tags', 'accelerated-mobile-pages'),
+               'subtitle'  => __("Enable it to set Indexing for Tags",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
                'off' => 'noindex'
