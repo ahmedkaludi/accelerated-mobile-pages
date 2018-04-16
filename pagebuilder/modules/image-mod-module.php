@@ -1,7 +1,8 @@
 <?php 
 $output = '
-	{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-';
+	{{if_hyperlink_link_img}}<a href="{{hyperlink_link_img}}" {{if_condition_img_link_open==new_page}}target="_blank"{{ifend_condition_img_link_open_new_page}}>{{ifend_hyperlink_link_img}}{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}}  alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}{{if_hyperlink_link_img}}</a>{{ifend_hyperlink_link_img}}';
+
+// $output .= '{{if_img_hyperlink}}<a href="{{hyperlink_link_img}}">"'.$output.'</a>{{ifend_img_hyperlink}}';
 $css = '
 {{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
 {{if_condition_check_for_fullwidth==1}}
@@ -38,6 +39,43 @@ return array(
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'90%',	
 		           				'content_type'=>'css',
+	 						),
+
+	 					array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"img_hyperlink",		
+		 						'label'		=>'Hyperlink',
+		           				'tab'     	=>'customizer',
+		 						'default'	=>0,	
+		           				'options'	=>array(
+												array(
+													'label'=>'Make an Hyperlink Image',
+													'value'=>1,
+												),
+											),
+	 						),
+
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"hyperlink_link_img",		
+		 						'label'		=>'URL',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'',	
+		           				'content_type'=>'html',
+		           				'required'  => array('img_hyperlink'=>'1'),
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'img_link_open',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
+	 											),
+	 							'content_type'=>'html',
+	 							'required'  => array('img_hyperlink'=>'1'),
 	 						),
 
 				        array(
