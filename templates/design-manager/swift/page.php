@@ -1,4 +1,5 @@
-<?php amp_header(); ?>
+<?php global $redux_builder_amp;
+amp_header(); ?>
 <div class="sp">
 	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
