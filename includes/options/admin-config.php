@@ -3115,7 +3115,7 @@ Redux::setSection( $opt_name, array(
                 'id'        =>'google_font_api_key',
                 'type'      =>'text',
                 'title'     =>__('Google Font API key','accelerated-mobile-pages'),
-                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1">form here</a>','accelerated-mobile-pages'),
+                'subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">form here</a>','accelerated-mobile-pages'),
                 'default'   =>'',
                 'required' => array(
                     array('amp-design-selector', '=' , '4')
