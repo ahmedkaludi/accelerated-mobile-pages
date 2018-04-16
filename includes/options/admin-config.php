@@ -4845,7 +4845,10 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'menu-social',
                 'type'     => 'switch',
                 'title'    => __('Menu Social Profile', 'accelerated-mobile-pages'),
-                'default'  => 0      
+                'default'  => 0,
+                'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                ),     
             ),
             array(
                     'id'       => 'enbl-fb',
