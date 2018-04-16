@@ -4761,9 +4761,11 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	if(is_object($post)){
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	}
 	//Grab the First Image
-	if ( $matches[0] ) {
+	if (is_array($matches) &&  $matches[0] ) {
 		$image_url 		= $matches[1][0];
 		$image_html 	= $matches[0][0];
 		$image_width 	= $matches[2][0];
@@ -4833,6 +4835,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	global $redux_builder_amp, $post;
 	$url = $title = $id = $author_id = $author_name = '';
 	$url = get_the_permalink();
+	if(!is_object($post)){ return ''; }
 	$title = $post->post_title;
 	$id = $post->ID;
 	$author_id = $post->post_author;

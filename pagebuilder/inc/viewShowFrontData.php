@@ -6,9 +6,9 @@ Show Front Data
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
 	global $post,  $redux_builder_amp;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
@@ -16,7 +16,6 @@ function amp_pagebuilder_content(){
 			$postId = pll_get_post($front_page_id);
 		}
 	}
-
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	
 	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
@@ -43,9 +42,9 @@ add_action('amp_post_template_head','ampforwp_pagebuilder_header_html_output',11
 function ampforwp_pagebuilder_header_html_output(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -62,9 +61,9 @@ add_action('amp_post_template_data','amp_pagebuilder_script_loader',100);
 function amp_pagebuilder_script_loader($scriptData){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -122,9 +121,9 @@ add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ) {
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
@@ -491,9 +490,9 @@ function amppb_validateCss($css){
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
 	global $moduleTemplate, $layoutTemplate, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
