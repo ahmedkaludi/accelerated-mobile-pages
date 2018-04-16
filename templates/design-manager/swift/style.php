@@ -837,7 +837,8 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 .f-menu ul li{
 	margin:0;
 	display: inline-block;
-} 
+}
+.f-menu ul li .sub-menu{display:none;}
 .f-menu ul li a:after{
 	content: "|";
     display: inline-block;
