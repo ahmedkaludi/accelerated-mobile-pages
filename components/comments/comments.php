@@ -10,8 +10,7 @@ if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
-if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
-	<?php do_action('ampforwp_before_comment_hook'); ?>
+ do_action('ampforwp_before_comment_hook'); ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
@@ -97,7 +96,7 @@ if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() 
      		<?php } ?>
 			</div>
 	    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
+	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) &&  !comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==true ) ) { ?>
 	  		<div class="amp-comment-button">
 	  		   <a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 	  		</div>
@@ -109,7 +108,7 @@ if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() 
 	      return;
 	    } ?>
 	    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
+	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) &&  !comments_open() || ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==true ) ) { ?>
 	      <div class="amp-comment-button">
 	  	       <a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
 	       </div>
@@ -118,7 +117,7 @@ if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() 
 	</div>
 	<?php do_action('ampforwp_after_comment_hook');
 
-	}
+	
 
 }
 
