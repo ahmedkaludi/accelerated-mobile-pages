@@ -127,7 +127,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	public function get_scripts() {
 		if ( $this->is_lightbox ) {
-			return array( self::$script_slug_lightbox => self::$script_src_lightbox );
+			return array( self::$script_slug_lightbox => self::$script_src_lightbox, self::$script_slug => self::$script_src );
 
 		}
 		if (  ! $this->did_convert_elements ) {
