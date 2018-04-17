@@ -6414,10 +6414,3 @@ function ampforwp_correct_frontpage() {
 	return $post_id;
 	
 }
-
-add_filter('ampforwp_modify_rel_url', 'new_url'); 
-function new_url($url) {
-
-	$url = 'yallah';
-	return $url;
-}
