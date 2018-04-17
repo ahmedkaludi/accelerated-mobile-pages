@@ -1,7 +1,9 @@
 <?php 
 $output = '
-<div class="ln-fx">{{repeater}}</div>';
+	<div class="ln-fx">{{repeater}}</div>
+';
 $css = '
+{{if_condition_testimonial_layout_type==1}}
 .testimonial-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .ln-fx{width:100%;display: flex;flex-wrap: wrap;}
 .testi-mod{-ms-flex: 1 0 100%;margin: 0 3% 2% 0px;width: 31.3%;position: relative;color: #26292c;}
@@ -18,6 +20,7 @@ $css = '
 @media(max-width:768px){
 	.testi-mod{width: 100%;margin-right:0}
 }
+{{ifend_condition_testimonial_layout_type_1}}
 ';
 global $redux_builder_amp;
 if($redux_builder_amp['amp-rtl-select-option']){
@@ -38,16 +41,34 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layout' => 'Layout'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"testimonial_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layout',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/testmon-1.png'
+				                            ),
+				                            
+				                          ),
+				            'content_type'=>'html',
+				            ),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"aut_color_picker",
 								'label'		=>'Author Details Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('testimonial_layout_type'=>'1')
 							),
 						array(
 								'type'		=>'spacing',
@@ -120,20 +141,22 @@ return array(
                 
               ),
           'front_template'=>
-        '<div class="testi-mod">
-			<div class="testi-cont">
-				{{content}}
-			</div>
-			<div class="auth-info">
-				<div class="auth-img">
-					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+        '{{if_condition_testimonial_layout_type==1}}
+	        <div class="testi-mod">
+				<div class="testi-cont">
+					{{content}}
 				</div>
-				<div class="auth-cntn">
-					<h5>{{content_title}}</h5>
-					<span>{{auth_desig}}</span>
+				<div class="auth-info">
+					<div class="auth-img">
+						{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
+					</div>
+					<div class="auth-cntn">
+						<h5>{{content_title}}</h5>
+						<span>{{auth_desig}}</span>
+					</div>
 				</div>
 			</div>
-		</div> '
+		{{ifend_condition_testimonial_layout_type_1}}'
           ),
 	);
 
