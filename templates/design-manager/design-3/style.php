@@ -239,7 +239,6 @@ pre{ white-space: pre-wrap; }
     -webkit-transform-origin: right center;
     transform-origin: right center;*/
 }
-<?php }?>
 /* Sidebar */
 #sidebar[aria-hidden="false"]+#designthree { max-height: 100vh; overflow: hidden; animation: opening .3s normal forwards ease-in-out; -webkit-transform: translate3d(60%, 0, 0) scale(0.8); transform: translate3d(60%, 0, 0) scale(0.8); }
 @keyframes opening{ 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(60%, 0, 0) scale(0.8); } }
