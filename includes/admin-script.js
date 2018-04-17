@@ -146,6 +146,17 @@ jQuery(function($) {
                 jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
             }
         });
+
+        jQuery( '.redux-group-tab-link-a' ).click(function(){
+            if(jQuery(this).parent('li').hasClass('otherSectionFields')){
+                jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
+                if(!jQuery(this).parent('li').is(':visible')){
+                    jQuery(this).parent('li').show();
+                }
+            }else{
+                jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
+            }
+        });
     }
     $(document).ready(function() {
         if(getQueryStringValue('page')=='amp_options'){
@@ -377,11 +388,48 @@ var reduxOptionTab = function(){
 } 
 //reduxOptionTab();   
 
+$(".redux-ampforwp-ext-activate").click(function(){
+     var currentThis = $(this);
+    var plugin_id = currentThis.attr("id");
+    var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
+    var item_name = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][item_name]"]').val();
+    var store_url = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][store_url]"]').val();
+    var plugin_active_path = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][plugin_active_path]"]').val();
+    currentThis.html("Please Wait...");
+    $.ajax({
+        url: ajaxurl,
+        method: 'post',
+        data: {action: 'ampforwp_get_licence_activate_update',
+               ampforwp_license_activate:plugin_id,
+               license:license,
+               item_name:item_name,
+               store_url:store_url,
+               plugin_active_path:plugin_active_path
+                },
+        dataType: 'json',
+        success: function(response){
+            currentThis.parents("li").find('.afw-license-response-message').remove();
+            if(response.status=='200'){
+                currentThis.parents("li").removeClass("not-active").removeClass("invalid").addClass("active").addClass("valid");
+                currentThis.html("Deactivate");
+                currentThis.after("<div id='afw-license-response-message'>"+response.message+'</div>');
+                currentThis.removeClass('redux-ampforwp-ext-activate').addClass('redux-ampforwp-ext-deactivate');
+                deactivatelicence();
+                //window.location.href = window.location.href;
+            }else{
+                currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
+                currentThis.html("Activate");
+            }
+        }
+    })
+})
+
 //Deactivate License key
+function deactivatelicence(){
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
-    currentThis.val("Please Wait...");
+    currentThis.html("Please Wait...");
     $deactivateConfirm = confirm("Are you sure you want to Deactivate ?");
     if($deactivateConfirm){
         $.ajax({
@@ -400,6 +448,8 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
         })
     }
 });
+}
+deactivatelicence();
 
 /*var hideReduxFields = function(){
     $("#redux_builder_amp-single-design-type").parents("tr").hide();
@@ -477,17 +527,7 @@ var redux_title_modify = function(){
     });
 
    
-    jQuery( '.redux-group-tab-link-a' ).click(function(){
-        if(jQuery(this).parent('li').hasClass('otherSectionFields')){
-            jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
-            if(!jQuery(this).parent('li').is(':visible')){
-                jQuery(this).parent('li').show();
-            }
-        }else{
-            console.log(jQuery(this).parent('li').siblings('li.otherSectionFields'));
-             jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
-        }
-    });
+    
 
 
 });

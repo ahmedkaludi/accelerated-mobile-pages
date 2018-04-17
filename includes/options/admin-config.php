@@ -289,7 +289,7 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
-        $verify = '<button type="submit" id="'.$pathExploded.'">Activate</button>';
+        $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-activate">Activate</button>';
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
              $currentStatus = 'active valid';
              $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">Deactivate</button>';
@@ -307,7 +307,7 @@ foreach ($extension_listing_array as $key => $extension) {
         
         $pluginReview .= $verify;
         if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
-            $pluginReview .= "<br/>".$selectedOption['amp-license'][$pathExploded]['message'];
+            $pluginReview .= "<div class='afw-license-response-message'>".$selectedOption['amp-license'][$pathExploded]['message']."</div>";
         }
         
     }
