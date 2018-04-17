@@ -127,6 +127,19 @@ $extension_listing_array = array(
                         ),
 
                         array(
+                            'name'=>'AMP Layouts',
+                            'desc'=>'layout system built for AMP that makes easy to create your own AMP templates.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
+                            'price'=>'$89',
+                            'url_link'=>'https://ampforwp.com/amp-layouts/',
+                            'plugin_active_path'=> 'amp-layouts/amp-layouts.php',
+                            'item_name'=>'AMP Layouts',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
+                            'settingUrl'=>'',
+                        ),
+
+                        array(
                             'name'=>'Newspaper AMP Theme',
                             'desc'=>'Advanced News Magazine theme built for AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
