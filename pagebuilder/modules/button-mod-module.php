@@ -19,6 +19,13 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{if_condition_display_type==inline}}
 .btn{display:inline-block;}
 {{ifend_condition_display_type_inline}}
+{{if_condition_check_for_altrbtn==1}}
+{{module-class}} .alt-btn{
+	background:{{altbg_color}};
+	color:{{altfont_color}};
+	margin-left:5px;
+}
+{{ifend_condition_check_for_altrbtn_1}}
 @media(max-width:768px){
 {{if_condition_button_repeat_check==1}}
 {{module-class}} .btn{margin:0 0 15px 0;}
@@ -29,6 +36,9 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 }
 @media(max-width:425px){
 	{{module-class}} .btn-txt{width:{{resp-btn-width}};box-sizing:inherit;}
+	{{if_condition_check_for_altrbtn==1}}
+		{{module-class}} .alt-btn{margin-left:0px;}
+	{{ifend_condition_check_for_altrbtn_1}}
 }
 ';
 return array(
@@ -264,6 +274,38 @@ return array(
 								'content_type'=>'css',
 								'required'  => array('check_for_border'=>'1')
 							),
+	 					array(
+				                'type'    =>'checkbox_bool',
+				                'name'    =>"check_for_altrbtn",
+				                'label'   => 'Customize Alternate Button',
+				                'tab'   =>'design',
+				                'default' =>0,
+				                'options' =>array(
+				                        array(
+				                          'label'=>'Yes',
+				                          'value'=>1,
+				                        )
+				                      ),
+				                'content_type'=>'html',
+				            ),
+	 					array(
+								'type'		=>'color-picker',
+								'name'		=>"altbg_color",
+								'label'		=>'Background Color',
+								'tab'		=>'design',
+								'default'	=>'#ccc',
+								'content_type'=>'css',
+								'required'  => array('check_for_altrbtn'=>'1')
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"altfont_color",
+								'label'		=>'Button Text Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css',
+								'required'  => array('check_for_altrbtn'=>'1')
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -294,7 +336,7 @@ return array(
 							array(		
 		 						'type'		=>'checkbox_bool',		
 		 						'name'		=>'button_repeat_check',		
-		 						'label'		=>'Add Another Button',
+		 						'label'		=>'Alternate Button',
 		           				'tab'     =>'customizer',
 		 						'default'	=>0,	
 		 						'options'	=>array(
@@ -361,7 +403,7 @@ return array(
 				              ),	
 					),
 			'front_template'=> 
-			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="btn-txt">{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
+			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="{{if_condition_button_repeat_check==1}}alt-btn{{ifend_condition_button_repeat_check_1}} btn-txt">{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
 			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
 			'
 			),
