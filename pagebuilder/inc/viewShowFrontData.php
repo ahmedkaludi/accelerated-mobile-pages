@@ -752,7 +752,7 @@ function rowData($container,$col,$moduleTemplate){
 						//The Query
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
-						$totalLoopHtml = contentHtml($the_query,$fieldValues,$totalLoopHtml);
+						$totalLoopHtml = ampforwp_contentHtml($the_query,$fieldValues,$totalLoopHtml);
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
 								$totalLoopHtml = ampforwp_replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $totalLoopHtml);
