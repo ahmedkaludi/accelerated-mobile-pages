@@ -158,6 +158,12 @@ jQuery(function($) {
             }
         });
     }
+    var showExtensionTabs = function(){
+        var currentTab = getQueryStringValue('tabid');
+        if(currentTab!="" && $("li."+currentTab).length>0){
+            $("li."+currentTab+" a").click();
+        }
+    }
     $(document).ready(function() {
         if(getQueryStringValue('page')=='amp_options'){
             //Tab section implementation
@@ -169,6 +175,7 @@ jQuery(function($) {
 
             //To Hide Leftsidebar option Below Extension
             hideReduxLeftTabs();
+            showExtensionTabs();
         }
         
 
@@ -438,8 +445,10 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
             data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id},
             dataType: 'json',
             success: function(response){
+                currentThis.parents("li").find('.afw-license-response-message').remove();
                 if(response.status=='200'){
                     currentThis.parents(".extension_desc").find("input[name='redux_builder_amp[amp-license][amp-ads-google-adsense][license]']").val("");
+                     currentThis.after("<div id='afw-license-response-message'>"+response.message+'</div>');
                     window.location.href = window.location.href;
                 }else{
                     alert(response.message);
