@@ -472,6 +472,9 @@ Accordion
 .afw-accordion-header{
     position:relative;
 }
+.afw-accordion-header:hover{
+    cursor: pointer;
+}
 .afw-accordion-tab-open:after{
     content: ">";
     font-weight:900;
