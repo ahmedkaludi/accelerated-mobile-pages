@@ -10,18 +10,21 @@ function ampforwp_structured_data_type( $metadata ) {
 	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
 	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
 
-	if ( empty( $set_sd_post ) ) {
-		$set_sd_post = 'BlogPosting';
+	if ( empty( $set_sd_post ) && is_single() && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {;
+		return;
 	}
 
-	if ( empty( $set_sd_page ) ) {
-		$set_sd_page = 'BlogPosting';
+	if ( empty( $set_sd_page ) && is_singular( $post_type = 'page' ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+			return;
 	}
 	if ( isset( $post->post_type ) && 'post' == $post->post_type ) {
 		$metadata['@type'] = $set_sd_post;
 	}
 
 	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() || ampforwp_is_blog()) {
+		if ( empty( $set_sd_page )){
+			return;
+		}
 		$metadata['@type'] = $set_sd_page;
 	} 
 	$post_types = ampforwp_get_all_post_types();
@@ -34,8 +37,8 @@ function ampforwp_structured_data_type( $metadata ) {
         	}
         	
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) ) {
-					$redux_builder_amp['ampforwp-sd-type-'.$post_type.''] = 'BlogPosting';
+        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+					return;
 				}
         		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
         	}
