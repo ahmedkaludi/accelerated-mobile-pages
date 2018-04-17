@@ -406,10 +406,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 		            }
 				}
-		       if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
-		           
+        
+          if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
 		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-	            }
+	         }
 
 	        // Archive Pages
 	        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
@@ -2572,12 +2572,14 @@ add_action('ampforwp_post_after_design_elements','ampforwp_add_disqus_support');
 function ampforwp_add_disqus_support() {
 	global $redux_builder_amp;
 	$width = $height = 420;
+	$layout = "";
 	$layout = 'responsive';
 	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
 		$layout = 'fixed';
-	}
-	if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
-		$height = $redux_builder_amp['ampforwp-disqus-height'];
+	
+		if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+			$height = $redux_builder_amp['ampforwp-disqus-height'];
+		}
 	}
 	//if ( !comments_open() ){
 	//	return;
@@ -4498,15 +4500,13 @@ global $redux_builder_amp, $post;
 		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
 		if(in_array($featured_image_field, $custom_fields_name)){
 			$amp_img_src = $custom_fields[$featured_image_field][0];
-			$image = @getimagesize($amp_img_src);
-			
+      $image = @getimagesize($amp_img_src);	
 			if(empty($image) || $image==false){
 				$img_id  	 = attachment_url_to_postid($amp_img_src);
 				$imageDetail = wp_get_attachment_image_src( $img_id , 'full');
 				$image[0] 	 = $imageDetail[1];
 				$image[1] 	 = $imageDetail[2];
 			}
-
 			switch ($param) {
 				case 'url':
 					$output = $amp_img_src;
@@ -6372,29 +6372,6 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 		  				fjs.parentNode.insertBefore(js, fjs);
 					}(document, "script", "facebook-jssdk"));</script>';
 		}
-	}
-}
-
-// Dropcap Support in AMP
-add_filter('the_content', 'ampforwp_dropcapped_content',0);
-if ( ! function_exists('ampforwp_dropcapped_content') ) {
-	function ampforwp_dropcapped_content($content) {
-		global $redux_builder_amp;
-		$new_content = $first = $remaining = $spanned_first_letter = '';
-		if( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) {
-
-			// left trim $content
-			$new_content = ltrim ( wp_strip_all_tags($content) );
-			// select first letter of $content
-			$first = mb_substr( $new_content, 0, 1 );
-			// select remaining letters of content
-			$remaining = mb_substr( $new_content, 1 );
-			// add <span> to the first letter for content
-			$spanned_first_letter = '<span class="a-dc">' . $first . '</span>';
-			// Merge
-			$content = $spanned_first_letter . $remaining;
-		}
-		return $content;
 	}
 }
 

@@ -65,10 +65,9 @@ header .cntr{
 <?php } // Sickt CSS Ends ?>
 .h_m_w{width:100%;clear:both;display: inline-flex;<?php if($redux_builder_amp['swift-height-control']){?>height:<?php echo $redux_builder_amp['swift-height-control']?>;<?php } ?>}
 .h-ic a:after, .h-ic a:before{font-family: 'icomoon';font-size: 23px;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
-.h-ic{align-self: center;}
-.h-call a:after{content: "\e0cd";lign-self: center;}
+.h-call a:after{content: "\e0cd";}
 .h-shop a:after{align-self: center;}
-.h-ic{margin:0px 10px;}
+.h-ic{margin:0px 10px; align-self: center;}
 .amp-logo a{line-height:0;display:inline-block;color:#000;}
 .logo h1{margin: 0;font-size: 17px;font-weight: 700;text-transform: uppercase;display:inline-block;}
 .h-srch a{line-height:1;display:block;}
@@ -420,7 +419,11 @@ if( isset($redux_builder_amp['wordpress-comments-support']) && 1 == $redux_build
 .cmts-wrap a{color:#333;}
 .cmts-wrap a:hover{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
 .cmts-wrap .current{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
-<?php } // Comments Pagination CSS Ends ?>
+<?php } // Comments Pagination CSS Ends
+if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
+.amp-disqus-comments { text-align:center } <?php 
+} ?>
+
 @media(max-width:1110px){
     .cntr{width:100%;padding:0px 20px;}
     .sp-rt {margin-left: 30px;}
@@ -480,7 +483,7 @@ if( isset($redux_builder_amp['wordpress-comments-support']) && 1 == $redux_build
 }
 <?php } } ?>
 <?php if ( isset($redux_builder_amp['ampforwp-dropcap']) && $redux_builder_amp['ampforwp-dropcap'] ) { ?>
-.a-dc{
+.cntn-wrp:first-child::first-letter {
     float: left;
     font-size: 75px;
     line-height: 1;
@@ -789,6 +792,9 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 }
 <?php /*** New footer Features ***/
 if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_builder_amp['footer-customize-options']) { ?>
+.f-w{
+	flex-wrap:wrap;
+}
 .f-w-f1{
 	<?php if( $redux_builder_amp['swift-footer-bg']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['swift-footer-bg']['rgba']?>; 

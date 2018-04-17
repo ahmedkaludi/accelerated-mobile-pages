@@ -39,7 +39,6 @@ $extension_listing_array = array(
                             'item_name'=>'ADS for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
-                            'settingUrl'=>'{basic}',
                         ),
                         array(
                             'name'=>'Advanced AMP ADS',
@@ -47,11 +46,10 @@ $extension_listing_array = array(
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/advanced-amp-ads/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'amp-ads-google-adsense/amptoolkit-incontent-ads.php',
+                            'plugin_active_path'=> 'amp-incontent-ads/amptoolkit-incontent-ads.php',
                             'item_name'=>'Advanced AMP Ads',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('amp-ads-google-adsense/amptoolkit-incontent-ads.php')? 1:2),
-                            'settingUrl'=>'{basic}',
+                            'is_activated'=>(is_plugin_active('amp-incontent-ads/amptoolkit-incontent-ads.php')? 1:2),
                         ),
                         array(
                             'name'=>'Contact Form 7',
@@ -107,11 +105,10 @@ $extension_listing_array = array(
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=extension-tab_amp-cta&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'AMP-cta/amp-cta.php',
+                            'plugin_active_path'=> 'amp-cta/amp-cta.php',
                             'item_name'=>'Call To Action for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('AMP-cta/amp-cta.php')? 1 : 2),
-                            'settingUrl'=>'',
+                            'is_activated'=>(is_plugin_active('amp-cta/amp-cta.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'AMP WooCommerce Pro',
@@ -153,16 +150,27 @@ $extension_listing_array = array(
                         ),
 
                         array(
-                            'name'=>'Advanced Custom Fields',
+                            'name'=>'Newspaper AMP Theme',
+                            'desc'=>'Advanced News Magazine theme built for AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$49',
+                            'url_link'=>'https://ampforwp.com/themes/newspaper/',
+                            'plugin_active_path'=> 'amp-newspaper-theme/ampforwp-custom-theme.php',
+                            'item_name'=>'Newspaper Theme for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? 1 : 2),
+                        ),
+
+                        array(
+                            'name'=>'ACF for AMP',
                             'desc'=>'Easily add ACF support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/acf.png',
                             'price'=>'$29',
                             'url_link'=>'http://ampforwp.com/acf-amp/#utm_source=options-panel&utm_medium=extension-tab_opt-in-forms&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'advanced-custom-fields/acf.php',
+                            'plugin_active_path'=> 'acf-for-amp-v2/amp-acf.php',
                             'item_name'=>'ACF for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('advanced-custom-fields/acf.php')? 1 : 2),
-                            'settingUrl'=>'',
+                            'is_activated'=>(is_plugin_active('acf-for-amp-v2/amp-acf.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'AMP Comments',
@@ -174,7 +182,6 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Comments',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-comments/amp-comments.php')? 1: 2),
-                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Star Ratings',
@@ -186,7 +193,6 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Rating',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
-                            'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Custom Post Type',
@@ -211,6 +217,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
                             'settingUrl'=>'',
+                        ),
+                        array(
+                            'name'=>'Polylang For AMP',
+                            'desc'=>'Polylang compatibility AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/polylang-for-amp/',
+                            'plugin_active_path'=> 'polylang-for-amp/amp_polylang.php',
+                            'item_name'=>'Polylang For AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('polylang-for-amp/amp_polylang.php')? 1: 2),
                         ),
                         array(
                             'name'=>'AMP Teaser',
@@ -814,7 +831,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                'id'       => 'ampforwp-amp-convert-to-wp',
                'type'     => 'switch',
-               'title'    => __('Convert AMP to WP theme', 'accelerated-mobile-pages'),
+               'title'    => __('Convert AMP to WP theme (Beta)', 'accelerated-mobile-pages'),
                'subtitle' => __('It makes your AMP & Non-AMP Same! (AMP will output AMP Compatible code, while WordPress will have the WP code but with the same design)', 'accelerated-mobile-pages'),
                'default'  => ampforwp_amp2wp_default(),
                'required' => array('amp-design-selector', '=' , '4'),
@@ -822,7 +839,7 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp-amp-takeover',
                'type'     => 'switch',
-               'title'    => __('AMP Takeover', 'accelerated-mobile-pages'),
+               'title'    => __('AMP Takeover (Beta)', 'accelerated-mobile-pages'),
                'subtitle' => __('Make your non-amp to load the AMP (AMP & NON-AMP both will be AMP with same design)', 'accelerated-mobile-pages'),
                'default'  => '0'
              ),
@@ -2231,6 +2248,7 @@ $forms_support[]=  array(
                          'default' => 'responsive',
                          'required'=>array('ampforwp-disqus-comments-support','=','1'),
                     ),
+
                      array(
                          'id'       => 'ampforwp-disqus-height',
                          'type'     => 'text',

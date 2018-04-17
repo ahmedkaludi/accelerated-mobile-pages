@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.4
-Stable tag: 0.9.85.0
+Tested up to: 4.9.5
+Stable tag: 0.9.85.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,19 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.85.3 (12th April 2018) =
+* Added: Custom Post type Archive Page support #1995
+* Fixed: AMP TakeOver redirection issues #1994
+* Fixed: Debug errors #1976
+* Fixed: Social Profile pages were hidden for Design 1 to 3 #1996
+* Fixed: Structured Data insertion was adding CData causing validation error #1999
+
+= 0.9.85.2 =
+* Minor Bugs fixed 
+
+= 0.9.85.1 =
+* Minor Bugs fixed 
 
 = 0.9.85 (3rd April 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-85-released-stability-update-86th-update/)
