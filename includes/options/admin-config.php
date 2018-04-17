@@ -683,6 +683,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'url'      => true,
                 'title'    => __('Logo', 'accelerated-mobile-pages'),
                 'subtitle' => __('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'=>__('Upload a logo for the AMP version.', 'accelerated-mobile-pages'),
                 'desc'    => __('Recommend logo size is: 190x36', 'accelerated-mobile-pages'),
                 'default' => array('url' => ampforwp_default_logo_settings() ),
             ),
@@ -2984,8 +2985,7 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
                 'title'    => __( 'Themes Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => 'Select your design from dropdown',
-                'subtitle-html' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
+                'subtitle' => __( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
@@ -2995,7 +2995,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'ampforwp_layouts_core',
                 'type'     => 'raw',
-                'subtitle-html'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
+                'subtitle'     => '<a class="amp-layouts-desc" href="https://ampforwp.com/tutorials/article/setup-use-amp-layouts/" target="_blank">How to use Layouts?</a>',
                 'title'    => __('AMP Layouts', 'accelerated-mobile-pages'),
                 'full_width'=>true, 
                 'class'     =>(!is_plugin_active('amp-layouts/amp-layouts.php')? '': 'hide'),//,

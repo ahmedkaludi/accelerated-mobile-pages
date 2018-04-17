@@ -1980,23 +1980,32 @@
                         }
                     }
 
-                    if ( isset ( $field['subtitle'] ) ) {
+                    if ( isset ( $field['tooltip-subtitle'] ) ) {
                        // $th .= '<span class="afw-tooltip"  title="' . $field['subtitle'] . ' <div><a targe="blank" href="https://google.com/">Create</a></div>"><i class="el el-question-sign "></i></span>';
-                        $th .= '<span class="afw-tooltip"><i class="el el-question-sign "></i> <span class="afw-help-subtitle">' . $field['subtitle'] .    '<div class="afw-tootip-bottom">
-                                    <span class="help-wrap">
-                                        <audio>
-                                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
-                                          Your browser does not support the audio tag.
-                                        </audio>
-                                          Listen
-                                    </span>
-                                    <span class="help-wrap"><i class="dashicons-before dashicons-video-alt3"></i>  See Video
-                                    </span>
-                                </div>
-                            </span></span>';
+                        $bottomTool = '';
+                        if(isset($field['tooltip-audio']) || isset($field['tooltip-video'])){
+                            $videoLink = $audioLink = '';
+                            if(isset($field['tooltip-video'])){
+                                $videoLink = '<span class="help-wrap"><a href="' . $field['tooltip-video'] . '"><i class="dashicons-before dashicons-video-alt3"></i>  See Video
+                                        </span>';
+                            }
+                            if(isset($field['tooltip-audio'])){
+                                $audioLink = ' <span class="help-wrap amp-opt-playAudio" data-audio-url="' . $field['tooltip-audio'] .    '">
+                                                     <i class="dashicons-before dashicons-controls-play"></i>
+                                                      Listen
+                                                </span>';
+                            }
+                            $bottomTool = '<div class="afw-tootip-bottom">
+                                        '. $audioLink .'
+                                        '. $videoLink .'
+                                    </div>';
+                        }
+                        $th .= '<span class="afw-tooltip"><i class="el el-question-sign "></i> 
+                                    <span class="afw-help-subtitle">' . $field['tooltip-subtitle'] . $bottomTool. '</span>
+                                </span>';
                     }
-                    if(isset($field['subtitle-html'])){
-                        $th .= '<span class="description">' . $field['subtitle-html'] . '</span>';
+                    if(isset($field['subtitle'])){
+                        $th .= '<span class="description">' . $field['subtitle'] . '</span>';
                     }
                 }
 
@@ -3215,14 +3224,18 @@
                     $subsectionsClass .= ( ! isset ( $section['fields'] ) || empty ( $section['fields'] ) ) ? ' empty_section' : '';
                     $extra_icon = $subsections ? '<span class="extraIconSubsections"><i class="el el-chevron-down">&nbsp;</i></span>' : '';
 
-                    $enabledOptions = array('basic', 'design', 'opt-go-premium');
+
                     $addClass = ''; $style="";
-                    if(!in_array($section['id'], $enabledOptions)){
-                        $addClass = 'otherSectionFields';
-                        $style="style='display:none;'";
+                    $current_screen = get_current_screen(); 
+                    if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
+                        $enabledOptions = array('basic', 'design', 'opt-go-premium');
+                        if(!in_array($section['id'], $enabledOptions)){
+                            $addClass = 'otherSectionFields';
+                            $style="style='display:none;'";
+                        }
                     }
 
-                    $string .= '<li id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="redux-group-tab-link-li '.$addClass.'' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . '" '.$style.'>';
+                    $string .= '<li id="' . esc_attr( $k . $suffix ) . '_section_group_li" class="redux-group-tab-link-li '.$addClass.'' . esc_attr( $hide_section ) . esc_attr( $section['class'] ) . esc_attr( $subsectionsClass ) . ' ' . strtolower( wp_kses_post( $section['id'] )) . '" '.$style.'>';
                     $string .= '<a href="javascript:void(0);" id="' . esc_attr( $k . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $k ) . '" data-rel="' . esc_attr( $k . $suffix ) . '">' . $extra_icon . $icon . '<span class="group_title">' . wp_kses_post( $section['title'] ) . '</span></a>';
 
                     $nextK = $k;
