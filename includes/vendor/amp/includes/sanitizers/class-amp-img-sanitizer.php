@@ -12,6 +12,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	protected $is_lightbox = false;
 
+	protected $scripts = array();
+
 	public static $tag = 'img';
 
 	private static $anim_extension = '.gif';
@@ -127,13 +129,14 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	public function get_scripts() {
 		if ( $this->is_lightbox ) {
-			return array( self::$script_slug_lightbox => self::$script_src_lightbox, self::$script_slug => self::$script_src );
+			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
+		}
 
+		if ( $this->did_convert_elements ) {
+			$this->scripts[self::$script_slug] = self::$script_src;
 		}
-		if (  ! $this->did_convert_elements ) {
-			return array();
-		}
-		return array( self::$script_slug => self::$script_src );
+
+		return $this->scripts;
 	}
 
 	private function filter_attributes( $attributes ) {
