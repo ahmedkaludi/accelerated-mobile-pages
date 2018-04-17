@@ -4225,7 +4225,7 @@ function ampforwp_rel_canonical_home_archive(){
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
-		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( $amp_url ) ) ?>">
+		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
 	<?php }
 
 	if(is_search()){
@@ -4241,7 +4241,7 @@ function ampforwp_rel_canonical_home_archive(){
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} 
 		?>
-		<link rel="canonical" href="<?php echo untrailingslashit( esc_url( $amp_url ) ); ?>">
+		<link rel="canonical" href="<?php echo untrailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url) ) ); ?>">
 	<?php
 	}
 				
@@ -6413,4 +6413,11 @@ function ampforwp_correct_frontpage() {
 	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
 	return $post_id;
 	
+}
+
+add_filter('ampforwp_modify_rel_url', 'new_url'); 
+function new_url($url) {
+
+	$url = 'yallah';
+	return $url;
 }
