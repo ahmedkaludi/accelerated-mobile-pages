@@ -33,7 +33,6 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
  	
 	 }
 	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
-	<?php do_action( 'ampforwp_after_header', $template ); ?>
 	<article class="amp-wp-article">
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
