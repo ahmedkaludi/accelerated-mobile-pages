@@ -46,7 +46,7 @@ jQuery(function($) {
                             $('.redux-tab-container').each(function(){
                                 $(this).find('.redux-tab-selector:first').click();
                             });
-                            hideReduxFields();
+                            //hideReduxFields();
                             return false;
                         }
                         var item = $(this);
@@ -75,10 +75,94 @@ jQuery(function($) {
                 captureLength:0
             });
         }
-    $(document).ready(function() {
 
-/*---------Google Fonts ------------*/
-// Google Font details 
+    //option panel Section Division
+    var optionSectionDevision = function(){
+        $('.afw-accordion-header').click(function(){
+            //Get Cookie Changes
+            if ( $.cookie( "redux_current_section_customize" )){
+                 var allReduxTabs = JSON.parse($.cookie( "redux_current_section_customize" ));   
+            }else{
+               var allReduxTabs = {};
+            }
+            
+            var section = $(this).attr("id");
+            section = section.replace("section-","section-table-");
+           
+            if($("#"+section).is(':visible')){
+                $("#"+section).hide();
+                $(this).removeClass("afw-accordion-tab-open").addClass("afw-accordion-tab-close");
+                allReduxTabs[section] = 'hide';
+            }else{
+                $("#"+section).show();
+                $(this).removeClass("afw-accordion-tab-close").addClass("afw-accordion-tab-open");
+                allReduxTabs[section] = 'show';
+            }
+
+            //Set Cookie Changes
+            $.cookie(
+                'redux_current_section_customize', JSON.stringify(allReduxTabs), {
+                    expires: 7,
+                    path: '/'
+                }
+            );
+        });
+        //While loading at first time
+        if($('.afw-accordion-header').length>0){
+            //console.log($.cookie( "redux_current_section_customize" ));
+            if ( $.cookie( "redux_current_section_customize" ) ){
+                var tabsValue = JSON.parse($.cookie( "redux_current_section_customize" ));
+            }else{
+                var tabsValue = "";
+            }
+            $('.afw-accordion-header').each(function(){
+
+                var reduxAccordianHeader = $(this);
+                var section = reduxAccordianHeader.attr("id");
+                section = section.replace("section-","section-table-");
+
+                if(tabsValue[section]){
+                    var currentSettings = tabsValue[section];
+                    if(currentSettings=='hide'){
+                        reduxAccordianHeader.removeClass("afw-accordion-tab-open").addClass("afw-accordion-tab-close");
+                    }else if(currentSettings=='show'){
+                        reduxAccordianHeader.removeClass("afw-accordion-tab-close").addClass("afw-accordion-tab-open");
+                    }
+                }
+
+                if(reduxAccordianHeader.hasClass('afw-accordion-tab-close')){
+                    $("#"+section).hide();
+                }else if(reduxAccordianHeader.hasClass('afw-accordion-tab-open')){
+                    $("#"+section).show();
+                }
+
+            })
+        }
+    }//Cloesed function  = optionSectionDevision
+
+    var hideReduxLeftTabs = function(){
+         jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
+            if(key>2){
+                jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
+            }
+        });
+    }
+    $(document).ready(function() {
+        if(getQueryStringValue('page')=='amp_options'){
+            //Tab section implementation
+            optionSectionDevision();
+            //To Show title on the top; In front of search bar
+            if($( '.redux-group-tab-link-a' ).length){
+             redux_title_modify();    
+            }
+
+            //To Hide Leftsidebar option Below Extension
+            hideReduxLeftTabs();
+        }
+        
+
+    /*---------Google Fonts ------------*/
+    // Google Font details 
 
 
  
@@ -293,6 +377,7 @@ var reduxOptionTab = function(){
 } 
 //reduxOptionTab();   
 
+//Deactivate License key
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
@@ -379,10 +464,58 @@ var redux_title_modify = function(){
 
     });
 }
-if($( '.redux-group-tab-link-a' ).length){
- redux_title_modify();    
-}
+    
+
+    //Redux Extension part modify
+    $(".goToSecondPage").click(function(e){
+        var dataExtDetails = $(this).attr('data-ext-details');
+        console.log(dataExtDetails);
+        dataExtDetails = JSON.parse(dataExtDetails);
+        $(this).parents(".extension_listing").hide();
+        extensionListSeconPage("Add",dataExtDetails,$(this));
+        
+    });
+
+   
+    jQuery( '.redux-group-tab-link-a' ).click(function(){
+        if(jQuery(this).parent('li').hasClass('otherSectionFields')){
+            jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
+            if(!jQuery(this).parent('li').is(':visible')){
+                jQuery(this).parent('li').show();
+            }
+        }else{
+            console.log(jQuery(this).parent('li').siblings('li.otherSectionFields'));
+             jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
+        }
+    });
 
 
 });
 
+var extensionListSeconPage = function($operation, detailsArray,event){
+    switch($operation){
+        case 'Add':
+            var listDescriptionHtml = '<div>'+
+                                        '<h3>'+
+                                            '<span class="backtoextensionlist"><i class="dashicons dashicons-arrow-left-alt"></i>All Extensions</span>'+
+                                            ' > '+detailsArray['name']+'</h3>'+
+                                        '<img src="'+detailsArray['img_src']+'">'+
+                                        '<div>'+detailsArray['desc']+'</div>'+
+                                        '</div>';
+            event.parents(".extension_listing").after('<div class="extension_list_desc">'+listDescriptionHtml+'</div>');
+            descriptionOperation();
+        break;
+        default:
+        break;
+    }
+}
+
+var descriptionOperation = function(){
+    jQuery(".backtoextensionlist").click(function(){
+        jQuery(this).parents('.redux-section-desc').find('.extension_listing').show();
+        jQuery(this).parents('.redux-section-desc').find(".extension_list_desc").remove();
+    });
+}
+function getQueryStringValue (key) {  
+  return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+}  

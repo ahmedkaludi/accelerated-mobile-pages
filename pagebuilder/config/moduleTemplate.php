@@ -61,6 +61,7 @@ $front_css = '
 	background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    background-position:{{align_type}};
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
@@ -75,7 +76,10 @@ $front_css = '
 	
 	{{shadow}}
 }
-
+@media(max-width:768px){
+	{{row-class}}.amppb-fluid{width:100%;}
+	{{row-class}}.amppb-fluid .col{max-width:90%;}
+}
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
 .amppb-fixed .col {max-width: {{fixed-width}};width:1125px;margin: 0 auto;}';
@@ -157,7 +161,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-wrapper",
-								'label'		=>'Width',
+								'label'		=>'Wrapper',
 								'tab'		=>'customizer',
 								'default'	=>'90%',
 								'content_type'=>'css',
@@ -186,6 +190,19 @@ $containerCommonSettings = array(
 	 													),
 	 							'content_type'=>'css',
 	 							'output_format'=>''
+	 						),
+	 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Background Position",
+								'tab'     =>'customizer',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('background_type'=>'image')
 	 						),
 	 						array(
 								'type'		=>'upload',

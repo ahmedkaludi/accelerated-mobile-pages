@@ -71,14 +71,20 @@ function ampforwp_get_search_form() {
 	if ( is_search_enabled_in_ampforwp() ) {
 		global $redux_builder_amp;
 		$action_url = '';
+		$amp_query_variable = '';
+		$amp_query_variable_val = '';
 		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
 		$action_url = esc_url( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
+		if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
+			$amp_query_variable = 'amp';
+			$amp_query_variable_val = '1';
+		}
 	  $form = '<form role="search" method="get" id="searchform" class="searchform" target="_top" action="' . $action_url  .'">
 <div>
 <label class="screen-reader-text" for="s">' . $label . '</label>
-<input type="text" placeholder="AMP" value="1" name="amp" class="hide" id="ampsomething" />
+<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hide" id="ampforwp_search_query_item" />
 <input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
 <input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 </div>

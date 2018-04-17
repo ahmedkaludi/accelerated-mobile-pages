@@ -6,9 +6,9 @@ Show Front Data
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
 	global $post,  $redux_builder_amp;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
@@ -16,7 +16,6 @@ function amp_pagebuilder_content(){
 			$postId = pll_get_post($front_page_id);
 		}
 	}
-
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	
 	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
@@ -43,9 +42,9 @@ add_action('amp_post_template_head','ampforwp_pagebuilder_header_html_output',11
 function ampforwp_pagebuilder_header_html_output(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -62,9 +61,9 @@ add_action('amp_post_template_data','amp_pagebuilder_script_loader',100);
 function amp_pagebuilder_script_loader($scriptData){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
@@ -122,9 +121,9 @@ add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ) {
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
@@ -149,6 +148,9 @@ function amp_pagebuilder_content_styles(){
 
 @media(max-width:1024px){
 .amppb-fixed{width:100%;}
+}
+@media(max-width:425px){
+.col-2{width:100%;float:none;margin-bottom:10%;}
 }
 ';
 
@@ -288,19 +290,21 @@ function amp_pagebuilder_content_styles(){
 							continue;
 						}
 						foreach($moduleTemplate[$contentArray['type']]['fields'] as $modulefield){
-							//LOAD Icon Css 
-							if($modulefield['type']=='icon-selector'){
-								add_amp_icon(array($contentArray[$modulefield['name']]));
-							}
 							$replaceModule = "";
 							if(isset($contentArray[$modulefield['name']])){
 								$replaceModule = $contentArray[$modulefield['name']];
 							}else{
 								$replaceModule = getdefaultValue($modulefield['name'],$moduleTemplate[$contentArray['type']]['fields']);
 							}
+							//LOAD Icon Css 
+							if($modulefield['type']=='icon-selector'){
+								add_amp_icon(array($replaceModule));
+							}
+							
 							if($modulefield['content_type']=='css'){
 								
 								if(isset($modulefield['required']) && count($modulefield['required'])>0){
+									$requiredCheck[] = true;
 									foreach($modulefield['required'] as $requiredKey=>$requiredValue){
 										//if value not set than get default value
 										if(!isset($contentArray[$requiredKey])){
@@ -309,9 +313,15 @@ function amp_pagebuilder_content_styles(){
 											$userSelectedvalue = $contentArray[$requiredKey];
 											
 										}
-										if($userSelectedvalue != $requiredValue){
-											$replaceModule ='';
+										if(is_array($requiredValue) && !in_array($userSelectedvalue, $requiredValue) ){
+											$requiredCheck[] = false;
+										}elseif($userSelectedvalue != $requiredValue){
+											$requiredCheck[] = false;
 										} 
+									}
+									$requiredCheck = array_unique($requiredCheck);
+									if(count($requiredCheck)>1 && $requiredCheck[0] != true){
+										$replaceModule ='';
 									}
 
 								}
@@ -328,6 +338,46 @@ function amp_pagebuilder_content_styles(){
 										$completeCss = str_replace('{{'.$modulefield['name'].'}}', $replacespacing, $completeCss);
 										
 									break;
+									case 'upload':
+										$image_alt = $imageUrl = $imageWidth = $imageHeight = '';
+										if(isset($contentArray[$modulefield['name']."_image_data"])){
+										 	$replace= $contentArray[$modulefield['name']."_image_data"];
+										 	$imageUrl = $replace[0];
+											$imageWidth = $replace[1];
+											$imageHeight = $replace[2];
+											$image_alt = (isset($replace['alt'])? $replace['alt']: "");;
+										}elseif($replaceModule != ""){
+											$imageDetails = ampforwp_get_attachment_id( $replaceModule);
+											if(is_array($imageDetails)){
+												$imageUrl = (isset($imageDetails[0])? $imageDetails[0]: "");
+												$imageWidth = (isset($imageDetails[1])? $imageDetails[1]: "");
+												$imageHeight = (isset($imageDetails[3])? $imageDetails[2]: "");	
+												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
+											}
+										}
+
+										$completeCss = str_replace(
+														'{{'.$modulefield['name'].'}}', 
+														 $imageUrl, 
+														$completeCss
+													);
+										$completeCss = str_replace(
+													array('{{image_width}}','{{image_width_'.$modulefield['name'].'}}'), 
+													array($imageWidth,$imageWidth), 
+													$completeCss
+												);
+										$completeCss = str_replace(
+													array('{{image_height}}','{{image_height_'.$modulefield['name'].'}}'), 
+													array($imageHeight,$imageHeight), 
+													$completeCss
+												);
+										$completeCss = str_replace(
+													array('{{image_alt}}','{{image_alt_'.$modulefield['name'].'}}'), 
+													array($image_alt,$image_alt), 
+													$completeCss
+												);
+
+									break;
 									default:
 										if(is_array($replaceModule)){
 											/*foreach ($contentArray[$modulefield['name']] as $key => $cssValue) {
@@ -339,6 +389,7 @@ function amp_pagebuilder_content_styles(){
 									break;
 								}
 							}
+
 							$completeCss = ampforwp_replaceIfContentConditional($modulefield['name'], $replaceModule, $completeCss);
 						}
 						echo amppb_validateCss($completeCss);
@@ -439,9 +490,9 @@ function amppb_validateCss($css){
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
 	global $moduleTemplate, $layoutTemplate, $containerCommonSettings;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	$postId = (is_object($post)? $post->ID: '');
+	if( ampforwp_is_front_page() && ampforwp_correct_frontpage() ){
+		$postId = ampforwp_correct_frontpage();
 	}
 	if ( ampforwp_polylang_front_page() ) {
 		$front_page_id = get_option('page_on_front');
@@ -526,7 +577,11 @@ function rowData($container,$col,$moduleTemplate){
 	$ampforwp_show_excerpt = true;
 	$html = '';
 	if(count($container)>0){
-		$html .= "<div class='col col-".$col."'>";
+		$parentclass= "col-".$col;
+		if($col == 1){
+			$parentclass = 'col '.$parentclass;
+		}
+		$html .= "<div class='$parentclass'>";
 		//sort modules by index
 		$container = sortByIndex($container);
 		if(count($container)>0){
@@ -697,7 +752,7 @@ function rowData($container,$col,$moduleTemplate){
 						//The Query
 						$the_query = new WP_Query( $args );
 						$totalLoopHtml = $moduleTemplate[$contentArray['type']]['front_loop_content'];
-						$totalLoopHtml = contentHtml($the_query,$fieldValues,$totalLoopHtml);
+						$totalLoopHtml = ampforwp_contentHtml($the_query,$fieldValues,$totalLoopHtml);
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
 							foreach($moduleTemplate[$contentArray['type']]['fields'] as $key => $field){
 								$totalLoopHtml = ampforwp_replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $totalLoopHtml);

@@ -285,6 +285,17 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			$supported_types = apply_filters('get_amp_supported_post_types',$supported_types);
 
 			$type = get_post_type();
+			if(is_home() || is_front_page()){
+		      if(isset($redux_builder_amp['ampforwp-homepage-on-off-support']) 
+		          && $redux_builder_amp['ampforwp-homepage-on-off-support'] == 1 
+		          && isset($redux_builder_amp['amp-on-off-for-all-posts']) 
+		          && $redux_builder_amp['amp-on-off-for-all-posts'] == 0 
+		          && isset($redux_builder_amp['amp-on-off-for-all-pages']) 
+		          && $redux_builder_amp['amp-on-off-for-all-pages'] == 0 ){
+
+                  $supported_types['post'] = 'post';
+      			}
+		    }
 			$supported_amp_post_types = in_array( $type , $supported_types );
 
 			$query_arg_array = $wp->query_vars;
@@ -395,10 +406,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 		            }
 				}
-		        if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
-		           
+        
+          if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
 		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-	            }
+	         }
 
 	        // Archive Pages
 	        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
@@ -4071,9 +4082,10 @@ function ampforwp_post_paginated_link_generator( $i ) {
 		}
 
 		$url = get_preview_post_link( $post, $query_args, $url );
-	}
 
-	return '<a href="' . esc_url( $url ) . '?amp">';
+	}
+	$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+	return '<a href="' . esc_url( $url ) . '">';
 }
 
 add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_rel_amphtml_paginated_post');
@@ -4081,9 +4093,18 @@ function ampforwp_modify_rel_amphtml_paginated_post($url) {
 	if(is_single()){
 			$post_paginated_page='';
 			$post_paginated_page = get_query_var('page');
+			$permalink_structure = '';
+			$permalink_structure = get_option('permalink_structure');
 			if($post_paginated_page){
 				$url = get_permalink();
-				$new_url = $url."$post_paginated_page/?amp";
+				if('' == $permalink_structure){
+					$new_url = add_query_arg('page',$post_paginated_page,$url);
+				}
+				else{
+					$new_url = trailingslashit($url).$post_paginated_page;
+				}
+
+				$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$new_url);
 				return $new_url;
 			}
 		} 
@@ -4104,13 +4125,22 @@ function ampforwp_modify_rel_canonical_paginated_post(){
 function ampforwp_rel_canonical_paginated_post(){
 		$post_paginated_page='';
 		$new_canonical_url = '';
+		$permalink_structure = '';
+		$permalink_structure = get_option('permalink_structure');
 		global $post;
 	    $current_post_id = $post->ID;
 	    $new_canonical_url = get_permalink($current_post_id);
 	    $new_canonical_url = trailingslashit($new_canonical_url);
 		$post_paginated_page = get_query_var('page');
-		if($post_paginated_page){?>
-			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
+		if($post_paginated_page){
+			if('' == $permalink_structure){
+				$new_canonical_url = add_query_arg('page',$post_paginated_page,$new_canonical_url);
+			}
+			else{
+				$new_canonical_url = $new_canonical_url.$post_paginated_page;
+			}
+			?>
+			<link rel="canonical" href="<?php echo $new_canonical_url ?>/" /><?php  } 
 }
 add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
@@ -4197,7 +4227,7 @@ function ampforwp_rel_canonical_home_archive(){
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
-		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( $amp_url ) ) ?>">
+		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
 	<?php }
 
 	if(is_search()){
@@ -4213,7 +4243,7 @@ function ampforwp_rel_canonical_home_archive(){
 			$amp_url 				= $amp_url ."?s=".get_search_query();
 		} 
 		?>
-		<link rel="canonical" href="<?php echo untrailingslashit( esc_url( $amp_url ) ); ?>">
+		<link rel="canonical" href="<?php echo untrailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url) ) ); ?>">
 	<?php
 	}
 				
@@ -4470,8 +4500,7 @@ global $redux_builder_amp, $post;
 		$featured_image_field = $redux_builder_amp['ampforwp-custom-fields-featured-image'];
 		if(in_array($featured_image_field, $custom_fields_name)){
 			$amp_img_src = $custom_fields[$featured_image_field][0];
-			
-			$image = @getimagesize($amp_img_src);			
+      $image = @getimagesize($amp_img_src);	
 			if(empty($image) || $image==false){
 				$img_id  	 = attachment_url_to_postid($amp_img_src);
 				$imageDetail = wp_get_attachment_image_src( $img_id , 'full');
@@ -4732,9 +4761,11 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	if(is_object($post)){
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	}
 	//Grab the First Image
-	if ( $matches[0] ) {
+	if (is_array($matches) &&  $matches[0] ) {
 		$image_url 		= $matches[1][0];
 		$image_html 	= $matches[0][0];
 		$image_width 	= $matches[2][0];
@@ -4804,6 +4835,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	global $redux_builder_amp, $post;
 	$url = $title = $id = $author_id = $author_name = '';
 	$url = get_the_permalink();
+	if(!is_object($post)){ return ''; }
 	$title = $post->post_title;
 	$id = $post->ID;
 	$author_id = $post->post_author;
@@ -5302,7 +5334,7 @@ if( ! function_exists('ampforwp_get_comments_gravatar') ){
 		return get_avatar_url( $comment, apply_filters( 'ampforwp_get_comments_gravatar', '60' ), '' );
 	}
 	else
-		return;    	
+		return apply_filters( 'ampforwp_get_comments_gravatar', '' );   	
 	}
 }
 // Gravatar Checker
@@ -5769,14 +5801,13 @@ function ampforwp_default_logo($param=""){
 		$logo_id  = get_theme_mod( 'custom_logo' );
 		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
 		$image 	  = @getimagesize($redux_builder_amp['opt-media']['url']);
-		
+
 		if(empty($image) || $image==false){
 			$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
 			$imageDetail 	 = wp_get_attachment_image_src( $logo_id , 'full');
 			$image[0] = $imageDetail[1];
 			$image[1] = $imageDetail[2];
 		}
-
 		switch ($param) {
 			case 'url':
 					$value = $logo_url;
@@ -6342,4 +6373,21 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 					}(document, "script", "facebook-jssdk"));</script>';
 		}
 	}
+}
+
+//Common function to get frontpageID
+function ampforwp_correct_frontpage() {
+	global $redux_builder_amp;
+	$post_id = '';
+
+	//$post_id = get_the_ID();
+	if ( ampforwp_is_front_page() && $redux_builder_amp['amp-frontpage-select-option']==1 
+		&& isset( $redux_builder_amp['amp-frontpage-select-option-pages'] ) 
+		 ) { 
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	
+	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
+	return $post_id;
+	
 }

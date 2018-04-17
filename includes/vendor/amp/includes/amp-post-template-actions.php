@@ -11,7 +11,7 @@ function amp_post_template_add_title( $amp_template ) {
 add_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
 function amp_post_template_add_canonical( $amp_template ) {
 	?>
-	<link rel="canonical" href="<?php echo esc_url( $amp_template->get( 'canonical_url' ) ); ?>" />
+	<link rel="canonical" href="<?php echo esc_url( apply_filters('ampforwp_modify_rel_url',$amp_template->get( 'canonical_url' ) ) ); ?>" />
 	<?php
 }
 

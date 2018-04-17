@@ -45,6 +45,7 @@ $amp_q = '';
 $count = 1;
 function call_loops_standard($data=array()){
 	global $amp_q;
+	$post_type = get_post_type();
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -57,7 +58,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
 		$args =  array(
-			'post_type'           => 'post',
+			'post_type'           => $post_type,
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'tax_query' => array(
@@ -188,7 +189,8 @@ function amp_reset_loop(){
 }
 
 function amp_pagination($args =array()) {
-	global $amp_q, $redux_builder_amp;
+	global $amp_q, $wp_query, $redux_builder_amp;
+
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -207,11 +209,13 @@ function amp_pagination($args =array()) {
       $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
     }
 
-    echo '<div class="loop-pagination">
-      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
-        '.$pre_link.'
-      <div class="clearfix"></div>
-    </div>';
+    if ( $wp_query->max_num_pages > 1 ) { 
+	    echo '<div class="loop-pagination">
+	      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
+	        '.$pre_link.'
+	      <div class="clearfix"></div>
+	    </div>';
+	}
 }
 
 /***

@@ -340,6 +340,9 @@ function ampforwp_add_welcome_styling(){
 	$current = "";
 	$current = get_current_screen();
 
+	if(!is_object($current)){
+		return ;
+	}
 	if ( 'amp_page_ampforwp-welcome-page' == $current->base || 'toplevel_page_amp_options' == $current->base ) {
 	?>
     <style>
