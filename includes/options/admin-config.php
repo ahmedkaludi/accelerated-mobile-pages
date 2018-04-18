@@ -255,29 +255,6 @@ $extension_listing_array = array(
                         ),
                     );
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
-
-function ampforwp_is_plugin_active($extension_listing_array){
-    if(count($extension_listing_array)>0){
-        foreach ($extension_listing_array as $key => $plugin) {
-            if(isset($plugin['plugin_active_path']) && !empty($plugin['plugin_active_path']) && $plugin['is_activated']==2){
-                $explodeFolder = explode("/", $plugin['plugin_active_path']);
-                $apl=get_option('active_plugins');
-                if(count($apl)>0){
-                    foreach ($apl as $key => $plugin_path) {
-                        if(strpos($plugin_path, $explodeFolder[0])!==false && strpos($plugin_path, $explodeFolder[1])!==false){
-                            $extension_listing_array[$key]['is_activated'] = 1;
-                            $extension_listing_array[$key]['plugin_active_path'] = $plugin_path;
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }//foreach closed
-    }
-    return $extension_listing_array;
-}
-$extension_listing_array = ampforwp_is_plugin_active($extension_listing_array);
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
