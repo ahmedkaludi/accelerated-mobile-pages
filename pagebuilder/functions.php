@@ -117,7 +117,7 @@ function js_templates() {
 function checkAMPforPageBuilderStatus($postId){
 	global $post, $redux_builder_amp;
 	$postId = $post->ID;
-	if( ampforwp_is_front_page() ) ){
+	if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
 
