@@ -54,20 +54,32 @@ function loadComponents($componentName){
 // Icons
 $amp_icons_css = array();
 function add_amp_icon($args=array()){
-	global $amp_icons_css;
+	global $amp_icons_css, $redux_builder_amp;
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 	foreach ($args as $key ) {
 		if(isset($amp_icons_css_array[$key]))
 			$amp_icons_css[$key] = $amp_icons_css_array[$key]; 
 	}
-	add_action('amp_css', 'amp_icon_css');
+	// Design-1,2,3
+	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+		add_action('amp_post_template_css', 'amp_icon_css',999);
+
+	}
+	else
+		add_action('amp_css', 'amp_icon_css');  
 	
 }
 function amp_icon_css(){
-	global $amp_icons_css;
+	global $amp_icons_css, $redux_builder_amp;
 	foreach ($amp_icons_css as $key => $value) {
 	    echo $value;
 	}
+
+	// Add @font-face for Design-1,2,3
+	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) { ?>
+		@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>icomoon/icomoon.ttf');}
+		[class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+	<?php }
 }
 	
 /**
