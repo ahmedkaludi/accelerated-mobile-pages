@@ -6235,7 +6235,7 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 }
 
 // Filter for Frontpage id
-add_filter('ampforwp_frontpage_id', 'ampforwp_modified_frontpage_id');
+add_filter('ampforwp_modify_frontpage_id', 'ampforwp_modified_frontpage_id');
 if( ! function_exists('ampforwp_modified_frontpage_id') ) {
 	function ampforwp_modified_frontpage_id($page_id){
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
