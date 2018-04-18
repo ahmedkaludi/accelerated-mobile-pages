@@ -109,7 +109,9 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
 		$node->parentNode->replaceChild( $new_node, $node );
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
-			add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
+			if(is_singular()){
+				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
+			}
 			$this->is_lightbox = true;
 		}
 	}
