@@ -269,8 +269,8 @@ usort($extension_listing_array, function($a, $b){
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
-    $onclickUrl = '';//'<a href="'.$extension['url_link'].'" target="_blank">';
-    $onclickUrlclose = '';//'</a>';
+    $onclickUrl = '<a href="'.$extension['url_link'].'" target="_blank">';
+    $onclickUrlclose = '</a>';
     $settingPageUrl = '';
     $pluginReview = '<div class="extension_btn">From: '.$extension['price'].'</div>';
     if($extension['plugin_active_path'] != "" && is_plugin_active($extension['plugin_active_path']) ){
