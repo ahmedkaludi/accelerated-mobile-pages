@@ -6343,3 +6343,20 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 		}
 	}
 }
+
+//Common function to get frontpageID
+function ampforwp_correct_frontpage() {
+	global $redux_builder_amp;
+	$post_id = '';
+
+	//$post_id = get_the_ID();
+	if ( ampforwp_is_front_page() && $redux_builder_amp['amp-frontpage-select-option']==1 
+		&& isset( $redux_builder_amp['amp-frontpage-select-option-pages'] ) 
+		 ) { 
+		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	}
+	
+	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
+	return $post_id;
+	
+}
