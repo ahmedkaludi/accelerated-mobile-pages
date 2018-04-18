@@ -7,7 +7,7 @@ $css = '
 .testimonial-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .ln-fx{width:100%;display: flex;flex-wrap: wrap;}
 .testi-mod{-ms-flex: 1 0 100%;margin: 0 3% 2% 0px;width: 31.3%;position: relative;color: #26292c;}
-.testi-cont{width: 100%;padding: 30px 30px 25px 30px;font-size: {{tst-size}};background: #f4f4f4;position: relative;color:{{tst_color}};}
+{{module-class}} .testi-cont{width: 100%;padding: 30px 30px 25px 30px;font-size: {{tst-size}};background: #f4f4f4;position: relative;color:{{tst_color}};}
 {{module-class}} .testi-cont p{margin-bottom:5px;}
 .testi-cont:after{content:"";width: 0;height: 0;border-style: solid; border-width: 20px 20px 0 20px;border-color: #f4f4f4 transparent transparent transparent;bottom:-20px;position:absolute;}
 .testi-mod:nth-child(3),.testi-mod:nth-child(6),.testi-mod:nth-child(9){margin-right:0;}
