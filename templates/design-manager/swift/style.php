@@ -57,8 +57,12 @@ header .cntr{
 <?php } else{ ?>
 .h_m{
 	position: static;
-<?php if($redux_builder_amp['swift-border-line-control']){?>border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;<?php } ?>
-<?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>border-color:<?php echo $redux_builder_amp['swift-border-color-control'] ['rgba'] ?>;<?php } ?>
+	<?php if($redux_builder_amp['swift-background-scheme']['rgba']){?>background: <?php echo $redux_builder_amp['swift-background-scheme'] ['rgba'] ?>;<?php }?>
+	<?php if($redux_builder_amp['swift-border-line-control']){?>border-bottom: <?php echo $redux_builder_amp['swift-border-line-control'] ?>px solid;<?php } ?>
+	<?php if($redux_builder_amp['swift-border-color-control']['rgba']){?>border-color:<?php echo $redux_builder_amp['swift-border-color-control'] ['rgba'] ?>;<?php } ?>
+	<?php if($redux_builder_amp['swift-boxshadow-checkbox-control']){?>box-shadow:0px 0px 2px 2px #ccc;<?php }?>
+	<?php if($redux_builder_amp['swift-padding-control']){?>padding: <?php echo $redux_builder_amp['swift-padding-control']['padding-top'] .' '.$redux_builder_amp['swift-padding-control']['padding-right'] .' '.$redux_builder_amp['swift-padding-control']['padding-bottom']  .' '.$redux_builder_amp['swift-padding-control']['padding-left'] ; ?>;<?php } ?>
+	<?php if($redux_builder_amp['swift-margin-control']){?>margin: <?php echo  $redux_builder_amp['swift-margin-control']['margin-top'] .' '.$redux_builder_amp['swift-margin-control']['margin-right'] .' '.$redux_builder_amp['swift-margin-control']['margin-bottom']  .' '.$redux_builder_amp['swift-margin-control']['margin-left'] ; ?>;<?php } ?>
 }
 .content-wrapper{
 	margin-top:0px;
