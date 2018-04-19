@@ -139,26 +139,7 @@ jQuery(function($) {
         }
     }//Cloesed function  = optionSectionDevision
 
-    var hideReduxLeftTabs = function(){
-         jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
-            if(key>2){
-                jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
-            }
-        });
-
-        jQuery( '.redux-group-tab-link-a' ).click(function(){
-            if(jQuery(this).parent('li').hasClass('otherSectionFields')){
-                jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
-                if(!jQuery(this).parent('li').is(':visible')){
-                    jQuery(this).parent('li').show();
-                }
-            }else{
-                jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
-                jQuery(this).parent('li').siblings('li.active').show();
-
-            }
-        });
-    }
+    
     var showExtensionTabs = function(){
         var currentTab = getQueryStringValue('tabid');
         if(currentTab!="" && $("li."+currentTab).length>0){
@@ -174,8 +155,8 @@ jQuery(function($) {
              redux_title_modify();    
             }
 
-            //To Hide Leftsidebar option Below Extension
-            hideReduxLeftTabs();
+            
+
             showExtensionTabs();
         }
 
