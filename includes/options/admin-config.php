@@ -3638,7 +3638,7 @@ Redux::setSection( $opt_name, array(
                     'type'           => 'spacing',
                     'output'         => array('.header'),
                     'mode'           => 'padding',
-                    'units'          => array('px'),
+                    'units'          => array('px','%'),
                     'units_extended' => 'false',
                     'title'          => __('Padding', 'accelerated-mobile-pages'),
                     'default'            => array(
