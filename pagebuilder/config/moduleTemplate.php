@@ -80,6 +80,17 @@ $front_css = '
 	{{row-class}}.amppb-fluid{width:100%;}
 	{{row-class}}.amppb-fluid .col{max-width:90%;}
 }
+
+@media(max-width:425px){
+{{row-class}}{
+	{{if_condition_check_for_pdng==1}}
+		padding:{{res_pdng}};
+	{{ifend_condition_check_for_pdng_1}}
+	{{if_condition_check_for_mrgn==1}}
+		margin: {{res_mrgn}};
+	{{ifend_condition_check_for_mrgn_1}}
+}
+}
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
 .amppb-fixed .col {max-width: {{fixed-width}};width:1125px;margin: 0 auto;}';
@@ -308,12 +319,12 @@ $containerCommonSettings = array(
 								'label'		=>'Set Margin',
 								'tab'		=>'container_css',
 								'default'	=>
-                            array(
-                                'top'=>'0px',
-                                'right'=>'auto',
-                                'bottom'=>'0px',
-                                'left'=>'auto',
-                            ),
+					                            array(
+					                                'top'=>'0px',
+					                                'right'=>'auto',
+					                                'bottom'=>'0px',
+					                                'left'=>'auto',
+					                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -329,6 +340,64 @@ $containerCommonSettings = array(
 												),
 								'content_type'=>'css',
 								'output_format'=>"padding: %left% %right% %top% %bottom%"
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_pdng",
+                                'label'     => 'Responsive Padding',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_pdng",
+								'label'		=>'Set Padding',
+								'tab'		=>'container_css',
+								'default'	=>array(
+													'top'=>'0px',
+													'right'=>'0px',
+													'bottom'=>'0px',
+													'left'=>'0px'
+												),
+								'content_type'=>'css',
+								'required'  => array('check_for_pdng'=>1),
+								
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_mrgn",
+                                'label'     => 'Responsive Margin',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_mrgn",
+								'label'		=>'Set Margin',
+								'tab'		=>'container_css',
+								'default'	=>
+				                            array(
+				                                'top'=>'0px',
+				                                'right'=>'auto',
+				                                'bottom'=>'0px',
+				                                'left'=>'auto',
+				                            ),
+								'content_type'=>'css',
+								'required'  => array('check_for_mrgn'=>1),
 							),
 						),
 			'front_template_start'=>$output,
