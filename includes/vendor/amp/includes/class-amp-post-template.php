@@ -39,10 +39,11 @@ class AMP_Post_Template {
 
 	public function __construct( $post_id ) {
 		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__DIR__ . '/templates' );
-
+		if ( ampforwp_get_frontpage_id() ) {
+			$post_id = ampforwp_get_frontpage_id();
+		}
 		$this->ID = $post_id;
 		$this->post = get_post( $post_id );
-
 		$content_max_width = self::CONTENT_MAX_WIDTH;
 		if ( isset( $GLOBALS['content_width'] ) && $GLOBALS['content_width'] > 0 ) {
 			$content_max_width = $GLOBALS['content_width'];
@@ -245,7 +246,7 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_content() {
-		if(!empty($this->post->post_content)){
+		if( !empty($this->post->post_content) && false === ampforwp_is_home() && false === is_archive() ){
 			$amp_content = new AMP_Content( $this->post->post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
 					'AMP_Twitter_Embed_Handler' => array(),
