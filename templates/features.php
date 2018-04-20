@@ -5710,6 +5710,11 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 // 98. Create Dynamic url of amp according to the permalink structure #1318
 function ampforwp_url_controller( $url, $nonamp = '' ) {
 	global $redux_builder_amp;
+	$non_amp = false;
+	$non_amp = apply_filters( 'ampforwp_non_amp_links', $non_amp );
+	if($non_amp == true){
+		return $url;
+	}
 	$new_url = "";
 	$get_permalink_structure = "";
 	if ( ampforwp_amp_nonamp_convert("", "check") || (isset($redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover']) ) {
