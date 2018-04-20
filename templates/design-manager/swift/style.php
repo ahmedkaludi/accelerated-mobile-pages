@@ -73,7 +73,7 @@ header .cntr{
 .h-call a:after{content: "\e0cd";}
 .h-shop a:after{align-self: center;}
 .h-ic{margin:0px 10px; align-self: center;}
-.amp-logo a{line-height:0;display:inline-block;color:#000;}
+.amp-logo a{line-height:0;display:inline-block;<?php if(isset($redux_builder_amp['swift-element-color-control'] ['rgba']) && $redux_builder_amp['swift-element-color-control'] ['rgba']){?>color:<?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .logo h1{margin: 0;font-size: 17px;font-weight: 700;text-transform: uppercase;display:inline-block;}
 .h-srch a{line-height:1;display:block;}
 .amp-logo amp-img{margin: 0 auto;}
