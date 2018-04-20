@@ -6375,8 +6375,15 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 	}
 }
 
-//Common function to get frontpageID
+
+// Backward Compatibility
 function ampforwp_correct_frontpage() {
+
+	return ampforwp_get_frontpage_id();
+}
+
+//Common function to get frontpageID
+function ampforwp_get_frontpage_id() {
 	global $redux_builder_amp;
 	$post_id = '';
 
