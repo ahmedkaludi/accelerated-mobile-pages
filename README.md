@@ -182,8 +182,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.85.5 =
-* Minor Bugs fixed 
+= 0.9.85.5 (21st April 2018) =
+* Added: Filter added to modify frontpage post id `ampforwp_modify_frontpage_id` 
+* Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
+* Other minor bugs fixed
 
 = 0.9.85.3 (12th April 2018) =
 * Added: Custom Post type Archive Page support #1995
