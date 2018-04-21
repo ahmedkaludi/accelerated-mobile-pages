@@ -3,12 +3,17 @@ $output = '
 	{{if_condition_video_option==custom}}
 	<amp-video width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
 	 layout="responsive"   
-	  poster="{{poster}}"
+	  {{if_condition_custom_video_more_info==1}}poster="{{poster}}"
+	  artist="{{artist}}"
+	  album="{{album}}"
 	  artwork="{{artwork}}"
-	  title="{{video_title}}" artist="{{artist}}"
-	  album="{{album}}" controls>
+	  title="{{video_title}}"{{ifend_condition_custom_video_more_info_1}}
+	  {{if_condition_autoplay==1}} autoplay {{ifend_condition_autoplay_1}}
+	  controls >
 	  <source src="{{video_upload_link}}"
     type="video/mp4" />
+    <source type="{{video_upload_link}}"
+    src="/video/tokyo.webm">
 	</amp-video>
 	{{ifend_condition_video_option_custom}}
 
@@ -38,7 +43,7 @@ return array(
 						array(		
  							'type'	   	=>'select',		
  							'name'  	=>'video_option',		
- 							'label' 	=>"Video type",
+ 							'label' 	=>"Type",
 							'tab'     	=>'customizer',
  							'default' 	=>'youtube',
  							'options_details'=>array(
@@ -108,18 +113,33 @@ return array(
 	           								),
  						),
  						array(		
-		 						'type'		=>'checkbox_bool',		
-		 						'name'		=>"custom_video_more_info",		
-		 						'label'		=>'Extra Information',
-		           				'tab'     	=>'customizer',
-		 						'default'	=>0,
-		 						'content_type'=>'html',	
-		           				'options'	=>array(
+	 						'type'		=>'checkbox_bool',		
+	 						'name'		=>"autoplay",		
+	 						'label'		=>'Autoplay',
+	           				'tab'       =>'customizer',
+	 						'default'	=>0,
+	 						'options'	=>array(
 												array(
-													'label'=>'Extra details about the video',
+													'label'=>'Setting autoplay will automatically play/pause the video as it is scrolled into/out of view on supported browsers.',
 													'value'=>1,
 												),
 											),
+	 						'content_type'=>'html',
+	           				'required'  => array('video_option'=>'custom'),
+ 						),
+ 						array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"custom_video_more_info",		
+		 						'label'		=>'Customize Media Notifications',
+		           				'tab'     	=>'customizer',
+		 						'default'	=>0,
+		           				'options'	=>array(
+												array(
+													'label'=>'you can now show rich notifications that describe the playing media',
+													'value'=>1,
+												),
+											),
+		           				'content_type'=>'html',
 		           				'required'  => array('video_option'=>'custom')
 	 						),
  						array(		
@@ -129,7 +149,7 @@ return array(
 	           				'tab'       =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('custom_video_more_info'=>1),
+	           				'required'  => array('video_option'=>'custom','custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'text',		
@@ -138,7 +158,7 @@ return array(
 	           				'tab'       =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('custom_video_more_info'=>1),
+	           				'required'  => array('video_option'=>'custom','custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'upload',		
@@ -147,7 +167,7 @@ return array(
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('custom_video_more_info'=>1),
+	           				'required'  => array('video_option'=>'custom','custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'upload',		
@@ -156,7 +176,7 @@ return array(
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('custom_video_more_info'=>1),
+	           				'required'  => array('video_option'=>'custom','custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'require_script',		
