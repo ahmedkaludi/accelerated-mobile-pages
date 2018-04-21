@@ -6403,3 +6403,9 @@ function ampforwp_get_frontpage_id() {
 	return $post_id;
 	
 }
+
+// Removing AMPHTML Added by Facebook's Instant Article's Plugin #2043
+
+if(class_exists('Instant_Articles_AMP_Markup')){
+	remove_action( 'wp_head', array('Instant_Articles_AMP_Markup', 'inject_link_rel') );
+}
