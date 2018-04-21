@@ -1867,7 +1867,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
     }
  
-if( ! is_plugin_active('structured-data/structured-data-for-wp.php') ) {
+if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
     add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
     function ampforwp_add_extra_fields($fields){
         $post_types = '';
@@ -1898,7 +1898,7 @@ if( ! is_plugin_active('structured-data/structured-data-for-wp.php') ) {
 $sd_post = '';
 $sd_page = '';
 $sd_notify = '';
-if( ! is_plugin_active('structured-data/structured-data-for-wp.php')) {
+if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')) {
 
     $sd_post = array(
               'id'       => 'ampforwp-sd-type-posts',
