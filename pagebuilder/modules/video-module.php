@@ -1,12 +1,14 @@
 <?php 
 $output = '
 	{{if_condition_video_option==custom}}
-	<amp-video width="{{width}}" height="{{height}}" layout="responsive"
-	  src="{{video_upload_link}}"
+	<amp-video width="{{width}}" height="{{height}}" src="{{video_upload_link}}"
+	 layout="responsive"   
 	  poster="{{poster}}"
 	  artwork="{{artwork}}"
 	  title="{{video_title}}" artist="{{artist}}"
-	  album="{{album}}">
+	  album="{{album}}" controls>
+	  <source src="{{video_upload_link}}"
+    type="video/mp4" />
 	</amp-video>
 	{{ifend_condition_video_option_custom}}
 
@@ -106,13 +108,28 @@ return array(
 	           								),
  						),
  						array(		
+		 						'type'		=>'checkbox_bool',		
+		 						'name'		=>"custom_video_more_info",		
+		 						'label'		=>'Extra Information',
+		           				'tab'     	=>'customizer',
+		 						'default'	=>0,
+		 						'content_type'=>'html',	
+		           				'options'	=>array(
+												array(
+													'label'=>'Extra details about the video',
+													'value'=>1,
+												),
+											),
+		           				'required'  => array('video_option'=>'custom')
+	 						),
+ 						array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"artist",		
 	 						'label'		=>'Video artists',
 	           				'tab'       =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('video_option'=>'custom'),
+	           				'required'  => array('custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'text',		
@@ -121,7 +138,7 @@ return array(
 	           				'tab'       =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('video_option'=>'custom'),
+	           				'required'  => array('custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'upload',		
@@ -130,7 +147,7 @@ return array(
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('video_option'=>'custom'),
+	           				'required'  => array('custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'upload',		
@@ -139,7 +156,7 @@ return array(
 	           				'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
-	           				'required'  => array('video_option'=>'custom'),
+	           				'required'  => array('custom_video_more_info'=>1),
  						),
  						array(		
 	 						'type'		=>'require_script',		
