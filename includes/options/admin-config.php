@@ -1867,6 +1867,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         }
     }
  
+if( ! is_plugin_active('structured-data/structured-data-for-wp.php') ) {
     add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
     function ampforwp_add_extra_fields($fields){
         $post_types = '';
@@ -1893,28 +1894,43 @@ Redux::setArgs( "redux_builder_amp", $args );
         return $fields;
        
     }
-    // Structured Data
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
-        'id'         => 'opt-structured-data',
-        'subsection' => true,
-        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array(
-            array(
+}
+
+if( ! is_plugin_active('structured-data/structured-data-for-wp.php')) {
+
+    $sd_post = array(
               'id'       => 'ampforwp-sd-type-posts',
               'type'     => 'select',
               'title'    => __('Posts', 'accelerated-mobile-pages'),
               'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
               'options'  => ampforwp_get_sd_types(),
               'default'  => 'BlogPosting',
-            ),
-            array(
+            );
+    $sd_page =  array(
               'id'       => 'ampforwp-sd-type-pages',
               'type'     => 'select',
               'title'    => __('Pages', 'accelerated-mobile-pages'),
               'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
               'options'  =>  ampforwp_get_sd_types(),
               'default'  => 'BlogPosting',
-            ),
+            );
+}
+else {
+   $sd_notify = array(
+                       'id' => 'amp-cf7-SSL-info',
+                       'type' => 'info',
+                       'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href='http://localhost/wordpress/wp-admin/admin.php?page=structured_data_options&tab=5' target='_blank' >Schema Type Here</a></div>"
+                   );
+}
+    // Structured Data
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
+        'id'         => 'opt-structured-data',
+        'subsection' => true,
+        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array(
+            $sd_post,
+            $sd_page,
+            $sd_notify,
             array(
               'id'       => 'amp-structured-data-logo',
               'type'     => 'media',
