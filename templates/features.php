@@ -6347,7 +6347,7 @@ function ampforwp_get_frontpage_id() {
 
 	//$post_id = get_the_ID();
 	if ( ampforwp_is_front_page() && $redux_builder_amp['amp-frontpage-select-option']==1 
-		&& isset( $redux_builder_amp['amp-frontpage-select-option-pages'] ) 
+		&& isset( $redux_builder_amp['amp-frontpage-select-option'] ) 
 		 ) { 
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
