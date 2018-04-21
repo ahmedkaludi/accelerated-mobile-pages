@@ -1895,7 +1895,9 @@ if( ! is_plugin_active('structured-data/structured-data-for-wp.php') ) {
        
     }
 }
-
+$sd_post = '';
+$sd_page = '';
+$sd_notify = '';
 if( ! is_plugin_active('structured-data/structured-data-for-wp.php')) {
 
     $sd_post = array(
