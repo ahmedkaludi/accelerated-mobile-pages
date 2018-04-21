@@ -13,8 +13,36 @@ function amp_archive_title(){
 	}
 }
 	if ( is_archive() ) {
+		$description = $sanitizer = $arch_desc = '';
 	    the_archive_title( '<h3 class="amp-archive-title">', '</h3>' );
-	    the_archive_description( '<div class="amp-archive-desc">', '</div>' );
+	    $description 	= get_the_archive_description();
+		$sanitizer = new AMPFORWP_Content( $description, array(), 
+			apply_filters( 'ampforwp_content_sanitizers',
+				array( 
+					'AMP_Style_Sanitizer' 		=> array(),
+					'AMP_Blacklist_Sanitizer' 	=> array(),
+					'AMP_Img_Sanitizer' 		=> array(),
+					'AMP_Video_Sanitizer' 		=> array(),
+					'AMP_Audio_Sanitizer' 		=> array(),
+					'AMP_Iframe_Sanitizer' 		=> array(
+						'add_placeholder' 		=> true,
+					)
+				) ) );
+		$arch_desc 		= $sanitizer->get_amp_content();
+			if( $arch_desc ) {  
+				if ( get_query_var( 'paged' ) ) {
+		        $paged = get_query_var('paged');
+		    } elseif ( get_query_var( 'page' ) ) {
+		        $paged = get_query_var('page');
+		    } else {
+		        $paged = 1;
+		    }
+				if($paged <= '1') {?>
+					<div class="amp-archive-desc">
+						<?php echo $arch_desc ; ?>
+				    </div> <?php
+				}
+			}
 	}
 	if( is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support'] ){
 		$parent_cat_id 	= '';
