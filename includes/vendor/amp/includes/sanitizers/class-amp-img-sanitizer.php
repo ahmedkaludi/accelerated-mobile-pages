@@ -154,6 +154,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'on':
 				case 'role':
 				case 'tabindex':
+				case 'layout':
 					$out[ $name ] = $value;
 					break;
 
