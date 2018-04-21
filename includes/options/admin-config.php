@@ -217,6 +217,17 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('polylang-for-amp/amp_polylang.php')? 1: 2),
                         ),
                         array(
+                            'name'=>'WPML for AMP',
+                            'desc'=>'WPML compatibility with AMP',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=>'$29',
+                            'url_link'=>'https://ampforwp.com/wpml-for-amp/',
+                            'plugin_active_path'=> 'wpml-for-amp/wpml_for_amp.php',
+                            'item_name'=>'WPML For AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('wpml-for-amp/wpml_for_amp.php')? 1: 2),
+                        ),
+                        array(
                             'name'=>'AMP Teaser',
                             'desc'=>'AMP Teaser automatically clips the content based on your selection',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
