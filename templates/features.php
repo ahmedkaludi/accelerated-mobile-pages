@@ -440,7 +440,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							)  {
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
-	        // 404 Pages
+	        // 404 Pages #2042
 	        if ( is_404() && 'single' === $type )  {
 	        	add_filter('ampforwp_modify_rel_url','ampforwp_404_canonical');
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
@@ -6433,7 +6433,7 @@ function ampforwp_remove_instant_articles_amp_markup(){
 		remove_action( 'wp_head', array('Instant_Articles_AMP_Markup', 'inject_link_rel') );
 	}
 }
-
+// #2042 
 function ampforwp_404_canonical(){
 	return home_url( $wp->request );
 }
