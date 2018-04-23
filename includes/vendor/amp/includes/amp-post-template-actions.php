@@ -1,70 +1,134 @@
 <?php
-// Callbacks for adding content to an AMP template
+/**
+ * Callbacks for adding content to an AMP template.
+ *
+ * @package AMP
+ */
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_title' );
+/**
+ * Register hooks.
+ */
+function amp_post_template_init_hooks() {
+	add_action( 'amp_post_template_head', 'amp_post_template_add_title' );
+	add_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+	add_action( 'amp_post_template_head', 'amp_post_template_add_scripts' );
+	add_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+	add_action( 'amp_post_template_head', 'amp_post_template_add_boilerplate_css' );
+	add_action( 'amp_post_template_head', 'amp_print_schemaorg_metadata' );
+	add_action( 'amp_post_template_head', 'amp_add_generator_metadata' );
+	add_action( 'amp_post_template_css', 'amp_post_template_add_styles', 99 );
+	add_action( 'amp_post_template_data', 'amp_post_template_add_analytics_script' );
+	add_action( 'amp_post_template_footer', 'amp_post_template_add_analytics_data' );
+}
+
+/**
+ * Add title.
+ *
+ * @param AMP_Post_Template $amp_template template.
+ */
 function amp_post_template_add_title( $amp_template ) {
 	?>
 	<title><?php echo esc_html( $amp_template->get( 'document_title' ) ); ?></title>
 	<?php
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+/**
+ * Add canonical link.
+ *
+ * @param AMP_Post_Template $amp_template Template.
+ */
 function amp_post_template_add_canonical( $amp_template ) {
 	?>
 	<link rel="canonical" href="<?php echo esc_url( $amp_template->get( 'canonical_url' ) ); ?>" />
 	<?php
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_scripts' );
+/**
+ * Print scripts.
+ *
+ * @see amp_register_default_scripts()
+ * @see amp_filter_script_loader_tag()
+ * @param AMP_Post_Template $amp_template Template.
+ */
 function amp_post_template_add_scripts( $amp_template ) {
+
+	// Just in case the runtime has been overridden by amp_post_template_data filter.
+	wp_scripts()->registered['amp-runtime']->src = $amp_template->get( 'amp_runtime_script' );
+
+	// Make sure any filtered extension script URLs get updated in registered scripts before printing.
 	$scripts = $amp_template->get( 'amp_component_scripts', array() );
-	foreach ( $scripts as $element => $script ) : 
-		$custom_type = ($element == 'amp-mustache') ? 'template' : 'element'; ?>
-		<script custom-<?php echo esc_attr( $custom_type ); ?>="<?php echo esc_attr( $element ); ?>" src="<?php echo esc_url( $script ); ?>" async></script>
-	<?php endforeach; ?>
-	<script src="<?php echo esc_url( $amp_template->get( 'amp_runtime_script' ) ); ?>" async></script>
-	<?php
+	foreach ( $scripts as $handle => $value ) {
+		if ( is_string( $value ) && wp_script_is( $handle, 'registered' ) ) {
+			wp_scripts()->registered[ $handle ]->src = $value;
+		}
+	}
+
+	wp_print_scripts( array_merge(
+		array( 'amp-runtime' ),
+		array_keys( $scripts )
+	) );
 }
 
-add_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
+/**
+ * Print fonts.
+ *
+ * @param AMP_Post_Template $amp_template Template.
+ */
 function amp_post_template_add_fonts( $amp_template ) {
 	$font_urls = $amp_template->get( 'font_urls', array() );
-	foreach ( $font_urls as $slug => $url ) : ?>
-		<link rel="stylesheet" href="<?php echo esc_url( $url ); ?>">
-	<?php endforeach;
-}
-
-add_action( 'amp_post_template_head', 'amp_post_template_add_boilerplate_css' );
-function amp_post_template_add_boilerplate_css( $amp_template ) {
-	?>
-	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-	<?php
-}
-
-add_action( 'amp_post_template_head', 'amp_post_template_add_schemaorg_metadata' );
-function amp_post_template_add_schemaorg_metadata( $amp_template ) {
-	$metadata = $amp_template->get( 'metadata' );
-	if ( empty( $metadata ) ) {
-		return;
+	foreach ( $font_urls as $slug => $url ) {
+		printf( '<link rel="stylesheet" href="%s">', esc_url( esc_url( $url ) ) ); // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 	}
-	?>
-	<script type="application/ld+json"><?php echo wp_json_encode( $metadata ); ?></script>
-	<?php
 }
 
-add_action( 'amp_post_template_css', 'amp_post_template_add_styles', 99 );
+/**
+ * Print boilerplate CSS.
+ *
+ * @since 0.3
+ * @see amp_get_boilerplate_code()
+ */
+function amp_post_template_add_boilerplate_css() {
+	echo amp_get_boilerplate_code(); // WPCS: xss ok.
+}
+
+/**
+ * Print Schema.org metadata.
+ *
+ * @deprecated Since 0.7
+ */
+function amp_post_template_add_schemaorg_metadata() {
+	_deprecated_function( __FUNCTION__, '0.7', 'amp_print_schemaorg_metadata' );
+	amp_print_schemaorg_metadata();
+}
+
+/**
+ * Print styles.
+ *
+ * @param AMP_Post_Template $amp_template Template.
+ */
 function amp_post_template_add_styles( $amp_template ) {
+	$stylesheets = $amp_template->get( 'post_amp_stylesheets' );
+	if ( ! empty( $stylesheets ) ) {
+		echo '/* Inline stylesheets */' . PHP_EOL; // WPCS: XSS OK.
+		echo implode( '', $stylesheets ); // WPCS: XSS OK.
+	}
+
 	$styles = $amp_template->get( 'post_amp_styles' );
 	if ( ! empty( $styles ) ) {
-		echo '/* Inline styles */' . PHP_EOL;
+		echo '/* Inline styles */' . PHP_EOL; // WPCS: XSS OK.
 		foreach ( $styles as $selector => $declarations ) {
 			$declarations = implode( ';', $declarations ) . ';';
-			printf( '%1$s{%2$s}', $selector, $declarations );
+			printf( '%1$s{%2$s}', $selector, $declarations ); // WPCS: XSS OK.
 		}
 	}
 }
 
-add_action( 'amp_post_template_data', 'amp_post_template_add_analytics_script' );
+/**
+ * Add analytics scripts.
+ *
+ * @param array $data Data.
+ * @return array Data.
+ */
 function amp_post_template_add_analytics_script( $data ) {
 	if ( ! empty( $data['amp_analytics'] ) ) {
 		$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -72,28 +136,21 @@ function amp_post_template_add_analytics_script( $data ) {
 	return $data;
 }
 
-add_action( 'amp_post_template_footer', 'amp_post_template_add_analytics_data' );
-function amp_post_template_add_analytics_data( $amp_template ) {
-	$analytics_entries = $amp_template->get( 'amp_analytics' );
-	if ( empty( $analytics_entries ) ) {
-		return;
-	}
+/**
+ * Print analytics data.
+ *
+ * @since 0.3.2
+ */
+function amp_post_template_add_analytics_data() {
+	$analytics = amp_add_custom_analytics();
+	amp_print_analytics( $analytics );
+}
 
-	foreach ( $analytics_entries as $id => $analytics_entry ) {
-		if ( ! isset( $analytics_entry['type'], $analytics_entry['attributes'], $analytics_entry['config_data'] ) ) {
-			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( 'Analytics entry for %s is missing one of the following keys: `type`, `attributes`, or `config_data` (array keys: %s)', 'amp' ), esc_html( $id ), esc_html( implode( ', ', array_keys( $analytics_entry ) ) ) ), '0.3.2' );
-			continue;
-		}
-
-		$script_element = AMP_HTML_Utils::build_tag( 'script', array(
-			'type' => 'application/json',
-		), wp_json_encode( $analytics_entry['config_data'] ) );
-
-		$amp_analytics_attr = array_merge( array(
-			'id' => $id,
-			'type' => $analytics_entry['type'],
-		), $analytics_entry['attributes'] );
-
-		echo AMP_HTML_Utils::build_tag( 'amp-analytics', $amp_analytics_attr, $script_element );
-	}
+/**
+ * Add generator metadata.
+ *
+ * @since 6.0
+ */
+function amp_add_generator_metadata() {
+	printf( '<meta name="generator" content="%s" />', esc_attr( 'AMP Plugin v' . AMP__VERSION ) );
 }

@@ -418,13 +418,19 @@ require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
-
-	define( 'AMP__FILE__', __FILE__ );
+	if(!defined('AMP__FILE__')){
+		define( 'AMP__FILE__', __FILE__ );
+	}
 	if ( ! defined('AMP__DIR__') ) {
 		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 	}
-	define( 'AMP__VERSION', '0.4.2' );
+	if(!defined('AMP__VERSION')){
+		define( 'AMP__VERSION', '0.4.2' );
+	}
+
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-changes.php';
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+
 
 	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
 	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
@@ -470,8 +476,9 @@ if ( ! function_exists('ampforwp_init') ) {
 		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
 			return;
 		}
-
-		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		if(!defined('AMP_QUERY_VAR')){
+			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		}
 
 		if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );

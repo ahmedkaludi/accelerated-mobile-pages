@@ -7,7 +7,7 @@ private $instagram_medias = array();
 private static $script_slug = 'amp-instagram';
  private static $script_src = 'https://cdn.ampproject.org/v0/amp-instagram-0.1.js';
 public function sanitize() {
-  $body = $this->get_body_node();
+  $body = $this->root_element;
     $xpath = new \DOMXPath($this->dom);
     $class_name = 'instagram-media';
     $blockquotes = $xpath->query("//*[contains(@class,'$class_name')]");

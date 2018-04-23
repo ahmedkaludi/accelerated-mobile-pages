@@ -1,4 +1,5 @@
 <?php
+
 class AMP_Image_Dimension_Extractor {
 	static $callbacks_registered = false;
 	const STATUS_FAILED_LAST_ATTEMPT = 'failed';
@@ -50,7 +51,7 @@ class AMP_Image_Dimension_Extractor {
 			return set_url_scheme( $url, 'http' );
 		}
 
-		$parsed = AMP_WP_Utils::parse_url( $url );
+		$parsed = wp_parse_url( $url );
 		if ( ! isset( $parsed['host'] ) ) {
 			$path = '';
 			if ( isset( $parsed['path'] ) ) {
@@ -154,10 +155,7 @@ class AMP_Image_Dimension_Extractor {
 	 */
 	private static function fetch_images( $urls_to_fetch, &$images, $mode ) {
 		// Use FasterImage when for compatible PHP versions
-		$mode_type = '';
-		$mode_type = 'synchronous';
-		$mode_type = apply_filters('amp_fetch_image_mode_type',$mode_type);
-		if ( $mode_type === $mode ||
+		if ( 'synchronous' === $mode ||
 			false === function_exists( 'curl_multi_exec' ) ||
 			version_compare( PHP_VERSION, '5.4.0' ) < 0
 		) {
@@ -174,12 +172,9 @@ class AMP_Image_Dimension_Extractor {
 	 * @param array $images Array to populate with results of image/dimension inspection.
 	 */
 	private static function fetch_images_via_fast_image( $urls_to_fetch, &$images ) {
-		if ( ! class_exists( 'FastImage' ) ) {
-			require_once( AMP__DIR__ . '/includes/lib/fastimage/class-fastimage.php' );
-		}
 
 		$image = new FastImage();
-		$urls = array_keys( $urls_to_fetch );
+		$urls  = array_keys( $urls_to_fetch );
 
 		foreach ( $urls as $url ) {
 			$result = $image->load( $url );
@@ -187,6 +182,7 @@ class AMP_Image_Dimension_Extractor {
 				$images[ $url ]['size'] = self::STATUS_IMAGE_EXTRACTION_FAILED;
 			} else {
 				$size = $image->getSize();
+
 				$images[ $url ]['size'] = $size;
 			}
 		}
@@ -202,7 +198,7 @@ class AMP_Image_Dimension_Extractor {
 		$urls = array_keys( $urls_to_fetch );
 
 		if ( ! function_exists( 'amp_get_fasterimage_client' ) ) {
-			require_once( AMP__DIR__ . '/includes/lib/fasterimage/amp-fasterimage.php' );
+			require_once AMP__DIR__ . '/includes/lib/fasterimage/amp-fasterimage.php';
 		}
 
 		$user_agent = apply_filters( 'amp_extract_image_dimensions_get_user_agent', self::get_default_user_agent() );
