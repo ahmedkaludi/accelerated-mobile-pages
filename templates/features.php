@@ -207,6 +207,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	function ampforwp_amphtml_generator(){
 		global $redux_builder_amp;
 		global $wp, $post;
+		$post_id = '';
 		$endpoint_check = false;
 		$endpoint_check = $redux_builder_amp['amp-core-end-point'];
 	    if( is_attachment() ) {
@@ -258,6 +259,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( is_home() && ! ampforwp_is_blog() && !$redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return;
 		}
+
+		if ( ampforwp_is_blog() && ! $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
 			$query_arg_array = $wp->query_vars;
 			if( in_array( "cpage" , $query_arg_array ) ) {
 				if( is_front_page() &&  $wp->query_vars['cpage'] >= '2' ) {
@@ -276,8 +281,15 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	      $amp_url = amp_get_permalink( get_queried_object_id() );
 	    }
         global $post;
-        $ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
-        if ( is_singular() && $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
+        if ( is_singular() ) {
+        	$post_id = get_the_ID();
+        	
+        }
+        if ( ampforwp_is_blog() ) {
+        	$post_id = ampforwp_get_blog_details('id');
+        }
+        $ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
+        if ( ( is_singular() || ampforwp_is_blog() ) && $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
           //dont Echo anything
         } else {
 			$supported_types = ampforwp_get_all_post_types();
@@ -4644,7 +4656,7 @@ if( !function_exists('ampforwp_get_blog_details') ) {
 		$title 		 = '';
 		$blog_id 	 = '';
 		$current_url_in_pieces = array();
-		if(is_home() && get_option('show_on_front') == 'page' && isset($redux_builder_amp['ampforwp-blog-on-off-support']) && $redux_builder_amp['ampforwp-blog-on-off-support'] ) {
+		if(is_home() && get_option('show_on_front') == 'page' ) {
 			$current_url = home_url( $GLOBALS['wp']->request );
 			$current_url_in_pieces = explode( '/', $current_url );
 			$page_for_posts  =  get_option( 'page_for_posts' );

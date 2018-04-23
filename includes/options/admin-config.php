@@ -812,13 +812,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default' => 0,
                'required' => array('amp-frontpage-select-option', '=' , '1'),
             ),
-           array(
-               'id'       => 'ampforwp-blog-on-off-support',
-               'type'     => 'switch',
-               'title'    => __('Blog', 'accelerated-mobile-pages'),
-               'subtitle' => __('Enable AMP Support on Blog.', 'accelerated-mobile-pages'),
-               'default'  => '1'
-            ),
+
            array(
                'id'       => 'ampforwp-archive-support',
                'type'     => 'switch',
