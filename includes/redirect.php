@@ -208,6 +208,7 @@ add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 )
 function ampforwp_page_template_redirect_archive() {
 
   if ( is_404() ) {
+        return;
     if ( ampforwp_is_amp_endpoint() ) {
       global $wp;
       $ampforwp_404_url   = add_query_arg( '', '', home_url( $wp->request ) );
