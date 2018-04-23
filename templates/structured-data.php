@@ -14,14 +14,13 @@ function ampforwp_structured_data_type( $metadata ) {
 
 	if ( $post_types ) { // If there are any custom public post types.
     	foreach ( $post_types  as $post_type ) {
-			$set_sd_cpt		= $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
 
         	if ( isset( $post->post_type ) && ('page' == $post->post_type || 'post' == $post->post_type) ) {
         		continue;
         	}
         	
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-        		if ( empty( $set_sd_cpt ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
 					return;
 				}
         		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
