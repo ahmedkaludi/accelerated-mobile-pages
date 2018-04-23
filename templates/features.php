@@ -440,6 +440,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							)  {
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
+	        // 404 Pages #2042
+	        if ( is_404() && 'single' === $type )  {
+	        	add_filter('ampforwp_modify_rel_url','ampforwp_404_canonical');
+	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
+	        }
 		}
 
 		// Custom Single file
@@ -6439,10 +6444,14 @@ function ampforwp_get_frontpage_id() {
 }
 
 // Removing AMPHTML Added by Facebook's Instant Article's Plugin #2043
-add_action( 'wp', 'remove_instant_articles_amp_markup' );
-function remove_instant_articles_amp_markup(){
+add_action( 'wp', 'ampforwp_remove_instant_articles_amp_markup' );
+function ampforwp_remove_instant_articles_amp_markup(){
 	
 	if(class_exists('Instant_Articles_AMP_Markup')){
 		remove_action( 'wp_head', array('Instant_Articles_AMP_Markup', 'inject_link_rel') );
 	}
+}
+// #2042 
+function ampforwp_404_canonical(){
+	return home_url( $wp->request );
 }
