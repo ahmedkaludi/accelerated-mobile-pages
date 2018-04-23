@@ -6,7 +6,6 @@ function ampforwp_structured_data_type( $metadata ) {
 	$post_types 	= '';
 	$set_sd_post 	= '';
 	$set_sd_page 	= '';
-	$set_sd_cpt		= '';	
 
 	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
 	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
