@@ -5,10 +5,30 @@ function ampforwp_structured_data_type( $metadata ) {
 	global $redux_builder_amp, $post;
 	$post_types 	= '';
 	$set_sd_post 	= '';
-	$set_sd_page 	= '';	
+	$set_sd_page 	= '';
+	$set_sd_cpt		= '';	
 
 	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
 	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
+	$post_types = ampforwp_get_all_post_types();
+
+	if ( $post_types ) { // If there are any custom public post types.
+    	foreach ( $post_types  as $post_type ) {
+			$set_sd_cpt		= $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+
+        	if ( isset( $post->post_type ) && ('page' == $post->post_type || 'post' == $post->post_type) ) {
+        		continue;
+        	}
+        	
+	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
+        		if ( empty( $set_sd_cpt ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+					return;
+				}
+        		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+        		return $metadata;
+        	}
+        }
+    }
 
 	if ( empty( $set_sd_post ) && is_single() && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {;
 		return;
@@ -27,23 +47,6 @@ function ampforwp_structured_data_type( $metadata ) {
 		}
 		$metadata['@type'] = $set_sd_page;
 	} 
-	$post_types = ampforwp_get_all_post_types();
-
-	if ( $post_types ) { // If there are any custom public post types.
-    	foreach ( $post_types  as $post_type ) {
-
-        	if ( isset( $post->post_type ) && ('page' == $post->post_type || 'post' == $post->post_type) ) {
-        		continue;
-        	}
-        	
-	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
-					return;
-				}
-        		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
-        	}
-        }
-    }
 
 	return $metadata;
 }
@@ -76,6 +79,24 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 		if ( 'Recipe' == $metadata['@type'] ) {
 			$metadata['name'] = $metadata['headline'];
 		}
+		return $metadata;
+	}
+}
+// #1975 Product
+add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_product', 20, 1 );
+if ( ! function_exists('ampforwp_structured_data_product') ) {
+	function ampforwp_structured_data_product( $metadata ) {
+		global $redux_builder_amp, $post;
+		// Adding Product's Name and unsetting the Google unrecognized data for type Product
+		if ( 'Product' == $metadata['@type'] ) {
+			$metadata['name'] = $metadata['headline'];
+			unset($metadata['dateModified']);
+			unset($metadata['datePublished']);
+			unset($metadata['publisher']);
+			unset($metadata['author']);
+			unset($metadata['headline']);
+		}
+		
 		return $metadata;
 	}
 }
