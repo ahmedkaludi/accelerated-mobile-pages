@@ -29,7 +29,12 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/single.php';
 		 	}
 		}*/
-		if ( is_page() ) {
+		// 404 Template
+	 	if( 'single' === $type && is_404() ) {
+			$file = AMPFORWP_CUSTOM_THEME . '/404.php';
+	 	}
+	 	// single Template
+		if ( is_page() ) { 
 			if( 'single' === $type && ! ('product' === $post->post_type) ) {
 				$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		 	}
