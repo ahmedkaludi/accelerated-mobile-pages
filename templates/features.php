@@ -2336,8 +2336,26 @@ function ampforwp_replace_title_tags() {
 						}
 					}
 			}
+			elseif ( is_archive() ) {
+				if ( is_category() || is_tag() || is_tax() ) {
+					$term       = get_queried_object();
+					$title_meta = get_term_meta( $term->term_id, 'doctitle', true );
+					$genesis_title      = ! empty( $title_meta ) ? $title_meta : $title;
+				}
+
+				if ( is_author() ) {
+					$user_title = get_the_author_meta( 'doctitle', (int) get_query_var( 'author' ) );
+					$genesis_title      = $user_title ? $user_title : $title;
+				}
+
+				if ( is_post_type_archive() && genesis_has_post_type_archive_support() ) {
+					$genesis_title = genesis_get_cpt_option( 'doctitle' ) ? genesis_get_cpt_option( 'doctitle' ) : $title;
+				}
+
+			}
 			else {
-				$genesis_title = genesis_default_title( $title );
+				//$genesis_title = genesis_default_title( $title );
+				$genesis_title = genesis_get_custom_field( '_genesis_title' );
 			}
 			if( $genesis_title ){
 				$site_title = $genesis_title;
