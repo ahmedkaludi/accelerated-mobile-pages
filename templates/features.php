@@ -2360,6 +2360,7 @@ function ampforwp_replace_title_tags() {
 			}
 			else {
 				//$genesis_title = genesis_default_title( $title );
+				// genesis_default_title has been depreciated, let's do it with another method #2050
 				$genesis_title = genesis_get_custom_field( '_genesis_title' );
 			}
 			if( $genesis_title ){
