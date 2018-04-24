@@ -45,3 +45,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 18. 'amp_fetch_image_mode_type' filter added in class-amp-image-dimension-extractor.php #1833
 19. Modifications in class-amp-img-sanitizer.php for Lightbox support #1892 #2032
 20. Modification is class-amp-blacklist-sanitizer.php #1958
+21. ampforwp_paginated_post_content_sanitizers filter added in class-amp-post-template.php #2001
