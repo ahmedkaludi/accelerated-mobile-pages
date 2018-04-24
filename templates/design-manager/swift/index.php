@@ -41,12 +41,12 @@
 				$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
 			} ?>
 			<div class="fsp">
-				<?php if(ampforwp_has_post_thumbnail()){ $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); 
-				if ( ampforwp_has_post_thumbnail() ) {?>
+				<?php if( ampforwp_has_post_thumbnail() ) { 
+					$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 				    <div class="fsp-img">
 				    	<?php amp_loop_image($args); ?>
 				    </div>
-				<?php } } ?>    
+				<?php } ?>    
 			    <div class="fsp-cnt">
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
