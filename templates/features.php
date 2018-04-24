@@ -6457,22 +6457,22 @@ function ampforwp_404_canonical(){
 	return home_url( $wp->request );
 }
 // #2001 removing unused JS from the Paginated Posts
-add_filter('ampforwp_paginated_post_content_sanitizers', 'ampforwp_paginated_post_content');
+add_filter('ampforwp_post_content_filter', 'ampforwp_paginated_post_content');
 
 function ampforwp_paginated_post_content($content){
 	global $numpages;
 	if(is_single()){
-		 if ( get_query_var( 'paged' ) ) {
-	          $paged = get_query_var('paged');
-	      } elseif ( get_query_var( 'page' ) ) {
-	          $paged = get_query_var('page');
-	      } else {
-	          $paged = 1;
-	      }
-	      if( $numpages >= 2 ){
+		if ( get_query_var( 'paged' ) ) {
+			$paged = get_query_var('paged');
+		} elseif ( get_query_var( 'page' ) ) {
+		  	$paged = get_query_var('page');
+		} else {
+		  	$paged = 1;
+		}
+	    if( $numpages >= 2 ){
 	      	return get_the_content();
-	      }
-	  }
+	    }
+	}
 
-      return $content;
+    return $content;
 }
