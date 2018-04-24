@@ -1912,10 +1912,11 @@ if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')) {
             );
 }
 else {
+    
    $sd_notify = array(
                        'id' => 'amp-cf7-SSL-info',
                        'type' => 'info',
-                       'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href='http://localhost/wordpress/wp-admin/admin.php?page=structured_data_options&tab=5' target='_blank' >Schema Type Here</a></div>"
+                       'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href=".admin_url( 'admin.php?page=structured_data_options&tab=5' )." target='_blank' >Schema Type Here</a></div>"
                    );
 }
     // Structured Data
