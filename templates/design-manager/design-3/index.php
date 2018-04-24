@@ -107,7 +107,7 @@ if ( get_query_var( 'paged' ) ) {
 		$q = new WP_Query( $filtered_args );  
 		$blog_title = ampforwp_get_blog_details('title');
 		if($blog_title){  ?>
-			<h1 class="amp-wp-content page-title archive-heading"><?php echo $blog_title ?> </h1>
+			<h1 class="amp-wp-content page-title archive-heading"><?php echo $blog_title ?></h1>
 		<?php }	
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 
@@ -143,7 +143,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php } 
 					} ?>
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php

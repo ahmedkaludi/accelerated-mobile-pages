@@ -48,7 +48,7 @@
  		} 
  		$blog_title = ampforwp_get_blog_details('title');
 			if($blog_title){  ?>
-				<h1 class="page-title"><?php echo $blog_title ?> </h1>
+				<h1 class="page-title"><?php echo $blog_title ?></h1>
 			<?php }	
  	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
@@ -67,7 +67,7 @@
 
 			<div class="amp-wp-post-content">
 
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php
 					if(has_excerpt()){
