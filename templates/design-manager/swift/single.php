@@ -188,11 +188,11 @@
 					            $my_query->the_post();
 					        ?>
 					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
+					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
 						            <div class="rlp-image">     
 						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 									</div>
-								<?php } ?>	
+								<?php } } ?>	
 								<div class="rlp-cnt">
 									<?php $argsdata = array(
 											'show_author' => false,
@@ -229,10 +229,11 @@ do_action("ampforwp_single_design_type_handle");
 				$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
 				$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
 			}
+			if(ampforwp_has_post_thumbnail()){
 			 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 		    <div class="fsp-img">
 		    	<?php amp_loop_image($args); ?>
-		    </div>
+		    </div><?php } ?>
 		    <div class="fsp-cnt">
 		    	<?php amp_loop_category(); ?>
 			    <?php amp_loop_title(); ?>
@@ -450,11 +451,11 @@ do_action("ampforwp_single_design_type_handle");
 								if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
 									$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
 									$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-								}
+								} if(ampforwp_has_post_thumbnail()){
 								 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 							    <div class="fsp-img">
 							    	<?php amp_loop_image($args); ?>
-							    </div>
+							    </div><?php } ?>
 							    <div class="fsp-cnt">
 							    	<?php amp_loop_category(); ?>
 								    <?php amp_loop_title(); ?>
