@@ -1065,7 +1065,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.2 Analytics Support added for segment.com
 				if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
-						<amp-analytics type="segment">
+						<amp-analytics data-block-on-consent type="segment">
 							<script type="application/json">
 							{
 							  "vars": {
@@ -1080,12 +1080,12 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.3 Analytics Support added for Piwik
 				if( true == $redux_builder_amp['ampforwp-Piwik-switch'] ) { ?>
-						<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
+						<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 				<?php }
 
 				// 10.4 Analytics Support added for quantcast
 					if ( true == $redux_builder_amp['ampforwp-Quantcast-switch'] ) { ?>
-							<amp-analytics type="quantcast">
+							<amp-analytics data-block-on-consent type="quantcast">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1100,7 +1100,7 @@ function ampforwp_new_dir( $dir ) {
 
 				// 10.5 Analytics Support added for comscore
 					if ( true == $redux_builder_amp['ampforwp-comScore-switch'] ) { ?>
-							<amp-analytics type="comscore">
+							<amp-analytics data-block-on-consent type="comscore">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1116,7 +1116,7 @@ function ampforwp_new_dir( $dir ) {
 			// 10.6 Analytics Support added for Effective Measure
 				if( true == $redux_builder_amp['ampforwp-Effective-switch'] ) { ?>
 					<!-- BEGIN EFFECTIVE MEASURE CODE -->
-					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
+					<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
 					<!--END EFFECTIVE MEASURE CODE -->
 				<?php }
 
@@ -1124,7 +1124,7 @@ function ampforwp_new_dir( $dir ) {
 				if( true == $redux_builder_amp['ampforwp-StatCounter-switch'] ) { ?>
 					<!-- BEGIN StatCounter CODE -->
 					<div id="statcounter">
-					<amp-pixel src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
+					<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
 					</amp-pixel> 
 					</div>
 					<!--END StatCounter CODE -->
@@ -1134,7 +1134,7 @@ function ampforwp_new_dir( $dir ) {
 				if( true == $redux_builder_amp['ampforwp-Histats-switch'] ) { ?>
 					<!-- BEGIN Histats CODE -->
 					<div id="histats">
-					<amp-pixel src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+					<amp-pixel data-block-on-consent src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
 					</amp-pixel> 
 					</div>
 					<!--END Histats CODE -->
@@ -1142,7 +1142,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.9 Analytics Support added for Yandex Metrika Analytics
 				if ( true == $redux_builder_amp['ampforwp-Yandex-switch'] ){ ?>
-						<amp-analytics type="metrika"> 
+						<amp-analytics data-block-on-consent type="metrika"> 
     					<script type="application/json"> 
       					  { 
             					"vars": { 
@@ -1166,7 +1166,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.10 Analytics Support added for Chartbeat Analytics
 				if ( true == $redux_builder_amp['ampforwp-Chartbeat-switch'] ){ ?>
-						<amp-analytics type="chartbeat">
+						<amp-analytics data-block-on-consent type="chartbeat">
  						 <script type="application/json">
    						 {
      						'vars': {
@@ -1184,7 +1184,7 @@ function ampforwp_new_dir( $dir ) {
 			// 10.11 Analytics Support added for Alexa Metrics
 					if ( true == $redux_builder_amp['ampforwp-Alexa-switch'] ) { ?>
 						<!-- Start Alexa AMP Certify Javascript -->
-							<amp-analytics type="alexametrics">
+							<amp-analytics data-block-on-consent type="alexametrics">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1222,7 +1222,7 @@ function ampforwp_new_dir( $dir ) {
 						if ($afs_account > 999999)
 							$afs_server = 'www10'; ?>
 						<!-- Start AFS Analytics Javascript -->
-							<amp-analytics type="afsanalytics">
+							<amp-analytics data-block-on-consent type="afsanalytics">
 								<script type="application/json">
 								{
 								  "vars": {
