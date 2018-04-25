@@ -6514,17 +6514,16 @@ if ( ! function_exists('ampforwp_gdpr_data') ) {
 if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
 	function ampforwp_gdpr_amp_consent() {
-	global $redux_builder_amp;
-	$headline 	= $accept = $reject = $user_data = '';
-	$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
-	$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
-	$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
-	$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
-	$form_url 	= ampforwp_url_controller(site_url());
-	$form_url 	= preg_replace('#^https?:#', '', $form_url);
-	var_dump($form_url);
-	 ?>
-	 
+		global $redux_builder_amp;
+		$headline 	= $accept = $reject = $user_data = '';
+		$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
+		$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
+		$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
+		$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
+		$form_url 	= ampforwp_url_controller(site_url());
+		$form_url 	= preg_replace('#^https?:#', '', $form_url);
+		 ?>
+		 
 		<amp-consent id="myConsent" layout="nodisplay">
 	        <script type="application/json">{
 	          "consents": {
