@@ -41,7 +41,7 @@ function amp_post_template_add_boilerplate_css( $amp_template ) {
 	<?php
 }
 if(! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')):
-add_action( 'amp_post_template_head', 'amp_post_template_add_schemaorg_metadata' );
+add_action( 'amp_post_template_footer', 'amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	$metadata = $amp_template->get( 'metadata' );
 	if ( empty( $metadata ) ) {
