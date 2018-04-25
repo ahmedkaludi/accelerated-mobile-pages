@@ -6515,12 +6515,12 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
 	function ampforwp_gdpr_amp_consent() {
 		global $redux_builder_amp;
-		$headline 	= $accept = $reject = $user_data = '';
+		$headline 	= $accept = $reject = $user_data = $form_url = '';
 		$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
 		$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
 		$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
 		$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
-		$form_url 	= ampforwp_url_controller(site_url());
+		$form_url 	=  admin_url('admin-ajax.php?action=amp_consent_submission');
 		$form_url 	= preg_replace('#^https?:#', '', $form_url);
 		 ?>
 		 
@@ -6542,12 +6542,12 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	            </div>
 	            <div id="aceept" class="consent-accept message">
 	              <p class="m1"><?php echo $user_data; ?></p>
-	              <form action="<?php echo esc_url($form_url); ?>" method="get" target="_top">
+	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
 	              	<button type="submit" on="tap:myConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $accept; ?></button>
 	          		</form>
 	            </div>
 	            <div id="reject" class="consent-accept message">
-	              <form action="<?php echo esc_url($form_url); ?>" method="get" target="_top">
+	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
 	              	<button type="submit" on="tap:myConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $reject; ?></button>
 	          </form>
 	            </div>
@@ -6570,4 +6570,16 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 	    .message > * { min-width: 200px; }
 	    .dismiss-button { position: absolute; right: 24px; top: 16px; cursor:pointer; }
 	<?php }
+}
+// Redirection
+add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
+add_action('wp_ajax_nopriv_amp_consent_submission','amp_consent_submission');
+function amp_consent_submission(){
+	$current_url = $site_url = $site_host = $amp_site = '';
+	$current_url = wp_get_referer();
+	$site_url = parse_url(get_site_url());
+	$site_host = $site_url['host'];
+	$amp_site = $site_url['scheme'] . '://' . $site_url['host'];
+	header("AMP-Access-Control-Allow-Source-Origin: $amp_site ");
+	header("AMP-Redirect-To: $current_url ");
 }
