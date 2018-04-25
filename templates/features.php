@@ -2820,7 +2820,7 @@ function ampforwp_talking_to_robots() {
     }
 
 	$query_array = $wp->query_vars;
-	if( in_array( 'page' , $query_array ) ) {
+	if( array_key_exists( 'page' , $query_array ) ) {
 		$page = $wp->query_vars['page'];
 		if ( $redux_builder_amp['amp-frontpage-select-option'] && $page >= '2') {
 			$talk_to_robots = true;
