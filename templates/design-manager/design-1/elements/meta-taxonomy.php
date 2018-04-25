@@ -39,7 +39,7 @@
 						}
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
-						  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
+						  		 global $redux_builder_amp; echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' )).'</span>';
 						}?>
 				</div>
 	<?php endif; }?>
