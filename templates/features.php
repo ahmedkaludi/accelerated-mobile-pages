@@ -658,7 +658,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_1">';
-				$output .= '<amp-ad class="amp-ad-1"
+				$output .= '<amp-ad class="amp-ad-1" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
@@ -726,7 +726,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_2">';
-				$output	.=	'<amp-ad class="amp-ad-2"
+				$output	.=	'<amp-ad class="amp-ad-2" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
@@ -792,7 +792,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_3">';
-				$output	.=	'<amp-ad class="amp-ad-3"
+				$output	.=	'<amp-ad class="amp-ad-3" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
@@ -858,7 +858,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_4">';
-				$output	.=	'<amp-ad class="amp-ad-4"
+				$output	.=	'<amp-ad class="amp-ad-4" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
@@ -925,7 +925,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}		
 				$output = '<div class="amp-ad-wrapper amp_ad_5">';
-				$output	.=	'<amp-ad class="amp-ad-5"
+				$output	.=	'<amp-ad class="amp-ad-5" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
@@ -993,7 +993,7 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_6">';
-				$output	.=	'<amp-ad class="amp-ad-6"
+				$output	.=	'<amp-ad class="amp-ad-6" data-block-on-consent
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
@@ -1055,7 +1055,7 @@ function ampforwp_new_dir( $dir ) {
 					$ampforwp_ga_fields = json_encode( $ga_fields);
 					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 				 ?>
-						<amp-analytics type="googleanalytics" id="analytics1">
+						<amp-analytics data-block-on-consent type="googleanalytics" id="analytics1">
 							<script type="application/json">
 								<?php echo $ampforwp_ga_fields; ?>
 							</script>
