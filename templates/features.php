@@ -6476,3 +6476,99 @@ function ampforwp_paginated_post_content($content){
 
     return $content;
 }
+
+// GDPR Compliancy #2040
+
+add_action('amp_init', 'ampforwp_gdpr_init');
+
+if ( ! function_exists('ampforwp_gdpr_init') ) {
+	function ampforwp_gdpr_init() {
+		global $redux_builder_amp;
+
+		if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ) {
+			// Scripts
+			add_filter('amp_post_template_data' , 'ampforwp_gdpr_data');
+			// amp-consent 
+			add_action('ampforwp_body_beginning' , 'ampforwp_gdpr_amp_consent' );
+			// CSS
+			add_action('amp_post_template_css' , 'ampforwp_gdpr_css');
+
+		}
+	}
+}
+// AMP GDPR compliancy Scripts
+if ( ! function_exists('ampforwp_gdpr_data') ) {
+	function ampforwp_gdpr_data( $data ) {
+
+		if ( empty( $data['amp_component_scripts']['amp-consent'] ) ) {
+			$data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
+		}
+		if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
+			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+		}
+
+		return $data;
+	}
+}
+// AMP GDPR compliancy amp-consent 
+if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
+
+	function ampforwp_gdpr_amp_consent() {
+	global $redux_builder_amp;
+	$headline 	= $accept = $reject = $user_data = '';
+	$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
+	$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
+	$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
+	$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
+	$form_url 	= ampforwp_url_controller(site_url());
+	$form_url 	= preg_replace('#^https?:#', '', $form_url);
+	var_dump($form_url);
+	 ?>
+	 
+		<amp-consent id="myConsent" layout="nodisplay">
+	        <script type="application/json">{
+	          "consents": {
+	            "consent1": {
+	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI?>/includes/amp-consent/consent.php",
+	              "promptUI": "consentDialog"
+	            }
+	          },
+	          "postPromptUI": "post-consent-ui"
+	        }</script>
+	        <div class="consent-lightbox" id="consentDialog">
+	          <div class="consent-lightbox-content">
+	            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
+	            <div class="consent-headline message">
+	              <div class="h2 m1"><?php echo $headline; ?></div>
+	            </div>
+	            <div id="aceept" class="consent-accept message">
+	              <p class="m1"><?php echo $user_data; ?></p>
+	              <form action="<?php echo esc_url($form_url); ?>" method="get" target="_top">
+	              	<button type="submit" on="tap:myConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $accept; ?></button>
+	          		</form>
+	            </div>
+	            <div id="reject" class="consent-accept message">
+	              <form action="<?php echo esc_url($form_url); ?>" method="get" target="_top">
+	              	<button type="submit" on="tap:myConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $reject; ?></button>
+	          </form>
+	            </div>
+	          </div>
+	        </div>
+	        <div id="post-consent-ui">
+	          <button on="tap:myConsent.prompt()" class="ampstart-btn caps m1">Settings</button> 
+	        </div>
+	  	</amp-consent>
+
+	<?php }
+}
+
+// AMP GDPR compliancy Styling
+if ( ! function_exists('ampforwp_gdpr_css') ) {
+	function ampforwp_gdpr_css(){ ?>		
+		.consent-lightbox {position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);}
+	    .consent-lightbox-content { padding: 1rem; background: #fff; border-radius: 5px; max-width: 700px; width: 95%; position: relative; margin: 5% auto; display: flex; flex-direction: column; align-items: center;}
+	    .message {display: flex; flex-direction: column; align-items: center;}
+	    .message > * { min-width: 200px; }
+	    .dismiss-button { position: absolute; right: 24px; top: 16px; cursor:pointer; }
+	<?php }
+}

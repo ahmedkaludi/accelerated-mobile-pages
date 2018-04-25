@@ -2002,6 +2002,42 @@ else {
        'subsection' => true,
        'fields'     => array(
            array(
+               'id'        =>'amp-gdpr-compliance-switch',
+               'type'      => 'switch',
+               'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
+               'default'   => 0,
+           ),
+           array(
+               'id'        =>'amp-gdpr-compliance-headline-text',
+               'type'      => 'text',
+               'title'     => __('GDPR Compliancy Headline Text', 'accelerated-mobile-pages'),
+               'default'   => 'Headline',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           array(
+               'id'        =>'amp-gdpr-compliance-accept-text',
+               'type'      => 'text',
+               'title'     => __('GDPR Compliancy Accept Text', 'accelerated-mobile-pages'),
+               'default'   => 'Accept',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           array(
+               'id'        =>'amp-gdpr-compliance-reject-text',
+               'type'      => 'text',
+               'title'     => __('GDPR Compliancy Reject Text', 'accelerated-mobile-pages'),
+               'default'   => 'Reject',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           array(
+               'id'        =>'amp-gdpr-compliance-textarea',
+               'type'      => 'textarea',
+               'title'     => __('User Data', 'accelerated-mobile-pages'),
+               'subtitle'     => __('', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           
+           array(
                'id'        =>'amp-enable-notifications',
                'type'      => 'switch',
                'title'     => __('Enable Notifications', 'accelerated-mobile-pages'),
