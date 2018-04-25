@@ -3976,7 +3976,7 @@ function ampforwp_view_nonamp(){
       }
     else{
         $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
-        $ampforwp_backto_nonamp = preg_replace('/amp/','',$ampforwp_backto_nonamp);
+        $ampforwp_backto_nonamp = preg_replace('/\/amp/','/',$ampforwp_backto_nonamp);
       }
   }
    if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
