@@ -95,7 +95,9 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+
 	// For /Blog page with Pagination
+	if( ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
 	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
@@ -107,6 +109,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	        'index.php?amp&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
+	}
 
     // For Author pages
     add_rewrite_rule(
@@ -114,7 +117,6 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&author_name=$matches[1]',
         'top'
     );
-
     add_rewrite_rule(
         'author\/([^/]+)\/amp\/page\/?([0-9]{1,})\/?$',
         'index.php?amp=1&author_name=$matches[1]&paged=$matches[2]',
