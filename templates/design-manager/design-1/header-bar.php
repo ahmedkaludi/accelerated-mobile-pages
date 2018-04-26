@@ -48,6 +48,7 @@
         echo $sanitized_menu;
         ?>
     </nav>
+    <?php do_action('ampforwp_after_amp_menu'); ?>
   </div>
 </amp-sidebar>
 <?php }
