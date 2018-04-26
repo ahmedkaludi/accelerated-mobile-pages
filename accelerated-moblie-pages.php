@@ -247,6 +247,20 @@ function ampforwp_rewrite_activation() {
 
 }
 
+add_action( 'admin_init', 'ampforwp_flush_after_update');
+function ampforwp_flush_after_update() {
+	// Flushing rewrite urls ONLY on after Update is installed
+	$older_version = "";
+	$older_version = get_transient('ampforwp_current_version_check');
+	if ( empty($older_version) || ( $older_version <  AMPFORWP_VERSION ) ) {
+		flush_rewrite_rules();
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
+		set_transient('ampforwp_current_version_check', AMPFORWP_VERSION);
+	}
+}
+
+
 add_action('init', 'ampforwp_flush_rewrite_by_option', 20);
 
 function ampforwp_flush_rewrite_by_option(){
