@@ -150,7 +150,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php }
 					} ?> 
                 </ul>
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
 
 
 				<?php
