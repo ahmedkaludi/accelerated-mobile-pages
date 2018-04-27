@@ -449,7 +449,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        	$should_be_404 = $wp->request;
 	        	$request_pieces = explode('/', $should_be_404);
 	        	$rubbish_part = (end($request_pieces));
-	        	if('amp' != $rubbish_part  && 'single' === $type && !$post_paginated_page && !$endpoint_check && isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover']){
+	        	if('amp' != $rubbish_part  && 'single' === $type && !$post_paginated_page && !$endpoint_check && isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] && is_single()){
 
 	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
 	        	}
