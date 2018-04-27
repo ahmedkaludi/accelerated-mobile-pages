@@ -31,7 +31,7 @@
 			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
 				$date = get_the_modified_date( get_option( 'date_format' )) . ', ' . get_the_modified_time() ;
 			}
-			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . $date );
+			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date );
 			}?>
 		</time>
 	</div>
