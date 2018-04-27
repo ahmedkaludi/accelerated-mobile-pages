@@ -29,7 +29,7 @@
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
 					<?php  if($redux_builder_amp['amp-rtl-select-option']==0) {
-					  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' );
+					  		 printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' );
 							 		}
 						foreach ($ampforwp_tags as $tag) {
 							if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
@@ -39,7 +39,7 @@
 						}
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
-						  		 global $redux_builder_amp; echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
+						  	echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
 						}?>
 				</div>
 	<?php endif; }?>
