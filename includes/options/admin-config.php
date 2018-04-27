@@ -1886,112 +1886,108 @@ if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
         }
         array_splice($fields, 2, 0,  $extra_fields);
         return $fields;
-       
-    }
+     }
 }
-$sd_post = '';
-$sd_page = '';
-$sd_notify = '';
-if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')) {
 
-    $sd_post = array(
-              'id'       => 'ampforwp-sd-type-posts',
-              'type'     => 'select',
-              'title'    => __('Posts', 'accelerated-mobile-pages'),
-              'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
-              'options'  => ampforwp_get_sd_types(),
-              'default'  => 'BlogPosting',
-            );
-    $sd_page =  array(
-              'id'       => 'ampforwp-sd-type-pages',
-              'type'     => 'select',
-              'title'    => __('Pages', 'accelerated-mobile-pages'),
-              'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
-              'options'  =>  ampforwp_get_sd_types(),
-              'default'  => 'BlogPosting',
-            );
-}
-else {
-    
-   $sd_notify = array(
+add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_sd_fields');
+function ampforwp_add_sd_fields($fields){ 
+    if( is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
+           $fields[] = array(
                        'id' => 'amp-cf7-SSL-info',
                        'type' => 'info',
                        'desc' =>"<div style='background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-30px -14px -18px -17px;'><span style='color:#303F9F;'> Note: </span> Structure data Extension is activated, you can setup the <a href=".admin_url( 'admin.php?page=structured_data_options&tab=5' )." target='_blank' >Schema Type Here</a></div>"
                    );
+
+           return $fields;
+    }
+    else {
+    $fields[] =   array(
+                      'id'       => 'ampforwp-sd-type-posts',
+                      'type'     => 'select',
+                      'title'    => __('Posts', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
+                      'options'  => ampforwp_get_sd_types(),
+                      'default'  => 'BlogPosting',
+            );
+    $fields[] =   array(
+                      'id'       => 'ampforwp-sd-type-pages',
+                      'type'     => 'select',
+                      'title'    => __('Pages', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
+                      'options'  =>  ampforwp_get_sd_types(),
+                      'default'  => 'BlogPosting',
+            );
+    $fields[] =   array(
+                      'id'       => 'amp-structured-data-logo',
+                      'type'     => 'media',
+                      'url'      => true,
+                      'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
+                      'subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
+            );
+    $fields[] =   array(
+                      'id'       => 'ampforwp-sd-logo-dimensions',
+                      'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                      'type'     => 'switch',
+                      'default'  => 0,
+            );
+    $fields[] =   array(
+                      'id'       => 'ampforwp-sd-logo-width',
+                      'type'     => 'text',
+                      'title'    => __('Logo Width', 'accelerated-mobile-pages'),
+                      'desc'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
+                      'default' => '600',
+                      'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+            );
+    $fields[] =   array(
+                    'id'       => 'ampforwp-sd-logo-height',
+                    'type'     => 'text',
+                    'title'    => __('Logo Height', 'accelerated-mobile-pages'),
+                    'desc'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
+                    'default' => '60',
+                    'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+            );
+    $fields[] =   array(
+                      'id'      => 'amp-structured-data-placeholder-image',
+                      'type'    => 'media',
+                      'url'     => true,
+                      'title'   => __('Default Post Image', 'accelerated-mobile-pages'),
+                      'subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
+                      'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
+            );
+    $fields[] =   array(
+                      'id'       => 'amp-structured-data-placeholder-image-width',
+                      'title'    => __('Default Post Image Width', 'accelerated-mobile-pages'),
+                      'type'     => 'text',
+                      'placeholder' => '550',
+                      'subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
+                      'default'  => '700'
+            );
+    $fields[] =   array(
+                      'id'       => 'amp-structured-data-placeholder-image-height',
+                      'title'    => __('Default Post Image Height', 'accelerated-mobile-pages'),
+                      'type'     => 'text',
+                      'placeholder' => '350',
+                      'subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
+                      'default'  => '550'
+             );
+    $fields[] =   array(
+                      'id'      => 'amporwp-structured-data-video-thumb-url',
+                      'type'    => 'media',
+                      'url'     => true,
+                      'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
+                      'subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
+                      'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+            );
+    return $fields;
+    }
 }
-    // Structured Data
+// Structured Data
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
         'id'         => 'opt-structured-data',
         'subsection' => true,
-        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array(
-            $sd_post,
-            $sd_page,
-            $sd_notify,
-            array(
-              'id'       => 'amp-structured-data-logo',
-              'type'     => 'media',
-              'url'      => true,
-              'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
-              'subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
-            ),
-             array(
-                'id'       => 'ampforwp-sd-logo-dimensions',
-                'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
-                'type'     => 'switch',
-                'default'  => 0,
-            ),
-             array(
-                'id'       => 'ampforwp-sd-logo-width',
-                'type'     => 'text',
-                'title'    => __('Logo Width', 'accelerated-mobile-pages'),
-                'desc'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
-                'default' => '600',
-                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
-            ),
-             array(
-                'id'       => 'ampforwp-sd-logo-height',
-                'type'     => 'text',
-                'title'    => __('Logo Height', 'accelerated-mobile-pages'),
-                'desc'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
-                'default' => '60',
-                'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
-
-            ),
-            array(
-              'id'      => 'amp-structured-data-placeholder-image',
-              'type'    => 'media',
-              'url'     => true,
-              'title'   => __('Default Post Image', 'accelerated-mobile-pages'),
-              'subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
-              'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
-            ),
-            array(
-            'id'       => 'amp-structured-data-placeholder-image-width',
-            'title'    => __('Default Post Image Width', 'accelerated-mobile-pages'),
-            'type'     => 'text',
-            'placeholder' => '550',
-            'subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-            'default'  => '700'
-            ),
-            array(
-              'id'       => 'amp-structured-data-placeholder-image-height',
-              'title'    => __('Default Post Image Height', 'accelerated-mobile-pages'),
-              'type'     => 'text',
-              'placeholder' => '350',
-              'subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-              'default'  => '550'
-             ),
-            array(
-              'id'      => 'amporwp-structured-data-video-thumb-url',
-              'type'    => 'media',
-              'url'     => true,
-              'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
-              'subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
-              'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
-            ),
-        )
-)
+        'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array()
+        ),
     ) );
 
     // Notifications SECTION
