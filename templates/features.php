@@ -6604,8 +6604,8 @@ function amp_consent_submission(){
 	header("AMP-Redirect-To: $current_url ");
 }
 // #1696
-add_action('wp','ampforwp_remove_squirly_JS');
-function ampforwp_remove_squirly_JS(){
+add_action('wp','ampforwp_remove_squirly_js');
+function ampforwp_remove_squirly_js(){
   if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
     if(class_exists('SQ_Classes_ObjController')){
 	    $SQ_Classes_ObjController = new SQ_Classes_ObjController();
