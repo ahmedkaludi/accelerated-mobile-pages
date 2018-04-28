@@ -472,6 +472,7 @@ do_action("ampforwp_single_design_type_handle");
 					<?php } ?>
 				</div><!-- /.sp-left -->
 				<?php if( $redux_builder_amp['swift-sidebar'] == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+				<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 				<div class="sdbr-right">
 					<?php 
 						ob_start();
@@ -497,6 +498,7 @@ do_action("ampforwp_single_design_type_handle");
 			              echo $sanitized_footer_widget;
 					?>
 				</div>
+			<?php endif; ?>
 				<?php } ?>
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
