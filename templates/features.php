@@ -6616,3 +6616,16 @@ function ampforwp_remove_squirly_js(){
 
   }
 }
+
+// Thrive Leads Compatibility #2067
+add_filter('thrive_leads_skip_request', 'ampforwp_skip_thrive_leads');
+if ( ! function_exists('ampforwp_skip_thrive_leads') ) {
+	function ampforwp_skip_thrive_leads($skip) {
+		// Skip thrive leads on AMP
+		if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
+			return true;
+		}
+
+		return $skip;
+	}
+}
