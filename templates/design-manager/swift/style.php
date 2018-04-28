@@ -640,7 +640,7 @@ if (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-side
 .sp-left {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: <?php if ( ! is_active_sidebar( 'swift-sidebar' ) ) { echo '100%';} else{ echo '70%'; } ?>;
     padding-right: 20px;
 }
 .sp-artl .srp .has_thumbnail{
@@ -697,6 +697,7 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 <?php }
 if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] ||isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar'] ) { ?>
 /*** Sidebar CSS ***/
+<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 .sdbr-right{
 	<?php if( isset($redux_builder_amp['sidebar-bgcolor']['rgba']) && $redux_builder_amp['sidebar-bgcolor']['rgba'] ) {?>
 		background:<?php echo $redux_builder_amp['sidebar-bgcolor']['rgba']?>;
@@ -726,6 +727,7 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 .amp-sidebar p{
 	margin-bottom:15px;
 }
+<?php endif; ?>
 @media(max-width:768px){
 .sdbr-right{
 	width:100%;
