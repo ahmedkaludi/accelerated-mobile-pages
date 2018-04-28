@@ -992,23 +992,10 @@ if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 .rr {margin-bottom: 30px;display: inline-block;}
-/**** Table CSS ****/
-.amp-single table {
-    width: 100%;
-    margin-bottom:25px;
-    border-collapse: collapse;
-    font-size: 1em;
-    border: 1px solid #ccc;
-}
-.amp-single td {
-    padding: 0.5em 1em;
-    border: 1px solid #ccc;
-    background: #fff;
-    font-weight: 300;
-}
-.amp-single tr:nth-child(odd) td {
-    background: #f7f7f7;
-}
+
+.sgl table {width: 100%;margin-bottom:25px;}
+.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
+.sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php } ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
