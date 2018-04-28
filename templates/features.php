@@ -2799,15 +2799,15 @@ function ampforwp_talking_to_robots() {
 
   global $redux_builder_amp;
   global $wp;
-  $message_to_robots = '<meta name="robots" content="noindex,noarchive"/>';
+  $meta_content = "";
   $talk_to_robots=false;
 
-   //author arhives  index/noindex
-   if( is_author() && !$redux_builder_amp['ampforwp-robots-archive-author-pages'] ) {
-  	$talk_to_robots = true;
-   }
+  //author archives  index/noindex
+  if( is_author() && !$redux_builder_amp['ampforwp-robots-archive-author-pages'] ) {
+	$talk_to_robots = true;
+  }
 
-  //date ke archives index/noindex
+  //date archives index/noindex
   if( is_date() && !$redux_builder_amp['ampforwp-robots-archive-date-pages'] ) {
     $talk_to_robots = true;
   }
@@ -2850,7 +2850,16 @@ function ampforwp_talking_to_robots() {
 	}
 
   if( $talk_to_robots ) {
+  	$meta_content = "noindex,noarchive";
+  }
+  if ( function_exists('genesis_get_robots_meta_content') ) {
+  	$meta_content = genesis_get_robots_meta_content();
+  }
+  if ( $meta_content ) {
+  	$message_to_robots = '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';
+  	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
     	echo $message_to_robots;
+  	}
   }
 
 }
