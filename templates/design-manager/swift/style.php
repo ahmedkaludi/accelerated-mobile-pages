@@ -323,6 +323,9 @@ if(is_single() ) { ?>
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
 .ss-ic li:before{border-radius: 2px;text-align:center;padding: 4px 6px;}
+.sgl table {width: 100%;margin-bottom:25px;}
+.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
+.sgl tr:nth-child(odd) td {background: #f7f7f7;}
 
 
 
@@ -993,9 +996,6 @@ if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 .rr {margin-bottom: 30px;display: inline-block;}
 
-.sgl table {width: 100%;margin-bottom:25px;}
-.sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
-.sgl tr:nth-child(odd) td {background: #f7f7f7;}
 <?php } ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
 [class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
