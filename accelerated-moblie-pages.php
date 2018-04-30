@@ -418,25 +418,27 @@ require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
-	if(!defined('AMP__FILE__')){
-		define( 'AMP__FILE__', __FILE__ );
-	}
-	if ( ! defined('AMP__DIR__') ) {
-		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
-	}
-	if(!defined('AMP__VERSION')){
-		define( 'AMP__VERSION', '0.4.2' );
-	}
+	if(!function_exists("amp_activate")){
+		if(!defined('AMP__FILE__')){
+			define( 'AMP__FILE__', __FILE__ );
+		}
+		if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		}
+		if(!defined('AMP__VERSION')){
+			define( 'AMP__VERSION', '0.4.2' );
+		}
 
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-changes.php';
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-changes.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
 
-	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
-	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
-	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+		require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+		require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+		require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+	}
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
@@ -454,7 +456,7 @@ function ampforwp_deactivate_amp_plugin() {
 	    }
 	}
 }
-add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+//add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
 
 function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	$plugin = '';
@@ -468,7 +470,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	} 
  	return $actions;
 }
-add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+//add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
@@ -580,3 +582,19 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
+
+/*
+*
+* Use the code at the beginning of a plugin that you want to be laoded at last 
+*
+*/
+function this_plugin_last() {
+	$wp_path_to_this_file = preg_replace('/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", __FILE__);
+	$this_plugin = plugin_basename(trim($wp_path_to_this_file));
+	$active_plugins = get_option('active_plugins');
+	$this_plugin_key = array_search($this_plugin, $active_plugins);
+        array_splice($active_plugins, $this_plugin_key, 1);
+        array_push($active_plugins, $this_plugin);
+        update_option('active_plugins', $active_plugins);
+}
+add_action("activated_plugin", "this_plugin_last");
