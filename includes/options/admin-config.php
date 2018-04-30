@@ -2771,24 +2771,24 @@ Redux::setSection( $opt_name, array(
                    array(
                        'id'       => 'amp-translator-archives-text',
                        'type'     => 'text',
-                       'title'    => __('Page', 'accelerated-mobile-pages'),
-                       'default'  => __('Page','accelerated-mobile-pages'),
+                       'title'    => __('Archives', 'accelerated-mobile-pages'),
+                       'default'  => __('Archives','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-breadcrumbs-search-text',
                        'type'     => 'text',
-                       'title'    => __('Page', 'accelerated-mobile-pages'),
-                       'default'  => __('Page','accelerated-mobile-pages'),
+                       'title'    => __('Search results for', 'accelerated-mobile-pages'),
+                       'default'  => __('Search results for','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
                        'id'       => 'amp-translator-error-404-text',
                        'type'     => 'text',
-                       'title'    => __('Page', 'accelerated-mobile-pages'),
-                       'default'  => __('Page','accelerated-mobile-pages'),
+                       'title'    => __('Error 404', 'accelerated-mobile-pages'),
+                       'default'  => __('Error 404','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
