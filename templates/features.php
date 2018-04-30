@@ -4008,8 +4008,14 @@ function ampforwp_view_nonamp(){
         $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
       }
     else{
+        $permalink_structure = '';
+		$permalink_structure = get_option('permalink_structure');
         $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
-        $ampforwp_backto_nonamp = preg_replace('/\/amp/','/',$ampforwp_backto_nonamp);
+        $ampforwp_backto_nonamp = preg_replace('/\bamp\b/','',$ampforwp_backto_nonamp);
+        if('' == $permalink_structure){
+        	$ampforwp_backto_nonamp = remove_query_arg( 'amp',get_permalink() );
+        }
+        $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
       }
   }
    if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
