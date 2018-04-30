@@ -219,7 +219,20 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 						break;
 					}
 				}
-				
+				// 404 Pages #2042
+				global $wp;
+				$post_paginated_page='';
+				$post_paginated_page = get_query_var('page');
+				$endpoint_check = false;
+				$endpoint_check = $redux_builder_amp['amp-core-end-point'];
+	        	$should_be_404 = $wp->request;
+	        	$request_pieces = explode('/', $should_be_404);
+	        	$rubbish_part = (end($request_pieces));
+		        	if('amp' != $rubbish_part  && 'single' === $type && !$post_paginated_page && !$endpoint_check){
+		        		
+		        		$file = AMPFORWP_CUSTOM_THEME .'/404.php';
+		        		
+		        	}
 	    	break;
 	    	case is_page():
 	    		$id = get_queried_object_id();
