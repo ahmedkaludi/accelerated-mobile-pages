@@ -11,8 +11,8 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 		'link_after'       => '',
 		'next_or_number'   => 'number',
 		'separator'        => ' ',
-		'nextpagelink'     => __( 'Next page' ),
-		'previouspagelink' => __( 'Previous page' ),
+		'nextpagelink'     => ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next page'),
+		'previouspagelink' => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous page'),
 		'pagelink'         => '%',
 		'echo'             => 1
 	);

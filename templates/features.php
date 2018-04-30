@@ -4055,8 +4055,8 @@ function ampforwp_post_pagination( $args = '' ) {
 		'link_after'       => '',
 		'next_or_number'   => 'number',
 		'separator'        => ' ',
-		'nextpagelink'     => __( 'Next' ),
-		'previouspagelink' => __( 'Previous' ),
+		'nextpagelink'     => ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next'),
+		'previouspagelink' => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous'),
 		'pagelink'         => '%',
 		'echo'             => 1
 	);
