@@ -524,6 +524,7 @@ var redux_title_modify = function(){
         }
 
     });
+    $('li.active .redux-group-tab-link-a').click();
 }
     
 
