@@ -14,8 +14,6 @@
 				// Custom/Alternative AMP content added through post meta
 				$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 			}
-			//Filter to modify the Content			 
-			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
 			// Muffin Builder Compatibility #1455 #1893
 			if ( function_exists('mfn_builder_print') ) {
 				ob_start();
@@ -37,7 +35,6 @@
 									) 
 								);
 			 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
-		      	echo $ampforwp_the_content;			
 			}
 			else {
 				if($redux_builder_amp['amp-pagination']) {
@@ -49,11 +46,13 @@
 				  	else{
 				  		$queried_var = 0;
 				  	}
-				  	echo $ampforwp_new_content[$queried_var]; 		  
-		 		} else {
-		 			echo $ampforwp_the_content;
-		 		}//#1015 Pegazee
+				  	$ampforwp_the_content =  $ampforwp_new_content[$queried_var]; 		  
+		 		} //#1015 Pegazee
 		 	}
+		 	
+			//Filter to modify the Content			 
+			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
+		    echo $ampforwp_the_content;			
 	 	do_action('ampforwp_after_post_content',$this) ; //Post After Content here 
 	 ?>
 

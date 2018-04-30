@@ -427,7 +427,6 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			// Custom/Alternative AMP content added through post meta  
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
-	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	// Muffin Builder Compatibility #1455 #1893
 	if ( function_exists('mfn_builder_print') ) {
 		ob_start();
@@ -448,11 +447,10 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 								) 
 							) 
 						);
-	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
-      	echo $ampforwp_the_content;		
+	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();		
 	}
-	else
-		echo $ampforwp_the_content;
+	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
+	echo $ampforwp_the_content;
 	do_action('ampforwp_after_post_content',$thisTemplate); ?>
 <?php }
 
