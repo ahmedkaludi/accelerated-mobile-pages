@@ -430,7 +430,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 	// Muffin Builder Compatibility #1455 #1893
 	if ( function_exists('mfn_builder_print') ) {
 		ob_start();
-	  	mfn_builder_print( $post->ID );
+	  	mfn_builder_print( $post_id );
 		$content = ob_get_contents();
 		ob_end_clean();
 		$sanitizer_obj = new AMPFORWP_Content( $content,
