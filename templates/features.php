@@ -2708,7 +2708,7 @@ function ampforwp_facebook_comments_markup() {
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
-		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
+		$facebook_comments_markup .= '<amp-facebook-comments data-block-on-consent width=486 height=357
 	    		layout="responsive" data-numposts=';
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
