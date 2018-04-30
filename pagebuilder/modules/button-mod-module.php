@@ -403,8 +403,16 @@ return array(
 				              ),	
 					),
 			'front_template'=> 
-			'<div class="btn"><a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="{{if_condition_button_repeat_check==1}}alt-btn{{ifend_condition_button_repeat_check_1}} btn-txt">{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}</a>
-			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}</div>
+			'<div class="btn">
+				<a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} 
+					class="btn-txt{{if_condition_button_repeat_check==1}}
+				alt-btn"{{ifend_condition_button_repeat_check_1}} </a>
+				{{if_condition_button_repeat_check==1}}
+					{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}
+				</a>
+			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
+			{{ifend_condition_button_repeat_check_1}}
+			</div>
 			'
 			),
 	);
