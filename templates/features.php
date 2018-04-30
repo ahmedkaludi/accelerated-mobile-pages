@@ -4049,7 +4049,7 @@ function ampforwp_post_pagination( $args = '' ) {
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 
 	$defaults = array(
-		'before'           => '<div class="ampforwp_post_pagination" ><p>' . __( '<span>Page:</span>' ),
+		'before'           => '<div class="ampforwp_post_pagination" ><p>' . '<span>' .  ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ':</span>',
 		'after'            => '</p></div>',
 		'link_before'      => '',
 		'link_after'       => '',

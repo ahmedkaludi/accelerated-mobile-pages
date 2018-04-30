@@ -2761,6 +2761,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-page-text',
+                       'type'     => 'text',
+                       'title'    => __('Page', 'accelerated-mobile-pages'),
+                       'default'  => __('Page','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-footer-text',
                        'type'     => 'textarea',
                        'title'    => __('Footer', 'accelerated-mobile-pages'),
