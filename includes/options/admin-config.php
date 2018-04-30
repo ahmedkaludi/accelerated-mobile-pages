@@ -3889,19 +3889,22 @@ Redux::setSection( $opt_name, array(
 
 
   //code for fetching ctegories to show as a list in redux settings
-   $categories = get_categories( array(
-                                      'orderby' => 'name',
-                                      'order'   => 'ASC'
-                                      ) );
-  $categories_array = array();
-   if ( $categories ) :
-        foreach ($categories as $cat ) {
-                $cat_id = $cat->cat_ID;
-                $key = "".$cat_id;
-                //building assosiative array of ID-cat_name
-                $categories_array[ $key ] = $cat->name;
-        }
-    endif;
+    if(get_categories()){
+       $categories = get_categories( array(
+                                          'orderby' => 'name',
+                                          'order'   => 'ASC'
+                                          ) );
+
+      $categories_array = array();
+       if ( $categories ) :
+            foreach ($categories as $cat ) {
+                    $cat_id = $cat->cat_ID;
+                    $key = "".$cat_id;
+                    //building assosiative array of ID-cat_name
+                    $categories_array[ $key ] = $cat->name;
+            }
+        endif;
+    }
     //End of code for fetching ctegories to show as a list in redux settings
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
