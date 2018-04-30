@@ -2857,10 +2857,10 @@ function ampforwp_talking_to_robots() {
   if ( function_exists('genesis_get_robots_meta_content') ) {
   	$meta_content = genesis_get_robots_meta_content();
   }
+  $meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
   if ( $meta_content ) {
-  	$message_to_robots = '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';
   	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
-    	echo $message_to_robots;
+  		echo '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';
   	}
   }
 
