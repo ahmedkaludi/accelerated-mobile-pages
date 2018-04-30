@@ -76,7 +76,7 @@ if ( get_query_var( 'paged' ) ) {
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="amp-wp-content author-img">
-							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 						</div>
 					<?php }
 				}
@@ -133,6 +133,7 @@ if ( get_query_var( 'paged' ) ) {
 							<?php ampforwp_thumbnail_alt(); ?>
 							width=<?php echo $thumb_width; ?>
 							height=<?php echo $thumb_height; ?>
+							data-block-on-consent
 						></amp-img>
 					</a>
 				</div>

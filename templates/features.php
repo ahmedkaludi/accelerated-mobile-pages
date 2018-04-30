@@ -5383,9 +5383,9 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 		function ampforwp_facebook_pixel() {
 
-			Global $redux_builder_amp;
+			global $redux_builder_amp;
 			if( isset($redux_builder_amp['amp-fb-pixel']) && $redux_builder_amp['amp-fb-pixel'] ){
-				$amp_pixel = '<amp-pixel src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
+				$amp_pixel = '<amp-pixel data-block-on-consent src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
 				echo $amp_pixel;
 
 			}
