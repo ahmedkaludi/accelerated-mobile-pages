@@ -3973,7 +3973,7 @@ function ampforwp_remove_sq_seo() {
 
 //67 View Non AMP
 function ampforwp_view_nonamp(){
-	global $redux_builder_amp, $post;
+	global $redux_builder_amp, $post, $wp;
   	$ampforwp_backto_nonamp = '';
   	$nofollow 				= '';
   if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
@@ -4001,30 +4001,40 @@ function ampforwp_view_nonamp(){
     else
       $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
   }
-  if( is_archive() ) {
-    global $wp;
+  if( is_archive() || is_search() ) {
+
+    $permalink_structure 	= '';
+	$permalink_structure 	= get_option('permalink_structure');
+
     if($redux_builder_amp['amp-mobile-redirection']==1){
         $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
         $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
       }
     else{
-        $permalink_structure = '';
-		$permalink_structure = get_option('permalink_structure');
-        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
+        $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
         $ampforwp_backto_nonamp = preg_replace('/\bamp\b/','',$ampforwp_backto_nonamp);
-        if('' == $permalink_structure){
-        	$ampforwp_backto_nonamp = remove_query_arg( 'amp',get_permalink() );
-        }
         $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
+        
+        if('' == $permalink_structure){
+        	$ampforwp_backto_nonamp = site_url('?'.$wp->query_string);
+        	$ampforwp_backto_nonamp = remove_query_arg( 'amp', $ampforwp_backto_nonamp );
+        }
+      }
+      if ( is_search() ) {
+      	if ( ! empty( $permalink_structure ) ){
+      		$ampforwp_backto_nonamp = add_query_arg('s', $wp->query_vars['s'], $ampforwp_backto_nonamp);
+      	} 
       }
   }
+  
    if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
    		$nofollow = 'rel="nofollow"';
    }
    if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
    	$ampforwp_backto_nonamp = '';
-   } 
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo $ampforwp_backto_nonamp; ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+   }
+
+   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo esc_url($ampforwp_backto_nonamp); ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
  }
 
  //68. Facebook Instant Articles
