@@ -6524,7 +6524,7 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 	function ampforwp_gdpr_init() {
 		global $redux_builder_amp;
 
-		if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ) {
+		if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] && ! is_admin() ) {
 			// Scripts
 			add_filter('amp_post_template_data' , 'ampforwp_gdpr_data');
 			// amp-consent 
@@ -6554,20 +6554,21 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
 	function ampforwp_gdpr_amp_consent() {
 		global $redux_builder_amp;
-		$headline 	= $accept = $reject = $user_data = $form_url = '';
+		$headline 	= $accept = $reject = $settings = $user_data = $form_url = '';
 		$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
 		$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
 		$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
+		$settings 	= $redux_builder_amp['amp-gdpr-compliance-settings-text'];
 		$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
-		$form_url 	=  admin_url('admin-ajax.php?action=amp_consent_submission');
+		$form_url 	= admin_url('admin-ajax.php?action=amp_consent_submission');
 		$form_url 	= preg_replace('#^https?:#', '', $form_url);
 		 ?>
 		 
-		<amp-consent id="myConsent" layout="nodisplay">
+		<amp-consent id="ampforwpConsent" layout="nodisplay">
 	        <script type="application/json">{
 	          "consents": {
 	            "consent1": {
-	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI?>/includes/amp-consent/consent.php",
+	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI; ?>includes/amp-consent/consent.php",
 	              "promptUI": "consentDialog"
 	            }
 	          },
@@ -6575,25 +6576,25 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	        }</script>
 	        <div class="consent-lightbox" id="consentDialog">
 	          <div class="consent-lightbox-content">
-	            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
+	            <div class="dismiss-button" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
 	            <div class="consent-headline message">
-	              <div class="h2 m1"><?php echo $headline; ?></div>
+	              <div class="h2 m1"><?php echo esc_attr($headline); ?></div>
 	            </div>
-	            <div id="aceept" class="consent-accept message">
-	              <p class="m1"><?php echo $user_data; ?></p>
-	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:myConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $accept; ?></button>
+	            <div id="ampforwp-gdpr-aceept" class="consent-accept message">
+	              <p class="m1"><?php echo esc_attr($user_data); ?></p>
+	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	              	<button type="submit" on="tap:ampforwpConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($accept); ?></button>
 	          		</form>
 	            </div>
-	            <div id="reject" class="consent-accept message">
-	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:myConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $reject; ?></button>
+	            <div id="ampforwp-gdpr-reject" class="consent-accept message">
+	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	              	<button type="submit" on="tap:ampforwpConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($reject); ?></button>
 	          </form>
 	            </div>
 	          </div>
 	        </div>
 	        <div id="post-consent-ui">
-	          <button on="tap:myConsent.prompt()" class="ampstart-btn caps m1">Settings</button> 
+	          <button on="tap:ampforwpConsent.prompt()" class="ampstart-btn caps m1"><?php echo esc_attr($settings); ?></button> 
 	        </div>
 	  	</amp-consent>
 
@@ -6610,15 +6611,15 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 	    .dismiss-button { position: absolute; right: 24px; top: 16px; cursor:pointer; }
 	<?php }
 }
-// Redirection
+// Consent Submission
 add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
 add_action('wp_ajax_nopriv_amp_consent_submission','amp_consent_submission');
 function amp_consent_submission(){
 	$current_url = $site_url = $site_host = $amp_site = '';
-	$current_url = wp_get_referer();
-	$site_url = parse_url(get_site_url());
-	$site_host = $site_url['host'];
-	$amp_site = $site_url['scheme'] . '://' . $site_url['host'];
+	$current_url 	= wp_get_referer();
+	$site_url 		= parse_url( get_site_url() );
+	$site_host 		= $site_url['host'];
+	$amp_site 		= $site_url['scheme'] . '://' . $site_url['host'];
 	header("AMP-Access-Control-Allow-Source-Origin: $amp_site ");
 	header("AMP-Redirect-To: $current_url ");
 }
