@@ -440,22 +440,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							)  {
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
-	        // 404 Pages #2042
-	        if(isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover']){
-	        	global $wp;
-	        	$post_paginated_page='';
-				$post_paginated_page = get_query_var('page');
-				$endpoint_check = false;
-				$endpoint_check = $redux_builder_amp['amp-core-end-point'];
-	        	$should_be_404 = $wp->request;
-	        	$request_pieces = explode('/', $should_be_404);
-	        	$rubbish_part = (end($request_pieces));
-	        	if('amp' != $rubbish_part  && 'single' === $type && !$post_paginated_page && !$endpoint_check  && is_single()){
-
-	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
-	        	}
-	        }
-	        	
+	        // 404 Pages #2042        	
 	        if ( is_404() && 'single' === $type )  {
 	        	add_filter('ampforwp_modify_rel_url','ampforwp_404_canonical');
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
