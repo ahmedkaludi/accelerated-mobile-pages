@@ -5,14 +5,14 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
 	$next_class = $previous_class = '';
 	$defaults = array(
-		'before'           => '<p>' . __( '<span>Page:</span>' ),
+		'before'           => '<p>' . ( '<span>'. ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') .':</span>' ),
 		'after'            => '</p>',
 		'link_before'      => '',
 		'link_after'       => '',
 		'next_or_number'   => 'number',
 		'separator'        => ' ',
-		'nextpagelink'     => __( 'Next page' ),
-		'previouspagelink' => __( 'Previous page' ),
+		'nextpagelink'     => ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next page'),
+		'previouspagelink' => ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous page'),
 		'pagelink'         => '%',
 		'echo'             => 1
 	);

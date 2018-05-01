@@ -68,6 +68,11 @@ $front_css = '
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
+	{{if_condition_check_for_brdr==1}}
+		border-width:{{border_sz}};
+		border-color: {{border_clr_pkr}};
+    	border-style: solid;
+	{{ifend_condition_check_for_brdr_1}}
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
 	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
@@ -340,6 +345,44 @@ $containerCommonSettings = array(
 												),
 								'content_type'=>'css',
 								'output_format'=>"padding: %left% %right% %top% %bottom%"
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_brdr",
+                                'label'     => 'Border',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"border_sz",
+								'label'		=>'Border width',
+								'tab'		=>'container_css',
+								'default'	=>array(
+													'top'=>'0px',
+													'right'=>'0px',
+													'bottom'=>'0px',
+													'left'=>'0px'
+												),
+								'required'  => array('check_for_brdr'=>1),
+								'content_type'=>'css',
+							),
+							array(
+								'type'		=>'color-picker',
+								'name'		=>"border_clr_pkr",
+								'label'		=>'Border Color',
+								'tab'		=>'container_css',
+								'default'	=>'#ccc',
+								'required'  => array('check_for_brdr'=>1),
+								'content_type'=>'css',
+								
 							),
 							array(
                                 'type'      =>'checkbox_bool',

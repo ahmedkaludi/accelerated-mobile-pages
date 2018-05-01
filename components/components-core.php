@@ -427,6 +427,28 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			// Custom/Alternative AMP content added through post meta  
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
+	// Muffin Builder Compatibility #1455 #1893
+	if ( function_exists('mfn_builder_print') ) {
+		ob_start();
+	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
+		$content = ob_get_contents();
+		ob_end_clean();
+		$sanitizer_obj = new AMPFORWP_Content( $content,
+							array(), 
+							apply_filters( 'ampforwp_content_sanitizers', 
+								array( 'AMP_Img_Sanitizer' => array(), 
+									'AMP_Blacklist_Sanitizer' => array(),
+									'AMP_Style_Sanitizer' => array(), 
+									'AMP_Video_Sanitizer' => array(),
+			 						'AMP_Audio_Sanitizer' => array(),
+			 						'AMP_Iframe_Sanitizer' => array(
+										 'add_placeholder' => true,
+									 ),
+								) 
+							) 
+						);
+	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();		
+	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content;
 	do_action('ampforwp_after_post_content',$thisTemplate); ?>
@@ -518,7 +540,7 @@ function amp_author_meta( $args ) {
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
-        <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+        <amp-img data-block-on-consent src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );

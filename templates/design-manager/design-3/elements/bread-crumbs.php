@@ -173,44 +173,45 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
             // Day archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
+            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . '</a></li>';
             
             // Month link
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</a></li>';
+            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
             
                
             // Day display
-            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ' Archives</strong></li>';
+            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
                
         } else if ( is_month() ) {
                
             // Month Archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
+            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
             
             // Month display
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</strong></li>';
+            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
                
         } else if ( is_year() ) {
                
             // Display year archive
-            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</strong></li>';
+            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives'). ' </strong></li>';
                
         }   else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'.__('Page') . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ' ' . get_query_var('paged') . '</strong></li>';
                
         } else if ( is_search() ) {
            
             // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">Search results for: ' . get_search_query() . '</strong></li>';
+            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
+            ' . ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for') . ': ' . get_search_query() . '</strong></li>';
            
         } elseif ( is_404() ) {
                
             // 404 page
-            echo '<li>' . 'Error 404' . '</li>';
+            echo '<li>' . ampforwp_translation($redux_builder_amp['amp-translator-error-404-text'], 'Error 404') . '</li>';
         } 
         echo '</ul>';
       

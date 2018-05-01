@@ -1,7 +1,7 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
-<div class="sp">
+<div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
 			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
@@ -249,7 +249,7 @@ do_action("ampforwp_single_design_type_handle");
 </div>
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){?>
-	<div class="sp">
+	<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
 			<div class="sp-artl">

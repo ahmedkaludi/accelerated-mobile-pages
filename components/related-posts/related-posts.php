@@ -125,7 +125,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 			}
 	    
 	     if ( $thumb_url && $show_image ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img>
+	    	<amp-img data-block-on-consent src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img>
 		<?php }
 		} ?>
     </a>

@@ -2185,9 +2185,20 @@ function ampforwp_add_sd_fields($fields){
            ),
            array(
                'class'  => 'child_opt',
+               'tooltip-subtitle'  => 'This is the message that you want to share with the audience',
+               'id'        =>'amp-gdpr-compliance-textarea',
+               'type'      => 'textarea',
+               'title'     => __('Message to Visitor', 'accelerated-mobile-pages'),
+               'subtitle'     => __('', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           
+           array(
+               'class'  => 'child_opt',
                'id'        =>'amp-gdpr-compliance-accept-text',
                'type'      => 'text',
-               'title'     => __('Accept Text', 'accelerated-mobile-pages'),
+               'title'     => __('Accept Button Text', 'accelerated-mobile-pages'),
                'default'   => 'Accept',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
@@ -2195,21 +2206,20 @@ function ampforwp_add_sd_fields($fields){
                'class'  => 'child_opt',
                'id'        =>'amp-gdpr-compliance-reject-text',
                'type'      => 'text',
-               'title'     => __('Reject Text', 'accelerated-mobile-pages'),
+               'title'     => __('Reject Button Text', 'accelerated-mobile-pages'),
                'default'   => 'Reject',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
            array(
                'class'  => 'child_opt',
-               'id'        =>'amp-gdpr-compliance-textarea',
-               'type'      => 'textarea',
-               'title'     => __('User Data', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'     => __('This is the content that shows up on the popup', 'accelerated-mobile-pages'),
-               'default'   => '',
+               'id'        =>'amp-gdpr-compliance-settings-text',
+               'type'      => 'text',
+               'title'     => __('Settings Button Text', 'accelerated-mobile-pages'),
+               'default'   => 'Settings',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-           
 
+ 
        ),
 
    ) );
@@ -2963,6 +2973,38 @@ Redux::setSection( $opt_name, array(
                        'type'     => 'text',
                        'title'    => __('Previous', 'accelerated-mobile-pages'),
                        'default'  => __('Previous','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-page-text',
+                       'type'     => 'text',
+                       'title'    => __('Page', 'accelerated-mobile-pages'),
+                       'default'  => __('Page','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-archives-text',
+                       'type'     => 'text',
+                       'title'    => __('Archives', 'accelerated-mobile-pages'),
+                       'default'  => __('Archives','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-breadcrumbs-search-text',
+                       'type'     => 'text',
+                       'title'    => __('Search results for', 'accelerated-mobile-pages'),
+                       'default'  => __('Search results for','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
+                       'id'       => 'amp-translator-error-404-text',
+                       'type'     => 'text',
+                       'title'    => __('Error 404', 'accelerated-mobile-pages'),
+                       'default'  => __('Error 404','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
@@ -4097,19 +4139,22 @@ Redux::setSection( $opt_name, array(
 
 
   //code for fetching ctegories to show as a list in redux settings
-   $categories = get_categories( array(
-                                      'orderby' => 'name',
-                                      'order'   => 'ASC'
-                                      ) );
-  $categories_array = array();
-   if ( $categories ) :
-        foreach ($categories as $cat ) {
-                $cat_id = $cat->cat_ID;
-                $key = "".$cat_id;
-                //building assosiative array of ID-cat_name
-                $categories_array[ $key ] = $cat->name;
-        }
-    endif;
+    if(get_categories()){
+       $categories = get_categories( array(
+                                          'orderby' => 'name',
+                                          'order'   => 'ASC'
+                                          ) );
+
+      $categories_array = array();
+       if ( $categories ) :
+            foreach ($categories as $cat ) {
+                    $cat_id = $cat->cat_ID;
+                    $key = "".$cat_id;
+                    //building assosiative array of ID-cat_name
+                    $categories_array[ $key ] = $cat->name;
+            }
+        endif;
+    }
     //End of code for fetching ctegories to show as a list in redux settings
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');

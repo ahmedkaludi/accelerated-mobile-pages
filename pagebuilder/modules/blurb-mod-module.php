@@ -209,7 +209,7 @@ return array(
                                 'name'      =>"check_for_border",
                                 'label'     => 'Icon Border',
                                 'tab'       =>'design',
-                                'default'   =>1,
+                                'default'   =>0,
                                 'options'   =>array(
                                                 array(
                                                     'label'=>'Yes',
