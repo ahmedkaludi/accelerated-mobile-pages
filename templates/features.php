@@ -5687,6 +5687,7 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
  		if ( isset($redux_builder_amp['amp-core-end-point']) && 1 == $redux_builder_amp['amp-core-end-point'] ) {
 	     		$new_url = trailingslashit($url);
 	     		$new_url = $new_url.'?'.AMPFORWP_AMP_QUERY_VAR;
+	     			
 	 			//$new_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $new_url);
  			}
  		else {
@@ -6355,4 +6356,15 @@ function ampforwp_get_frontpage_id() {
 	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
 	return $post_id;
 	
+}
+// End-point (?amp) after 1.0-alpha
+add_filter( 'amp_get_permalink', 'ampforwp_change_end_point' );
+function ampforwp_change_end_point($url){
+  global $redux_builder_amp;
+  $amp_url = $url;
+  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point']){
+  $amp_url = get_permalink();
+    $amp_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'',$amp_url);
+  }
+  return $amp_url;
 }
