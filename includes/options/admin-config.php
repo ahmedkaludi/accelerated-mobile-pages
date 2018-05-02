@@ -149,6 +149,7 @@ $extension_listing_array = array(
                             'item_name'=>'Newspaper Theme for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-newspaper-theme/ampforwp-custom-theme.php')? 1 : 2),
+                            'settingUrl'=>'{ampforwp-theme-subsection}',
                         ),
 
                         array(
@@ -161,6 +162,7 @@ $extension_listing_array = array(
                             'item_name'=>'ACF for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('acf-for-amp-v2/amp-acf.php')? 1 : 2),
+                            'settingUrl'=>admin_url('edit.php?post_type=amp_acf'),
                         ),
                         array(
                             'name'=>'AMP Comments',
@@ -172,6 +174,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Comments',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-comments/amp-comments.php')? 1: 2),
+                            'settingUrl'=>'{ampforwp-cmt-subsection}',
                         ),
                         array(
                             'name'=>'Star Ratings',
@@ -183,6 +186,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Rating',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-rating/amp-rating.php')? 1 : 2),
+                            'settingUrl'=>'{ampforwp-ratings-subsection}',
                         ),
                         array(
                             'name'=>'Custom Post Type',
@@ -194,7 +198,7 @@ $extension_listing_array = array(
                             'item_name'=>'Custom Post Type Support for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
-                            'settingUrl'=>'',
+                            'settingUrl'=>'{ampforwp-cpt-subsection}',
                         ), 
                         array(
                             'name'=>'Structured Data for WP',
@@ -206,7 +210,7 @@ $extension_listing_array = array(
                             'item_name'=>'Structured Data for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
-                            'settingUrl'=>'',
+                            //'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Polylang For AMP',
@@ -240,7 +244,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Teaser',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-teaser/amp-teaser.php')? 1: 2),
-                            'settingUrl'=>'',
+                            'settingUrl'=>'{ampforwp-teaser-subsection}',
                         ),
                         array(
                             'name'=>'View All Extensions',
