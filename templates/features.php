@@ -440,22 +440,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 							)  {
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
-	        // 404 Pages #2042
-	        if(isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover']){
-	        	global $wp;
-	        	$post_paginated_page='';
-				$post_paginated_page = get_query_var('page');
-				$endpoint_check = false;
-				$endpoint_check = $redux_builder_amp['amp-core-end-point'];
-	        	$should_be_404 = $wp->request;
-	        	$request_pieces = explode('/', $should_be_404);
-	        	$rubbish_part = (end($request_pieces));
-	        	if('amp' != $rubbish_part  && 'single' === $type && !$post_paginated_page && !$endpoint_check  && is_single()){
-
-	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
-	        	}
-	        }
-	        	
+	        // 404 Pages #2042        	
 	        if ( is_404() && 'single' === $type )  {
 	        	add_filter('ampforwp_modify_rel_url','ampforwp_404_canonical');
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/404.php';
@@ -2708,7 +2693,7 @@ function ampforwp_facebook_comments_markup() {
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
-		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
+		$facebook_comments_markup .= '<amp-facebook-comments data-block-on-consent width=486 height=357
 	    		layout="responsive" data-numposts=';
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
@@ -3973,7 +3958,7 @@ function ampforwp_remove_sq_seo() {
 
 //67 View Non AMP
 function ampforwp_view_nonamp(){
-	global $redux_builder_amp, $post;
+	global $redux_builder_amp, $post, $wp;
   	$ampforwp_backto_nonamp = '';
   	$nofollow 				= '';
   if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
@@ -4001,30 +3986,40 @@ function ampforwp_view_nonamp(){
     else
       $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
   }
-  if( is_archive() ) {
-    global $wp;
+  if( is_archive() || is_search() ) {
+
+    $permalink_structure 	= '';
+	$permalink_structure 	= get_option('permalink_structure');
+
     if($redux_builder_amp['amp-mobile-redirection']==1){
         $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
         $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
       }
     else{
-        $permalink_structure = '';
-		$permalink_structure = get_option('permalink_structure');
-        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )) );
+        $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
         $ampforwp_backto_nonamp = preg_replace('/\bamp\b/','',$ampforwp_backto_nonamp);
-        if('' == $permalink_structure){
-        	$ampforwp_backto_nonamp = remove_query_arg( 'amp',get_permalink() );
-        }
         $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
+        
+        if('' == $permalink_structure){
+        	$ampforwp_backto_nonamp = site_url('?'.$wp->query_string);
+        	$ampforwp_backto_nonamp = remove_query_arg( 'amp', $ampforwp_backto_nonamp );
+        }
+      }
+      if ( is_search() ) {
+      	if ( ! empty( $permalink_structure ) ){
+      		$ampforwp_backto_nonamp = add_query_arg('s', $wp->query_vars['s'], $ampforwp_backto_nonamp);
+      	} 
       }
   }
+  
    if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
    		$nofollow = 'rel="nofollow"';
    }
    if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
    	$ampforwp_backto_nonamp = '';
-   } 
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo $ampforwp_backto_nonamp; ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+   }
+
+   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo esc_url($ampforwp_backto_nonamp); ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
  }
 
  //68. Facebook Instant Articles
@@ -5383,9 +5378,9 @@ if( ! function_exists( 'ampforwp_get_author_details' ) ){
 add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 		function ampforwp_facebook_pixel() {
 
-			Global $redux_builder_amp;
+			global $redux_builder_amp;
 			if( isset($redux_builder_amp['amp-fb-pixel']) && $redux_builder_amp['amp-fb-pixel'] ){
-				$amp_pixel = '<amp-pixel src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
+				$amp_pixel = '<amp-pixel data-block-on-consent src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
 				echo $amp_pixel;
 
 			}
@@ -6524,7 +6519,7 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 	function ampforwp_gdpr_init() {
 		global $redux_builder_amp;
 
-		if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ) {
+		if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] && ! is_admin() ) {
 			// Scripts
 			add_filter('amp_post_template_data' , 'ampforwp_gdpr_data');
 			// amp-consent 
@@ -6554,20 +6549,21 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
 	function ampforwp_gdpr_amp_consent() {
 		global $redux_builder_amp;
-		$headline 	= $accept = $reject = $user_data = $form_url = '';
+		$headline 	= $accept = $reject = $settings = $user_data = $form_url = '';
 		$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
 		$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
 		$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
+		$settings 	= $redux_builder_amp['amp-gdpr-compliance-settings-text'];
 		$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
-		$form_url 	=  admin_url('admin-ajax.php?action=amp_consent_submission');
+		$form_url 	= admin_url('admin-ajax.php?action=amp_consent_submission');
 		$form_url 	= preg_replace('#^https?:#', '', $form_url);
 		 ?>
 		 
-		<amp-consent id="myConsent" layout="nodisplay">
+		<amp-consent id="ampforwpConsent" layout="nodisplay">
 	        <script type="application/json">{
 	          "consents": {
 	            "consent1": {
-	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI?>/includes/amp-consent/consent.php",
+	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI; ?>includes/amp-consent/consent.php",
 	              "promptUI": "consentDialog"
 	            }
 	          },
@@ -6575,25 +6571,25 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	        }</script>
 	        <div class="consent-lightbox" id="consentDialog">
 	          <div class="consent-lightbox-content">
-	            <div class="dismiss-button" role="button" tabindex="0" on="tap:myConsent.dismiss">X</div>
+	            <div class="dismiss-button" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
 	            <div class="consent-headline message">
-	              <div class="h2 m1"><?php echo $headline; ?></div>
+	              <div class="h2 m1"><?php echo esc_attr($headline); ?></div>
 	            </div>
-	            <div id="aceept" class="consent-accept message">
-	              <p class="m1"><?php echo $user_data; ?></p>
-	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:myConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $accept; ?></button>
+	            <div id="ampforwp-gdpr-aceept" class="consent-accept message">
+	              <p class="m1"><?php echo esc_attr($user_data); ?></p>
+	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	              	<button type="submit" on="tap:ampforwpConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($accept); ?></button>
 	          		</form>
 	            </div>
-	            <div id="reject" class="consent-accept message">
-	              <form action-xhr="<?php echo $form_url; ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:myConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo $reject; ?></button>
+	            <div id="ampforwp-gdpr-reject" class="consent-accept message">
+	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	              	<button type="submit" on="tap:ampforwpConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($reject); ?></button>
 	          </form>
 	            </div>
 	          </div>
 	        </div>
 	        <div id="post-consent-ui">
-	          <button on="tap:myConsent.prompt()" class="ampstart-btn caps m1">Settings</button> 
+	          <button on="tap:ampforwpConsent.prompt()" class="ampstart-btn caps m1"><?php echo esc_attr($settings); ?></button> 
 	        </div>
 	  	</amp-consent>
 
@@ -6610,15 +6606,15 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 	    .dismiss-button { position: absolute; right: 24px; top: 16px; cursor:pointer; }
 	<?php }
 }
-// Redirection
+// Consent Submission
 add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
 add_action('wp_ajax_nopriv_amp_consent_submission','amp_consent_submission');
 function amp_consent_submission(){
 	$current_url = $site_url = $site_host = $amp_site = '';
-	$current_url = wp_get_referer();
-	$site_url = parse_url(get_site_url());
-	$site_host = $site_url['host'];
-	$amp_site = $site_url['scheme'] . '://' . $site_url['host'];
+	$current_url 	= wp_get_referer();
+	$site_url 		= parse_url( get_site_url() );
+	$site_host 		= $site_url['host'];
+	$amp_site 		= $site_url['scheme'] . '://' . $site_url['host'];
 	header("AMP-Access-Control-Allow-Source-Origin: $amp_site ");
 	header("AMP-Redirect-To: $current_url ");
 }

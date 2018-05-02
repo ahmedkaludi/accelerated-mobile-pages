@@ -10,12 +10,12 @@
 			$author_image = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) );
 			 if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  
 			 if( is_single()) { ?>
-				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 				echo ampforwp_get_author_details( $post_author , 'meta-info' );
 			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
-				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 					echo ampforwp_get_author_details( $post_author , 'meta-info' );
 				 }
