@@ -8,6 +8,7 @@
 	if ( $enable_comments ) { ?>
 		<div id="comments" class="ampforwp-comment-wrapper"> <?php 
 			// Gather comments for a specific page/post
+			$postID = $comments =  "";
 			$postID 	= get_the_ID();
 			$comments 	= get_comments( 
 				array( 'post_id' 	=> $postID, 'status' 	=> 'approve' )
