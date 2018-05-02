@@ -6587,7 +6587,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	          </div>
 	        </div>
 	        <div id="post-consent-ui">
-	          <button on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></button> 
+	          <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></a> 
 	        </div>
 	  	</amp-consent>
 
@@ -6605,8 +6605,7 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 .gdpr_yn form{display: inline;}
 .gdpr_yn button{background: #37474F;border: none;color: #fff;padding: 8px 30px;font-size: 13px;margin: 0 3px;}
 .gdpr_yn .gdpr_n{background: #fff;color: #222;border: 1px solid #999;}
-amp-consent{position:relative;margin-left: 5px;top: 4px;width: auto;}
-#post-consent-ui button{float: right;background: none;border: 0;} 
+amp-consent{position: relative;margin-left: 10px;top: 2px;width: auto;}
 <?php }
 }
 // Consent Submission
