@@ -6578,7 +6578,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
                     </div>
 	            <div id="gdpr_yn" class="gdpr_yn">
 	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y" class="btn"><?php echo esc_attr($accept); ?></button>
+	              	<button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
 	          		</form>
 	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
 	              	<button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
