@@ -1,12 +1,12 @@
 <?php
 add_action( 'parse_query', 'ampforwp_correct_query_front_page' );
 function ampforwp_correct_query_front_page(WP_Query $query){
-	if ( ampforwp_is_front_page() && ampforwp_get_frontpage_id()){
+	if ( !is_admin() && ampforwp_is_front_page() && ampforwp_get_frontpage_id()){
 		$query->is_home     = false;
 		$query->is_page     = true;
 		$query->is_singular = true;
 		$query->set( 'page_id', ampforwp_get_frontpage_id() );
-	}elseif( ampforwp_is_home() && $query->is_main_query() ){
+	}elseif( !is_admin() && ampforwp_is_home() && $query->is_main_query() ){
 		$query->is_home     = true;
 		$query->is_page     = false;
 		$query->is_singular = true;
