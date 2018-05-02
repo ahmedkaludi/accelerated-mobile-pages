@@ -39,7 +39,7 @@ $extension_listing_array = array(
                             'item_name'=>'ADS for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('ads-for-wp/ads-for-wp.php')? 1: 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>admin_url('edit.php?post_type=ads-for-wp-ads'),
                         ),
                         array(
                             'name'=>'Advanced AMP ADS',
@@ -51,7 +51,7 @@ $extension_listing_array = array(
                             'item_name'=>'Advanced AMP Ads',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-incontent-ads/amptoolkit-incontent-ads.php')? 1:2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{ampforwp-incontent-ads-subsection}',
                         ),
                         array(
                             'name'=>'Contact Form 7',
@@ -63,7 +63,7 @@ $extension_listing_array = array(
                             'item_name'=>'Contact Form 7 for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cf7/amp-cf7.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{ampforwp-cf7-subsection}',
                         ),
                         array(
                             'name'=>'Gravity Forms',
@@ -75,7 +75,7 @@ $extension_listing_array = array(
                             'item_name'=>'Gravity Forms',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
                         array(
                             'name'=>'Email Opt-in Forms',
@@ -87,7 +87,7 @@ $extension_listing_array = array(
                             'item_name'=>'Opt-in-Forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-optin/amp-optin.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{ampforwp-optin-subsection}',
                         ),
                         array(
                             'name'=>'AMP Cache',
@@ -99,7 +99,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Cache',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{opt-go-amp-cache}',
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -123,7 +123,7 @@ $extension_listing_array = array(
                             'item_name'=>'WooCommerce',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
+                            'settingUrl'=>'{ampforwp-wcp-subsection}',
                         ),
 
                         array(
@@ -136,6 +136,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Layouts',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
+                            'settingUrl'=>'{amp-theme-settings}',
                         ),
 
                         array(
