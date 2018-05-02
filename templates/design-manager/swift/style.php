@@ -879,6 +879,7 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 	float:none;
     font-size: 13px;
     margin-top:15px;
+    display:block;
 }
 }
 <?php } ?>
