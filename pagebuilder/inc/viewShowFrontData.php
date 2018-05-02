@@ -840,8 +840,8 @@ function rowData($container,$col,$moduleTemplate){
 												);
 										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $imageUrl, $moduleFrontHtml);
 									}else{
-										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', urldecode( $replace), $moduleFrontHtml);
-										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], urldecode( $replace), $moduleFrontHtml);
+										$moduleFrontHtml = str_replace('{{'.$field['name'].'}}', esc_html( $replace), $moduleFrontHtml);
+										$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], esc_html( $replace), $moduleFrontHtml);
 									}
 								}else{
 									/*if(count($contentArray[$field['name']])>0){*/
