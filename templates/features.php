@@ -6523,7 +6523,7 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 			// Scripts
 			add_filter('amp_post_template_data' , 'ampforwp_gdpr_data');
 			// amp-consent 
-			add_action('ampforwp_body_beginning' , 'ampforwp_gdpr_amp_consent' );
+			add_action('amp_footer_link' , 'ampforwp_gdpr_amp_consent' );
 			// CSS
 			add_action('amp_post_template_css' , 'ampforwp_gdpr_css');
 
@@ -6564,32 +6564,30 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	          "consents": {
 	            "consent1": {
 	              "checkConsentHref": "<?php echo AMPFORWP_PLUGIN_DIR_URI; ?>includes/amp-consent/consent.php",
-	              "promptUI": "consentDialog"
+	              "promptUI": "gdpr_c"
 	            }
 	          },
 	          "postPromptUI": "post-consent-ui"
 	        }</script>
-	        <div class="consent-lightbox" id="consentDialog">
-	          <div class="consent-lightbox-content">
-	            <div class="dismiss-button" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
-	            <div class="consent-headline message">
-	              <div class="h2 m1"><?php echo esc_attr($headline); ?></div>
-	            </div>
-	            <div id="ampforwp-gdpr-aceept" class="consent-accept message">
-	              <p class="m1"><?php echo esc_attr($user_data); ?></p>
+	        <div class="gdpr" id="gdpr_c">
+	          <div class="gdpr_w">
+	            <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
+	            <div class="gdpr_t">
+                    <h3><?php echo esc_attr($headline); ?></h3>
+                    <p><?php echo esc_attr($user_data); ?></p>
+                    </div>
+	            <div id="gdpr_yn" class="gdpr_yn">
 	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:ampforwpConsent.accept" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($accept); ?></button>
+	              	<button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y" class="btn"><?php echo esc_attr($accept); ?></button>
 	          		</form>
-	            </div>
-	            <div id="ampforwp-gdpr-reject" class="consent-accept message">
 	              <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:ampforwpConsent.reject" class="ampstart-btn ampstart-btn-secondary caps m1"><?php echo esc_attr($reject); ?></button>
-	          </form>
+	              	<button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
+                  </form>
 	            </div>
 	          </div>
 	        </div>
 	        <div id="post-consent-ui">
-	          <button on="tap:ampforwpConsent.prompt()" class="ampstart-btn caps m1"><?php echo esc_attr($settings); ?></button> 
+	          <button on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></button> 
 	        </div>
 	  	</amp-consent>
 
@@ -6599,12 +6597,17 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 // AMP GDPR compliancy Styling
 if ( ! function_exists('ampforwp_gdpr_css') ) {
 	function ampforwp_gdpr_css(){ ?>		
-		.consent-lightbox {position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);}
-	    .consent-lightbox-content { padding: 1rem; background: #fff; border-radius: 5px; max-width: 700px; width: 95%; position: relative; margin: 5% auto; display: flex; flex-direction: column; align-items: center;}
-	    .message {display: flex; flex-direction: column; align-items: center;}
-	    .message > * { min-width: 200px; }
-	    .dismiss-button { position: absolute; right: 24px; top: 16px; cursor:pointer; }
-	<?php }
+.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);}
+.gdpr_w{padding: 2rem;background: #fff;max-width: 700px;width: 95%;position: relative;margin: 5% auto;text-align: center;}
+.gdpr_t h3{font-size:30px}
+.gdpr_t p{font-size: 16px;line-height: 1.45;margin: 15px 0;}
+.gdpr_x {position: absolute; right: 24px; top: 16px; cursor:pointer;}
+.gdpr_yn form{display: inline;}
+.gdpr_yn button{background: #37474F;border: none;color: #fff;padding: 8px 30px;font-size: 13px;margin: 0 3px;}
+.gdpr_yn .gdpr_n{background: #fff;color: #222;border: 1px solid #999;}
+amp-consent{position:relative;margin-left: 5px;top: 4px;width: auto;}
+#post-consent-ui button{float: right;background: none;border: 0;} 
+<?php }
 }
 // Consent Submission
 add_action('wp_ajax_amp_consent_submission','amp_consent_submission');

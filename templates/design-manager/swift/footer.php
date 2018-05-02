@@ -54,6 +54,7 @@
 			<?php } ?>
 			<div class="rr">
 				<?php amp_non_amp_link(); ?>
+            <?php do_action('amp_footer_link'); ?>
 			</div>
 		</div>
 	</div>

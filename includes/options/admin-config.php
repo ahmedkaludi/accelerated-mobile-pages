@@ -283,7 +283,7 @@ foreach ($extension_listing_array as $key => $extension) {
         $pathExploded = $pathExploded[0];
         if(isset($extension['settingUrl']) && $extension['settingUrl']!=""){
 
-            $settingPageUrl = '<div class="extension-menu-call"><a href="'.$extension['settingUrl'].'"><i class="dashicons-before dashicons-admin-generic"></i> Settings</a></div>';
+            $settingPageUrl = '<div class="extension-menu-call"><a href="'.$extension['settingUrl'].'" class="amp_extension_settings"><i class="dashicons-before dashicons-admin-generic"></i> Settings</a></div>';
         }
 
         $amplicense = '';
@@ -2212,7 +2212,7 @@ function ampforwp_add_sd_fields($fields){
                'id'        =>'amp-gdpr-compliance-settings-text',
                'type'      => 'text',
                'title'     => __('Settings Button Text', 'accelerated-mobile-pages'),
-               'default'   => 'Settings',
+               'default'   => 'Privacy Settings',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
 
