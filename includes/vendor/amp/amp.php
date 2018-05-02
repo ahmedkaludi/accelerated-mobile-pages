@@ -47,15 +47,9 @@ if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) || ! file_exists( __DIR__
 	return;
 }
 
-if(!defined('AMP__FILE__')){
-	define( 'AMP__FILE__', __FILE__ );
-}
-if(!defined('AMP__DIR__')){
-	define( 'AMP__DIR__', dirname( __FILE__ ) );
-}
-if(!defined('AMP__VERSION')){
-	define( 'AMP__VERSION', '1.0-alpha' );
-}
+define( 'AMP__FILE__', __FILE__ );
+define( 'AMP__DIR__', dirname( __FILE__ ) );
+define( 'AMP__VERSION', '1.0-alpha' );
 
 require_once AMP__DIR__ . '/includes/class-amp-autoloader.php';
 AMP_Autoloader::register();
