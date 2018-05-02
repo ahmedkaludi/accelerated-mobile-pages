@@ -136,7 +136,6 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Layouts',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
-                            'settingUrl'=>'{basic}',
                         ),
 
                         array(
@@ -534,13 +533,6 @@ $args = array(
     'system_info'           => true,
 
 );
-
-    $args['share_icons'][] = array(
-        'url'   => 'https://github.com/ahmedkaludi/Accelerated-Mobile-Pages',
-        'title' => __('Visit us on GitHub','accelerated-mobile-pages'),
-        'icon'  => 'el el-github'
-        //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-    );
 
 
 Redux::setArgs( "redux_builder_amp", $args );
