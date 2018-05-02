@@ -152,10 +152,14 @@ function amp_excerpt( $no_of_words=15 ) {
 
 
 //Menus
-function amp_menu(){
+function amp_menu($echo=true){
 		global $loadComponent;
 		if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
-			amp_menu_html();
+			if ( false == $echo ) {
+				return amp_menu_html($echo);
+			}
+			else
+				echo amp_menu_html($echo);
 		}
 	}
 
