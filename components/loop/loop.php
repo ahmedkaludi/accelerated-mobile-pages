@@ -309,7 +309,7 @@ function amp_loop_permalink($return,$amp_query_var ='amp'){
 	echo ampforwp_url_controller( get_permalink() );
 }
 function amp_loop_image( $data=array() ) {
-	global $ampLoopData,$counterOffset;
+	global $ampLoopData, $counterOffset, $redux_builder_amp;
 	if (ampforwp_has_post_thumbnail()  ) {
 
 		$tag 				= 'div';
@@ -347,6 +347,10 @@ function amp_loop_image( $data=array() ) {
 			$height = $data['image_crop_height'];
 			if ( empty($height) ) {
 				$height = $thumb_height;
+			}
+			if ( isset($redux_builder_amp['ampforwp-retina-images']) && true == $redux_builder_amp['ampforwp-retina-images'] ) {
+				$width = $width * 2;
+				$height = $height * 2;
 			}
 			$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
 			$thumb_url = $thumb_url_array[0];

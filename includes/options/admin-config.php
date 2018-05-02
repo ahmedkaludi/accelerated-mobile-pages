@@ -2803,6 +2803,13 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'default'   => 0,                        
                     ),
+                    // Retina Images
+                    array(
+                        'id'       => 'ampforwp-retina-images',
+                        'type'     => 'switch',
+                        'title'    => __('Retina Images', 'accelerated-mobile-pages'),
+                        'default'   => 0,                        
+                    ),
                     array(
                         'id'       => 'amp-meta-permissions',
                         'type'     => 'select',
