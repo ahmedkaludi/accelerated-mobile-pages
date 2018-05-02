@@ -3077,6 +3077,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-comments-closed',
+                       'type'     => 'text',
+                       'title'    => __('Comments are closed.', 'accelerated-mobile-pages'),
+                       'default'  => __('Comments are closed.','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-at-text',
                        'type'     => 'text',
                        'title'    => __('at', 'accelerated-mobile-pages'),
