@@ -44,6 +44,7 @@ wp_reset_postdata(); ?>
                 }
               } ?>
     </p>
-	</div>
+    <?php do_action('amp_footer_link'); ?>
+  </div>
 </footer>
 <?php do_action('ampforwp_global_after_footer'); ?>
