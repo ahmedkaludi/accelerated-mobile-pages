@@ -415,13 +415,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        }
 		}
 
-		// Custom Single file
-	    /*if ( is_single() || is_page() ) {
-
-			if('single' === $type ) {
+		// for type page 
+	    if ( is_single() || is_page() ) {
+			if('page' === $type ) {
 			 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
 		 	}
-		}*/
+		}
 		// Polylang compatibility
 		// For Frontpage
 		if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
