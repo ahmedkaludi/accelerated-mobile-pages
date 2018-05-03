@@ -462,7 +462,7 @@ function amp_date( $args=array() ) {
 
     global $redux_builder_amp;
     if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
-    	$args['format'] = 'traditional';
+    	$args = array('format' => 'traditional');
     }
     if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
       $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
@@ -481,7 +481,7 @@ function amp_date( $args=array() ) {
         }
         else
           echo '<div class="loop-date">'.$post_date.'</div>';
-  }
+}
 
 //Load font Compoment
 	$fontComponent = array();
