@@ -2901,6 +2901,14 @@ Redux::setSection( $opt_name, array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                    array(
+                       'id'       => 'amp-translator-fourohfour',
+                       'type'     => 'text',
+                       'title'    => __('404 Error', 'accelerated-mobile-pages'),
+                       'default'  => __('Oops! That page can’t be found.','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                   ),
+                   array(
                        'id'       => 'amp-translator-show-more-posts-text',
                        'type'     => 'text',
                        'title'    => __('Show more Posts', 'accelerated-mobile-pages'),

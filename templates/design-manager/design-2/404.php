@@ -16,9 +16,12 @@
 
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 	<main>
-		<article class="amp-wp-article">
+		<article class="amp-wp-content the_content">
+            <h1 class="amp-wp-title">
 			<?php do_action('ampforwp_post_before_design_elements') ?>
-			<?php echo "<h2> OOPS! THAT PAGE CAN’T BE FOUND. </h2>"; ?>
+<?php global $redux_builder_amp; echo
+ampforwp_translation( $redux_builder_amp['amp-translator-fourohfour'], 'Oops! That page can’t be found.'); ?>
+            </h1>
 			<?php do_action('ampforwp_post_after_design_elements') ?>
 		</article>
 	</main>
