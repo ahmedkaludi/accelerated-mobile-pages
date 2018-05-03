@@ -26,7 +26,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 
  	$social_icons_names = array();
 	$url = get_the_permalink();
-	$title = esc_attr(get_the_title());
+	$title = esc_attr( htmlspecialchars( get_the_title() ) );
 	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 		$twitter_url = get_the_permalink();
 	}
@@ -97,6 +97,7 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 	}
  
 	 	 ?>	
+	<?php do_action('ampforwp_before_social_icons_hook'); ?>
 	<div class="amp-social">
 	     <ul>
 	        <?php if( ( in_array( 'twitter' , $selected_social_icons,true)  || in_array('twitter', $social_icons_names,true) ) && !empty($selected_social_icons['twitter'])  ) { ?> 
@@ -176,7 +177,8 @@ function ampforwp_framework_get_social_icons($selected_social_icons){
 				</amp-facebook-like>
 	        <?php } ?> 
 	        </ul>
-	  	</div>	
+	  	</div>
+	  	<?php do_action('ampforwp_after_social_icons_hook'); ?>	
 <?php 
 }
 

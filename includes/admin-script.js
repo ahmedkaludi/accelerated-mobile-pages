@@ -139,6 +139,26 @@ jQuery(function($) {
         }
     }//Cloesed function  = optionSectionDevision
 
+    var hideReduxLeftTabs = function(){
+         jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
+            if(key>2){
+                jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
+            }
+        });
+
+        jQuery( '.redux-group-tab-link-a' ).click(function(){
+            if(jQuery(this).parent('li').hasClass('otherSectionFields')){
+                jQuery(this).parent('li.otherSectionFields').siblings('li.otherSectionFields').hide();
+                if(!jQuery(this).parent('li').is(':visible')){
+                    jQuery(this).parent('li').show();
+                }
+            }else{
+                jQuery(this).parent('li').siblings('li.otherSectionFields').hide();
+                jQuery(this).parent('li').siblings('li.active').show();
+
+            }
+        });
+    }
     
     var showExtensionTabs = function(){
         var currentTab = getQueryStringValue('tabid');
@@ -154,9 +174,9 @@ jQuery(function($) {
             if($( '.redux-group-tab-link-a' ).length){
              redux_title_modify();    
             }
-
-            
-
+          
+            //To Hide Leftsidebar option Below Extension
+            hideReduxLeftTabs();
             showExtensionTabs();
         }
 
@@ -425,7 +445,9 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
                 currentThis.parents("li").find('.afw-license-response-message').remove();
                 if(response.status=='200'){
                     currentThis.parents(".extension_desc").find("input[name='redux_builder_amp[amp-license][amp-ads-google-adsense][license]']").val("");
-                     currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
+
+                    currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
+
                     window.location.href = window.location.href;
                 }else{
                     alert(response.message);
@@ -434,9 +456,9 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
         })
     }
 });
+
 }
 deactivatelicence();
-
 
 var helpSection = function(){
     var open;
@@ -494,7 +516,9 @@ var redux_title_modify = function(){
         }
 
     });
-}    
+
+    $('li.active .redux-group-tab-link-a').click();
+}
 
 });
 

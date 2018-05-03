@@ -196,7 +196,7 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; max-width:
 .no_related_thumbnail{ padding: 15px 18px; }
 .no_related_thumbnail .related_link{ margin: 16px 18px 20px 19px; }
 <?php } }
-if(isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support'] ==1 ) { ?>
+ ?>
 /* Comments */
 .page-numbers{padding: 9px 10px;background: #fff;font-size: 14px}
 .ampforwp-comment-wrapper{margin:1.8em 0px 1.5em 0px}
@@ -246,7 +246,6 @@ table tr:last-child td:first-child { -moz-border-radius-bottomleft: 3px; -webkit
 table tr:last-child td:last-child { -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; }
 table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0)); background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0); }
 .hide-meta-info{ display: none; }
-<?php }?>
 <?php if( $redux_builder_amp['amp-enable-notifications'] == 1 || isset($redux_builder_amp['ampforwp-cta-subsection-notification-sticky']) && $redux_builder_amp['ampforwp-cta-subsection-notification-sticky'] == 1 ){ ?>
 /* Notifications */
 #amp-user-notification1 p { display: inline-block; }
@@ -285,7 +284,7 @@ main .amp-archive-heading { direction:rtl }
 .comment-author { float:right; margin-left:5px; }
 .amp-ad-wrapper, .amp-wp-article amp-ad{ direction: ltr; }
 .toggle-navigationv2 ul li a { padding: 15px 8px; width: 95%;}
-amp-carousel{direction: ltr;}
+amp-carousel{direction: ltr;} .tt-lb{float:right;margin-left:5px;}
 <?php } ?>
 .amp-wp-tax-tag a, a, .amp-wp-author, .headerlogo a, [class*=icono-] { color: <?php echo sanitize_hex_color( $header_background_color ); ?>;; }
 body a {color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link-design2']['color'];?> }

@@ -213,6 +213,9 @@ Vue.component('amp-pagebuilder-module-modal', {
 					var a = {};
 					fields.forEach(function(fieldData,fieldKey){
 						a[fieldData.name] = fieldData.default
+						if(fieldData[fieldData.name+"_image_data"]){
+							a[fieldData.name+"_image_data"] = fieldData[fieldData.name+"_image_data"];
+						}
 					});
 					
 					Vue.set( rowData, 'data', a );
@@ -313,7 +316,7 @@ function openModulePopup(event,type){
 								}
 								
 								
-								if('object' != typeof(moduleData[fieldData.name])){
+								if('object' != typeof(userValues)){
 									userValues = decodeURIComponent(encodeURIComponent(userValues));
 									
 								}
@@ -485,8 +488,14 @@ Vue.component('fields-data',{
 
 		},
 		refresh_image: function(the_id,currentSelectfield,type,field){
+			console.log(type);
 			if(type=='tag'){
 				jQuery(currentSelectfield.$el).find('img').attr('src','../wp-includes/images/spinner.gif');
+				if(field[field['name']+'_image_data']){
+			 		var demoImage = field[field['name']+'_image_data'];
+			 	 	jQuery(currentSelectfield).parents('p').find('img').attr('src',demoImage[0]);
+			 	 	return ;
+			 	}
 			}else{
 				console.log(jQuery(currentSelectfield).parents('p'))
 				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
@@ -546,25 +555,47 @@ Vue.component('fields-data',{
 			this.$forceUpdate();
 		},
 		fieldShowHideCheck: function(field){
-			var returnOpt = true;
+			var returnOpt = [];
+			returnOpt.push(true);
 			if(field.required){
 				var requiredCondition = field.required;
-				//requiredCondition.forEach(function(conditionval,conditionKey){
-					//console.log(conditionval+' => '+conditionKey);
+
 					app.modalcontent.fields.forEach(function(maindata, key){
 						if(requiredCondition[maindata.name]){
-							if( maindata.default==requiredCondition[maindata.name]){
-								returnOpt = true;
+							if( Array.isArray(requiredCondition[maindata.name]) ){
+								var length = requiredCondition[maindata.name].length
+								var checkingInArray = false;
+								for(var i = 0; i < length; i++) {
+			                        if(requiredCondition[maindata.name][i] == maindata.default){
+			                        	checkingInArray = true;
+			                        	return false;	
+			                        } 
+			                    }
+			                    if(checkingInArray){
+			                    	returnOpt.push(true);
+			                    }else{
+			                    	returnOpt.push(false);
+			                    }
+							}else if( maindata.default==requiredCondition[maindata.name]){
+								returnOpt.push(true);
 							}else{
-								returnOpt = false;
+								returnOpt.push(false);
 							}
 						}
 					});
-				//})
 			}
-			return returnOpt;
+
+			returnOpt = returnOpt.filter(function(value, index, self) { 
+				    return self.indexOf(value) === index;
+					});
+
+			if(returnOpt.length==1 && returnOpt[0]==true){
+				return true;
+			}else{
+				return false;
+			}
+			return false;
 		}
-		
 
 	}
 });
@@ -585,7 +616,8 @@ Vue.component('color-picker', {
 	    hide: true,
 	    // show a group of common colors beneath the square
 	    // or, supply an array of colors to customize further
-	    palettes: true,
+	    //palettes: true,
+	    palettes: ['#000000', 'transparent','#ffffff','#dd3333','#dd9933','#eeee22','#81d742','#1e73be'],
 		change: function(event, ui) {
 	        var element = event.target;
         	var color = ui.color.toString();

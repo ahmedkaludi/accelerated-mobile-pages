@@ -5,25 +5,10 @@ function ampforwp_structured_data_type( $metadata ) {
 	global $redux_builder_amp, $post;
 	$post_types 	= '';
 	$set_sd_post 	= '';
-	$set_sd_page 	= '';	
+	$set_sd_page 	= '';
 
 	$set_sd_post 	= $redux_builder_amp['ampforwp-sd-type-posts'];
 	$set_sd_page 	= $redux_builder_amp['ampforwp-sd-type-pages'];
-
-	if ( empty( $set_sd_post ) ) {
-		$set_sd_post = 'BlogPosting';
-	}
-
-	if ( empty( $set_sd_page ) ) {
-		$set_sd_page = 'BlogPosting';
-	}
-	if ( isset( $post->post_type ) && 'post' == $post->post_type ) {
-		$metadata['@type'] = $set_sd_post;
-	}
-
-	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() || ampforwp_is_blog()) {
-		$metadata['@type'] = $set_sd_page;
-	} 
 	$post_types = ampforwp_get_all_post_types();
 
 	if ( $post_types ) { // If there are any custom public post types.
@@ -34,13 +19,32 @@ function ampforwp_structured_data_type( $metadata ) {
         	}
         	
 	       	if ( isset( $post->post_type ) && $post->post_type == $post_type ) {
-        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) ) {
-					$redux_builder_amp['ampforwp-sd-type-'.$post_type.''] = 'BlogPosting';
+        		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+					return;
 				}
         		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+        		return $metadata;
         	}
         }
     }
+
+	if ( empty( $set_sd_post ) && is_single() && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {;
+		return;
+	}
+
+	if ( empty( $set_sd_page ) && is_singular( $post_type = 'page' ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
+			return;
+	}
+	if ( isset( $post->post_type ) && 'post' == $post->post_type ) {
+		$metadata['@type'] = $set_sd_post;
+	}
+
+	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() || ampforwp_is_blog()) {
+		if ( empty( $set_sd_page )){
+			return;
+		}
+		$metadata['@type'] = $set_sd_page;
+	} 
 
 	return $metadata;
 }
@@ -73,6 +77,24 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 		if ( 'Recipe' == $metadata['@type'] ) {
 			$metadata['name'] = $metadata['headline'];
 		}
+		return $metadata;
+	}
+}
+// #1975 Product
+add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_product', 20, 1 );
+if ( ! function_exists('ampforwp_structured_data_product') ) {
+	function ampforwp_structured_data_product( $metadata ) {
+		global $redux_builder_amp, $post;
+		// Adding Product's Name and unsetting the Google unrecognized data for type Product
+		if ( 'Product' == $metadata['@type'] ) {
+			$metadata['name'] = $metadata['headline'];
+			unset($metadata['dateModified']);
+			unset($metadata['datePublished']);
+			unset($metadata['publisher']);
+			unset($metadata['author']);
+			unset($metadata['headline']);
+		}
+		
 		return $metadata;
 	}
 }

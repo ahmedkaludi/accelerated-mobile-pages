@@ -7,10 +7,10 @@ if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
 } ?>
 <?php while(amp_loop('start')): ?>
 <div class="fsp">
-	<?php $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+	<?php if(ampforwp_has_post_thumbnail()){ $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
     <div class="fsp-img">
     	<?php amp_loop_image($args); ?>
-    </div>
+    </div><?php } ?>
     <div class="fsp-cnt">
     	<?php amp_loop_category(); ?>
 	    <?php amp_loop_title(); ?>

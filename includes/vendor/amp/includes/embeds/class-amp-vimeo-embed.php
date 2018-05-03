@@ -91,6 +91,7 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
+				'data-block-on-consent' => '',
 			)
 		);
 	}

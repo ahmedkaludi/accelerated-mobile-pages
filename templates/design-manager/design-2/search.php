@@ -48,7 +48,7 @@
 			'post_status'		  => 'publish'
 		) ); ?>
 		<div class="amp-wp-content amp-archive-heading">
-		<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?>  </h1>
+		<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
  		</div>
 		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 			$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
@@ -60,7 +60,7 @@
 					<?php amp_loop_image($image_args); ?>
 				<?php } ?>
 			<div class="amp-wp-post-content">
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php if(has_excerpt()){
 						$content = get_the_excerpt();
@@ -102,7 +102,7 @@
 		<div class="amp-wp-content pagination-holder">
 
 			<div id="pagination">
-				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] . ' &raquo;' ,'Next' ), 0 ) ?></div>
+				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'],'Next' ) . ' &raquo;' , 0 ) ?></div>
 				<div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous') ); ?></div>
 
 				<div class="clearfix"></div>

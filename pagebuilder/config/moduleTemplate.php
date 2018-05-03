@@ -61,12 +61,18 @@ $front_css = '
 	background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    background-position:{{align_type}};
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
+	{{if_condition_check_for_brdr==1}}
+		border-width:{{border_sz}};
+		border-color: {{border_clr_pkr}};
+    	border-style: solid;
+	{{ifend_condition_check_for_brdr_1}}
 	color: {{font_color_picker}};
 	background-color: {{color_picker}};
 	{{if_selected_gradient}}{{selected_gradient}};{{ifend_selected_gradient}}
@@ -75,7 +81,21 @@ $front_css = '
 	
 	{{shadow}}
 }
+@media(max-width:768px){
+	{{row-class}}.amppb-fluid{width:100%;}
+	{{row-class}}.amppb-fluid .col{max-width:90%;}
+}
 
+@media(max-width:425px){
+{{row-class}}{
+	{{if_condition_check_for_pdng==1}}
+		padding:{{res_pdng}};
+	{{ifend_condition_check_for_pdng_1}}
+	{{if_condition_check_for_mrgn==1}}
+		margin: {{res_mrgn}};
+	{{ifend_condition_check_for_mrgn_1}}
+}
+}
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
 .amppb-fixed .col {max-width: {{fixed-width}};width:1125px;margin: 0 auto;}';
@@ -157,7 +177,7 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'text',
 								'name'		=>"fluid-wrapper",
-								'label'		=>'Width',
+								'label'		=>'Wrapper',
 								'tab'		=>'customizer',
 								'default'	=>'90%',
 								'content_type'=>'css',
@@ -186,6 +206,19 @@ $containerCommonSettings = array(
 	 													),
 	 							'content_type'=>'css',
 	 							'output_format'=>''
+	 						),
+	 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Background Position",
+								'tab'     =>'customizer',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'    =>'Center',
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('background_type'=>'image')
 	 						),
 	 						array(
 								'type'		=>'upload',
@@ -291,12 +324,12 @@ $containerCommonSettings = array(
 								'label'		=>'Set Margin',
 								'tab'		=>'container_css',
 								'default'	=>
-                            array(
-                                'top'=>'0px',
-                                'right'=>'auto',
-                                'bottom'=>'0px',
-                                'left'=>'auto',
-                            ),
+					                            array(
+					                                'top'=>'0px',
+					                                'right'=>'auto',
+					                                'bottom'=>'0px',
+					                                'left'=>'auto',
+					                            ),
 								'content_type'=>'css',
 							),
 							array(
@@ -312,6 +345,102 @@ $containerCommonSettings = array(
 												),
 								'content_type'=>'css',
 								'output_format'=>"padding: %left% %right% %top% %bottom%"
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_brdr",
+                                'label'     => 'Border',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"border_sz",
+								'label'		=>'Border width',
+								'tab'		=>'container_css',
+								'default'	=>array(
+													'top'=>'0px',
+													'right'=>'0px',
+													'bottom'=>'0px',
+													'left'=>'0px'
+												),
+								'required'  => array('check_for_brdr'=>1),
+								'content_type'=>'css',
+							),
+							array(
+								'type'		=>'color-picker',
+								'name'		=>"border_clr_pkr",
+								'label'		=>'Border Color',
+								'tab'		=>'container_css',
+								'default'	=>'#ccc',
+								'required'  => array('check_for_brdr'=>1),
+								'content_type'=>'css',
+								
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_pdng",
+                                'label'     => 'Responsive Padding',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_pdng",
+								'label'		=>'Set Padding',
+								'tab'		=>'container_css',
+								'default'	=>array(
+													'top'=>'0px',
+													'right'=>'0px',
+													'bottom'=>'0px',
+													'left'=>'0px'
+												),
+								'content_type'=>'css',
+								'required'  => array('check_for_pdng'=>1),
+								
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_mrgn",
+                                'label'     => 'Responsive Margin',
+                                'tab'       =>'container_css',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_mrgn",
+								'label'		=>'Set Margin',
+								'tab'		=>'container_css',
+								'default'	=>
+				                            array(
+				                                'top'=>'0px',
+				                                'right'=>'auto',
+				                                'bottom'=>'0px',
+				                                'left'=>'auto',
+				                            ),
+								'content_type'=>'css',
+								'required'  => array('check_for_mrgn'=>1),
 							),
 						),
 			'front_template_start'=>$output,

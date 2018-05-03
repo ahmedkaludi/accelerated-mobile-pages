@@ -2,13 +2,41 @@
 $output = '<div class="ln-fx">{{repeater}}</div>';
 $css = '
 {{if_condition_blurb_layout_type==1}}
-{{module-class}}.blurb-mod{margin:{{margin_css}};padding:{{padding_css}};}
-.blu-mod{margin: 0 3% 3% 0;width: 31%;text-align: {{align_type}};padding: 50px 30px;position: relative;color: #26292c;background: {{bg_color}};}
-.blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){margin-right:0;}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;margin:{{margin_css}};padding:{{padding_css}};}
-.blu-mod .blurb-txt{font-size: {{text-size}};font-weight: 500;color:{{font_color_picker}};}
-.blu-mod .ico-pic{font-size:35px;color:{{ic_color_picker}};margin-bottom:30px;display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
-{{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;font-size: 15px;color: #555;line-height: 1.7;}
+
+{{module-class}}.blurb-mod{margin:{{margin_css}};padding:{{padding_css}};}
+
+{{module-class}} .blu-mod .blurb-txt{font-size: {{text-size}};font-weight: {{fnt_wght}};color:{{font_color_picker}};}
+{{module-class}} .blu-mod .ico-pic{font-size:{{ic-size}};color:{{ic_color_picker}};margin-bottom:30px;display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
+{{module-class}} .blu-mod{font-size: 15px;line-height: 1.7;}
+{{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;}
+
+
+ {{module-class}} .blu-mod{
+ 	margin: {{margin_gpg}};
+ 	padding: {{padding_gpg}};
+ 	width: {{if_condition_dsgn_clmns==2_col}} 48%; {{ifend_condition_dsgn_clmns_2_col}}
+ 		   {{if_condition_dsgn_clmns==3_col}} 31%; {{ifend_condition_dsgn_clmns_3_col}}
+ 		   {{if_condition_dsgn_clmns==4_col}} 22.5%; {{ifend_condition_dsgn_clmns_4_col}}
+ 	text-align: {{align_type}};position: relative;color: {{des_color}};background: {{bg_color}};
+ {{if_condition_check_for_bdr==1}}border:1px solid {{bdr_color}};{{ifend_condition_check_for_bdr_1}}
+}
+{{if_condition_dsgn_clmns==2_col}}
+ {{module-class}} .blu-mod:nth-child(even){margin-right:0;}
+{{ifend_condition_dsgn_clmns_2_col}}
+
+{{if_condition_dsgn_clmns==3_col}}
+ {{module-class}} .blu-mod:nth-child(3), .blu-mod:nth-child(6), .blu-mod:nth-child(9){margin-right:0;}
+{{ifend_condition_dsgn_clmns_3_col}}
+
+{{if_condition_dsgn_clmns==4_col}}
+ {{module-class}} .blu-mod:nth-child(4), .blu-mod:nth-child(8), .blu-mod:nth-child(12){margin-right:0;}
+{{ifend_condition_dsgn_clmns_4_col}}
+
+{{if_condition_check_for_bdr==1}}
+	border:1px solid #ccc;
+{{ifend_condition_check_for_bdr_1}}
+
 {{ifend_condition_blurb_layout_type_1}}
 {{if_condition_check_for_border==1}}
 	{{if_condition_blurb_layout_type==1}}
@@ -19,6 +47,7 @@ $css = '
 	}
 	{{ifend_condition_blurb_layout_type_1}}
 {{ifend_condition_check_for_border_1}}
+
 @media(max-width:768px){
 	{{module-class}} .blu-mod{width: 100%;margin-right:0}
 }
@@ -70,6 +99,14 @@ return array(
 				            'content_type'=>'html',
 				            ),
 						array(
+								'type'		=>'text',
+								'name'		=>"ic-size",
+								'label'		=>'Icon Size',
+								'tab'		=>'design',
+								'default'	=>'35px',
+								'content_type'=>'css'
+							),
+						array(
 								'type'		=>'color-picker',
 								'name'		=>"ic_color_picker",
 								'label'		=>'Icon Color',
@@ -88,17 +125,40 @@ return array(
 						array(
 								'type'		=>'text',
 								'name'		=>"text-size",
-								'label'		=>'Font Size',
+								'label'		=>'Heading Font Size',
 								'tab'		=>'design',
 								'default'	=>'26px',
 								'content_type'=>'css'
 							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'fnt_wght',		
+	 							'label' =>"Heading Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'500',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"font_color_picker",
-								'label'		=>'Text Color',
+								'label'		=>'Heading Color',
 								'tab'		=>'design',
 								'default'	=>'#222222',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"des_color",
+								'label'		=>'Description Color',
+								'tab'		=>'design',
+								'default'	=>'#555',
 								'content_type'=>'css'
 							),
 						array(
@@ -109,6 +169,30 @@ return array(
 								'default'	=>'#f4f4f4',
 								'content_type'=>'css'
 							),
+						array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_bdr",
+                                'label'     => 'Border',
+                                'tab'       =>'design',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+                            ),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"bdr_color",
+								'label'		=>'Border Color',
+								'tab'		=>'design',
+								'default'	=>'#ccc',
+								'content_type'=>'css',
+								'required'  => array('check_for_bdr'=>'1'),
+							),
+
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
@@ -124,9 +208,9 @@ return array(
 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_border",
-                                'label'     => 'Border',
+                                'label'     => 'Icon Border',
                                 'tab'       =>'design',
-                                'default'   =>1,
+                                'default'   =>0,
                                 'options'   =>array(
                                                 array(
                                                     'label'=>'Yes',
@@ -156,6 +240,46 @@ return array(
                                 'required'  => array('check_for_border'=>'1'),
                                 
                             ),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'dsgn_clmns',		
+	 							'label' =>"DIfferent Designs by Columns",
+								'tab'     =>'design',
+	 							'default' =>'3_col',
+	 							'options_details'=>array(
+	 												'2_col'    =>'2 Columns',
+	 												'3_col'    =>'3 Columns',
+	 												'4_col'    =>'4 Columns', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('blurb_layout_type'=>'1'),
+	 						),
+						array(
+								'type'		=>'spacing',
+								'name'		=>"margin_gpg",
+								'label'		=>'Margin',
+								'tab'		=>'design',
+								'default'	=>
+                            array(
+                                'top'=>'0',
+                                'right'=>'3%',
+                                'bottom'=>'3%',
+                                'left'=>'0',
+                            ),
+								'content_type'=>'css',
+							),
+							array(
+								'type'		=>'spacing',
+								'name'		=>"padding_gpg",
+								'label'		=>'Padding',
+								'tab'		=>'design',
+								'default'	=>array(
+													'left'=>'30px',
+													'right'=>'30px',
+													'top'=>'50px',
+													'bottom'=>'50px'
+												),
+								'content_type'=>'css',
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",

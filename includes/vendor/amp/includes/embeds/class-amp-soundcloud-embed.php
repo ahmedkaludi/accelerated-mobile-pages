@@ -81,6 +81,7 @@ class AMP_SoundCloud_Embed_Handler extends AMP_Base_Embed_Handler {
 				'data-trackid' => $args['track_id'],
 				'layout' => 'fixed-height',
 				'height' => $this->args['height'],
+				'data-block-on-consent' => '',
 			)
 		);
 	}

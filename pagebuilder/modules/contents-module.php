@@ -179,7 +179,7 @@ require_once  ABSPATH . WPINC . '/category.php';
                       
                           ',
  );		
- function contentHtml($the_query,$fieldValues,$loopHtml){	
+ function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){	
  	$contenthtml = '';		
  	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');		
  	if ( $the_query->have_posts() ) {	

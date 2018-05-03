@@ -35,6 +35,7 @@
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
               ?>
         </p>
+        <?php do_action('amp_footer_link'); ?>
       </div>
   </footer>
 <?php do_action('ampforwp_global_after_footer'); ?>

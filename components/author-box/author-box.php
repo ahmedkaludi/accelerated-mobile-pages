@@ -67,7 +67,7 @@ if ( isset($args['show_time']) ) {
 $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
         <div class="amp-author-image <?php echo $author_image_wrapper; ?>">
-            <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+            <amp-img data-block-on-consent src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
         <?php echo '<div class="author-details '. $author_wrapper_class .'">';

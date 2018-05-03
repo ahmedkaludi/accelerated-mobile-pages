@@ -182,6 +182,91 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.86 (3rd May 2018) =
+* For more detials check out [this blog post](https://ampforwp.com/0-9-86-getting-ready-for-future-87th-update/)
+* Added: GDPR Compliancy #2040
+* Added: Muffin Page Builder Compatibility #1455 #1893
+* Added: Thrive leads compatibility #2067
+* Fixed: Load structured markup json in Footer to improve performance #1945 
+* Added: Font Size and Font Family Controls added in Content Presentation Module #1962
+* Added: Font Weight Control added in Text Module in PageBuilder #1962
+* Added: Other necessary controls added in Content Presentation Module #1962
+* Added: New Design called "Design 4" added in Content Presentation Module. #1962
+* Fixed: License Activation process connected with AMP extensions #1981
+* Added: Icon Selector control added in Button module in AMP Page Builder #1962
+* Added: Filter called `ampforwp_get_comments_gravatar` to modify Author Avatar Images #1949
+* Fixed: Validation error fixed by removing json+ld values to remove CDATA #1977
+* Added: Icon Adjustment Option is added in the Button Module #1962 
+* Fixed: Debug Warnings fixed #1976
+* Fixed: If AMP support on post and page is disabled then mobile redirection was not working #1979
+* Fixed: Responsive element added in Image Module #1962
+* Fixed: Custom Post and Custom Taxonomies Archives not working in AMP #1957
+* Fixed: AMP take over is on and  AMP support on the home page is disabled it was redirecting to some other pages #1994
+* Fixed: Design 1 and Design 2 shouldn't show 'social' tab #1996
+* Added: AMP WordPress Theme notice
+* Added: Rewrite Rules Added for WooCommerece #1957
+* Fixed: AMP Takeover blog search results giving blank page #1990
+* Fixed: Swift pagination markup is present even the page has no pagination #2000
+* Fixed: Pagination breaking on second page on Archives when Blog page is not set #1998
+* Fixed: Added proper Google API jump link #1966
+* Fixed: Advance Index and no-index controls did not had description #1978
+* Added: Filter added `amp_blacklisted_tags` in blacklist-sanitizer file
+* Added: Hyperlink for image module added #1989 
+* Added: `ampforwp_get_frontpage_id` a common fucntion created to get post id for AMP frontpage #2025
+* Fixed: Comments controls were not working properly #1987
+* Fixed: Fatal Error after updating the plugin from 0.9.73 to 0.9.83 version #2017 
+* Fixed: Filter created `ampforwp_modify_rel_url`  to modify rel canonical URL #2012
+* Fixed: Remove structured data json if removed from AMP options panel
+* Fixed: amp widget appearing twice in design one #2008
+* Fixed: Gif in content + Lightbox feature throws validation issue. #2032
+* Added: New Features in the Page builder Modules #2029
+* Fixed: License Key was not working properly #2026
+* Fixed: Instagram comment view is getting cut off in Swift Theme #2002 
+* Added: Icon module support added in Desgin 1, 2 & 3 #1997
+* Fixed: if GD or ImageMagick library is not present in the server then send the original image #2037 #2038
+* Fixed: Swift theme homepage (Non-AMP) image resizing issues in Mobile version #1992
+* Fixed: Header Element not working in Swift theme #1967
+* Fixed: Stop Loading of Latest post scripts on Homepage and Frontpage #2041 
+* Added: Filter created `ampforwp_non_amp_links()` so users can have all the internal links non-amp #1973 
+* Fixed: Sanitize the archive description in loop component #1974
+* Fixed: Double AMPHTML when FBIA Plugin is active #2043 
+* Fixed: Image Div is loading even if the image is not present in Swift #2033
+* Fixed: Custom AMP editor is visible on pages (post type) even if the Page Support is off from amp options panel #2047
+* Fixed: When 'Structure Data for WP' plugin active, Schema type in Structure section should hide #2049
+* Fixed: Bugs in Video Module in AMP pagebuilder #2048
+* Added: Autoplay feature added in Video Module #2048
+* Fixed: Throwing error when Product Structured Data is selected #1975
+* Fixed: Advanced CSS is not loading because the files are with hosting path #2046
+* Fixed: Double Quotes breaking the html #2004
+* Removed: Blog option is removed from AMP Options panel and it is connected with Pages option Under Reading Settings #2027
+* Fixed: amphtml should not be created for 404 pages #2018
+* Added: 404 Template added, useful for AMP Takeover #2042
+* Fixed: Genesis meta titles are lost and not rendering correctly #2050
+* Fixed: Search blank on AMP Takeover #1990
+* Fixed: Remove Unused js files from Paginated Post Pages #2001
+* Fixed: Extra Space adding in H1 and other SEO tags #2054
+* Fixed: Undefined Index when called from robot #1960
+* Fixed: amp facebook comment Js not loading to the custom front page of the swift theme. #2053
+* Fixed: Tags label is not working properly when RTL Support on #1719
+* Fixed: View Non-AMP Version In the footer link has an error #2066
+* Fixed: Squirrly SEO is Adding the Javascript code in AMP #1696
+* Fixed: Translation option issue when using POT file method #1941
+* Fixed: amp-facebook-like extension is missing on Custom Frontpage #2061
+* Fixed: GTM option repositioned #2056
+* Fixed: Menu is appearing on left side instead of Right side when RTL support is ON for Design3 #1928
+* Fixed: Sidebar Bugs #1972
+* Added: Table Styling in Swift #1961
+* Fixed: Genesis index, follow options not being rendered #2071
+* Added: Filter created `ampforwp_robots_meta` to modify robots meta information #2071 
+* Fixed: PHP Notices #2065
+* Added: Add a new hook `ampforwp_after_amp_menu` after the menu in all designs #2072
+* Added: New Look to Options panel #1823
+* Added: Retina Image Support added #1846
+* Fixed: Pagebuilder hrefs were stripped in hebrew language #2089
+* Fixed: Warning Fixed #2083
+* Fixed: Gallery module images not loading in Firefox #1980
+* Fixed: Pagebuilder Improvement #2024
+
 = 0.9.85.5 (21st April 2018) =
 * Added: Filter added to modify frontpage post id `ampforwp_modify_frontpage_id` 
 * Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982

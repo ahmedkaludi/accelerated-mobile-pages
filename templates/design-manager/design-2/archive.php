@@ -54,7 +54,7 @@
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="author-archive">
-							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
+							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
 						</div>
 					<?php }
 				}
@@ -118,7 +118,7 @@
 
 			<div class="amp-wp-post-content">
 
-				<h2 class="amp-wp-title"> <a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php
 					if(has_excerpt()){
@@ -163,7 +163,7 @@
 		<div class="amp-wp-content pagination-holder">
 
 			<div id="pagination">
-				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] . ' &raquo;' , 'Next' ) , 0 ) ?></div>
+				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'], 'Next' ) . ' &raquo;'  , 0 ) ?></div>
 				<div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous') ); ?></div>
 
 				<div class="clearfix"></div>

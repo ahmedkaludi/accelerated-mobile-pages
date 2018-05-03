@@ -12,6 +12,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	protected $is_lightbox = false;
 
+	protected $scripts = array();
+
 	public static $tag = 'img';
 
 	private static $anim_extension = '.gif';
@@ -107,7 +109,9 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
 		$node->parentNode->replaceChild( $new_node, $node );
 		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
-			add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
+			if(is_singular() || ampforwp_is_front_page()){
+				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
+			}
 			$this->is_lightbox = true;
 		}
 	}
@@ -127,13 +131,14 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	public function get_scripts() {
 		if ( $this->is_lightbox ) {
-			return array( self::$script_slug_lightbox => self::$script_src_lightbox );
+			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
+		}
 
+		if ( $this->did_convert_elements ) {
+			$this->scripts[self::$script_slug] = self::$script_src;
 		}
-		if (  ! $this->did_convert_elements ) {
-			return array();
-		}
-		return array( self::$script_slug => self::$script_src );
+
+		return $this->scripts;
 	}
 
 	private function filter_attributes( $attributes ) {
@@ -149,6 +154,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'on':
 				case 'role':
 				case 'tabindex':
+				case 'layout':
 					$out[ $name ] = $value;
 					break;
 

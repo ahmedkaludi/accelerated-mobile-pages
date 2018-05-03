@@ -1,7 +1,7 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
 <?php if($redux_builder_amp['single-design-type'] == '1'){?>
-<div class="sp">
+<div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
 			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
@@ -55,7 +55,7 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 							<li>
-								<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>">
+								<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>">
 								</a>
 							</li>
 							<?php } ?>
@@ -66,7 +66,7 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-email-share']){?>
 							<li>
-								<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
+								<a class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php the_permalink(); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-pinterest-share']){
@@ -75,12 +75,12 @@
 	 								$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 	 							}?>
 							<li>
-								<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php esc_url(the_permalink()); ?>&description=<?php the_title(); ?>"></a>
+								<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php esc_url(the_permalink()); ?>&description=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
 							<li>
-								<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+								<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
@@ -100,7 +100,7 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-reddit-share']){?>
 							<li>
-								<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+								<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
@@ -110,17 +110,17 @@
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 							<li>
-								<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>"></a>
+								<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-digg-share']){?>
 							<li>
-								<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+								<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
 							<li>
-								<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+								<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-wechat-share']){?>
@@ -135,7 +135,7 @@
 							<?php } ?>
 							<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 							<li>
-								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>&yumtype=button"></a>
+								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
@@ -188,11 +188,11 @@
 					            $my_query->the_post();
 					        ?>
 					        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
-					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
+					        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
 						            <div class="rlp-image">     
 						                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
 									</div>
-								<?php } ?>	
+								<?php } } ?>	
 								<div class="rlp-cnt">
 									<?php $argsdata = array(
 											'show_author' => false,
@@ -222,17 +222,18 @@ do_action("ampforwp_single_design_type_handle");
 		<h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-recent-text'], 'Recent Posts' ); ?></h3>
 	<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 		<div class="fsp">
-			<?php
-			$width 	= 346;
-			$height = 188;
-			if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-				$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-				$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-			}
-			 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-		    <div class="fsp-img">
-		    	<?php amp_loop_image($args); ?>
-		    </div>
+			<?php if( ampforwp_has_post_thumbnail() ){
+				$width 	= 346;
+				$height = 188;
+				if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+					$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+					$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+				}
+				$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+			    <div class="fsp-img">
+			    	<?php amp_loop_image($args); ?>
+			    </div>
+		    <?php } ?>
 		    <div class="fsp-cnt">
 		    	<?php amp_loop_category(); ?>
 			    <?php amp_loop_title(); ?>
@@ -248,7 +249,7 @@ do_action("ampforwp_single_design_type_handle");
 </div>
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '4'){?>
-	<div class="sp">
+	<div class="sp sgl">
 	<div class="cntr">
 		<div class="sp-wrap">
 			<div class="sp-artl">
@@ -285,7 +286,7 @@ do_action("ampforwp_single_design_type_handle");
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 										<li>
-											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>">
+											<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>">
 											</a>
 										</li>
 										<?php } ?>
@@ -296,7 +297,7 @@ do_action("ampforwp_single_design_type_handle");
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-email-share']){?>
 										<li>
-											<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
+											<a class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php the_permalink(); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-pinterest-share']){
@@ -305,12 +306,12 @@ do_action("ampforwp_single_design_type_handle");
 				 								$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 				 							}?>
 										<li>
-											<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php esc_url(the_permalink()); ?>&description=<?php the_title(); ?>"></a>
+											<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php esc_url(the_permalink()); ?>&description=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
 										<li>
-											<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+											<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
@@ -330,7 +331,7 @@ do_action("ampforwp_single_design_type_handle");
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-reddit-share']){?>
 										<li>
-											<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+											<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
@@ -340,17 +341,17 @@ do_action("ampforwp_single_design_type_handle");
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 										<li>
-											<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>"></a>
+											<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-digg-share']){?>
 										<li>
-											<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+											<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
 										<li>
-											<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+											<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['enable-single-wechat-share']){?>
@@ -365,7 +366,7 @@ do_action("ampforwp_single_design_type_handle");
 										<?php } ?>
 										<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 										<li>
-											<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>&yumtype=button"></a>
+											<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 										</li>
 										<?php } ?>
 										<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
@@ -445,16 +446,18 @@ do_action("ampforwp_single_design_type_handle");
 						<?php while( amp_loop('start', array( 'posts_per_page' => 6 ) ) ): ?>
 							<div class="fsp">
 								<?php
-								$width 	= 346;
-								$height = 188;
-								if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
-									$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
-									$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
-								}
-								 $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
-							    <div class="fsp-img">
-							    	<?php amp_loop_image($args); ?>
-							    </div>
+								if(ampforwp_has_post_thumbnail()){
+									$width 	= 346;
+									$height = 188;
+									if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
+										$width 	= $redux_builder_amp['ampforwp-swift-homepage-posts-width'];
+										$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
+									} 
+									$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
+								    <div class="fsp-img">
+								    	<?php amp_loop_image($args); ?>
+								    </div>
+							    <?php } ?>
 							    <div class="fsp-cnt">
 							    	<?php amp_loop_category(); ?>
 								    <?php amp_loop_title(); ?>
@@ -469,6 +472,7 @@ do_action("ampforwp_single_design_type_handle");
 					<?php } ?>
 				</div><!-- /.sp-left -->
 				<?php if( $redux_builder_amp['swift-sidebar'] == '1' && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
+				<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 				<div class="sdbr-right">
 					<?php 
 						ob_start();
@@ -494,6 +498,7 @@ do_action("ampforwp_single_design_type_handle");
 			              echo $sanitized_footer_widget;
 					?>
 				</div>
+			<?php endif; ?>
 				<?php } ?>
 			</div><!-- /.sp-artl -->
 		</div><!-- /.sp-wrap -->
