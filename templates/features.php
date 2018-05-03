@@ -6649,3 +6649,4 @@ if ( ! function_exists('ampforwp_skip_thrive_leads') ) {
 
 		return $skip;
 	}
+}
