@@ -11,7 +11,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
 
       global $post;
       $amp_current_post_id = get_the_ID();
-      if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+      if ( ampforwp_is_front_page() && ampforwp_get_frontpage_id() ) {
           //Custom AMP Editor Support for WPML  #1138
            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
            if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) ) {
@@ -19,7 +19,7 @@ function ampforwp_custom_post_content_sanitizer( $data, $post ) {
             
            }
            else {
-              $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+              $amp_current_post_id = ampforwp_get_frontpage_id();
             }
       }
       // Custom AMP Editor Support for Polylang #1779
@@ -131,7 +131,7 @@ function amp_content_editor_title_callback( $post ) {
   global $redux_builder_amp;
   $amp_current_post_id = $post->ID;
   if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-    $amp_current_post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+    $amp_current_post_id = ampforwp_get_frontpage_id();
   }
 
   wp_nonce_field( basename( __FILE__) , 'amp_content_editor_nonce' );

@@ -1,9 +1,7 @@
 <?php global $redux_builder_amp,$wp;
-$post_id = '';
-if ( isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-}
-$post_id = apply_filters('ampforwp_frontpage_id', $post_id);
+	$post_id = '';
+	$post_id = ampforwp_get_frontpage_id();
+	
 $template = new AMP_Post_Template( $post_id );?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $template->get( 'html_tag_attributes' ) ); ?>>

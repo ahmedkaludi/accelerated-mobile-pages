@@ -46,7 +46,6 @@ jQuery(function($) {
                             $('.redux-tab-container').each(function(){
                                 $(this).find('.redux-tab-selector:first').click();
                             });
-                            //hideReduxFields();
                             return false;
                         }
                         var item = $(this);
@@ -160,6 +159,7 @@ jQuery(function($) {
             }
         });
     }
+    
     var showExtensionTabs = function(){
         var currentTab = getQueryStringValue('tabid');
         if(currentTab!="" && $("li."+currentTab).length>0){
@@ -174,16 +174,11 @@ jQuery(function($) {
             if($( '.redux-group-tab-link-a' ).length){
              redux_title_modify();    
             }
-
+          
             //To Hide Leftsidebar option Below Extension
             hideReduxLeftTabs();
             showExtensionTabs();
         }
-        
-
-    /*---------Google Fonts ------------*/
-    // Google Font details 
-
 
  
     var gURL, gAPIkey;
@@ -421,7 +416,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
             if(response.status=='200'){
                 currentThis.parents("li").removeClass("not-active").removeClass("invalid").addClass("active").addClass("valid");
                 currentThis.html("Deactivate");
-                currentThis.after("<div id='afw-license-response-message'>"+response.message+'</div>');
+                currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
                 currentThis.removeClass('redux-ampforwp-ext-activate').addClass('redux-ampforwp-ext-deactivate');
                 deactivatelicence();
                 //window.location.href = window.location.href;
@@ -450,7 +445,9 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
                 currentThis.parents("li").find('.afw-license-response-message').remove();
                 if(response.status=='200'){
                     currentThis.parents(".extension_desc").find("input[name='redux_builder_amp[amp-license][amp-ads-google-adsense][license]']").val("");
-                     currentThis.after("<div id='afw-license-response-message'>"+response.message+'</div>');
+
+                    currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
+
                     window.location.href = window.location.href;
                 }else{
                     alert(response.message);
@@ -459,14 +456,9 @@ $(".redux-ampforwp-ext-deactivate").click(function(){
         })
     }
 });
+
 }
 deactivatelicence();
-
-/*var hideReduxFields = function(){
-    $("#redux_builder_amp-single-design-type").parents("tr").hide();
-}
-hideReduxFields();*/
-
 
 var helpSection = function(){
     var open;
@@ -524,14 +516,9 @@ var redux_title_modify = function(){
         }
 
     });
+
     $('li.active .redux-group-tab-link-a').click();
 }
-    
-
-    
-   
-    
-
 
 });
 

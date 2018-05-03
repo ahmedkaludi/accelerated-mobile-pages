@@ -64,7 +64,6 @@ function ampforwp_get_licence_activate_update(){
                                 break;
 
                             case 'missing' :
-
                                 $message = __( 'Invalid license.', 'ampforwp-extension-updater' );
                                 break;
 
@@ -186,7 +185,7 @@ function ampForWP_extension_activate_license() {
 
                             case 'missing' :
 
-                                $message = __( 'Invalid license.', 'ampforwp-extension-updater' );
+                                $message = __( 'Please enter the license key.', 'ampforwp-extension-updater' );
                                 break;
 
                             case 'invalid' :

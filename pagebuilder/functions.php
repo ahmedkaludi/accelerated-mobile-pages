@@ -119,12 +119,17 @@ function js_templates() {
 function checkAMPforPageBuilderStatus($postId){
 	global $post, $redux_builder_amp;
 	$postId = (is_object($post)? $post->ID: '');
-	if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$postId = $redux_builder_amp['amp-frontpage-select-option-pages'];
+  
+  if( ampforwp_is_front_page() ){
+		$postId = ampforwp_get_frontpage_id();
 	}
-
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	if($ampforwp_pagebuilder_enable=='yes'){
+	if ( empty(  $postId ) ) {
+    return false;
+  }
+  
+  $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+  
+	if( $ampforwp_pagebuilder_enable=='yes'){
 		return true;
 	}else{
 		return false;

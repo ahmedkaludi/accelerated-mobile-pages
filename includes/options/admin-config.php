@@ -87,7 +87,7 @@ $extension_listing_array = array(
                             'item_name'=>'Opt-in-Forms for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-optin/amp-optin.php')? 1 : 2),
-                            'settingUrl'=>'{ampforwp-optin-subsection}',
+                            'settingUrl'=>'{ampforwp-optin-subsection}'
                         ),
                         array(
                             'name'=>'AMP Cache',
@@ -150,6 +150,19 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
                             'settingUrl'=>'{amp-theme-settings}',
                         ),
+
+                        array(
+                            'name'=>'AMP Layouts',
+                            'desc'=>'layout system built for AMP that makes easy to create your own AMP templates.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
+                            'price'=>'$89',
+                            'url_link'=>'https://ampforwp.com/amp-layouts/',
+                            'plugin_active_path'=> 'amp-layouts/amp-layouts.php',
+                            'item_name'=>'AMP Layouts',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
+                            'settingUrl'=>'',
+                        ),                      
 
                         array(
                             'name'=>'Newspaper AMP Theme',
@@ -222,11 +235,11 @@ $extension_listing_array = array(
                             'item_name'=>'Structured Data for WP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')? 1: 2),
-                            //'settingUrl'=>'',
+                          //'settingUrl'=>'',
                         ),
                         array(
                             'name'=>'Polylang For AMP',
-                            'desc'=>'Polylang compatibility AMP',
+                            'desc'=>'Polylang compatibility with AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'$19',
                             'url_link'=>'https://ampforwp.com/polylang-for-amp/',
@@ -271,6 +284,7 @@ $extension_listing_array = array(
                             'settingUrl'=>'',
                         ),
                     );
+
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
@@ -506,8 +520,7 @@ if(is_array($layouts)){
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
 if($ampforwp_nameOfUser!=""){
-    
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#f2f2f2'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?tabid=opt-go-premium&page=amp_options')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#f2f2f2'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
     $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?tabid=opt-go-premium&page=amp_options')."'>Enter license here</a></span>";
 }

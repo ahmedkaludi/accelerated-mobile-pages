@@ -7,7 +7,7 @@ function ampforwp_framework_get_featured_image(){
 	$amp_html 		= "";
 	$caption 		= "";
 	if( ampforwp_is_front_page() ){
-		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		$post_id = ampforwp_get_frontpage_id();
 	}
 	if( true == ampforwp_has_post_thumbnail() )	{
 		if (has_post_thumbnail( $post_id ) ){

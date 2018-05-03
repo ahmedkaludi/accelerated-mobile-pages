@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.86-beta
+Version: 0.9.86
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -19,7 +19,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.85.4');
+define('AMPFORWP_VERSION','0.9.85.7');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -95,7 +95,9 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&paged=$matches[1]',
         'top'
     );
+
 	// For /Blog page with Pagination
+	if( ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
 	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
@@ -107,6 +109,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	        'index.php?amp&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
+	}
 
     // For Author pages
     add_rewrite_rule(
@@ -114,7 +117,6 @@ function ampforwp_add_custom_rewrite_rules() {
         'index.php?amp&author_name=$matches[1]',
         'top'
     );
-
     add_rewrite_rule(
         'author\/([^/]+)\/amp\/page\/?([0-9]{1,})\/?$',
         'index.php?amp=1&author_name=$matches[1]&paged=$matches[2]',
@@ -244,6 +246,20 @@ function ampforwp_rewrite_activation() {
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
 }
+
+add_action( 'admin_init', 'ampforwp_flush_after_update');
+function ampforwp_flush_after_update() {
+	// Flushing rewrite urls ONLY on after Update is installed
+	$older_version = "";
+	$older_version = get_transient('ampforwp_current_version_check');
+	if ( empty($older_version) || ( $older_version <  AMPFORWP_VERSION ) ) {
+		flush_rewrite_rules();
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
+		set_transient('ampforwp_current_version_check', AMPFORWP_VERSION);
+	}
+}
+
 
 add_action('init', 'ampforwp_flush_rewrite_by_option', 20);
 

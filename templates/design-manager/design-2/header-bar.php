@@ -37,6 +37,7 @@
             $sanitized_menu =  $sanitizer_obj->get_amp_content();
             echo $sanitized_menu; ?>
         </nav>
+        <?php do_action('ampforwp_after_amp_menu'); ?>
   </div>
 </amp-sidebar>
 <?php } ?>

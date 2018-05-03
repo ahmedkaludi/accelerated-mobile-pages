@@ -624,7 +624,7 @@ function ampforwp_new_dir( $dir ) {
 			$optimize = '';
 			$post_id = get_the_ID();
 			if ( ampforwp_is_front_page() ) {
-				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				$post_id = ampforwp_get_frontpage_id();
 		  	}
 		  	// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -692,7 +692,7 @@ function ampforwp_new_dir( $dir ) {
 			$optimize = '';
 			$post_id = get_the_ID();
 			if ( ampforwp_is_front_page() ) {
-				$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				$post_id = ampforwp_get_frontpage_id();
 		  	}
 		  	// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -1418,7 +1418,7 @@ function ampforwp_new_dir( $dir ) {
 	           }
 
 	           // Code for Custom Frontpage Yoast SEO Description
-	           $post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	           $post_id = ampforwp_get_frontpage_id();
 	           if ( class_exists('WPSEO_Meta') ) {
 	             $custom_fp_desc = WPSEO_Meta::get_value('metadesc', $post_id );
 	             if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
@@ -2293,10 +2293,9 @@ function ampforwp_replace_title_tags() {
 				 }
 
 				else {
-					if(isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-						$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
-						$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
-					}
+					$ID = ampforwp_get_frontpage_id();
+					$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
+				
 				}
 			}
 			// Blog page 
@@ -2308,7 +2307,7 @@ function ampforwp_replace_title_tags() {
 			// Custom Front Page Title From Yoast SEO #1163
 			if ( class_exists('WPSEO_Meta_Columns') ) {
 				 	Global $redux_builder_amp;
-				 	$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				 	$ID = ampforwp_get_frontpage_id();
 				 	if ( ampforwp_is_blog() ) {
 				 		$ID = ampforwp_get_blog_details('id');
 				 	}
@@ -3187,9 +3186,9 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
 			$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']); //  Placeholder Image height
 			$current_url_in_pieces = explode( '/', $current_url );
-			if( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+			if( ampforwp_is_front_page() ) {
 				 // ID of slected front page
-					$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+					$ID = ampforwp_get_frontpage_id();
 					$headline =  get_the_title( $ID ) . ' | ' . get_option('blogname');
 					$static_page_data = get_post( $ID );
 					$datePublished = $static_page_data->post_date;
@@ -3630,9 +3629,7 @@ function ampforwp_frontpage_comments() {
 	$enable_comments = false;
 	$post_id = "";
 
-	if (isset($redux_builder_amp['amp-frontpage-select-option-pages']) ){
-		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-	}
+	$post_id = ampforwp_get_frontpage_id();	
 
 	if ($data['elements'] == '') {
 	 	$data['elements'] = "meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
@@ -3653,8 +3650,7 @@ function ampforwp_frontpage_comments() {
 			$comment_button_url = "";
 			$postID = '';
 			// Gather comments for a Front from post id
-			if ( isset($redux_builder_amp['amp-frontpage-select-option-pages']) )
-				$postID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			$postID = ampforwp_get_frontpage_id();
 			$comments = get_comments(array(
 					'post_id' => $postID,
 					'status' => 'approve' //Change this to the type of comments to be displayed
@@ -3762,8 +3758,8 @@ add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
 
-	if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	if ( ampforwp_is_front_page() ) {
+		$post_id = ampforwp_get_frontpage_id();
 	}
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
@@ -3847,8 +3843,8 @@ function ampforwp_builder_checker() {
 	if ( $post ) {
 		$post_id = $post->ID;
 	}
-	if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+	if ( ampforwp_is_front_page() ) {
+		$post_id = ampforwp_get_frontpage_id();
 	}
 	if ( $post_id ) {
 		$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
@@ -4364,7 +4360,7 @@ function ampforwp_generate_meta_desc(){
 			 	$post_id = get_option( 'page_on_front' );
 			 }
 			 else {
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+			$post_id = ampforwp_get_frontpage_id();
 			}
 
 			if ( class_exists('WPSEO_Meta') ) {
@@ -4404,8 +4400,8 @@ function ampforwp_generate_meta_desc(){
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
 
-		if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-			$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		if ( ampforwp_is_front_page() ) {
+			$post_id = ampforwp_get_frontpage_id();
 			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
 	}
@@ -4658,8 +4654,8 @@ if (! function_exists( 'ampforwp_get_body_class' ) ) {
 			$classes[] = 'single-post';
 		}
 
-		if ( ampforwp_is_front_page() && isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
-	    	$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+		if ( ampforwp_is_front_page() ) {
+	    	$post_id = ampforwp_get_frontpage_id();
 		}
 
 		if ( ampforwp_is_front_page() ) {
@@ -5683,7 +5679,7 @@ function ampforwp_is_front_page(){
     $get_custom_frontpage_settings    =  $redux_builder_amp['amp-frontpage-select-option'];
 
     // Frontpage id should be assigned
-    if ( isset($redux_builder_amp['amp-frontpage-select-option-pages']) ) {
+    if ( isset($redux_builder_amp['amp-frontpage-select-option-pages'])) {
     	$get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
 
@@ -6351,7 +6347,7 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 }
 
 // Filter for Frontpage id
-add_filter('ampforwp_frontpage_id', 'ampforwp_modified_frontpage_id');
+add_filter('ampforwp_modify_frontpage_id', 'ampforwp_modified_frontpage_id');
 if( ! function_exists('ampforwp_modified_frontpage_id') ) {
 	function ampforwp_modified_frontpage_id($page_id){
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -6454,10 +6450,8 @@ if ( ! function_exists('ampforwp_amp2wp_fb') ) {
 	}
 }
 
-
 // Backward Compatibility
 function ampforwp_correct_frontpage() {
-
 	return ampforwp_get_frontpage_id();
 }
 
@@ -6472,10 +6466,9 @@ function ampforwp_get_frontpage_id() {
 		 ) { 
 		$post_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
 	}
-	
+  
 	$post_id = apply_filters('ampforwp_modify_frontpage_id', $post_id);
 	return $post_id;
-	
 }
 
 // Removing AMPHTML Added by Facebook's Instant Article's Plugin #2043
@@ -6656,4 +6649,3 @@ if ( ! function_exists('ampforwp_skip_thrive_leads') ) {
 
 		return $skip;
 	}
-}
