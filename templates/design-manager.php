@@ -70,7 +70,7 @@ add_action('pre_amp_render_post','ampforwp_design_selector', 11 );
 function ampforwp_design_selector() {
 
     global $redux_builder_amp;
-    if ( $redux_builder_amp['amp-design-selector'] ) {
+    if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] ) {
 		if ( file_exists(AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'.$redux_builder_amp['amp-design-selector'] . '/style.php') ) {
 			return $redux_builder_amp['amp-design-selector'];
 		}
@@ -269,4 +269,12 @@ function ampforwp_design_element_related_posts( $file, $type, $post ) {
 	}
 	return $file;
 }
-?>
+// Empty meta parts when Pagebuilder is enabled
+add_filter('ampforwp_design_elements', 'ampforwp_empty_design_elements');
+function ampforwp_empty_design_elements($meta_parts) {
+	if( checkAMPforPageBuilderStatus(get_the_ID()) ){
+		$meta_parts = array();
+		$meta_parts[] = 'ampforwp-the-content';
+	}
+	return $meta_parts;
+} ?>

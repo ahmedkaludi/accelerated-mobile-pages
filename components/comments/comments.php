@@ -10,10 +10,11 @@ if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
 	 ampforwp_framework_get_disqus_comments();
 }
-if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
+if ( isset($redux_builder_amp['wordpress-comments-support']) && comments_open() && true == $redux_builder_amp['wordpress-comments-support'] ) { ?>
 	<div class="amp-comments">
 	<?php
 		global $redux_builder_amp;
+		$max_page = '';
 		// Gather comments for a specific page/post
 		$postID = get_the_ID();
 		$comments = get_comments(array(
@@ -77,6 +78,22 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
                         'reverse_top_level' 	=> true //Show the latest comments at the top of the list
 					), $comments);  ?>
 			    </ul>
+			    <?php 
+		    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
+		    $args = array(
+				'base' => add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
+				'format' => '',
+				'total' => $max_page,
+				//'current' => 0,
+				'echo' => false,
+				'add_fragment' => '#comments',
+				'show_all' => true				
+			);
+		    if ( paginate_comments_links($args) ) { ?>
+				<div class="cmts-wrap">
+	     			<?php echo paginate_comments_links( $args ); ?>
+	     		</div>
+     		<?php } ?>
 			</div>
 	    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	    if( ! is_plugin_active( 'amp-comments/amp-comments.php' ) ) { ?>
@@ -108,22 +125,38 @@ if ( comments_open() && true == $redux_builder_amp['wordpress-comments-support']
 function ampforwp_framework_get_facebook_comments(){
 global $redux_builder_amp;
 	$facebook_comments_markup = '';
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
+	if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
+		$facebook_comments_markup = '<div class="fb-comments" data-href="' . get_permalink() . '" data-width="800px" data-numposts="'.$redux_builder_amp['ampforwp-number-of-fb-no-of-comments'].'"></div>';
+	}
+	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" data-numposts=';
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
-	    $facebook_comments_markup .= '></amp-facebook-comments>';
-
+	    $facebook_comments_markup .= '></amp-facebook-comments></section>';
+	}
 		return $facebook_comments_markup;
 	}
 }
 
 //Disqus Comments
 function ampforwp_framework_get_disqus_comments(){
-global $redux_builder_amp;
+	global $redux_builder_amp;
+	$width = $height = 420;
+
+	$layout = "";
+	$layout = 'responsive';
+	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
+		$layout = 'fixed';
+	
+		if ( isset($redux_builder_amp['ampforwp-disqus-height']) && $redux_builder_amp['ampforwp-disqus-height'] ) {
+			$height = $redux_builder_amp['ampforwp-disqus-height'];
+		}
+	}
+
 	if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 		global $post; $post_slug=$post->post_name;
 
@@ -137,9 +170,9 @@ global $redux_builder_amp;
 		?>
 		<section class="amp-disqus-comments">
 			<amp-iframe
-				height=200
-				width=300
-				layout="responsive"
+				height=<?php echo $height ?>
+				width=<?php echo $width ?>
+				layout="<?php echo $layout ?>"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
 				src="<?php echo $disqus_url ?>" >
@@ -156,7 +189,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 
 	$facebook_comments_check = ampforwp_framework_get_facebook_comments();
 	global $redux_builder_amp;
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() && !is_front_page()) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}

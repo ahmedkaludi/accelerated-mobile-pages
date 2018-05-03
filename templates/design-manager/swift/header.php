@@ -5,12 +5,82 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); 
+                   do_action('ampforwp_after_amp_menu'); ?>
+                </nav><!--end slide-menu -->
+                <?php if ($redux_builder_amp['menu-search'] ) { ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
+                <?php } ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="m-s-i">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <?php } ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
+                </div>
+                <?php } ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -55,12 +125,82 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); 
+                   do_action('ampforwp_after_amp_menu'); ?>
+                </nav><!--end slide-menu -->
+                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
+                <div class="m-srch">
+                    <?php amp_search();?>
+                </div>
+                <?php } ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="m-s-i">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <?php } ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
+                </div>
+                <?php } ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -98,12 +238,82 @@
     <input type="checkbox" id="offcanvas-menu" class="tg" />
     <div class="hamb-mnu">
         <aside class="m-ctr">
-            <div class="menu-heading clearfix">
-                <label for="offcanvas-menu" class="c-btn"></label>
-            </div><!--end menu-heading-->
-            <nav class="m-menu">
-               <?php amp_menu(); ?>
-            </nav><!--end slide-menu -->
+            <div class="m-scrl">
+                <div class="menu-heading clearfix">
+                    <label for="offcanvas-menu" class="c-btn"></label>
+                </div><!--end menu-heading-->
+                <nav class="m-menu">
+                   <?php amp_menu(); 
+                   do_action('ampforwp_after_amp_menu'); ?>
+                </nav><!--end slide-menu -->
+                <?php if ( $redux_builder_amp['menu-search'] ) { ?>
+                <div class="m-srch">
+                    <?php amp_search();?>
+                </div>
+                <?php } ?>
+                <?php if ( true == $redux_builder_amp['menu-social'] ) { ?>
+                <div class="m-s-i">
+                    <ul>
+                        <?php if($redux_builder_amp['enbl-fb']){?>
+                        <li>
+                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tw']){?>
+                        <li>
+                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-gol']){?>
+                        <li>
+                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-lk']){?>
+                        <li>
+                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-pt']){?>
+                        <li>
+                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-yt']){?>
+                        <li>
+                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-inst']){?>
+                        <li>
+                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-vk']){?>
+                        <li>
+                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-rd']){?>
+                        <li>
+                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                        <?php if($redux_builder_amp['enbl-tbl']){?>
+                        <li>
+                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <?php } ?>
+                <?php if( true == $redux_builder_amp['amp-swift-menu-cprt']){?>
+                <div class="cp-rgt">
+                    <?php amp_non_amp_link(); ?>
+                </div>
+                <?php } ?>
+            </div><!-- /.m-srl -->
         </aside><!--end menu-container-->
         <label for="offcanvas-menu" class="fsc"></label>
         <div class="cntr">
@@ -148,7 +358,8 @@ do_action("ampforwp_advance_header_layout_options");
 <?php if($redux_builder_amp['primary-menu']){?>
 <div class="p-m-fl">
     <div class="p-menu">
-        <?php amp_menu(); ?>
+        <?php amp_menu();  
+            do_action('ampforwp_after_amp_menu'); ?>
     </div>
 </div>
 <?php } ?>

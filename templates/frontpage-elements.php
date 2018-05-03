@@ -208,7 +208,7 @@ function ampforwp_design_2_frontpage_title() {
  	}
 	if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
 		<header class="amp-wp-article-header ampforwp-title">
-			<h1 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];}echo get_the_title( $ID );?></h1>
+			<h1 class="amp-wp-title"><?php if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){$ID = get_option('page_on_front');}else{$ID = ampforwp_get_frontpage_id();}echo get_the_title( $ID );?></h1>
 		</header>	
 		
 	<?php } 
@@ -233,7 +233,7 @@ function ampforwp_design_3_frontpage_title() {
  	
  				}
  				else{
-				$ID = $redux_builder_amp['amp-frontpage-select-option-pages'];
+				$ID = ampforwp_get_frontpage_id();
 			}
 				echo get_the_title( $ID );?></h1>
 		</header> <?php 

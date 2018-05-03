@@ -1,8 +1,11 @@
-<?php amp_header(); ?>
+<?php global $redux_builder_amp; 
+amp_header(); ?>
 <div class="sp">
 	<div <?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>class="cntr"<?php } ?>>
 		<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
-			<?php amp_breadcrumb();?>
+			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+				amp_breadcrumb();
+			}?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
        <div class="pg">

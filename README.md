@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.4
-Stable tag: 0.9.84.1
+Tested up to: 4.9.5
+Stable tag: 0.9.85.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,11 +13,11 @@ AMP for WP is the most recommended AMP plugin by the community. Automatically ad
 == Description ==
 AMP for WP automatically adds Accelerated Mobile Pages (Google AMP Project) functionality to your WordPress site. AMP makes your website faster for Mobile visitors.
 
-[What's New in this Version?](http://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](http://ampforwp.com/community/)
+[What's New in this Version?](https://ampforwp.com/new/) | [Priority Support](https://ampforwp.com/priority-support/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) | [View Demo](https://ampforwp.com/demo/) | [Screenshots](https://wordpress.org/plugins/accelerated-mobile-pages/screenshots/) | [Community](https://ampforwp.com/community/)
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
-[youtube https://www.youtube.com/watch?v=vAGPFKKm5G4]
+[youtube https://www.youtube.com/watch?v=QTbkn2rHyqM]
 
 <strong>Extensions</strong><br>
 Some useful extensions to extend AMP features, check [AMP Adsense Support](https://ampforwp.com/advanced-amp-ads/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Contact Form 7 Support](https://ampforwp.com/contact-form-7/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin), [Email Opt-in Support](https://ampforwp.com/opt-in-forms/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin) and [Call To Action Support](https://ampforwp.com/call-to-action/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin). To view more, go to our [Extensions page](https://ampforwp.com/extensions/#utm_source=wp_org&utm_medium=description-tab-pro-box&utm_campaign=AMP%20Plugin).
@@ -31,13 +31,15 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
+* NEW Default Theme for AMP called Swift
+* NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
 * NEW - Alexa Metrics Compatibility added 
 * NEW - OneSignal Push Notifications integration 
-* NEW - Structured Data Options
-* NEW - Page Builder 2.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW - Advanced WooCommerce Support [More Info](https://ampforwp.com/woocommerce/)
-* NEW - Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
+* Gravity Forms Support [More Info](https://ampforwp.com/gravity-forms/)
 * AMP Plugins Manager - Which allows you to disable a specific plugin functionality only in the AMP version
+* Structured Data Options
 * Page Break / NextPage (Pagination) Support
 * Contact Form 7 Support [More Info](https://ampforwp.com/contact-form-7/)
 * Facebook Comments Support
@@ -56,7 +58,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Custom Post Type Support 
 * Star Ratings
 * Drag & Drop Page builder Added 
-* 2 Designs Added 
+* 4 Designs for AMP 
 * Yoast SEO support on AMP pages and other SEO plugins
 * AMP WooCommerce Support 
 * Switch on/off Support for Pages & Posts on AMP
@@ -94,16 +96,18 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 * Genesis SEO Support 
 * Breadcrumb Support added 
 * Facebook Instant Articles Support Added
-* NEW - AMP Installation Wizard that makes it easy to setup for new users.
-* NEW - Category base remover support
-* NEW - Tag base remover support
-* NEW - 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
-* NEW - AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
+* AMP Installation Wizard that makes it easy to setup for new users.
+* Category base remover support
+* Tag base remover support
+* 7 New Social Media Integrations added (Reddit, Tumblr, Telegram, Digg, StumbleUpon, Wechat, Viber) 
+* AMP Theme Framework Core Support Added. You can now create AMP templates of your own in just minutes. **[More](https://ampforwp.com/amp-theme-framework/)**
+* NEW - Make AMP & Non-AMP Same with just one click! 
+* NEW - Allows you to use AMP as primary website!
 
-**[JOIN CHAT GROUP COMMUNITY](http://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
+**[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
-**[1. User Documentation:](http://ampforwp.com/help/)** The AMP for WP plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
+**[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
 
@@ -111,15 +115,15 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 **[4. Community Support Forum:](https://ampforwp.com/help/#support-forum)** We have a special community support forum where you can ask us questions and get help about your AMP related questions. Delivering a good user experience means alot to us and so we try our best to reply each and every question that gets asked.
 
-**[5. Frequently Asked Questions:](http://ampforwp.com/faq/)** Some of the Frequently Asked questions.
+**[5. Frequently Asked Questions:](https://ampforwp.com/faq/)** Some of the Frequently Asked questions.
 
 
 == Installation ==
-**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
+**[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
 
 [youtube https://www.youtube.com/watch?v=Em1nsE_KaKw]
 
-**[Visit Help area for the Documentation:](http://ampforwp.com/help/)**
+**[Visit Help area for the Documentation:](https://ampforwp.com/help/)**
 
 
 == Frequently Asked Questions ==
@@ -159,7 +163,7 @@ Yes, Absolutely! We would suggest you send your feature request by creating an i
 
 = How do I get in touch? =
 
-You can contact us from [here](http://ampforwp.com/contact/)
+You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Screenshots ==
@@ -177,6 +181,113 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.85.5 (21st April 2018) =
+* Added: Filter added to modify frontpage post id `ampforwp_modify_frontpage_id` 
+* Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
+* Other minor bugs fixed
+
+= 0.9.85.3 (12th April 2018) =
+* Added: Custom Post type Archive Page support #1995
+* Fixed: AMP TakeOver redirection issues #1994
+* Fixed: Debug errors #1976
+* Fixed: Social Profile pages were hidden for Design 1 to 3 #1996
+* Fixed: Structured Data insertion was adding CData causing validation error #1999
+
+= 0.9.85.2 =
+* Minor Bugs fixed 
+
+= 0.9.85.1 =
+* Minor Bugs fixed 
+
+= 0.9.85 (3rd April 2018) =
+* For more detials check out [this blog post](https://ampforwp.com/0-9-85-released-stability-update-86th-update/)
+* Fixed: Fatal error: Allowed memory size on FrontPage #1865
+* Fixed: Proper Parameters for Pinterest Sharing #1853
+* Added: Extra settings added in Button Module 
+* Added: Extra settings added in Text Module 
+* Fixed: Proper Parameters for Pinterest Sharing
+* Fixed: Unwanted fields are removed form the Repeater in Button module
+* Added: Enable/disable option added Related Posts #1829 
+* Fixed: Legacy PageBuilder option Repositioned #1851
+* Fixed: Display the img tag only if source is present #1869
+* Fixed: Huge design improvements in Swift theme #1818
+* Added: Hook for Between Related Post is Added #1874
+* Added: Blurb module text size and background color added
+* Fixed: Comments Pagination issues #1816
+* Added: Counter Module added
+* Fixed: Date 48 years ago #1864 #1876 
+* Added: Ability to pass post id in amp_content() #1872
+* Fixed: Changed the way images we fetched in WooWidget #1847 
+* Fixed: Changed the position of layout in Pagebuilder #1873
+* Added: Pricing Module
+* Fixed: Changed the position of layout in Pagebuilder #1873
+* Fixed: amp_aq_resizer was not able to process the outside url #1881
+* Fixed: Advanced Google Analytics improvements #1630 #1860 
+* Added: Field Added For ON & OFF in Page builder #1870 
+* Fixed: Two paginations in search pages in Swift theme #1855
+* Fixed: Extra Div if categories not available #1856
+* Fixed: removed debuged tags #1870
+* Fixed: Published date connected with AMP options Panel #1888 
+* Added: Featured Image option in Swift #1889 
+* Added: Separate Blog settings #1887 
+* Fixed: single post ads should not load on pages #1896
+* Fixed: Ads should not load on FrontPage if PageBuilder is enabled #1885
+* Fixed: Background Image Support for the Columns #1871
+* Added: Blockquotes design for Swift #1894
+* Added: Co-Authors Plus compatibility #1895
+* Added: pagebuilder for custom post types #1884
+* Added: Border option is connected to options panel #1818
+* Added: Responsive AD unit support #1852
+* Added: Sub category arrow symbol is added in Swift theme #1818
+* Added: Search text color is connected to options panel #1818
+* Fixed: Removed notice when no posttype selected #1884
+* Added: Ability to overwrite page template the WordPress way like front-page.php and page-{id}.php  #1902
+* Added: Ability to overwrite author page template the WordPress way like author.php and author author-name.php  #1902
+* Added: Lightbox Support for the images #1892
+* Fixed: No mobile redirection when Dev mode is enabled #1907
+* Added: Option to hide Author name in Swift #1890 
+* Fixed: Script facebook-comments should not load for Frontpage #1897
+* Added: amp-facebook comments for AMP2WP #1911
+* Added: Alt tag in all modules #1898
+* Added: Sanitizers in Footer and sidebar widget in Swift #1835 
+* Added: Dropcap support #1900
+* Added: Proper styling for iframes and videos in Swift theme #1909
+* Fixed: Non-AMP link fixed for AMP Takeover #1916
+* Fixed: Swift connected with Breadcrumb option #1915
+* Added: Uninstall option created to completely remove AMPforWP data #1903 
+* Fixed: Recipe Structured Data requires name attribute #1917 
+* Fixed: No amphtml when It is hidden from Categories #1919
+* Fixed: Content is breaking when Inline Related Post option is enabled #1912
+* Fixed: Proper redirection setup for AMP Takeover #1913 
+* Added: Social media profiles added in menu #1901
+* Fixed: No Ads should display on Frontpage or Posts if Pagebuilder is enabled #1885 
+* Added: #1899 Proper conditions for amp-analytics script
+* Fixed: Turn off option not working by default fixed #1537
+* Fixed: BreadCrumbs Should not load when PageBuilder is enabled #1925 
+* Fixed: Removed unwanted elements loading while pagebuilder is enabled #1929
+* Fixed: amp-web-push should not load on Homepage and Blog #1930
+* Added: SmartMag theme Compatibility #1905
+* Fixed: Template overriding not working in child theme #1920
+* Fixed: Horizontal scrolling in Swift #1844
+* Fixed: Home page title should not be visible in AMP takeover #1921
+* Added: Carousel Module Added #1937
+* Fixed: Comments pagination not working #1816
+* Fixed: Comments pagination not working #1816
+* Added: Glue html css compatibility #1932 
+* Added: Data Caption Support on AMP Instagram Embed #1938
+* Added: Ability to pass {author_name} and {author_id} added in Advance Analytics #1936 
+* Fixed: Scrollbar in Header area in Swift in firefox #1818
+* Added: Disqus iframe height adjustment option #1935 
+* Fixed: Options panel conflict fixed with Mobius theme #1942
+* Fixed: Problem with Button in Mobile view in Swift #1926
+* Fixed: Removed canvas tag in AMP version causing validation errors #1880
+* Fixed: Getting Conflict with Facebook Button by BestWebSoft #1740
+* Added: Option to enter the "ID" on CTA button module #1931
+* Added: Option for open same window in CTA module of page builder #1866
+* Fixed: Logo fetch causing Huge performance issue #1679 
+* Fixed: Blurb module's default values were not set #1952
+* Fixed: Allow script with application/ld+json #1958
 
 = 0.9.84 (14th March 2018) =
 * Added: Polylang Frontpage compatibility added #1779
@@ -318,6 +429,7 @@ You can contact us from [here](http://ampforwp.com/contact/)
 * ?amp endpoint feature added #1561
 * Ability to remove the excerpt and image from related post #1510
 * Thumbnails on-the-fly generation added for better control over the design.
+
 
 = 0.9.74 (23rd January 2018) =
 * View More details on the [blog post](https://ampforwp.com/0-9-74-released-stability-update-79th-update/)
@@ -1273,7 +1385,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Typo in Trailingslashit function which resulted in some issues in the Homepage version [Bug Fix]
 
 = 0.9.1.2 [20th December 2016] =
-* Proper Details at http://ampforwp.com/new/
+* Proper Details at https://ampforwp.com/new/
 * DoubleClick Support
 * Custom Post Type Support
 * Ratings Support
@@ -1292,7 +1404,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Page Performance: DNS Prefetch tag added for faster DNS Handshake
 
 = 0.9.1 [16th December 2016] =
-* Proper Details at http://ampforwp.com/new/
+* Proper Details at https://ampforwp.com/new/
 * PHP7 Compatibility
 * Pagination URLs (Prev & Next) was going to 404 ( #244 | #251 )
 * Custom CSS not working in Design one (#249)
@@ -1322,7 +1434,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Compatibility improved with AMP WooCommerce.
 
 = 0.9 =
-* Proper Details at http://ampforwp.com/amp-pagebuilder/
+* Proper Details at https://ampforwp.com/amp-pagebuilder/
 * Drag & Drop Page builder Added: You can easily modify the look of the AMP page using this feature
 * 100% Yoast Compatible , Now no need to have additionally Glue Installed
 * 100% completed Translation panel, Now absolutely anything on page is translated
@@ -1340,7 +1452,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * SEO Panel Added
 
 = 0.8.8 =
-* Proper Details at http://ampforwp.com/amp-0-8-8-released-translation-panel/
+* Proper Details at https://ampforwp.com/amp-0-8-8-released-translation-panel/
 * Translation Panel added. You can now easily translate the AMP version from the backend without any complications.
 * Badge Tag was throwing Validation error
 * Plusone tag validation error was fixed
@@ -1358,7 +1470,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Featured Image Size options added
 
 = 0.8.7 =
-* Proper Details at http://ampforwp.com/amp-0-8-7/
+* Proper Details at https://ampforwp.com/amp-0-8-7/
 * added option to enable/disable AMP on Archive pages (Ticket #188)
 * Solved 404 on Related Posts (Ticket #178 )
 * Related posts by either categories or Tags(Ticket #179)
@@ -1379,7 +1491,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Few validation issues after 0.8.6 were fixed (Frontpage amp-img strip issue fixed)
 
 = 0.8.6 =
-* Proper Details at http://ampforwp.com/amp-0-8-6-released-related-posts-comments/
+* Proper Details at https://ampforwp.com/amp-0-8-6-released-related-posts-comments/
 * Related Posts
 * Post Comments
 * WhatsApp sharing button – Your visitors can now easily share the content over the whatsapp.
@@ -1398,7 +1510,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Canonical issue fixed for FrontPage
 
 = 0.8.5.1 =
-* Proper Details at http://ampforwp.com/new/
+* Proper Details at https://ampforwp.com/new/
 * Validation issue fixed: 'Value' tag
 * Validation issue fixed: The attribute 'contenteditable' may not appear in tag 'a'.
 * Validation issue fixed: Table markup
@@ -1409,14 +1521,14 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * NextGEN Gallery Validation Support Added
 
 = 0.8.5 =
-* Proper Details at http://ampforwp.com/the-0-4-compatibility/
+* Proper Details at https://ampforwp.com/the-0-4-compatibility/
 * AMP 0.4 Compatibility Check
 * Even better Structured Data Validation, Once in for all!
 * Structured Data Options to eliminate Validation errors
 * AMP Page Exclude option
 
 = 0.8.4 =
-* Proper Details at http://ampforwp.com/blog/structured-data-validation/
+* Proper Details at https://ampforwp.com/blog/structured-data-validation/
 * Structured Data Validation
 * Navigation Text Change
 * Inline Style Validation
@@ -1429,7 +1541,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Extra space after quote in Ads
 
 = 0.8.2 =
-* Proper Details at http://ampforwp.com/blog/the-custom-frontpage/
+* Proper Details at https://ampforwp.com/blog/the-custom-frontpage/
 * Custom AMP FrontPage
 * Featured Image
 * New Mobile Friendly Advertisement sizes
@@ -1449,7 +1561,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Gaping in the smaller screens fixed
 
 = 0.8 =
-* Proper Details at http://ampforwp.com/blog/the-change/
+* Proper Details at https://ampforwp.com/blog/the-change/
 * Plugin was re-written from scratch and is now built on top of default AMP plugin by Automattic but giving you the same features of the original plugin.
 * 99.5% Validation issues were fixed.
 * Page builder & Shortcodes Compatibility Support Added
@@ -1464,7 +1576,7 @@ Reformatting and Minifying of stylesheet [Code Cleaning]
 * Better Future Compatibility
 
 = 0.7.7 =
-* Proper Details at http://ampforwp.com/blog/amp-0-7-7/
+* Proper Details at https://ampforwp.com/blog/amp-0-7-7/
 * Big Validation Error fix Update
 * Disable AMP support on specific Pages and Posts
 * Option to disable the Post meta from the Single

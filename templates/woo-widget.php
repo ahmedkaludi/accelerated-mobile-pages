@@ -61,12 +61,12 @@
            } ?>
            <li class="ampforwp_wc_shortcode_child"><a href="<?php echo esc_url( $ampforwp_post_url );?>"> <?php
 
-           if ( has_post_thumbnail() ) {
-             $thumb_id = get_post_thumbnail_id();
-             $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-             $thumb_url = $thumb_url_array[0]; ?>
+           if ( ampforwp_has_post_thumbnail() ) {
+            $thumb_url = ampforwp_get_post_thumbnail('url');
+            $thumb_width = ampforwp_get_post_thumbnail('width');
+            $thumb_height = ampforwp_get_post_thumbnail('height'); ?>
 
-             <amp-img src='<?php echo esc_url( $thumb_url ); ?>' width="150" height="150" layout="responsive"></amp-img> <?php
+             <amp-img src='<?php echo esc_url( $thumb_url ); ?>' width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img> <?php
            }
 
            if ( $product->is_on_sale() && $on_sale_logo_on_product=='yes' ) { ?>

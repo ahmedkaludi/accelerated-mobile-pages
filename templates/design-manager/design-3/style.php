@@ -32,6 +32,7 @@ a{ color: #312C7E; text-decoration: none }
 .aligncenter{ text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 amp-anim { max-width: 100%; }
+.amp-wp-content amp-iframe{max-width:100%}
 @font-face {
     font-family: 'Roboto Slab';
     font-style: normal;
@@ -220,6 +221,9 @@ main .amp-wp-content.comments_list{ background: none; box-shadow: none; padding:
 .comments_list li li li{ margin:20px 20px 10px 20px }
 .comment-content amp-img{max-width: 300px;}
 <?php } ?>
+<?php if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
+.amp-disqus-comments { text-align:center } <?php 
+} ?>
 /* ADS */
 .amp_ad_1{ margin-top: 15px; margin-bottom: 10px; }
 .single-post .amp_ad_1{ margin-bottom: -15px; }

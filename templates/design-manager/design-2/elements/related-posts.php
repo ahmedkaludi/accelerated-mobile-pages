@@ -6,6 +6,8 @@
 		// declaring this variable here to prevent debug errors
 		$args = null;
 		$orderby = 'ID';
+		// declaring this variable for counting number of related post
+		$r_count = 1;
 		// Check for the order of related posts
 		if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
 			$orderby = 'rand';
@@ -57,7 +59,7 @@
 								);
 					}
 			}//end of block for tags
-			if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ) {
+			if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ) {
 				$my_query = new wp_query( $args );
 					if( $my_query->have_posts() ) { ?>
 						<div class="amp-wp-content relatedpost">
@@ -90,7 +92,10 @@
 							                    <?php } ?>	
 							                </div>
 							            </li>
-								<?php } ?>
+								<?php 
+								do_action('ampforwp_between_related_post',$r_count,$this);
+                 							 $r_count++;
+							} ?>
 								</ol>
 						    </div>
 						</div> <?php

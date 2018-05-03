@@ -31,7 +31,7 @@
                                 :repeater="0"
                                 :defaulttab="modalcontent.default_tab"
                             ></fields-data>
-                            <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab" class="amp-repeaters">
+                            <div v-if="modalcontent.repeater && modalcontent.repeater.tab==modalcontent.default_tab" class="amp-repeaters" v-show="repeaterShowHideCheck(modalcontent)">
 
                                 <div class="heading">
                                 </div>

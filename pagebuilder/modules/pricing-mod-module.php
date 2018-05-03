@@ -2,6 +2,7 @@
 $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
+{{if_condition_pricing_layout_type==1}}
 .pricing-mod{margin:{{margin_css}};padding:{{padding_css}};}
 {{module-class}} .ln-fx{width:100%;display:inline-flex; display: flex;flex-wrap: wrap;} 
 .pri-mod{display: flex;flex-direction: column;flex: 1 0 25%;text-align:center;background:#f4f4f4;position:relative;padding:30px 50px;margin:0 10px;overflow: hidden;}
@@ -19,6 +20,8 @@ $css = '
 	.pri-mod{flex:1 0 100%;margin:0px 0px 20px 0px;}
 	.feature-pri{top:0;}
 }
+{{ifend_condition_pricing_layout_type_1}}
+
 ';
 return array(
 		'label' =>'Pricing',
@@ -27,9 +30,25 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layouts'=> 'Layouts'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"pricing_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layouts',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/pricing-mod-1.png'
+				                            ),
+				                          ),
+				            'content_type'=>'html',
+				            ),
 						
 	 					array(
 								'type'		=>'color-picker',
@@ -153,16 +172,19 @@ return array(
                 
               ),
           'front_template'=>
-          '<div class="pri-mod {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
-				<h4 class="pri-tlt">{{content_title}}</h4>
-				{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
-				<span class="pri-lbl">{{price_label}}</span>
-				<span class="pri-desc">{{price_desc}}</span>
-				<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
-				<div class="pri-cnt">
-					{{text_desc}}
+          '{{if_condition_pricing_layout_type==1}}
+	          	<div class="pri-mod {{if_recommended_text}}feature-pri {{ifend_recommended_text}}">
+					<h4 class="pri-tlt">{{content_title}}</h4>
+					{{if_recommended_text}}<span class="pri-recom">{{recommended_text}}</span>{{ifend_recommended_text}}
+					<span class="pri-lbl">{{price_label}}</span>
+					<span class="pri-desc">{{price_desc}}</span>
+					<a href="{{btn_link}}" {{if_condition_page_link_open_price==new_page}}target="_blank"{{ifend_condition_page_link_open_price_new_page}} class="btn-txt">{{btn_title}}</a>
+					<div class="pri-cnt">
+						{{text_desc}}
+					</div>
 				</div>
-			</div>'
+			{{ifend_condition_pricing_layout_type_1}}
+			'
           ),
 
 	);

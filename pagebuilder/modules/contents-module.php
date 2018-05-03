@@ -54,14 +54,15 @@ require_once  ABSPATH . WPINC . '/category.php';
     'tabs' => array(
               'customizer'=>'Content',
               'container_css'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layout' => 'Layout'
             ),
  		'fields' => array(
             array(    
             'type'    =>'layout-image-picker',
             'name'    =>"content_layout_type",
             'label'   =>"Select Layout",
-            'tab'     =>'customizer',
+            'tab'     =>'layout',
             'default' =>'1',    
             'options_details'=>array(
                             array(
@@ -165,7 +166,7 @@ require_once  ABSPATH . WPINC . '/category.php';
 
                               <div class="cat_mod_l"> 
                                <a href="{{ampforwp_post_url}}">
-                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive"> </amp-img>{{ifend_image}}</a>
+                               {{if_image}}<amp-img  class="ampforwp_wc_shortcode_img"  src="{{image}}" width="{{width}}" height="{{height}}" layout="responsive" alt="{{image_alt}}"> </amp-img>{{ifend_image}}</a>
                               </div>
                               <div class="cat_mod_r">
                                 <a href="{{ampforwp_post_url}}">{{title}}</a>
@@ -186,9 +187,10 @@ require_once  ABSPATH . WPINC . '/category.php';
              $the_query->the_post();		
              $ampforwp_post_url = get_permalink();	
              $ampforwp_post_url = trailingslashit($ampforwp_post_url) . AMPFORWP_AMP_QUERY_VAR;
-             $image = $height = $width = "";	
+             $image = $height = $width = $image_alt = "";	
              if ( has_post_thumbnail() ) {  
                    $thumb_id = get_post_thumbnail_id();   
+                   $image_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
                    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);  
                    $image = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
@@ -253,7 +255,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 "{{title}}",
                                 "{{excerptContent}}",
                                 "{{authorname}}",
-                                "{{postdate}}"
+                                "{{postdate}}",
+                                "{{image_alt}}"
                                 ), 
                               array(
                                 $ampforwp_post_url,
@@ -263,7 +266,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 $title,
                                 $excerptContent,
                                 $author,
-                                $postdate
+                                $postdate,
+                                $image_alt
                               ), 
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
@@ -275,15 +279,7 @@ require_once  ABSPATH . WPINC . '/category.php';
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
             $contenthtml .= $rawhtml;
-             /* $contenthtml.='<li> 
-                              <div class="cat_mod_l"> 
-                                <a href="'. $ampforwp_post_url .'"><amp-img  class="ampforwp_wc_shortcode_img"  src="'. $image.'" width="'. $width . '" height="' . $height . '" layout="fixed"></amp-img></a> 
-                              </div>
-                              <div class="cat_mod_r">
-                                <a href="'. $ampforwp_post_url.'">'.get_the_title().'</a>'.
-                                $excerptContent.
-                                '</div>
-                            </li>';		*/
+            
          }		
  		
        		

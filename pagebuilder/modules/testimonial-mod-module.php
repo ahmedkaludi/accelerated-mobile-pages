@@ -126,7 +126,7 @@ return array(
 			</div>
 			<div class="auth-info">
 				<div class="auth-img">
-					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"></amp-img>{{ifend_img_upload}}
+					{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" layout="responsive" alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 				</div>
 				<div class="auth-cntn">
 					<h5>{{content_title}}</h5>

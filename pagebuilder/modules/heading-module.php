@@ -2,7 +2,7 @@
 $output = '<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>';
 $css = '
 {{module-class}}{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}
-{{module-class}} .h-txt{font-size:{{text-size}};color:{{font_color_picker}}; font-weight:{{font_type}};line-height:1.4;}
+{{module-class}} .h-txt{font-size:{{text-size}};color:{{font_color_picker}};letter-spacing:{{letter-spacing}};font-weight:{{font_type}};line-height:{{line-height}};}
 ';
 return array(
 		'label' =>'Heading',
@@ -28,6 +28,22 @@ return array(
 		 						'label'		=>'Font Size',
 		           				 'tab'     =>'design',
 		 						'default'	=>'54px',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"line-height",		
+		 						'label'		=>'Line Height',
+		           				 'tab'     =>'design',
+		 						'default'	=>'1.4',	
+		           				'content_type'=>'css',
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"letter-spacing",		
+		 						'label'		=>'Letter Spacing',
+		           				 'tab'     =>'design',
+		 						'default'	=>'0px',	
 		           				'content_type'=>'css',
 	 						),
 	 					array(
