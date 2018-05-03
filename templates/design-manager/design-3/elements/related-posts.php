@@ -81,7 +81,7 @@
 									$thumb_width  	= ampforwp_get_post_thumbnail('width');
 									$thumb_height 	= ampforwp_get_post_thumbnail('height');
 									if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
-						            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> layout="responsive"></amp-img>
+						            	<amp-img data-block-on-consent src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> layout="responsive"></amp-img>
 									<?php } 
 									}?>
                               		</a>

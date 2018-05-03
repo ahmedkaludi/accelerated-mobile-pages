@@ -7,14 +7,42 @@ function amp_archive_title(){
 			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 			if($curauth_url){ ?>
 				<div class="amp-wp-content author-img">
-					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+					<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 				</div>
 			<?php }
 	}
 }
 	if ( is_archive() ) {
+		$description = $sanitizer = $arch_desc = '';
 	    the_archive_title( '<h3 class="amp-archive-title">', '</h3>' );
-	    the_archive_description( '<div class="amp-archive-desc">', '</div>' );
+	    $description 	= get_the_archive_description();
+		$sanitizer = new AMPFORWP_Content( $description, array(), 
+			apply_filters( 'ampforwp_content_sanitizers',
+				array( 
+					'AMP_Style_Sanitizer' 		=> array(),
+					'AMP_Blacklist_Sanitizer' 	=> array(),
+					'AMP_Img_Sanitizer' 		=> array(),
+					'AMP_Video_Sanitizer' 		=> array(),
+					'AMP_Audio_Sanitizer' 		=> array(),
+					'AMP_Iframe_Sanitizer' 		=> array(
+						'add_placeholder' 		=> true,
+					)
+				) ) );
+		$arch_desc 		= $sanitizer->get_amp_content();
+			if( $arch_desc ) {  
+				if ( get_query_var( 'paged' ) ) {
+		        $paged = get_query_var('paged');
+		    } elseif ( get_query_var( 'page' ) ) {
+		        $paged = get_query_var('page');
+		    } else {
+		        $paged = 1;
+		    }
+				if($paged <= '1') {?>
+					<div class="amp-archive-desc">
+						<?php echo $arch_desc ; ?>
+				    </div> <?php
+				}
+			}
 	}
 	if( is_category() && 1 == $redux_builder_amp['ampforwp-sub-categories-support'] ){
 		$parent_cat_id 	= '';
@@ -45,6 +73,7 @@ $amp_q = '';
 $count = 1;
 function call_loops_standard($data=array()){
 	global $amp_q;
+	$post_type = get_post_type();
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -57,7 +86,7 @@ function call_loops_standard($data=array()){
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
 		$args =  array(
-			'post_type'           => 'post',
+			'post_type'           => $post_type,
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'tax_query' => array(
@@ -188,7 +217,8 @@ function amp_reset_loop(){
 }
 
 function amp_pagination($args =array()) {
-	global $amp_q, $redux_builder_amp;
+	global $amp_q, $wp_query, $redux_builder_amp;
+
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -207,11 +237,13 @@ function amp_pagination($args =array()) {
       $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
     }
 
-    echo '<div class="loop-pagination">
-      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
-        '.$pre_link.'
-      <div class="clearfix"></div>
-    </div>';
+    if ( $wp_query->max_num_pages > 1 ) { 
+	    echo '<div class="loop-pagination">
+	      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
+	        '.$pre_link.'
+	      <div class="clearfix"></div>
+	    </div>';
+	}
 }
 
 /***
@@ -277,7 +309,7 @@ function amp_loop_permalink($return,$amp_query_var ='amp'){
 	echo ampforwp_url_controller( get_permalink() );
 }
 function amp_loop_image( $data=array() ) {
-	global $ampLoopData,$counterOffset;
+	global $ampLoopData, $counterOffset, $redux_builder_amp;
 	if (ampforwp_has_post_thumbnail()  ) {
 
 		$tag 				= 'div';
@@ -316,6 +348,10 @@ function amp_loop_image( $data=array() ) {
 			if ( empty($height) ) {
 				$height = $thumb_height;
 			}
+			if ( isset($redux_builder_amp['ampforwp-retina-images']) && true == $redux_builder_amp['ampforwp-retina-images'] ) {
+				$width = $width * 2;
+				$height = $height * 2;
+			}
 			$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
 			$thumb_url = $thumb_url_array[0];
 			$thumb_width = $thumb_url_array[1];
@@ -324,7 +360,7 @@ function amp_loop_image( $data=array() ) {
 		if ( $thumb_url ) {
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" data-block-on-consent width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}

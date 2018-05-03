@@ -90,6 +90,19 @@ function ampforwp_page_template_redirect() {
   $supported_types            = ampforwp_get_all_post_types();
   $supported_types            = apply_filters('get_amp_supported_post_types',$supported_types);
   $post_type                  = get_post_type();
+  
+  if(is_home() || is_front_page()){
+      if(isset($redux_builder_amp['ampforwp-homepage-on-off-support']) 
+          && $redux_builder_amp['ampforwp-homepage-on-off-support'] == 1 
+          && isset($redux_builder_amp['amp-on-off-for-all-posts']) 
+          && $redux_builder_amp['amp-on-off-for-all-posts'] == 0 
+          && isset($redux_builder_amp['amp-on-off-for-all-pages']) 
+          && $redux_builder_amp['amp-on-off-for-all-pages'] == 0 ){
+
+                  $supported_types['post'] = 'post';
+      }
+    }
+  
   $supported_amp_post_types   = in_array( $post_type , $supported_types );
   $url_to_redirect            = ampforwp_amphtml_generator();
 
@@ -195,6 +208,7 @@ add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 )
 function ampforwp_page_template_redirect_archive() {
 
   if ( is_404() ) {
+        return;
     if ( ampforwp_is_amp_endpoint() ) {
       global $wp;
       $ampforwp_404_url   = add_query_arg( '', '', home_url( $wp->request ) );

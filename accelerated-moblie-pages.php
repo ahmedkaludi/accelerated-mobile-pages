@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.85.7
+Version: 0.9.86
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -19,7 +19,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.85.7');
+define('AMPFORWP_VERSION','0.9.86');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -516,6 +516,10 @@ if ( ! function_exists('ampforwp_init') ) {
 function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
+	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" ) {
+		update_option( 'ampforwp_theme_notice', true );
+		wp_redirect("admin.php?page=amp_options");
+	}
    	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
 
    		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" ) {
@@ -529,6 +533,27 @@ function amp_update_db_check() {
     }
 }
 add_action( 'plugins_loaded', 'amp_update_db_check' );
+
+// Admin notice for AMP WordPress Theme
+add_action('admin_notices', 'ampforwp_ampwptheme_notice');
+function ampforwp_ampwptheme_notice() {
+ 	$theme = '';
+	$theme = wp_get_theme(); // gets the current theme
+
+	if ( ('AMP WordPress Theme' == $theme->name || 'AMP WordPress Theme' == $theme->parent_theme) && true != get_option('ampforwp_theme_notice') ) {    
+		add_thickbox(); ?>
+		<div id="some" class="notice-warning settings-error notice is-dismissible">
+			<span style="margin: 0.5em 0.5em 0 0">AMP WordPress Theme is installed</span><br>
+			<span style="margin: 0.5em 0.5em 0 0">One Last Step Required: <a href="#TB_inline?width=600&height=550&inlineId=my-content-id" class="thickbox">Finish Setup</a></span><br>
+		</div>
+		<div id="my-content-id" style="display:none;">
+	     <p>
+	     	<iframe width="100%" height="480" src="https://www.youtube.com/embed/" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<a href="<?php echo esc_url(add_query_arg( 'ampforwp-dismiss-theme', 'ampforwp_dismiss_admin_notices' )) ?>">Take me to the Options Panel</a>
+	     </p>
+		</div>
+	<?php }
+}
 
 function ampforwp_update_notice() {
 	$screen = '';

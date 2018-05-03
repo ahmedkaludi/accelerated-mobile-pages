@@ -2,6 +2,7 @@
 .redux-container{
     position: relative;
     border-radius: 3px;
+     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
 }
 #redux-intro-text{
     position: absolute;
@@ -12,14 +13,14 @@
     text-decoration: none
 }
 .admin-color-fresh #redux-header, .wp-customizer #redux-header{
-    background: #303F9F
+    background: #fff 
 }
 .redux-container #redux-header{
     border: 0;
     border-radius: 3px 3px 0px 0px
 }
 .redux-container #redux-header .display_header{
-    margin: 0 14px
+    margin: 0 10px
 }
 .redux-container #redux-header .display_header .redux-dev-mode-notice-container{
     position: relative;
@@ -141,6 +142,7 @@
 .ampforwp-ad-img-banner{
     width: 560px;
     max-height: 99px;
+    margin-bottom: -17px;
 }
 .ampforwp-extension-ad-img-banner{
   width: 345px;

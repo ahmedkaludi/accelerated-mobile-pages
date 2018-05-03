@@ -14,21 +14,45 @@
 				// Custom/Alternative AMP content added through post meta
 				$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 			}
+			// Muffin Builder Compatibility #1455 #1893
+			if ( function_exists('mfn_builder_print') ) {
+				ob_start();
+			  	mfn_builder_print( get_the_ID() );
+				$content = ob_get_contents();
+				ob_end_clean();
+				$sanitizer_obj = new AMPFORWP_Content( $content,
+									array(), 
+									apply_filters( 'ampforwp_content_sanitizers', 
+										array( 'AMP_Img_Sanitizer' => array(), 
+											'AMP_Blacklist_Sanitizer' => array(),
+											'AMP_Style_Sanitizer' => array(), 
+											'AMP_Video_Sanitizer' => array(),
+					 						'AMP_Audio_Sanitizer' => array(),
+					 						'AMP_Iframe_Sanitizer' => array(
+												 'add_placeholder' => true,
+											 ),
+										) 
+									) 
+								);
+			 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+			}
+			else {
+				if($redux_builder_amp['amp-pagination']) {
+					$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
+				    $queried_var = get_query_var('page');
+					if ( $queried_var > 1 ) {
+				    	$queried_var = $queried_var -1   ;
+				  	}
+				  	else{
+				  		$queried_var = 0;
+				  	}
+				  	$ampforwp_the_content =  $ampforwp_new_content[$queried_var]; 		  
+		 		} //#1015 Pegazee
+		 	}
+		 	
 			//Filter to modify the Content			 
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
-			if($redux_builder_amp['amp-pagination']) {
-				$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
-			    $queried_var = get_query_var('page');
-				if ( $queried_var > 1 ) {
-			    	$queried_var = $queried_var -1   ;
-			  	}
-			  	else{
-			  		$queried_var = 0;
-			  	}
-			  	echo $ampforwp_new_content[$queried_var]; 		  
-	 		} else {
-	 			echo $ampforwp_the_content;
-	 		}//#1015 Pegazee
+		    echo $ampforwp_the_content;			
 	 	do_action('ampforwp_after_post_content',$this) ; //Post After Content here 
 	 ?>
 

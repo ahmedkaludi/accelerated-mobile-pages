@@ -8,7 +8,7 @@
 				<?php
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
+						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' );
 							}
 
 				foreach ($ampforwp_tags as $tag) {
@@ -21,7 +21,7 @@
 
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'Tags:' ));
+						 global $redux_builder_amp; echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
 							}
 				?>
 
@@ -44,7 +44,7 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	            		$author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 70 ) );
 	            	}
 	                if ( $author_avatar_url ) { ?>
-	                    <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
+	                    <amp-img data-block-on-consent src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                }
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  

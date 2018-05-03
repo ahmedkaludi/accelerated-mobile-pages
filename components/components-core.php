@@ -54,20 +54,32 @@ function loadComponents($componentName){
 // Icons
 $amp_icons_css = array();
 function add_amp_icon($args=array()){
-	global $amp_icons_css;
+	global $amp_icons_css, $redux_builder_amp;
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 	foreach ($args as $key ) {
 		if(isset($amp_icons_css_array[$key]))
 			$amp_icons_css[$key] = $amp_icons_css_array[$key]; 
 	}
-	add_action('amp_css', 'amp_icon_css');
+	// Design-1,2,3
+	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+		add_action('amp_post_template_css', 'amp_icon_css',999);
+
+	}
+	else
+		add_action('amp_css', 'amp_icon_css');  
 	
 }
 function amp_icon_css(){
-	global $amp_icons_css;
+	global $amp_icons_css, $redux_builder_amp;
 	foreach ($amp_icons_css as $key => $value) {
 	    echo $value;
 	}
+
+	// Add @font-face for Design-1,2,3
+	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) { ?>
+		@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>icomoon/icomoon.ttf');}
+		[class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+	<?php }
 }
 	
 /**
@@ -94,7 +106,7 @@ function amp_logo(){
 function amp_title(){
 	global $redux_builder_amp, $post;
 	$ID = '';
-	if(is_home() && ampforwp_get_frontpage_id() ){
+if( is_home() && ampforwp_get_frontpage_id() ){
 		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
 			$ID = ampforwp_get_frontpage_id();
 		}
@@ -120,6 +132,7 @@ function amp_title(){
 function amp_excerpt( $no_of_words=15 ) {
 	global $redux_builder_amp, $post;
 	$post_id = '';
+
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
@@ -140,10 +153,14 @@ function amp_excerpt( $no_of_words=15 ) {
 
 
 //Menus
-function amp_menu(){
+function amp_menu($echo=true){
 		global $loadComponent;
 		if(isset($loadComponent['AMP-menu']) && $loadComponent['AMP-menu']==true){
-			amp_menu_html();
+			if ( false == $echo ) {
+				return amp_menu_html($echo);
+			}
+			else
+				echo amp_menu_html($echo);
 		}
 	}
 
@@ -369,7 +386,7 @@ function amp_footer_core(){
 function amp_non_amp_link(){
 	global $allowed_html;
     global $redux_builder_amp;
-    echo wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) ;
+    echo '<span>' . wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) . '</span>' ;
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }
 }
 
@@ -397,7 +414,7 @@ global $redux_builder_amp, $post;
 if ( empty( $post_id )) {
 	
 	$post_id = get_queried_object_id();
-	if ( ampforwp_is_front_page() ) {
+if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
 	elseif ( ampforwp_polylang_front_page() ) {
@@ -415,6 +432,28 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			// Custom/Alternative AMP content added through post meta  
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
+	// Muffin Builder Compatibility #1455 #1893
+	if ( function_exists('mfn_builder_print') ) {
+		ob_start();
+	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
+		$content = ob_get_contents();
+		ob_end_clean();
+		$sanitizer_obj = new AMPFORWP_Content( $content,
+							array(), 
+							apply_filters( 'ampforwp_content_sanitizers', 
+								array( 'AMP_Img_Sanitizer' => array(), 
+									'AMP_Blacklist_Sanitizer' => array(),
+									'AMP_Style_Sanitizer' => array(), 
+									'AMP_Video_Sanitizer' => array(),
+			 						'AMP_Audio_Sanitizer' => array(),
+			 						'AMP_Iframe_Sanitizer' => array(
+										 'add_placeholder' => true,
+									 ),
+								) 
+							) 
+						);
+	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();		
+	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content;
 	do_action('ampforwp_after_post_content',$thisTemplate); ?>
@@ -424,7 +463,7 @@ function amp_date( $args=array() ) {
 
     global $redux_builder_amp;
     if ( 2 == $redux_builder_amp['ampforwp-post-date-format'] ) {
-    	$args['format'] = 'traditional';
+    	$args = array('format' => 'traditional');
     }
     if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
       $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
@@ -443,7 +482,7 @@ function amp_date( $args=array() ) {
         }
         else
           echo '<div class="loop-date">'.$post_date.'</div>';
-  }
+}
 
 //Load font Compoment
 	$fontComponent = array();
@@ -506,7 +545,7 @@ function amp_author_meta( $args ) {
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
-        <amp-img src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+        <amp-img data-block-on-consent src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );

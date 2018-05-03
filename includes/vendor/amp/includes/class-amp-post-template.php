@@ -39,10 +39,11 @@ class AMP_Post_Template {
 
 	public function __construct( $post_id ) {
 		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__DIR__ . '/templates' );
-
+		if ( ampforwp_get_frontpage_id() ) {
+			$post_id = ampforwp_get_frontpage_id();
+		}
 		$this->ID = $post_id;
 		$this->post = get_post( $post_id );
-
 		$content_max_width = self::CONTENT_MAX_WIDTH;
 		if ( isset( $GLOBALS['content_width'] ) && $GLOBALS['content_width'] > 0 ) {
 			$content_max_width = $GLOBALS['content_width'];
@@ -245,8 +246,12 @@ class AMP_Post_Template {
 	}
 
 	private function build_post_content() {
-		if(!empty($this->post->post_content)){
-			$amp_content = new AMP_Content( $this->post->post_content,
+		if( !empty($this->post->post_content) && false === ampforwp_is_home() && false === is_archive() ){
+			$new_post_content = $this->post->post_content;
+			// #2001 Filter to remove the unused JS from the paginated post
+			$new_post_content = apply_filters( 'ampforwp_post_content_filter', $new_post_content );
+
+			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
@@ -437,6 +442,7 @@ class AMP_Post_Template {
 	private function locate_template( $file ) {
 		$location = 'ampforwp';
 		$location = apply_filters("ampforwp_template_locate",$location);
+
 		$search_file = sprintf( $location.'/%s', basename( $file ) );
 		return locate_template( array( $search_file ), false );
 	}

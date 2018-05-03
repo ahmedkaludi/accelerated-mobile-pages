@@ -43,5 +43,7 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
 17. folder name updated from amp to ampforwp to avoid conflict in class-amp-post-template.php on line no 440 #1742
 18. 'amp_fetch_image_mode_type' filter added in class-amp-image-dimension-extractor.php #1833
-19. Modifications in class-amp-img-sanitizer.php for Lightbox support #1892
+19. Modifications in class-amp-img-sanitizer.php for Lightbox support #1892 #2032
 20. Modification is class-amp-blacklist-sanitizer.php #1958
+21. ampforwp_post_content_filter filter added in class-amp-post-template.php #2001
+22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945

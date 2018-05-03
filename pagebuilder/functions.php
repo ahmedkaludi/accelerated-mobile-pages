@@ -31,21 +31,22 @@ function amppbbase_admin_scripts( $hook_suffix ){
 		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
         $amp_current_post_id = $postId = get_the_ID();
             
-			wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue/dist/vue.min.js', array(),AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuejs-resource', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-resource/dist/vue-resource.min.js', array(), AMPFORWP_VERSION, true);//For Http Clients
-			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/sortablejs/Sortable.min.js', array(), AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vuedraggable/dist/vuedraggable.js' ,array(),AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/node_modules/vue-drag-drop/dist/vue-drag-drop.browser.js', array(), AMPFORWP_VERSION, true);
 			
-			wp_enqueue_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
+			 wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/assets/vue/vue.min.js', array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuejs-resource', AMP_PAGE_BUILDER_URL. 'inc/assets/vuejs-resource/vue-resource.min.js', array(), AMPFORWP_VERSION, true);//For Http Clients
+			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/Sortable.min.js', array(), AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/vuedraggable.min.js' ,array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/assets/vue-drag-drop/vue-drag-drop.browser.js', array(), AMPFORWP_VERSION, true);
+			
+			 wp_register_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
 						'wp-color-picker',
 						'vuejs',
 						'vuejs-resource',
 						'vueSortable',
 						'vuedraggable',
-						'vuedropdrag'
-					),AMPFORWP_VERSION, true );
+						'vuedropdrag' 
+					),AMPFORWP_VERSION, true );  
 					
 					
 			$previousData = get_post_meta($postId,'amp-page-builder');
@@ -100,6 +101,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 									"checkedPageBuilder"=>get_post_meta($postId,'ampforwp_page_builder_enable', true),
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
+			wp_enqueue_script('amppb-admin');
 			add_action( 'admin_footer', 'js_templates',9999);
 	   
 	    
@@ -116,13 +118,18 @@ function js_templates() {
 }
 function checkAMPforPageBuilderStatus($postId){
 	global $post, $redux_builder_amp;
-	$postId = $post->ID;
-	if( ampforwp_is_front_page() ){
+	$postId = (is_object($post)? $post->ID: '');
+  
+  if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
-
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
-	if($ampforwp_pagebuilder_enable=='yes'){
+	if ( empty(  $postId ) ) {
+    return false;
+  }
+  
+  $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+  
+	if( $ampforwp_pagebuilder_enable=='yes'){
 		return true;
 	}else{
 		return false;

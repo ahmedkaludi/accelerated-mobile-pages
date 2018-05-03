@@ -36,6 +36,7 @@ function ampforwp_framework_get_featured_image(){
 		}
 		if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
 			$amp_html = ampforwp_get_featured_image_from_content();
+			$amp_html = preg_replace('#sizes="(.*)"#', "layout='responsive'", $amp_html);
 		} 
 		if( $amp_html ){ ?>
 			<figure class="amp-featured-image"> <?php  

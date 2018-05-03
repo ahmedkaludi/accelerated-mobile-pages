@@ -912,7 +912,7 @@ Layout css
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    float: left;
+    display:inline-flex;
     padding: 0px;
     width: 25%;
     margin-right:30px;

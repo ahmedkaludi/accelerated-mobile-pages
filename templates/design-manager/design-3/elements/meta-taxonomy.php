@@ -32,7 +32,7 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	            		$author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 70 ) );
 	            	}
 	                if ( $author_avatar_url ) { ?>
-	                    <amp-img src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
+	                    <amp-img data-block-on-consent src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                } 
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
@@ -43,4 +43,4 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	}
 }
 
-do_action('ampforwp_before_meta_taxonomy_hook',$this);
+do_action('ampforwp_after_meta_taxonomy_hook',$this);

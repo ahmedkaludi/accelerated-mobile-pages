@@ -11,7 +11,7 @@ function amp_post_template_add_title( $amp_template ) {
 add_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
 function amp_post_template_add_canonical( $amp_template ) {
 	?>
-	<link rel="canonical" href="<?php echo esc_url( $amp_template->get( 'canonical_url' ) ); ?>" />
+	<link rel="canonical" href="<?php echo esc_url( apply_filters('ampforwp_modify_rel_url',$amp_template->get( 'canonical_url' ) ) ); ?>" />
 	<?php
 }
 
@@ -40,8 +40,8 @@ function amp_post_template_add_boilerplate_css( $amp_template ) {
 	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 	<?php
 }
-
-add_action( 'amp_post_template_head', 'amp_post_template_add_schemaorg_metadata' );
+if(! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php')):
+add_action( 'amp_post_template_footer', 'amp_post_template_add_schemaorg_metadata' );
 function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	$metadata = $amp_template->get( 'metadata' );
 	if ( empty( $metadata ) ) {
@@ -51,6 +51,7 @@ function amp_post_template_add_schemaorg_metadata( $amp_template ) {
 	<script type="application/ld+json"><?php echo wp_json_encode( $metadata ); ?></script>
 	<?php
 }
+endif;
 
 add_action( 'amp_post_template_css', 'amp_post_template_add_styles', 99 );
 function amp_post_template_add_styles( $amp_template ) {

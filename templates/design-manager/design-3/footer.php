@@ -102,6 +102,8 @@
                 } 
               } ?>
           </p>
+          <?php do_action('amp_footer_link'); ?>
+
           <?php if ( true == $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
             <p class="poweredby">
                 <a href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>

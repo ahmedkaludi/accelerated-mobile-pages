@@ -54,6 +54,7 @@
 			<?php } ?>
 			<div class="rr">
 				<?php amp_non_amp_link(); ?>
+            <?php do_action('amp_footer_link'); ?>
 			</div>
 		</div>
 	</div>
@@ -70,7 +71,7 @@
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 		<li>
-			<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>">
+			<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>">
 			</a>
 		</li>
 		<?php } ?>
@@ -81,7 +82,7 @@
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-email-share']){?>
 		<li>
-			<a class="s_em" target="_blank" href="mailto:?subject=<?php the_title(); ?>&body=<?php the_permalink(); ?>"></a>
+			<a class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php the_permalink(); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-pinterest-share']){
@@ -90,12 +91,12 @@
 				$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 			}?>
 		<li>
-			<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php the_permalink(); ?>&description=<?php the_title(); ?>"></a>
+			<a class="s_pt" target="_blank" href="https://pinterest.com/pin/create/button/?media=<?php echo esc_url($image); ?>&url=<?php the_permalink(); ?>&description=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
 		<li>
-			<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+			<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
@@ -115,7 +116,7 @@
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-reddit-share']){?>
 		<li>
-			<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+			<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
@@ -125,17 +126,17 @@
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 		<li>
-			<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>"></a>
+			<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php the_permalink(); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-digg-share']){?>
 		<li>
-			<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+			<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
 		<li>
-			<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>"></a>
+			<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-wechat-share']){?>
@@ -150,7 +151,7 @@
 		<?php } ?>
 		<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share'] ) { ?>
 		<li>
-			<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php the_title(); ?>&yumtype=button"></a>
+			<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 		</li>
 		<?php } ?>
 	</ul>

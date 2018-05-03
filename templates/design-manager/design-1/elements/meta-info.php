@@ -10,12 +10,12 @@
 			$author_image = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) );
 			 if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  
 			 if( is_single()) { ?>
-				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 				echo ampforwp_get_author_details( $post_author , 'meta-info' );
 			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
-				<amp-img src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 					echo ampforwp_get_author_details( $post_author , 'meta-info' );
 				 }
@@ -31,7 +31,7 @@
 			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
 				$date = get_the_modified_date( get_option( 'date_format' )) . ', ' . get_the_modified_time() ;
 			}
-			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text']. ' ', 'On') . $date );
+			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date );
 			}?>
 		</time>
 	</div>

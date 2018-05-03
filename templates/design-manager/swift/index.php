@@ -19,10 +19,10 @@
 		if($i==1 && $paged==1){ 
 			?>
 			<div class="fbp">
-				<?php $argsbig = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>723,'image_crop_height'=>394, 'responsive'=> true); ?>
+				<?php if (ampforwp_has_post_thumbnail()  ) { $argsbig = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>723,'image_crop_height'=>394, 'responsive'=> true); ?>
 			    <div class="fbp-img">
 			    	<?php amp_loop_image($argsbig); ?>
-			    </div>
+			    </div> <?php } ?>
 			    <div class="fbp-cnt">
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
@@ -41,8 +41,8 @@
 				$height = $redux_builder_amp['ampforwp-swift-homepage-posts-height'];
 			} ?>
 			<div class="fsp">
-				<?php $args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); 
-				if ( ampforwp_has_post_thumbnail() ) {?>
+				<?php if( ampforwp_has_post_thumbnail() ) { 
+					$args = array("tag"=>'div',"tag_class"=>'image-container','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height, 'responsive'=> true); ?>
 				    <div class="fsp-img">
 				    	<?php amp_loop_image($args); ?>
 				    </div>

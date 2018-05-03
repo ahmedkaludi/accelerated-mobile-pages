@@ -31,8 +31,7 @@ wp_reset_postdata(); ?>
 
 		
     <p class="back-to-top">
-    <?php 
-             if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
+    <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
               <a href="#top"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
              <?php }
              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
@@ -44,6 +43,6 @@ wp_reset_postdata(); ?>
                 }
               } ?>
     </p>
-	</div>
-</footer>
+  </div>
+</footer><?php do_action('amp_footer_link'); ?>
 <?php do_action('ampforwp_global_after_footer'); ?>

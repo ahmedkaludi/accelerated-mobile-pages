@@ -148,8 +148,15 @@ if(!class_exists('Aq_Resize')) {
                         $editor = wp_get_image_editor( $img_path );
 
                         if ( is_wp_error( $editor ) || is_wp_error( $editor->resize( $width, $height, $crop ) ) ) {
-                            throw new Aq_Exception('Unable to get WP_Image_Editor: ' .
-                                                   $editor->get_error_message() . ' (is GD or ImageMagick installed?)');
+
+                            // Return the Original array
+                            return array (
+                                        0 => $url,
+                                        1 => $width,
+                                        2 => $height
+                                    );
+                           /* throw new Aq_Exception('Unable to get WP_Image_Editor: ' . 
+                                                   $editor->get_error_message() . ' (is GD or ImageMagick installed?)');*/
                         }
 
                         $resized_file = $editor->save();

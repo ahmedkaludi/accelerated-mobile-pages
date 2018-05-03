@@ -94,7 +94,7 @@ function ampforwp_custom_content_meta_register() {
         $post_types = ampforwp_get_all_post_types();
         if ( $post_types ) {
           foreach ( $post_types  as $post_type ) {
-            if ( 'post' !== $post_type || 'page' !== $post_type ) {
+            if ( 'post' !== $post_type && 'page' !== $post_type ) {
               add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', $post_type ,'normal', 'default' );
             }
           }
