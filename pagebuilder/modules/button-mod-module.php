@@ -411,7 +411,7 @@ return array(
 					{{content_title}}{{if_condition_check_for_icon==1}}<i class="ico-pic icon-{{icon-picker}}"></i>{{ifend_condition_check_for_icon_1}}
 				</a>
 			{{if_sub_heading}}<span>{{sub_heading}}</span> {{ifend_sub_heading}}
-			{{ifend_condition_button_repeat_check_1}}
+			
 			</div>
 			'
 			),
