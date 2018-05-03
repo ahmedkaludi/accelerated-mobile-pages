@@ -127,6 +127,18 @@ $extension_listing_array = array(
                         ),
 
                         array(
+                            'name'=> 'EDD for AMP',
+                            'desc'=> 'EDD compatibility with AMP',
+                            'img_src'=> AMPFORWP_IMAGE_DIR . '/click.png',
+                            'price'=> '$19',
+                            'url_link'=>'https://ampforwp.com/edd-for-amp/',
+                            'plugin_active_path'=> 'edd-for-amp/edd-for-amp.php',
+                            'item_name'=>'EDD for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('edd-for-amp/edd-for-amp.php')? 1 : 2),
+                        ),
+
+                        array(
                             'name'=>'AMP Layouts',
                             'desc'=>'layout system built for AMP that makes easy to create your own AMP templates.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
