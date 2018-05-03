@@ -183,7 +183,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.86 (3rd May 2018) =
-* For more detials check out [this blog post](https://ampforwp.com/0-9-86-getting-ready-for-future-87th-update/)
+* For more detials check out [this blog post](https://ampforwp.com/0-9-86-released-getting-ready-for-future-87th-update/)
 * Added: GDPR Compliancy #2040
 * Added: Muffin Page Builder Compatibility #1455 #1893
 * Added: Thrive leads compatibility #2067
