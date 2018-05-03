@@ -6357,11 +6357,17 @@ function ampforwp_get_frontpage_id() {
 	return $post_id;
 	
 }
-// End-point (?amp) after 1.0-alpha
+// End-point (?amp) and correct amphtml for pages after 1.0-alpha
 add_filter( 'amp_get_permalink', 'ampforwp_change_end_point' );
 function ampforwp_change_end_point($url){
   global $redux_builder_amp;
+  $post_id = get_the_ID();
   $amp_url = $url;
+  if(is_page() && is_post_type_hierarchical( get_post_type( $post_id ) )){
+  	$amp_url = remove_query_arg( 'amp', $amp_url );
+  	$amp_url = trailingslashit( $amp_url );
+  	$amp_url = user_trailingslashit( $amp_url . AMPFORWP_AMP_QUERY_VAR );
+  }
   if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point']){
   $amp_url = get_permalink();
     $amp_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'',$amp_url);
