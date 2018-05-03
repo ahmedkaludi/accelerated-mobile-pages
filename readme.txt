@@ -184,6 +184,10 @@ You can contact us from [here](http://ampforwp.com/contact/)
 
 = 0.9.86 (3rd May 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-86-getting-ready-for-future-87th-update/)
+* Added: GDPR Compliancy #2040
+* Added: Muffin Page Builder Compatibility #1455 #1893
+* Added: Thrive leads compatibility #2067
+* Fixed: Load structured markup json in Footer to improve performance #1945 
 * Added: Font Size and Font Family Controls added in Content Presentation Module #1962
 * Added: Font Weight Control added in Text Module in PageBuilder #1962
 * Added: Other necessary controls added in Content Presentation Module #1962
@@ -243,8 +247,6 @@ You can contact us from [here](http://ampforwp.com/contact/)
 * Fixed: Extra Space adding in H1 and other SEO tags #2054
 * Fixed: Undefined Index when called from robot #1960
 * Fixed: amp facebook comment Js not loading to the custom front page of the swift theme. #2053
-* Added: GDPR Compliancy #2040
-* Fixed: Load structured markup json in Footer to improve performance #1945 
 * Fixed: Tags label is not working properly when RTL Support on #1719
 * Fixed: View Non-AMP Version In the footer link has an error #2066
 * Fixed: Squirrly SEO is Adding the Javascript code in AMP #1696
@@ -252,11 +254,9 @@ You can contact us from [here](http://ampforwp.com/contact/)
 * Fixed: amp-facebook-like extension is missing on Custom Frontpage #2061
 * Fixed: GTM option repositioned #2056
 * Fixed: Menu is appearing on left side instead of Right side when RTL support is ON for Design3 #1928
-* Added: Thrive leads compatibility #2067
 * Fixed: Sidebar Bugs #1972
 * Added: Table Styling in Swift #1961
 * Fixed: Genesis index, follow options not being rendered #2071
-* Added: Compatibility with Muffin Page Builder #1455 #1893
 * Added: Filter created `ampforwp_robots_meta` to modify robots meta information #2071 
 * Fixed: PHP Notices #2065
 * Added: Add a new hook `ampforwp_after_amp_menu` after the menu in all designs #2072
