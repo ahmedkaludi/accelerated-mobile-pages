@@ -2808,6 +2808,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-retina-images',
                         'type'     => 'switch',
                         'title'    => __('Retina Images', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enable if your current images looking blured on Apple Devices.', 'accelerated-mobile-pages'),
                         'default'   => 0,                        
                     ),
                     array(
