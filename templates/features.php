@@ -6373,3 +6373,14 @@ function ampforwp_change_end_point($url){
   }
   return $amp_url;
 }
+// Enabling the support for blog and front page
+add_filter( 'amp_post_status_default_enabled', 'ampforwp_blog_front_page_enabled_support' );
+function ampforwp_blog_front_page_enabled_support($enabled){
+	if(function_exists('ampforwp_is_blog') && ampforwp_is_blog() || get_option( 'page_on_front' )){
+		return $enabled = true;
+	}
+	if(is_front_page()){
+		return $enabled = true;
+	}
+	return $enabled;
+}
