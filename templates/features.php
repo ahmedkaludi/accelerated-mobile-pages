@@ -385,9 +385,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$current_url_in_pieces = array();
 		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
 		        
-    	if ( 'single' === $type ) {
-	        // Homepage and FrontPage
-	        if ( is_home() ) {
+	       if('page' === $type){
+			// Homepage and FrontPage
+	        if ( is_home() || ( get_the_ID() === (int) get_option( 'page_for_posts' ) ) || get_option('show_on_front') ) {
 
 	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 
@@ -395,11 +395,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
 		            }
 				}
-		        if ( ampforwp_is_front_page() || ( true == $redux_builder_amp['ampforwp-amp-takeover'] && is_front_page() && $redux_builder_amp['amp-frontpage-select-option']) ) {
+		        if ( $wp_query->is_page &&  $redux_builder_amp['amp-frontpage-select-option'] && get_the_ID() === (int) get_option( 'page_for_posts' ) )  {
 		           
 		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
 	            }
 
+		}
+
+    	if ( 'single' === $type ) {
 	        // Archive Pages
 	        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
 
