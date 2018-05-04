@@ -404,8 +404,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// 2. Custom Design
 
 	// Add Homepage AMP file code
-	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
-	function ampforwp_custom_template( $file, $type, $post ) {
+	//add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+	function ampforwp_custom_templ( $file, $type, $post ) {
         global $redux_builder_amp;
 	   	// Custom Homepage and Archive file
 		$slug = array();

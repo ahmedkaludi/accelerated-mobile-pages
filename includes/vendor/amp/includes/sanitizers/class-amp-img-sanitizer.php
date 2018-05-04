@@ -1,32 +1,64 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-image-dimension-extractor.php' );
+/**
+ * Class AMP_Img_Sanitizer.
+ *
+ * @package AMP
+ */
 
 /**
+ * Class AMP_Img_Sanitizer
+ *
  * Converts <img> tags to <amp-img> or <amp-anim>
  */
 class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
+
+	/**
+	 * Value used for width attribute when $attributes['width'] is empty.
+	 *
+	 * @since 0.2
+	 *
+	 * @const int
+	 */
 	const FALLBACK_WIDTH = 600;
+
+	/**
+	 * Value used for height attribute when $attributes['height'] is empty.
+	 *
+	 * @since 0.2
+	 *
+	 * @const int
+	 */
 	const FALLBACK_HEIGHT = 400;
 
-	protected $is_lightbox = false;
-
-	protected $scripts = array();
-
+	/**
+	 * Tag.
+	 *
+	 * @var string HTML <img> tag to identify and replace with AMP version.
+	 *
+	 * @since 0.2
+	 */
 	public static $tag = 'img';
 
+	/**
+	 * Animation extension.
+	 *
+	 * @var string
+	 */
 	private static $anim_extension = '.gif';
 
-	private static $script_slug = 'amp-anim';
-	private static $script_src = 'https://cdn.ampproject.org/v0/amp-anim-0.1.js';
-	
-	private static $script_slug_lightbox = 'amp-image-lightbox';
-	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
-
+	/**
+	 * Sanitize the <img> elements from the HTML contained in this instance's DOMDocument.
+	 *
+	 * @since 0.2
+	 */
 	public function sanitize() {
 
-		$nodes = $this->dom->getElementsByTagName( self::$tag );
+		/**
+		 * Node list.
+		 *
+		 * @var DOMNodeList $node
+		 */
+		$nodes           = $this->dom->getElementsByTagName( self::$tag );
 		$need_dimensions = array();
 
 		$num_nodes = $nodes->length;
@@ -37,22 +69,17 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 		for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
 			$node = $nodes->item( $i );
-
-			// Add Foo Gallery Support
-			if ( $node->hasAttribute( 'data-src-fg' ) ) {
-				$image_scr_from_data_src   = $node->getAttribute( 'data-src-fg' ) ;
-				if ( ! $node->hasAttribute( 'src' ) || '' === $node->getAttribute( 'src' ) ) {
-					$node->setAttribute( 'src', $image_scr_from_data_src );
-				}
+			if ( ! $node instanceof DOMElement ) {
+				continue;
 			}
 
-			if ( ! $node->hasAttribute( 'src' ) || '' === $node->getAttribute( 'src' ) ) {
-				$node->parentNode->removeChild( $node );
+			if ( ! $node->hasAttribute( 'src' ) || '' === trim( $node->getAttribute( 'src' ) ) ) {
+				$this->remove_invalid_child( $node );
 				continue;
 			}
 
 			// Determine which images need their dimensions determined/extracted.
-			if ( '' === $node->getAttribute( 'width' ) || '' === $node->getAttribute( 'height' ) ) {
+			if ( ! is_numeric( $node->getAttribute( 'width' ) ) || ! is_numeric( $node->getAttribute( 'height' ) ) ) {
 				$need_dimensions[ $node->getAttribute( 'src' ) ][] = $node;
 			} else {
 				$this->adjust_and_replace_node( $node );
@@ -64,83 +91,25 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	}
 
 	/**
-	 * Figure out width and height attribute values for images that don't have them by
-	 * attempting to determine actual dimensions and setting reasonable defaults otherwise.
+	 * "Filter" HTML attributes for <amp-anim> elements.
 	 *
-	 * @param array $need_dimensions List of Img src url to node mappings corresponding to images that need dimensions.
-	 */
-	private function determine_dimensions( $need_dimensions ) {
-		$dimensions_by_url = AMP_Image_Dimension_Extractor::extract( array_keys( $need_dimensions ) );
-
-		foreach ( $dimensions_by_url as $url => $dimensions ) {
-			foreach ( $need_dimensions[ $url ] as $node ) {
-				// Provide default dimensions for images whose dimensions we couldn't fetch.
-				if ( false === $dimensions ) {
-					$width = isset( $this->args['content_max_width'] ) ? $this->args['content_max_width'] : self::FALLBACK_WIDTH;
-					$height = self::FALLBACK_HEIGHT;
-					$node->setAttribute( 'width', $width );
-					$node->setAttribute( 'height', $height );
-					$class = $node->hasAttribute( 'class' ) ? $node->getAttribute( 'class' ) . ' amp-wp-unknown-size' : 'amp-wp-unknown-size';
-					$node->setAttribute( 'class', $class );
-				} else {
-					$node->setAttribute( 'width', $dimensions['width'] );
-					$node->setAttribute( 'height', $dimensions['height'] );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Make final modifications to DOMNode
+	 * @since 0.2
 	 *
-	 * @param DOMNode $node The DOMNode to adjust and replace
-	 */
-	private function adjust_and_replace_node( $node ) {
-		$old_attributes = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
-		$old_attributes = apply_filters('amp_img_attributes', $old_attributes);
-		$new_attributes = $this->filter_attributes( $old_attributes );
-		$new_attributes = $this->enforce_sizes_attribute( $new_attributes );
-		if ( $this->is_gif_url( $new_attributes['src'] ) ) {
-			$this->did_convert_elements = true;
-			$new_tag = 'amp-anim';
-		} else {
-			$new_tag = 'amp-img';
-		}
-		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
-		$node->parentNode->replaceChild( $new_node, $node );
-		if ( isset($new_attributes['on']) && '' != $new_attributes['on'] ) {
-			if(is_singular() || ampforwp_is_front_page()){
-				add_action('amp_post_template_footer', 'ampforwp_amp_img_lightbox');
-			}
-			$this->is_lightbox = true;
-		}
-	}
-
-	/**
-	 * Now that all images have width and height attributes, make final tweaks and replace original image nodes
+	 * @param string[] $attributes {
+	 *      Attributes.
 	 *
-	 * @param array $node_lists Img DOM nodes (now with width and height attributes).
+	 *      @type string $src Image URL - Pass along if found
+	 *      @type string $alt <img> `alt` attribute - Pass along if found
+	 *      @type string $class <img> `class` attribute - Pass along if found
+	 *      @type string $srcset <img> `srcset` attribute - Pass along if found
+	 *      @type string $sizes <img> `sizes` attribute - Pass along if found
+	 *      @type string $on <img> `on` attribute - Pass along if found
+	 *      @type string $attribution <img> `attribution` attribute - Pass along if found
+	 *      @type int $width <img> width attribute - Set to numeric value if px or %
+	 *      @type int $height <img> width attribute - Set to numeric value if px or %
+	 * }
+	 * @return array Returns HTML attributes; removes any not specifically declared above from input.
 	 */
-	private function adjust_and_replace_nodes_in_array_map( $node_lists ) {
-		foreach ( $node_lists as $node_list ) {
-			foreach ( $node_list as $node ) {
-				$this->adjust_and_replace_node( $node );
-			}
-		}
-	}
-
-	public function get_scripts() {
-		if ( $this->is_lightbox ) {
-			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
-		}
-
-		if ( $this->did_convert_elements ) {
-			$this->scripts[self::$script_slug] = self::$script_src;
-		}
-
-		return $this->scripts;
-	}
-
 	private function filter_attributes( $attributes ) {
 		$out = array();
 
@@ -150,11 +119,8 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'alt':
 				case 'class':
 				case 'srcset':
-				case 'sizes':
 				case 'on':
-				case 'role':
-				case 'tabindex':
-				case 'layout':
+				case 'attribution':
 					$out[ $name ] = $value;
 					break;
 
@@ -163,7 +129,11 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 					$out[ $name ] = $this->sanitize_dimension( $value, $name );
 					break;
 
-				default;
+				case 'data-amp-layout':
+					$out['layout'] = $value;
+					break;
+
+				default:
 					break;
 			}
 		}
@@ -171,9 +141,139 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 		return $out;
 	}
 
+	/**
+	 * Determine width and height attribute values for images without them.
+	 *
+	 * Attempt to determine actual dimensions, otherwise set reasonable defaults.
+	 *
+	 * @param DOMElement[][] $need_dimensions Map <img> @src URLs to node for images with missing dimensions.
+	 */
+	private function determine_dimensions( $need_dimensions ) {
+
+		$dimensions_by_url = AMP_Image_Dimension_Extractor::extract( array_keys( $need_dimensions ) );
+
+		foreach ( $dimensions_by_url as $url => $dimensions ) {
+			foreach ( $need_dimensions[ $url ] as $node ) {
+				if ( ! $node instanceof DOMElement ) {
+					continue;
+				}
+				if (
+					! is_numeric( $node->getAttribute( 'width' ) ) &&
+					! is_numeric( $node->getAttribute( 'height' ) )
+				) {
+					$height = self::FALLBACK_HEIGHT;
+					$width  = self::FALLBACK_WIDTH;
+					$node->setAttribute( 'width', $width );
+					$node->setAttribute( 'height', $height );
+					$class = $node->hasAttribute( 'class' ) ? $node->getAttribute( 'class' ) . ' amp-wp-unknown-size' : 'amp-wp-unknown-size';
+					$node->setAttribute( 'class', $class );
+				} elseif (
+					! is_numeric( $node->getAttribute( 'height' ) )
+				) {
+					$height = self::FALLBACK_HEIGHT;
+					$node->setAttribute( 'height', $height );
+					$class = $node->hasAttribute( 'class' ) ? $node->getAttribute( 'class' ) . ' amp-wp-unknown-size amp-wp-unknown-height' : 'amp-wp-unknown-size amp-wp-unknown-height';
+					$node->setAttribute( 'class', $class );
+				} elseif (
+					! is_numeric( $node->getAttribute( 'width' ) )
+				) {
+					$width = self::FALLBACK_WIDTH;
+					$node->setAttribute( 'width', $width );
+					$class = $node->hasAttribute( 'class' ) ? $node->getAttribute( 'class' ) . ' amp-wp-unknown-size amp-wp-unknown-width' : 'amp-wp-unknown-size amp-wp-unknown-width';
+					$node->setAttribute( 'class', $class );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Now that all images have width and height attributes, make final tweaks and replace original image nodes
+	 *
+	 * @param DOMNodeList[] $node_lists Img DOM nodes (now with width and height attributes).
+	 */
+	private function adjust_and_replace_nodes_in_array_map( $node_lists ) {
+		foreach ( $node_lists as $node_list ) {
+			foreach ( $node_list as $node ) {
+				$this->adjust_and_replace_node( $node );
+			}
+		}
+	}
+
+	/**
+	 * Make final modifications to DOMNode
+	 *
+	 * @param DOMNode $node The DOMNode to adjust and replace.
+	 */
+	private function adjust_and_replace_node( $node ) {
+		$old_attributes = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
+		$new_attributes = $this->filter_attributes( $old_attributes );
+		$this->add_or_append_attribute( $new_attributes, 'class', 'amp-wp-enforced-sizes' );
+		if ( empty( $new_attributes['layout'] ) && ! empty( $new_attributes['height'] ) && ! empty( $new_attributes['width'] ) ) {
+			$new_attributes['layout'] = 'intrinsic';
+		}
+		if ( $this->is_gif_url( $new_attributes['src'] ) ) {
+			$this->did_convert_elements = true;
+
+			$new_tag = 'amp-anim';
+		} else {
+			$new_tag = 'amp-img';
+		}
+		$new_node = AMP_DOM_Utils::create_node( $this->dom, $new_tag, $new_attributes );
+		$new_node = $this->handle_centering( $new_node );
+		$node->parentNode->replaceChild( $new_node, $node );
+	}
+
+	/**
+	 * Determines is a URL is considered a GIF URL
+	 *
+	 * @since 0.2
+	 *
+	 * @param string $url URL to inspect for GIF vs. JPEG or PNG.
+	 *
+	 * @return bool Returns true if $url ends in `.gif`
+	 */
 	private function is_gif_url( $url ) {
-		$ext = self::$anim_extension;
+		$ext  = self::$anim_extension;
 		$path = AMP_WP_Utils::parse_url( $url, PHP_URL_PATH );
 		return substr( $path, -strlen( $ext ) ) === $ext;
+	}
+
+	/**
+	 * Handles an issue with the aligncenter class.
+	 *
+	 * If the <amp-img> has the class aligncenter, this strips the class and wraps it in a <figure> to center the image.
+	 * There was an issue where the aligncenter class overrode the "display: inline-block" rule of AMP's layout="intrinsic" attribute.
+	 * So this strips that class, and instead wraps the image in a <figure> to center it.
+	 *
+	 * @since 0.7
+	 * @see https://github.com/Automattic/amp-wp/issues/1104
+	 *
+	 * @param DOMElement $node The <amp-img> node.
+	 * @return DOMElement $node The <amp-img> node, possibly wrapped in a <figure>.
+	 */
+	public function handle_centering( $node ) {
+		$align_class = 'aligncenter';
+		$classes     = $node->getAttribute( 'class' );
+		$width       = $node->getAttribute( 'width' );
+
+		// If this doesn't have a width attribute, centering it in the <figure> wrapper won't work.
+		if ( empty( $width ) || ! in_array( $align_class, preg_split( '/\s+/', trim( $classes ) ), true ) ) {
+			return $node;
+		}
+
+		// Strip the class, and wrap the <amp-img> in a <figure>.
+		$classes = trim( str_replace( $align_class, '', $classes ) );
+		$node->setAttribute( 'class', $classes );
+		$figure = AMP_DOM_Utils::create_node(
+			$this->dom,
+			'figure',
+			array(
+				'class' => $align_class,
+				'style' => "max-width: {$width}px;",
+			)
+		);
+		$figure->appendChild( $node );
+
+		return $figure;
 	}
 }

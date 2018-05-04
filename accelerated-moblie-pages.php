@@ -434,19 +434,22 @@ require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-compatibility.php';
+	if(!function_exists('_amp_print_php_version_admin_notice')){
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
-	define( 'AMP__FILE__', __FILE__ );
-	if ( ! defined('AMP__DIR__') ) {
-		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		define( 'AMP__FILE__', __FILE__ );
+		if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		}
+		define( 'AMP__VERSION', '0.4.2' );
+
+		require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+		require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+		require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
 	}
-	define( 'AMP__VERSION', '0.4.2' );
-
-	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
-	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
-	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
@@ -478,7 +481,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	} 
  	return $actions;
 }
-add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+//add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
@@ -614,3 +617,6 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
+
+
+
