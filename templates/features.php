@@ -379,29 +379,13 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	// Add Homepage AMP file code
 	add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 	function ampforwp_custom_template( $file, $type, $post ) {
-        global $redux_builder_amp;
+        global $redux_builder_amp, $wp_query;
 	   	// Custom Homepage and Archive file
 		$slug = array();
 		$current_url_in_pieces = array();
 		$ampforwp_custom_post_page  =  ampforwp_custom_post_page();
 		        
-	       if('page' === $type){
-			// Homepage and FrontPage
-	        if ( is_home() || ( get_the_ID() === (int) get_option( 'page_for_posts' ) ) || get_option('show_on_front') ) {
-
-	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-
-		            if ( ampforwp_is_blog() ) {
-					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-		            }
-				}
-		        if ( $wp_query->is_page &&  $redux_builder_amp['amp-frontpage-select-option'] && get_the_ID() === (int) get_option( 'page_for_posts' ) )  {
-		           
-		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-	            }
-
-		}
-
+	       
     	if ( 'single' === $type ) {
 	        // Archive Pages
 	        if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
@@ -429,6 +413,24 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
 			$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
 		}
+
+		if('page' === $type){
+			// Homepage and FrontPage
+	        if ( is_home() || ( get_the_ID() === (int) get_option( 'page_for_posts' ) ) || get_option('show_on_front') ) {
+
+	        		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+
+		            if ( ampforwp_is_blog() ) {
+					 	$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+		            }
+				}
+		        if ( $wp_query->is_page &&  $redux_builder_amp['amp-frontpage-select-option'] && get_the_ID() === (int) get_option( 'page_for_posts' ) )  {
+		           
+		            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+	            }
+
+		}
+
 
 	    return $file;
 	}
