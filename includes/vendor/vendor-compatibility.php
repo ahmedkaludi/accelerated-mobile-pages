@@ -1,12 +1,18 @@
 <?php
 add_action( 'parse_query', 'ampforwp_correct_query_front_page' );
 function ampforwp_correct_query_front_page(WP_Query $query){
-	if ( !is_admin() && ampforwp_is_front_page() && ampforwp_get_frontpage_id()){
-		$query->is_home     = false;
-		$query->is_page     = true;
-		$query->is_singular = true;
-		$query->set( 'page_id', 2 );
-	}elseif( !is_admin() && ampforwp_is_home() && $query->is_main_query() ){
+  global $redux_builder_amp;
+  $amp_is_frontpage = $amp_frontpage_id = '';
+  if ( isset($redux_builder_amp['amp-frontpage-select-option']) && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
+    $amp_is_frontpage = true;
+    $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+  }
+  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) ){
+    $query->is_home     = false;
+    $query->is_page     = true;
+    $query->is_singular = true;
+    $query->set( 'page_id', $amp_frontpage_id );
+  }elseif( is_home() && false !== $query->get( amp_get_slug(), false ) ){
 		$query->is_home     = true;
 		$query->is_page     = false;
 		$query->is_singular = true;
@@ -42,66 +48,55 @@ function ampforwp_blog_front_page_enabled_support($enabled){
   return true;
 }
 
+// Template Overriding for Home, Blog, FrontPage , Archives and Search
+add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
+function ampforwp_custom_template( $file, $type, $post ) {
+  global $redux_builder_amp, $wp_query;
+  $slug = array();
+  $current_url_in_pieces = array();
+  $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
+  if ( 'single' === $type ) {
+      // Homepage 
+      if ( ampforwp_is_home() ) {
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+      }
+      // Archive Pages
+      if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] )  {
 
-
-
-
-// Add Homepage AMP file code
-  add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
-  function ampforwp_custom_template( $file, $type, $post ) {
-        global $redux_builder_amp, $wp_query;
-       // Custom Homepage and Archive file
-    $slug = array();
-    $current_url_in_pieces = array();
-    $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
-            
-         
-      if ( 'single' === $type ) {
-          // Archive Pages
-          if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] && 'single' === $type )  {
-
-              $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
-          }
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
+      }
       // Search pages
-          if ( is_search() &&
-              ( $redux_builder_amp['amp-design-1-search-feature'] ||
-                $redux_builder_amp['amp-design-2-search-feature'] ||
-                $redux_builder_amp['amp-design-3-search-feature'] )
-              )  {
-              $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
-          }
-    }
-
-    // for type page 
-      if ( is_single() || is_page() ) {
-      if('page' === $type ) {
-         $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
-       }
-    }
-    // Polylang compatibility
-    // For Frontpage
-    if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
-      $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-    }
-
-    if('page' === $type){
-      // Homepage and FrontPage
-          	if ( is_home() || ( get_the_ID() === (int) get_option( 'page_for_posts' ) )  ) {
-					$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-
-                if ( ampforwp_is_blog() ) {
-            		$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
-                }
-        	}
-            if ( $wp_query->is_page &&  $redux_builder_amp['amp-frontpage-select-option'] && get_the_ID() === (int) get_option( 'page_for_posts' ) )  {
-               
-                $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
-              }
-
-    }
-
-      return $file;
+      if ( is_search() &&
+          ( $redux_builder_amp['amp-design-1-search-feature'] ||
+            $redux_builder_amp['amp-design-2-search-feature'] ||
+            $redux_builder_amp['amp-design-3-search-feature'] )
+          )  {
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
+      }
   }
+
+  // Polylang compatibility
+  // For Frontpage
+  if ( 'single' === $type && ampforwp_polylang_front_page() && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
+    $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+  }
+  if( 'page' === $type ) {
+      // pages
+      if ( is_page() ) {
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/single.php';
+      }
+      // Blog
+      if ( ampforwp_is_blog() ) {
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+      }
+      // FrontPage
+      if ( ampforwp_is_front_page() )  {      
+          $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/frontpage.php';
+      }
+
+  }
+    return $file;
+}
 
   /*
 *
@@ -126,7 +121,7 @@ function ampforwp_change_end_point($url){
   global $redux_builder_amp;
   $post_id = get_the_ID();
   $amp_url = $url;
-  if(is_page() && is_post_type_hierarchical( get_post_type( $post_id ) )){
+  if( is_page() && is_post_type_hierarchical( get_post_type( $post_id ) )){
     $amp_url = remove_query_arg( 'amp', $amp_url );
     $amp_url = trailingslashit( $amp_url );
     $amp_url = user_trailingslashit( $amp_url . AMPFORWP_AMP_QUERY_VAR );
