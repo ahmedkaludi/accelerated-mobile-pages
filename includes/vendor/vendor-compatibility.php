@@ -7,20 +7,20 @@ function ampforwp_correct_query_front_page(WP_Query $query){
     $amp_is_frontpage = true;
     $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
   }
-  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) ){
+  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) && !ampforwp_is_blog() ){
     $query->is_home     = false;
     $query->is_page     = true;
     $query->is_singular = true;
     $query->set( 'page_id', $amp_frontpage_id );
-  }elseif( is_home() && false !== $query->get( amp_get_slug(), false ) ){
+  }elseif( ( is_home() || ampforwp_is_blog()) && false !== $query->get( amp_get_slug(), false ) ){
 		$query->is_home     = true;
 		$query->is_page     = false;
 		$query->is_singular = true;
 		$query->set( 'offset', '1' );
-	}elseif( is_archive() && $query->is_archive ){
-		
 	}
+
 }
+
 add_filter("ampforwp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 add_filter("amp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 function content_sanitizers_remove_blacklist($sanitizer_classes){
