@@ -21,6 +21,16 @@ function ampforwp_correct_query_front_page(WP_Query $query){
 
 }
 
+/*
+* is_archive() || is_search() Support added after 0.7 vendor amp
+*/
+add_action("wp",function(){ 
+  if((is_archive() || is_search()) && is_amp_endpoint()){
+    remove_action( 'template_redirect', 'amp_render' );
+    amp_render_post();
+  }
+});
+
 add_filter("ampforwp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 add_filter("amp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 function content_sanitizers_remove_blacklist($sanitizer_classes){
