@@ -120,7 +120,7 @@ function ampforwp_load_plugin_last() {
 add_action("activated_plugin", "ampforwp_load_plugin_last");
 
 
-// End-point (?amp) and correct amphtml for pages after 1.0-alpha
+// End-point (?amp) and correct amphtml for pages after 0.7
 add_filter( 'amp_get_permalink', 'ampforwp_change_end_point' );
 function ampforwp_change_end_point($url){
   global $redux_builder_amp;
