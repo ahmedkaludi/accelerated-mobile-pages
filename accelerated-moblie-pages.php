@@ -437,18 +437,22 @@ function ampforwp_bundle_core_amp_files(){
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-compatibility.php';
 	if(!function_exists('_amp_print_php_version_admin_notice')){
 		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
-
-		define( 'AMP__FILE__', __FILE__ );
+		return ;
+		/*if(!defined('AMP__FILE__')){
+			define( 'AMP__FILE__', __FILE__ );
+		}
 		if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 		}
-		define( 'AMP__VERSION', '0.4.2' );
-
+		if(!defined('AMP__VERSION')){
+			define( 'AMP__VERSION', '0.4.2' );
+		}
+		
 		require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
 		require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
 		require_once( AMP__DIR__ . '/includes/admin/functions.php' );
 		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
-		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+		require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );*/
 	}
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
@@ -467,7 +471,7 @@ function ampforwp_deactivate_amp_plugin() {
 	    }
 	}
 }
-add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+//add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
 
 function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	$plugin = '';
@@ -489,8 +493,9 @@ if ( ! function_exists('ampforwp_init') ) {
 		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
 			return;
 		}
-
-		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		if(!defined('AMP_QUERY_VAR')){
+			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		}
 
 		if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );

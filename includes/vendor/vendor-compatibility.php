@@ -27,7 +27,8 @@ function ampforwp_correct_query_front_page(WP_Query $query){
 add_action("wp",function(){ 
   if((is_archive() || is_search()) && is_amp_endpoint()){
     remove_action( 'template_redirect', 'amp_render' );
-    amp_render_post();
+    amp_render_post(0);
+    exit;
   }
 });
 
