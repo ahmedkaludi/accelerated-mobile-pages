@@ -64,10 +64,10 @@ add_filter( 'amp_post_status_default_enabled', 'ampforwp_blog_front_page_enabled
 function ampforwp_blog_front_page_enabled_support($enabled){
   global $redux_builder_amp;
   $enabled = false;
-  if ( ( is_singular() && ( $redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] === true ) ) ) {
+  if ( ( is_single() &&  $redux_builder_amp['amp-on-off-for-all-posts'] )  || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] ) ){
     $enabled = true;
   }
-  if( is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] || is_front_page() && $redux_builder_amp['amp-frontpage-select-option']){
+  if( ( is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] ) || ( is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ) ){
     $enabled = true;
   }
   return $enabled;
