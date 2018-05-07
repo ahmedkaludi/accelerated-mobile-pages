@@ -123,7 +123,7 @@ function ampforwp_load_plugin_last() {
         array_push($active_plugins, $this_plugin);
         update_option('active_plugins', $active_plugins);
 }
-add_action("activated_plugin", "ampforwp_load_plugin_last");
+//add_action("activated_plugin", "ampforwp_load_plugin_last");
 
 
 // End-point (?amp) and correct amphtml for pages after 0.7
