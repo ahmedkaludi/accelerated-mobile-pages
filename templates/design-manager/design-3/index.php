@@ -106,7 +106,7 @@ if ( get_query_var( 'paged' ) ) {
 
 		$q = new WP_Query( $filtered_args );  
 		$blog_title = ampforwp_get_blog_details('title');
-		if($blog_title){  ?>
+		if( ampforwp_is_blog() && $blog_title ){  ?>
 			<h1 class="amp-wp-content page-title archive-heading"><?php echo $blog_title ?></h1>
 		<?php }	
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
