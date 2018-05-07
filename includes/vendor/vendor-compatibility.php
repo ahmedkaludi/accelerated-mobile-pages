@@ -25,9 +25,16 @@ function ampforwp_correct_query_front_page(WP_Query $query){
 * is_archive() || is_search() Support added after 0.7 vendor amp
 */
 add_action("wp",function(){ 
-  if((is_archive() || is_search()) && is_amp_endpoint()){
+  global $redux_builder_amp;
+  $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+  if((is_archive() || is_search() || is_front_page()) && is_amp_endpoint()){
     remove_action( 'template_redirect', 'amp_render' );
-    amp_render_post(0);
+    if ( is_front_page() && $amp_frontpage_id ) {
+      $amp_frontpage_post = get_post($amp_frontpage_id);
+      amp_render_post($amp_frontpage_post);     
+    }
+    else
+      amp_render_post(0);
     exit;
   }
 });
@@ -60,7 +67,7 @@ function ampforwp_blog_front_page_enabled_support($enabled){
   if ( ( is_singular() && ( $redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] === true ) ) ) {
     $enabled = true;
   }
-  if(is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] || is_front_page() && $redux_builder_amp['amp-frontpage-select-option']){
+  if( is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] || is_front_page() && $redux_builder_amp['amp-frontpage-select-option']){
     $enabled = true;
   }
   return $enabled;
