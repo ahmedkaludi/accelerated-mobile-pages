@@ -5086,6 +5086,17 @@ Redux::setSection( $opt_name, array(
                       array('footer-customize-options','=',1)
                     )    
             ),
+            array(
+                    'id'       => 'ampforwp-footer-soc',
+                    'type'     => 'switch',
+                    'title'    => __('Footer Social Icons', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => 0,
+                    'required'  => array(
+                                    array('footer-customize-options','=',1)
+                    )
+            ),
 
         )
     ));
