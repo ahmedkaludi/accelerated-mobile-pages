@@ -39,7 +39,7 @@ class AMP_Post_Template {
 
 	public function __construct( $post_id ) {
 		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__DIR__ . '/templates' );
-		if ( ampforwp_get_frontpage_id() ) {
+		if ( ampforwp_is_front_page() ) {
 			$post_id = ampforwp_get_frontpage_id();
 		}
 		$this->ID = $post_id;
