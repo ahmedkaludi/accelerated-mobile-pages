@@ -26,7 +26,7 @@ function ampforwp_correct_query_front_page(WP_Query $query){
 */
 add_action("wp",function(){ 
   global $redux_builder_amp;
-  $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+  $amp_frontpage_id = ampforwp_get_frontpage_id();
   if((is_archive() || is_search() || is_front_page()) && is_amp_endpoint()){
     remove_action( 'template_redirect', 'amp_render' );
     if ( is_front_page() && $amp_frontpage_id ) {

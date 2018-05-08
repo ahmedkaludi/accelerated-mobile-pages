@@ -5727,9 +5727,7 @@ function ampforwp_polylang_front_page() {
 		global $polylang;
 		$page_id = $polylang->curlang->page_on_front;
 		$frontpage_id = get_option('page_on_front');
-		// is_front_page is not working here so had to do this way
-		// Check current page id with translated page id
-		if ( $page_id == pll_get_post($frontpage_id) && ! is_page() && ! is_single() && ! is_archive() && ! is_search() && ! ampforwp_is_blog() ){
+		if ( $page_id == pll_get_post($frontpage_id) && ampforwp_is_front_page() && ! ampforwp_is_blog() ){
 			return true;
 		}
 	}
