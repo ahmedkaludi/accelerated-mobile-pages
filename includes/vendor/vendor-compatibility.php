@@ -66,15 +66,17 @@ function remove_amp_init(){
 	remove_action( 'parse_query', 'amp_correct_query_when_is_front_page' );
 }
 
-add_filter( 'amp_post_status_default_enabled', 'ampforwp_blog_front_page_enabled_support',999 );
-function ampforwp_blog_front_page_enabled_support($enabled){
+add_filter( 'amp_post_status_default_enabled', 'ampforwp_post_status' );
+function ampforwp_post_status($enabled){
   global $redux_builder_amp;
-  $enabled = false;
-  if ( ( is_single() &&  $redux_builder_amp['amp-on-off-for-all-posts'] )  || ( is_page() && $redux_builder_amp['amp-on-off-for-all-pages'] ) ){
-    $enabled = true;
+  if ( ( is_single() && 'post' === $post->post_type && ! $redux_builder_amp['amp-on-off-for-all-posts'] )  || ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] ) ){
+    $enabled = false;
   }
-  if( ( is_home() && $redux_builder_amp['ampforwp-homepage-on-off-support'] ) || ( is_front_page() && $redux_builder_amp['amp-frontpage-select-option'] ) ){
-    $enabled = true;
+  if( ( ampforwp_is_home() || ampforwp_is_front_page() ) && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ){
+    // returning false will redirect the homepage to the last post
+    // Redirect the Homepage from here itself
+    wp_safe_redirect( get_bloginfo('url'), 301 );
+    exit;
   }
   return $enabled;
 }
