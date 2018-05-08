@@ -42,6 +42,7 @@ add_action("wp",function(){
 add_filter("ampforwp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 add_filter("amp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 function content_sanitizers_remove_blacklist($sanitizer_classes){
+  global $redux_builder_amp;
 	if(isset($sanitizer_classes['AMP_Blacklist_Sanitizer'])) {
 		unset($sanitizer_classes['AMP_Blacklist_Sanitizer']);
 		$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer']= array();
@@ -50,6 +51,11 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
 		unset($sanitizer_classes['AMP_Base_Sanitizer']);
 		
 	}
+  if(isset( $sanitizer_classes['AMP_Img_Sanitizer'] ) && isset($redux_builder_amp['ampforwp-amp-img-lightbox'] ) && $redux_builder_amp['ampforwp-amp-img-lightbox'] ) {
+    require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
+    unset($sanitizer_classes['AMP_Img_Sanitizer']);
+    $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
+  }
 		return $sanitizer_classes;
 }
 add_action( 'init', 'remove_amp_init', 100 );
