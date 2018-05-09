@@ -3541,6 +3541,59 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '4')
                 )
             ),
+
+          array(
+                    'id'       => 'content-fnt-fmly',
+                    'type'     => 'switch',
+                    'title'    => __('Content Font Selector', 'accelerated-mobile-pages'),
+                    'required' => array(
+                                    array('amp-design-selector', '=' , '4')
+                                    ),
+                    'default'  => '0'         
+            ),
+          array(
+                'id'       => 'amp_font_selector_single',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'None',
+                ),
+                'default'  => '',
+                'required' => array(
+                    array('content-fnt-fmly', '=' , '1')
+                )
+
+            ),
+
+            array(
+                'id'       => 'amp_font_type_single',
+                'type'     => 'select',
+                'class'    => 'ampforwp-google-font-class',
+                'multi'    => true,
+                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'tooltip-subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                    '1' => 'none',
+                ),
+                'default'  => '',
+                'required' => array(
+                    array('content-fnt-fmly', '=' , '1')
+                )
+
+            ),
+
+            array(
+                'id'        =>'google_current_font_data',
+                'type'      =>'text',
+                'class'     => 'hide',
+                'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
+                'default'   =>'',
+                'required' => array(
+                     array('content-fnt-fmly', '=' , '1')
+                )
+            ),
             
            array(
                        'id' => 'design-advanced',
