@@ -207,9 +207,14 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	function ampforwp_amphtml_generator(){
 		global $redux_builder_amp;
 		global $wp, $post;
-		$post_id = '';
+		$post_id = $list_of_posts = $skip_this_post = '';
 		$endpoint_check = false;
 		$endpoint_check = $redux_builder_amp['amp-core-end-point'];
+		$list_of_posts = ampforwp_posts_to_remove();
+		if ( is_single() && $list_of_posts ) {
+			$skip_this_post = in_array(get_the_ID(), $list_of_posts);
+			if( $skip_this_post ) { return; }
+		}	
 	    if( is_attachment() ) {
         return;
 	    }
@@ -287,7 +292,6 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         global $post;
         if ( is_singular() ) {
         	$post_id = get_the_ID();
-        	
         }
         if ( ampforwp_is_blog() ) {
         	$post_id = ampforwp_get_blog_details('id');
