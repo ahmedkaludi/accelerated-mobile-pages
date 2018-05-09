@@ -7,12 +7,12 @@ function ampforwp_correct_query_front_page(WP_Query $query){
     $amp_is_frontpage = true;
     $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
   }
-  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) && ( function_exists('ampforwp_is_blog') && !ampforwp_is_blog()) ){
+  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) && !ampforwp_is_blog() ){
     $query->is_home     = false;
     $query->is_page     = true;
     $query->is_singular = true;
     $query->set( 'page_id', $amp_frontpage_id );
-  }elseif( ( is_home() ||( function_exists('ampforwp_is_blog') && !ampforwp_is_blog())) && false !== $query->get( amp_get_slug(), false ) ){
+  }elseif( ( is_home() || ampforwp_is_blog()) && false !== $query->get( amp_get_slug(), false ) ){
 		$query->is_home     = true;
 		$query->is_page     = false;
 		$query->is_singular = true;
