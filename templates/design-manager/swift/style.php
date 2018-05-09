@@ -1122,4 +1122,3 @@ a.lb-x{
     left:0;
 }
 <?php } //RTL End ?>
-html.i-amphtml-singledoc>body{overflow:hidden!important;}
