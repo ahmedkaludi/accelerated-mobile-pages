@@ -10,8 +10,8 @@ function ampforwp_correct_query_front_page(WP_Query $query){
     if ( isset($redux_builder_amp['amp-frontpage-select-option']) && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
       $amp_is_frontpage = true;
       $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+      $amp_frontpage_id = apply_filters('ampforwp_modify_frontpage_id', $amp_frontpage_id);
     }
-    $amp_frontpage_id = apply_filters('ampforwp_modify_frontpage_id', $amp_frontpage_id);
     if ( (ampforwp_is_home() || ampforwp_is_front_page()) && $amp_is_frontpage && !ampforwp_is_blog() ){
       $query->is_home     = false;
       $query->is_page     = true;
