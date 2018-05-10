@@ -1,6 +1,9 @@
 <?php
-add_action( 'parse_query', 'ampforwp_correct_query_front_page' );
+  add_action( 'parse_query', 'ampforwp_correct_query_front_page' );
 function ampforwp_correct_query_front_page(WP_Query $query){
+  if ( start_non_amp_to_amp_conversion()) {
+    return false;
+  }
   global $redux_builder_amp;
   $amp_is_frontpage = $amp_frontpage_id = '';
   $amp_blog = false;
@@ -41,6 +44,9 @@ function ampforwp_correct_query_front_page(WP_Query $query){
 * is_archive() || is_search() Support added after 0.7 vendor amp
 */
 add_action("wp",function(){ 
+  if ( start_non_amp_to_amp_conversion()) {
+    return ;
+  }
   global $redux_builder_amp;
   $amp_frontpage_id = ampforwp_get_frontpage_id();
   if((is_archive() || is_search() || is_front_page()) && is_amp_endpoint()){
@@ -100,6 +106,9 @@ function ampforwp_post_status($enabled){
 // Template Overriding for Home, Blog, FrontPage , Archives and Search
 add_filter( 'amp_post_template_file', 'ampforwp_custom_template', 10, 3 );
 function ampforwp_custom_template( $file, $type, $post ) {
+  if ( current_theme_supports( 'amp' ) || start_non_amp_to_amp_conversion() ) {
+    return $file;
+  }
   global $redux_builder_amp, $wp_query;
   $slug = array();
   $current_url_in_pieces = array();
@@ -180,4 +189,21 @@ function ampforwp_change_end_point($url){
     $amp_url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'',$amp_url);
   }
   return $amp_url;
+}
+function start_non_amp_to_amp_conversion(){
+  global $redux_builder_amp;
+  if(
+      isset( $redux_builder_amp['wp-to-amp-converter'] ) 
+      && 1 == $redux_builder_amp['wp-to-amp-converter'] 
+      && isset( $redux_builder_amp['amp-design-type-selection'] )
+      && 'amp-converter' == $redux_builder_amp['amp-design-type-selection']
+    ){
+    $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/'); 
+    $pos = strpos($url_path, amp_get_slug());
+    if(false!== $pos){
+      return true;
+    }
+      return false;
+  }
+  return false;
 }

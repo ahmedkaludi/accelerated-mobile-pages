@@ -81,7 +81,7 @@ class AMP_Theme_Support {
 	 * @since 0.7
 	 */
 	public static function init() {
-		if ( ! current_theme_supports( 'amp' ) ) {
+		if ( ! start_non_amp_to_amp_conversion( ) ) { //if ( ! current_theme_supports( 'amp' ) ) { /*Changed */
 			return;
 		}
 		self::$init_start_time = microtime( true );
@@ -118,7 +118,7 @@ class AMP_Theme_Support {
 	 * @since 0.7
 	 */
 	public static function finish_init() {
-		if ( ! is_amp_endpoint() ) {
+		/*if ( ! is_amp_endpoint() ) {
 			// Add amphtml link when paired mode is available.
 			if ( self::is_paired_available() ) {
 				amp_add_frontend_actions(); // @todo This function is poor in how it requires a file that then does add_action().
@@ -127,7 +127,8 @@ class AMP_Theme_Support {
 				}
 			}
 			return;
-		}
+		}*/
+		//echo "called";die;
 		if ( amp_is_canonical() ) {
 			self::redirect_canonical_amp();
 		} else {
@@ -168,11 +169,10 @@ class AMP_Theme_Support {
 	 * @return bool Whether available.
 	 */
 	public static function is_paired_available() {
-		$support = get_theme_support( 'amp' );
+		/*$support = get_theme_support( 'amp' );
 		if ( empty( $support ) || amp_is_canonical() ) {
 			return false;
-		}
-
+		}*/
 		if ( is_singular() && ! post_supports_amp( get_queried_object() ) ) {
 			return false;
 		}
@@ -337,6 +337,7 @@ class AMP_Theme_Support {
 				}
 			}
 		}
+		$_SERVER['REQUEST_URI'] = amp_remove_endpoint( $_SERVER['REQUEST_URI'] );
 	}
 
 	/**
