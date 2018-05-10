@@ -4,39 +4,26 @@ function ampforwp_correct_query_front_page(WP_Query $query){
   if ( start_non_amp_to_amp_conversion()) {
     return false;
   }
-  global $redux_builder_amp;
-  $amp_is_frontpage = $amp_frontpage_id = '';
-  $amp_blog = false;
-  if(is_home() && get_option('show_on_front') == 'page' ) {
-      $current_url = home_url( $GLOBALS['wp']->request );
-      $current_url_in_pieces = explode( '/', $current_url );
-      $page_for_posts  =  get_option( 'page_for_posts' );
-      if( $page_for_posts ){
-        $post = get_post($page_for_posts);
-        if ( $post ) {
-          $slug = $post->post_name;
-          $blog_id = $post->ID;
-          if( in_array( $slug , $current_url_in_pieces , true ) || get_query_var('page_id') == $blog_id ) {
-            $amp_blog = true;
-          }
-        }           
-      }
+  if ( false !== $query->get( amp_get_slug(), false ) ) {
+    global $redux_builder_amp;
+    $amp_is_frontpage = $amp_frontpage_id = '';
+    if ( isset($redux_builder_amp['amp-frontpage-select-option']) && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
+      $amp_is_frontpage = true;
+      $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
-  if ( isset($redux_builder_amp['amp-frontpage-select-option']) && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
-    $amp_is_frontpage = true;
-    $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
+    $amp_frontpage_id = apply_filters('ampforwp_modify_frontpage_id', $amp_frontpage_id);
+    if ( (ampforwp_is_home() || ampforwp_is_front_page()) && $amp_is_frontpage && !ampforwp_is_blog() ){
+      $query->is_home     = false;
+      $query->is_page     = true;
+      $query->is_singular = true;
+      $query->set( 'page_id', $amp_frontpage_id );
+    }elseif( ampforwp_is_home() || ampforwp_is_blog() ){
+  		$query->is_home     = true;
+  		$query->is_page     = false;
+  		$query->is_singular = true;
+  		$query->set( 'offset', '1' );
+  	}
   }
-  if ( (is_home() || is_front_page()) && $amp_is_frontpage && false !== $query->get( amp_get_slug(), false ) && !$amp_blog ){
-    $query->is_home     = false;
-    $query->is_page     = true;
-    $query->is_singular = true;
-    $query->set( 'page_id', $amp_frontpage_id );
-  }elseif( ( is_home() || $amp_blog ) && false !== $query->get( amp_get_slug(), false ) ){
-		$query->is_home     = true;
-		$query->is_page     = false;
-		$query->is_singular = true;
-		$query->set( 'offset', '1' );
-	}
 
 }
 
@@ -49,7 +36,7 @@ add_action("wp",function(){
   }
   global $redux_builder_amp;
   $amp_frontpage_id = ampforwp_get_frontpage_id();
-  if((is_archive() || is_search() || is_front_page()) && is_amp_endpoint()){
+  if((is_archive() || is_search() || is_front_page() || ampforwp_is_blog() ) && is_amp_endpoint()){
     remove_action( 'template_redirect', 'amp_render' );
     if ( is_front_page() && $amp_frontpage_id ) {
       $amp_frontpage_post = get_post($amp_frontpage_id);
