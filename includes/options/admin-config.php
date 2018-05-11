@@ -1440,6 +1440,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'title'    => __('Archive subpages (sitewide)', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
                'default' => 0,
+               'on' => 'index',
+               'off' => 'noindex'
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
