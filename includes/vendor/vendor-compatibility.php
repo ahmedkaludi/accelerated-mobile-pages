@@ -47,26 +47,39 @@ add_action("wp",function(){
     exit;
   }
 });
-
+// Sanitizers
 add_filter("ampforwp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 add_filter("amp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
 function content_sanitizers_remove_blacklist($sanitizer_classes){
   global $redux_builder_amp;
+  // Whitelist sanitizer
 	if(isset($sanitizer_classes['AMP_Blacklist_Sanitizer'])) {
 		unset($sanitizer_classes['AMP_Blacklist_Sanitizer']);
 		$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer']= array();
 	}
 	if(isset($sanitizer_classes['AMP_Base_Sanitizer'])) {
-		unset($sanitizer_classes['AMP_Base_Sanitizer']);
-		
+		unset($sanitizer_classes['AMP_Base_Sanitizer']);	
 	}
+  // New image sanitizer to allow lightbox for Images
   if(isset( $sanitizer_classes['AMP_Img_Sanitizer'] ) && isset($redux_builder_amp['ampforwp-amp-img-lightbox'] ) && $redux_builder_amp['ampforwp-amp-img-lightbox'] ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
     unset($sanitizer_classes['AMP_Img_Sanitizer']);
     $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
   }
-		return $sanitizer_classes;
+  return $sanitizer_classes;
 }
+// Embed Handlers
+add_filter('amp_content_embed_handlers', 'ampforwp_modified_embed_handlers');
+function ampforwp_modified_embed_handlers($handlers){
+  // New Gallery Embed Handler for Gallery with Captions
+  if(isset($handlers['AMP_Gallery_Embed_Handler'])) {
+    require_once(AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-gallery-embed.php');
+    unset($handlers['AMP_Gallery_Embed_Handler']);  
+    $handlers['AMPforWP_Gallery_Embed_Handler'] = array();
+  }
+  return $handlers;
+}
+
 add_action( 'init', 'remove_amp_init', 100 );
 function remove_amp_init(){
 	remove_action( 'admin_init', 'AMP_Options_Manager::register_settings' );
