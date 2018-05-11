@@ -1658,17 +1658,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                                 array('amp-use-gtm-option', '=' , '1')
                               ),
                         ),
-//                        array(
-//                            'id'            =>'amp-gtm-analytics-type',
-//                            'type'          => 'text',
-//                            'title'         => __('Analytics Type','accelerated-mobile-pages'),
-//                            'default'       => '',
-//                            'desc'  => __('Eg: googleanalytics','accelerated-mobile-pages'),
-//                             // 'validate' => 'not_empty',
-//                              'required' => array(
-//                                array('amp-use-gtm-option', '=' , '1')
-//                              ),
-//                        ),
+                       array(
+                           'id'            =>'amp-gtm-analytics-type',
+                           'type'          => 'text',
+                           'title'         => __('Analytics Type','accelerated-mobile-pages'),
+                           'default'       => '',
+                           'desc'  => __('Eg: googleanalytics','accelerated-mobile-pages'),
+                            // 'validate' => 'not_empty',
+                             'required' => array(
+                               array('amp-use-gtm-option', '=' , '1')
+                             ),
+                       ),
                         array(
                             'class'=>'child_opt',
                             'id'            =>'amp-gtm-analytics-code',
