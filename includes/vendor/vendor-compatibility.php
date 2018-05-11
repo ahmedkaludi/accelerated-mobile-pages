@@ -205,3 +205,10 @@ function start_non_amp_to_amp_conversion(){
   }
   return false;
 }
+
+// Integer value for date, more info: #1241
+add_filter('amp_post_template_data', 'ampforwp_post_publish_timestamp');
+function ampforwp_post_publish_timestamp( $data ) {
+  $data['post_publish_timestamp'] = intval($data['post_publish_timestamp']);
+  return $data;
+}
