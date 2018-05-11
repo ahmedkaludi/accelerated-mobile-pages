@@ -23,7 +23,7 @@ $postId = $post->ID;
 		$arr['post_content'] = '&nbsp;';
 		wp_update_post($arr);
 	}
-	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
+	add_filter( 'the_content', 'ampforwp_insert_pb_content', PHP_INT_MAX );
 }
 
 function bodyClassForAMPPagebuilder($classes, $class){
