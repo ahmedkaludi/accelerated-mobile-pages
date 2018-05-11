@@ -180,9 +180,7 @@ function ampforwp_change_end_point($url){
 function start_non_amp_to_amp_conversion(){
   global $redux_builder_amp;
   if(
-      isset( $redux_builder_amp['wp-to-amp-converter'] ) 
-      && 1 == $redux_builder_amp['wp-to-amp-converter'] 
-      && isset( $redux_builder_amp['amp-design-type-selection'] )
+      isset( $redux_builder_amp['amp-design-type-selection'] )
       && 'amp-converter' == $redux_builder_amp['amp-design-type-selection']
     ){
     $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/'); 
