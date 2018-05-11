@@ -66,6 +66,12 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
     unset($sanitizer_classes['AMP_Img_Sanitizer']);
     $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
   }
+  // New Iframe sanitizer to allow popups
+  if(isset( $sanitizer_classes['AMP_Iframe_Sanitizer'] ) ) {
+    require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-iframe-sanitizer.php' );
+    unset($sanitizer_classes['AMP_Iframe_Sanitizer']);
+    $sanitizer_classes['AMPforWP_Iframe_Sanitizer']= array();
+  }
   return $sanitizer_classes;
 }
 // Embed Handlers
@@ -207,8 +213,12 @@ function start_non_amp_to_amp_conversion(){
 }
 
 // Integer value for date, more info: #1241
-add_filter('amp_post_template_data', 'ampforwp_post_publish_timestamp');
-function ampforwp_post_publish_timestamp( $data ) {
+add_filter('amp_post_template_data', 'ampforwp_post_template_data');
+function ampforwp_post_template_data( $data ) {
+  // post publish timestamp. Integer value for date, more info: #1241
   $data['post_publish_timestamp'] = intval($data['post_publish_timestamp']);
+  // Placeholder Image. for more info: #1310
+  $data['placeholder_image_url'] = AMPFORWP_IMAGE_DIR. '/placeholder-icon.png';
+
   return $data;
 }
