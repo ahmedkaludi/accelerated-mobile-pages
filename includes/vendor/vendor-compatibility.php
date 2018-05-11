@@ -77,7 +77,7 @@ function remove_amp_init(){
 
 add_filter( 'amp_post_status_default_enabled', 'ampforwp_post_status' );
 function ampforwp_post_status($enabled){
-  global $redux_builder_amp;
+  global $redux_builder_amp, $post;
   if ( ( is_single() && 'post' === $post->post_type && ! $redux_builder_amp['amp-on-off-for-all-posts'] )  || ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] ) ){
     $enabled = false;
   }
