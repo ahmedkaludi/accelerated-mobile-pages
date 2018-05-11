@@ -3339,6 +3339,23 @@ Redux::setSection( $opt_name, array(
         'fields'     => array(
 
             array(
+                'id'       => 'amp-design-type-selection',
+                'type'     => 'theme_design_selector',
+                'title'    => __('AMP Conversion', 'accelerated-mobile-pages'), 
+                'subtitle' => __('Select amp theme type', 'accelerated-mobile-pages'),
+                'desc'     => __('', 'accelerated-mobile-pages'),
+                //Must provide key => value pairs for radio options
+                'options'  => array(
+                    'default' => 'AMP default Theme', 
+                    'amp-converter' => 'WP theme convert to AMP', 
+                ),
+                'options_image' => array(
+                    'default' => AMPFORWP_PLUGIN_DIR_URI.'/images/cf7.png',
+                    'amp-converter' => AMPFORWP_PLUGIN_DIR_URI.'/images/cache-icon.png'
+                ),
+                'default' => 'default'
+            ),
+            array(
                 'id'       => 'amp-design-selector',
                 'class' => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
@@ -3348,7 +3365,10 @@ Redux::setSection( $opt_name, array(
     background: #eee;padding: 5px 8px 5px 9px;
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
                 'options'  => $themeDesign,
-                'default'  => '4'
+                'default'  => '4',
+                'required' => array(
+                        array('amp-design-type-selection', '=' , 'default')
+                     )
                 ),
             array(
                 'id'       => 'ampforwp_layouts_core',
@@ -3370,7 +3390,10 @@ Redux::setSection( $opt_name, array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
-                'desc' => $amptfad
+                'desc' => $amptfad,
+                'required' => array(
+                        array('amp-design-type-selection', '=' , 'default')
+                     )
             ),
 
             

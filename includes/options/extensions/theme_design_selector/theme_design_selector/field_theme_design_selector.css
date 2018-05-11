@@ -1,0 +1,26 @@
+ul.theme_design_selector input[type=radio]{
+	display:none;
+}
+.theme_design_selector li {
+    width: 30% !important;
+    float: left;
+    text-align: center;
+    padding: 5px;
+	margin-left:5px;
+	border:1px solid #cdcdcd;
+}
+.theme_design_selector li :first{
+	margin-left:0px;
+}
+.theme_design_selector li  img{
+	width: auto !important;
+    display: block;
+    margin: 0px auto;
+	min-height:50px !important;
+}
+.theme_design_selector li:hover{
+	background: #cecece
+}
+.theme_design_selector li.active{
+	background: #cecece
+}
