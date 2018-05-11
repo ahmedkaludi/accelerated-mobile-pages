@@ -201,30 +201,10 @@ require_once  ABSPATH . WPINC . '/category.php';
                       $width = $fieldValues['img-width-1'];
                       $height = $fieldValues['img-height-1'];
                     break;
-                    case 2:
-                      $width = $fieldValues['img-width-2'];
-                      $height = $fieldValues['img-height-2'];
-                    break;
-                    case 3:
-                      $width = $fieldValues['img-width-3'];
-                      $height = $fieldValues['img-height-3'];
-                    break;
-                    case 4:
-                      $width = $fieldValues['img-width-4'];
-                      $height = $fieldValues['img-height-4'];
-                    break;
-                    case 5:
-                      $width = $fieldValues['img-width-5'];
-                      $height = $fieldValues['img-height-5'];
-                    break;
-                    case 6:
-                      $width = $fieldValues['img-width-6'];
-                      $height = $fieldValues['img-height-6'];
-                    break;
                     default:
                     break;
                    }
-                //  list($width,$height) = apply_filters("ampforwp_pb_content_mod_set_height_width",$width,$height,$fieldValues);
+                list($width, $height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
                    try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
                     if($thumb_url!=false){
