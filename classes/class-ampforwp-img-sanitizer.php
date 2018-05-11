@@ -279,7 +279,7 @@ class AMPforWP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			'figure',
 			array(
 				'class' => $align_class,
-				'style' => "max-width: {$width}px;",
+				//'style' => "max-width: {$width}px;",
 			)
 		);
 		$figure->appendChild( $node );
