@@ -1,12 +1,12 @@
 <?php
 /**
- * Class AMP_Iframe_Sanitizer
+ * Class AMPforWP_Iframe_Sanitizer
  *
  * @package AMP
  */
 
 /**
- * Class AMP_Iframe_Sanitizer
+ * Class AMPforWP_Iframe_Sanitizer
  *
  * Converts <iframe> tags to <amp-iframe>
  */

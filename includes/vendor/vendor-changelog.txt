@@ -53,6 +53,7 @@ Update: New Image sanitizer added in classes
 Update: Made the same change on line no 359
 
 15. amp_vimeo_parse_url filter applied in class-amp-vimeo-embed.php in line no 108
+Update: New vimeo embed handler added in classes for more info: #311638f4a5f289e7779d144319c82206d6d6a3ac
 
 16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
 
