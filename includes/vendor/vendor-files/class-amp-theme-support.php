@@ -169,8 +169,8 @@ class AMP_Theme_Support {
 	 * @return bool Whether available.
 	 */
 	public static function is_paired_available() {
-		/*$support = get_theme_support( 'amp' );
-		if ( empty( $support ) || amp_is_canonical() ) {
+		$support = array();//get_theme_support( 'amp' );
+		/*if ( empty( $support ) || amp_is_canonical() ) {
 			return false;
 		}*/
 		if ( is_singular() && ! post_supports_amp( get_queried_object() ) ) {
@@ -622,7 +622,7 @@ class AMP_Theme_Support {
 	 * @returns array Templates.
 	 */
 	public static function filter_paired_template_hierarchy( $templates ) {
-		$support = get_theme_support( 'amp' );
+		$support = array();//get_theme_support( 'amp' );
 		$args    = array_shift( $support );
 		if ( isset( $args['template_dir'] ) ) {
 			$amp_templates = array();

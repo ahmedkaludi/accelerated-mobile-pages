@@ -275,6 +275,10 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	 * @param DOMNode $node Node.
 	 */
 	private function process_node( $node ) {
+		if($node->nodeName=='a' ){
+			$href = $node->getAttribute('href');
+			$node->setAttribute('href',ampforwp_findInternalUrl($href));
+		}
 
 		// Don't process text or comment nodes.
 		if ( XML_TEXT_NODE === $node->nodeType || XML_COMMENT_NODE === $node->nodeType || XML_CDATA_SECTION_NODE === $node->nodeType ) {

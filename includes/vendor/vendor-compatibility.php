@@ -202,6 +202,11 @@ function ampforwp_change_end_point($url){
   }
   return $amp_url;
 }
+
+/*
+* Function Check wp theme will convert as AMP theme or not
+* Its @return true when Convert option Enabled  
+*/
 function start_non_amp_to_amp_conversion(){
   global $redux_builder_amp;
   if(
@@ -270,4 +275,31 @@ function ampforwp_update_class($classList, $currentClass){
       break;
   }
   return false;
+}
+
+if(!function_exists('ampforwp_findInternalUrl')){
+  function ampforwp_findInternalUrl($url){
+    $components = parse_url($url);
+    $site_home_url = get_site_url();
+    $return = true;
+    if ( empty($components['host']) ) { 
+      $return = false; // we will treat url like '/relative.php' as relative
+    }  
+    elseif ( strcasecmp($components['host'], $site_home_url) === 0 ) {
+      $return = false; // url host looks exactly like the local host
+    }else{
+    $return = ( strrpos(strtolower($components['host']), $site_home_url) !== strlen($components['host']) - strlen($site_home_url) ); // check if the url host is a subdomain
+      
+    } 
+    if($return && strpos($url, amp_get_slug())=== False){
+      if(strpos($url, "#")!==false){
+        $url = explode("#",$url);
+        $url = trailingslashit($url[0]).user_trailingslashit(amp_get_slug()).'#'.$url[1];
+      }else{
+        $url = trailingslashit($url).user_trailingslashit(amp_get_slug());
+      }
+      return $url;
+    }
+    return $url;
+  }
 }
