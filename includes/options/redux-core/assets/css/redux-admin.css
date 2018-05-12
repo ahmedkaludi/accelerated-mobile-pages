@@ -492,3 +492,91 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     height: 30px;
     vertical-align: middle;
 }
+/** Free vs Pro CSS **/
+.fp-wr{
+    width:95%;
+    margin:0 auto;
+}
+.fp-img{
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+    position: relative;
+    line-height: 0;
+}
+.fp-img img{
+    position: relative;
+}
+.ov{
+    background: #000;
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 10px;
+}
+.fp-cnt{
+    position: absolute;
+    top: 12%;
+    bottom: 0;
+    left: 40px;
+    right: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+.fp-cnt h1{
+    font-size: 60px;
+    color: #fff;
+    font-weight: 600;
+}
+.fp-cnt p{
+    margin-top: 45px;
+    color: #fff;
+    font-size: 30px;
+}
+.fp-cnt .buy{
+    text-decoration: none;
+    color: #fff;
+    background: #7ed321;
+    padding: 13px 0;
+    border-radius: 40px;
+    font-size: 26px;
+    line-height: 1.4;
+    display: inline-block;
+    width: 250px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.ext{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #f9f9f9;
+    padding:42px 30px;
+    position: relative;
+    top: -16px;
+}
+.ex-1{
+    width:72%;
+}
+.ex-1 h4{
+    margin: 15px 0px 12px 0px;
+    font-size: 20px;
+    color: #222;
+}
+.ex-1 p{
+    font-size: 14px;
+    color: #6d6d6d;
+    font-weight: 400;
+    margin:0;
+}
+.e-1 img{
+    width:65px !important;
+}
+.e-2 img{
+    width:45px !important;
+}
+.e-3 img{
+    width:49px !important;
+}
