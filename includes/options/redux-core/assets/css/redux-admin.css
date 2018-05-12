@@ -519,7 +519,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .fp-cnt{
     position: absolute;
-    top: 12%;
+    top: 5%;
     bottom: 0;
     left: 40px;
     right: 40px;
@@ -549,13 +549,16 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     font-weight: 500;
     margin-top: 10px;
 }
+.pvf{
+    position: relative;
+    top: -16px;
+    border: 1px solid #eee;
+}
 .ext{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background: #f9f9f9;
     padding:42px 30px;
-    position: relative;
-    top: -16px;
 }
 .ex-1{
     width:72%;
@@ -579,4 +582,96 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .e-3 img{
     width:49px !important;
+}
+.pvf-cnt{
+    width:100%;
+    display:inline-block;
+}
+.pvf-tlt{
+    text-align: center;
+    width:100%;
+    margin:60px 0px;
+}
+.pvf-tlt h2{
+    font-size: 40px;
+    line-height: 1.4;
+    color: #222;
+    font-weight: 600;
+    margin: 0;
+}
+.pvf-tlt span{
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    margin-top: 20px;
+    display: inline-block;
+}
+.pvf-cmp{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.fr h1, .pr h1{
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.5;
+    border-bottom: 1px solid #eee;
+    padding: 0px 0px 0px 35px;
+}
+.fr-fe{
+    border-right:1px solid #eee;
+    color:#222;
+    padding-top:10px;
+}
+.fe-1{
+    padding:25px 35px;
+}
+.fe-1 h4{
+    margin: 0px 0px 12px 0px;
+    font-size: 20px;
+    line-height: 1.4;
+}
+.fe-1 p{
+    font-size:15px;
+    line-height: 1.4;
+    margin:0;
+}
+.pr-fe{
+    padding:40px 50px;
+}
+.pr-fe span{
+    font-size: 17px;
+    font-weight: bold;
+    color: #222;
+    font-style: italic;
+    line-height: 1.3;
+}
+.fet{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 42px;
+    margin-top: 40px;
+}
+.fe-2{
+    color:#222;
+}
+.fe-t img{
+    width:22px !important;
+    display:inline-block;
+    vertical-align: middle;
+}
+.fe-t h4{
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #222;
+    line-height: 1.4;
+    padding-left: 8px;
+}
+.fe-2 p{
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 8px;
 }

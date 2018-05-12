@@ -382,21 +382,158 @@ $gettingstarted_extension_listing = '
             <p>Take Your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#">BUY NOW</a>
     </div>
-    <div class="ext">
-        <div class="ex-1 e-1">
-            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
-            <h4>Extensions</h4>
-            <p>Includes a suite of advanced features like Ads, Email Optin, Contact Forms, E-Commerce, CTA, Cache and 15+ premium extensions</p>
+    <div class="pvf">
+        <div class="ext">
+            <div class="ex-1 e-1">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
+                <h4>Extensions</h4>
+                <p>Includes a suite of advanced features like Ads, Email Optin, Contact Forms, E-Commerce, CTA, Cache and 15+ premium extensions</p>
+            </div>
+            <div class="ex-1 e-2">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
+                <h4>Designs</h4>
+                <p>Wide Variety of AMP Theme Designs included with AMP Layouts. We are dedicated to release 2-3 new designs every month</p>
+            </div>
+            <div class="ex-1 e-3">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
+                <h4>Dedicated Support</h4>
+                <p>Get Private ticketing help from our full-time staff who helps you with the technical issues.</p>
+            </div>
         </div>
-        <div class="ex-1 e-2">
-            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
-            <h4>Designs</h4>
-            <p>Wide Variety of AMP Theme Designs included with AMP Layouts. We are dedicated to release 2-3 new designs every month</p>
-        </div>
-        <div class="ex-1 e-3">
-            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
-            <h4>Dedicated Support</h4>
-            <p>Get Private ticketing help from our full-time staff who helps you with the technical issues.</p>
+        <div class="pvf-cnt">
+            <div class="pvf-tlt">
+                <h2>Compare Pro vs. Free version</h2>
+                <span>See what you"ll get with professional version</span>
+            </div>
+            <div class="pvf-cmp">
+                <div class="fr">
+                    <h1>FREE</h1>
+                    <div class="fr-fe">
+                        <div class="fe-1">
+                            <h4>Continious Development</h4>
+                            <p>We take bug reports and feature requests seriousely. We"re contiousely developing & improve this product for last 2 years with passion and love</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>300+ Features</h4>
+                            <p>we"re Constantly expanding the plugin and make it more use-ful. We have wide varirty of features which will fit any use-case.</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>Desing</h4>
+                            <p>We have 4 Built in themes for AMP which elevates your AMP exeprience.</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>Technical Support</h4>
+                            <p>We have a full time team which helps you with each and every issue regarding AMP.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr">
+                    <h1>PRO</h1>
+                    <div class="pr-fe">
+                        <span>Everything in Free, and:</span>
+                        <div class="fet">
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Advertisement</h4>
+                                </div>
+                                <p>Advanced Ad slots, Incontent ads & Supports all Ad networks.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>AMP Cache</h4>
+                                </div>
+                                <p>Revolutionary cache system for AMP which makes it insanely fast.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Contact Forms</h4>
+                                </div>
+                                <p>Gravity Forms and Contact form 7 Support for the AMP.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>E-Commerce</h4>
+                                </div>
+                                <p>WooCommerce & Easy Digital Downloads Support.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Email Optin</h4>
+                                </div>
+                                <p>Native Email option forms to capture email with 17+ company integrations.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Call To Action</h4>
+                                </div>
+                                <p>Get your message, product or offering to your visitors.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Localization</h4>
+                                </div>
+                                <p>Integrates with WPML, polylang and WeGlot to provide localization.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Structured Data</h4>
+                                </div>
+                                <p>Advanced Schema integration in AMP and WordPress.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Advanced Custom Fields</h4>
+                                </div>
+                                <p>Built-in tools to help you impliment ACT easily in AMP.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Ratings</h4>
+                                </div>
+                                <p>Easily add Rating to the posts. Support 3 popular rating plugins.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Design Catalogue</h4>
+                                </div>
+                                <p>AMP Layouts has 6 ore-built designs, We are constantly adding every week.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Dedicated Support</h4>
+                                </div>
+                                <p>With a Dedicated person helping you with the extension detup and questions.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Continious Updates</h4>
+                                </div>
+                                <p>We"re continiously updatingour premium features and releasing them.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Innovation</h4>
+                                </div>
+                                <p>Be the first one to get the innovation features that we build in the future.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
