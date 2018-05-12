@@ -75,6 +75,14 @@ class AMPforWP_Img_Sanitizer extends AMP_Base_Sanitizer {
 			if ( ! $node instanceof DOMElement ) {
 				continue;
 			}
+			
+			// Add Foo Gallery Support
+			if ( $node->hasAttribute( 'data-src-fg' ) ) {
+				$image_scr_from_data_src   = $node->getAttribute( 'data-src-fg' ) ;
+				if ( ! $node->hasAttribute( 'src' ) || '' === $node->getAttribute( 'src' ) ) {
+					$node->setAttribute( 'src', $image_scr_from_data_src );
+				}
+			}
 
 			if ( ! $node->hasAttribute( 'src' ) || '' === trim( $node->getAttribute( 'src' ) ) ) {
 				$this->remove_invalid_child( $node );

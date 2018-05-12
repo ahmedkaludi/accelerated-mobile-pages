@@ -60,8 +60,8 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
 	if(isset($sanitizer_classes['AMP_Base_Sanitizer'])) {
 		unset($sanitizer_classes['AMP_Base_Sanitizer']);	
 	}
-  // New image sanitizer to allow lightbox for Images
-  if(isset( $sanitizer_classes['AMP_Img_Sanitizer'] ) && isset($redux_builder_amp['ampforwp-amp-img-lightbox'] ) && $redux_builder_amp['ampforwp-amp-img-lightbox'] ) {
+  // New image sanitizer For Lightbox and FooGallery support
+  if( isset( $sanitizer_classes['AMP_Img_Sanitizer']) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
     unset($sanitizer_classes['AMP_Img_Sanitizer']);
     $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
