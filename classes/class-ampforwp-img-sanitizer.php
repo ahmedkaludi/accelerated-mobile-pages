@@ -30,6 +30,9 @@ class AMPforWP_Img_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	const FALLBACK_HEIGHT = 400;
 	protected $is_lightbox = false;
+	protected $scripts = array();
+	private static $script_slug = 'amp-anim';
+	private static $script_src = 'https://cdn.ampproject.org/v0/amp-anim-0.1.js';
 	private static $script_slug_lightbox = 'amp-image-lightbox';
 	private static $script_src_lightbox = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
 
@@ -297,11 +300,13 @@ class AMPforWP_Img_Sanitizer extends AMP_Base_Sanitizer {
 
 	public function get_scripts() {
 		if ( $this->is_lightbox ) {
-			return array( self::$script_slug_lightbox => self::$script_src_lightbox );
+			$this->scripts[self::$script_slug_lightbox] = self::$script_src_lightbox;
 		}
-		if (  ! $this->did_convert_elements ) {
-			return array();
+
+		if ( $this->did_convert_elements ) {
+			$this->scripts[self::$script_slug] = self::$script_src;
 		}
-		return array( self::$script_slug => self::$script_src );
+
+		return $this->scripts;
 	}
 }
