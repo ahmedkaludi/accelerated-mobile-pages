@@ -30,7 +30,6 @@ class AMP_Autoloader {
 	 */
 	private static $_classmap = array(
 		'AMP_Theme_Support'                           => 'includes/class-amp-theme-support',
-		'AMP_Response_Headers'                        => 'includes/class-amp-response-headers',
 		'AMP_Comment_Walker'                          => 'includes/class-amp-comment-walker',
 		'AMP_Template_Customizer'                     => 'includes/admin/class-amp-customizer',
 		'AMP_Post_Meta_Box'                           => 'includes/admin/class-amp-post-meta-box',
@@ -39,7 +38,6 @@ class AMP_Autoloader {
 		'AMP_DailyMotion_Embed_Handler'               => 'includes/embeds/class-amp-dailymotion-embed',
 		'AMP_Facebook_Embed_Handler'                  => 'includes/embeds/class-amp-facebook-embed',
 		'AMP_Gallery_Embed_Handler'                   => 'includes/embeds/class-amp-gallery-embed',
-		'AMP_Core_Block_Handler'                      => 'includes/embeds/class-amp-core-block-handler',
 		'AMP_Instagram_Embed_Handler'                 => 'includes/embeds/class-amp-instagram-embed',
 		'AMP_Issuu_Embed_Handler'                     => 'includes/embeds/class-amp-issuu-embed-handler',
 		'AMP_Meetup_Embed_Handler'                    => 'includes/embeds/class-amp-meetup-embed-handler',
@@ -78,7 +76,6 @@ class AMP_Autoloader {
 		'AMP_Style_Sanitizer'                         => 'includes/sanitizers/class-amp-style-sanitizer',
 		'AMP_Tag_And_Attribute_Sanitizer'             => 'includes/sanitizers/class-amp-tag-and-attribute-sanitizer',
 		'AMP_Video_Sanitizer'                         => 'includes/sanitizers/class-amp-video-sanitizer',
-		'AMP_Core_Theme_Sanitizer'                    => 'includes/sanitizers/class-amp-core-theme-sanitizer',
 		'AMP_Customizer_Design_Settings'              => 'includes/settings/class-amp-customizer-design-settings',
 		'AMP_Customizer_Settings'                     => 'includes/settings/class-amp-customizer-settings',
 		'AMP_Content'                                 => 'includes/templates/class-amp-content',
@@ -120,8 +117,11 @@ class AMP_Autoloader {
 		if ( ! isset( self::$_classmap[ $class_name ] ) ) {
 			return;
 		}
-		$filepath = self::$_classmap[ $class_name ];
-		require AMP__DIR__ . "/{$filepath}.php";
+		$is_load = apply_filters('ampforwp_update_autoload_class', self::$_classmap, $class_name);
+		if($is_load){
+			$filepath = self::$_classmap[ $class_name ];
+			require AMP__DIR__ . "/{$filepath}.php";
+		}
 	}
 
 	/**
@@ -132,9 +132,6 @@ class AMP_Autoloader {
 	 * Called at the end of this file; calling a second time has no effect.
 	 */
 	public static function register() {
-		if ( file_exists( AMP__DIR__ . '/vendor/autoload.php' ) ) {
-			require_once AMP__DIR__ . '/vendor/autoload.php';
-		}
 		if ( ! self::$is_registered ) {
 			spl_autoload_register( array( __CLASS__, 'autoload' ) );
 			self::$is_registered = true;

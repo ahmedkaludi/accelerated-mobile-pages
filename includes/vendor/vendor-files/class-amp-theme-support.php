@@ -68,29 +68,23 @@ class AMP_Theme_Support {
 	public static $purged_amp_query_vars = array();
 
 	/**
-	 * Headers sent (or attempted to be sent).
+	 * Start time when init was called.
 	 *
-	 * @since 0.7
-	 * @see AMP_Theme_Support::send_header()
-	 * @var array[]
+	 * @since 1.0
+	 * @var float
 	 */
-	public static $headers_sent = array();
-
-	/**
-	 * Whether output buffering has started.
-	 *
-	 * @since 0.7
-	 * @var bool
-	 */
-	protected static $is_output_buffering = false;
+	public static $init_start_time;
 
 	/**
 	 * Initialize.
+	 *
+	 * @since 0.7
 	 */
 	public static function init() {
-		if ( ! current_theme_supports( 'amp' ) ) {
+		if ( ! start_non_amp_to_amp_conversion( ) ) { //if ( ! current_theme_supports( 'amp' ) ) { /*Changed */
 			return;
 		}
+		self::$init_start_time = microtime( true );
 
 		self::purge_amp_query_vars();
 		self::handle_xhr_request();
@@ -124,7 +118,7 @@ class AMP_Theme_Support {
 	 * @since 0.7
 	 */
 	public static function finish_init() {
-		if ( ! is_amp_endpoint() ) {
+		/*if ( ! is_amp_endpoint() ) {
 			// Add amphtml link when paired mode is available.
 			if ( self::is_paired_available() ) {
 				amp_add_frontend_actions(); // @todo This function is poor in how it requires a file that then does add_action().
@@ -133,8 +127,8 @@ class AMP_Theme_Support {
 				}
 			}
 			return;
-		}
-
+		}*/
+		//echo "called";die;
 		if ( amp_is_canonical() ) {
 			self::redirect_canonical_amp();
 		} else {
@@ -175,11 +169,10 @@ class AMP_Theme_Support {
 	 * @return bool Whether available.
 	 */
 	public static function is_paired_available() {
-		$support = get_theme_support( 'amp' );
+		/*$support = get_theme_support( 'amp' );
 		if ( empty( $support ) || amp_is_canonical() ) {
 			return false;
-		}
-
+		}*/
 		if ( is_singular() && ! post_supports_amp( get_queried_object() ) ) {
 			return false;
 		}
@@ -218,6 +211,14 @@ class AMP_Theme_Support {
 	 * Register hooks.
 	 */
 	public static function add_hooks() {
+		
+		add_filter( 'amp_content_sanitizers', function( $sanitizers ) {
+			$sanitizers['AMP_Core_Theme_Sanitizer'] = array(
+				'template'   => get_template(),
+				'stylesheet' => get_stylesheet(),
+			);
+			return $sanitizers;
+		} );
 
 		// Remove core actions which are invalid AMP.
 		remove_action( 'wp_head', 'wp_post_preview_js', 1 );
@@ -261,13 +262,7 @@ class AMP_Theme_Support {
 		 * Start output buffering at very low priority for sake of plugins and themes that use template_redirect
 		 * instead of template_include.
 		 */
-		$priority = defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : ~PHP_INT_MAX; // phpcs:ignore PHPCompatibility.PHP.NewConstants.php_int_minFound
-		add_action( 'template_redirect', array( __CLASS__, 'start_output_buffering' ), $priority );
-
-		// Add validation hooks *after* output buffering has started for the response.
-		if ( AMP_Validation_Utils::should_validate_response() ) {
-			AMP_Validation_Utils::add_validation_hooks();
-		}
+		add_action( 'template_redirect', array( __CLASS__, 'start_output_buffering' ), 0 );
 
 		// Commenting hooks.
 		add_filter( 'wp_list_comments_args', array( __CLASS__, 'set_comments_walker' ), PHP_INT_MAX );
@@ -277,6 +272,10 @@ class AMP_Theme_Support {
 		add_action( 'comment_form', array( __CLASS__, 'amend_comment_form' ), 100 );
 		remove_action( 'comment_form', 'wp_comment_form_unfiltered_html_nonce' );
 		add_filter( 'wp_kses_allowed_html', array( __CLASS__, 'whitelist_layout_in_wp_kses_allowed_html' ), 10 );
+
+		if ( AMP_Validation_Utils::should_validate_response() ) {
+			AMP_Validation_Utils::add_validation_hooks();
+		}
 
 		// @todo Add character conversion.
 	}
@@ -298,7 +297,6 @@ class AMP_Theme_Support {
 			'__amp_source_origin',
 			'_wp_amp_action_xhr_converted',
 			'amp_latest_update_time',
-			'amp_last_check_time',
 		);
 
 		// Scrub input vars.
@@ -339,45 +337,7 @@ class AMP_Theme_Support {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Send an HTTP response header.
-	 *
-	 * This largely exists to facilitate unit testing but it also provides a better interface for sending headers.
-	 *
-	 * @since 0.7.0
-	 *
-	 * @param string $name  Header name.
-	 * @param string $value Header value.
-	 * @param array  $args {
-	 *     Args to header().
-	 *
-	 *     @type bool $replace     Whether to replace a header previously sent. Default true.
-	 *     @type int  $status_code Status code to send with the sent header.
-	 * }
-	 * @return bool Whether the header was sent.
-	 */
-	public static function send_header( $name, $value, $args = array() ) {
-		$args = array_merge(
-			array(
-				'replace'     => true,
-				'status_code' => null,
-			),
-			$args
-		);
-
-		self::$headers_sent[] = array_merge( compact( 'name', 'value' ), $args );
-		if ( headers_sent() ) {
-			return false;
-		}
-
-		header(
-			sprintf( '%s: %s', $name, $value ),
-			$args['replace'],
-			$args['status_code']
-		);
-		return true;
+		$_SERVER['REQUEST_URI'] = amp_remove_endpoint( $_SERVER['REQUEST_URI'] );
 	}
 
 	/**
@@ -400,7 +360,7 @@ class AMP_Theme_Support {
 		// Send AMP response header.
 		$origin = wp_validate_redirect( wp_sanitize_redirect( esc_url_raw( self::$purged_amp_query_vars['__amp_source_origin'] ) ) );
 		if ( $origin ) {
-			self::send_header( 'AMP-Access-Control-Allow-Source-Origin', $origin, array( 'replace' => true ) );
+			AMP_Response_Headers::send_header( 'AMP-Access-Control-Allow-Source-Origin', $origin, array( 'replace' => true ) );
 		}
 
 		// Intercept POST requests which redirect.
@@ -549,8 +509,8 @@ class AMP_Theme_Support {
 			$absolute_location .= '#' . $parsed_location['fragment'];
 		}
 
-		self::send_header( 'AMP-Redirect-To', $absolute_location );
-		self::send_header( 'Access-Control-Expose-Headers', 'AMP-Redirect-To' );
+		AMP_Response_Headers::send_header( 'AMP-Redirect-To', $absolute_location );
+		AMP_Response_Headers::send_header( 'Access-Control-Expose-Headers', 'AMP-Redirect-To' );
 
 		wp_send_json_success();
 	}
@@ -969,7 +929,7 @@ class AMP_Theme_Support {
 	public static function start_output_buffering() {
 		/*
 		 * Disable the New Relic Browser agent on AMP responses.
-		 * This prevents th New Relic from causing invalid AMP responses due the NREUM script it injects after the meta charset:
+		 * This prevents the New Relic from causing invalid AMP responses due the NREUM script it injects after the meta charset:
 		 * https://docs.newrelic.com/docs/browser/new-relic-browser/troubleshooting/google-amp-validator-fails-due-3rd-party-script
 		 * Sites with New Relic will need to specially configure New Relic for AMP:
 		 * https://docs.newrelic.com/docs/browser/new-relic-browser/installation/monitor-amp-pages-new-relic-browser
@@ -978,21 +938,10 @@ class AMP_Theme_Support {
 			newrelic_disable_autorum();
 		}
 
-		ob_start( array( __CLASS__, 'finish_output_buffering' ) );
-		self::$is_output_buffering = true;
-	}
+		ob_start();
 
-	/**
-	 * Determine whether output buffering has started.
-	 *
-	 * @since 0.7
-	 * @see AMP_Theme_Support::start_output_buffering()
-	 * @see AMP_Theme_Support::finish_output_buffering()
-	 *
-	 * @return bool Whether output buffering has started.
-	 */
-	public static function is_output_buffering() {
-		return self::$is_output_buffering;
+		// Note that the following must be at 0 because wp_ob_end_flush_all() runs at shutdown:1.
+		add_action( 'shutdown', array( __CLASS__, 'finish_output_buffering' ), 0 );
 	}
 
 	/**
@@ -1000,13 +949,10 @@ class AMP_Theme_Support {
 	 *
 	 * @since 0.7
 	 * @see AMP_Theme_Support::start_output_buffering()
-	 *
-	 * @param string $response Buffered Response.
-	 * @return string Processed Response.
 	 */
-	public static function finish_output_buffering( $response ) {
-		self::$is_output_buffering = false;
-		return self::prepare_response( $response );
+	public static function finish_output_buffering() {
+		AMP_Response_Headers::send_server_timing( 'amp_output_buffer', -self::$init_start_time, 'AMP Output Buffer' );
+		echo self::prepare_response( ob_get_clean() ); // WPCS: xss ok.
 	}
 
 	/**
@@ -1060,6 +1006,15 @@ class AMP_Theme_Support {
 			return $response;
 		}
 
+		// Account for case where ob_flush() was called prematurely.
+		if ( false === strpos( $response, '<html' ) ) {
+			$error = sprintf(
+				'<div style="color:red; background: white; padding: 0.5em; position: fixed; z-index: 100000; bottom: 0; border: dashed 1px red;">%s</div>',
+				wp_kses_post( __( '<strong>AMP Plugin Error</strong>: It appears that your WordPress install prematurely flushed the output buffer. You will need to disable AMP theme support until that is fixed.', 'amp' ) )
+			);
+			return $error . $response;
+		}
+
 		$is_validation_debug_mode = ! empty( $_REQUEST[ AMP_Validation_Utils::DEBUG_QUERY_VAR ] ); // WPCS: csrf ok.
 
 		$args = array_merge(
@@ -1072,6 +1027,8 @@ class AMP_Theme_Support {
 			),
 			$args
 		);
+
+		$dom_parse_start = microtime( true );
 
 		/*
 		 * Make sure that <meta charset> is present in output prior to parsing.
@@ -1104,8 +1061,11 @@ class AMP_Theme_Support {
 			$dom->documentElement->setAttribute( 'amp', '' );
 		}
 
+		AMP_Response_Headers::send_server_timing( 'amp_dom_parse', -$dom_parse_start, 'AMP DOM Parse' );
+
 		$assets = AMP_Content_Sanitizer::sanitize_document( $dom, self::$sanitizer_classes, $args );
 
+		$dom_serialize_start = microtime( true );
 		self::ensure_required_markup( $dom );
 
 		// @todo If 'utf-8' is not the blog charset, then we'll need to do some character encoding conversation or "entityification".
@@ -1138,25 +1098,10 @@ class AMP_Theme_Support {
 			}
 		}
 
-		/*
-		 * Inject additional AMP component scripts which have been discovered by the sanitizers into the head.
-		 * This is adapted from wp_scripts()->do_items(), but it runs only the bare minimum required to output
-		 * the missing scripts, without allowing other filters to apply which may cause an invalid AMP response.
-		 */
-		$script_tags = '';
-		foreach ( array_diff( array_keys( $amp_scripts ), wp_scripts()->done ) as $handle ) {
-			if ( ! wp_script_is( $handle, 'registered' ) ) {
-				continue;
-			}
-			$script_dep   = wp_scripts()->registered[ $handle ];
-			$script_tags .= amp_filter_script_loader_tag(
-				sprintf(
-					"<script type='text/javascript' src='%s'></script>\n", // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
-					esc_url( $script_dep->src )
-				),
-				$handle
-			);
-		}
+		// Print all scripts, some of which may have already been printed and inject into head.
+		ob_start();
+		wp_print_scripts( array_keys( $amp_scripts ) );
+		$script_tags = ob_get_clean();
 		if ( ! empty( $script_tags ) ) {
 			$response = preg_replace(
 				'#(?=</head>)#',
@@ -1165,6 +1110,8 @@ class AMP_Theme_Support {
 				1
 			);
 		}
+
+		AMP_Response_Headers::send_server_timing( 'amp_dom_serialize', -$dom_serialize_start, 'AMP DOM Serialize' );
 
 		return $response;
 	}

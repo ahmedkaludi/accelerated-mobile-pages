@@ -228,3 +228,46 @@ function ampforwp_post_template_data( $data ) {
 
   return $data;
 }
+
+
+add_action('plugins_loaded', function(){
+ if(!is_admin()){
+    add_filter("ampforwp_update_autoload_class", 'ampforwp_update_class',10,2);
+  }
+});
+
+function ampforwp_update_class($classList, $currentClass){
+  $updateClass = array('AMP_Theme_Support',
+                      'AMP_Tag_And_Attribute_Sanitizer', 
+                      'AMP_Style_Sanitizer',
+                      'AMP_Allowed_Tags_Generated',
+                    );
+  if(!in_array($currentClass, $updateClass)){
+    return true;
+  }
+  switch ($currentClass) {
+    case 'AMP_Theme_Support':
+        if ( file_exists(  AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-files/vendor/autoload.php' ) ) {
+          require_once  AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-files/vendor/autoload.php';
+        }
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/class-amp-theme-support.php";
+        //AMP_Response_Headers
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/class-amp-response-headers.php";
+        //AMP_Core_Theme_Sanitizer
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/sanitizer/class-amp-core-theme-sanitizer.php";
+      break;
+    case "AMP_Tag_And_Attribute_Sanitizer":
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/sanitizer/class-amp-tag-and-attribute-sanitizer.php";
+      break;
+    case "AMP_Style_Sanitizer":
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/sanitizer/class-amp-style-sanitizer.php";
+      break;
+    case "AMP_Allowed_Tags_Generated":
+        require AMPFORWP_PLUGIN_DIR . "/includes/vendor/vendor-files/class-amp-allowed-tags-generated.php";
+      break;
+    default:
+      # code...
+      break;
+  }
+  return false;
+}
