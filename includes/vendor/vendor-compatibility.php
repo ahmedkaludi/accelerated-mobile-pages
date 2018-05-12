@@ -277,21 +277,19 @@ function ampforwp_update_class($classList, $currentClass){
   return false;
 }
 
+
+if(!function_exists('ampforwp_isexternal')){
+  function ampforwp_isexternal($url) {
+    $components = parse_url($url);
+    if ( empty($components['host']) ) return false;  // we will treat url like '/relative.php' as relative
+    if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; // url host looks exactly like the local host
+    return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); // check if the url host is a subdomain
+  }//Function function_exists
+}// ampforwp_isexternal function_exists close
+
 if(!function_exists('ampforwp_findInternalUrl')){
   function ampforwp_findInternalUrl($url){
-    $components = parse_url($url);
-    $site_home_url = get_site_url();
-    $return = true;
-    if ( empty($components['host']) ) { 
-      $return = false; // we will treat url like '/relative.php' as relative
-    }  
-    elseif ( strcasecmp($components['host'], $site_home_url) === 0 ) {
-      $return = false; // url host looks exactly like the local host
-    }else{
-    $return = ( strrpos(strtolower($components['host']), $site_home_url) !== strlen($components['host']) - strlen($site_home_url) ); // check if the url host is a subdomain
-      
-    } 
-    if($return && strpos($url, amp_get_slug())=== False){
+    if(!ampforwp_isexternal($url) && strpos($url, amp_get_slug())=== False){
       if(strpos($url, "#")!==false){
         $url = explode("#",$url);
         $url = trailingslashit($url[0]).user_trailingslashit(amp_get_slug()).'#'.$url[1];
@@ -301,5 +299,5 @@ if(!function_exists('ampforwp_findInternalUrl')){
       return $url;
     }
     return $url;
-  }
-}
+  }// function Close
+}// function_exists ampforwp_findInternalUrl close
