@@ -50,8 +50,12 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 Update: New Image sanitizer added in classes
 
 14. Filter added in class-amp-dom-utils.php on line no 37 #1462
+Update: Made the same change on line no 359
+
 15. amp_vimeo_parse_url filter applied in class-amp-vimeo-embed.php in line no 108
+
 16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
+
 17. folder name updated from amp to ampforwp to avoid conflict in class-amp-post-template.php on line no 440 #1742
 Update: No need to change
 
@@ -64,6 +68,7 @@ Update: New Image sanitizer added in classes
 Update: No Blacklist sanitizer
 
 21. ampforwp_post_content_filter filter added in class-amp-post-template.php #2001
+
 22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945
 
 23. Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982

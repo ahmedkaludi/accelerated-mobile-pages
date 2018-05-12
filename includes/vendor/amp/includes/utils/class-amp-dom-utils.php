@@ -356,7 +356,7 @@ class AMP_DOM_Utils {
 		foreach ( $body->childNodes as $child_node ) {
 			$out .= self::get_content_from_dom_node( $dom, $child_node );
 		}
-
+		$out = apply_filters('amp_get_content_from_dom', $out);
 		return $out;
 	}
 
