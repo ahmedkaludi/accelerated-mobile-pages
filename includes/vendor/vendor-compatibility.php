@@ -85,7 +85,7 @@ function ampforwp_modified_embed_handlers($handlers){
   }
   // New Vimeo Embed Handler
   if (isset($handlers['AMP_Vimeo_Embed_Handler'])) {
-    require_once(AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-viemo-embed.php');
+    require_once(AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-vimeo-embed.php');
     unset($handlers['AMP_Vimeo_Embed_Handler']);  
     $handlers['AMPforWP_Vimeo_Embed_Handler'] = array();
   }
