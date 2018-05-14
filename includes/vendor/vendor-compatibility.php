@@ -2,7 +2,7 @@
 add_action('plugins_loaded', function(){
  if(!is_admin()){
     add_filter("ampforwp_update_autoload_class", 'ampforwp_update_class',10,2);
-    add_action( 'parse_query', 'ampforwp_correct_query_front_page' );
+    
     add_action("wp",'ampforwp_enable_support_for_otherpages');
 
     add_filter("ampforwp_content_sanitizers", 'content_sanitizers_remove_blacklist', 999);
@@ -15,31 +15,56 @@ add_action('plugins_loaded', function(){
   }
 });
 
-function ampforwp_correct_query_front_page(WP_Query $query){
-  if ( start_non_amp_to_amp_conversion()) {
-    return false;
-  }
-  if ( false !== $query->get( amp_get_slug(), false ) ) {
-    global $redux_builder_amp;
-    $amp_is_frontpage = $amp_frontpage_id = '';
-    if ( isset($redux_builder_amp['amp-frontpage-select-option']) && true == $redux_builder_amp['amp-frontpage-select-option'] ) {
-      $amp_is_frontpage = true;
-      $amp_frontpage_id = $redux_builder_amp['amp-frontpage-select-option-pages'];
-      $amp_frontpage_id = apply_filters('ampforwp_modify_frontpage_id', $amp_frontpage_id);
-    }
-    if ( (ampforwp_is_home() || ampforwp_is_front_page()) && $amp_is_frontpage && !ampforwp_is_blog() ){
-      $query->is_home     = false;
-      $query->is_page     = true;
-      $query->is_singular = true;
-      $query->set( 'page_id', $amp_frontpage_id );
-    }elseif( ampforwp_is_home() || ampforwp_is_blog() ){
-  		$query->is_home     = true;
-  		$query->is_page     = false;
-  		$query->is_singular = true;
-  		$query->set( 'offset', '1' );
-  	}
-  }
+add_action('init','ampforwp_modifying_front_page_query');
+function ampforwp_modifying_front_page_query() {
+    remove_action( 'parse_query', 'amp_correct_query_when_is_front_page',10 );
+    add_action( 'parse_query', 'ampforwp_correct_query_front_page',15 );
+}
 
+function ampforwp_correct_query_front_page(WP_Query $query){
+
+    if ( start_non_amp_to_amp_conversion()) {
+        return false;
+    }
+    if ( false !== $query->get( amp_get_slug(), false ) ) {
+        global $redux_builder_amp;
+        $amp_frontpage_id = ''; 
+        if ( 'page' === get_option( 'show_on_front' ) ) {
+          $amp_frontpage_id = get_option( 'page_on_front' );
+        }
+        // Frontpage id should be assigned
+        if ( ampforwp_is_front_page() ) {
+          $amp_frontpage_id      =  ampforwp_get_frontpage_id();
+        }
+
+        $is_front_page_query = (
+          $query->is_main_query()
+          &&
+          $query->is_home()
+          &&
+          // Is query not yet fixed up to be front page.
+          ! $query->is_front_page()
+          &&
+          // Is showing pages on front.
+          'page' === get_option( 'show_on_front' )
+          &&
+          // Has page on front set.
+          get_option( 'page_on_front' )
+          &&
+          // is Homepage support enabeld from options panel
+          $redux_builder_amp['ampforwp-homepage-on-off-support']
+          &&
+          // See line in WP_Query::parse_query() at <https://github.com/WordPress/wordpress-develop/blob/0baa8ae/src/wp-includes/class-wp-query.php#L961>.
+          0 === count( array_diff( array_keys( wp_parse_args( $query->query ) ), array( amp_get_slug(), 'preview', 'page', 'paged', 'cpage' ) ) )
+        );
+
+        if ( $is_front_page_query ) {
+          $query->is_home     = false;
+          $query->is_page     = true;
+          $query->is_singular = true;
+          $query->set( 'page_id', $amp_frontpage_id  );
+        }
+    }
 }
 
 /*
