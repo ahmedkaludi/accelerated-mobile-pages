@@ -6136,10 +6136,11 @@ add_action( 'init', 'swifttheme_footer_widgets_init' );
 function ampforwp_is_non_amp( $type="" ) {
 	global $redux_builder_amp;
 	$non_amp = false;
-	if ( false !== get_query_var( 'amp', false ) ) {
-		return false;
-	}
+	
 	if (""===$type  && isset( $redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
+		if ( false !== get_query_var( 'amp', false ) ) {
+			return false;
+		}
 		$non_amp = true;
 
 		
