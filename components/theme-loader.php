@@ -39,6 +39,9 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 			if ( ampforwp_is_home() ) {
         		$file = AMPFORWP_CUSTOM_THEME . '/index.php';
 	    	}
+	    	if ( ampforwp_is_front_page() ) {
+		        $file = AMPFORWP_CUSTOM_THEME .'/page.php';
+		    }
 
 		    // Archives
 			if ( is_archive() ) {
