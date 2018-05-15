@@ -294,7 +294,7 @@ function amp_render_post( $post ) {
 
 	if ( ! ( $post instanceof WP_Post ) ) {
 		$post = get_post( $post );
-		if ( ! $post ) {
+		if ( ! $post && !is_404() ) {
 			return;
 		}
 	}
