@@ -80,9 +80,16 @@ function ampforwp_enable_support_for_otherpages(){
     return ;
   }
   global $redux_builder_amp;
+  $is_amp_endpoint_needed = '';
+  if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
+    $is_amp_endpoint_needed = !is_amp_endpoint();
+  }
+  else{
+    $is_amp_endpoint_needed = is_amp_endpoint();
+  }
   $amp_frontpage_id = ampforwp_get_frontpage_id();
 
-  if( (is_archive() || is_search() || is_front_page() || ampforwp_is_blog() || ampforwp_is_home() ) && is_amp_endpoint()){
+  if( (is_archive() || is_search() || is_front_page() || ampforwp_is_blog() || ampforwp_is_home() ) && $is_amp_endpoint_needed ){
     remove_action( 'template_redirect', 'amp_render' );
     if ( is_front_page() && $amp_frontpage_id ) {
       $amp_frontpage_post = get_post($amp_frontpage_id);
