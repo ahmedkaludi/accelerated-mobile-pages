@@ -896,3 +896,10 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     display: inline-block;
     margin-top: 15px;
 }
+
+@media(max-width:1280px){
+    .fp-cnt {
+        top: 1%;
+    }
+
+}
