@@ -71,6 +71,7 @@ Update: New Image sanitizer added in classes
 Update: No Blacklist sanitizer
 
 21. ampforwp_post_content_filter filter added in class-amp-post-template.php #2001
+Update: Same change added.
 
 22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945
 Update: Same change added.

@@ -314,8 +314,10 @@ class AMP_Post_Template {
 	 * Build post content.
 	 */
 	private function build_post_content() {
+		$post_content = $this->post->post_content;
+		$post_content = apply_filters( 'ampforwp_post_content_filter', $post_content );
 		$amp_content = new AMP_Content(
-			$this->post->post_content,
+			$post_content,
 			amp_get_content_embed_handlers( $this->post ),
 			amp_get_content_sanitizers( $this->post ),
 			array(
