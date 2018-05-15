@@ -6349,9 +6349,11 @@ if ( ! function_exists('ampforwp_glue_css_comp') ) {
 			a {text-decoration:none;}
 			html {background:none;}
 		<?php }
-		 if ( isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
-			.the_content a {text-decoration:underline;}
-		<?php }
+		 if (isset($redux_builder_amp['single-new-features']) && $redux_builder_amp['single-new-features'] && isset($redux_builder_amp['ampforwp-underline-content-links']) && $redux_builder_amp['ampforwp-underline-content-links'] ) { ?>
+			.the_content a {text-decoration:underline;}<?php 
+ 			if ( '4' === $redux_builder_amp['amp-design-selector'] ) {?>
+			.cntn-wrp a {text-decoration:underline;}
+		<?php } }
 	}
 }
 
