@@ -75,6 +75,7 @@ Update: No Blacklist sanitizer
 22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945
 
 23. Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
+Update: Added the filter in thirdparty-compatibility instead of the core.
 
-24. 404 support modified the post instance condition in function amp_render_post in amp.php 
+24. 404 support: modified the post instance condition in function amp_render_post in amp.php 
 	if ( ! $post ) modified to if ( ! $post && !is_404() ).
