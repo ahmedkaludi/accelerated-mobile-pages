@@ -45,6 +45,7 @@ Update: No neeed to change anything for 11 after the update.
 
 12. Argument specific filters added at line number 43 and 47 of class-amp-content.php
 Reason: To extend the functionality of sidebars and Pagebuilder
+Update: No need for this after the changes we made.
 
 13. Foo Gallery Support code added in class-amp-img-sanitizer.php in line no 35 #1424
 Update: New Image sanitizer added in classes
