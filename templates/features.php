@@ -6190,7 +6190,7 @@ function ampforwp_is_non_amp( $type="" ) {
 }
 
 // END Point
-function ampforwp_end_point_controller( $url, $check='' ) {
+/*function ampforwp_end_point_controller( $url, $check='' ) {
 	global $redux_builder_amp;
 	$checker = '';
 	$endpoint = AMPFORWP_AMP_QUERY_VAR;
@@ -6202,7 +6202,7 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 		$url = $url . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
 
 	return $url;
-}
+}*/
 
 // Allow AMP Components in "The Content" #1588
 // Check for amp-components in the_content

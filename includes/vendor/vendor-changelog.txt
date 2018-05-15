@@ -26,7 +26,7 @@ Update: No need to add the script after the update
 8. allow-popups added on line number 10 in amp/includes/sanitizers/class-amp-iframe-sanitizer.php #1099
 Update: New Iframe sanitizer added in classes/class-ampforwp-iframe-sanitizer.php
 
-9 Changed placeholder image path from assets folder to image folder
+9. Changed placeholder image path from assets folder to image folder
 amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
 'placeholder_image_url' => AMPFORWP_IMAGE_DIR. '/placeholder-icon.png'
 Update: Updated the value in 'ampforwp_post_template_data' filter
@@ -56,6 +56,7 @@ Update: Made the same change on line no 359
 Update: New vimeo embed handler added in classes for more info: #311638f4a5f289e7779d144319c82206d6d6a3ac
 
 16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
+Update: No need for this. We have added the code ampforwp_url_purifier
 
 17. folder name updated from amp to ampforwp to avoid conflict in class-amp-post-template.php on line no 440 #1742
 Update: No need to change
