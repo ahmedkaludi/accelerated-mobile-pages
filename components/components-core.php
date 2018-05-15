@@ -268,12 +268,14 @@ function amp_breadcrumb(){
 
 //Get Core of AMP HTML
 function amp_header_core(){
+	global $redux_builder_amp;
+	$post = $post_id = '';
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);
-	global $redux_builder_amp;
+	$post = get_post($post_id);
+	$thisTemplate = new AMP_Post_Template($post);
 	$html_tag_attributes = AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) );
 	
 	$bodyClass = '';
@@ -340,11 +342,13 @@ function amp_header_core(){
 }
 
 function amp_header(){
+	$post = $post_id = '';
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$thisTemplate = new AMP_Post_Template($post_id);
+	$post = get_post($post_id);
+	$thisTemplate = new AMP_Post_Template($post);
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'amp_after_header', $thisTemplate );
 	do_action( 'ampforwp_after_header', $thisTemplate );
