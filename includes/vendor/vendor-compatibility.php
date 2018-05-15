@@ -76,7 +76,7 @@ function ampforwp_enable_support_for_otherpages(){
   }
   global $redux_builder_amp;
   $is_amp_endpoint_needed = '';
-  if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover']){
+  if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
     $is_amp_endpoint_needed = !is_amp_endpoint();
   }
   else{
