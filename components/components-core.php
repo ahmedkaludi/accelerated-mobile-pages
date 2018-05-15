@@ -106,7 +106,7 @@ function amp_logo(){
 function amp_title(){
 	global $redux_builder_amp, $post;
 	$ID = '';
-if( is_home() && ampforwp_get_frontpage_id() ){
+	if( ampforwp_is_front_page() && ampforwp_get_frontpage_id() ){
 		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
 			$ID = ampforwp_get_frontpage_id();
 		}
