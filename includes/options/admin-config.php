@@ -4183,6 +4183,8 @@ Redux::setSection( $opt_name, array(
         )
       );
 
+    $categories_array = array();
+
 
   //code for fetching ctegories to show as a list in redux settings
     if(get_categories()){
