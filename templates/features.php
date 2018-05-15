@@ -5687,11 +5687,6 @@ function ampforwp_is_front_page(){
     	$get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
 
-    // return when "Your latest posts" set in reading settings, so we don't need front_page
-    if ( 'posts' == get_option( 'show_on_front') ) {
-    	return false;
-    }
-
     // TRUE: When we have "Your latest posts" in reading settings and custom frontpage in amp
     if ( 'posts' == get_option( 'show_on_front') && is_home() && $get_amp_homepage_settings && $get_custom_frontpage_settings){
         return true; 
