@@ -97,6 +97,10 @@ function ampforwp_enable_support_for_otherpages(){
       $amp_frontpage_post = get_post($amp_frontpage_id);
       amp_render_post($amp_frontpage_post);     
     }
+    elseif(is_404()){
+      $fourofour = get_post(2);
+      amp_render_post($fourofour);
+    }
     else
       amp_render_post(0);
     exit;
