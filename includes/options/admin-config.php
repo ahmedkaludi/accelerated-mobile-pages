@@ -1004,7 +1004,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'type' => 'switch',
                     'title' => __('AD #2', 'accelerated-mobile-pages'),
                     'default' => 0,
-                    'desc'     => __('Below the Footer (SiteWide)', 'accelerated-mobile-pages'),
+                    'desc'     => __('Above the Footer (SiteWide)', 'accelerated-mobile-pages'),
                     'true' => 'Enabled',
                     'false' => 'Disabled',
                     ),
