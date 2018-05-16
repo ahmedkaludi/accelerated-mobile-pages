@@ -2,6 +2,9 @@
 
 class AMP_HTML_Utils {
 	public static function build_tag( $tag_name, $attributes = array(), $content = '' ) {
+		if ( 'amp-img' !== $tag_name ) {
+			$attributes['data-block-on-consent'] = '';
+		}
 		$attr_string = self::build_attributes_string( $attributes );
 		return sprintf( '<%1$s %2$s>%3$s</%1$s>', sanitize_key( $tag_name ), $attr_string, $content );
 	}

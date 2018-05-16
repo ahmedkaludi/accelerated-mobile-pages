@@ -477,6 +477,7 @@ class AMP_DOM_Utils {
 	 * @param string[]   $attributes One or more attributes for the node's HTML element.
 	 */
 	public static function add_attributes_to_node( $node, $attributes ) {
+		$attributes['data-block-on-consent'] = '';
 		foreach ( $attributes as $name => $value ) {
 			$node->setAttribute( $name, $value );
 		}
