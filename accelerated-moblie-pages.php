@@ -428,19 +428,43 @@ add_action('init','ampforwp_plugin_init',9);
 require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 
+  /*
+*
+* Use the code at the beginning of a plugin that you want to be laoded at last 
+*
+*/
+function ampforwp_load_plugin_last() {
+	$wp_path_to_this_file = preg_replace('/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", __FILE__);
+	$this_plugin = plugin_basename(trim($wp_path_to_this_file));
+	$active_plugins = get_option('active_plugins');
+	$this_plugin_key = array_search($this_plugin, $active_plugins);
+        array_splice($active_plugins, $this_plugin_key, 1);
+        array_push($active_plugins, $this_plugin);
+        update_option('active_plugins', $active_plugins);
+}
+add_action("activated_plugin", "ampforwp_load_plugin_last");
 
 /*
 * 	Including core AMP plugin files and removing any other things if necessary
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
+	if($GLOBALS['pagenow'] === 'plugins.php'){
+		return false;
+	}
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-compatibility.php';
-	if( $GLOBALS['pagenow'] !== 'plugins.php' && !function_exists('_amp_print_php_version_admin_notice')){
-			require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
-			
+	if(!function_exists('_amp_print_php_version_admin_notice')){
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-native-compatibility.php';
+		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+		$GLOBALS['vandorampdefine'] = 'own-amp-vendor';
+	}else{
+		$GLOBALS['vandorampdefine'] = 'auto-amp-vendor';
 	}
 	
 } 
+
+
+
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
 function ampforwp_deactivate_amp_plugin() {

@@ -153,13 +153,6 @@ function ampforwp_modified_embed_handlers($handlers){
   return $handlers;
 }
 
-add_action( 'init', 'remove_amp_init', 100 );
-function remove_amp_init(){
-	remove_action( 'admin_init', 'AMP_Options_Manager::register_settings' );
-	remove_action( 'wp_loaded', 'amp_post_meta_box' );
-	remove_action( 'wp_loaded', 'amp_add_options_menu' );
-	remove_action( 'parse_query', 'amp_correct_query_when_is_front_page' );
-}
 
 
 function ampforwp_post_status($enabled){
@@ -232,21 +225,6 @@ function ampforwp_custom_template( $file, $type, $post ) {
     return $file;
 }
 
-  /*
-*
-* Use the code at the beginning of a plugin that you want to be laoded at last 
-*
-*/
-function ampforwp_load_plugin_last() {
-	$wp_path_to_this_file = preg_replace('/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", __FILE__);
-	$this_plugin = plugin_basename(trim($wp_path_to_this_file));
-	$active_plugins = get_option('active_plugins');
-	$this_plugin_key = array_search($this_plugin, $active_plugins);
-        array_splice($active_plugins, $this_plugin_key, 1);
-        array_push($active_plugins, $this_plugin);
-        update_option('active_plugins', $active_plugins);
-}
-//add_action("activated_plugin", "ampforwp_load_plugin_last");
 
 
 // End-point (?amp) and correct amphtml for pages after 0.7
