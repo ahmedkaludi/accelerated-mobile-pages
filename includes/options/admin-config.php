@@ -517,7 +517,7 @@ if(is_array($layouts)){
 }
 
 $wp_theme_support_option = $wp_theme_support_required = array();
-if($GLOBALS['vandorampdefine'] == 'own-amp-vendor'){
+if(!is_plugin_active( 'amp/amp.php' )){
     $wp_theme_support_option = array(
                 'id'       => 'amp-design-type-selection',
                 'type'     => 'theme_design_selector',
