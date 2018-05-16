@@ -18,7 +18,7 @@ function plugin_catagory_base_removed_admin_notice__success(){
 }
 
 
- add_action( 'current_screen', 'this_screen_own' );
+ //add_action( 'current_screen', 'this_screen_own' );
  function this_screen_own(){
 	$current_screen = get_current_screen(); 
 	 if( $current_screen->id === "plugin-install" ) {
