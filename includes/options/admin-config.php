@@ -516,6 +516,31 @@ if(is_array($layouts)){
     }
 }
 
+$wp_theme_support_option = $wp_theme_support_required = array();
+if($GLOBALS['vandorampdefine'] == 'own-amp-vendor'){
+    $wp_theme_support_option = array(
+                'id'       => 'amp-design-type-selection',
+                'type'     => 'theme_design_selector',
+                'title'    => __('AMP Conversion', 'accelerated-mobile-pages'), 
+                'subtitle' => __('Select amp theme type', 'accelerated-mobile-pages'),
+                'desc'     => __('', 'accelerated-mobile-pages'),
+                //Must provide key => value pairs for radio options
+                'options'  => array(
+                    'default' => 'AMP default Theme', 
+                    'amp-converter' => 'WP theme convert to AMP', 
+                ),
+                'options_image' => array(
+                    'default' => AMPFORWP_PLUGIN_DIR_URI.'/images/cf7.png',
+                    'amp-converter' => AMPFORWP_PLUGIN_DIR_URI.'/images/cache-icon.png'
+                ),
+                'default' => 'default'
+            );
+    $wp_theme_support_required = array(
+                        array('amp-design-type-selection', '=' , 'default')
+                     );
+}
+
+
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
@@ -3329,24 +3354,8 @@ Redux::setSection( $opt_name, array(
         'id'         => 'amp-theme-settings',
         'subsection' => true,
         'fields'     => array(
-
-            array(
-                'id'       => 'amp-design-type-selection',
-                'type'     => 'theme_design_selector',
-                'title'    => __('AMP Conversion', 'accelerated-mobile-pages'), 
-                'subtitle' => __('Select amp theme type', 'accelerated-mobile-pages'),
-                'desc'     => __('', 'accelerated-mobile-pages'),
-                //Must provide key => value pairs for radio options
-                'options'  => array(
-                    'default' => 'AMP default Theme', 
-                    'amp-converter' => 'WP theme convert to AMP', 
-                ),
-                'options_image' => array(
-                    'default' => AMPFORWP_PLUGIN_DIR_URI.'/images/cf7.png',
-                    'amp-converter' => AMPFORWP_PLUGIN_DIR_URI.'/images/cache-icon.png'
-                ),
-                'default' => 'default'
-            ),
+            $wp_theme_support_option,
+            
             array(
                 'id'       => 'amp-design-selector',
                 'class' => 'amp-design-selector',
@@ -3358,9 +3367,7 @@ Redux::setSection( $opt_name, array(
     border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
                 'options'  => $themeDesign,
                 'default'  => '4',
-                'required' => array(
-                        array('amp-design-type-selection', '=' , 'default')
-                     )
+                'required' => $wp_theme_support_required
                 ),
             array(
                 'id'       => 'ampforwp_layouts_core',
