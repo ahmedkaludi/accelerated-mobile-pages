@@ -293,7 +293,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 #searchsubmit{opacity:0}
 .featured_time{ font-size: 12px; color: #fff; opacity: 0.8; padding-left: 20px; }
 .archives_body main{ margin-top:20px }
-.taxonomy-description p{margin-top: 5px;font-size: 14px;line-height: 1.5;}
+.taxonomy-description p{margin-top: 5px;font-size: 14px;line-height: 1.5;padding:0 15px;}
 .amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;} .author-img amp-img{border-radius: 50%;margin: 0px 12px 10px 0px;display: block; width:50px;}.author-img{float: left;padding-bottom: 25px;}
 <?php  if (  ampforwp_is_home() || ampforwp_is_blog() ) {?>
 /* AMP carousel */
