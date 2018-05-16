@@ -86,8 +86,11 @@ function ampforwp_enable_support_for_otherpages(){
   if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
     $is_amp_endpoint_needed = !is_amp_endpoint();
   }
-  else{
+  if((isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) && is_amp_endpoint()){
     $is_amp_endpoint_needed = is_amp_endpoint();
+  }
+  else{
+     $is_amp_endpoint_needed = is_amp_endpoint();
   }
   $amp_frontpage_id = ampforwp_get_frontpage_id();
 
