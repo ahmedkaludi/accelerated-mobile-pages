@@ -357,8 +357,16 @@ foreach ($extension_listing_array as $key => $extension) {
         </div>
     '.$onclickUrlclose.' '.$settingPageUrl.'</li>';
 }
-
 $extension_listing = '
+<div class="extension_listing">
+<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
+   
+'.$ampforwp_extension_list_html.'
+</ul>
+</div>
+';
+
+$freepro_listing = '
 <div class="fp-wr">
     <div class="fp-img">
         <img src="'.AMPFORWP_IMAGE_DIR . '/Bitmap.png" />
@@ -651,14 +659,7 @@ $extension_listing = '
             </div><!-- /.f-cnt -->
         </div><!-- /.faq -->
     </div><!-- /. pvf -->
-</div><!-- /. fp-wr -->
-
-   
-'.$ampforwp_extension_list_html.'
-
-</ul>
-</div>
-';
+</div><!-- /. fp-wr -->';
 
 
 
@@ -6205,7 +6206,15 @@ Redux::setSection( $opt_name, array(
 //        'icon' => 'el el-puzzle',
     ) );
 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Free vs Pro', 'accelerated-mobile-pages' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-choose',
+        'subsection' => false,
+       'desc' => $freepro_listing,
+        'icon' => 'el el-puzzle',
 
+    ) );
 
 // Priority Support
     Redux::setSection( $opt_name, array(
