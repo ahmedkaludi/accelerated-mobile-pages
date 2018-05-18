@@ -492,3 +492,414 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     height: 30px;
     vertical-align: middle;
 }
+/** Free vs Pro CSS **/
+.fp-wr{
+    width:95%;
+    margin:0 auto;
+}
+.fp-img{
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+    position: relative;
+    line-height: 0;
+}
+.fp-img img{
+    position: relative;
+}
+.ov{
+    background: #000;
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 10px;
+}
+.fp-cnt{
+    position: absolute;
+    top: 2.5%;
+    bottom: 0;
+    left: 40px;
+    right: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+.fp-cnt h1{
+    font-size: 60px;
+    color: #fff;
+    font-weight: 600;
+}
+.fp-cnt p{
+    margin-top: 45px;
+    color: #fff;
+    font-size: 30px;
+}
+.fp-cnt .buy{
+    text-decoration: none;
+    color: #fff;
+    background: #7ed321;
+    padding: 13px 0;
+    border-radius: 40px;
+    font-size: 26px;
+    line-height: 1.4;
+    display: inline-block;
+    width: 250px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.pvf{
+    position: relative;
+    top: -16px;
+    border: 1px solid #eee;
+    padding-bottom: 40px;
+}
+.ext{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #f9f9f9;
+    padding:42px 30px;
+}
+.ex-1{
+    width:72%;
+}
+.ex-1 h4{
+    margin: 15px 0px 12px 0px;
+    font-size: 20px;
+    color: #222;
+}
+.ex-1 p{
+    font-size: 14px;
+    color: #6d6d6d;
+    font-weight: 400;
+    margin:0;
+}
+.e-1 img{
+    width:65px !important;
+}
+.e-2 img{
+    width:45px !important;
+}
+.e-3 img{
+    width:49px !important;
+}
+.pvf-cnt{
+    width:100%;
+    display:inline-block;
+}
+.pvf-tlt{
+    text-align: center;
+    width:100%;
+    margin:60px 0px;
+}
+.pvf-tlt h2{
+    font-size: 40px;
+    line-height: 1.4;
+    color: #222;
+    font-weight: 600;
+    margin: 0;
+}
+.pvf-tlt span{
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    margin-top: 20px;
+    display: inline-block;
+}
+.pvf-cmp{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.fr{border-right:1px solid #eee;}
+.fr h1, .pr h1{
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.5;
+    border-bottom: 1px solid #eee;
+    padding: 0px 0px 0px 35px;
+}
+.fr-fe{
+    color:#222;
+    padding-top:10px;
+}
+.fe-1{
+    padding:25px 35px;
+}
+.fe-1 h4{
+    margin: 0px 0px 12px 0px;
+    font-size: 20px;
+    line-height: 1.4;
+}
+.fe-1 p{
+    font-size:15px;
+    line-height: 1.4;
+    margin:0;
+}
+.pr-fe{
+    padding:40px 50px;
+}
+.pr-fe span{
+    font-size: 17px;
+    font-weight: bold;
+    color: #222;
+    font-style: italic;
+    line-height: 1.3;
+}
+.fet{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 42px;
+    margin-top: 40px;
+}
+.fe-2{
+    color:#222;
+}
+.fe-t img{
+    width:22px !important;
+    display:inline-block;
+    vertical-align: middle;
+}
+.fe-t h4{
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #222;
+    line-height: 1.4;
+    padding-left: 8px;
+}
+.fe-2 p{
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 8px;
+}
+.pr-btn{
+    width:100%;
+    display:inline-block;
+    text-align: center;
+    margin:50px 0px 25px 0px;
+}
+.pr-btn a{
+    background: #6cd278;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 40px 14px 40px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+/** AMP Upgrade CSS **/
+.amp-upg{
+    background:#f5f5f5;
+    padding:55px 15px 0px 15px;
+}
+.upg-t{
+    text-align: center;
+    color: #222;
+}
+.upg-t h2{
+    margin: 0;
+    font-size: 35px;
+    line-height: 1.2;
+}
+.upg-t > span{
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 15px;
+    display: inline-block;
+}
+.pri-lst{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-top:65px;
+    grid-gap:1px;
+    box-shadow: 0px 10px 15px 1px #ddd;
+}
+.pri-tb{
+    background: #fff;
+    padding:25px;   
+    text-align: center;
+    border: 1px solid #f9f9f9;
+    position: relative;
+}
+.pri-tb:hover{
+    border:1px solid #ccc;
+}
+.pri-tb a:hover .pri-by{
+    background:#489BFF;
+}
+.pri-tb a{
+    text-decoration: none;
+    color:#222;
+}
+.pri-tb h5{
+    margin:0px 0px 20px 0px;
+    font-size:20px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+.pri-tb span{
+    display:block;
+}
+.pri-tb .amt{
+    font-size: 40px;
+    color: #57a4ff;
+    font-weight: 500;
+    margin-bottom:20px;
+}
+.pri-tb .amt sup{
+    font-size:22px;
+    padding: 0px 4px 0px 0px;
+    position: relative;
+    top: 7px;
+}
+.pri-tb .bil{
+    color:#aaa;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.pri-tb .s, .pri-tb .e, .pri-tb .f{
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #222;
+}
+.pri-tb .sv{
+    font-size: 13px;
+    color: #fff;
+    background: #7ed321;
+    width: 80px;
+    margin: 0 auto;
+    padding: 3px 0px;
+    border-radius: 5px;
+}
+.pri-by{
+    font-size: 20px;
+    line-height: 1.2;
+    background: #333;
+    border-radius: 30px;
+    padding: 10px 30px 13px 30px;
+    display: inline-block;
+    color: #fff;
+    margin-top: 30px;
+}
+.pri-lst .rec{
+    box-shadow: 0px 1px 40px 0px #ccc;
+    background: #ffffff;
+    z-index: 9;
+    margin-top: -20px;
+    position: relative;
+}
+.pri-lst .rec .pri-by{
+    background: #489BFF;
+}
+.rcm{
+    background: #ebebeb;
+    color: #888;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: -1px;
+    bottom: auto;
+    padding: 2px 0px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+.tru-us{
+    width:70%;
+    text-align: center;
+    padding: 50px 0px;
+    margin:0 auto;
+    font-size: 16px;
+    color: #222;
+}
+.tru-us h2{
+    margin:20px 0px 0px 0px;
+    font-size: 28px;
+    font-weight: 600;
+}
+.tru-us p{
+    font-size: 18px;
+}
+.tru-us a{
+    font-size:18px;
+    color:#489bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+/** F A Q CSS **/
+.faq{
+    width:100%;
+    margin:25px 0px;
+}
+.faq h4{
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+}
+.faq-lst{
+    margin-top:50px;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
+.lt{
+    padding-left:50px;
+}
+.rt, .lt{
+    width:70%;
+}
+.lt ul, .rt ul{
+    margin:0;
+}
+.lt ul li, .rt ul li{
+    color: #222;
+    margin-bottom: 20px !important;
+}
+.lt span, .rt span{
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.lt p, .rt p{
+    font-size: 15px;
+    margin: 0;
+}
+.f-cnt{
+    text-align: center;
+    margin-top: 20px;
+    color: #222;
+}
+.f-cnt span{
+    font-size: 17px;
+    margin:8px 0px;
+    font-weight: 500;
+}
+.f-cnt p{
+    font-size: 15px;
+    margin:6px 0
+}
+.f-cnt a{
+    background: #5b5b5b;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+@media(max-width:1280px){
+    .fp-cnt {
+        top: 1%;
+    }
+
+}
