@@ -869,6 +869,16 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 }
 }
 <?php } ?>
+<?php // Footer Social Iocn CSS
+if($redux_builder_amp['ampforwp-footer-soc'] == '1'){?>
+.f-menu{display: inline-flex;align-items: center;}
+.f-so{padding:0;border:none;}
+.f-so li{margin:0;}
+@media(max-width:768px){
+    .f-menu{display:inline-block;}
+    .f-so{margin-top:20px;}
+}
+<?php } // footer social Icons Ends?>
 <?php } // New footer feature closed ?>
 @media(max-width:768px){
     .footer {margin-top: 60px;}
