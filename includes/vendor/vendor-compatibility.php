@@ -70,6 +70,9 @@ function ampforwp_correct_query_front_page(WP_Query $query){
         }
 
     }
+    else{
+      $query->set( 'amp', false );
+    }
 }
 
 /*
@@ -80,10 +83,12 @@ function ampforwp_enable_support_for_otherpages(){
     return ;
   }
   global $redux_builder_amp;
-  $is_amp_endpoint_needed = '';
+  $is_amp_endpoint_needed = ampforwp_is_amp_endpoint();
   $hide_cats_amp = '';
   $hide_cats_amp = is_category_amp_disabled();
-  if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
+  $support_for_archives = '';
+
+  /*if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
     $is_amp_endpoint_needed = !is_amp_endpoint();
   }
   if((isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) && is_amp_endpoint()){
@@ -91,10 +96,19 @@ function ampforwp_enable_support_for_otherpages(){
   }
   elseif((isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && !$redux_builder_amp['ampforwp-amp-convert-to-wp']) && is_amp_endpoint()){
      $is_amp_endpoint_needed = is_amp_endpoint();
+  }*/
+  if ( isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp'] && ampforwp_is_non_amp() ) {
+    add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+  }
+  if( (isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support']) && is_archive() ){
+    $support_for_archives = true;
+  }
+  else{
+    $support_for_archives = false;
   }
   $amp_frontpage_id = ampforwp_get_frontpage_id();
 
-  if( ( (is_archive() && !$hide_cats_amp) || is_search() || is_front_page() || ampforwp_is_blog() || ampforwp_is_home() || is_404() ) && $is_amp_endpoint_needed ){
+  if( ( ($support_for_archives && !$hide_cats_amp) || is_search() || is_front_page() || ampforwp_is_blog() || ampforwp_is_home() || is_404() ) && $is_amp_endpoint_needed ){
     remove_action( 'template_redirect', 'amp_render' );
     if ( is_front_page() && $amp_frontpage_id ) {
       $amp_frontpage_post = get_post($amp_frontpage_id);
