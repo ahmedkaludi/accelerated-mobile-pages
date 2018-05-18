@@ -101,7 +101,9 @@ class AMP_Post_Template {
 		} else {
 			return;
 		}
-
+		if ( ampforwp_is_front_page() ) {
+			$this->ID = ampforwp_get_frontpage_id();
+		}
 		$content_max_width = self::CONTENT_MAX_WIDTH;
 		if ( isset( $GLOBALS['content_width'] ) && $GLOBALS['content_width'] > 0 ) {
 			$content_max_width = $GLOBALS['content_width'];
@@ -314,20 +316,22 @@ class AMP_Post_Template {
 	 * Build post content.
 	 */
 	private function build_post_content() {
-		$post_content = $this->post->post_content;
-		$post_content = apply_filters( 'ampforwp_post_content_filter', $post_content );
-		$amp_content = new AMP_Content(
-			$post_content,
-			amp_get_content_embed_handlers( $this->post ),
-			amp_get_content_sanitizers( $this->post ),
-			array(
-				'content_max_width' => $this->get( 'content_max_width' ),
-			)
-		);
+		if( !empty($this->post->post_content) && false === ampforwp_is_home() && false === is_archive() ){
+			$post_content = $this->post->post_content;
+			$post_content = apply_filters( 'ampforwp_post_content_filter', $post_content );
+			$amp_content = new AMP_Content(
+				$post_content,
+				amp_get_content_embed_handlers( $this->post ),
+				amp_get_content_sanitizers( $this->post ),
+				array(
+					'content_max_width' => $this->get( 'content_max_width' ),
+				)
+			);
 
-		$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
-		$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
-		$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
+			$this->add_data_by_key( 'post_amp_content', $amp_content->get_amp_content() );
+			$this->merge_data_for_key( 'amp_component_scripts', $amp_content->get_amp_scripts() );
+			$this->merge_data_for_key( 'post_amp_styles', $amp_content->get_amp_styles() );
+		}
 	}
 
 	/**
