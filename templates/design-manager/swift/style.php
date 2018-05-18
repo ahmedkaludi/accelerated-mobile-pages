@@ -541,11 +541,7 @@ if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search
 if ( isset($redux_builder_amp['menu-social']) && $redux_builder_amp['menu-social'] ) { ?>
 .m-s-i {
 	padding:25px 0px 15px 0px;
-<<<<<<< HEAD
     border-top: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){ echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
-=======
-	border-top: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){ echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
->>>>>>> parent of 813c7e73... SWIFT Advanced Header Design option fixed
 	text-align: center;
 }
 .m-s-i li{
