@@ -51,7 +51,7 @@
 	              echo $sanitized_menu; ?>
 	           </nav>
 	           <?php } ?>
-	           <?php if($redux_builder_amp['ampforwp-footer-soc'] == '1'){?>
+	           <?php if($redux_builder_amp['ampforwp-footer-soc'] == '1' &&  true == $redux_builder_amp['menu-social'] ){?>
 				<div class="m-s-i f-so">
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
