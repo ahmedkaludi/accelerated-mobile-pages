@@ -18,7 +18,10 @@
                 $this->parent = $parent;
                 $this->field  = $field;
                 $this->value  = $value;
-				
+				$this->time = time();
+                if ( defined('AMPFORWP_VERSION') ) {
+                    $this->time = AMPFORWP_VERSION;
+                }
 				if ( empty( $this->extension_dir ) ) {
 				$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
 				$this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
@@ -83,14 +86,14 @@
 				 wp_enqueue_style(
 					'redux-field-theme-design-selector', 
 					$this->extension_url . 'field_theme_design_selector.css',
-					time(),
+					$this->time,
 					true
 				);
 				wp_enqueue_script(
 					'field-theme-design-selector-js',
 				   $this->extension_url .'field_theme_design_selector.js',
 					array('jquery', 'redux-js'),
-					time(),
+					$this->time,
 					true
 				);
 			} //function
