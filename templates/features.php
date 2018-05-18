@@ -2282,7 +2282,7 @@ function ampforwp_replace_title_tags() {
 			$site_title = strip_tags( get_the_archive_title( '' ) . $sep . get_the_archive_description( '' ) );
 		}
 
-		if ( is_home() ) {
+		if ( ampforwp_is_home() || ampforwp_is_front_page() || ampforwp_is_blog() ) {
 			// Custom frontpage
 			$site_title = get_bloginfo( 'name' ) . $sep . get_option( 'blogdescription' );
 
