@@ -744,6 +744,8 @@ if ( isset($redux_builder_amp['footer-type']) && '1' == $redux_builder_amp['foot
 .f-menu ul > li:hover a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;}
 .f-menu{font-size:14px;line-height:1.4;margin-bottom:30px;}
 .rr{font-size: 12px;color: <?php echo $redux_builder_amp['swift-footer-txt-clr']['rgba'] ?>;}
+.rr a{margin-left:10px;}
+.rr a:before{content:"|";display:inline-block;padding-right: 10px;color: #565656;}
 .rr span{margin:0 10px 0 0px}
 .f-menu ul li.menu-item-has-children:hover > ul{display:none;}
 .f-menu ul li.menu-item-has-children:after{display:none;}
@@ -873,7 +875,7 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 if($redux_builder_amp['ampforwp-footer-soc'] == '1'){?>
 .f-menu{display: inline-flex;align-items: center;}
 .f-so{padding:0;border:none;}
-.f-so li{margin:0;}
+.f-so li{margin:0;font-size: 18px;}
 @media(max-width:768px){
     .f-menu{display:inline-block;}
     .f-so{margin-top:20px;}
