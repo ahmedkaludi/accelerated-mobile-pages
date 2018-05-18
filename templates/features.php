@@ -188,7 +188,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 
 	function ampforwp_add_endpoint_actions() {
-
+		global $redux_builder_amp;
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
 		if ( $ampforwp_is_amp_endpoint ) {
@@ -196,7 +196,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		} else {
 			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		}
-
+		if ( isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp'] && ampforwp_is_non_amp() ) {
+			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
+		}
 		$cpage_var = get_query_var('cpage');
 
 		if ( $cpage_var >= 1) : 

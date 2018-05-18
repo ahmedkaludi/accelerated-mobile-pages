@@ -33,6 +33,9 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 if(!function_exists('ampforwp_amp_nonamp_convert')){
 	function ampforwp_amp_nonamp_convert($ampData, $type=""){
 		$returnData = '';
+		if (true == get_query_var('amp')){
+			return $ampData;
+		}
 		if("check" === $type){
 			return ampforwp_is_non_amp('non_amp_check_convert');
 		}
