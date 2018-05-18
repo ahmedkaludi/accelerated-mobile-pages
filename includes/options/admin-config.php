@@ -359,8 +359,34 @@ foreach ($extension_listing_array as $key => $extension) {
 }
 
 $extension_listing = '
-<div class="extension_listing">
-<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
+<div class="fp-wr">
+    <div class="fp-img">
+        <img src="'.AMPFORWP_IMAGE_DIR . '/Bitmap.png" />
+        <span class="ov"></span>
+    </div>
+    <div class="fp-cnt">
+            <h1>Upgrade to Pro</h1>
+            <p>Take Your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
+            <a class="buy" href="#">BUY NOW</a>
+    </div>
+    <div class="ext">
+        <div class="ex-1 e-1">
+            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
+            <h4>Extensions</h4>
+            <p>Includes a suite of advanced features like Ads, Email Optin, Contact Forms, E-Commerce, CTA, Cache and 15+ premium extensions</p>
+        </div>
+        <div class="ex-1 e-2">
+            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
+            <h4>Designs</h4>
+            <p>Wide Variety of AMP Theme Designs included with AMP Layouts. We are dedicated to release 2-3 new designs every month</p>
+        </div>
+        <div class="ex-1 e-3">
+            <img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
+            <h4>Dedicated Support</h4>
+            <p>Get Private ticketing help from our full-time staff who helps you with the technical issues.</p>
+        </div>
+    </div>
+</div>
 
    
 '.$ampforwp_extension_list_html.'
