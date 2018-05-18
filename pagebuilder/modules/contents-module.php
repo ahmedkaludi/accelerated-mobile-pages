@@ -217,6 +217,10 @@ require_once  ABSPATH . WPINC . '/category.php';
                       $width = $fieldValues['img-width-5'];
                       $height = $fieldValues['img-height-5'];
                     break;
+                    case 6:
+                      $width  = $fieldValues['img-width-6'];
+                      $height = $fieldValues['img-height-6'];
+                     break;
                     default:
                     break;
                    }
@@ -245,6 +249,10 @@ require_once  ABSPATH . WPINC . '/category.php';
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
+                $tags = get_the_tags();
+               if(is_array($tags) && count($tags) > 0){
+                  $tags = $tags[0]->name;
+               }
               // get_the_author_meta( string $field = '', int $user_id = false );
                $postdate = get_the_date(  ' F j, Y', $postid );
               $rawhtml = str_replace(array(
@@ -256,7 +264,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 "{{excerptContent}}",
                                 "{{authorname}}",
                                 "{{postdate}}",
-                                "{{image_alt}}"
+                                "{{image_alt}}",
+                                "{{tags}}"
                                 ), 
                               array(
                                 $ampforwp_post_url,
@@ -278,6 +287,8 @@ require_once  ABSPATH . WPINC . '/category.php';
             $rawhtml = ampforwp_replaceIfContentConditional("excerptContent", $excerptContent, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("image_alt", $image_alt, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
             $contenthtml .= $rawhtml;
             
          }		
