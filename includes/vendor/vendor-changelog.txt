@@ -80,4 +80,6 @@ Update: Same change added.
 23. Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
 Update: Added the filter in thirdparty-compatibility instead of the core.
 
-25. data-block-on-consent added in class-amp-dom-utils.php and class-amp-html-utils.php 	
+25. data-block-on-consent added in class-amp-dom-utils.php and class-amp-html-utils.php
+
+26. Section specific class added for subsections in framework.php on line number 3288 	
