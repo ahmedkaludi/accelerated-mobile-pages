@@ -257,7 +257,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 $excerptContent,
                                 $author,
                                 $postdate,
-                                $image_alt
+                                $image_alt,
+                                $tags,
                               ), 
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
