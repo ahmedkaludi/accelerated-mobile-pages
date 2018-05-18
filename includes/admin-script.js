@@ -141,7 +141,7 @@ jQuery(function($) {
 
     var hideReduxLeftTabs = function(){
          jQuery('ul.redux-group-menu > li.redux-group-tab-link-li').siblings('.redux-group-tab-link-li').each(function(key,Data){
-            if(key>2){
+            if(key>3){
                 jQuery(this).attr("style","display:none;").addClass("otherSectionFields");
             }
         });
