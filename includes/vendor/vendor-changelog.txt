@@ -1,5 +1,5 @@
 1.Few changes in class-amp-post-template.php to take care of the archive debug errors Reference: #1130 #966
-Update: No need to do the changes with the updated version. 
+Update: Made the same changes, also added the Homepage and FrontPage code in it. 
 
 2.Replaced the fastimage with fasterimage for PHP 5.4+ #1191
 		changes made in amp/includes/lib/fastimage
@@ -79,8 +79,5 @@ Update: Same change added.
 
 23. Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
 Update: Added the filter in thirdparty-compatibility instead of the core.
-
-24. 404 support: modified the post instance condition in function amp_render_post in amp.php 
-	if ( ! $post ) modified to if ( ! $post && !is_404() ).
 
 25. data-block-on-consent added in class-amp-dom-utils.php and class-amp-html-utils.php 	
