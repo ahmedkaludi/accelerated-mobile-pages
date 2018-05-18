@@ -775,10 +775,20 @@ if(isset($redux_builder_amp['ftr1-gapping'])){
 	echo ' ' . $redux_builder_amp['ftr1-gapping']['padding-left'];
 }
 ?>;
-width:100%; border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;}
+width:100%;
+<?php if($redux_builder_amp['footer-customize-options'] =='1'){?> 
+    border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
+<?php } else{ ?>
+    border-top: 1px solid #eee;
+<?php } ?>};
 <?php endif; ?>
 .f-w{display: inline-flex;width: 100%;flex-wrap:wrap;}
-.f-w-f2{text-align: center;border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
+.f-w-f2{text-align: center;
+<?php if($redux_builder_amp['footer-customize-options'] =='1'){?>
+    border-top: 1px solid <?php echo $redux_builder_amp['swift-footer-brdrclr']['rgba']?>;
+<?php } else{ ?>
+ border-top: 1px solid #eee;
+<?php } ?>
 padding:<?php
 if(isset($redux_builder_amp['ftr2-gapping'])){
 	echo ' ' . $redux_builder_amp['ftr2-gapping']['padding-top'];
@@ -786,8 +796,8 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 	echo ' ' . $redux_builder_amp['ftr2-gapping']['padding-bottom'];
 	echo ' ' . $redux_builder_amp['ftr2-gapping']['padding-left'];
 }
-?>;
-}
+?>;}
+
 .w-bl{margin-left: 0;display: flex;flex-direction: column;position: relative;flex: 1 0 22%;margin:0 15px 30px;line-height:1.4;}
 .w-bl h4{font-size: <?php echo $redux_builder_amp['swift-head-size'] ?>;font-weight: <?php echo $redux_builder_amp['swift-head-fntwgth'] ?>;margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;padding-bottom: 4px;}
 .w-bl ul li, .ampforwp_wc_shortcode_title{list-style-type: none;margin-bottom: 15px;}
