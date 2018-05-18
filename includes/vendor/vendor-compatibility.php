@@ -88,15 +88,6 @@ function ampforwp_enable_support_for_otherpages(){
   $hide_cats_amp = is_category_amp_disabled();
   $support_for_archives = '';
 
-  /*if(isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']){
-    $is_amp_endpoint_needed = !is_amp_endpoint();
-  }
-  if((isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) && is_amp_endpoint()){
-    $is_amp_endpoint_needed = is_amp_endpoint();
-  }
-  elseif((isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] || isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && !$redux_builder_amp['ampforwp-amp-convert-to-wp']) && is_amp_endpoint()){
-     $is_amp_endpoint_needed = is_amp_endpoint();
-  }*/
   if ( isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp'] && ampforwp_is_non_amp() ) {
     add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
   }
