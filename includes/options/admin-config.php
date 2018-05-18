@@ -525,6 +525,131 @@ $extension_listing = '
                 </div><!-- /.pr -->
             </div><!-- /. pvf-cmp -->
         </div><!-- /. pvf-cnt -->
+        <div class="amp-upg">
+            <div class="upg-t">
+                <h2>Let\'s Upgrade Your AMP</h2>
+                <span>Choose your plan and upgrade in minutes!</span>
+            </div>
+            <div class="pri-lst">
+                <div class="pri-tb">
+                    <a href="#">
+                        <h5>PERSONAL</h5>
+                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">1 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save $800+</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb rec">
+                    <a href="#">
+                        <h5>MULTIPLE</h5>
+                        <span class="amt"><sup>$</sup>199</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">3 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 55%</span>
+                        <span class="pri-by">Buy Now</span>
+                        <span class="rcm">RECOMMENDED</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="#">
+                        <h5>WEBMASTER</h5>
+                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">10 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 83%</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="#">
+                        <h5>FREELANCER</h5>
+                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">253 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 90%</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="#">
+                        <h5>AGENCY</h5>
+                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">Unlimited</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">UNLIMITED</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+            </div><!-- /.pri-lst -->
+            <div class="tru-us">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
+                <h2>Trusted by more that 130000+ Users!</h2>
+                <p>More than 130k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <a href="#">Read The Reviews</a>
+            </div>
+        </div><!--/ .amp-upg -->
+        <div class="faq">
+            <h4>Frequently Asked Questions</h4>
+            <div class="faq-lst">
+                <div class="lt">
+                    <ul>
+                        <li>
+                            <span>Is there a setup fee?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                        <li>
+                            <span>what\'s the time span for your contracts?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                        <li>
+                            <span>What payment methods are accepted?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                        <li>
+                            <span>Do I get updates for the premium plugin?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rt">
+                    <ul>
+                        <li>
+                            <span>Can I cancel my account at any time?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                        <li>
+                            <span>Can I change my plan later on?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                        <li>
+                            <span>Do you offer refunds?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                        <li>
+                            <span>Do you offer support if I need help?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /.faq-lst -->
+            <div class="f-cnt">
+                <span>I have other pre-sale questions, can you help?</span>
+                <p>All the plans are year-to-year which are subscribed annually.</p>
+                <a href="#">Contact a Human</a>
+            </div><!-- /.f-cnt -->
+        </div><!-- /.faq -->
     </div><!-- /. pvf -->
 </div><!-- /. fp-wr -->
 
