@@ -342,7 +342,7 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 			array(
 			"name"=>'Journal',
 			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-6.png',
-			"link"=>'https://ampforwp.com/layouts-6/',
+			"link"=>'https://ampforwp.com/amp-layouts/',
 			),
 
 			);
