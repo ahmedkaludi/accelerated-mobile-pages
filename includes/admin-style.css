@@ -351,9 +351,15 @@ right:0;  z-index: 99999;
     text-transform: uppercase;
     line-height: 0; 
     border-bottom: 1px solid #E7E7E7; 
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     padding-bottom: 15px !important;
-}  
+} 
+/*** Layout Screenshot-Image CSS ***/
+#redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout {
+    margin-bottom: 30px;
+}
+
+/*** Layout Screenshot-Image CSS End ***/
 .amp-layouts-desc{
     position: absolute;
     font-size: 13px;
@@ -640,3 +646,5 @@ visibility: hidden;
     cursor: pointer;
 }
 .redux_field_search, .redux-main #redux-sticky{display: none}
+
+
