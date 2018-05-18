@@ -3648,7 +3648,8 @@ function ampforwp_frontpage_comments() {
 			break;
 		}
 	} endif;
-	if ( $enable_comments ) { ?>
+	if ( $enable_comments ) { 
+		do_action('ampforwp_before_comment_hook'); ?>
 		<div class="ampforwp-comment-wrapper">
 			<?php
 			$comment_button_url = "";
@@ -3746,13 +3747,16 @@ function ampforwp_frontpage_comments() {
 				<?php 
 				
 			} 
-			if ( comments_open($postID) ) {
-				$comment_button_url = add_query_arg( array( 'nonamp' => '1' ),  $comment_button_url );?>
-				<div class="comment-button-wrapper">
-				    <a href="<?php echo esc_url( $comment_button_url ) . '#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
-				</div><?php
-				}?>
+			if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { 
+				if ( comments_open($postID) ) {
+					$comment_button_url = add_query_arg( array( 'nonamp' => '1' ),  $comment_button_url );?>
+					<div class="comment-button-wrapper">
+					    <a href="<?php echo esc_url( $comment_button_url ) . '#commentform' ?>" rel="nofollow"><?php  echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a>
+					</div><?php
+				}
+			} ?>
 		</div> <?php
+		do_action('ampforwp_after_comment_hook');
 	} 
 }
 
