@@ -991,7 +991,7 @@ if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp
 .s_stk ul{width:100%;display:inline-flex;}
 .s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
-.rr {margin-bottom: 30px;display: inline-block;}
+
 
 <?php } ?>
 .content-wrapper a, .breadcrumb ul li a, .srp ul li, .rr a{transition: all 0.3s ease-in-out 0s;}
