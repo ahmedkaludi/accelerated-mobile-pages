@@ -525,7 +525,7 @@ if ( isset($redux_builder_amp['menu-search']) && $redux_builder_amp['menu-search
 if ( isset($redux_builder_amp['menu-social']) && $redux_builder_amp['menu-social'] ) { ?>
 .m-s-i {
 	padding:25px 0px 15px 0px;
-	border-top: 1px solid rgb(47, 47, 47, 1);
+    border-top: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){ echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
 	text-align: center;
 }
 .m-s-i li{
@@ -1226,12 +1226,6 @@ color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgb
 .m-srch{
 	border-top: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
     padding: 20px;
-}
-
-.m-s-i {
-	padding:25px 0px 15px 0px;
-	border-top: 1px solid <?php if(isset($redux_builder_amp['swift-element-menu-border-color']['rgba'])){ echo $redux_builder_amp['swift-element-menu-border-color']['rgba'];}?>;
-	text-align: center;
 }
 
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);}
