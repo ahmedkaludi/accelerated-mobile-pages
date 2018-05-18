@@ -6664,3 +6664,11 @@ if ( ! function_exists('ampforwp_skip_thrive_leads') ) {
 		return $skip;
 	}
 }
+
+// AMPforWP Generator Metadata
+add_action( 'amp_post_template_head', 'ampforwp_generator_metadata' );
+if ( ! function_exists('ampforwp_generator_metadata') ) {
+	function ampforwp_generator_metadata() {
+		printf( '<meta name="generator" content="%s" />', esc_attr( 'AMPforWP') );
+	}
+}
