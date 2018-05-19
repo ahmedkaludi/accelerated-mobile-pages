@@ -224,12 +224,9 @@ add_action( 'admin_init', 'ampforwp_add_custom_rewrite_rules' );
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
-	// Run AMP deactivation code while activation  
-	ampforwp_deactivate_amp_plugin();
-
-		if ( ! did_action( 'ampforwp_init' ) ) {
-	 		ampforwp_init();
-		}
+	if ( ! did_action( 'ampforwp_init' ) ) {
+ 		ampforwp_init();
+	}
 
 	flush_rewrite_rules();
 
