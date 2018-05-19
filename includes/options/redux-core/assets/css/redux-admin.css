@@ -939,6 +939,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 @media(max-width:1366px){
     .pri-tb a{padding: 20px;}
     .amp-upg{padding: 60px 0px 0px 0px}
+    .fp-cnt p{line-height: 29px;font-size: 20px}
 }
 @media(max-width:1280px){
     .fp-cnt {

@@ -486,7 +486,7 @@ $freepro_listing = '
                             <div class="fe-2">
                                 <div class="fe-t">
                                     <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
-                                    <h4>Advanced Custom Fields</h4>
+                                    <h4>Advanced Custom Field</h4>
                                 </div>
                                 <p>Built-in tools to help you impliment ACF easily in AMP.</p>
                             </div>
