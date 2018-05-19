@@ -2163,10 +2163,9 @@ function ampforwp_custom_yoast_meta(){
 			if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
 				echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
 			}		
-	} else {
-		if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
-			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-		}
+	}
+	if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
+		echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
 	}
 }
 
@@ -2188,31 +2187,26 @@ function ampforwp_custom_yoast_meta_homepage(){
 				do_action( 'wpseo_opengraph' );
 
 		}//execute only if Glue is deactive
-		if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
-			echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
-		}
+	}
+	if(isset($redux_builder_amp['ampforwp-seo-custom-additional-meta']) && $redux_builder_amp['ampforwp-seo-custom-additional-meta']){
+		echo strip_tags($redux_builder_amp['ampforwp-seo-custom-additional-meta'], '<link><meta>' );
 	}
 }
 
 function ampforwp_add_proper_post_meta(){
 	$check_custom_front_page = get_option('show_on_front');
-	if ( $check_custom_front_page == 'page' ) {
+	if ( ampforwp_is_front_page() || ampforwp_is_home() ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
-		if(is_home()){
 			add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
 			add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
 	
-
 			add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
 			add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
 
 			add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
-		
-
 		// This is causing the 2nd debug issue reported in #740
 		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
 		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
-	}
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
 	}
