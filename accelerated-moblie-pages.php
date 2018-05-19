@@ -417,9 +417,6 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 		public function __construct(){
 
-			// Load Files required for the plugin to run
-			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
-
 			// Redirection Code added
 			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
 
@@ -481,41 +478,14 @@ function ampforwp_bundle_core_amp_files(){
 		$GLOBALS['vandorampdefine'] = 'auto-amp-vendor';
 	}
 	
-} 
-
-
-
+}
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
-function ampforwp_deactivate_amp_plugin() {
- 
-	if ( version_compare( floatval( get_bloginfo( 'version' ) ), '3.5', '>=' ) ) {
-
-	    if ( current_user_can( 'activate_plugins' ) ) {
-
-	        add_action( 'admin_init', 'ampforwp_deactivate_amp' ); 
-
-	        function ampforwp_deactivate_amp() {
-	            deactivate_plugins( AMPFORWP_MAIN_PLUGIN_DIR . 'amp/amp.php' );
-	        }
-	    }
-	}
+add_action('admin_init', 'ampforwp_include_admin_items');
+function ampforwp_include_admin_items() {
+	// Load Files required for the plugin to run
+	require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 }
-//add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
-
-function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
-	$plugin = '';
-
-	$plugin = 'amp/amp.php'; 
-	if ( $plugin == $plugin_file ) {
-		add_thickbox();
-		unset($actions['activate']);
-		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts. \')">Activate</span>';
-		array_unshift ($actions,$a);
-	} 
- 	return $actions;
-}
-//add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
