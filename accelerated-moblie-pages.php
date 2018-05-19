@@ -438,6 +438,8 @@ function ampforwp_plugin_init() {
 }
 add_action('init','ampforwp_plugin_init',9);
 
+// Load Files required for the plugin to run
+require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 /*
 * customized output widget
 * to be used be used in before or after Loop
@@ -481,11 +483,6 @@ function ampforwp_bundle_core_amp_files(){
 }
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
-add_action('admin_init', 'ampforwp_include_admin_items');
-function ampforwp_include_admin_items() {
-	// Load Files required for the plugin to run
-	require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
-}
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );

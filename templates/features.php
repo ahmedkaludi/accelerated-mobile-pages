@@ -4516,19 +4516,7 @@ function is_category_amp_disabled(){
 }
 
 // 73. View AMP Site below View Site In Dashboard #1076
-
-add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
- 
-function ampforwp_visit_amp_in_admin_bar($admin_bar) {
-	$args = array(
-	    'parent' => 'site-name',
-	    'id'     => 'view-amp',
-	    'title'  => 'Visit AMP',
-	    'href'   => ampforwp_url_controller( get_home_url() ),
-	    'meta'   => false
-	);
-	$admin_bar->add_node( $args );       
-}
+	// Moved to /includes/includes.php
 
 // Things to be added in the Body Tag #1064
 add_action('ampforwp_body_beginning','ampforwp_body_beginning_html_output',11);
