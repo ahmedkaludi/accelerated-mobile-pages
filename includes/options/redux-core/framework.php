@@ -3315,7 +3315,7 @@
 
                         </div>
                         <div class="a-f-wp-help-container">
-                          <div class="a-f-wp-help-tear "><span> <i class="dashicons-sos"></i></span></div>
+                          <div class="a-f-wp-help-tear "><span> <i class="dashicons-admin-comments"></i></span></div>
                         </div></div>';
                 }
                 $panel = new reduxCorePanel ( $this );

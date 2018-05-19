@@ -68,6 +68,7 @@
 						echo '<span class="image-wrap"><img src="'.$this->field['options_image'][$k].'"></span>';
                         echo '<input type="radio" class="radio ' . $this->field['class'] . '" id="' . $this->field['id'] . '_' . array_search( $k, array_keys( $this->field['options'] ) ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $k . '" ' . checked( $this->value, $k, false ) . '/>';
                         echo ' <span>' . $v . '</span>';
+                        echo '<span class="amp-cnvrtr-wrap">'.$this->field['options_message'][$k].'</span>';
                         echo '</label>';
                         echo '</li>';
                     }

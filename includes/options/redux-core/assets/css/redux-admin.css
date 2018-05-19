@@ -43,8 +43,13 @@
     top: 11px;
     right: 15px;
     color: rgba(0, 0, 0, 0.30)}
-.redux-group-menu .opt-go-premium i,.redux-group-menu .design i, .redux-group-menu .basic i{
+.redux-group-menu .opt-go-premium i,.redux-group-menu .design i, .redux-group-menu .basic i,
+.redux-group-menu .opt-choose i{
     top:20px;
+}
+.redux-group-menu .opt-choose i{color: #f35644;}
+.redux-sidebar .redux-group-menu li.opt-choose a:hover i{
+    color: #fff
 }
 .redux-sidebar .redux-group-tab-link-a span{display:block}.redux-sidebar .redux-group-tab-link-a span.group_title{    padding-left: 7px;
     line-height: 19px;}.redux-sidebar .redux-group-tab-link-li a.hasError span.group_title{padding-right:25px}.redux-sidebar #redux-header{text-align:center}.redux-sidebar #redux-header .display_header{float:none}.form-table th,.form-table td{margin:0;padding:0px 10px 0px 18px;width:auto}.redux_field_th{       font-weight: normal;
@@ -269,7 +274,7 @@ img.ampforwp-post-builder-img{
 .extension_listing .align_left img{max-width:33px;opacity: 0.75}
 .extension_listing .align_left a{display: grid}
 .extension_listing li{margin-right: 9px;margin-bottom: 15px !important;}
-.extension_desc{        float: left;
+.extension_desc{ margin-bottom: 10px; float: left;
     margin-top: 8px;
     margin-left: 15px;
     width: 265px;}
@@ -292,8 +297,8 @@ img.ampforwp-post-builder-img{
 .amp_extension_settings{
     background: #303e9f;
     text-decoration: none;
-    color: #fff;
-    padding: 6px 10px 8px 10px;
+    color: #fff;float: right;
+    padding: 6px 10px 5px 10px;
     right: 0;
     border-radius: 40px;
 }
@@ -349,8 +354,8 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .single_ex_listing .extension_btn{opacity: 0.75}
 #info-info_theme_framework{
     position: absolute;
-    top: 105px;
-    right: 20px;
+    top: 390px;
+    right: 10px;
     width: 199px;
 }
 .redux-section-indent-start h3{    text-transform: uppercase;
@@ -423,6 +428,14 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .redux-group-menu .opt-go-premium .el+.group_title:after{
     content: "Advanced Features";
+    display: inline-block;
+    font-size: 10px;
+    text-transform: none;
+    width: 100%;
+    font-weight: normal;
+}
+.redux-group-menu .opt-choose .el+.group_title:after{
+    content: "Compare with Premium";
     display: inline-block;
     font-size: 10px;
     text-transform: none;
@@ -519,7 +532,7 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .fp-cnt{
     position: absolute;
-    top: 2.5%;
+    top: 95px;
     bottom: 0;
     left: 40px;
     right: 40px;
@@ -532,22 +545,26 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     font-weight: 600;
 }
 .fp-cnt p{
-    margin-top: 45px;
+    margin-top: 40px;
     color: #fff;
     font-size: 30px;
+    padding: 0 100px;
+    line-height: 44px;
 }
 .fp-cnt .buy{
-    text-decoration: none;
+  text-decoration: none;
     color: #fff;
-    background: #7ed321;
-    padding: 13px 0;
+    padding: 13px 45px;
     border-radius: 40px;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.4;
     display: inline-block;
-    width: 250px;
-    font-weight: 500;
-    margin-top: 10px;
+    background: #56ab2f;
+    background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);
+    background: linear-gradient(to right, #a8e063, #56ab2f);
+    font-weight: 700;
+    margin-top: 4px;
+    text-shadow: 1px 1px 1px #27a52c;
 }
 .pvf{
     position: relative;
@@ -559,22 +576,22 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background: #f9f9f9;
-    padding:42px 30px;
+    padding:45px 0px 45px 50px;
 }
 .ex-1{
-    width:72%;
+    width:250px;
 }
 .ex-1 h4{
     margin: 15px 0px 12px 0px;
-    font-size: 20px;
-    color: #222;
+    font-size: 18px;
+    color: #222;font-weight: 500
 }
 .ex-1 p{
     font-size: 14px;
-    color: #6d6d6d;
+    color: #555;
     font-weight: 400;
     margin:0;
-}
+} 
 .e-1 img{
     width:65px !important;
 }
@@ -591,21 +608,22 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .pvf-tlt{
     text-align: center;
     width:100%;
-    margin:60px 0px;
+    margin:70px 0px 60px 0px;
 }
 .pvf-tlt h2{
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.4;
-    color: #222;
-    font-weight: 600;
+    color: #000;
+    font-weight: 500;
     margin: 0;
 }
 .pvf-tlt span{
-    font-size: 18px;
+    font-size: 16px;
     color: #000;
-    font-weight: 500;
-    margin-top: 20px;
+    margin-top: 15px;
     display: inline-block;
+    position: relative;
+    top: 4px;
 }
 .pvf-cmp{
     display: grid;
@@ -613,36 +631,42 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .fr{border-right:1px solid #eee;}
 .fr h1, .pr h1{
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     line-height: 1.5;
-    border-bottom: 1px solid #eee;
-    padding: 0px 0px 0px 35px;
+    border-bottom: 1px solid #efefef;
+    padding: 0px 0px 20px 35px;
+}
+.pr h1{
+    padding-left: 50px;
 }
 .fr-fe{
     color:#222;
     padding-top:10px;
 }
 .fe-1{
-    padding:25px 35px;
+    padding:22px 35px 35px 35px;
 }
 .fe-1 h4{
-    margin: 0px 0px 12px 0px;
+    margin: 0px 0px 10px 0px;
     font-size: 20px;
     line-height: 1.4;
+    font-weight: normal;
+    color: #000;
 }
 .fe-1 p{
     font-size:15px;
     line-height: 1.4;
-    margin:0;
+    margin:0;color: #333
 }
 .pr-fe{
-    padding:40px 50px;
+    padding:34px 35px 35px 35px;
 }
 .pr-fe span{
-    font-size: 17px;
+    font-family: georgia;
+    font-size: 16px;
     font-weight: bold;
-    color: #222;
+    color: #000;
     font-style: italic;
     line-height: 1.3;
 }
@@ -666,14 +690,17 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     display: inline-block;
     vertical-align: middle;
     font-size: 20px;
-    color: #222;
+    color: #000;
+    font-weight: normal;
     line-height: 1.4;
     padding-left: 8px;
+
 }
 .fe-2 p{
-    font-size: 15px;
+  font-size: 15px;
     line-height: 1.4;
     margin: 0;
+    color: #555;
     padding-top: 8px;
 }
 .pr-btn{
@@ -682,21 +709,26 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     text-align: center;
     margin:50px 0px 25px 0px;
 }
-.pr-btn a{
-    background: #6cd278;
+.pr-btn a {
     text-decoration: none;
     color: #fff;
-    padding: 10px 40px 14px 40px;
+    padding: 12px 35px 17px 35px;
     display: inline-block;
-    border-radius: 3px;
+    border-radius: 5px;
     font-size: 28px;
     font-weight: 500;
     line-height: 1.2;
+    background: -webkit-linear-gradient(to right,#eb3349,#f45c43);
+    font-weight: 600;
+    background: #eb3349;
+    background: linear-gradient(to right,#eb3349,#f45c43);
+    margin-top: 0px;
+    box-shadow: 0 0.15em 0.65em 0 rgba(0,0,0,0.25);
 }
 /** AMP Upgrade CSS **/
 .amp-upg{
     background:#f5f5f5;
-    padding:55px 15px 0px 15px;
+    padding:60px 10px 0px 10px;
 }
 .upg-t{
     text-align: center;
@@ -705,38 +737,40 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .upg-t h2{
     margin: 0;
     font-size: 35px;
-    line-height: 1.2;
+    color: #060606;
+    line-height: 1.3;
+    font-weight: 500;
 }
 .upg-t > span{
     font-size: 14px;
     line-height: 1.2;
     margin-top: 15px;
     display: inline-block;
+    color: #666666;
 }
 .pri-lst{
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin-top:65px;
+    margin-top:70px;
     grid-gap:1px;
     box-shadow: 0px 10px 15px 1px #ddd;
 }
 .pri-tb{
     background: #fff;
-    padding:25px;   
     text-align: center;
     border: 1px solid #f9f9f9;
     position: relative;
 }
 .pri-tb:hover{
-    border:1px solid #ccc;
+    border:1px solid #489bff;
 }
 .pri-tb a:hover .pri-by{
-    background:#489BFF;
+    background:#1e8fff;
 }
-.pri-tb a{
+.pri-tb a{ display: inline-block;
     text-decoration: none;
-    color:#222;
+    color:#222;padding: 25px;
 }
 .pri-tb h5{
     margin:0px 0px 20px 0px;
@@ -744,13 +778,14 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     line-height: 1.2;
     letter-spacing: 2px;
     font-weight: 400;
+     color: #3B4750;
 }
 .pri-tb span{
-    display:block;
+    display:inline-block;
 }
 .pri-tb .amt{
     font-size: 40px;
-    color: #57a4ff;
+    color: #1e8fff;
     font-weight: 500;
     margin-bottom:20px;
 }
@@ -768,26 +803,26 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .pri-tb .s, .pri-tb .e, .pri-tb .f{
     font-size: 16px;
     margin-bottom: 15px;
-    color: #222;
+    color: #3B4750;
 }
 .pri-tb .sv{
     font-size: 13px;
     color: #fff;
-    background: #7ed321;
-    width: 80px;
+    background: #4CAF50;
     margin: 0 auto;
-    padding: 3px 0px;
+    padding: 2px 6px 3px 6px;
     border-radius: 5px;
 }
 .pri-by{
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
     background: #333;
     border-radius: 30px;
-    padding: 10px 30px 13px 30px;
+    padding: 11px 23px 12px 23px;
     display: inline-block;
     color: #fff;
-    margin-top: 30px;
+    margin-top: 29px;
+    font-weight: 500;
 }
 .pri-lst .rec{
     box-shadow: 0px 1px 40px 0px #ccc;
@@ -796,8 +831,12 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     margin-top: -20px;
     position: relative;
 }
+.pri-lst .rec:hover .rcm{
+    background: #489bff;
+    color: #fff;    
+}
 .pri-lst .rec .pri-by{
-    background: #489BFF;
+    background: #1e8fff;
 }
 .rcm{
     background: #ebebeb;
@@ -812,9 +851,8 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     letter-spacing: 2px;
 }
 .tru-us{
-    width:70%;
     text-align: center;
-    padding: 50px 0px;
+    padding: 60px 0px;
     margin:0 auto;
     font-size: 16px;
     color: #222;
@@ -822,28 +860,30 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .tru-us h2{
     margin:20px 0px 0px 0px;
     font-size: 28px;
-    font-weight: 600;
-}
-.tru-us p{
-    font-size: 18px;
-}
-.tru-us a{
-    font-size:18px;
-    color:#489bff;
-    text-decoration: none;
     font-weight: 500;
 }
+.tru-us p{
+    font-size: 17px;
+    margin: 19px 15% 18px 15%;
+    color: #666666;
+    line-height: 29px;
+}
+.tru-us a{
+      font-size: 18px;
+    color: #489bff;
+    text-decoration: none;
+    font-weight: 400;}
 /** F A Q CSS **/
-.faq{
+.ampfaq{
     width:100%;
     margin:25px 0px;
 }
-.faq h4{
+.ampfaq h4{
     margin: 0;
     text-align: center;
     font-size: 20px;
-    font-weight: bold;
-    color: #222;
+    font-weight: 500;
+    color: #333;
 }
 .faq-lst{
     margin-top:50px;
@@ -861,14 +901,13 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .lt ul li, .rt ul li{
     color: #222;
-    margin-bottom: 20px !important;
+    margin-bottom: 30px !important;
 }
 .lt span, .rt span{
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    display: inline-block;
-}
+      font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: inline-block;}
 .lt p, .rt p{
     font-size: 15px;
     margin: 0;
@@ -888,15 +927,19 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     margin:6px 0
 }
 .f-cnt a{
-    background: #5b5b5b;
+    background: #333;
     color: #fff;
     padding: 15px 30px;
     text-decoration: none;
     font-size: 18px;
+    font-weight: 500;
     display: inline-block;
     margin-top: 15px;
 }
-
+@media(max-width:1366px){
+    .pri-tb a{padding: 20px;}
+    .amp-upg{padding: 60px 0px 0px 0px}
+}
 @media(max-width:1280px){
     .fp-cnt {
         top: 1%;
