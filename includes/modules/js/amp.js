@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 
 
      jQuery(".ampforwp-button-remove").live('click', function() {
-        jQuery(this).parent().parent().parent().remove();
+        jQuery(this).parent().parent().parent().parent().remove();
     });
 
      // Tiny Mce code

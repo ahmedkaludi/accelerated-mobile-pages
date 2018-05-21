@@ -210,7 +210,7 @@
         } elseif ( is_404() ) {
                
             // 404 page
-            echo '<li>' . ampforwp_translation($redux_builder_amp['amp-translator-error-404-text'], 'Error 404') . '</li>';
+            echo '<li>' . ampforwp_translation($redux_builder_amp['amp-translator-fourohfour'], 'Error 404') . '</li>';
         } 
         echo '</ul>';
       

@@ -27,7 +27,10 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
-
+            $this->time = time();
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->time = AMPFORWP_VERSION;
+            }
             if ( empty( $this->extension_dir ) ) {
             $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
             $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
@@ -216,7 +219,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                 'field-demolink-select-image-js',
                $this->extension_url .'field_demolink_image_select.js',
                 array('jquery', 'select2-js', 'redux-js'),
-                time(),
+                $this->time,
                 true
             );
 
@@ -225,7 +228,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                     'redux-field-select-image-css',
                    $this->extension_url .'field_demolink_image_select.css',
                     array(),
-                    time(),
+                    $this->time,
                     'all'
                 );
             }

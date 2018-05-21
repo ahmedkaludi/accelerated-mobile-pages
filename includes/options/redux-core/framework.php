@@ -3227,7 +3227,7 @@
                     $addClass = ''; $style="";
                     $current_screen = get_current_screen(); 
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
-                        $enabledOptions = array('basic', 'design', 'opt-go-premium');
+                        $enabledOptions = array('basic', 'design', 'opt-go-premium','opt-choose');
                         if(!in_array($section['id'], $enabledOptions)){
                             $addClass = 'otherSectionFields';
                             $style="style='display:none;'";
@@ -3253,7 +3253,6 @@
                                     $display = false;
                                 }
                             }
-
                             if ( count( $sections ) < $nextK || ! isset ( $sections[ $nextK ] ) || ! isset ( $sections[ $nextK ]['subsection'] ) || $sections[ $nextK ]['subsection'] != true ) {
                                 $doLoop = false;
                             } else {
@@ -3285,7 +3284,7 @@
 
                                 $sections[ $nextK ]['class'] = isset($sections[ $nextK ]['class']) ? $sections[ $nextK ]['class'] : '';
                                 $section[ $nextK ]['class'] = isset ( $section[ $nextK ]['class'] ) ? $section[ $nextK ]['class'] : $sections[ $nextK ]['class'];
-                                $string .= '<li id="' . esc_attr( $nextK . $suffix ) . '_section_group_li" class="redux-group-tab-link-li ' . esc_attr( $hide_sub ) . esc_attr( $section[ $nextK ]['class'] ) . ( $icon ? ' hasIcon' : '' ) . '">';
+                                $string .= '<li id="' . esc_attr( $nextK . $suffix ) . '_section_group_li" class="redux-group-tab-link-li ' . esc_attr( $hide_sub ) . esc_attr( $section[ $nextK ]['class'] ) . ( $icon ? ' hasIcon' : '' ) . $sections[ $nextK ]['id'] . '">';
                                 $string .= '<a href="javascript:void(0);" id="' . esc_attr( $nextK . $suffix ) . '_section_group_li_a" class="redux-group-tab-link-a" data-key="' . esc_attr( $nextK ) . '" data-rel="' . esc_attr( $nextK . $suffix ) . '">' . $icon . '<span class="group_title">' . wp_kses_post( $sections[ $nextK ]['title'] ) . '</span></a>';
                                 $string .= '</li>';
                             }
@@ -3316,7 +3315,7 @@
 
                         </div>
                         <div class="a-f-wp-help-container">
-                          <div class="a-f-wp-help-tear "><span> <i class="dashicons-sos"></i></span></div>
+                          <div class="a-f-wp-help-tear "><span> <i class="dashicons-admin-comments"></i></span></div>
                         </div></div>';
                 }
                 $panel = new reduxCorePanel ( $this );

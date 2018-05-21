@@ -201,25 +201,10 @@ require_once  ABSPATH . WPINC . '/category.php';
                       $width = $fieldValues['img-width-1'];
                       $height = $fieldValues['img-height-1'];
                     break;
-                    case 2:
-                      $width = $fieldValues['img-width-2'];
-                      $height = $fieldValues['img-height-2'];
-                    break;
-                    case 3:
-                      $width = $fieldValues['img-width-3'];
-                      $height = $fieldValues['img-height-3'];
-                    break;
-                    case 4:
-                      $width = $fieldValues['img-width-4'];
-                      $height = $fieldValues['img-height-4'];
-                    break;
-                    case 5:
-                      $width = $fieldValues['img-width-5'];
-                      $height = $fieldValues['img-height-5'];
-                    break;
                     default:
                     break;
                    }
+                   list($width, $height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
                    try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
                     if($thumb_url!=false){
@@ -245,6 +230,10 @@ require_once  ABSPATH . WPINC . '/category.php';
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
+                $tags = get_the_tags();
+               if(is_array($tags) && count($tags) > 0){
+                  $tags = $tags[0]->name;
+               }
               // get_the_author_meta( string $field = '', int $user_id = false );
                $postdate = get_the_date(  ' F j, Y', $postid );
               $rawhtml = str_replace(array(
@@ -256,7 +245,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 "{{excerptContent}}",
                                 "{{authorname}}",
                                 "{{postdate}}",
-                                "{{image_alt}}"
+                                "{{image_alt}}",
+                                "{{tags}}"
                                 ), 
                               array(
                                 $ampforwp_post_url,
@@ -267,7 +257,8 @@ require_once  ABSPATH . WPINC . '/category.php';
                                 $excerptContent,
                                 $author,
                                 $postdate,
-                                $image_alt
+                                $image_alt,
+                                $tags,
                               ), 
                               $loopHtml);
             $rawhtml = ampforwp_replaceIfContentConditional("ampforwp_post_url", $ampforwp_post_url, $rawhtml);
@@ -278,6 +269,8 @@ require_once  ABSPATH . WPINC . '/category.php';
             $rawhtml = ampforwp_replaceIfContentConditional("excerptContent", $excerptContent, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("authorname", $author, $rawhtml);
             $rawhtml = ampforwp_replaceIfContentConditional("postdate", $postdate, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("image_alt", $image_alt, $rawhtml);
+            $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
             $contenthtml .= $rawhtml;
             
          }		

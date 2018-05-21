@@ -9,15 +9,12 @@ add_action( 'pre_amp_render_post', 'amp_jetpack_mods' );
  *
  **/
 function amp_jetpack_mods() {
-	if ( class_exists('Jetpack') ) {
-		if ( Jetpack::is_module_active( 'stats' ) ) {
-			add_action( 'amp_post_template_footer', 'jetpack_amp_add_stats_pixel' );
-		}
-		amp_jetpack_disable_sharing();
-		amp_jetpack_disable_related_posts();
+	if ( Jetpack::is_module_active( 'stats' ) ) {
+		add_action( 'amp_post_template_footer', 'jetpack_amp_add_stats_pixel' );
 	}
+	amp_jetpack_disable_sharing();
+	amp_jetpack_disable_related_posts();
 }
-
 
 function amp_jetpack_disable_sharing() {
 	add_filter( 'sharing_show', '__return_false', 100 );
@@ -59,14 +56,14 @@ function jetpack_amp_build_stats_pixel_url() {
 		$blog = Jetpack_Options::get_option( 'id' );
 		$tz = get_option( 'gmt_offset' );
 		$v = 'ext';
-		$blog_url = parse_url( site_url() );
+		$blog_url = AMP_WP_Utils::parse_url( site_url() );
 		$srv = $blog_url['host'];
 		$j = sprintf( '%s:%s', JETPACK__API_VERSION, JETPACK__VERSION );
 		$post = $wp_the_query->get_queried_object_id();
 		$data = compact( 'v', 'j', 'blog', 'post', 'tz', 'srv' );
 	}
 
-	$data['host'] = isset( $_SERVER['HTTP_HOST'] ) ? rawurlencode( $_SERVER['HTTP_HOST'] ) : '';
+	$data['host'] = isset( $_SERVER['HTTP_HOST'] ) ? rawurlencode( $_SERVER['HTTP_HOST'] ) : ''; // input var ok
 	$data['rand'] = 'RANDOM'; // amp placeholder
 	$data['ref'] = 'DOCUMENT_REFERRER'; // amp placeholder
 	$data = array_map( 'rawurlencode' , $data );

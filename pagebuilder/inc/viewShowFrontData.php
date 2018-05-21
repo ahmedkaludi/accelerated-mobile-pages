@@ -23,7 +23,7 @@ $postId = $post->ID;
 		$arr['post_content'] = '&nbsp;';
 		wp_update_post($arr);
 	}
-	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
+	add_filter( 'the_content', 'ampforwp_insert_pb_content', PHP_INT_MAX );
 }
 
 function bodyClassForAMPPagebuilder($classes, $class){
@@ -762,6 +762,17 @@ function rowData($container,$col,$moduleTemplate){
 								$totalLoopHtml = ampforwp_replaceIfContentConditional($field['name'], $fieldValues[$field['name']], $totalLoopHtml);
 							}
 						}
+
+
+						$catName = 'Recent posts'; $cat_link = "#";
+						if(trim($fieldValues['category_selection']) != 'recent_option'){
+						  $catName = get_cat_name($fieldValues['category_selection']);
+						  $cat_link = get_category_link($fieldValues['category_selection']);
+						  $cat_link = esc_url(ampforwp_url_controller($cat_link));
+						}
+						$moduleFrontHtml = str_replace('{{content_category_title}}', urldecode($catName), $moduleFrontHtml);
+						$moduleFrontHtml = str_replace('{{content_category_link}}', $cat_link, $moduleFrontHtml);
+
 
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);

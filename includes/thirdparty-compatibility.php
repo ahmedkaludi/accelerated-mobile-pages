@@ -33,6 +33,9 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 if(!function_exists('ampforwp_amp_nonamp_convert')){
 	function ampforwp_amp_nonamp_convert($ampData, $type=""){
 		$returnData = '';
+		if (true == get_query_var('amp')){
+			return $ampData;
+		}
 		if("check" === $type){
 			return ampforwp_is_non_amp('non_amp_check_convert');
 		}
@@ -81,7 +84,9 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 	add_filter( 'amp_post_template_file', 'ampforwp_child_designing_custom_template', 20, 3 );
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 20, 3 );
 	function ampforwp_theme_template_directry(){
-		return get_stylesheet_directory() . '/ampforwp/';
+		$folder_name = 'ampforwp';
+		$folder_name = apply_filters('ampforwp_template_locate', $folder_name);
+		return get_stylesheet_directory() . '/' . $folder_name;
 	}
 	// Custom Header
 	function ampforwp_child_custom_header_file( $file, $type, $post ) {

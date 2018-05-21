@@ -23,53 +23,48 @@ elseif ( ! defined('AMPFORWP_CUSTOM_THEME') ) {
 	// Custom Template Files
 	function ampforwp_designing_custom_template( $file, $type, $post ) {
 	 global $redux_builder_amp;
-		// Single file
-	    /*if ( is_single() ) {
-			if( 'single' === $type && ! ('product' === $post->post_type) ) {
-				$file = AMPFORWP_CUSTOM_THEME . '/single.php';
-		 	}
-		}*/
-		// 404 Template
 
+		// 404 Template
 	 	if( 'single' === $type && is_404() ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/404.php';
 	 	}
-	 	// single Template
-		if ( is_page() ) { 
-			if( 'single' === $type && ! ('product' === $post->post_type) ) {
-				$file = AMPFORWP_CUSTOM_THEME . '/page.php';
-		 	}
-		}
+
 	    // Loop Template
 	    if ( 'loop' === $type ) {
 			$file = AMPFORWP_CUSTOM_THEME . '/loop.php';
 		}
-	    // Archive
-		if ( is_archive() ) {
-	        if ( 'single' === $type ) {
-	            $file = AMPFORWP_CUSTOM_THEME . '/archive.php';
-	        }
-	    }
-	    $ampforwp_custom_post_page = ampforwp_custom_post_page();
-	    // Homepage
-		if ( is_home() ) {
-			if ( 'single' === $type ) {
-	        	$file = AMPFORWP_CUSTOM_THEME . '/index.php';
-	        
-		        if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
-					$file = AMPFORWP_CUSTOM_THEME . '/page.php';
-		        }
-		        if ( ampforwp_is_blog() ) {
-				 	$file = AMPFORWP_CUSTOM_THEME . '/index.php';
-				}
+	    
+		if ( 'single' === $type ) {
+    		// Homepage
+			if ( ampforwp_is_home() ) {
+        		$file = AMPFORWP_CUSTOM_THEME . '/index.php';
+	    	}
+	    	if ( ampforwp_is_front_page() ) {
+		        $file = AMPFORWP_CUSTOM_THEME .'/page.php';
 		    }
-	    }
-	    // is_search
-		if ( is_search() ) {
-	        if ( 'single' === $type ) {
+
+		    // Archives
+			if ( is_archive() ) {
+	            $file = AMPFORWP_CUSTOM_THEME . '/archive.php';
+		    }
+
+	    	// Search
+			if ( is_search() ) {
 	            $file = AMPFORWP_CUSTOM_THEME . '/search.php';
-	        }
+		    }
+
 	    }
+	    if( 'page' === $type ) {
+
+		    if ( is_page() || ampforwp_is_front_page() ) {
+		        $file = AMPFORWP_CUSTOM_THEME .'/page.php';
+		    }
+		    // Blog
+		    if ( ampforwp_is_blog() ) {
+		        $file = AMPFORWP_CUSTOM_THEME .'/index.php';
+		    }
+
+	  	}
 
 	    //For template pages
 	    switch ( true ) {

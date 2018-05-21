@@ -1,5 +1,5 @@
-1.Few changes in class-amp-post-template.php to take care of the archive debug errors
-Reference: #1130 #966
+1.Few changes in class-amp-post-template.php to take care of the archive debug errors Reference: #1130 #966
+Update: Made the same changes, also added the Homepage and FrontPage code in it. 
 
 2.Replaced the fastimage with fasterimage for PHP 5.4+ #1191
 		changes made in amp/includes/lib/fastimage
@@ -7,25 +7,33 @@ Reference: #1130 #966
 						amp/includes/sanitizers/class-amp-img-sanitizer.php
 						amp/includes/utils/class-amp-image-dimension-extract.php
 						amp/includes/utils/class-amp-wp-utils.php
+Update: Already included						
 
 3. Redux: A small change in redux-core/framework.php at line number 2962. #1219						
-
 4. Make sure we are passing the integer in the date function Ticekt no #1241
 	changes made in includes/class-amp-post-template.php on line 174 and 175
+Update: Updated the value in 'ampforwp_post_template_data' filter	
 
-5. Added a filter called ampforwp_allow_featured_image, so users can show or hide Featured image according to the usage. #1071
+5. Added a filter called ampforwp_allow_featured_image in class-amp-post-template.php, so users can show or hide Duplicated Featured image according to the usage. #1071
+Update: Made the same changes, no other choice
 
 6. Two Filters added at line number 92 and 124 in amp/includes/embeds/class-amp-gallery-embed.php to add extra parameters for Gallery. 
+Update: New gallery embed handler added in classes/class-ampforwp-gallery-embed.php
 
 7. amp-video script added in amp/includes/sanitizers/class-amp-video-sanitizer.php #991
+Update: No need to add the script after the update
 
 8. allow-popups added on line number 10 in amp/includes/sanitizers/class-amp-iframe-sanitizer.php #1099
+Update: New Iframe sanitizer added in classes/class-ampforwp-iframe-sanitizer.php
 
-9 Changed placeholder image path from assets folder to image folder
+9. Changed placeholder image path from assets folder to image folder
 amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
 'placeholder_image_url' => AMPFORWP_IMAGE_DIR. '/placeholder-icon.png'
+Update: Updated the value in 'ampforwp_post_template_data' filter
 
-10. Embed Handlers: Added support for Vimeo, SoundCloud, Pinterest, Dailymotion and PlayBuzz  
+10. Embed Handlers: Added support for Vimeo, SoundCloud, Pinterest, Dailymotion and PlayBuzz
+Update: Already included in the update
+
 11.Fixes: Old slug redirect for AMP URLs
 		  Handle issues with data uri images in CSS
 		  Output CSS for feature image
@@ -33,17 +41,45 @@ amp\includes\class-amp-post-template.php, line no: 58, Issue no: 1310
 		  Various documentation updates
 		  Coding Standards
 Check #1033 for more details on 10 and 11
+Update: No neeed to change anything for 11 after the update.
 
 12. Argument specific filters added at line number 43 and 47 of class-amp-content.php
 Reason: To extend the functionality of sidebars and Pagebuilder
+Update: No need for this after the changes we made.
 
 13. Foo Gallery Support code added in class-amp-img-sanitizer.php in line no 35 #1424
+Update: New Image sanitizer added in classes
+
 14. Filter added in class-amp-dom-utils.php on line no 37 #1462
+Update: Made the same change on line no 359
+
 15. amp_vimeo_parse_url filter applied in class-amp-vimeo-embed.php in line no 108
+Update: New vimeo embed handler added in classes for more info: #311638f4a5f289e7779d144319c82206d6d6a3ac
+
 16. ampforwp_end_point_controller added in amp-helper-functions on line no 15 #1561
+Update: No need for this. We have added the code ampforwp_url_purifier
+
 17. folder name updated from amp to ampforwp to avoid conflict in class-amp-post-template.php on line no 440 #1742
+Update: No need to change
+
 18. 'amp_fetch_image_mode_type' filter added in class-amp-image-dimension-extractor.php #1833
+Update: Same changes are done.
+
 19. Modifications in class-amp-img-sanitizer.php for Lightbox support #1892 #2032
+Update: New Image sanitizer added in classes
+
 20. Modification is class-amp-blacklist-sanitizer.php #1958
+Update: No Blacklist sanitizer
+
 21. ampforwp_post_content_filter filter added in class-amp-post-template.php #2001
+Update: Same change added.
+
 22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945
+Update: Same change added.
+
+23. Added: Filter added to modify amp template directory `ampforwp_template_locate` #1982
+Update: Added the filter in thirdparty-compatibility instead of the core.
+
+25. data-block-on-consent added in class-amp-dom-utils.php and class-amp-html-utils.php
+
+26. Section specific class added for subsections in framework.php on line number 3288 	

@@ -48,6 +48,11 @@ function ampforwp_check_amp_page_status() {
         return;
     }
 
+    // Single and Pages
+    if ( ( is_single() && !$redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) ) {
+      return;
+    }
+
     // Blog page
     if ( ampforwp_is_blog() ) {
       $blog_page_id         = get_option('page_for_posts');
