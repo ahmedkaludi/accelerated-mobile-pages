@@ -1,6 +1,7 @@
 
 <?php do_action('ampforwp_before_meta_info_hook',$this); ?>
-<?php global $redux_builder_amp; ?>
+<?php global $redux_builder_amp;
+if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 <div class="amp-wp-content amp-wp-article-header ampforwp-meta-info">
 	<div class="amp-wp-content post-title-meta">
 
@@ -51,4 +52,5 @@ if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['amp
 			</ul>
 	</div>
 </div>
+<?php endif; ?>
 <?php do_action('ampforwp_after_meta_info_hook',$this);

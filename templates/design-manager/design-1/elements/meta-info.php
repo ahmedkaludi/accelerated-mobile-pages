@@ -1,5 +1,6 @@
 <?php do_action('ampforwp_before_meta_info_hook',$this); ?>
-<?php global $redux_builder_amp; ?>
+<?php global $redux_builder_amp;
+if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 <div class="amp-wp-article-header ampforwp-meta-info <?php if( is_page() && ! $redux_builder_amp['meta_page'] ) {?> hide-meta-info <?php  }?>">
 
 	<?php $post_author = $this->get( 'post_author' ); ?>
@@ -37,4 +38,5 @@
 	</div>
 
 </div>
+<?php endif; ?>
 <?php do_action('ampforwp_after_meta_info_hook',$this);
