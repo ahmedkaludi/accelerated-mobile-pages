@@ -143,28 +143,6 @@ add_amp_theme_support('AMP-loop');
  	function ampforwp_include_aqresizer(){
  		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
  	}
- 	// TODO: Update this function 
- 	function ampforwp_include_customizer_files(){
- 		global $redux_builder_amp;
- 		$amp_plugin_data;
-		$amp_plugin_activation_check; 
-
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-		if ( isset ($redux_builder_amp['amp-design-selector']) && 4 != $redux_builder_amp['amp-design-selector'] ) {
-			if ( $amp_plugin_activation_check ) {
-				$amp_plugin_data = get_plugin_data( AMPFORWP_MAIN_PLUGIN_DIR. 'amp/amp.php' );
-		 		if ( $amp_plugin_data['Version'] > '0.4.2' ) {
-		 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer-new.php' ;
-		 		} else {
-		 			return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
-		 		}
-			} else {
-				return require AMPFORWP_PLUGIN_DIR  .'templates/customizer/customizer.php' ;
-			}
-		}
- 	} 
- 	ampforwp_include_customizer_files();
 //0.
 
 define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
