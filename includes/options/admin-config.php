@@ -77,18 +77,6 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
-						array(
-                            'name'=>'Ninja Forms',
-                            'desc'=>'Add Ninja Forms Support in AMP.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
-                            'price'=>'$79',
-                            'url_link'=>'http://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
-                            'plugin_active_path'=> 'amp-ninja-forms/amp-ninja-forms.php',
-                            'item_name'=>'Ninja Forms',
-                            'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('amp-ninja-forms/amp-ninja-forms.php')? 1 : 2),
-                            'settingUrl'=>'',
-                        ),
                         array(
                             'name'=>'Email Opt-in Forms',
                             'desc'=>'Capture Leads with Email Subscription.',
@@ -5640,6 +5628,13 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Viber', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+          // Hatena BookMark
+           array(
+              'id'        =>  'enable-single-hatena-bookmarks',
+              'type'      =>  'switch',
+              'title'     =>  __('Hatena Bookmarks', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
           // Yummly
           array(
               'id'        =>  'enable-single-yummly-share',
@@ -5647,8 +5642,8 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Yummly', 'accelerated-mobile-pages'),
               'default'   =>  0,
               'required' => array(
-                array('amp-design-selector', '=' , '4')
-        ),
+                            array('amp-design-selector', '=' , '4')
+                            ),
           ),
         array(
                'id' => 'social-prfl',
