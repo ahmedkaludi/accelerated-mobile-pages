@@ -777,7 +777,7 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
-			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && is_single() ) {
+			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && is_singular() ) {
 				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';

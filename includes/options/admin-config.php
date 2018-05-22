@@ -1383,7 +1383,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'      => 'switch',
                         'title'     => __('AD #3', 'accelerated-mobile-pages'),
                         'default'   => 0,
-                        'desc'  => __('Above the Post Content (Single Post)', 'accelerated-mobile-pages'),
+                        'desc'  => __('Above the Post Content', 'accelerated-mobile-pages'),
                         'true'      => 'Enabled',
                         'false'     => 'Disabled',
                     ),
