@@ -4314,6 +4314,7 @@ function ampforwp_rel_canonical_home_archive(){
 
 
 	if ( is_home() || is_front_page() ||  is_archive() && $redux_builder_amp['ampforwp-archive-support'] )	{
+		$canonical_url = '';
 		$current_archive_url = home_url( $wp->request );
 		$amp_url 	= trailingslashit($current_archive_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
@@ -4324,7 +4325,11 @@ function ampforwp_rel_canonical_home_archive(){
 	  	}
 	  	if ( $page >= '2') { 
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
-		} ?>
+		}
+		$canonical_url = ampforwp_generate_canonical();
+		if ( !empty($canonical_url) ) {
+			$amp_url = $canonical_url;
+		 }?>
 		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
 	<?php }
 
@@ -6686,24 +6691,27 @@ if ( ! function_exists('ampforwp_generator_metadata') ) {
 }
 
 // Canonical From Yoast #2118 and All in One SEO #1720
-add_filter('amp_post_template_data', 'ampforwp_yoast_canonical', 85);
-function ampforwp_yoast_canonical( $data ) {
+function ampforwp_generate_canonical(){
 	global $redux_builder_amp;
+	$canonical = '';
 	$canonical = $WPSEO_Frontend = $All_in_One_SEO_Pack = $opts = '';
 	if ( isset($redux_builder_amp['ampforwp-seo-yoast-canonical']) && true == $redux_builder_amp['ampforwp-seo-yoast-canonical'] && class_exists('WPSEO_Frontend') ) {
 		$WPSEO_Frontend = WPSEO_Frontend::get_instance();
 		$canonical = $WPSEO_Frontend->canonical(false);
-		if( !empty($canonical) ) {
-			$data['canonical_url'] = $canonical;
-		}
 	}
 	elseif ( isset($redux_builder_amp['ampforwp-seo-aioseo-canonical']) && true == $redux_builder_amp['ampforwp-seo-aioseo-canonical'] && class_exists('All_in_One_SEO_Pack') ) {
 		$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
 		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
 		$canonical = $opts['aiosp_custom_link'];
-		if( !empty($canonical) ) {
-			$data['canonical_url'] = $canonical;
-		}
+	}
+	return $canonical;
+}
+add_filter('amp_post_template_data', 'ampforwp_modified_canonical', 85);
+function ampforwp_modified_canonical( $data ) {
+	$canonical = '';
+	$canonical = ampforwp_generate_canonical();
+	if ( !empty($canonical) ) {
+		$data['canonical_url'] = $canonical;
 	}
 	return $data;
 }
