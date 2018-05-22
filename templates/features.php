@@ -4351,7 +4351,7 @@ function ampforwp_generate_meta_desc(){
 	$desc = '';
 	$post_id = '';
 	$genesis_description = '';
-	if ( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend') ) {
+	if ( $redux_builder_amp['ampforwp-seo-meta-description'] && class_exists('WPSEO_Frontend') ) {
 		// general Description of everywhere
 		$front = WPSEO_Frontend::get_instance();
 		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
@@ -6654,4 +6654,19 @@ if ( ! function_exists('ampforwp_generator_metadata') ) {
 	function ampforwp_generator_metadata() {
 		printf( '<meta name="generator" content="%s" />', esc_attr( 'AMPforWP') );
 	}
+}
+
+// Canonical From Yoast #2118
+add_filter('amp_post_template_data', 'ampforwp_yoast_canonical');
+function ampforwp_yoast_canonical( $data ) {
+	global $redux_builder_amp;
+	$canonical = $WPSEO_Frontend = '';
+	if ( isset($redux_builder_amp['ampforwp-seo-yoast-canonical']) && true == $redux_builder_amp['ampforwp-seo-yoast-canonical'] && class_exists('WPSEO_Frontend') ) {
+		$WPSEO_Frontend = WPSEO_Frontend::get_instance();
+		$canonical = $WPSEO_Frontend->canonical(false);
+		if( !empty($canonical) ) {
+			$data['canonical_url'] = $canonical;
+		}
+	}
+	return $data;
 }
