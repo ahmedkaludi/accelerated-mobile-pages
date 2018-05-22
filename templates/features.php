@@ -6656,14 +6656,22 @@ if ( ! function_exists('ampforwp_generator_metadata') ) {
 	}
 }
 
-// Canonical From Yoast #2118
-add_filter('amp_post_template_data', 'ampforwp_yoast_canonical');
+// Canonical From Yoast #2118 and All in One SEO #1720
+add_filter('amp_post_template_data', 'ampforwp_yoast_canonical', 85);
 function ampforwp_yoast_canonical( $data ) {
 	global $redux_builder_amp;
-	$canonical = $WPSEO_Frontend = '';
+	$canonical = $WPSEO_Frontend = $All_in_One_SEO_Pack = $opts = '';
 	if ( isset($redux_builder_amp['ampforwp-seo-yoast-canonical']) && true == $redux_builder_amp['ampforwp-seo-yoast-canonical'] && class_exists('WPSEO_Frontend') ) {
 		$WPSEO_Frontend = WPSEO_Frontend::get_instance();
 		$canonical = $WPSEO_Frontend->canonical(false);
+		if( !empty($canonical) ) {
+			$data['canonical_url'] = $canonical;
+		}
+	}
+	elseif ( isset($redux_builder_amp['ampforwp-seo-aioseo-canonical']) && true == $redux_builder_amp['ampforwp-seo-aioseo-canonical'] && class_exists('All_in_One_SEO_Pack') ) {
+		$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
+		$opts = $All_in_One_SEO_Pack->get_current_options( array(), 'aiosp' );
+		$canonical = $opts['aiosp_custom_link'];
 		if( !empty($canonical) ) {
 			$data['canonical_url'] = $canonical;
 		}

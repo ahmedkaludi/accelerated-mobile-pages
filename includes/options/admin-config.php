@@ -1753,9 +1753,18 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'ampforwp-seo-aioseo',
                 'type'     => 'info',
                 'style'    => 'success',
-                'desc'     => __("All in One SEO works out of the Box with our plugin. It deosn't requires any extra config.", 'accelerated-mobile-pages'),
+                'desc'     => __("All in One SEO works out of the Box with our plugin. It deosn't requires any extra config except Canonicals.", 'accelerated-mobile-pages'),
                 'required' => array('ampforwp-seo-selection', '=', '2')
-                    ),
+            ),
+           array(
+               'class' => 'child_opt',
+               'id'       => 'ampforwp-seo-aioseo-canonical',
+               'type'     => 'switch',
+               'tooltip-subtitle'     => __('Pull Canonical from All In One SEO for AMP pages', 'accelerated-mobile-pages'),
+               'title'    => __( 'Canonical from All In One SEO', 'accelerated-mobile-pages' ),
+               'default'  => 0,
+               'required'  => array('ampforwp-seo-selection', '=' , '2'),
+           ),
            array(
                   'id' => 'ampforwp-seo-index-noindex-sub-section',
                   'type' => 'section',
