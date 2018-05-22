@@ -3663,7 +3663,16 @@ Redux::setSection( $opt_name, array(
         'subsection' => true,
         'fields'     => array(
             $wp_theme_support_option,
-            
+            array(
+                'id'       => 'ampforwp-beta-mode-notice',
+                'type'     => 'info',
+                'style'    => 'info',
+                'title'    => __('This feature is in Beta ', 'accelerated-mobile-pages'),
+                'desc'     => __('Convert from WordPress is still in under development, might not work with every theme. We are improving it with every update.', 'accelerated-mobile-pages'),
+                'required' => array(
+                        array('amp-design-type-selection', '!=' , 'default')
+                     )
+            ),
             array(
                 'id'       => 'amp-design-selector',
                 'class' => 'amp-design-selector',
@@ -6167,7 +6176,7 @@ Redux::setSection( $opt_name, array(
     // Misc SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Misc', 'accelerated-mobile-pages' ),
-       'desc'       => $post_builder,
+       // 'desc'       => $post_builder,
        'id'         => 'amp-design',
        'subsection' => true,
         'fields'     => array(

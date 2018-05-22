@@ -644,4 +644,4 @@ visibility: hidden;
 }
 .redux_field_search, .redux-main #redux-sticky{display: none}
 
-
+#info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
