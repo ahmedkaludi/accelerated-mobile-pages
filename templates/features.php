@@ -2387,6 +2387,15 @@ function ampforwp_replace_title_tags() {
 				$site_title = $genesis_title;
 			}
 		}
+		// All in One SEO #1720
+		if ( class_exists('All_in_One_SEO_Pack') ) {
+			$All_in_One_SEO_Pack = $aiseop_title = '';
+			$All_in_One_SEO_Pack = new All_in_One_SEO_Pack();
+			$aiseop_title = $All_in_One_SEO_Pack->wp_title();
+			if ( !empty($aiseop_title) ) {
+				$site_title = $aiseop_title;
+			}
+		}
 		return esc_html( convert_chars( wptexturize( trim( $site_title ) ) ) );
 	}
 }
