@@ -4351,7 +4351,7 @@ function ampforwp_generate_meta_desc(){
 	$desc = '';
 	$post_id = '';
 	$genesis_description = '';
-	if ( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend') ) {
+	if ( $redux_builder_amp['ampforwp-seo-meta-description'] && class_exists('WPSEO_Frontend') ) {
 		// general Description of everywhere
 		$front = WPSEO_Frontend::get_instance();
 		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
