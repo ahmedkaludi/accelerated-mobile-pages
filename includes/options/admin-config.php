@@ -78,7 +78,7 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
                         array(
-                            'name'=>'Ninja Forms',
+                            'name'=>'Ninja Forms for AMP',
                             'desc'=>'Add Ninja Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
                             'price'=>'$79',
