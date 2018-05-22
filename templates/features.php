@@ -4460,6 +4460,12 @@ function ampforwp_generate_meta_desc(){
 	if ( class_exists('All_in_One_SEO_Pack') ) {
 		$aisop_class = new All_in_One_SEO_Pack();
 		$desc = $aisop_class->get_main_description();
+		$opts = $aisop_class->get_current_options( array(), 'aiosp' );
+		if ( (is_category() || is_tax() || is_tag()) && $aisop_class->show_page_description() ) {
+			if ( !empty($opts['aiosp_description']) ) {
+				$desc = $opts['aiosp_description'];
+			}
+		}
 	}
 	// strip_shortcodes  strategy not working here so had to do this way
 	// strips shortcodes
