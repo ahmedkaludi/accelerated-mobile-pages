@@ -328,6 +328,15 @@ if(!function_exists('ampforwp_isexternal')){
 
 if(!function_exists('ampforwp_findInternalUrl')){
   function ampforwp_findInternalUrl($url){
+    global $redux_builder_amp;
+    if(
+      isset( $redux_builder_amp['amp-design-type-selection'] )
+      && 'amp-converter' !== $redux_builder_amp['amp-design-type-selection']
+    ){
+      if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
+        return $url;
+      }
+    }
     if(!ampforwp_isexternal($url) && strpos($url, amp_get_slug())=== False){
       if(strpos($url, "#")!==false){
         $url = explode("#",$url);
