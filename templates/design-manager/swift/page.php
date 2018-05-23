@@ -8,6 +8,11 @@ amp_header(); ?>
 			}?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
+		<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
+			<div class="sf-img">
+				<?php amp_featured_image();?>
+			</div>
+		<?php } ?>
        <div class="pg">
 			<div class="cntn-wrp">
 				<?php amp_content(); ?>
