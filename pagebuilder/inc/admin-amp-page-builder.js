@@ -284,6 +284,27 @@ Vue.component('module-data',{
 		showModulePopUp: function(event){
 			openModulePopup(event,'module');
 		},
+		duplicateModule: function(event){
+			currentModuleId = event.currentTarget.getAttribute('data-module_id');
+			currentcontainerId = event.currentTarget.getAttribute('data-container_id');
+			var modulesid = parseInt(app.mainContent.totalmodules);
+			app.mainContent.rows.forEach(function(rowData, rowKey){
+				if(rowData.id == currentcontainerId){
+					rowData.cell_data.forEach(function(moduleData, moduleKey){
+						if(moduleData.cell_id==currentModuleId){
+							
+							var newDuplicateData = _.clone(moduleData);
+							newDuplicateData.cell_id = modulesid;
+							//console.log(JSON.stringify(newDuplicateData));
+							app.mainContent.rows[rowKey].cell_data.push(newDuplicateData);
+							/*Vue.set( app.mainContent.rows[rowKey].cell_data[moduleKey], app.mainContent.rows[rowKey].cell_data[moduleKey].length, newDuplicateData );*/
+							app.mainContent.totalmodules = modulesid+1;
+						}
+					});
+				}
+			});
+			
+		}
 	}
 });
 

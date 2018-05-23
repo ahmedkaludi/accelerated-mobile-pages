@@ -272,13 +272,14 @@ amppb-row-fields .amppb-column-2:not(:last-child){
     top: 10px;
     left: 15px;
 }
-
+.amppb-setting-right{
+    float:right;
+}
 .amppb-setting-right span{
     display: inline-block;
     right: 0px;
-    position: absolute;
     top: 0px;
-    padding: 12px 7px 9px 15px;
+    padding: 12px 7px 9px 5px;
     cursor: pointer;
     font-size: 15px;
     color: #72777c;

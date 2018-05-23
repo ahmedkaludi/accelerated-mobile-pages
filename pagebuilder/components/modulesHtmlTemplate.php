@@ -30,6 +30,12 @@
 
 		        		<span class="module_label">'.$module['label'].'</span>
 		        		<span class="amppb-setting-right">
+                            <label  @click="duplicateModule($event)" class="link" title="'.$module['label'].'" 
+                                :data-module_id="cell.cell_id"
+                                :data-container_id="cell.container_id"
+                            >
+                                <span class="dashicons dashicons-admin-page"></span>
+                            </label>
 			        		<label  @click="showModulePopUp($event)" class="link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'
                                 :data-module_id="cell.cell_id"
                                 :data-container_id="cell.container_id"
