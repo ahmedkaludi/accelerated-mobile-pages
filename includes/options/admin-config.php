@@ -5562,6 +5562,20 @@ Redux::setSection( $opt_name, array(
                       'title'    => __('Subpages/ChildPages', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => __('Shows a List of Subpages'),                  
                   ),
+             array(
+                      'id'       => 'ampforwp-page-social',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Social Icons', 'accelerated-mobile-pages'),
+                      'tooltip-subtitle' => __('Enable Social Sharing on Pages'),                  
+                  ),
+             array(
+                      'id'       => 'ampforwp-page-sticky-social',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Sticky Social Icons', 'accelerated-mobile-pages'),
+                      'tooltip-subtitle' => __('Enable Social Sticky Icons on Pages'),                  
+                  ),
             )
     ));
 

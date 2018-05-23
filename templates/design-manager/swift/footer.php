@@ -117,8 +117,7 @@
 	</div>
 </footer>
 <?php } ?>
-<?php if(is_single()){ ?>
-<?php if($redux_builder_amp['enable-single-social-icons']){?>
+<?php if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
 	<ul>
 		<?php if($redux_builder_amp['enable-single-facebook-share']){?>
@@ -223,7 +222,7 @@
 		<?php } ?>
 	</ul>
 </div>
-<?php } }
+<?php }
 do_action("ampforwp_advance_footer_options");
 ?>
 <?php amp_footer_core(); ?>

@@ -1,5 +1,5 @@
 <?php global $redux_builder_amp;  
-if ( is_single() ) { 
+if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	$permalink = '';
 	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
 		$permalink = get_the_permalink();
