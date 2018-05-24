@@ -768,6 +768,7 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_before_post_content_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$is_global = '';
 			$post_id = get_the_ID();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -780,7 +781,16 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
-			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && is_singular() ) {
+			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){var_dump($redux_builder_amp['made-amp-ad-3-global']);
+				if($redux_builder_amp['made-amp-ad-3-global'] == 1){
+					$is_global = is_single();
+				}
+				else{
+					$is_global = is_singular();
+				}
+
+			}
+			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && $is_global ) {
 				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
 					$advert_width  = '300';
 					$advert_height = '250';
