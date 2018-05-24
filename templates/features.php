@@ -2924,6 +2924,15 @@ function ampforwp_talking_to_robots() {
 	  		$meta_content = $robots_meta;
 	  	}
   	}
+  	// Meta Robots Tag From Yoast #1563
+  	if ( class_exists('WPSEO_Frontend') ) {
+		$class_instance = '';
+	    $class_instance = WPSEO_Frontend::get_instance();
+	    // robots() will return and print the meta robots tag
+	    $class_instance->robots();
+	    // Empty the above meta content to avoid duplicate meta robot tags
+	    $meta_content = '';
+	}
   $meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
   if ( $meta_content ) {
   	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
@@ -6050,16 +6059,6 @@ if ( ! function_exists('ampforwp_list_subpages') ) {
 			$pages = preg_replace('/href="(.*?)"/', 'href="$1/amp/"', $pages);
 			echo wp_kses($pages, ampforwp_allowed_tags());
 		}
-	}
-}
-// Meta Robots Tag From Yoast #1563
-add_action('amp_post_template_head','ampforwp_yoast_robots_meta');
-function ampforwp_yoast_robots_meta(){
-	if ( class_exists('WPSEO_Frontend') ) {
-		$class_instance = '';
-	    $class_instance = WPSEO_Frontend::get_instance();
-	    // robots() will return and print the meta robots tag
-	    $class_instance->robots();
 	}
 }
 
