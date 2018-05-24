@@ -15,11 +15,6 @@
 <body <?php ampforwp_body_class('amp_home_body design_3_wrapper');?> >
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
-
-<div class="amp-wp-content">
-	<?php do_action('ampforwp_area_above_loop'); ?>
-</div>
-
 <?php do_action( 'ampforwp_after_header', $this );
 
 if ( get_query_var( 'paged' ) ) {
