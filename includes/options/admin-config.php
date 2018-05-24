@@ -1440,13 +1440,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'false'     => 'Disabled',
                     ),
                  array(
+                        'class' => 'child_opt child_opt_arrow',
                         'id'        => 'made-amp-ad-3-global',
                         'type'      => 'select',
                         'title'     => __('Display on', 'accelerated-mobile-pages'),
                         'options'   => array (
                                             '1'    => 'Single',
-                                            '2'    => 'Global'
+                                            '2'    => 'Pages',
+                                            '3'    => 'Custom Post Types',
+                                            '4'    => 'Global'
                                         ),
+                        'multi'     => true,
                         'default'   => '1',
                         'desc'  => __('Display the Ad on only post or on all posts and pages ', 'accelerated-mobile-pages'),
                         'required'  => array('enable-amp-ads-3', '=' , '1')

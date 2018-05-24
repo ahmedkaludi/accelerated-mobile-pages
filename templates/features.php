@@ -769,6 +769,7 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$is_global = '';
+			$display_on = '';
 			$post_id = get_the_ID();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -781,59 +782,66 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
-			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){var_dump($redux_builder_amp['made-amp-ad-3-global']);
-				if($redux_builder_amp['made-amp-ad-3-global'] == 1){
-					$is_global = is_single();
+			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){
+				$is_global = $redux_builder_amp['made-amp-ad-3-global'];$countt = 0;
+				foreach ($is_global as $enable_for) {
+					$display_on = false;
+					if('1' == $enable_for && ( 'post' == get_post_type() )){
+						$display_on = is_single();
+					}if('2' == $enable_for){
+						$display_on = is_page();
+					}if('3' == $enable_for && ( 'post' != get_post_type() )){
+						$display_on = is_single();
+					}if('4' == $enable_for){
+						$display_on = is_singular();
+					}
+					
+					if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && $display_on ) {
+						if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
+							$advert_width  = '300';
+							$advert_height = '250';
+			           	} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 2) {
+				          	$advert_width  = '336';
+							$advert_height = '280';
+						} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 3)  {
+				          	$advert_width  = '728';
+							$advert_height = '90';
+			           	} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 4)  {
+				          	$advert_width  = '300';
+							$advert_height = '600';
+			            } elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 5)  {
+				          	$advert_width  = '320';
+							$advert_height = '100';
+			      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 6)  {
+				          	$advert_width  = '200';
+							$advert_height = '50';
+			      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 7)  {
+				          	$advert_width  = '320';
+							$advert_height = '50';
+			      		}
+			      		if ( $responsive ) {
+			      			$advert_width  = '100vw';
+							$advert_height = '320';
+			      		}
+						$output = '<div class="amp-ad-wrapper amp_ad_3">';
+						$output	.=	'<amp-ad class="amp-ad-3" data-block-on-consent
+									type="adsense" '. $optimize .'
+									width='. $advert_width .' height='. $advert_height . '
+									data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
+									data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
+						if ( $responsive ) {
+							$output .= 'data-auto-format="rspv"
+									   data-full-width>';
+						   	$output .= '<div overflow></div></amp-ad>';
+						}
+						else
+							$output .= '></amp-ad>';
+						$output .= ampforwp_ads_sponsorship();
+						$output	.=   ' </div>';
+						$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
+						echo $output;
+					}
 				}
-				else{
-					$is_global = is_singular();
-				}
-
-			}
-			if ( isset($redux_builder_amp['enable-amp-ads-3']) && true == $redux_builder_amp['enable-amp-ads-3'] && $is_global ) {
-				if($redux_builder_amp['enable-amp-ads-select-3'] == 1)  {
-					$advert_width  = '300';
-					$advert_height = '250';
-	           	} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 2) {
-		          	$advert_width  = '336';
-					$advert_height = '280';
-				} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 3)  {
-		          	$advert_width  = '728';
-					$advert_height = '90';
-	           	} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 4)  {
-		          	$advert_width  = '300';
-					$advert_height = '600';
-	            } elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 5)  {
-		          	$advert_width  = '320';
-					$advert_height = '100';
-	      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 6)  {
-		          	$advert_width  = '200';
-					$advert_height = '50';
-	      		} elseif ($redux_builder_amp['enable-amp-ads-select-3'] == 7)  {
-		          	$advert_width  = '320';
-					$advert_height = '50';
-	      		}
-	      		if ( $responsive ) {
-	      			$advert_width  = '100vw';
-					$advert_height = '320';
-	      		}
-				$output = '<div class="amp-ad-wrapper amp_ad_3">';
-				$output	.=	'<amp-ad class="amp-ad-3" data-block-on-consent
-							type="adsense" '. $optimize .'
-							width='. $advert_width .' height='. $advert_height . '
-							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
-							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
-				if ( $responsive ) {
-					$output .= 'data-auto-format="rspv"
-							   data-full-width>';
-				   	$output .= '<div overflow></div></amp-ad>';
-				}
-				else
-					$output .= '></amp-ad>';
-				$output .= ampforwp_ads_sponsorship();
-				$output	.=   ' </div>';
-				$output = apply_filters('ampforwp_modify_ads',$output,$advert_width,$advert_height, $client_id, $data_slot);
-				echo $output;
 			}
 		}
 
