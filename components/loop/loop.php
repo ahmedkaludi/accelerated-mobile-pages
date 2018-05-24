@@ -349,8 +349,12 @@ function amp_loop_image( $data=array() ) {
 				$height = $thumb_height;
 			}
 			if ( isset($redux_builder_amp['ampforwp-retina-images']) && true == $redux_builder_amp['ampforwp-retina-images'] ) {
-				$width = $width * 2;
-				$height = $height * 2;
+				$resolution = 2;
+				if ( isset($redux_builder_amp['ampforwp-retina-images-res']) && $redux_builder_amp['ampforwp-retina-images-res'] ) {
+					$resolution = $redux_builder_amp['ampforwp-retina-images-res'];
+				}
+				$width = $width * $resolution;
+				$height = $height * $resolution;
 			}
 			$thumb_url_array = ampforwp_aq_resize( $thumb_url, $width, $height, true, false, true ); //resize & crop the image
 			$thumb_url = $thumb_url_array[0];

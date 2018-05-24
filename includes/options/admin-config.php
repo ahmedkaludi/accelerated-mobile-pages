@@ -3291,6 +3291,19 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,                        
                     ),
                     array(
+                        'id'       => 'ampforwp-retina-images-res',
+                        'type'     => 'select',
+                        'options'  => array(
+                            '2'   => '2x',
+                            '3'   => '3x',
+                            '4'   => '4x',
+                        ),
+                        'title'    => __('Retina Images Resolution', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Select the Resolution', 'accelerated-mobile-pages'),
+                        'default'   => '2',   
+                        'required' => array('ampforwp-retina-images', '=', 1)
+                    ),
+                    array(
                         'id'       => 'amp-meta-permissions',
                         'type'     => 'select',
                         'title'    => __('Show Metabox in Post Editor to', 'accelerated-mobile-pages'),
