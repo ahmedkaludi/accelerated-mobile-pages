@@ -4979,6 +4979,9 @@ Redux::setSection( $opt_name, array(
               'type'     => 'switch',
               'default'  =>  '0',
               'title'    => __('Dropcap', 'accelerated-mobile-pages'),
+              'required' => array(
+                          array('amp-design-selector','=',4),
+                        )
            ),    
          //Breadcrumb ON/OFF
           array(
