@@ -2582,23 +2582,6 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 0,
            ),
            array(
-                    'id'    => 'gdpr-type',
-                   'title'  => __('GDPR Designs', 'accelerated-mobile-pages'),
-                   'type'   => 'image_select',
-                   'options'=> array(
-                        '1' => array(
-                                'alt'=>' Header 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-1.png'
-                                ),
-                        '2' => array(
-                                'alt'=>' Header 2 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-2.png'
-                                ),
-                    ),
-                   'default'=> '1',
-                   'required' => array( array('amp-gdpr-compliance-switch', '=' , '1') ),
-            ),
-           array(
                'class'  => 'child_opt child_opt_arrow',
                'id'        =>'amp-gdpr-compliance-headline-text',
                'type'      => 'text',
