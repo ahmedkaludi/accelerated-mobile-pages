@@ -6714,7 +6714,9 @@ function ampforwp_load_minify_scripts( $src ){
 				echo '<script type=\'text/javascript\' async src=\''.$value.'\'></script>'. "\n";
 			} elseif ($key === 'amp-mustache') {
 				echo '<script type=\'text/javascript\' async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>';
-			} else {
+			} elseif ($key === 'amp-geo') {
+				echo '<script type=\'text/javascript\' src="https://cdn.ampproject.org/v0/amp-geo-0.1.js" async custom-element="amp-geo" ></script>'. "\n";
+			}  else {
 				echo '<script type=\'text/javascript\' src=\''.$value.'\' async custom-element="'.$key.'"></script>'. "\n";
 			}
 	    }
