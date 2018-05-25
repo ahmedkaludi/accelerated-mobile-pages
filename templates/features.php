@@ -6739,7 +6739,11 @@ function ampforwp_load_minify_scripts( $src ){
 	    $scripts = $wp_scripts->groups;
 	    if (  $scripts ) {
 		    foreach ( $scripts as $handle => $value ) {
-		      $total_array[$handle] = $wp_scripts->registered[ $handle ]->src ;
+		    	if($handle=='amp-geo'){
+		    		$total_array['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
+		    	}else{
+		      		$total_array[$handle] = $wp_scripts->registered[ $handle ]->src ;
+		    	}
 		    }
 	    }
 
@@ -6748,9 +6752,9 @@ function ampforwp_load_minify_scripts( $src ){
 				echo '<script type=\'text/javascript\' async src=\''.$value.'\'></script>'. "\n";
 			} elseif ($key === 'amp-mustache') {
 				echo '<script type=\'text/javascript\' async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>';
-			} elseif ($key === 'amp-geo') {
+			} /*elseif ($key === 'amp-geo') {
 				echo '<script type=\'text/javascript\' src="https://cdn.ampproject.org/v0/amp-geo-0.1.js" async custom-element="amp-geo" ></script>'. "\n";
-			}  else {
+			} */ else {
 				echo '<script type=\'text/javascript\' src=\''.$value.'\' async custom-element="'.$key.'"></script>'. "\n";
 			}
 	    }
