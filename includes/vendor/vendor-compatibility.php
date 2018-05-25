@@ -337,8 +337,8 @@ if(!function_exists('ampforwp_findInternalUrl')){
         return $url;
       }
     }
-    //if(!ampforwp_isexternal($url) && strpos($url, amp_get_slug())=== False){
-    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===False){
+
+    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
       if(strpos($url, "#")!==false){
         $url = explode("#",$url);
         $url = trailingslashit($url[0]).user_trailingslashit(amp_get_slug()).'#'.$url[1];
@@ -352,10 +352,9 @@ if(!function_exists('ampforwp_findInternalUrl')){
 }// function_exists ampforwp_findInternalUrl close
 
 function ampforwp_is_amp_inURL($url){
-  //strpos($url, amp_get_slug())=== False
   $urlArray = explode("/", $url);
   if(!in_array(amp_get_slug(), $urlArray)){
-    return False;
+    return false;
   }
-  return True;
-}//Function Closed
+  return true;
+}
