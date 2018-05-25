@@ -2581,6 +2581,29 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
            ),
+
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'audience-for-amp-gdpr-compliance',
+               'type'      => 'select',
+               'title'     => __('GDPR Visibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the option to which you want to display GDPR. ', 'accelerated-mobile-pages'),
+               'options'      => array('1' => 'Globally',
+                                        '2' => 'For European Union',
+                                        '3' => 'Handpicked EU Countries'
+                                        ),
+               'default'    => 2,            
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+            array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
+               'type'      => 'checkbox',
+               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
+               'default'    => 0,            
+               'options'      => $eu_iso_codes,
+               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
+           ),
            array(
                'class'  => 'child_opt child_opt_arrow',
                'id'        =>'amp-gdpr-compliance-headline-text',
@@ -2652,30 +2675,6 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-           array(
-               'class'  => 'child_opt',
-               'id'        =>'audience-for-amp-gdpr-compliance',
-               'type'      => 'select',
-               'title'     => __('Serve GDPR For', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR. ', 'accelerated-mobile-pages'),
-               'options'      => array('1' => 'Global',
-                                        '2' => 'Only For EU',
-                                        '3' => 'Handpicked EU Countries Only'
-                                        ),
-               'default'    => 2,            
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
-           ),
-            array(
-               'class'  => 'child_opt',
-               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
-               'type'      => 'checkbox',
-               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
-               'default'    => 0,            
-               'options'      => $eu_iso_codes,
-               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
-           ),
-
- 
        ),
 
    ) );
