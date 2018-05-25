@@ -302,7 +302,13 @@ Vue.component('module-data',{
 					});
 				}
 			});
-			app.mainContent.rows[updateRowKey].cell_data.splice(updateModuleKey, 0,newDuplicateData);
+			if(updateModuleKey>0){
+				app.mainContent.rows[updateRowKey].cell_data.splice(updateModuleKey, 0,newDuplicateData);
+			}else{
+				app.mainContent.rows[updateRowKey].cell_data.push(newDuplicateData);
+				
+			}
+			app.re_process_rawdata();
 		}//duplicateModule closed
 	}
 });
@@ -796,6 +802,36 @@ var app = new Vue({
 				this.mainContent.rows.splice(key, 1);
 				this.call_default_functions();
 			}
+		},
+		duplicateRow: function(){
+			var currentRowId = event.currentTarget.getAttribute('data-rowid');
+			var duplicateRowData = {}; var rowKeyValue = '';
+			app.mainContent.rows.forEach(function(rowData, rowKey){
+				if(rowData.id == currentRowId){
+					var rowsId = parseInt(app.mainContent.totalrows);
+					duplicateRowData = JSON.parse(JSON.stringify(rowData));
+					duplicateRowData.id = rowsId;
+					rowKeyValue = rowKey;
+					app.mainContent.totalrows = rowsId+1;
+				}
+			});
+			var sampleSelldata = duplicateRowData.cell_data;//_.clone(duplicateRowData.cell_data);
+			sampleSelldata.forEach(function(moduleData, moduleKey){
+				var modulesid = parseInt(app.mainContent.totalmodules);
+				duplicateRowData.cell_data[moduleKey].cell_id = modulesid;
+				app.mainContent.totalmodules = modulesid+1;
+			});
+			duplicateRowData.cell_data = sampleSelldata;
+
+
+			console.log(duplicateRowData);
+			if(rowKeyValue>0){
+				app.mainContent.rows.splice(rowKeyValue, 0,duplicateRowData);
+			}else{
+				app.mainContent.rows.push(duplicateRowData);	
+			}
+			app.re_process_rawdata();
+			//
 		},
   		//Rows drop details
 		handleDrop: function(columnData,Events) {

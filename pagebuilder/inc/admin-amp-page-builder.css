@@ -162,7 +162,7 @@ div#amppb-module-actions-container:before {
     background: #f44336;
     color: #fff;
 }
-.tools-icon{
+.tools-icon, .amppb-duplicate{
     /*display: none;*/
     padding: 3px 0px 1px 1px;
     float: right;
@@ -181,7 +181,7 @@ div#amppb-module-actions-container:before {
     color: #546e7a;
     transition: 0s
 }
-.amppb-row:hover .tools-icon:hover { 
+.amppb-row:hover .tools-icon:hover, .amppb-duplicate:hover { 
     transition: 0s;
     color: #fff;
     background: #546e7a
