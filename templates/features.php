@@ -783,7 +783,7 @@ function ampforwp_new_dir( $dir ) {
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
 			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){
-				$is_global = $redux_builder_amp['made-amp-ad-3-global'];$countt = 0;
+				$is_global = (array) $redux_builder_amp['made-amp-ad-3-global'];
 				foreach ($is_global as $enable_for) {
 					$display_on = false;
 					if('1' == $enable_for && ( 'post' == get_post_type() )){
