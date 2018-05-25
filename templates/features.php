@@ -5694,7 +5694,7 @@ function ampforwp_is_blog(){
 // Polylang frontpage
 function ampforwp_polylang_front_page() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if( is_plugin_active( 'polylang/polylang.php' )){
+	if( is_plugin_active( 'polylang/polylang.php' )  || is_plugin_active( 'polylang-pro/polylang.php' ) ){
 		global $polylang;
 		$page_id = $polylang->curlang->page_on_front;
 		$frontpage_id = get_option('page_on_front');
