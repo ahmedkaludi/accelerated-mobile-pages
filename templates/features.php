@@ -6550,9 +6550,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 			     "ISOCountryGroups": {
 					      "eu": [ <?php $eu_countries = array_filter($redux_builder_amp['amp-gdpr-compliance-privacy-geo-location']);
 					if(NULL == $eu_countries || 0 == count($eu_countries)){
-						foreach ($all_eu_countries as $key => $value) {
-							echo '"'.$key.'",';	
-						}?>],<?php
+						echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,<?php
 					}
 					else{
 					      	echo '"'.implode('","', array_keys($eu_countries)).'"';
