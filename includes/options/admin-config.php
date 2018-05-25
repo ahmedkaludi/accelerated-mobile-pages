@@ -849,6 +849,7 @@ if(!is_plugin_active( 'amp/amp.php' )){
 }
 
 $eu_iso_codes = array(
+                        'in' => 'India',
                         'al' => 'Albania',
                         'ad' => 'Andorra',
                         'at' => 'Austria',
