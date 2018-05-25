@@ -2939,7 +2939,7 @@ $forms_support[] = array(
                          'id'       => 'ampforwp-disqus-host-file',
                          'type'     => 'text',
                          'title'    => __('Disqus Host File', 'accelerated-mobile-pages'),
-                         'desc' => '<a href="https://ampforwp.com/host-disqus-comments/"> Click here to know, How to Setup Disqus Host file on your servers </a>',
+                         'desc' => '<a href="https://ampforwp.com/host-disqus-comments/" target="_blank"> Click here to know, How to Setup Disqus Host file on your servers </a>',
                          'tooltip-subtitle' => __('Enter the URL of host file', 'accelerated-mobile-pages'),
                          'placeholder' => 'https://comments.example.com/disqus.php',
                          'required' => array('ampforwp-disqus-host-position', '=' , '0'),
