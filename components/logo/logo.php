@@ -26,7 +26,7 @@ function ampforwp_framework_get_logo(){
                          }
                 }
           }?>
-
+        <?php $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
           $alt = ampforwp_default_logo('alt')  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
