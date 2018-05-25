@@ -6632,3 +6632,36 @@ if ( ! function_exists('ampforwp_generator_metadata') ) {
 		printf( '<meta name="generator" content="%s" />', esc_attr( 'AMPforWP') );
 	}
 }
+
+// Minify Js with any performance plugin was breaking the JS in AMP
+add_filter('print_scripts_array', 'ampforwp_load_minify_scripts', 10);
+function ampforwp_load_minify_scripts( $src ){
+  	global $wp_scripts;
+
+	if ( is_admin()) {
+	    return $src; 
+	}
+	
+	if ( is_amp_endpoint() ) {
+
+	    $total_array = array(); 
+	    $scripts = $wp_scripts->groups;
+	    if (  $scripts ) {
+		    foreach ( $scripts as $handle => $value ) {
+		      $total_array[$handle] = $wp_scripts->registered[ $handle ]->src ;
+		    }
+	    }
+
+	    foreach ( $total_array as $key => $value) {
+			if ( $key === 'amp-runtime' ) {
+				echo '<script type=\'text/javascript\' async src=\''.$value.'\'></script>'. "\n";
+			} elseif ($key === 'amp-mustache') {
+				echo '<script type=\'text/javascript\' async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>';
+			} else {
+				echo '<script type=\'text/javascript\' src=\''.$value.'\' async custom-element="'.$key.'"></script>'. "\n";
+			}
+	    }
+	    $src = array();
+	}
+  	return $src;
+}
