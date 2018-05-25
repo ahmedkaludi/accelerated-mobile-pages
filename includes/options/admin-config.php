@@ -2655,7 +2655,7 @@ function ampforwp_add_sd_fields($fields){
                'class'  => 'child_opt',
                'id'        =>'amp-gdpr-compliance-privacy-geo-location',
                'type'      => 'checkbox',
-               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR.', 'accelerated-mobile-pages'),
+               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
                'default'    => 0,            
                'options'      => $eu_iso_codes,
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
