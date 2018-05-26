@@ -6620,7 +6620,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 		                <p><?php echo esc_attr($user_data); ?></p>
 	                </div>
 	                <div class="gdpr_fmi">
-	                  <h2><?php echo esc_attr($more_info); ?></h2>
+	                  <span><?php echo esc_attr($more_info); ?></span>
 	                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
 	                </div>
 	            </div>
@@ -6653,15 +6653,7 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 
 	    	#ampforwpConsent{visibility: hidden}
 	    	.amp-geo-group-eu #ampforwpConsent{visibility: visible} <?php 
-	    }
-	    if ( '1' === $redux_builder_amp['amp-design-selector'] ) { ?>
-	    	.design_1_wrapper #post-consent-ui a{display:none}  <?php
-	    }
-	    if ( '3' === $redux_builder_amp['amp-design-selector'] ) {?>
-			amp-consent{background:none}
-			#footer amp-consent a{font-size: 13px;color: #999;} <?php 
-		}
-		// GDPR popup Design 
+	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999}
 			.gdpr_w{padding: 2rem;background: #fff;max-width: 700px;width: 95%;position: relative;margin: 5% auto;text-align: center;}
@@ -6675,28 +6667,27 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			.gdpr_yn .gdpr_n{background: #fff;color: #222;border: 1px solid #999;}
 			amp-consent{position: relative;margin-left: 10px;top: 2px;width: auto;background: transparent;}
 			.gdpr_fmi{
-			  display:inline-block;
 			  width:100%;
 			  font-size: 15px;
-			    line-height: 1.45;
-			    margin: 0;
+			  line-height: 1.45;
+			  margin: 0;
 			}
 			.gdpr_fmi h2 {
 			  float:left;
 			  width:50%;
 			  text-align:right;
 			}
-			.gdpr_fmi a{
-			  float:left;
-			  width:48%;
-			  margin-left:10px;
-			  text-align:left;
+			#footer .gdpr_fmi span, .gdpr_fmi span {
+			    display: inline-block;
+			}
+			#footer .gdpr_fmi a{
+				color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
 			} <?php 
 		} // GDPR Type 1 End
 		// GDPR Notice bar
 		if($redux_builder_amp['gdpr-type'] == '2'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0;}
-			.gdpr_w{padding:20px 40px;background: #383B75;width: 100%;position: relative;margin: 0% auto;display: inline-flex;}
+			.gdpr_w{padding:20px 40px;background: #383B75;width: 95%;position: relative;margin: 0% auto;display: inline-flex;}
 			.gdpr_t h3, .gdpr_fmi{    
 			  font-size: 16px;
 			  color:#fff;
@@ -6755,6 +6746,21 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			  text-decoration:underline;
 			} <?php 
 		} // GDPR Type 2 End
+	    }
+	    if ( '1' === $redux_builder_amp['amp-design-selector'] ) { ?>
+	    	.design_1_wrapper #post-consent-ui a{display:none}  <?php
+	    }
+	    if ( '3' === $redux_builder_amp['amp-design-selector'] ) {?>
+			amp-consent{background:none}<?php 
+		}
+		if ( '4' === $redux_builder_amp['amp-design-selector'] ) {?>
+			.gdpr_fmi a:before{
+				display:none;
+			}
+			.gdpr_w{width:100%;}
+			<?php 
+		}
+		
 	}
 }
 
