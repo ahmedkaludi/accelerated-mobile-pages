@@ -6650,9 +6650,8 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 	function ampforwp_gdpr_css(){ 
 	  	global $redux_builder_amp;
 	    if($redux_builder_amp['audience-for-amp-gdpr-compliance'] == '2' || $redux_builder_amp['audience-for-amp-gdpr-compliance'] == '3'){ ?> 
-
 	    	#ampforwpConsent{visibility: hidden}
-	    	.amp-geo-group-eu #ampforwpConsent{visibility: visible} <?php 
+	    	.amp-geo-group-eu #ampforwpConsent{visibility: visible} <?php }
 	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999}
@@ -6741,7 +6740,7 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			  text-decoration:underline;
 			} <?php 
 		} // GDPR Type 2 End
-	    }
+	    
 	    if ( '1' === $redux_builder_amp['amp-design-selector'] ) { ?>
 	    	  <?php
 	    }
