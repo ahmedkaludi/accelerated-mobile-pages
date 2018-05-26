@@ -6614,27 +6614,29 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
           <div class="gdpr" id="gdpr_c">
             <div class="gdpr_w">
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
-              <div class="gdpr-l">
+                <div class="gdpr-l">
 	              	<div class="gdpr_t">
 		                <h3><?php echo esc_attr($headline); ?></h3>
 		                <p><?php echo esc_attr($user_data); ?></p>
 	                </div>
 	                <div class="gdpr_fmi">
-	                  <h2><?php echo esc_attr($more_info); ?></h2>
+	                  <span><?php echo esc_attr($more_info); ?></span>
 	                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
 	                </div>
 	            </div>
-              <div id="gdpr_yn" class="gdpr_yn">
-              	<div class="gdpr-btns">
-	                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
-	                </form>
-	                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
-	                 </form>
-	             </div>
-              </div>
-            </div>
+                <div id="gdpr_yn" class="gdpr_yn">
+	              	<div class="gdpr-btns">
+		                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+		                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
+		                </form>
+		                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+		                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
+		                 </form>
+		            </div>
+                </div>
+	            
+          	</div>
+           </div>
           </div>
           <div id="post-consent-ui">
             <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></a> 
@@ -6653,15 +6655,7 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 
 	    	#ampforwpConsent{visibility: hidden}
 	    	.amp-geo-group-eu #ampforwpConsent{visibility: visible} <?php 
-	    }
-	    if ( '1' === $redux_builder_amp['amp-design-selector'] ) { ?>
-	    	.design_1_wrapper #post-consent-ui a{display:none}  <?php
-	    }
-	    if ( '3' === $redux_builder_amp['amp-design-selector'] ) {?>
-			amp-consent{background:none}
-			#footer amp-consent a{font-size: 13px;color: #999;} <?php 
-		}
-		// GDPR popup Design 
+	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999}
 			.gdpr_w{padding: 2rem;background: #fff;max-width: 700px;width: 95%;position: relative;margin: 5% auto;text-align: center;}
@@ -6675,28 +6669,23 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			.gdpr_yn .gdpr_n{background: #fff;color: #222;border: 1px solid #999;}
 			amp-consent{position: relative;margin-left: 10px;top: 2px;width: auto;background: transparent;}
 			.gdpr_fmi{
-			  display:inline-block;
 			  width:100%;
-			  font-size: 15px;
-			    line-height: 1.45;
-			    margin: 0;
+			  font-size: 16px;
+			  line-height: 1.45;
+			  margin: 0;
 			}
-			.gdpr_fmi h2 {
-			  float:left;
-			  width:50%;
-			  text-align:right;
+			#footer .gdpr_fmi span, .gdpr_fmi span {
+			    display: inline-block;
 			}
-			.gdpr_fmi a{
-			  float:left;
-			  width:48%;
-			  margin-left:10px;
-			  text-align:left;
-			} <?php 
+			#footer .gdpr_fmi a{
+				color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+			}
+			<?php 
 		} // GDPR Type 1 End
 		// GDPR Notice bar
 		if($redux_builder_amp['gdpr-type'] == '2'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0;}
-			.gdpr_w{padding:20px 40px;background: #383B75;width: 100%;position: relative;margin: 0% auto;display: inline-flex;}
+			.gdpr_w{padding:20px 40px;background: #383B75;width: 95%;position: relative;margin: 0% auto;display: inline-flex;}
 			.gdpr_t h3, .gdpr_fmi{    
 			  font-size: 16px;
 			  color:#fff;
@@ -6722,7 +6711,7 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			.gdpr_t, .gdpr_fmi{
 			  display:inline-block;
 			}
-			.gdpr_t p{display:none;}
+			.gdpr_t p, .gdpr_fmi p{display:none;}
 			.gdpr_x {position: absolute;right: 18px;top: 6px; cursor:pointer;color: #fff;}
 			.gdpr_yn{
 			  text-align: right;
@@ -6755,6 +6744,23 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			  text-decoration:underline;
 			} <?php 
 		} // GDPR Type 2 End
+	    }
+	    if ( '1' === $redux_builder_amp['amp-design-selector'] ) { ?>
+	    	.design_1_wrapper #post-consent-ui a{display:none}  <?php
+	    }
+	    if ( '3' === $redux_builder_amp['amp-design-selector'] ) {?>
+			amp-consent{background:none}
+			<?php 
+		}
+		if ( '4' === $redux_builder_amp['amp-design-selector'] ) {?>
+			.gdpr_fmi a:before{
+				display:none;
+			}
+			.gdpr_w{width:100%;}
+			<?php 
+		}
+		
+		
 	}
 }
 
