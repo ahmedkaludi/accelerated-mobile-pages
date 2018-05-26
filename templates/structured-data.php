@@ -44,7 +44,10 @@ function ampforwp_structured_data_type( $metadata ) {
 			return;
 		}
 		$metadata['@type'] = $set_sd_page;
-	} 
+	}
+	if ( ampforwp_is_blog() ) {
+		$metadata['@type'] = 'Blog';
+	}
 
 	return $metadata;
 }
