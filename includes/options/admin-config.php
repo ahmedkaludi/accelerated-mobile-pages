@@ -3146,7 +3146,6 @@ Redux::setSection( $opt_name, array(
                             'title'     => __('Select Tags to Hide AMP'),
                             'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                             'default'   => 0, 
-                            'taxonomy' => $tag_id,
                             'data'      => 'tags',
                         ),
                     )   
