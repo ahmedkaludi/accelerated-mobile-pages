@@ -331,3 +331,18 @@ function ampforwp_remove_relevanssi_search_takeover(){
 	remove_filter( 'posts_request', 'relevanssi_prevent_default_request', 10, 2 );
 
 }
+
+add_filter("redux/options/redux_builder_amp/data/category_list_hierarchy", 'ampforwp_redux_category_list_hierarchy',10,1);
+function ampforwp_redux_category_list_hierarchy($data){
+	$cats = get_categories(  );
+	if ( ! empty ( $cats ) ) {
+        foreach ( $cats as $cat ) {
+        	if($cat->category_parent!=0){
+        		$data[ $cat->category_parent ]['child'][$cat->term_id] = $cat->name;
+        	}else{
+            	$data[ $cat->term_id ]['name'] = $cat->name;
+        	}
+        }//foreach
+    } // If
+	return $data;
+}

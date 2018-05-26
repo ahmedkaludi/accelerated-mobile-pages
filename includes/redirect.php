@@ -137,6 +137,19 @@ function ampforwp_page_template_redirect() {
 
     // Return if some categories are selected as Hide #999
     if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
+      if(is_tag() &&  $redux_builder_amp['ampforwp-archive-support']) {
+        $all_tags = get_the_tags();
+        $tagsOnPost = array();
+        foreach ($all_tags as $tagskey => $tagsvalue) {
+          $tagsOnPost[] = $tagsvalue->term_id;
+        }
+        $get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+        
+        if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+          return;
+        }
+      }//tags check area closed
+      
       $selected_cats = array();
       $categories = get_the_category();
       $category_id = $categories[0]->cat_ID;

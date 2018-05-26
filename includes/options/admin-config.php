@@ -3131,15 +3131,24 @@ Redux::setSection( $opt_name, array(
                            ),
                            'default'  => 'show',
                            'required'=>array('amp-on-off-for-all-pages','=','1'),
-                        ),       
+                        ),
                         array(
                         'id'        =>'hide-amp-categories',
-                        'type'      => 'checkbox',
+                        'type'      => 'checkbox_hierarchy',
                         'title'     => __('Select Categories to Hide AMP'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'default'   => 0, 
-                        'data'      => 'categories',
+                        'data'      => 'category_list_hierarchy',
                         ), 
+                        array(
+                            'id'        =>'hide-amp-tags-bulk-option',
+                            'type'      => 'checkbox',
+                            'title'     => __('Select Tags to Hide AMP'),
+                            'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
+                            'default'   => 0, 
+                            'taxonomy' => $tag_id,
+                            'data'      => 'tags',
+                        ),
                     )   
                  )
     );

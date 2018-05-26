@@ -988,6 +988,7 @@
                             }
                         } else if ( $type == "tags" || $type == "tag" ) { // NOT WORKING!
                             $tags = get_tags( $args );
+                            
                             if ( ! empty ( $tags ) ) {
                                 foreach ( $tags as $tag ) {
                                     $data[ $tag->term_id ] = $tag->name;
