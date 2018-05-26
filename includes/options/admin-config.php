@@ -2635,7 +2635,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('Message to Visitor', 'accelerated-mobile-pages'),
                'subtitle'     => __('', 'accelerated-mobile-pages'),
                'default'   => '',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
            
            array(
@@ -2669,7 +2669,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('For More information', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
                'default'   => 'For More information about Privacy',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
           
            array(
