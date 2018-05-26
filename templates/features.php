@@ -6676,7 +6676,10 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 			}
 			#footer .gdpr_fmi a{
 				color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
-			} <?php 
+			} 
+			@media(max-width:768px){
+				.gdpr_w{width: 85%;margin:0 auto;}
+			}<?php 
 		} // GDPR Type 1 End
 		// GDPR Notice bar
 		if($redux_builder_amp['gdpr-type'] == '2'){?>
