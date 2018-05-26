@@ -6849,3 +6849,14 @@ function ampforwp_load_minify_scripts( $src ){
 	}
   	return $src;
 }
+
+// Re-save permalink once the post value changed in Redading Settings #2190
+
+add_action( 'update_option', 'ampforwp_resave_permalink', 10, 3 );
+function ampforwp_resave_permalink( $option, $old_value, $value ){
+ 	if('posts_per_page' === $option){
+ 		if($old_value != $value){
+ 			delete_transient( 'ampforwp_current_version_check' );
+ 		}
+ 	}
+}
