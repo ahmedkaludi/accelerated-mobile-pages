@@ -6499,123 +6499,155 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 }
 // AMP GDPR compliancy Scripts
 if ( ! function_exists('ampforwp_gdpr_data') ) {
-	function ampforwp_gdpr_data( $data ) {
-
-		if ( empty( $data['amp_component_scripts']['amp-consent'] ) ) {
-			$data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
-		}
-		if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
-			$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
-		}
-		if ( empty( $data['amp_component_scripts']['amp-geo'] ) ) {
-			$data['amp_component_scripts']['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
-		}
-		if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-			$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-		}
-
-		return $data;
-	}
+  function ampforwp_gdpr_data( $data ) {
+    global $redux_builder_amp;
+    if ( empty( $data['amp_component_scripts']['amp-consent'] ) ) {
+      $data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
+    }
+    if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
+      $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+    }
+    if(isset( $redux_builder_amp['audience-for-amp-gdpr-compliance'] ) && ($redux_builder_amp['audience-for-amp-gdpr-compliance'] == '2' || $redux_builder_amp['audience-for-amp-gdpr-compliance'] == '3')){
+      if ( empty( $data['amp_component_scripts']['amp-geo'] ) ) {
+        $data['amp_component_scripts']['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
+      }
+    }
+    if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+      $data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+    }
+    return $data;
+  }
 }
 // AMP GDPR compliancy amp-consent 
 if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
-	function ampforwp_gdpr_amp_consent() {
-		global $redux_builder_amp;
-		$headline 	= $accept = $reject = $settings = $user_data = $form_url = '';
-		$headline 	= $redux_builder_amp['amp-gdpr-compliance-headline-text'];
-		$accept 	= $redux_builder_amp['amp-gdpr-compliance-accept-text'];
-		$reject 	= $redux_builder_amp['amp-gdpr-compliance-reject-text'];
-		$settings 	= $redux_builder_amp['amp-gdpr-compliance-settings-text'];
-		$user_data 	= $redux_builder_amp['amp-gdpr-compliance-textarea'];
-		$form_url 	= admin_url('admin-ajax.php?action=amp_consent_submission');
-		$form_url 	= preg_replace('#^https?:#', '', $form_url);
-		$more_info 	= $redux_builder_amp['amp-gdpr-compliance-for-more-privacy-info'];
-		$privacy_page = '';
-		$privacy_button_text = '';
-		if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){
-		$privacy_page = get_permalink($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']);}
+  function ampforwp_gdpr_amp_consent() {
+    global $redux_builder_amp;
+    $headline   = $accept = $reject = $settings = $user_data = $form_url = '';
+    $headline   = $redux_builder_amp['amp-gdpr-compliance-headline-text'];
+    $accept   = $redux_builder_amp['amp-gdpr-compliance-accept-text'];
+    $reject   = $redux_builder_amp['amp-gdpr-compliance-reject-text'];
+    $settings   = $redux_builder_amp['amp-gdpr-compliance-settings-text'];
+    $user_data  = $redux_builder_amp['amp-gdpr-compliance-textarea'];
+    $form_url   = admin_url('admin-ajax.php?action=amp_consent_submission');
+    $form_url   = preg_replace('#^https?:#', '', $form_url);
+    $more_info  = $redux_builder_amp['amp-gdpr-compliance-for-more-privacy-info'];
+    $privacy_page = '';
+    $privacy_button_text = '';
+    if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){
+    $privacy_page = get_permalink($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']);}
 
-		if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
-		$privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
-		}
+    if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
+    $privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
+    }
 
-		$all_eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
-		 ?>
-		 
-		 <amp-geo layout="nodisplay">
-		  <script type="application/json">
-			  {
-			    "AmpBind": true,
-			     "ISOCountryGroups": {
-					      "eu": [ <?php $eu_countries = array_filter($redux_builder_amp['amp-gdpr-compliance-privacy-geo-location']);
-					if(NULL == $eu_countries || 0 == count($eu_countries)){
-						echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,<?php
-					}
-					else{
-					      	echo '"'.implode('","', array_keys($eu_countries)).'"';
-					      		?> ] ,<?php } ?>
-					      "noneu": [ "unknown" ]
-					    }
-			  }
-		  </script>
-		</amp-geo>
+    $all_eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
+    if(isset($redux_builder_amp['audience-for-amp-gdpr-compliance']) && $redux_builder_amp['audience-for-amp-gdpr-compliance']){
+      ///////////////////////////
+      // Start For Only EU Countries //
+      ///////////////////////////
+      if($redux_builder_amp['audience-for-amp-gdpr-compliance'] === '2'){?>
+        <amp-geo layout="nodisplay">
+          <script type="application/json">
+            {
+              "AmpBind": true,
+               "ISOCountryGroups": {
+                    "eu": [  <?php echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,
+                    "noneu": [ "unknown" ]
+                  }
+            }
+          </script>
+        </amp-geo>
 
-		<amp-state id="ampGeo">
-		  <script type="application/json">{
-		    "ISOCountry":[ <?php echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,
-		     "eu": true
-		   }
-		   </script>
-		</amp-state>
+      <?php 
+        ///////////////////////////////
+        // End For Only EU Countries //
+        ///////////////////////////////
+      }
 
-		<amp-consent id="ampforwpConsent" layout="nodisplay">
-	        <script type="application/json">{
-	          "consents": {
-	            "consent1": {
-	              "checkConsentHref": "<?php echo admin_url('admin-ajax.php?action=ampforwp_check_consent_href_process');?>",
-	              "promptUI": "gdpr_c"
-	            }
-	          },
-	          "postPromptUI": "post-consent-ui"
-	        }</script>
-	        <div class="gdpr" id="gdpr_c">
-	          <div class="gdpr_w">
-	            <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
-	            <div class="gdpr-l">
-		            <div class="gdpr_t">
-	                    <h3><?php echo esc_attr($headline); ?></h3>
-	                    <p><?php echo esc_attr($user_data); ?></p>
-	                </div>
-	                <div class="gdpr_fmi">
-	            	<h2><?php echo esc_attr($more_info); ?></h2>
-	            	<a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a>	
-	                </div>
-	            </div>
-	            <div id="gdpr_yn" class="gdpr_yn">
-	              <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
-	          		</form>
-	              <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-	              	<button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
+      /////////////////////////////
+      // Start For Custom EU Countries //
+      /////////////////////////////
+      if($redux_builder_amp['audience-for-amp-gdpr-compliance'] === '3'){
+      ?> 
+         <amp-geo layout="nodisplay">
+          <script type="application/json">
+            {
+              "AmpBind": true,
+               "ISOCountryGroups": {
+                    "eu": [ <?php $eu_countries = array_filter($redux_builder_amp['amp-gdpr-compliance-privacy-geo-location']);
+              if(NULL == $eu_countries || 0 == count($eu_countries)){
+                echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,<?php
+              }
+              else{
+                      echo '"'.implode('","', array_keys($eu_countries)).'"';
+                        ?> ] ,<?php } ?>
+                    "noneu": [ "unknown" ]
+                  }
+            }
+          </script>
+        </amp-geo>
+
+        <amp-state id="ampGeo">
+          <script type="application/json">{
+            "ISOCountry":[ <?php echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,
+             "eu": true
+           }
+           </script>
+        </amp-state>
+      <?php }
+        /////////////////////////////
+      // END Custom EU Countries //
+      /////////////////////////////
+       ?> 
+
+    <amp-consent id="ampforwpConsent" layout="nodisplay">
+          <script type="application/json">{
+            "consents": {
+              "consent1": {
+                "checkConsentHref": "<?php echo admin_url('admin-ajax.php?action=ampforwp_check_consent_href_process');?>",
+                "promptUI": "gdpr_c"
+              }
+            },
+            "postPromptUI": "post-consent-ui"
+          }</script>
+          <div class="gdpr" id="gdpr_c">
+            <div class="gdpr_w">
+              <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
+              <div class="gdpr_t">
+                    <h3><?php echo esc_attr($headline); ?></h3>
+                    <p><?php echo esc_attr($user_data); ?></p>
+                    </div>
+                    <div class="gdpr_fmi">
+                  <h2><?php echo esc_attr($more_info); ?></h2>
+                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
+                </div>
+              <div id="gdpr_yn" class="gdpr_yn">
+                <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
+                </form>
+                <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
                   </form>
-	            </div>
-	          </div>
-	        </div>
-	        <div id="post-consent-ui">
-	          <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></a> 
-	        </div>
-	  	</amp-consent>
+              </div>
+            </div>
+          </div>
+          <div id="post-consent-ui">
+            <a href="#" on="tap:ampforwpConsent.prompt()" class="btn"><?php echo esc_attr($settings); ?></a> 
+          </div>
+      </amp-consent>
 
-	<?php }
+  <?php }
+  }
 }
 
 // AMP GDPR compliancy Styling
 if ( ! function_exists('ampforwp_gdpr_css') ) {
-	function ampforwp_gdpr_css(){ ?> 
-#ampforwpConsent{visibility: hidden}
-.amp-geo-group-eu #ampforwpConsent{visibility: visible}		
-<?php global $redux_builder_amp;
+  function ampforwp_gdpr_css(){ global $redux_builder_amp;
+    if($redux_builder_amp['audience-for-amp-gdpr-compliance'] == '2' || $redux_builder_amp['audience-for-amp-gdpr-compliance'] == '3'){
+    ?> #ampforwpConsent{visibility: hidden}
+.amp-geo-group-eu #ampforwpConsent{visibility: visible}<?php } ?>	
+<?php 
  if ( '1' === $redux_builder_amp['amp-design-selector'] ) {
  ?>
 .design_1_wrapper #post-consent-ui a{display:none} 
@@ -6803,7 +6835,11 @@ function ampforwp_load_minify_scripts( $src ){
 	    $scripts = $wp_scripts->groups;
 	    if (  $scripts ) {
 		    foreach ( $scripts as $handle => $value ) {
-		      $total_array[$handle] = $wp_scripts->registered[ $handle ]->src ;
+		      if($handle=='amp-geo'){
+	            	$total_array['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
+	          	}else{
+	             	 $total_array[$handle] = $wp_scripts->registered[ $handle ]->src ;
+          		}
 		    }
 	    }
 
@@ -6812,9 +6848,9 @@ function ampforwp_load_minify_scripts( $src ){
 				echo '<script type=\'text/javascript\' async src=\''.$value.'\'></script>'. "\n";
 			} elseif ($key === 'amp-mustache') {
 				echo '<script type=\'text/javascript\' async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>';
-			} elseif ($key === 'amp-geo') {
+			} /*elseif ($key === 'amp-geo') {
 				echo '<script type=\'text/javascript\' src="https://cdn.ampproject.org/v0/amp-geo-0.1.js" async custom-element="amp-geo" ></script>'. "\n";
-			}  else {
+			} */ else {
 				echo '<script type=\'text/javascript\' src=\''.$value.'\' async custom-element="'.$key.'"></script>'. "\n";
 			}
 	    }
