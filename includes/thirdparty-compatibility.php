@@ -321,3 +321,13 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 		return $layoutTemplate;
 
 }
+
+// liberating Search from Relevanssi's Search Take Over
+
+add_action('amp_init', 'ampforwp_remove_relevanssi_search_takeover');
+function ampforwp_remove_relevanssi_search_takeover(){
+	global $redux_builder_amp;
+	if( function_exists(start_non_amp_to_amp_conversion()) && start_non_amp_to_amp_conversion() || amp_get_slug()){
+	remove_filter( 'the_posts', 'relevanssi_query', 99, 2 );
+	remove_filter( 'posts_request', 'relevanssi_prevent_default_request', 10, 2 );}
+}
