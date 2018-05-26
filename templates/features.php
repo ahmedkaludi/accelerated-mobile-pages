@@ -6618,11 +6618,11 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 	              	<div class="gdpr_t">
 		                <h3><?php echo esc_attr($headline); ?></h3>
 		                <p><?php echo esc_attr($user_data); ?></p>
-	                </div>
+	                </div><?php if(isset($redux_builder_amp['amp-gdpr-compliance-select-privacy-page']) && $redux_builder_amp['amp-gdpr-compliance-select-privacy-page']){?>
 	                <div class="gdpr_fmi">
 	                  <span><?php echo esc_attr($more_info); ?></span>
 	                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
-	                </div>
+	                </div><?php } ?>
 	            </div>
               <div id="gdpr_yn" class="gdpr_yn">
               	<div class="gdpr-btns">
