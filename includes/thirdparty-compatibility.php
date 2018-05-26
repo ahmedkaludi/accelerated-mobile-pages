@@ -334,6 +334,7 @@ function ampforwp_remove_relevanssi_search_takeover(){
 
 add_filter("redux/options/redux_builder_amp/data/category_list_hierarchy", 'ampforwp_redux_category_list_hierarchy',10,1);
 function ampforwp_redux_category_list_hierarchy($data){
+	if(!is_array($data)){ $data = array(); } // To avoid PHP Fatal error: Uncaught Error: Cannot use string offset as an array
 	$cats = get_categories(  );
 	if ( ! empty ( $cats ) ) {
         foreach ( $cats as $cat ) {
