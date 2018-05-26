@@ -6614,21 +6614,25 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
           <div class="gdpr" id="gdpr_c">
             <div class="gdpr_w">
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>
-              <div class="gdpr_t">
-                    <h3><?php echo esc_attr($headline); ?></h3>
-                    <p><?php echo esc_attr($user_data); ?></p>
-                    </div>
-                    <div class="gdpr_fmi">
-                  <h2><?php echo esc_attr($more_info); ?></h2>
-                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
-                </div>
+              <div class="gdpr-l">
+	              	<div class="gdpr_t">
+		                <h3><?php echo esc_attr($headline); ?></h3>
+		                <p><?php echo esc_attr($user_data); ?></p>
+	                </div>
+	                <div class="gdpr_fmi">
+	                  <h2><?php echo esc_attr($more_info); ?></h2>
+	                  <a class="gdpr_fmi pri_page_link" href=<?php echo esc_attr($privacy_page); ?> target="_blank"><?php echo esc_attr($privacy_button_text); ?></a> 
+	                </div>
+	            </div>
               <div id="gdpr_yn" class="gdpr_yn">
-                <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
-                </form>
-                <form action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
-                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
-                  </form>
+              	<div class="gdpr-btns">
+	                <form class="acp" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	                  <button type="submit" on="tap:ampforwpConsent.accept" class="btn gdpr_y btn"><?php echo esc_attr($accept); ?></button>
+	                </form>
+	                <form class="rej" action-xhr="<?php echo esc_url($form_url); ?>" method="post" target="_top">
+	                  <button type="submit" on="tap:ampforwpConsent.reject" class="btn gdpr_n"><?php echo esc_attr($reject); ?></button>
+	                 </form>
+	             </div>
               </div>
             </div>
           </div>
