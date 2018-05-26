@@ -133,7 +133,6 @@ if ( get_query_var( 'paged' ) ) {
 							<?php ampforwp_thumbnail_alt(); ?>
 							width=<?php echo $thumb_width; ?>
 							height=<?php echo $thumb_height; ?>
-							data-block-on-consent
 						></amp-img>
 					</a>
 				</div>
