@@ -6659,20 +6659,6 @@ amp-consent{background:none}
 #footer amp-consent a{font-size: 13px;color: #999;}
 <?php } ?>
 
-#ampforwpConsent{visibility: hidden}
-.amp-geo-group-eu #ampforwpConsent{visibility: visible}   
-<?php global $redux_builder_amp;
- if ( '1' === $redux_builder_amp['amp-design-selector'] ) {
- ?>
-.design_1_wrapper #post-consent-ui a{display:none} 
-<?php } ?>
-<?php global $redux_builder_amp;
- if ( '3' === $redux_builder_amp['amp-design-selector'] ) {
- ?>
-amp-consent{background:none}
-#footer amp-consent a{font-size: 13px;color: #999;}
-<?php } ?>
-
 <?php // New Desing CSS
 if($redux_builder_amp['gdpr-type'] == '1'){?>
 .gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999}
