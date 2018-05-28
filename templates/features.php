@@ -3110,28 +3110,22 @@ function ampforwp_add_sidebar_data( $data ) {
 // 44. auto adding /amp for the menu
 add_action('amp_init','ampforwp_auto_add_amp_menu_link_insert');
 function ampforwp_auto_add_amp_menu_link_insert() {
-	add_action( 'wp', 'ampforwp_auto_add_amp_in_link_check' );
-}
-
-function ampforwp_auto_add_amp_in_link_check() {
-	global $redux_builder_amp;
-	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
-
-	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
-		add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
-	}
+	add_filter( 'nav_menu_link_attributes', 'ampforwp_auto_add_amp_in_menu_link', 10, 3 );
 }
 
 function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 	global $redux_builder_amp;
-	
-  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
-	    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
-		$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
+
+	$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
+	if ( $ampforwp_is_amp_endpoint && $redux_builder_amp['ampforwp-auto-amp-menu-link'] == 1 ) {
+	  if(isset($redux_builder_amp['amp-core-end-point']) && $redux_builder_amp['amp-core-end-point'] == 1){
+		    $atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) );
+			$atts['href'] = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $atts['href']);
+		}
+	  else{
+	     	$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
+	    }
 	}
-  else{
-     	$atts['href'] = user_trailingslashit(trailingslashit( $atts['href'] ) . AMPFORWP_AMP_QUERY_VAR);
-    }
 
 	return $atts;
 }
