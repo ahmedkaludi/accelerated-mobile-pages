@@ -364,3 +364,7 @@ function ampforwp_is_amp_inURL($url){
   return true;
 }
 
+add_action("pre_amp_render_post", "ampforwp_remove_unwanted_wp_print_scripts_hooks");
+function ampforwp_remove_unwanted_wp_print_scripts_hooks(){
+  remove_all_actions( "wp_print_scripts" );
+}
