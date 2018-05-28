@@ -14,6 +14,7 @@
  * @since 0.5 This has been replaced by AMP_Tag_And_Attribute_Sanitizer but is kept around for back-compat.
  * @deprecated
  */
+include_once('class-amp-base-sanitizer.php');
 class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 	const PATTERN_REL_WP_ATTACHMENT = '#wp-att-([\d]+)#';
 
