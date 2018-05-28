@@ -849,7 +849,6 @@ if(!is_plugin_active( 'amp/amp.php' )){
 }
 
 $eu_iso_codes = array(
-                        'in' => 'India',
                         'al' => 'Albania',
                         'ad' => 'Andorra',
                         'at' => 'Austria',
@@ -904,7 +903,7 @@ $eu_iso_codes = array(
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
 $proDetailsProvide = '<a class="premium_features_btn_txt" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">'.__('Get more out of AMP','accelerated-mobile-pages').'</a> <a class="premium_features_btn" href="https://ampforwp.com/membership/#utm_source=options-panel&utm_medium=view_pro_features_btn&utm_campaign=AMP%20Plugin" target="_blank">Get PRO Version</a> ';
 if($ampforwp_nameOfUser!=""){
-    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#f2f2f2'>Hello, ".$ampforwp_nameOfUser."</span> <a class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
+    $proDetailsProvide = "<span class='extension-menu-call'><span class='activated-plugins' style='color:#544b4b'>Hello, ".$ampforwp_nameOfUser."</span> <a style='color:#544b4b' class='' href='".admin_url('admin.php?page=amp_options&tabid=opt-go-premium')."'><i class='dashicons-before dashicons-admin-generic'></i></a></span>";
 }elseif($ampforwp_is_productActivated){
     $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?tabid=opt-go-premium&page=amp_options')."'>Enter license here</a></span>";
 }
@@ -2582,6 +2581,28 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 0,
            ),
            array(
+               'class'  => 'child_opt',
+               'id'        =>'audience-for-amp-gdpr-compliance',
+               'type'      => 'select',
+               'title'     => __('GDPR Visibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the option to which you want to display GDPR. ', 'accelerated-mobile-pages'),
+               'options'      => array('1' => 'Globally',
+                                        '2' => 'For European Union',
+                                        '3' => 'Handpicked EU Countries'
+                                        ),
+               'default'    => 2,            
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+            array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
+               'type'      => 'checkbox',
+               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
+               'default'    => 0,            
+               'options'      => $eu_iso_codes,
+               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
+           ),
+           array(
                     'id'    => 'gdpr-type',
                    'title'  => __('GDPR Designs', 'accelerated-mobile-pages'),
                    'type'   => 'image_select',
@@ -2614,7 +2635,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('Message to Visitor', 'accelerated-mobile-pages'),
                'subtitle'     => __('', 'accelerated-mobile-pages'),
                'default'   => '',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
            
            array(
@@ -2648,7 +2669,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('For More information', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
                'default'   => 'For More information about Privacy',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
           
            array(
@@ -2669,17 +2690,6 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-            array(
-               'class'  => 'child_opt',
-               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
-               'type'      => 'checkbox',
-               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
-               'default'    => 0,            
-               'options'      => $eu_iso_codes,
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
-           ),
-
- 
        ),
 
    ) );
@@ -3157,6 +3167,15 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'amp-mobile-redirection',
                         'type'     => 'switch',
                         'title'    => __('Mobile Redirection', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('
+                        Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
+                        'default' => 0,
+
+                    ),
+                    array(
+                        'id'       => 'convert-internal-nonamplinks-to-amp',
+                        'type'     => 'switch',
+                        'title'    => __('Change Internal Links in AMP Link', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('
                         Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
                         'default' => 0,

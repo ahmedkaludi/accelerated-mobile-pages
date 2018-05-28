@@ -83,3 +83,5 @@ Update: Added the filter in thirdparty-compatibility instead of the core.
 25. data-block-on-consent added in class-amp-dom-utils.php and class-amp-html-utils.php
 
 26. Section specific class added for subsections in framework.php on line number 3288 	
+
+27. Deactivate Live AMP Validation from post edit page by removing 'AMP_Validation_Utils::init();' in amp.php on line number 113 	
