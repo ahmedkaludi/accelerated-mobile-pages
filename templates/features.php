@@ -220,8 +220,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        foreach ($post_all_tags as $tagskey => $tagsvalue) {
 	          $tagsOnPost[] = $tagsvalue->term_id;
 	        }
-	        $get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
-	        
+	        $get_tags_checkbox = array();
+	        if(isset($redux_builder_amp['hide-amp-tags-bulk-option'])){
+	        	$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+	        }
 	        if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
 	          return;
 	        }
