@@ -212,10 +212,31 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$post_id = $list_of_posts = $skip_this_post = '';
 		$endpoint_check = false;
 		$endpoint_check = $redux_builder_amp['amp-core-end-point'];
-		$list_of_posts = ampforwp_posts_to_remove();
-		if ( is_single() && $list_of_posts ) {
+		//$list_of_posts = ampforwp_posts_to_remove(); //Commented: Cause "Its going to take all posts ids which contains categories added by hide_amp_bulk_tool"
+		if ( is_single() ) {
+			//For Hide Tags
+			$post_all_tags = wp_get_post_tags(get_the_ID());
+			$tagsOnPost = array();
+	        foreach ($post_all_tags as $tagskey => $tagsvalue) {
+	          $tagsOnPost[] = $tagsvalue->term_id;
+	        }
+	        $get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+	        
+	        if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+	          return;
+	        }
+
+			//For Hide Categories
+			$postCategories = wp_get_post_categories(get_the_ID());
+			$get_hide_categories = array();
+			if(isset($redux_builder_amp['hide-amp-categories'])){
+				$get_hide_categories =  array_keys(array_filter($redux_builder_amp['hide-amp-categories']));  
+			}
+			if( count(array_intersect($get_hide_categories,$postCategories))>0 ){
+	          return;
+	        }/*
 			$skip_this_post = in_array(get_the_ID(), $list_of_posts);
-			if( $skip_this_post ) { return; }
+			if( $skip_this_post ) { return; }*/
 		}	
 	    if( is_attachment() ) {
         return;
