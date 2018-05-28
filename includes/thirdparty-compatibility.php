@@ -348,11 +348,12 @@ function ampforwp_redux_category_list_hierarchy($data){
 	return $data;
 }
 
-
-add_action( 'redux/options/redux_builder_amp/saved', 'ampForWP_extension_individual_amp_page');
-function ampForWP_extension_individual_amp_page(){
-	$selectedOption = get_option('redux_builder_amp',true);
-	if($selectedOption['amp-pages-meta-default']=='hide'){
-		delete_transient('ampforwp_current_version_check');
+if(is_admin()){
+	add_action( 'redux/options/redux_builder_amp/saved', 'ampForWP_extension_individual_amp_page');
+	function ampForWP_extension_individual_amp_page(){
+		$selectedOption = get_option('redux_builder_amp',true);
+		if($selectedOption['amp-pages-meta-default']=='hide'){
+			delete_transient('ampforwp_current_version_check');
+		}
 	}
 }
