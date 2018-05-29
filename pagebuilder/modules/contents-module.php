@@ -204,7 +204,11 @@ require_once  ABSPATH . WPINC . '/category.php';
                     default:
                     break;
                    }
-                   list($width, $height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
+                   list($new_width, $new_height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
+                   if ( $new_width && $new_height ) {
+                    $width = $new_width;
+                    $height = $new_height;
+                   }
                    try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
                     if($thumb_url!=false){
