@@ -127,14 +127,22 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
   // New image sanitizer For Lightbox and FooGallery support
   if( isset( $sanitizer_classes['AMP_Img_Sanitizer']) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
-    unset($sanitizer_classes['AMP_Img_Sanitizer']);
-    $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
+    $result = array();
+    array_walk($sanitizer_classes, function (&$value,$key) use (&$result) {
+      if($key=="AMP_Img_Sanitizer") $key="AMPforWP_Img_Sanitizer";
+      $result[ $key ] = $value;
+    });
+    $sanitizer_classes = $result;
   }
   // New Iframe sanitizer to allow popups
   if(isset( $sanitizer_classes['AMP_Iframe_Sanitizer'] ) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-iframe-sanitizer.php' );
-    unset($sanitizer_classes['AMP_Iframe_Sanitizer']);
-    $sanitizer_classes['AMPforWP_Iframe_Sanitizer']= array();
+    $result = array();
+    array_walk($sanitizer_classes, function (&$value,$key) use (&$result) {
+      if($key=="AMP_Iframe_Sanitizer") $key="AMPforWP_Iframe_Sanitizer";
+      $result[ $key ] = $value;
+    });
+    $sanitizer_classes = $result;
   }
   return $sanitizer_classes;
 }
