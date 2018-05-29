@@ -129,14 +129,24 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
   // New image sanitizer For Lightbox and FooGallery support
   if( isset( $sanitizer_classes['AMP_Img_Sanitizer']) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
-    unset($sanitizer_classes['AMP_Img_Sanitizer']);
-    $sanitizer_classes['AMPforWP_Img_Sanitizer']= array();
+   
+    $result = array();
+    array_walk($sanitizer_classes, function (&$value,$key) use (&$result) {
+      if($key=="AMP_Img_Sanitizer") $key="AMPforWP_Img_Sanitizer";
+      $result[ $key ] = $value;
+    });
+    $sanitizer_classes = $result;
   }
   // New Iframe sanitizer to allow popups
   if(isset( $sanitizer_classes['AMP_Iframe_Sanitizer'] ) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-iframe-sanitizer.php' );
-    unset($sanitizer_classes['AMP_Iframe_Sanitizer']);
-    $sanitizer_classes['AMPforWP_Iframe_Sanitizer']= array();
+
+    $result = array();
+    array_walk($sanitizer_classes, function (&$value,$key) use (&$result) {
+      if($key=="AMP_Iframe_Sanitizer") $key="AMPforWP_Iframe_Sanitizer";
+      $result[ $key ] = $value;
+    });
+    $sanitizer_classes = $result;
   }
   return $sanitizer_classes;
 }
@@ -337,16 +347,13 @@ if(!function_exists('ampforwp_findInternalUrl')){
         return $url;
       }
     }
-
     if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
-
       // Skip the URL's that have edit link to it
       $parts = parse_url($url);
       parse_str($parts['query'], $query);
       if ( isset( $query['action'] ) && $query['action'] ) {
           return $url;
       }
-
       if(strpos($url, "#")!==false){
         $url = explode("#",$url);
         $url = trailingslashit($url[0]).user_trailingslashit(amp_get_slug()).'#'.$url[1];
@@ -365,4 +372,9 @@ function ampforwp_is_amp_inURL($url){
     return false;
   }
   return true;
+}
+
+add_action("pre_amp_render_post", "ampforwp_remove_unwanted_wp_print_scripts_hooks");
+function ampforwp_remove_unwanted_wp_print_scripts_hooks(){
+  remove_all_actions( "wp_print_scripts" );
 }
