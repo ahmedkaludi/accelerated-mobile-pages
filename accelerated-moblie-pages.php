@@ -458,7 +458,7 @@ function ampforwp_load_plugin_last() {
         array_push($active_plugins, $this_plugin);
         update_option('active_plugins', $active_plugins);
 }
-if( file_exists(realpath(plugin_dir_path(FILE).'../amp/amp.php')) ){
+if( file_exists(realpath(plugin_dir_path(__FILE__).'../amp/amp.php')) ){
 	add_action("activated_plugin", "ampforwp_load_plugin_last");
 }
 
@@ -467,7 +467,7 @@ if( file_exists(realpath(plugin_dir_path(FILE).'../amp/amp.php')) ){
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
-	if($GLOBALS['pagenow'] === 'plugins.php' && file_exists( realpath(plugin_dir_path(FILE).'../amp/amp.php') ) ){
+	if($GLOBALS['pagenow'] === 'plugins.php' && file_exists( realpath(plugin_dir_path(__FILE__).'../amp/amp.php') ) ){
 		return false;
 	}
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-compatibility.php';
