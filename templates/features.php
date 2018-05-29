@@ -4316,111 +4316,107 @@ function ampforwp_add_blacklist_sanitizer($data){
 
 //Meta description #1013
 function ampforwp_generate_meta_desc(){
-	global $post;
-	global $redux_builder_amp;
-	$front = '';
-	$desc = '';
-	$post_id = '';
-	$genesis_description = '';
-	if ( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend') ) {
-		// general Description of everywhere
-		$front = WPSEO_Frontend::get_instance();
-		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
-
-		// Static front page
-		// Code for Custom Frontpage Yoast SEO Description
-		//WPML Static Front Page Support for title and description with Yoast #1143 
-			 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			 if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php') ) {
-
-			 	$post_id = get_option( 'page_on_front' );
-			 }
-			 else {
-			$post_id = ampforwp_get_frontpage_id();
-			}
-
-			if ( class_exists('WPSEO_Meta') ) {
-				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
-				}
-			}
-		// for search
-		if ( is_search() ) {
-			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
-		}
-	} 
-		
-	else {
-		if ( is_home() ) {
-			// normal home page
+	global $post, $redux_builder_amp;
+	$desc = $post_id = '';
+	if ( $redux_builder_amp['ampforwp-seo-meta-description'] ) {
+		if ( ampforwp_is_home() || ampforwp_is_blog() ) {
 			$desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
 		}
-
 		if ( is_archive() ) {
 			$desc = addslashes( strip_tags( get_the_archive_description() ) );
 		}
-
 		if ( is_single() || is_page() ) {
-				if ( has_excerpt() ) {
-					$desc = get_the_excerpt();
-				} else {
-					global $post;
-					$id = $post->ID;
-					$desc = $post->post_content;
-				}
-				$desc = preg_replace('/\[(.*?)\]/',' ', $desc);
-				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
+			if ( has_excerpt() ) {
+				$desc = get_the_excerpt();
+			} else {
+				global $post;
+				$id = $post->ID;
+				$desc = $post->post_content;
+			}
+			$desc = preg_replace('/\[(.*?)\]/',' ', $desc);
+			$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15' ) );
 		}
-
 		if ( is_search() ) {
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
-
 		if ( ampforwp_is_front_page() ) {
 			$post_id = ampforwp_get_frontpage_id();
 			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
-	}
 
-	//Genesis #1013
-	if ( function_exists('genesis_meta') ) {
-		if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
-			$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
+		// Yoast 
+		if ( class_exists('WPSEO_Frontend') && 1 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+			$front = $yoast_desc = '';
+			$front = WPSEO_Frontend::get_instance();
+			$yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+			// Static front page
+			if ( ampforwp_is_front_page() ) { 
+				$post_id = ampforwp_get_frontpage_id();
+				if ( class_exists('WPSEO_Meta') ) {
+					$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+				}
+			}
+			// for search
+			if ( is_search() ) {
+				$yoast_desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
+			}
+
+			if ( $yoast_desc ) {
+				$desc = $yoast_desc;
+			}
+		} 
+
+		// All in One SEO
+		if ( class_exists('All_in_One_SEO_Pack') && 2 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+			$aisop_class = $aisop_desc = $opts = '';
+			$aisop_class = new All_in_One_SEO_Pack();
+			$aisop_desc = $aisop_class->get_main_description();
+			$opts = $aisop_class->get_current_options( array(), 'aiosp' );
+			if ( (is_category() || is_tax() || is_tag()) && $aisop_class->show_page_description() ) {
+				$aisop_desc = $opts['aiosp_description'];
+			}
+			if ( $aisop_desc ) {
+				$desc = $aisop_desc;
+			}
 		}
-		elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
-			$post_id = get_option( 'page_for_posts' );
-			if ( null !== $post_id || is_singular() ) {
-				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-					$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
-					if ( $genesis_description ) {
-						$desc = $genesis_description;
+
+		//Genesis #1013
+		if ( function_exists('genesis_meta') ) {
+			$genesis_description = '';
+			if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
+				$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
+			}
+			elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+				$post_id = get_option( 'page_for_posts' );
+				if ( null !== $post_id || is_singular() ) {
+					if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
+						$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+						if ( $genesis_description ) {
+							$desc = $genesis_description;
+						}
 					}
 				}
 			}
-		}
-		elseif ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' ) ) {
-			$post_id = get_option('page_on_front');
-			if ( null !== $post_id || is_singular() ) {
-				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-					$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+			elseif ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' ) ) {
+				$post_id = get_option('page_on_front');
+				if ( null !== $post_id || is_singular() ) {
+					if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
+						$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+						}
 					}
 				}
+			else {
+				$genesis_description = genesis_get_seo_meta_description();
 			}
-		else {
-			$genesis_description = genesis_get_seo_meta_description();
+
+			if ( $genesis_description ) {
+					$desc = $genesis_description;
+				}
 		}
-		if ( $genesis_description ) {
-				$desc = $genesis_description;
-			}
+		// strip_shortcodes  strategy not working here so had to do this way
+		// strips shortcodes
+		$desc = preg_replace('/\[(.*?)\]/','', $desc);
 	}
-	// All in One SEO
-	if ( class_exists('All_in_One_SEO_Pack') ) {
-		$aisop_class = new All_in_One_SEO_Pack();
-		$desc = $aisop_class->get_main_description();
-	}
-	// strip_shortcodes  strategy not working here so had to do this way
-	// strips shortcodes
-	$desc = preg_replace('/\[(.*?)\]/','', $desc);
 	return $desc;
 }
 
