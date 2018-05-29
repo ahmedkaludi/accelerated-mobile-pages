@@ -123,9 +123,7 @@ function content_sanitizers_remove_blacklist($sanitizer_classes){
 		unset($sanitizer_classes['AMP_Blacklist_Sanitizer']);
 		$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer']= array();
 	}
-	if(isset($sanitizer_classes['AMP_Base_Sanitizer'])) {
-		unset($sanitizer_classes['AMP_Base_Sanitizer']);	
-	}
+  
   // New image sanitizer For Lightbox and FooGallery support
   if( isset( $sanitizer_classes['AMP_Img_Sanitizer']) ) {
     require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-img-sanitizer.php' );
