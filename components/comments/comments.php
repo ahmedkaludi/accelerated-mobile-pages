@@ -96,7 +96,7 @@ function ampforwp_framework_get_comments(){
 					<?php // if amp-comments extension is enabled then hide this button
 				} // if ( $comments )
 				if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
-					<div class="cmts-btn-wrap">
+					<div class="amp-comment-button">
 						<?php if ( comments_open() ) { ?>
 					    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 						} else {
