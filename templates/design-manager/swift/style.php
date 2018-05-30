@@ -383,6 +383,11 @@ if(is_single() ) { ?>
 .related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
 .related_posts .related_link p{color: #444;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;}
 <?php } ?>
+<?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
+	.body.single-post{
+	  padding-bottom:40px;
+	}
+<?php } ?>
 <?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
 .sp-rt .amp-author-image{float:left;}
