@@ -4181,6 +4181,15 @@ Redux::setSection( $opt_name, array(
                     )  
               ),
             array(
+                'id'       => 'drp-dwn',
+                'type'     => 'switch',
+                'title'    => __('Dropdown Menu', 'accelerated-mobile-pages'),
+                'true'      => 'true',
+                'false'     => 'false',
+                'default'   => 0,
+                'required' => array( array('primary-menu','=',1) ),
+            ),
+            array(
                 'id'        => 'signin-button',
                 'title'     => __('Button Customize', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can do the customization here ','accelerated-mobile-pages'),

@@ -178,11 +178,28 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 
 if($redux_builder_amp['primary-menu']){?>
 .p-m-fl{width:100%;border-bottom: 1px solid rgba(0, 0, 0, 0.05);<?php if($redux_builder_amp['primary-menu-background-scheme']['rgba']){?>background:<?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?><?php } ?>}
-.p-menu{width:100%;text-align:center;margin: 0px auto;max-width: 1100px;overflow-x: auto;overflow-y:hidden;white-space: nowrap;<?php if($redux_builder_amp['primary-menu-padding-control']){?>padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-top'] .' '.$redux_builder_amp['primary-menu-padding-control']['padding-right'] .' '.$redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' '.$redux_builder_amp['primary-menu-padding-control']['padding-left'] ; ?>;<?php } ?>}
+.p-menu{width:100%;text-align:center;margin: 0px auto;max-width: 1100px;<?php if($redux_builder_amp['primary-menu-padding-control']){?>padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-top'] .' '.$redux_builder_amp['primary-menu-padding-control']['padding-right'] .' '.$redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' '.$redux_builder_amp['primary-menu-padding-control']['padding-left'] ; ?>;<?php } ?>}
 ::-webkit-scrollbar {display: none;}
 .p-menu ul li{display: inline-block;margin-right: 21px;font-size: 12px;line-height: 20px;letter-spacing: 1px;font-weight: 400;}
 .p-menu ul li a{padding:0;<?php if($redux_builder_amp['primary-menu-text-scheme']['rgba']){?>color:<?php echo $redux_builder_amp['primary-menu-text-scheme']['rgba']?>;<?php } ?>text-transform:uppercase;}
-.p-menu ul li.menu-item-has-children:hover > ul{display:none;font-size:13px;}
+
+<?php // Dropdown CSS
+	if($redux_builder_amp['drp-dwn']){?>
+	.p-menu ul li.menu-item-has-children:hover>ul{display:block;z-index:9;padding: 7px;
++    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.19);}
+	.p-menu li a{transition: all 0.3s ease-in-out 0s;}
+	.p-menu .amp-menu li ul{background: <?php echo $redux_builder_amp['primary-menu-background-scheme']['rgba']; ?>;left: 0;min-width: 200px;opacity: 1;position: absolute;top: 100%;transform: translateY(15px);transition: all 0.3s ease-in-out 0s;visibility: hidden;}
+	.p-menu li ul li ul{left: 100%;top: 0;}
+	.p-menu li:hover > ul{opacity: 1;transform: translateY(0px);visibility: visible;transition: all 0.2s ease-in-out 0s;}
+	.p-menu li ul li{display: block;position: relative;}
+	.p-menu .sub-menu li a{padding: 7x;}
+	.p-menu ul li.menu-item-has-children > a:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;top: 3px;font-size: 16px;color: rgba(0,41,96,1);position:relative;padding-left: 10px;line-height:0;right:10px;color:<?php echo $redux_builder_amp['primary-menu-text-scheme']['rgba']?>;}
+	.p-menu .amp-menu li.menu-item-has-children>ul>li {padding-left: 0px;}
+	.p-menu li.menu-item-has-children:hover > a:after{transform:rotate(180deg);right:0px;}
+	<?php } else { ?>
+	.p-menu ul li.menu-item-has-children:hover > ul{display:none;}
+	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
+<?php } ?>
 .p-menu ul li.menu-item-has-children:after{display:none;}
 <?php } ?>
 <?php //Home and Archive
