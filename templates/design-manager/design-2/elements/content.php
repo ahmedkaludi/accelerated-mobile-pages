@@ -35,7 +35,10 @@
 									) 
 								);
 			 	if ( $amp_custom_content_enable && ! get_post_meta( $post_id, 'mfn-post-hide-content', true ) ) {
-	 				$ampforwp_the_content .=  $sanitizer_obj->get_amp_content();		
+					$ampforwp_custom_amp_editor_content = '';
+					$ampforwp_custom_amp_editor_content = $ampforwp_the_content;
+			 		$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+			 		$ampforwp_the_content .=  $ampforwp_custom_amp_editor_content;		
 				}
 				else{
 					$ampforwp_the_content =  $sanitizer_obj->get_amp_content();

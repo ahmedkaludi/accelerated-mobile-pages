@@ -6893,9 +6893,11 @@ function ampforwp_modified_canonical( $data ) {
 // Fully compatibility with muffin page builder #2180
 add_action( 'pre_amp_render_post', 'ampforwp_mfn_show_custom_amp_editor_data' );
 function ampforwp_mfn_show_custom_amp_editor_data(){
-	$amp_custom_content_enable = get_post_meta(get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
-	if (  $amp_custom_content_enable ) {
-		add_action('amp_post_template_css','ampforwp_mfn_wp_content_hide');
+	if ( function_exists('mfn_builder_print') ) {
+		$amp_custom_content_enable = get_post_meta(get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
+		if (  $amp_custom_content_enable ) {
+			add_action('amp_post_template_css','ampforwp_mfn_wp_content_hide');
+		}
 	}
 }
 function ampforwp_mfn_wp_content_hide(){
