@@ -34,7 +34,12 @@
 									) 
 								) 
 							);
-		 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+		 		if ( $amp_custom_content_enable && ! get_post_meta( $post_id, 'mfn-post-hide-content', true ) ) {
+	 				$ampforwp_the_content .=  $sanitizer_obj->get_amp_content();		
+				}
+				else{
+					$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+				}
 		}
 		//Filter to modify the Content
 		$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
