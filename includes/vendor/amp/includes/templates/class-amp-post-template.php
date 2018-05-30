@@ -453,7 +453,9 @@ class AMP_Post_Template {
 	 * @return string The template filename if one is located.
 	 */
 	private function locate_template( $file ) {
-		$search_file = sprintf( 'amp/%s', basename( $file ) );
+		$location = 'ampforwp';
+		$location = apply_filters("ampforwp_template_locate",$location);
+		$search_file = sprintf( $location.'/%s', basename( $file ) );
 		return locate_template( array( $search_file ), false );
 	}
 
