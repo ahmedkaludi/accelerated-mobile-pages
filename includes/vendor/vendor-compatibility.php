@@ -168,6 +168,7 @@ function ampforwp_modified_embed_handlers($handlers){
 
 function ampforwp_post_status($enabled){
   global $redux_builder_amp, $post;
+  $enabled = true;
   if ( ( is_single() && 'post' === $post->post_type && ! $redux_builder_amp['amp-on-off-for-all-posts'] )  || ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] ) ){
     $enabled = false;
   }
