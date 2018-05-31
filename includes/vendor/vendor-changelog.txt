@@ -86,3 +86,10 @@ Update: Added the filter in thirdparty-compatibility instead of the core.
 26. Section specific class added for subsections in framework.php on line number 3288 	
 
 27. Deactivate Live AMP Validation from post edit page by removing 'AMP_Validation_Utils::init();' in amp.php on line number 113 	
+
+28. Added non-content condition for other than Main content
+	if(isset($this->args['non-content']) && $this->args['non-content']=='non-content'){
+		$content = $this->content;
+	}else{
+		$content        = apply_filters( 'the_content', $content );
+	}
