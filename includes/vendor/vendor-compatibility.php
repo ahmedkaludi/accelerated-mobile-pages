@@ -288,11 +288,20 @@ function ampforwp_post_template_data( $data ) {
 
 
 function ampforwp_update_class($classList, $currentClass){
-  $updateClass = array('AMP_Theme_Support',
-                      'AMP_Tag_And_Attribute_Sanitizer', 
-                      'AMP_Style_Sanitizer',
-                      'AMP_Allowed_Tags_Generated',
+  if( function_exists('start_non_amp_to_amp_conversion') && start_non_amp_to_amp_conversion()){
+    $updateClass = array('AMP_Theme_Support',
+                        'AMP_Tag_And_Attribute_Sanitizer', 
+                        'AMP_Style_Sanitizer',
+                        'AMP_Allowed_Tags_Generated',
                     );
+  }
+  else{
+    $updateClass = array(
+                        'AMP_Theme_Support',
+                      'AMP_Tag_And_Attribute_Sanitizer', 
+                      'AMP_Allowed_Tags_Generated',
+                      );
+  }
   if(!in_array($currentClass, $updateClass)){
     return true;
   }
