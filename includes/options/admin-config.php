@@ -297,16 +297,19 @@ $extension_listing_array = array(
                         ),
                     );
 
+function ampforwp_shortExtensionActivatedListing($a, $b){
+    if ($a['is_activated'] == $b['is_activated']) {
+        return 0;
+    }
+    return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
+}
+
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
-usort($extension_listing_array, function($a, $b){
-        if ($a['is_activated'] == $b['is_activated']) {
-            return 0;
-        }
-        return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
-    });
+usort($extension_listing_array, 'ampforwp_shortExtensionActivatedListing');
+
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
