@@ -118,11 +118,12 @@ function ampforwp_enable_support_for_otherpages(){
   if( ( ($support_for_archives && !$hide_cats_amp) || is_search()  || ampforwp_is_blog() || $amp_home || is_404() ) && $is_amp_endpoint_needed ){
     remove_action( 'template_redirect', 'amp_render' );
     add_action( 'template_redirect', 'ampforwp_amp_render' );
+  }
 
 }
 
 function ampforwp_amp_render() {
-    if(is_404()){
+    if( is_404()) {
         $fourofour = get_post(2);
         amp_render_post($fourofour);
         exit;
