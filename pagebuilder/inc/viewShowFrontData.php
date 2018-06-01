@@ -542,6 +542,7 @@ function amppb_post_content($content){
 						if(! is_array($field['name']) && $field['content_type']=='html'){
 							$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 						}
+						$rowStartTemplate = ampforwp_replaceIfContentConditional($field['name'], $replace, $rowStartTemplate);
 					}
 				}
 				$html .= $rowStartTemplate;
