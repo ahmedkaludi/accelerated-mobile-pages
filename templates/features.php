@@ -6882,3 +6882,9 @@ function ampforwp_resave_permalink( $option, $old_value, $value ){
  		}
  	}
 }
+
+add_action('amp_post_template_css','ampforwp_load_css_editors_custom_css',12); 
+function ampforwp_load_css_editors_custom_css(){
+	global $redux_builder_amp;
+	echo $redux_builder_amp['css_editor']; 
+}
