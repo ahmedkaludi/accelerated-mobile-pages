@@ -102,7 +102,7 @@ function ampforwp_enable_support_for_otherpages(){
   }
   $amp_frontpage_id = ampforwp_get_frontpage_id();
 
-  if ( ampforwp_is_front_page() && $amp_frontpage_id) {
+  if ( ampforwp_is_front_page() && $amp_frontpage_id && $is_amp_endpoint_needed ) {
       add_action( 'template_redirect', 'amp_render', 9 );
       remove_action( 'template_redirect', 'amp_render' );
   }
