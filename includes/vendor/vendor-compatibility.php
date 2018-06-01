@@ -102,9 +102,11 @@ function ampforwp_enable_support_for_otherpages(){
   }
   $amp_frontpage_id = ampforwp_get_frontpage_id();
 
+
   if ( ampforwp_is_front_page() && $amp_frontpage_id && $is_amp_endpoint_needed ) {
-      add_action( 'template_redirect', 'amp_render', 9 );
-      remove_action( 'template_redirect', 'amp_render' );
+   
+    remove_action('template_redirect','redirect_canonical');
+    add_action('template_redirect','redirect_canonical', 11);
   }
 
   if( ( ($support_for_archives && !$hide_cats_amp) || is_search()  || ampforwp_is_blog() || $amp_home || is_404() ) && $is_amp_endpoint_needed ){
