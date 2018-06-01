@@ -53,7 +53,7 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section class="ap_m {{row_class}} {{grid_type}}">';
+$output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 {{row-class}}{
@@ -62,6 +62,10 @@ $front_css = '
     background-size: cover;
     height: auto;
     background-position:{{align_type}};
+	{{if_condition_check_for_parallax==1}}
+		min-height: 550px;
+	    background-attachment: fixed;
+	{{ifend_condition_check_for_parallax_1}}
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
@@ -80,6 +84,18 @@ $front_css = '
 	padding:{{padding_css}};
 	
 	{{shadow}}
+}
+{{row-class}}.slant_clr:before{
+	content:"";
+	height:105px;
+	width:100%;
+	display:block;
+	background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' preserveAspectRatio=\'none\' viewBox=\'0 0 100 100\'><polygon fill=\'{{color_picker}}\' points=\'0,0 100,0 100,44 0,0\' /></svg>");
+	background-repeat:no-repeat;
+	top: -105px;
+    position: relative;
+    transform: rotate(-180deg);
+
 }
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
@@ -229,6 +245,36 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 								'required'  => array('background_type'=>'image')
 								),
+	 						array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_parallax",
+                                'label'     => 'Parallax Effect',
+                                'tab'       =>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                                'required'  => array('background_type'=>'image')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_slant",
+                                'label'     => 'Slant Background',
+                                'tab'       =>'customizer',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+                                'required'  => array('background_type'=>'color')
+                            ),
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"color_picker",
