@@ -104,11 +104,17 @@ function ampforwp_enable_support_for_otherpages(){
 
 
   if ( ampforwp_is_front_page() && $amp_frontpage_id && $is_amp_endpoint_needed ) {
-   
     remove_action('template_redirect','redirect_canonical');
     add_action('template_redirect','redirect_canonical', 11);
   }
 
+  // If There is no front page setup in reading settings, but needs a custom amp page
+  if ( ( ampforwp_is_front_page() && $amp_frontpage_id && $is_amp_endpoint_needed) && (! get_option( 'page_on_front' ) ) ) {
+      remove_action( 'template_redirect', 'amp_render' );
+      add_action( 'template_redirect', 'ampforwp_amp_render' );
+  }
+
+  // 404 page and homepage (loop)
   if( ( ($support_for_archives && !$hide_cats_amp) || is_search()  || ampforwp_is_blog() || $amp_home || is_404() ) && $is_amp_endpoint_needed ){
     remove_action( 'template_redirect', 'amp_render' );
     add_action( 'template_redirect', 'ampforwp_amp_render' );
@@ -119,11 +125,10 @@ function ampforwp_amp_render() {
     if(is_404()){
         $fourofour = get_post(2);
         amp_render_post($fourofour);
-      exit;
-      }
-      else
+        exit;
+    } else{
         amp_render_post(0);
-      exit;
+        exit;
     }
 }
 
