@@ -84,7 +84,6 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 		$folder_name = 'ampforwp';
 		$folder_name = apply_filters('ampforwp_template_locate', $folder_name);	
 		return get_stylesheet_directory() . '/' . $folder_name;
-		return get_stylesheet_directory() . '/amp/';
 	}
 	// Custom Header
 	function ampforwp_child_custom_header_file( $file, $type, $post ) {
