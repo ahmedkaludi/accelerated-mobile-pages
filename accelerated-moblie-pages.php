@@ -323,8 +323,27 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 			"name"=>'Weekly Magazine',
 			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-2.png',
 			"link"=>'https://ampforwp.com/layouts-2/',
-			)
-
+			),
+            array(	
+			"name"=>'Elegance',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-3.png',	
+			"link"=>'https://ampforwp.com/layouts-3/',	
+			),	
+			array(	
+			"name"=>'Agency',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-4.png',	
+			"link"=>'https://ampforwp.com/layouts-4/',	
+			),	
+			array(	
+			"name"=>'Studio',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-5.png',	
+			"link"=>'https://ampforwp.com/layouts-5/',	
+			),	
+			array(	
+			"name"=>'Journal',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-6.png',	
+			"link"=>'https://ampforwp.com/amp-layouts/',	
+			),
 			);
 	}
 }
