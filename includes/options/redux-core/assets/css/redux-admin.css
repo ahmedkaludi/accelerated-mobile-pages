@@ -293,7 +293,7 @@ img.ampforwp-post-builder-img{
     background: #303e9f;
     text-decoration: none;
     color: #fff;
-    padding: 6px 10px 8px 10px;
+float: right;    padding: 6px 10px 8px 10px;
     right: 0;
     border-radius: 40px;
 }
@@ -353,6 +353,15 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     right: 20px;
     width: 199px;
 }
+.redux-group-menu .opt-choose .el+.group_title:after{
+    content: "Compare with Premium";
+    display: inline-block;
+    font-size: 10px;
+    text-transform: none; 
+    width: 100%;
+    font-weight: normal;
+}
+
 .redux-section-indent-start h3{    text-transform: uppercase;
     margin-top: -1px !important;
     font-weight: 600;
