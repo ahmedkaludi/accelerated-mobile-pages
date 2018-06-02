@@ -2838,9 +2838,65 @@ function ampforwp_talking_to_robots() {
   if( $talk_to_robots ) {
   	$meta_content = "noindex,noarchive";
   }
+  // Genesis
   if ( function_exists('genesis_get_robots_meta_content') ) {
   	$meta_content = genesis_get_robots_meta_content();
   }
+  // All in One SEO #1720
+  if ( class_exists('All_in_One_SEO_Pack') ) {
+  	$aios_class = $aios_meta = '';
+  	$noindex       = 'index';
+	$nofollow      = 'follow';
+  	$aios_class = new All_in_One_SEO_Pack();
+  	$page        = $aios_class->get_page_number();
+  	$opts = $aios_class->get_current_options( array(), 'aiosp' );
+  	$aios_meta = $aios_class->get_robots_meta();
+  	if ( ( is_category() && ! empty( $aioseop_options['aiosp_category_noindex'] ) ) || ( ! is_category() && is_archive() && ! is_tag() && ! is_tax() || ( is_tag() && ! empty( $aioseop_options['aiosp_tags_noindex'] ) ) || ( is_search() && ! empty( $aioseop_options['aiosp_search_noindex'] ) )
+		) ){
+			$noindex = 'noindex';
+		} elseif ( is_single() || is_page() || $aios_class->is_static_posts_page() || is_attachment() || is_category() || is_tag() || is_tax() || ( $page > 1 ) ) {
+			$post_type = get_post_type();
+			if ( ! empty( $opts ) ) {
+				$aiosp_noindex  = htmlspecialchars( stripslashes( $opts['aiosp_noindex'] ) );
+				$aiosp_nofollow = htmlspecialchars( stripslashes( $opts['aiosp_nofollow'] ) );
+			}
+			if ( $aiosp_noindex || $aiosp_nofollow || ! empty( $aioseop_options['aiosp_cpostnoindex'] )
+				 || ! empty( $aioseop_options['aiosp_cpostnofollow'] ) || ! empty( $aioseop_options['aiosp_paginated_noindex'] ) || ! empty( $aioseop_options['aiosp_paginated_nofollow'] )
+			) {
+				if ( ( $aiosp_noindex == 'on' ) || ( ( ! empty( $aioseop_options['aiosp_paginated_noindex'] ) ) && $page > 1 ) ||
+					 ( ( $aiosp_noindex == '' ) && ( ! empty( $aioseop_options['aiosp_cpostnoindex'] ) ) && in_array( $post_type, $aioseop_options['aiosp_cpostnoindex'] ) )
+				) {
+					$noindex = 'noindex';
+				}
+				if ( ( $aiosp_nofollow == 'on' ) || ( ( ! empty( $aioseop_options['aiosp_paginated_nofollow'] ) ) && $page > 1 ) ||
+					 ( ( $aiosp_nofollow == '' ) && ( ! empty( $aioseop_options['aiosp_cpostnofollow'] ) ) && in_array( $post_type, $aioseop_options['aiosp_cpostnofollow'] ) )
+				) {
+					$nofollow = 'nofollow';
+				}
+			}
+		}
+		if ( is_singular() && $aios_class->is_password_protected() && apply_filters( 'aiosp_noindex_password_posts', false ) ) {
+			$noindex = 'noindex';
+		}
+
+		$robots_meta = $noindex . ',' . $nofollow;
+		if ( $robots_meta == 'index,follow' ) {
+			$robots_meta = '';
+		}
+
+	  	if ( !empty($robots_meta) ) {
+	  		$meta_content = $robots_meta;
+	  	}
+  	}
+  	// Meta Robots Tag From Yoast #1563
+  	if ( class_exists('WPSEO_Frontend') ) {
+		$class_instance = '';
+	    $class_instance = WPSEO_Frontend::get_instance();
+	    // robots() will return and print the meta robots tag
+	    $class_instance->robots();
+	    // Empty the above meta content to avoid duplicate meta robot tags
+	    $meta_content = '';
+	}
   $meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
   if ( $meta_content ) {
   	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
@@ -4340,111 +4396,107 @@ function ampforwp_add_blacklist_sanitizer($data){
 
 //Meta description #1013
 function ampforwp_generate_meta_desc(){
-	global $post;
-	global $redux_builder_amp;
-	$front = '';
-	$desc = '';
-	$post_id = '';
-	$genesis_description = '';
-	if ( $redux_builder_amp['ampforwp-seo-yoast-description'] && class_exists('WPSEO_Frontend') ) {
-		// general Description of everywhere
-		$front = WPSEO_Frontend::get_instance();
-		$desc = addslashes( strip_tags( $front->metadesc( false ) ) );
-
-		// Static front page
-		// Code for Custom Frontpage Yoast SEO Description
-		//WPML Static Front Page Support for title and description with Yoast #1143 
-			 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			 if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php') ) {
-
-			 	$post_id = get_option( 'page_on_front' );
-			 }
-			 else {
-			$post_id = ampforwp_get_frontpage_id();
-			}
-
-			if ( class_exists('WPSEO_Meta') ) {
-				if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) {
-					$desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
-				}
-			}
-		// for search
-		if ( is_search() ) {
-			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
-		}
-	} 
-		
-	else {
-		if ( is_home() ) {
-			// normal home page
+	global $post, $redux_builder_amp;
+	$desc = $post_id = '';
+	if ( $redux_builder_amp['ampforwp-seo-meta-description'] ) {
+		if ( ampforwp_is_home() || ampforwp_is_blog() ) {
 			$desc = addslashes( strip_tags( get_bloginfo( 'description' ) ) );
 		}
-
 		if ( is_archive() ) {
 			$desc = addslashes( strip_tags( get_the_archive_description() ) );
 		}
-
 		if ( is_single() || is_page() ) {
-				if ( has_excerpt() ) {
-					$desc = get_the_excerpt();
-				} else {
-					global $post;
-					$id = $post->ID;
-					$desc = $post->post_content;
-				}
-				$desc = preg_replace('/\[(.*?)\]/',' ', $desc);
-				$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15'  ) );
+			if ( has_excerpt() ) {
+				$desc = get_the_excerpt();
+			} else {
+				global $post;
+				$id = $post->ID;
+				$desc = $post->post_content;
+			}
+			$desc = preg_replace('/\[(.*?)\]/',' ', $desc);
+			$desc = addslashes( wp_trim_words( strip_tags( $desc ) , '15' ) );
 		}
-
 		if ( is_search() ) {
 			$desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . ' ' . get_search_query() );
 		}
-
 		if ( ampforwp_is_front_page() ) {
 			$post_id = ampforwp_get_frontpage_id();
 			$desc = addslashes( wp_trim_words(  strip_tags( get_post_field('post_content', $post_id) ) , '15' ) );
 		}
-	}
 
-	//Genesis #1013
-	if ( function_exists('genesis_meta') ) {
-		if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
-			$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
+		// Yoast 
+		if ( class_exists('WPSEO_Frontend') && 1 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+			$front = $yoast_desc = '';
+			$front = WPSEO_Frontend::get_instance();
+			$yoast_desc = addslashes( strip_tags( $front->metadesc( false ) ) );
+			// Static front page
+			if ( ampforwp_is_front_page() ) { 
+				$post_id = ampforwp_get_frontpage_id();
+				if ( class_exists('WPSEO_Meta') ) {
+					$yoast_desc = addslashes( strip_tags( WPSEO_Meta::get_value('metadesc', $post_id ) ) );
+				}
+			}
+			// for search
+			if ( is_search() ) {
+				$yoast_desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
+			}
+
+			if ( $yoast_desc ) {
+				$desc = $yoast_desc;
+			}
+		} 
+
+		// All in One SEO
+		if ( class_exists('All_in_One_SEO_Pack') && 2 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+			$aisop_class = $aisop_desc = $opts = '';
+			$aisop_class = new All_in_One_SEO_Pack();
+			$aisop_desc = $aisop_class->get_main_description();
+			$opts = $aisop_class->get_current_options( array(), 'aiosp' );
+			if ( (is_category() || is_tax() || is_tag()) && $aisop_class->show_page_description() ) {
+				$aisop_desc = $opts['aiosp_description'];
+			}
+			if ( $aisop_desc ) {
+				$desc = $aisop_desc;
+			}
 		}
-		elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
-			$post_id = get_option( 'page_for_posts' );
-			if ( null !== $post_id || is_singular() ) {
-				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-					$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
-					if ( $genesis_description ) {
-						$desc = $genesis_description;
+
+		//Genesis #1013
+		if ( function_exists('genesis_meta') ) {
+			$genesis_description = '';
+			if ( is_home() && is_front_page() && ! $redux_builder_amp['amp-frontpage-select-option'] ) {
+				$genesis_description = genesis_get_seo_option( 'home_description' ) ? genesis_get_seo_option( 'home_description' ) : get_bloginfo( 'description' );
+			}
+			elseif ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+				$post_id = get_option( 'page_for_posts' );
+				if ( null !== $post_id || is_singular() ) {
+					if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
+						$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+						if ( $genesis_description ) {
+							$desc = $genesis_description;
+						}
 					}
 				}
 			}
-		}
-		elseif ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' ) ) {
-			$post_id = get_option('page_on_front');
-			if ( null !== $post_id || is_singular() ) {
-				if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
-					$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+			elseif ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] && get_option( 'page_on_front' ) ) {
+				$post_id = get_option('page_on_front');
+				if ( null !== $post_id || is_singular() ) {
+					if ( genesis_get_custom_field( '_genesis_description', $post_id ) ) {
+						$genesis_description = genesis_get_custom_field( '_genesis_description', $post_id );
+						}
 					}
 				}
+			else {
+				$genesis_description = genesis_get_seo_meta_description();
 			}
-		else {
-			$genesis_description = genesis_get_seo_meta_description();
+
+			if ( $genesis_description ) {
+					$desc = $genesis_description;
+				}
 		}
-		if ( $genesis_description ) {
-				$desc = $genesis_description;
-			}
+		// strip_shortcodes  strategy not working here so had to do this way
+		// strips shortcodes
+		$desc = preg_replace('/\[(.*?)\]/','', $desc);
 	}
-	// All in One SEO
-	if ( class_exists('All_in_One_SEO_Pack') ) {
-		$aisop_class = new All_in_One_SEO_Pack();
-		$desc = $aisop_class->get_main_description();
-	}
-	// strip_shortcodes  strategy not working here so had to do this way
-	// strips shortcodes
-	$desc = preg_replace('/\[(.*?)\]/','', $desc);
 	return $desc;
 }
 
@@ -5968,16 +6020,6 @@ if ( ! function_exists('ampforwp_list_subpages') ) {
 			$pages = preg_replace('/href="(.*?)"/', 'href="$1/amp/"', $pages);
 			echo wp_kses($pages, ampforwp_allowed_tags());
 		}
-	}
-}
-// Meta Robots Tag From Yoast #1563
-add_action('amp_post_template_head','ampforwp_yoast_robots_meta');
-function ampforwp_yoast_robots_meta(){
-	if ( class_exists('WPSEO_Frontend') ) {
-		$class_instance = '';
-	    $class_instance = WPSEO_Frontend::get_instance();
-	    // robots() will return and print the meta robots tag
-	    $class_instance->robots();
 	}
 }
 
