@@ -304,7 +304,7 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 		$layouts_demo = ampforwp_upcomming_layouts_demo();
 		if(is_array($layouts_demo)){
 			foreach($layouts_demo as $k=>$val){
-				$layoutTemplate['upcoming'] =  array(
+				$layoutTemplate[$val['name'].'-upcomming'] =  array(
 									'Upcoming'=>array(
 											'name'=> $val['name'],
 											'preview_demo'=>$val['link'],
