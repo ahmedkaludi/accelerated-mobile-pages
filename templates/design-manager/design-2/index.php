@@ -47,9 +47,9 @@
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} 
  		$blog_title = ampforwp_get_blog_details('title');
-			if($blog_title){  ?>
-				<h1 class="page-title"><?php echo $blog_title ?></h1>
-			<?php }	
+		if( ampforwp_is_blog() && $blog_title){  ?>
+			<h1 class="page-title"><?php echo $blog_title ?></h1>
+		<?php }	
  	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 

@@ -46,7 +46,7 @@
 			$filtered_args = apply_filters('ampforwp_query_args', $args);
 			$q = new WP_Query( $filtered_args ); 
 			$blog_title = ampforwp_get_blog_details('title');
-			if($blog_title){  ?>
+			if( ampforwp_is_blog() && $blog_title){  ?>
 				<h1 class="page-title"><?php echo $blog_title ?></h1>
 			<?php }
 			
