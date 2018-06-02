@@ -278,7 +278,7 @@ right:0;  z-index: 99999;
   bottom: 0px;
   right: 0pc;
 }
-.dashicons-admin-comments:before, .dashicons-no-alt{
+.dashicons-sos:before, .dashicons-no-alt{
     font-family: dashicons;
     font-style: normal;
 }
@@ -315,10 +315,15 @@ right:0;  z-index: 99999;
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.a-f-wp-help-container .a-f-wp-help-tear.green {
+  background: green;
+  transform: rotate(0deg);
+  border-radius: 5px;
+}
 .a-f-wp-help-container span {
   position: absolute;
   left: 26px;
-  top: 29px;
+  top: 28px;
   -webkit-transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
@@ -346,15 +351,9 @@ right:0;  z-index: 99999;
     text-transform: uppercase;
     line-height: 0; 
     border-bottom: 1px solid #E7E7E7; 
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     padding-bottom: 15px !important;
-} 
-/*** Layout Screenshot-Image CSS ***/
-#redux_builder_amp-ampforwp_layouts_core .amppb_ad-layout-layout {
-    margin-bottom: 30px;
-}
-
-/*** Layout Screenshot-Image CSS End ***/
+}  
 .amp-layouts-desc{
     position: absolute;
     font-size: 13px;
@@ -366,9 +365,7 @@ right:0;  z-index: 99999;
 .ampforwp-new-element .form-table tr{
     border-top: 0px;
 }
-.amp-design-selector th, .amp-design-selector td {
-    padding-top: 40px;
-}
+
 .amppb_ad-layout-layout .amppb_ad-layout-wrapper{
         padding: 0px;
     background: #F7F7F7;
@@ -643,5 +640,3 @@ visibility: hidden;
     cursor: pointer;
 }
 .redux_field_search, .redux-main #redux-sticky{display: none}
-
-#info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}

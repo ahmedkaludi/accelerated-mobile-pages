@@ -24,9 +24,7 @@
                 if ( $this->parent->args['dev_mode'] ) {
                     $this->timestamp .= '.' . time();
                 }
-                if ( defined('AMPFORWP_VERSION') ) {
-                    $this->timestamp = AMPFORWP_VERSION;
-                }
+
                 $this->register_styles();
                 $this->register_scripts();
 

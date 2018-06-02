@@ -360,7 +360,7 @@ function amp_loop_image( $data=array() ) {
 		if ( $thumb_url ) {
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" data-block-on-consent width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}
@@ -369,17 +369,10 @@ function amp_loop_image( $data=array() ) {
 
 // Category
 function amp_loop_category(){
-	global $redux_builder_amp;
 	if(count(get_the_category()) > 0){
 		echo ' <ul class="loop-category">';
 		foreach((get_the_category()) as $category) {
-			echo '<li class="amp-cat-'. $category->term_id.'">';
-			if ( true == $redux_builder_amp['ampforwp-archive-support'] && true == $redux_builder_amp['ampforwp-cats-tags-links-single'] ){
-				echo '<a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a>';
-			}
-			else
-				echo '<span>'. $category->cat_name.'</span>';
-			echo '</li>';
+			echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';
 		}
 		echo '</ul>';
 	}

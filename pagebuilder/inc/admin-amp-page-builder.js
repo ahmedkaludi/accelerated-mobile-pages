@@ -522,7 +522,6 @@ Vue.component('fields-data',{
 							 	Vue.set(field,'default',imageList);
 							}else{*/
 								if(type=='tag'){
-									field[field['name']+'_image_data'] = response.data.front_image;
 									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
 								}else{
 									//console.log(jQuery(currentSelectfield).parents('p'))

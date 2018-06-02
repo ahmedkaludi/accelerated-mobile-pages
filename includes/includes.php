@@ -50,23 +50,4 @@ function ampforwp_add_admin_styling(){
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_builder_amp );
 
     wp_enqueue_script( 'ampforwp_admin_js' );
-}
-
-// 73. View AMP Site below View Site In Dashboard #1076
-add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
-function ampforwp_visit_amp_in_admin_bar($admin_bar) {
-	$get_permalink_structure = get_option('permalink_structure');
-	if ( $get_permalink_structure ) {
-		$url = get_home_url().'/' . AMPFORWP_AMP_QUERY_VAR;
-	} else {
-		$url = get_home_url().'?amp=1';
-	}
-	$args = array(
-	    'parent' => 'site-name',
-	    'id'     => 'view-amp',
-	    'title'  => 'Visit AMP',
-	    'href'   =>  $url ,
-	    'meta'   => false
-	);
-	$admin_bar->add_node( $args );       
-}
+} ?>

@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.95
+Version: 0.9.86.2
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -19,7 +19,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.95');
+define('AMPFORWP_VERSION','0.9.86.2');
 
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
@@ -224,9 +224,12 @@ add_action( 'admin_init', 'ampforwp_add_custom_rewrite_rules' );
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
-	if ( ! did_action( 'ampforwp_init' ) ) {
- 		ampforwp_init();
-	}
+	// Run AMP deactivation code while activation  
+	ampforwp_deactivate_amp_plugin();
+
+		if ( ! did_action( 'ampforwp_init' ) ) {
+	 		ampforwp_init();
+		}
 
 	flush_rewrite_rules();
 
@@ -320,27 +323,7 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 			"name"=>'Weekly Magazine',
 			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-2.png',
 			"link"=>'https://ampforwp.com/layouts-2/',
-			),
-			array(
-			"name"=>'Elegance',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-3.png',
-			"link"=>'https://ampforwp.com/layouts-3/',
-			),
-			array(
-			"name"=>'Agency',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-4.png',
-			"link"=>'https://ampforwp.com/layouts-4/',
-			),
-			array(
-			"name"=>'Studio',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-5.png',
-			"link"=>'https://ampforwp.com/layouts-5/',
-			),
-			array(
-			"name"=>'Journal',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-6.png',
-			"link"=>'https://ampforwp.com/amp-layouts/',
-			),
+			)
 
 			);
 	}
@@ -414,6 +397,9 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 		public function __construct(){
 
+			// Load Files required for the plugin to run
+			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+
 			// Redirection Code added
 			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
 
@@ -435,8 +421,6 @@ function ampforwp_plugin_init() {
 }
 add_action('init','ampforwp_plugin_init',9);
 
-// Load Files required for the plugin to run
-require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 /*
 * customized output widget
 * to be used be used in before or after Loop
@@ -444,44 +428,57 @@ require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/category-widget.php';
 require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 
-  /*
-*
-* Use the code at the beginning of a plugin that you want to be laoded at last 
-*
-*/
-function ampforwp_load_plugin_last() {
-	$wp_path_to_this_file = preg_replace('/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", __FILE__);
-	$this_plugin = plugin_basename(trim($wp_path_to_this_file));
-	$active_plugins = get_option('active_plugins');
-	$this_plugin_key = array_search($this_plugin, $active_plugins);
-        array_splice($active_plugins, $this_plugin_key, 1);
-        array_push($active_plugins, $this_plugin);
-        update_option('active_plugins', $active_plugins);
-}
-if( file_exists(realpath(plugin_dir_path(__FILE__).'../amp/amp.php')) ){
-	add_action("activated_plugin", "ampforwp_load_plugin_last");
-}
 
 /*
 * 	Including core AMP plugin files and removing any other things if necessary
 */
 function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
-	if($GLOBALS['pagenow'] === 'plugins.php' && file_exists( realpath(plugin_dir_path(__FILE__).'../amp/amp.php') ) ){
-		return false;
+	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
+
+	define( 'AMP__FILE__', __FILE__ );
+	if ( ! defined('AMP__DIR__') ) {
+		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 	}
-	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-compatibility.php';
-	if(!function_exists('_amp_print_php_version_admin_notice')){
-		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/vendor-native-compatibility.php';
-		require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
-		$GLOBALS['vandorampdefine'] = 'own-amp-vendor';
-	}else{
-		$GLOBALS['vandorampdefine'] = 'auto-amp-vendor';
-	}
-	
-}
+	define( 'AMP__VERSION', '0.4.2' );
+
+	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
+	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
+	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+} 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
+function ampforwp_deactivate_amp_plugin() {
+ 
+	if ( version_compare( floatval( get_bloginfo( 'version' ) ), '3.5', '>=' ) ) {
+
+	    if ( current_user_can( 'activate_plugins' ) ) {
+
+	        add_action( 'admin_init', 'ampforwp_deactivate_amp' ); 
+
+	        function ampforwp_deactivate_amp() {
+	            deactivate_plugins( AMPFORWP_MAIN_PLUGIN_DIR . 'amp/amp.php' );
+	        }
+	    }
+	}
+}
+add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+
+function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
+	$plugin = '';
+
+	$plugin = 'amp/amp.php'; 
+	if ( $plugin == $plugin_file ) {
+		add_thickbox();
+		unset($actions['activate']);
+		$a = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts. \')">Activate</span>';
+		array_unshift ($actions,$a);
+	} 
+ 	return $actions;
+}
+add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
@@ -489,9 +486,8 @@ if ( ! function_exists('ampforwp_init') ) {
 		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
 			return;
 		}
-		if(!defined('AMP_QUERY_VAR')){
-			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
-		}
+
+		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 
 		if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
@@ -618,6 +614,3 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
-
-
-

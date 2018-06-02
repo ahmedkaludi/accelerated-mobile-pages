@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.6
-Stable tag: 0.9.95
+Tested up to: 4.9.5
+Stable tag: 0.9.86.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,8 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
-* NEW - Fully GDPR Complient
-* NEW - Two Types of GDPR notification added
+* NEW - GDPR Compliance
 * NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW Default Theme for AMP called Swift
 * NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
@@ -109,7 +108,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 **[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
-
 **[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
@@ -185,12 +183,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.92 (26th May 2018) =
-* Added: GDPR Compliance added
-
-= 0.9.90 (22nd May 2018) =
-* Fixed: GTM not working
-* Fixed: Core updated to the latest version
+= 0.9.86.1 (8th May 2018) =
+* A bug causing validation issues has been resolved.
 
 = 0.9.86 (3rd May 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-86-released-getting-ready-for-future-87th-update/)

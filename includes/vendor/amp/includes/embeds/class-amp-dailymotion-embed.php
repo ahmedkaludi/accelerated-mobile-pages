@@ -1,15 +1,8 @@
 <?php
-/**
- * Class AMP_DailyMotion_Embed_Handler
- *
- * @package AMP
- */
 
-/**
- * Class AMP_DailyMotion_Embed_Handler
- *
- * Much of this class is borrowed from Jetpack embeds
- */
+require_once( AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
+
+// Much of this class is borrowed from Jetpack embeds
 class AMP_DailyMotion_Embed_Handler extends AMP_Base_Embed_Handler {
 
 	const URL_PATTERN = '#https?:\/\/(www\.)?dailymotion\.com\/video\/.*#i';
@@ -17,6 +10,9 @@ class AMP_DailyMotion_Embed_Handler extends AMP_Base_Embed_Handler {
 
 	protected $DEFAULT_WIDTH = 600;
 	protected $DEFAULT_HEIGHT = 338;
+
+	private static $script_slug = 'amp-dailymotion';
+	private static $script_src = 'https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js';
 
 	function __construct( $args = array() ) {
 		parent::__construct( $args );
@@ -36,6 +32,14 @@ class AMP_DailyMotion_Embed_Handler extends AMP_Base_Embed_Handler {
 	public function unregister_embed() {
 		wp_embed_unregister_handler( 'amp-dailymotion', -1 );
 		remove_shortcode( 'dailymotion' );
+	}
+
+	public function get_scripts() {
+		if ( ! $this->did_convert_elements ) {
+			return array();
+		}
+
+		return array( self::$script_slug => self::$script_src );
 	}
 
 	public function shortcode( $attr ) {
@@ -83,6 +87,7 @@ class AMP_DailyMotion_Embed_Handler extends AMP_Base_Embed_Handler {
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
+				'data-block-on-consent' => '',
 			)
 		);
 	}
