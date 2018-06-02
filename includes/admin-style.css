@@ -20,8 +20,8 @@ body #toplevel_page_amp_options .wp-menu-image{
     -webkit-background-size: 20px auto;
     background-size: 20px auto;
 }
-.amp_content_builder .redux-group-tab-link-a span:after {
-/*    content: "NEW";*/
+.ampforwp_new_features .redux-group-tab-link-a span:after {
+    content: "NEW";
     color: #fff;
     font-size: 10px;
     background: #4452a7;

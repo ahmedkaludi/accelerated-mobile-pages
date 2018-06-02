@@ -1198,7 +1198,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
       'class'       =>'',
        'id'         => 'amp-content-builder',
-       'class' => 'amp_content_builder ampforwp-new-element',
+       'class'      => 'ampforwp-new-element',
        'subsection' => true,
        'fields' => array( 
             array(
@@ -2447,9 +2447,10 @@ function ampforwp_add_sd_fields($fields){
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'Notice Bar', 'accelerated-mobile-pages' ),
+       'title'      => __( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
+       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields'     => array(
            array(
