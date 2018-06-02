@@ -903,7 +903,11 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
     .w-bl ul li {margin-bottom: 11px;}
     .f-menu ul li {display: inline-block;line-height: 1.8;margin-right: 13px;}
     .f-menu .amp-menu > li a {padding: 0;font-size: 12px;color: #7a7a7a;}
-    .rr {margin-top: 15px;font-size: 11px;}
+    .rr {margin-top: 15px;font-size: 11px;
+    	<?php if($redux_builder_amp['amp-gdpr-compliance-switch'] == '1'){?>
+			line-height:1.8;
+		<?php } ?>
+	}
 }
 @media(max-width:425px){
     .footer {margin-top: 35px;}

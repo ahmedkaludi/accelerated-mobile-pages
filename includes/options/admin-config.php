@@ -2504,6 +2504,45 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 0,
            ),
            array(
+               'class'  => 'child_opt',
+               'id'        =>'audience-for-amp-gdpr-compliance',
+               'type'      => 'select',
+               'title'     => __('GDPR Visibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the option to which you want to display GDPR. ', 'accelerated-mobile-pages'),
+               'options'      => array('1' => 'Globally',
+                                        '2' => 'For European Union',
+                                        '3' => 'Handpicked EU Countries'
+                                        ),
+               'default'    => 2,            
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+            array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
+               'type'      => 'checkbox',
+               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
+               'default'    => 0,            
+               'options'      => $eu_iso_codes,
+               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
+           ),
+           array(
+                    'id'    => 'gdpr-type',
+                   'title'  => __('GDPR Designs', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Header 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Header 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-2.png'
+                                ),
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('amp-gdpr-compliance-switch', '=' , '1') ),
+            ),
+           array(
                'class'  => 'child_opt child_opt_arrow',
                'id'        =>'amp-gdpr-compliance-headline-text',
                'type'      => 'text',
@@ -2519,7 +2558,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('Message to Visitor', 'accelerated-mobile-pages'),
                'subtitle'     => __('', 'accelerated-mobile-pages'),
                'default'   => '',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
            
            array(
@@ -2546,8 +2585,34 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Privacy Settings',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-
- 
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-for-more-privacy-info',
+               'type'      => 'text',
+               'title'     => __('For More information', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
+               'default'   => 'For More information about Privacy',
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
+           ),
+          
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-select-privacy-page',
+               'type'      => 'select',
+               'title'     => __('Select the Privacy Page', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the Privacy Page to display.', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'data'      => 'pages',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-page-button-text',
+               'type'      => 'text',
+               'title'     => __('Privacy Page Button Text', 'accelerated-mobile-pages'),
+               'default'   => 'Click Here',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
        ),
 
    ) );
