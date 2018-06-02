@@ -7,7 +7,7 @@ function amp_archive_title(){
 			$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 			if($curauth_url){ ?>
 				<div class="amp-wp-content author-img">
-					<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+					<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 				</div>
 			<?php }
 	}
@@ -360,7 +360,7 @@ function amp_loop_image( $data=array() ) {
 		if ( $thumb_url ) {
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 			echo '<a href="'.amp_loop_permalink(true).'">';
-			echo '<amp-img src="'. $thumb_url .'" data-block-on-consent width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}

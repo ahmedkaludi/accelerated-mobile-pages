@@ -51,7 +51,7 @@
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="author-archive">
-							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
+							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
 						</div>
 					<?php }
 				}
