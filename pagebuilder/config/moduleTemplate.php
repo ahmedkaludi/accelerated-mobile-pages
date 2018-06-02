@@ -85,18 +85,45 @@ $front_css = '
 	
 	{{shadow}}
 }
+{{row-class}}.slant_clr{position:relative;}
+{{if_condition_check_for_enbtp==1}}
 {{row-class}}.slant_clr:before{
 	content:"";
-	height:105px;
+	height:110px;
 	width:100%;
 	display:block;
 	background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' preserveAspectRatio=\'none\' viewBox=\'0 0 100 100\'><polygon fill=\'{{color_picker}}\' points=\'0,0 100,0 100,44 0,0\' /></svg>");
 	background-repeat:no-repeat;
-	top: -105px;
-    position: relative;
-    transform: rotate(-180deg);
-
+	top: -110px;
+    position: absolute;
+	{{if_condition_align_type_slant==left}}
+		transform: rotate(-180deg);
+	{{ifend_condition_align_type_slant_left}}
+	{{if_condition_align_type_slant==right}}
+		transform: rotate(-180deg) scaleX(-1);
+	{{ifend_condition_align_type_slant_right}} 
 }
+{{ifend_condition_check_for_enbtp_1}}
+
+{{if_condition_check_for_enbbt==1}}
+{{row-class}}.slant_clr:after{
+	content:"";
+	height:110px;
+	width:100%;
+	display:block;
+	background-image:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' preserveAspectRatio=\'none\' viewBox=\'0 0 100 100\'><polygon fill=\'{{color_picker}}\' points=\'0,0 100,0 100,44 0,0\' /></svg>");
+	background-repeat:no-repeat;
+	bottom: -110px;
+    position: absolute;
+	{{if_condition_align_type_slate_btn==lft}}
+		transform: rotate(-0deg) scaleX(-1);
+	{{ifend_condition_align_type_slate_btn_lft}}
+	{{if_condition_align_type_slate_btn==rht}}
+		transform: rotate(0deg);
+	{{ifend_condition_align_type_slate_btn_rht}}    
+}
+{{ifend_condition_check_for_enbbt_1}}
+
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
 	{{row-class}}.amppb-fluid .col{max-width:90%;}
@@ -124,6 +151,7 @@ $containerCommonSettings = array(
 			'tabs' => array(
 			  'customizer'=>'Basic',
 			  'container_css'=>'Advance',
+			  'design'=>'Design'
 			),
 			'fields' => array(
 							array(
@@ -249,7 +277,7 @@ $containerCommonSettings = array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_parallax",
                                 'label'     => 'Parallax Effect',
-                                'tab'       =>'customizer',
+                                'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
                                                 array(
@@ -264,7 +292,7 @@ $containerCommonSettings = array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_slant",
                                 'label'     => 'Slant Background',
-                                'tab'       =>'customizer',
+                                'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
                                                 array(
@@ -275,6 +303,60 @@ $containerCommonSettings = array(
                                 'content_type'=>'html',
                                 'required'  => array('background_type'=>'color')
                             ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_enbtp",
+                                'label'     => 'Enable Top',
+                                'tab'       =>'design',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                                'required'  => array('background_type'=>'color', 'check_for_slant'=>1)
+                            ),
+                            array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type_slant',		
+	 							'label' =>"Slant Position",
+								'tab'     =>'design',
+	 							'default' =>'left',
+	 							'options_details'=>array(
+	 												'left'  	=>'Left',
+	 												'right'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('check_for_slant'=>1, 'check_for_enbtp'=>1)
+	 						),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_enbbt",
+                                'label'     => 'Enable Bottom',
+                                'tab'       =>'design',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                                'required'  => array('background_type'=>'color', 'check_for_slant'=>1)
+                            ),
+                            array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type_slate_btn',		
+	 							'label' =>"Slant Position",
+								'tab'     =>'design',
+	 							'default' =>'lft',
+	 							'options_details'=>array(
+	 												'lft'  	=>'Left',
+	 												'rht'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('check_for_slant'=>1, 'check_for_enbbt'=>1)
+	 						),
 							array(
 								'type'		=>'color-picker',
 								'name'		=>"color_picker",
