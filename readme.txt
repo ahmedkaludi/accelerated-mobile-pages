@@ -183,6 +183,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.96 (2nd June 2018) =
+* Added: Fully GDPR Compliance
+* Fixed: GTM not working
+
 = 0.9.86.1 (8th May 2018) =
 * A bug causing validation issues has been resolved.
 
