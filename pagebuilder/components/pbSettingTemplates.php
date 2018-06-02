@@ -123,7 +123,7 @@ global $savedlayoutTemplate;
                                                 <div class="amppb-layout-bottom">
                                                     <div class="amppb-layout-button">
                                                         <?php
-                                                        if(strtolower($layoutName)=='upcoming'){
+                                                        if(strpos($layoutName, '-upcomming')!==False){
                                                             ?>
                                                         <a target="_blank" class="button button-lg" href="<?php echo $lay[$firstLayout]["preview_demo"]; ?>">View Layout</a>
                                                             <?php
