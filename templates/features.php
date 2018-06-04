@@ -6948,3 +6948,20 @@ if ( ! function_exists('ampforwp_skip_thrive_leads') ) {
 		return $skip;
 	}
 }
+
+// Fully compatibility with muffin page builder #2180
+add_action( 'pre_amp_render_post', 'ampforwp_mfn_show_custom_amp_editor_data' );
+function ampforwp_mfn_show_custom_amp_editor_data(){
+	if ( function_exists('mfn_builder_print') ) {
+		$amp_custom_content_enable = get_post_meta(get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
+		if (  $amp_custom_content_enable ) {
+			add_action('amp_post_template_css','ampforwp_mfn_wp_content_hide');
+		}
+	}
+}
+function ampforwp_mfn_wp_content_hide(){
+ ?>
+	.the_content_wrapper{
+		display:none;
+	}<?php
+}
