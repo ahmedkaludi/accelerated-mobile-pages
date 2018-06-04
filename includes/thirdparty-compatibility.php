@@ -318,3 +318,47 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 		return $layoutTemplate;
 
 }
+
+
+
+
+if(!function_exists('ampforwp_isexternal')){
+  function ampforwp_isexternal($url) {
+    $components = parse_url($url);
+    if ( empty($components['host']) ) return false;  // we will treat url like '/relative.php' as relative
+    if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; // url host looks exactly like the local host
+    return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); // check if the url host is a subdomain
+  }//Function function_exists
+}// ampforwp_isexternal function_exists close
+if(!function_exists('ampforwp_findInternalUrl')){
+  function ampforwp_findInternalUrl($url){
+    global $redux_builder_amp;
+   
+    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
+        return $url;
+    }
+    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
+      // Skip the URL's that have edit link to it
+      $parts = parse_url($url);
+      parse_str($parts['query'], $query);
+      if ( isset( $query['action'] ) && $query['action'] ) {
+          return $url;
+      }
+      if(strpos($url, "#")!==false){
+        $url = explode("#",$url);
+        $url = trailingslashit($url[0]).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR).'#'.$url[1];
+      }else{
+        $url = trailingslashit($url).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR);
+      }
+      return $url;
+    }
+    return $url;
+  }// function Close
+}// function_exists ampforwp_findInternalUrl close
+function ampforwp_is_amp_inURL($url){
+  $urlArray = explode("/", $url);
+  if(!in_array(AMPFORWP_AMP_QUERY_VAR, $urlArray)){
+    return false;
+  }
+  return true;
+}

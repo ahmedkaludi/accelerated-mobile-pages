@@ -3163,6 +3163,14 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
 
                     ),
+                    array(
+                        'id'       => 'convert-internal-nonamplinks-to-amp',
+                        'type'     => 'switch',
+                        'title'    => __('Change Internal Links in AMP Link', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('
+                        Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
                     // End-point option
                      array(
                         'id'       => 'amp-core-end-point',
