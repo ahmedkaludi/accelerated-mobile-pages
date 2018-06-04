@@ -3661,12 +3661,16 @@ function ampforwp_comment_button_url(){
 }
 
 // 60. Remove Category Layout modification code added by TagDiv #842 and #796
-function ampforwp_remove_support_tagdiv_cateroy_layout(){
+// #1683
+add_action('pre_amp_render_post', 'ampforwp_remove_tagdiv_category_layout');
+function ampforwp_remove_tagdiv_category_layout(){
 	if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
-		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 
+		add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
 	}
 }
-add_action('pre_get_posts','ampforwp_remove_support_tagdiv_cateroy_layout',9);
+function ampforwp_remove_support_tagdiv_cateroy_layout(){	
+		remove_action('pre_get_posts', 'td_modify_main_query_for_category_page'); 	
+}
 
 // 61. Add Gist Support
 add_shortcode('amp-gist', 'ampforwp_gist_shortcode_generator');
