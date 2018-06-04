@@ -57,7 +57,7 @@ amp-sidebar{ width: 250px; }
 .toggle-navigation ul li a{ color: #eee; padding: 15px; }
 .toggle-navigation{ display: none; background: #444; }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
-.toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
+.toggle-text:before{ content: "..."; font-size: 32px; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
 .nav_container:hover + .toggle-navigation, .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus{ display: inline-block; width: 100%; }
 /* Category 2 */
 .category-widget-wrapper{ padding:30px 15% 10px 15% }
