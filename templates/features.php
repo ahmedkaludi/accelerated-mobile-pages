@@ -3401,7 +3401,7 @@ add_filter( 'amp_post_template_data', 'ampforwp_add_ads_scripts' );
 function ampforwp_add_ads_scripts( $data ) {
 	global $redux_builder_amp;
 
-	if ( (isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1']) || (isset( $redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2']) || (isset($redux_builder_amp['enable-amp-ads-3']) && $redux_builder_amp['enable-amp-ads-3']) || (isset($redux_builder_amp['enable-amp-ads-4']) && $redux_builder_amp['enable-amp-ads-4']) ) {
+	if ( (isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1']) || (isset( $redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2']) || (isset($redux_builder_amp['enable-amp-ads-3']) && $redux_builder_amp['enable-amp-ads-3']) || (isset($redux_builder_amp['enable-amp-ads-4']) && $redux_builder_amp['enable-amp-ads-4']) || (isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5']) || (isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6']) ) {
 					if ( empty( $data['amp_component_scripts']['amp-ad'] ) ) {
 						$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
 					}
