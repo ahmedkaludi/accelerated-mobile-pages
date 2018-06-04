@@ -4075,7 +4075,7 @@ function ampforwp_view_nonamp(){
       }
     else{
         $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
-        $ampforwp_backto_nonamp = preg_replace('/\bamp\b/','',$ampforwp_backto_nonamp);
+        $ampforwp_backto_nonamp = dirname($ampforwp_backto_nonamp);
         $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
         
         if('' == $permalink_structure){
