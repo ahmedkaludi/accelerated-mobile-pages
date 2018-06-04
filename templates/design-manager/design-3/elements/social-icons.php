@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp, $post; 
-$image = ''; ?>
-<?php if ( is_single() ) { 
+$image = '';
+if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	 if ( has_post_thumbnail( $post->ID ) ) {
 	 	$thumb_id = get_post_thumbnail_id($post->ID);
 		$image = wp_get_attachment_image_src( $thumb_id, 'full' );

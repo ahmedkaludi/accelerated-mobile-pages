@@ -926,7 +926,7 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 <?php
 
  //Sticky Social Icons
-if(is_single()){ ?>
+if(is_single() || is_page() ){ ?>
 .ss-ic ul li{font-family: 'icomoon';list-style-type:none;display:inline-block;}
 .ss-ic li a{color: #fff;padding: 5px;border-radius: 3px;margin: 0px 10px 10px 0px;display: inline-block;}
 <?php if($redux_builder_amp['enable-single-facebook-share'] || $redux_builder_amp['enbl-fb'] ){?>
