@@ -16,9 +16,11 @@
 <?php do_action('ampforwp_body_beginning', $this); ?>
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 
-<div class="amp-wp-content">
-	<?php do_action('ampforwp_area_above_loop'); ?>
-</div>
+<?php if ( has_action('ampforwp_area_above_loop') ) : ?>
+	<div class="amp-wp-content">
+		<?php do_action('ampforwp_area_above_loop'); ?>
+	</div>
+<?php endif; ?>
 
 <?php do_action( 'ampforwp_after_header', $this );
 
