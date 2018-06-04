@@ -238,6 +238,20 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		    }
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
+			if(is_tag() &&  is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
+				$all_tags = get_the_tags();
+				$tagsOnPost = array();
+				foreach ($all_tags as $tagskey => $tagsvalue) {
+					$tagsOnPost[] = $tagsvalue->term_id;
+				}
+				$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+				
+				if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+					return;
+				}
+			}//tags area closed
+
+
 			$selected_cats = array();
 			$categories = get_the_category();
 			if ( $categories ) {	
@@ -4578,6 +4592,22 @@ function is_category_amp_disabled(){
 	global $redux_builder_amp;
 
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
+		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
+			$all_tags = get_the_tags();
+			$tagsOnPost = array();
+			foreach ($all_tags as $tagskey => $tagsvalue) {
+				$tagsOnPost[] = $tagsvalue->term_id;
+			}
+			$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+			
+			if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}//tags check area closed
+
 		$categories = get_the_category();
 		$selected_cats = array();
 		if ( $categories) {
