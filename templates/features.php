@@ -4946,36 +4946,41 @@ function ampforwp_enable_post_and_featured_image($show_image){
 
 	return $show_image; 
 }
+
 // 82. Grab Featured Image from The Content
-function ampforwp_get_featured_image_from_content($featured_image = "", $size="") {
+function ampforwp_get_featured_image_from_content( $featured_image = "", $size="") {
 	global $post, $posts;
-	$image_url 				= '';
-	$image_width 			= '';
-	$image_height 			= '';
-	$output 				= '';
-	$matches 				= '';
-	$amp_html_sanitizer 	= '';
-	$amp_html 				= '';
-	$image_html 			= '';
-	$featured_image_output 	= '';
+	$image_url = $image_width = $image_height = $output = $matches = $output_fig = $amp_html_sanitizer = $amp_html = $image_html = $featured_image_output = $matches_fig = $figure = $output_fig_image = $matches_fig_img = '';
 	ob_start();
 	ob_end_clean();
 	// Match all the images from the content
 	if(is_object($post)){
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+		// Match all the figure tags from the content
+		$output_fig = preg_match_all('/\[caption.+id=[\'"]([^\'"]+).*]/i', $post->post_content, $matches_fig);
+		if ( $output_fig && $matches_fig[0][0] ) {
+			$output_fig_image = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*.+width=[\'"]([^\'"]+)[\'"].*.+height=[\'"]([^\'"]+)[\'"].*>(.*)\[/i', $matches_fig[0][0], $matches_fig_img);
+			// Check if the first image is inside the figure and it got caption
+			if ( $matches_fig_img[1][0] == $matches[1][0] && $matches_fig_img[4][0]) {
+				$figure = true;
+			}
+		}
 	}
 	//Grab the First Image
-	if (is_array($matches) &&  $matches[0] ) {
+	if (is_array($matches) && $matches[0] ) {
 		$image_url 		= $matches[1][0];
 		$image_html 	= $matches[0][0];
 		$image_width 	= $matches[2][0];
 		$image_height 	= $matches[3][0];
 		// Sanitize it
-		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
+		$amp_html_sanitizer = new AMPFORWP_Content( $image_html, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
+	    // If its figure then add the figcaption inside the figure
+	    if ( $figure ) {
+	   		$amp_html = $amp_html . '<figcaption class="wp-caption-text">' . esc_attr($matches_fig_img[4][0]) . '</figcaption>';
+	   	}
 	    // Filter to remove that image from the content
 	    add_filter('ampforwp_modify_the_content','featured_image_content_filter');
-
 	
 		if ( isset( $size ) && '' !== $size ) {
 			$image_id = attachment_url_to_postid( $image_url );
@@ -4991,19 +4996,15 @@ function ampforwp_get_featured_image_from_content($featured_image = "", $size=""
 			case 'image':
 				$featured_image_output = $amp_html;
 			break;
-
 			case 'url':
 				$featured_image_output = $image_url;
 			break;
-
 			case 'width':
 				$featured_image_output = $image_width;
 			break;
-
 			case 'height':
 				$featured_image_output = $image_height;
 			break;
-
 			default:
 				$featured_image_output = $amp_html;
 			break;
@@ -5019,10 +5020,10 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 		if( $featured_image && false == $redux_builder_amp['ampforwp-duplicate-featured-image']){
 			// Change the src to use it in the pattern
 			$featured_image = str_replace('/', '\/', $featured_image);
-			// Remove the amp-img 
-			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*)<\/amp-img>/', '', $content);
 			// Remove the figure (due to caption)
-			$content = preg_replace('/<figure(.*)href="'.$featured_image.'"(.*)<\/figure>/', '', $content);
+			$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
+			// Remove the amp-img 
+			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*?)<\/amp-img>/', '', $content);
 		}
 	return $content;
 	}
