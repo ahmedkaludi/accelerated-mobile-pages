@@ -5090,44 +5090,44 @@ function ampforwp_inline_related_posts(){
 						<span class="related-title">'.ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ).'</span>';
 						
 				    while( $my_query->have_posts() ) {
-						    $my_query->the_post();
-								$related_post_permalink = get_permalink();
-								$related_post_permalink = trailingslashit($related_post_permalink);
-								$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
-								if ( ampforwp_has_post_thumbnail() ) {
-									$title_class = 'has_related_thumbnail';
-								} else {
-									$title_class = 'no_related_thumbnail'; 
-								}
-
-							$inline_related_posts .= '<li class="'.$title_class.'">
-                                    <a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.get_the_title().'">';
+					    $my_query->the_post();
+						$related_post_permalink = get_permalink();
+						$related_post_permalink = trailingslashit($related_post_permalink);
+						$related_post_permalink = ampforwp_url_controller( $related_post_permalink );
+						if ( ampforwp_has_post_thumbnail() ) {
+							$title_class = 'has_related_thumbnail';
+						} else {
+							$title_class = 'no_related_thumbnail'; 
+						}
+						$inline_related_posts .= '<li class="'.$title_class.'">';
+						if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) {
+                            $inline_related_posts .= '<a href="'.esc_url( $related_post_permalink ).'" rel="bookmark" title="'.get_the_title().'">';
 			          
-				           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
+			           		$thumb_url_2 = ampforwp_get_post_thumbnail('url');
 			            
-								if ( ampforwp_has_post_thumbnail() ) {
-									if( 4 == $redux_builder_amp['amp-design-selector'] ){
-										$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false );
-										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
-									}
-									else{
-										$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
-									}
-								} 
-								$inline_related_posts .='</a>';
-								$inline_related_posts .='<div class="related_link">';
-									$inline_related_posts .='<a href="'.esc_url( $related_post_permalink ).'">'.get_the_title().'</a>';
-				                    if( has_excerpt() ){
-										$content ='<p>'.get_the_excerpt().'</p>';
-									}else{
-										$content ='<p>'.get_the_content().'</p>';
-									}
-			                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , '15' ).'</p>
-		                		</div>
-		           			 </li>';
-							
-							}					     
-							$inline_related_posts .= '</ol>
+							if ( ampforwp_has_post_thumbnail() ) {
+								if( 4 == $redux_builder_amp['amp-design-selector'] ){
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false );
+									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
+								}
+								else{
+									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2 ).'" width="150" height="150" layout="responsive"></amp-img>';
+								}
+							} 
+							$inline_related_posts .='</a>';
+						}
+						$inline_related_posts .='<div class="related_link">';
+						$inline_related_posts .='<a href="'.esc_url( $related_post_permalink ).'">'.get_the_title().'</a>';
+	                    if( has_excerpt() ){
+							$content ='<p>'.get_the_excerpt().'</p>';
+						}else{
+							$content ='<p>'.get_the_content().'</p>';
+						}
+                    	$inline_related_posts .= '<p>'. wp_trim_words( strip_shortcodes( $content ) , '15' ).'</p>
+                			</div>
+           			 	</li>';							
+					}					     
+				$inline_related_posts .= '</ol>
 						    </div>
 						</div>';
 					}
