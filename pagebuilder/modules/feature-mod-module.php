@@ -3,6 +3,7 @@ $output = '
 	<div class="ln-fx">{{repeater}}</div>';
 $css = '
 .feature-mod{margin:{{margin_css}};padding:{{padding_css}};}
+{{if_condition_feature_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;}
 .feat-blk{ margin: 0 3% 3% 0; background: {{background_color_picker}}; width: 47%; text-align: center;padding: 40px; position: relative;color: #26292c;}
 .feat-blk p{color: #333;font-size: 18px;padding-top:15px;}
@@ -15,6 +16,7 @@ $css = '
 @media(max-width:425px){
 	.feat-blk amp-img{width:100%;}
 }
+{{ifend_condition_feature_layout_type_1}}
 ';
 return array(
 		'label' =>'Feature',
@@ -23,9 +25,25 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layouts'=> 'Layouts'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"feature_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layouts',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/feature-1.png'
+				                            ),
+				                          ),
+				            'content_type'=>'html',
+				            ),
 						 array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
@@ -39,6 +57,7 @@ return array(
 												),
 											),
 								'content_type'=>'html',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 				         array(		
 		 						'type'		=>'text',		
@@ -47,6 +66,7 @@ return array(
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'300px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('feature_layout_type'=> 1)
 	 						),
 
 						array(
@@ -55,7 +75,8 @@ return array(
 								'label'		=>'Background Color',
 								'tab'		=>'design',
 								'default'	=>'#f4f4f4',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 						array(
 								'type'		=>'color-picker',
@@ -63,7 +84,8 @@ return array(
 								'label'		=>'Text Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 	 					array(		
 	 							'type'	=>'select',		
@@ -76,6 +98,7 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
+	 							'required'  => array('feature_layout_type'=> 1)
 	 						),
 					
 						array(
@@ -140,11 +163,11 @@ return array(
                 
               ),
           'front_template'=>
-        '<div class="feat-blk">
+        '{{if_condition_feature_layout_type==1}}<div class="feat-blk">
       		<h3 class="t-txt">{{content_title}}</h3>
 			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
-      	</div> '
+      	</div> {{ifend_condition_feature_layout_type_1}}'
           ),
 
 	);
