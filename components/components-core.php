@@ -324,6 +324,9 @@ function amp_header_core(){
 		    		wp_head();
 
 		    	}else{
+		    		if(is_search()){?>
+		    			<meta name="robots" content="noindex,nofollow"/>
+		    		<?php }
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
 			<style amp-custom>
