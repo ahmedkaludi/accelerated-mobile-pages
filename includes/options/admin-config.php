@@ -301,12 +301,13 @@ $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $ex
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
-usort($extension_listing_array, function($a, $b){
-        if ($a['is_activated'] == $b['is_activated']) {
-            return 0;
-        }
-        return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
-    });
+function ampforwp_sort_extensionArray_callback($a, $b){
+    if ($a['is_activated'] == $b['is_activated']) {
+        return 0;
+    }
+    return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
+}
+usort($extension_listing_array, 'ampforwp_sort_extensionArray_callback');
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
