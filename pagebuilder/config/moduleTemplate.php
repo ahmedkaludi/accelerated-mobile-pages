@@ -68,7 +68,7 @@ $front_css = '
 	{{ifend_condition_check_for_parallax_1}}
 }
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
-{{row-class}}.amppb-fluid .col{margin:0 auto;max-width:{{fluid-wrapper}}; }
+{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{margin:0 auto;max-width:{{fluid-wrapper}}; }
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
@@ -126,7 +126,7 @@ $front_css = '
 
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
-	{{row-class}}.amppb-fluid .col{max-width:90%;}
+	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{max-width:90%;}
 }
 
 @media(max-width:425px){
