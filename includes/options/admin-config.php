@@ -5738,6 +5738,20 @@ Redux::setSection( $opt_name, array(
               'title'     =>  __('Viber', 'accelerated-mobile-pages'),
               'default'   =>  0,
           ),
+           // Hatena BookMark
+           array(
+              'id'        =>  'enable-single-hatena-bookmarks',
+              'type'      =>  'switch',
+              'title'     =>  __('Hatena Bookmarks', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+        // Pocket
+           array(
+              'id'        =>  'enable-single-pocket-share',
+              'type'      =>  'switch',
+              'title'     =>  __('Pocket', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
           // Yummly
           array(
               'id'        =>  'enable-single-yummly-share',

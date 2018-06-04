@@ -996,6 +996,14 @@ if($redux_builder_amp['enable-single-viber-share']){?>
 if(isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 .s_ym{background:#e26426}
 .s_ym:after{content: "\e948";}
+<?php }
+if(isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder_amp['enable-single-hatena-bookmarks']){?>
+.s_hb{background:#00a4de}
+.s_hb:after{content: "\e948";}
+<?php }
+if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp['enable-single-pocket-share']){?>
+.s_pk{background:#ef3f56}
+.s_pk:after{content: "\e949";}
 <?php } ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
