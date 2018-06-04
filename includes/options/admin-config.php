@@ -1423,6 +1423,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'false'     => 'Disabled',
                     ),
                  array(
+                        'class' => 'child_opt child_opt_arrow',
                         'id'        => 'made-amp-ad-3-global',
                         'type'      => 'select',
                         'title'     => __('Display on', 'accelerated-mobile-pages'),

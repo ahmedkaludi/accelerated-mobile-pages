@@ -773,7 +773,7 @@ function ampforwp_new_dir( $dir ) {
 			$client_id = $redux_builder_amp['enable-amp-ads-text-feild-client-3'];
 			$data_slot = $redux_builder_amp['enable-amp-ads-text-feild-slot-3'];
 			$optimize = ampforwp_ad_optimize();
-			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){var_dump($redux_builder_amp['made-amp-ad-3-global']);
+			if(isset($redux_builder_amp['made-amp-ad-3-global']) && $redux_builder_amp['made-amp-ad-3-global']){
 				if($redux_builder_amp['made-amp-ad-3-global'] == 1){
 					$is_global = is_single();
 				}
