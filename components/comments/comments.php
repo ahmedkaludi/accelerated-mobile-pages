@@ -24,61 +24,61 @@ function ampforwp_framework_get_comments(){
 				
 				if ( $comments ) { ?>
 					<div id="comments" class="amp-comments-wrapper">
-				            <h3><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
-				            <ul><?php
-								// Display the list of comments
-								function ampforwp_custom_translated_comment($comment, $args, $depth){
-									$GLOBALS['comment'] = $comment;
-									global $redux_builder_amp;
-									$comment_author_img_url = "";
-									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
-									
-									?>
-									<li id="li-comment-<?php comment_ID() ?>"
-									<?php comment_class(); ?> >
-										<article id="comment-<?php comment_ID(); ?>" class="comment-body">
-											<footer class="comment-meta">
-											<?php if($comment_author_img_url){ ?>
-			         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			         						<?php } ?>
-												<div class="comment-author vcard">
-													 <?php
-													 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
-												</div>
-												<div class="comment-metadata">
-													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
-														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
-													</a>
-													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
-												</div>
-											</footer>
-											<div class="comment-content">
-						                        <?php
-						                          	$comment_content = get_comment_text();
-						                        	$comment_content = wpautop( $comment_content );
-						                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
-						                          		'AMP_Img_Sanitizer' => array(),
-						                          		'AMP_Video_Sanitizer' => array(),
-						                          		'AMP_Style_Sanitizer' => array() ) ) );
-						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
-						                          echo make_clickable( $sanitized_comment_content );   ?>
+			            <h3><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
+			            <ul><?php
+							// Display the list of comments
+							function ampforwp_custom_translated_comment($comment, $args, $depth){
+								$GLOBALS['comment'] = $comment;
+								global $redux_builder_amp;
+								$comment_author_img_url = "";
+								$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
+								
+								?>
+								<li id="li-comment-<?php comment_ID() ?>"
+								<?php comment_class(); ?> >
+									<article id="comment-<?php comment_ID(); ?>" class="comment-body">
+										<footer class="comment-meta">
+										<?php if($comment_author_img_url){ ?>
+		         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+		         						<?php } ?>
+											<div class="comment-author vcard">
+												 <?php
+												 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 											</div>
-										<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
-										</article>
-									</li>
-									<?php 
-								}
-								wp_list_comments( array(
-			                        //Allow comment pagination
-			                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
-			                        'style' 			=> 'li',
-			                        'type'				=> 'comment',
-			                        'max_depth'   		=> 5,
-			                        'avatar_size'		=> 0,
-			                        'callback'			=> 'ampforwp_custom_translated_comment',
-			                        'reverse_top_level' => true //Show the latest comments at the top of the list
-								), $comments);  ?>
-						    </ul> <?php 
+											<div class="comment-metadata">
+												<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
+													<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
+												</a>
+												<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
+											</div>
+										</footer>
+										<div class="comment-content">
+					                        <?php
+					                          	$comment_content = get_comment_text();
+					                        	$comment_content = wpautop( $comment_content );
+					                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+					                          		'AMP_Img_Sanitizer' => array(),
+					                          		'AMP_Video_Sanitizer' => array(),
+					                          		'AMP_Style_Sanitizer' => array() ) ) );
+					                         $sanitized_comment_content =  $sanitizer->get_amp_content();
+					                          echo make_clickable( $sanitized_comment_content );   ?>
+										</div>
+									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
+									</article>
+								</li>
+								<?php 
+							}
+							wp_list_comments( array(
+		                        //Allow comment pagination
+		                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
+		                        'style' 			=> 'li',
+		                        'type'				=> 'comment',
+		                        'max_depth'   		=> 5,
+		                        'avatar_size'		=> 0,
+		                        'callback'			=> 'ampforwp_custom_translated_comment',
+		                        'reverse_top_level' => true //Show the latest comments at the top of the list
+							), $comments);  ?>
+					    </ul> <?php 
 						    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
 						    $args = array(
 								'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
@@ -94,16 +94,16 @@ function ampforwp_framework_get_comments(){
 			     		<?php } ?>
 					</div> <!-- .amp-comments-wrapper -->
 					<?php // if amp-comments extension is enabled then hide this button
-					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
-						<div class="cmts-btn-wrap">
-							<?php if ( comments_open() ) { ?>
-						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
-							} else {
-								echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
-							}?>
-						</div> <?php 
-					}
-				} // if ( $comments )?>
+				} // if ( $comments )
+				if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
+					<div class="amp-comment-button">
+						<?php if ( comments_open() ) { ?>
+					    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+						} else {
+							echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
+						}?>
+					</div> <?php 
+				}?>
 			</div>
 		<?php do_action('ampforwp_after_comment_hook');
 	}
