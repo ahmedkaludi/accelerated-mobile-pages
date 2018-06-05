@@ -1,7 +1,7 @@
 <?php 
 $output = '
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="2000">
+	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
@@ -75,6 +75,14 @@ return array(
 	           				 'tab'      =>'customizer',
 	 						'default'	=>'90%',	
 	           				'content_type'=>'css',
+ 						),
+ 						array(		
+	 						'type'		=>'text',		
+	 						'name'		=>"delay",		
+	 						'label'		=>'Slider Delay',
+	           				 'tab'      =>'customizer',
+	 						'default'	=>'2000',	
+	           				'content_type'=>'html',
  						),
 				        array(
 								'type'		=>'checkbox',
