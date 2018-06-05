@@ -17,7 +17,10 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{module-class}} .btn-txt .ico-pic{font-size: {{icon-size}};position: absolute; margin:{{margin_gap}};}
 {{ifend_condition_check_for_icon_1}}
 {{if_condition_display_type==inline}}
-.btn{display:inline-block;}
+	.btn{
+		display:inline-block;
+		margin:{{mrgn_css}};
+	}
 {{ifend_condition_display_type_inline}}
 {{if_condition_check_for_altrbtn==1}}
 {{module-class}} .alt-btn{
@@ -232,7 +235,7 @@ return array(
 	 					array(
 								'type'		=>'spacing',
 								'name'		=>"gapping_css",
-								'label'		=>'Button Gapping',
+								'label'		=>'Button Padding',
 								'tab'		=>'design',
 								'default'	=>array(
 													'left'=>'20px',
@@ -240,6 +243,19 @@ return array(
 													'top'=>'10px',
 													'bottom'=>'10px'
 												),
+								'content_type'=>'css',
+							),
+	 					array(
+								'type'		=>'spacing',
+								'name'		=>"mrgn_css",
+								'label'		=>'Button Margin',
+								'tab'		=>'design',
+								'default'	=> array(
+					                                'top'=>'0px',
+					                                'right'=>'0px',
+					                                'bottom'=>'0px',
+					                                'left'=>'0px',
+					                            ),
 								'content_type'=>'css',
 							),
 	 					 array(
