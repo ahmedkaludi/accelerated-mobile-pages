@@ -29,6 +29,21 @@ return array(
               'layouts'=> 'Layouts'
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"feature_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layouts',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/feature-1.png'
+				                            ),
+				                          ),
+				            'content_type'=>'html',
+				            ),
 						 array(
 								'type'		=>'checkbox',
 								'name'		=>"image_layout",
