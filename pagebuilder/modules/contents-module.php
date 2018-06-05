@@ -221,7 +221,7 @@ require_once  ABSPATH . WPINC . '/category.php';
                     break;
                    }
                   list($new_width, $new_height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);  
-                  if ( $new_width && $new_height ) {  
+                  if ( isset($new_width) && $new_width!='' && isset($new_height) && $new_height!='' ) {  
                     $width = $new_width; 
                     $height = $new_height; 
                   }

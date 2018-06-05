@@ -1338,6 +1338,8 @@ function ampforwp_new_dir( $dir ) {
 				 */
 				 $content = preg_replace('/(<[^>]+) rel="(.*?) noopener(.*?)"/', '$1 rel="$2$3"', $content);
 				 $content = preg_replace('/<div(.*?) rel=".*?"(.*?)/', '<div $1', $content);
+				 // Remove alt attribute from the div tag #2093 
+				 $content = preg_replace('/<div(.*?) alt=".*?"(.*?)/', '<div $1', $content);
 				 $content = preg_replace('/(<[^>]+) ref=".*?"/', '$1', $content);
 				 /*$content = preg_replace('/(<[^>]+) date=".*?"/', '$1', $content);
 				 $content = preg_replace('/(<[^>]+) time=".*?"/', '$1', $content);
