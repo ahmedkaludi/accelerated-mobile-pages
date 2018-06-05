@@ -220,10 +220,13 @@ require_once  ABSPATH . WPINC . '/category.php';
                     default:
                     break;
                    }
-                  list($new_width, $new_height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);  
-                  if ( isset($new_width) && $new_width!='' && isset($new_height) && $new_height!='' ) {  
-                    $width = $new_width; 
-                    $height = $new_height; 
+                  $pb_content_width_height = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);  
+                  if(is_array($pb_content_width_height)){
+                    list($new_width, $new_height) = $pb_content_width_height;
+                    if ( !empty($new_width) && !empty($new_height) ) {
+                      $width = $new_width; 
+                      $height = $new_height; 
+                    }   
                   }
                    try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
