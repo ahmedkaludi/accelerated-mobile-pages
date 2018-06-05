@@ -424,6 +424,7 @@ function amp_pagebuilder_content_styles(){
 			                  	$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 
 			                    if($moduleField['content_type']=='css'){
+			                    	$repeaterFrontCss = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontCss);
 			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 				                    if(is_array($replace)){
 				                      if(count($replace)>0){
@@ -557,9 +558,10 @@ function amppb_post_content($content){
 							foreach($rowsData['cell_data'] as $colDevider){
 								$colData[$colDevider['cell_container']][] = $colDevider;
 							}
-
+							$html .= '<div class="col-2-wrap">';
 							foreach($colData as $data)
 								$html .= rowData($data,$rowsData['cells'],$moduleTemplate);
+							$html .= '</div>';
 						break;
 						
 						default:
@@ -707,6 +709,7 @@ function rowData($container,$col,$moduleTemplate){
 										$repeaterUniqueId++;
 									}
 								}
+								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontTemplate);
 								
 								$repeaterFields .= $repeaterFrontTemplate;
 
