@@ -3,6 +3,7 @@ $output = '
 	<div class="ln-fx">{{repeater}}</div>';
 $css = '
 .feature-mod{margin:{{margin_css}};padding:{{padding_css}};}
+{{if_condition_feature_layout_type==1}}
 {{module-class}} .ln-fx{width:100%;display:flex; flex-wrap:wrap;}
 .feat-blk{ margin: 0 3% 3% 0; background: {{background_color_picker}}; width: 47%; text-align: center;padding: 40px; position: relative;color: #26292c;}
 .feat-blk p{color: #333;font-size: 18px;padding-top:15px;}
@@ -15,6 +16,7 @@ $css = '
 @media(max-width:425px){
 	.feat-blk amp-img{width:100%;}
 }
+{{ifend_condition_feature_layout_type_1}}
 ';
 return array(
 		'label' =>'Feature',
@@ -23,7 +25,8 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
-              'advanced' => 'Advanced'
+              'advanced' => 'Advanced',
+              'layouts'=> 'Layouts'
             ),
 		'fields' => array(
 						 array(
@@ -39,6 +42,7 @@ return array(
 												),
 											),
 								'content_type'=>'html',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 				         array(		
 		 						'type'		=>'text',		
@@ -47,6 +51,7 @@ return array(
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'300px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('feature_layout_type'=> 1)
 	 						),
 
 						array(
@@ -55,7 +60,8 @@ return array(
 								'label'		=>'Background Color',
 								'tab'		=>'design',
 								'default'	=>'#f4f4f4',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 						array(
 								'type'		=>'color-picker',
@@ -63,7 +69,8 @@ return array(
 								'label'		=>'Text Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 	 					array(		
 	 							'type'	=>'select',		
@@ -76,6 +83,7 @@ return array(
 	 												'left'  	=>'Left',
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
+	 							'required'  => array('feature_layout_type'=> 1)
 	 						),
 					
 						array(
@@ -91,6 +99,7 @@ return array(
                                 'left'=>'0px',
                             ),
 								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 							array(
 								'type'		=>'spacing',
@@ -104,6 +113,7 @@ return array(
 													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
+								'required'  => array('feature_layout_type'=> 1)
 							),
 
 			),
@@ -120,6 +130,7 @@ return array(
 	           				'tab'       =>'customizer',
 	 						'default'	=>'Your Feature Title',	
 	           				'content_type'=>'html',
+	           				'required'  => array('feature_layout_type'=> 1)
 	 						),
 	 					array(		
 	 						'type'		=>'upload',		
@@ -128,6 +139,7 @@ return array(
 	           				 'tab'     =>'customizer',
 	 						'default'	=>'',	
 	           				'content_type'=>'html',
+	           				'required'  => array('feature_layout_type'=> 1)
 	 					),
 				        array(		
 		 						'type'		=>'text-editor',		
@@ -136,15 +148,16 @@ return array(
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.',	
 		           				'content_type'=>'html',
+		           				'required'  => array('feature_layout_type'=> 1)
 	 					),
                 
               ),
           'front_template'=>
-        '<div class="feat-blk">
+        '{{if_condition_feature_layout_type==1}}<div class="feat-blk">
       		<h3 class="t-txt">{{content_title}}</h3>
 			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
-      	</div> '
+      	</div> {{ifend_condition_feature_layout_type_1}}'
           ),
 
 	);
