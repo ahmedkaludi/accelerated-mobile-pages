@@ -285,8 +285,8 @@ Vue.component('module-data',{
 			openModulePopup(event,'module');
 		},
 		duplicateModule: function(event){
-			currentModuleId = event.currentTarget.getAttribute('data-module_id');
-			currentcontainerId = event.currentTarget.getAttribute('data-container_id');
+			currentModuleId = parseInt( event.currentTarget.getAttribute('data-module_id') );
+			currentcontainerId = parseInt( event.currentTarget.getAttribute('data-container_id') );
 			var updateRowKey = ''; var updateModuleKey = ''; var newDuplicateData = {};
 			app.mainContent.rows.forEach(function(rowData, rowKey){
 				if(rowData.id == currentcontainerId){
@@ -819,6 +819,7 @@ var app = new Vue({
 			sampleSelldata.forEach(function(moduleData, moduleKey){
 				var modulesid = parseInt(app.mainContent.totalmodules);
 				duplicateRowData.cell_data[moduleKey].cell_id = modulesid;
+				duplicateRowData.cell_data[moduleKey].container_id = duplicateRowData.id;
 				app.mainContent.totalmodules = modulesid+1;
 			});
 			duplicateRowData.cell_data = sampleSelldata;
