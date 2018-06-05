@@ -361,9 +361,26 @@ if(is_single() ) { ?>
 .r-pf .loop-wrapper{margin:0;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
 /** In content releated post desing styles **/
-.related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;}
-.related_link a{color: #000;font-size: 14px;line-height: 1.5;font-weight: 400;margin-top: 7px;display: inline-block;}
-.related_link p{font-size: 12px;margin: 0;padding-top: 10px;}
+.related_posts .related-title{
+	text-transform: uppercase;
+    font-size: 12px;
+    color: #666;
+    font-weight: 400;
+}
+.related_posts .related_link a{
+	color:#191919;
+	margin: 0px 0px 5px 0px;
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-block;
+    line-height: 1.5;
+}
+.related_posts .related_link {
+    padding: 0px;
+    margin: 0;
+}
+.related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
+.related_posts .related_link p{color: #444;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;}
 <?php } ?>
 <?php if( 1 == $redux_builder_amp['amp-author-description'] ) {?>
 .sp-rt .amp-author {padding: 20px 20px;border-radius: 0;background: #f9f9f9;border: 1px solid #ececec;display: inline-block;width: 100%;}
