@@ -2589,7 +2589,6 @@ function ampforwp_add_sd_fields($fields){
                'type'      => 'switch',
                'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
-               'required'  => array('amp-enable-notifications', '=' , '0')
            ),
            array(
                'class'  => 'child_opt',
