@@ -71,8 +71,11 @@
 								<span><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
 								<?php
 						    	while( $my_query->have_posts() ) {
-								    $my_query->the_post();										
-										$related_post_permalink = ampforwp_url_controller( get_permalink() );
+								    $my_query->the_post();				
+									$related_post_permalink = ampforwp_url_controller( get_permalink() );
+									if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
+										$related_post_permalink = get_permalink();
+									}
 										  ?> 
 									<li class="<?php if ( ampforwp_has_post_thumbnail() ) { echo'has_related_thumbnail'; } else { echo 'no_related_thumbnail'; } ?>">
 										<?php if ( ampforwp_has_post_thumbnail() ) {

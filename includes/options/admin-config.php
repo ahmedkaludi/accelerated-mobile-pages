@@ -5184,6 +5184,16 @@ Redux::setSection( $opt_name, array(
                                 ),
             ),
             array(
+                    'id'       => 'ampforwp-single-related-posts-link',
+                    'type'     => 'switch',
+                'class' => 'child_opt',
+                    'title'    => __('Non AMP link in Related Post', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
+            ),
+            array(
                     'id'       => 'ampforwp-single-order-of-related-posts',
                     'type'     => 'switch',
                 'class' => 'child_opt',
