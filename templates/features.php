@@ -2001,6 +2001,8 @@ function ampforwp_remove_schema_data() {
 		// SmartMag Compatibility 
 		ampforwp_remove_filters_for_class( 'amp_post_template_dir', 'Bunyad_Theme_Amp', 'template_dir', 10 );
 		ampforwp_remove_filters_for_class( 'amp_post_template_data', 'Bunyad_Theme_Amp', 'setup_data', 10 );
+		// Remove Jannah Image Lazy Load #2224
+		ampforwp_remove_filters_for_class( 'wp_get_attachment_image_attributes', 'TIELABS_FILTERS', 'lazyload_image_attributes', 8 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
 		if ( ampforwp_is_front_page() ) {
 				ampforwp_remove_filters_for_class( 'the_content', 'SiteOrigin_Panels', 'generate_post_content', 10 );
