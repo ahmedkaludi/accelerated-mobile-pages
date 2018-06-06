@@ -220,6 +220,56 @@ function ampforwp_add_custom_rewrite_rules() {
 	}
 }
 add_action( 'admin_init', 'ampforwp_add_custom_rewrite_rules' );
+// add re-write rule for Products
+add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
+if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
+	function ampforwp_custom_rewrite_rules_for_product_category(){
+		if ( class_exists('WooCommerce') ) {
+			$permalinks = wp_parse_args( (array) get_option( 'woocommerce_permalinks', array() ), array(
+				'product_base'           => '',
+				'category_base'          => '',
+				'tag_base'               => '',
+				'attribute_base'         => '',
+				'use_verbose_page_rules' => false,
+			) );
+			// Ensure rewrite slugs are set.
+			$permalinks['product_rewrite_slug']   = untrailingslashit( empty( $permalinks['product_base'] ) ? _x( 'product', 'slug', 'woocommerce' )             : $permalinks['product_base'] );
+			$permalinks['category_rewrite_slug']  = untrailingslashit( empty( $permalinks['category_base'] ) ? _x( 'product-category', 'slug', 'woocommerce' )   : $permalinks['category_base'] );
+			$permalinks['tag_rewrite_slug']       = untrailingslashit( empty( $permalinks['tag_base'] ) ? _x( 'product-tag', 'slug', 'woocommerce' )             : $permalinks['tag_base'] );
+			$permalinks['attribute_rewrite_slug'] = untrailingslashit( empty( $permalinks['attribute_base'] ) ? '' : $permalinks['attribute_base'] );
+
+
+
+			add_rewrite_rule( 
+				 $permalinks['product_rewrite_slug']."\/amp\/page\/([0-9]{1,})/?$",
+				 'index.php?post_type=product&paged=$matches[1]&amp=1',
+				 'top' 
+				);
+			add_rewrite_rule( 
+				 $permalinks['category_rewrite_slug'].'\/(.+?)\/amp\/page\/?([0-9]{1,})/?$',
+				 'index.php?product_cat=$matches[1]&paged=$matches[2]&amp=1',
+				 'top' 
+				);	
+			add_rewrite_rule(
+			      $permalinks['category_rewrite_slug'].'\/(.+?)\/amp\/?$',
+			      'index.php?amp&product_cat=$matches[1]',
+			      'top'
+			    );
+
+
+			add_rewrite_rule( 
+				 $permalinks['tag_rewrite_slug'].'\/(.+?)\/amp\/page\/?([0-9]{1,})/?$',
+				 'index.php?product_tag=$matches[1]&paged=$matches[2]&amp=1',
+				 'top' 
+				);	
+			add_rewrite_rule(
+			      $permalinks['tag_rewrite_slug'].'\/(.+?)\/amp\/?$',
+			      'index.php?amp&product_tag=$matches[1]',
+			      'top'
+			    );
+		 }
+	}
+}
 
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
