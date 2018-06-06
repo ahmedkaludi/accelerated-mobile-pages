@@ -2555,6 +2555,7 @@ function ampforwp_add_sd_fields($fields){
                'tooltip-subtitle'  => __('Show notifications on all of your AMP pages for cookie purposes, or anything else.', 'accelerated-mobile-pages'),
                'true'      => 'Enabled',
                'false'     => 'Disabled',
+               'required'  => array('amp-gdpr-compliance-switch', '=' , '0')
            ),
            array(
            'class' => 'child_opt child_opt_arrow',
@@ -2588,6 +2589,7 @@ function ampforwp_add_sd_fields($fields){
                'type'      => 'switch',
                'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
+               'required'  => array('amp-enable-notifications', '=' , '0')
            ),
            array(
                'class'  => 'child_opt',
