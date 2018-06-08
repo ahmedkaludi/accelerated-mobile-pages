@@ -371,8 +371,26 @@ function amp_loop_image( $data=array() ) {
 			$thumb_height = $thumb_url_array[2];
 		}
 		if ( $thumb_url ) {
+			$imageLink = amp_loop_permalink(true);
+			$loopImageData = array("post_id"	=>get_the_ID(),
+									"image_url"			=>$thumb_url,
+									"width"				=>$thumb_width,
+									"height"			=>$thumb_height,
+									"layout_responsive"	=>$layout_responsive,
+									"image_class"		=>$imageClass,
+									"image_link"		=>$imageLink
+									);
+			$changesInImageData = apply_filters("ampforwp_loop_image_update",$loopImageData);
+			if(!empty($changesInImageData) && is_array($changesInImageData)){
+				$thumb_url			= $changesInImageData["image_url"];
+				$thumb_width		= $changesInImageData["width"];
+				$thumb_height		= $changesInImageData["height"];
+				$layout_responsive	= $changesInImageData["layout_responsive"];
+				$imageClass			= $changesInImageData["image_class"];
+				$imageLink			= $changesInImageData["image_link"];
+			}
 			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-			echo '<a href="'.amp_loop_permalink(true).'">';
+			echo '<a href="'.$imageLink.'">';
 			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
