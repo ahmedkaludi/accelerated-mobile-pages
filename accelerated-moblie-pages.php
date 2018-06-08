@@ -138,7 +138,7 @@ function ampforwp_add_custom_rewrite_rules() {
     );
     // For category pages with Pagination
     add_rewrite_rule(
-      $rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      $rewrite_category.'/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
       'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
       'top'
     );
