@@ -1167,4 +1167,8 @@ a.lb-x{
     right: auto;
     left:0;
 }
-<?php } //RTL End ?>
+<?php
+if(isset($redux_builder_amp['enable-amp-ads-1']) && $redux_builder_amp['enable-amp-ads-1']){?>
+	.amp-ad-wrapper{direction:ltr;}
+<?php }
+ } //RTL End ?>
