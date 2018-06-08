@@ -83,7 +83,7 @@ function call_page_builder(){
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	
-	$previousData = (str_replace("'", "", $previousData));
+	$previousData = (str_replace("'", "&apos;", $previousData));
 	
 	$totalRows = 1;
 	$totalmodules = 1;
