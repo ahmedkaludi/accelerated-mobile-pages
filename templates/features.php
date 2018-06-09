@@ -5637,79 +5637,82 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 }
 //93. added AMP url purifire for amphtml
 function ampforwp_url_purifier($url){
-		global $wp_query,$wp,$redux_builder_amp;
-		$get_permalink_structure 	= "";
-		$endpoint 					= "";
-		$endpointq					= "";
-		$queried_var				= "";
-		$quried_value				= "";
-		$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
-		$get_permalink_structure = get_option('permalink_structure');
-		$checker = $redux_builder_amp['amp-core-end-point'];
-		$endpointq = '?' . $endpoint;
-    
-		if ( empty( $get_permalink_structure ) ) {
+	global $wp_query,$wp,$redux_builder_amp;
+	$get_permalink_structure 	= "";
+	$endpoint 					= "";
+	$endpointq					= "";
+	$queried_var				= "";
+	$quried_value				= "";
+	$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
+	$get_permalink_structure = get_option('permalink_structure');
+	$checker = $redux_builder_amp['amp-core-end-point'];
+	$endpointq = '?' . $endpoint;
 
-			if ( is_home() || is_archive() || is_front_page() ) {
-				$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
-				if ( is_home() && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
-					$quried_value = get_query_var('page_id');
-					if ( '' != $quried_value)
-						$url  = add_query_arg('page_id',$quried_value, $url);
-				}
-				if ( get_query_var('paged') >= 2 ) {
-					$quried_value = get_query_var('paged');
-					$url  = add_query_arg('paged',$quried_value, $url);
-				}
-			}
-			if ( is_archive() ) {
+	if ( empty( $get_permalink_structure ) ) {
 
-				if ( is_archive() ) {
-					$queried_var 	= 'm';
-				}
-				if ( is_tag() ) {
-					$queried_var 	= 'tag';
-				}
-				if ( is_category() ) {
-					$queried_var 	= 'cat';
-				}
-				if ( is_author() ) {
-					$queried_var 	= 'author';
-				}
-				$quried_value 	= get_query_var($queried_var);
-				$url  = add_query_arg($queried_var,$quried_value, $url);
-				//$url = $url .'&'. $queried_var .'='. $quried_value;
+		if ( is_home() || is_archive() || is_front_page() ) {
+			$url  = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1', $url);
+			if ( is_home() && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
+				$quried_value = get_query_var('page_id');
+				if ( '' != $quried_value)
+					$url  = add_query_arg('page_id',$quried_value, $url);
 			}
-			/*if ( is_home() && get_query_var('paged') > 1 ) {
+			if ( get_query_var('paged') >= 2 ) {
 				$quried_value = get_query_var('paged');
-				$url = add_query_arg('paged',$quried_value, $url);
-				if ( get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
-					$quried_value2 = get_query_var('page_id');
-					$url = add_query_arg('page_id',$quried_value2, $url);
-				}
+				$url  = add_query_arg('paged',$quried_value, $url);
 			}
-			elseif ( is_home() && get_query_var('paged') < 1 && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
+		}
+		if ( is_archive() ) {
+
+			if ( is_archive() ) {
+				$queried_var 	= 'm';
+			}
+			if ( is_tag() ) {
+				$queried_var 	= 'tag';
+			}
+			if ( is_category() ) {
+				$queried_var 	= 'cat';
+			}
+			if ( is_author() ) {
+				$queried_var 	= 'author';
+			}
+			$quried_value 	= get_query_var($queried_var);
+			$url  = add_query_arg($queried_var,$quried_value, $url);
+			//$url = $url .'&'. $queried_var .'='. $quried_value;
+		}
+		/*if ( is_home() && get_query_var('paged') > 1 ) {
+			$quried_value = get_query_var('paged');
+			$url = add_query_arg('paged',$quried_value, $url);
+			if ( get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
 				$quried_value2 = get_query_var('page_id');
 				$url = add_query_arg('page_id',$quried_value2, $url);
-			}*/
-		} else {
-			if ( is_singular() && true == $checker ) {
-				$url = untrailingslashit($url);
 			}
-			if ( is_home() || is_archive() || is_front_page() ) {
-		        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
-		        	if ( true == $checker )
-		        		$url = trailingslashit($url).$endpointq;
-		        	else
-		          		$url = user_trailingslashit( trailingslashit($url) );
-		        } else {
-		        	if ( true == $checker )
-		        		$url =  trailingslashit($url) . $endpointq;
-		        	else
-		          		$url = user_trailingslashit( trailingslashit($url) . $endpoint );
-		        }
-	      	}
 		}
+		elseif ( is_home() && get_query_var('paged') < 1 && get_query_var('page_id') == ampforwp_get_blog_details('id') ) {
+			$quried_value2 = get_query_var('page_id');
+			$url = add_query_arg('page_id',$quried_value2, $url);
+		}*/
+	} else {
+		if ( is_singular() && true == $checker ) {
+			$url = untrailingslashit($url);
+		}
+		if ( is_home() || is_archive() || is_front_page() ) {
+	        if ( is_archive() && get_query_var('paged') > 1 || is_home() && get_query_var('paged') > 1 ) {
+	        	if ( true == $checker )
+	        		$url = trailingslashit($url).$endpointq;
+	        	else
+	          		$url = user_trailingslashit( trailingslashit($url) );
+	        } else {
+	        	if ( true == $checker )
+	        		$url =  trailingslashit($url) . $endpointq;
+	        	else
+	          		$url = user_trailingslashit( trailingslashit($url) . $endpoint );
+	        }
+      	}
+	}
+	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
+		$url = add_query_arg( $_SERVER['QUERY_STRING'], '', $url);
+	}
 	return $url;
 }
 
