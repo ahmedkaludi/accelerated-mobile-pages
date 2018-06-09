@@ -2748,15 +2748,16 @@ function ampforwp_facebook_comments_support() {
 function ampforwp_facebook_comments_markup() {
 
 	global $redux_builder_amp;
-	$facebook_comments_markup = '';
-	//if ( !comments_open() ){
-		//return;
-	//}
+	$facebook_comments_markup = $lang = $locale = '';
+	if ( isset($redux_builder_amp['ampforwp-facebook-comments-locale']) && true == $redux_builder_amp['ampforwp-facebook-comments-locale'] ) {
+		$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
+		$locale = 'data-locale = "'.$lang.'"';
+	}
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments data-block-on-consent width=486 height=357
-	    		layout="responsive" data-numposts=';
+	    		layout="responsive" '.$locale.' data-numposts=';
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';

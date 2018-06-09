@@ -2993,11 +2993,31 @@ $forms_support[] = array(
                          'title'    => __('No of Comments', 'accelerated-mobile-pages'),
                          'default'  => 10,
                          'required' => array(
-                                        array('ampforwp-facebook-comments-support', '=' , 1),
-
-
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
+                    ),
+                     array(
+                         'id'       => 'ampforwp-facebook-comments-locale',
+                         'class' => 'child_opt child_opt_arrow',
+                         'type'     => 'switch',
+                         'title'    => __('Change Language', 'accelerated-mobile-pages'),
+                         'default'  => 0,
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                         ),
                      ),
-                         )
+                     array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-fb-comments-lang',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => __('Enter the Language code','accelerated-mobile-pages'),
+                         'title'    => __('Language', 'accelerated-mobile-pages'),
+                         'default'  => get_locale(),
+                         'required' => array(
+                            array('ampforwp-facebook-comments-support', '=' , 1),
+                            array('ampforwp-facebook-comments-locale', '=' , 1),
+                         ),
+                    )
                  )
  ) );
 
