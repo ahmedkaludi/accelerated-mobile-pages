@@ -46,17 +46,14 @@ class AMP_Pinterest_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-
-		return AMP_HTML_Utils::build_tag(
-			'amp-pinterest',
-			array(
+		$attrs = array(
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
 				'data-do' => "embedPin",
 				'data-url' => $args['url'],
 				'layout'   => 'responsive',
-				'data-block-on-consent' => '',
-			)
-		);
+			);
+		$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+		return AMP_HTML_Utils::build_tag('amp-pinterest',$attrs);
 	}
 }

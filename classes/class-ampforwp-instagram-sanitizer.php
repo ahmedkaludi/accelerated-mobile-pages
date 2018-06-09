@@ -37,8 +37,8 @@ function create_instagram_tag($sourcecode){
    'height'=> 400,
    'layout' => 'responsive',
    'data-captioned' => '',
-   'data-block-on-consent' => '',
   );
+  $attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
   return AMP_DOM_Utils::create_node($this->dom, 'amp-instagram', $attrs);
  }
 public function get_scripts() {

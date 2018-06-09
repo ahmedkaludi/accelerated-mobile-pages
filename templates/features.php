@@ -641,6 +641,8 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			$post_id = get_the_ID();
 			if ( ampforwp_is_front_page() ) {
 				$post_id = ampforwp_get_frontpage_id();
@@ -684,11 +686,14 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_1">';
-				$output .= '<amp-ad class="amp-ad-1" data-block-on-consent
+				$output .= '<amp-ad class="amp-ad-1"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-1'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-1'] .'"';
+				if($is_dboc){
+					$output .= 'data-block-on-consent';
+				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
 							   data-full-width>';
@@ -709,6 +714,8 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			$post_id = get_the_ID();
 			if ( ampforwp_is_front_page() ) {
 				$post_id = ampforwp_get_frontpage_id();
@@ -752,11 +759,14 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_2">';
-				$output	.=	'<amp-ad class="amp-ad-2" data-block-on-consent
+				$output	.=	'<amp-ad class="amp-ad-2" 
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-2'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-2'] .'"';
+				if($is_dboc){
+					$output .= 'data-block-on-consent';
+				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
 							   data-full-width>';
@@ -780,6 +790,8 @@ function ampforwp_new_dir( $dir ) {
 			$optimize = '';
 			$is_global = '';
 			$display_on = '';
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			$post_id = get_the_ID();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -842,11 +854,14 @@ function ampforwp_new_dir( $dir ) {
 							$advert_height = '320';
 			      		}
 						$output = '<div class="amp-ad-wrapper amp_ad_3">';
-						$output	.=	'<amp-ad class="amp-ad-3" data-block-on-consent
+						$output	.=	'<amp-ad class="amp-ad-3" 
 									type="adsense" '. $optimize .'
 									width='. $advert_width .' height='. $advert_height . '
 									data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-3'].'"
 									data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-3'] .'"';
+						if($is_dboc){
+							$output .= 'data-block-on-consent';
+						}
 						if ( $responsive ) {
 							$output .= 'data-auto-format="rspv"
 									   data-full-width>';
@@ -871,6 +886,8 @@ function ampforwp_new_dir( $dir ) {
 			global $redux_builder_amp;
 			$optimize = '';
 			$post_id = get_the_ID();
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
 			    return;
@@ -910,11 +927,14 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_4">';
-				$output	.=	'<amp-ad class="amp-ad-4" data-block-on-consent
+				$output	.=	'<amp-ad class="amp-ad-4"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-4'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-4'] .'"';
+				if($is_dboc){
+					$output .= 'data-block-on-consent';
+				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
 							   data-full-width>';
@@ -937,6 +957,8 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_below_the_title_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			$post_id = get_the_ID();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -977,11 +999,14 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}		
 				$output = '<div class="amp-ad-wrapper amp_ad_5">';
-				$output	.=	'<amp-ad class="amp-ad-5" data-block-on-consent
+				$output	.=	'<amp-ad class="amp-ad-5"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-5'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-5'] .'"';
+				if($is_dboc){
+					$output .= 'data-block-on-consent';
+				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
 							   data-full-width>';
@@ -1005,6 +1030,8 @@ function ampforwp_new_dir( $dir ) {
 		function ampforwp_above_related_post_advert() {
 			global $redux_builder_amp;
 			$optimize = '';
+			$is_dboc = '';
+			$is_dboc = ampforwp_get_data_consent();
 			$post_id = get_the_ID();
 			// If page builder is enabled then 'Return' and show no ads  
 		  	if ( checkAMPforPageBuilderStatus( $post_id ) ) {
@@ -1045,11 +1072,14 @@ function ampforwp_new_dir( $dir ) {
 					$advert_height = '320';
 	      		}
 				$output = '<div class="amp-ad-wrapper amp_ad_6">';
-				$output	.=	'<amp-ad class="amp-ad-6" data-block-on-consent
+				$output	.=	'<amp-ad class="amp-ad-6"
 							type="adsense" '. $optimize .'
 							width='. $advert_width .' height='. $advert_height . '
 							data-ad-client="'. $redux_builder_amp['enable-amp-ads-text-feild-client-6'].'"
 							data-ad-slot="'.  $redux_builder_amp['enable-amp-ads-text-feild-slot-6'] .'"';
+				if($is_dboc){
+					$output .= 'data-block-on-consent';
+				}
 				if ( $responsive ) {
 					$output .= 'data-auto-format="rspv"
 							   data-full-width>';
@@ -1107,7 +1137,7 @@ function ampforwp_new_dir( $dir ) {
 					$ampforwp_ga_fields = json_encode( $ga_fields);
 					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 				 ?>
-						<amp-analytics data-block-on-consent type="googleanalytics" id="analytics1">
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 							<script type="application/json">
 								<?php echo $ampforwp_ga_fields; ?>
 							</script>
@@ -1117,7 +1147,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.2 Analytics Support added for segment.com
 				if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
-						<amp-analytics data-block-on-consent type="segment">
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="segment">
 							<script type="application/json">
 							{
 							  "vars": {
@@ -1132,12 +1162,12 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.3 Analytics Support added for Piwik
 				if( true == $redux_builder_amp['ampforwp-Piwik-switch'] ) { ?>
-						<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
+						<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['pa-feild']; ?>"></amp-pixel>
 				<?php }
 
 				// 10.4 Analytics Support added for quantcast
 					if ( true == $redux_builder_amp['ampforwp-Quantcast-switch'] ) { ?>
-							<amp-analytics data-block-on-consent type="quantcast">
+							<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="quantcast">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1152,7 +1182,7 @@ function ampforwp_new_dir( $dir ) {
 
 				// 10.5 Analytics Support added for comscore
 					if ( true == $redux_builder_amp['ampforwp-comScore-switch'] ) { ?>
-							<amp-analytics data-block-on-consent type="comscore">
+							<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1168,7 +1198,7 @@ function ampforwp_new_dir( $dir ) {
 			// 10.6 Analytics Support added for Effective Measure
 				if( true == $redux_builder_amp['ampforwp-Effective-switch'] ) { ?>
 					<!-- BEGIN EFFECTIVE MEASURE CODE -->
-					<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
+					<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['eam-feild']; ?>" />
 					<!--END EFFECTIVE MEASURE CODE -->
 				<?php }
 
@@ -1176,7 +1206,7 @@ function ampforwp_new_dir( $dir ) {
 				if( true == $redux_builder_amp['ampforwp-StatCounter-switch'] ) { ?>
 					<!-- BEGIN StatCounter CODE -->
 					<div id="statcounter">
-					<amp-pixel data-block-on-consent src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
+					<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php global $redux_builder_amp; echo $redux_builder_amp['sc-feild']; ?>" >
 					</amp-pixel> 
 					</div>
 					<!--END StatCounter CODE -->
@@ -1186,7 +1216,7 @@ function ampforwp_new_dir( $dir ) {
 				if( true == $redux_builder_amp['ampforwp-Histats-switch'] ) { ?>
 					<!-- BEGIN Histats CODE -->
 					<div id="histats">
-					<amp-pixel data-block-on-consent src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
+					<amp-pixel <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="//sstatic1.histats.com/0.gif?<?php global $redux_builder_amp; echo $redux_builder_amp['histats-feild']; ?>&101" >
 					</amp-pixel> 
 					</div>
 					<!--END Histats CODE -->
@@ -1194,7 +1224,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.9 Analytics Support added for Yandex Metrika Analytics
 				if ( true == $redux_builder_amp['ampforwp-Yandex-switch'] ){ ?>
-						<amp-analytics data-block-on-consent type="metrika"> 
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
     					<script type="application/json"> 
       					  { 
             					"vars": { 
@@ -1218,7 +1248,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.10 Analytics Support added for Chartbeat Analytics
 				if ( true == $redux_builder_amp['ampforwp-Chartbeat-switch'] ){ ?>
-						<amp-analytics data-block-on-consent type="chartbeat">
+						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
  						 <script type="application/json">
    						 {
      						'vars': {
@@ -1236,7 +1266,7 @@ function ampforwp_new_dir( $dir ) {
 			// 10.11 Analytics Support added for Alexa Metrics
 					if ( true == $redux_builder_amp['ampforwp-Alexa-switch'] ) { ?>
 						<!-- Start Alexa AMP Certify Javascript -->
-							<amp-analytics data-block-on-consent type="alexametrics">
+							<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="alexametrics">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -1274,7 +1304,7 @@ function ampforwp_new_dir( $dir ) {
 						if ($afs_account > 999999)
 							$afs_server = 'www10'; ?>
 						<!-- Start AFS Analytics Javascript -->
-							<amp-analytics data-block-on-consent type="afsanalytics">
+							<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="afsanalytics">
 								<script type="application/json">
 								{
 								  "vars": {
@@ -2756,8 +2786,11 @@ function ampforwp_facebook_comments_markup() {
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
-		$facebook_comments_markup .= '<amp-facebook-comments data-block-on-consent width=486 height=357
+		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" '.$locale.' data-numposts=';
+	    if($ampforwp_get_data_consent()){		
+	    	$facebook_comments_markup .= 'data-block-on-consent';
+	    }
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
@@ -5513,7 +5546,11 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 
 			global $redux_builder_amp;
 			if( isset($redux_builder_amp['amp-fb-pixel']) && $redux_builder_amp['amp-fb-pixel'] ){
-				$amp_pixel = '<amp-pixel data-block-on-consent src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
+				$amp_pixel = '<amp-pixel';
+				if(ampforwp_get_data_consent()){
+					$amp_pixel .= 'data-block-on-consent';
+				}
+				$amp_pixel .= 'src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
 				echo $amp_pixel;
 
 			}
@@ -7044,4 +7081,31 @@ function ampforwp_modified_canonical( $data ) {
 		$data['canonical_url'] = $canonical;
 	}
 	return $data;
+}
+
+function ampforwp_get_data_consent(){
+	global $redux_builder_amp;
+	$dboc = false;
+	$is_dboc = '';
+	$ampforwp_user_ip = $_SERVER['REMOTE_ADDR'];
+	// for testing purpose on localhost using current ip address instead of variable {$ip}
+	$ampforwp_current_location = json_decode(file_get_contents("http://ipinfo.io/183.83.92.202/json"));
+	$ampforwp_current_location = strtolower($ampforwp_current_location->country);
+	$eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
+	$eu_countries = array_keys($eu_countries);
+	// if data-block-on-consent return the attr
+	$is_dboc = in_array($ampforwp_current_location, $eu_countries);
+	if($is_dboc){
+		$dboc = true;
+	}
+	return $dboc;
+}
+
+add_filter( 'ampforwp_embedd_attrs_handler', 'testingra');
+function testingra($attrs){
+	$is_dboc = ampforwp_get_data_consent();
+	if($is_dboc){
+		$attrs['data-block-on-consent'] = '';
+	}
+	return $attrs;
 }

@@ -123,8 +123,11 @@ global $redux_builder_amp;
 	}
 	else {  
 		$facebook_comments_markup = '<section class="amp-facebook-comments">';
-		$facebook_comments_markup .= '<amp-facebook-comments data-block-on-consent width=486 height=357
-	    		layout="responsive" '.$locale.' data-numposts=';
+		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
+	    		layout="responsive" data-numposts=';
+	    if(ampforwp_get_data_consent()){
+	    	$facebook_comments_markup .= 'data-block-on-consent';
+	    }
 		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
 
 		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
@@ -167,7 +170,7 @@ function ampforwp_framework_get_disqus_comments(){
 				layout="<?php echo $layout ?>"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
-				data-block-on-consent
+				<?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>
 				src="<?php echo $disqus_url ?>" >
 				<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo __('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 			</amp-iframe>

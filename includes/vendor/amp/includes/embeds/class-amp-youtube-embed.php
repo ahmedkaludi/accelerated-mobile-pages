@@ -78,17 +78,15 @@ class AMP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-
-		return AMP_HTML_Utils::build_tag(
-			'amp-youtube',
-			array(
+		$attrs = array(
 				'data-videoid' => $args['video_id'],
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
-				'data-block-on-consent' => '',
-			)
-		);
+			);
+		$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+		return AMP_HTML_Utils::build_tag(
+			'amp-youtube',$attrs);
 	}
 
 	private function get_video_id_from_url( $url ) {

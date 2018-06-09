@@ -76,7 +76,7 @@ if ( get_query_var( 'paged' ) ) {
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="amp-wp-content author-img">
-							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+							<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 						</div>
 					<?php }
 				}

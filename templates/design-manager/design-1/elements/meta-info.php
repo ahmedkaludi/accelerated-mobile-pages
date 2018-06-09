@@ -11,12 +11,12 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			$author_image = get_avatar_url( $post_author->user_email, array( 'size' => 24 ) );
 			 if ( function_exists( 'get_avatar_url' ) && ( $author_image ) ) {  
 			 if( is_single()) { ?>
-				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 				echo ampforwp_get_author_details( $post_author , 'meta-info' );
 			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
-				<amp-img data-block-on-consent src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
+				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
 					echo ampforwp_get_author_details( $post_author , 'meta-info' );
 				 }
