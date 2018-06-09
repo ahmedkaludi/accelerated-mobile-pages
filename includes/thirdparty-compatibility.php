@@ -334,6 +334,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
   function ampforwp_findInternalUrl($url){
     global $redux_builder_amp;
    
+    if($url=='#'){ return $url; }
     if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
         return $url;
     }
