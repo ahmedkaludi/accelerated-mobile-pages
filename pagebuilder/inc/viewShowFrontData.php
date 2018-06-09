@@ -790,7 +790,7 @@ function rowData($container,$col,$moduleTemplate){
 						
 					break;
 					default:
-                        
+                        $moduleFrontHtml = apply_filters("ampforwp_extension_pagebuilder_module_template", $moduleFrontHtml, $moduleTemplate[$contentArray['type']],$contentArray);
 					break;
 				}
 
