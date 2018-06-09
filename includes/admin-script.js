@@ -7,7 +7,6 @@ jQuery(function($) {
                     var parent = $(this).parents('.redux-container:first');
                     var expanded_options = parent.find('.expand_options');
                     if (searchString != "") {
-                        $('.redux-tab-container').hide();
                         if (!expanded_options.hasClass('expanded')) {
                             expanded_options.click();
                             parent.find('.redux-main').addClass('redux-search');
@@ -17,7 +16,7 @@ jQuery(function($) {
                             expanded_options.click();
                             parent.find('.redux-main').removeClass('redux-search');
                         }
-                        parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
+                        //parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
                         
                         if($('.redux-group-tab-link-li.active').length>0){
                             var rel = $('.redux-group-tab-link-li.active a').attr('data-rel');
@@ -64,10 +63,33 @@ jQuery(function($) {
                              $(this).parents('div.redux-group-tab').css('display','block');
                         }
                         return isMatch;
-                    }).show( function() {
+                    }).show( function() { }); 
 
-                           
-                    }); 
+                    parent.find('.redux-group-tab').each(function() {
+                        if (searchString != "") {
+                            $(this).find("div.redux-section-field").each(function(){
+                                var divSectionId = $(this).attr('id');
+                                var splitResult = divSectionId.split("-");
+                                splitResult.splice(1, 0, "table");
+                                var divTableId = splitResult.join("-");
+                                var totalTr = $("#"+divTableId).find('tr:visible').length;
+                                if(totalTr==0){
+                                    $(this).hide();
+                                }
+                            });
+                        } else {
+                            $(this).find("div.redux-section-field").each(function(){
+                                var divSectionId = $(this).attr('id');
+                                var splitResult = divSectionId.split("-");
+                                splitResult.splice(1, 0, "table");
+                                var divTableId = splitResult.join("-");
+                                var totalTr = $("#"+divTableId).find('tr:visible').length;
+                                if(totalTr>0){
+                                    $(this).show();
+                                }
+                            });
+                        }
+                    }); // parent.find('.redux-group-tab') Closed
                 },
                 wait:400,
                 highlight:false,
@@ -333,7 +355,10 @@ jQuery(function($) {
 
         $('.redux-container').each(function() {
             if (!$(this).hasClass('redux-no-sections')) {
-                $(this).find('.redux-main').prepend('<input style="float:right" class="redux_field_search" name="" type="text" placeholder="Search the controls"/>');
+                $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
+                $('.redux-amp-search-icon').click(function(){
+                    $('.redux_field_search').toggle('slide');
+                });
                 reduxOptionSearch();
             }
         });

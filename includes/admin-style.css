@@ -642,7 +642,7 @@ visibility: hidden;
 .backtoextensionlist{
     cursor: pointer;
 }
-.redux_field_search, .redux-main #redux-sticky{display: none}
+.redux-main #redux-sticky{display: none}
 
 #info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
 
@@ -674,4 +674,7 @@ visibility: hidden;
 .rtl .redux-container #redux-intro-text {
     left: 5px;
     right: auto;
+}
+.redux-amp-search-icon .dashicons-before:before{
+    vertical-align:middle;
 }
