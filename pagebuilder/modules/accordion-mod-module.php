@@ -94,7 +94,7 @@ return array(
           'front_template'=>
         	'<section>
 			    <h5 class="acc-lbl">{{acc_title}}</h5>
-			    <p class="acc-desc">{{ass_desc}}</p>
+			    <div class="acc-desc">{{ass_desc}}</div>
 			</section>'
           ),
 	);
