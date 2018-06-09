@@ -698,6 +698,7 @@ function rowData($container,$col,$moduleTemplate){
 													);
 											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 										}else{
+											$replace = nl2br($replace);
 											$repeaterFrontTemplate = str_replace(
 														'{{'.$moduleField['name'].'}}', 
 														 $replace, 
