@@ -95,38 +95,7 @@ return array(
 				                'content_type'=>'html',
 				                'required'  => array('feature_layout_type'=> 1)
 				            ),
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"btn_txt",		
-		 						'label'		=>'Button Text',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'Learn More',	
-		           				'content_type'=>'html',
-		           				'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
-		           								
-	 						),
-	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"btn_link",		
-		 						'label'		=>'URL',
-		           				'tab'     =>'customizer',
-		 						'default'	=>'#',	
-		           				'content_type'=>'html',
-		           				'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
-	 						),
-	 					array(		
-	 							'type'	=>'select',		
-	 							'name'  =>'page_link_open',		
-	 							'label' =>"Open link in",
-								'tab'     =>'customizer',
-	 							'default' =>'new_page',
-	 							'options_details'=>array(
-	 												'new_page'  	=>'New tab',
-	 												'same_page'    =>'Same page'
-	 											),
-	 							'content_type'=>'html',
-	 							'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
-	 						),
+	 					
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"background_color_picker",
@@ -274,6 +243,41 @@ return array(
 		           				'content_type'=>'html',
 		           				'required'  => array('feature_layout_type'=> 1)
 	 					),
+
+
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn_txt",		
+		 						'label'		=>'Button Text',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'Learn More',	
+		           				'content_type'=>'html',
+		           				'helpmessage'=>'Leave blank if do not want',
+		           				'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
+		           								
+	 						),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn_link",		
+		 						'label'		=>'URL',
+		           				'tab'     =>'customizer',
+		 						'default'	=>'#',	
+		           				'content_type'=>'html',
+		           				'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
+	 						),
+	 					array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'page_link_open',		
+	 							'label' =>"Open link in",
+								'tab'     =>'customizer',
+	 							'default' =>'new_page',
+	 							'options_details'=>array(
+	 												'new_page'  	=>'New tab',
+	 												'same_page'    =>'Same page'
+	 											),
+	 							'content_type'=>'html',
+	 							'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
+	 						),
 	 					
               ),
           'front_template'=>
@@ -282,7 +286,9 @@ return array(
 			{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			<p>{{content}}</p>
 			{{if_condition_check_for_btn==1}}
+				{{if_btn_txt}}
 				<a href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} class="fe_btn">{{btn_txt}}</a>
+				{{ifend_btn_txt}}
 			{{ifend_condition_check_for_btn_1}}
       	</div> {{ifend_condition_feature_layout_type_1}}'
           ),

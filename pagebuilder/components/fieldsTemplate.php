@@ -2,7 +2,7 @@
     <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
+        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name" :placeholder="field.placeholder"  v-model="field.default"><div class="help-msg">{{field.helpmessage}}</div></div>
          <div class="clearfix"></div>
     </div>
     <div class="amp-form-control" :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
