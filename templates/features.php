@@ -1664,7 +1664,7 @@ function ampforwp_title_callback( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
     $ampforwp_stored_meta = get_post_meta( $post->ID );
     $preview_query_args = array();
-	$preview_link = '';
+	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
 	$preview_link = get_preview_post_link($post, $preview_query_args );
 
@@ -1696,6 +1696,13 @@ function ampforwp_title_callback( $post ) {
 		}
 
 		if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ( isset($redux_builder_amp['amp-pages-meta-default']) && $redux_builder_amp['amp-pages-meta-default'] == 'hide' ) ) {
+			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
+		}
+		$list_of_posts = ampforwp_posts_to_remove();
+		if ( $list_of_posts && $post->post_type == 'post' ) {
+			$skip_this_post = in_array($post->ID, $list_of_posts);
+		}
+		if ( $skip_this_post ) {
 			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
 		}
         ?>
