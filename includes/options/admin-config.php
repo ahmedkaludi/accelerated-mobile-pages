@@ -3226,9 +3226,8 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
-                        'title'    => __('Change Internal Links in AMP Link', 'accelerated-mobile-pages'),
-                        'tooltip-subtitle' => __('
-                        Enable AMP for your mobile users. Give your visitors a Faster mobile User Experience.','accelerated-mobile-pages'),
+                        'title'    => __('Change Internal Links to AMP', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enable if you want all your links inside the article to go to /amp/. All the outbound links will remain untouched.','accelerated-mobile-pages'),
                         'default' => 0,
                     ),
                     // End-point option
