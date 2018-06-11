@@ -7093,17 +7093,19 @@ function ampforwp_get_data_consent(){
 	if(isset($redux_builder_amp['audience-for-amp-gdpr-compliance']) && $redux_builder_amp['audience-for-amp-gdpr-compliance'] ){
 		$ampforwp_user_ip = $_SERVER['REMOTE_ADDR'];
 		// for testing purpose on localhost using current ip address instead of variable  183.83.92.202
-		$ampforwp_current_location = json_decode(file_get_contents("http://ipinfo.io/{$ampforwp_user_ip}/json"));
-		$ampforwp_current_location = strtolower($ampforwp_current_location->country);
-		$eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
-		$eu_countries = array_keys($eu_countries);
-		// if data-block-on-consent return the attr
-		$is_dboc = in_array($ampforwp_current_location, $eu_countries);
-		if($is_dboc){
-			$dboc = true;
-		}
-		if('1' == $redux_builder_amp['audience-for-amp-gdpr-compliance']){
-			$dboc = true;
+		if($_SERVER['REMOTE_ADDR'] != '::1' && $_SERVER['REMOTE_ADDR'] != '127.0.0.1'){
+			$ampforwp_current_location = json_decode(file_get_contents("http://ipinfo.io/{$ampforwp_user_ip}/json"));
+			$ampforwp_current_location = strtolower($ampforwp_current_location->country);
+			$eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
+			$eu_countries = array_keys($eu_countries);
+			// if data-block-on-consent return the attr
+			$is_dboc = in_array($ampforwp_current_location, $eu_countries);
+			if($is_dboc){
+				$dboc = true;
+			}
+			if('1' == $redux_builder_amp['audience-for-amp-gdpr-compliance']){
+				$dboc = true;
+			}
 		}
 	}
 	return $dboc;
