@@ -15,7 +15,6 @@ function ampforwp_code_module_replacement($moduleFrontHtml,$moduleTemplate, $con
 				$moduleFrontHtml = ampforwp_replaceIfContentConditional($field['name'], $replace, $moduleFrontHtml);
 			}
 			$moduleFrontHtml = htmlspecialchars_decode($moduleFrontHtml);
-			$moduleFrontHtml = ampforwp_runCompleteCode($moduleFrontHtml);
 		}
 		
 	}
@@ -41,12 +40,13 @@ return array(
             ),
 		'fields' => array(
 						array(		
-		 						'type'		=>'textarea',		
-		 						'name'		=>"code_content",		
-		 						'label'		=>'Enter your code here',
-		           				'tab'     =>'customizer',
-		 						'default'	=>'',	
-		           				'content_type'=>'html',
+		 						'type'			=> 'textarea',		
+		 						'name'			=> "code_content",		
+		 						'label'			=> 'Enter your code here',
+		           				'tab'     		=> 'customizer',
+		 						'default'		=> '',	
+		 						'helpmessage'	=> 'please Insert only HTML Codes',
+		           				'content_type'	=> 'html',
 	 						),
 			),
 		'front_template'=> $output,
