@@ -686,7 +686,13 @@ visibility: hidden;
     padding: 8px 25px 8px 10px;
 }
 .rtl .redux-main .child_opt th, .rtl .redux-main .child_opt td {
-    padding: 0px 18px 0px 5px !important;
+    padding: 0px 0px 0px 0px !important;
+}
+.rtl .redux-main .child_opt fieldset {
+    right: 0;
+}
+.rtl .redux-main .redux-field-container {
+    padding: 18px 15px 18px 0;
 }
 /*** Free Vs Pro CSS ***/
 .rtl .fr h1, .rtl .pr h1{
