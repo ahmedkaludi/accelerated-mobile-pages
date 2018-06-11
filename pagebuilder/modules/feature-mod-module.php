@@ -246,15 +246,14 @@ return array(
 
 
 	 					array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"btn_txt",		
-		 						'label'		=>'Button Text',
-		           				 'tab'     =>'customizer',
-		 						'default'	=>'Learn More',	
-		           				'content_type'=>'html',
-		           				'helpmessage'=>'Leave blank if do not want',
-		           				'required'  =>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),
-		           								
+							'type'			=>	'text',		
+							'name'			=>	"btn_txt",		
+							'label'			=>	'Button Text',
+							'tab'     		=>	'customizer',
+							'default'		=>	'Learn More',	
+							'content_type'	=>	'html',
+							'helpmessage'	=>	'Leave empty if do not want to show button.',
+							'required'  	=>  array('feature_layout_type'=>'1', 'check_for_btn'=>'1'),					
 	 						),
 	 					array(		
 		 						'type'		=>'text',		
