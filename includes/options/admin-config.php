@@ -2000,6 +2000,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                       ),
                       array(
                           'class' => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-anonymizeIP',
+                          'type'     => 'switch',
+                          'title'    => __( 'IP Anonymization', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-ga-switch', '=' , '1')
+                          ),
+                          'default'  => 1,
+                      ),
+                      array(
+                          'class' => 'child_opt',
                         'id'       => 'ampforwp-ga-field-advance',
                         'type'     => 'ace_editor',
                         'title'    => __('Analytics Code in JSON Format', 'accelerated-mobile-pages'),

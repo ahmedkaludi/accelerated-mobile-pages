@@ -1123,9 +1123,14 @@ function ampforwp_new_dir( $dir ) {
 					$ga_account = '';
 					$ga_account = $redux_builder_amp['ga-feild'];
 					$ga_account = str_replace(' ', '', $ga_account);
+					$anonymizeIP = 'true';
+					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
+						$anonymizeIP = 'false';
+					}
 					$ga_fields = array(
 									'vars'=>array(
-										'account'=>$ga_account
+										'account'=>$ga_account,
+										'anonymizeIP'=>$anonymizeIP
 										),
 									'triggers'=> array(
 										'trackPageview'=> array(
