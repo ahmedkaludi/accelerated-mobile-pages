@@ -262,35 +262,46 @@ jQuery(function($) {
                 var fontDetail = allFonts[i].fontFamily;                   
 
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
+               $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
 
             //console.log( values.length);
             //console.log( values[0].family );
             //console.table(  values);
             
-            $('#amp_font_selector-select').on('change', function() {
+            $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
                 var fontVariants = data.items[select].variants ;
                 var fontFile = data.items[select].files ;
 
-                if ( fontVariants) {
-                    $('.select2-search-choice').remove();
-                    $('#amp_font_type-select').html('<option></option>');
+                if($(this).attr("id")=='amp_font_selector-select'){
+                    if ( fontVariants) {
+                        //$('.select2-search-choice').remove();
+                        $('#amp_font_type-select').html('<option></option>').trigger('change');
+                    }
+
+                   // console.log( data.items[select] );
+
+                    //if ( data.items[select] ) {
+                        $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
+                   
+                    for (var i in fontVariants) {
+                        $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');
+                    }
+                }else if($(this).attr("id")=='amp_font_selector_content_single-select') {
+                    if ( fontVariants) {
+                        //$('.select2-search-choice').remove();
+                        $('#amp_font_type_content_single-select').html('<option></option>').trigger('change');
+                    }
+                    $('#google_current_font_data_content_single').val( JSON.stringify(data.items[select]) );
+                   
+                    for (var i in fontVariants) {
+                        $('#amp_font_type_content_single-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');
+                    }
                 }
 
-               // console.log( data.items[select] );
-
-                //if ( data.items[select] ) {
-                    $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
-                //}
-               
-                for (var i in fontVariants) {
-                     // var fontArray = {};
-                     // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
-                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');;
-                }
-
-            }); 
+            });
+ 
         });
 
         gfontData.fail(function(data) {
