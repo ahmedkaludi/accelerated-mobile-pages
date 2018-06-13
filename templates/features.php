@@ -3929,7 +3929,7 @@ function ampforwp_apply_layout_builder_on_pages($post_id) {
 	}
 	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
-	if ( $redux_builder_amp['ampforwp-content-builder'] && $sidebar_check === 'layout-builder') {
+	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
 		// Add Styling Builder Elements
 		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
