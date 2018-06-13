@@ -4880,6 +4880,17 @@ Redux::setSection( $opt_name, array(
                 ),
 
             // Excerpt Length for design3 #1122
+                 array(
+                        'id'        =>'amp-design-3-excerpt',
+                        'type'      =>'text',
+                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'required' => array(
+                         array('amp-design-selector', '=' , '3'),
+                         array('excerpt-option', '=' , '1') ),
+                        'validate'  =>'numeric',
+                        'default'   =>'15',
+                ),
                 array(
                         'id'        => 'excerpt-option-design-3',
                         'type'      => 'switch',
@@ -4889,18 +4900,6 @@ Redux::setSection( $opt_name, array(
                          array('amp-design-selector', '=' , '3'),
                          array('excerpt-option', '=' , '1'),
                      )                         
-                ),
-                array(
-                        'id'        =>'amp-design-3-excerpt',
-                        'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
-                        'required' => array(
-                         array('amp-design-selector', '=' , '3'),
-                         array('excerpt-option-design-3', '=' , '1'),
-                             ),
-                        'validate'  =>'numeric',
-                        'default'   =>'20',
                 ),
  
              // Featured Time

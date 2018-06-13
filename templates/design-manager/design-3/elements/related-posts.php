@@ -92,12 +92,16 @@
 					                <div class="related_link">
 					                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 					                    <?php if ( isset($redux_builder_amp['ampforwp-single-related-posts-excerpt']) && true == $redux_builder_amp['ampforwp-single-related-posts-excerpt'] ) {
+					                    	$class = 'large-screen-excerpt-design-3';
+					                    	if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {
+												$class = 'small-screen-excerpt-design-3';
+											}
 						                     if(has_excerpt()){
 													$content = get_the_excerpt();
 												}else{
 													$content = get_the_content();
 												} ?>
-						                    <p><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+						                    <p class="<?php echo $class; ?>"><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
 						                <?php } ?>    
 					                </div>
 				            		</li>
