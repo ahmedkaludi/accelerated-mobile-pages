@@ -7128,3 +7128,15 @@ function ampforwp_amp_consent_check($attrs){
 	}
 	return $attrs;
 }
+// Enable / Disable AMP on Paginated Posts #2094
+add_filter('the_content', 'ampforwp_paginated_content');
+function ampforwp_paginated_content( $content ) {
+	global $multipage, $numpages, $redux_builder_amp;
+	if ( $multipage && $numpages >= 2 && false == $redux_builder_amp['amp-pagination'] ) {
+		update_post_meta( get_the_ID(), 'ampforwp-amp-on-off', 'hide-amp' );
+	}
+	elseif ( $multipage && $numpages >= 2 && true == $redux_builder_amp['amp-pagination'] ) {
+		update_post_meta( get_the_ID(), 'ampforwp-amp-on-off', 'default' );
+	}
+	return $content;
+}
