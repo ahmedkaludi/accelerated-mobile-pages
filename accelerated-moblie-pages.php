@@ -219,7 +219,7 @@ function ampforwp_add_custom_rewrite_rules() {
 		}
 	}
 }
-add_action( 'admin_init', 'ampforwp_add_custom_rewrite_rules' );
+add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
 // add re-write rule for Products
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
