@@ -4856,6 +4856,16 @@ Redux::setSection( $opt_name, array(
 
             // Excerpt Length for design2 #1122
                 array(
+                        'id'        =>'amp-design-2-excerpt',
+                        'type'      =>'text',
+                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
+                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'required' => array(
+                         array('amp-design-selector', '=' , '2')),
+                        'validate'  =>'numeric',
+                        'default'   =>'20',
+                ),
+                array(
 
                         'id'        => 'excerpt-option-design-2',
                         'type'      => 'switch',
@@ -4865,18 +4875,6 @@ Redux::setSection( $opt_name, array(
                          array('amp-design-selector', '=' , '2'),
                          array('excerpt-option', '=' , '1'),
                      )                        
-                ),
-                array(
-                        'id'        =>'amp-design-2-excerpt',
-                        'type'      =>'text',
-                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
-                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
-                        'required' => array(
-                         array('amp-design-selector', '=' , '2'),
-                         array('excerpt-option-design-2', '=' , '1'),
-                             ),
-                        'validate'  =>'numeric',
-                        'default'   =>'20',
                 ),
 
             // Excerpt Length for design3 #1122

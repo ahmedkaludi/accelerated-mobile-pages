@@ -86,12 +86,16 @@
 							                    <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
 							                    
 							                    <?php if ( isset($redux_builder_amp['ampforwp-single-related-posts-excerpt']) && true == $redux_builder_amp['ampforwp-single-related-posts-excerpt'] ) {
+							                    	$class = 'large-screen-excerpt';
+					                    			if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
+														$class = 'small-screen-excerpt';
+													}
 								                    if(has_excerpt()){
 														$content = get_the_excerpt();
 													}else{
 														$content = get_the_content();
 													} ?>
-							                    	<p><?php echo wp_trim_words( strip_shortcodes($content) , '15' ); ?></p>
+							                    	<p class="<?php echo $class; ?>"><?php echo wp_trim_words( strip_shortcodes($content) , '15' ); ?></p>
 							                    <?php } ?>	
 							                </div>
 							            </li>
