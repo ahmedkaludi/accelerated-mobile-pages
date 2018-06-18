@@ -231,7 +231,7 @@ main .amp-wp-content.comments_list{ background: none; box-shadow: none; padding:
 html .single-post .ampforwp-incontent-ad-1 { margin-bottom: 10px; }
 .amp-ad-3{ margin-bottom:10px; }
 .amp-ad-4{ margin-top:2px; }
-.amp-wp-content blockquote{ background-color: #fff; border-left: 3px solid; margin: 0; padding: 15px 20px; background: #f3f3f3; }
+.amp-wp-content blockquote{ border-left: 3px solid; margin: 0; padding: 15px 20px; background: #f3f3f3; }
 .amp-wp-content blockquote p{ margin-bottom:0 }
 pre{ white-space: pre-wrap; }
 
