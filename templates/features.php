@@ -2725,6 +2725,16 @@ function ampforwp_add_disqus_support() {
 	$width = $height = 420;
 	$layout = "";
 	$layout = 'responsive';
+	$display_comments_on = "";
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+		$display_comments_on =  is_single();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==false ) ) {
+		$display_comments_on =  is_page();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+		$display_comments_on =  is_singular();
+	}
 	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
 		$layout = 'fixed';
 	
@@ -2735,7 +2745,7 @@ function ampforwp_add_disqus_support() {
 	//if ( !comments_open() ){
 	//	return;
 	//}//931
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && 4 != $redux_builder_amp['amp-design-selector'] ) {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && 4 != $redux_builder_amp['amp-design-selector'] && $display_comments_on ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			global $post; $post_slug=$post->post_name;
 
@@ -2793,7 +2803,17 @@ function ampforwp_facebook_comments_markup() {
 	$facebook_comments_markup = $lang = $locale = '';
 	$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
 	$locale = 'data-locale = "'.$lang.'"';
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) { 
+	$display_comments_on = "";
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+		$display_comments_on =  is_single();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==false ) ) {
+		$display_comments_on =  is_page();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+		$display_comments_on =  is_singular();
+	}
+	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357

@@ -1,11 +1,21 @@
 <?php do_action('ampforwp_before_comment_hook',$this);
 	global $redux_builder_amp;
 	$enable_comments = "";
+	$display_comments_on = "";
 	if ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==true ) {
 		$enable_comments =  true;
 	}
 
-	if ( $enable_comments ) { ?>
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+			$display_comments_on =  is_single();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==false ) ) {
+		$display_comments_on =  is_page();
+	}
+	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
+		$display_comments_on =  is_singular();
+	}
+	if ( $enable_comments && $display_comments_on ) { ?>
 		<div id="comments" class="ampforwp-comment-wrapper"> <?php 
 			// Gather comments for a specific page/post
 			$postID = $comments =  "";
