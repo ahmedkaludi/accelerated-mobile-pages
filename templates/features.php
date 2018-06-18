@@ -1363,6 +1363,8 @@ function ampforwp_new_dir( $dir ) {
 				 /* Removed So Inline style can work
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content); */
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
+				 // Convert the Wistia embed into URL to build amp-wistia-player
+				 $content = preg_replace('/<script src="(https?).*(\/\/fast|support)(\.wistia\.com\/)(embed\/medias\/)([0-9|\w]+)(.*?)<\/script>/', "$1:$2$3$4$5", $content);
 				 $content = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $content);
 				 //for removing attributes within html tags
 				 $content = preg_replace('/(<[^>]+) onclick=".*?"/', '$1', $content);
