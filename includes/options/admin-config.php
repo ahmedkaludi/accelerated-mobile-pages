@@ -2908,6 +2908,29 @@ $forms_support[] = array(
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
+    	array(  
+	            'id' => 'ampforwp-display-comments',
+	            'type' => 'section',
+	            'title' => __('Display', 'accelerated-mobile-pages'),
+	            'indent' => true,
+	            'layout_type' => 'accordion',
+	            'accordion-open'=> 1, 
+	          ),
+	      array(
+	                 'id'       => 'ampforwp-display-on-pages',
+	                 'type'     => 'switch',
+	                 'title'    => __('Display on Pages', 'accelerated-mobile-pages'),
+	                 'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
+	                 'default'  => 0
+	             ),
+	       array(
+	                 'id'       => 'ampforwp-display-on-posts',
+	                 'type'     => 'switch',
+	                 'title'    => __('Display on Posts', 'accelerated-mobile-pages'),
+	                 'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
+	                 'default'  => 0
+	             ),
+    	
         array(  
             'id' => 'ampforwp-comments',
             'type' => 'section',
