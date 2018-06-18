@@ -35,7 +35,7 @@
 	<?php endif; ?>
 	<div class="f-w-f2">
 		<div class="cntr">
-			<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
+			<?php if(isset($redux_builder_amp['swift-menu']) && $redux_builder_amp['swift-menu'] == true ){ if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
 			<div class="f-menu">
 				<nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
 	              <?php
@@ -51,7 +51,7 @@
 	              echo $sanitized_menu; ?>
 	           </nav>
 			</div>
-			<?php } ?>
+			<?php } }?>
 			<div class="rr">
 				<?php amp_non_amp_link(); ?>
             <?php do_action('amp_footer_link'); ?>
