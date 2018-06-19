@@ -32,6 +32,7 @@ a{ color: #312C7E; text-decoration: none }
 .aligncenter{ text-align:center; margin: 0 auto }
 #statcounter{width: 1px;height:1px;}
 amp-anim { max-width: 100%; }
+amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
 @font-face {
     font-family: 'Roboto Slab';

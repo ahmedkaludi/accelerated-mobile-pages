@@ -31,6 +31,7 @@ box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-bo
 .alignleft {float: left;margin-right:10px;}
 .aligncenter {display: block;margin-left: auto;margin-right: auto;}
 amp-iframe { max-width: 100%; margin-bottom : 20px; }
+amp-wistia-player {margin:5px 0px;}
 .wp-caption {padding: 0;}
 .wp-caption-text {font-size: 12px;line-height: 1.5em;margin: 0;padding: .66em 10px .75em;text-align: center;}
 amp-carousel > amp-img > img {object-fit: contain;}
