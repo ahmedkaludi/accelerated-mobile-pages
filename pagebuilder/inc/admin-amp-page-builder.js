@@ -126,6 +126,7 @@ Vue.component('amp-pagebuilder-module-modal', {
   data: function(){
   	return {
 	  	modalcontent: app.modalcontent,
+	  	editModuleTempTitle: false,
 	  };
   },
   mounted: function () {//On ready State for component
@@ -267,7 +268,34 @@ Vue.component('amp-pagebuilder-module-modal', {
 				});
 		}
 		return returnOpt;
+	},
+
+
+
+	editModuleTitle: function(modalcontent){
+		this.editModuleTempTitle = modalcontent.cell_identity_name;
+	},
+	saveModuleTitle: function(modalcontent){
+		app.mainContent.rows.forEach(function(rowData, rowKey){
+			if(rowData.id==app.modalTypeData.containerId){
+				if(app.modalType=='module'){
+					rowData.cell_data.forEach(function(moduleData, moduleKey){
+						if(moduleData.cell_id==app.modalTypeData.moduleId){
+							//app.modalcontent.cell_identity_name = modalcontent.cell_identity_name
+							Vue.set( moduleData, 'cell_identity_name', modalcontent.cell_identity_name );
+						}
+					});
+				}
+			}
+		});
+		
+		this.editModuleTempTitle = false;
+	},
+	cancleModuleTitle: function(modalcontent){
+		app.modalcontent.cell_identity_name = this.editModuleTempTitle;
+		this.editModuleTempTitle = false;
 	}
+
   }
 })
 
@@ -332,6 +360,7 @@ function openModulePopup(event,type){
 				rowData.cell_data.forEach(function(moduleData, moduleKey){
 					if(moduleData.cell_id==currentModuleId){
 						//app.modalcontent.repeater.showFields.forEach
+						app.modalcontent.cell_identity_name = moduleData.cell_identity_name;
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 
@@ -356,7 +385,7 @@ function openModulePopup(event,type){
 										'default', 
 										userValues );
 							//}
-							console.log(app.modalcontent.repeater);
+							//console.log(app.modalcontent.repeater);
 							if(moduleData.repeater){
 								
 								app.modalcontent.repeater.showFields = [];
@@ -716,6 +745,7 @@ var app = new Vue({
     showModal: false,
     //Module data
     showmoduleModal: false,
+    editModuleTempTitle: false,
     stopModuleModalClose:false,
     modalcontent: [],
     modalType:'',//module/rowSetting
@@ -897,6 +927,7 @@ var app = new Vue({
 							'type'		: modulename,
 							'container_id': rowid,
 							'cell_container': cellid,
+							'cell_identity_name': modulesid,
 							};
 
 						if(moduleJson.fields.length > 0){

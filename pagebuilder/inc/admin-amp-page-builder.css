@@ -1327,3 +1327,6 @@ body .modal-footer .del-btn-modal{
 }
 .amp-layout-breadcrumbs_last{font-weight: bold}
 .amp_l_preview_button{width: 49.2% !important}
+.dashicons-head{
+    vertical-align: initial;
+}
