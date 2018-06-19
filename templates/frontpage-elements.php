@@ -70,8 +70,9 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
 				$ampforwp_the_content = $template->get('ampforwp_amp_content');
 			}
 			// Muffin Builder Compatibility #1455 #1893
-			if ( function_exists('mfn_builder_print') ) {
+			if ( function_exists('mfn_builder_print') && !ampforwp_is_front_page()) {
 				ob_start();
+
 			  	mfn_builder_print( $post_id );
 				$content = ob_get_contents();
 				ob_end_clean();
@@ -146,7 +147,7 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
 				$ampforwp_the_content = $template->get('ampforwp_amp_content');
 			}
 			// Muffin Builder Compatibility #1455 #1893
-			if ( function_exists('mfn_builder_print') ) {
+			if ( function_exists('mfn_builder_print') && !ampforwp_is_front_page()) {
 				ob_start();
 			  	mfn_builder_print( $post_id );
 				$content = ob_get_contents();
@@ -224,7 +225,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 					$ampforwp_the_content = $template->get('ampforwp_amp_content');
 				}
 				// Muffin Builder Compatibility #1455 #1893
-				if ( function_exists('mfn_builder_print') ) {
+				if ( function_exists('mfn_builder_print') && !ampforwp_is_front_page()) {
 					ob_start();
 				  	mfn_builder_print( $post_id );
 					$content = ob_get_contents();

@@ -436,7 +436,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
 	// Muffin Builder Compatibility #1455 #1893
-	if ( function_exists('mfn_builder_print') ) {
+	if ( function_exists('mfn_builder_print') && !ampforwp_is_front_page()) {
 		ob_start();
 	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
 		$content = ob_get_contents();
