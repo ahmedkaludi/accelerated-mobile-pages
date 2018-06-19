@@ -6459,14 +6459,14 @@ function ampforwp_custom_wpautop(){
 // Get the AMP components
 function ampforwp_get_amp_components() {
 	$components = array();
-	$components = array('amp-carousel','amp-selector','amp-apester-media');
+	$components = array('amp-carousel','amp-selector','amp-apester-media','amp-youtube','amp-iframe');
 	return $components;
 }
 // Add the required scripts for amp-components
 add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
 if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
 	function ampforwp_add_amp_component_scripts( $data ) {
-		if ( is_single() ) {
+		if ( is_singular() ) {
 			$components = ampforwp_get_amp_components();
 			foreach ( $components as $component ) {
 				// check if the post has amp-component meta
