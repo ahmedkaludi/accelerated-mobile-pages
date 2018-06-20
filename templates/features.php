@@ -3233,12 +3233,12 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
 	add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
-	add_filter('ampforwp_modify_sidebars_content','modified_search_sidebar');
+	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
   }
   return $sanitized_sidebar;
 }
 
-function modified_search_sidebar($content ) {
+function ampforwp_modified_search_sidebar( $content ) {
 	global $redux_builder_amp;
 	$dom = '';
 	$dom = AMP_DOM_Utils::get_dom_from_content($content);
