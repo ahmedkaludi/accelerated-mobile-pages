@@ -2061,6 +2061,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                               ),
                         ),
                        array(
+                           'class' => 'child_opt',
                            'id'            =>'amp-gtm-analytics-type',
                            'type'          => 'text',
                            'title'         => __('Analytics Type','accelerated-mobile-pages'),
@@ -2082,6 +2083,16 @@ Redux::setArgs( "redux_builder_amp", $args );
                               'required' => array(
                               array('amp-use-gtm-option', '=' , '1')),
                         ),
+                        array(
+                          'class' => 'child_opt',
+                          'id'       => 'ampforwp-gtm-field-anonymizeIP',
+                          'type'     => 'switch',
+                          'title'    => __( 'IP Anonymization', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '1'),
+                          ),
+                          'default'  => 1,
+                      ),
                     // Google Cliend ID API
                       array(
                         'id'       => 'ampforwp-ga-clientid-api-gtm',

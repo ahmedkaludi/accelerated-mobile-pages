@@ -2692,7 +2692,10 @@ function amp_gtm_add_gtm_support( $analytics ) {
 	if ( ! is_array( $analytics ) ) {
 		$analytics = array();
 	}
-
+	$anonymizeIP = 'true';
+	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+		$anonymizeIP = 'false';
+	}
 	$analytics['amp-gtm-googleanalytics'] = array(
 		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
 		'attributes' => array(
@@ -2701,7 +2704,8 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		),
 		'config_data' => array(
 			'vars' => array(
-				'account' =>  $redux_builder_amp['amp-gtm-analytics-code']
+				'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
+				'anonymizeIP'=>$anonymizeIP
 			),
 			'triggers' => array(
 				'trackPageview' => array(
