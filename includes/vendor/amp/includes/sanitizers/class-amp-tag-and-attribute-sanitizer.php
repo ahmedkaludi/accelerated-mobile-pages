@@ -1623,6 +1623,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		 *
 		 * @var DOMNode $parent
 		 */
+		/*
 		$parent = $node->parentNode;
 		if ( $node && $parent ) {
 			$this->remove_invalid_child( $node );
@@ -1634,5 +1635,6 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				$parent->removeChild( $node );
 			}
 		}
+		*/
 	}
 }
