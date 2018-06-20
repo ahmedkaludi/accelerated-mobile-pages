@@ -6868,7 +6868,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
           <script type="application/json">{
             "consents": {
               "consent1": {
-                "checkConsentHref": "<?php echo admin_url('admin-ajax.php?action=ampforwp_check_consent_href_process');?>",
+                "checkConsentHref": {"promptIfUnknown": true},
                 "promptUI": "gdpr_c"
               }
             },
@@ -7055,13 +7055,6 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 	}
 }
 
-// Consent Submission
-add_action('wp_ajax_ampforwp_check_consent_href_process','ampforwp_check_consent_href_process');
-add_action('wp_ajax_nopriv_ampforwp_check_consent_href_process','ampforwp_check_consent_href_process');
-function ampforwp_check_consent_href_process(){
-	echo '{"promptIfUnknown": true}';
-	wp_die();
-}
 // Consent Submission
 add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
 add_action('wp_ajax_nopriv_amp_consent_submission','amp_consent_submission');
