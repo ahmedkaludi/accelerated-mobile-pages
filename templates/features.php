@@ -3213,7 +3213,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	          'AMP_Pinterest_Embed_Handler' => array(),
 	          'AMP_Gallery_Embed_Handler' => array(),
 	    ) ),
-	    apply_filters(  'amp_content_sanitizers', array(
+	    apply_filters(  'amp_sidebar_sanitizers', array(
 	           'AMP_Style_Sanitizer' => array(),
 	           'AMP_Blacklist_Sanitizer' => array(),
 	           'AMP_Img_Sanitizer' => array(),
