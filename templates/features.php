@@ -450,11 +450,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/archive.php';
 	        }
 			// Search pages
-	      	if ( is_search() &&
-							( $redux_builder_amp['amp-design-1-search-feature'] ||
-							  $redux_builder_amp['amp-design-2-search-feature'] ||
-								$redux_builder_amp['amp-design-3-search-feature'] )
-							)  {
+	      	if ( is_search() )  {
 	            $file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/search.php';
 	        }
 	        // 404 Pages #2042        	
