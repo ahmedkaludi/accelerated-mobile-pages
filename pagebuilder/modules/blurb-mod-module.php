@@ -10,7 +10,7 @@ $css = '
 {{module-class}} .blu-mod .ico-pic{font-size:{{ic-size}};color:{{ic_color_picker}};
 	margin:{{ic_margin_gap}};display:inline-block;background:{{bg_color_picker}};border-radius:50%;padding:15px;}
 {{module-class}} .blu-mod{font-size: 15px;line-height: 1.7;}
-{{module-class}} .blu-mod p{margin: 15px 0px 0px 0px;}
+{{module-class}} .blu-mod p{margin: {{mrgn_css}};}
 
 
  {{module-class}} .blu-mod{
@@ -183,6 +183,19 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'#f4f4f4',
 								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'spacing',
+								'name'		=>"mrgn_css",
+								'label'		=>'Content Gapping',
+								'tab'		=>'design',
+								'default'	=>array(
+													'left'=>'0px',
+													'right'=>'0px',
+													'top'=>'15px',
+													'bottom'=>'0px'
+												),
+								'content_type'=>'css',
 							),
 						array(
                                 'type'      =>'checkbox_bool',
