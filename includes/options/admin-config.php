@@ -5272,7 +5272,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-single-related-posts-image',
                     'type'     => 'switch',
                 'class' => 'child_opt',
-                    'title'    => __('Image in Related Post', 'accelerated-mobile-pages'),
+                    'title'    => __('Image', 'accelerated-mobile-pages'),
                     'default'  => 1,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
@@ -5282,7 +5282,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-single-related-posts-excerpt',
                     'type'     => 'switch',
                 'class' => 'child_opt',
-                    'title'    => __('Excerpt in Related Post', 'accelerated-mobile-pages'),
+                    'title'    => __('Excerpt', 'accelerated-mobile-pages'),
                     'default'  => 1,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
@@ -5292,7 +5292,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',
                 'class' => 'child_opt',
-                    'title'    => __('Non AMP link in Related Post', 'accelerated-mobile-pages'),
+                    'title'    => __('Link to Non-AMP', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
