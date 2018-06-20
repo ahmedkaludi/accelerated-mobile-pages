@@ -3194,43 +3194,95 @@ function ampforwp_sidebars_carousel_content($content){
 }
 // Sidebar Content Sanitizer
 function ampforwp_sidebar_content_sanitizer($sidebar){
+  global $redux_builder_amp;
   $sanitized_sidebar     	= "";
   $non_sanitized_sidebar   	= "";
-  $sidebar_data 			= array();
-    
+  $sidebar_data 			= array();  
   ob_start();
   dynamic_sidebar( $sidebar );
   $non_sanitized_sidebar = ob_get_contents();
   ob_end_clean();
-if ( $non_sanitized_sidebar ) {
-  $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
-    apply_filters( 'amp_content_embed_handlers', array(
-          'AMP_Twitter_Embed_Handler' => array(),
-          'AMP_YouTube_Embed_Handler' => array(),
-          'AMP_DailyMotion_Embed_Handler' => array(),
-		  'AMP_Vimeo_Embed_Handler' => array(),
-		  'AMP_SoundCloud_Embed_Handler' => array(),
-          'AMP_Instagram_Embed_Handler' => array(),
-          'AMP_Vine_Embed_Handler' => array(),
-          'AMP_Facebook_Embed_Handler' => array(),
-          'AMP_Pinterest_Embed_Handler' => array(),
-          'AMP_Gallery_Embed_Handler' => array(),
-    ) ),
-    apply_filters(  'amp_content_sanitizers', array(
-           'AMP_Style_Sanitizer' => array(),
-           'AMP_Blacklist_Sanitizer' => array(),
-           'AMP_Img_Sanitizer' => array(),
-           'AMP_Video_Sanitizer' => array(),
-           'AMP_Audio_Sanitizer' => array(),
-           'AMP_Playbuzz_Sanitizer' => array(),
-           'AMP_Iframe_Sanitizer' => array(
-             'add_placeholder' => true,
-           ),
-    )  ), array('non-content'=>'non-content')
-  );
+  
+  if ( $non_sanitized_sidebar ) {
+	  $sanitized_sidebar = new AMPFORWP_Content( $non_sanitized_sidebar,
+	    apply_filters( 'amp_content_embed_handlers', array(
+	          'AMP_Twitter_Embed_Handler' => array(),
+	          'AMP_YouTube_Embed_Handler' => array(),
+	          'AMP_DailyMotion_Embed_Handler' => array(),
+			  'AMP_Vimeo_Embed_Handler' => array(),
+			  'AMP_SoundCloud_Embed_Handler' => array(),
+	          'AMP_Instagram_Embed_Handler' => array(),
+	          'AMP_Vine_Embed_Handler' => array(),
+	          'AMP_Facebook_Embed_Handler' => array(),
+	          'AMP_Pinterest_Embed_Handler' => array(),
+	          'AMP_Gallery_Embed_Handler' => array(),
+	    ) ),
+	    apply_filters(  'amp_content_sanitizers', array(
+	           'AMP_Style_Sanitizer' => array(),
+	           'AMP_Blacklist_Sanitizer' => array(),
+	           'AMP_Img_Sanitizer' => array(),
+	           'AMP_Video_Sanitizer' => array(),
+	           'AMP_Audio_Sanitizer' => array(),
+	           'AMP_Playbuzz_Sanitizer' => array(),
+	           'AMP_Iframe_Sanitizer' => array(
+	             'add_placeholder' => true,
+	           ),
+	    )  ), array('non-content'=>'non-content')
+	  );
+  }
+
+  if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
+	add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
+	add_filter('ampforwp_modify_sidebars_content','modified_search_sidebar');
+  }
+  return $sanitized_sidebar;
 }
 
-  return $sanitized_sidebar;
+function modified_search_sidebar($content ) {
+	global $redux_builder_amp;
+	$dom = '';
+	$dom = AMP_DOM_Utils::get_dom_from_content($content);
+	$nodes = $dom->getElementsByTagName( 'form' );
+	$num_nodes = $nodes->length;
+	if ( 0 !== $num_nodes ) {
+		for ( $i = 0; $i < $nodes->length; ++$i ) {
+			$element = $nodes->item( $i );
+			if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
+				$amp_query_variable = 'amp';
+				$amp_query_variable_val = '1';
+			}
+			$input = $dom->createElement('input');
+			$input->setAttribute('type', 'text');
+			$input->setAttribute('placeholder', 'AMP');
+			$input->setAttribute('value', $amp_query_variable_val);
+			$input->setAttribute('name', $amp_query_variable);
+			$input->setAttribute('class', 'hide');
+			$input->setAttribute('id', 'ampforwp_search_query_item');
+			$element->appendChild($input);
+			$action_url = $element->getAttribute('action');
+			$action_url = preg_replace('#^http?:#', '', $action_url);
+			$element->setAttribute('action', $action_url);
+			$element->setAttribute('target', '_top');
+		}
+	}
+	$content = AMP_DOM_Utils::get_content_from_dom($dom);
+	return $content;
+}
+
+function ampforwp_sidebar_blacklist_tags($tags) {
+	$form  = array_search('form', $tags);
+	$input = array_search('input', $tags);
+	$label = array_search('label', $tags);
+	if ( $form ) {
+		unset($tags[$form]);
+	}
+	if ( $input ) {
+		unset($tags[$input]);
+	}
+	if ( $label ) {
+		unset($tags[$label]);		
+	}
+	return $tags;
 }
 // Sidebar Scripts	
 add_filter( 'amp_post_template_data', 'ampforwp_add_sidebar_data' );
