@@ -7168,3 +7168,22 @@ function ampforwp_paginated_content( $content ) {
 	}
 	return $content;
 }
+
+// #2220 Remove Space Shortcode by Pro Theme from THEMCO
+add_action('pre_amp_render_post','ampforwp_remove_space_shortcodes');
+function ampforwp_remove_space_shortcodes(){
+	add_filter('the_content','ampforwp_remove_pro_theme_space_shortcodes');
+}
+
+function ampforwp_remove_pro_theme_space_shortcodes($content){
+	if(has_shortcode( $content, 'gap' )){
+		remove_shortcode( 'gap' );
+		// to remove the useless shortcode from the AMP Content
+		add_shortcode( 'gap', 'ampforwp_return_no_gap' );
+	}
+	return $content;
+}
+
+function ampforwp_return_no_gap(){
+	return;
+}
