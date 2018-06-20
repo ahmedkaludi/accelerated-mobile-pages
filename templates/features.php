@@ -6458,7 +6458,7 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 
 // Allow AMP Components in "The Content" #1588
 // Check for amp-components in the_content
-add_filter('the_content','ampforwp_amp_component_checker');
+/*add_filter('the_content','ampforwp_amp_component_checker');
 if ( ! function_exists('ampforwp_amp_component_checker') ) {
 	function ampforwp_amp_component_checker( $content ) {
 		if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
@@ -6481,7 +6481,7 @@ if ( ! function_exists('ampforwp_amp_component_checker') ) {
 		else
 			return $content;
 	}
-}
+}*/
 
 // Remove wpautop from specific posts which contain amp-components
 add_action('pre_amp_render_post','ampforwp_custom_wpautop');
