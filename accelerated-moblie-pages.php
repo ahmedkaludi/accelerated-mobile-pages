@@ -398,15 +398,26 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 	}
 }
 // Redux panel inclusion code
-if ( ! class_exists( 'ReduxFramework' ) ) {
-    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') ) {
+	require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
     require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 }
-if ( is_admin() ) {
-	// Register all the main options	
-	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+
+add_action('after_setup_theme', 'ampforwp_load_ampOptions');
+function ampforwp_load_ampOptions(){
+	if ( ! class_exists( 'ReduxFramework' ) ) {
+	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+	}
+	if ( is_admin() ) {
+		// Register all the main options	
+		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+	}
 }
+
+
 // Modules 
 add_action('after_setup_theme','ampforwp_add_module_files');
 function ampforwp_add_module_files() {
