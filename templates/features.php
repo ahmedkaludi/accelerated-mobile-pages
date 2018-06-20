@@ -6505,30 +6505,7 @@ function ampforwp_custom_wpautop(){
 //	}
 //}
 // Get the AMP components
-function ampforwp_get_amp_components() {
-	$components = array();
-	$components = array('amp-carousel','amp-selector','amp-apester-media','amp-youtube','amp-iframe');
-	return $components;
-}
-// Add the required scripts for amp-components
-add_filter('amp_post_template_data', 'ampforwp_add_amp_component_scripts',PHP_INT_MAX);
-if ( ! function_exists('ampforwp_add_amp_component_scripts') ) {
-	function ampforwp_add_amp_component_scripts( $data ) {
-		if ( is_singular() ) {
-			$components = ampforwp_get_amp_components();
-			foreach ( $components as $component ) {
-				// check if the post has amp-component meta
-				$post_meta = get_post_meta(get_the_ID(), $component , true);
-				if ( 'true' == $post_meta ) {
-					if ( empty( $data['amp_component_scripts'][$component] ) ) {
-								$data['amp_component_scripts'][$component] = 'https://cdn.ampproject.org/v0/'.$component.'-0.1.js';
-						}
-				}
-			}
-		}
-		return $data;
-	}
-}
+
 
 // Backward Compatibility for AMP Preview #1529
 if ( ! function_exists('get_preview_post_link') ) { 
