@@ -121,4 +121,69 @@ abstract class AMP_Base_Sanitizer {
 
 		return $src;
 	}
+
+
+	/**
+	 * Removes an invalid child of a node.
+	 *
+	 * Also, calls the mutation callback for it.
+	 * This tracks all the nodes that were removed.
+	 *
+	 * @since 0.7
+	 *
+	 * @param DOMNode|DOMElement $node The node to remove.
+	 * @param array              $args Additional args to pass to validation error callback.
+	 *
+	 * @return void
+	 */
+	public function remove_invalid_child( $node, $args = array() ) {
+		if ( isset( $this->args['validation_error_callback'] ) ) {
+			call_user_func( $this->args['validation_error_callback'],
+				array_merge( compact( 'node' ), $args )
+			);
+		}
+		if ( empty( $this->args['disable_invalid_removal'] ) ) {
+			$node->parentNode->removeChild( $node );
+		}
+	}
+
+	/**
+	 * Removes an invalid attribute of a node.
+	 *
+	 * Also, calls the mutation callback for it.
+	 * This tracks all the attributes that were removed.
+	 *
+	 * @since 0.7
+	 *
+	 * @param DOMElement     $element   The node for which to remove the attribute.
+	 * @param DOMAttr|string $attribute The attribute to remove from the element.
+	 * @param array          $args      Additional args to pass to validation error callback.
+	 * @return void
+	 */
+	public function remove_invalid_attribute( $element, $attribute, $args = array() ) {
+		if ( isset( $this->args['validation_error_callback'] ) ) {
+			if ( is_string( $attribute ) ) {
+				$attribute = $element->getAttributeNode( $attribute );
+			}
+			if ( $attribute ) {
+				call_user_func( $this->args['validation_error_callback'],
+					array_merge(
+						array(
+							'node' => $attribute,
+						),
+						$args
+					)
+				);
+				if ( empty( $this->args['disable_invalid_removal'] ) ) {
+					$element->removeAttributeNode( $attribute );
+				}
+			}
+		} elseif ( empty( $this->args['disable_invalid_removal'] ) ) {
+			if ( is_string( $attribute ) ) {
+				$element->removeAttribute( $attribute );
+			} else {
+				$element->removeAttributeNode( $attribute );
+			}
+		}
+	}
 }

@@ -15,6 +15,10 @@ require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php'
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
 require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
 
+require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
+require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
+require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
+
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
