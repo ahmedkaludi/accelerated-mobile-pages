@@ -305,11 +305,7 @@ function amp_loop_all_content($tag = 'p'){
 function amp_loop_permalink($return,$amp_query_var ='amp'){
 	global $redux_builder_amp;
 	if( $return ){
-		if ( is_single() && isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
-			return get_permalink();
-		}
-		else
-			return ampforwp_url_controller( get_permalink() ) ;
+		return ampforwp_url_controller( get_permalink() ) ;
 	}
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
 		echo get_permalink();
