@@ -5338,6 +5338,28 @@ Redux::setSection( $opt_name, array(
                                 ),
             ),
             array(
+                    'id'       => 'ampforwp-related-posts-days-switch',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => __('Based on Past Days', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => __('Show Related Posts From Past Few Days', 'accelerated-mobile-pages'),
+                    'default'  => 0,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
+            ),
+            array(
+                    'id'       => 'ampforwp-related-posts-days-text',
+                    'type'     => 'text',
+                    'class' => 'child_opt',
+                    'title'    => __('Number of Days', 'accelerated-mobile-pages'),
+                    'validate' => 'numeric',
+                    'default'  => '7',
+                    'required' => array( 
+                                    array('ampforwp-related-posts-days-switch', '=' , '1') 
+                                ),
+            ),
+            array(
                        'id' => 'ampforwp-single_section_4',
                        'type' => 'section',
                        'title' => __('Inline Related Posts Settings', 'accelerated-mobile-pages'),
