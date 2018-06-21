@@ -149,7 +149,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                     'redux-field-checkbox-hierarchy-css',
                     $this->extension_url  . 'field_checkbox_hierarchy.css',
                     array(),
-                    time (),
+                    $this->time, //time (),
                     'all'
                 );
             }
@@ -158,7 +158,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 'redux-field-checkbox-hierarchy-js',
                 $this->extension_url . 'field_checkbox_hierarchy' . Redux_Functions::isMin () . '.js',
                 array( 'jquery', 'redux-js' ),
-                time (),
+                $this->time, //time (),
                 true
             );
         }

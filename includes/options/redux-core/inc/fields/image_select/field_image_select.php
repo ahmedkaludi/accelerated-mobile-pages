@@ -42,10 +42,15 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
          * @access      public
          * @return      void
          */
+        private $time = '';
         function __construct( $field = array(), $value = '', $parent ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            $this->time   = time();
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->time = AMPFORWP_VERSION;
+            }
         }
 
         /**
@@ -210,7 +215,7 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                 'redux-field-image-select-js',
                 ReduxFramework::$_url . 'inc/fields/image_select/field_image_select' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                time(),
+                $this->time, //time(),
                 true
             );
 
@@ -219,7 +224,7 @@ if ( ! class_exists( 'ReduxFramework_image_select' ) ) {
                     'redux-field-image-select-css',
                     ReduxFramework::$_url . 'inc/fields/image_select/field_image_select.css',
                     array(),
-                    time(),
+                    $this->time, //time(),
                     'all'
                 );
             }

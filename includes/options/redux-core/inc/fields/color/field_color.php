@@ -42,11 +42,16 @@ if ( ! class_exists( 'ReduxFramework_color' ) ) {
          * @access        public
          * @return        void
          */
+        private $time = '';
         function __construct( $field = array(), $value = '', $parent ) {
 
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            $this->time = time();
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->time = AMPFORWP_VERSION;
+            }
         }
 
         /**
@@ -93,7 +98,7 @@ if ( ! class_exists( 'ReduxFramework_color' ) ) {
                 'redux-field-color-js',
                 ReduxFramework::$_url . 'inc/fields/color/field_color' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'wp-color-picker', 'redux-js' ),
-                time(),
+                $this->time, //time(),
                 true
             );
         }
