@@ -5715,6 +5715,10 @@ function ampforwp_addAmpLastModifiedHeader($headers) {
 // 91. Comment Author Gravatar URL
 if( ! function_exists('ampforwp_get_comments_gravatar') ){
 	function ampforwp_get_comments_gravatar( $comment ) {
+		global $redux_builder_amp;
+		if(isset($redux_builder_amp['ampforwp-display-avatar']) && $redux_builder_amp['ampforwp-display-avatar']==0){
+			return '';
+		}
 	$gravatar_exists = '';
 	$gravatar_exists = ampforwp_gravatar_checker($comment->comment_author_email);
 	if($gravatar_exists == true){
@@ -5729,7 +5733,18 @@ if ( ! function_exists('ampforwp_gravatar_checker') ) {
 	function ampforwp_gravatar_checker( $email ) {
 		// Craft a potential url and test its headers
 		$hash = md5(strtolower(trim($email)));
-		$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+		//$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+		$gravatar_server = 0;
+		if ( $hash ) {
+			$gravatar_server = hexdec( $hash[0] ) % 3;
+		} else {
+			$gravatar_server = rand( 0, 2 );
+		}
+		if ( is_ssl() ) {
+			$uri = 'https://secure.gravatar.com/avatar/' . $hash;
+		} else {
+			$uri = sprintf( 'http://%d.gravatar.com/avatar/%s', $gravatar_server, $hash );
+		}
 		$headers = @get_headers($uri);
 		// If its 404
 		if (!preg_match("|200|", $headers[0])) {
