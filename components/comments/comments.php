@@ -2,15 +2,7 @@
 function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
-		$display_comments_on =  is_single();
-	}
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==false ) ) {
-		$display_comments_on =  is_page();
-	}
-	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
-		$display_comments_on =  is_singular();
-	}
+	$display_comments_on = ampforwp_comments_display_on();
 
 	$ampforwp_check_script_extension = true;
 	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
