@@ -4284,7 +4284,21 @@ function ampforwp_post_pagination( $args = '' ) {
 
 	wp_reset_postdata();
 	global $page, $numpages, $multipage, $more, $redux_builder_amp;
-
+	if ( ampforwp_is_front_page() ) {
+		$id = ampforwp_get_frontpage_id();
+		$content_post = get_post($id);
+		$content = $content_post->post_content;
+		$checker = preg_match('/<!--nextpage-->/', $content);
+		if ( 1 === $checker ) {
+			$multipage = $more = 1;
+			$ampforwp_new_content = explode('<!--nextpage-->', $content);
+			$queried_var = get_query_var('paged');
+			if ( $queried_var > 1 ) {
+		      $page = $queried_var;
+		    }
+			$numpages = count($ampforwp_new_content);
+		}	
+	}
 	$defaults = array(
 		'before'           => '<div class="ampforwp_post_pagination" ><p>' . '<span>' .  ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ':</span>',
 		'after'            => '</p></div>',
@@ -4378,14 +4392,25 @@ function ampforwp_post_pagination( $args = '' ) {
 function ampforwp_post_paginated_link_generator( $i ) {
 	global $wp_rewrite;
 	$post = get_post();
+	if ( ampforwp_is_front_page() ) {
+		$id = ampforwp_get_frontpage_id();
+		$post = get_post($id);
+	}
 	$query_args = array();
 	if ( 1 == $i ) {
 		$url = get_permalink();
+		if(ampforwp_is_front_page()){
+			$url = get_home_url();
+		}
 	} else {
-		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+		if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) ) {
 			$url = add_query_arg( 'page', $i, get_permalink() );
-		elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
-			$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+			if(ampforwp_is_front_page()){
+				$url = add_query_arg( 'page', $i, get_home_url() );
+			}
+		}
+		elseif ( ampforwp_is_front_page() )
+			$url = trailingslashit(get_home_url()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
 		else
 			$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
 	}
@@ -4402,6 +4427,35 @@ function ampforwp_post_paginated_link_generator( $i ) {
 	}
 	$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
 	return '<a href="' . esc_url( $url ) . '">';
+}
+// Modify the content to make Pagination work on Pages and FrontPage #2253
+add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
+function ampforwp_post_paginated_content($content){
+	if ( is_page() || ampforwp_is_front_page() ){
+		global $redux_builder_amp, $page, $multipage;
+		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
+		$ampforwp_the_content = $content;
+		$checker = preg_match('/<!--nextpage-->/', $ampforwp_the_content);
+		if ( 1 === $checker ) {
+			$multipage = 1;		
+			$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
+		    $queried_var = get_query_var('page');
+		    if ( ampforwp_is_front_page() ) {
+		    	$queried_var = get_query_var('paged');
+		    }
+		    if ( $queried_var > 1 ) {
+		      $queried_var = $queried_var -1   ;
+		    }
+		    else {
+		    	 $queried_var = 0;
+		    }
+		    return $ampforwp_new_content[$queried_var];
+		}
+		else {
+			return $ampforwp_the_content;
+		}
+	}
+	return $content;
 }
 
 add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_rel_amphtml_paginated_post');
