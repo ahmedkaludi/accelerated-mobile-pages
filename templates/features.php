@@ -2543,7 +2543,7 @@ function ampforwp_frontpage_title_markup () {
             }
             return $content_buffer;
 		}
-	   ob_start('ampforwp_the_content_filter_full');
+	   add_action('wp_loaded', function(){ ob_start('ampforwp_the_content_filter_full'); }, PHP_INT_MAX);
 
 
 
