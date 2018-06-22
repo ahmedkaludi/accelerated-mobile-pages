@@ -8,7 +8,7 @@
 			<div class="f-w">
 				<?php 
 				if ( is_active_widget(false,false,'search', true) || is_active_widget(false,false,'text', true) ) {
-					add_filter('amp_blacklisted_tags','ampforwp_footer_widget_blacklist_tags');
+					add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
 				}
 				ob_start();
 				dynamic_sidebar('swift-footer-widget-area');
@@ -29,24 +29,6 @@
 										) 
 									) 
 								);
-
-				if(function_exists('ampforwp_footer_widget_blacklist_tags')){
-					function ampforwp_footer_widget_blacklist_tags($tags){
-						$form  = array_search('form', $tags);
-						$input = array_search('input', $tags);
-						$label = array_search('label', $tags);
-						if ( $form ) {
-							unset($tags[$form]);
-						}
-						if ( $input ) {
-							unset($tags[$input]);
-						}
-						if ( $label ) {
-							unset($tags[$label]);		
-						}
-						return $tags;
-					}
-				}
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
 	              echo $sanitized_footer_widget;
 				?>
