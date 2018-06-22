@@ -2967,14 +2967,14 @@ $forms_support[] = array(
 	                 'type'     => 'switch',
 	                 'title'    => __('Display on Pages', 'accelerated-mobile-pages'),
 	                 'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 0
+	                 'default'  => 1
 	             ),
 	       array(
 	                 'id'       => 'ampforwp-display-on-posts',
 	                 'type'     => 'switch',
 	                 'title'    => __('Display on Posts', 'accelerated-mobile-pages'),
 	                 'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 0
+	                 'default'  => 1
 	             ),
             array(
                      'id'       => 'ampforwp-display-avatar',
