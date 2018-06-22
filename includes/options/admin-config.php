@@ -382,6 +382,41 @@ $extension_listing = '
 </div>
 ';
 
+// 
+function ampforwp_check_extensions(){
+	$is_extension_active = false;
+	$extensions_list = array(
+				'ADS for WP' => 'ads-for-wp/ads-for-wp.php',
+				'Advanced AMP ADS' => 'amp-incontent-ads/amptoolkit-incontent-ads.php',
+				'Contact Form 7' => 'amp-cf7/amp-cf7.php',
+				'Gravity Forms' => 'amp-gravity-forms/amp-gravity-forms.php',
+				'Ninja Forms for AMP' => 'amp-ninja-forms/amp-ninja-forms.php',
+				'Email Opt-in Forms' => 'amp-optin/amp-optin.php',
+				'AMP Cache' => 'amp-cache/ampforwp-cache.php',
+				'Call To Action' => 'amp-cta/amp-cta.php',
+				'AMP WooCommerce Pro' => 'amp-woocommerce-pro/amp-woocommerce.php',
+				'EDD for AMP' => 'edd-for-amp/edd-for-amp.php',
+				'AMP Layouts' => 'amp-layouts/amp-layouts.php',
+				'Newspaper AMP Theme' => 'amp-newspaper-theme/ampforwp-custom-theme.php',
+				'ACF for AMP' => 'acf-for-amp-v2/amp-acf.php',
+				'AMP Comments' => 'amp-comments/amp-comments.php',
+				'Star Ratings' => 'amp-rating/amp-rating.php',
+				'Custom Post Type' => 'amp-custom-post-type/amp-custom-post-type.php',
+				'Structured Data for WP' => 'structured-data-for-wp/structured-data-for-wp.php',
+				'Polylang For AMP' => 'polylang-for-amp/amp_polylang.php',
+				'WPML For AMP' => 'wpml-for-amp/wpml_for_amp.php',
+				'AMP Teaser' => 'amp-teaser/amp-teaser.php',
+			);
+	foreach ($extensions_list as $extension => $value) {
+		$is_extension_active = is_plugin_active( $value );
+		if( $is_extension_active){
+			return true;
+		}
+	}
+	
+	return $is_extension_active;
+}
+
 $freepro_listing = '
 <div class="fp-wr">
     <div class="fp-img">
@@ -6647,6 +6682,7 @@ Redux::setSection( $opt_name, array(
 //        'icon' => 'el el-puzzle',
     ) );
 
+if(!ampforwp_check_extensions()){
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Free vs Pro', 'accelerated-mobile-pages' ),
        // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
@@ -6655,6 +6691,7 @@ Redux::setSection( $opt_name, array(
        'desc' => $freepro_listing,
         'icon' => 'el el-heart',
     ) );
+}
 
 
 // Priority Support
