@@ -5567,6 +5567,116 @@ Redux::setSection( $opt_name, array(
                     'default'  => 0,
                     'required' => array( array('single-new-features', '=' , '1') ),
             ),
+            // Content  h1 - h6 font sizes //#2059 
+            array(
+                'id'       => 'swift_cnt',
+                'type'     => 'switch',
+                'title'    => __( 'Heading Font Sizes', 'accelerated-mobile-pages' ),
+               'default'   => 0,
+               'tooltip-subtitle'  => __('Enable the Heading to add Font Sizes in single', 'accelerated-mobile-pages'),
+            ),
+            array(
+                'id'       => 'swift_cnt_h1',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H1', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h1_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H1 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '28px',
+                'required' => array('swift_cnt_h1' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'swift_cnt_h2',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H2', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h2_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H2 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '25px',
+                'required' => array('swift_cnt_h2' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'swift_cnt_h3',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H3', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h3_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H3 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '22px',
+                'required' => array('swift_cnt_h3' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'swift_cnt_h4',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H4', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h4_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H4 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '19px',
+                'required' => array('swift_cnt_h4' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'swift_cnt_h5',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H5', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h5_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H5 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '17px',
+                'required' => array('swift_cnt_h5' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
+            array(
+                'id'       => 'swift_cnt_h6',
+                'type'     => 'switch',
+                'class' => 'child_opt',
+                'title'    => __('H6', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'required' => array('swift_cnt' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'swift_h6_sz',
+                'type'     => 'text',
+                'class' => 'child_opt',
+                'title'    => __('H6 Font Size', 'accelerated-mobile-pages'),
+                'default'  => '15px',
+                'required' => array('swift_cnt_h6' , '=' , '1'),
+                              array('swift_cnt' , '=' , '1')
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
