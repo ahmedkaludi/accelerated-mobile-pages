@@ -520,6 +520,9 @@ function ampforwp_bundle_core_amp_files(){
 	if ( ! defined('AMP__DIR__') ) {
 		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 	}
+	if ( ! defined('AMP_QUERY_VAR') ){
+		define('AMP_QUERY_VAR', 'amp');
+	}
 	define( 'AMP__VERSION', '0.4.2' );
 
 	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
