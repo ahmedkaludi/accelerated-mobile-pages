@@ -13,14 +13,14 @@ function ampforwp_framework_get_comments(){
 		  }
 	}
 
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on )  {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on && $ampforwp_check_script_extension )  {
 		 ampforwp_framework_get_disqus_comments();
 	}
 	if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] && $display_comments_on )  {
 		 ampforwp_framework_get_vuukle_comments();
 	}
   
-	if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] && $display_comments_on ) {
+	if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] && $display_comments_on && $ampforwp_check_script_extension ) {
 		do_action('ampforwp_before_comment_hook'); ?>
 			<div class="amp-comments">
 				<?php
@@ -238,7 +238,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 	}
 	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 	 	&& $redux_builder_amp['ampforwp-vuukle-comments-support']
-	  	&& is_singular()  && comments_open()
+	  	&& $display_comments_on  && comments_open()
 	) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
