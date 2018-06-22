@@ -3060,6 +3060,7 @@ $forms_support[] = array(
                             array('ampforwp-facebook-comments-support', '=' , 1)
                          ),
                     ),
+                     //Vuukle options
                     array(
                          'id'       => 'ampforwp-vuukle-comments-support',
                          'type'     => 'switch',
@@ -3090,6 +3091,27 @@ $forms_support[] = array(
                             array('ampforwp-vuukle-comments-support', '=' , 1)
                          ),
                     ),
+                     //SpotIM Options
+                    array(
+                         'id'       => 'ampforwp-spotim-comments-support',
+                         'type'     => 'switch',
+                         'title'    => __('Spot.IM Conversation', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable Spot.IM Conversation using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 0,
+                     ),
+                    array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-spotim-comments-apiKey',
+                         'type'     => 'text',
+                         'tooltip-subtitle'     => __('Enter the SPOT_ID of Spot.IM','accelerated-mobile-pages'),
+                         'title'    => __('SPOT ID', 'accelerated-mobile-pages'),
+                         'default'  => '',
+                         'desc'     => "For Example xxxxxxxx-xxxx-xxxx-xxxx",
+                         'required' => array(
+                            array('ampforwp-spotim-comments-support', '=' , 1),
+                         ),
+                    ),
+
                  )
  ) );
 

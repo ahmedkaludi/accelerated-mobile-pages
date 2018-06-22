@@ -6,7 +6,7 @@
 		$enable_comments =  true;
 	}
 
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 	if ( $enable_comments && $display_comments_on ) { ?>
 		<div id="comments" class="ampforwp-comment-wrapper"> <?php 
 			// Gather comments for a specific page/post
