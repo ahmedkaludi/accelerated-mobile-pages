@@ -191,13 +191,15 @@ function ampforwp_framework_comments_scripts( $data ) {
 	global $redux_builder_amp;
 	$ampforwp_check_script_extension = true;
 	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
+	$display_comments_on = "";
+	$display_comments_on = ampforwp_comments_display_on();
 
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && is_singular() && !is_front_page() && $ampforwp_check_script_extension ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on && !is_front_page() && $ampforwp_check_script_extension ) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
 		}
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular()  && comments_open() ) {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on  && comments_open() ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
