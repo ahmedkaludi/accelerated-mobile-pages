@@ -4888,12 +4888,45 @@ Redux::setSection( $opt_name, array(
                  array(
                         'id'       => 'amp-design-3-category-selector',
                         'type'     => 'select',
+                        'class'    => 'child_opt',
                         'title'    => __( 'Featured Slider Category', 'accelerated-mobile-pages' ),
                         'options'  => $categories_array,
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1')
                         ),
+                ),
+                 array(
+                        'id'        =>'ampforwp-featur-slider-num-posts',
+                        'type'      =>'text',
+                        'class'    => 'child_opt',
+                        'title'     =>__('Number of Posts','accelerated-mobile-pages'),
+                        'required' => array(
+                                        array('amp-design-3-featured-slider', '=' , '1'),
+                                    ),
+                        'validate'  =>'numeric',
+                        'default'   =>'4',
+                ),
+                 array(
+                        'id'        => 'ampforwp-featur-slider-autop',
+                        'type'      => 'switch',
+                        'class'    => 'child_opt',
+                        'title'     => __('Autoplay', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'required' => array(
+                         array('amp-design-3-featured-slider', '=' , '1'),
+                     )
+                ),
+                 array(
+                        'id'        =>'ampforwp-featur-slider-autop-delay',
+                        'type'      =>'text',
+                        'class'    => 'child_opt',
+                        'title'     =>__('Delay in Autoplay','accelerated-mobile-pages'),
+                        'required' => array(
+                                        array('ampforwp-featur-slider-autop', '=' , '1'),
+                                    ),
+                        'validate'  =>'numeric',
+                        'default'   =>'4000',
                 ),
             // Excerpt Length for design1 #1013
                 array(

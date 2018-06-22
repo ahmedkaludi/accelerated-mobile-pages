@@ -34,19 +34,31 @@ if ( get_query_var( 'paged' ) ) {
 
  ?>
 
-<?php global $redux_builder_amp; if( $redux_builder_amp['amp-design-3-featured-slider'] == 1 && $paged === 1 ) { ?>
+<?php if( $redux_builder_amp['amp-design-3-featured-slider'] == 1 && $paged === 1 ) {
+		$num_posts = 4;$autoplay = 'autoplay';$delay = 'delay="4000"';
+		if ( isset($redux_builder_amp['ampforwp-featur-slider-autop-delay']) && $redux_builder_amp['ampforwp-featur-slider-autop-delay'] ) {
+			$delay = 'delay="'.$redux_builder_amp["ampforwp-featur-slider-autop-delay"].'"';
+		}
+		if ( isset($redux_builder_amp['ampforwp-featur-slider-num-posts']) && $redux_builder_amp['ampforwp-featur-slider-num-posts'] ) {
+			$num_posts = $redux_builder_amp['ampforwp-featur-slider-num-posts'];
+		}
+		if ( isset($redux_builder_amp['ampforwp-featur-slider-autop']) && false == $redux_builder_amp['ampforwp-featur-slider-autop'] ) {
+			$autoplay 	= '';
+			$delay 		= '';
+		}
+ ?>
 		<div class="amp-featured-wrapper">
 		<div class="amp-featured-area">
 		  <amp-carousel width="450"
 		      height="270" layout="responsive"
-		      type="slides" autoplay
-		      delay="4000">
+		      type="slides" <?php echo $autoplay.' ';
+		      echo $delay; ?> >
 		<?php
 		  global $redux_builder_amp;
 		  if( isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ){
 		    $args = array(
 		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
-		                   'posts_per_page' => 4,
+		                   'posts_per_page' => $num_posts,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
 		                 );
@@ -65,14 +77,14 @@ if ( get_query_var( 'paged' ) ) {
 		         $category_posts->the_post();
 		?>
 		      <div>
-					<?php if ( ampforwp_has_post_thumbnail() ) { 
+                  <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
+                  	<?php if ( ampforwp_has_post_thumbnail() ) { 
 						$thumb_url = ampforwp_get_post_thumbnail();
 						if($thumb_url){
 							?>
 							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 						<?php } 
 					}?>
-                  <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
                   <div class="featured_title">
 		            <div class="featured_time"><?php 
 		            	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
