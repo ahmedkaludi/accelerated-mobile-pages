@@ -7358,13 +7358,14 @@ function ampforwp_spotim_comments_support() {
 		 && $redux_builder_amp['ampforwp-spotim-comments-support']==1
 		) {
 		echo ampforwp_spotim_comments_markup();
+	echo "called";die;
 	}
 }
 function ampforwp_spotim_comments_markup() {
 	global $post, $redux_builder_amp; 
 	$display_comments_on = false;
 	$display_comments_on = ampforwp_get_comments_status();
-	if ( $display_comments_on ) {
+	if (! $display_comments_on ) {
 		return '';
 	}
 	$spotId ='';
