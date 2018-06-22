@@ -213,6 +213,23 @@ function ampforwp_framework_get_vuukle_comments(){
 	echo $vuukle_html;
 }
 
+function ampforwp_framework_get_spotim_comments(){
+	global $post, $redux_builder_amp; 
+	$spotId ='';
+	if( isset($redux_builder_amp['ampforwp-spotim-comments-apiKey']) && $redux_builder_amp['ampforwp-spotim-comments-apiKey'] !== ""){
+		$spotId = $redux_builder_amp['ampforwp-spotim-comments-apiKey'];
+	}
+	$srcUrl = 'https://amp.spot.im/production.html?';
+	$srcUrl = add_query_arg('spotId' ,get_permalink(), $srcUrl);
+	$srcUrl = add_query_arg('postId' , $post->ID, $srcUrl);
+	$spotim_html = '<amp-iframe width="375" height="815" resizable sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation" layout="responsive"
+	  frameborder="0" src="'.$srcUrl.'">
+	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
+	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
+	</amp-iframe>';
+	echo $spotim_html;
+}
+
 // Comments Scripts
 add_filter( 'amp_post_template_data', 'ampforwp_framework_comments_scripts' );
 function ampforwp_framework_comments_scripts( $data ) {
@@ -250,5 +267,33 @@ function ampforwp_framework_comments_scripts( $data ) {
 				$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
 			}
 	}
+	//spotim
+	if ( isset($redux_builder_amp['ampforwp-spotim-comments-support'])
+	 	&& $redux_builder_amp['ampforwp-spotim-comments-support']
+	 	&& $display_comments_on  && comments_open() ) {
+		if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+			$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+		}
+		
+	}
 		return $data;
+}
+
+//spotim
+add_action('amp_post_template_css','ampforwp_spotim_styling',PHP_INT_MAX);
+function ampforwp_spotim_styling(){
+	$display_comments_on = "";
+	$display_comments_on = ampforwp_get_comments_status();
+	if ( isset($redux_builder_amp['ampforwp-spotim-comments-support'])
+	 	&& $redux_builder_amp['ampforwp-spotim-comments-support']
+	 	&& $display_comments_on  && comments_open() ) {
+		?>.spot-im-amp-overflow {
+	    background: white;
+	    font-size: 15px;
+	    padding: 15px 0;
+	    text-align: center;
+	    font-family: Helvetica, Arial, sans-serif;
+	    color: #307fe2;
+	  }<?php
+	}
 }
