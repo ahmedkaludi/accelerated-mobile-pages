@@ -207,6 +207,24 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 					}
 				}
 	    	break;
+	    	case is_author():
+	    		$author = get_queried_object();
+
+				$templates = array();
+
+				if ( $author instanceof WP_User ) {
+					$templates[] = $filePath . "/author-{$author->user_nicename}.php";
+					$templates[] = $filePath . "/author-{$author->ID}.php";
+				}
+				$templates[] = $filePath . "/author.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    	case (is_archive()):
 	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 				$templates = array();
@@ -273,6 +291,39 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				
 				foreach ( $templates as $key => $value ) {
 					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
+	    	case is_page():
+	    		$id = get_queried_object_id();
+				$template = get_page_template_slug();
+				$pagename = get_query_var('pagename');
+
+				if ( ! $pagename && $id ) {
+					// If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object
+					$post = get_queried_object();
+					if ( $post )
+						$pagename = $post->post_name;
+				}
+
+				$templates = array();
+				if ( $template && 0 === validate_file( $template ) )
+					$templates[] = $template;
+				if ( $pagename ) {
+					$pagename_decoded = urldecode( $pagename );
+					if ( $pagename_decoded !== $pagename ) {
+						$templates[] = $filePath . "/page-{$pagename_decoded}.php";
+					}
+					$templates[] = $filePath . "/page-{$pagename}.php";
+				}
+				if ( $id )
+					$templates[] = $filePath . "/page-{$id}.php";
+				$templates[] = $filePath . "/page.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' == $type && file_exists($value) ) {
 						$file = $value;
 						break;
 					}
