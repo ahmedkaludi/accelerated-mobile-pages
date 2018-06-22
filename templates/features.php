@@ -3259,6 +3259,9 @@ function ampforwp_sidebar_blacklist_tags($tags) {
 	$form  = array_search('form', $tags);
 	$input = array_search('input', $tags);
 	$label = array_search('label', $tags);
+	$textarea = array_search('textarea', $tags);
+	$select = array_search('select', $tags);
+	$option = array_search('option', $tags);
 	if ( $form ) {
 		unset($tags[$form]);
 	}
@@ -3268,6 +3271,9 @@ function ampforwp_sidebar_blacklist_tags($tags) {
 	if ( $label ) {
 		unset($tags[$label]);		
 	}
+	if ( $textarea ) { unset($tags[$textarea]); }
+	if ( $select ) { unset($tags[$select]); }
+	if ( $option ) { unset($tags[$option]); }
 	return $tags;
 }
 // Sidebar Scripts	
