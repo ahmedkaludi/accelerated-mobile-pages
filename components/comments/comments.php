@@ -2,7 +2,7 @@
 function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 
 	$ampforwp_check_script_extension = true;
 	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
@@ -219,17 +219,19 @@ function ampforwp_framework_comments_scripts( $data ) {
 
 	$facebook_comments_check = ampforwp_framework_get_facebook_comments();
 	global $redux_builder_amp;
+	$is_pb_enabled = '';
+	$is_pb_enabled = checkAMPforPageBuilderStatus(get_the_ID());
 	$ampforwp_check_script_extension = true;
 	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
 	$display_comments_on = "";
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on && !is_front_page() && $ampforwp_check_script_extension ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on && !is_front_page() && $ampforwp_check_script_extension && !$is_pb_enabled ) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
 		}
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on  && comments_open() ) {
+	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on  && comments_open() && !$is_pb_enabled ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
@@ -238,7 +240,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 	}
 	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 	 	&& $redux_builder_amp['ampforwp-vuukle-comments-support']
-	  	&& $display_comments_on  && comments_open()
+	  	&& $display_comments_on  && comments_open() && !$is_pb_enabled 
 	) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';

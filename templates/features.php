@@ -2736,7 +2736,7 @@ function ampforwp_add_disqus_support() {
 	$layout = "";
 	$layout = 'responsive';
 	$display_comments_on = "";
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 	if ( isset($redux_builder_amp['ampforwp-disqus-layout']) && 'fixed' == $redux_builder_amp['ampforwp-disqus-layout'] ) {
 		$layout = 'fixed';
 	
@@ -2806,7 +2806,7 @@ function ampforwp_facebook_comments_markup() {
 	$lang = $redux_builder_amp['ampforwp-fb-comments-lang'];
 	$locale = 'data-locale = "'.$lang.'"';
 	$display_comments_on = "";
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
@@ -2830,7 +2830,7 @@ function ampforwp_add_fbcomments_scripts( $data ) {
 	$facebook_comments_check = "";
 	$facebook_comments_check = ampforwp_facebook_comments_markup();
 
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && ( is_singular() || ampforwp_is_front_page() ) ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && ( is_singular() || ampforwp_is_front_page() ) && ( ampforwp_design_selector() == 1 || ampforwp_design_selector() == 2 || ampforwp_design_selector() == 3 )) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
@@ -7268,7 +7268,7 @@ function ampforwp_return_no_gap(){
 /*
 	#2229 Function to check the option for comments to display on post, page or both.
  */
-function ampforwp_comments_display_on(){
+function ampforwp_get_comments_status(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==false ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
@@ -7304,7 +7304,7 @@ function ampforwp_vuukle_comments_markup() {
 	$ads_before_comments = false;
 	$ads_before_comments = $redux_builder_amp['ampforwp-vuukle-Ads-before-comments'];
 	$display_comments_on = false;
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 
 	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
 	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
@@ -7333,7 +7333,7 @@ add_filter( 'amp_post_template_data', 'ampforwp_add_vuukle_scripts' );
 function ampforwp_add_vuukle_scripts( $data ) {
 	global $redux_builder_amp;
 	$display_comments_on = "";
-	$display_comments_on = ampforwp_comments_display_on();
+	$display_comments_on = ampforwp_get_comments_status();
 	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 		 && $redux_builder_amp['ampforwp-vuukle-comments-support']
 		 && $display_comments_on  && comments_open() 
