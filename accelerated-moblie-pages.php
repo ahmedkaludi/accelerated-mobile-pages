@@ -569,7 +569,7 @@ if ( ! function_exists('ampforwp_init') ) {
 		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
 			return;
 		}
-		if( ! define('AMP_QUERY_VAR')){
+		if( ! defined('AMP_QUERY_VAR')){
 			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 		}
 
