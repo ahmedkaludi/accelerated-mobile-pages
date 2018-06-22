@@ -19,6 +19,9 @@ function ampforwp_framework_get_comments(){
 	if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] && $display_comments_on )  {
 		 ampforwp_framework_get_vuukle_comments();
 	}
+	if ( $redux_builder_amp['ampforwp-spotim-comments-support'] && $display_comments_on )  {
+		 ampforwp_framework_get_spotim_comments();
+	}
   
 	if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] && $display_comments_on && $ampforwp_check_script_extension ) {
 		do_action('ampforwp_before_comment_hook'); ?>
