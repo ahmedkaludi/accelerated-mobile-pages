@@ -7332,9 +7332,11 @@ function ampforwp_vuukle_comments_markup() {
 add_filter( 'amp_post_template_data', 'ampforwp_add_vuukle_scripts' );
 function ampforwp_add_vuukle_scripts( $data ) {
 	global $redux_builder_amp;
+	$display_comments_on = "";
+	$display_comments_on = ampforwp_comments_display_on();
 	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 		 && $redux_builder_amp['ampforwp-vuukle-comments-support']
-		 && is_singular()  && comments_open() 
+		 && $display_comments_on  && comments_open() 
 		) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
