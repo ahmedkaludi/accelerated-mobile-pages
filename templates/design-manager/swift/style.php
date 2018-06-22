@@ -356,34 +356,22 @@ if(is_single() ) { ?>
 <?php // H1 - H6 Font Sizes 
 if($redux_builder_amp['swift_cnt']){ 
 	if($redux_builder_amp['swift_cnt_h1']){ ?>
-		.cntn-wrp h1{
-			font-size:<?php echo $redux_builder_amp['swift_h1_sz']?>;
-		}
+		.cntn-wrp h1{font-size:<?php echo $redux_builder_amp['swift_h1_sz']?>;}
 	<?php } //H1 ends 
 	if($redux_builder_amp['swift_cnt_h2']){ ?>
-		.cntn-wrp h2{
-			font-size:<?php echo $redux_builder_amp['swift_h2_sz']?>;
-		}
+		.cntn-wrp h2{font-size:<?php echo $redux_builder_amp['swift_h2_sz']?>;}
 	<?php } //H2 ends 
 	if($redux_builder_amp['swift_cnt_h3']){ ?>
-		.cntn-wrp h3{
-			font-size:<?php echo $redux_builder_amp['swift_h3_sz']?>;
-		}
+		.cntn-wrp h3{font-size:<?php echo $redux_builder_amp['swift_h3_sz']?>;}
 	<?php } //H3 ends 
 	if($redux_builder_amp['swift_cnt_h4']){ ?>	
-		.cntn-wrp h4{
-			font-size:<?php echo $redux_builder_amp['swift_h4_sz']?>;
-		}
+		.cntn-wrp h4{font-size:<?php echo $redux_builder_amp['swift_h4_sz']?>;}
 	<?php } //H4 ends
 	if($redux_builder_amp['swift_cnt_h5']){ ?>
-		.cntn-wrp h5{
-			font-size:<?php echo $redux_builder_amp['swift_h5_sz']?>;
-		}
+		.cntn-wrp h5{font-size:<?php echo $redux_builder_amp['swift_h5_sz']?>;}
 	<?php } //H5 ends
 	if($redux_builder_amp['swift_cnt_h6']){ ?>
-		.cntn-wrp h6{
-			font-size:<?php echo $redux_builder_amp['swift_h6_sz']?>;
-		}
+		.cntn-wrp h6{font-size:<?php echo $redux_builder_amp['swift_h6_sz']?>;}
 	<?php } //H6 ends
 } // swift Content Heading Sizes Ends?>
 .cntn-wrp p{margin:0px 0px 30px 0px;}
