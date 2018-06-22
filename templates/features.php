@@ -7399,8 +7399,8 @@ function ampforwp_add_spotim_scripts( $data ) {
 	return $data;
 }
 //spotim css
-add_action('amp_post_template_css','ampforwp_spotim_styling',PHP_INT_MAX);
-function ampforwp_spotim_styling(){
+add_action('amp_post_template_css','ampforwp_spotim_styling_otherdesigns',PHP_INT_MAX);
+function ampforwp_spotim_styling_otherdesigns(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
