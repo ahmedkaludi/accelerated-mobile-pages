@@ -16,6 +16,9 @@ function ampforwp_framework_get_comments(){
 	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on )  {
 		 ampforwp_framework_get_disqus_comments();
 	}
+	if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] && $display_comments_on )  {
+		 ampforwp_framework_get_vuukle_comments();
+	}
   
 	if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] && $display_comments_on ) {
 		do_action('ampforwp_before_comment_hook'); ?>
@@ -183,6 +186,33 @@ function ampforwp_framework_get_disqus_comments(){
 	}
 }
 
+function ampforwp_framework_get_vuukle_comments(){
+	global $post, $redux_builder_amp; 
+	$apiKey ='';
+	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
+		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
+	}
+	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
+	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
+	$srcUrl = add_query_arg('host' ,site_url(), $srcUrl);
+	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
+	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
+	$srcUrl = add_query_arg('title' , $post->post_title, $srcUrl);  
+	$vuukle_html = '';
+	if(isset($redux_builder_amp['ampforwp-vuukle-Ads-before-comments']) && $redux_builder_amp['ampforwp-vuukle-Ads-before-comments']==1 ){
+		$vuukle_html .= '<amp-ad width=300 height=250
+						    type="doubleclick"
+						    data-slot="/213794966/vuukle-amp">
+						  <div placeholder></div>
+						  <div fallback></div>
+						</amp-ad>';
+	}
+	$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
+
+		<div overflow tabindex="0" role="button" aria-label="Show comments" style="display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;">Show comments</div>';
+	echo $vuukle_html;
+}
+
 // Comments Scripts
 add_filter( 'amp_post_template_data', 'ampforwp_framework_comments_scripts' );
 function ampforwp_framework_comments_scripts( $data ) {
@@ -205,6 +235,18 @@ function ampforwp_framework_comments_scripts( $data ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 			}
 		}
-	}	
+	}
+	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
+	 	&& $redux_builder_amp['ampforwp-vuukle-comments-support']
+	  	&& is_singular()  && comments_open()
+	) {
+			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
+				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
+			}
+			if ($redux_builder_amp['ampforwp-vuukle-Ads-before-comments']==1 
+				&& empty( $data['amp_component_scripts']['amp-ad'] ) ) {
+				$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
+			}
+	}
 		return $data;
 }
