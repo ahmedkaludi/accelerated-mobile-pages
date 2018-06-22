@@ -104,24 +104,25 @@ class AMP_Content_Sanitizer {
 		$scripts = array();
 		$styles = array();
 		$dom = AMP_DOM_Utils::get_dom_from_content( $content );
+		if ( ! empty($sanitizer_classes) ) {
+			foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
+				if ( ! class_exists( $sanitizer_class ) ) {
+					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'amp' ), esc_html( $sanitizer_class ) ), '0.4.1' );
+					continue;
+				}
 
-		foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
-			if ( ! class_exists( $sanitizer_class ) ) {
-				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'amp' ), esc_html( $sanitizer_class ) ), '0.4.1' );
-				continue;
+				$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
+
+				if ( ! is_subclass_of( $sanitizer, 'AMP_Base_Sanitizer' ) ) {
+					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'amp' ), esc_html( $sanitizer_class ) ), '0.1' );
+					continue;
+				}
+
+				$sanitizer->sanitize();
+
+				$scripts = array_merge( $scripts, $sanitizer->get_scripts() );
+				$styles = array_merge( $styles, $sanitizer->get_styles() );
 			}
-
-			$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
-
-			if ( ! is_subclass_of( $sanitizer, 'AMP_Base_Sanitizer' ) ) {
-				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'amp' ), esc_html( $sanitizer_class ) ), '0.1' );
-				continue;
-			}
-
-			$sanitizer->sanitize();
-
-			$scripts = array_merge( $scripts, $sanitizer->get_scripts() );
-			$styles = array_merge( $styles, $sanitizer->get_styles() );
 		}
 
 		$sanitized_content = AMP_DOM_Utils::get_content_from_dom( $dom );
