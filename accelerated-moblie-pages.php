@@ -569,8 +569,9 @@ if ( ! function_exists('ampforwp_init') ) {
 		if ( false === apply_filters( 'amp_is_enabled', true ) ) {
 			return;
 		}
-
-		define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		if( ! define('AMP_QUERY_VAR')){
+			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+		}
 
 		if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
