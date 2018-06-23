@@ -201,6 +201,11 @@ if($redux_builder_amp['primary-menu']){?>
 	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
 <?php } ?>
 .p-menu ul li.menu-item-has-children:after{display:none;}
+@media(max-width:768px){
+	.p-menu ul li.menu-item-has-children:hover > ul{display:none;}
+	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
+	.p-menu ul li.menu-item-has-children > a:after{display:none;}
+}
 <?php } ?>
 <?php //Home and Archive
 
@@ -266,11 +271,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
     .arch-tlt{margin:20px 0px;}
     .amp-loop-label {font-size: 16px;}
     .loop-wrapper h2 {font-size: 24px;font-weight:600;}
-    <?php if( $redux_builder_amp['drp-dwn'] ){?>
-    	.p-menu ul li.menu-item-has-children:hover > ul{display:none;}
-    	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
-    	.p-menu ul li.menu-item-has-children > a:after{display:none;}
-    <?php } ?>
+    
 }
 @media(max-width:480px){
     .cntr.b-w{padding:0px;}
