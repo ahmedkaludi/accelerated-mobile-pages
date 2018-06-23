@@ -136,7 +136,7 @@ $formFields = array(
 					'default' =>'',
 					'options_details'=>$formSupported,
 					'content_type'=>'html',
-					'helpmessage' => 'Requires AMP Contact Form 7 or Gravity Forms Extension <a target="_blank" href="'.esc_url(  self_admin_url( 'admin.php?page=amp_options&tabid=opt-go-premium' )  ).'">Click here</a>'
+					'helpmessage' => 'Requires AMP Contact Form 7 or AMP Gravity Forms Extension <a target="_blank" href="'.esc_url(  self_admin_url( 'admin.php?page=amp_options&tabid=opt-go-premium' )  ).'">Click here</a>'
 				),
 			);
 if(isset($cf7FormsList)){
