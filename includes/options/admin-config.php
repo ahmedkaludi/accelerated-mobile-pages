@@ -1972,7 +1972,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'options'  => array(
                             '1' => __('Google Analytics', 'accelerated-mobile-pages' ),
                             '2' => __('Segment Analytics', 'accelerated-mobile-pages' ),
-                            '3' => __('Piwik Analytics', 'accelerated-mobile-pages' ),
+                            '3' => __('Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                             '4' => __('Quantcast Measurement', 'accelerated-mobile-pages' ),
                             '5' => __('comScore', 'accelerated-mobile-pages' ),
                             '6' => __('Effective Measure', 'accelerated-mobile-pages' ),
@@ -2194,7 +2194,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array(
                         'id' => 'ampforwp-Piwik-switch',
                         'type'  => 'switch',
-                        'title' => 'Piwik Analytics',
+                        'title' => 'Matomo (Piwik) Analytics',
                         'default' => ampforwp_get_default_analytics('3'),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -2203,13 +2203,13 @@ Redux::setArgs( "redux_builder_amp", $args );
                       array(
                           'id'       => 'pa-feild',
                           'type'     => 'text',
-                          'title'    => __( 'Piwik Analytics', 'accelerated-mobile-pages' ),
+                          'title'    => __( ' Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
                             array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
-                          'tooltip-subtitle' => __('Enter your Piwik Analytics URL.', 'accelerated-mobile-pages' ),
+                          'tooltip-subtitle' => __('Enter your Matomo (Piwik) Analytics URL.', 'accelerated-mobile-pages' ),
                           'default'  => '#',
                       ),
                       // Quantcast 
