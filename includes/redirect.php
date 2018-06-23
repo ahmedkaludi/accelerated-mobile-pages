@@ -45,7 +45,12 @@ function ampforwp_check_amp_page_status() {
    
     // AMP and non-amp Homepage
     if ( is_home() && ampforwp_is_front_page() && ! ampforwp_is_home() ) {
-        return;
+      return;
+    }
+
+    // Single and Pages
+    if ( ( is_single() && !$redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) || (is_singular() && 'hide-amp' == get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true)) ) {
+      return;
     }
 
     // Blog page
