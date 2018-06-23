@@ -364,36 +364,52 @@ function ampforwp_parent_plugin_check() {
 if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 	function ampforwp_upcomming_layouts_demo(){
 		return array(
-            array( 
-			"name"=>'News',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-1.png',
-			"link"=>'https://ampforwp.com/layouts-1/',
+			array(	
+			"name"=>'Creative Services',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-9.png',	
+			"link"=>'https://ampforwp.com/layouts-9/',	
 			),
-            array(
-			"name"=>'Weekly Magazine',
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-2.png',
-			"link"=>'https://ampforwp.com/layouts-2/',
+			array(	
+			"name"=>'App',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-8.png',	
+			"link"=>'https://ampforwp.com/layouts-8/',	
 			),
-            array(	
-			"name"=>'Elegance',	
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-3.png',	
-			"link"=>'https://ampforwp.com/layouts-3/',	
-			),	
+			array(	
+			"name"=>'Business Blog',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-7.png',	
+			"link"=>'https://ampforwp.com/layouts-7/',	
+			),
+			array(	
+			"name"=>'Journal',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-6.png',	
+			"link"=>'https://ampforwp.com/layouts-6/',	
+			),
+			array(	
+			"name"=>'Studio',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-5.png',	
+			"link"=>'https://ampforwp.com/layouts-5/',	
+			),
 			array(	
 			"name"=>'Agency',	
 			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-4.png',	
 			"link"=>'https://ampforwp.com/layouts-4/',	
 			),	
 			array(	
-			"name"=>'Studio',	
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-5.png',	
-			"link"=>'https://ampforwp.com/layouts-5/',	
-			),	
-			array(	
-			"name"=>'Journal',	
-			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-6.png',	
-			"link"=>'https://ampforwp.com/amp-layouts/',	
+			"name"=>'Elegance',	
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-3.png',	
+			"link"=>'https://ampforwp.com/layouts-3/',	
 			),
+			array(
+			"name"=>'Weekly Magazine',
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-2.png',
+			"link"=>'https://ampforwp.com/layouts-2/',
+			),
+            array( 
+			"name"=>'News',
+			"image"=>''.AMPFORWP_IMAGE_DIR . '/layouts-1.png',
+			"link"=>'https://ampforwp.com/layouts-1/',
+			),
+			
 			);
 	}
 }
