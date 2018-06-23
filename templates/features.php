@@ -3478,7 +3478,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$metadata['headline'] = $headline; // proper headline added
 	}
 	// Description for Structured Data
-	$desc =   esc_attr( convert_chars( stripslashes( ampforwp_generate_meta_desc())) );
+	$desc =   esc_attr( convert_chars( stripslashes( ampforwp_generate_meta_desc('json'))) );
 	$metadata['description'] = $desc;
 	return $metadata;
 }
@@ -4627,7 +4627,7 @@ function ampforwp_add_blacklist_sanitizer($data){
 }
 
 //Meta description #1013
-function ampforwp_generate_meta_desc(){
+function ampforwp_generate_meta_desc($json=""){
 	global $post, $redux_builder_amp;
 	$desc = $post_id = '';
 	if ( $redux_builder_amp['ampforwp-seo-meta-description'] ) {
@@ -4672,7 +4672,9 @@ function ampforwp_generate_meta_desc(){
 			if ( is_search() ) {
 				$yoast_desc = addslashes( ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query() );
 			}
-
+			if ( $json && false == $redux_builder_amp['ampforwp-seo-yoast-description'] ) {
+				$yoast_desc = '';
+			}
 			if ( $yoast_desc ) {
 				$desc = $yoast_desc;
 			}
