@@ -192,7 +192,7 @@ if($redux_builder_amp['primary-menu']){?>
 	.p-menu li ul li ul{left: 100%;top: 0;}
 	.p-menu li:hover > ul{opacity: 1;transform: translateY(0px);visibility: visible;transition: all 0.2s ease-in-out 0s;}
 	.p-menu li ul li{display: block;position: relative;}
-	.p-menu .sub-menu li a{padding: 7x;}
+	.p-menu ul li.menu-item-has-children .sub-menu li a{padding:7px;}
 	.p-menu ul li.menu-item-has-children > a:after{content: "\e313";font-family: 'icomoon';background-size: 16px;display: inline-block;top: 3px;font-size: 16px;color: rgba(0,41,96,1);position:relative;padding-left: 10px;line-height:0;right:10px;color:<?php echo $redux_builder_amp['primary-menu-text-scheme']['rgba']?>;}
 	.p-menu .amp-menu li.menu-item-has-children>ul>li {padding-left: 0px;}
 	.p-menu li.menu-item-has-children:hover > a:after{transform:rotate(180deg);right:0px;}
