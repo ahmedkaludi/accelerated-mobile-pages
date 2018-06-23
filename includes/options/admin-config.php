@@ -387,10 +387,12 @@ $extension_listing = '
 // #2267
 function ampforwp_check_extensions(){
 	global $all_extensions_data;
-	foreach ($all_extensions_data as $extension ) {
-		$is_extension_active = $extension['is_activated'];
-		if( 1 === $is_extension_active){
-			return true;
+	if($all_extensions_data){
+		foreach ($all_extensions_data as $extension ) {
+			$is_extension_active = $extension['is_activated'];
+			if( 1 === $is_extension_active){
+				return true;
+			}
 		}
 	}
 	
