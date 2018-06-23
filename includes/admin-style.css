@@ -694,6 +694,12 @@ visibility: hidden;
 .rtl .redux-main .redux-field-container {
     padding: 18px 15px 18px 0;
 }
+.rtl .redux-main .afw-tooltip .afw-help-subtitle{
+     left: -16px;
+}
+.rtl .afw-tooltip .afw-help-subtitle::after{
+    display: none
+}
 /*** Free Vs Pro CSS ***/
 .rtl .fr h1, .rtl .pr h1{
  padding: 0px 35px 20px 0px;
