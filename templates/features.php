@@ -6829,14 +6829,7 @@ if ( ! function_exists('ampforwp_gdpr_data') ) {
     if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
       $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
     }
-    if(isset( $redux_builder_amp['audience-for-amp-gdpr-compliance'] ) && ($redux_builder_amp['audience-for-amp-gdpr-compliance'] == '2' || $redux_builder_amp['audience-for-amp-gdpr-compliance'] == '3')){
-      if ( empty( $data['amp_component_scripts']['amp-geo'] ) ) {
-        $data['amp_component_scripts']['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
-      }
-    }
-    if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-      $data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-    }
+    
     return $data;
   }
 }
@@ -6861,68 +6854,9 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
     if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
     $privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
-    }
-
-    $all_eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
-    if(isset($redux_builder_amp['audience-for-amp-gdpr-compliance']) && $redux_builder_amp['audience-for-amp-gdpr-compliance']){
-      ///////////////////////////
-      // Start For Only EU Countries //
-      ///////////////////////////
-      if($redux_builder_amp['audience-for-amp-gdpr-compliance'] === '2'){?>
-        <amp-geo layout="nodisplay">
-          <script type="application/json">
-            {
-              "AmpBind": true,
-               "ISOCountryGroups": {
-                    "eu": [  <?php echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,
-                    "noneu": [ "unknown" ]
-                  }
-            }
-          </script>
-        </amp-geo>
-
-      <?php 
-        ///////////////////////////////
-        // End For Only EU Countries //
-        ///////////////////////////////
-      }
-
-      /////////////////////////////
-      // Start For Custom EU Countries //
-      /////////////////////////////
-      if($redux_builder_amp['audience-for-amp-gdpr-compliance'] === '3'){
-      ?> 
-         <amp-geo layout="nodisplay">
-          <script type="application/json">
-            {
-              "AmpBind": true,
-               "ISOCountryGroups": {
-                    "eu": [ <?php $eu_countries = array_filter($redux_builder_amp['amp-gdpr-compliance-privacy-geo-location']);
-              if(NULL == $eu_countries || 0 == count($eu_countries)){
-                echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,<?php
-              }
-              else{
-                      echo '"'.implode('","', array_keys($eu_countries)).'"';
-                        ?> ] ,<?php } ?>
-                    "noneu": [ "unknown" ]
-                  }
-            }
-          </script>
-        </amp-geo>
-
-        <amp-state id="ampGeo">
-          <script type="application/json">{
-            "ISOCountry":[ <?php echo '"'.implode('","', array_keys($all_eu_countries)).'"';?> ] ,
-             "eu": true
-           }
-           </script>
-        </amp-state>
-      <?php }
-        /////////////////////////////
-      // END Custom EU Countries //
-      /////////////////////////////
-       ?> 
-
+    }    
+    ?>
+      
     <amp-consent id="ampforwpConsent" layout="nodisplay">
           <script type="application/json">{
             "consents": {
@@ -6964,16 +6898,13 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
       </amp-consent>
 
   <?php }
-  }
+  
 }
 
 // AMP GDPR compliancy Styling
 if ( ! function_exists('ampforwp_gdpr_css') ) {
 	function ampforwp_gdpr_css(){ 
 	  	global $redux_builder_amp;
-	    if($redux_builder_amp['audience-for-amp-gdpr-compliance'] == '2' || $redux_builder_amp['audience-for-amp-gdpr-compliance'] == '3'){ ?> 
-	    	#ampforwpConsent{visibility: hidden}
-	    	.amp-geo-group-eu #ampforwpConsent{visibility: visible} <?php }
 	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999;line-height:1.3}
@@ -7208,23 +7139,9 @@ function ampforwp_get_data_consent(){
 	global $redux_builder_amp;
 	$dboc = false;
 	$is_dboc = '';
-	if(isset($redux_builder_amp['audience-for-amp-gdpr-compliance']) && $redux_builder_amp['audience-for-amp-gdpr-compliance'] ){
-		$ampforwp_user_ip = $_SERVER['REMOTE_ADDR'];
-		// for testing purpose on localhost using current ip address instead of variable  183.83.92.202
-		if($_SERVER['REMOTE_ADDR'] != '::1' && $_SERVER['REMOTE_ADDR'] != '127.0.0.1'){
-			$ampforwp_current_location = json_decode(file_get_contents("http://ipinfo.io/{$ampforwp_user_ip}/json"));
-			$ampforwp_current_location = strtolower($ampforwp_current_location->country);
-			$eu_countries = $redux_builder_amp['amp-gdpr-compliance-privacy-geo-location'];
-			$eu_countries = array_keys($eu_countries);
-			// if data-block-on-consent return the attr
-			$is_dboc = in_array($ampforwp_current_location, $eu_countries);
-			if($is_dboc){
+	if(isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ){
+		
 				$dboc = true;
-			}
-			if('1' == $redux_builder_amp['audience-for-amp-gdpr-compliance']){
-				$dboc = true;
-			}
-		}
 	}
 	return $dboc;
 }
