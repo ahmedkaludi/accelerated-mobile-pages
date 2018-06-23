@@ -54,19 +54,25 @@ if(!function_exists("ampforwp_module_templates")){
 
 //Row Contents
 $output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
-	
-	<amp-iframe class="vdo" width="854" height="480"
-          sandbox="allow-scripts allow-same-origin"
-          layout="responsive"
-          frameborder="0"
-          src="https://player.vimeo.com/video/140261016">
-    </amp-iframe>
-    
+	<div class="amp_video">
+		<div class="amp-txt">
+	      <h1>{{title}}</h1>
+	      {{content_title}}
+	  	</div>
+		<amp-iframe class="vdo" width="854" height="480"
+	          sandbox="allow-scripts allow-same-origin"
+	          layout="responsive"
+	          frameborder="0"
+	          src="https://player.vimeo.com/video/140261016">
+	    </amp-iframe>
+    	{{if_condition_check_for_overlay==1}}
+    		<div class="overlay"></div>
+    	{{ifend_condition_check_for_overlay_1}}
+    </div>
     ';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
 {{if_condition_background_type==image}}
-
 {{row-class}}{
 	background-image: url({{row_background_image}});
 	background-repeat: no-repeat;
@@ -136,6 +142,45 @@ $front_css = '
 	{{ifend_condition_align_type_slate_btn_rht}}    
  }
 {{ifend_condition_check_for_enbbt_1}}
+{{if_condition_background_type==video}}
+{{row-class}} .amp_video{
+  position: relative;
+}
+{{row-class}} .amp_video .amp-txt{
+  	font-size: {{cnt_size}};
+  	line-height: {{cnt_ln_hgt}};
+  	font-weight: {{cnt_font_type}};
+  	color:{{cnt_color}};
+	position: absolute;
+	top: 10%;
+	bottom: auto;
+	left: 20%;
+	right: 20%;
+	margin: 0 auto;
+	text-align: center;
+	z-index: 9;
+}
+{{row-class}} .amp-txt h1{
+  font-size: {{tlt_size}};
+  font-weight: {{tlt_wgt}};
+  letter-spacing: {{letter_spacing}};
+  line-height: {{tlt_ln_hgt}};
+  color:{{tlt_color}};
+  margin-bottom:20px;
+}
+{{if_condition_check_for_overlay==1}}
+{{row-class}} .overlay{
+	background: #000;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0.4;
+}
+{{ifend_condition_check_for_overlay_1}}
+{{ifend_condition_background_type_video}}
+
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
 	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{max-width:90%;}
@@ -303,6 +348,134 @@ $containerCommonSettings = array(
 								'content_type'=>'html',
 								'required'  => array('background_type'=>'video')
 								),
+	 						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"title",		
+		 						'label'		=>'Heading',
+		           				 'tab'      =>'customizer',
+		 						'default'	=>'Heading',	
+		           				'content_type'=>'html',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"content_title",		
+		 						'label'		=>'Content',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'Write your content in Text Editor',	
+		           				'content_type'=>'html',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"tlt_size",		
+		 						'label'		=>'Heading Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'35px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(    
+				                'type'  =>'select',   
+				                'name'  =>'tlt_wgt',    
+				                'label' =>"Font Weight",
+				                'tab'     =>'design',
+				                'default' =>'600',
+				                'options_details'=>array(
+				                                    '300'   =>'Light',
+				                                    '400'   =>'Regular',
+				                                    '500'   =>'Medium',
+				                                    '600'   =>'Semi Bold',
+				                                    '700'   =>'Bold',
+				                                ),
+				                'content_type'=>'css',
+				                'required'  => array('background_type'=>'video')
+			              	),
+			              	array(
+		 						'type'		=>'text',		
+		 						'name'		=>"letter_spacing",		
+		 						'label'		=>'Letter Spacing',
+		           				 'tab'     =>'design',
+		 						'default'	=>'1px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"tlt_ln_hgt",		
+		 						'label'		=>'Line Height',
+		           				 'tab'     =>'design',
+		 						'default'	=>'1.7',	
+		           				'content_type'=>'css',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(
+								'type'		=>'color-picker',
+								'name'		=>"tlt_color",
+								'label'		=>'Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css',
+								'required'  => array('background_type'=>'video')
+							),
+							array(
+		 						'type'		=>'text',		
+		 						'name'		=>"cnt_size",		
+		 						'label'		=>'Content Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'18px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(    
+				                'type'  =>'select',   
+				                'name'  =>'cnt_font_type',    
+				                'label' =>"Font Weight",
+				                'tab'     =>'design',
+				                'default' =>'400',
+				                'options_details'=>array(
+				                                    '300'   =>'Light',
+				                                    '400'   =>'Regular',
+				                                    '500'   =>'Medium',
+				                                    '600'   =>'Semi Bold',
+				                                    '700'   =>'Bold',
+				                                ),
+				                'content_type'=>'css',
+				                'required'  => array('background_type'=>'video')
+			              	),
+	 						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"cnt_ln_hgt",		
+		 						'label'		=>'Line Height',
+		           				 'tab'     =>'design',
+		 						'default'	=>'1.7',	
+		           				'content_type'=>'css',
+		           				'required'  => array('background_type'=>'video')
+	 						),
+	 						array(
+								'type'		=>'color-picker',
+								'name'		=>"cnt_color",
+								'label'		=>'Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css',
+								'required'  => array('background_type'=>'video')
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_overlay",
+                                'label'     => 'Check for Overlay',
+                                'tab'       =>'design',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                                'required'  => array('background_type'=>'video')
+                            ),
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_parallax",
