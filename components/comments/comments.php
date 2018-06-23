@@ -197,16 +197,7 @@ function ampforwp_framework_get_vuukle_comments(){
 	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
 	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
 	$srcUrl = add_query_arg('title' , $post->post_title, $srcUrl);  
-	$vuukle_html = '';
-	if(isset($redux_builder_amp['ampforwp-vuukle-Ads-before-comments']) && $redux_builder_amp['ampforwp-vuukle-Ads-before-comments']==1 ){
-		$vuukle_html .= '<amp-ad width=300 height=250
-						    type="doubleclick"
-						    data-slot="/213794966/vuukle-amp">
-						  <div placeholder></div>
-						  <div fallback></div>
-						</amp-ad>';
-	}
-	$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
+	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
 		<div overflow tabindex="0" role="button" aria-label="Show comments" style="display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;">Show comments</div>';
 	echo $vuukle_html;

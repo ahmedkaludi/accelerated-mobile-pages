@@ -3098,17 +3098,6 @@ $forms_support[] = array(
                             array('ampforwp-vuukle-comments-support', '=' , 1),
                          ),
                     ),
-                     array(
-                        'class' => 'child_opt child_opt_arrow', 
-                         'id'       => 'ampforwp-vuukle-Ads-before-comments',
-                         'type'     => 'switch',
-                         'tooltip-subtitle'     => __('Want Ad Before Comments','accelerated-mobile-pages'),
-                         'title'    => __('Want Ad Before Comments', 'accelerated-mobile-pages'),
-                         'desc' => 'Need approved site domain by Vuukle',
-                         'required' => array(
-                            array('ampforwp-vuukle-comments-support', '=' , 1)
-                         ),
-                    ),
                      //SpotIM Options
                     array(
                          'id'       => 'ampforwp-spotim-comments-support',

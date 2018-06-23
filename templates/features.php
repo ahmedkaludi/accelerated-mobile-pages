@@ -7283,18 +7283,17 @@ function ampforwp_vuukle_comments_support() {
 	if ( 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
 		 && $redux_builder_amp['ampforwp-vuukle-comments-support']==1
+		 && comments_open() 
 		) {
 		echo ampforwp_vuukle_comments_markup();
 	}
 }
 function ampforwp_vuukle_comments_markup() {
 	global $redux_builder_amp;
-	$apiKey = $ads_before_comments = $locale = '';
+	$apiKey = $locale = '';
 	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
 		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
 	}
-	$ads_before_comments = false;
-	$ads_before_comments = $redux_builder_amp['ampforwp-vuukle-Ads-before-comments'];
 	$display_comments_on = false;
 	$display_comments_on = ampforwp_get_comments_status();
 
@@ -7307,14 +7306,6 @@ function ampforwp_vuukle_comments_markup() {
 
 	$vuukle_html ='';
 	if ( $display_comments_on ) {
-		if($ads_before_comments){
-			$vuukle_html .= '<amp-ad width=300 height=250
-						    type="doubleclick"
-						    data-slot="/213794966/vuukle-amp">
-						  <div placeholder></div>
-						  <div fallback></div>
-						</amp-ad>';
-		}
 		$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
 			<div overflow tabindex="0" role="button" aria-label="Show comments" style="display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;">Show comments</div>';
