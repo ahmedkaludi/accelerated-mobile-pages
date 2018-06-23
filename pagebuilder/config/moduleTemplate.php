@@ -53,9 +53,20 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">';
+$output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+	
+	<amp-iframe class="vdo" width="854" height="480"
+          sandbox="allow-scripts allow-same-origin"
+          layout="responsive"
+          frameborder="0"
+          src="https://player.vimeo.com/video/140261016">
+    </amp-iframe>
+    
+    ';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
+{{if_condition_background_type==image}}
+
 {{row-class}}{
 	background-image: url({{row_background_image}});
 	background-repeat: no-repeat;
@@ -67,6 +78,8 @@ $front_css = '
 	    background-attachment: fixed;
 	{{ifend_condition_check_for_parallax_1}}
 }
+{{ifend_condition_background_type_image}}
+
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{margin:0 auto;max-width:{{fluid-wrapper}}; }
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
@@ -245,10 +258,19 @@ $containerCommonSettings = array(
 	 							'options_details'=>array(
 	 												'color'=>'Color',
 	 												'gradient'=>'Gradient',
-	 												'image'=>'Background Image'
+	 												'image'=>'Background Image',
+	 												'video'=>'Background Video'
 	 													),
 	 							'content_type'=>'css',
 	 							'output_format'=>''
+	 						),
+	 						array(		
+		 						'type'		=>'require_script',		
+		 						'name'		=>"embeded_script",		
+		 						'label'		=>'amp-iframe',
+		 						'default'	=>'https://cdn.ampproject.org/v0/amp-iframe-0.1.js',
+		 						'content_type'=>'js',
+		           				'required'  => array('background_type'=>'video'),
 	 						),
 	 						array(		
 	 							'type'	=>'select',		
@@ -271,6 +293,15 @@ $containerCommonSettings = array(
 								'default'	=>'',
 								'content_type'=>'css',
 								'required'  => array('background_type'=>'image')
+								),
+	 						array(
+								'type'		=>'text',
+								'name'		=>"row_background_video",
+								'label'		=>"Add Video URL",
+								'tab'		=>'customizer',
+								'default'	=>'',
+								'content_type'=>'html',
+								'required'  => array('background_type'=>'video')
 								),
 	 						array(
                                 'type'      =>'checkbox_bool',
