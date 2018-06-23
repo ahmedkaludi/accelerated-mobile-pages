@@ -6904,9 +6904,10 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 // AMP GDPR compliancy Styling
 if ( ! function_exists('ampforwp_gdpr_css') ) {
 	function ampforwp_gdpr_css(){ 
-	  	global $redux_builder_amp;
+	  	global $redux_builder_amp;?> #ampforwpConsent{visibility: visible}<?php
 	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
+			
 			.gdpr{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7);color: #333;z-index:9999999;line-height:1.3}
 			.gdpr_w{padding: 2rem;background: #fff;max-width: 700px;width: 95%;position: relative;margin: 5% auto;text-align: center;}
 			.gdpr_t{margin-bottom:15px;}
