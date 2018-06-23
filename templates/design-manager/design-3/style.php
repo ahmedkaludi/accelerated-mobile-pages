@@ -300,6 +300,7 @@ amp-lightbox{ background: rgba(0, 0, 0,0.85); }
 <?php  if (  ampforwp_is_home() || ampforwp_is_blog() ) {?>
 /* AMP carousel */
 .amp-carousel-button-prev, .amp-carousel-button-next{ top:30px;border-radius:60px; }
+.amp-carousel-button { z-index: 999}
 .amp-featured-wrapper{ background:#333 }
 .amp-featured-area{ margin: 0 auto; max-width: 450px; max-height: 270px; }
 .amp-carousel-slide h1{ font-size: 30px; font-family: 'PT Serif', serif; margin: 0; font-weight: normal; line-height: 38px; color: #fff; padding: 10px 20px 20px 20px; }

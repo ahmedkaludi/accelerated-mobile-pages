@@ -65,7 +65,7 @@ if ( get_query_var( 'paged' ) ) {
 		  } else {
 		    //if user does not give a category
 		    $args = array(
-		                   'posts_per_page' => 4,
+		                   'posts_per_page' => $num_posts,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
 		                 );
