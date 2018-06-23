@@ -1130,8 +1130,8 @@ function ampforwp_new_dir( $dir ) {
 										)
 									)
 								);
-					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
-						$ga_fields['vars']['anonymizeIP'] = 'false';
+					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
+						$ga_fields['vars']['anonymizeIP'] = 'true';
 					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
 					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
@@ -2710,8 +2710,8 @@ function amp_gtm_add_gtm_support( $analytics ) {
 			),
 		),
 	);
-	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
-		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'false';
+	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'true';
 	}
 
 	return $analytics;
