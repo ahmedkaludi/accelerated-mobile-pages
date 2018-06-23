@@ -1119,14 +1119,9 @@ function ampforwp_new_dir( $dir ) {
 					$ga_account = '';
 					$ga_account = $redux_builder_amp['ga-feild'];
 					$ga_account = str_replace(' ', '', $ga_account);
-					$anonymizeIP = 'true';
-					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
-						$anonymizeIP = 'false';
-					}
 					$ga_fields = array(
 									'vars'=>array(
 										'account'=>$ga_account,
-										'anonymizeIP'=>$anonymizeIP
 										),
 									'triggers'=> array(
 										'trackPageview'=> array(
@@ -1135,6 +1130,9 @@ function ampforwp_new_dir( $dir ) {
 										)
 									)
 								);
+					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
+						$ga_fields['vars']['anonymizeIP'] = 'false';
+					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
 					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 				 ?>
@@ -2694,10 +2692,6 @@ function amp_gtm_add_gtm_support( $analytics ) {
 	if ( ! is_array( $analytics ) ) {
 		$analytics = array();
 	}
-	$anonymizeIP = 'true';
-	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
-		$anonymizeIP = 'false';
-	}
 	$analytics['amp-gtm-googleanalytics'] = array(
 		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
 		'attributes' => array(
@@ -2707,7 +2701,6 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		'config_data' => array(
 			'vars' => array(
 				'account' =>  $redux_builder_amp['amp-gtm-analytics-code'],
-				'anonymizeIP'=>$anonymizeIP
 			),
 			'triggers' => array(
 				'trackPageview' => array(
@@ -2717,6 +2710,9 @@ function amp_gtm_add_gtm_support( $analytics ) {
 			),
 		),
 	);
+	if ( isset($redux_builder_amp['ampforwp-gtm-field-anonymizeIP']) && false == $redux_builder_amp['ampforwp-gtm-field-anonymizeIP'] ) {
+		$analytics['amp-gtm-googleanalytics']['config_data']['vars']['anonymizeIP'] = 'false';
+	}
 
 	return $analytics;
 }
