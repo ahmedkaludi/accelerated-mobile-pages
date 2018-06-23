@@ -38,9 +38,7 @@
 									<footer class="comment-meta">
 									   <?php if($comment_author_img_url){ ?>
 			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			 							<?php } else {  ?>
-			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($default_gravatar['url']); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			 							<?php }  ?>         							
+			 							<?php } ?>         							
 										<div class="comment-author vcard">
 											<?php  printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 										</div>

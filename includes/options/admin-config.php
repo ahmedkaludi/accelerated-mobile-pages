@@ -2937,13 +2937,6 @@ $forms_support[] = array(
 	                 'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
 	                 'default'  => 1
 	             ),
-            array(
-                     'id'       => 'ampforwp-display-avatar',
-                     'type'     => 'switch',
-                     'title'    => __('Display on User Avatar', 'accelerated-mobile-pages'),
-                     'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
-                     'default'  => 1,
-                 ),
     	
         array(  
             'id' => 'ampforwp-comments',
@@ -2968,6 +2961,14 @@ $forms_support[] = array(
                          'default'  => 10,
                          'required' => array('wordpress-comments-support' , '=' , 1
                                         ),
+                     ),
+                    array(
+                        'class' => 'child_opt child_opt_arrow', 
+                         'id'       => 'ampforwp-display-avatar',
+                         'type'     => 'switch',
+                         'title'    => __('Display on User Avatar', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable user Avatar.', 'accelerated-mobile-pages'),
+                         'default'  => 1,
                      ),
                      array(
                          'id'       => 'ampforwp-disqus-comments-support',
