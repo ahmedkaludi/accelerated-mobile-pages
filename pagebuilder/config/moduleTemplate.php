@@ -152,7 +152,9 @@ $front_css = '
   	font-size: {{cnt_size}};
   	line-height: {{cnt_ln_hgt}};
   	font-weight: {{cnt_font_type}};
-  	color:{{cnt_color}};
+  	{{if_condition_check_for_overlay==0}}
+  		color:{{cnt_color}};
+  	{{ifend_condition_check_for_overlay_0}}
 	position: absolute;
 	top: 10%;
 	bottom: auto;
@@ -167,7 +169,9 @@ $front_css = '
   font-weight: {{tlt_wgt}};
   letter-spacing: {{letter_spacing}};
   line-height: {{tlt_ln_hgt}};
-  color:{{tlt_color}};
+  {{if_condition_check_for_overlay==0}}
+  	color:{{tlt_color}};
+  {{ifend_condition_check_for_overlay_0}}
   margin-bottom:20px;
 }
 {{if_condition_check_for_overlay==1}}
@@ -179,6 +183,9 @@ $front_css = '
 	right: 0;
 	top: 0;
 	opacity: 0.4;
+}
+{{row-class}} .amp-txt{
+	color:{{overlay_cnt_color}};
 }
 {{ifend_condition_check_for_overlay_1}}
 {{ifend_condition_background_type_video}}
@@ -344,7 +351,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'text',
 								'name'		=>"row_background_video",
-								'label'		=>"Add Video URL",
+								'label'		=>"Background Video URL",
 								'tab'		=>'customizer',
 								'default'	=>'',
 								'content_type'=>'html',
@@ -353,7 +360,7 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"title",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Background Video Heading',
 		           				 'tab'      =>'customizer',
 		 						'default'	=>'Heading',	
 		           				'content_type'=>'html',
@@ -362,7 +369,7 @@ $containerCommonSettings = array(
 	 						array(		
 		 						'type'		=>'text-editor',		
 		 						'name'		=>"content_title",		
-		 						'label'		=>'Content',
+		 						'label'		=>'Background Video Content',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Write your content in Text Editor',	
 		           				'content_type'=>'html',
@@ -380,7 +387,7 @@ $containerCommonSettings = array(
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'tlt_wgt',    
-				                'label' =>"Font Weight",
+				                'label' =>"Heading Font Weight",
 				                'tab'     =>'design',
 				                'default' =>'600',
 				                'options_details'=>array(
@@ -396,7 +403,7 @@ $containerCommonSettings = array(
 			              	array(
 		 						'type'		=>'text',		
 		 						'name'		=>"letter_spacing",		
-		 						'label'		=>'Letter Spacing',
+		 						'label'		=>'Heading Letter Spacing',
 		           				 'tab'     =>'design',
 		 						'default'	=>'1px',	
 		           				'content_type'=>'css',
@@ -405,7 +412,7 @@ $containerCommonSettings = array(
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"tlt_ln_hgt",		
-		 						'label'		=>'Line Height',
+		 						'label'		=>'Heading Line Height',
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
@@ -414,7 +421,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"tlt_color",
-								'label'		=>'Color',
+								'label'		=>'Heading Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
@@ -432,7 +439,7 @@ $containerCommonSettings = array(
 	 						array(    
 				                'type'  =>'select',   
 				                'name'  =>'cnt_font_type',    
-				                'label' =>"Font Weight",
+				                'label' =>"Content Font Weight",
 				                'tab'     =>'design',
 				                'default' =>'400',
 				                'options_details'=>array(
@@ -448,7 +455,7 @@ $containerCommonSettings = array(
 	 						array(
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_ln_hgt",		
-		 						'label'		=>'Line Height',
+		 						'label'		=>'Content Line Height',
 		           				 'tab'     =>'design',
 		 						'default'	=>'1.7',	
 		           				'content_type'=>'css',
@@ -457,7 +464,7 @@ $containerCommonSettings = array(
 	 						array(
 								'type'		=>'color-picker',
 								'name'		=>"cnt_color",
-								'label'		=>'Color',
+								'label'		=>'Content Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css',
@@ -466,7 +473,7 @@ $containerCommonSettings = array(
 							array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_overlay",
-                                'label'     => 'Check for Overlay',
+                                'label'     => 'Background Video Overlay',
                                 'tab'       =>'design',
                                 'default'   =>0,
                                 'options'   =>array(
@@ -478,6 +485,15 @@ $containerCommonSettings = array(
                                 'content_type'=>'html',
                                 'required'  => array('background_type'=>'video')
                             ),
+                            array(
+								'type'		=>'color-picker',
+								'name'		=>"overlay_cnt_color",
+								'label'		=>'Background Video Content Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css',
+								'required'  => array('background_type'=>'video', 'check_for_overlay'=>1)
+							),
 	 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_parallax",
