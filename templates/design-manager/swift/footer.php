@@ -9,6 +9,7 @@
 				<?php 
 				if ( is_active_widget(false,false,'search', true) || is_active_widget(false,false,'text', true) ) {
 					add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
+					add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
 				}
 				ob_start();
 				dynamic_sidebar('swift-footer-widget-area');
@@ -30,6 +31,7 @@
 									) 
 								);
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
+				 $sanitized_footer_widget = apply_filters('ampforwp_modify_sidebars_content',$sanitized_footer_widget); 
 	              echo $sanitized_footer_widget;
 				?>
 			</div>
