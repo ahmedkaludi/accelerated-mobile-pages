@@ -27,7 +27,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $cta_AD_URL = "http://ampforwp.com/call-to-action/#utm_source=options-panel&utm_medium=call-to-action_banner_in_notification_bar&utm_campaign=AMP%20Plugin";
 $cta_desc = '<a href="'.$cta_AD_URL.'"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/cta-banner.png" width="560" height="85" /></a>';
 }
-
+$all_extensions_data = array();
+global $all_extensions_data;
 $extension_listing_array = array(
                         array(
                             'name'=>'ADS for WP',
@@ -298,6 +299,7 @@ $extension_listing_array = array(
                     );
 
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
+$all_extensions_data = $extension_listing_array;
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
@@ -382,39 +384,17 @@ $extension_listing = '
 </div>
 ';
 
-// 
+// #2267
 function ampforwp_check_extensions(){
-	$is_extension_active = false;
-	$extensions_list = array(
-				'ADS for WP' => 'ads-for-wp/ads-for-wp.php',
-				'Advanced AMP ADS' => 'amp-incontent-ads/amptoolkit-incontent-ads.php',
-				'Contact Form 7' => 'amp-cf7/amp-cf7.php',
-				'Gravity Forms' => 'amp-gravity-forms/amp-gravity-forms.php',
-				'Ninja Forms for AMP' => 'amp-ninja-forms/amp-ninja-forms.php',
-				'Email Opt-in Forms' => 'amp-optin/amp-optin.php',
-				'AMP Cache' => 'amp-cache/ampforwp-cache.php',
-				'Call To Action' => 'amp-cta/amp-cta.php',
-				'AMP WooCommerce Pro' => 'amp-woocommerce-pro/amp-woocommerce.php',
-				'EDD for AMP' => 'edd-for-amp/edd-for-amp.php',
-				'AMP Layouts' => 'amp-layouts/amp-layouts.php',
-				'Newspaper AMP Theme' => 'amp-newspaper-theme/ampforwp-custom-theme.php',
-				'ACF for AMP' => 'acf-for-amp-v2/amp-acf.php',
-				'AMP Comments' => 'amp-comments/amp-comments.php',
-				'Star Ratings' => 'amp-rating/amp-rating.php',
-				'Custom Post Type' => 'amp-custom-post-type/amp-custom-post-type.php',
-				'Structured Data for WP' => 'structured-data-for-wp/structured-data-for-wp.php',
-				'Polylang For AMP' => 'polylang-for-amp/amp_polylang.php',
-				'WPML For AMP' => 'wpml-for-amp/wpml_for_amp.php',
-				'AMP Teaser' => 'amp-teaser/amp-teaser.php',
-			);
-	foreach ($extensions_list as $extension => $value) {
-		$is_extension_active = is_plugin_active( $value );
-		if( $is_extension_active){
+	global $all_extensions_data;
+	foreach ($all_extensions_data as $extension ) {
+		$is_extension_active = $extension['is_activated'];
+		if( 1 === $is_extension_active){
 			return true;
 		}
 	}
 	
-	return $is_extension_active;
+	return false;
 }
 
 $freepro_listing = '
