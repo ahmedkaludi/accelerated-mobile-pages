@@ -2584,6 +2584,7 @@ function ampforwp_add_sd_fields($fields){
             'indent' => true,
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
+            'required'  => array('amp-gdpr-compliance-switch', '=' , '0')
                   ),
            
            array(
