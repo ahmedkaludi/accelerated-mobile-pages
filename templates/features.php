@@ -7271,6 +7271,7 @@ function ampforwp_get_comments_status(){
 	if ( (isset($redux_builder_amp['ampforwp-display-on-pages']) && $redux_builder_amp['ampforwp-display-on-pages']==true ) && (isset($redux_builder_amp['ampforwp-display-on-posts']) && $redux_builder_amp['ampforwp-display-on-posts']==true ) ) {
 		$display_comments_on =  is_singular();
 	}
+	$display_comments_on = apply_filters('ampforwp_comments_visibility', $display_comments_on);
 	return $display_comments_on;
 }
 

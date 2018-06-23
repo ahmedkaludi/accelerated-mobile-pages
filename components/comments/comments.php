@@ -3,123 +3,119 @@ function ampforwp_framework_get_comments(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
+	if ( $display_comments_on ) {
+		if ( $redux_builder_amp['ampforwp-facebook-comments-support']  ) { 
+		 	echo ampforwp_framework_get_facebook_comments(); 
+		}
 
-	$ampforwp_check_script_extension = true;
-	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
-
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
-		if($ampforwp_check_script_extension) { 
-		 	echo ampforwp_framework_get_facebook_comments();
-		  }
-	}
-
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on && $ampforwp_check_script_extension )  {
-		 ampforwp_framework_get_disqus_comments();
-	}
-	if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] && $display_comments_on )  {
-		 ampforwp_framework_get_vuukle_comments();
-	}
-	if ( $redux_builder_amp['ampforwp-spotim-comments-support'] && $display_comments_on )  {
-		 ampforwp_framework_get_spotim_comments();
-	}
-  
-	if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] && $display_comments_on && $ampforwp_check_script_extension ) {
-		do_action('ampforwp_before_comment_hook'); ?>
-			<div class="amp-comments">
-				<?php
-				// Gather comments for a specific page/post
-				$postID = $comments = $max_page =  "";
-				$postID = get_the_ID();
-				$comments = get_comments(array(
-						'post_id' => $postID,
-						'status' => 'approve' //Change this to the type of comments to be displayed
-				));
-				
-				if ( $comments ) { ?>
-					<div id="comments" class="amp-comments-wrapper">
-			            <h3><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
-			            <ul><?php
-							// Display the list of comments
-							function ampforwp_custom_translated_comment($comment, $args, $depth){
-								$GLOBALS['comment'] = $comment;
-								global $redux_builder_amp;
-								$comment_author_img_url = "";
-								$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
-								
-								?>
-								<li id="li-comment-<?php comment_ID() ?>"
-								<?php comment_class(); ?> >
-									<article id="comment-<?php comment_ID(); ?>" class="comment-body">
-										<footer class="comment-meta">
-										<?php if($comment_author_img_url){ ?>
-		         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-		         						<?php } ?>
-											<div class="comment-author vcard">
-												 <?php
-												 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
+		if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
+			 ampforwp_framework_get_disqus_comments();
+		}
+		if ( $redux_builder_amp['ampforwp-vuukle-comments-support'] )  {
+			 ampforwp_framework_get_vuukle_comments();
+		}
+		if ( $redux_builder_amp['ampforwp-spotim-comments-support']  )  {
+			 ampforwp_framework_get_spotim_comments();
+		}
+	  
+		if ( isset($redux_builder_amp['wordpress-comments-support']) && true == $redux_builder_amp['wordpress-comments-support'] ) {
+			do_action('ampforwp_before_comment_hook'); ?>
+				<div class="amp-comments">
+					<?php
+					// Gather comments for a specific page/post
+					$postID = $comments = $max_page =  "";
+					$postID = get_the_ID();
+					$comments = get_comments(array(
+							'post_id' => $postID,
+							'status' => 'approve' //Change this to the type of comments to be displayed
+					));
+					
+					if ( $comments ) { ?>
+						<div id="comments" class="amp-comments-wrapper">
+				            <h3><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
+				            <ul><?php
+								// Display the list of comments
+								function ampforwp_custom_translated_comment($comment, $args, $depth){
+									$GLOBALS['comment'] = $comment;
+									global $redux_builder_amp;
+									$comment_author_img_url = "";
+									$comment_author_img_url = ampforwp_get_comments_gravatar( $comment ); 
+									
+									?>
+									<li id="li-comment-<?php comment_ID() ?>"
+									<?php comment_class(); ?> >
+										<article id="comment-<?php comment_ID(); ?>" class="comment-body">
+											<footer class="comment-meta">
+											<?php if($comment_author_img_url){ ?>
+			         							<amp-img src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+			         						<?php } ?>
+												<div class="comment-author vcard">
+													 <?php
+													 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
+												</div>
+												<div class="comment-metadata">
+													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
+														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
+													</a>
+													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
+												</div>
+											</footer>
+											<div class="comment-content">
+						                        <?php
+						                          	$comment_content = get_comment_text();
+						                        	$comment_content = wpautop( $comment_content );
+						                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
+						                          		'AMP_Img_Sanitizer' => array(),
+						                          		'AMP_Video_Sanitizer' => array(),
+						                          		'AMP_Style_Sanitizer' => array() ) ) );
+						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
+						                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>
-											<div class="comment-metadata">
-												<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
-													<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
-												</a>
-												<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
-											</div>
-										</footer>
-										<div class="comment-content">
-					                        <?php
-					                          	$comment_content = get_comment_text();
-					                        	$comment_content = wpautop( $comment_content );
-					                          $sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
-					                          		'AMP_Img_Sanitizer' => array(),
-					                          		'AMP_Video_Sanitizer' => array(),
-					                          		'AMP_Style_Sanitizer' => array() ) ) );
-					                         $sanitized_comment_content =  $sanitizer->get_amp_content();
-					                          echo make_clickable( $sanitized_comment_content );   ?>
-										</div>
-									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
-									</article>
-								</li>
-								<?php 
-							}
-							wp_list_comments( array(
-		                        //Allow comment pagination
-		                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
-		                        'style' 			=> 'li',
-		                        'type'				=> 'comment',
-		                        'max_depth'   		=> 5,
-		                        'avatar_size'		=> 0,
-		                        'callback'			=> 'ampforwp_custom_translated_comment',
-		                        'reverse_top_level' => true //Show the latest comments at the top of the list
-							), $comments);  ?>
-					    </ul> <?php 
-						    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
-						    $args = array(
-								'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
-								'format' 		=> '',
-								'total' 		=> $max_page,
-								'echo' 			=> false,
-								'add_fragment' 	=> '#comments',		
-							);
-					    if ( paginate_comments_links($args) ) { ?>
-							<div class="cmts-wrap">
-				     			<?php echo paginate_comments_links( $args ); ?>
-				     		</div>
-			     		<?php } ?>
-					</div> <!-- .amp-comments-wrapper -->
-					<?php // if amp-comments extension is enabled then hide this button
-				} // if ( $comments )
-				if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
-					<div class="amp-comment-button">
-						<?php if ( comments_open() ) { ?>
-					    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
-						} else {
-							echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
-						}?>
-					</div> <?php 
-				}?>
-			</div>
-		<?php do_action('ampforwp_after_comment_hook');
-	}
+										<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
+										</article>
+									</li>
+									<?php 
+								}
+								wp_list_comments( array(
+			                        //Allow comment pagination
+			                        'per_page' 			=> AMPFORWP_COMMENTS_PER_PAGE , 
+			                        'style' 			=> 'li',
+			                        'type'				=> 'comment',
+			                        'max_depth'   		=> 5,
+			                        'avatar_size'		=> 0,
+			                        'callback'			=> 'ampforwp_custom_translated_comment',
+			                        'reverse_top_level' => true //Show the latest comments at the top of the list
+								), $comments);  ?>
+						    </ul> <?php 
+							    $max_page = get_comment_pages_count($comments, AMPFORWP_COMMENTS_PER_PAGE);
+							    $args = array(
+									'base' 			=> add_query_arg( array('cpage' => '%#%', 'amp' => '1'), get_permalink() ),
+									'format' 		=> '',
+									'total' 		=> $max_page,
+									'echo' 			=> false,
+									'add_fragment' 	=> '#comments',		
+								);
+						    if ( paginate_comments_links($args) ) { ?>
+								<div class="cmts-wrap">
+					     			<?php echo paginate_comments_links( $args ); ?>
+					     		</div>
+				     		<?php } ?>
+						</div> <!-- .amp-comments-wrapper -->
+						<?php // if amp-comments extension is enabled then hide this button
+					} // if ( $comments )
+					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
+						<div class="amp-comment-button">
+							<?php if ( comments_open() ) { ?>
+						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+							} else {
+								echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
+							}?>
+						</div> <?php 
+					}?>
+				</div>
+			<?php do_action('ampforwp_after_comment_hook');
+		}
+	} // end $display_comments_on
 }
 
 //Facebook Comments
@@ -240,13 +236,11 @@ function ampforwp_framework_comments_scripts( $data ) {
 	$facebook_comments_check = ampforwp_framework_get_facebook_comments();
 	global $redux_builder_amp;
 	$is_pb_enabled = '';
-	$is_pb_enabled = checkAMPforPageBuilderStatus(get_the_ID());
-	$ampforwp_check_script_extension = true;
-	$ampforwp_check_script_extension = apply_filters('ampforwp_framework_cmt_scripts', $ampforwp_check_script_extension);
+	$is_pb_enabled = checkAMPforPageBuilderStatus(get_the_ID());	
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
 
-	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on && !is_front_page() && $ampforwp_check_script_extension && !$is_pb_enabled ) {
+	if ( $facebook_comments_check && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on && !is_front_page()  && !$is_pb_enabled ) {
 			if ( empty( $data['amp_component_scripts']['amp-facebook-comments'] ) ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
