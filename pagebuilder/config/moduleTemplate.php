@@ -655,8 +655,8 @@ $containerCommonSettings = array(
 							array(
 								'type'		=>'checkbox',
 								'name'		=>"shadow",
-								'label'		=>'Shadow',
-								'tab'		=>'customizer',
+								'label'		=>'Background Shadow',
+								'tab'		=>'design',
 								'default'	=>array(),
 								'options'	=>array(
 												array(
