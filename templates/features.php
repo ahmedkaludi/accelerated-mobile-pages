@@ -7392,13 +7392,12 @@ function ampforwp_add_spotim_scripts( $data ) {
 	return $data;
 }
 //spotim css
-add_action('amp_post_template_css','ampforwp_spotim_styling_otherdesigns',PHP_INT_MAX);
+add_action('amp_post_template_css','ampforwp_spotim_styling_otherdesigns',60);
 function ampforwp_spotim_styling_otherdesigns(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
-	if ( 4 != $redux_builder_amp['amp-design-selector']
-		&& isset($redux_builder_amp['ampforwp-spotim-comments-support'])
+	if ( isset($redux_builder_amp['ampforwp-spotim-comments-support'])
 	 	&& $redux_builder_amp['ampforwp-spotim-comments-support']
 	 	&& $display_comments_on  && comments_open() ) {
 		?>.spot-im-amp-overflow {

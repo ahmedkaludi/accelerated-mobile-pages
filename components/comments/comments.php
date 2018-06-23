@@ -275,22 +275,3 @@ function ampforwp_framework_comments_scripts( $data ) {
 	}
 		return $data;
 }
-
-//spotim
-add_action('amp_post_template_css','ampforwp_spotim_styling',PHP_INT_MAX);
-function ampforwp_spotim_styling(){
-	$display_comments_on = "";
-	$display_comments_on = ampforwp_get_comments_status();
-	if ( isset($redux_builder_amp['ampforwp-spotim-comments-support'])
-	 	&& $redux_builder_amp['ampforwp-spotim-comments-support']
-	 	&& $display_comments_on  && comments_open() ) {
-		?>.spot-im-amp-overflow {
-	    background: white;
-	    font-size: 15px;
-	    padding: 15px 0;
-	    text-align: center;
-	    font-family: Helvetica, Arial, sans-serif;
-	    color: #307fe2;
-	  }<?php
-	}
-}
