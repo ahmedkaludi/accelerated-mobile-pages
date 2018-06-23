@@ -53,7 +53,7 @@ class AMP_Pinterest_Embed_Handler extends AMP_Base_Embed_Handler {
 				'data-url' => $args['url'],
 				'layout'   => 'responsive',
 			);
-		$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+		$attrs = ampforwp_amp_consent_check( $attrs );
 		return AMP_HTML_Utils::build_tag('amp-pinterest',$attrs);
 	}
 }

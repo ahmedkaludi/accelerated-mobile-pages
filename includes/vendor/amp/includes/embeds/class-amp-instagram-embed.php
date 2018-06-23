@@ -73,7 +73,7 @@ class AMP_Instagram_Embed_Handler extends AMP_Base_Embed_Handler {
 				'height' => $this->args['height'],
 				'data-captioned' => '',
 			);
-		$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+		$attrs = ampforwp_amp_consent_check( $attrs );
 		return AMP_HTML_Utils::build_tag('amp-instagram', $attrs);
 	}
 

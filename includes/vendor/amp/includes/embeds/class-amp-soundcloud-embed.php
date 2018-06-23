@@ -79,7 +79,7 @@ class AMP_SoundCloud_Embed_Handler extends AMP_Base_Embed_Handler {
 				'layout' => 'fixed-height',
 				'height' => $this->args['height'],
 			);
-		$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
+		$attrs = ampforwp_amp_consent_check( $attrs );
 		return AMP_HTML_Utils::build_tag('amp-soundcloud',$attrs);
 	}
 

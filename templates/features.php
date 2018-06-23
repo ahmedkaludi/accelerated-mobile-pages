@@ -7154,12 +7154,12 @@ function ampforwp_get_data_consent(){
 	return $dboc;
 }
 
-add_filter( 'ampforwp_embedd_attrs_handler', 'ampforwp_amp_consent_check');
 function ampforwp_amp_consent_check($attrs){
-	$is_dboc = ampforwp_get_data_consent();
-	if($is_dboc){
+
+	if( ampforwp_get_data_consent() ){
 		$attrs['data-block-on-consent'] = '';
 	}
+	$attrs = apply_filters( 'ampforwp_embedd_attrs_handler', $attrs );
 	return $attrs;
 }
 // #2220 Remove Space Shortcode by Pro Theme from THEMCO
