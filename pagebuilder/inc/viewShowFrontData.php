@@ -175,7 +175,7 @@ function amp_pagebuilder_content_styles(){
 					$rowCss = str_replace('{{row-class}}', '.ap_r_'.$rowsData['id'], $rowCss);
 					foreach($containerCommonSettings['fields'] as $rowfield){
 							$replaceRow = '';
-						if($rowfield['content_type']=='css'){
+						//if($rowfield['content_type']=='css'){
 							if(isset($rowContainer[$rowfield['name']])){
 								$replaceRow = $rowContainer[$rowfield['name']];
 								
@@ -269,7 +269,7 @@ function amp_pagebuilder_content_styles(){
 									}
 								break;
 							}
-						}
+						//}
 						$rowCss = ampforwp_replaceIfContentConditional($rowfield['name'], $replaceRow, $rowCss);
 					}
 					echo amppb_validateCss($rowCss);
@@ -537,7 +537,7 @@ function amppb_post_content($content){
 							$replace .= 'ap_r_'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
-							$replace .= ' '.$rowsData['data'][$field['name']];
+							$replace .= $rowsData['data'][$field['name']];
 						}else{
 							$replace .= '';
 						}
@@ -979,7 +979,7 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 	if(isset($matches[1]) && count($matches[1])>0){
 		$matches[1] = array_unique($matches[1]);
 		foreach ($matches[1] as $key => $matchValue) {
-			if($matchValue != $replaceWith){
+			if(trim($matchValue) != trim($replaceWith)){
 				$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("<amp-condition>","</amp-condition>"), $string);
 				
 				$string = preg_replace_callback('/(<amp-condition>)(.*?)(<\/amp-condition>)/s', function($match){

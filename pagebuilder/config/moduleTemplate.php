@@ -54,6 +54,7 @@ if(!function_exists("ampforwp_module_templates")){
 
 //Row Contents
 $output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
 	      <h1>{{title}}</h1>
@@ -63,12 +64,13 @@ $output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check
 	          sandbox="allow-scripts allow-same-origin"
 	          layout="responsive"
 	          frameborder="0"
-	          src="https://player.vimeo.com/video/140261016">
+	          src="{{row_background_video}}">
 	    </amp-iframe>
     	{{if_condition_check_for_overlay==1}}
     		<div class="overlay"></div>
     	{{ifend_condition_check_for_overlay_1}}
     </div>
+    {{ifend_condition_background_type_video}}
     ';
 $outputEnd = '<div class="cb"></div> </section>';
 $front_css = '
@@ -306,7 +308,7 @@ $containerCommonSettings = array(
 	 												'image'=>'Background Image',
 	 												'video'=>'Background Video'
 	 													),
-	 							'content_type'=>'css',
+	 							'content_type'=>'html',
 	 							'output_format'=>''
 	 						),
 	 						array(		
@@ -473,7 +475,7 @@ $containerCommonSettings = array(
                                                     'value'=>1,
                                                 )
                                             ),
-                                'content_type'=>'css',
+                                'content_type'=>'html',
                                 'required'  => array('background_type'=>'video')
                             ),
 	 						array(
