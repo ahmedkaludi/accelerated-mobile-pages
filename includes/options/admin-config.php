@@ -5441,7 +5441,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-related-posts-days-switch',
                     'type'     => 'switch',
                     'class' => 'child_opt',
-                    'title'    => __('Based on Past Days', 'accelerated-mobile-pages'),
+                    'title'    => __('By Last X Days', 'accelerated-mobile-pages'),
                     'tooltip-subtitle' => __('Show Related Posts From Past Few Days', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 

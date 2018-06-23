@@ -72,7 +72,7 @@
     right: -14px;
     background: #fff;}.redux-main #redux-footer-sticky{margin-left:-20px;margin-right:-20px;margin-bottom:-10px}.redux-qtip{z-index:999999 !important}.redux-main pre{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}
 /* custom css */
-.redux-amp-search-icon{
+.redux-amp-search-icon{ 
     position: relative;
     top: 17px;
     left: 10px;
