@@ -7308,8 +7308,8 @@ function ampforwp_add_spotim_scripts( $data ) {
 	return $data;
 }
 //spotim css
-add_action('amp_post_template_css','ampforwp_spotim_styling_otherdesigns',60);
-function ampforwp_spotim_styling_otherdesigns(){
+add_action('amp_post_template_css','ampforwp_spotim_styling',60);
+function ampforwp_spotim_styling(){
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
