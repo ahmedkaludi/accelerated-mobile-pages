@@ -385,7 +385,6 @@ if($redux_builder_amp['swift_cnt']){
 .related_link a{color:#333;}
 .amp-related-posts ul{list-style-type:none;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
-.r-pf .loop-wrapper{margin:0;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
 /** In content releated post desing styles **/
 .related_posts .related-title{
