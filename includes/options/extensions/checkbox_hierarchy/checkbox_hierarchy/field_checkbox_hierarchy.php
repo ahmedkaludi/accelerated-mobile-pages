@@ -80,6 +80,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 }
                 if($this->field[ 'options' ]['set_category_hirarchy']==1){
                     $this->wp_dropdown_cats_cat();
+                    echo "</ul>"
                     return ;
                 }
                 foreach ( $this->field[ 'options' ] as $k => $v ) {
@@ -158,7 +159,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                     echo ">$pad$category->name</option>";*/
 
 
-                    echo '<label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
+                    echo '<li><label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '">';
@@ -167,7 +168,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[$category->term_id], '1', false ) . '/>';
-                    echo ' <span>' .$pad. $category->name . '</span></label>';
+                    echo ' <span>' .$pad. $category->name . '</span></label></li>';
 
 
 
