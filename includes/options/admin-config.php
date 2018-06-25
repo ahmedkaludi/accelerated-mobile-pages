@@ -303,13 +303,13 @@ $all_extensions_data = $extension_listing_array;
 $ampforwp_extension_list_html = '';
 $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
-function ampforwp_sort_extensionArray_callback($a, $b){
+function ampforwp_sort_extension_array($a, $b){
     if ($a['is_activated'] == $b['is_activated']) {
         return 0;
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
 }
-usort($extension_listing_array, 'ampforwp_sort_extensionArray_callback');
+usort($extension_listing_array, 'ampforwp_sort_extension_array');
 foreach ($extension_listing_array as $key => $extension) {
     $currentStatus = "";
 
