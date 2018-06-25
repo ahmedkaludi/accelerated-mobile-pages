@@ -714,3 +714,7 @@ visibility: hidden;
     padding-right: 50px;
     padding-left:0;
 }
+
+#redux_builder_amp-hide-amp-categories .inner-child span:before{
+    content: "- "
+}

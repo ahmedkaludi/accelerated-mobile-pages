@@ -110,7 +110,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
 									'[' => '_',
 									']' => ''
 								) ) . '_' . array_search ( $childKey, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[ $childKey ], '1', false ) . '/>';
-								echo ' ' . $childValue . '</label>';
+								echo ' <span>' . $childValue . '</span></label>';
 								echo '</li>';
 							}
 							echo '</ul>';
