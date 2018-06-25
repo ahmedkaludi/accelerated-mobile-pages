@@ -420,8 +420,8 @@ if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && 
     require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 }
 
-add_action('after_setup_theme', 'ampforwp_load_ampOptions');
-function ampforwp_load_ampOptions(){
+add_action('after_setup_theme', 'ampforwp_load_amp_options');
+function ampforwp_load_amp_options(){
 	if ( ! class_exists( 'ReduxFramework' ) ) {
 	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
