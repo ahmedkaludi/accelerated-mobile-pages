@@ -6906,7 +6906,7 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 // AMP GDPR compliancy Styling
 if ( ! function_exists('ampforwp_gdpr_css') ) {
 	function ampforwp_gdpr_css(){ 
-	  	global $redux_builder_amp;?> #ampforwpConsent{visibility: visible}<?php
+	  	global $redux_builder_amp;
 	    	// GDPR popup Design 
 		if($redux_builder_amp['gdpr-type'] == '1'){?>
 			
