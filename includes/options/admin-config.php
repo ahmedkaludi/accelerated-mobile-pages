@@ -356,8 +356,13 @@ foreach ($extension_listing_array as $key => $extension) {
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
              <input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data]" type="hidden" value="'.$allResponseData.'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">';
+             $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][success]" type="hidden" value="'.$allResponseData['success'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][license]" type="hidden" value="'.$allResponseData['license'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][item_name]" type="hidden" value="'.$allResponseData['item_name'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][expires]" type="hidden" value="'.$allResponseData['expires'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_name]" type="hidden" value="'.$allResponseData['customer_name'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][customer_email]" type="hidden" value="'.$allResponseData['customer_email'].'">
             ';
         
         $pluginReview .= $verify. "<br/>".$amp_license_response;

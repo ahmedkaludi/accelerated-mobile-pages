@@ -466,9 +466,15 @@ $(".redux-ampforwp-ext-activate").click(function(){
                 currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
                 currentThis.removeClass('redux-ampforwp-ext-activate').addClass('redux-ampforwp-ext-deactivate');
                 $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][status]"]').val("valid");
-                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data]"]').val(JSON.stringify( response.other.all_data )  );
-                //deactivatelicence();
-                window.location.href = window.location.href;
+                deactivatelicence();
+                var all_data = response.other.all_data;
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][success]"]').val( all_data.success );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][license]"]').val( all_data.license );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][item_name]"]').val( all_data.item_name );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][expires]"]').val( all_data.expires );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][customer_name]"]').val( all_data.customer_name );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][customer_email]"]').val( all_data.customer_email );
+                //window.location.href = window.location.href;
             }else{
                 currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
                 currentThis.html("Activate");

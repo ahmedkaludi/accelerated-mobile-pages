@@ -107,13 +107,18 @@ function ampforwp_get_licence_activate_update(){
                     $status = $license_data->license;
                     $limit = ampforwp_set_plugin_limit( true, $license_data, $ampforwp_license_activate);
                     $selectedOption['amp-license'][$ampforwp_license_activate]['limit'] =  $limit;
-                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data'] =  json_decode($response,true);
+                    //$selectedOption['amp-license'][$ampforwp_license_activate]['all_data'] =  json_decode($response,true);
+                    $response_all_data = json_decode($response,true);
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['success'] =  $response_all_data['success'];
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['license'] =  $response_all_data['license'];
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['item_name'] =  $response_all_data['item_name'];
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['expires'] =  $response_all_data['expires'];
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['customer_name'] =  $response_all_data['customer_name'];
+                    $selectedOption['amp-license'][$ampforwp_license_activate]['all_data']['customer_email'] =  $response_all_data['customer_email'];
                 }
 
                 $selectedOption['amp-license'][$ampforwp_license_activate]['status'] =  $status;
                 $selectedOption['amp-license'][$ampforwp_license_activate]['message'] =  $message;
-
-
 
             update_option( 'redux_builder_amp', $selectedOption );
             if($status=='valid'){
