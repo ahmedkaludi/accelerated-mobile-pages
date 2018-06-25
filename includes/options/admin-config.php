@@ -345,8 +345,8 @@ foreach ($extension_listing_array as $key => $extension) {
                 $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
                 $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
                 if($remainingExpiresDays>0){
-                    $amp_license_response = $remainingExpiresDays." Remaining. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Extend key validity</a>";
-                }else{ $amp_license_response = "<a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew your license</a>"; }
+                    $amp_license_response = $remainingExpiresDays." Days Remaining. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Extend key validity</a>";
+                }else{ $amp_license_response = "Expired! <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew your license</a>"; }
             }
         }
 
