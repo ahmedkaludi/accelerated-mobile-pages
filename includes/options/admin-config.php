@@ -4092,7 +4092,7 @@ Redux::setSection( $opt_name, array(
                 'id'       => 'amp_font_selector',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'title'    => __( 'Global Font Family ', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
@@ -4109,7 +4109,7 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
                 'multi'    => true,
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'title'    => __( 'Global Font Weight Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
@@ -4141,24 +4141,29 @@ Redux::setSection( $opt_name, array(
            array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
+                    'class'    => 'ampforwp-google-font-class',
                     'title'    => __('Content Font Selector', 'accelerated-mobile-pages'),
                     'required' => array(
                                     array('amp-design-selector', '=' , '4')
                                     ),
-                    'default'  => '0'         
+                    'default'  => '0' ,
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                    )   
             ),
           array(
                 'id'       => 'amp_font_selector_content_single',
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-families',
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'title'    => __( 'Content Font Family Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => __( 'Select your design from dropdown or ', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'None',
                 ),
                 'default'  => '',
                 'required' => array(
-                    array('content-font-family-enable', '=' , '1')
+                    array('amp-design-selector', '=' , '4'),
+                    array('content-font-family-enable', '=' , '1'),
                 )
 
             ),
@@ -4168,13 +4173,14 @@ Redux::setSection( $opt_name, array(
                 'type'     => 'select',
                 'class'    => 'ampforwp-google-font-class ampwp-font-family-weights',
                 'multi'    => true,
-                'title'    => __( 'Font Selector', 'accelerated-mobile-pages' ),
+                'title'    => __( 'Content Font Family Weight Selector', 'accelerated-mobile-pages' ),
                 'tooltip-subtitle' => __( 'Select your design from dropdown', 'accelerated-mobile-pages' ),
                 'options'  => array(
                     '1' => 'none',
                 ),
                 'default'  => '',
                 'required' => array(
+                    array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1')
                 )
 
