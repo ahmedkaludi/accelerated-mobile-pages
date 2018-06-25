@@ -92,7 +92,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	// For Homepage with Pagination
     add_rewrite_rule(
         'amp/page/([0-9]{1,})/?$',
-        'index.php?amp&paged=$matches[1]',
+        'index.php?amp=1&paged=$matches[1]',
         'top'
     );
 
@@ -100,13 +100,13 @@ function ampforwp_add_custom_rewrite_rules() {
 	if( ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
-	        'index.php?amp&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
+	        'index.php?amp=1&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
 	    // Pagination to work with Extensions like.hml
 	    add_rewrite_rule(
 	        ampforwp_name_blog_page(). '(.+?)/amp/page/([0-9]{1,})/?$',
-	        'index.php?amp&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
+	        'index.php?amp=1&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
 	}
@@ -114,7 +114,7 @@ function ampforwp_add_custom_rewrite_rules() {
     // For Author pages
     add_rewrite_rule(
         'author\/([^/]+)\/amp\/?$',
-        'index.php?amp&author_name=$matches[1]',
+        'index.php?amp=1&author_name=$matches[1]',
         'top'
     );
     add_rewrite_rule(
@@ -133,13 +133,13 @@ function ampforwp_add_custom_rewrite_rules() {
 
     add_rewrite_rule(
       $rewrite_category.'\/(.+?)\/amp/?$',
-      'index.php?amp&category_name=$matches[1]',
+      'index.php?amp=1&category_name=$matches[1]',
       'top'
     );
     // For category pages with Pagination
     add_rewrite_rule(
       $rewrite_category.'/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+      'index.php?amp=1&category_name=$matches[1]&paged=$matches[2]',
       'top'
     );
 
@@ -150,7 +150,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	if ( $permalink_structure ) {
 	  	add_rewrite_rule(
 	      $permalink_structure.'\/'.$rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-	      'index.php?amp&category_name=$matches[1]&paged=$matches[2]',
+	      'index.php?amp=1&category_name=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
   	}
@@ -164,20 +164,20 @@ function ampforwp_add_custom_rewrite_rules() {
     }
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp/?$',
-      'index.php?amp&tag=$matches[1]',
+      'index.php?amp=1&tag=$matches[1]',
       'top'
     );
     // For tag pages with Pagination
     add_rewrite_rule(
       $rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+      'index.php?amp=1&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
     // For tag pages with Pagination (Custom Permalink Structure)
     if ( $permalink_structure ) {
 	  	add_rewrite_rule(
 	      $permalink_structure.'\/'.$rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
-	      'index.php?amp&tag=$matches[1]&paged=$matches[2]',
+	      'index.php?amp=1&tag=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
   	}
