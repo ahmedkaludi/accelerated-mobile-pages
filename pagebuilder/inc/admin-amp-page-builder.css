@@ -281,6 +281,13 @@ amppb-row-fields .amppb-column-2:not(:last-child){
 .amppb-setting-right{
     float:right;
 }
+.amppb-module-copy{
+    right: -10px;
+    position: relative;
+}
+#pagebilder_content .amppb-module-copy span{
+    color: #bbb
+}
 .amppb-setting-right span{
     display: inline-block;
     right: 0px;

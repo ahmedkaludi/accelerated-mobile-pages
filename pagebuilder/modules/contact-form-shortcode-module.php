@@ -136,7 +136,7 @@ $formFields = array(
 					'default' =>'',
 					'options_details'=>$formSupported,
 					'content_type'=>'html',
-					'helpmessage' => 'Requires <a href="https://ampforwp.com/contact-form-7">AMP Contact Form 7</a> or <a href="https://ampforwp.com/gravity-forms/">AMP Gravity Forms </a>Extension. <a target="_blank" href="'.esc_url(  self_admin_url( 'admin.php?page=amp_options&tabid=opt-go-premium' )  ).'">Click here for Extension info</a>'
+					'helpmessage' => 'This module requires <a href="https://ampforwp.com/contact-form-7" target="_blank">AMP Contact Form 7</a> or <a href="https://ampforwp.com/gravity-forms/" target="_blank">AMP Gravity Forms</a> Extension. <a target="_blank" href="https://ampforwp.com/extensions/">View all the Extensions</a>'
 				),
 			);
 if(isset($cf7FormsList)){
