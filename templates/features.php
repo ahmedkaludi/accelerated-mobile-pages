@@ -7233,7 +7233,7 @@ function ampforwp_vuukle_comments_markup() {
 	if ( $display_comments_on ) {
 		$vuukle_html .= '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
-			<div overflow tabindex="0" role="button" aria-label="Show comments" style="display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;">Show comments</div>';
+			<div overflow tabindex="0" role="button" aria-label="Show comments" class="afwp-vuukle-support">Show comments</div>';
 	}
 	return $vuukle_html;
 }
@@ -7325,4 +7325,12 @@ function ampforwp_spotim_styling(){
 	    color: #307fe2;
 	  }<?php
 	}
+	if ( isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
+	 	&& $redux_builder_amp['ampforwp-vuukle-comments-support']
+	 	&& $display_comments_on  && comments_open() ) {
+	?>
+	.afwp-vuukle-support{
+		display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;
+	}
+<?php }
 }
