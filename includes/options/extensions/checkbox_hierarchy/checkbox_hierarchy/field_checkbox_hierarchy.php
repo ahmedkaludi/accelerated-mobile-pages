@@ -80,7 +80,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 }
                 if($this->field[ 'options' ]['set_category_hirarchy']==1){
                     $this->wp_dropdown_cats_cat();
-                    echo "</ul>"
+                    echo "</ul>";
                     return ;
                 }
                 foreach ( $this->field[ 'options' ] as $k => $v ) {
