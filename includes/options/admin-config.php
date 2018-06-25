@@ -2969,6 +2969,8 @@ $forms_support[] = array(
                          'title'    => __('Display on User Avatar', 'accelerated-mobile-pages'),
                          'tooltip-subtitle' => __('Enable/Disable user Avatar.', 'accelerated-mobile-pages'),
                          'default'  => 1,
+                          'required' => array('wordpress-comments-support' , '=' , 1
+                                        ),
                      ),
                      array(
                          'id'       => 'ampforwp-disqus-comments-support',

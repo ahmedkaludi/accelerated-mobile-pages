@@ -174,8 +174,14 @@ div#amppb-module-actions-container:before {
     width: 23px;
     height: 20px;
     border-radius: 60px;
-    right: 5px;
+    right: 6px;
     transition: color 0.2s;
+}
+.amppb-duplicate {
+    font-size: 14px;
+    top: 6px;
+    right: 9px;
+    line-height: 16px;
 }
 .amppb-row:hover .tools-icon{
     color: #546e7a;
