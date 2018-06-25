@@ -328,7 +328,7 @@ foreach ($extension_listing_array as $key => $extension) {
         }
 
         $amplicense = '';
-        $onclickUrl = $onclickUrlclose= '';
+        $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $selectedOption = get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
@@ -340,16 +340,27 @@ foreach ($extension_listing_array as $key => $extension) {
             if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
                 $ampforwp_nameOfUser = $selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'];
             }
+
+            if(isset($selectedOption['amp-license'][$pathExploded]['all_data']) && $selectedOption['amp-license'][$pathExploded]['all_data']!=""){
+                $allResponseData = $selectedOption['amp-license'][$pathExploded]['all_data'];
+                $remainingExpiresDays = floor( ( strtotime($allResponseData['expires'] )- time() )/( 60*60*24 ) );
+                if($remainingExpiresDays>0){
+                    $amp_license_response = $remainingExpiresDays." Remaining. <a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Extend key validity</a>";
+                }else{ $amp_license_response = "<a href='https://accounts.ampforwp.com/order/?edd_license_key=".$amplicense."&download_id=".$allResponseData['item_name']."'>Renew your license</a>"; }
+            }
         }
 
-        $pluginReview = '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="text" value="'.$amplicense.'" onclick="return false;"> 
+        $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value="'. str_replace(substr($amplicense, 0, strlen($amplicense)-4), '**', $amplicense).'"  onclick="return false;">  
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. $amplicense.'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'"> 
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
              <input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data]" type="hidden" value="'.$allResponseData.'">
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">
             ';
         
-        $pluginReview .= $verify;
+        $pluginReview .= $verify. "<br/>".$amp_license_response;
         if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
             $pluginReview .= "<div class='afw-license-response-message'>".$selectedOption['amp-license'][$pathExploded]['message']."</div>";
         }
