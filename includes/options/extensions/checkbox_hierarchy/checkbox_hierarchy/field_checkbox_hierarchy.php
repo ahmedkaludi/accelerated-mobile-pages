@@ -78,6 +78,10 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 if ( empty ( $this->field[ 'options' ] ) && isset ( $this->field[ 'default' ] ) && is_array ( $this->field[ 'default' ] ) ) {
                     $this->field[ 'options' ] = $this->field[ 'default' ];
                 }
+                if($this->field[ 'options' ]['set_category_hirarchy']==1){
+                    $this->wp_dropdown_cats_cat();
+                    return ;
+                }
                 foreach ( $this->field[ 'options' ] as $k => $v ) {
                     if ( empty ( $this->value[ $k ] ) ) {
                         $this->value[ $k ] = "";
@@ -135,6 +139,45 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 echo '</label></li></ul>';
             }
         }
+        function wp_dropdown_cats_cat( $currentcat = 0, $currentparent = 0, $parent = 0, $level = 0, $categories = 0 ) {
+        
+        //$this->parent->args[ 'opt_name' ] = 'redux_builder_amp';
+
+
+        if (!$categories )
+            $categories = get_categories(  );//array('hide_empty' => 0)
+
+        if ( $categories ) {
+            foreach ( $categories as $category ) {
+                if ( $currentcat != $category->term_id && $parent == $category->parent) {
+                    $pad = str_repeat( '&#8211; ', $level );
+                    $category->name = esc_html( $category->name );
+                    /*echo "\n\t<option value='$category->term_id'";
+                    if ( $currentparent == $category->term_id )
+                        echo " selected='selected'";
+                    echo ">$pad$category->name</option>";*/
+
+
+                    echo '<label for="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
+                        '[' => '_',
+                        ']' => ''
+                    ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '">';
+                    echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . '[' . $category->term_id . ']' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ $category->term_id ] . '" ' . '/>';
+                    echo '<input type="checkbox" class="checkbox ' . $this->field[ 'class' ] . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
+                        '[' => '_',
+                        ']' => ''
+                    ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '" value="1" ' . checked ( $this->value[$category->term_id], '1', false ) . '/>';
+                    echo ' <span>' .$pad. $category->name . '</span></label>';
+
+
+
+                    $this->wp_dropdown_cats_cat( $currentcat, $currentparent, $category->term_id, $level +1, $categories );
+                }
+            }
+        } else {
+            return false;
+        }
+    }
         /**
          * Enqueue Function.
          * If this field requires any scripts, or css define this function and register/enqueue the scripts/css

@@ -436,7 +436,7 @@ if(is_admin()){
 	add_filter("redux/options/redux_builder_amp/data/category_list_hierarchy", 'ampforwp_redux_category_list_hierarchy',10,1);
 	function ampforwp_redux_category_list_hierarchy($data){
 		if(!is_array($data)){ $data = array(); }// To avoid PHP Fatal error:  Cannot use string offset as an array
-		$cats = get_categories(  );
+		$cats = get_categories();
 		if ( ! empty ( $cats ) ) {
 	        foreach ( $cats as $cat ) {
 	        	if($cat->category_parent!=0){
@@ -446,6 +446,8 @@ if(is_admin()){
 	        	}
 	        }//foreach
 	    } // If
+
+	    $data['set_category_hirarchy'] = 1;
 		return $data;
 	}
 
