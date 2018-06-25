@@ -4373,6 +4373,7 @@ Redux::setSection( $opt_name, array(
             array(
                 'id'       => 'drp-dwn',
                 'type'     => 'switch',
+                'class' => 'child_opt child_opt_arrow',
                 'title'    => __('Dropdown Support', 'accelerated-mobile-pages'),
                 'true'      => 'true',
                 'false'     => 'false',
