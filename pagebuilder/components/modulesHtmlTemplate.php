@@ -29,14 +29,14 @@
 					>
 
                         <span class="module_label">'.$module['label'].'
-                         <em v-if="cell.cell_identity_name"> : {{cell.cell_identity_name}} </em>
+                         <em v-if="cell.cell_identity_name"> {{cell.cell_identity_name}} </em>
                         </span>
 		        		<span class="amppb-setting-right">
-                             <label  @click="duplicateModule($event)" class="link" title="'.$module['label'].'" 
+                             <label  @click="duplicateModule($event)" class="link amppb-module-copy" title="'.$module['label'].'" 
                                 :data-module_id="cell.cell_id"
                                 :data-container_id="cell.container_id"
                             >
-                                <span class="dashicons dashicons-admin-page"></span>
+                                <span class=" dashicons dashicons-admin-page"></span>
                             </label>
 			        		<label  @click="showModulePopUp($event)" class="link" title="'.$module['label'].'" data-popupContent=\''.json_encode($module).'\'
                                 :data-module_id="cell.cell_id"

@@ -1336,3 +1336,13 @@ body .modal-footer .del-btn-modal{
 .dashicons-head{
     vertical-align: initial;
 }
+.amppb-module .module_label em {
+    background: #eee;
+    font-size: 11px;
+    font-weight: normal;
+    padding: 2px 3px;
+    text-transform: unset;
+    font-style: normal;
+    color: #555;
+    border-radius: 40px;
+}
