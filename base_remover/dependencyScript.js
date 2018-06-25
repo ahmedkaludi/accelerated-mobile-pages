@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 	
-	var myElement = document.getElementById('plugin-filter');
+	var myElement = document.getElementById("plugin-filter");
 	//if( myElement.innerHtml!=''){
 		if(window.addEventListener) {
 		   // Normal browsers
