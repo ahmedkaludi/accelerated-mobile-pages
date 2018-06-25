@@ -855,7 +855,7 @@ var app = new Vue({
 			duplicateRowData.cell_data = sampleSelldata;
 
 
-			console.log(duplicateRowData);
+			// console.log(duplicateRowData);
 			if(rowKeyValue>0){
 				app.mainContent.rows.splice(rowKeyValue, 0,duplicateRowData);
 			}else{
