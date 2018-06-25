@@ -2872,23 +2872,23 @@ $forms_support[] =  array(
                  'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Contact Form 7 extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/contact-form-7/#utm_source=options-panel&utm_medium=cf7-tab_cf7_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
                    );
         }
- // contact form 7 
-$forms_support[] =  array(
+    // Gravity Forms 
+        $forms_support[] =  array(
             'id' => 'ampforwp-cfs_2',
             'type' => 'section',
             'title' => __('Gravity Forms Compatibility', 'accelerated-mobile-pages'),
             'indent' => true,
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
-          );
-$forms_support[] = array(
-               'id'        =>'amp-enable-gravityforms_support',
-               'type'      => 'switch',
-               'title'     => __('Gravity Forms Support', 'accelerated-mobile-pages'),
-               'default'   => '',
-               'true'      => 'Enabled',
-               'false'     => 'Disabled',
-           );
+        );
+        $forms_support[] = array(
+            'id'        =>'amp-enable-gravityforms_support',
+            'type'      => 'switch',
+            'title'     => __('Gravity Forms Support', 'accelerated-mobile-pages'),
+            'default'   => '',
+            'true'      => 'Enabled',
+            'false'     => 'Disabled',
+        );
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
     if(!is_plugin_active( 'amp-gravity-forms/amp-gravity-forms.php' ) ){
         $forms_support[]= array(
@@ -2896,7 +2896,34 @@ $forms_support[] = array(
                         'type' => 'info',
                         'required' => array('amp-enable-gravityforms_support', '=' , '1'),
                         'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Gravity Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/gravity-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
-           );}
+        );
+    }
+    // Ninja Forms 
+        $forms_support[] =  array(
+            'id' => 'ampforwp-ninja-forms',
+            'type' => 'section',
+            'title' => __('Ninja Forms Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+        );
+        $forms_support[] = array(
+            'id'        =>'amp-enable-ninja-forms-support',
+            'type'      => 'switch',
+            'title'     => __('Ninja Forms Support', 'accelerated-mobile-pages'),
+            'default'   => '',
+            'true'      => 'Enabled',
+            'false'     => 'Disabled',
+        );
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+    if(!is_plugin_active( 'amp-gravity-forms/amp-ninja-forms.php' ) ){
+        $forms_support[]= array(
+                        'id'   => 'info_normal_2',
+                        'type' => 'info',
+                        'required' => array('amp-enable-ninja-forms-support', '=' , '1'),
+                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Ninja Forms extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=gf-tab_gf_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+        );
+    }
  
    // Contact Form SECTION
    Redux::setSection( $opt_name, array(
