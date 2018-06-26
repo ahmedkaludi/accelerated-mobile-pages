@@ -7,7 +7,6 @@ jQuery(function($) {
                     var parent = $(this).parents('.redux-container:first');
                     var expanded_options = parent.find('.expand_options');
                     if (searchString != "") {
-                        $('.redux-tab-container').hide();
                         if (!expanded_options.hasClass('expanded')) {
                             expanded_options.click();
                             parent.find('.redux-main').addClass('redux-search');
@@ -17,7 +16,7 @@ jQuery(function($) {
                             expanded_options.click();
                             parent.find('.redux-main').removeClass('redux-search');
                         }
-                        parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
+                        //parent.find('.redux-section-field, .redux-info-field, .redux-notice-field, .redux-container-group, .redux-section-desc, .redux-group-tab h3').show();
                         
                         if($('.redux-group-tab-link-li.active').length>0){
                             var rel = $('.redux-group-tab-link-li.active a').attr('data-rel');
@@ -64,10 +63,33 @@ jQuery(function($) {
                              $(this).parents('div.redux-group-tab').css('display','block');
                         }
                         return isMatch;
-                    }).show( function() {
+                    }).show( function() { }); 
 
-                           
-                    }); 
+                    parent.find('.redux-group-tab').each(function() {
+                        if (searchString != "") {
+                            $(this).find("div.redux-section-field").each(function(){
+                                var divSectionId = $(this).attr('id');
+                                var splitResult = divSectionId.split("-");
+                                splitResult.splice(1, 0, "table");
+                                var divTableId = splitResult.join("-");
+                                var totalTr = $("#"+divTableId).find('tr:visible').length;
+                                if(totalTr==0){
+                                    $(this).hide();
+                                }
+                            });
+                        } else {
+                            $(this).find("div.redux-section-field").each(function(){
+                                var divSectionId = $(this).attr('id');
+                                var splitResult = divSectionId.split("-");
+                                splitResult.splice(1, 0, "table");
+                                var divTableId = splitResult.join("-");
+                                var totalTr = $("#"+divTableId).find('tr:visible').length;
+                                if(totalTr>0){
+                                    $(this).show();
+                                }
+                            });
+                        }
+                    }); // parent.find('.redux-group-tab') Closed
                 },
                 wait:400,
                 highlight:false,
@@ -240,35 +262,46 @@ jQuery(function($) {
                 var fontDetail = allFonts[i].fontFamily;                   
 
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
+               $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
 
             //console.log( values.length);
             //console.log( values[0].family );
             //console.table(  values);
             
-            $('#amp_font_selector-select').on('change', function() {
+            $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
                 var fontVariants = data.items[select].variants ;
                 var fontFile = data.items[select].files ;
 
-                if ( fontVariants) {
-                    $('.select2-search-choice').remove();
-                    $('#amp_font_type-select').html('<option></option>');
+                if($(this).attr("id")=='amp_font_selector-select'){
+                    if ( fontVariants) {
+                        //$('.select2-search-choice').remove();
+                        $('#amp_font_type-select').html('<option></option>').trigger('change');
+                    }
+
+                   // console.log( data.items[select] );
+
+                    //if ( data.items[select] ) {
+                        $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
+                   
+                    for (var i in fontVariants) {
+                        $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');
+                    }
+                }else if($(this).attr("id")=='amp_font_selector_content_single-select') {
+                    if ( fontVariants) {
+                        //$('.select2-search-choice').remove();
+                        $('#amp_font_type_content_single-select').html('<option></option>').trigger('change');
+                    }
+                    $('#google_current_font_data_content_single').val( JSON.stringify(data.items[select]) );
+                   
+                    for (var i in fontVariants) {
+                        $('#amp_font_type_content_single-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');
+                    }
                 }
 
-               // console.log( data.items[select] );
-
-                //if ( data.items[select] ) {
-                    $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
-                //}
-               
-                for (var i in fontVariants) {
-                     // var fontArray = {};
-                     // fontArray[fontVariants[i]] =  fontFile[fontVariants[i]] ;
-                    $('#amp_font_type-select').append($("<option value='"+ fontVariants[i] +"' > "+fontVariants[i]+"</option>")).trigger('change');;
-                }
-
-            }); 
+            });
+ 
         });
 
         gfontData.fail(function(data) {
@@ -299,6 +332,9 @@ jQuery(function($) {
                 $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
                 $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");
 
+                $('#amp_font_selector_content_single-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
+                $('#amp_font_selector_content_single-select').select2('val',redux_data.amp_font_selector).trigger("change");
+
                 // Build select data
                 let fontData  = redux_data.google_current_font_data;
                // fontData = JSON.parse(fontData);
@@ -322,6 +358,7 @@ jQuery(function($) {
                         $('#s2id_amp_font_type-select ul').append('<li class="select2-search-choice">    <div> '+redux_data.amp_font_type[i]+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
                         //s2.append($('<option>').text(e));
                         $('#amp_font_type-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
+                        $('#amp_font_type_content_single-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                     }
                     //$('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                 }
@@ -333,7 +370,10 @@ jQuery(function($) {
 
         $('.redux-container').each(function() {
             if (!$(this).hasClass('redux-no-sections')) {
-                $(this).find('.redux-main').prepend('<input style="float:right" class="redux_field_search" name="" type="text" placeholder="Search the controls"/>');
+                $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
+                $('.redux-amp-search-icon').click(function(){
+                    $('.redux_field_search').toggle('slide');
+                });
                 reduxOptionSearch();
             }
         });
@@ -396,6 +436,13 @@ $(".redux-ampforwp-ext-activate").click(function(){
      var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
+    if(license==""){
+        var newlicense = $('#redux_builder_amp_amp-license_'+plugin_id+'_license').val();
+        if(newlicense!=''){
+            license = newlicense;
+            $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val(license);
+        }
+    }
     var item_name = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][item_name]"]').val();
     var store_url = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][store_url]"]').val();
     var plugin_active_path = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][plugin_active_path]"]').val();
@@ -418,7 +465,15 @@ $(".redux-ampforwp-ext-activate").click(function(){
                 currentThis.html("Deactivate");
                 currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');
                 currentThis.removeClass('redux-ampforwp-ext-activate').addClass('redux-ampforwp-ext-deactivate');
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][status]"]').val("valid");
                 deactivatelicence();
+                var all_data = response.other.all_data;
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][success]"]').val( all_data.success );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][license]"]').val( all_data.license );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][item_name]"]').val( all_data.item_name );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][expires]"]').val( all_data.expires );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][customer_name]"]').val( all_data.customer_name );
+                $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][all_data][customer_email]"]').val( all_data.customer_email );
                 //window.location.href = window.location.href;
             }else{
                 currentThis.after("<div class='afw-license-response-message'>"+response.message+'</div>');

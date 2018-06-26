@@ -3,6 +3,7 @@
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
+	<meta name="robots" content="noindex,nofollow"/>
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php $paged = get_query_var( 'paged' );
 		$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
@@ -82,7 +83,7 @@
 							$content = get_the_content();
 						} ?>
 					<p><?php global $redux_builder_amp;
-						if($redux_builder_amp['excerpt-option-design-1']== true) {
+						if($redux_builder_amp['excerpt-option']== true) {
 							$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
 							$final_content = ""; 					
 							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );

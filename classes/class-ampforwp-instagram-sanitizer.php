@@ -7,7 +7,7 @@ private $instagram_medias = array();
 private static $script_slug = 'amp-instagram';
  private static $script_src = 'https://cdn.ampproject.org/v0/amp-instagram-0.1.js';
 public function sanitize() {
-  $body = $this->root_element;
+  $body = $this->get_body_node();
     $xpath = new \DOMXPath($this->dom);
     $class_name = 'instagram-media';
     $blockquotes = $xpath->query("//*[contains(@class,'$class_name')]");
@@ -37,8 +37,8 @@ function create_instagram_tag($sourcecode){
    'height'=> 400,
    'layout' => 'responsive',
    'data-captioned' => '',
-   'data-block-on-consent' => '',
   );
+  $attrs = ampforwp_amp_consent_check( $attrs );
   return AMP_DOM_Utils::create_node($this->dom, 'amp-instagram', $attrs);
  }
 public function get_scripts() {

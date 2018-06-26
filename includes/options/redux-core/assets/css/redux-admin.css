@@ -43,13 +43,8 @@
     top: 11px;
     right: 15px;
     color: rgba(0, 0, 0, 0.30)}
-.redux-group-menu .opt-go-premium i,.redux-group-menu .design i, .redux-group-menu .basic i,
-.redux-group-menu .opt-choose i{
+.redux-group-menu .opt-go-premium i,.redux-group-menu .design i, .redux-group-menu .basic i{
     top:20px;
-}
-.redux-group-menu .opt-choose i{color: #f35644;}
-.redux-sidebar .redux-group-menu li.opt-choose a:hover i{
-    color: #fff
 }
 .redux-sidebar .redux-group-tab-link-a span{display:block}.redux-sidebar .redux-group-tab-link-a span.group_title{    padding-left: 7px;
     line-height: 19px;}.redux-sidebar .redux-group-tab-link-li a.hasError span.group_title{padding-right:25px}.redux-sidebar #redux-header{text-align:center}.redux-sidebar #redux-header .display_header{float:none}.form-table th,.form-table td{margin:0;padding:0px 10px 0px 18px;width:auto}.redux_field_th{       font-weight: normal;
@@ -77,6 +72,11 @@
     right: -14px;
     background: #fff;}.redux-main #redux-footer-sticky{margin-left:-20px;margin-right:-20px;margin-bottom:-10px}.redux-qtip{z-index:999999 !important}.redux-main pre{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}
 /* custom css */
+.redux-amp-search-icon{ 
+    position: relative;
+    top: 17px;
+    left: 10px;
+}
 .redux-container{
     position: relative;
     background: #f5f6fa;
@@ -274,7 +274,7 @@ img.ampforwp-post-builder-img{
 .extension_listing .align_left img{max-width:33px;opacity: 0.75}
 .extension_listing .align_left a{display: grid}
 .extension_listing li{margin-right: 9px;margin-bottom: 15px !important;}
-.extension_desc{ margin-bottom: 10px; float: left;
+.extension_desc{        float: left;
     margin-top: 8px;
     margin-left: 15px;
     width: 265px;}
@@ -297,8 +297,8 @@ img.ampforwp-post-builder-img{
 .amp_extension_settings{
     background: #303e9f;
     text-decoration: none;
-    color: #fff;float: right;
-    padding: 6px 10px 5px 10px;
+    color: #fff;
+float: right;    padding: 6px 10px 6px 10px;
     right: 0;
     border-radius: 40px;
 }
@@ -354,10 +354,19 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 .single_ex_listing .extension_btn{opacity: 0.75}
 #info-info_theme_framework{
     position: absolute;
-    top: 390px;
-    right: 10px;
+    top: 105px;
+    right: 20px;
     width: 199px;
 }
+.redux-group-menu .opt-choose .el+.group_title:after{
+    content: "Compare with Premium";
+    display: inline-block;
+    font-size: 10px;
+    text-transform: none; 
+    width: 100%;
+    font-weight: normal;
+}
+
 .redux-section-indent-start h3{    text-transform: uppercase;
     margin-top: -1px !important;
     font-weight: 600;
@@ -428,14 +437,6 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
 }
 .redux-group-menu .opt-go-premium .el+.group_title:after{
     content: "Advanced Features";
-    display: inline-block;
-    font-size: 10px;
-    text-transform: none;
-    width: 100%;
-    font-weight: normal;
-}
-.redux-group-menu .opt-choose .el+.group_title:after{
-    content: "Compare with Premium";
     display: inline-block;
     font-size: 10px;
     text-transform: none;

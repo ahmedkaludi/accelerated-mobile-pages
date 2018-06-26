@@ -45,6 +45,10 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            $this->time = time();
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->time = AMPFORWP_VERSION;
+            }
 			
 			if( empty( $this->extension_dir ) ) {
             $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
@@ -230,7 +234,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                 'redux-nouislider-css',
                 $this->extension_url . 'vendor/nouislider/redux.jquery.nouislider.css',
                 array(),
-                '5.0.0',
+                $this->time,
                 'all'
             );
 
@@ -238,7 +242,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                 'redux-nouislider-js',
                 $this->extension_url . '/vendor/nouislider/redux.jquery.nouislider' . $min . '.js',
                 array( 'jquery' ),
-                '5.0.0',
+                $this->time,
                 true
             );
 
@@ -246,7 +250,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                 'redux-field-slider-js',
 				$this->extension_url . '/field_amp_slider' . $min . '.js',
                 array( 'jquery', 'redux-nouislider-js', 'redux-js', 'select2-js' ),
-                time(),
+                $this->time,
                 true
             );
 
@@ -255,7 +259,7 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
                     'redux-field-slider-css',
                     $this->extension_url . '/field_amp_slider.css',
                     array(),
-                    time(),
+                    $this->time,
                     'all'
                 );
             //}

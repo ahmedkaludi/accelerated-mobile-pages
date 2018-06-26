@@ -19,7 +19,16 @@
                             </ul>
                         </div>
                         <div class="modal-header">
-                            <h3>{{modalcontent.label}}</h3>
+                            <h3>{{modalcontent.label}}
+                                <em v-if="editModuleTempTitle==false"> : {{modalcontent.cell_identity_name}}
+                                        <i class="dashicons-head dashicons dashicons-edit" v-on:click="editModuleTempTitle = modalcontent.cell_identity_name"></i>
+                                </em>
+                                <em v-if="editModuleTempTitle!=false">
+                                    <input type="text" v-model="modalcontent.cell_identity_name">
+                                    <span v-on:click="saveModuleTitle(modalcontent);"><i class="dashicons-head dashicons dashicons-yes"></i></span>
+                                    <span v-on:click="cancleModuleTitle(modalcontent);"><i class="dashicons-head dashicons dashicons-no"></i></span>
+                                </em>
+                            </h3>
                         </div>
                         <div class="modal-body">
                         <div class="modal-settings">

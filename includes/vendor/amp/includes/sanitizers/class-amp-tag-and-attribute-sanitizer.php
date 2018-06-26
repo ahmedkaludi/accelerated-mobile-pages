@@ -201,7 +201,18 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	 *                  or if it did not find any HTML elements to convert to AMP equivalents.
 	 */
 	public function get_scripts() {
-		return array_fill_keys( $this->script_components, true );
+		$scriptArray = array_fill_keys( $this->script_components, true );
+		foreach ( $scriptArray as $ext_key=>$ext_value ) {
+			$scriptArray[$ext_key] = sprintf(
+				'https://cdn.ampproject.org/v0/%s-%s.js',
+				$ext_key,
+				'latest'
+			);
+		}
+		if(count($scriptArray)>0){
+			remove_filter('the_content', 'wpautop');
+		}
+		return $scriptArray;
 	}
 
 	/**
@@ -240,7 +251,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	public function sanitize() {
 
 		// Add root of content to the stack.
-		$this->stack[] = $this->root_element;
+		$this->stack[] = $this->get_body_node();
 
 		/**
 		 * This loop traverses through the DOM tree iteratively.
@@ -1615,6 +1626,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		 *
 		 * @var DOMNode $parent
 		 */
+		/*
 		$parent = $node->parentNode;
 		if ( $node && $parent ) {
 			$this->remove_invalid_child( $node );
@@ -1626,5 +1638,6 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				$parent->removeChild( $node );
 			}
 		}
+		*/
 	}
 }

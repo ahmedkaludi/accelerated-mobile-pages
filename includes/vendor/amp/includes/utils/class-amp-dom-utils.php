@@ -1,17 +1,6 @@
 <?php
-/**
- * Class AMP_DOM_Utils.
- *
- * @package AMP
- */
 
-/**
- * Class AMP_DOM_Utils
- *
- * Functionality to simplify working with DOMDocuments and DOMElements.
- */
 class AMP_DOM_Utils {
-
 	/**
 	 * HTML elements that are self-closing.
 	 *
@@ -356,7 +345,7 @@ class AMP_DOM_Utils {
 		foreach ( $body->childNodes as $child_node ) {
 			$out .= self::get_content_from_dom_node( $dom, $child_node );
 		}
-		$out = apply_filters('amp_get_content_from_dom', $out);
+
 		return $out;
 	}
 
@@ -477,7 +466,6 @@ class AMP_DOM_Utils {
 	 * @param string[]   $attributes One or more attributes for the node's HTML element.
 	 */
 	public static function add_attributes_to_node( $node, $attributes ) {
-		$attributes['data-block-on-consent'] = '';
 		foreach ( $attributes as $name => $value ) {
 			$node->setAttribute( $name, $value );
 		}

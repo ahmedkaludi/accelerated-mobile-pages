@@ -51,7 +51,7 @@
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="author-archive">
-							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
+							<amp-img src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="fixed"></amp-img>
 						</div>
 					<?php }
 				}
@@ -131,7 +131,7 @@
 							$content = get_the_content();
 						} ?>
 					<p><?php global $redux_builder_amp;
-						if($redux_builder_amp['excerpt-option-design-1']== true) {
+						if($redux_builder_amp['excerpt-option']== true) {
 							$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
 							$final_content = "";					
 							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );

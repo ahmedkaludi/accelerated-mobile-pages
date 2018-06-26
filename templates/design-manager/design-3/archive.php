@@ -76,7 +76,7 @@ if ( get_query_var( 'paged' ) ) {
 					$curauth_url = get_avatar_url( $curauth->user_email, array('size'=>180) );
 					if($curauth_url){ ?>
 						<div class="amp-wp-content author-img">
-							<amp-img data-block-on-consent src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
+							<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($curauth_url); ?>" width="90" height="90" layout="responsive"></amp-img>
 						</div>
 					<?php }
 				}
@@ -154,36 +154,37 @@ if ( get_query_var( 'paged' ) ) {
 
 
 				<?php
+				if( true == $redux_builder_amp['excerpt-option'] ) {
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
 						$content = get_the_content();
-					}
-				?>
-		        <p class="large-screen-excerpt-design-3">
-				<?php  
-					$excerpt_length	='';
-					$excerpt_length = 15;
-					$final_content 	= ""; 					
-					$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-					if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-						$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-					}
-					echo $final_content; ?> </p>
-		        <p class="small-screen-excerpt-design-3" > <?php    
-					if($redux_builder_amp['excerpt-option-design-3']== true) {
-						$excerpt_length='';
-						$excerpt_length = $redux_builder_amp['amp-design-3-excerpt'];
-						$final_content  = "";  					
+					} ?>
+			        <p class="large-screen-excerpt-design-3">
+					<?php  
+						$excerpt_length	='';
+						$excerpt_length = 15;
+						$final_content 	= ""; 					
 						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 
 						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
 							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
 						}
-						echo $final_content; 
-					} ?> 
-				</p>
+						echo $final_content; ?> </p>
+			        <p class="small-screen-excerpt-design-3" > <?php    
+						if($redux_builder_amp['excerpt-option-design-3']== true) {
+							$excerpt_length='';
+							$excerpt_length = $redux_builder_amp['amp-design-3-excerpt'];
+							$final_content  = "";  					
+							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+
+							if ( false === has_filter('ampforwp_modify_index_content' ) ) {
+								$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
+							}
+							echo $final_content; 
+						} ?> 
+					</p>
+				<?php } ?>
                 <div class="featured_time">
                   <?php
                        $post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );

@@ -37,6 +37,9 @@
 .redux-container #redux-intro-text{
     text-align: right
 }
+.extension-menu-call{
+    color: #333
+}
 .redux-container #redux-intro-text{
     background: transparent;
     border: 0;

@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.6
-Stable tag: 0.9.95
+Tested up to: 4.9.5
+Stable tag: 0.9.97
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,8 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
-* NEW - Fully GDPR Complient
-* NEW - Two Types of GDPR notification added
+* NEW - GDPR Compliance
 * NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW Default Theme for AMP called Swift
 * NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
@@ -109,7 +108,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 **[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
-
 **[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
@@ -185,12 +183,81 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.92 (26th May 2018) =
-* Added: GDPR Compliance added
+= 0.9.97 (25th June 2018) =
+* Fixed: Extra position attribute left in css Design #2 #2119
+* Fixed: Non-AMP header link not working #2109
+* Added: Create an Ad Above the Post Content #2155
+* Fixed: "AGO" text was not translatable #2158
+* Added: Filter created `ampforwp_header_url` to modify logo url #2141
+* Fixed: Removing the text "amp" in footer view non-amp-link #2158
+* Added: Compatibility WP user Avatar plugin added #2011
+* Fixed: Design 2 - meta info producing a block of empty html #1969 #1954
+* Added: Pocket and Hatena Bookmark social share buttons Added #1652
+* Fixed: External Links are appended with "amp" at the end of the url in content. #2174
+* Fixed: Some Issues Found in Design #3 #2130
+* Fixed: ScoopVersion: 1.4 By boostdevelopers theme displaying the error only in the category #1683
+* Fixed: Page featured Image is not displaying in the Swift theme #2136
+* Fixed: Dropcap breaking the youtube embed code #2157
+* Fixed: Bulk hide by default option is requires Permalinks to be saved #2145
+* Fixed: Fully compatibility with muffin page builder #2180
+* Fixed: Incontent Related Post Issues #2078
+* Fixed: Search page should not have AMP version of the page and not in search result #2191
+* Added: Control added to modify Retina Images resolutions #2099
+* Added: Created an option to duplicate a page builder element #1986
+* Added: Image Caption is not displaying below the Image in design 1,2,3 #2101
+* Fixed: Post pagination not working properly in D1, D2 and D3 #2168
+* Fixed: Auto re-save permalink if the options in reading setting page get changed #2190
+* Fixed: Leave a comment not looking good in Swift theme #2150
+* Added: Social icons for pages. #2162
+* Added: Create an option to pull canonical from Yoast #2118
+* Added: Full Support for All in one SEO #1720
+* Fixed: Single with sidebar CSS should only load if that layout type is selected #2091
+* Fixed: Required Filed is not working in the Repeater in Page builder #2217
+* Fixed: alt in `<div>` causing validation errors. #2093
+* Added: Drop Down Menu Support in Swift Header Menu #2095
+* Added: Parallax Setting Added in PageBuilder #2095
+* Added: Multiple Layout Settings added in Feature Module in Page Builder #2095
+* Added: Add the option changing the sliding speed of slider in "Slider module" of AMP Page Builder #2218
+* Added: Created an option Related Post link in non amp  #2201
+* Fixed: Removed Jannah LazyLoad on AMP Mode #2224
+* Fixed: Custom post types with custom taxonomy not working in AMP #2209
+* Fixed: frontpage and homepage not working properly AMP take over #2153
+* Added: Button field created in Feature module #2068
+* Added: Excerpt should also work on homepage and categories page #2176
+* Fixed: Option panel breaks in when RTL in WP Dashboard #2176
+* Fixed: Featured image from Custom fields in pagebuilder Category module #2237
+* Added: Forms Module Support added in PageBuilder #2221
+* Fixed: Paginated AMP URL on category are opening to 404 page #2233
+* Fixed: Ads not displaying properly in RTL #2227 #2138
+* Fixed: single quotation (') in text module breaking AMP page builder #1940
+* Added: Filter created tp modify `ampforwp_loop_image_update` image arguments in components of AMP theme framework #2057
+* Added: Option to change the locale of Facebook comments #2127
+* Added: Search option in option panel #2088
+* Fixed: Accordion not working when the user enters some data in Description with HTML Tags #2088 #2097
+* Fixed: Internal links now working with ?amp=1 #2204
+* Fixed: UTM Parameters not working properly with AMP #2223
+* Fixed: Multiple Slider module of AMP Page builder not working #2090
+* Fixed: Hide AMP by categories option should hide by default in the backend of that specific post #2112
+* Added: IP Anonymization in Google analytics #2135
+* Fixed: Improvement in styling of AMP option panel #2102
+* Added: Added new fonts control for Content in Single page #2122
+* Fixed: Legacy page builder button styling is not loading properly #2036
+* Fixed: Enable/ Disable AMP on Paginated posts #2094
+* Added: Filter added so we can disable Comments on specific pages `ampforwp_comments_visibility` #2094 
 
-= 0.9.90 (22nd May 2018) =
+
+
+
+
+
+
+
+= 0.9.96 (2nd June 2018) =
+* Added: Fully GDPR Compliance
 * Fixed: GTM not working
-* Fixed: Core updated to the latest version
+
+= 0.9.86.1 (8th May 2018) =
+* A bug causing validation issues has been resolved.
 
 = 0.9.86 (3rd May 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-86-released-getting-ready-for-future-87th-update/)

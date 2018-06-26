@@ -1,15 +1,7 @@
 <?php
-/**
- * Class AMP_Vimeo_Embed_Handler
- *
- * @package AMP
- */
 
-/**
- * Class AMP_Vimeo_Embed_Handler
- *
- * Much of this class is borrowed from Jetpack embeds
- */
+require_once( AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
+
 class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 
 	const URL_PATTERN = '#https?:\/\/(www\.)?vimeo\.com\/.*#i';
@@ -18,6 +10,9 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 
 	protected $DEFAULT_WIDTH = 600;
 	protected $DEFAULT_HEIGHT = 338;
+
+	private static $script_slug = 'amp-vimeo';
+	private static $script_src = 'https://cdn.ampproject.org/v0/amp-vimeo-0.1.js';
 
 	function __construct( $args = array() ) {
 		parent::__construct( $args );
@@ -32,12 +27,19 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 	function register_embed() {
 		wp_embed_register_handler( 'amp-vimeo', self::URL_PATTERN, array( $this, 'oembed' ), -1 );
 		add_shortcode( 'vimeo', array( $this, 'shortcode' ) );
-		add_filter( 'wp_video_shortcode_override', array( $this, 'video_override' ), 10, 2 );
 	}
 
 	public function unregister_embed() {
 		wp_embed_unregister_handler( 'amp-vimeo', -1 );
 		remove_shortcode( 'vimeo' );
+	}
+
+	public function get_scripts() {
+		if ( ! $this->did_convert_elements ) {
+			return array();
+		}
+
+		return array( self::$script_slug => self::$script_src );
 	}
 
 	public function shortcode( $attr ) {
@@ -81,16 +83,15 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-
-		return AMP_HTML_Utils::build_tag(
-			'amp-vimeo',
-			array(
+		$attrs = array(
 				'data-videoid' => $args['video_id'],
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
-			)
-		);
+			);
+		
+		$attrs = ampforwp_amp_consent_check( $attrs );
+		return AMP_HTML_Utils::build_tag('amp-vimeo', $attrs);
 	}
 
 	// get_video_id_from_url()
@@ -103,32 +104,10 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 		$video_id = "";
 		if ( $path ) {
 			$tok = explode( '/', $parsed_url['path'] );
-			$video_id = end($tok);
+			$tok = apply_filters('amp_vimeo_parse_url',$tok);
+			$video_id = $tok;
 		}
 
 		return $video_id;
 	}
-
-	/**
-	 * Override the output of Vimeo videos.
-	 *
-	 * This overrides the value in wp_video_shortcode().
-	 * The pattern matching is copied from WP_Widget_Media_Video::render().
-	 *
-	 * @param string $html Empty variable to be replaced with shortcode markup.
-	 * @param array  $attr The shortcode attributes.
-	 * @return string|null $markup The markup to output.
-	 */
-	public function video_override( $html, $attr ) {
-		if ( ! isset( $attr['src'] ) ) {
-			return $html;
-		}
-		$src           = $attr['src'];
-		$vimeo_pattern = '#^https?://(.+\.)?vimeo\.com/.*#';
-		if ( 1 === preg_match( $vimeo_pattern, $src ) ) {
-			return $this->shortcode( array( $src ) );
-		}
-		return $html;
-	}
-
 }

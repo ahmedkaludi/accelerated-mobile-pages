@@ -83,7 +83,7 @@ function call_page_builder(){
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	
-	$previousData = (str_replace("'", "", $previousData));
+	$previousData = (str_replace("'", "&apos;", $previousData));
 	
 	$totalRows = 1;
 	$totalmodules = 1;
@@ -172,6 +172,8 @@ function call_page_builder(){
 						            >
 						            	<i class="tools-icon dashicons dashicons-menu"></i>
 						            </span>
+						            <span @click="duplicateRow($event)" class="amppb-duplicate dashicons dashicons-admin-page" :data-rowid="row.id"></span>
+
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields col" data-cell="1">
@@ -210,6 +212,7 @@ function call_page_builder(){
 						            >
 						            	<span class="tools-icon dashicons dashicons-menu"></span>
 						            </span>
+						            <span @click="duplicateRow($event)" class="amppb-duplicate dashicons dashicons-admin-page" :data-rowid="row.id"></span>
 						        </div><!-- .amppb-row-title -->
 						 
 						        <div class="amppb-row-fields ">

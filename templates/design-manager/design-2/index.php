@@ -47,9 +47,9 @@
  			the_archive_description( '<div class="taxonomy-description">', '</div>' );
  		} 
  		$blog_title = ampforwp_get_blog_details('title');
-			if( ampforwp_is_blog() && $blog_title ){  ?>
-				<h1 class="page-title"><?php echo $blog_title ?></h1>
-			<?php }	
+		if( ampforwp_is_blog() && $blog_title){  ?>
+			<h1 class="page-title"><?php echo $blog_title ?></h1>
+		<?php }	
  	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
 
@@ -70,39 +70,28 @@
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php
+				if( true == $redux_builder_amp['excerpt-option'] ) {
+					$class = 'large-screen-excerpt';
+					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
+						$class = 'small-screen-excerpt';
+					}
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
 						$content = get_the_content();
 					}
-				?>
-		        <p class="large-screen-excerpt">
-				<?php 
-					$excerpt_length = ""; 
-					$excerpt_length = 15;
-					$final_content  = "";
-					
-					$final_content = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-					if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-						$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-					}
-
-					echo $final_content; 
-				?></p>
-		        <p class="small-screen-excerpt" > <?php    
-					if($redux_builder_amp['excerpt-option-design-2']== true) {
-						$excerpt_length_2	='';
-						$excerpt_length_2 	= $redux_builder_amp['amp-design-2-excerpt']; 
-						$final_content 		= ""; 				
-						$final_content = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+					?>
+			        <p class="<?php echo $class; ?>">
+					<?php 
+						$excerpt_length		='';
+						$excerpt_length 	= $redux_builder_amp['amp-design-2-excerpt'];
+						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 
 						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
 							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
 						}
 						echo $final_content;
-					} ?> 
-				</p>
+				} ?>
 		    </div>
 		    <div class="amp-wp-meta">
 			              <?php  $this->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-author') ) ); ?>

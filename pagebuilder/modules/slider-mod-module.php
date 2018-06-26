@@ -1,12 +1,12 @@
 <?php 
 $output = '
 {{if_condition_carousel_layout_type==1}}
-	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="2000">
+	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">
 		{{repeater_image}}
 	</amp-carousel>
 {{ifend_condition_carousel_layout_type_1}}
 {{if_condition_carousel_layout_type==2}}
-	<amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides">
+	<amp-carousel id="carousel-with-preview-{{unique_cell_id}}" width="400" height="300" layout="responsive" type="slides">
 		{{repeater_image}}
 	</amp-carousel>
 	<div class="slid-prv">
@@ -75,6 +75,14 @@ return array(
 	           				 'tab'      =>'customizer',
 	 						'default'	=>'90%',	
 	           				'content_type'=>'css',
+ 						),
+ 						array(		
+	 						'type'		=>'text',		
+	 						'name'		=>"delay",		
+	 						'label'		=>'Slider Delay',
+	           				 'tab'      =>'customizer',
+	 						'default'	=>'2000',	
+	           				'content_type'=>'html',
  						),
 				        array(
 								'type'		=>'checkbox',
@@ -160,7 +168,7 @@ return array(
 	          			"image"=>'
 								{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 							',
-						"button"=>'<button on="tap:carousel-with-preview.goToSlide(index={{repeater_unique}})">
+						"button"=>'<button on="tap:carousel-with-preview-{{unique_cell_id}}.goToSlide(index={{repeater_unique}})">
 			        {{if_img_upload}}<amp-img src="{{img_upload-thumbnail}}" width="150" height="150" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			      </button>'
 	          		)

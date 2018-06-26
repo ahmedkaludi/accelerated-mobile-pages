@@ -11,7 +11,7 @@ function ampforwp_framework_get_logo(){
                   $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
                   $set_rel_to_noamp = true;
                   } else {
-                    $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
+                    $ampforwp_home_url = user_trailingslashit( get_bloginfo('url') );
                  }
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
@@ -26,7 +26,7 @@ function ampforwp_framework_get_logo(){
                          }
                 }
           }?>
-
+        <?php $ampforwp_home_url = apply_filters('ampforwp_header_url', $ampforwp_home_url); ?>
         <?php if ( true == ($redux_builder_amp['opt-media']['url']) ) {
           $alt = ampforwp_default_logo('alt')  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >

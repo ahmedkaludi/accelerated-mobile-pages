@@ -195,32 +195,60 @@ require_once  ABSPATH . WPINC . '/category.php';
                    $image = $thumb_url_array[0];
                    $width = $thumb_url_array[1];
                    $height = $thumb_url_array[2];
+              }
+              if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
+                $image    = ampforwp_cf_featured_image_src();
+                $width  = ampforwp_cf_featured_image_src('width');
+                $height   = ampforwp_cf_featured_image_src('height');
+              }
+              if(!empty($image) && !empty($width) && !empty($height)){
+                  switch($fieldValues['content_layout_type']){
+                      case 1:
+                        $width = $fieldValues['img-width-1'];
+                        $height = $fieldValues['img-height-1'];
+                      break;
+                      case 2:
+                        $width = $fieldValues['img-width-2'];
+                        $height = $fieldValues['img-height-2'];
+                      break;
+                      case 3:
+                        $width = $fieldValues['img-width-3'];
+                        $height = $fieldValues['img-height-3'];
+                      break;
+                      case 4:
+                        $width = $fieldValues['img-width-4'];
+                        $height = $fieldValues['img-height-4'];
+                      break;
+                      case 5:
+                        $width = $fieldValues['img-width-5'];
+                        $height = $fieldValues['img-height-5'];
+                      break;
+                      default:
+                      break;
+                  }
 
-                   switch($fieldValues['content_layout_type']){
-                    case 1:
-                      $width = $fieldValues['img-width-1'];
-                      $height = $fieldValues['img-height-1'];
-                    break;
-                    default:
-                    break;
-                   }
-                   list($new_width, $new_height) = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);
-                   if ( $new_width && $new_height ) {
-                    $width = $new_width;
-                    $height = $new_height;
-                   }
-                   try{
+                  $pb_content_width_height = apply_filters("ampforwp_pb_content_mod_set_height_width", $width, $height, $fieldValues);  
+                  if(is_array($pb_content_width_height)){
+                    list($new_width, $new_height) = $pb_content_width_height;
+                    if ( !empty($new_width) && !empty($new_height) ) {
+                      $width = $new_width; 
+                      $height = $new_height; 
+                    }   
+                  }
+                  try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
+                   
                     if($thumb_url!=false){
                       $image   =  $thumb_url[0];
                       $width   =  $thumb_url[1];
                       $height  =  $thumb_url[2];
                     }
+
                    }catch(Exception $e){
                       error_log($e);
                    }
-                  
               }
+
               $excerptContent = "";
               if( $ampforwp_show_excerpt == 'yes' ) {     
                    if( has_excerpt() ) {    
@@ -234,9 +262,9 @@ require_once  ABSPATH . WPINC . '/category.php';
                $title = get_the_title();
                $postid = get_the_ID();
                $author = get_the_author();
-                $tags = get_the_tags();
-               if(is_array($tags) && count($tags) > 0){
-                  $tags = $tags[0]->name;
+               $tags = get_the_tags(); 
+               if(is_array($tags) && count($tags) > 0){  
+                  $tags = $tags[0]->name;  
                }
               // get_the_author_meta( string $field = '', int $user_id = false );
                $postdate = get_the_date(  ' F j, Y', $postid );

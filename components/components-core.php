@@ -268,14 +268,12 @@ function amp_breadcrumb(){
 
 //Get Core of AMP HTML
 function amp_header_core(){
-	global $redux_builder_amp;
-	$post = $post_id = '';
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$post = get_post($post_id);
-	$thisTemplate = new AMP_Post_Template($post);
+	$thisTemplate = new AMP_Post_Template($post_id);
+	global $redux_builder_amp;
 	$html_tag_attributes = AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) );
 	
 	$bodyClass = '';
@@ -326,6 +324,9 @@ function amp_header_core(){
 		    		wp_head();
 
 		    	}else{
+		    		if(is_search()){?>
+		    			<meta name="robots" content="noindex,nofollow"/>
+		    		<?php }
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
 			<style amp-custom>
@@ -342,13 +343,11 @@ function amp_header_core(){
 }
 
 function amp_header(){
-	$post = $post_id = '';
 	$post_id = get_queried_object_id();
 	if ( ampforwp_polylang_front_page() ) {
 		$post_id = pll_get_post(get_option('page_on_front'));
 	}
-	$post = get_post($post_id);
-	$thisTemplate = new AMP_Post_Template($post);
+	$thisTemplate = new AMP_Post_Template($post_id);
 	$thisTemplate->load_parts( array( 'header' ) ); 
 	do_action( 'amp_after_header', $thisTemplate );
 	do_action( 'ampforwp_after_header', $thisTemplate );
@@ -437,7 +436,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
 	// Muffin Builder Compatibility #1455 #1893
-	if ( function_exists('mfn_builder_print') ) {
+	if ( function_exists('mfn_builder_print') && ! $amp_custom_content_enable ) {
 		ob_start();
 	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
 		$content = ob_get_contents();
@@ -456,7 +455,15 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 								) 
 							) 
 						);
-	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();		
+	 	if ( ! get_post_meta( $post_id, 'mfn-post-hide-content', true ) && ampforwp_is_front_page() ) {
+	 		$ampforwp_custom_amp_editor_content = '';
+			$ampforwp_custom_amp_editor_content = $ampforwp_the_content;
+	 		$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+	 		$ampforwp_the_content .=  $ampforwp_custom_amp_editor_content;		      
+		}
+		else{
+			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+		}		
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content;
@@ -549,7 +556,7 @@ function amp_author_meta( $args ) {
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
-        <amp-img data-block-on-consent src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+        <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
