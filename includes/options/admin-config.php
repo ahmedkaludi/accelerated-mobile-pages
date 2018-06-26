@@ -340,6 +340,7 @@ foreach ($extension_listing_array as $key => $extension) {
         }
 
         $amplicense = '';
+        $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $allResponseData = array('success'=>'',
                                 'license'=> '',
                                 'item_name'=> '',
@@ -347,7 +348,6 @@ foreach ($extension_listing_array as $key => $extension) {
                                 'customer_name'=> '',
                                 'customer_email'=> '',
                                 );
-        $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $selectedOption = get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
