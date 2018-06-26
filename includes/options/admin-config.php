@@ -91,6 +91,18 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-nf-subsection}',
                         ),
                         array(
+                            'name'=>'WP Forms for AMP',
+                            'desc'=>'Add WP Forms Support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/wpf.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/wp-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'wp-forms-for-amp/amp-wpforms.php',
+                            'item_name'=>'WP Forms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('wp-forms-for-amp/amp-wpforms.php')? 1 : 2),
+                            'settingUrl'=>'{ampforwp-wpf-subsection}',
+                        ),
+                        array(
                             'name'=>'Email Opt-in Forms',
                             'desc'=>'Capture Leads with Email Subscription.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
@@ -328,6 +340,13 @@ foreach ($extension_listing_array as $key => $extension) {
         }
 
         $amplicense = '';
+        $allResponseData = array('success'=>'',
+                                'license'=> '',
+                                'item_name'=> '',
+                                'expires'=> '',
+                                'customer_name'=> '',
+                                'customer_email'=> '',
+                                );
         $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $selectedOption = get_option('redux_builder_amp',true);
         if(isset($selectedOption['amp-license'][$pathExploded])){

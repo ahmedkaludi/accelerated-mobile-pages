@@ -199,7 +199,7 @@ function ampforwp_framework_get_vuukle_comments(){
 	$srcUrl = add_query_arg('title' , $post->post_title, $srcUrl);  
 	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
-		<div overflow tabindex="0" role="button" aria-label="Show comments" style="display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;">Show comments</div>';
+		<div overflow tabindex="0" role="button" aria-label="Show comments">Show comments</div>';
 	echo $vuukle_html;
 }
 
