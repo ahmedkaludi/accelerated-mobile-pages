@@ -6,8 +6,10 @@ Show Front Data
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
 	global $post,  $redux_builder_amp;
-  $postId = (is_object($post) ? $post->ID : '');
-  if( empty( $postId ) ) return;
+	
+  	$postId = (is_object($post) ? $post->ID : '');
+  	if( empty( $postId ) ) return;
+
 	if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
