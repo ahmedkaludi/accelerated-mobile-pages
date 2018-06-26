@@ -186,7 +186,8 @@
 			            <div class="post-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
-		            <?php }
+		            <?php } ?>
+		            <?php if($redux_builder_amp['rp_design_type'] == '1'){
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 					$my_query = related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
@@ -217,7 +218,7 @@
 					      } ?>
 	      				</ul>
 	      			</div>
-		            <?php wp_reset_postdata(); } ?>
+		            <?php wp_reset_postdata(); }  } ?>
 				</div>
 				<?php } ?>
 		    </div>

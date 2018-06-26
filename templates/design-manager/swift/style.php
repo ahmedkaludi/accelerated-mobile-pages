@@ -348,7 +348,7 @@ echo $fontFamily;?>
 .shr-txt, .athr-tx, .r-pf h3, .amp-tags > span:nth-child(1), .amp-related-posts-title, .post-date, .related-title{text-transform: uppercase;font-size: 12px;color: #666;font-weight: 400;}
 .loop-date, .post-edit-link{display:inline-block;}
 .post-date .post-edit-link{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;float: right;}
-.sp-athr, .amp-tags, .post-date, .srp{margin-top:20px;}
+.sp-athr, .amp-tags, .post-date{margin-top:20px;}
 .sp-athr .author-details a, .sp-athr .author-details, .amp-tags span a, .amp-tag {font-size: 15px;color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;font-weight: 400;line-height: 1.5;}
 .amp-tags .amp-tag:after{content: "/";display: inline-block;padding: 0px 10px;position: relative;top: -1px;color: #ccc;font-size: 12px;}
 .amp-tags .amp-tag:last-child:after{display:none;}
@@ -384,11 +384,14 @@ if($redux_builder_amp['swift_cnt']){
 } // swift Content Heading Sizes Ends?>
 .cntn-wrp p{margin:0px 0px 30px 0px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
-.srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
-.srp ul li{display: inline-block;line-height: 1.3;margin-bottom: 24px;list-style-type:none;width:100%;}
-.srp ul li:last-child{margin-bottom:0px;}
-.has_thumbnail:hover {opacity:0.7;}
-.has_thumbnail:hover .related_link a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
+<?php if($redux_builder_amp['rp_design_type'] == '1'){?>
+	.srp{margin-top:20px;}
+	.srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
+	.srp ul li{display: inline-block;line-height: 1.3;margin-bottom: 24px;list-style-type:none;width:100%;}
+	.srp ul li:last-child{margin-bottom:0px;}
+	.has_thumbnail:hover {opacity:0.7;}
+	.has_thumbnail:hover .related_link a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
+<?php } // Related Posts Desing 1 Ends ?>
 .related_link{margin-top:10px;}
 .related_link a{color:#333;}
 .amp-related-posts ul{list-style-type:none;}
