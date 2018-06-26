@@ -1,17 +1,8 @@
 <?php
-/**
- * Style template.
- *
- * @package AMP
- */
-
-/**
- * Context.
- *
- * @var AMP_Post_Template $this
- */
-
+// Get content width
 $content_max_width       = absint( $this->get( 'content_max_width' ) );
+
+// Get template colors
 $theme_color             = $this->get_customizer_setting( 'theme_color' );
 $text_color              = $this->get_customizer_setting( 'text_color' );
 $muted_text_color        = $this->get_customizer_setting( 'muted_text_color' );
@@ -143,7 +134,7 @@ blockquote p:last-child {
 .amp-wp-header .amp-wp-site-icon {
 	/** site icon is 32px **/
 	background-color: <?php echo sanitize_hex_color( $header_color ); ?>;
-	border: 1px solid <?php echo sanitize_hex_color( $header_color ); ?>;
+	border: 1px solid <?php echo sanitize_hex_color(  $header_color ); ?>;
 	border-radius: 50%;
 	position: absolute;
 	right: 18px;
@@ -169,7 +160,7 @@ blockquote p:last-child {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin: 1.5em 16px 0;
+	margin: 1.5em 16px 1.5em;
 }
 
 .amp-wp-title {
@@ -189,7 +180,7 @@ blockquote p:last-child {
 	flex: 2 1 50%;
 	font-size: .875em;
 	line-height: 1.5em;
-	margin: 0 0 1.5em;
+	margin: 0;
 	padding: 0;
 }
 

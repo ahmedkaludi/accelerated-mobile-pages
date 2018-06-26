@@ -44,6 +44,10 @@
                 $this->parent   = $parent;
                 $this->field    = $field;
                 $this->value    = $value;
+                $this->time = '';
+                if ( defined('AMPFORWP_VERSION') ) {
+                    $this->timestamp = AMPFORWP_VERSION;
+                }
                 $this->is_field = $this->parent->extensions['import_export']->is_field;
 
                 $this->extension_dir = ReduxFramework::$_dir . 'inc/extensions/import_export/';
@@ -155,14 +159,14 @@
                     'redux-import-export',
                     $this->extension_url . 'import_export/field_import_export' . Redux_Functions::isMin() . '.js',
                     array( 'jquery' ),
-                    ReduxFramework_extension_import_export::$version,
+                     $this->timestamp, //ReduxFramework_extension_import_export::$version,
                     true
                 );
-
                 wp_enqueue_style(
                     'redux-import-export',
                     $this->extension_url . 'import_export/field_import_export.css',
-                    time(),
+                    array(),
+                    $this->timestamp, //time(),
                     true
                 );
 

@@ -18,6 +18,10 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            $this->timestamp = '';
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->timestamp = AMPFORWP_VERSION;
+            }
         }
 
         /**
@@ -73,7 +77,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                 'redux-field-switch-js',
                 ReduxFramework::$_url . 'inc/fields/switch/field_switch' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                time(),
+                $this->timestamp, //time(),
                 true
             );
 
@@ -82,7 +86,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                     'redux-field-switch-css',
                     ReduxFramework::$_url . 'inc/fields/switch/field_switch.css',
                     array(),
-                    time(),
+                    $this->timestamp, //time(),
                     'all'
                 );
             }

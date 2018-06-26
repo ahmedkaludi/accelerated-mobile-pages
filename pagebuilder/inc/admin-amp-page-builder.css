@@ -162,7 +162,7 @@ div#amppb-module-actions-container:before {
     background: #f44336;
     color: #fff;
 }
-.tools-icon{
+.tools-icon, .amppb-duplicate{
     /*display: none;*/
     padding: 3px 0px 1px 1px;
     float: right;
@@ -174,14 +174,20 @@ div#amppb-module-actions-container:before {
     width: 23px;
     height: 20px;
     border-radius: 60px;
-    right: 5px;
+    right: 6px;
     transition: color 0.2s;
+}
+.amppb-duplicate {
+    font-size: 14px;
+    top: 6px;
+    right: 9px;
+    line-height: 16px;
 }
 .amppb-row:hover .tools-icon{
     color: #546e7a;
     transition: 0s
 }
-.amppb-row:hover .tools-icon:hover { 
+.amppb-row:hover .tools-icon:hover, .amppb-duplicate:hover { 
     transition: 0s;
     color: #fff;
     background: #546e7a
@@ -272,13 +278,22 @@ amppb-row-fields .amppb-column-2:not(:last-child){
     top: 10px;
     left: 15px;
 }
-
+.amppb-setting-right{
+    float:right;
+}
+.amppb-module-copy{
+    right: -10px;
+    position: relative;
+}
+#pagebilder_content .amppb-module-copy span{
+    color: #bbb
+}
 .amppb-setting-right span{
     display: inline-block;
     right: 0px;
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
-    padding: 12px 7px 9px 15px;
+    padding: 12px 7px 9px 5px;
     cursor: pointer;
     font-size: 15px;
     color: #72777c;
@@ -1325,3 +1340,16 @@ body .modal-footer .del-btn-modal{
 }
 .amp-layout-breadcrumbs_last{font-weight: bold}
 .amp_l_preview_button{width: 49.2% !important}
+.dashicons-head{
+    vertical-align: initial;
+}
+.amppb-module .module_label em {
+    background: #eee;
+    font-size: 11px;
+    font-weight: normal;
+    padding: 2px 3px;
+    text-transform: unset;
+    font-style: normal;
+    color: #555;
+    border-radius: 40px;
+}

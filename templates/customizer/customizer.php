@@ -41,7 +41,7 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 
 	}
 
-	public static function register_customizer_ui( $wp_customize ) {
+	public function register_customizer_ui( $wp_customize ) {
 		/* Load custom controls */
 		require_once( AMPFORWP_PLUGIN_DIR . 'templates/customizer/customizer-controls.php' );
 

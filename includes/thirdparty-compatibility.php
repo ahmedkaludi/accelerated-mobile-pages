@@ -33,9 +33,6 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 if(!function_exists('ampforwp_amp_nonamp_convert')){
 	function ampforwp_amp_nonamp_convert($ampData, $type=""){
 		$returnData = '';
-		if (true == get_query_var('amp')){
-			return $ampData;
-		}
 		if("check" === $type){
 			return ampforwp_is_non_amp('non_amp_check_convert');
 		}
@@ -85,7 +82,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_footer_file', 20, 3 );
 	function ampforwp_theme_template_directry(){
 		$folder_name = 'ampforwp';
-		$folder_name = apply_filters('ampforwp_template_locate', $folder_name);
+		$folder_name = apply_filters('ampforwp_template_locate', $folder_name);	
 		return get_stylesheet_directory() . '/' . $folder_name;
 	}
 	// Custom Header
@@ -210,6 +207,24 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 					}
 				}
 	    	break;
+	    	case is_author():
+	    		$author = get_queried_object();
+
+				$templates = array();
+
+				if ( $author instanceof WP_User ) {
+					$templates[] = $filePath . "/author-{$author->user_nicename}.php";
+					$templates[] = $filePath . "/author-{$author->ID}.php";
+				}
+				$templates[] = $filePath . "/author.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' === $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    	case (is_archive()):
 	    		$post_types = array_filter( (array) get_query_var( 'post_type' ) );
 				$templates = array();
@@ -281,6 +296,39 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 					}
 				}
 	    	break;
+	    	case is_page():
+	    		$id = get_queried_object_id();
+				$template = get_page_template_slug();
+				$pagename = get_query_var('pagename');
+
+				if ( ! $pagename && $id ) {
+					// If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object
+					$post = get_queried_object();
+					if ( $post )
+						$pagename = $post->post_name;
+				}
+
+				$templates = array();
+				if ( $template && 0 === validate_file( $template ) )
+					$templates[] = $template;
+				if ( $pagename ) {
+					$pagename_decoded = urldecode( $pagename );
+					if ( $pagename_decoded !== $pagename ) {
+						$templates[] = $filePath . "/page-{$pagename_decoded}.php";
+					}
+					$templates[] = $filePath . "/page-{$pagename}.php";
+				}
+				if ( $id )
+					$templates[] = $filePath . "/page-{$id}.php";
+				$templates[] = $filePath . "/page.php";
+
+				foreach ( $templates as $key => $value ) {
+					if ( 'single' == $type && file_exists($value) ) {
+						$file = $value;
+						break;
+					}
+				}
+	    	break;
 	    }
 	    if(!file_exists($file)){
 			$file = $currentFile;
@@ -307,7 +355,7 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 		$layouts_demo = ampforwp_upcomming_layouts_demo();
 		if(is_array($layouts_demo)){
 			foreach($layouts_demo as $k=>$val){
-				$layoutTemplate['upcoming'] =  array(
+				$layoutTemplate[$val['name'].'-upcomming'] =  array(
 									'Upcoming'=>array(
 											'name'=> $val['name'],
 											'preview_demo'=>$val['link'],
@@ -321,3 +369,106 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 		return $layoutTemplate;
 
 }
+
+
+
+
+if(!function_exists('ampforwp_isexternal')){
+  function ampforwp_isexternal($url) {
+    $components = parse_url($url);
+    if ( empty($components['host']) ) return false;  // we will treat url like '/relative.php' as relative
+    if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; // url host looks exactly like the local host
+    return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); // check if the url host is a subdomain
+  }//Function function_exists
+}// ampforwp_isexternal function_exists close
+if(!function_exists('ampforwp_findInternalUrl')){
+  function ampforwp_findInternalUrl($url){
+    global $redux_builder_amp;
+   
+    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
+        return $url;
+    }
+
+    if($url=='#'){ return $url; }
+    
+    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
+      // Skip the URL's that have edit link to it
+      $parts = parse_url($url);
+      parse_str($parts['query'], $query);
+      if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
+          return $url;
+      }
+
+      $qmarkAmp = (isset($redux_builder_amp['amp-core-end-point']) ? $redux_builder_amp['amp-core-end-point']: false );//amp-core-end-point
+      if ( $qmarkAmp ){
+      	$url = add_query_arg( 'amp', '1', $url);
+		return $url;
+
+      }
+
+      if(strpos($url, "#")!==false){
+        $url = explode("#",$url);
+        $url = trailingslashit($url[0]).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR).'#'.$url[1];
+      }else{
+        $url = trailingslashit($url).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR);
+      }
+      return $url;
+    }
+    return $url;
+  }// function Close
+}// function_exists ampforwp_findInternalUrl close
+function ampforwp_is_amp_inURL($url){
+  $urlArray = explode("/", $url);
+  if(!in_array(AMPFORWP_AMP_QUERY_VAR, $urlArray)){
+    return false;
+  }
+  return true;
+}
+
+if(is_admin()){
+	add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_extension_individual_amp_page',10,2);
+	function ampforwp_extension_individual_amp_page($options, $changed_values){
+		if(isset($changed_values['amp-pages-meta-default']) && $options['amp-pages-meta-default']=='hide'){
+			delete_transient('ampforwp_current_version_check');
+		}
+	}
+
+	add_filter("redux/options/redux_builder_amp/data/category_list_hierarchy", 'ampforwp_redux_category_list_hierarchy',10,1);
+	function ampforwp_redux_category_list_hierarchy($data){
+		if(!is_array($data)){ $data = array(); }// To avoid PHP Fatal error:  Cannot use string offset as an array
+		$cats = get_categories();
+		if ( ! empty ( $cats ) ) {
+	        foreach ( $cats as $cat ) {
+	        	if($cat->category_parent!=0){
+	        		$data[ $cat->category_parent ]['child'][$cat->term_id] = $cat->name;
+	        	}else{
+	            	$data[ $cat->term_id ]['name'] = $cat->name;
+	        	}
+	        }//foreach
+	    } // If
+
+	    $data['set_category_hirarchy'] = 1;
+		return $data;
+	}
+
+
+}//Is_admin Closed
+
+/**
+ * Added filter to Add tags & attribute
+ *  sanitizer in all content filters
+ */
+add_filter("amp_content_sanitizers",'ampforwp_allows_tag_sanitizer');
+add_filter("ampforwp_content_sanitizers",'ampforwp_allows_tag_sanitizer');
+
+function ampforwp_allows_tag_sanitizer($sanitizer_classes){
+	$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer'] = array();
+	return $sanitizer_classes;
+};
+
+// Liberating Search from Relevanssi's Search Take Over
+add_action('amp_init', 'ampforwp_remove_relevanssi_search_takeover');
+function ampforwp_remove_relevanssi_search_takeover(){
+	remove_filter( 'the_posts', 'relevanssi_query', 99, 2 );
+	remove_filter( 'posts_request', 'relevanssi_prevent_default_request', 10, 2 );
+} 

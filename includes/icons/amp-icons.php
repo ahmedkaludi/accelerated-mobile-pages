@@ -773,7 +773,9 @@ return array( 'widgets' => '.icon-widgets:before { content: "\e1bd";}',
                 'vk'=> '.icon-vk:before {content: "\e944";}',
                 'wechat'=>  '.icon-wechat:before {content: "\e945";}',
                 'whatsapp'=> '.icon-whatsapp:before {content: "\e946";}',
-                'youtube'=> '.icon-youtube:before {content: "\e947";}'
+                'youtube'=> '.icon-youtube:before {content: "\e947";}',
+                'hatenabookmark'=> '.icon-hatenabookmark:before {content: "\e948";}',
+                'pocket'=> '.icon-pocket:before {content: "\e949";}',
               );
 
 ?>    

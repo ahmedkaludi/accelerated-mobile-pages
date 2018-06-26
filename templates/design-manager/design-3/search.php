@@ -3,6 +3,7 @@
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
 	<meta charset="utf-8">
+	<meta name="robots" content="noindex,nofollow"/>
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 	<?php $paged = get_query_var( 'paged' );
 	$current_search_url =trailingslashit(get_home_url())."?s=".get_search_query();
@@ -86,37 +87,38 @@
 
 
 				<?php
+				if( true == $redux_builder_amp['excerpt-option'] ) {
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
 						$content = get_the_content();
-					}
-				?>
-		        <p class="large-screen-excerpt-design-3">
-				<?php 
-					$excerpt_length	='';
-					$excerpt_length = 15;
-					$final_content 	= ""; 					
-					$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-					if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-						$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-					}
-					echo $final_content;
-				?></p>
-		        <p class="small-screen-excerpt-design-3" > <?php    
-					if($redux_builder_amp['excerpt-option-design-3']== true) {
-						$excerpt_length ='';
-						$excerpt_length = $redux_builder_amp['amp-design-3-excerpt'];
-						$final_content  = ""; 					
+					} ?>
+			        <p class="large-screen-excerpt-design-3">
+					<?php 
+						$excerpt_length	='';
+						$excerpt_length = 15;
+						$final_content 	= ""; 					
 						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
 
 						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
 							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
 						}
 						echo $final_content;
-					} ?> 
-				</p>
+					?></p>
+			        <p class="small-screen-excerpt-design-3" > <?php    
+						if($redux_builder_amp['excerpt-option-design-3']== true) {
+							$excerpt_length ='';
+							$excerpt_length = $redux_builder_amp['amp-design-3-excerpt'];
+							$final_content  = ""; 					
+							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+
+							if ( false === has_filter('ampforwp_modify_index_content' ) ) {
+								$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
+							}
+							echo $final_content;
+						} ?> 
+					</p>
+				<?php } ?>
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     $post_date = apply_filters('ampforwp_modify_post_date',$post_date);

@@ -1,11 +1,12 @@
 <?php do_action('ampforwp_before_comment_hook',$this);
 	global $redux_builder_amp;
 	$enable_comments = "";
+	$display_comments_on = "";
 	if ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==true ) {
 		$enable_comments =  true;
 	}
-
-	if ( $enable_comments ) { ?>
+	$display_comments_on = ampforwp_get_comments_status();
+	if ( $enable_comments && $display_comments_on ) { ?>
 		<div id="comments" class="ampforwp-comment-wrapper"> <?php 
 			// Gather comments for a specific page/post
 			$postID = $comments =  "";
@@ -36,10 +37,8 @@
 								<article id="comment-<?php comment_ID(); ?>" class="comment-body">
 									<footer class="comment-meta">
 									   <?php if($comment_author_img_url){ ?>
-			 								<amp-img data-block-on-consent src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			 							<?php } else {  ?>
-			 								<amp-img data-block-on-consent src="<?php echo esc_url($default_gravatar['url']); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			 							<?php }  ?>         							
+			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
+			 							<?php } ?>         							
 										<div class="comment-author vcard">
 											<?php  printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 										</div>

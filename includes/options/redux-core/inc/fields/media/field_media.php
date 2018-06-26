@@ -43,10 +43,15 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
          * @access      public
          * @return      void
          */
+        private $timestamp = '';
+
         function __construct( $field = array(), $value = '', $parent ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
+            if ( defined('AMPFORWP_VERSION') ) {
+                $this->timestamp = AMPFORWP_VERSION;
+            }
         }
 
         /**
@@ -226,7 +231,7 @@ if ( ! class_exists( 'ReduxFramework_media' ) ) {
                 'redux-field-media-js',
                 ReduxFramework::$_url . 'assets/js/media/media' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'redux-js' ),
-                time(),
+                $this->timestamp, //time(),
                 true
             );
 

@@ -6,7 +6,8 @@ Show Front Data
 add_action('pre_amp_render_post','amp_pagebuilder_content');
 function amp_pagebuilder_content(){ 
 	global $post,  $redux_builder_amp;
-	$postId = (is_object($post) ? $post->ID : '');
+  $postId = (is_object($post) ? $post->ID : '');
+  if( empty( $postId ) ) return;
 	if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
@@ -23,7 +24,7 @@ function amp_pagebuilder_content(){
 		$arr['post_content'] = '&nbsp;';
 		wp_update_post($arr);
 	}
-	add_filter( 'the_content', 'ampforwp_insert_pb_content', PHP_INT_MAX );
+	add_filter( 'amp_pagebuilder_content', 'ampforwp_insert_pb_content' );
 }
 
 function bodyClassForAMPPagebuilder($classes, $class){
@@ -174,7 +175,7 @@ function amp_pagebuilder_content_styles(){
 					$rowCss = str_replace('{{row-class}}', '.ap_r_'.$rowsData['id'], $rowCss);
 					foreach($containerCommonSettings['fields'] as $rowfield){
 							$replaceRow = '';
-						if($rowfield['content_type']=='css'){
+						//if($rowfield['content_type']=='css'){
 							if(isset($rowContainer[$rowfield['name']])){
 								$replaceRow = $rowContainer[$rowfield['name']];
 								
@@ -268,7 +269,7 @@ function amp_pagebuilder_content_styles(){
 									}
 								break;
 							}
-						}
+						//}
 						$rowCss = ampforwp_replaceIfContentConditional($rowfield['name'], $replaceRow, $rowCss);
 					}
 					echo amppb_validateCss($rowCss);
@@ -424,6 +425,7 @@ function amp_pagebuilder_content_styles(){
 			                  	$repeaterFrontCss = $moduleTemplate[$contentArray['type']]['repeater']['front_css'];
 
 			                    if($moduleField['content_type']=='css'){
+			                    	$repeaterFrontCss = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontCss);
 			                    	$replace = $repeaterUserValues[$moduleField['name'].'_'.$repeaterVarIndex];
 				                    if(is_array($replace)){
 				                      if(count($replace)>0){
@@ -535,13 +537,14 @@ function amppb_post_content($content){
 							$replace .= 'ap_r_'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
-							$replace .= ' '.$rowsData['data'][$field['name']];
+							$replace .= $rowsData['data'][$field['name']];
 						}else{
 							$replace .= '';
 						}
 						if(! is_array($field['name']) && $field['content_type']=='html'){
 							$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 						}
+						$rowStartTemplate = ampforwp_replaceIfContentConditional($field['name'], $replace, $rowStartTemplate);
 					}
 				}
 				$html .= $rowStartTemplate;
@@ -556,9 +559,10 @@ function amppb_post_content($content){
 							foreach($rowsData['cell_data'] as $colDevider){
 								$colData[$colDevider['cell_container']][] = $colDevider;
 							}
-
+							$html .= '<div class="col-2-wrap">';
 							foreach($colData as $data)
 								$html .= rowData($data,$rowsData['cells'],$moduleTemplate);
+							$html .= '</div>';
 						break;
 						
 						default:
@@ -694,6 +698,7 @@ function rowData($container,$col,$moduleTemplate){
 													);
 											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 										}else{
+											$replace = nl2br($replace);
 											$repeaterFrontTemplate = str_replace(
 														'{{'.$moduleField['name'].'}}', 
 														 $replace, 
@@ -706,6 +711,7 @@ function rowData($container,$col,$moduleTemplate){
 										$repeaterUniqueId++;
 									}
 								}
+								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontTemplate);
 								
 								$repeaterFields .= $repeaterFrontTemplate;
 
@@ -763,7 +769,6 @@ function rowData($container,$col,$moduleTemplate){
 							}
 						}
 
-
 						$catName = 'Recent posts'; $cat_link = "#";
 						if(trim($fieldValues['category_selection']) != 'recent_option'){
 						  $catName = get_cat_name($fieldValues['category_selection']);
@@ -772,7 +777,6 @@ function rowData($container,$col,$moduleTemplate){
 						}
 						$moduleFrontHtml = str_replace('{{content_category_title}}', urldecode($catName), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{content_category_link}}', $cat_link, $moduleFrontHtml);
-
 
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
@@ -787,7 +791,7 @@ function rowData($container,$col,$moduleTemplate){
 						
 					break;
 					default:
-                        
+                        $moduleFrontHtml = apply_filters("ampforwp_extension_pagebuilder_module_template", $moduleFrontHtml, $moduleTemplate[$contentArray['type']],$contentArray);
 					break;
 				}
 
@@ -887,6 +891,7 @@ function rowData($container,$col,$moduleTemplate){
 					}//Foreach closed
                 }//If closed
 
+                $moduleFrontHtml = str_replace('{{unique_cell_id}}', $contentArray['cell_id'], $moduleFrontHtml);
 				$html .= "<div class='amp_mod ap_m_".$contentArray['cell_id'].' '.$contentArray['type']."'>".$moduleFrontHtml;
 				$html .= '</div>';
 				/*if($contentArray['type']=="text"){
@@ -974,7 +979,7 @@ function ampforwp_replaceIfContentConditional($byReplace, $replaceWith, $string)
 	if(isset($matches[1]) && count($matches[1])>0){
 		$matches[1] = array_unique($matches[1]);
 		foreach ($matches[1] as $key => $matchValue) {
-			if($matchValue != $replaceWith){
+			if(trim($matchValue) != trim($replaceWith)){
 				$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("<amp-condition>","</amp-condition>"), $string);
 				
 				$string = preg_replace_callback('/(<amp-condition>)(.*?)(<\/amp-condition>)/s', function($match){

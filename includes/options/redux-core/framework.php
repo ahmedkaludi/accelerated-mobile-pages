@@ -3253,6 +3253,7 @@
                                     $display = false;
                                 }
                             }
+
                             if ( count( $sections ) < $nextK || ! isset ( $sections[ $nextK ] ) || ! isset ( $sections[ $nextK ]['subsection'] ) || $sections[ $nextK ]['subsection'] != true ) {
                                 $doLoop = false;
                             } else {
