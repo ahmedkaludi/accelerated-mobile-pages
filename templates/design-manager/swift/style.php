@@ -516,7 +516,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     .sp-cnt{margin-top: 15px;}
     .rlp-image{width:200px;float:left;margin-right:15px;display: flex;flex-direction: column;}
     .rlp-cnt{display: flex;}
-    .r-pf h3{margin-bottom:0;padding-top:20px;border-top:1px dotted #ccc; }
+    .r-pf h3{padding-top:20px;border-top:1px dotted #ccc; }
     .r-pf {margin-top:20px;}
     .cmts{margin:20px 0px 20px 0px;}
     .sp-rt {width: 100%;margin-left: 0;}
