@@ -184,15 +184,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97 (27th June 2018) =
-* For more detials check out [the blog post](https://ampforwp.com/0-9-97-released-strengthening-of-foundation-89th-update/)
-* Fixed: Extra position attribute left in css Design #2 #2119
+* For more details check out [the blog post](https://ampforwp.com/0-9-97-released-strengthening-of-foundation-89th-update/)
+* Fixed: Extraposition attribute left in CSS Design #2 #2119
 * Fixed: Non-AMP header link not working #2109
 * Added: Create an Ad Above the Post Content #2155
 * Fixed: "AGO" text was not translatable #2158
 * Added: Filter created `ampforwp_header_url` to modify logo url #2141
 * Fixed: Removing the text "amp" in footer view non-amp-link #2158
 * Added: Compatibility WP user Avatar plugin added #2011
-* Fixed: Design 2 - meta info producing a block of empty html #1969 #1954
+* Fixed: Design 2 - meta info producing a block of empty HTML #1969 #1954
 * Added: Pocket and Hatena Bookmark social share buttons Added #1652
 * Fixed: External Links are appended with "amp" at the end of the url in content. #2174
 * Fixed: Some Issues Found in Design #3 #2130
@@ -219,28 +219,28 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Parallax Setting Added in PageBuilder #2095
 * Added: Multiple Layout Settings added in Feature Module in Page Builder #2095
 * Added: Add the option changing the sliding speed of slider in "Slider module" of AMP Page Builder #2218
-* Added: Created an option Related Post link in non amp  #2201
+* Added: Created an option Related Post link in non amp #2201
 * Fixed: Removed Jannah LazyLoad on AMP Mode #2224
 * Fixed: Custom post types with custom taxonomy not working in AMP #2209
 * Fixed: frontpage and homepage not working properly AMP take over #2153 #2277
 * Added: Button field created in Feature module #2068
 * Added: Excerpt should also work on homepage and categories page #2176
-* Fixed: Option panel breaks in when RTL in WP Dashboard #2176
-* Fixed: Featured image from Custom fields in pagebuilder Category module #2237
+* Fixed: Options panel breaks in when RTL in WP Dashboard #2176
+* Fixed: Featured image from Custom fields in page builder Category module #2237
 * Added: Forms Module Support added in PageBuilder #2221
-* Fixed: Paginated AMP URL on category are opening to 404 page #2233
+* Fixed: Paginated AMP URL on the category are opening to 404-page #2233
 * Fixed: Ads not displaying properly in RTL #2227 #2138
 * Fixed: single quotation (') in text module breaking AMP page builder #1940
-* Added: Filter created tp modify `ampforwp_loop_image_update` image arguments in components of AMP theme framework #2057
+* Added: Filter created to modify `ampforwp_loop_image_update` image arguments in components of AMP theme framework #2057
 * Added: Option to change the locale of Facebook comments #2127
-* Added: Search option in option panel #2088
+* Added: Search option in options panel #2088
 * Fixed: Accordion not working when the user enters some data in Description with HTML Tags #2088 #2097
 * Fixed: Internal links now working with ?amp=1 #2204
 * Fixed: UTM Parameters not working properly with AMP #2223
 * Fixed: Multiple Slider module of AMP Page builder not working #2090
 * Fixed: Hide AMP by categories option should hide by default in the backend of that specific post #2112
 * Added: IP Anonymization in Google analytics #2135
-* Fixed: Improvement in styling of AMP option panel #2102
+* Fixed: Improvement in the styling of AMP option panel #2102
 * Added: Added new fonts control for Content in Single page #2122
 * Fixed: Legacy page builder button styling is not loading properly #2036
 * Added: Filter added so we can disable Comments on specific pages `ampforwp_comments_visibility` #2170 
@@ -249,16 +249,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Pagination not working for some websites #2241
 * Fixed: "Menu" option in Footer connected with Swift #2146
 * Added: Wistia Support #1875
-* Added: Add option in pagebuilder to give specific name to all modules #2251
-* Added: Compatiblity with Muffin Builder #2137
+* Added: Add option in page builder to give the specific name to all modules #2251
+* Added: Compatibility with Muffin Builder #2137
 * Fixed: AMPforWP Option panel styles are overriding other theme's options panel if both use Redux Framework #2121
 * Fixed: AMPforWP Option panel styles are overriding other theme's options panel if both use Redux Framework #2121 
 * Added: Render all the AMP Components added in Post Editor #2216 #2228
 * Fixed: "Gap" Module of ThemeCo breaking the AMP pages #2220
-* Added: Search widget compatiblity #2143
+* Added: Search widget compatibility #2143
 * Added: Advertisement Module created in AMP Pagebuilder #2131
 * Fixed: Performance issue with the function `ampforwp_get_comments_gravatar` #2234
-* Fixed: Empty the amp pages, when the Clearfy html compress is enabled #2110
+* Fixed: Empty the amp pages, when the Clearfy HTML compress is enabled #2110
 * Fixed: The attribute 'value' appearing in tag 'a' throwing the validation error #2262
 * Fixed: Versioning of Styles and Scripts of redux-core #2126
 * Added: Related Posts based on X days #2132 
