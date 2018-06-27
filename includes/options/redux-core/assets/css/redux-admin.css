@@ -298,9 +298,11 @@ img.ampforwp-post-builder-img{
     background: #303e9f;
     text-decoration: none;
     color: #fff;
-float: right;    padding: 6px 10px 6px 10px;
+    float: right;
+    padding: 6px 10px 6px 10px;
     right: 0;
     border-radius: 40px;
+    margin-top: 10px;
 }
 .extension_listing li{
     background: #ffffff;

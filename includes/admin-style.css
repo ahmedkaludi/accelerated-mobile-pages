@@ -646,6 +646,7 @@ visibility: hidden;
 
 #info-ampforwp-beta-mode-notice{color: #263238; margin: 20px; background: #FFF9C4;border-color: #908204;}
 
+.redux-container #redux-intro-text .dashicons-admin-generic:before, .activated-plugins { color: #666 }
 
 /*** RTL CSS ***/
 .rtl .redux_field_th span:first-child {
