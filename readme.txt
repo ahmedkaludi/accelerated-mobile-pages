@@ -184,6 +184,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97 (27th June 2018) =
+* For more detials check out [the blog post](https://ampforwp.com/0-9-97-released-strengthening-of-foundation-89th-update/)
 * Fixed: Extra position attribute left in css Design #2 #2119
 * Fixed: Non-AMP header link not working #2109
 * Added: Create an Ad Above the Post Content #2155
@@ -245,7 +246,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Filter added so we can disable Comments on specific pages `ampforwp_comments_visibility` #2170 
 * Fixed: Improvement in Excerpt on small screen option #2034
 * Added: Comments on Pages #2229
-* Fixed: Pagination not working for some websites #2241
 * Fixed: Pagination not working for some websites #2241
 * Fixed: "Menu" option in Footer connected with Swift #2146
 * Added: Wistia Support #1875
