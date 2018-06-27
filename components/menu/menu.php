@@ -1,7 +1,7 @@
 <?php
-class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Ampforwp_Walker_Nav_Menu extends Walker_Nav_Menu {
 
-  function start_lvl(&$output, $depth) {
+  function start_lvl(&$output, $depth=0, $args = array()) {
 	static $column = 1;
     $indent = str_repeat("\t", $depth);
       //$output .= "\n$indent<ul class=\"sub-menu\">\n";
@@ -78,7 +78,7 @@ function amp_menu_html($echo){
 	            'menu'=>'ul',
 	            'menu_class'=>'amp-menu',
 	            'echo' => false,
-				'walker' => new Custom_Walker_Nav_Menu()
+				'walker' => new Ampforwp_Walker_Nav_Menu()
 	        ) );
 	    $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
 	    $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
