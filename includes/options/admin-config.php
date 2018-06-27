@@ -2753,6 +2753,16 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
+           
+           array(
+               'id'        =>'amp_google_font_restrict',
+               'class'	   =>'ampforwp-google-font-restrict',
+               'type'      => 'switch',
+               'title'     => __('Disable Google Fonts', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'tooltip-subtitle'  => __('Stop Google Font when GDPR is enabled.', 'accelerated-mobile-pages'),
+               'required'  => array(array('amp-gdpr-compliance-switch', '=' , '1'),array('amp-design-selector', '=' , '4')),
+           ),
        ),
 
    ) );
@@ -5420,15 +5430,15 @@ Redux::setSection( $opt_name, array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Single Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-3.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-1.png'
                                 ),
                         '2' => array(
                                 'alt'=>' Single Design With Sidebar ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-2.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-2.png'
                                 ),
                         '3' => array(
                                 'alt'=>' Single Design With Sidebar ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/single-3.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-3.png'
                                 ),
                         
                     ),

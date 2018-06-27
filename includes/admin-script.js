@@ -203,11 +203,14 @@ jQuery(function($) {
         }
 
  
-    var gURL, gAPIkey;
+    var gURL, gAPIkey, disableGFonts;
 
 
-    gAPIkey = redux_data.google_font_api_key;  
- 
+    gAPIkey = redux_data.google_font_api_key;
+    disableGFonts = redux_data.amp_google_font_restrict;  
+        if(gAPIkey=='' || typeof gAPIkey == 'undefined'){
+            $('.ampforwp-google-font-restrict').css({'display':'none'});
+        }
     // Append data into selects
     ampforwp_font_generator();
     function ampforwp_font_generator() {
@@ -220,7 +223,10 @@ jQuery(function($) {
             $('.ampforwp-google-font-class').css({'display':'none'});
             return ;
         }
-
+        if(disableGFonts==1){
+            gAPIkey='';
+            return;
+        }
         gURL = "https://www.googleapis.com/webfonts/v1/webfonts?key=" + gAPIkey;
 
         var gfontData = $.get( gURL );

@@ -6342,6 +6342,9 @@ add_action('amp_post_template_css', 'ampforwp_google_fonts_generator');
 if ( ! function_exists( 'ampforwp_google_fonts_generator' ) ) {
   function ampforwp_google_fonts_generator() {
     global $redux_builder_amp;
+    if( isset($redux_builder_amp['amp_google_font_restrict']) && $redux_builder_amp['amp_google_font_restrict'] ){
+    	return;
+    }
 	if(isset($redux_builder_amp['google_current_font_data'])){
 		$font_data = json_decode(stripslashes($redux_builder_amp['google_current_font_data']));
 	}
