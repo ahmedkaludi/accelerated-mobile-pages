@@ -6826,11 +6826,14 @@ if ( ! function_exists('ampforwp_gdpr_data') ) {
   function ampforwp_gdpr_data( $data ) {
     global $redux_builder_amp;
     if ( empty( $data['amp_component_scripts']['amp-consent'] ) ) {
-      $data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
+     	$data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
     }
     if ( empty( $data['amp_component_scripts']['amp-form'] ) ) {
-      $data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
+     	$data['amp_component_scripts']['amp-form'] = 'https://cdn.ampproject.org/v0/amp-form-0.1.js';
     }
+    if ( empty( $data['amp_component_scripts']['amp-geo'] ) ) {
+    	$data['amp_component_scripts']['amp-geo'] = 'https://cdn.ampproject.org/v0/amp-geo-0.1.js';
+     }
     
     return $data;
   }
@@ -6856,14 +6859,26 @@ if ( ! function_exists('ampforwp_gdpr_amp_consent') ) {
 
     if(isset($redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']) && $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text']){
     $privacy_button_text = $redux_builder_amp['amp-gdpr-compliance-privacy-page-button-text'];
-    }    
+    }
+    $gdpr_countries = array("AT","BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "GB", "AX", "IC", "EA", "GF", "PF", "TF", "GI", "GP", "GG", "JE", "MQ", "YT", "NC", "RE", "BL", "MF", "PM", "SJ", "VA", "WF", "EZ", "CH");
+    $gdpr_countries = apply_filters( 'ampforwp_gdpr_country_list' , $gdpr_countries );
     ?>
+
+    <amp-geo layout="nodisplay">
+        <script type="application/json">
+            {
+               "ISOCountryGroups": {
+               		"eea":[ <?php echo '"'.implode('","', array_values($gdpr_countries)).'"';?> ]
+                }
+            }
+        </script>
+    </amp-geo>
       
     <amp-consent id="ampforwpConsent" layout="nodisplay">
           <script type="application/json">{
             "consents": {
               "consent1": {
-                "checkConsentHref": "<?php echo admin_url('admin-ajax.php?action=ampforwp_check_consent_href_process');?>",
+                "promptIfUnknownForGeoGroup": "eea",
                 "promptUI": "gdpr_c"
               }
             },
