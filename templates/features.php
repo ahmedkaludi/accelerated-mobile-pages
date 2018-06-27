@@ -7064,13 +7064,6 @@ if ( ! function_exists('ampforwp_gdpr_css') ) {
 }
 
 // Consent Submission
-add_action('wp_ajax_ampforwp_check_consent_href_process','ampforwp_check_consent_href_process');
-add_action('wp_ajax_nopriv_ampforwp_check_consent_href_process','ampforwp_check_consent_href_process');
-function ampforwp_check_consent_href_process(){
-	echo '{"promptIfUnknown": true}';
-	wp_die();
-}
-// Consent Submission
 add_action('wp_ajax_amp_consent_submission','amp_consent_submission');
 add_action('wp_ajax_nopriv_amp_consent_submission','amp_consent_submission');
 function amp_consent_submission(){
