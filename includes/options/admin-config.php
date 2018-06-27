@@ -2753,6 +2753,16 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
+           
+           array(
+               'id'        =>'amp_google_font_restrict',
+               'class'	   =>'ampforwp-google-font-restrict',
+               'type'      => 'switch',
+               'title'     => __('Disable Google Fonts', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'tooltip-subtitle'  => __('Stop Google Font when GDPR is enabled.', 'accelerated-mobile-pages'),
+               'required'  => array(array('amp-gdpr-compliance-switch', '=' , '1'),array('amp-design-selector', '=' , '4')),
+           ),
        ),
 
    ) );
