@@ -2664,6 +2664,7 @@ function ampforwp_add_sd_fields($fields){
                'type'      => 'switch',
                'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
+               'tooltip-subtitle' => 'Currently It is available to only EEA countries. Check <a href="https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/0.1/amp-geo-presets.js" target="_blank">here</a> for the list of EEA Countries'
            ),
            array(
                     'id'    => 'gdpr-type',
