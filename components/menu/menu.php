@@ -10,10 +10,10 @@ class Ampforwp_Walker_Nav_Menu extends Walker_Nav_Menu {
 	if ($depth > 0 && $has_children > 0 )
     {
 		$column += 1;
-		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"dropdown-menu\">\n";
+		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"sub-menu\">\n";
 	}else{
 		$column += 1;
-		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"dropdown-menu\">\n";
+		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"sub-menu\">\n";
 		
 	}
   }
@@ -90,14 +90,5 @@ function amp_menu_html($echo){
 //Load styling for Menu
 add_action('amp_post_template_css','amp_menu_styles',11); 
 function amp_menu_styles(){ ?>
-    aside{width:150px}
-	.amp-menu{list-style-type:none;margin:0;padding:0}
-	.amp-menu li{position:relative;display:block}
-	.amp-menu li.menu-item-has-children ul{display:none}
-	/* .amp-menu li.menu-item-has-children:hover>ul{display:block} */
-	.amp-menu [id^=drop]:checked + ul { display: block; }
-	.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}
-	/* .amp-menu li.menu-item-has-children:after{content:" > ";position:absolute;padding:10px;right:0;top:0;z-index:10000;line-height:1;} */
-	/* .amp-menu>li a{padding:7px;display:block;margin-bottom:1px} */
-	.amp-menu >li ul{list-style-type:none;margin:0;padding:0;position:relative}
+    aside{width:150px}.amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.p-menu .amp-menu li.menu-item-has-children:hover>ul{display:block}.amp-menu [id^=drop]:checked + ul { display: block; }.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}	/* .amp-menu li.menu-item-has-children:after{content:" > ";position:absolute;padding:10px;right:0;top:0;z-index:10000;line-height:1;} */.p-menu .amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}
 <?php }
