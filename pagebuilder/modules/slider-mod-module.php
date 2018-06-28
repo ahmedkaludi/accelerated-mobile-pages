@@ -77,34 +77,28 @@ $css = '
     vertical-align: middle;
 }
 .dots{margin-top:30px;}
-
-.amp-g-cnt .am-cnt{
-	display:inline-block;
-
-	width:100%;
-}
 .amp-g-cnt .how-current{display: inline-block;}
-.amp-g-cnt .how-current h1{color:#ee476f;}
+.amp-g-cnt .how-current h1{color:{{hdng__active_color}};}
 .amp-g-cnt h1, .amp-g-cnt p{cursor: pointer;display: inline-block;}
 .amp-g-cnt h1{
-	font-size:20px;
-	font-weight:500;
+	font-size:{{text-size}};
+	font-weight:{{fnt_wght}};
 	line-height:1.4;
-	color:#fff;
+	color:{{hdng_color_picker}};
 }
 .amp-cnt{
 	margin-bottom:30px;
 }
 .amp-desc{
 	display:block;
-	color:#f1f1f1;
-	font-size:16px;
-	font-weight:300;
+	color:{{cnt_color_picker}};
+	font-size:{{cnt-size}};
+	font-weight:{{cnt_fnt_wght}};
 }
-.dots span{display:inline-block;background:#666;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
-.dots span.how-current{background:#ee476f;width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
-.dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:#000;}
-.dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:#000;
+.dots span{display:inline-block;background:#999;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
+.dots span.how-current{background:{{hdng__active_color}};width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
+.dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};}
+.dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};
 	background-position:50% 50%;background-repeat:no-repeat;}
 .dots span:last-child:before{
 	content: ">";
@@ -192,7 +186,83 @@ return array(
 											),
 								'content_type'=>'html',
 							),
-
+				        array(
+								'type'		=>'text',
+								'name'		=>"text-size",
+								'label'		=>'Heading Font Size',
+								'tab'		=>'design',
+								'default'	=>'20px',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'3'),
+							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'fnt_wght',		
+	 							'label' =>"Heading Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'500',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('carousel_layout_type'=>'3'),
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"hdng_color_picker",
+								'label'		=>'Heading Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'3'),
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"hdng__active_color",
+								'label'		=>'Heading Active Color / Dots Color',
+								'tab'		=>'design',
+								'default'	=>'#ee476f',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'3'),
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"cnt-size",
+								'label'		=>'Content Font Size',
+								'tab'		=>'design',
+								'default'	=>'16px',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'3'),
+							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'cnt_fnt_wght',		
+	 							'label' =>"Content Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'300',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('carousel_layout_type'=>'3'),
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"cnt_color_picker",
+								'label'		=>'Content Color',
+								'tab'		=>'design',
+								'default'	=>'#f1f1f1',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'3'),
+							),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
@@ -254,6 +324,7 @@ return array(
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
+		           				'required'  => array(array('carousel_layout_type'=>'1', '2', '3') ),
 	 						),
 							array(		
 		 						'type'		=>'text',		
@@ -274,8 +345,6 @@ return array(
 		           				'required'  => array('carousel_layout_type'=>'3'),
 	 						),
 
-							
-	                
 	              ),
 	          'front_template'=>
 	          		array(
