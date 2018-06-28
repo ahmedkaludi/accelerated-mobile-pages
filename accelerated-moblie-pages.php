@@ -421,6 +421,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$amp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php');
 		$amp_plugin_manager_version = $amp_plugin_manager['Version'];
 	}	
+
 	if ( $amp_plugin_manager_active) {
 		$plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
 		$amp_plugin_manager_version =  $plugin_manager['Version'];
@@ -667,19 +668,22 @@ function ampforwp_ampwptheme_notice() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	
 	$amp_plugin_manager_version = array();
+
 	$plugin_manager_active = is_plugin_active('amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'); 
 	$amp_plugin_manager_active = is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+
 	if ( $plugin_manager_active) {
 		$amp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php');
 		$amp_plugin_manager_version = $amp_plugin_manager['Version'];
-	}	
+	}
 	if ( $amp_plugin_manager_active) {
 		$plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
 		$amp_plugin_manager_version =  $plugin_manager['Version'];
 	}
+
 	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
 		$screen = get_current_screen();
-		if ( $plugin_manager_active && '1.0' == $amp_plugin_manager_version  && 'plugins' === $screen->base) { ?>
+		if ( '1.0' == $amp_plugin_manager_version  && 'plugins' === $screen->base) { ?>
 			<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b>Attention:</b> AMPforWP Plugin Manager requires an upgrade. Please <b><a href="https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice" target="_blank">Download &amp; install the latest version</a></b> for free.
 				</p>
 			</div>
