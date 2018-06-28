@@ -20,7 +20,6 @@ define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
 define('AMPFORWP_VERSION','0.9.97');
-
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
@@ -415,7 +414,8 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 }
 // Redux panel inclusion code
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') ) {
+$ampforwp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') || ( is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php') && '1.0' == $ampforwp_plugin_manager['Version'] ) ) {
 	require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
     require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 }
@@ -651,6 +651,14 @@ function ampforwp_ampwptheme_notice() {
 	     	<iframe width="100%" height="480" src="https://www.youtube.com/embed/" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			<a href="<?php echo esc_url(add_query_arg( 'ampforwp-dismiss-theme', 'ampforwp_dismiss_admin_notices' )) ?>">Take me to the Options Panel</a>
 	     </p>
+		</div>
+	<?php }
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$ampforwp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+	if ( is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php') && '1.0' == $ampforwp_plugin_manager['Version'] ) { ?>
+		<div id="some" class="notice-warning settings-error notice is-dismissible">
+			<span style="margin: 0.5em 0.5em 0 0">AMPforWP Plugin Manager update is available</span><br>
+			<span style="margin: 0.5em 0.5em 0 0">Download the latest version from <a href="https://ampforwp.com/plugins-manager/" class="thickbox">here</a></span><br>
 		</div>
 	<?php }
 }
