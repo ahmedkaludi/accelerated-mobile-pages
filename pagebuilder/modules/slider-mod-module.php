@@ -14,19 +14,24 @@ $output = '
 	</div>
 {{ifend_condition_carousel_layout_type_2}}
 {{if_condition_carousel_layout_type==3}}
+<div class="amp-sld3">
 	<div class="amp-gallery">
 		<amp-carousel class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
             layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
 		{{repeater_image}}
 		</amp-carousel>
-		<p class="dots how-dots l-mobile">
-			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? 4 : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
+		<p class="dots">
+			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? {{repeater_max_count}} : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
 			</span>
 			{{repeater_bullet}}
-			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 4 ? 0 : howSectionSelected.howSlide + 1}})" role="button" tabindex="0">
+			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == {{repeater_max_count}} ? 0 : howSectionSelected.howSlide + 1}})" role="button" tabindex="0">
 			</span>
 		</p>
 	</div>
+	<div class="amp-g-cnt">
+		{{repeater_ampcontent}}
+	</div>
+</div>
 {{ifend_condition_carousel_layout_type_3}}
 
 ';
@@ -52,16 +57,73 @@ $css = '
 }
 {{ifend_condition_carousel_layout_type_2}}
 {{if_condition_carousel_layout_type==3}}
+.amp-sld3{
+	width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+}
 .amp-gallery{
 	width: 500px;
     text-align: center;
+    display: inline-block;
+    vertical-align: middle;
 }
-.dots{wisth:100%;margin-top:30px;}
+.amp-g-cnt{
+	width: 500px;
+    display: inline-block;
+    text-align: left;
+    margin-left: 100px;
+    vertical-align: middle;
+}
+.dots{margin-top:30px;}
+
+.amp-g-cnt .am-cnt{
+	display:inline-block;
+
+	width:100%;
+}
+.amp-g-cnt .how-current{display: inline-block;}
+.amp-g-cnt .how-current h1{color:#ee476f;}
+.amp-g-cnt h1, .amp-g-cnt p{cursor: pointer;display: inline-block;}
+.amp-g-cnt h1{
+	font-size:20px;
+	font-weight:500;
+	line-height:1.4;
+	color:#fff;
+}
+.amp-cnt{
+	margin-bottom:30px;
+}
+.amp-desc{
+	display:block;
+	color:#f1f1f1;
+	font-size:16px;
+	font-weight:300;
+}
 .dots span{display:inline-block;background:#666;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
 .dots span.how-current{background:#ee476f;width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
 .dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:#000;}
 .dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:#000;
 	background-position:50% 50%;background-repeat:no-repeat;}
+.dots span:last-child:before{
+	content: ">";
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    top: -1px;
+    font-weight: 500;
+    font-size: 22px;
+}
+.dots span:first-child:before{
+	content: "<";
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    top: -1px;
+    font-weight: 500;
+    font-size: 22px;
+}
 {{ifend_condition_carousel_layout_type_3}}
 ';
 
@@ -193,6 +255,25 @@ return array(
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 	 						),
+							array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"content_title",		
+		 						'label'		=>'Heading',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Heading',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'3'),
+	 						),
+	 						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"content",		
+		 						'label'		=>'Content',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Description',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'3'),
+	 						),
+
 							
 	                
 	              ),
@@ -204,7 +285,12 @@ return array(
 						"button"=>'<button on="tap:carousel-with-preview-{{unique_cell_id}}.goToSlide(index={{repeater_unique}})">
 			        {{if_img_upload}}<amp-img src="{{img_upload-thumbnail}}" width="150" height="150" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
 			      </button>',
-			      "bullet"=> '<span class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}}" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}"></span>'
+			      "bullet"=> '<span class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}}" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
+			      </span>',
+			      "ampcontent"=> '<div class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}} amp-cnt" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
+			      		<h1>{{content_title}}</h1>
+			      		<div class="amp-desc">{{content}}</div>
+			      </div>'
 			      	
 	          		)
 	        	
