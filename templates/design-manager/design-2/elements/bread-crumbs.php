@@ -78,7 +78,23 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
                     echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><span class="bread-cat bread-custom-post-type-' . $post_type . '">' . $post_type_object->labels->name . '</span></li>';  
                 }
             }
-              
+            
+            $tags_breadcrumbs = '';
+            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 1){
+                $post_tags = wp_get_post_tags($post->ID);
+                if(!empty($post_tags)){
+                    foreach( $post_tags as $post_obj){
+                        $tag_name = $post_obj->name;
+                        $tag_id = $post_obj->term_id;
+                        $tag_name = $post_obj->name;
+                        $tag_link = get_tag_link($tag_id);
+                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . $tag_id . ' item-tag-' . $tag_name . '"><a class="bread-tag bread-tag-' . $tag_id . ' bread-tag-' . $tag_name . '" href="' . esc_url(ampforwp_url_controller( $tag_link, $archive_non_amp )) . '" title="' . $tag_name . '">' . $tag_name . '</a></li>';                
+                    }
+                    echo $tags_breadcrumbs;
+                }
+            }
+
+            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 2){
             // Get post category info
             $category = get_the_category();
              
@@ -99,6 +115,7 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
                     $cat_link = get_category_link($cat_id);
                     $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )).'" title="' . $parents . '">' . $parents . '</a></li>';
                 }
+            }
             }
               
             // If it's a custom post type within a custom taxonomy
