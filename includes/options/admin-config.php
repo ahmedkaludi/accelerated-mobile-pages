@@ -3851,7 +3851,15 @@ Redux::setSection( $opt_name, array(
                        'default'  => __('Next Read: ','accelerated-mobile-pages'),
                        'placeholder'=>__('write here','accelerated-mobile-pages'),
                        'required' => array( 'amp-use-pot', '=' , 0 )
-                   ),
+					),
+					array(
+                       'id'       => 'amp-translator-read-more',
+                       'type'     => 'text',
+                       'title'    => __('Read More', 'accelerated-mobile-pages'),
+                       'default'  => __('Read More','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+					),
                     array(
                        'id'       => 'amp-translator-via-text',
                        'type'     => 'text',
