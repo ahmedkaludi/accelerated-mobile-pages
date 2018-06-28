@@ -655,10 +655,11 @@ function ampforwp_ampwptheme_notice() {
 	<?php }
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	$ampforwp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
-	if ( is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php') && '1.0' == $ampforwp_plugin_manager['Version'] ) { ?>
-		<div id="some" class="notice-warning settings-error notice is-dismissible">
-			<span style="margin: 0.5em 0.5em 0 0">AMPforWP Plugin Manager update is available</span><br>
-			<span style="margin: 0.5em 0.5em 0 0">Download the latest version from <a href="https://ampforwp.com/plugins-manager/" class="thickbox">here</a></span><br>
+
+	$screen = get_current_screen();
+	if ( is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php') && '1.0' == $ampforwp_plugin_manager['Version']  && 'plugins' === $screen->base) { ?>
+		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p> AMPforWP Plugin Manager is Outdated. Please Download the latest version for free from <b><a href="https://ampforwp.com/plugins-manager/" target="_blank">here</a></b> 
+			</p>
 		</div>
 	<?php }
 }
