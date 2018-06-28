@@ -658,7 +658,7 @@ function ampforwp_ampwptheme_notice() {
 
 	$screen = get_current_screen();
 	if ( is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php') && '1.0' == $ampforwp_plugin_manager['Version']  && 'plugins' === $screen->base) { ?>
-		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p> AMPforWP Plugin Manager is Outdated. Please Download the latest version for free from <b><a href="https://ampforwp.com/plugins-manager/" target="_blank">here</a></b> 
+		<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p> AMPforWP Plugin Manager is Outdated. Please Download the latest version for free from <b><a href="https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice" target="_blank">here</a></b> 
 			</p>
 		</div>
 	<?php }
