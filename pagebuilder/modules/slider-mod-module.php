@@ -33,6 +33,14 @@ $output = '
 	</div>
 </div>
 {{ifend_condition_carousel_layout_type_3}}
+{{if_condition_carousel_layout_type==4}}
+	<div class="amp-sld4">
+		<amp-carousel class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
+            layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
+		
+		</amp-carousel>
+	</div>
+{{ifend_condition_carousel_layout_type_4}}
 
 ';
 $css = '
@@ -153,6 +161,11 @@ return array(
 				                              'value'=>'3',
 				                              'label'=>'',
 				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
+				                            ),
+				                            array(
+				                              'value'=>'4',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
 				                            ),
 				                          ),
 				            'content_type'=>'html',
@@ -324,7 +337,12 @@ return array(
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'required'  => array(array('carousel_layout_type'=>'1', '2', '3') ),
+		           				'required'  => array(
+		           									array('carousel_layout_type'=>'1'),
+		           									array('carousel_layout_type'=>'2'),
+		           									array('carousel_layout_type'=>'3')
+		           									 ),
+
 	 						),
 							array(		
 		 						'type'		=>'text',		
@@ -344,6 +362,34 @@ return array(
 		           				'content_type'=>'html',
 		           				'required'  => array('carousel_layout_type'=>'3'),
 	 						),
+	 						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"test_cntn",		
+		 						'label'		=>'Testmonial',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Add Your Testmonial',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'4'),
+	 						),
+	 						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"aut_name",		
+		 						'label'		=>'Author Name',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Author Name',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'4'),
+	 						),
+	 						array(		
+		 						'type'		=>'upload',		
+		 						'name'		=>"img_upload",		
+		 						'label'		=>'Author Image',
+		           				'tab'     =>'customizer',
+		 						'default'	=>'',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'4'),
+
+	 						),
 
 	              ),
 	          'front_template'=>
@@ -359,8 +405,12 @@ return array(
 			      "ampcontent"=> '<div class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}} amp-cnt" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
 			      		<h1>{{content_title}}</h1>
 			      		<div class="amp-desc">{{content}}</div>
+			      </div>',
+			      "testimonilas"=>'<div class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}} amp-cnt" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
+			      		<div class="tstmnl">
+
+			      		</div>
 			      </div>'
-			      	
 	          		)
 	        	
 	          ),
