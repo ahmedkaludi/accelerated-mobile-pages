@@ -13,6 +13,22 @@ $output = '
 		{{repeater_button}}
 	</div>
 {{ifend_condition_carousel_layout_type_2}}
+{{if_condition_carousel_layout_type==3}}
+	<div class="amp-gallery">
+		<amp-carousel class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
+            layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
+		{{repeater_image}}
+		</amp-carousel>
+		<p class="dots how-dots l-mobile">
+			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? 4 : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
+			</span>
+			{{repeater_bullet}}
+			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 4 ? 0 : howSectionSelected.howSlide + 1}})" role="button" tabindex="0">
+			</span>
+		</p>
+	</div>
+{{ifend_condition_carousel_layout_type_3}}
+
 ';
 $css = '
 {{if_condition_carousel_layout_type==1}}
@@ -35,6 +51,18 @@ $css = '
 	height:100%;
 }
 {{ifend_condition_carousel_layout_type_2}}
+{{if_condition_carousel_layout_type==3}}
+.amp-gallery{
+	width: 500px;
+    text-align: center;
+}
+.dots{wisth:100%;margin-top:30px;}
+.dots span{display:inline-block;background:#666;border-radius:6px;width:10px;height:10px;margin-bottom:4px;margin-left:10px;margin-right:10px;z-index:10;vertical-align:middle;cursor: pointer;}
+.dots span.how-current{background:#ee476f;width:12px;height:12px;margin-bottom:4px;margin-left:10px;margin-right:10px}
+.dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:#000;}
+.dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:#000;
+	background-position:50% 50%;background-repeat:no-repeat;}
+{{ifend_condition_carousel_layout_type_3}}
 ';
 
 return array(
@@ -64,6 +92,11 @@ return array(
 				                              'value'=>'2',
 				                              'label'=>'',
 				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
+				                            ),
+				                            array(
+				                              'value'=>'3',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
 				                            ),
 				                          ),
 				            'content_type'=>'html',
@@ -170,7 +203,9 @@ return array(
 							',
 						"button"=>'<button on="tap:carousel-with-preview-{{unique_cell_id}}.goToSlide(index={{repeater_unique}})">
 			        {{if_img_upload}}<amp-img src="{{img_upload-thumbnail}}" width="150" height="150" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>{{ifend_img_upload}}
-			      </button>'
+			      </button>',
+			      "bullet"=> '<span class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}}" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}"></span>'
+			      	
 	          		)
 	        	
 	          ),

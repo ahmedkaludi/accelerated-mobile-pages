@@ -710,6 +710,8 @@ function rowData($container,$col,$moduleTemplate){
 										}
 
 									$repeaterFrontTemplate = str_replace('{{repeater_unique}}', $repeaterUniqueId, $repeaterFrontTemplate);
+									$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('repeater_unique', $repeaterUniqueId, $repeaterFrontTemplate);
+
 										$repeaterUniqueId++;
 									}
 								}
