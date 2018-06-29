@@ -1794,7 +1794,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => __('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => __("You can read about it <a href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __("You can read about it <a target='_blank' href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
                'default' => 1,
            ),
            array(
