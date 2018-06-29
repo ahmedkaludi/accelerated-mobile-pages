@@ -4919,7 +4919,10 @@ function ampforwp_dev_mode_remove_amphtml(){
 // Add noindex,nofollow in the AMP
 if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
 	function ampforwp_dev_mode_add_noindex() {
-		echo '<meta name="robots" content="noindex,nofollow"/>';
+		global $redux_builder_amp;
+		if ( isset($redux_builder_amp['amp-inspection-tool']) && false == $redux_builder_amp['amp-inspection-tool'] ){ 
+			echo '<meta name="robots" content="noindex,nofollow"/>';
+		}
 	}
 }
 // Notice for Dev Mode
