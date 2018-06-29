@@ -36,19 +36,7 @@
 								);
 			 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
 			}
-			else {
-				if($redux_builder_amp['amp-pagination']) {
-					$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
-				    $queried_var = get_query_var('page');
-					if ( $queried_var > 1 ) {
-				    	$queried_var = $queried_var -1   ;
-				  	}
-				  	else{
-				  		$queried_var = 0;
-				  	}
-				  	$ampforwp_the_content =  $ampforwp_new_content[$queried_var]; 		  
-		 		} //#1015 Pegazee
-		 	}
+
 		 	
 			//Filter to modify the Content			 
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
