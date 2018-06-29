@@ -35,11 +35,11 @@ $output = '
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
 	<div class="amp-sld4">
-		<amp-carousel class="howSectionImageInPhone" id="how-carousel" width="1024" height="682"
-            layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
-		
+		<amp-carousel id="card-carousel" height="400" type="carousel"  >
+			{{repeater_testimonilas}}
 		</amp-carousel>
 	</div>
+	
 {{ifend_condition_carousel_layout_type_4}}
 
 ';
@@ -127,6 +127,87 @@ $css = '
     font-size: 22px;
 }
 {{ifend_condition_carousel_layout_type_3}}
+{{if_condition_carousel_layout_type==4}}
+.card {
+    width: 425px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px 1px rgba(0,0,0,.1);
+    margin: 40px;
+    word-wrap: break-word;
+    text-align:center;
+}
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:30px;
+}
+.tstmnl{
+	font-size: {{cnt-size}};
+    line-height: 1.5;
+    font-weight: {{cnt_fnt_wgt}};
+    color:{{cnt_color}};
+    white-space: pre-wrap;
+    margin-bottom:20px;
+}
+.cardContent .ath-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:{{athr_color}};
+    font-size:{{athr-size}};
+    font-weight:{{athr_fnt_wgt}};
+}
+.athr-nm{
+	margin-left:10px;
+}
+.amp-sld4{
+	width:100%;
+	position: relative;
+    padding: 30px 0px;
+    display: inline-block;
+}
+.amp-sld4 .amp-carousel-button {
+    top: auto;
+    bottom: 0;
+    border-radius: 50%;
+    background: {{pn_color}};
+    cursor: pointer;
+}
+.amp-sld4 .amp-carousel-button-next:after{
+	content: ">";
+    display: inline-block;
+    color: #fff;
+    position: absolute;
+    top: -1px;
+    font-weight: 500;
+    font-size: 22px;
+    right: 0px;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.amp-sld4 .amp-carousel-button-prev:before{
+	content: "<";
+    display: inline-block;
+    color: #fff;
+    position: absolute;
+    top: -1px;
+    font-weight: 500;
+    font-size: 22px;
+    right: 0px;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.amp-sld4 .amp-carousel-button-prev{
+	left: 40%;
+}
+.amp-sld4 .amp-carousel-button-next{
+	right:40%;
+}
+{{ifend_condition_carousel_layout_type_4}}
 ';
 
 return array(
@@ -276,6 +357,83 @@ return array(
 								'content_type'=>'css',
 								'required'  => array('carousel_layout_type'=>'3'),
 							),
+						array(
+								'type'		=>'text',
+								'name'		=>"cnt-size",
+								'label'		=>'Testimonial Font Size',
+								'tab'		=>'design',
+								'default'	=>'15px',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'4'),
+							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'cnt_fnt_wgt',		
+	 							'label' =>"Testimonial Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'400',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('carousel_layout_type'=>'4'),
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"cnt_color",
+								'label'		=>'Testimonial Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'4'),
+							),
+						array(
+								'type'		=>'text',
+								'name'		=>"athr-size",
+								'label'		=>'Author Font Size',
+								'tab'		=>'design',
+								'default'	=>'14px',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'4'),
+							),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'athr_fnt_wgt',		
+	 							'label' =>"Author Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'500',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('carousel_layout_type'=>'4'),
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"athr_color",
+								'label'		=>'Author Color',
+								'tab'		=>'design',
+								'default'	=>'#333',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'4'),
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"pn_color",
+								'label'		=>'Prev/Next Background Color',
+								'tab'		=>'design',
+								'default'	=>'#ee476f',
+								'content_type'=>'css',
+								'required'  => array('carousel_layout_type'=>'4'),
+							),
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
@@ -382,13 +540,22 @@ return array(
 	 						),
 	 						array(		
 		 						'type'		=>'upload',		
-		 						'name'		=>"img_upload",		
+		 						'name'		=>"athr_img",		
 		 						'label'		=>'Author Image',
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
 		           				'required'  => array('carousel_layout_type'=>'4'),
 
+	 						),
+	 						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"aut_link",		
+		 						'label'		=>'Author Link',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'#',	
+		           				'content_type'=>'html',
+		           				'required'  => array('carousel_layout_type'=>'4'),
 	 						),
 
 	              ),
@@ -406,11 +573,19 @@ return array(
 			      		<h1>{{content_title}}</h1>
 			      		<div class="amp-desc">{{content}}</div>
 			      </div>',
-			      "testimonilas"=>'<div class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}} amp-cnt" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
-			      		<div class="tstmnl">
-
+			      "testimonilas"=>'<div class="{{if_condition_repeater_unique==0}}how-current{{ifend_condition_repeater_unique_0}}" [class]="howSectionSelected.howSlide == {{repeater_unique}} ? \'how-current\' : \'\'" on="tap:AMP.setState({howSectionSelected: {howSlide: {{repeater_unique}}}})" role="button" tabindex="{{repeater_unique}}">
+			      		<div class="card">
+							<div class="cardContent">
+				      			<div class="tstmnl">{{test_cntn}}</div>
+				      			<a href="{{aut_link}}" class="ath-info">
+					      			<amp-img src="{{athr_img}}" width="50" height="50" alt="{{image_alt}}">
+					      			</amp-img>
+					      			<span class="athr-nm">{{aut_name}}</span>
+					      		</a>
+					      	</div>
 			      		</div>
-			      </div>'
+			      		</div>
+			      '
 	          		)
 	        	
 	          ),
