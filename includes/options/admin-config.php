@@ -1875,7 +1875,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
                   'indent' => true,
                   'layout_type' => 'accordion',
-                   'accordion-open'=> 0,
+                   'accordion-open'=> 1,
               ),
            array(
                'id'       => 'amp-inspection-tool',
