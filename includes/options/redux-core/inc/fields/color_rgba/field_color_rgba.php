@@ -51,10 +51,6 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
             $this->parent   = $parent;
             $this->field    = $field;
             $this->value    = $value;
-            $this->time = time();
-            if ( defined('AMPFORWP_VERSION') ) {
-                $this->time = AMPFORWP_VERSION;
-            }
 
             $defaults = array(
                 'color'     => '',
@@ -196,7 +192,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
                     'redux-field-color-rgba-js', 
                     ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
                     array('jquery', 'redux-spectrum-js'), 
-                    $this->time, //time(), 
+                    time(), 
                     true
                 );
             }
@@ -212,7 +208,7 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
                         'redux-field-color-rgba-css',
                         ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba.css',
                         array(),
-                        $this->time, //time(),
+                        time(),
                         'all'
                     );
                 }

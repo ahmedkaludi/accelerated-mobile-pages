@@ -83,15 +83,17 @@ class AMP_Vimeo_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-		$attrs = array(
+
+		return AMP_HTML_Utils::build_tag(
+			'amp-vimeo',
+			array(
 				'data-videoid' => $args['video_id'],
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
-			);
-		
-		$attrs = ampforwp_amp_consent_check( $attrs );
-		return AMP_HTML_Utils::build_tag('amp-vimeo', $attrs);
+				'data-block-on-consent' => '',
+			)
+		);
 	}
 
 	// get_video_id_from_url()

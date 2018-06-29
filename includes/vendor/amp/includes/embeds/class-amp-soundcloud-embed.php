@@ -74,13 +74,16 @@ class AMP_SoundCloud_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-		$attrs = array(
+
+		return AMP_HTML_Utils::build_tag(
+			'amp-soundcloud',
+			array(
 				'data-trackid' => $args['track_id'],
 				'layout' => 'fixed-height',
 				'height' => $this->args['height'],
-			);
-		$attrs = ampforwp_amp_consent_check( $attrs );
-		return AMP_HTML_Utils::build_tag('amp-soundcloud',$attrs);
+				'data-block-on-consent' => '',
+			)
+		);
 	}
 
 	private function get_track_id_from_url( $url ) {

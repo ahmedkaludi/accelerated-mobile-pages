@@ -41,14 +41,16 @@ class AMP_Facebook_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-		$attrs = array(
+
+		return AMP_HTML_Utils::build_tag(
+			'amp-facebook',
+			array(
 				'data-href' => $args['url'],
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
-			);
-		$attrs = ampforwp_amp_consent_check( $attrs );
-
-		return AMP_HTML_Utils::build_tag('amp-facebook',$attrs);
+				'data-block-on-consent' => '',
+			)
+		);
 	}
 }

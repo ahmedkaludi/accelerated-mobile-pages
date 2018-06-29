@@ -72,11 +72,6 @@
     right: -14px;
     background: #fff;}.redux-main #redux-footer-sticky{margin-left:-20px;margin-right:-20px;margin-bottom:-10px}.redux-qtip{z-index:999999 !important}.redux-main pre{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}
 /* custom css */
-.redux-amp-search-icon{ 
-    position: relative;
-    top: 17px;
-    left: 10px;
-}
 .redux-container{
     position: relative;
     background: #f5f6fa;
@@ -298,11 +293,9 @@ img.ampforwp-post-builder-img{
     background: #303e9f;
     text-decoration: none;
     color: #fff;
-    float: right;
-    padding: 6px 10px 6px 10px;
+float: right;    padding: 6px 10px 8px 10px;
     right: 0;
     border-radius: 40px;
-    margin-top: 10px;
 }
 .extension_listing li{
     background: #ffffff;

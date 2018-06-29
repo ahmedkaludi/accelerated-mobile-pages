@@ -120,7 +120,9 @@ class AMP_Iframe_Sanitizer extends AMP_Base_Sanitizer {
 			$out['sandbox'] = self::SANDBOX_DEFAULTS;
 		}
 
-		$out = ampforwp_amp_consent_check( $out );
+		if ( ! isset( $out['data-block-on-consent'] ) ) {
+			$out['data-block-on-consent'] = '';
+		}
 
 		return $out;
 	}

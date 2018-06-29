@@ -100,7 +100,9 @@ class AMP_Video_Sanitizer extends AMP_Base_Sanitizer {
 			}
 		}
 
-		$out = ampforwp_amp_consent_check( $out );
+		if ( ! isset( $out['data-block-on-consent'] ) ) {
+			$out['data-block-on-consent'] = '';
+		}
 		
 		return $out;
 	}

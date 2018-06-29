@@ -2,48 +2,37 @@
     <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name" :placeholder="field.placeholder"  v-model="field.default">
-        <div class="help-msg" v-html="field.helpmessage"></div>
-        </div>
+        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
          <div class="clearfix"></div>
     </div>
     <div class="amp-form-control" :id="field.name" data-type="hidden" v-else-if="field.type=='hidden' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
-        <div class="help-msg" v-html="field.helpmessage"></div>
-        </div>
+        <div class="form-field"><input type="text" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
         <div class="clearfix"></div>
     </div>
    
     <div class="amp-form-control" :id="field.name" data-type="number" v-else-if="field.type=='number' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field"><input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default">
-        <div class="help-msg" v-html="field.helpmessage"></div>
-        </div>
+        <div class="form-field"><input type="number" class="full text" :id="field.id" :name="field.name"  v-model="field.default"></div>
         <div class="clearfix"></div>
     </div>
     
     <?php /*Normal Textarea*/?>
     <div class="amp-form-control" :id="field.name" data-type='textarea' v-else-if="field.type=='textarea' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field"><textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea>
-        <div class="help-msg" v-html="field.helpmessage"></div>
-        </div>
+        <div class="form-field"><textarea class="full textarea" :id="field.id" :name="field.name" v-model="field.default"></textarea></div>
         <div class="clearfix"></div>
     </div>
     
     <div class="amp-form-control" :id="field.name" data-type="text-editor" v-else-if="field.type=='text-editor' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label" style="position: absolute;margin-top: 10px;">{{field.label}}</div>
-        <div class="form-field"><textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg>
-        <div class="help-msg" v-html="field.helpmessage"></div>
-        </div>
+        <div class="form-field"><textarea-wysiwyg :default-text="field" :fieldindex="fieldkey"></textarea-wysiwyg></div>
         <div class="clearfix"></div>
     </div>
     
     <div class="amp-form-control" :id="field.name" data-type="select" v-else-if="field.type=='select' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         <div class="form-label">{{field.label}}</div>
-        <div class="form-field">
-            <select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default" v-if="field.options_details.length!=0">
+        <div class="form-field"><select type="text" class="full text" :id="field.id" :name="field.name" v-model="field.default">
                 <option value="">Select option</option>
                 <option 
                     v-for="(option, key, index) in field.options_details"
@@ -53,7 +42,6 @@
                 {{option}}
                 </option>
             </select>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -65,7 +53,6 @@
                 <input type="checkbox" :value="val.value" v-model="field.default" >
                 {{val.label}}
             </label>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -76,7 +63,6 @@
                 <input type="checkbox" :value="val.value" :checked="field.default" v-model="field.default"  v-bind:true-value="val.value" v-bind:false-value="0">
                 {{val.label}}
             </label>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -112,7 +98,6 @@
                 <input type="text"  data-type="margin" data-pos="left"  v-model="field.default.left">
             </label>
             <div class="clearfix"></div>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         
         <div class="clearfix"></div>
@@ -131,7 +116,6 @@
                  <img v-if="field.default!=''" src="../wp-includes/images/spinner.gif" :data-src="refresh_image(field.default,this,'tag',field)" class="amppbimageuploadField"/>
                 <span class="dashicons-before dashicons-no link" @click="removeSelectedImage(field)"></span>
             </div>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -144,7 +128,6 @@
             <span class="button" @click="openIconOptions=!openIconOptions;">Select Icon</span>
             <i v-if="field.default!=''" class="amppb-icon " :class="'icon-'+field.default"></i>
             <input type="hidden" v-model="field.default">
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
         <div class="select-icons" :class="{'hide': (!openIconOptions)}">
             <span class="amppb-icon-close" @click="openIconOptions=!openIconOptions;"><i class=" icon-close"></i></span>
@@ -165,7 +148,6 @@
                 <span class="button" @click="openIconOptions=!openIconOptions;">
                    Select Gradient</span>
                 <input type="hidden" v-model="field.default">
-                <div class="help-msg" v-html="field.helpmessage"></div>
             </div>
             <div class="select-icons select-gradient-box" :class="{'hide': (!openIconOptions)}" :style="field.default">
                  <span class="amppb-icon-close" @click="openIconOptions=!openIconOptions;"><i class=" icon-close"></i></span>
@@ -395,7 +377,6 @@
         <div class="form-label label_txt">{{field.label}}</div>
         <div class="form-field color-wrapper"  style="line-height: 35px" >
             <color-picker :colorfield="field"></color-picker>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
    
         <div class="clearfix"></div>
@@ -409,7 +390,6 @@
                 <label  :data-value="option.value">{{option.label}}</label>
                 <img  :data-value="option.value" :src="option.demo_image">
             </div>
-            <div class="help-msg" v-html="field.helpmessage"></div>
         </div>
    
         <div class="clearfix"></div>

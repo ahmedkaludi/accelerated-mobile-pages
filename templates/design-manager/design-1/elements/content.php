@@ -15,7 +15,7 @@
 			$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 		}
 		// Muffin Builder Compatibility #1455 #1893
-		if ( function_exists('mfn_builder_print') && !$amp_custom_content_enable) {
+		if ( function_exists('mfn_builder_print') ) {
 			ob_start();
 		  	mfn_builder_print( get_the_ID() );
 			$content = ob_get_contents();
@@ -34,7 +34,20 @@
 									) 
 								) 
 							);
-			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+		 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+		}
+		else {
+			if($redux_builder_amp['amp-pagination']) {
+				$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
+		      	$queried_var = get_query_var('page');
+		      	if ( $queried_var > 1 ) {
+		        	$queried_var = $queried_var -1   ;
+		      	}
+		      	else {
+		      		$queried_var = 0;
+		      	}
+			    $ampforwp_the_content =  $ampforwp_new_content[$queried_var];
+			}  //#1015 Pegazee
 		}
 	    
 		//Filter to modify the Content

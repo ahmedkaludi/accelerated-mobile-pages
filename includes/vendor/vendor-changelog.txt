@@ -48,5 +48,3 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 21. ampforwp_post_content_filter filter added in class-amp-post-template.php #2001
 22. hook action changed from amp_post_template_head to amp_post_template_footer for function amp_post_template_add_schemaorg_metadata() in amp-post-template-actions.php #1945
 23. Section specific class added for subsections in framework.php on line number 3288
-24. ALTER black list sanitizer LINE no 37 Added Href internal links changes
-25. check added in class-amp-content.php on line no.107 #2173

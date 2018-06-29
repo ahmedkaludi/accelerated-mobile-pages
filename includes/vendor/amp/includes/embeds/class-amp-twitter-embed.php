@@ -51,14 +51,17 @@ class AMP_Twitter_Embed_Handler extends AMP_Base_Embed_Handler {
 		}
 
 		$this->did_convert_elements = true;
-		$attrs = array(
+
+		return AMP_HTML_Utils::build_tag(
+			'amp-twitter',
+			array(
 				'data-tweetid' => $id,
 				'layout' => 'responsive',
 				'width' => $this->args['width'],
 				'height' => $this->args['height'],
-			);
-		$attrs = ampforwp_amp_consent_check( $attrs );
-		return AMP_HTML_Utils::build_tag('amp-twitter',$attrs);
+				'data-block-on-consent' => '',
+			)
+		);
 	}
 
 	function oembed( $matches, $attr, $url, $rawattr ) {

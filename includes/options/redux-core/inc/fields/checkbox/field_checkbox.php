@@ -41,16 +41,11 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
          * @access      public
          * @return      void
          */
-        private $timestamp = '';
-
         function __construct ( $field = array(), $value = '', $parent ) {
 
             $this->parent = $parent;
             $this->field = $field;
             $this->value = $value;
-            if ( defined('AMPFORWP_VERSION') ) {
-                $this->timestamp = AMPFORWP_VERSION;
-            }
         }
 
         /**
@@ -146,7 +141,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                     'redux-field-checkbox-css',
                     ReduxFramework::$_url . 'inc/fields/checkbox/field_checkbox.css',
                     array(),
-                    $this->timestamp,//time (),
+                    time (),
                     'all'
                 );
             }
@@ -155,7 +150,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
                 'redux-field-checkbox-js',
                 ReduxFramework::$_url . 'inc/fields/checkbox/field_checkbox' . Redux_Functions::isMin () . '.js',
                 array( 'jquery', 'redux-js' ),
-                $this->timestamp, //time (),
+                time (),
                 true
             );
         }

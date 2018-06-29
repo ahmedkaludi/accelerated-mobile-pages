@@ -45,12 +45,7 @@ function ampforwp_check_amp_page_status() {
    
     // AMP and non-amp Homepage
     if ( is_home() && ampforwp_is_front_page() && ! ampforwp_is_home() ) {
-      return;
-    }
-
-    // Single and Pages
-    if ( ( is_single() && !$redux_builder_amp['amp-on-off-for-all-posts'] ) || ( is_page() && !$redux_builder_amp['amp-on-off-for-all-pages'] ) || (is_singular() && 'hide-amp' == get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true)) ) {
-      return;
+        return;
     }
 
     // Blog page
@@ -137,19 +132,6 @@ function ampforwp_page_template_redirect() {
 
     // Return if some categories are selected as Hide #999
     if ( is_archive() && $redux_builder_amp['ampforwp-archive-support'] ) {
-      if(is_tag() &&  is_array($redux_builder_amp['hide-amp-tags-bulk-option'])) {
-        $all_tags = get_the_tags();
-        $tagsOnPost = array();
-        foreach ($all_tags as $tagskey => $tagsvalue) {
-          $tagsOnPost[] = $tagsvalue->term_id;
-        }
-        $get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
-        
-        if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
-          return;
-        }
-      }//tags check area closed
-
       $selected_cats = array();
       $categories = get_the_category();
       $category_id = $categories[0]->cat_ID;

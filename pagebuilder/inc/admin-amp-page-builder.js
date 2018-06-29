@@ -126,7 +126,6 @@ Vue.component('amp-pagebuilder-module-modal', {
   data: function(){
   	return {
 	  	modalcontent: app.modalcontent,
-	  	editModuleTempTitle: false,
 	  };
   },
   mounted: function () {//On ready State for component
@@ -268,34 +267,7 @@ Vue.component('amp-pagebuilder-module-modal', {
 				});
 		}
 		return returnOpt;
-	},
-
-
-
-	editModuleTitle: function(modalcontent){
-		this.editModuleTempTitle = modalcontent.cell_identity_name;
-	},
-	saveModuleTitle: function(modalcontent){
-		app.mainContent.rows.forEach(function(rowData, rowKey){
-			if(rowData.id==app.modalTypeData.containerId){
-				if(app.modalType=='module'){
-					rowData.cell_data.forEach(function(moduleData, moduleKey){
-						if(moduleData.cell_id==app.modalTypeData.moduleId){
-							//app.modalcontent.cell_identity_name = modalcontent.cell_identity_name
-							Vue.set( moduleData, 'cell_identity_name', modalcontent.cell_identity_name );
-						}
-					});
-				}
-			}
-		});
-		
-		this.editModuleTempTitle = false;
-	},
-	cancleModuleTitle: function(modalcontent){
-		app.modalcontent.cell_identity_name = this.editModuleTempTitle;
-		this.editModuleTempTitle = false;
 	}
-
   }
 })
 
@@ -312,32 +284,6 @@ Vue.component('module-data',{
 		showModulePopUp: function(event){
 			openModulePopup(event,'module');
 		},
-		duplicateModule: function(event){
-			currentModuleId = parseInt( event.currentTarget.getAttribute('data-module_id') );
-			currentcontainerId = parseInt( event.currentTarget.getAttribute('data-container_id') );
-			var updateRowKey = ''; var updateModuleKey = ''; var newDuplicateData = {};
-			app.mainContent.rows.forEach(function(rowData, rowKey){
-				if(rowData.id == currentcontainerId){
-					rowData.cell_data.forEach(function(moduleData, moduleKey){
-						if(moduleData.cell_id==currentModuleId){
-							var modulesid = parseInt(app.mainContent.totalmodules);
-							newDuplicateData = _.clone(moduleData);
-							newDuplicateData.cell_id = modulesid;
-							updateRowKey = rowKey;
-							updateModuleKey = moduleKey;
-							app.mainContent.totalmodules = modulesid+1;
-						}
-					});
-				}
-			});
-			if(updateModuleKey>0){
-				app.mainContent.rows[updateRowKey].cell_data.splice(updateModuleKey, 0,newDuplicateData);
-			}else{
-				app.mainContent.rows[updateRowKey].cell_data.push(newDuplicateData);
-				
-			}
-			app.re_process_rawdata();
-		}//duplicateModule closed
 	}
 });
 
@@ -360,7 +306,6 @@ function openModulePopup(event,type){
 				rowData.cell_data.forEach(function(moduleData, moduleKey){
 					if(moduleData.cell_id==currentModuleId){
 						//app.modalcontent.repeater.showFields.forEach
-						app.modalcontent.cell_identity_name = moduleData.cell_identity_name;
 						app.modalcontent.fields.forEach(function(fieldData,fieldKey){
 							//if(moduleData[fieldData.name] && moduleData[fieldData.name]!=''){
 
@@ -385,7 +330,7 @@ function openModulePopup(event,type){
 										'default', 
 										userValues );
 							//}
-							//console.log(app.modalcontent.repeater);
+							console.log(app.modalcontent.repeater);
 							if(moduleData.repeater){
 								
 								app.modalcontent.repeater.showFields = [];
@@ -577,7 +522,6 @@ Vue.component('fields-data',{
 							 	Vue.set(field,'default',imageList);
 							}else{*/
 								if(type=='tag'){
-									field[field['name']+'_image_data'] = response.data.front_image;
 									jQuery(currentSelectfield.$el).find('img').attr('src',response.data.detail[0]);
 								}else{
 									//console.log(jQuery(currentSelectfield).parents('p'))
@@ -745,7 +689,6 @@ var app = new Vue({
     showModal: false,
     //Module data
     showmoduleModal: false,
-    editModuleTempTitle: false,
     stopModuleModalClose:false,
     modalcontent: [],
     modalType:'',//module/rowSetting
@@ -833,37 +776,6 @@ var app = new Vue({
 				this.call_default_functions();
 			}
 		},
-		duplicateRow: function(){
-			var currentRowId = event.currentTarget.getAttribute('data-rowid');
-			var duplicateRowData = {}; var rowKeyValue = '';
-			app.mainContent.rows.forEach(function(rowData, rowKey){
-				if(rowData.id == currentRowId){
-					var rowsId = parseInt(app.mainContent.totalrows);
-					duplicateRowData = JSON.parse(JSON.stringify(rowData));
-					duplicateRowData.id = rowsId;
-					rowKeyValue = rowKey;
-					app.mainContent.totalrows = rowsId+1;
-				}
-			});
-			var sampleSelldata = duplicateRowData.cell_data;//_.clone(duplicateRowData.cell_data);
-			sampleSelldata.forEach(function(moduleData, moduleKey){
-				var modulesid = parseInt(app.mainContent.totalmodules);
-				duplicateRowData.cell_data[moduleKey].cell_id = modulesid;
-				duplicateRowData.cell_data[moduleKey].container_id = duplicateRowData.id;
-				app.mainContent.totalmodules = modulesid+1;
-			});
-			duplicateRowData.cell_data = sampleSelldata;
-
-
-			// console.log(duplicateRowData);
-			if(rowKeyValue>0){
-				app.mainContent.rows.splice(rowKeyValue, 0,duplicateRowData);
-			}else{
-				app.mainContent.rows.push(duplicateRowData);	
-			}
-			app.re_process_rawdata();
-			//
-		},
   		//Rows drop details
 		handleDrop: function(columnData,Events) {
 			if(typeof columnData=='undefined' || typeof columnData.type=='undefined'){
@@ -927,7 +839,6 @@ var app = new Vue({
 							'type'		: modulename,
 							'container_id': rowid,
 							'cell_container': cellid,
-							'cell_identity_name': modulesid,
 							};
 
 						if(moduleJson.fields.length > 0){

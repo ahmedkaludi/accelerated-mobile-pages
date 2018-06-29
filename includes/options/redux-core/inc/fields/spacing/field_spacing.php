@@ -18,10 +18,6 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
             $this->parent = $parent;
             $this->field  = $field;
             $this->value  = $value;
-            $this->time = time();
-            if ( defined('AMPFORWP_VERSION') ) {
-                $this->time = AMPFORWP_VERSION;
-            }
         }
 
         /**
@@ -286,7 +282,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                 'redux-field-spacing-js',
                 ReduxFramework::$_url . 'inc/fields/spacing/field_spacing' . Redux_Functions::isMin() . '.js',
                 array( 'jquery', 'select2-js', 'redux-js' ),
-                $this->time, //time(),
+                time(),
                 true
             );
 
@@ -295,7 +291,7 @@ if ( ! class_exists( 'ReduxFramework_spacing' ) ) {
                     'redux-field-spacing-css',
                     ReduxFramework::$_url . 'inc/fields/spacing/field_spacing.css',
                     array(),
-                    $this->time, //time(),
+                    time(),
                     'all'
                 );
             }

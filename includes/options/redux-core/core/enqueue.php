@@ -87,7 +87,7 @@
                     'select2-css',
                     '//cdn.jsdelivr.net/select2/3.5.2/select2.css',
                     array(),
-                    $this->timestamp, //'3.5.2'
+                    '3.5.2',//$this->timestamp,
                     'all'
                 );
 
@@ -103,7 +103,7 @@
                     'redux-spectrum-css',
                     ReduxFramework::$_url . 'assets/css/vendor/spectrum/' . $css_file,
                     array(),
-                    $this->timestamp, //'1.3.3',
+                    '1.3.3',
                     'all'
                 );
 
@@ -130,7 +130,7 @@
                     'qtip-css',
                     ReduxFramework::$_url . 'assets/css/vendor/qtip/' . $css_file,
                     array(),
-                    $this->timestamp,
+                    '2.2.0',
                     'all'
                 );
 
@@ -170,7 +170,7 @@
                         'redux-field-media-css',
                         ReduxFramework::$_url . 'assets/css/media/media.css',
                         array(),
-                        $this->timestamp, //time(),
+                        time(),
                         'all'
                     );
                 }
@@ -225,7 +225,7 @@
                     'select2-js',
                     '//cdn.jsdelivr.net/select2/3.5.2/select2' . $this->min . '.js',
                     array( 'jquery', 'redux-select2-sortable-js' ),
-                    $this->timestamp, //'3.5.2',
+                    '3.5.2',
                     true
                 );
 
@@ -241,7 +241,7 @@
                     'qtip-js',
                     ReduxFramework::$_url . 'assets/js/vendor/qtip/' . $js_file,
                     array( 'jquery' ),
-                    $this->timestamp, //'2.2.0',
+                    '2.2.0',
                     true
                 );
 
@@ -257,7 +257,7 @@
                     'redux-spectrum-js',
                     ReduxFramework::$_url . 'assets/js/vendor/spectrum/' . $js_file,
                     array( 'jquery' ),
-                    $this->timestamp, //'1.3.3',
+                    '1.3.3',
                     true
                 );                
                 
@@ -293,7 +293,7 @@
                     'webfontloader',
                     'https://ajax.googleapis.com/ajax/libs/webfont/1.5.0/webfont.js',
                     array( 'jquery' ),
-                    $this->timestamp, //'1.5.0',
+                    '1.5.0',
                     true
                 );
             }
