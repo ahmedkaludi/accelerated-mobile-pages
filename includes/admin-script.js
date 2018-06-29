@@ -188,6 +188,27 @@ jQuery(function($) {
             $("li."+currentTab+" a").click();
         }
     }
+    var switchTextfunc = function(){
+        var switchText = $('.switch-text');
+        switchText.each(function(e,v){
+            if ( $(this).siblings('input').attr('value') == 1 ) {
+                $(this).parent('div.switch-options').find('.switch-text-on').show();
+            }
+            else if ( $(this).siblings('input').attr('value') == 0 ) {
+                $(this).parent('div.switch-options').find('.switch-text-off').show();
+            }
+        });        
+        switchText.siblings('label').click(function(){
+            if ( $(this).siblings('input').attr('value') == 1 ) {
+                $(this).parent().find('.switch-text-on').hide();
+                $(this).parent().find('.switch-text-off').show();
+            }
+            else if ( $(this).siblings('input').attr('value') == 0 ) {
+                    $(this).parent().find('.switch-text-off').hide();
+                    $(this).parent().find('.switch-text-on').show();
+            }
+        });
+    }
     $(document).ready(function() {
         if(getQueryStringValue('page')=='amp_options'){
             //Tab section implementation
@@ -200,6 +221,7 @@ jQuery(function($) {
             //To Hide Leftsidebar option Below Extension
             hideReduxLeftTabs();
             showExtensionTabs();
+            switchTextfunc();
         }
 
  

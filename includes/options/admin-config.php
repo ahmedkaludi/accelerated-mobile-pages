@@ -1884,7 +1884,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
                'default' => 0,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
@@ -1893,7 +1894,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Author Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'switch-text' => true,
 
            ),
            array(
@@ -1903,7 +1905,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Date Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'switch-text' => true,
 
            ),
            array(
@@ -1913,7 +1916,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Categories",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-tag-pages',
@@ -1922,7 +1926,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Tags",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'switch-text' => true,
            ),
 
 
