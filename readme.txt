@@ -183,6 +183,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.2 (29th June 2018) = 
+* Fixed: GDPR not wroking properly for NON EU countries.
+* Fixed: no-index in robot meta reporting an error in Search Console.
+* Fixed: 2nd page or more blank in Post Pagination.
+
 = 0.9.96.1 (21st June 2018) =
 * Fixed: Pagination on Homepage and Archive pages not working for some cases.
 
