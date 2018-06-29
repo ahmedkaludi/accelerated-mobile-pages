@@ -3014,6 +3014,9 @@ function ampforwp_talking_to_robots() {
 	    $meta_content = '';
 	}
   $meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
+  if ( isset($redux_builder_amp['amp-inspection-tool']) && true == $redux_builder_amp['amp-inspection-tool'] ) {
+  		$talk_to_robots = $meta_content = '';
+  }
   if ( $meta_content ) {
   	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
   		echo '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';

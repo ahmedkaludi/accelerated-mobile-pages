@@ -1878,13 +1878,21 @@ Redux::setArgs( "redux_builder_amp", $args );
                    'accordion-open'=> 0,
               ),
            array(
+               'id'       => 'amp-inspection-tool',
+               'type'     => 'switch',
+               'title'    => __('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __("You can read about it <a href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
+               'default' => 1,
+           ),
+           array(
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
                'title'    => __('Archive subpages (sitewide)', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
                'default' => 0,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
@@ -1893,8 +1901,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Author Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
-
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-date-pages',
@@ -1903,8 +1911,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Date Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
-
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-category-pages',
@@ -1913,7 +1921,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Categories",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-tag-pages',
@@ -1922,7 +1931,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Tags",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
 
 
