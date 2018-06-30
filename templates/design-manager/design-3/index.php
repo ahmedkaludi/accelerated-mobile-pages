@@ -70,9 +70,9 @@ if ( get_query_var( 'paged' ) ) {
 		                   'post_status'=> 'publish'
 		                 );
 		  }
-
-		   $category_posts = new WP_Query($args);
-		   if($category_posts->have_posts()) :
+		  	$args = apply_filters('ampforwp_cat_posts_slider',$args);
+		   	$category_posts = new WP_Query($args);
+		   	if($category_posts->have_posts()) :
 		      while($category_posts->have_posts()) :
 		         $category_posts->the_post();
 		?>
