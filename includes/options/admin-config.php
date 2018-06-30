@@ -6084,6 +6084,14 @@ Redux::setSection( $opt_name, array(
              ),
 
          // Meta ON/OFF Pages
+            array(
+                  'id'       => 'featured_image_swift_page',
+                  'type'     => 'switch',
+                  'default'  =>  '1',
+                  'title'    => __('Featured Image', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => __('Enable Featured Image on Pages.'),
+                  'required' => array('amp-design-selector','=','4'),
+              ),
              array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
