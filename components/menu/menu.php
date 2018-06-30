@@ -10,10 +10,10 @@ class Ampforwp_Walker_Nav_Menu extends Walker_Nav_Menu {
 	if ($depth > 0 && $has_children > 0 )
     {
 		$column += 1;
-		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"sub-menu\">\n";
+		$output .= "\n$indent<input type=\"checkbox\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
 	}else{
 		$column += 1;
-		$output .= "\n$indent<label for=\"drop-$column\" class=\"toggle\">></label><input type=\"checkbox\" id=\"drop-$column\"><ul class=\"sub-menu\">\n";
+		$output .= "\n$indent<input type=\"checkbox\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
 		
 	}
   }
