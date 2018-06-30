@@ -206,7 +206,7 @@ padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-
 	.p-menu .amp-menu li.menu-item-has-children>ul>li {padding-left: 0px;margin-right:0;}
 	.p-menu li.menu-item-has-children:hover > a:after{transform:rotate(180deg);right:0px;}
 	<?php } else { ?>
-	.p-menu ul li.menu-item-has-children:hover > ul{display:none;} 
+	.p-m-fl .p-menu .amp-menu li.menu-item-has-children:hover>ul{display:none;} 
 	.p-menu{overflow-x: auto;overflow-y:hidden;white-space: nowrap;}
 	
 <?php } ?>
