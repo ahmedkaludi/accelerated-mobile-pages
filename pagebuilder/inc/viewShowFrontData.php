@@ -713,13 +713,15 @@ function rowData($container,$col,$moduleTemplate){
 									$repeaterFrontTemplate = ampforwp_replaceIfContentConditional('repeater_unique', $repeaterUniqueId, $repeaterFrontTemplate);
 
 									}
-										$repeaterUniqueId++;
 								}
+									$repeaterUniqueId++;
+
 								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontTemplate);
 								
 								$repeaterFields .= $repeaterFrontTemplate;
 
 							}
+							$repeaterUniqueId = $repeaterUniqueId-1;//Rememeber: loop is going to POST INCREMENT So for perfect counting need to decrese by 1
 						}//If Check for Fall back
 						if(!is_numeric($repeaterKey)){
 							$moduleFrontHtml = str_replace('{{repeater_'.$repeaterKey.'}}', trim($repeaterFields), $moduleFrontHtml);

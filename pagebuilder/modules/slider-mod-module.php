@@ -20,17 +20,17 @@ $output = '
             layout="responsive" type="slides" loop [slide]="howSectionSelected.howSlide" on="slideChange:AMP.setState({howSectionSelected: {howSlide: event.index}})">
 		{{repeater_image}}
 		</amp-carousel>
-		<p class="dots">
-			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? {{repeater_max_count}} : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
-			</span>
-			{{repeater_bullet}}
-			<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == {{repeater_max_count}} ? 0 : howSectionSelected.howSlide + 1}})" role="button" tabindex="0">
-			</span>
-		</p>
 	</div>
 	<div class="amp-g-cnt">
 		{{repeater_ampcontent}}
 	</div>
+	<p class="dots">
+		<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == 0 ? {{repeater_max_count}} : howSectionSelected.howSlide - 1}})" role="button" tabindex="0">
+		</span>
+		{{repeater_bullet}}
+		<span on="tap:AMP.setState({howSectionSelected: {howSlide: howSectionSelected.howSlide == {{repeater_max_count}} ? 0 : howSectionSelected.howSlide + 1}})" role="button" tabindex="0">
+		</span>
+	</p>
 </div>
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
@@ -67,24 +67,27 @@ $css = '
 {{if_condition_carousel_layout_type==3}}
 .amp-sld3{
 	width: 100%;
-    display: inline-block;
+    display: grid;
+    grid-template-columns: 500px 500px;
     margin: 0 auto;
     text-align: center;
+    justify-content: center;
+     grid-template-areas: 
+                       "slider content"
+                       "dots content"
+                       
 }
 .amp-gallery{
-	width: 500px;
     text-align: center;
-    display: inline-block;
-    vertical-align: middle;
+    grid-area: slider;
 }
 .amp-g-cnt{
-	width: 500px;
-    display: inline-block;
     text-align: left;
     margin-left: 100px;
     vertical-align: middle;
+    grid-area: content;
 }
-.dots{margin-top:30px;}
+.dots{margin-top:30px;grid-area: dots;}
 .amp-g-cnt .how-current{display: inline-block;}
 .amp-g-cnt .how-current h1{color:{{hdng__active_color}};}
 .amp-g-cnt h1, .amp-g-cnt p{cursor: pointer;display: inline-block;}
@@ -125,6 +128,24 @@ $css = '
     top: -1px;
     font-weight: 500;
     font-size: 22px;
+}
+@media(max-width:1000px){
+	.amp-sld3 {
+	    grid-template-columns: 360px 360px;
+	}
+}
+@media(max-width:768px){
+	.amp-sld3 {
+		grid-template-columns: 100%;
+		grid-template-areas: 
+                       "slider slider"
+                       "content content"
+                       "dots dots"
+     }
+    .amp-g-cnt {
+	    text-align: center;
+	    margin: 40px 0px 0px 0px;
+	}
 }
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
@@ -206,6 +227,18 @@ $css = '
 }
 .amp-sld4 .amp-carousel-button-next{
 	right:40%;
+}
+@media(max-width:767px){
+	.card {
+    	width: 100%;
+    	margin: 40px 0px 40px 0px;
+    }
+    .amp-sld4 .amp-carousel-button-next {
+	    right: 30%;
+	}
+	.amp-sld4 .amp-carousel-button-prev{
+		left: 30%;
+	}
 }
 {{ifend_condition_carousel_layout_type_4}}
 ';
