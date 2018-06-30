@@ -1317,6 +1317,31 @@ function ampforwp_new_dir( $dir ) {
 							</amp-analytics>
 						<!-- End AFS Analytics Javascript -->
 							<?php
+						}
+		if ( isset($redux_builder_amp['ampforwp-adobe-analytics-switch']) && true == $redux_builder_amp['ampforwp-adobe-analytics-switch'] ) {	
+			$adobe_host = $redux_builder_amp['ampforwp-adobe-host'];
+			$adobe_reportsuiteid = $redux_builder_amp['ampforwp-adobe-reportsuiteid'];
+			?>
+						<!-- Start Adobe Analytics Support Javascript-->
+						<amp-analytics type="adobeanalytics">
+							<script type="application/json">
+									{
+									    
+										"vars": {
+											  "host": "<?php echo $adobe_host;?>",
+											  "reportSuites": "<?php echo $adobe_reportsuiteid;?>",
+										},
+										"triggers": {
+											  "pageLoad": {
+											    "on": "visible",
+											    "request": "pageView"
+											  },
+										}
+									}
+							</script>
+						</amp-analytics>
+						<!-- End Adobe Analytics Support Javascript --> 
+							<?php
 						}			
 		}//analytics function ends here
 	// For Setting up Google AMP Client ID API
