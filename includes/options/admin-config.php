@@ -3335,6 +3335,21 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-analytics', '=', 1)
                     ),
+
+                    array(
+                        'id'       => 'fb-instant-crawler-ingestion',
+                        'type' => 'switch',
+                        'title'    => __('Crawler Ingestion', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                    	'id'	=> 'fb-instant-page-id',
+                    	'type'	=> 'text',
+                    	'title'	=> __('Facebook Page Id', 'accelerated-mobile-pages'),
+                    	'tooltip-subtitle' => __('Follow <a href="https://www.facebook.com/instant_articles/signup?__mref=facebook-instant-articles-wp" target="_blank">these instructions</a> to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
+                    	'required'  => array('fb-instant-crawler-ingestion', '=', 1)
+                    )
     ),
    )
 );
