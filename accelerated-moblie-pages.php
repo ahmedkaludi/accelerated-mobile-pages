@@ -181,13 +181,6 @@ function ampforwp_add_custom_rewrite_rules() {
 	    );
   	}
     
-  	// Rewrite rule for date archive with pagination #2289
-  	add_rewrite_rule(
-      '([0-9]{4})/([0-9]{1,2})/amp/page/?([0-9]{1,})/?$',
-      'index.php?year=2017&monthnum=07&amp=1&paged=$matches[3]',
-      'top'
-    );
-
 	//Rewrite rule for custom Taxonomies
 	$args = array(
 	  		'public'   => true,
