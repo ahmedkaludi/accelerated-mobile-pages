@@ -1,7 +1,7 @@
 <?php
 class Ampforwp_Walker_Nav_Menu extends Walker_Nav_Menu {
 
-  function start_lvl(&$output, $depth=0, $args = array()) {
+  function start_lvl(&$output, $depth=0, $args = array(), $has_children = 0) {
 	static $column = 1;
     $indent = str_repeat("\t", $depth);
       //$output .= "\n$indent<ul class=\"sub-menu\">\n";
@@ -90,5 +90,6 @@ function amp_menu_html($echo){
 //Load styling for Menu
 add_action('amp_post_template_css','amp_menu_styles',11); 
 function amp_menu_styles(){ ?>
-    aside{width:150px}.amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.p-menu .amp-menu li.menu-item-has-children:hover>ul{display:block}.amp-menu [id^=drop]:checked + ul { display: block; }.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}	/* .amp-menu li.menu-item-has-children:after{content:" > ";position:absolute;padding:10px;right:0;top:0;z-index:10000;line-height:1;} */.p-menu .amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}
+    aside{width:150px}
+    .amp-menu{list-style-type:none;margin:0;padding:0}.amp-menu li{position:relative;display:block}.amp-menu li.menu-item-has-children ul{display:none}.amp-menu li.menu-item-has-children:hover>ul{display:}.amp-menu li.menu-item-has-children>ul>li{padding-left:10px}.amp-menu li.menu-item-has-children:after{content:" > ";position:absolute;padding:10px;right:0;top:0;z-index:10000;line-height:1;}.amp-menu>li a{padding:7px;display:block;margin-bottom:1px}.amp-menu>li ul{list-style-type:none;margin:0;padding:0;position:relative}
 <?php }
