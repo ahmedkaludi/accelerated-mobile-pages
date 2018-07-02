@@ -5405,7 +5405,7 @@ Redux::setSection( $opt_name, array(
           array(
               'id'       => 'ampforwp-bread-crumb',
               'type'     => 'switch',
-              'default'  =>  '1',
+              'default'  =>  'category',
               'title'    => __('Breadcrumbs', 'accelerated-mobile-pages'),
            ),
 				array(
@@ -5415,10 +5415,10 @@ Redux::setSection( $opt_name, array(
 						'tooltip-subtitle'     => __('Select option to enable breadcrumb with tags or category','accelerated-mobile-pages'),
 						'title'    => __('Select Breadcrumb Type', 'accelerated-mobile-pages'),
 						'options'  => array(
-							'1' => 'Tags',
-							'2' => 'Categories',
+							'tags' => 'Tags',
+							'category' => 'Category',
 						),
-						'default'  => '2',
+						'default'  => 'category',
 						'required' => array('ampforwp-bread-crumb' , '=' , 1),
                     ),
                    
@@ -5427,7 +5427,7 @@ Redux::setSection( $opt_name, array(
               'id'       => 'ampforwp-cats-single',
               'type'     => 'switch',
               'default'  =>  '1',
-              'title'    => __('Categories', 'accelerated-mobile-pages'),
+              'title'    => __('Category', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => __('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),              
              'required' => array( array('amp-design-selector', '!=' , '4') )
            ),
