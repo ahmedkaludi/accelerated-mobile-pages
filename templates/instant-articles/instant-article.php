@@ -52,12 +52,24 @@
                     </figure>
 				<?php endif; ?>
                 <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){
+                  if(isset($redux_builder_amp['fb-instant-article-ad-type']) && '1' === $redux_builder_amp['fb-instant-article-ad-type']){
                         if(isset($redux_builder_amp['fb-instant-article-ad-id']) && $redux_builder_amp['fb-instant-article-ad-id']){ ?>
                             <!-- facebook audience network ad -->
                             <figure class="op-ad">
                                 <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=<?php echo get_ia_placement_id(); ?>&adtype=banner300x250"></iframe>
                             </figure>
-                    <?php } } ?>
+                    <?php } }
+                    else{
+                        if(isset($redux_builder_amp['fb-instant-article-ad-type']) && '2' === $redux_builder_amp['fb-instant-article-ad-type']){
+                          $custom_iframe_url = '';
+                          if(isset($redux_builder_amp['fb-instant-article-custom-iframe-ad']) && !empty($redux_builder_amp['fb-instant-article-custom-iframe-ad'])){
+                            $custom_iframe_url = $redux_builder_amp['fb-instant-article-custom-iframe-ad'];
+                          } ?>
+                            <!-- facebook custom iframe ad -->
+                            <figure class="op-ad">
+                                <iframe width="300" height="250" style="border:0; margin:0;" src="<?php echo $custom_iframe_url; ?>"></iframe>
+                            </figure>
+                   <?php } } } ?>
             </header>
 
             <!-- body -->
