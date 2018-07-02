@@ -2889,7 +2889,7 @@ function ampforwp_talking_to_robots() {
 	  	}
   	}
   	// Meta Robots Tag From Yoast #1563
-  	if ( class_exists('WPSEO_Frontend') ) {
+  	if ( class_exists('WPSEO_Frontend') && false == $redux_builder_amp['amp-inspection-tool']) {
 		$class_instance = '';
 	    $class_instance = WPSEO_Frontend::get_instance();
 	    // robots() will return and print the meta robots tag
