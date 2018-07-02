@@ -4311,7 +4311,7 @@ function ampforwp_add_fbia_crawler_ingestion(){
 		$url = add_query_arg( 'ia_markup', '1', $url );
 		?>
 		<meta property="fb:pages" content="<?php echo esc_attr( $fb_page_id ); ?>" />
-		<meta property="ia:markup_url" content="<?php echo esc_attr( $url ); ?>" />
+		<meta property="ia:markup_url" content="<?php echo esc_url( $url ); ?>" />
 		<?php
 }
 
