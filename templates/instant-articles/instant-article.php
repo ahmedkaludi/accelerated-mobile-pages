@@ -67,7 +67,7 @@
                           } ?>
                             <!-- facebook custom iframe ad -->
                             <figure class="op-ad">
-                                <iframe width="300" height="250" style="border:0; margin:0;" src="<?php echo $custom_iframe_url; ?>"></iframe>
+                                <iframe width="300" height="250" style="border:0; margin:0;" src="<?php echo esc_url($custom_iframe_url); ?>"></iframe>
                             </figure>
                    <?php } } } ?>
             </header>
