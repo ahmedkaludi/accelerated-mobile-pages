@@ -169,6 +169,12 @@ function call_loops_standard($data=array()){
 	
 	$filtered_args = apply_filters('ampforwp_query_args', $args);
 	$amp_q = new WP_Query( $filtered_args );
+
+	// If Relevanssi is available and this is a search, pass the query to Relevanssi
+	// for improved search results. 2018-07-03 Mikko Saari (mikko@mikkosaari.fi)
+	if ( is_search() && function_exists( 'relevanssi_do_query' ) ) {
+		relevanssi_do_query( $amp_q );
+	}
 }
 //call_loops_standered();
 /****
