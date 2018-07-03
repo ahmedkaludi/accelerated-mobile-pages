@@ -85,25 +85,40 @@ function call_loops_standard($data=array()){
 	if ( is_archive() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
-		$args =  array(
-			'post_type'           => $post_type,
-			'orderby'             => 'date',
-			'ignore_sticky_posts' => 1,
-			'tax_query' => array(
-					        array(
-					          'taxonomy' => $qobj->taxonomy,
-					          'field' => 'id',
-					          'terms' => $qobj->term_id,
-					    //    using a slug is also possible
-					    //    'field' => 'slug', 
-					    //    'terms' => $qobj->name
-					        )
-					        ),
-			'paged'               => esc_attr($paged),
-			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
-		  );
+		if(!is_date()){
+				$args =  array(
+					'post_type'           => $post_type,
+					'orderby'             => 'date',
+					'ignore_sticky_posts' => 1,
+					'tax_query' => array(
+							        array(
+							          'taxonomy' => $qobj->taxonomy,
+							          'field' => 'id',
+							          'terms' => $qobj->term_id,
+							    //    using a slug is also possible
+							    //    'field' => 'slug', 
+							    //    'terms' => $qobj->name
+							        )
+							        ),
+					'paged'               => esc_attr($paged),
+					'post__not_in' 		  => $exclude_ids,
+					'has_password' => false ,
+					'post_status'=> 'publish'
+				  );
+		}
+		if(is_date()){
+			$year     	= get_query_var('year');
+			$monthnum 	= get_query_var('monthnum');
+			$args 		= array( 'date_query' => array(
+						    array( 'month' => $monthnum,
+						    		 'year' => $year  )
+						  	),
+							'paged'               => esc_attr($paged),
+						'post__not_in' 		  => $exclude_ids,
+						'has_password' => false ,
+						'post_status'=> 'publish'
+						);
+		}
 	}
 	if ( is_home() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
