@@ -39,7 +39,9 @@
         <link><?php the_permalink_rss() ?></link>
         <guid><?php the_guid(); ?></guid>
         <pubDate><?php echo mysql2date('c', get_post_time('c', true), false); ?></pubDate>
-        <author><?php the_author() ?></author>
+        <?php if ( true == $redux_builder_amp['ampforwp-instant-article-author-meta'] ) { ?>
+            <author><?php the_author() ?></author>
+        <?php } ?>
         <description><?php the_excerpt_rss(); ?></description>
         <content:encoded>
             <![CDATA[
