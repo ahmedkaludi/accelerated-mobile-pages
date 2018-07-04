@@ -48,7 +48,10 @@ function related_post_loop_query(){
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$args = null;
-
+	$orderby = 'ID';
+	    if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
+				$orderby = 'rand';
+			}
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 	    $categories = get_the_category($post->ID);
 		if ($categories) {
@@ -59,6 +62,7 @@ function related_post_loop_query(){
 				    'category__in' => $category_ids,
 				    'post__not_in' => array($post->ID),
 				    'posts_per_page'=> $int_number_of_related_posts,
+				    'orderby' => $orderby,
 				    'ignore_sticky_posts'=>1,
 						'has_password' => false ,
 						'post_status'=> 'publish'
@@ -77,10 +81,12 @@ function related_post_loop_query(){
 						   'tag__in' => $tag_ids,
 						    'post__not_in' => array($post->ID),
 						    'posts_per_page'=> $int_number_of_related_posts,
+						    'orderby' => $orderby,
 						    'ignore_sticky_posts'=>1,
 								'has_password' => false ,
 								'post_status'=> 'publish'
 						);
+
 		}
 	}
 	// Related Posts Based on Past few Days #2132
