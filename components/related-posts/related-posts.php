@@ -43,6 +43,22 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 	} 
 }
 
+function yarpp_post_loop_query($reference_ID = null, $args = array()){
+		global $yarpp,$redux_builder_amp;
+		$posts = $yarpp->get_related( null, array());
+		if(!$posts){
+			return ;
+		}
+		foreach ($posts as $key => $value) {
+			$postsIds[] = $value->ID;
+		}
+		$args = array(
+		    'post__in' => $postsIds
+		);
+		$posts = new WP_Query($args);
+		return $posts;	
+}
+
 function related_post_loop_query(){
 	global $post,  $redux_builder_amp;
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
@@ -103,6 +119,14 @@ function related_post_loop_query(){
 					       		); 
 	}
 	$my_query = new wp_query( $args );
+
+	if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+		$yarpp_query = yarpp_post_loop_query();
+		if( $yarpp_query ){
+			$my_query = $yarpp_query;
+		}
+	}
+
 	return $my_query;
 }
 
@@ -151,7 +175,11 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 }
 
 function ampforwp_get_relatedpost_content($argsdata=array()){
-	$related_post_permalink = ampforwp_url_controller( get_permalink() ); ?>
+	$related_post_permalink = ampforwp_url_controller( get_permalink() );
+	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
+		$related_post_permalink = get_permalink();
+	}
+	?>
 	<div class="related_link">
         <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
         <?php
