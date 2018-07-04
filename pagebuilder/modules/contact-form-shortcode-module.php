@@ -45,7 +45,7 @@ if(is_plugin_active('amp-cf7/amp-cf7.php')){
 				));
 
 }
-if(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php') && class_exists("RGFormsModel")){
+if(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php') && class_exists('RGFormsModel')){
 	$formSupported = array_merge($formSupported, array('gravityform'=>'Gravity Form'));
 
 	$apbGFforms = RGFormsModel::get_forms();
