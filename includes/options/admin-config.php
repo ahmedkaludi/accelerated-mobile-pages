@@ -3014,7 +3014,7 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1),
                        'id' => 'amp-fbia_2',
                        'type' => 'section',
-                       'title' => __('AMP Support', 'accelerated-mobile-pages'),
+                       'title' => __('Facebook Instant Articles Settings', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
