@@ -30,6 +30,12 @@
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => $number_of_articles,
     );
+    if ( is_category() ) {
+        $ia_args['category__in']    = get_queried_object_id(); 
+    }
+    if ( is_tag() ) {
+        $ia_args['tag__in']         = get_queried_object_id();  
+    }
     $ia_query = new WP_Query( $ia_args );
     while( $ia_query->have_posts() ) :
         $ia_query->the_post(); ?>
