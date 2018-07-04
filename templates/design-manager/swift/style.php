@@ -455,6 +455,7 @@ if($redux_builder_amp['rp_design_type'] == '3'){?>
 <?php } // Related Posts Desing 3 Ends ?>
 .related_link{margin-top:10px;}
 .related_link a{color:#333;}
+.related_link p{word-break: break-all;}
 .amp-related-posts ul{list-style-type:none;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
@@ -541,7 +542,7 @@ border-bottom: 1px solid #eee;
 .loop-category li{display: inline-block;list-style-type: none;margin-right: 10px;font-size: 10px;font-weight: 600;letter-spacing: 1.5px;}
 .loop-category li a{color:#555;text-transform: uppercase;}
 .loop-category li:hover a{color:#005be2;}
-.fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;}
+.fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;word-break: break-all;}
 .fsp:hover h2 a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
