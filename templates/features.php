@@ -5687,11 +5687,11 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 
 			global $redux_builder_amp;
 			if( isset($redux_builder_amp['amp-fb-pixel']) && $redux_builder_amp['amp-fb-pixel'] ){
-				$amp_pixel = '<amp-pixel';
+				$amp_pixel = '<amp-pixel ';
 				if(ampforwp_get_data_consent()){
 					$amp_pixel .= 'data-block-on-consent';
 				}
-				$amp_pixel .= 'src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
+				$amp_pixel .= ' src="https://www.facebook.com/tr?id='.$redux_builder_amp['amp-fb-pixel-id'].'&ev=PageView&noscript=1"></amp-pixel>';
 				echo $amp_pixel;
 
 			}
