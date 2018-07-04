@@ -4084,6 +4084,7 @@ function fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
 	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
 		add_feed('instant_articles', 'fb_instant_article_feed_function');
+		add_action('wp_head', 'ampforwp_instant_articles_pageid');		
 	}
 }
 
@@ -4091,7 +4092,15 @@ function fb_instant_article_feed_function() {
 	add_filter('pre_option_rss_use_excerpt', '__return_zero');
 	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
 }
+if ( !function_exists('ampforwp_instant_articles_pageid') ) {
+	function ampforwp_instant_articles_pageid(){ 
+		global $redux_builder_amp;
+		if ( isset($redux_builder_amp['instant-article-page-id']) && $redux_builder_amp['instant-article-page-id'] ) { ?>
+			<meta property="fb:pages" content="<?php echo esc_attr( $redux_builder_amp['instant-article-page-id'] ); ?>" />
+		<?php }
 
+	}
+}
 // 69. Post Pagination #834 #857
 function ampforwp_post_pagination( $args = '' ) {
 

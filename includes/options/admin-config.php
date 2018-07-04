@@ -3000,6 +3000,15 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                    array(
+                        'id'       => 'instant-article-page-id',
+                        'type'      => 'text',
+                        'title'     => __('Facebook Page ID', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enter the Page ID', 'accelerated-mobile-pages'),
+                         'desc' => __('Click <a href="https://www.facebook.com/instant_articles/signup" target="_blank"> here</a> to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1),
+                        'default'   => ''
+                    ),
 
            array(
                         'required'  => array('fb-instant-article-switch', '=', 1),
