@@ -133,7 +133,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .amp-wp-post-content .small-screen-excerpt-design-3 {display: none;} .amp-wp-post-content .large-screen-excerpt-design-3 { display: block; }
 <?php } ?>
 /** Pre tag Styling **/
-pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid #7b7b7b;margin-bottom: 20px;}
+pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']?>;margin-bottom: 20px;}
 /* Footer */
 #footer{ background: #151515; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:#fff }

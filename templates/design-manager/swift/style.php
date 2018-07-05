@@ -365,7 +365,7 @@ echo $fontFamily;?>
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
 
 /** Pre tag Styling **/
-pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid #7b7b7b;margin-bottom: 20px;}
+pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $redux_builder_amp['swift-color-scheme']['color']?>;margin-bottom: 20px;}
 
 .cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;}
 .sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
