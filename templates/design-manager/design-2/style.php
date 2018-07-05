@@ -131,6 +131,9 @@ main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 .amp-sub-archives li{width: 50%;} .amp-sub-archives ul{padding: 0;list-style: none;display: flex;font-size: 12px;line-height: 1.2;margin: 5px 0 10px 0px;}.page-title{font-size: 1.17em;padding: 6px 0;}
 <?php if(is_author()){ ?> .author-archive amp-img{border-radius: 50%;margin: 0px 8px 10px;display: block;}.author-archive{float: left;} .amp-wp-content .taxonomy-description{background: #f1f1f1; padding:0px} .page-title{padding:0} <?php } ?>
 
+/** Pre tag Styling **/
+pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid #7b7b7b;margin-bottom: 20px;}
+
 /* Footer */
 #footer{ background : #fff; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
