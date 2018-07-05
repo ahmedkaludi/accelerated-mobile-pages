@@ -568,7 +568,16 @@ if( isset($redux_builder_amp['wordpress-comments-support']) && 1 == $redux_build
 if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] ) {?>
 .amp-disqus-comments { text-align:center } <?php 
 } ?>
-
+/** Pre tag Styling **/
+pre {
+    padding: 30px 15px;
+    background: #f7f7f7;
+    white-space: pre-wrap;;
+    font-size: 14px;
+    color: #666666;
+    border-left: 3px solid #7b7b7b;
+    margin-bottom: 20px;
+}
 @media(max-width:1110px){
     .cntr{width:100%;padding:0px 20px;}
     .sp-rt {margin-left: 30px;}
