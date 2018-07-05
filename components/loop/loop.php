@@ -312,10 +312,10 @@ function amp_loop_excerpt($no_of_words=15,$tag = 'p'){
 	}
 	$content =  strip_shortcodes( $content );
 	if(isset($redux_builder_amp['ampforwp-homepage-loop-readmore-link']) && $redux_builder_amp['ampforwp-homepage-loop-readmore-link'] == 1) {
-		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .'... <a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">' . ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>';
+		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">' . ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>';
 
 	}else{
-		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .'... </'.$tag.'>';
+		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .'</'.$tag.'>';
 	}
 	
 }
