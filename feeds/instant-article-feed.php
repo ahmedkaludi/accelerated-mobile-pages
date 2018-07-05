@@ -25,7 +25,6 @@
     $exclude_ids = get_option('ampforwp_ia_exclude_post');
     $ia_args = array(
         'post__not_in'         => $exclude_ids,
-        'post_type'             => 'post',
         'post_status'           => 'publish',
         'ignore_sticky_posts'   => true,
         'posts_per_page'        => $number_of_articles,
@@ -35,6 +34,13 @@
     }
     if ( is_tag() ) {
         $ia_args['tag__in']         = get_queried_object_id();  
+    }
+    if ( is_tax() ) {
+        $tax_object = get_queried_object();
+        $ia_args['post_type']               = get_post_type();
+        $ia_args['tax_query']['taxonomy']   = $tax_object->taxonomy;
+        $ia_args['tax_query']['field']      = 'id';
+        $ia_args['tax_query']['terms']      = $tax_object->term_id;
     }
     $ia_query = new WP_Query( $ia_args );
     while( $ia_query->have_posts() ) :
