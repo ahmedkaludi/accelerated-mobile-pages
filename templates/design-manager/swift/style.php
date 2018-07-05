@@ -1035,7 +1035,13 @@ if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_bui
 }
 }
 <?php } ?>
-<?php } // New footer feature closed ?>
+<?php } // New footer feature closed 
+else{ // Default Footer CSS ?>
+	.f-menu {font-size: 14px;line-height: 1.4;margin-bottom: 30px;}
+	.f-menu ul li {display: inline-block;margin-right: 20px;}
+	.f-menu .sub-menu{display:none;}
+	.rr{font-size:13px;color: <?php echo $redux_builder_amp['swift-footer-txt-clr']['rgba'] ?>;}
+<?php } // If advanced footer is disabled Default Footer CSS will be load ?>
 @media(max-width:768px){
     .footer {margin-top: 60px;}
     .w-bl{flex:1 0 22%;}
