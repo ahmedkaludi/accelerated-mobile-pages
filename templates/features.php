@@ -5406,31 +5406,21 @@ function ampforwp_add_inline_related_posts(){
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
-	global $post;
-		
-	$break_point = '</p>';
-	$content_parts = explode($break_point, $content);
-	array_walk($content_parts, function(&$value, $key) {
-		 	$value = trim($value);
-			if( !empty($value) && strpos($value, "<p>")!==false ){
-			         $value .= '</p>';
-			}
-		}
-	);
-	if(count($content_parts)>1){
-		$no_of_parts = count($content_parts);
-		$half_index = floor($no_of_parts / 2);
-		$half_content = array_chunk($content_parts, $half_index);
-		
-		$html ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
-		$half_content[0][] = $html;
-		$final_content ='';
-		foreach ($half_content as $key => $value) {
-			$final_content .= implode("", $value);
-		}
-		$content = $final_content;
-	}
+	global $post;$redux_builder_amp;
+	$content = preg_replace_callback('#(<p>.*?</p>)#', 'ampforwp_add_related_post_after_paragraph', $content);
 	return $content;
+}
+
+function ampforwp_add_related_post_after_paragraph($matches)
+{
+	global $redux_builder_amp;
+	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
+  static $count = 0;
+  $ret = $matches[1];
+  if (++$count == $int_number_of_paragraphs)
+    $ret .= '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+  return $ret;
 }
 
 // 85. Caption for Gallery Images
