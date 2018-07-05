@@ -175,6 +175,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 }
 
 function ampforwp_get_relatedpost_content($argsdata=array()){
+	global $redux_builder_amp;
 	$related_post_permalink = ampforwp_url_controller( get_permalink() );
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
 		$related_post_permalink = get_permalink();
