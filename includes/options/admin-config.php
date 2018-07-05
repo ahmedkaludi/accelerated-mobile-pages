@@ -3033,29 +3033,6 @@ $forms_support[] =  array(
     'id'         => 'disqus-comments',
     'subsection' => true,
     'fields'     => array(
-    	array(  
-	            'id' => 'ampforwp-display-comments',
-	            'type' => 'section',
-	            'title' => __('Display', 'accelerated-mobile-pages'),
-	            'indent' => true,
-	            'layout_type' => 'accordion',
-	            'accordion-open'=> 1, 
-	          ),
-	      array(
-	                 'id'       => 'ampforwp-display-on-pages',
-	                 'type'     => 'switch',
-	                 'title'    => __('Display on Pages', 'accelerated-mobile-pages'),
-	                 'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 1
-	             ),
-	       array(
-	                 'id'       => 'ampforwp-display-on-posts',
-	                 'type'     => 'switch',
-	                 'title'    => __('Display on Posts', 'accelerated-mobile-pages'),
-	                 'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
-	                 'default'  => 1
-	             ),
-    	
         array(  
             'id' => 'ampforwp-comments',
             'type' => 'section',
@@ -3218,8 +3195,31 @@ $forms_support[] =  array(
                             array('ampforwp-spotim-comments-support', '=' , 1),
                          ),
                     ),
-
+            array(  
+                'id' => 'ampforwp-display-comments',
+                'type' => 'section',
+                'title' => __('Visibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+              ),
+              array(
+                         'id'       => 'ampforwp-display-on-pages',
+                         'type'     => 'switch',
+                         'title'    => __('Visibility on Pages', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1
+                     ),
+               array(
+                         'id'       => 'ampforwp-display-on-posts',
+                         'type'     => 'switch',
+                         'title'    => __('Visibility on Posts', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1
+                     ),
                  )
+
+
  ) );
 
 function fb_instant_article() {
@@ -4530,6 +4530,7 @@ Redux::setSection( $opt_name, array(
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
             array(
                     'id'    => 'header-type',
@@ -6106,6 +6107,7 @@ $single_page_options = array(
                    'indent' => true,
                    'layout_type' => 'accordion',
                     'accordion-open'=> 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
              ),
                 // Swift
                   array(
