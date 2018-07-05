@@ -1638,7 +1638,12 @@ function ampforwp_get_all_post_types(){
 	global $redux_builder_amp;
 	$post_types 		 = array();
 	$selected_post_types = array();
-
+	if(isset($redux_builder_amp['amp-on-off-for-all-posts']) && $redux_builder_amp['amp-on-off-for-all-posts']){
+			$post_type['post'] = 'post';
+		}
+	if(isset($redux_builder_amp['amp-on-off-for-all-pages']) && $redux_builder_amp['amp-on-off-for-all-pages']){
+		$post_type['page'] = 'page';
+	}
     $post_types = array('post' => 'post', 'page' => 'page');
     if ( isset($redux_builder_amp['ampforwp-custom-type']) && $redux_builder_amp['ampforwp-custom-type'] ) {
 
@@ -6522,6 +6527,14 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
 		}
+		$supported_types_for_takeover = array();
+	    $supported_types_for_takeover = ampforwp_get_all_post_types();
+	    if( $supported_types_for_takeover ){
+	            $current_type = get_post_type(get_the_ID());
+	            if(!in_array($current_type, $supported_types_for_takeover)){ 
+	              return ;
+	            }
+	    }
 		if ( is_front_page() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
 		}
