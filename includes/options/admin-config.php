@@ -5486,6 +5486,12 @@ Redux::setSection( $opt_name, array(
                         'data'  => 'categories',
                         'multi'    => true
                 ),
+                array(
+                    'id'    => 'ampforwp-homepage-loop-readmore-link',
+                    'type'  => 'switch',
+                    'title' => __('Read More Link', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                ),
 
 
         )
