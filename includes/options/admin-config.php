@@ -5739,7 +5739,7 @@ $single_page_options = array(
                     'type'     => 'switch',
                 'class' => 'child_opt',
                     'title'    => __('Excerpt', 'accelerated-mobile-pages'),
-                    'default'  => 1,
+                    'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
