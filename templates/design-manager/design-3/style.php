@@ -80,8 +80,9 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
 .amp-menu li.menu-item-has-children ul ul{background:#444}
 .amp-menu li.menu-item-has-children ul ul ul{background:#666}
-.amp-menu li.menu-item-has-children:hover > ul{display:block}
-.amp-menu li.menu-item-has-children:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:0;z-index:10000;line-height:1}
+.amp-menu input{display:none}
+.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:0;z-index:10000;line-height:1}
 .toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid #555; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
