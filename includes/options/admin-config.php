@@ -5113,7 +5113,7 @@ Redux::setSection( $opt_name, array(
       );
 
 
-  //code for fetching ctegories to show as a list in redux settings
+  //code for fetching categories to show as a list in redux settings
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
@@ -5125,12 +5125,30 @@ Redux::setSection( $opt_name, array(
             foreach ($categories as $cat ) {
                     $cat_id = $cat->cat_ID;
                     $key = "".$cat_id;
-                    //building assosiative array of ID-cat_name
+                    //building associative  array of ID-cat_name
                     $categories_array[ $key ] = $cat->name;
             }
         endif;
     }
-    //End of code for fetching ctegories to show as a list in redux settings
+    //End of code for fetching categories to show as a list in redux settings
+
+    // code for fetching tags to show as a list in the redux settings
+    if(get_tags()){
+        $tags = get_tags( array(
+                                'orderby' => 'name',
+                                'order'   => 'ASC'
+                                ) );/*print_r($tags);die;*/
+        $tags_array = array();
+        if( $tags ) :
+            foreach( $tags as $tag ){
+                $tag_id = $tag->term_id;
+                $key = "".$tag_id;
+                // building associative array of ID-tag_name
+                $tags_array[ $key ] = $tag->name;
+            }
+        endif;
+    }
+    // End of code for fetching tags to show as a list in redux settings
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
     $ampforwp_home_loop['post'] = 'Posts';
@@ -5167,7 +5185,33 @@ Redux::setSection( $opt_name, array(
                         'options'  => $categories_array,
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
+                          array('amp-design-3-featured-slider', '=' , '1'),
+                          array('amp-design-3-featured-slider-for-tags', '=', '0'),
+                        ),
+                ),
+                 array(
+                        'id'       => 'amp-design-3-featured-slider-for-tags',
+                        'type'     => 'switch',
+                        'title'    => __( 'Featured Slider Tag', 'accelerated-mobile-pages' ),
+                        'required' => array(
+                           array('amp-design-selector', '=' , '3')
+                        ),
+                        'default'  => '0',
+                        'required' => array(
+                          array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1')
+                        ),
+                ),
+                 array(
+                        'id'       => 'amp-design-3-tag-selector',
+                        'type'     => 'select',
+                        'class'    => 'child_opt',
+                        'title'    => __( 'Featured Slider from Tags', 'accelerated-mobile-pages' ),
+                        'options'  => $tags_array,
+                        'required' => array(
+                          array('amp-design-selector', '=' , '3'),
+                          array('amp-design-3-featured-slider', '=' , '1'),
+                          array('amp-design-3-featured-slider-for-tags', '=' , '1'),
                         ),
                 ),
                  array(

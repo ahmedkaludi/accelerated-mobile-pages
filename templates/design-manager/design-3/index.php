@@ -70,6 +70,14 @@ if ( get_query_var( 'paged' ) ) {
 		                   'post_status'=> 'publish'
 		                 );
 		  }
+		  if( ( isset($redux_builder_amp['amp-design-3-featured-slider-for-tags']) && $redux_builder_amp['amp-design-3-featured-slider-for-tags'] ) && ( isset($redux_builder_amp['amp-design-3-tag-selector']) && $redux_builder_amp['amp-design-3-tag-selector'] ) ){
+		  	$args = array(
+		                   'tag__in' => $redux_builder_amp['amp-design-3-tag-selector'],
+		                   'posts_per_page' => $num_posts,
+		                   'has_password' => false ,
+		                   'post_status'=> 'publish'
+		                 );
+		  }
 		  	$args = apply_filters('ampforwp_d3_featured_slider_args',$args);
 		   	$category_posts = new WP_Query($args);
 		   	if($category_posts->have_posts()) :
