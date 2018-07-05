@@ -3396,6 +3396,27 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                    array(
+                        'id'       => 'fbia-header-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Head', 'accelerated-mobile-pages'),
+                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                    array(
+                        'id'       => 'fbia-body-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Body', 'accelerated-mobile-pages'),
+                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
+                    array(
+                        'id'       => 'fbia-footer-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Enter HTML in Footer', 'accelerated-mobile-pages'),
+                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => ''
+                    ),
     ),
    )
 );

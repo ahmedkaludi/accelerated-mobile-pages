@@ -9,6 +9,9 @@
         <!-- automatic ad placement -->
         <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo get_ia_ad_density(); ?>">
       <?php } ?>
+      <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
+          echo $redux_builder_amp['fbia-header-text-area'];
+      }?>
     </head>
     <body>
         <article>
@@ -73,6 +76,9 @@
             </header>
 
             <!-- body -->
+            <?php if ( isset($redux_builder_amp['fbia-body-text-area']) && $redux_builder_amp['fbia-body-text-area'] ) {
+              echo $redux_builder_amp['fbia-body-text-area'];
+            }?>
             <?php
             global $more;
             // Make it 1 to allow the full article
@@ -88,6 +94,9 @@
                           </figure>
             <?php } } ?>
             <footer>
+              <?php if ( isset($redux_builder_amp['fbia-footer-text-area']) && $redux_builder_amp['fbia-footer-text-area'] ) {
+                  echo $redux_builder_amp['fbia-footer-text-area'];
+              }?>
               <?php if( isset($redux_builder_amp['ampforwp-ia-related-articles']) && true == $redux_builder_amp['ampforwp-ia-related-articles'] ) {
                 if ( ! empty( $categories ) ) { 
                   $categories_ids = wp_list_pluck( $categories, 'term_id' );
