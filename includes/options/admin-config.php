@@ -127,6 +127,18 @@ $extension_listing_array = array(
                             'settingUrl'=>'{opt-go-amp-cache}',
                         ),
                         array(
+                            'name'=>'PWA For WordPress',
+                            'desc'=>'PWA For WordPress is a Revolutionary Cache System for Wordpress',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$89',
+                            'url_link'=>'http://ampforwp.com/pwa-for-wordpress/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
+                            'item_name'=>'PWA For WordPress',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('pwa-for-wordpress/amp-pwa.php')? 1 : 2),
+                            'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
+                        ),
+                        array(
                             'name'=>'Call To Action (CTA)',
                             'desc'=>'Higher Visibility & More Conversions',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
