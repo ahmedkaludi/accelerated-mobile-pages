@@ -1828,8 +1828,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'type'     => 'select',
                 'title'    => __('Select SEO Plugin', 'accelerated-mobile-pages'),
                 'options'  => array(
-                    '1'       => 'Yoast',
-                    '2'     => 'All in One SEO'
+                    '1'    => 'Yoast',
+                    '2'    => 'All in One SEO',
+                    '3'    => 'SEOPress'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
