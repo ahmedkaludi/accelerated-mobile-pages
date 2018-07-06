@@ -5597,7 +5597,7 @@ $single_page_options = array(
           array(
               'id'       => 'ampforwp-bread-crumb',
               'type'     => 'switch',
-              'default'  =>  'category',
+              'default'  =>  '1',
               'title'    => __('Breadcrumbs', 'accelerated-mobile-pages'),
            ),
                 array(
