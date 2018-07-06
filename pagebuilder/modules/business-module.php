@@ -2,21 +2,21 @@
 $output = '
 <div class="bs-md">
 	<div class="map blk">
-		<a href="#">
+		<a href="{{map_lnk}}">
 			<span class="ico-pic icon-{{map_icon}}"></span>
 			<h3 class="bs-tlt">{{map_tlt}}</h3>
 			<span class="bs-subhdng">{{map_cnt}}</span>
 		</a>
 	</div>
 	<div class="email blk">
-		<a href="#">
+		<a href="mailto:{{mail_id}}">
 			<span class="ico-pic icon-{{mail_icon}}"></span>
 			<h3 class="bs-tlt">{{mail_tlt}}</h3>
 			<span class="bs-subhdng">{{mail_id}}</span>
 		</a>
 	</div>
 	<div class="contact blk">
-		<a href="#">
+		<a href="tel:{{cnt_nmbr}}">
 			<span class="ico-pic icon-{{contact_icon}}"></span>
 			<h3 class="bs-tlt">{{cnt_tlt}}</h3>
 			<span class="bs-subhdng">{{cnt_nmbr}}</span>
@@ -78,7 +78,7 @@ return array(
 						array(
                                 'type'      =>'checkbox_bool',
                                 'name'      =>"check_for_map",
-                                'label'     => 'Mapping',
+                                'label'     => 'Map',
                                 'tab'       =>'customizer',
                                 'default'   =>1,
                                 'options'   =>array(
@@ -101,7 +101,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"map_tlt",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Map Heading',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Address',	
 		           				'content_type'=>'html',
@@ -110,9 +110,18 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"map_cnt",		
-		 						'label'		=>'Sub Heading',
+		 						'label'		=>'Map Sub Heading',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'Location',	
+		           				'content_type'=>'html',
+		           				'required'  => array('check_for_map'=>'1'),
+	 					),
+	 					array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"map_lnk",		
+		 						'label'		=>'Map Link',
+		           				 'tab'     =>'customizer',
+		 						'default'	=>'#',	
 		           				'content_type'=>'html',
 		           				'required'  => array('check_for_map'=>'1'),
 	 					),
@@ -142,7 +151,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"mail_tlt",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Mail Heading',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'General inquiries',	
 		           				'content_type'=>'html',
@@ -151,7 +160,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"mail_id",		
-		 						'label'		=>'Sub Heading',
+		 						'label'		=>'Mail Sub Heading',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'xyz@gmail.com',	
 		           				'content_type'=>'html',
@@ -174,7 +183,7 @@ return array(
 	 					array(		
 		 						'type'		=>'icon-selector',		
 		 						'name'		=>"contact_icon",		
-		 						'label'		=>'Call Icon',
+		 						'label'		=>'Contact Icon',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'check_circle',	
 		           				'content_type'=>'html',
@@ -183,7 +192,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_tlt",		
-		 						'label'		=>'Heading',
+		 						'label'		=>'Contact Heading',
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Call us Today!',	
 		           				'content_type'=>'html',
@@ -192,7 +201,7 @@ return array(
 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"cnt_nmbr",		
-		 						'label'		=>'Sub Heading',
+		 						'label'		=>'Contact Sub Heading',
 		           				 'tab'     =>'customizer',
 		 						'default'	=>'+91 123456',	
 		           				'content_type'=>'html',
@@ -203,7 +212,7 @@ return array(
 								'name'		=>"ic-size",
 								'label'		=>'Icon Size',
 								'tab'		=>'design',
-								'default'	=>'35px',
+								'default'	=>'40px',
 								'content_type'=>'css'
 							),
 						array(
