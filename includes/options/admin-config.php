@@ -6039,6 +6039,48 @@ $single_page_options = array(
                 'required' => array('swift_cnt_h6' , '=' , '1'),
                               array('swift_cnt' , '=' , '1')
             ),
+            array(
+                       'id' => 'ampforwp-single_section_5',
+                       'type' => 'section',
+                       'title' => __('Image Gallery Settings', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                ),
+            array(
+                    'id'       => 'ampforwp-single-gallery-type-switch',
+                    'type'     => 'switch',
+                    'title'    => __( 'Enable Amp Gallery', 'accelerated-mobile-pages' ),
+                   'default'   => 1,
+            ),
+            array(
+                   'id'    => 'ampforwp-gallery-design-type',
+                   'title'  => __('Image Gallery Designs', 'accelerated-mobile-pages'),
+                   'class' => 'child_opt child_opt_arrow',
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Single Design 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-2.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-3.png'
+                                ),
+                        
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4'),
+                                 array('ampforwp-single-gallery-type-switch', '=' , '1'),
+                                 
+                                ),
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
@@ -6064,8 +6106,8 @@ $single_page_options = array(
                     'id'       => 'ampforwp-related-posts-yarpp-switch',
                     'type'     => 'switch',
                     'class' => 'child_opt',
-                    'title'    => __('Enable Yarpp Settings', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle' => __('Enable Yarpp setting for related post', 'accelerated-mobile-pages'),
+                    'title'    => __('YARPP Compatibility', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => __('Related post options can be used from the YARPP Plugin', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
