@@ -5411,23 +5411,57 @@ function ampforwp_add_inline_related_posts(){
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
-	global $post;$redux_builder_amp;
-	$content = preg_replace_callback('#(<p>.*?</p>)#', 'ampforwp_add_related_post_after_paragraph', $content);
+	global $redux_builder_amp;
+	$total_count = '';
+	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
+	if(isset($string_number_of_paragraphs) && $string_number_of_paragraphs!=''){
+		if($int_number_of_paragraphs == 0){
+			$content = '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>'.$content;
+		}else{
+			$total_count = explode("</p>", $content);
+    		$total_count = count($total_count); // call count() only once, it's faster
+    		if($total_count < $int_number_of_paragraphs){
+    			$content = $content.'<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+    		}else{
+    			$content = preg_replace_callback('#(<p>.*?</p>)#', 'ampforwp_add_related_post_after_paragraph', $content);
+    		}
+			
+		}
+	}else{
+		$content = $content.'<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+	}
+	
 	return $content;
 }
 
 function ampforwp_add_related_post_after_paragraph($matches)
 {
 	global $redux_builder_amp;
+	static $count = 0;
+	$ret = '';
 	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
-	$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
-  static $count = 0;
-  $ret = $matches[1];
-  if (++$count == $int_number_of_paragraphs)
-    $ret .= '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+	
+		$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
+  	
+  		$ret = $matches[1];
+
+	  	if (++$count == $int_number_of_paragraphs){
+	  		$ret .= '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+
+	  	}
+    
   return $ret;
 }
 
+add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,2);
+function ampforwp_new_thumbnail_images($amp_images,$r){
+	$amp_thumb_image_buttons = '';
+	foreach ($amp_images as $key => $value) {
+		$amp_thumb_image_buttons[$key] ='<button on="tap:carousel-with-carousel-preview-'.$r.'.goToSlide(index='.$key.')" class="amp-carousel-slide amp-scrollable-carousel-slide">'.$value.'</button>';
+	}
+	return $amp_thumb_image_buttons;
+}
 // 85. Caption for Gallery Images
 // Add extra key=>value pair into the attachment array
 add_filter('amp_gallery_image_params','ampforwp_gallery_new_params', 10, 2);
@@ -5503,6 +5537,7 @@ if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
       line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
       cursor: pointer; }
 	figcaption{ margin-bottom: 20px; }
+	.carousel-preview amp-img{height:40px;width:60px;position:relative;}
 <?php }
  }
 // amp-bind for carousel with captions
