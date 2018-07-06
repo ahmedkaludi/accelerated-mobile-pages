@@ -421,11 +421,24 @@ if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
 }
 // Redux panel inclusion code
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') ) {
-	require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
-    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
-}
+	$amp_plugin_manager_version = array();
+	$plugin_manager_active = is_plugin_active('amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'); 
+	$amp_plugin_manager_active = is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+	if ( $plugin_manager_active) {
+		$amp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+		$amp_plugin_manager_version = $amp_plugin_manager['Version'];
+	}	
 
+	if ( $amp_plugin_manager_active) {
+		$plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+		$amp_plugin_manager_version =  $plugin_manager['Version'];
+	}
+	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
+		if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') || '1.0' == $amp_plugin_manager_version   ) {
+			require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+		    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+		}
+	}
 add_action('after_setup_theme', 'ampforwp_load_amp_options');
 function ampforwp_load_amp_options(){
 	if ( ! class_exists( 'ReduxFramework' ) ) {
@@ -659,6 +672,30 @@ function ampforwp_ampwptheme_notice() {
 	     </p>
 		</div>
 	<?php }
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	
+	$amp_plugin_manager_version = array();
+
+	$plugin_manager_active = is_plugin_active('amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php'); 
+	$amp_plugin_manager_active = is_plugin_active('plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+
+	if ( $plugin_manager_active) {
+		$amp_plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+		$amp_plugin_manager_version = $amp_plugin_manager['Version'];
+	}
+	if ( $amp_plugin_manager_active) {
+		$plugin_manager = get_plugin_data(AMPFORWP_MAIN_PLUGIN_DIR.'/plugin-manager/ampforwp-3rd-party-plugin-creator.php');
+		$amp_plugin_manager_version =  $plugin_manager['Version'];
+	}
+
+	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
+		$screen = get_current_screen();
+		if ( '1.0' == $amp_plugin_manager_version  && 'plugins' === $screen->base) { ?>
+			<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b>Attention:</b> AMPforWP Plugin Manager requires an upgrade. Please <b><a href="https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice" target="_blank">Download &amp; install the latest version</a></b> for free.
+				</p>
+			</div>
+		<?php }
+	}
 }
 
 function ampforwp_update_notice() {
