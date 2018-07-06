@@ -2405,7 +2405,7 @@ function ampforwp_replace_title_tags() {
 	add_filter( 'wp_title', 'ampforwp_add_custom_title_tag', 10, 3 );
 
 	function ampforwp_add_custom_title_tag( $title = '', $sep = '', $seplocation = '' ) {
-		global $redux_builder_amp;
+		global $redux_builder_amp, $post;
 		$site_title = '';
 		$genesis_title = '';
 		$post_id = $post->ID;
