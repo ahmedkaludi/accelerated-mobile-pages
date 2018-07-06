@@ -6605,6 +6605,7 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
 		}
+		// Enabling AMP Takeover only when selected in Custom Post Type
 		$supported_types_for_takeover = array();
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
 	    if( $supported_types_for_takeover ){
