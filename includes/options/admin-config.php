@@ -6207,6 +6207,17 @@ $single_page_options = array(
                         'title'    => __('Make "View Non-AMP" link nofollow', 'accelerated-mobile-pages'),
                         'default'   => 0
                 ),
+                array(
+                        'id'       => 'ampforwp-footer-background-color',
+                        'type'     => 'color_rgba',
+                        'title'    => __('Footer Background Color', 'accelerated-mobile-pages'),
+                        'default'   => array(
+                                'color' => '#ffffff'
+                        ),
+                        'required'  => array(
+                            array('amp-design-selector', '!=' , '4')
+                        )
+                ),
             array(
                    'id' => 'footer-tab-2',
                    'type' => 'section',
