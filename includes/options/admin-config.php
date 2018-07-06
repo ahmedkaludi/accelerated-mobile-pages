@@ -131,7 +131,7 @@ $extension_listing_array = array(
                             'desc'=>'PWA For WordPress is a Revolutionary Cache System for Wordpress',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
                             'price'=>'$89',
-                            'url_link'=>'http://ampforwp.com/pwa-for-wordpress/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
+                            'url_link'=>'http://ampforwp.com/pwa/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
                             'item_name'=>'PWA For WordPress',
                             'store_url'=>'https://accounts.ampforwp.com',
