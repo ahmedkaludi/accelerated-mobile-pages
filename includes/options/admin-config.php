@@ -7112,7 +7112,15 @@ $single_page_options = array(
        'id'         => 'ampforwp-date-section',
        'subsection' => true,
         'fields'     => array(
-            // Date on Single Design 3
+                array(
+                   'id' => 'date-tab-1', 
+                   'type' => 'section',
+                   'title' => __('General', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+             ),
+             // Date on Single Design 3
              array(
                 'id'       => 'amp-design-3-date-feature',
                 'type'     => 'switch',
@@ -7123,14 +7131,6 @@ $single_page_options = array(
                 'tooltip-subtitle'     => __('Display date along with author and category in posts', 'accelerated-mobile-pages' ),
                 'default'  => '0'
             ),
-                array(
-                   'id' => 'date-tab-1', 
-                   'type' => 'section',
-                   'title' => __('General', 'accelerated-mobile-pages'),
-                   'indent' => true,
-                   'layout_type' => 'accordion',
-                    'accordion-open'=> 1,
-             ),
             // Show Date As
              array(
                     'id'       => 'ampforwp-post-date-global',
@@ -7169,7 +7169,8 @@ $single_page_options = array(
               'title'     => __('Modified Date Notice', 'accelerated-mobile-pages'),
               'default'   => 0,
               'tooltip-subtitle'  => __('Show Modified date of an article at the end of the post.', 'accelerated-mobile-pages'),
-          ),        
+          ),
+
         )
 
     ) );
