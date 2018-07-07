@@ -88,6 +88,22 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
 .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus{ display: inline-block; width: 100%; }
+.toggle-navigationv2{position:relative;}
+.cl-btn:after{
+    content: "x";
+    font-size: 20px;
+    color: #f1f1f1;
+    line-height: 0;
+    text-indent: 1px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    z-index: 99;
+    cursor: pointer;
+    padding: 10px 8px 15px 6px;
+    display: inline-block;
+}
+
 <?php if ( ! is_singular() ) { ?>
 /* Pagination */
 .amp-wp-content.pagination-holder{ background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
@@ -476,11 +492,11 @@ if ( class_exists('TablePress') ) { ?>
 <?php }  
 if ( ! is_home() && 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) { ?>
 .breadcrumb{width: 100%;}
-.breadcrumb ul, .category-single ul, .breadcrumb div{ padding:0; margin:0;}
-.breadcrumb ul li, .breadcrumbs span{display:inline;}
-.breadcrumb ul li a, .breadcrumb ul li span, .breadcrumbs span{ font-size:12px;}
-.breadcrumb ul li a::after, .breadcrumbs span a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
-.breadcrumb ul li:hover a::after, .breadcrumbs span:hover a::after{color:#c3c3c3;}
+.breadcrumb ul, .category-single ul{ padding:0; margin:0;}
+.breadcrumb ul li{display:inline;}
+.breadcrumb ul li a, .breadcrumb ul li span{ font-size:12px;}
+.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top:-1px}
+.breadcrumb ul li:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
 <?php } ?> 
 .amp-menu > li > a > amp-img, .sub-menu > li > a > amp-img { display: inline-block; margin-right: 4px; }
