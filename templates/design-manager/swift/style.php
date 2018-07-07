@@ -502,10 +502,10 @@ if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 <?php if( 1 == $redux_builder_amp['breadcrumb-border'] ) {?>
 border-bottom: 1px solid #eee;
 <?php }?>}
-.breadcrumb ul li{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
-.breadcrumb ul li a{color: #999;letter-spacing: 1px;}
-.breadcrumb ul li a:hover{color:#005be2;}
-.breadcrumbs li a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
+.breadcrumb ul li,.breadcrumb span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
+.breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
+.breadcrumb ul li a:hover, .breadcrumbs span a:hover{color:#005be2;}
+.breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
 .breadcrumbs li:last-child a:after {display: none;}
 <?php } //Breadcrumbs Ends?>
 #pagination{margin-top: 30px;border-top: 1px dotted #ccc;padding: 20px 5px 0px 5px;;font-size: 16px;line-height: 24px;font-weight:400;}

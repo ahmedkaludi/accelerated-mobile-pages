@@ -7552,3 +7552,37 @@ function ampforwp_ia_meta_callback( $post ) {
         </div>
     </p>
 <?php }
+
+// Yoast BreadCrumbs #1473
+add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
+if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
+	function ampforwp_yoast_breadcrumbs(){
+		global $redux_builder_amp;
+		if ( isset($redux_builder_amp['ampforwp-yoast-bread-crumb']) && $redux_builder_amp['ampforwp-yoast-bread-crumb'] ) {
+			// Remove the separator of Yoast
+			add_filter('wpseo_breadcrumb_separator','ampforwp_yoast_breadcrumbs_sep');
+			function ampforwp_yoast_breadcrumbs_sep($sep) {
+				$sep = '';
+				return $sep;
+			}
+			// Remove xmlns:v to avoid validation error
+			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_output');
+			function ampforwp_yoast_breadcrumbs_output($output){
+				$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output);
+				return $output;
+			}
+			// Change the wrapper to div
+			add_filter('wpseo_breadcrumb_output_wrapper', 'ampforwp_yoast_breadcrumbs_wrapper');
+			function ampforwp_yoast_breadcrumbs_wrapper($wrap) {
+				$wrap = 'div';
+				return $wrap;
+			}
+			// Add the Breadcrumbs class to wrapper
+			add_filter('wpseo_breadcrumb_output_class','ampforwp_yoast_breadcrumbs_wrapper_class');
+			function ampforwp_yoast_breadcrumbs_wrapper_class($class) {
+				$class = 'breadcrumbs';
+				return $class;
+			}
+		}
+	}
+}

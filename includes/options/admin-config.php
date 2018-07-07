@@ -5520,6 +5520,18 @@ Redux::setSection( $opt_name, array(
 
         )
     ));
+$yoast_breadcrumbs = '';
+if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+    $yoast_breadcrumbs = array(
+                          'id'       => 'ampforwp-yoast-bread-crumb',
+                          'type'     => 'switch',
+                          'default'  =>  false,
+                          'title'    => __('Breadcrumbs From Yoast', 'accelerated-mobile-pages'),
+                          'required' => array('ampforwp-bread-crumb' , '=' , 1),
+                          'class' => 'child_opt child_opt_arrow',
+                        );
+}
+
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -5613,7 +5625,7 @@ $single_page_options = array(
                         'default'  => 'category',
                         'required' => array('ampforwp-bread-crumb' , '=' , 1),
                     ),
-                   
+                $yoast_breadcrumbs,    
           //Categories  ON/OFF
          array(
               'id'       => 'ampforwp-cats-single',
