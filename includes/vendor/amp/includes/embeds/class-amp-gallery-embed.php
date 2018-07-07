@@ -101,18 +101,27 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 	}
 
 	public function render( $args ) {
+		global $redux_builder_amp;
 		$this->did_convert_elements = true;
-
+		
 		$args = wp_parse_args( $args, array(
 			'images' => false,
 		) );
-
+		
 		if ( empty( $args['images'] ) ) {
 			return '';
 		}
-		$images = array();
+
+		/*Filter*/
+		$carousel_markup = array('image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
+							'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
+							'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>'
+						);
+		$carousel_markup = apply_filters("ampforwp_manage_gallery_markup", $carousel_markup);
+		/*Filter*/
+		$amp_images = array();
 		foreach ( $args['images'] as $key => $image ) {
-			$images[$key] = AMP_HTML_Utils::build_tag(
+			$amp_images[$key] = AMP_HTML_Utils::build_tag(
 				'amp-img',
 				array(
 					'src' => $image['url'],
@@ -122,18 +131,63 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 					'class'  => 'amp-carousel-img',
 				)
 			);
-		$images[$key] = apply_filters('amp_gallery_images', $images[$key], $image);
+		$images[$key] = apply_filters('amp_gallery_images', $amp_images[$key], $image, $carousel_markup);
 		}
-		return AMP_HTML_Utils::build_tag(
-			'amp-carousel',
-			array(
-				'width' => $this->args['width'],
-				'height' => $this->args['height'],
-				'type' => 'slides',
-				'layout' => 'responsive',
-				'class'  => 'collapsible-captions',
-			),
-			implode( PHP_EOL, $images )
-		);
+		
+		$r = rand(1,100);
+		if(isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] == 1){
+			$amp_carousel = AMP_HTML_Utils::build_tag(
+							'amp-carousel',
+							array(
+								'width' => $this->args['width'],
+								'height' => $this->args['height'],
+								'type' => 'slides',
+								'layout' => 'responsive',
+								'class'  => 'collapsible-captions',
+								'id' => 'carousel-with-carousel-preview-'.$r
+							),
+							implode( PHP_EOL, $images ));
+		}elseif(isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] == 2){
+
+			$amp_carousel_with_thumbnail_nav = apply_filters('amp_thumbnail_images', $amp_images, $r, $carousel_markup);
+			
+			$amp_carousel = AMP_HTML_Utils::build_tag(
+							'amp-carousel',
+							array(
+								'width' => $this->args['width'],
+								'height' => $this->args['height'],
+								'type' => 'slides',
+								'layout' => 'responsive',
+								'class'  => 'collapsible-captions',
+								'id' => 'carousel-with-carousel-preview-'.$r
+							),
+							implode( PHP_EOL, $images ));
+
+			$amp_carousel .= AMP_HTML_Utils::build_tag(
+							'amp-carousel',
+							array(
+								'width' => 'auto',
+								'height' => 48,
+								'type' => 'carousel',
+								'layout' => 'fixed-height',
+								'class'  => 'carousel-preview'
+							),
+							implode( PHP_EOL, $amp_carousel_with_thumbnail_nav ));
+		
+		}elseif(isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] == 3){
+			$amp_carousel = AMP_HTML_Utils::build_tag(
+							'amp-carousel',
+							array(
+								'width' => $this->args['width'],
+								'height' => $this->args['height'],
+								'type' => 'slides',
+								'layout' => 'responsive',
+								'class'  => 'collapsible-captions',
+								'id' => 'carousel-with-carousel-preview-'.$r
+							),
+							implode( PHP_EOL, $images ));
+		}
+		$amp_carousel = apply_filters('amp_gallery_markup', $amp_carousel);
+		return $amp_carousel;
 	}
 }

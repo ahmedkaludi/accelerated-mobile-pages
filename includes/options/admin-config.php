@@ -6134,35 +6134,35 @@ $single_page_options = array(
         array_splice($single_page_options, 23, 0, $yarpp_options);
     }else{
         foreach ($single_page_options as $key => $optionArray) {
-            if($optionArray['id']=='ampforwp-number-of-related-posts'){
+            if(isset($optionArray['id']) && $optionArray['id']=='ampforwp-number-of-related-posts'){
                 $requiredValues = $optionArray['required'];
                 foreach ($requiredValues as $reqkey => $reqValue) {
                     if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
                         unset($single_page_options[$key]['required'][$reqkey]);
                     }
                 }
-            }elseif($optionArray['id']=='ampforwp-single-select-type-of-related'){
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-single-select-type-of-related'){
                 $requiredValues = $optionArray['required'];
                 foreach ($requiredValues as $reqkey => $reqValue) {
                     if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
                         unset($single_page_options[$key]['required'][$reqkey]);
                     }
                 }
-            }elseif($optionArray['id']=='ampforwp-related-posts-days-switch'){
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-related-posts-days-switch'){
                 $requiredValues = $optionArray['required'];
                 foreach ($requiredValues as $reqkey => $reqValue) {
                     if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
                         unset($single_page_options[$key]['required'][$reqkey]);
                     }
                 }
-            }elseif($optionArray['id']=='ampforwp-related-posts-days-text'){
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-related-posts-days-text'){
                 $requiredValues = $optionArray['required'];
                 foreach ($requiredValues as $reqkey => $reqValue) {
                     if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
                         unset($single_page_options[$key]['required'][$reqkey]);
                     }
                 }
-            }elseif($optionArray['id']=='ampforwp-single-order-of-related-posts'){
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-single-order-of-related-posts'){
                 $requiredValues = $optionArray['required'];
                 foreach ($requiredValues as $reqkey => $reqValue) {
                     if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){

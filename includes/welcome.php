@@ -67,6 +67,7 @@ function ampforwp_welcome_screen_content() {
 		    <h1 class="amp_installed_heading"><?php echo __('AMP is now Installed!','accelerated-mobile-pages') ?></h1>
 			<div class="amp_installed_text"><p><?php echo __('Thank you so much for installing the AMPforWP plugin!','accelerated-mobile-pages') ?></p>
 			<p><?php echo __('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p></div>
+			<div class="getstarted_wrapper">
             <div class="amp_user_onboarding">
             <div class="amp_new_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
@@ -80,17 +81,26 @@ function ampforwp_welcome_screen_content() {
                 <p>We have many settings in Options Panel to help you setup the AMP perfectly to according to your taste & needs.</p>
                 <a href="<?php echo admin_url('admin.php?tabid=opt-text-subsection&page=amp_options');?>">AMP Options Panel</a>                    
             </div>
+			
             <div class="clear"></div>
             </div>
- 
+ 			</div>
+ 			<div style="float:right; height: 640px;overflow:auto;">
+ 				<div class="amp_expert_user amp_user_onboarding_choose">
+	                <!--<div class="amp_user_avatar"></div>-->
+	                <!--<h3>Change log</h3>-->
+	                <?php require AMPFORWP_PLUGIN_DIR.'/change-log.php';?>
+	                <!--<a href="<?php echo admin_url('admin.php?tabid=opt-text-subsection&page=amp_options');?>">AMP Options Panel</a>-->
+            	</div>
+ 			</div>
 
-
-		    <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
+		    
+		    
+            <div class="getstarted_wrapper">
+            <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
 		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
 			<div class="amp_installed_text"><p><?php echo __('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p></div>
-		    
-            <div class="getstarted_wrapper">
             <div class="getstarted_options">
             <p><b>Getting Started</b></p>
 				<ul class="getstarted_ul">
