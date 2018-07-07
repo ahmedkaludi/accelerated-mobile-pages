@@ -3467,7 +3467,7 @@ Redux::setSection( $opt_name, array(
                            'required'=>array('amp-on-off-for-all-pages','=','1'),
                         ),
                         array(
-                           'id'       => 'amp-pages-meta-default',
+                           'id'       => 'amp-posts-meta-default',
                            'type'     => 'select',
                            'title'    => __( 'Individual AMP Post (Bulk Edit)', 'accelerated-mobile-pages' ),
                            'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP for Posts from All pages, so it can be changed individually later. This option will change the  Default value of AMP metabox in Pages', 'accelerated-mobile-pages' ),
