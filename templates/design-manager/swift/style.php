@@ -502,7 +502,7 @@ if( 1 == $redux_builder_amp['ampforwp-bread-crumb'] ) {?>
 <?php if( 1 == $redux_builder_amp['breadcrumb-border'] ) {?>
 border-bottom: 1px solid #eee;
 <?php }?>}
-.breadcrumb ul li,.breadcrumb span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
+.breadcrumb ul li,.breadcrumbs span{display: inline-block;list-style-type: none;font-size: 10px;text-transform: uppercase;margin-right: 5px;}
 .breadcrumb ul li a, .breadcrumbs span a{color: #999;letter-spacing: 1px;}
 .breadcrumb ul li a:hover, .breadcrumbs span a:hover{color:#005be2;}
 .breadcrumbs li a:after, .breadcrumbs span a:after{content: "\e315";display: inline-block;color: #bdbdbd;font-family: 'icomoon';padding-left: 5px;font-size: 12px;position: relative;top: 1px;}
