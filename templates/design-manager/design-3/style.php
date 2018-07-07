@@ -91,17 +91,12 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .toggle-navigationv2{position:relative;}
 .cl-btn:after{
     content: "x";
-    font-size: 20px;
-    color: #f1f1f1;
-    line-height: 0;
-    text-indent: 1px;
+    font-size: 16px;
+    color: #999;
     position: absolute;
-    right: 20px;
-    top: 10px;
-    z-index: 99;
-    cursor: pointer;
-    padding: 10px 8px 15px 6px;
-    display: inline-block;
+    right: 15px;
+    top: 15px;
+    font-weight: normal;
 }
 .cl-btn{background: #131313;border:none;}
 <?php if ( ! is_singular() ) { ?>
