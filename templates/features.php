@@ -4622,7 +4622,6 @@ function ampforwp_posts_to_remove () {
 				'ignore_sticky_posts' => 1,
 				'posts_per_page' 	  => -1,
 				'cat'				  => $new_selected_cats ,
-				'fields'			  => 'ids',
 				'post_type'           => 'post',
 				'post_status'         => 'publish', 
 			) 
