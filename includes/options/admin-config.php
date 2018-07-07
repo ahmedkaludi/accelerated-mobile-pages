@@ -5516,6 +5516,12 @@ Redux::setSection( $opt_name, array(
                     'title' => __('Read More Link', 'accelerated-mobile-pages'),
                     'default'   => 0,
                 ),
+                array(
+                    'id'    => 'ampforwp-full-post-in-loop',
+                    'type'  => 'switch',
+                    'title' => __('Full Content in Loop', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                )
 
 
         )
