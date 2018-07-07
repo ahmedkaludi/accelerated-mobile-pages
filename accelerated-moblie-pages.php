@@ -274,7 +274,7 @@ register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
 	// Run AMP deactivation code while activation  
-	ampforwp_deactivate_amp_plugin();
+	//ampforwp_deactivate_amp_plugin();
 
 		if ( ! did_action( 'ampforwp_init' ) ) {
 	 		ampforwp_init();
@@ -350,7 +350,7 @@ function ampforwp_rewrite_deactivate() {
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
 
-add_action( 'admin_init','ampforwp_parent_plugin_check');
+//add_action( 'admin_init','ampforwp_parent_plugin_check');
 function ampforwp_parent_plugin_check() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
@@ -541,6 +541,9 @@ require AMPFORWP_PLUGIN_DIR.'/templates/woo-widget.php';
 * 	Including core AMP plugin files and removing any other things if necessary
 */
 function ampforwp_bundle_core_amp_files(){
+	if(is_plugin_active('amp/amp.php') || ($GLOBALS['pagenow'] === 'plugins.php'  ) ){
+		return '';
+	}
 	// Bundling Default plugin
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
@@ -575,7 +578,7 @@ function ampforwp_deactivate_amp_plugin() {
 	    }
 	}
 }
-add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
+//add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
 
 function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	$plugin = '';
@@ -589,7 +592,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	} 
  	return $actions;
 }
-add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
+//add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
@@ -601,14 +604,13 @@ if ( ! function_exists('ampforwp_init') ) {
 			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 		}
 
-		if ( ! defined('AMP__DIR__') ) {
+		/*if ( ! defined('AMP__DIR__') ) {
 			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 		}
-
+*/
 		do_action( 'amp_init' );
 
-		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
-
+		
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
 		add_post_type_support( 'post', AMP_QUERY_VAR );
 
