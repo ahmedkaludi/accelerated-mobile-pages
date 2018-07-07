@@ -347,7 +347,7 @@ echo $fontFamily;?>
 .sf-img .wp-caption-text:before{content:"\e412";font-family: 'icomoon';position: relative;top: 4px;opacity: 0.4;font-size:24pxmargin-right: 5px;}
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
-.sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;max-width:336px;}
+.sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;max-width:237px;}
 .sp-rt{width: 72%;margin-left: 60px;flex-direction: column;justify-content: space-around;order: 1;}
 .ss-ic, .sp-athr, .amp-tags, .post-date{padding-bottom:20px;border-bottom:1px dotted #ccc;}
 .shr-txt, .athr-tx, .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title, .r-pf h3{margin-bottom: 12px;}
@@ -578,7 +578,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
 @media(max-width:768px){
     .tl-exc {font-size: 14px;margin-top: 3px;line-height: 22px;}
     .sp-rl {display: inline-block;width: 100%;}
-    .sp-lt {width: 100%;margin-top: 20px;}
+    .sp-lt {width: 100%;margin-top: 20px;max-width:100%;}
     .sp-cnt{margin-top: 15px;}
     .r-pf h3{padding-top:20px;border-top:1px dotted #ccc; }
     .r-pf {margin-top:20px;}
