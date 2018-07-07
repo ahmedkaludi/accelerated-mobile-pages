@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp; global $wp;  ?>
+<?php global $redux_builder_amp; global $wp;
+$is_full_content = false;
+		if(isset($redux_builder_amp['ampforwp-full-post-in-loop']) && $redux_builder_amp['ampforwp-full-post-in-loop']){
+			$is_full_content = true;
+		} ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -154,7 +158,7 @@ if ( get_query_var( 'paged' ) ) {
 
 
 				<?php
-				if( true == $redux_builder_amp['excerpt-option'] ) {
+				if( true == $redux_builder_amp['excerpt-option'] && !$is_full_content ) {
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
@@ -184,7 +188,37 @@ if ( get_query_var( 'paged' ) ) {
 							echo $final_content; 
 						} ?> 
 					</p>
-				<?php } ?>
+				<?php } if($is_full_content){
+					$content = get_the_content();
+		            $sanitizer_obj = new AMPFORWP_Content( $content,
+		                  array(
+          				    'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+			                  'AMP_DailyMotion_Embed_Handler' => array(),
+			                  'AMP_Vimeo_Embed_Handler'       => array(),
+			                  'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+			                  'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+              			), 
+		                  apply_filters( 'ampforwp_content_sanitizers', 
+		                    array( 'AMP_Img_Sanitizer' => array(), 
+		                      'AMP_Blacklist_Sanitizer' => array(),
+		                      'AMP_Style_Sanitizer' => array(), 
+		                      'AMP_Video_Sanitizer' => array(),
+		                       'AMP_Audio_Sanitizer' => array(),
+		                       'AMP_Iframe_Sanitizer' => array(
+		                         'add_placeholder' => true,
+		                       ),
+		                    ) 
+		                  ) 
+		                );
+		        		$content =  $sanitizer_obj->get_amp_content();
+		        	$final_content = apply_filters( 'ampforwp_loop_content', $content );
+		        	echo $final_content;
+				} ?>
                 <div class="featured_time">
                   <?php
                        $post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );

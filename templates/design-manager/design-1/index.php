@@ -1,4 +1,8 @@
-<?php global $redux_builder_amp;  ?>
+<?php global $redux_builder_amp; 
+		$is_full_content = false;
+		if(isset($redux_builder_amp['ampforwp-full-post-in-loop']) && $redux_builder_amp['ampforwp-full-post-in-loop']){
+			$is_full_content = true;
+		} ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -92,7 +96,7 @@
 								$content = get_the_content();
 							} ?>
 						<p><?php global $redux_builder_amp;
-							if($redux_builder_amp['excerpt-option']== true) {
+							if($redux_builder_amp['excerpt-option']== true && !$is_full_content ) {
 								$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
 								$final_content = ""; 					
 								$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
@@ -102,6 +106,38 @@
 								}
 								echo $final_content;
 							}?></p>
+							<?php
+							if($is_full_content){
+					$content = get_the_content();
+		            $sanitizer_obj = new AMPFORWP_Content( $content,
+		                  array(
+          				    'AMP_Twitter_Embed_Handler'     => array(),
+          				    'AMP_YouTube_Embed_Handler'     => array(),
+			                  'AMP_DailyMotion_Embed_Handler' => array(),
+			                  'AMP_Vimeo_Embed_Handler'       => array(),
+			                  'AMP_SoundCloud_Embed_Handler'  => array(),
+          				    'AMP_Instagram_Embed_Handler'   => array(),
+          				    'AMP_Vine_Embed_Handler'        => array(),
+          				    'AMP_Facebook_Embed_Handler'    => array(),
+			                  'AMP_Pinterest_Embed_Handler'   => array(),
+          				    'AMP_Gallery_Embed_Handler'     => array(),
+              			), 
+		                  apply_filters( 'ampforwp_content_sanitizers', 
+		                    array( 'AMP_Img_Sanitizer' => array(), 
+		                      'AMP_Blacklist_Sanitizer' => array(),
+		                      'AMP_Style_Sanitizer' => array(), 
+		                      'AMP_Video_Sanitizer' => array(),
+		                       'AMP_Audio_Sanitizer' => array(),
+		                       'AMP_Iframe_Sanitizer' => array(
+		                         'add_placeholder' => true,
+		                       ),
+		                    ) 
+		                  ) 
+		                );
+		        		$content =  $sanitizer_obj->get_amp_content();
+		        	$final_content = apply_filters( 'ampforwp_loop_content', $content );
+		        	echo $final_content;
+				}?>
 					</div>
 		        </div>
 		         <?php 
