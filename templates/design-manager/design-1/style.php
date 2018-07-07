@@ -201,12 +201,13 @@ if ( class_exists('TablePress') ) { ?>
 <?php }
 if( !is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 ) { ?>
 .breadcrumb{line-height: 1; margin: 0.1em 16px 1.5em;}
-.breadcrumb ul{padding:0; margin:0;}
-.breadcrumb ul li{display:inline;}
-.breadcrumb ul li a, .breadcrumb ul li span{font-size:12px;}
-.breadcrumb ul li a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -1px;}
-.breadcrumb ul li:hover a::after{color:#c3c3c3;}
+.breadcrumb ul,.breadcrumb div{padding:0; margin:0;}
+.breadcrumb ul li, .breadcrumbs span{display:inline;}
+.breadcrumb ul li a,.breadcrumb ul li span, .breadcrumbs span a{font-size:12px;}
+.breadcrumb ul li a::after, .breadcrumbs span a::after {content: "►";display: inline-block;font-size: 8px;padding: 0 6px 0 7px;vertical-align: middle;opacity: 0.5;position:relative;top: -1px;}
+.breadcrumb ul li:hover a::after, .breadcrumbs span:hover a::after{color:#c3c3c3;}
 .breadcrumb ul li:last-child a::after{display:none;}
+.breadcrumbs strong{font-size:12px;}
 <?php } ?> 
 .amp-wp-content.widget-wrapper{max-width:840px}
 .amp_widget_above_the_footer {margin:0 10px;}
