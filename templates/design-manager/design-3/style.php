@@ -103,7 +103,7 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
     padding: 10px 8px 15px 6px;
     display: inline-block;
 }
-
+.cl-btn{background: #131313;border:none;}
 <?php if ( ! is_singular() ) { ?>
 /* Pagination */
 .amp-wp-content.pagination-holder{ background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }

@@ -168,7 +168,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
             </ul>
           </div>
   </div>
-  <div class="cl-btn" on='tap:sidebar.toggle'></div>
+  <button class="cl-btn" on='tap:sidebar.toggle'  tabindex="-1"></button>
 </amp-sidebar>
 
 <?php } ?>
