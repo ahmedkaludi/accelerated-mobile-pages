@@ -6209,6 +6209,11 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		return $menu;
 	}
 }
+/*
+ * Fetches the logo data 
+ * More details about the fix https://github.com/ahmedkaludi/accelerated-mobile-pages/pull/2317
+ * Props to: https://github.com/saucal for suggesting the fix.
+*/
 
 function ampforwp_default_logo_data() {
 	global $redux_builder_amp, $ampwforwp_default_logo_data;
