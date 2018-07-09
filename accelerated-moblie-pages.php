@@ -505,15 +505,27 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 
 		public function __construct(){
 
+
+			require AMPFORWP_PLUGIN_DIR .'/includes/features/common-functions.php';
 			// Load Files required for the plugin to run
-			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+			if(!is_plugin_active('amp/amp.php')){
 
-			// Redirection Code added
-			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
+				
+				require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+				// Redirection Code added
+				require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
 
-			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
-			new Ampforwp_Loader();
-
+				require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
+				new Ampforwp_Loader();
+				
+			}else{
+				require_once AMPFORWP_PLUGIN_DIR."includes/features/amp_bridge.php";
+			}
+			//Other Features
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/advertisement-front.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-front.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-front.php";
+			
 		}
 	}
 }
@@ -528,6 +540,7 @@ function ampforwp_plugin_init() {
 	}
 }
 add_action('init','ampforwp_plugin_init',9);
+
 
 /*
 * customized output widget
@@ -713,14 +726,17 @@ function ampforwp_update_notice() {
 	</div>
 <?php }
 }
+
 if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
 	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', plugin_dir_path( __FILE__ )."/components"); 
 }
-require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
-require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
+if(!is_plugin_active('amp/amp.php')){
+	require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
+	require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
+}
 
 /**
  * Redirects the old AMP URL to the new AMP URL.
@@ -730,6 +746,7 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
  *
  * @return string $link URL to be redirected.
  */
+if(!is_plugin_active('amp/amp.php')){
  if ( ! function_exists( 'ampforwp_redirect_old_slug_to_new_url' ) ) {
 	function ampforwp_redirect_old_slug_to_new_url( $link ) {
 
@@ -740,15 +757,21 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 		return $link;
 	}
 }
-
-// Hide Post Builder if Swift is enabled
-add_filter('amp_customizer_is_enabled', 'ampforwp_customizer_is_enabled');
-if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
-	function ampforwp_customizer_is_enabled($value){
-		global $redux_builder_amp;
-		if ( 4 == $redux_builder_amp['amp-design-selector'] ) {
-			$value = false;
-		}
-		return $value;
-	}
 }
+
+// 3. Some Extra Styling for Admin area
+add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
+function ampforwp_add_admin_styling(){
+	global $redux_builder_amp;
+	// Style file to add or modify css inside admin area
+	wp_register_style( 'ampforwp_admin_css', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-style.css', false, AMPFORWP_VERSION );
+    wp_enqueue_style( 'ampforwp_admin_css' );
+
+    // Admin area scripts file
+	wp_register_script( 'ampforwp_admin_js', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/admin-script.js', false, AMPFORWP_VERSION );
+
+	// Localize the script with new data
+    wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_builder_amp );
+
+    wp_enqueue_script( 'ampforwp_admin_js' );
+} ?>
