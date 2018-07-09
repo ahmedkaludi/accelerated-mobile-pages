@@ -8,7 +8,7 @@ amp_header(); ?>
 			}?>
 		 	<?php amp_title(); ?>
 		<?php } ?>
-		<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
+		<?php if ( isset($redux_builder_amp['featured_image_swift_page']) && $redux_builder_amp['featured_image_swift_page'] && ampforwp_has_post_thumbnail() ) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
 			</div>
