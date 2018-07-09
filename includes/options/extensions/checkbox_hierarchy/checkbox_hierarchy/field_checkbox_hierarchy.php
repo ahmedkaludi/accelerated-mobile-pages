@@ -146,7 +146,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
 
 
         if (!$categories )
-            $categories = get_categories(  );//array('hide_empty' => 0)
+           $categories = get_categories( array('number'=>500) );//array('hide_empty' => 0)
 
         if ( $categories ) {
             foreach ( $categories as $category ) {
