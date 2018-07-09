@@ -132,6 +132,15 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
 							'
 									),
+			'3' => array(
+						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
+						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
+						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
+						'gallery_css' => '
+							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
+							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
+							'
+									),
 
 		);
 		$carousel_markup_all = apply_filters("ampforwp_manage_gallery_markup", $carousel_markup_all);
@@ -150,6 +159,9 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 					'height' => $image['height'],
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
+					'on'=> 'tap:gallery-lightbox',
+                	'role'=>'button', 
+                	'tabindex'=>'0',
 				)
 			);
 		$images[$key] = apply_filters('amp_gallery_images', $amp_images[$key], $image, $carousel_markup);
