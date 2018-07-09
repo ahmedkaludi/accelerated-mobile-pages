@@ -1685,7 +1685,7 @@ function ampforwp_title_custom_meta() {
           }
           // Posts
 	      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	        add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
+	        add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Post?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
@@ -1743,6 +1743,9 @@ function ampforwp_title_callback( $post ) {
 		}
 
 		if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'page' && ( isset($redux_builder_amp['amp-pages-meta-default']) && $redux_builder_amp['amp-pages-meta-default'] == 'hide' ) ) {
+			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
+		}
+		if ( empty( $ampforwp_stored_meta['ampforwp-amp-on-off'][0] ) && $post->post_type == 'post' && ( isset($redux_builder_amp['amp-posts-meta-default']) && $redux_builder_amp['amp-posts-meta-default'] == 'hide' ) ) {
 			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
 		}
 		$list_of_posts = ampforwp_posts_to_remove();
@@ -3698,33 +3701,51 @@ function amp_latest_products_styling() {
 }
 
 // 54. Change the default values of post meta for AMP pages. #746
+
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
 	global $redux_builder_amp;
 	$check_meta 		= get_option('ampforwp_default_pages_to');
 	$checker			= 'show';
-	$control			= $redux_builder_amp['amp-pages-meta-default'];
+	$page_control			= $redux_builder_amp['amp-pages-meta-default'];
+	$post_control			= $redux_builder_amp['amp-posts-meta-default'];
 	$meta_value_to_upate = 'default';
-
-	if ( $control  === 'hide' ) {
-		$checker				= 'hide';
-		$meta_value_to_upate 	= 'hide-amp';
-	}
-
+	$screen = get_current_screen();
+	
 	// Check and Run only if the value has been changed, else return
-	if ( $check_meta === $checker ) {
-		return;
+	//if ( $check_meta === $checker ) {
+	//	return;
+	//}
+	
+	//echo $screen->post_type;
+	if($screen->post_type == 'page'){
+		if ( $page_control  === 'hide' ) {
+			$checker				= 'hide';
+			$meta_value_to_upate 	= 'hide-amp';
+		}
+		// Get all the pages and update the post meta
+		$pages = get_pages(array());
+		foreach($pages as $page){
+		    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+		}
 	}
-	// Get all the pages and update the post meta
-	$pages = get_pages(array());
-	foreach($pages as $page){
-	    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+
+	if( $screen->post_type == 'post' ){
+		if ( $post_control  === 'hide' ) {
+			$checker				= 'hide';
+			$meta_value_to_upate 	= 'hide-amp';
+		}
+		// Get all the pages and update the post meta
+		$posts = get_posts(array());
+		foreach($posts as $post){
+		    update_post_meta($post->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+		}
 	}
+	
 	// Update the option as the process has been done and update an option
 	update_option('ampforwp_default_pages_to', $checker);
 	return ;
 }
-
 
 // Adding the meta="description" from yoast or from the content
 add_action('amp_post_template_head','ampforwp_meta_description');
@@ -5546,7 +5567,7 @@ function ampforwp_new_gallery_images($images, $image, $markup_arr){
 	//Check if the attachment has caption or not
 	if(isset($image['caption']) && $image['caption'] != '' ){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
-		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
+		add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
 		// To enable the carousel magic
 		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
 		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
@@ -5565,45 +5586,17 @@ function ampforwp_new_gallery_images($images, $image, $markup_arr){
 		return $returnHtml;
 	}
 }
-if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
-	function ampforwp_additional_style_carousel_caption(){ ?>
-    .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
-    .collapsible-captions * {
-      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-      box-sizing: border-box;
-    }
-    .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
-    .collapsible-captions amp-img img {object-fit: contain; }
-    .collapsible-captions figure { margin: 0; padding: 0; }
-    .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
-      max-height: var(--caption-height);margin-bottom:0;
-      line-height: var(--caption-height);
-      padding: 0 var(--button-size) 0 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1000;
-      color: var(--caption-color);
-      background: rgba(0, 0, 0, 0.6);   
-    }
-    .collapsible-captions figcaption.expanded {
-      line-height: inherit;
-      white-space: normal;
-      text-overflow: auto;
-      max-height: 100px;
-      overflow: auto;
-    }
-    .collapsible-captions figcaption:focus { outline: none; border: none; }
-    .collapsible-captions figcaption span { display: block; position: absolute;
-      top: calc((var(--caption-height) - var(--button-size)) / 2);
-      right: 2px; width: var(--button-size); height: var(--button-size);
-      line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
-      cursor: pointer; }
-	figcaption{ margin-bottom: 20px; }
-	.carousel-preview amp-img{height:40px;width:60px;position:relative;}
-<?php }
- }
+if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
+	function ampforwp_additional_gallery_style(){
+		global $redux_builder_amp,$carousel_markup_all;
+		$design_type = '';
+		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
+		
+		if(isset($design_type) && $design_type!==''){
+			echo $carousel_markup_all[$design_type]['gallery_css'];
+		}
+	}
+}
 // amp-bind for carousel with captions
 if( !function_exists('ampforwp_carousel_bind_script')){
 	function ampforwp_carousel_bind_script($data){
