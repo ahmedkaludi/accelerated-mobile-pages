@@ -3706,39 +3706,55 @@ add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
 	global $redux_builder_amp;
 	$check_meta 		= get_option('ampforwp_default_pages_to');
-	$checker			= 'show';
+	//$checker			= 'show';
 	$page_control			= $redux_builder_amp['amp-pages-meta-default'];
 	$post_control			= $redux_builder_amp['amp-posts-meta-default'];
 	$meta_value_to_upate = 'default';
 	$screen = get_current_screen();
 	
-	// Check and Run only if the value has been changed, else return
-	if ( $check_meta === $checker ) {
-		return;
+
+	if ( $page_control  === 'hide' ) {
+			//$checker				= 'hide';
+		$page_meta_to_update 	= 'hide-amp';
 	}
-	
+	if( $page_control  === 'show' ){
+		$page_meta_to_update 	= 'default';
+	}
+	if ( $post_control  === 'show') {
+			//$checker				= 'hide';
+			$post_meta_to_update = 'default';
+	}
+	if ( $post_control  === 'hide') {
+			//$checker				= 'hide';
+			$post_meta_to_update = 'hide-amp';
+	}
+
+
 	//echo $screen->post_type;
 	if($screen->post_type == 'page'){
-		if ( $page_control  === 'hide' ) {
-			$checker				= 'hide';
-			$meta_value_to_upate 	= 'hide-amp';
-		}
 		// Get all the pages and update the post meta
 		$pages = get_pages(array());
 		foreach($pages as $page){
-		    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+			$page_meta = get_post_meta( $page->ID, 'ampforwp-amp-on-off', true );
+			if( ( $page_control == 'show' &&  $page_meta == 'default') || ( $page_control == 'hide' && $page_meta == 'hide-amp')){
+				continue;
+			}else{
+				update_post_meta($page->ID,'ampforwp-amp-on-off', $page_meta_to_update);
+			}
+			
 		}
 	}
 
 	if( $screen->post_type == 'post' ){
-		if ( $post_control  === 'hide' ) {
-			$checker				= 'hide';
-			$meta_value_to_upate 	= 'hide-amp';
-		}
 		// Get all the pages and update the post meta
 		$posts = get_posts(array());
 		foreach($posts as $post){
-		    update_post_meta($post->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+			$post_meta = get_post_meta( $post->ID, 'ampforwp-amp-on-off', true );
+			if( ( $post_control == 'show' &&  $post_meta == 'default') || ( $post_control == 'hide' && $post_meta == 'hide-amp')){
+				continue;
+			}else{
+		    	update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
+			}
 		}
 	}
 	
@@ -5529,19 +5545,6 @@ function ampforwp_add_related_post_after_paragraph($matches)
   return $ret;
 }
 
-add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,3);
-function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
-	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
-	$amp_thumb_image_buttons = '';
-	foreach ($amp_images as $key => $value) {
-		$returnHtml = $markup_arr['carousel_with_thumbnail_html'];
-		$returnHtml = str_replace('{{thumbnail}}', $value , $returnHtml);
-		$returnHtml = str_replace('{{unique_id}}', $uniqueid , $returnHtml);
-		$returnHtml = str_replace('{{unique_index}}', $key , $returnHtml);
-		$amp_thumb_image_buttons[$key] = $returnHtml;
-	}
-	return $amp_thumb_image_buttons;
-}
 // 85. Caption for Gallery Images
 // Add extra key=>value pair into the attachment array
 add_filter('amp_gallery_image_params','ampforwp_gallery_new_params', 10, 2);
@@ -5561,68 +5564,8 @@ function ampforwp_gallery_new_params($urls, $attachment_id ){
 		return $urls;	
 	}
 }
-// Add Caption in the Gallery Image
-add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
-function ampforwp_new_gallery_images($images, $image, $markup_arr){
-	add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
-	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
-	//Check if the attachment has caption or not
-	if(isset($image['caption']) && $image['caption'] != '' ){
-		
-		
-		// To enable the carousel magic
-		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
-		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
-		//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
-		$caption = $image['caption'];
-		// Append the caption with image
-		$returnHtml = isset($markup_arr['image-with-caption-html'])? $markup_arr['image-with-caption-html']:'';
-		$returnHtml = str_replace('{{main_images}}', $images, $returnHtml);
-		$returnHtml = str_replace('{{main_images_caption}}', wp_kses_data( $caption ), $returnHtml);
-		return $returnHtml;
-	}
-	else{
-		// If there is no caption
-		$returnHtml = isset($markup_arr['image-without-caption-html'])? $markup_arr['image-without-caption-html'] :'';
-		$returnHtml = str_replace('{{main_images}}', $images, $returnHtml);
-		return $returnHtml;
-	}
-}
-if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
-	function ampforwp_additional_gallery_style(){
-		global $redux_builder_amp,$carousel_markup_all;
-		$design_type = '';
-		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
-		
-		if(isset($design_type) && $design_type!==''){
-			echo $carousel_markup_all[$design_type]['gallery_css'];
-		}
-	}
-}
-// amp-bind for carousel with captions
-if( !function_exists('ampforwp_carousel_bind_script')){
-	function ampforwp_carousel_bind_script($data){
-		global $redux_builder_amp;
-		$design_type = '';
-		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
-		if( $design_type == 1 || $design_type == 2 ){
-			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-			}	
-		}elseif( $design_type == 3 ){
-			if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
-				$data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
-			}
-		}else{
-			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-			}
-		}
 
-		
-	return $data;
-	}
-}
+
 if( !function_exists( 'ampforwp_carousel_class_magic' ) ){
 	function ampforwp_carousel_class_magic($content){
 		$content = str_replace(array(':openbrack:',':closebrack:'), array('[',']'), $content);
