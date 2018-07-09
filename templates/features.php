@@ -5508,11 +5508,16 @@ function ampforwp_add_related_post_after_paragraph($matches)
   return $ret;
 }
 
-add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,2);
-function ampforwp_new_thumbnail_images($amp_images,$r){
+add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,3);
+function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
+	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
 	$amp_thumb_image_buttons = '';
 	foreach ($amp_images as $key => $value) {
-		$amp_thumb_image_buttons[$key] ='<button on="tap:carousel-with-carousel-preview-'.$r.'.goToSlide(index='.$key.')" class="amp-carousel-slide amp-scrollable-carousel-slide">'.$value.'</button>';
+		$returnHtml = $markup_arr['carousel_with_thumbnail_html'];
+		$returnHtml = str_replace('{{thumbnail}}', $value , $returnHtml);
+		$returnHtml = str_replace('{{unique_id}}', $uniqueid , $returnHtml);
+		$returnHtml = str_replace('{{unique_index}}', $key , $returnHtml);
+		$amp_thumb_image_buttons[$key] = $returnHtml;
 	}
 	return $amp_thumb_image_buttons;
 }
@@ -5536,8 +5541,8 @@ function ampforwp_gallery_new_params($urls, $attachment_id ){
 	}
 }
 // Add Caption in the Gallery Image
-add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 2);
-function ampforwp_new_gallery_images($images, $image){
+add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
+function ampforwp_new_gallery_images($images, $image, $markup_arr){
 	//Check if the attachment has caption or not
 	if(isset($image['caption']) && $image['caption'] != '' ){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
@@ -5548,11 +5553,16 @@ function ampforwp_new_gallery_images($images, $image){
 		//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 		$caption = $image['caption'];
 		// Append the caption with image
-		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
+		$returnHtml = isset($markup_arr['image-with-caption-html'])? $markup_arr['image-with-caption-html']:'';
+		$returnHtml = str_replace('{{main_images}}', $images, $returnHtml);
+		$returnHtml = str_replace('{{main_images_caption}}', wp_kses_data( $caption ), $returnHtml);
+		return $returnHtml;
 	}
 	else{
 		// If there is no caption
-		return '<div class="ampforwp-gallery-item amp-carousel-container">'. $images . '</div>';
+		$returnHtml = isset($markup_arr['image-without-caption-html'])? $markup_arr['image-without-caption-html'] :'';
+		$returnHtml = str_replace('{{main_images}}', $images, $returnHtml);
+		return $returnHtml;
 	}
 }
 if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
