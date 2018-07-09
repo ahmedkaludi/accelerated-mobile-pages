@@ -187,7 +187,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Huge Performance upgrade in the way fetching the logo url #2317
 * Fixed: Fatal Error due to unable to modify values in Structured Data Object #2327
 * Fixed: Seperate option for Featured Image in pages in Swift theme #2328
-* Fixed: WP Bakrey's post editor was getting hidden with a specific usecase #2328
 * Fixed: `<p>` tags disabling where not wanted #2330
 * Fixed: Fatal error in contact form module while ninja form or gravity form plugins are not activated #2310
 * Fixed: Woo Commerce Category page not working properly #2333
