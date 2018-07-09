@@ -6260,8 +6260,9 @@ function ampforwp_default_logo_data() {
 // 101. Function for Logo attributes
 function ampforwp_default_logo($param=""){
 	global $redux_builder_amp;
-	$value 			= '';
-	$data = ampforwp_default_logo_data();
+	$value 		= '';
+	$logo_alt 	= '';
+	$data 		= ampforwp_default_logo_data();
 	if( ! $data ) {
 		return $value;
 	}
