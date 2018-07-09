@@ -149,20 +149,24 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 			$carousel_markup =  $carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type']];
 		}
 		/*Filter*/
+
 		$amp_images = array();
 		foreach ( $args['images'] as $key => $image ) {
-			$amp_images[$key] = AMP_HTML_Utils::build_tag(
-				'amp-img',
-				array(
+			$amp_img_arr = array(
 					'src' => $image['url'],
 					'width' => $image['width'],
 					'height' => $image['height'],
 					'layout' => 'fill',
 					'class'  => 'amp-carousel-img',
-					'on'=> 'tap:gallery-lightbox',
-                	'role'=>'button', 
-                	'tabindex'=>'0',
-				)
+				);
+			if( isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] == 3  ){
+				$design3_additional_attr = array('on'=> 'tap:gallery-lightbox', 'role'=>'button', 
+                	'tabindex'=>$key);
+				$amp_img_arr = array_merge($amp_img_arr, $design3_additional_attr);
+			}
+			$amp_images[$key] = AMP_HTML_Utils::build_tag(
+				'amp-img',
+				$amp_img_arr
 			);
 		$images[$key] = apply_filters('amp_gallery_images', $amp_images[$key], $image, $carousel_markup);
 		}
