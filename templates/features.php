@@ -5565,9 +5565,10 @@ function ampforwp_gallery_new_params($urls, $attachment_id ){
 add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images, $image, $markup_arr){
 	add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
+	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
 	//Check if the attachment has caption or not
 	if(isset($image['caption']) && $image['caption'] != '' ){
-		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
+		
 		
 		// To enable the carousel magic
 		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
@@ -5601,9 +5602,24 @@ if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
 // amp-bind for carousel with captions
 if( !function_exists('ampforwp_carousel_bind_script')){
 	function ampforwp_carousel_bind_script($data){
-		if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
-			$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
-		}	
+		global $redux_builder_amp;
+		$design_type = '';
+		$design_type = $redux_builder_amp['ampforwp-gallery-design-type'];
+		if( $design_type == 1 || $design_type == 2 ){
+			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+			}	
+		}elseif( $design_type == 3 ){
+			if ( empty( $data['amp_component_scripts']['amp-image-lightbox'] ) ) {
+				$data['amp_component_scripts']['amp-image-lightbox'] = 'https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js';
+			}
+		}else{
+			if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+				$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+			}
+		}
+
+		
 	return $data;
 	}
 }
