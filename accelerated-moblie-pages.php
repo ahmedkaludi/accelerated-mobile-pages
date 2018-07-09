@@ -191,11 +191,14 @@ function ampforwp_add_custom_rewrite_rules() {
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
 
 
-	if( class_exists( 'WooCommerce' ) ) {
-		$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
-		
-		if ( $wc_permalinks ) {
-			$taxonomies = array_merge($taxonomies, $wc_permalinks);
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+  	if(!is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php' )) {
+		if( class_exists( 'WooCommerce' ) ) {
+			$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
+			
+			if ( $wc_permalinks ) {
+				$taxonomies = array_merge($taxonomies, $wc_permalinks);
+			}
 		}
 	}
 
