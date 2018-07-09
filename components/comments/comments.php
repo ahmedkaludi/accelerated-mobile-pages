@@ -136,7 +136,7 @@ global $redux_builder_amp;
 	    if(ampforwp_get_data_consent()){
 	    	$facebook_comments_markup .= 'data-block-on-consent';
 	    }
-		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+		$facebook_comments_markup .= ' data-href=" ' . get_permalink() . ' "';
 	    $facebook_comments_markup .= '></amp-facebook-comments></section>';
 	}
 		return $facebook_comments_markup;
