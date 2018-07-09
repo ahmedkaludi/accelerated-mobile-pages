@@ -3713,9 +3713,9 @@ function ampforwp_change_default_amp_page_meta() {
 	$screen = get_current_screen();
 	
 	// Check and Run only if the value has been changed, else return
-	//if ( $check_meta === $checker ) {
-	//	return;
-	//}
+	if ( $check_meta === $checker ) {
+		return;
+	}
 	
 	//echo $screen->post_type;
 	if($screen->post_type == 'page'){
@@ -5564,10 +5564,11 @@ function ampforwp_gallery_new_params($urls, $attachment_id ){
 // Add Caption in the Gallery Image
 add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images, $image, $markup_arr){
+	add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
 	//Check if the attachment has caption or not
 	if(isset($image['caption']) && $image['caption'] != '' ){
 		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
-		add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
+		
 		// To enable the carousel magic
 		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
 		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
