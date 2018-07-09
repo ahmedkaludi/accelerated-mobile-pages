@@ -129,8 +129,8 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
 						'gallery_css' => '
 							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
-
-								'
+							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
+							'
 									),
 
 		);
