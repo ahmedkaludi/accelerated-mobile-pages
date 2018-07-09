@@ -128,7 +128,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		);
 		$carousel_markup_all = apply_filters("ampforwp_manage_gallery_markup", $carousel_markup_all);
 		$carousel_markup =  $carousel_markup_all[1];
-		if( isset($redux_builder_amp['ampforwp-gallery-design-type']) && $redux_builder_amp['ampforwp-gallery-design-type'] &&  isset($carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type'] ] ) ){
+		if( isset($redux_builder_amp['ampforwp-gallery-design-type']) &&  isset($carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type'] ] ) ){
 			$carousel_markup =  $carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type']];
 		}
 		/*Filter*/
