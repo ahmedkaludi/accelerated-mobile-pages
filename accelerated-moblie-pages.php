@@ -525,6 +525,10 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/advertisement-front.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-front.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-front.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structure-data-front.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-front.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-front.php";
+			//require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-front.php"; //Codes not found
 			
 		}
 	}

@@ -11,6 +11,9 @@ if(!function_exists('checkAMPforPageBuilderStatus')){
 }
 function ampforwp_get_data_consent(){
 	global $redux_builder_amp;
+	if($redux_builder_amp==null){
+		$redux_builder_amp = get_option('redux_builder_amp',true);
+	}
 	$dboc = false;
 	$is_dboc = '';
 	if(isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ){
@@ -24,7 +27,9 @@ function ampforwp_get_data_consent(){
 add_filter( 'amp_post_template_data', 'ampforwp_add_ads_scripts' );
 function ampforwp_add_ads_scripts( $data ) {
 	global $redux_builder_amp;
-
+	if($redux_builder_amp==null){
+		$redux_builder_amp = get_option('redux_builder_amp',true);
+	}
 	if ( (isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1']) || (isset( $redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2']) || (isset($redux_builder_amp['enable-amp-ads-3']) && $redux_builder_amp['enable-amp-ads-3']) || (isset($redux_builder_amp['enable-amp-ads-4']) && $redux_builder_amp['enable-amp-ads-4']) || (isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5']) || (isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6']) ) {
 					if ( empty( $data['amp_component_scripts']['amp-ad'] ) ) {
 						$data['amp_component_scripts']['amp-ad'] = 'https://cdn.ampproject.org/v0/amp-ad-0.1.js';
@@ -45,6 +50,9 @@ function ampforwp_add_ads_scripts( $data ) {
 
 		function ampforwp_header_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$is_dboc = '';
 			$is_dboc = ampforwp_get_data_consent();
@@ -119,6 +127,9 @@ function ampforwp_add_ads_scripts( $data ) {
 
 		function ampforwp_footer_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$is_dboc = '';
 			$is_dboc = ampforwp_get_data_consent();
@@ -193,6 +204,9 @@ function ampforwp_add_ads_scripts( $data ) {
 
 		function ampforwp_before_post_content_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$is_global = '';
 			$display_on = '';
@@ -290,6 +304,9 @@ function ampforwp_add_ads_scripts( $data ) {
 		//	add_action('ampforwp_inside_post_content_after','ampforwp_after_post_content_advert');
 		function ampforwp_after_post_content_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$post_id = get_the_ID();
 			$is_dboc = '';
@@ -362,6 +379,9 @@ function ampforwp_add_ads_scripts( $data ) {
 
 		function ampforwp_below_the_title_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$is_dboc = '';
 			$is_dboc = ampforwp_get_data_consent();
@@ -435,6 +455,9 @@ function ampforwp_add_ads_scripts( $data ) {
 
 		function ampforwp_above_related_post_advert() {
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimize = '';
 			$is_dboc = '';
 			$is_dboc = ampforwp_get_data_consent();
@@ -502,6 +525,9 @@ function ampforwp_add_ads_scripts( $data ) {
 	// Ads Sponsorship output
 		function ampforwp_ads_sponsorship(){
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			if ( isset($redux_builder_amp['ampforwp-ads-sponsorship']) && $redux_builder_amp['ampforwp-ads-sponsorship'] ) {
 				return '<span>'.$redux_builder_amp['ampforwp-ads-sponsorship-label'].'</span>';
 			}
@@ -510,6 +536,9 @@ function ampforwp_add_ads_scripts( $data ) {
 	if( !function_exists('ampforwp_ad_optimize')){
 		function ampforwp_ad_optimize(){
 			global $redux_builder_amp;
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			$optimized_code = '';
 			if( isset( $redux_builder_amp['ampforwp-ads-data-loading-strategy'] ) && true == $redux_builder_amp['ampforwp-ads-data-loading-strategy']){
 				$optimized_code = 'data-loading-strategy="prefer-viewability-over-views"';
