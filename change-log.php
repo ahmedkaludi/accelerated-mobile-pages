@@ -54,7 +54,7 @@ $readme = preg_replace('/== (.*?) ==/', '<h3>\\1</h3>', $readme);
 $readme = preg_replace('/= (.*?) =/', '</ul><h4>\\1</h4><ul>', $readme);
 
 
-$pos =  strpos($readme,'<h3>Change Log</h3>');
+$pos =  strpos($readme,'<h3>Changelog</h3>');
 $changelogtxt = substr($readme,$pos);
 
 $ending =  ampforwp_strposOffset('<h4>', $changelogtxt, 4);
