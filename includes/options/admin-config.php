@@ -3424,22 +3424,22 @@ Redux::setSection( $opt_name, array(
                     array(
                         'id'       => 'fbia-header-text-area',
                         'type'     => 'textarea',
-                        'title'    => __('Enter HTML in Head', 'accelerated-mobile-pages'),
-                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'title'    => __('Custom HTML in Head Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Head Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => ''
                     ),
                     array(
                         'id'       => 'fbia-body-text-area',
                         'type'     => 'textarea',
-                        'title'    => __('Enter HTML in Body', 'accelerated-mobile-pages'),
-                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'title'    => __('Custom HTML in Body Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Body Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => ''
                     ),
                     array(
                         'id'       => 'fbia-footer-text-area',
                         'type'     => 'textarea',
-                        'title'    => __('Enter HTML in Footer', 'accelerated-mobile-pages'),
-                        'desc' => __('Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'title'    => __('Custom HTML in Footer Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Footer Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => ''
                     ),
     ),
