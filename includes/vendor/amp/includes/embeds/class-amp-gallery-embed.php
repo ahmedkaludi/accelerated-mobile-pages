@@ -120,7 +120,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'main-html'=>'{{with_carousel}}',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
-						'gallery_css' => 'amp-img{height:200px;width:300px;}',
+						'gallery_css' => '',
 
 						'scripts' => array()
 									),
@@ -130,20 +130,28 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
 						'gallery_css' => '
-							amp-img{height:200px;width:300px;}
+							.carousel-preview button{padding:0;}
 							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
 							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
 							',
 						'scripts' => array()
 									),
 			'3' => array(
-						'main-html'=>'<div class="wrapper">{{with_images}}</div>',
+						'main-html'=>'<div class="wrapper">{{with_images}}</div>
+						<amp-image-lightbox id="gallery-lightbox" layout="nodisplay">
+					      <div on="tap:gallery-lightbox.close" role="button"
+					          tabindex="0">
+					          <button class="cls-btn" on="tap:gallery-lightbox.close"
+					            role="button" tabindex="0"></button>
+					      </div>
+					    </amp-image-lightbox>',
 						'image-with-caption-html'=>'',
 						'image-without-caption-html' =>'{{main_images}}',
 						'gallery_css' => '
-						amp-img{height:200px;width:300px;}
-							.carousel-preview amp-img{height:40px;width:60px;position:relative;}
-							.carousel-preview {width: 100%;display: inline-block;text-align: center;margin: 20px 0px;}
+							.wrapper{display:inline-block;width:100%;clear:both;}
+							.wrapper amp-img{height:134px;width:200px;position: relative;float:left;margin: 0px 30px 30px 0px;}
+							.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}
+							.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}
 							',
 						'scripts' => array()
 									),
