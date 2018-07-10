@@ -5491,15 +5491,47 @@ add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
-		add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
+		if( isset($redux_builder_amp['ampforwp-inline-related-posts-display-type']) && $redux_builder_amp['ampforwp-inline-related-posts-display-type']=='middle' ){
+			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
+		}else{
+			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts_by_paragraph');
+		}
+		
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
+	global $post;
+		
+	$break_point = '</p>';
+	$content_parts = explode($break_point, $content);
+	array_walk($content_parts, function(&$value, $key) {
+		 	$value = trim($value);
+			if( !empty($value) && strpos($value, "<p>")!==false ){
+			         $value .= '</p>';
+			}
+		}
+	);
+	if(count($content_parts)>1){
+		$no_of_parts = count($content_parts);
+		$half_index = floor($no_of_parts / 2);
+		$half_content = array_chunk($content_parts, $half_index);
+		
+		$html ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+		$half_content[0][] = $html;
+		$final_content ='';
+		foreach ($half_content as $key => $value) {
+			$final_content .= implode("", $value);
+		}
+		$content = $final_content;
+	}
+	return $content;
+}
+function  ampforwp_generate_inline_related_posts_by_paragraph($content){
 	global $redux_builder_amp;
 	$total_count = '';
-	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
-	$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
-	if(isset($string_number_of_paragraphs) && $string_number_of_paragraphs!=''){
+	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+
+	if(isset($int_number_of_paragraphs) && $int_number_of_paragraphs!=''){
 		if($int_number_of_paragraphs == 0){
 			$content = '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>'.$content;
 		}else{

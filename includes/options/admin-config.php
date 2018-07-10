@@ -5884,7 +5884,6 @@ $single_page_options = array(
                     'type'     => 'select',
                     'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),
                     'class' => 'child_opt child_opt_arrow',
-                    'data'     => 'page',
                     'options'  => array(
                         '1' => 'Tags',
                         '2' => 'Categories',
@@ -5911,13 +5910,25 @@ $single_page_options = array(
                 'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
             ),
             array(
+                    'id'       => 'ampforwp-inline-related-posts-display-type',
+                    'type'     => 'select',
+                    'title'    => __('Related Post Display', 'accelerated-mobile-pages'),
+                    'class' => 'child_opt child_opt_arrow',
+                    'options'  => array(
+                        'middle' => 'After 50% of Content',
+                        'paragraphs' => 'X number of paragraphs',
+                    ),
+               'default'  => 'middle',
+               'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+            ),
+            array(
                     'id'       => 'ampforwp-related-posts-after-number-of-paragraphs',
                     'type'     => 'text',
-                'class' => 'child_opt',
+                    'class' => 'child_opt',
                     'title'    => __('Related Post After No. of Paragraphs', 'accelerated-mobile-pages'),
                     'validate' => 'numeric',
-                'default'  => '3',
-                'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
+                    'default'  => '3',
+                    'required' => array( array('ampforwp-inline-related-posts', '=' , '1'),array('ampforwp-inline-related-posts-display-type', '=' , 'paragraphs') ),
             ),
             array(
                    'id' => 'single-tab-2',
