@@ -5556,10 +5556,8 @@ function ampforwp_add_related_post_after_paragraph($matches)
 	global $redux_builder_amp;
 	static $count = 0;
 	$ret = '';
-	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
 	
-		$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
-  	
   		$ret = $matches[1];
 
 	  	if (++$count == $int_number_of_paragraphs){
