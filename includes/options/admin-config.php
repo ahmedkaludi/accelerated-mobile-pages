@@ -6087,15 +6087,15 @@ $single_page_options = array(
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Single Design 1 ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-1.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-1.png'
                                 ),
                         '2' => array(
                                 'alt'=>' Single Design With Sidebar ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-2.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-2.png'
                                 ),
                         '3' => array(
                                 'alt'=>' Single Design With Sidebar ',
-                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-3.png'
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-3.png'
                                 ),
                         
                     ),
