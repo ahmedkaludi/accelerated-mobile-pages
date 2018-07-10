@@ -29,8 +29,15 @@
         }
 
         //$active = ( ( is_numeric($this->parent->current_tab) && $this->parent->current_tab == $k ) || ( !is_numeric($this->parent->current_tab) && $this->parent->current_tab === $k )  ) ? ' style="display: block;"' : '';
+        $hide_wrapper = '';
+        if(is_plugin_active( 'amp/amp.php' ) ){
+            $enabledOptions = array('opt-text-subsection','amp-content-builder', 'amp-seo', 'fb-instant-article', 'hide-amp-section','amp-advance', 'amp-translator', 'design', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings','amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design');
+            if(in_array($section['id'], $enabledOptions)){
+                $hide_wrapper = '<div class="hide-wrapper"></div>';
+            }
+        }
         $section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';
-        echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ) . '" data-rel="' . $k . '">';
+        echo '<div id="' . $k . '_section_group' . '" class="redux-group-tab' . esc_attr( $section['class'] ) . ' '.$section['id'].'" data-rel="' . $k . '">'.$hide_wrapper;
         //echo '<div id="' . $k . '_nav-bar' . '"';
         /*
     if ( !empty( $section['tab'] ) ) {
