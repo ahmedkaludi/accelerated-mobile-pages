@@ -932,6 +932,9 @@ if($ampforwp_nameOfUser!=""){
 }elseif($ampforwp_is_productActivated){
     $proDetailsProvide = "<span class='extension-menu-call'>One more Step <a class='premium_features_btn' href='".admin_url('admin.php?tabid=opt-go-premium&page=amp_options')."'>Enter license here</a></span>";
 }
+if(is_plugin_active( 'amp/amp.php' ) ){
+$proDetailsProvide = "<a class='premium_features_btn_txt' href=\"#\"> AMP by Automattic compatibility has been activated</a>";
+}
 $args = array(
     // TYPICAL -> Change these values as you need/desire
     'opt_name'              => 'redux_builder_amp', // This is where your data is stored in the database and also becomes your global variable name.
@@ -1013,8 +1016,8 @@ Redux::setArgs( "redux_builder_amp", $args );
         // Appearance Section
         Redux::setSection( $opt_name, array(
               'id'    => 'automatic-amp-features',
-              'title'      => __( 'AMP Features', 'accelerated-mobile-pages' ),
-              'icon' => 'el el-adjust-alt',
+              'title'      => __( 'AMP By Automattic Settings', 'accelerated-mobile-pages' ),
+              'icon' => '',
               'desc'  => ''
 
         ));

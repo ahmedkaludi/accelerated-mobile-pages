@@ -573,18 +573,7 @@ function ampforwp_new_dir( $dir ) {
 	}	
 
 
-	// 6.1 Adding Analytics Scripts
-	add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
-	function ampforwp_register_analytics_script( $data ){ 
-		global $redux_builder_amp;
-		if( true == $redux_builder_amp['ampforwp-ga-switch'] || true == $redux_builder_amp['ampforwp-Segment-switch'] || true == $redux_builder_amp['ampforwp-Quantcast-switch'] || true == $redux_builder_amp['ampforwp-comScore-switch'] || true == $redux_builder_amp['ampforwp-Yandex-switch'] || true == $redux_builder_amp['ampforwp-Chartbeat-switch']|| true == $redux_builder_amp['ampforwp-Alexa-switch'] || true == $redux_builder_amp['ampforwp-afs-analytics-switch'] ) {
-			
-			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
-				$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
-			}
-		}
-		return $data;
-	}
+	
 
 	add_filter( 'amp_post_template_data', 'ampforwp_add_amp_related_scripts', 20 );
 	function ampforwp_add_amp_related_scripts( $data ) {

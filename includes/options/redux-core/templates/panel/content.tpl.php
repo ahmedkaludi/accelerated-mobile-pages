@@ -33,7 +33,11 @@
         if(is_plugin_active( 'amp/amp.php' ) ){
             $enabledOptions = array('opt-text-subsection','amp-content-builder', 'amp-seo', 'fb-instant-article', 'hide-amp-section','amp-advance', 'amp-translator', 'design', 'amp-theme-settings', 'amp-theme-global-subsection', 'amp-theme-header-settings','amp-theme-homepage-settings', 'amp-single', 'amp-theme-footer-settings', 'amp-theme-page-settings', 'amp-social', 'ampforwp-date-section', 'amp-design');
             if(in_array($section['id'], $enabledOptions)){
-                $hide_wrapper = '<div class="hide-wrapper"></div>';
+                $hide_wrapper = '<div class="hide-wrapper"><div class="amp-watermark-wrapper"><a class="amp-watermark" href="#">
+                        <span>Standalone Mode Required<span>
+                        <p>Use Standalone AMPforWp for complete features</p>
+                        <em>Know More</em>
+                    </a></div></div>';
             }
         }
         $section['class'] = isset( $section['class'] ) ? ' ' . $section['class'] : '';

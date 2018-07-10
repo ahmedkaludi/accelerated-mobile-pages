@@ -367,7 +367,7 @@ jQuery(function($) {
 
 /*---------Google Fonts Ends -------*/
 
-
+    if($('.automatic-amp-features').length==0){
         $('.redux-container').each(function() {
             if (!$(this).hasClass('redux-no-sections')) {
                 $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
@@ -385,7 +385,7 @@ jQuery(function($) {
                 return false;
             }
         });
-
+    }
         if($(".amp-preview-button").length>0){
             $(".amp-preview-button").click(function(){
                 var srcLink = $("#amp-preview-iframe").attr('data-src');
