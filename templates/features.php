@@ -3701,65 +3701,58 @@ function amp_latest_products_styling() {
 }
 
 // 54. Change the default values of post meta for AMP pages. #746
-
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
 	global $redux_builder_amp;
 	$check_meta 		= get_option('ampforwp_default_pages_to');
-	//$checker			= 'show';
-	$page_control			= $redux_builder_amp['amp-pages-meta-default'];
-	$post_control			= $redux_builder_amp['amp-posts-meta-default'];
+	$checker			= 'show';
+	$control			= $redux_builder_amp['amp-pages-meta-default'];
 	$meta_value_to_upate = 'default';
-	$screen = get_current_screen();
-	
 
-	if ( $page_control  === 'hide' ) {
-			//$checker				= 'hide';
-		$page_meta_to_update 	= 'hide-amp';
-	}
-	if( $page_control  === 'show' ){
-		$page_meta_to_update 	= 'default';
-	}
-	if ( $post_control  === 'show') {
-			//$checker				= 'hide';
-			$post_meta_to_update = 'default';
-	}
-	if ( $post_control  === 'hide') {
-			//$checker				= 'hide';
-			$post_meta_to_update = 'hide-amp';
+	if ( $control  === 'hide' ) {
+		$checker				= 'hide';
+		$meta_value_to_upate 	= 'hide-amp';
 	}
 
-
-	//echo $screen->post_type;
-	if($screen->post_type == 'page'){
-		// Get all the pages and update the post meta
-		$pages = get_pages(array());
-		foreach($pages as $page){
-			$page_meta = get_post_meta( $page->ID, 'ampforwp-amp-on-off', true );
-			if( ( $page_control == 'show' &&  $page_meta == 'default') || ( $page_control == 'hide' && $page_meta == 'hide-amp')){
-				continue;
-			}else{
-				update_post_meta($page->ID,'ampforwp-amp-on-off', $page_meta_to_update);
-			}
-			
-		}
+	// Check and Run only if the value has been changed, else return
+	if ( $check_meta === $checker ) {
+		return;
 	}
-
-	if( $screen->post_type == 'post' ){
-		// Get all the pages and update the post meta
-		$posts = get_posts(array());
-		foreach($posts as $post){
-			$post_meta = get_post_meta( $post->ID, 'ampforwp-amp-on-off', true );
-			if( ( $post_control == 'show' &&  $post_meta == 'default') || ( $post_control == 'hide' && $post_meta == 'hide-amp')){
-				continue;
-			}else{
-		    	update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
-			}
-		}
+	// Get all the pages and update the post meta
+	$pages = get_pages(array());
+	foreach($pages as $page){
+	    update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
 	}
-	
 	// Update the option as the process has been done and update an option
 	update_option('ampforwp_default_pages_to', $checker);
+	return ;
+}
+
+// 54. Change the default values of post meta for AMP pages. #746
+add_action('admin_head','ampforwp_change_default_amp_post_meta');
+function ampforwp_change_default_amp_post_meta() {
+	global $redux_builder_amp;
+	$post_check_meta 		= get_option('ampforwp_default_posts_to');
+	$post_checker			= 'show';
+	$post_control			= $redux_builder_amp['amp-posts-meta-default'];
+	$post_meta_to_update = 'default';
+
+	if ( $post_control  === 'hide' ) {
+		$post_checker				= 'hide';
+		$post_meta_to_update 	= 'hide-amp';
+	}
+
+	// Check and Run only if the value has been changed, else return
+	if ( $post_check_meta === $post_checker ) {
+		return;
+	}
+	// Get all the pages and update the post meta
+	$posts = get_posts(array());
+	foreach($posts as $post){
+	    update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
+	}
+	// Update the option as the process has been done and update an option
+	update_option('ampforwp_default_posts_to', $post_checker);
 	return ;
 }
 
