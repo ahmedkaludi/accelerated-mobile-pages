@@ -22,7 +22,7 @@
     width: 0;
     position: absolute;
     left: 0;
-    top: -10px;
+    top: 0px;
 }
 .redux-image-select-selected:after{
 	content: " ";
@@ -33,7 +33,7 @@
     border-width: 0 0.2em 0.2em 0;
     position: absolute;
     left: 15px;
-    top: 0px;
+    top: 10px;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
