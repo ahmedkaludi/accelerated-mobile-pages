@@ -6074,20 +6074,14 @@ $single_page_options = array(
             array(
                        'id' => 'ampforwp-single_section_5',
                        'type' => 'section',
-                       'title' => __('Image Gallery Settings', 'accelerated-mobile-pages'),
+                       'title' => __('WordPress Content Gallery', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
                 ),
             array(
-                    'id'       => 'ampforwp-single-gallery-type-switch',
-                    'type'     => 'switch',
-                    'title'    => __( 'Enable Amp Gallery', 'accelerated-mobile-pages' ),
-                   'default'   => 1,
-            ),
-            array(
                    'id'    => 'ampforwp-gallery-design-type',
-                   'title'  => __('Image Gallery Designs', 'accelerated-mobile-pages'),
+                   'title'  => __('Select Gallery Designs', 'accelerated-mobile-pages'),
                    'class' => 'child_opt child_opt_arrow',
                    'type'   => 'image_select',
                    'options'=> array(
@@ -6109,7 +6103,6 @@ $single_page_options = array(
 //                   'max-width' => 200,
 //                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4'),
-                                 array('ampforwp-single-gallery-type-switch', '=' , '1'),
                                  
                                 ),
             ),
