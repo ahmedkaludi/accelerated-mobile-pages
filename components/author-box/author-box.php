@@ -64,10 +64,19 @@ if ( isset($args['show_time']) ) {
  ?>
     <div class="amp-author <?php echo $class; ?>">
         <?php if ( $avatar ) {
-    $author_avatar_url = ampforwp_get_wp_user_avatar();
-    if( null == $author_avatar_url ){
-       $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
-    } ?>
+            $author_avatar_url = ampforwp_get_wp_user_avatar();
+            if( null == $author_avatar_url ){
+               $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
+            }
+            if( is_plugin_active( 'simple-author-box/simple-author-box.php' )){
+                $avatar_sabox_url = '';
+                $avatar_sabox_url = get_the_author_meta( 'sabox-profile-image', $post_author->ID );
+                if($avatar_sabox_url){
+                    $author_avatar_url = $avatar_sabox_url;
+                }                
+            }
+
+        ?>
         <div class="amp-author-image <?php echo $author_image_wrapper; ?>">
             <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>

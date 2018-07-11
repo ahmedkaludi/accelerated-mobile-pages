@@ -2135,6 +2135,9 @@ function ampforwp_remove_schema_data() {
 
 	// Facebook Button by BestWebSoft Compatibility #1740
 	remove_filter( 'the_content', 'fcbkbttn_display_button' );
+
+	// Simple Author Box Compatibility #2268
+	remove_filter( 'the_content', 'wpsabox_author_box' );
 }
 
 // 22. Removing author links from comments Issue #180
