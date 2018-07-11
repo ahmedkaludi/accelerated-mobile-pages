@@ -2195,9 +2195,6 @@ Redux::setArgs( "redux_builder_amp", $args );
 
 
                 array(
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                       'id' => 'ampforwp-analytics_2',
                       'type' => 'section',
                       'title' => __('General Analytics Providers', 'accelerated-mobile-pages'),
@@ -2206,9 +2203,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'accordion-open'=> 1, 
                   ),
                     array(
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                         'id'            =>'amp-fb-pixel',
                         'type'          => 'switch',
                         'title'         => __('Facebook Pixel','accelerated-mobile-pages'),
@@ -2228,9 +2222,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Segment Analytics',
                         'default' => ampforwp_get_default_analytics('2'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'       => 'sa-feild',
@@ -2238,7 +2229,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'    => __( 'Segment Analytics', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => __( 'Enter your Segment Analytics Key.', 'accelerated-mobile-pages' ),
                         'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
                           array('ampforwp-Segment-switch', '=' , '1')
                         ),
                         'default'  => 'SEGMENT-WRITE-KEY',
@@ -2249,16 +2239,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Matomo (Piwik) Analytics',
                         'default' => ampforwp_get_default_analytics('3'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'pa-feild',
                           'type'     => 'text',
                           'title'    => __( ' Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
@@ -2271,9 +2257,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Quantcast Measurement',
                         'default' => ampforwp_get_default_analytics('4'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'            =>'amp-quantcast-analytics-code',
@@ -2289,9 +2272,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'comScore',
                         'default' => ampforwp_get_default_analytics('5'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'            =>'amp-comscore-analytics-code-c1',
@@ -2315,16 +2295,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Effective Measure',
                         'default' => ampforwp_get_default_analytics('6'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'eam-feild',
                           'type'     => 'text',
                           'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Effective-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
@@ -2337,16 +2313,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'StatCounter',
                         'default' => ampforwp_get_default_analytics('7'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'sc-feild',
                           'type'     => 'text',
                           'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-StatCounter-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
@@ -2359,16 +2331,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Histats Analytics',
                         'default' => ampforwp_get_default_analytics('8'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                        array(
                           'id'       => 'histats-feild',
                           'type'     => 'text',
                           'title'    => __( 'Histats Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Histats-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
@@ -2381,9 +2349,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Yandex Metrika',
                         'default' => ampforwp_get_default_analytics('9'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                        array(
                         'id'            =>'amp-Yandex-Metrika-analytics-code',
@@ -2391,7 +2356,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'         => __('Yandex Metrika Analytics ID','accelerated-mobile-pages'),
                         'default'       => '',
                         'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Yandex-switch', '=' , '1')),
                         'tooltip-subtitle' => __( 'Enter your Counter ID.', 'accelerated-mobile-pages' ),
                       ),
@@ -2401,9 +2365,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Chartbeat Analytics',
                         'default' => ampforwp_get_default_analytics('10'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                   
                        array(
@@ -2412,7 +2373,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'         => __('Chartbeat Analytics ID','accelerated-mobile-pages'),
                         'default'       => '',
                         'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Chartbeat-switch', '=' , '1')),
                         'tooltip-subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
                       ),
@@ -2422,16 +2382,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Alexa Metrics',
                         'default' => ampforwp_get_default_analytics('11'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                      array(
                           'id'       => 'ampforwp-alexa-account',
                           'type'     => 'text',
                           'title'    => __( 'Alexa Metrics Account', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Alexa-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter Account Number given by Alexa Metrics', 'accelerated-mobile-pages' ),
@@ -2442,7 +2398,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'type'     => 'text',
                           'title'    => __( 'Alexa Metrics Domain', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Alexa-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the domain', 'accelerated-mobile-pages' ),
@@ -2454,16 +2409,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'AFS Analytics',
                         'default' => ampforwp_get_default_analytics('12'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                     array(
                           'id'       => 'ampforwp-afs-siteid',
                           'type'     => 'text',
                           'title'    => __( 'Website ID', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-afs-analytics-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the Website ID', 'accelerated-mobile-pages' ),
@@ -2477,16 +2428,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Adobe Analytics',
                         'default' => ampforwp_get_default_analytics('13'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                     array(
                           'id'       => 'ampforwp-adobe-host',
                           'type'     => 'text',
                           'title'    => __( 'Host Name', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-adobe-analytics-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the Website domain', 'accelerated-mobile-pages' ),
@@ -2498,7 +2445,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'type'     => 'text',
                           'title'    => __( 'ReportSuite ID', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-adobe-analytics-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the ReportSuite ID', 'accelerated-mobile-pages' ),
