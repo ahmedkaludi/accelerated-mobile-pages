@@ -24,7 +24,7 @@ wp_reset_postdata(); ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
 			<?php
-			global $allowed_html;
+			$allowed_html = ampforwp_wp_kses_allowed_html();
 			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer' ) , $allowed_html) ;
  		?>
 		</p>
