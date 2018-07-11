@@ -20,9 +20,7 @@
             </nav>
           </div>
         <?php } ?>
-        <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                    <a href="#header"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
-                  <?php }
+        <p> <?php  amp_back_to_top_link();
                   if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
                     if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
                       | <?php ampforwp_view_nonamp(); 
