@@ -2677,14 +2677,20 @@ add_action('init', 'amp_gtm_remove_analytics_code');
 function amp_gtm_remove_analytics_code() {
   global $redux_builder_amp;
   if( isset($redux_builder_amp['amp-use-gtm-option']) && $redux_builder_amp['amp-use-gtm-option'] ) {
-    remove_action('amp_post_template_footer','ampforwp_analytics',11);
-  	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+
+	  ///////////////////////////////////////////////////////////////////////////
+  	// will add the scripts and analytics codes since #2340 version 0.9.97.5 //
+	  ///////////////////////////////////////////////////////////////////////////
+
+   //  remove_action('amp_post_template_footer','ampforwp_analytics',11);
+  	// remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+  	
   	//Add GTM Analytics code right after the body tag
   	add_action('ampforwp_body_beginning','amp_post_template_add_analytics_data',10);
   } else {
     remove_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
-
   }
+
 }
 //Remove other analytics if GTM is enable
 add_action('amp_post_template_footer','ampforwp_gtm_support', 9);
