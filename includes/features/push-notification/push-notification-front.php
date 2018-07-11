@@ -43,21 +43,47 @@ if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 		}
 	}
 }
-// OneSignal Push Notifications Widget
-add_action('pre_amp_render_post', 'ampforwp_onesignal_notifications_widget_position');
-if( ! function_exists( 'ampforwp_onesignal_notifications_widget_position' ) ){
-	function ampforwp_onesignal_notifications_widget_position(){
+if(is_plugin_active('amp/amp.php')){
+	add_action('ampforwp_after_post_content', 'ampforwp_notification_widget');
+	function ampforwp_notification_widget(){
 		global $redux_builder_amp; 
-		if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] ) && true == $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
-			add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
+		if($redux_builder_amp==null){
+			$redux_builder_amp = get_option('redux_builder_amp',true);
 		}
+		if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] ) && true == $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
+				ampforwp_onesignal_notifications_widget();
+			}
+	}
+	add_action('ampforwp_before_post_content', 'ampforwp_notification_widget_other_position');
+	function ampforwp_notification_widget_other_position(){
+		global $redux_builder_amp; 
+		if($redux_builder_amp==null){
+			$redux_builder_amp = get_option('redux_builder_amp',true);
+		}
+			if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] ) &&  true == $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
+				ampforwp_onesignal_notifications_widget();
+			}
+		}
+}else{
 
-		if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] ) &&  true == $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
-			add_action('ampforwp_inside_post_content_before', 'ampforwp_onesignal_notifications_widget');
-			add_action('ampforwp_before_post_content', 'ampforwp_onesignal_notifications_widget');
+	// OneSignal Push Notifications Widget
+	add_action('pre_amp_render_post', 'ampforwp_onesignal_notifications_widget_position');
+	if( ! function_exists( 'ampforwp_onesignal_notifications_widget_position' ) ){
+		function ampforwp_onesignal_notifications_widget_position(){
+			global $redux_builder_amp; 
+			if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] ) && true == $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
+				add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
+			}
+
+			if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] ) &&  true == $redux_builder_amp['ampforwp-web-push-onesignal-above-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
+				add_action('ampforwp_inside_post_content_before', 'ampforwp_onesignal_notifications_widget');
+				add_action('ampforwp_before_post_content', 'ampforwp_onesignal_notifications_widget');
+			}
 		}
 	}
 }
+
+
 if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
 	global $redux_builder_amp;

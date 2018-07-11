@@ -282,3 +282,14 @@
             return $output;
         }
     }
+
+    // 56. Multi Translation Feature #540
+function ampforwp_translation( $redux_style_translation , $pot_style_translation ) {
+ global $redux_builder_amp;
+ $single_translation_enabled = $redux_builder_amp['amp-use-pot'];
+   if ( !$single_translation_enabled ) {
+     return $redux_style_translation;
+   } else {
+     return __($pot_style_translation,'accelerated-mobile-pages');
+   }
+}

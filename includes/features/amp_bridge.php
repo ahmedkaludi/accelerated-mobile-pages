@@ -13,7 +13,7 @@ function basicAlloptions(){
 	}
 
 	ob_start();
-	do_action('ampforwp_before_post_content');
+	do_action('ampforwp_before_post_content_1');
 	$hookbeforeContent = ob_get_contents();
 	ob_end_clean();
 	if(isset($ampforwpMainArray['ampforwp_before_post_content'])){
@@ -21,7 +21,7 @@ function basicAlloptions(){
 	}else{
 		$ampforwpMainArray['ampforwp_before_post_content'] = $hookbeforeContent;
 	}
-
+	
 	ob_start();
 	do_action('ampforwp_after_post_content');
 	$hookafterContent = ob_get_contents();
@@ -31,8 +31,31 @@ function basicAlloptions(){
 	}else{
 		$ampforwpMainArray['ampforwp_after_post_content'] = $hookafterContent;
 	}
+
+	ob_start();
+	do_action('ampforwp_below_the_title');
+	$hook_below_the_title = ob_get_contents();
+	ob_end_clean();
+	if(isset($ampforwpMainArray['ampforwp_below_the_title'])){
+		$ampforwpMainArray['ampforwp_below_the_title'] .= $hook_below_the_title;
+	}else{
+		$ampforwpMainArray['ampforwp_below_the_title'] = $hook_below_the_title;
+	}
+
+	//One signal
+	ob_start();
+	do_action('ampforwp_body_beginning');
+	$hook_body_beginning = ob_get_contents();
+	ob_end_clean();
+	if(isset($ampforwpMainArray['ampforwp_body_beginning'])){
+		$ampforwpMainArray['ampforwp_body_beginning'] .= $hook_body_beginning;
+	}else{
+		$ampforwpMainArray['ampforwp_body_beginning'] = $hook_body_beginning;
+	}
+
+
 }
-add_action("wp_loaded", "basicAlloptions",9);
+add_action("pre_amp_render_post", "basicAlloptions",4);
 
 
 add_filter("ampforwp_the_content_last_filter", "ampforwp_add_basic_hooks");
@@ -42,15 +65,29 @@ function ampforwp_add_basic_hooks($content_buffer){
 	// Below Header Global
 	$content_buffer = preg_replace('[<article(.*?)>]', $ampforwpMainArray['ampforwp_after_header']."\n<article$1> " , $content_buffer, 1);
 	// Below Title Single
-	$content_buffer = preg_replace('[<header>{1}]', '</header> '.$ampforwpMainArray['ampforwp_before_post_content'] , $content_buffer);
-	//$content_buffer = preg_replace('[<\/article>]', '</article> '.$ampforwpMainArray['ampforwp_after_post_content'] , $content_buffer, 1);
-	//$content_buffer;
-	//ob_start();
-	//$hookAfterHeader = do_action('ampforwp_after_header');
-	//	$hookAfterHeader = ob_get_contents();
-	//ob_end_clean();
-	//$contents = explode("</header>", $content_buffer);
-	//$content_buffer = $contents[0]."</header>".$ampforwpMainArray['ampforwp_after_header'] .$contents[1];
-	//$content_buffer = $contents[0]."</header>".$contents[1];
+	$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>(.+?)<div(.*?)>#si',  "<article$1> $2</header>$3".$ampforwpMainArray['ampforwp_before_post_content']."\n<div$4>" , $content_buffer);
+
+
+	$content_buffer = preg_replace('#<article(.+?)>(.+?)<footer(.+?)>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_after_post_content']."<footer$3>" , $content_buffer);
+
+	$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_below_the_title']."\n</header>" , $content_buffer);
+	$content_buffer = preg_replace('#<body(.+?)>(.+?)<header(.+?)>#si',  "<body$1>".$ampforwpMainArray['ampforwp_body_beginning']."\n$2<header$3>" , $content_buffer);
+
+
+
+	
 	return $content_buffer;
+}
+
+
+if(!function_exists('ampforwp_is_non_amp')){
+	function ampforwp_is_non_amp() {
+		return false;
+	}
+}
+
+if(!function_exists('checkAMPforPageBuilderStatus')){
+	function checkAMPforPageBuilderStatus(){
+		return false;
+	}
 }

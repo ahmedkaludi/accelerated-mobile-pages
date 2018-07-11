@@ -1,14 +1,5 @@
 <?php
-if(!function_exists('ampforwp_is_front_page')){
-	function ampforwp_is_front_page(){
-		return false;
-	}
-}
-if(!function_exists('checkAMPforPageBuilderStatus')){
-	function checkAMPforPageBuilderStatus(){
-		return false;
-	}
-}
+
 function ampforwp_get_data_consent(){
 	global $redux_builder_amp;
 	if($redux_builder_amp==null){
