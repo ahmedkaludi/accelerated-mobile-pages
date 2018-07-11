@@ -1113,6 +1113,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
+			if( false == $redux_builder_amp['amp-use-gtm-option'] ) {
 				if ( true == $redux_builder_amp['ampforwp-ga-switch'] ){
 					$ga_fields = array();
 					$ampforwp_ga_fields = array();
@@ -1134,15 +1135,15 @@ function ampforwp_new_dir( $dir ) {
 						$ga_fields['vars']['anonymizeIP'] = 'true';
 					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
-					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
-				 ?>
+					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields ); ?>
 						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 							<script type="application/json">
 								<?php echo $ampforwp_ga_fields; ?>
 							</script>
 						</amp-analytics>
 						<?php
-					}//code ends for supporting Google Analytics
+				}
+			}//code ends for supporting Google Analytics
 
 			// 10.2 Analytics Support added for segment.com
 				if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
