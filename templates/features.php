@@ -1569,7 +1569,7 @@ function ampforwp_new_dir( $dir ) {
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
-					if(isset($metadata['image']) && $metadata['image'] ){
+					if(isset($metadata['image']) && $metadata['image'] ){	
 						$metadata['image'] = array(
 							'@type' 	=> 'ImageObject',
 							'url' 		=> $structured_data_image ,
@@ -4102,20 +4102,24 @@ function ampforwp_frontpage_comments() {
 add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
-
+	$sidebar_check = null;
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( is_page() ) {
+			$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+		}
 		// Add Styling Builder Elements
 		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
-		// Removed Titles for Pagebuilder elements
-		remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		if ( 'layout-builder' == $sidebar_check ) {
+			// Removed Titles for Pagebuilder elements
+			remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		}
 	}	
 }
 
@@ -6324,56 +6328,94 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		return $menu;
 	}
 }
+/*
+ * Fetches the logo data 
+ * More details about the fix https://github.com/ahmedkaludi/accelerated-mobile-pages/pull/2317
+ * Props to: https://github.com/saucal for suggesting the fix.
+*/
+
+function ampforwp_default_logo_data() {
+	global $redux_builder_amp, $ampwforwp_default_logo_data;
+
+	if( $ampwforwp_default_logo_data ) {
+		return $ampwforwp_default_logo_data;
+	}
+
+	$logo_id		= '';
+	$image 			= array();
+	$value 			= '';
+	$logo_alt		= '';
+
+	$logo_id = get_theme_mod( 'custom_logo' );
+	if( empty( $logo_id ) ) {
+		$logo_id = (integer) $redux_builder_amp['opt-media']['id'];
+	}
+
+	if( empty( $logo_id ) ) {
+		return false;
+	}
+
+	if( ! wp_attachment_is( 'image', $logo_id ) ) {
+		$logo_url = $redux_builder_amp['opt-media']['url'];
+		$image = @getimagesize( $logo_url );
+	} else {
+		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
+		$logo_url = $imageDetail[0];
+		$image[0] = $imageDetail[1];
+		$image[1] = $imageDetail[2];
+	}
+
+	$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true);
+
+	$ampwforwp_default_logo_data = array(
+		'logo_id' => $logo_id,
+		'logo_url' => $logo_url,
+		'logo_alt' => $logo_alt,
+		'logo_size' => $image
+	);
+	return $ampwforwp_default_logo_data;
+}
 
 // 101. Function for Logo attributes
 function ampforwp_default_logo($param=""){
 	global $redux_builder_amp;
-	$logo_id		= '';
-	$image 			= '';
-	$value 			= '';
-	$logo_alt		= '';
-	$logo_url		= $redux_builder_amp['opt-media']['url'];
-	if($logo_url){
-		$logo_id  = get_theme_mod( 'custom_logo' );
-		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
-		$image 	  = @getimagesize($redux_builder_amp['opt-media']['url']);
-
-		if(empty($image) || $image==false){
-			$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
-			$imageDetail 	 = wp_get_attachment_image_src( $logo_id , 'full');
-			$image[0] = $imageDetail[1];
-			$image[1] = $imageDetail[2];
-		}
-		switch ($param) {
-			case 'url':
-					$value = $logo_url;
-				break;
-			case 'width':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
-					$value = $redux_builder_amp['opt-media-width'];
-				}
-				else 
-					$value = $image[0];
-				break;
-			case 'height':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
-					$value = $redux_builder_amp['opt-media-height'];
-				}
-				else
-					$value = $image[1];
-				break;
-			case 'alt':
-				if($logo_alt){
-					$value = $logo_alt;
-				}
-				else
-					$value = get_bloginfo('name');
-				break;	
-			default:
-				$value = $logo_url;
-				break;
-		}
+	$value 		= '';
+	$logo_alt 	= '';
+	$data 		= ampforwp_default_logo_data();
+	if( ! $data ) {
+		return $value;
 	}
+
+	switch ($param) {
+		case 'url':
+				$value = $data['logo_url'];
+			break;
+		case 'width':
+			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+				$value = $redux_builder_amp['opt-media-width'];
+			}
+			else 
+				$value = $data['logo_size'][0];
+			break;
+		case 'height':
+			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+				$value = $redux_builder_amp['opt-media-height'];
+			}
+			else
+				$value = $data['logo_size'][1];
+			break;
+		case 'alt':
+			if($logo_alt){
+				$value = $data['logo_alt'];
+			}
+			else
+				$value = get_bloginfo('name');
+			break;	
+		default:
+			$value = $data['logo_url'];
+			break;
+	}
+
 	return $value;
 } 
 // Envira Lazy Load compatibility

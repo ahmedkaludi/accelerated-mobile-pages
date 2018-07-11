@@ -128,7 +128,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'PWA For WordPress',
-                            'desc'=>'PWA For WordPress is a Revolutionary Cache System for Wordpress',
+                            'desc'=>'Add Progressive Web App support for WordPress website',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
                             'price'=>'$89',
                             'url_link'=>'http://ampforwp.com/pwa/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
@@ -6527,12 +6527,12 @@ $single_page_options = array(
             array(
                   'id'       => 'featured_image_swift_page',
                   'type'     => 'switch',
-                  'default'  =>  '1',
+                  'default'  =>  '0',
                   'title'    => __('Featured Image', 'accelerated-mobile-pages'),
                   'tooltip-subtitle' => __('Enable Featured Image on Pages.'),
                   'required' => array('amp-design-selector','=','4'),
-              ),
-             array(
+            ),
+            array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
                       'default'  =>  '0',

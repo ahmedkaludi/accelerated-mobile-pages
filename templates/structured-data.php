@@ -23,8 +23,8 @@ function ampforwp_structured_data_type( $metadata ) {
 					return;
 				}
 				if(isset($metadata['@type']) && $metadata['@type']){
-	        		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
-	        	}
+        			$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+        		}
         		return $metadata;
         	}
         }
