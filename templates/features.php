@@ -7715,3 +7715,15 @@ function ampforwp_wp_kses_allowed_html(){
   	}
   	return $allowed_html; 
 }
+
+function ampforwp_check_excerpt(){
+	global $redux_builder_amp;
+
+	$value = '';
+	$value =  ( isset( $redux_builder_amp['excerpt-option'] ) &&  $redux_builder_amp['excerpt-option'] ) ;
+	if ( null == $value ) {
+		$value = '1';
+	}
+
+	return $value;
+}

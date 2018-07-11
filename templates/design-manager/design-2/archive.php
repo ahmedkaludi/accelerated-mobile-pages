@@ -125,7 +125,7 @@
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php
-				if( true == $redux_builder_amp['excerpt-option'] && !$is_full_content ) {
+				if( ampforwp_check_excerpt() && !$is_full_content ) {
 					$class = 'large-screen-excerpt';
 					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
 						$class = 'small-screen-excerpt';

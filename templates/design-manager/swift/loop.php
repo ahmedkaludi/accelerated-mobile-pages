@@ -14,7 +14,7 @@ if( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ){
     <div class="fsp-cnt">
     	<?php amp_loop_category(); ?>
 	    <?php amp_loop_title(); ?>
-	    <?php if( true == $redux_builder_amp['excerpt-option'] ) { amp_loop_excerpt(20); } ?>
+	    <?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt(20); } ?>
 	    <div class="pt-dt">
             <?php amp_loop_date(); ?>
         </div>
