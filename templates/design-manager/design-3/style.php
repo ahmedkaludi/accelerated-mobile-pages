@@ -146,7 +146,7 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']?>;margin-bottom: 20px;}
 /* Footer */
-#footer{ background: <?php echo $redux_builder_amp['ampforwp-footer-background-color']['color'] ?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
+#footer{ background: <?php echo $redux_builder_amp['ampforwp-footer-background-color-3']['color'] ?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:#fff }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
