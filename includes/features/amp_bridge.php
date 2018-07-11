@@ -54,6 +54,27 @@ function basicAlloptions(){
 	}
 
 
+	ob_start();
+	do_action('ampforwp_global_after_footer');
+	$hook_global_after_footer = ob_get_contents();
+	ob_end_clean();
+	if(isset($ampforwpMainArray['ampforwp_global_after_footer'])){
+		$ampforwpMainArray['ampforwp_global_after_footer'] .= $hook_global_after_footer;
+	}else{
+		$ampforwpMainArray['ampforwp_global_after_footer'] = $hook_global_after_footer;
+	}
+
+	ob_start();
+	do_action('amp_footer_link');
+	$hook_global_after_footer = ob_get_contents();
+	ob_end_clean();
+	if(isset($ampforwpMainArray['amp_footer_link'])){
+		$ampforwpMainArray['amp_footer_link'] .= $hook_global_after_footer;
+	}else{
+		$ampforwpMainArray['amp_footer_link'] = $hook_global_after_footer;
+	}
+
+
 }
 add_action("pre_amp_render_post", "basicAlloptions",4);
 
@@ -71,7 +92,11 @@ function ampforwp_add_basic_hooks($content_buffer){
 	$content_buffer = preg_replace('#<article(.+?)>(.+?)<footer(.+?)>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_after_post_content']."<footer$3>" , $content_buffer);
 
 	$content_buffer = preg_replace('#<article(.+?)>(.+?)<\/header>#si',  "<article$1>$2".$ampforwpMainArray['ampforwp_below_the_title']."\n</header>" , $content_buffer);
+
 	$content_buffer = preg_replace('#<body(.+?)>(.+?)<header(.+?)>#si',  "<body$1>".$ampforwpMainArray['ampforwp_body_beginning']."\n$2<header$3>" , $content_buffer);
+	$content_buffer = preg_replace('#<\/article>(.+?)<\/footer>#si',  "</article>$1</footer>".$ampforwpMainArray['ampforwp_global_after_footer'] , $content_buffer);
+	//$content_buffer = preg_replace('#<\/article>(.+?)<\/footer>#si',  "</article>$1".$ampforwpMainArray['amp_footer_link']."</footer>", $content_buffer);
+	//$content_buffer = preg_replace('#<\/article>(.+?)<footer(.+?)>#si',  "</article>$1".$ampforwpMainArray['amp_footer_link']."<footer$2>", $content_buffer);
 
 
 

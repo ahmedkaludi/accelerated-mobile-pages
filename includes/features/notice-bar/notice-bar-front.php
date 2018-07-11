@@ -1,4 +1,23 @@
 <?php
+if(is_plugin_active('amp/amp.php')){
+	add_action('amp_post_template_css' , 'ampforwp_notification_bar_css');
+	function ampforwp_notification_bar_css(){?>
+		#amp-user-notification1 p { display: inline-block; margin: 20px 0px; }
+		#amp-user-notification1 { padding: 5px; text-align: center; background: #fff; border-top: 1px solid #005be2; }
+		amp-user-notification button { padding: 8px 10px; background: #005be2; color: #fff; margin-left: 5px; border: 0; }
+	<?php }
+	add_action('amp_post_template_head' , 'ampforwp_load_geo_script_autoamp');
+	function ampforwp_load_geo_script_autoamp(){
+		global $redux_builder_amp;
+	    if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+		}
+		echo "<script type='text/javascript' src='https://cdn.ampproject.org/v0/amp-geo-0.1.js' async custom-element=\"amp-geo\"></script>";
+		 
+	}
+}//if end
+
+
 	add_action('ampforwp_global_after_footer','ampforwp_footer');
 	function ampforwp_footer() {
 			global $redux_builder_amp; ?>
@@ -36,7 +55,9 @@
 	if ( ! function_exists('ampforwp_gdpr_init') ) {
 		function ampforwp_gdpr_init() {
 			global $redux_builder_amp;
-
+			if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 			if ( isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] && ! is_admin() ) {
 				// Scripts
 				add_filter('amp_post_template_data' , 'ampforwp_gdpr_data');
@@ -51,7 +72,7 @@
 	// AMP GDPR compliancy Scripts
 	if ( ! function_exists('ampforwp_gdpr_data') ) {
 	  function ampforwp_gdpr_data( $data ) {
-	    global $redux_builder_amp;
+	    
 	    if ( empty( $data['amp_component_scripts']['amp-consent'] ) ) {
 	     	$data['amp_component_scripts']['amp-consent'] = 'https://cdn.ampproject.org/v0/amp-consent-0.1.js';
 	    }
@@ -70,6 +91,9 @@
 
 	  function ampforwp_gdpr_amp_consent() {
 	    global $redux_builder_amp;
+	    if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+		}
 	    $headline   = $accept = $reject = $settings = $user_data = $form_url = '';
 	    $headline   = $redux_builder_amp['amp-gdpr-compliance-headline-text'];
 	    $accept   = $redux_builder_amp['amp-gdpr-compliance-accept-text'];
@@ -145,10 +169,14 @@
 	  
 	}
 
+
 	// AMP GDPR compliancy Styling
 	if ( ! function_exists('ampforwp_gdpr_css') ) {
 		function ampforwp_gdpr_css(){ 
 		  	global $redux_builder_amp;
+		  	if($redux_builder_amp==null){
+				$redux_builder_amp = get_option('redux_builder_amp',true);
+			}
 		    	// GDPR popup Design 
 			if($redux_builder_amp['gdpr-type'] == '1'){?>
 				
