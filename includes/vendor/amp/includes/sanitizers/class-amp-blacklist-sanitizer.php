@@ -92,7 +92,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 				if ( $element->hasAttributes() ) {
 					$attr = $element->getAttribute('type');
 					if ( '' !== $attr && 'application/ld+json' === $attr ) {
-						$element->nodeValue = $element->textContent;
+						$element->nodeValue = htmlspecialchars($element->textContent);
 						continue;
 					}
 				}

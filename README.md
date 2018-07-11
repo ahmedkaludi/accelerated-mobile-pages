@@ -183,6 +183,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.5 (11th July 2018) =
+* Fixed: Title disappearing in Design 1,2,3 when legacy pagebuilder is enabled #2341
+* Fixed: ld+json getting a broken when special characters are added in the image. #2346
+
+
+
 = 0.9.97.4 (09th July 2018) =
 * Fixed: Huge Performance upgrade in the way fetching the logo url #2317
 * Fixed: Fatal Error due to unable to modify values in Structured Data Object #2327
