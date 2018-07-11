@@ -61,12 +61,12 @@ if( !class_exists( 'ReduxFramework_extension_amp_slider' ) ) {
                 return;
             }
             
+            $this->field_name = 'amp_slider';
             if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/amp_slider' ) );
+                $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/'.$this->field_name ) );
                 $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
             }
             
-            $this->field_name = 'amp_slider';
             self::$theInstance = $this;
             add_filter( 'redux/'.$this->parent->args['opt_name'].'/field/class/'.$this->field_name, array( &$this, 'overload_field_path' ) ); // Adds the local field
         }
