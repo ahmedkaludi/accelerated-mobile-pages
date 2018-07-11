@@ -7386,3 +7386,16 @@ function ampforwp_spotim_vuukle_styling(){
 		} <?php 
 	}
 }
+
+
+function ampforwp_check_excerpt(){
+	global $redux_builder_amp;
+ 
+	$value = '';
+	$value =  ( isset( $redux_builder_amp['excerpt-option'] ) &&  $redux_builder_amp['excerpt-option'] ) ;
+	if ( null == $value ) {
+		$value = '1';
+	}
+ 
+	return $value;
+}

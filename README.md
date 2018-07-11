@@ -187,6 +187,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Title disappearing in Design 1,2,3 when legacy pagebuilder is enabled #2341
 * Fixed: ld+json getting a broken when special characters are added in the image. #2346
 * Fixed: Hide by Category Breaking post metabox #2330
+* Fixed: Hiding excerpt when global $redux_builder_amp is empty #2330
 
 
 
