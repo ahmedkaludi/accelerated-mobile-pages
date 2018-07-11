@@ -7586,3 +7586,19 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 		}
 	}
 }
+
+// #1947 when nonamp=1 it should redirect to original link so that google
+add_action( 'wp', 'redirect_to_orginal_url' );
+function redirect_to_orginal_url(){
+	$url = ampforwp_amphtml_generator();
+	if($url){
+		if(isset($_REQUEST['nonamp']) && $_REQUEST['nonamp'] == '1'){
+		 wp_safe_redirect( get_permalink(), 301 );
+			exit;
+		}
+		else{
+			return;
+		}
+	}
+	return;
+}
