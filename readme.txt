@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.5
-Stable tag: 0.9.97.4
+Stable tag: 0.9.97.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,13 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.5 (11th July 2018) =
+* Fixed: Title disappearing in Design 1,2,3 when legacy pagebuilder is enabled #2341
+* Fixed: ld+json getting a broken when special characters are added in the image. #2346
+* Fixed: Hide by Category Breaking post metabox #2330
+* Fixed: Hiding excerpt when global $redux_builder_amp is empty #2330
+* Fixed: When Google Tag Manager is enabled, only Google Analytics should get disabled but not other analytics. #2340
 
 = 0.9.97.4 (09th July 2018) =
 * Fixed: Huge Performance upgrade in the way fetching the logo url #2317

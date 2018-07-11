@@ -188,8 +188,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: ld+json getting a broken when special characters are added in the image. #2346
 * Fixed: Hide by Category Breaking post metabox #2330
 * Fixed: Hiding excerpt when global $redux_builder_amp is empty #2330
-
-
+* Fixed: When Google Tag Manager is enabled, only Google Analytics should get disabled but not other analytics. #2340
 
 = 0.9.97.4 (09th July 2018) =
 * Fixed: Huge Performance upgrade in the way fetching the logo url #2317
