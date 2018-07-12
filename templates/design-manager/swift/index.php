@@ -1,5 +1,6 @@
 <?php global $redux_builder_amp; ?>
 <?php amp_header(); ?>
+<?php do_action('ampforwp_home_above_loop') ?>
 <div class="cntr b-w">
 	<div class="hmp">
 	<?php
@@ -82,5 +83,5 @@
 	<?php } ?>
 </div>
 <?php //amp_loop_template(); ?>
-
+<?php do_action('ampforwp_home_below_loop') ?>
 <?php amp_footer(); ?>
