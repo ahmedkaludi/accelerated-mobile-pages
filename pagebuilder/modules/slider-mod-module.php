@@ -528,11 +528,7 @@ return array(
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
-		           				'required'  => array(
-		           									array('carousel_layout_type'=>'1'),
-		           									array('carousel_layout_type'=>'2'),
-		           									array('carousel_layout_type'=>'3')
-		           									 ),
+		           				'required'  => array('carousel_layout_type'=>array('1','2','3')),
 
 	 						),
 							array(		
