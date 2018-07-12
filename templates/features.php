@@ -7777,3 +7777,12 @@ function ampforwp_loop_full_content_featured_image(){
 					}
 				}
 }
+
+// Allow AMP Tags in Tinymce Editor #2134
+add_filter('tiny_mce_before_init', 'ampforwp_tinymce_allowed_tags');
+function ampforwp_tinymce_allowed_tags( $allowed_tags ) {
+	$amp_tags = 'amp-*[*]';
+	$allowed_tags['valid_elements'] = $amp_tags;
+	$allowed_tags['extended_valid_elements'] = $amp_tags;
+	return $allowed_tags;
+}
