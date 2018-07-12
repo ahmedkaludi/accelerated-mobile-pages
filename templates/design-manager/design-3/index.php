@@ -138,7 +138,7 @@ if ( get_query_var( 'paged' ) ) {
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 
 		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ){?>amp-loop-list-noimg<?php } ?>">
-			<?php if ( ampforwp_has_post_thumbnail() ) {  
+			<?php if ( ampforwp_has_post_thumbnail() && !$is_full_content ) {  
 				$thumb_url 	  	= ampforwp_get_post_thumbnail('url');
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
@@ -170,7 +170,11 @@ if ( get_query_var( 'paged' ) ) {
 					} ?>
                 </ul>
 				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
-
+					<?php 
+						if( $is_full_content ){
+							ampforwp_loop_full_content_featured_image();
+						}
+					?>
 
 				<?php
 				if( ampforwp_check_excerpt() && !$is_full_content ) {
@@ -197,7 +201,9 @@ if ( get_query_var( 'paged' ) ) {
 				}
 
 				if($is_full_content){
-					$content = get_the_content();
+					ob_start();
+					the_content();
+					$content = ob_get_clean();
 		            $sanitizer_obj = new AMPFORWP_Content( $content,
 		                  array(
           				    'AMP_Twitter_Embed_Handler'     => array(),

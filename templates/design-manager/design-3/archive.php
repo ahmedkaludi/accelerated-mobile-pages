@@ -122,7 +122,7 @@ if ( get_query_var( 'paged' ) ) {
 	  		}
 			}?>
 
-		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() ) {  ?>amp-loop-list-noimg<?php } ?>">
+		<div class="amp-wp-content amp-loop-list <?php if ( ! ampforwp_has_post_thumbnail() && !$is_full_content ) {  ?>amp-loop-list-noimg<?php } ?>">
 			<?php if ( ampforwp_has_post_thumbnail() ) {
 				$thumb_url = ampforwp_get_post_thumbnail();
 				$thumb_width  	= ampforwp_get_post_thumbnail('width');
@@ -155,7 +155,11 @@ if ( get_query_var( 'paged' ) ) {
 					} ?> 
                 </ul>
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"> <?php the_title(); ?></a></h2>
-
+				<?php 
+						if( $is_full_content ){
+							ampforwp_loop_full_content_featured_image();
+						}
+					?>
 
 				<?php
 				if( ampforwp_check_excerpt() && !$is_full_content ) {
@@ -189,7 +193,9 @@ if ( get_query_var( 'paged' ) ) {
 						} ?> 
 					</p>
 				<?php } if($is_full_content){
-					$content = get_the_content();
+					ob_start();
+					the_content();
+					$content = ob_get_clean();
 		            $sanitizer_obj = new AMPFORWP_Content( $content,
 		                  array(
           				    'AMP_Twitter_Embed_Handler'     => array(),

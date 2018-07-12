@@ -109,7 +109,7 @@
 			} ?>
 
 		<div class="amp-wp-content amp-loop-list">
-			<?php if ( ampforwp_has_post_thumbnail() ) {  
+			<?php if ( ampforwp_has_post_thumbnail() && !$is_full_content ) {  
 				$width = 100;
 				$height = 75;
 				if ( true == $redux_builder_amp['ampforwp-homepage-posts-image-modify-size'] ) {
@@ -123,7 +123,11 @@
 			<div class="amp-wp-post-content">
 
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
-
+				<?php 
+						if( $is_full_content ){
+							ampforwp_loop_full_content_featured_image();
+						}
+					?>
 				<?php
 				if( ampforwp_check_excerpt() && !$is_full_content ) {
 					$class = 'large-screen-excerpt';
@@ -148,7 +152,9 @@
 						echo $final_content; ?> </p>
 				<?php }
 				if($is_full_content){
-					$content = get_the_content();
+					ob_start();
+					the_content();
+					$content = ob_get_clean();
 		            $sanitizer_obj = new AMPFORWP_Content( $content,
 		                  array(
           				    'AMP_Twitter_Embed_Handler'     => array(),
