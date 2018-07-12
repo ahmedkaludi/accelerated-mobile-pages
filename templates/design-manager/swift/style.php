@@ -339,7 +339,11 @@ echo $fontFamily;?>
 .amp-category span a, .amp-category span{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;font-size: 12px;font-weight: 500;text-transform: uppercase;}
 .amp-category span:after{content:"/";display:inline-block;margin:0px 5px 0px 5px;position:relative;top:1px;color:rgba(0, 0, 0, 0.25);}
 .amp-category span:last-child:after{display:none;}
+<?php if(function_exists('is_bbpress') && is_bbpress()){ ?>
+.sp{display:block;}
+<?php } else { ?>
 .sp{width:100%;margin-top:20px;display:inline-block;}
+<?php } ?>
 .amp-post-title{font-size:48px;line-height:58px;color: #333;margin:0;padding-top:15px;}
 .sf-img {width: 100%;display: inline-block;height: auto;margin-top: 33px;}
 .sf-img figure{margin:0;}

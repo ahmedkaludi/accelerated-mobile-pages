@@ -30,6 +30,7 @@ require_once( AMP__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
 require_once( AMP__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
+require_once( AMP__DIR__ . '/includes/embeds/class-amp-polldaddy-embed.php' );
 
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
@@ -269,6 +270,7 @@ class AMP_Post_Template {
 					'AMP_Pinterest_Embed_Handler' => array(),
 					'AMP_Gallery_Embed_Handler' => array(),
 					'AMP_Wistia_Embed_Handler' => array(),
+					'AMP_Polldaddy_Embed_Handler' => array(),
 				), $this->post ),
 				apply_filters( 'amp_content_sanitizers', array(
 					 'AMP_Style_Sanitizer' => array(),

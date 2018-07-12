@@ -173,7 +173,7 @@ if ( get_query_var( 'paged' ) ) {
 
 
 				<?php
-				if( true == $redux_builder_amp['excerpt-option'] && !$is_full_content ) {
+				if( ampforwp_check_excerpt() && !$is_full_content ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {
 						$class = 'small-screen-excerpt-design-3';

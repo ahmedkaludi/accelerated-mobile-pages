@@ -61,12 +61,12 @@ if( !class_exists( 'ReduxFramework_extension_checkbox_hierarchy' ) ) {
                 return;
             }
             
+            $this->field_name = 'checkbox_hierarchy';
             if ( empty( $this->extension_dir ) ) {
-                $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/checkbox_hierarchy' ) );
+                $this->extension_dir = trailingslashit( str_replace( '\\', '/', AMPFORWP_EXTENSION_DIR.'/'.$this->field_name ) );
                 $this->extension_url = site_url( str_replace( trailingslashit( str_replace( '\\', '/', ABSPATH ) ), '', $this->extension_dir ) );
             }
             
-            $this->field_name = 'checkbox_hierarchy';
             self::$theInstance = $this;
             add_filter( 'redux/'.$this->parent->args['opt_name'].'/field/class/'.$this->field_name, array( &$this, 'overload_field_path' ) ); // Adds the local field
         }

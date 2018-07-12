@@ -1113,6 +1113,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
+			if( false == $redux_builder_amp['amp-use-gtm-option'] ) {
 				if ( true == $redux_builder_amp['ampforwp-ga-switch'] ){
 					$ga_fields = array();
 					$ampforwp_ga_fields = array();
@@ -1134,15 +1135,15 @@ function ampforwp_new_dir( $dir ) {
 						$ga_fields['vars']['anonymizeIP'] = 'true';
 					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
-					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
-				 ?>
+					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields ); ?>
 						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 							<script type="application/json">
 								<?php echo $ampforwp_ga_fields; ?>
 							</script>
 						</amp-analytics>
 						<?php
-					}//code ends for supporting Google Analytics
+				}
+			}//code ends for supporting Google Analytics
 
 			// 10.2 Analytics Support added for segment.com
 				if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
@@ -1569,7 +1570,7 @@ function ampforwp_new_dir( $dir ) {
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
-					if(isset($metadata['image']) && $metadata['image'] ){
+					if(isset($metadata['image']) && $metadata['image'] ){	
 						$metadata['image'] = array(
 							'@type' 	=> 'ImageObject',
 							'url' 		=> $structured_data_image ,
@@ -2135,6 +2136,9 @@ function ampforwp_remove_schema_data() {
 
 	// Facebook Button by BestWebSoft Compatibility #1740
 	remove_filter( 'the_content', 'fcbkbttn_display_button' );
+
+	// Simple Author Box Compatibility #2268
+	remove_filter( 'the_content', 'wpsabox_author_box' );
 }
 
 // 22. Removing author links from comments Issue #180
@@ -2734,14 +2738,20 @@ add_action('init', 'amp_gtm_remove_analytics_code');
 function amp_gtm_remove_analytics_code() {
   global $redux_builder_amp;
   if( isset($redux_builder_amp['amp-use-gtm-option']) && $redux_builder_amp['amp-use-gtm-option'] ) {
-    remove_action('amp_post_template_footer','ampforwp_analytics',11);
-  	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+
+	  ///////////////////////////////////////////////////////////////////////////
+  	// will add the scripts and analytics codes since #2340 version 0.9.97.5 //
+	  ///////////////////////////////////////////////////////////////////////////
+
+   //  remove_action('amp_post_template_footer','ampforwp_analytics',11);
+  	// remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+  	
   	//Add GTM Analytics code right after the body tag
   	add_action('ampforwp_body_beginning','amp_post_template_add_analytics_data',10);
   } else {
     remove_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
-
   }
+
 }
 //Remove other analytics if GTM is enable
 add_action('amp_post_template_footer','ampforwp_gtm_support', 9);
@@ -2874,11 +2884,11 @@ function ampforwp_facebook_comments_markup() {
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		$facebook_comments_markup .= '<amp-facebook-comments width=486 height=357
 	    		layout="responsive" '.$locale.' data-numposts=';
-		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '" ';
+		$facebook_comments_markup .= '"'. $redux_builder_amp['ampforwp-number-of-fb-no-of-comments']. '"';
 	    if(ampforwp_get_data_consent()){		
-	    	$facebook_comments_markup .= 'data-block-on-consent';
+	    	$facebook_comments_markup .= ' data-block-on-consent ';
 	    }
-		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+		$facebook_comments_markup .= 'data-href="' . get_permalink() . '"';
 	    $facebook_comments_markup .= '></amp-facebook-comments> </section>';
 
 		return $facebook_comments_markup;
@@ -4093,20 +4103,24 @@ function ampforwp_frontpage_comments() {
 add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
-
+	$sidebar_check = null;
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( is_page() ) {
+			$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+		}
 		// Add Styling Builder Elements
 		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
-		// Removed Titles for Pagebuilder elements
-		remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		if ( 'layout-builder' == $sidebar_check ) {
+			// Removed Titles for Pagebuilder elements
+			remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		}
 	}	
 }
 
@@ -5375,7 +5389,7 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 function ampforwp_inline_related_posts(){
 	global $post, $redux_builder_amp;
 		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-inline-related-posts'];		
-		$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+		$int_number_of_related_posts = (integer) $string_number_of_related_posts;
 
 		// declaring this variable here to prevent debug errors
 		$args = null;
@@ -5491,15 +5505,47 @@ add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
 	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
-		add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
+		if( isset($redux_builder_amp['ampforwp-inline-related-posts-display-type']) && $redux_builder_amp['ampforwp-inline-related-posts-display-type']=='middle' ){
+			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
+		}else{
+			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts_by_paragraph');
+		}
+		
 	}
 }
 function ampforwp_generate_inline_related_posts($content){
+	global $post;
+		
+	$break_point = '</p>';
+	$content_parts = explode($break_point, $content);
+	array_walk($content_parts, function(&$value, $key) {
+		 	$value = trim($value);
+			if( !empty($value) && strpos($value, "<p>")!==false ){
+			         $value .= '</p>';
+			}
+		}
+	);
+	if(count($content_parts)>1){
+		$no_of_parts = count($content_parts);
+		$half_index = floor($no_of_parts / 2);
+		$half_content = array_chunk($content_parts, $half_index);
+		
+		$html ='<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>';
+		$half_content[0][] = $html;
+		$final_content ='';
+		foreach ($half_content as $key => $value) {
+			$final_content .= implode("", $value);
+		}
+		$content = $final_content;
+	}
+	return $content;
+}
+function  ampforwp_generate_inline_related_posts_by_paragraph($content){
 	global $redux_builder_amp;
 	$total_count = '';
-	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
-	$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
-	if(isset($string_number_of_paragraphs) && $string_number_of_paragraphs!=''){
+	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+
+	if(isset($int_number_of_paragraphs) && $int_number_of_paragraphs!=''){
 		if($int_number_of_paragraphs == 0){
 			$content = '<div class="ampforwp-inline-related-post">'.ampforwp_inline_related_posts().'</div>'.$content;
 		}else{
@@ -5524,10 +5570,8 @@ function ampforwp_add_related_post_after_paragraph($matches)
 	global $redux_builder_amp;
 	static $count = 0;
 	$ret = '';
-	$string_number_of_paragraphs = $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
 	
-		$int_number_of_paragraphs = round(abs(floatval($string_number_of_paragraphs)));
-  	
   		$ret = $matches[1];
 
 	  	if (++$count == $int_number_of_paragraphs){
@@ -6285,56 +6329,94 @@ if( ! function_exists(' ampforwp_modify_menu_content ') ){
 		return $menu;
 	}
 }
+/*
+ * Fetches the logo data 
+ * More details about the fix https://github.com/ahmedkaludi/accelerated-mobile-pages/pull/2317
+ * Props to: https://github.com/saucal for suggesting the fix.
+*/
+
+function ampforwp_default_logo_data() {
+	global $redux_builder_amp, $ampwforwp_default_logo_data;
+
+	if( $ampwforwp_default_logo_data ) {
+		return $ampwforwp_default_logo_data;
+	}
+
+	$logo_id		= '';
+	$image 			= array();
+	$value 			= '';
+	$logo_alt		= '';
+
+	$logo_id = get_theme_mod( 'custom_logo' );
+	if( empty( $logo_id ) ) {
+		$logo_id = (integer) $redux_builder_amp['opt-media']['id'];
+	}
+
+	if( empty( $logo_id ) ) {
+		return false;
+	}
+
+	if( ! wp_attachment_is( 'image', $logo_id ) ) {
+		$logo_url = $redux_builder_amp['opt-media']['url'];
+		$image = @getimagesize( $logo_url );
+	} else {
+		$imageDetail = wp_get_attachment_image_src( $logo_id , 'full');
+		$logo_url = $imageDetail[0];
+		$image[0] = $imageDetail[1];
+		$image[1] = $imageDetail[2];
+	}
+
+	$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true);
+
+	$ampwforwp_default_logo_data = array(
+		'logo_id' => $logo_id,
+		'logo_url' => $logo_url,
+		'logo_alt' => $logo_alt,
+		'logo_size' => $image
+	);
+	return $ampwforwp_default_logo_data;
+}
 
 // 101. Function for Logo attributes
 function ampforwp_default_logo($param=""){
 	global $redux_builder_amp;
-	$logo_id		= '';
-	$image 			= '';
-	$value 			= '';
-	$logo_alt		= '';
-	$logo_url		= $redux_builder_amp['opt-media']['url'];
-	if($logo_url){
-		$logo_id  = get_theme_mod( 'custom_logo' );
-		$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true) ;
-		$image 	  = @getimagesize($redux_builder_amp['opt-media']['url']);
-
-		if(empty($image) || $image==false){
-			$logo_id  = attachment_url_to_postid($redux_builder_amp['opt-media']['url']);
-			$imageDetail 	 = wp_get_attachment_image_src( $logo_id , 'full');
-			$image[0] = $imageDetail[1];
-			$image[1] = $imageDetail[2];
-		}
-		switch ($param) {
-			case 'url':
-					$value = $logo_url;
-				break;
-			case 'width':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
-					$value = $redux_builder_amp['opt-media-width'];
-				}
-				else 
-					$value = $image[0];
-				break;
-			case 'height':
-				if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
-					$value = $redux_builder_amp['opt-media-height'];
-				}
-				else
-					$value = $image[1];
-				break;
-			case 'alt':
-				if($logo_alt){
-					$value = $logo_alt;
-				}
-				else
-					$value = get_bloginfo('name');
-				break;	
-			default:
-				$value = $logo_url;
-				break;
-		}
+	$value 		= '';
+	$logo_alt 	= '';
+	$data 		= ampforwp_default_logo_data();
+	if( ! $data ) {
+		return $value;
 	}
+
+	switch ($param) {
+		case 'url':
+				$value = $data['logo_url'];
+			break;
+		case 'width':
+			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+				$value = $redux_builder_amp['opt-media-width'];
+			}
+			else 
+				$value = $data['logo_size'][0];
+			break;
+		case 'height':
+			if (true == $redux_builder_amp['ampforwp-custom-logo-dimensions'] && 'prescribed' == $redux_builder_amp['ampforwp-custom-logo-dimensions-options']) {
+				$value = $redux_builder_amp['opt-media-height'];
+			}
+			else
+				$value = $data['logo_size'][1];
+			break;
+		case 'alt':
+			if($logo_alt){
+				$value = $data['logo_alt'];
+			}
+			else
+				$value = get_bloginfo('name');
+			break;	
+		default:
+			$value = $data['logo_url'];
+			break;
+	}
+
 	return $value;
 } 
 // Envira Lazy Load compatibility
@@ -7552,4 +7634,97 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 			}
 		}
 	}
+}
+
+// #1947 when nonamp=1 it should redirect to original link so that google
+add_action( 'wp', 'redirect_to_orginal_url' );
+function redirect_to_orginal_url(){
+	$url = ampforwp_amphtml_generator();
+	if($url){
+		if(isset($_REQUEST['nonamp']) && $_REQUEST['nonamp'] == '1'){
+		 wp_safe_redirect( get_permalink(), 301 );
+			exit;
+		}
+		else{
+			return;
+		}
+	}
+	return;
+}
+
+// Content Sneak Peek #2246
+add_action('pre_amp_render_post', 'ampforwp_content_sneak_peek');
+if ( ! function_exists('ampforwp_content_sneak_peek') ) {
+	function ampforwp_content_sneak_peek() {
+		global $redux_builder_amp;
+		if ( isset($redux_builder_amp['content-sneak-peek']) && $redux_builder_amp['content-sneak-peek'] ) {		
+			add_filter('ampforwp_modify_the_content', 'ampforwp_sneak_peek_content_modifier');
+			add_action('amp_post_template_css','ampforwp_sneak_peek_css');
+			add_filter('amp_post_template_data','ampforwp_sneak_peek_scripts');
+		}
+
+	}
+}
+// Content Sneak Peek content
+function ampforwp_sneak_peek_content_modifier($content){
+	$content = '<div class="contentHidden" [class]="contentVisible ? \'show\' : \'contentHidden\'">' . $content . '</div>';
+	$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
+	$content = $content . '<div class="fader-btn-container" [class]="contentVisible ? \'fader-btn-container hide\' : \'fader-btn-container\'"><button class="fader-btn" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">Show Full Article</button></div>';
+
+	return $content;
+}
+// Content Sneak Peek Scripts css
+function ampforwp_sneak_peek_css(){
+	global $redux_builder_amp;
+	$height = $txt_color = $btn_color = '';
+	$height = $redux_builder_amp['content-sneak-peek-height'];
+	$btn_color = $redux_builder_amp['content-sneak-peek-btn-color']['color'];
+	$txt_color = $redux_builder_amp['content-sneak-peek-txt-color']['color'];?>
+
+	.contentHidden{height: <?php echo $height; ?>;overflow: hidden;}
+    .hide{display:none}
+    .fader-btn-container{text-align: center;}
+    .fader-btn-container .fader-btn {border: 1px solid #93abbc;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;line-height: 24px;padding: 8px 5px;width: 250px;background-color: <?php echo $btn_color; ?>; }
+<?php }
+// Content Sneak Peek Scripts
+function ampforwp_sneak_peek_scripts($data) {
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+	}
+	return $data;
+}
+
+// Back to top 
+add_action( 'ampforwp_body_beginning' ,'ampforwp_back_to_top_markup');
+function ampforwp_back_to_top_markup(){
+	echo '<div id="backtotop"></div>';
+}
+
+// AMPforWP allowed html tags
+function ampforwp_wp_kses_allowed_html(){
+	$allowed_html = '';
+	$allowed_html = wp_kses_allowed_html( 'post' );
+	if( $allowed_html ) {
+		foreach ( $allowed_html as $tag => $atts ) {
+	      	if ( is_array($atts) ){
+	        	unset($allowed_html[$tag]['style']);
+	      	}
+	      	if ( 'form' == $tag ) {
+	      		unset($allowed_html[$tag]);
+	      	}
+	    }
+  	}
+  	return $allowed_html; 
+}
+
+function ampforwp_check_excerpt(){
+	global $redux_builder_amp;
+
+	$value = '';
+	$value =  ( isset( $redux_builder_amp['excerpt-option'] ) &&  $redux_builder_amp['excerpt-option'] ) ;
+	if ( null == $value ) {
+		$value = '1';
+	}
+
+	return $value;
 }

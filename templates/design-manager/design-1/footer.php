@@ -24,16 +24,14 @@ wp_reset_postdata(); ?>
 		<h2><?php echo esc_html( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt">
 			<?php
-			global $allowed_html;
+			$allowed_html = ampforwp_wp_kses_allowed_html();
 			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer' ) , $allowed_html) ;
  		?>
 		</p>
 
 		
     <p class="back-to-top">
-    <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-              <a href="#top"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
-             <?php }
+    <?php amp_back_to_top_link();
              if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
                 if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
                   | <?php ampforwp_view_nonamp(); 

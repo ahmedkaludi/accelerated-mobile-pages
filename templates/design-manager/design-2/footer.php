@@ -20,9 +20,7 @@
             </nav>
           </div>
         <?php } ?>
-        <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                    <a href="#header"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
-                  <?php }
+        <p> <?php  amp_back_to_top_link();
                   if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
                     if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
                       | <?php ampforwp_view_nonamp(); 
@@ -31,7 +29,7 @@
                       ampforwp_view_nonamp();
                     }
                   }
-              global $allowed_html;
+              $allowed_html = ampforwp_wp_kses_allowed_html();
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
               ?>
         </p>

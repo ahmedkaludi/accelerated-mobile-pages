@@ -82,7 +82,7 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 13px; color:#333; font-family: sans-serif; }
 /* Footer */
-#footer{ background: <?php echo $redux_builder_amp['ampforwp-footer-background-color']['color'] ?>; }
+#footer{ background: <?php echo $redux_builder_amp['ampforwp-footer-background-color-1']['color'] ?>; }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
 .footer_menu ul li{ display:inline; margin:0 10px; }
 .footer_menu ul li:first-child{ margin-left:0 }

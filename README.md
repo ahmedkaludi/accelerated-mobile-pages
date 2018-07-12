@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.5
-Stable tag: 0.9.97.3
+Stable tag: 0.9.97.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.4 (09th July 2018) =
+* Fixed: Huge Performance upgrade in the way fetching the logo url #2317
+* Fixed: Fatal Error due to unable to modify values in Structured Data Object #2327
+* Fixed: Seperate option for Featured Image in pages in Swift theme #2328
+* Fixed: `<p>` tags disabling where not wanted #2330
+* Fixed: Fatal error in contact form module while ninja form or gravity form plugins are not activated #2310
+* Fixed: Woo Commerce Category page not working properly #2333
+* Fixed: Few issues related to amp-facebook-comments #2300
+* Fixed: Limit number of Tags and Category to 500 in Hide AMP-Bulk tools #2336
 
 = 0.9.97 (27th June 2018) =
 * For more details check out [the blog post](https://ampforwp.com/0-9-97-released-strengthening-of-foundation-89th-update/)
