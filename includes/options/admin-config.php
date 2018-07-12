@@ -1029,7 +1029,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         ampforwp_notice_bar_options($opt_name);
         ampforwp_push_notification_options($opt_name);
         ampforwp_admin_contact_form_options($opt_name);
-        ampforwp_admin_comments_options($opt_name);
+       // ampforwp_admin_comments_options($opt_name);
 
     }
     
