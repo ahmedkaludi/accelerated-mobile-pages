@@ -7730,7 +7730,8 @@ function ampforwp_check_excerpt(){
 }
 
 function ampforwp_loop_full_content_featured_image(){
-	$post_id 		= get_the_ID();
+	global $redux_builder_amp;
+				$post_id 		= get_the_ID();
 				$featured_image = "";
 				$amp_html 		= "";
 				$caption 		= "";
