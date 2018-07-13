@@ -35,7 +35,7 @@ $output = '
 {{ifend_condition_carousel_layout_type_3}}
 {{if_condition_carousel_layout_type==4}}
 	<div class="amp-sld4">
-		<amp-carousel id="card-carousel" height="400" type="carousel"  >
+		<amp-carousel id="card-carousel" height="300" type="carousel"  >
 			{{repeater_testimonilas}}
 		</amp-carousel>
 	</div>
@@ -145,6 +145,18 @@ $css = '
     .amp-g-cnt {
 	    text-align: center;
 	    margin: 40px 0px 0px 0px;
+	}
+	.amp-g-cnt {
+	    overflow-x: auto;
+	    overflow-y: hidden;
+	    white-space: nowrap;
+	}
+	.amp-cnt{
+	    display: inline-block;
+	    margin:20px;
+	}
+	.amp-desc{
+		white-space: pre-wrap;
 	}
 }
 {{ifend_condition_carousel_layout_type_3}}
@@ -274,12 +286,12 @@ return array(
 				                            array(
 				                              'value'=>'3',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-3.png'
 				                            ),
 				                            array(
 				                              'value'=>'4',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-4.png'
 				                            ),
 				                          ),
 				            'content_type'=>'html',
@@ -343,7 +355,7 @@ return array(
 								'name'		=>"hdng_color_picker",
 								'label'		=>'Heading Color',
 								'tab'		=>'design',
-								'default'	=>'#fff',
+								'default'	=>'#333',
 								'content_type'=>'css',
 								'required'  => array('carousel_layout_type'=>'3'),
 							),
@@ -386,7 +398,7 @@ return array(
 								'name'		=>"cnt_color_picker",
 								'label'		=>'Content Color',
 								'tab'		=>'design',
-								'default'	=>'#f1f1f1',
+								'default'	=>'#333',
 								'content_type'=>'css',
 								'required'  => array('carousel_layout_type'=>'3'),
 							),
