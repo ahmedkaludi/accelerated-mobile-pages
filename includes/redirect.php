@@ -172,17 +172,21 @@ function ampforwp_page_template_redirect() {
 
       $selected_cats = array();
       $categories = get_the_category();
-      $category_id = $categories[0]->cat_ID;
       $get_categories_from_checkbox = $redux_builder_amp['hide-amp-categories']; 
       // Check if $get_categories_from_checkbox has some cats then only show
       if ( $get_categories_from_checkbox ) {
         $get_selected_cats = array_filter($get_categories_from_checkbox);
         foreach ( $get_selected_cats as $key => $value ) {
           $selected_cats[] = $key;
+        }
+        if ( $categories ) {
+          foreach ($categories as $key => $cats) {
+            $current_cats_ids[] =$cats->cat_ID;
+          }
         }  
-        if ( $selected_cats && $category_id ) {
-          if ( in_array($category_id, $selected_cats) ) {
-            return;
+        if ( $selected_cats && $current_cats_ids ) {
+          if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+              return;
           }
         }
       } 
