@@ -866,7 +866,7 @@ if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sideba
 }
 .amp-sidebar{
 	padding:20px;
-	font-size: 16px;
+	font-size: 14px;
     line-height: 1.5;
    	<?php if(isset($redux_builder_amp['sbr-text-color']['rgba']) &&  $redux_builder_amp['sbr-text-color']['rgba'] ) {?>
 		color: <?php echo $redux_builder_amp['sbr-text-color']['rgba'] ?>;
@@ -874,13 +874,72 @@ if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sideba
 }
 .amp-sidebar ul li{
 	list-style-type: none;
-    margin-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 0.5em 0;
+}
+.amp-sidebar ul li + li {
+    margin-top: -1px;
+}
+.amp-sidebar ul li ul {
+    margin: 0 0 -1px;
+    padding: 0;
+    position: relative;
+}
+.amp-sidebar ul li li {
+    border: 0;
+    padding-left: 24px
+}
+.amp-sidebar ul li a:hover, .calendar_wrap a:hover{
+	box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 3px 0 <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;
+}
+.sgl .calendar_wrap td{
+	padding:10px;
+}
+thead th {
+    border-bottom: 2px solid #bbb;
+    padding: 0.5em;
+}
+.amp-sidebar .gallery-item {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin: 0 0 1.5em;
+    padding: 0 1em 0 0;
+    width: 50%;
+}
+.amp-sidebar .gallery-item:hover{
+	opacity:0.5;
 }
 .amp-sidebar h4{
 <?php if(isset($redux_builder_amp['sbr-heading-color']['rgba']) &&  $redux_builder_amp['sbr-heading-color']['rgba'] ) {?>
 	color: <?php echo $redux_builder_amp['sbr-heading-color']['rgba'] ?>;
 <?php } ?>
-    margin-bottom:15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 2em;
+	font-weight: 800;
+    letter-spacing: 0.1818em;
+}
+.amp-sidebar .tagcloud a, .wp_widget_tag_cloud a {
+    border: 1px solid #d1d1d1;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: block;
+    padding: 4px 10px 5px;
+    position: relative;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out;
+    width: auto;
+    word-wrap: break-word;
+    z-index: 0;
+}
+.amp-sidebar .tagcloud a:hover, .wp_widget_tag_cloud a:hover{box-shadow:none;border:1px solid #888;}
+.amp-sidebar .tagcloud ul li {
+    float: left;
+    border-top: 0;
+    border-bottom: 0;
+    padding: 0;
+    margin: 4px 4px 0 0;
 }
 .amp-sidebar p{
 	margin-bottom:15px;
