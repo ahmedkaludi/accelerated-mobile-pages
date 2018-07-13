@@ -1,8 +1,26 @@
 <?php		
 require_once  ABSPATH . WPINC . '/category.php';
+add_filter('ampforwp_content_module_args','ampforwp_content_module_pagination',10,2);
+function ampforwp_content_module_pagination($args, $fieldValues){
+  if(isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1 ){
+      if( isset($_GET['pageno']) && $_GET['pageno']!=''){
+          $paged = $_GET['pageno'];
+      }else{
+          $paged = 1;
+      }
+      
+      $args['paged'] = $paged;
+      
+    return $args;
+  }else{
+
+    return $args;
+  }
+}
  $output = '{{if_condition_content_layout_type==1}}
             <div class="pb_mod cat_mod"><h4>{{content_title}}</h4>   
-                <div class="wrap"><ul>{{category_selection}}</ul></div>    
+                <div class="wrap"><ul>{{category_selection}}</ul></div>
+                {{pagination_links}}    
             </div>
           {{ifend_condition_content_layout_type_1}}
           ';
@@ -20,6 +38,19 @@ require_once  ABSPATH . WPINC . '/category.php';
 .cat_mod .cat_mod_r a{font-size: 16px;line-height: 1.3;font-weight: 500;color: #000;margin: 0px 0px 5px 0px;}
 .cat_mod .cat_mod_r p{color: {{text_color_picker}};font-size: 13px;line-height: 20px;letter-spacing: 0.10px;margin-bottom:0;}
 .cat_mod .cat_mod_l{width:100%;}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
 @media(max-width:768px){
   .cat_mod ul li {flex-basis: calc(100% - 30px);margin: 10px 15px;}
   .cat_mod_l amp-img{width:100%;}
@@ -122,7 +153,7 @@ require_once  ABSPATH . WPINC . '/category.php';
  						array(		
  						'type'		=>'text',		
  						'name'		=>"show_total_posts",
- 						'label'		=>'Count',		
+ 						'label'		=>'No. of Posts per Page',		
             'tab'     =>'customizer',
  						'default'	=>'3',
             'content_type'=>'html',
@@ -155,6 +186,28 @@ require_once  ABSPATH . WPINC . '/category.php';
             'content_type'=>'html',
             'required'  => array('content_layout_type' => 1),
             ),
+            array(
+                'type'    =>'checkbox_bool',
+                'name'    =>"pagination",
+                'tab'   =>'customizer',
+                'default' => 0,
+                'options' =>array(
+                        array(
+                          'label'=>'Pagination',
+                          'value'=>1,
+                        ),
+                      ),
+                'content_type'=>'html',
+              ),
+            array(    
+              'type'    =>'text',   
+              'name'    =>"show_no_page_links",    
+              'label'   =>'No. of PageLinks to Show',
+              'tab'     =>'customizer',
+              'default' => 5, 
+              'content_type'=>'html',
+              'required'  => array('pagination' => 1),
+            ),
 
             
  					),		
@@ -181,7 +234,8 @@ require_once  ABSPATH . WPINC . '/category.php';
  );		
  function ampforwp_contentHtml($the_query,$fieldValues,$loopHtml){	
  	$contenthtml = '';		
- 	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');		
+ 	$ampforwp_show_excerpt = (isset($fieldValues['ampforwp_show_excerpt'])? $fieldValues['ampforwp_show_excerpt']: 'yes');
+  
  	if ( $the_query->have_posts() ) {	
          while ( $the_query->have_posts() ) {		
              $the_query->the_post();		
@@ -305,12 +359,63 @@ require_once  ABSPATH . WPINC . '/category.php';
             $rawhtml = ampforwp_replaceIfContentConditional("tags", $tags, $rawhtml);
             $contenthtml .= $rawhtml;
             
-         }		
- 		
-       		
- 		
-     }		
-     /* Restore original Post Data */		
+         }    
+      
+     }
+     
+     /* Restore original Post Data */   
      wp_reset_postdata();
-     return $contenthtml;		
+     $pagination_links = ampforwp_cat_pagination_links($the_query,$fieldValues);
+     //echo $contenthtml;
+     //die;
+
+     return array('contents'=>$contenthtml,'pagination_links' => $pagination_links);		
  }
+
+ function  ampforwp_cat_pagination_links($the_query,$fieldValues){
+        $pagination_links = '';
+        $pagination_text = 'pageno';
+        if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
+      
+        /*Pagination Sart*/
+        $total_num_pages = $the_query->max_num_pages;
+        if(isset($_GET[$pagination_text]) && $_GET[$pagination_text]!='' ){
+            $paged = $_GET[$pagination_text];
+        }else{
+            $paged = 1;
+        }
+        $pagination_links .= '<div class="pagination">';
+        if( $paged > 1){
+          $pagination_links .= "<a href = ".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=1> First </a>";
+          $pagination_links .= "<a href = ".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".($paged - 1)."> Prev </a>";
+        }
+
+        $count = (integer) $fieldValues['show_no_page_links'];
+        if( !$count ){
+            $count = 3;
+        }
+        $startPage = max( 1, $paged - $count);
+        $endPage = min( $total_num_pages, $paged + $count);
+        for($i = $startPage ; $i <= $endPage ; $i++){
+
+          if( $paged == $i){
+              $pagination_links .= "<a class='active' href='#/' >". $i ."</a>";
+          }else{
+             $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=". $i ." >". $i ."</a>";
+          }
+          
+        
+        }
+
+        if( $total_num_pages != 1 && $paged < $total_num_pages ){
+          $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".($paged + 1)." '> Next </a>";
+        }
+        if( $total_num_pages != $paged ){
+          $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".$total_num_pages." '> Last </a>";
+        }
+        $pagination_links .= '</div>';
+        
+        /*Pagination End*/
+        }
+        return  $pagination_links;
+     }
