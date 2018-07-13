@@ -1630,11 +1630,12 @@ function ampforwp_new_dir( $dir ) {
 					);
 				}
 			}
-
-			if( in_array( "image" , $metadata )  ) {
-				if ( $metadata['image']['width'] < 696 ) {
-		 			$metadata['image']['width'] = 700 ;
-	     		}
+			if ( is_array( $metadata ) ) { 
+				if( in_array( "image" , $metadata )  ) {
+					if ( $metadata['image']['width'] < 696 ) {
+			 			$metadata['image']['width'] = 700 ;
+		     		}
+				}
 			}
 		return $metadata;
 	}
