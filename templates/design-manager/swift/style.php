@@ -318,7 +318,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         #breadcrumbs a:hover {color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
         .amp-post-title{font-size: 48px;line-height: 58px;color: #333;margin: 0;padding-top: 15px;}
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
-        .cntn-wrp p{margin:0px 0px 30px 0px;word-break: break-all;}
+        .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-all;}
     <?php } else{ ?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
@@ -394,7 +394,7 @@ if($redux_builder_amp['swift_cnt']){
 		.cntn-wrp h6{font-size:<?php echo $redux_builder_amp['swift_h6_sz']?>;}
 	<?php } //H6 ends
 } // swift Content Heading Sizes Ends?>
-.cntn-wrp p{margin:0px 0px 30px 0px;word-break: break-all;}
+.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-all;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 <?php if($redux_builder_amp['rp_design_type'] == '1'){?>
 	.srp{margin-top:20px;}
