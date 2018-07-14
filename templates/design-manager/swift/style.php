@@ -174,8 +174,6 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .m-menu > li{font-size:17px;}
 /*New Syles*/
 	.m-menu .toggle {float :right;}
-	.p-menu input{display:none}
-	.p-menu .toggle {display:none }
 	.m-menu input{display:none}
 	.m-menu .amp-menu [id^=drop]:checked + label + ul{ display: block;}
 	.m-menu .amp-menu [id^=drop]:checked + .toggle:after{transform:rotate(360deg);}
@@ -190,6 +188,8 @@ if($redux_builder_amp['primary-menu']){?>
 .p-menu ul li{display: inline-block;margin-right: 21px;font-size: 12px;line-height: 20px;letter-spacing: 1px;font-weight: 400;}
 .p-menu ul li a{<?php if($redux_builder_amp['primary-menu-text-scheme']['rgba']){?>color:<?php echo $redux_builder_amp['primary-menu-text-scheme']['rgba']?>;<?php } ?>
 padding: <?php echo $redux_builder_amp['primary-menu-padding-control']['padding-top'] .' 0px '.$redux_builder_amp['primary-menu-padding-control']['padding-bottom']  .' 0px' ; ?>}
+	.p-menu input{display:none}
+	.p-menu .toggle {display:none }
 <?php // Dropdown CSS
 	if($redux_builder_amp['drp-dwn']){?>
 	.p-menu ul li:hover>ul{display:block;z-index:9;padding: 7px 0px 7px 7px;
