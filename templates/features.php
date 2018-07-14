@@ -7802,3 +7802,18 @@ function ampforwp_tinymce_allowed_tags( $allowed_tags ) {
 	}
 	return $allowed_tags;
 }
+
+// Modify the Plugin Managers section #2339
+function ampforwp_modify_plugin_manager_options($sections){
+	foreach ($sections as $section_key => $section_value) {
+		if ( 'Plugin Manager' == $section_value['title'] ) {
+			$sections[$section_key]['id'] = 'plugin-manager-section';
+			$sections[$section_key]['fields'][] = array(
+				        'id'   => 'amp-plugin-manager-notice',
+				        'type' => 'info',
+				                'desc' => '<div style=" background: #FFF9C4;padding: 12px;line-height: 1.6;margin: -45px -14px -18px -17px;">This is an older version, please download the latest version from here:  <a href="https://ampforwp.com/plugins-manager" target="_blank">AMP Plugin Manager</a>.<br /> <div style="margin-top:4px;"></div></div>',               
+				           );		
+		}
+	}
+	return $sections;
+}

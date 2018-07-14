@@ -437,6 +437,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	}
 	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
 		if ( (! class_exists( 'ReduxFramework' ) && $GLOBALS['pagenow']=='admin.php' && $_GET['page']=='amp_options') || is_plugin_active('redux-framework/redux-framework.php') || '1.0' == $amp_plugin_manager_version   ) {
+			add_filter("redux/options/redux_builder_amp/sections", 'ampforwp_modify_plugin_manager_options', 99);
 			require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 		    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 		}
