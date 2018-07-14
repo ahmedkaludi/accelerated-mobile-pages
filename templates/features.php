@@ -7794,7 +7794,11 @@ function ampforwp_loop_full_content_featured_image(){
 add_filter('tiny_mce_before_init', 'ampforwp_tinymce_allowed_tags');
 function ampforwp_tinymce_allowed_tags( $allowed_tags ) {
 	$amp_tags = 'amp-*[*]';
-	$allowed_tags['valid_elements'] = $amp_tags;
-	$allowed_tags['extended_valid_elements'] = $amp_tags;
+	if ( isset($allowed_tags['extended_valid_elements']) ) {
+		$allowed_tags['extended_valid_elements'] .= ',' . $amp_tags;
+	}
+	else {
+		$allowed_tags['extended_valid_elements'] = $amp_tags;
+	}
 	return $allowed_tags;
 }
