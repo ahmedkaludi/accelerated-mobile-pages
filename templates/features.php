@@ -2132,6 +2132,10 @@ function ampforwp_remove_schema_data() {
 
 	// Simple Author Box Compatibility #2268
 	remove_filter( 'the_content', 'wpsabox_author_box' );
+
+	// Removing Voux theme's lazyloading #2263
+	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
+	remove_filter( 'wp_get_attachment_image_attributes', 'thb_lazy_low_quality', 10, 3 );
 }
 
 // 22. Removing author links from comments Issue #180
