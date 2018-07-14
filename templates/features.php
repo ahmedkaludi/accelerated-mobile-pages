@@ -6684,6 +6684,11 @@ function ampforwp_is_non_amp( $type="" ) {
 			return false;	
 		}
 	}elseif(	(
+				isset($redux_builder_amp['amp-design-selector']) 
+				&& true == ($redux_builder_amp['amp-design-selector']==4)
+				)
+				&&
+				(
 				isset( $redux_builder_amp['ampforwp-amp-convert-to-wp']) 
 				&& true == $redux_builder_amp['ampforwp-amp-convert-to-wp'] 
 				) 
