@@ -4972,14 +4972,17 @@ function is_category_amp_disabled(){
 add_action( 'admin_bar_menu', 'ampforwp_visit_amp_in_admin_bar',999 );
  
 function ampforwp_visit_amp_in_admin_bar($admin_bar) {
-	$args = array(
-	    'parent' => 'site-name',
-	    'id'     => 'view-amp',
-	    'title'  => 'Visit AMP',
-	    'href'   => ampforwp_url_controller( get_home_url() ),
-	    'meta'   => false
-	);
-	$admin_bar->add_node( $args );       
+	global $redux_builder_amp;
+	if ( isset($redux_builder_amp['ampforwp-homepage-on-off-support']) && $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
+		$args = array(
+		    'parent' => 'site-name',
+		    'id'     => 'view-amp',
+		    'title'  => 'Visit AMP',
+		    'href'   => ampforwp_url_controller( get_home_url() ),
+		    'meta'   => false
+		);
+		$admin_bar->add_node( $args );
+	}       
 }
 
 // Things to be added in the Body Tag #1064
