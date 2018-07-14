@@ -152,7 +152,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .c-btn:after{content: "\e5cd";font-family: "icomoon";font-size: 20px;<?php if(isset($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']) && $redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
 .c-btn{float: right;padding: 20px 10px;}
 .m-ctr{transition: margin 0.3s ease-in-out;}
-.m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: auto;position: absolute;z-index:99;padding: 2% 0% 100vh 0%;}
+.m-ctr{<?php if($redux_builder_amp['header-overlay-width']){?>width:<?php echo $redux_builder_amp['header-overlay-width']?>;<?php } ?>height: 100%;position: absolute;z-index:99;padding: 2% 0% 100vh 0%;}
 .m-menu{display: inline-block;width: 100%;padding: 2px 20px 10px 20px;}
 .m-scrl{overflow-y: auto;display: inline-block;width: 100%;overflow: scroll;max-height: 94vh;}
 ::-webkit-scrollbar { display: none; }
