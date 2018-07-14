@@ -345,6 +345,9 @@ function amp_loop_image( $data=array() ) {
 		$layout_responsive 	= '';
 		$imageClass 		= '';
 		$imageSize 			= 'thumbnail';
+		$post_id 			= '';
+		$post_thumbnail_id 	= '';
+		$thumbnail_srcset	= '';
 
 		if ( isset($data['tag']) && $data['tag'] != "" ) {
 			$tag = $data['tag'];
@@ -391,7 +394,10 @@ function amp_loop_image( $data=array() ) {
 		}
 		if ( $thumb_url ) {
 			$imageLink = amp_loop_permalink(true);
-			$loopImageData = array("post_id"	=>get_the_ID(),
+			$post_id   = get_the_ID();
+			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+			$thumbnail_srcset  = wp_get_attachment_image_srcset( $post_thumbnail_id, 'large');
+			$loopImageData = array("post_id"			=>$post_id,
 									"image_url"			=>$thumb_url,
 									"width"				=>$thumb_width,
 									"height"			=>$thumb_height,
@@ -408,11 +414,20 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-			echo '<a href="'.$imageLink.'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
-			echo '</a>';
-			echo '</'.$tag.'>';
+			if(isset($redux_builder_amp['amp-design-selector'] ) && $redux_builder_amp['amp-design-selector'] != 4){
+				echo '<'.$tag.' class="loop-img '.$tag_class.'">';
+				echo '<a href="'.$imageLink.'">';
+				echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" srcset="'.$thumbnail_srcset.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+				echo '</a>';
+				echo '</'.$tag.'>';
+			}
+			else{
+				echo '<'.$tag.' class="loop-img '.$tag_class.'">';
+				echo '<a href="'.$imageLink.'">';
+				echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+				echo '</a>';
+				echo '</'.$tag.'>';
+			}
 		}
      } 
 } 
