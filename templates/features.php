@@ -256,25 +256,25 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}//tags area closed
 
 
-			$selected_cats = array();
-			$categories = get_the_category();
-			if ( $categories ) {	
-				$category_id = $categories[0]->cat_ID;
-				$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
-				// Check if $get_categories_from_checkbox has some cats then only show
-				if ( $get_categories_from_checkbox ) {
-					$get_selected_cats = array_filter($get_categories_from_checkbox);
-					foreach ($get_selected_cats as $key => $value) {
-						$selected_cats[] = $key;
-					}  
-					if($selected_cats && $category_id){
-						if(in_array($category_id, $selected_cats)){
-							return;
-						}
-					}
-				} 
-			}
-		}	
+			$selected_cats = $current_cats_ids = array();
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}
+				$current_cats = get_the_category(get_the_ID());
+				if ( $current_cats ) {
+					foreach ($current_cats as $key => $cats) {
+	 					$current_cats_ids[] =$cats->cat_ID;
+	 				}
+	 				if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+	 		      		return;
+	 		    	} 
+	 		    } 
+			} 
+		}
       	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
 		}
@@ -4798,7 +4798,7 @@ global $redux_builder_amp;
 
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
-	$current_cats_ids = '';
+	$current_cats_ids = array();
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
 			$all_tags = get_the_tags();
