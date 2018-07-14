@@ -9,7 +9,7 @@
         <?php endif; ?>
     </a>
     <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
-    <div on='tap:sidebar.toggle' role="button" tabindex="0" class="nav_container">
+    <div on='tap:sidebar.toggle' role="button" name="Navigation" aria-label="Navigation" tabindex="0" class="nav_container">
         <a href="#" class="toggle-text">
             <span></span>
             <span></span>
