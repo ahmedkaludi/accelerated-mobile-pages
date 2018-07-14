@@ -2,6 +2,9 @@
 // Structured Data Type
 add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 1 );
 function ampforwp_structured_data_type( $metadata ) {
+	if ( !is_array($metadata) ) {
+		return $metadata;
+	}
 	global $redux_builder_amp, $post;
 	$post_types 	= '';
 	$set_sd_post 	= '';
@@ -58,6 +61,9 @@ function ampforwp_structured_data_type( $metadata ) {
 add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_video_thumb', 20, 1 );
 if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 	function ampforwp_structured_data_video_thumb( $metadata ) {
+		if ( !is_array($metadata) ) {
+    		return $metadata;
+    	}
 		global $redux_builder_amp, $post;
 		// VideoObject
 		if ( isset($metadata['@type']) && 'VideoObject' == $metadata['@type'] ) {

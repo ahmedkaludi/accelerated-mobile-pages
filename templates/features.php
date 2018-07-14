@@ -1469,6 +1469,9 @@ function ampforwp_new_dir( $dir ) {
 		// 12. Add Logo URL in the structured metadata
 	    add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
 	    function ampforwp_update_metadata( $metadata, $post ) {
+	    	if ( !is_array($metadata) ) {
+	    		return $metadata;
+	    	}
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
@@ -1487,14 +1490,13 @@ function ampforwp_new_dir( $dir ) {
 	        } else {
 	          $structured_data_logo = $structured_data_main_logo;
 	        }
-	        if(isset($metadata['publisher']) && $metadata['publisher']){
-		        $metadata['publisher']['logo'] = array(
-		          '@type'   => 'ImageObject',
-		          'url'     =>  $structured_data_logo ,
-		          'height'  => $ampforwp_sd_height,
-		          'width'   => $ampforwp_sd_width,
-		        );
-		    }
+
+	        $metadata['publisher']['logo'] = array(
+	          '@type'   => 'ImageObject',
+	          'url'     =>  $structured_data_logo ,
+	          'height'  => $ampforwp_sd_height,
+	          'width'   => $ampforwp_sd_width,
+	        );
 
 	        //code for adding 'description' meta from Yoast SEO
 
@@ -1529,6 +1531,9 @@ function ampforwp_new_dir( $dir ) {
 	// if there is no image in the post, then use this image to validate Structured Data.
 	add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
 	function ampforwp_update_metadata_featured_image( $metadata, $post ) {
+			if ( !is_array($metadata) ) {
+	    		return $metadata;
+	    	}
 			global $redux_builder_amp;
 			global $post;
 			$post_id = get_the_ID() ;
@@ -1545,14 +1550,13 @@ function ampforwp_new_dir( $dir ) {
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
-					if(isset($metadata['image']) && $metadata['image'] ){	
-						$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> $structured_data_image ,
-							'height' 	=> $structured_data_height,
-							'width' 	=> $structured_data_width,
-						);
-					}
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					
 			}
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
@@ -1566,15 +1570,14 @@ function ampforwp_new_dir( $dir ) {
 								$structured_data_author 		= $structured_data_author->display_name ;
 							} else {
 								$structured_data_author 		= "admin";
-							}
-					if(isset($metadata['image']) && $metadata['image'] ){
-						$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> $structured_data_image ,
-							'height' 	=> $structured_data_height,
-							'width' 	=> $structured_data_width,
-						);
-					}
+							} 
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					
 					$metadata['author'] = array(
 						'@type' 	=> 'Person',
 						'name' 		=> $structured_data_author ,
@@ -1584,26 +1587,23 @@ function ampforwp_new_dir( $dir ) {
 
 			// Get Image metadata from the Custom Field
 			if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-				if(isset($metadata['image']) && $metadata['image'] ){
-					$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> ampforwp_cf_featured_image_src('url') ,
-							'width' 	=> ampforwp_cf_featured_image_src('width'),
-							'height' 	=> ampforwp_cf_featured_image_src('height'),
-					);
-				}
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_cf_featured_image_src('url') ,
+						'width' 	=> ampforwp_cf_featured_image_src('width'),
+						'height' 	=> ampforwp_cf_featured_image_src('height'),
+				);
+				
 			}
 
 			// Get image metadata from The Content
 			if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
-				if(isset($metadata['image']) && $metadata['image'] ){
-					$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> ampforwp_get_featured_image_from_content('url') ,
-							'width' 	=> ampforwp_get_featured_image_from_content('width'),
-							'height' 	=> ampforwp_get_featured_image_from_content('height'),
-					);
-				}
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_get_featured_image_from_content('url') ,
+						'width' 	=> ampforwp_get_featured_image_from_content('width'),
+						'height' 	=> ampforwp_get_featured_image_from_content('height'),
+				);
 			}
 
 			if( in_array( "image" , $metadata )  ) {
@@ -3411,6 +3411,9 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 // 45. searchpage, frontpage, homepage structured data
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
+		if ( !is_array($metadata) ) {
+    		return $metadata;
+    	}
 		global $redux_builder_amp,$wp;
 		$desc = '';
 		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
@@ -3476,15 +3479,14 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 						// time difference is 2 minute between published and modified date
 						$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
 					}
-				}
-			if(isset($metadata['image']) && $metadata['image'] ){
-				$metadata['image'] = array(
-					'@type' 	=> 'ImageObject',
-					'url' 		=> $structured_data_image ,
-					'height' 	=> $structured_data_height,
-					'width' 	=> $structured_data_width,
-				);
-			}
+				} 
+			$metadata['image'] = array(
+				'@type' 	=> 'ImageObject',
+				'url' 		=> $structured_data_image ,
+				'height' 	=> $structured_data_height,
+				'width' 	=> $structured_data_width,
+			);
+			
 			$metadata['datePublished'] = $datePublished; // proper published date added
 			$metadata['dateModified'] = $dateModified; // proper modified date
 			$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
