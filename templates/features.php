@@ -4203,7 +4203,7 @@ function ampforwp_builder_checker() {
 	if ( $post_id ) {
 		$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 	}
-	if ( $pagebuilder_check === 'layout-builder' ) {
+	if ( $pagebuilder_check === 'layout-builder' && ( isset( $redux_builder_amp['ampforwp-content-builder'] ) && $redux_builder_amp['ampforwp-content-builder'] ) ) {
 		return ampforwp_generate_pagebuilder_data(); 
 	}
 	return;
