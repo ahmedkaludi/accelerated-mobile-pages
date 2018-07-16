@@ -4,18 +4,18 @@
 <div class="sp sgl">
 	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 		<div class="cntr">
-			<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+			<?php if ( true == ampforwp_get_setting('ampforwp-bread-crumb') ) {
 				amp_breadcrumb();
 			}?>
 			<?php amp_categories_list();?>
 			<?php amp_title(); ?>
-			<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
+			<?php if( true == ampforwp_get_setting('enable-excerpt-single') ){ ?>
 				<div class="tl-exc">
 				   <?php amp_excerpt(20); ?>
 			    </div>
 			<?php } ?>
 		</div>
-		<?php if ( isset($redux_builder_amp['swift-featued-image']) && $redux_builder_amp['swift-featued-image'] && ampforwp_has_post_thumbnail() ) { ?>
+		<?php if ( ampforwp_get_setting('swift-featued-image') && ampforwp_has_post_thumbnail() ) { ?>
 			<div class="sf-img">
 				<?php amp_featured_image();?>
 			</div>
