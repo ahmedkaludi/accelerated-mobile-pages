@@ -860,7 +860,13 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 .fbp-cnt{
 	width:100%;
 }
-
+.pg-lft{
+	width:100%;
+	padding:0;
+}
+.pgb {
+    display: inline-block;
+}
 }
 <?php }
 if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] ) || (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar'] ) ) { ?>
