@@ -846,6 +846,16 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 .b-w .sdbr-right{
 	margin-top:30px;
 }
+/** Custom Frontpage PB CSS **/
+.pgb{
+	display:flex;
+}
+.pg-lft{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-right: 30px;
+}
 @media(max-width:768px){
 .fbp-cnt{
 	width:100%;

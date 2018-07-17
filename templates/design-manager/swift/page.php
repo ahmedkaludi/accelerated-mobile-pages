@@ -15,7 +15,38 @@ amp_header(); ?>
 		<?php } ?>
        <div class="pg">
 			<div class="cntn-wrp">
-				<?php amp_content(); ?>
+				
+				<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1' && ampforwp_is_front_page() ){ ?>
+				
+				<div class="cntr pgb">
+					<div class="pg-lft">
+						<?php amp_content(); ?>
+					</div>
+					<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
+						<div class="sdbr-right">
+							<?php 
+								ob_start();
+								dynamic_sidebar('swift-sidebar');
+								$swift_footer_widget = ob_get_contents();
+								ob_end_clean();
+								$sanitizer_obj = new AMPFORWP_Content( 
+													$swift_footer_widget,
+													array(), 
+													apply_filters( 'ampforwp_content_sanitizers', 
+														array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), 
+														) 
+													) 
+												);
+								 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
+					              echo $sanitized_footer_widget;
+							?>
+						</div>
+					<?php } ?>
+				</div><!-- /.cntr -->
+				<?php } else { ?>
+					<?php amp_content(); ?>
+				<?php } ?>
+
 			</div>
 			<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
 			if( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] ) { ?>
