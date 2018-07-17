@@ -146,7 +146,7 @@ if($redux_builder_amp['menu-type'] == '1'){?>
 .tg:checked + .hamb-mnu > .m-ctr {margin-left: calc(100% - <?php echo $redux_builder_amp['header-overlay-width']?>);}
 .m-ctr{margin-left: 100%;float: right;}
 <?php } ?>
-.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:100vh;}
+.tg:checked + .hamb-mnu > .fsc{display: block;background: rgba(0,0,0,.9);height:100%;}
 .t-btn, .c-btn{cursor: pointer;}
 .t-btn:after{content:"\e5d2";display:inline-block;font-family: "icomoon";font-size:28px;<?php if( isset($redux_builder_amp['swift-element-color-control']['rgba']) && $redux_builder_amp['swift-element-color-control']['rgba']){ ?>color: <?php echo $redux_builder_amp['swift-element-color-control']['rgba']?>;<?php } ?>}
 .c-btn:after{content: "\e5cd";font-family: "icomoon";font-size: 20px;<?php if(isset($redux_builder_amp['swift-element-overlay-color-control'] ['rgba']) && $redux_builder_amp['swift-element-overlay-color-control'] ['rgba']){?>color: <?php echo $redux_builder_amp['swift-element-overlay-color-control']['rgba']?>;<?php } ?>line-height: 0;display: block;text-indent: 1px;}
