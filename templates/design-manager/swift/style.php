@@ -925,7 +925,8 @@ thead th {
     border: 1px solid #d1d1d1;
     -webkit-box-shadow: none;
     box-shadow: none;
-    display: block;
+    display: inline-block;
+    margin-bottom:5px;
     padding: 4px 10px 5px;
     position: relative;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out;
