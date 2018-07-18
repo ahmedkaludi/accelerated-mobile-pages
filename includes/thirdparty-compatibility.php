@@ -384,7 +384,6 @@ if(!function_exists('ampforwp_isexternal')){
 if(!function_exists('ampforwp_findInternalUrl')){
   function ampforwp_findInternalUrl($url){
     global $redux_builder_amp;
-   
     if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
         return $url;
     }
@@ -410,7 +409,16 @@ if(!function_exists('ampforwp_findInternalUrl')){
         $url = explode("#",$url);
         $url = trailingslashit($url[0]).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR).'#'.$url[1];
       }else{
-        $url = trailingslashit($url).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR);
+      	if ( get_option('permalink_structure') ) {
+	      	if ( strpos($url, "?") && strpos($url, "=") ){
+	      		$url = explode('?', $url);
+	      		$url = ampforwp_url_controller($url[0]).'?'.$url[1];
+	      	}
+	      	else
+	      		$url = ampforwp_url_controller($url);
+      	}
+      	else
+      		$url = add_query_arg( 'amp', '1', $url );
       }
       return $url;
     }

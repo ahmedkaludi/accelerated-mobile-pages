@@ -5819,6 +5819,7 @@ function ampforwp_url_purifier($url){
 	$endpointq					= "";
 	$queried_var				= "";
 	$quried_value				= "";
+	$query_arg					= "";
 	$endpoint 					= AMPFORWP_AMP_QUERY_VAR;
 	$get_permalink_structure = get_option('permalink_structure');
 	$checker = $redux_builder_amp['amp-core-end-point'];
@@ -5887,7 +5888,8 @@ function ampforwp_url_purifier($url){
       	}
 	}
 	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
-		$url = add_query_arg( $_SERVER['QUERY_STRING'], '', $url);
+		$query_arg 	= wp_parse_args($_SERVER['QUERY_STRING']);
+		$url 		= add_query_arg( $query_arg, $url);
 	}
 	return $url;
 }
