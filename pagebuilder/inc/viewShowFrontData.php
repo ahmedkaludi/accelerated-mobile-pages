@@ -8,7 +8,6 @@ function amp_pagebuilder_content(){
 	global $post,  $redux_builder_amp;
 	
   	$postId = (is_object($post) ? $post->ID : '');
-  	if( empty( $postId ) ) return;
 
 	if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
@@ -19,6 +18,7 @@ function amp_pagebuilder_content(){
 			$postId = pll_get_post($front_page_id);
 		}
 	}
+  	if( empty( $postId ) ) return;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	
 	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
