@@ -4165,6 +4165,8 @@ function ampforwp_builder_checker() {
 	global $post, $redux_builder_amp;
 	$pagebuilder_check 	= '';
 	$post_id 			= '';
+	$is_legacy_enabled 	= '';
+	$is_legacy_enabled  = ampforwp_get_setting('ampforwp-content-builder');
 
 	if ( $post ) {
 		$post_id = $post->ID;
@@ -4172,10 +4174,10 @@ function ampforwp_builder_checker() {
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	if ( $post_id ) {
+	if ( $post_id && $is_legacy_enabled ) {
 		$pagebuilder_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 	}
-	if ( $pagebuilder_check === 'layout-builder' && ( isset( $redux_builder_amp['ampforwp-content-builder'] ) && $redux_builder_amp['ampforwp-content-builder'] ) ) {
+	if ( $pagebuilder_check === 'layout-builder' ) {
 		return ampforwp_generate_pagebuilder_data(); 
 	}
 	return;
