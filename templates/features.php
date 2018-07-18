@@ -4638,8 +4638,10 @@ function ampforwp_posts_to_remove () {
 			}  
 		}
 		$current_cats = get_the_category(get_the_ID());
-		foreach ($current_cats as $key => $cats) {
-			$current_cats_ids[] =$cats->cat_ID;
+		if ( $current_cats ) {
+			foreach ($current_cats as $key => $cats) {
+				$current_cats_ids[] =$cats->cat_ID;
+			}
 		}
 		if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
 	    	return true;
@@ -4649,8 +4651,10 @@ function ampforwp_posts_to_remove () {
 		$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
 		$all_tags = get_the_tags(get_the_ID());
 		$tagsOnPost = array();
-		foreach ($all_tags as $tagskey => $tagsvalue) {
-			$tagsOnPost[] = $tagsvalue->term_id;
+		if ( $all_tags ) {
+			foreach ($all_tags as $tagskey => $tagsvalue) {
+				$tagsOnPost[] = $tagsvalue->term_id;
+			}
 		}			
 		if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
 			return true;
