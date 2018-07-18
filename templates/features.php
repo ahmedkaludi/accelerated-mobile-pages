@@ -4556,34 +4556,13 @@ function ampforwp_posts_to_remove () {
       return true;
     }
     return false;
-
-	/* $new_selected_cats = implode(',' , $selected_cats);
-	if(!empty($get_selected_cats)){
-		$the_query = new WP_Query( 
-			array( 
-				'ignore_sticky_posts' => 1,
-				'posts_per_page' 	  => -1,
-				'cat'				  => $new_selected_cats ,
-				'post_type'           => 'post',
-				'post_status'         => 'publish', 
-			) 
-		);
-		// Get the IDs of posts
-		if ( $the_query->have_posts() ) {
-			while ( $the_query->have_posts() ) {
-				$the_query->the_post();
-				$post_id_array[] = get_the_ID(); 
-			} 			
-		} 
-	}
- 	wp_reset_postdata();
-	return $post_id_array;*/
 }
 
 add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
 function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	$skip_this_post = '';
 	$skip_this_post = ampforwp_posts_to_remove();
+	wp_reset_postdata();
 	if ( $skip_this_post ) {
 	  $skip = true;
 	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
