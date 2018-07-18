@@ -4539,22 +4539,36 @@ function ampforwp_posts_to_remove () {
 	$post_id_array 					= array();
 	$current_cats_ids 				= array();
 	if(isset($redux_builder_amp['hide-amp-categories'])){
-		$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
+		$get_categories_from_checkbox = $redux_builder_amp['hide-amp-categories'];
+		if($get_categories_from_checkbox){
+			$get_selected_cats = array_filter($get_categories_from_checkbox);
+			foreach ($get_selected_cats as $key => $value) {
+				$selected_cats[] = $key;
+			}  
+		}
+		$current_cats = get_the_category(get_the_ID());
+		if ( $current_cats ) {
+			foreach ($current_cats as $key => $cats) {
+				$current_cats_ids[] =$cats->cat_ID;
+			}
+		}
+		if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+	    	return true;
+	    }
 	}
-	if($get_categories_from_checkbox){
-		$get_selected_cats = array_filter($get_categories_from_checkbox);
-		foreach ($get_selected_cats as $key => $value) {
-			$selected_cats[] = $key;
-		}  
+	if( is_array($redux_builder_amp['hide-amp-tags-bulk-option']) )	{
+		$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
+		$all_tags = get_the_tags(get_the_ID());
+		$tagsOnPost = array();
+		if ( $all_tags ) {
+			foreach ($all_tags as $tagskey => $tagsvalue) {
+				$tagsOnPost[] = $tagsvalue->term_id;
+			}
+		}			
+		if( count(array_intersect($get_tags_checkbox,$tagsOnPost))>0 ){
+			return true;
+		}
 	}
-
-	$current_cats = get_the_category(get_the_ID());
-	foreach ($current_cats as $key => $cats) {
-		$current_cats_ids[] =$cats->cat_ID;
-	}
-	if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
-      return true;
-    }
     return false;
 }
 
