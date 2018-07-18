@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.5
-Stable tag: 0.9.97.6
+Stable tag: 0.9.97.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,9 +183,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.7 (18th July 2018) =
+* Fixed: PageBuilder not loading on frontpage #2360
+* Fixed: 500 error on somepages due to open wp_query by other plugins
+* Fixed: License key reupdating #2261 
+* Fixed: AMP renders with ?q after the /amp #2361
+ 
+
 = 0.9.97.6 (14th July 2018) =
 * Fixed: Error and Warning on Structured Data for Logo. #2360
-* Fixed: Category Bilk tool breaking meta boxes #2335
+* Fixed: Category Bulk tool breaking meta boxes #2335
 
 = 0.9.97.5 (11th July 2018) =
 * Fixed: Title disappearing in Design 1,2,3 when legacy pagebuilder is enabled #2341
