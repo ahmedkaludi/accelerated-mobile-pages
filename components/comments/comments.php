@@ -106,7 +106,7 @@ function ampforwp_framework_get_comments(){
 					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 						<div class="amp-comment-button">
 							<?php if ( comments_open() ) { ?>
-						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+						    	<a class="cmt-btn" href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 							} else {
 								echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
 							}?>
