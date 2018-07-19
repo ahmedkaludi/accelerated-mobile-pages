@@ -5184,6 +5184,19 @@ Redux::setSection( $opt_name, array(
                         ),
                         'default'  => '1'
                 ),
+                array(
+                        'id'       => 'amp-design-3-featured-content',
+                        'type'     => 'select',
+                        'title'    => __( 'Featured Slider Content', 'accelerated-mobile-pages' ),
+                        'required' => array(
+                           array('amp-design-3-featured-slider', '=' , '1')
+                        ),
+                        'options'   => array(
+                            '1'     => 'Categories',
+                            '2'     => 'Tags'
+                        ),
+                        'default'  => 'none'
+                ),
                  array(
                         'id'       => 'amp-design-3-category-selector',
                         'type'     => 'select',
@@ -5193,20 +5206,7 @@ Redux::setSection( $opt_name, array(
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1'),
-                          array('amp-design-3-featured-slider-for-tags', '=', '0'),
-                        ),
-                ),
-                 array(
-                        'id'       => 'amp-design-3-featured-slider-for-tags',
-                        'type'     => 'switch',
-                        'title'    => __( 'Featured Slider Tag', 'accelerated-mobile-pages' ),
-                        'required' => array(
-                           array('amp-design-selector', '=' , '3')
-                        ),
-                        'default'  => '0',
-                        'required' => array(
-                          array('amp-design-selector', '=' , '3'),
-                          array('amp-design-3-featured-slider', '=' , '1')
+                          array('amp-design-3-featured-content', '=', '1'),
                         ),
                 ),
                  array(
@@ -5218,7 +5218,7 @@ Redux::setSection( $opt_name, array(
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1'),
-                          array('amp-design-3-featured-slider-for-tags', '=' , '1'),
+                          array('amp-design-3-featured-content', '=' , '2'),
                         ),
                 ),
                  array(
