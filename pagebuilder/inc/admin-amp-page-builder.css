@@ -1233,6 +1233,10 @@ Layout css
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* icons not loading in AMP page builder even WooCommerce Product Slider is Installed */
+[class*=" icon-"]:before {
+font-family: 'icomoon'!important; 
+}
 .amppb_accordion__panel {
   padding: 1rem;
   background: #ffffff;
