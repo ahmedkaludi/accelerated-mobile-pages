@@ -369,7 +369,7 @@ function ampforwp_parent_plugin_check() {
 		delete_option( 'ampforwp_parent_plugin_check');
 	}
 }
-if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
+if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 	function ampforwp_upcomming_layouts_demo(){
 		return array(
 			array(	
