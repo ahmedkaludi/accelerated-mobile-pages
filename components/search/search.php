@@ -17,8 +17,11 @@ function ampforwp_framework_get_search_form() {
 				<div class="amp-search-wrapper">
 					<label class="screen-reader-text" for="s">' . $label . '</label>
 					<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hidden"/>
+					<label aria-label="Type your query" for="s" >
 					<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
-					<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					</label>
+					<label aria-label="Submit amp search" for="amp-search-submit" >
+					<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" /></label>
 					<div class="overlay-search">
 					</div>
 				</div>
