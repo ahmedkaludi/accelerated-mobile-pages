@@ -135,7 +135,13 @@ main .amp-archive-heading{ background : none; box-shadow: none; padding: 5px; }
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $redux_builder_amp['amp-opt-color-rgba-link-design2']['color']?>;margin-bottom: 20px;}
 
 /* Footer */
-#footer{ background : <?php echo $redux_builder_amp['ampforwp-footer-background-color-2']['color'] ?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
+<?php 
+$footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-2']['color'];
+?>
+#footer{ background: <?php echo $footer_back_color;
+ if (empty($footer_back_color) ){?>
+  #FFFFFF
+ <?php } ?>; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 20px 0; }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer p{ margin: 0 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
