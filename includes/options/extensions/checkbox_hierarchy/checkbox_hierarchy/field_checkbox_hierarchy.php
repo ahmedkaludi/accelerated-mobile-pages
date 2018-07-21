@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
 /**
  * Redux Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +42,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
             $this->parent = $parent;
             $this->field = $field;
             $this->value = $value;
-			
-			if ( defined('AMPFORWP_VERSION') ) {
+            if ( defined('AMPFORWP_VERSION') ) {
                 $this->time = AMPFORWP_VERSION;
             }
             if ( empty( $this->extension_dir ) ) {
@@ -74,7 +74,7 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                 if ( !isset ( $this->value ) ) {
                     $this->value = array();
                 }
-				
+                
                 if ( empty ( $this->field[ 'options' ] ) && isset ( $this->field[ 'default' ] ) && is_array ( $this->field[ 'default' ] ) ) {
                     $this->field[ 'options' ] = $this->field[ 'default' ];
                 }

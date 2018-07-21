@@ -1,5 +1,5 @@
 <?php
-
+    namespace ReduxCore\ReduxFramework;
     /**
      * Redux Framework Admin Notice Class
      * Makes instantiating a Redux object an absolute piece of cake.
@@ -30,7 +30,7 @@
 
             public static function load() {
                 add_action( 'wp_ajax_redux_hide_admin_notice', array(
-                    'Redux_Admin_Notices',
+                    'ReduxCore\\ReduxFramework\\Redux_Admin_Notices',
                     'dismissAdminNoticeAJAX'
                 ) );
             }

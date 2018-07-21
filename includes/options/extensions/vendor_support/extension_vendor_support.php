@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     /**
      * The Redux Framework Plugin
      * A simple, truly extensible and fully responsive options framework

@@ -1,5 +1,5 @@
 <?php
-
+namespace ReduxCore\ReduxFramework;
     /**
      * @package Redux_Tracking
      */
@@ -472,7 +472,7 @@
             return $options;
         }
 
-        add_filter( 'redux/tracking/options', 'redux_tracking_additions' );
+        add_filter( 'redux/tracking/options', 'ReduxCore\\ReduxFramework\\redux_tracking_additions' );
 
         function redux_allow_tracking_callback() {
             // Verify that the incoming request is coming with the security nonce
@@ -496,6 +496,6 @@
             } // end if
         }
 
-        add_action( 'wp_ajax_redux_allow_tracking', 'redux_allow_tracking_callback' );
+        add_action( 'wp_ajax_redux_allow_tracking', 'ReduxCore\\ReduxFramework\\redux_allow_tracking_callback' );
 
     }

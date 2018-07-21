@@ -1,6 +1,7 @@
 <?php
+use ReduxCore\ReduxFramework\Redux;
 //Admin Panel Options        
-if ( ! class_exists( 'Redux' ) ) {
+if ( ! class_exists( 'ReduxCore\ReduxFramework\Redux' ) ) {
     return;
 }
 // Option name where all the Redux data is stored.

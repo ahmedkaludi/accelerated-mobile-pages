@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     // <input type="radio" value="1" name="_customize-radio-redux_demo[opt-radio]" data-customize-setting-link="redux_demo[opt-color-title]">
     //return;
     /**
@@ -740,7 +741,7 @@
                     if ( isset( $section['fields'] ) ) {
                         foreach ( $section['fields'] as $field ) {
                             if ( isset( $field['type'] ) ) {
-                                $field_class = 'ReduxFramework_' . $field['type'];
+                                $field_class = 'ReduxCore\\ReduxFramework\\ReduxFramework_' . $field['type'];
 
                                 if ( ! class_exists( $field_class ) ) {
                                     $class_file = apply_filters( 'redux-typeclass-load', $this->path . 'inc/fields/' . $field['type'] . '/field_' . $field['type'] . '.php', $field_class );

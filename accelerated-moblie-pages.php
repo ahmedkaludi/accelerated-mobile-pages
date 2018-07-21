@@ -442,19 +442,14 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 		}
 	}
-add_action('after_setup_theme', 'ampforwp_load_amp_options');
-function ampforwp_load_amp_options(){
-	if ( ! class_exists( 'ReduxFramework' ) ) {
-	    require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
-	    require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
-	}
-	if ( is_admin() ) {
-		// Register all the main options	
-		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
-	}
-}
 
+require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
+require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+if ( is_admin() ) {
+	// Register all the main options	
+	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+}
 
 // Modules 
 add_action('after_setup_theme','ampforwp_add_module_files');

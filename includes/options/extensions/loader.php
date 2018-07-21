@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
 /* Loader.php is for loading custom extensions for redux and in 
  * accelerated-mobile-pages\includes\options\extensions folder
  * 
@@ -12,7 +13,7 @@ if(!function_exists('ampforwp_register_custom_extension_loader')) :
                 if ( $folder === '.' or $folder === '..' or ! is_dir( $path . $folder ) ) {
                     continue;
                 }
-                $extension_class = 'ReduxFramework_extension_' . $folder;
+                $extension_class = 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_' . $folder;
                 if ( ! class_exists( $extension_class ) ) {
                     // In case you wanted override your override, hah.
                     $class_file = $path . $folder . '/extension_' . $folder . '.php';
@@ -27,5 +28,5 @@ if(!function_exists('ampforwp_register_custom_extension_loader')) :
             }
     }
 
-    add_action("redux/extensions/redux_builder_amp/before", 'ampforwp_register_custom_extension_loader', 0);
+    add_action("redux/extensions/redux_builder_amp/before", 'ReduxCore\\ReduxFramework\\ampforwp_register_custom_extension_loader', 0);
 endif;

@@ -1,4 +1,5 @@
 <?php
+    namespace ReduxCore\ReduxFramework;
     /**
      * Redux Framework is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
@@ -20,14 +21,14 @@
         exit;
     }
 
-    if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFrameworkInstances' ) ) {
         // Instance Container
         require_once dirname( __FILE__ ) . '/inc/class.redux_instances.php';
         require_once dirname( __FILE__ ) . '/inc/lib.redux_instances.php';
     }
 
-    if ( class_exists( 'ReduxFrameworkInstances' ) ) {
-        add_action( 'redux/init', 'ReduxFrameworkInstances::get_instance' );
+    if ( class_exists( 'ReduxCore\\ReduxFramework\\ReduxFrameworkInstances' ) ) {
+        add_action( 'redux/init', 'ReduxCore\\ReduxFramework\\ReduxFrameworkInstances::get_instance' );
     }
 
     // Don't duplicate me!
@@ -375,20 +376,20 @@
                     // Output dynamic CSS
                     // Frontend: Maybe enqueue dynamic CSS and Google fonts
                     if ( empty ( $this->args['output_location'] ) || in_array( 'frontend', $this->args['output_location'] ) ) {
-                        add_action( 'wp_head', array( &$this, '_output_css' ), 150 );
-                        add_action( 'wp_enqueue_scripts', array( &$this, '_enqueue_output' ), 150 );
+                        add_action( 'wp_head', array( $this, '_output_css'), 150 );
+                        add_action( 'wp_enqueue_scripts', array($this, '_enqueue_output'), 150 );
                     }
 
                     // Login page: Maybe enqueue dynamic CSS and Google fonts
                     if ( in_array( 'login', $this->args['output_location'] ) ) {
-                        add_action( 'login_head', array( &$this, '_output_css' ), 150 );
-                        add_action( 'login_enqueue_scripts', array( &$this, '_enqueue_output' ), 150 );
+                        add_action( 'login_head', array( $this, '_output_css'), 150 );
+                        add_action( 'login_enqueue_scripts',array( $this, '_enqueue_output'), 150 );
                     }
 
                     // Admin area: Maybe enqueue dynamic CSS and Google fonts
                     if ( in_array( 'admin', $this->args['output_location'] ) ) {
-                        add_action( 'admin_head', array( &$this, '_output_css' ), 150 );
-                        add_action( 'admin_enqueue_scripts', array( &$this, '_enqueue_output' ), 150 );
+                        add_action( 'admin_head', array( $this, '_output_css'), 150 );
+                        add_action( 'admin_enqueue_scripts',array( $this, '_enqueue_output'), 150 );
                     }
 
 
@@ -1618,7 +1619,6 @@
                 if ( $this->args['output'] == false && $this->args['compiler'] == false ) {
                     return;
                 }
-
                 /** @noinspection PhpUnusedLocalVariableInspection */
                 foreach ( $this->sections as $k => $section ) {
                     if ( isset ( $section['type'] ) && ( $section['type'] == 'divide' ) ) {
@@ -1629,7 +1629,7 @@
                         /** @noinspection PhpUnusedLocalVariableInspection */
                         foreach ( $section['fields'] as $fieldk => $field ) {
                             if ( isset ( $field['type'] ) && $field['type'] != "callback" ) {
-                                $field_class = "ReduxFramework_{$field['type']}";
+                                $field_class = "ReduxCore\\ReduxFramework\\ReduxFramework_{$field['type']}";
                                 if ( ! class_exists( $field_class ) ) {
 
                                     if ( ! isset ( $field['compiler'] ) ) {
@@ -2485,7 +2485,7 @@
                         continue;
                     }
 
-                    $extension_class = 'ReduxFramework_Extension_' . $folder;
+                    $extension_class = 'ReduxCore\\ReduxFramework\\ReduxFramework_Extension_' . $folder;
 
                     /**
                      * filter 'redux-extensionclass-load'
@@ -2504,12 +2504,9 @@
                      * @param string $extension_class          extension class name
                      */
                     $class_file = apply_filters( "redux/extension/{$this->args['opt_name']}/$folder", "$path/$folder/extension_{$folder}.php", $class_file );
-
-                    if ( $class_file ) {
-
+                    if ( $class_file && 'ReduxCore\ReduxFramework\ReduxFramework_Extension_customizer' !== $extension_class) {
                         if ( file_exists( $class_file ) ) {
                             require_once $class_file;
-
                             $this->extensions[ $folder ] = new $extension_class ( $this );
                         }
                     }
@@ -3045,7 +3042,7 @@
                             }
 
                             if ( isset ( $field['validate'] ) ) {
-                                $validate = 'Redux_Validation_' . $field['validate'];
+                                $validate = 'ReduxCore\\ReduxFramework\\Redux_Validation_' . $field['validate'];
 
                                 if ( ! class_exists( $validate ) ) {
                                     /**
@@ -3452,7 +3449,7 @@
                         return;
                     }
 
-                    $field_class = "ReduxFramework_{$field['type']}";
+                    $field_class = "ReduxCore\\ReduxFramework\\ReduxFramework_{$field['type']}";
 
                     if ( ! class_exists( $field_class ) ) {
                         //                    $class_file = apply_filters( 'redux/field/class/'.$field['type'], self::$_dir . 'inc/fields/' . $field['type'] . '/field_' . $field['type'] . '.php', $field ); // REMOVE
