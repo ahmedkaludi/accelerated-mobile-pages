@@ -29,7 +29,7 @@
 							ampforwp_swift_social_icons(); 
 						} ?>
 					<div class="cntn-wrp">
-						<?php amp_content(); ?>
+						<div class="artl-cnt"><?php amp_content(); ?></div>
 					</div>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 

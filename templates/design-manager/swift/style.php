@@ -335,7 +335,7 @@ $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_sin
 echo $fontFamily;?>
 }
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
-.cntn-wrp a{
+.artl-cnt a{
 	text-decoration: underline;
 }
 <?php } // Underline CSS Ends?>
