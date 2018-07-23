@@ -25,7 +25,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_button_set' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_button_set' ) ) {
 
         /**
          * Main ReduxFramework_button_set class

@@ -13,7 +13,7 @@
         exit;
     }
 
-    if ( ! class_exists( 'Redux_CDN' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_CDN' ) ) {
         class Redux_CDN {
             static public $_parent;
             static private $_set;

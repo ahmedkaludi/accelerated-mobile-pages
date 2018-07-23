@@ -13,7 +13,7 @@
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'Redux_Functions' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Functions' ) ) {
 
         /**
          * Redux Functions Class

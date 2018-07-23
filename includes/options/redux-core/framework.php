@@ -32,7 +32,7 @@
     }
 
     // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework' ) ) {
 
         // Redux CDN class
         require_once dirname( __FILE__ ) . '/inc/class.redux_cdn.php';
@@ -2504,7 +2504,7 @@
                      * @param string $extension_class          extension class name
                      */
                     $class_file = apply_filters( "redux/extension/{$this->args['opt_name']}/$folder", "$path/$folder/extension_{$folder}.php", $class_file );
-                    if ( $class_file && 'ReduxCore\ReduxFramework\ReduxFramework_Extension_customizer' !== $extension_class) {
+                    if ( $class_file ) {
                         if ( file_exists( $class_file ) ) {
                             require_once $class_file;
                             $this->extensions[ $folder ] = new $extension_class ( $this );

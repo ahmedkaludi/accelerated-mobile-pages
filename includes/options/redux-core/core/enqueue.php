@@ -4,7 +4,7 @@ namespace ReduxCore\ReduxFramework;
         exit;
     }
 
-    if ( ! class_exists( 'reduxCoreEnqueue' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxCoreEnqueue' ) ) {
         class reduxCoreEnqueue {
             public $parent = null;
 

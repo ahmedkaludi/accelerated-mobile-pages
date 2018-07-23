@@ -4,7 +4,7 @@ namespace ReduxCore\ReduxFramework;
         exit;
     }
 
-    if ( ! class_exists( 'reduxCorePanel' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxCorePanel' ) ) {
         /**
          * Class reduxCorePanel
          */

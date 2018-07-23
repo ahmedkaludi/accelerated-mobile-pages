@@ -23,7 +23,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_background' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_background' ) ) {
 
         /**
          * Main ReduxFramework_background class

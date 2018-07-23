@@ -23,7 +23,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_import_export' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_import_export' ) ) {
 
         /**
          * Main ReduxFramework_import_export class

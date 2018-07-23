@@ -23,7 +23,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_ace_editor' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_ace_editor' ) ) {
         class ReduxFramework_ace_editor {
 
             /**

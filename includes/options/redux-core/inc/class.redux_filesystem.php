@@ -6,7 +6,7 @@
         exit;
     }
 
-    if ( ! class_exists( 'Redux_Filesystem' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Filesystem' ) ) {
         class Redux_Filesystem {
 
             /**

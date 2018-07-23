@@ -63,7 +63,7 @@
             add_action( 'wp_ajax_nopriv_' . $hash, array( $this, 'tracking_arg' ) );
             add_action( 'wp_ajax_' . $hash, array( $this, 'tracking_arg' ) );
 
-            if (!class_exists('Redux_Tracking') || !method_exists('Redux_Tracking', 'trackingObject')) {
+            if (!class_exists('ReduxCore\\ReduxFramework\\Redux_Tracking') || !method_exists('ReduxCore\\ReduxFramework\\Redux_Tracking', 'trackingObject')) {
                 $hash = md5( md5( AUTH_KEY . SECURE_AUTH_KEY . '-redux' ) . '-support' );
                 add_action( 'wp_ajax_nopriv_' . $hash, array( $this, 'support_args' ) );
                 add_action( 'wp_ajax_' . $hash, array( $this, 'support_args' ) );

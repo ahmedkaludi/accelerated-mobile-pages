@@ -6,7 +6,7 @@ namespace ReduxCore\ReduxFramework;
         exit;
     }
 
-    if ( ! class_exists( 'reduxNewsflash' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\reduxNewsflash' ) ) {
         class reduxNewsflash {
             private $parent = null;
             private $notice_data = '';

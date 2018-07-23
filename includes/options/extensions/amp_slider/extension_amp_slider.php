@@ -21,7 +21,7 @@ namespace ReduxCore\ReduxFramework;
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 // Don't duplicate me!
-if( !class_exists( 'ReduxFramework_extension_amp_slider' ) ) {
+if( !class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_amp_slider' ) ) {
     /**
      * Main ReduxFramework demolink_image_select extension class
      *

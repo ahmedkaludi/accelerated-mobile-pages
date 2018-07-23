@@ -15,7 +15,7 @@
     }
 
     // Don't duplicate me!
-    if ( ! class_exists( 'Redux' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux' ) ) {
 
         /**
          * Redux API Class

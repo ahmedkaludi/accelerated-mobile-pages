@@ -3,7 +3,7 @@ namespace ReduxCore\ReduxFramework;
     /**
      * @package Redux_Tracking
      */
-    if ( ! class_exists( 'ReduxFramework' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework' ) ) {
         return;
     }
 

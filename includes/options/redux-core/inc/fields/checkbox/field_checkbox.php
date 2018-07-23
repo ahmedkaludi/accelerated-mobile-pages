@@ -24,7 +24,7 @@ if ( !defined ( 'ABSPATH' ) ) {
 }
 
 // Don't duplicate me!
-if ( !class_exists ( 'ReduxFramework_checkbox' ) ) {
+if ( !class_exists ( 'ReduxCore\\ReduxFramework\\ReduxFramework_checkbox' ) ) {
 
     /**
      * Main ReduxFramework_checkbox class

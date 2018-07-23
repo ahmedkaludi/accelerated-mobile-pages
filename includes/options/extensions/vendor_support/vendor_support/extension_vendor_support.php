@@ -23,7 +23,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_extension_vendor_support' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_vendor_support' ) ) {
 
         /**
          * Main ReduxFramework custom_field extension class

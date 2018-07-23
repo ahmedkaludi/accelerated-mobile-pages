@@ -5,7 +5,7 @@ namespace ReduxCore\ReduxFramework;
         exit;
     }
     
-    if (!class_exists('reduxDashboardWidget')) {
+    if (!class_exists('ReduxCore\\ReduxFramework\\reduxDashboardWidget')) {
         class reduxDashboardWidget {
             
             public function __construct ($parent) {

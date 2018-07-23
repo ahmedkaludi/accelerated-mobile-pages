@@ -16,7 +16,7 @@
     }
 
     // Don't duplicate me!
-    if ( ! class_exists( 'Redux_Admin_Notices' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Admin_Notices' ) ) {
 
         /**
          * Redux API Class

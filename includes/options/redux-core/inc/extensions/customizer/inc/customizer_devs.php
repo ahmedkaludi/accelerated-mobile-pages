@@ -1,6 +1,6 @@
 <?php
-
-    if ( ! class_exists( 'Redux_Customizer_Control_rAds' ) && ! class_exists( 'Redux_Customizer_section_rAds' ) ) {
+namespace ReduxCore\ReduxFramework;
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Control_rAds' ) && ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_section_rAds' ) ) {
         /**
          * Customizer section representing widget area (sidebar).
          *

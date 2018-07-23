@@ -25,7 +25,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
     // Don't duplicate me!
-    if ( ! class_exists( 'ReduxFramework_extension_customizer' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\ReduxFramework_extension_customizer' ) ) {
 
         /**
          * Main ReduxFramework customizer extension class
@@ -260,19 +260,19 @@ namespace ReduxCore\ReduxFramework;
             // All sections, settings, and controls will be added here
             public function _register_customizer_controls( $wp_customize ) {
 
-                if ( ! class_exists( 'Redux_Customizer_Section' ) ) {
+                if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Section' ) ) {
                     require_once dirname( __FILE__ ) . '/inc/customizer_section.php';
                     if ( method_exists( $wp_customize, 'register_section_type' ) ) {
                         $wp_customize->register_section_type( 'Redux_Customizer_Section' );
                     }
                 }
-                if ( ! class_exists( 'Redux_Customizer_Panel' ) ) {
+                if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Panel' ) ) {
                     require_once dirname( __FILE__ ) . '/inc/customizer_panel.php';
                     if ( method_exists( $wp_customize, 'register_panel_type' ) ) {
                         $wp_customize->register_panel_type( 'Redux_Customizer_Panel' );
                     }
                 }
-                if ( ! class_exists( 'Redux_Customizer_Control' ) ) {
+                if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Customizer_Control' ) ) {
                     require_once dirname( __FILE__ ) . '/inc/customizer_control.php';
                 }
 
@@ -542,7 +542,6 @@ namespace ReduxCore\ReduxFramework;
                         }
 
                         $class_name = 'Redux_Customizer_Control_' . $option['type'];
-
                         do_action( 'redux/extension/customizer/control_init', $option );
 
                         if ( ! class_exists( $class_name ) ) {

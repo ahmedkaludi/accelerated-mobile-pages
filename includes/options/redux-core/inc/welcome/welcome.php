@@ -66,7 +66,7 @@ namespace ReduxCore\ReduxFramework;
 
             if ( Redux_Helpers::isLocalHost() ) {
                 $compare = true;
-            } else if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
+            } else if ( class_exists( 'ReduxCore\\ReduxFramework\\ReduxFrameworkPlugin' ) ) {
                 $compare = true;
             } else {
                 $redux = ReduxFrameworkInstances::get_all_instances();

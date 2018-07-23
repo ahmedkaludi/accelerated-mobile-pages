@@ -6,7 +6,7 @@ namespace ReduxCore\ReduxFramework;
     }
 
 // Don't duplicate me!
-    if ( ! class_exists( 'Redux_Helpers' ) ) {
+    if ( ! class_exists( 'ReduxCore\\ReduxFramework\\Redux_Helpers' ) ) {
 
         /**
          * Redux Helpers Class
