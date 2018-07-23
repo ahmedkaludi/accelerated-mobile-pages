@@ -1755,10 +1755,10 @@ function ampforwp_title_callback( $post ) {
 	</div>
  	<?php
 	if ( get_option('page_on_front') == $post->ID && false == $redux_builder_amp['amp-frontpage-select-option'] ) {
-		echo '<p><b>Note:</b>This is not your AMP FrontPage, you can set one from <a class="" href="'.admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-amp-frontpage-select-option").'">here</a></p>';
+		_e('<p><b>Note:</b>This is not your AMP FrontPage, you can set one from <a class="" href="'.admin_url("admin.php?page=amp_options&tabid=opt-text-subsection#redux_builder_amp-amp-frontpage-select-option").'">here</a></p>', 'accelerated-mobile-pages');
 	}
 	if ( true == $redux_builder_amp['amp-frontpage-select-option'] && $post->ID == $redux_builder_amp['amp-frontpage-select-option-pages'] ) {
-		echo '<p>AMP FrontPage</p>';
+		_e('<p>AMP FrontPage</p>', 'accelerated-mobile-pages');
 	}
 }
 
