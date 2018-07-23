@@ -1,4 +1,5 @@
 <?php
+namespace ReduxCore\ReduxFramework;
     /**
      * The template for the main panel container.
      * Override this template by specifying the path where it is stored (templates_path) in your Redux config.
