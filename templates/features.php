@@ -5976,8 +5976,14 @@ function ampforwp_url_purifier($url){
       	}
 	}
 	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
-		$query_arg 	= wp_parse_args($_SERVER['QUERY_STRING']);
-		$url 		= add_query_arg( $query_arg, $url);
+		global $wp_query;
+	      $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
+	      $query_name = $wp_query->query['name'];
+	      if(strpos($_SERVER['QUERY_STRING'],$query_name) && (isset($query_arg['q']) && strpos($query_arg['q'],$query_name))){
+	          unset($query_arg['q']);
+	        }
+	      
+	      $url     = add_query_arg( $query_arg, $url);
 	}
 	return $url;
 }
