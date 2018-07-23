@@ -858,14 +858,22 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 	margin-top:30px;
 }
 /** Custom Frontpage PB CSS **/
-.pgb{
-	display:flex;
+.cntr.pgb{
+	max-width:1400px;
+}
+.pgb {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
 }
 .pg-lft{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: auto;
     padding-right: 30px;
+}
+.pgb .sdbr-right{
+	width:auto;
 }
 @media(max-width:768px){
 .fbp-cnt{
