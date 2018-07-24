@@ -180,6 +180,9 @@ background: rgb(245, 246, 250);
 .admin-color-light #redux-header, .admin-color-blue #redux-header, .admin-color-coffee #redux-header, .admin-color-ectoplasm #redux-header, .admin-color-midnight #redux-header, .admin-color-ocean #redux-header, .admin-color-sunrise #redux-header {
     background: #fff !important;
 }
+.admin-color-light #redux-header .display_header span, .admin-color-blue #redux-header .display_header span, .admin-color-coffee #redux-header .display_header span, .admin-color-ectoplasm #redux-header .display_header span, .admin-color-midnight #redux-header .display_header span, .admin-color-ocean #redux-header .display_header span, .admin-color-sunrise #redux-header .display_header span {
+    color: #888;
+}
 /** Blue **/
 .admin-color-blue .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a, .admin-color-blue .redux-sidebar .redux-group-menu li.active.hasSubSections ul.subsection li a{
     background: #fff !important;
@@ -276,7 +279,6 @@ background: rgb(245, 246, 250);
     background: #dd823b !important;
     color:#fff !important;
 }
-
 
 #redux_save,
 #redux-defaults-section,
