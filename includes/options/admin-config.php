@@ -6641,7 +6641,10 @@ $single_page_options = array(
                'type'     => 'text',
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => __('Enter your facebook app id','accelerated-mobile-pages'),
-               'default'  => ''
+               'default'  => '',
+               'required' => array(
+                    array('amp-design-selector', '!=' , '4')
+                ),
           ),
           // Twitter ON/OFF
           array(
