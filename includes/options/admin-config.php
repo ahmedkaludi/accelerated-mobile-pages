@@ -2578,6 +2578,13 @@ function ampforwp_add_sd_fields($fields){
                     'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
             );
     $fields[] =   array(
+                      'id'       => 'ampforwp-sd-multiple-images',
+                      'title'    => __('Multiple Images', 'accelerated-mobile-pages'),
+                      'type'     => 'switch',
+                      'default'  => 0,
+                      'subtitle' => 'Read more about it <a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">here</a>'
+            );
+    $fields[] =   array(
                       'id'      => 'amp-structured-data-placeholder-image',
                       'type'    => 'media',
                       'url'     => true,
