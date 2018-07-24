@@ -6,10 +6,8 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 global $post;
 function ampforwp_framework_get_categories_list(){
 	global $post, $redux_builder_amp;
-	$breadcrumbs_support = '';
-	$breadcrumbs_support = ampforwp_get_setting('ampforwp-bread-crumb');
 	 $ampforwp_categories = get_the_terms( $post->ID, 'category' );
-		if ( $ampforwp_categories && $breadcrumbs_support ) : ?>
+		if ( $ampforwp_categories ) : ?>
 		<div class="amp-category">
 				<span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories' ); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
@@ -24,10 +22,8 @@ function ampforwp_framework_get_categories_list(){
 }
 function ampforwp_framework_get_tags_list(){
 	global $post, $redux_builder_amp;
-	$breadcrumbs_support = '';
-	$breadcrumbs_support = ampforwp_get_setting('ampforwp-bread-crumb');
 	 	$ampforwp_tags = get_the_terms( $post->ID, 'post_tag' );
-			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) && $breadcrumbs_support ) :?>
+			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags )  ) :?>
 				<div class="amp-tags">
 					<?php /* if($redux_builder_amp['amp-rtl-select-option']==0) {
 					  		 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'] .' ', 'accelerated-mobile-pages' ));
