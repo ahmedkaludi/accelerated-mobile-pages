@@ -5811,6 +5811,8 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 		}
 	}
 }
+
+//93. added AMP url purifire for amphtml
 function ampforwp_url_purifier($url){
 	global $wp_query,$wp,$redux_builder_amp;
 	$get_permalink_structure 	= "";
