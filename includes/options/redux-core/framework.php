@@ -3450,6 +3450,7 @@
                     }
 
                     $field_class = "ReduxCore\\ReduxFramework\\ReduxFramework_{$field['type']}";
+                    $field_class_old = "ReduxFramework_{$field['type']}";
 
                     if ( ! class_exists( $field_class ) ) {
                         //                    $class_file = apply_filters( 'redux/field/class/'.$field['type'], self::$_dir . 'inc/fields/' . $field['type'] . '/field_' . $field['type'] . '.php', $field ); // REMOVE
@@ -3467,7 +3468,9 @@
                             }
                         }
                     }
-
+                    if ( class_exists($field_class_old) ) {
+                        $field_class = $field_class_old;
+                    }
                     if ( class_exists( $field_class ) ) {
                         $value = isset ( $this->options[ $field['id'] ] ) ? $this->options[ $field['id'] ] : '';
 

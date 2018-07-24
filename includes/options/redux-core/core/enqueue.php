@@ -304,6 +304,7 @@ namespace ReduxCore\ReduxFramework;
                 if ( isset( $field['type'] ) && $field['type'] != 'callback' ) {
 
                     $field_class = 'ReduxCore\\ReduxFramework\\ReduxFramework_' . $field['type'];
+                    $field_class_old = 'ReduxFramework_' . $field['type'];
                     /**
                      * Field class file
                      * filter 'redux/{opt_name}/field/class/{field.type}
@@ -319,7 +320,10 @@ namespace ReduxCore\ReduxFramework;
                             }
                         }
 
-                        if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' ) ) {
+                    if ( class_exists($field_class_old) ) {
+                        $field_class = $field_class_old;
+                    }
+                        if ( ( method_exists( $field_class, 'enqueue' ) ) || method_exists( $field_class, 'localize' )) {
 
                             if ( ! isset( $this->parent->options[ $field['id'] ] ) ) {
                                 $this->parent->options[ $field['id'] ] = "";
