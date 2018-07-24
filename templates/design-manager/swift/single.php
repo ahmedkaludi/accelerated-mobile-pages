@@ -26,7 +26,7 @@
 			<div class="sp-rl">
 				<div class="sp-rt">
 					<div class="cntn-wrp">
-						<?php amp_content(); ?>
+						<div class="artl-cnt"><?php amp_content(); ?></div>
 					</div>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>

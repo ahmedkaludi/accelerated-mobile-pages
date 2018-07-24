@@ -185,6 +185,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 0.9.97.8 (24th July 2018) =
 * Fixed: AMP renders with ?q after the /amp #2361
+* Fixed: iThemes Sync can not connect to the site. #2380
+* Fixed: H1 to H6 styling is not reflecting in the Swift theme #2383
+* Fixed: Underline on Links function is not working. #2372
+
+
 
 
 = 0.9.97.7 (18th July 2018) =

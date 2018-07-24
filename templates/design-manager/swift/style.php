@@ -327,6 +327,11 @@ if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_build
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';"; }  
 echo $fontFamily;?>
 }
+<?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
+.artl-cnt a{
+	text-decoration: underline;
+}
+<?php } // Underline CSS Ends?>
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
 .amp-category span:nth-child(1) {display: none;}
 .amp-category span a, .amp-category span{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;font-size: 12px;font-weight: 500;text-transform: uppercase;}
