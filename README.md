@@ -188,16 +188,15 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: iThemes Sync can not connect to the site. #2380
 * Fixed: H1 to H6 styling is not reflecting in the Swift theme #2383
 * Fixed: Underline on Links function is not working. #2372
-
-
-
+* Fixed: WordPress Admin Color Scheme not applying #2390
+* Fixed: Breadcrumbs are not disabling when the sidebar template is selected #2376
+* Fixed: All the Images are Adding AMP at the End of their URL. #2391
 
 = 0.9.97.7 (18th July 2018) =
 * Fixed: PageBuilder not loading on frontpage #2360
 * Fixed: 500 error on somepages due to open wp_query by other plugins
 * Fixed: License key reupdating #2261 
 * Fixed: AMP renders with ?q after the /amp #2361
- 
 
 = 0.9.97.6 (14th July 2018) =
 * Fixed: Error and Warning on Structured Data for Logo. #2360
