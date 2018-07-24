@@ -25,8 +25,8 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-					<div class="cntn-wrp">
-						<div class="artl-cnt"><?php amp_content(); ?></div>
+					<div class="cntn-wrp artl-cnt">
+						<?php amp_content(); ?>
 					</div>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 					<?php if( $redux_builder_amp['amp-author-description'] ) { ?>
@@ -282,7 +282,7 @@ do_action("ampforwp_single_design_type_handle");
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">
-								<div class="cntn-wrp">
+								<div class="cntn-wrp artl-cnt">
 									<?php amp_content(); ?>
 								</div>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
