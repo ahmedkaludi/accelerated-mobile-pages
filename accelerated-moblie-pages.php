@@ -734,3 +734,12 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
+
+// Fallback for Redux class #2377
+if ( !class_exists('Redux') && class_exists('ReduxCore\\ReduxFramework\\Redux') ) {
+
+	class Redux extends ReduxCore\ReduxFramework\Redux
+	{
+		# Do nothing, it will inherit all the methods
+	}
+}
