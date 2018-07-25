@@ -5524,6 +5524,113 @@ if ( function_exists('yoast_breadcrumb') ) {
                         );
 }
 
+function element_layout_customizer(){
+    $options = array();
+    $data = get_option( 'ampforwp_design' );
+
+    // Adding default Value
+    if ($data['elements'] == '') {
+        $data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1";
+    }
+
+    if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
+        $options = explode( ',', $data['elements'] );
+    };
+
+    $is_elements_disabled = array();
+    foreach ($options as $key => $value) {
+            $is_elements_disable = explode(':', $value);
+            $is_elements_disabled[] = $is_elements_disable;
+        }
+// print_r($is_elements_disabled);die;
+        foreach ($is_elements_disabled as $key => $value) {
+            // var_dump($value[1]);
+            if('1' == $value[1]){
+                switch ($value[0]) {
+                    case 'title':
+                        $value[1] = 'Title';
+                        break;
+                    case 'meta_info':
+                        $value[1] = 'Meta Info';
+                        break;
+                    case 'featured_image':
+                        $value[1] = 'Featured Image';
+                        break;
+                    case 'bread_crumbs':
+                        $value[1] = 'BreadCrumbs';
+                        break;
+                    case 'content':
+                        $value[1] = 'The Content';
+                        break;
+                    case 'meta_taxonomy':
+                        $value[1] = 'Category and Tags';
+                        break;
+                    case 'social_icons':
+                        $value[1] = 'Social Icons';
+                        break;
+                    case 'comments':
+                        $value[1] = 'Comments';
+                        break;
+                    case 'related_posts':
+                        $value[1] = 'Related Posts';
+                        break;
+                }
+                $new_options['enabled'][$value[0]] = $value[1];
+            }
+
+            if('0' == $value[1]){
+                switch ($value[0]) {
+                    case 'title':
+                        $value[1] = 'Title';
+                        break;
+                    case 'meta_info':
+                        $value[1] = 'Meta Info';
+                        break;
+                    case 'featured_image':
+                        $value[1] = 'Featured Image';
+                        break;
+                    case 'bread_crumbs':
+                        $value[1] = 'BreadCrumbs';
+                        break;
+                    case 'content':
+                        $value[1] = 'The Content';
+                        break;
+                    case 'meta_taxonomy':
+                        $value[1] = 'Category and Tags';
+                        break;
+                    case 'social_icons':
+                        $value[1] = 'Social Icons';
+                        break;
+                    case 'comments':
+                        $value[1] = 'Comments';
+                        break;
+                    case 'related_posts':
+                        $value[1] = 'Related Posts';
+                        break;
+                }
+                $new_options['disabled'][$value[0]] = $value[1];
+            }
+        }
+        if(empty($new_options['enabled'])){
+            $new_options['enabled'] = array(
+                'title' => 'Title',
+                'meta_info' => 'Meta Info',
+                'featured_image' => 'Featured Image',
+                'bread_crumbs' => 'BreadCrumbs',
+                'content' => 'The Content',
+                'meta_taxonomy' => 'Category and Tags',
+                'social_icons' => 'Social Icons',
+                'comments' => 'Comments',
+                'related_posts' => 'Related Posts'
+            );
+        }
+        if(empty($new_options['disabled'])){
+            $new_options['disabled'] = array();
+        }
+    return $new_options;
+}
+$customizer_options = element_layout_customizer();
+// print_r($customizer_options['enabled']);die;
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -5533,6 +5640,18 @@ $single_page_options = array(
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
                 ),
+                // Single Components Layout options
+                array(
+                        'id'      => 'd_1_3_single_components_layout',
+                        'type'    => 'sorter',
+                        'title'   => 'Components Layout Manager',
+                        'desc'    => 'Organize how you want the components to appear on the single',
+                        'options' => array(
+                            'enabled'  => $customizer_options['enabled'],
+                            'disabled' => $customizer_options['disabled'],
+                        ),
+                        'required'  => array( array('amp-design-selector', '!=' , '4')),
+                    ),
             // Swift
             array(
                     'id'    => 'single-design-type',
