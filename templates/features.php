@@ -4703,6 +4703,23 @@ function is_category_amp_disabled(){
 	}
 }
 
+// Excluded Categories 
+if ( ! function_exists('ampforwp_exclude_archive') ) {
+	function ampforwp_exclude_archive($archive = 'cat'){
+		global $redux_builder_amp;
+		$exclude = array();
+		// Categories
+		if ( isset($redux_builder_amp['hide-amp-categories']) && is_array($redux_builder_amp['hide-amp-categories']) && 'cat' == $archive ) {
+			$exclude = array_keys(array_filter($redux_builder_amp['hide-amp-categories']));
+			return $exclude;
+		}
+		// Tags
+		if ( isset($redux_builder_amp['hide-amp-tags-bulk-option']) && is_array($redux_builder_amp['hide-amp-tags-bulk-option']) && 'tag' == $archive ) {
+			$exclude = array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option']));
+			return $exclude;
+		}
+	}
+}
 add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
 function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 
@@ -4715,6 +4732,19 @@ function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
 	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
 	}	
 	return $skip;
+}
+
+// Exclude Posts from Loops based on Hide AMP Bulk Cats and Tags #2375
+add_filter('ampforwp_query_args', 'ampforwp_exclude_archive_args');
+function ampforwp_exclude_archive_args( $args ) {
+	global $redux_builder_amp;
+	if ( ampforwp_exclude_archive() ) {
+		$args['category__not_in'] = ampforwp_exclude_archive();
+	}
+	if ( ampforwp_exclude_archive('tag') ) {
+		$args['tag__not_in'] = ampforwp_exclude_archive('tag');
+	}
+	return $args;
 }
 
 add_action('amp_post_template_head','ampforwp_rel_canonical_home_archive');
