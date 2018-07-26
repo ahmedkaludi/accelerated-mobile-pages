@@ -373,11 +373,11 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}
 			function ampforwp_static_blog(){
 				if (ampforwp_get_setting('ampforwp-static-page-as-blog-test') ) {
-				    add_filter('ampforwp_modify_rel_canonical','amp_paginated_post_modify_amphtml');
+				    add_filter('ampforwp_modify_rel_canonical','amp_paginated_post_modify_amphtml_for_staticpage');
 						}
 				}
 
-			function amp_paginated_post_modify_amphtml($amp_url) {
+			function amp_paginated_post_modify_amphtml_for_staticpage($amp_url) {
 						$explode_url = explode('/', $amp_url);
 						unset($explode_url[6]); 
 						$amp_endpoint = array('amp');
