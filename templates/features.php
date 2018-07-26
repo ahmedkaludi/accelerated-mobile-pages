@@ -6986,6 +6986,7 @@ function ampforwp_remove_instant_articles_amp_markup(){
 }
 // #2042 
 function ampforwp_404_canonical(){
+	global $wp;
 	return home_url( $wp->request );
 }
 // #2001 removing unused JS from the Paginated Posts
