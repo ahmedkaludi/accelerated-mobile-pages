@@ -107,7 +107,7 @@ class AMP_Content_Sanitizer {
 		$dom = AMP_DOM_Utils::get_dom_from_content( $content );
 		if ( ! empty($sanitizer_classes) ) {
 			foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
-				if ( 'AMPforWP\\AMPVendor\\'.class_exists($sanitizer_class) ) {
+				if ( class_exists('AMPforWP\\AMPVendor\\'.$sanitizer_class) ) {
 					$sanitizer_class = 'AMPforWP\\AMPVendor\\'.$sanitizer_class;
 				}
 				if ( ! class_exists( $sanitizer_class ) ) {
