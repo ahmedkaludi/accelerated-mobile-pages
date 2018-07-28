@@ -1,6 +1,4 @@
 <?php
-use function AMPforWP\AMPVendor\amp_prepare_render;
-use function AMPforWP\AMPVendor\amp_get_permalink;
 use AMPforWP\AMPVendor\AMP_DOM_Utils;
 use AMPforWP\AMPVendor\AMP_Content;
 /* This file will contain all the Extra FEATURES.
@@ -197,7 +195,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		$ampforwp_is_amp_endpoint = ampforwp_is_amp_endpoint();
 
 		if ( $ampforwp_is_amp_endpoint ) {
-			amp_prepare_render();
+			AMPforWP\AMPVendor\amp_prepare_render();
 		} else {
 			add_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 		}
@@ -274,7 +272,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 	        $current_archive_url = home_url( $wp->request );
 	        $amp_url = trailingslashit($current_archive_url);
 	    } else {
-	      $amp_url = amp_get_permalink( get_queried_object_id() );
+	      $amp_url = AMPforWP\AMPVendor\amp_get_permalink( get_queried_object_id() );
 	    }
         global $post;
         if ( is_singular() ) {
