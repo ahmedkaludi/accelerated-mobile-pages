@@ -549,7 +549,7 @@ function ampforwp_new_dir( $dir ) {
 			$social_check = true;
 		}
 		if( $redux_builder_amp['enable-single-social-icons'] == true || defined('AMPFORWP_DM_SOCIAL_CHECK') && AMPFORWP_DM_SOCIAL_CHECK === 'true' )  {
-				if( (is_single() || $social_check_page ) &&  is_socialshare_or_socialsticky_enabled_in_ampforwp() ) {
+				if( (is_singular() || $social_check_page ) &&  is_socialshare_or_socialsticky_enabled_in_ampforwp() ) {
 					if ( empty( $data['amp_component_scripts']['amp-social-share'] ) ) {
 						$data['amp_component_scripts']['amp-social-share'] = 'https://cdn.ampproject.org/v0/amp-social-share-0.1.js';
 					}
