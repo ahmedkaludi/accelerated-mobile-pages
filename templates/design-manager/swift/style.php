@@ -323,6 +323,12 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
     <?php } ?>
+    blockquote{margin-bottom:20px;}
+	blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
+	blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
+	@media (max-width: 480px){
+		blockquote p {font-size:20px;}
+	}
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
