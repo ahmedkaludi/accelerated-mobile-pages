@@ -518,12 +518,15 @@ function ampforwp_bundle_core_amp_files(){
 	define( 'AMPFORWP__FILE__', __FILE__ );
 	if ( ! defined('AMP__VENDOR__DIR__') ) {
 		define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		// Fallback #2287
+		if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', AMP__VENDOR__DIR__ );
+		}
 	}
 	if ( ! defined('AMP_QUERY_VAR') ){
 		define('AMP_QUERY_VAR', 'amp');
 	}
 	define( 'AMP__VENDOR__VERSION', '0.4.2' );
-
 	require_once( AMP__VENDOR__DIR__ . '/back-compat/back-compat.php' );
 	require_once( AMP__VENDOR__DIR__ . '/includes/amp-helper-functions.php' );
 	require_once( AMP__VENDOR__DIR__ . '/includes/admin/functions.php' );
@@ -544,6 +547,10 @@ if ( ! function_exists('ampforwp_init') ) {
 
 		if ( ! defined('AMP__VENDOR__DIR__') ) {
 			define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+			// Fallback #2287
+			if ( ! defined('AMP__DIR__') ) {
+			define( 'AMP__DIR__', AMP__VENDOR__DIR__ );
+		}
 		}
 
 		do_action( 'amp_init' );
