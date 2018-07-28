@@ -481,7 +481,7 @@ if(is_admin()){
  *  sanitizer in all content filters
  */
 //add_filter("amp_content_sanitizers",'ampforwp_allows_tag_sanitizer');
-add_filter("ampforwp_content_sanitizers",'ampforwp_allows_tag_sanitizer');
+//add_filter("ampforwp_content_sanitizers",'ampforwp_allows_tag_sanitizer');
 
 function ampforwp_allows_tag_sanitizer($sanitizer_classes){
 	$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer'] = array();

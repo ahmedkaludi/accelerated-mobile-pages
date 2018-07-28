@@ -498,7 +498,7 @@ function ampforwp_plugin_init() {
 		new Ampforwp_Init();
 	}
 }
-add_action('init','ampforwp_plugin_init');
+add_action('init','ampforwp_plugin_init', 9);
 
 /*
 * customized output widget
