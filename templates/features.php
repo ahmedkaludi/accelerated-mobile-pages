@@ -7862,11 +7862,6 @@ function ampforwp_get_setting( $opt_name='' ){
 }
 
 // Fallbacks for Vendor AMP #2287
-if ( ! function_exists('is_amp_endpoint') && function_exists('AMPforWP\\AMPVendor\\is_amp_endpoint') ) {
-	function is_amp_endpoint(){
-		return AMPforWP\AMPVendor\is_amp_endpoint();
-	}
-}
 
 if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\AMP_Base_Sanitizer') ) {
 	abstract class AMP_Base_Sanitizer extends AMPforWP\AMPVendor\AMP_Base_Sanitizer
