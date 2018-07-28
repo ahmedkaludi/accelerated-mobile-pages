@@ -1,5 +1,6 @@
-<?php require_once AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php';
-
+<?php require_once AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php';
+use AMPforWP\AMPVendor\AMP_Base_Embed_Handler;
+use AMPforWP\AMPVendor\AMP_HTML_Utils;
 // Much of this class is borrowed from Jetpack embeds
 class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 	const SHORT_URL_HOST = 'youtu.be';

@@ -1,4 +1,5 @@
 <?php
+namespace AMPforWP\AMPVendor;
 /**
  * Plugin Name: AMP
  * Description: Add AMP support to your WordPress site.
@@ -12,7 +13,7 @@
  */
 // Make sure the `amp` query var has an explicit value.
 // Avoids issues when filtering the deprecated `query_string` hook.
-if ( ! function_exists('amp_force_query_var_value') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_force_query_var_value') ) {
 	function amp_force_query_var_value( $query_vars ) {
 		if ( isset( $query_vars[ AMP_QUERY_VAR ] ) && '' === $query_vars[ AMP_QUERY_VAR ] ) {
 			$query_vars[ AMP_QUERY_VAR ] = 1;
@@ -22,7 +23,7 @@ if ( ! function_exists('amp_force_query_var_value') ) {
 }
 
 
-if ( ! function_exists('amp_maybe_add_actions') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_maybe_add_actions') ) {
 	function amp_maybe_add_actions() {
 		if ( ! is_singular() || is_feed() ) {
 			return;
@@ -52,31 +53,32 @@ if ( ! function_exists('amp_maybe_add_actions') ) {
 	}
 }
 
-if ( ! function_exists('amp_load_classes') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_load_classes') ) {
 	function amp_load_classes() {
-		require_once( AMP__DIR__ . '/includes/class-amp-post-template.php' ); // this loads everything else
+		require_once( AMP__VENDOR__DIR__ . '/includes/class-amp-post-template.php' ); // this loads everything else
 	}
 }
 
-if ( ! function_exists('amp_add_frontend_actions') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_add_frontend_actions') ) {
 	function amp_add_frontend_actions() {
-		require_once( AMP__DIR__ . '/includes/amp-frontend-actions.php' );
+		require_once( AMP__VENDOR__DIR__ . '/includes/amp-frontend-actions.php' );
 	}
 }
 
-if ( ! function_exists('amp_add_post_template_actions') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_add_post_template_actions') ) {
 	function amp_add_post_template_actions() {
-		require_once( AMP__DIR__ . '/includes/amp-post-template-actions.php' );
-		require_once( AMP__DIR__ . '/includes/amp-post-template-functions.php' );
+		require_once( AMP__VENDOR__DIR__ . '/includes/amp-post-template-actions.php' );
+		require_once( AMP__VENDOR__DIR__ . '/includes/amp-post-template-functions.php' );
 	}
 }
-if ( ! function_exists('amp_prepare_render') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_prepare_render') ) {
 	function amp_prepare_render() {
-		add_action( 'template_redirect', 'amp_render' );
+		add_action( 'template_redirect', 'AMPforWP\\AMPVendor\\amp_render', 0 );
 	}
 }
-if ( ! function_exists('amp_render') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
 	function amp_render() {
+		
 		amp_load_classes();
 
 		$post_id = get_queried_object_id();
@@ -100,7 +102,7 @@ if ( ! function_exists('amp_render') ) {
  *
  * @since 0.4
  */
-if ( ! function_exists('_amp_bootstrap_customizer') ) {
+if ( ! function_exists('AMPforWP\\AMPVendor\\_amp_bootstrap_customizer') ) {
 	function _amp_bootstrap_customizer() {
 		/**
 		 * Filter whether to enable the AMP template customizer functionality.
@@ -113,5 +115,5 @@ if ( ! function_exists('_amp_bootstrap_customizer') ) {
 			amp_init_customizer();
 		}
 	}
-	add_action( 'plugins_loaded', '_amp_bootstrap_customizer', 9 );
+	add_action( 'plugins_loaded', 'AMPforWP\\AMPVendor\\_amp_bootstrap_customizer', 9 );
 }

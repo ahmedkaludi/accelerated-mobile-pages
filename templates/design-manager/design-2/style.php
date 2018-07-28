@@ -1,4 +1,5 @@
 <?php global $redux_builder_amp; 
+use AMPforWP\AMPVendor\AMP_Post_Template;
 // add_action( 'amp_post_template_head', function() {
 //     remove_action( 'amp_post_template_head', 'amp_post_template_add_fonts' );
 // }, 9 );

@@ -282,12 +282,9 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
-	// Run AMP deactivation code while activation  
-	ampforwp_deactivate_amp_plugin();
-
-		if ( ! did_action( 'ampforwp_init' ) ) {
-	 		ampforwp_init();
-		}
+	if ( ! did_action( 'ampforwp_init' ) ) {
+ 		ampforwp_init();
+	}
 
 	flush_rewrite_rules();
 
@@ -359,16 +356,6 @@ function ampforwp_rewrite_deactivate() {
 	delete_transient( 'ampforwp_welcome_screen_activation_redirect');
 }
 
-add_action( 'admin_init','ampforwp_parent_plugin_check');
-function ampforwp_parent_plugin_check() {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-	if ( $amp_plugin_activation_check ) {
-		// set_transient( 'ampforwp_parent_plugin_check', true, 30 );
-	} else {
-		delete_option( 'ampforwp_parent_plugin_check');
-	}
-}
 if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 	function ampforwp_upcomming_layouts_demo(){
 		return array(
@@ -422,8 +409,8 @@ if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 	}
 }
 
-require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
+require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 if ( is_admin() ) {
 	// Register all the main options	
 	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
@@ -507,11 +494,11 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
  */
 function ampforwp_plugin_init() {
 	
-	if ( defined( 'AMP__FILE__' ) && defined('AMPFORWP_PLUGIN_DIR') ) {
+	if ( defined( 'AMPFORWP__FILE__' ) && defined('AMPFORWP_PLUGIN_DIR') ) {
 		new Ampforwp_Init();
 	}
 }
-add_action('init','ampforwp_plugin_init',9);
+add_action('init','ampforwp_plugin_init');
 
 /*
 * customized output widget
@@ -528,52 +515,22 @@ function ampforwp_bundle_core_amp_files(){
 	// Bundling Default plugin
 	require_once AMPFORWP_PLUGIN_DIR .'/includes/vendor/amp/amp.php';
 
-	define( 'AMP__FILE__', __FILE__ );
-	if ( ! defined('AMP__DIR__') ) {
-		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+	define( 'AMPFORWP__FILE__', __FILE__ );
+	if ( ! defined('AMP__VENDOR__DIR__') ) {
+		define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 	}
 	if ( ! defined('AMP_QUERY_VAR') ){
 		define('AMP_QUERY_VAR', 'amp');
 	}
-	define( 'AMP__VERSION', '0.4.2' );
+	define( 'AMP__VENDOR__VERSION', '0.4.2' );
 
-	require_once( AMP__DIR__ . '/back-compat/back-compat.php' );
-	require_once( AMP__DIR__ . '/includes/amp-helper-functions.php' );
-	require_once( AMP__DIR__ . '/includes/admin/functions.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
-	require_once( AMP__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+	require_once( AMP__VENDOR__DIR__ . '/back-compat/back-compat.php' );
+	require_once( AMP__VENDOR__DIR__ . '/includes/amp-helper-functions.php' );
+	require_once( AMP__VENDOR__DIR__ . '/includes/admin/functions.php' );
+	require_once( AMP__VENDOR__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
+	require_once( AMP__VENDOR__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
-
-function ampforwp_deactivate_amp_plugin() {
- 
-	if ( version_compare( floatval( get_bloginfo( 'version' ) ), '3.5', '>=' ) ) {
-
-	    if ( current_user_can( 'activate_plugins' ) ) {
-
-	        add_action( 'admin_init', 'ampforwp_deactivate_amp' ); 
-
-	        function ampforwp_deactivate_amp() {
-	            deactivate_plugins( AMPFORWP_MAIN_PLUGIN_DIR . 'amp/amp.php' );
-	        }
-	    }
-	}
-}
-add_action( 'plugins_loaded', 'ampforwp_deactivate_amp_plugin' );
-
-function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
-	$plugin = '';
-
-	$plugin = 'amp/amp.php'; 
-	if ( $plugin == $plugin_file ) {
-		add_thickbox();
-		unset($actions['activate']);
-		$amp_activate = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts. \')">Activate</span>';
-		array_unshift ($actions,$amp_activate);
-	} 
- 	return $actions;
-}
-add_filter( 'plugin_action_links', 'ampforwp_modify_amp_activatation_link', 10, 2 );
 
 if ( ! function_exists('ampforwp_init') ) {
 	add_action( 'init', 'ampforwp_init' );
@@ -585,25 +542,30 @@ if ( ! function_exists('ampforwp_init') ) {
 			define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
 		}
 
-		if ( ! defined('AMP__DIR__') ) {
-			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		if ( ! defined('AMP__VENDOR__DIR__') ) {
+			define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 		}
 
 		do_action( 'amp_init' );
 
-		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
+		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__VENDOR__DIR__ ) . '/languages' );
 
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
 		add_post_type_support( 'post', AMP_QUERY_VAR );
 
-		add_filter( 'request', 'amp_force_query_var_value' );
-		add_action( 'wp', 'amp_maybe_add_actions' );
+		add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
+		add_action( 'wp', 'AMPforWP\\AMPVendor\\amp_maybe_add_actions');
 
 		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
 		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
 
 		if ( class_exists( 'Jetpack' ) && ! (defined( 'IS_WPCOM' ) && IS_WPCOM) ) {
-			require_once( AMP__DIR__ . '/jetpack-helper.php' );
+			require_once( AMP__VENDOR__DIR__ . '/jetpack-helper.php' );
+		}
+		// AMP by Automattic Compatibility #2287
+		// Remove the FrontPage query added by AMP to make our FrontPage/Homepage works
+		if ( is_plugin_active( 'amp/amp.php' )) {
+			remove_action( 'parse_query', 'amp_correct_query_when_is_front_page' );
 		}
 	}
 }

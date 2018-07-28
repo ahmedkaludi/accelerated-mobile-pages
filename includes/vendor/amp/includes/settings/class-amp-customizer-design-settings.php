@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 class AMP_Customizer_Design_Settings {
 	const DEFAULT_HEADER_COLOR = '#fff';
 	const DEFAULT_HEADER_BACKGROUND_COLOR = '#0a89c0';
@@ -51,7 +51,7 @@ class AMP_Customizer_Design_Settings {
 
 		// Header text color control.
 		$wp_customize->add_control(
-			new WP_Customize_Color_Control( $wp_customize, 'amp_header_color', array(
+			new \WP_Customize_Color_Control( $wp_customize, 'amp_header_color', array(
 				'settings'   => 'amp_customizer[header_color]',
 				'label'    => __( 'Header Text Color', 'amp' ),
 				'section'  => 'amp_design',
@@ -61,7 +61,7 @@ class AMP_Customizer_Design_Settings {
 
 		// Header background color control.
 		$wp_customize->add_control(
-			new WP_Customize_Color_Control( $wp_customize, 'amp_header_background_color', array(
+			new \WP_Customize_Color_Control( $wp_customize, 'amp_header_background_color', array(
 				'settings'   => 'amp_customizer[header_background_color]',
 				'label'    => __( 'Header Background & Link Color', 'amp' ),
 				'section'  => 'amp_design',

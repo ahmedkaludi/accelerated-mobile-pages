@@ -1,36 +1,36 @@
 <?php
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-html-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-string-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
 
-require_once( AMP__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-html-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-string-utils.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-wp-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/class-amp-content.php' );
 
-require_once( AMP__DIR__ . '/includes/class-amp-content.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-style-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-blacklist-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
 
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-style-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-blacklist-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-img-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-video-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-iframe-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-audio-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
 
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
-
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-facebook-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-polldaddy-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-dailymotion-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-gallery-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-instagram-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vine-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-facebook-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-vimeo-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-polldaddy-embed.php' );
 
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
@@ -44,7 +44,7 @@ class AMP_Post_Template {
 	private $data;
 
 	public function __construct( $post_id ) {
-		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__DIR__ . '/templates' );
+		$this->template_dir = apply_filters( 'amp_post_template_dir', AMP__VENDOR__DIR__ . '/templates' );
 		if ( ampforwp_is_front_page() ) {
 			$post_id = ampforwp_get_frontpage_id();
 		}

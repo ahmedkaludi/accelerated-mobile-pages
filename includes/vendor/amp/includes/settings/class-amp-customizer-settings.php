@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 class AMP_Customizer_Settings {
 	private static function get_stored_options() {
 		return get_option( 'amp_customizer', array() );

@@ -1,8 +1,8 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-dom-utils.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php' );
 
 class AMP_Content {
 	private $content;
@@ -66,11 +66,12 @@ class AMP_Content {
 
 	private function register_embed_handlers() {
 		$embed_handlers = array();
-
 		foreach ( $this->embed_handler_classes as $embed_handler_class => $args ) {
+			if ( class_exists('AMPforWP\\AMPVendor\\'.$embed_handler_class) ) {
+				$embed_handler_class = 'AMPforWP\\AMPVendor\\'.$embed_handler_class;
+			}
 			$embed_handler = new $embed_handler_class( array_merge( $this->args, $args ) );
-
-			if ( ! is_subclass_of( $embed_handler, 'AMP_Base_Embed_Handler' ) ) {
+			if ( ! is_subclass_of( $embed_handler, 'AMPforWP\\AMPVendor\\AMP_Base_Embed_Handler' ) ) {
 				_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Embed Handler (%s) must extend `AMP_Embed_Handler`', 'amp' ), $embed_handler_class ), '0.1' );
 				continue;
 			}
@@ -106,14 +107,16 @@ class AMP_Content_Sanitizer {
 		$dom = AMP_DOM_Utils::get_dom_from_content( $content );
 		if ( ! empty($sanitizer_classes) ) {
 			foreach ( $sanitizer_classes as $sanitizer_class => $args ) {
+				if ( 'AMPforWP\\AMPVendor\\'.class_exists($sanitizer_class) ) {
+					$sanitizer_class = 'AMPforWP\\AMPVendor\\'.$sanitizer_class;
+				}
 				if ( ! class_exists( $sanitizer_class ) ) {
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) class does not exist', 'amp' ), esc_html( $sanitizer_class ) ), '0.4.1' );
 					continue;
 				}
 
 				$sanitizer = new $sanitizer_class( $dom, array_merge( $global_args, $args ) );
-
-				if ( ! is_subclass_of( $sanitizer, 'AMP_Base_Sanitizer' ) ) {
+				if ( ! is_subclass_of( $sanitizer, 'AMPforWP\\AMPVendor\\AMP_Base_Sanitizer' ) ) {
 					_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Sanitizer (%s) must extend `AMP_Base_Sanitizer`', 'amp' ), esc_html( $sanitizer_class ) ), '0.1' );
 					continue;
 				}

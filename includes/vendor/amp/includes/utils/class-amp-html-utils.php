@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 class AMP_HTML_Utils {
 	public static function build_tag( $tag_name, $attributes = array(), $content = '' ) {
 		$attr_string = self::build_attributes_string( $attributes );

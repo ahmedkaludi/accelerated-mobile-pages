@@ -1,8 +1,8 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 // Jetpack bits.
 
-add_action( 'pre_amp_render_post', 'amp_jetpack_mods' );
+add_action( 'pre_amp_render_post', 'AMPforWP\\AMPVendor\\amp_jetpack_mods' );
 
 /**
  * Disable Jetpack features that are not compatible with AMP.
@@ -11,7 +11,7 @@ add_action( 'pre_amp_render_post', 'amp_jetpack_mods' );
 function amp_jetpack_mods() {
 	if ( class_exists('Jetpack') ) {
 		if ( Jetpack::is_module_active( 'stats' ) ) {
-			add_action( 'amp_post_template_footer', 'jetpack_amp_add_stats_pixel' );
+			add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\jetpack_amp_add_stats_pixel' );
 		}
 		amp_jetpack_disable_sharing();
 		amp_jetpack_disable_related_posts();

@@ -1,3 +1,5 @@
+<?php use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
+<?php use AMPforWP\AMPVendor\AMP_Post_Template;?>
 <?php global $redux_builder_amp,$wp;
 	$post_id = '';
 	$post_id = ampforwp_get_frontpage_id();

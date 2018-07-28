@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 class AMP_DOM_Utils {
 	/**
 	 * HTML elements that are self-closing.
@@ -51,7 +51,7 @@ class AMP_DOM_Utils {
 	public static function get_dom( $document ) {
 		$libxml_previous_state = libxml_use_internal_errors( true );
 
-		$dom = new DOMDocument();
+		$dom = new \DOMDocument();
 
 		// @todo In the future consider an AMP_DOMDocument subclass that does this automatically. See <https://github.com/Automattic/amp-wp/pull/895/files#r163825513>.
 		$document = self::convert_amp_bind_attributes( $document );
@@ -122,8 +122,8 @@ class AMP_DOM_Utils {
 		 */
 		$result = $dom->loadHTML( $document );
 
-		libxml_clear_errors();
-		libxml_use_internal_errors( $libxml_previous_state );
+		\libxml_clear_errors();
+		\libxml_use_internal_errors( $libxml_previous_state );
 
 		if ( ! $result ) {
 			return false;

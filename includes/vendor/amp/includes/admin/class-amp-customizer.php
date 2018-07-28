@@ -1,4 +1,5 @@
 <?php
+namespace AMPforWP\AMPVendor;
 /**
  * AMP class that implements a template style editor in the Customizer.
  *
@@ -143,7 +144,7 @@ class AMP_Template_Customizer {
 	public function add_preview_scripts() {
 		wp_enqueue_script(
 			'amp-customizer',
-			amp_get_asset_url( 'js/amp-customizer-preview.js' ),
+			AMPforWP\AMPVendor\amp_get_asset_url( 'js/amp-customizer-preview.js' ),
 			array( 'jquery', 'customize-preview', 'wp-util' ),
 			$version = false,
 			$footer = true

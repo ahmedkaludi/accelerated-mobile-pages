@@ -1,5 +1,5 @@
 <?php
-
+namespace AMPforWP\AMPVendor;
 function amp_get_permalink( $post_id ) {
 	$pre_url = apply_filters( 'amp_pre_get_permalink', false, $post_id );
 
@@ -45,5 +45,5 @@ function is_amp_endpoint() {
 }
 
 function amp_get_asset_url( $file ) {
-	return plugins_url( sprintf( 'assets/%s', $file ), AMP__FILE__ );
+	return plugins_url( sprintf( 'assets/%s', $file ), AMPFORWP__FILE__ );
 }

@@ -1,4 +1,5 @@
 <?php
+use AMPforWP\AMPVendor\AMP_Base_Sanitizer;
 /**
  * Converts Instagram embeds to <amp-instagram>
  */

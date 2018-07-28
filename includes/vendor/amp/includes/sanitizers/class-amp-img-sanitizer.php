@@ -1,7 +1,7 @@
 <?php
-
-require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
-require_once( AMP__DIR__ . '/includes/utils/class-amp-image-dimension-extractor.php' );
+namespace AMPforWP\AMPVendor;
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/utils/class-amp-image-dimension-extractor.php' );
 
 /**
  * Converts <img> tags to <amp-img> or <amp-anim>

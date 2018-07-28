@@ -1,4 +1,5 @@
 <?php
+namespace AMPforWP\AMPVendor;
 /**
  * Class AMP_Polldaddy_Embed_Handler
  *

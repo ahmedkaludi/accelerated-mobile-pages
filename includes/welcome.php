@@ -17,28 +17,6 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
 }
 
-// add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );
-function ampforwp_welcome_screen_do_activation_redirect_parent() {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-
-	// Bail if option is already set or plugin is deactivated
-	if ( get_option( 'ampforwp_parent_plugin_check' ) || $amp_plugin_activation_check == false ) {
-		return;
-	}
-
-	// Bail if activating from network, or bulk
-	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
-		return;
-	}
-
-	// Redirect to welcome page
-	wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
-
- 	update_option( 'ampforwp_parent_plugin_check', true );
-}
-
-
 add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
 function ampforwp_add_welcome_pages($sections){
 	

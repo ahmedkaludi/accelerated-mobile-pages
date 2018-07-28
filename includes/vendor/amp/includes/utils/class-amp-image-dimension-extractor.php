@@ -1,4 +1,5 @@
 <?php
+namespace AMPforWP\AMPVendor;
 class AMP_Image_Dimension_Extractor {
 	static $callbacks_registered = false;
 	const STATUS_FAILED_LAST_ATTEMPT = 'failed';
@@ -175,7 +176,7 @@ class AMP_Image_Dimension_Extractor {
 	 */
 	private static function fetch_images_via_fast_image( $urls_to_fetch, &$images ) {
 		if ( ! class_exists( 'FastImage' ) ) {
-			require_once( AMP__DIR__ . '/includes/lib/fastimage/class-fastimage.php' );
+			require_once( AMP__VENDOR__DIR__ . '/includes/lib/fastimage/class-fastimage.php' );
 		}
 
 		$image = new FastImage();
@@ -202,7 +203,7 @@ class AMP_Image_Dimension_Extractor {
 		$urls = array_keys( $urls_to_fetch );
 
 		if ( ! function_exists( 'amp_get_fasterimage_client' ) ) {
-			require_once( AMP__DIR__ . '/includes/lib/fasterimage/amp-fasterimage.php' );
+			require_once( AMP__VENDOR__DIR__ . '/includes/lib/fasterimage/amp-fasterimage.php' );
 		}
 
 		$user_agent = apply_filters( 'amp_extract_image_dimensions_get_user_agent', self::get_default_user_agent() );
@@ -250,6 +251,6 @@ class AMP_Image_Dimension_Extractor {
 	 * @return string
 	 */
 	public static function get_default_user_agent() {
-		return 'amp-wp, v' . AMP__VERSION . ', ' . get_site_url();
+		return 'amp-wp, v' . AMP__VENDOR__VERSION . ', ' . get_site_url();
 	}
 }

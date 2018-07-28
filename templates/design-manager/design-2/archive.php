@@ -1,3 +1,4 @@
+<?php use AMPforWP\AMPVendor\AMP_HTML_Utils;?>
 <?php global $redux_builder_amp; global $wp;  
 		$is_full_content = false;
 		if(isset($redux_builder_amp['ampforwp-full-post-in-loop']) && $redux_builder_amp['ampforwp-full-post-in-loop']){

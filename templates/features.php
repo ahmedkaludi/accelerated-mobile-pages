@@ -1,4 +1,8 @@
 <?php
+use function AMPforWP\AMPVendor\amp_prepare_render;
+use function AMPforWP\AMPVendor\amp_get_permalink;
+use AMPforWP\AMPVendor\AMP_DOM_Utils;
+use AMPforWP\AMPVendor\AMP_Content;
 /* This file will contain all the Extra FEATURES.
 0.9. AMP Design Manager Files
 	1. Add Home REL canonical
@@ -2020,7 +2024,7 @@ add_action( 'template_redirect', 'ampforwp_remove_print_scripts' );
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
     if ( is_home() || is_front_page() || is_archive() || is_search() ) {
-        remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+        remove_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
     }
 }
 add_action( 'amp_post_template_head', 'ampforwp_amp_remove_actions', 9 );
@@ -2741,7 +2745,7 @@ function amp_gtm_remove_analytics_code() {
   	// remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
   	
   	//Add GTM Analytics code right after the body tag
-  	add_action('ampforwp_body_beginning','amp_post_template_add_analytics_data',10);
+  	add_action('ampforwp_body_beginning','AMPforWP\\AMPVendor\\amp_post_template_add_analytics_data',10);
   } else {
     remove_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
   }
@@ -4611,7 +4615,7 @@ function ampforwp_modify_rel_canonical_paginated_post(){
 			$post_paginated_page='';
 			$post_paginated_page = get_query_var('page');
 			if($post_paginated_page){
-				remove_action( 'amp_post_template_head', 'amp_post_template_add_canonical' );
+				remove_action( 'amp_post_template_head', 'AMPforWP\\AMPVendor\\amp_post_template_add_canonical' );
 				add_action('amp_post_template_head','ampforwp_rel_canonical_paginated_post');
 			}
 		}
