@@ -7893,6 +7893,10 @@ function ampforwp_cpt_and_post_name_conflict_resolve(){
 }
 
 function ampforwp_enable_endpoint_for_conflict_posts($new_url, $url, $setting, $endpoint){
-	$new_url = add_query_arg('amp','1',$url);
+
+	if('0' == $setting || empty($setting) ){
+		$new_url = add_query_arg('amp','1',$url);
+	}
+	
 	return $new_url;
 }
