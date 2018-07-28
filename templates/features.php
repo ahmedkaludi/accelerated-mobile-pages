@@ -323,8 +323,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 					$current_search_url =trailingslashit(get_home_url()) . $wp->request .'/'."?amp=1&s=".get_search_query();
 				}
 			}
-
-			$amp_url = user_trailingslashit($amp_url);	
+			
+			if(function_exists('ampforwp_cpt_and_post_name_conflict_resolve') && !ampforwp_cpt_and_post_name_conflict_resolve()){
+				$amp_url = user_trailingslashit($amp_url);	
+			}
 
 			if( is_search() ) {
 				$current_search_url =trailingslashit(get_home_url())."?amp=1&s=".get_search_query();
@@ -6740,16 +6742,19 @@ function ampforwp_is_non_amp( $type="" ) {
 // END Point
 function ampforwp_end_point_controller( $url, $check='' ) {
 	global $redux_builder_amp;
-	$checker = '';
+	$checker = $setting = $new_url = '';
+	$setting = ampforwp_get_setting('amp-core-end-point');
 	$endpoint = AMPFORWP_AMP_QUERY_VAR;
 	$endpoint = '?' . $endpoint;
-	if ( isset($redux_builder_amp['amp-core-end-point']) && true == $redux_builder_amp['amp-core-end-point'] ) {
-		$url = untrailingslashit($url.$endpoint);
+	if ( $setting ) {
+		$new_url = untrailingslashit($url.$endpoint);
 	}
-	else 
-		$url = $url . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
-
-	return $url;
+	else {
+		$new_url = $url . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
+	}
+	$new_url = apply_filters( 'ampforwp_modify_endpoint', $new_url, $url, $setting, $endpoint );
+	// var_dump($new_url);die;
+	return $new_url;
 }
 
 // Allow AMP Components in "The Content" #1588
@@ -7873,4 +7878,27 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 	{
 
 	}
+}
+
+// 	Custom Post Type Vs Post name(slug) Conflict #2374
+add_action('wp','ampforwp_cpt_and_post_name_conflict_resolve');
+
+function ampforwp_cpt_and_post_name_conflict_resolve(){
+	global $post;
+	$post_id = $conflict_slug = $is_slug_conflict = '';
+	$all_post_types = array();
+	$post_id = get_the_ID();
+	$all_post_types = get_post_types();
+	$conflict_slug = $post->post_name;
+	$is_slug_conflict = in_array($conflict_slug, $all_post_types);
+	if($is_slug_conflict){
+		add_filter('ampforwp_modify_endpoint', 'ampforwp_enable_endpoint_for_conflict_posts',10,4);
+	return true;
+	}
+	return false;
+}
+
+function ampforwp_enable_endpoint_for_conflict_posts($new_url, $url, $setting, $endpoint){
+	$new_url = add_query_arg('amp','1',$url);
+	return $new_url;
 }
