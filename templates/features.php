@@ -6753,7 +6753,6 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 		$new_url = $url . user_trailingslashit( AMP_QUERY_VAR, 'single_amp' );
 	}
 	$new_url = apply_filters( 'ampforwp_modify_endpoint', $new_url, $url, $setting, $endpoint );
-	// var_dump($new_url);die;
 	return $new_url;
 }
 
