@@ -315,8 +315,8 @@ namespace ReduxCore\ReduxFramework;
                     'release' => PHP_VERSION
                 );
 
-                $user_query     = new WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
-                $comments_query = new WP_Comment_Query();
+                $user_query     = new \WP_User_Query( array( 'blog_id' => $blog_id, 'count_total' => true, ) );
+                $comments_query = new \WP_Comment_Query();
                 $data           = array(
                     '_id'       => $this->options['hash'],
                     'localhost' => ( $_SERVER['REMOTE_ADDR'] === '127.0.0.1' ) ? 1 : 0,
