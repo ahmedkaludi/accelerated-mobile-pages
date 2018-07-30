@@ -7865,13 +7865,25 @@ function ampforwp_get_setting( $opt_name='' ){
 }
 
 // Fallbacks for Vendor AMP #2287
-
+// Class AMP_Base_Sanitizer
 if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\AMP_Base_Sanitizer') ) {
 	abstract class AMP_Base_Sanitizer extends AMPforWP\AMPVendor\AMP_Base_Sanitizer
 	{
 
 	}
 }
+// Function is_amp_endpoint
+add_action('pre_amp_render_post', 'ampforwp_is_amp_endpoint_old');
+if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
+	function ampforwp_is_amp_endpoint_old(){
+		if ( !is_plugin_active( 'amp/amp.php' ) && ! function_exists('is_amp_endpoint') ){
+			function is_amp_endpoint(){
+				return ampforwp_is_amp_endpoint();
+			}
+		}
+	}
+}
+// End Fallbacks for Vendor AMP
 
 // 	Custom Post Type Vs Post name(slug) Conflict #2374
 add_action('wp','ampforwp_cpt_and_post_name_conflict_resolve');
