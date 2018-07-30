@@ -179,7 +179,7 @@ class AMP_Image_Dimension_Extractor {
 			require_once( AMP__VENDOR__DIR__ . '/includes/lib/fastimage/class-fastimage.php' );
 		}
 
-		$image = new FastImage();
+		$image = new \FastImage();
 		$urls = array_keys( $urls_to_fetch );
 
 		foreach ( $urls as $url ) {
@@ -207,7 +207,7 @@ class AMP_Image_Dimension_Extractor {
 		}
 
 		$user_agent = apply_filters( 'amp_extract_image_dimensions_get_user_agent', self::get_default_user_agent() );
-		$client = amp_get_fasterimage_client( $user_agent );
+		$client = \amp_get_fasterimage_client( $user_agent );
 		$images = $client->batch( $urls );
 	}
 
