@@ -6033,9 +6033,9 @@ function ampforwp_url_purifier($url){
 	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
 	      $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
 	      $query_name = $wp_query->query['name'];
-	      if(strpos($_SERVER['QUERY_STRING'],$query_name) && (isset($query_arg['q']) && strpos($query_arg['q'],$query_name))){
-	          unset($query_arg['q']);
-	        }
+	      if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) && ampforwp_is_query_post_same( $query_arg['q'],$query_name ) ){
+           	 unset($query_arg['q']);
+          }
 	      
 	      $url     = add_query_arg( $query_arg, $url);
 	}
@@ -7910,4 +7910,16 @@ function ampforwp_enable_endpoint_for_conflict_posts($new_url, $url, $setting, $
 	}
 	
 	return $new_url;
+}
+
+// Function to check if the query and the post name are same #2361
+function ampforwp_is_query_post_same($haystack = '' , $needle = ''){
+  $result = '';
+  if(!empty($haystack) && !empty($needle)){
+    $result = strpos($haystack ,$needle);
+  }
+  if( ($result != false || is_int($result)) && !empty($result) ){
+    return true;
+  }
+  return false;
 }
