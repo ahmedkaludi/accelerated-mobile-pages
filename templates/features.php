@@ -4708,6 +4708,7 @@ function is_category_amp_disabled(){
 		}//tags check area closed
 		if( is_category() && is_array($redux_builder_amp['hide-amp-categories'])){
 			$categories = get_the_category();
+			$selected_cats = array();
 				$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
 			$get_selected_cats = array_filter($get_categories_from_checkbox);
 			foreach ($get_selected_cats as $key => $value) {
