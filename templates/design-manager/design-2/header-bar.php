@@ -21,7 +21,7 @@
     side="right">
   <div class="toggle-navigationv2">
       <div role="button" tabindex="0" on='tap:sidebar.close' class="close-nav">X</div>
-        <?php // #1229 ?>
+        <?php if( has_nav_menu( 'amp-menu' ) ) { // #1229 ?>
         <nav id ="primary-amp-menu" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
          <?php
             require_once AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-walker-nav-menu.php';
@@ -37,8 +37,10 @@
             $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
             $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
             $sanitized_menu =  $sanitizer_obj->get_amp_content();
-            echo $sanitized_menu; ?>
+            echo $sanitized_menu; 
+            ?>
         </nav>
+      <?php } ?>
         <?php do_action('ampforwp_after_amp_menu'); ?>
   </div>
 </amp-sidebar>
