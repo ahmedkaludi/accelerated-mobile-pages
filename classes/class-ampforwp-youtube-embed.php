@@ -103,10 +103,11 @@ class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {
 			}
 		} else {
 			// ?v={id} or ?list={id}
-			parse_str( $parsed_url['query'], $query_args );
-
-			if ( isset( $query_args['v'] ) ) {
-				$video_id = $this->sanitize_v_arg( $query_args['v'] );
+			if(isset($parsed_url['query'])){
+				parse_str( $parsed_url['query'], $query_args );
+				if ( isset( $query_args['v'] ) ) {
+					$video_id = $this->sanitize_v_arg( $query_args['v'] );
+				}
 			}
 		}
 
