@@ -9,7 +9,9 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 	global $redux_builder_amp;
 	global $post;
 	$post_id = '';
-	$post_id = $post->ID;
+	if($post != NULL){
+		$post_id = $post->ID;
+	}
 	$get_customizer = new AMP_Post_Template( $post_id );
 	// Get content width
 	$content_max_width       = absint( $get_customizer->get( 'content_max_width' ) );

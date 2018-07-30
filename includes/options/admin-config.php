@@ -5195,6 +5195,8 @@ Redux::setSection( $opt_name, array(
 
 
   //code for fetching categories to show as a list in redux settings
+  // to avoid debug warnings when there are no posts #2367
+  $categories_array = ''; 
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
