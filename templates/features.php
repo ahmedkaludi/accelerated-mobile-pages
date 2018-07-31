@@ -6038,7 +6038,13 @@ function ampforwp_url_purifier($url){
 	}
 	if ( is_singular() && !empty($_SERVER['QUERY_STRING']) ) {
 	      $query_arg   = wp_parse_args($_SERVER['QUERY_STRING']);
-	      $query_name = $wp_query->query['name'];
+	      $query_name = '';
+			if(is_single()){
+				$query_name = $wp_query->query['name'];	
+			}
+			else{
+				$query_name = $wp_query->query['pagename'];
+			}
 	      if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) && ampforwp_is_query_post_same( $query_arg['q'],$query_name ) ){
            	 unset($query_arg['q']);
           }
