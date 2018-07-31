@@ -36,7 +36,14 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	<div class="amp-wp-content amp_author_area ampforwp-meta-taxonomy">
 	    <div class="amp_author_area_wrapper">
 	        <?php $post_author = $this->get( 'post_author' );
+		        $twitter = '';
 	            if ( $post_author ) {
+	            	// yoast author twitter handle
+			        	include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+			            if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+				        	global $post;
+				        	$twitter = get_the_author_meta( 'twitter', $post->post_author );
+				        }
 	            	//If Avatar is set up in WP user avatar: grab it
 	            	$author_avatar_url = ampforwp_get_wp_user_avatar();
 	            	//Else : Get the Gravatar
@@ -48,7 +55,10 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                    <?php
 	                }
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
-	             	echo  $post_author->description ; ?>
+	             	echo  $post_author->description ;
+	             		if($twitter){
+	             			echo '<span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
+	             		} ?>
 
 	        <?php } ?>
 	    </div>

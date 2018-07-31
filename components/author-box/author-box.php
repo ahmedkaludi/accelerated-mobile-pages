@@ -22,7 +22,7 @@ $author_link = get_author_posts_url($post_author->ID);
 if ( function_exists('coauthors_posts_links') ) {
     $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
-//var_dump($and);die;
+
 $author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {
@@ -81,17 +81,34 @@ if ( isset($args['show_time']) ) {
             <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
-        <?php echo '<div class="author-details '. $author_wrapper_class .'">';
+        <?php 
+        // yoast author twitter handle
+        $twitter = '';
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+        if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+            global $post;
+            $twitter = get_the_author_meta( 'twitter', $post->post_author );
+        }
+        echo '<div class="author-details '. $author_wrapper_class .'">';
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
             if ( function_exists('coauthors_posts_links') ) {
                 echo '<span class="author-name">' .$author_prefix . $author_link . ' </span>';
+                if($twitter){
+                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
+                }
             }
             else {
                 echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+                if($twitter){
+                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
+                }
             }
         }
         else
             echo '<span class="author-name">' . $author_prefix . esc_html( $author_name ) . '</span>';
+        if($twitter){
+                    echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
+                }
 
         //to show date and time
         if ( $show_date || $show_time ) {
