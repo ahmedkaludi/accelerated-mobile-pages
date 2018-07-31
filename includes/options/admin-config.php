@@ -7531,6 +7531,7 @@ if(!ampforwp_check_extensions()){
 
 
 // Plugin Manager
+if(!is_plugin_active('amp-plugin-manager/ampforwp-3rd-party-plugin-creator.php')){
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Plugins Manager', 'accelerated-mobile-pages' ),
         'id'         => 'opt-plugins-manager',
@@ -7554,6 +7555,7 @@ if(!ampforwp_check_extensions()){
            ),
         )        
 ) );
+}
 
 Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 /*
