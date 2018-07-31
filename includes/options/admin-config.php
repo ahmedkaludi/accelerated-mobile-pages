@@ -3011,6 +3011,71 @@ $forms_support[] =  array(
        'fields'     => $forms_support
 
    ) );
+if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_active( 'polylang/polylang.php' )){
+ // Multilanguage Support SECTION
+   // WPML Support 
+    $multilanguage_support[] =  array(
+            'id' => 'ampforwp-wpml-support',
+            'type' => 'section',
+            'title' => __('WPML Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+    $multilanguage_support[] =  array(
+               'id'        =>'amp-enable-wpml',
+               'type'      => 'switch',
+               'title'     => __('WPML Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+    if(!is_plugin_active( 'wpml-for-amp/wpml_for_amp.php' ) ){
+            $multilanguage_support[]= array(
+                'id'   => 'info_normal_wpml',
+                'type' => 'info',
+                'required' => array('amp-enable-wpml', '=' , '1'),
+                 'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">WPML extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/wpml-for-amp/#utm_source=options-panel&utm_medium=wpml-tab_wpml_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+                   );
+        }
+    // Polylang Support 
+        $multilanguage_support[] =  array(
+            'id' => 'ampforwp-polylang-support',
+            'type' => 'section',
+            'title' => __('Polylang Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+        );
+        $multilanguage_support[] = array(
+            'id'        =>'amp-enable-polylang-support',
+            'type'      => 'switch',
+            'title'     => __('Polylang Support', 'accelerated-mobile-pages'),
+            'default'   => '',
+            'true'      => 'Enabled',
+            'false'     => 'Disabled',
+        );
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+    if(!is_plugin_active( 'polylang-for-amp/polylang-for-amp.php' ) ){
+        $multilanguage_support[]= array(
+                        'id'   => 'info_normal_polylang',
+                        'type' => 'info',
+                        'required' => array('amp-enable-polylang-support', '=' , '1'),
+                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/polylang-for-amp/#utm_source=options-panel&utm_medium=polylang-tab_polylang_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Polylang extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/polylang-for-amp/#utm_source=options-panel&utm_medium=polylang-tab_polylang_installation_link&utm_campaign=AMP%20Plugin" target="_blank">Click here for more info</a>)</div></div>',               
+        );
+    }
+
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'Multilanguage Support', 'accelerated-mobile-pages' ),
+//          'desc'       => 'Contact forms will automatically be converted into AMP compatible.',
+       'id'         => 'ampforwp-multilanguage-support',
+       'subsection' => true,
+       'fields'     => $multilanguage_support
+
+   ) );
+}
 
 // comments 
  Redux::setSection( $opt_name, array(
