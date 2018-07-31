@@ -10,6 +10,13 @@ color:{{text_color_picker}};line-height:{{line-height}};letter-spacing:{{letter-
 	max-width:100%;
 }
 }
+@media(max-width:425px){
+	{{if_condition_check_for_resfont==1}}
+	{{module-class}}.text-mod{
+		font-size:{{res-font-size}};
+	}
+	{{ifend_condition_check_for_resfont_1}}
+}
 ';
 return array(
 		'label' =>'Text',
@@ -96,7 +103,30 @@ return array(
 								'tab'		=>'design',
 								'default'	=>'100%',
 								'content_type'=>'css'
-							),	
+							),
+						array(
+			                  'type'      =>'checkbox_bool',
+			                  'name'      =>"check_for_resfont",
+			                  'label'     =>'Responsive Font Size',
+			                  'tab'       =>'design',
+			                  'default'   =>0,
+			                  'options'   =>array(
+			                                  array(
+			                                      'label'=>'Yes',
+			                                      'value'=>1,
+			                                  )
+			                              ),
+			                  'content_type'=>'html',
+			              ),
+						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"res-font-size",		
+		 						'label'		=>'Responsive Font Size',
+		           				'tab'     =>'design',
+		 						'default'	=>'32px',	
+		           				'content_type'=>'css',
+		           				'required'  => array( 'check_for_resfont'=>'1')
+	 						),	
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
