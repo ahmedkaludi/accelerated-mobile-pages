@@ -290,6 +290,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
                     }   
                   }
                   if ( ampforwp_get_setting('ampforwp-retina-images') ) {
+                      $resolution = '';
                       $resolution = 2;
                       if(ampforwp_get_setting('ampforwp-retina-images-res')){
                         $resolution = ampforwp_get_setting('ampforwp-retina-images-res');
