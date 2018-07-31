@@ -7929,3 +7929,16 @@ function ampforwp_is_query_post_same($haystack = '' , $needle = ''){
   }
   return false;
 }
+
+// rel="next" & rel="prev" pagination meta tags #2343
+add_action( 'amp_post_template_head', 'ampforwp_rel_next_prev' );	
+
+function ampforwp_rel_next_prev(){
+    global $paged;
+    if ( get_previous_posts_link() ) { ?>
+        <link rel="prev" href="<?php echo get_pagenum_link( $paged - 1 ); ?>" /><?php
+    }
+    if ( get_next_posts_link() ) { ?>
+        <link rel="next" href="<?php echo get_pagenum_link( $paged + 1 ); ?>" /><?php
+    }
+}
