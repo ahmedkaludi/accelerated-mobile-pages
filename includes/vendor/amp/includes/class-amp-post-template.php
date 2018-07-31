@@ -110,7 +110,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ] ) ) {
 			return $this->data[ $property ];
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $default;
@@ -119,7 +119,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ]  ) ) {
 			return $this->data[ $property ] = $value ;
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'accelerated-mobile-pages' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $value;
@@ -241,8 +241,8 @@ class AMP_Post_Template {
 
 			$comments_link_url = get_comments_link( $this->ID );
 			$comments_link_text = $comments_open
-				? __( 'Leave a Comment', 'amp' )
-				: __( 'View Comments', 'amp' );
+				? __( 'Leave a Comment', 'accelerated-mobile-pages' )
+				: __( 'View Comments', 'accelerated-mobile-pages' );
 
 			$this->add_data( array(
 				'comments_link_url' => $comments_link_url,
@@ -438,7 +438,7 @@ class AMP_Post_Template {
 
 		$file = apply_filters( 'amp_post_template_file', $file, $template_type, $this->post );
 		if ( ! $this->is_valid_template( $file ) ) {
-			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'amp' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`.', 'accelerated-mobile-pages' ), esc_html( $file ), 'WP_CONTENT_DIR' ), '0.1' );
 			return;
 		}
 

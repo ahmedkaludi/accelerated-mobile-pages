@@ -78,9 +78,9 @@ class AMP_Polldaddy_Embed_Handler extends AMP_Base_Embed_Handler {
 			if ( ! empty( $attr['title'] ) ) {
 				$name = $attr['title'];
 			} elseif ( false !== strpos( $url, 'polldaddy.com/s' ) ) {
-				$name = __( 'View Survey', 'amp' );
+				$name = __( 'View Survey', 'accelerated-mobile-pages' );
 			} else {
-				$name = __( 'View Poll', 'amp' );
+				$name = __( 'View Poll', 'accelerated-mobile-pages' );
 			}
 			$output = $this->render_link( $url, $name );
 		}

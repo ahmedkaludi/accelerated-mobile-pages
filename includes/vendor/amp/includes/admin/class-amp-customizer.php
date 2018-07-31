@@ -111,8 +111,8 @@ class AMP_Template_Customizer {
 
 		$this->wp_customize->add_panel( self::PANEL_ID, array(
 			'type'  => 'amp',
-			'title' => __( 'AMP', 'amp' ),
-			'description' => sprintf( __( '<a href="%s" target="_blank">The AMP Project</a> is a Google-led initiative that dramatically improves loading speeds on phones and tablets. You can use the Customizer to preview changes to your AMP template before publishing them.', 'amp' ), 'https://ampproject.org' ),
+			'title' => __( 'AMP', 'accelerated-mobile-pages' ),
+			'description' => sprintf( __( '<a href="%s" target="_blank">The AMP Project</a> is a Google-led initiative that dramatically improves loading speeds on phones and tablets. You can use the Customizer to preview changes to your AMP template before publishing them.', 'accelerated-mobile-pages' ), 'https://ampproject.org' ),
 		) );
 
 		do_action( 'amp_customizer_register_ui', $this->wp_customize );

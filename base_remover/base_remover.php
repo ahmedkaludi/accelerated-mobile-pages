@@ -12,7 +12,7 @@ if ( is_plugin_active( $old_plugin ) ) {
 function plugin_catagory_base_removed_admin_notice__success(){
 	?>
 	<div class="notice notice-success is-dismissible">
-        <p><?php esc_html_e( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href="#">Click here to view details</a>', 'amp-for-plugin' ); ?></p>
+        <p><?php esc_html_e( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href="#">Click here to view details</a>', 'accelerated-mobile-pages' ); ?></p>
     </div>
 	<?php
 }

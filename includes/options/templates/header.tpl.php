@@ -53,9 +53,9 @@
 	<div id="right-elements">
         <div class="links">
             <?php if ( uwl_fs()->is_not_paying() ) {  ?>
-                <span class="uwl-premium-message"><?php _e( '20+ awesome widgets, more widgets styling, premium support', 'kho' ); ?> <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>"><?php _e( 'upgrade Now!', 'kho' ); ?></a></span>
+                <span class="uwl-premium-message"><?php _e( '20+ awesome widgets, more widgets styling, premium support', 'accelerated-mobile-pages' ); ?> <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>"><?php _e( 'upgrade Now!', 'accelerated-mobile-pages' ); ?></a></span>
             <?php } ?>
-            <a href="<?php echo admin_url( 'admin.php?page=uwl_options-contact' ); ?>" class="uwl-support" target="_blank"><?php _e( 'Support Request', 'kho' ); ?></a>
+            <a href="<?php echo admin_url( 'admin.php?page=uwl_options-contact' ); ?>" class="uwl-support" target="_blank"><?php _e( 'Support Request', 'accelerated-mobile-pages' ); ?></a>
         </div>
 
 		<?php if ( isset( $this->parent->args['share_icons'] ) ) : ?>

@@ -241,9 +241,9 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 				'use_verbose_page_rules' => false,
 			) );
 			// Ensure rewrite slugs are set.
-			$permalinks['product_rewrite_slug']   = untrailingslashit( empty( $permalinks['product_base'] ) ? _x( 'product', 'slug', 'woocommerce' )             : $permalinks['product_base'] );
-			$permalinks['category_rewrite_slug']  = untrailingslashit( empty( $permalinks['category_base'] ) ? _x( 'product-category', 'slug', 'woocommerce' )   : $permalinks['category_base'] );
-			$permalinks['tag_rewrite_slug']       = untrailingslashit( empty( $permalinks['tag_base'] ) ? _x( 'product-tag', 'slug', 'woocommerce' )             : $permalinks['tag_base'] );
+			$permalinks['product_rewrite_slug']   = untrailingslashit( empty( $permalinks['product_base'] ) ? _x( 'product', 'slug', 'accelerated-mobile-pages' )             : $permalinks['product_base'] );
+			$permalinks['category_rewrite_slug']  = untrailingslashit( empty( $permalinks['category_base'] ) ? _x( 'product-category', 'slug', 'accelerated-mobile-pages' )   : $permalinks['category_base'] );
+			$permalinks['tag_rewrite_slug']       = untrailingslashit( empty( $permalinks['tag_base'] ) ? _x( 'product-tag', 'slug', 'accelerated-mobile-pages' )             : $permalinks['tag_base'] );
 			$permalinks['attribute_rewrite_slug'] = untrailingslashit( empty( $permalinks['attribute_base'] ) ? '' : $permalinks['attribute_base'] );
 
 

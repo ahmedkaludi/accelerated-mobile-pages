@@ -42,7 +42,7 @@ function ampforwp_get_licence_activate_update(){
                     if ( is_wp_error( $response ) ) {
                         $message = $response->get_error_message();
                     } else {
-                        $message = __( 'An error occurred, please try again.', 'ampforwp-extension-updater' );
+                        $message = __( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
                     }
 
                 } else {
@@ -52,7 +52,7 @@ function ampforwp_get_licence_activate_update(){
                         switch( $license_data->error ) {
                             case 'expired' :
                                 $message = sprintf(
-                                    __( 'Your license key expired on %s.', 'ampforwp-extension-updater' ),
+                                    __( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
                                 $message .= "<a href='".$store_url."/checkout-2/?edd_license_key=16ed15c13524cc7e00346eeb3f76e412'>Renew Link</a>";
@@ -60,35 +60,35 @@ function ampforwp_get_licence_activate_update(){
 
                             case 'revoked' :
 
-                                $message = __( 'Your license key has been disabled.', 'ampforwp-extension-updater' );
+                                $message = __( 'Your license key has been disabled.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'missing' :
-                                $message = __( 'Invalid license.', 'ampforwp-extension-updater' );
+                                $message = __( 'Invalid license.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'invalid' :
                             case 'site_inactive' :
 
-                                $message = __( 'Your license is not active for this URL.', 'ampforwp-extension-updater' );
+                                $message = __( 'Your license is not active for this URL.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'item_name_mismatch' :
 
                                 $message = sprintf( 
-                                    __( 'This appears to be an invalid license key for %s.', 'ampforwp-extension-updater' ),
+                                    __( 'This appears to be an invalid license key for %s.', 'accelerated-mobile-pages' ),
                                     $item_name
                                 );
                                 break;
 
                             case 'no_activations_left':
 
-                                $message = __( 'Your license key has reached its activation limit.', 'ampforwp-extension-updater' );
+                                $message = __( 'Your license key has reached its activation limit.', 'accelerated-mobile-pages' );
                                 break;
 
                             default :
 
-                                $message = __( 'An error occurred, please try again.', 'ampforwp-extension-updater' );
+                                $message = __( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
                                 break;
                         }
 
@@ -175,7 +175,7 @@ function ampforwp_deactivate_license() {
             if ( is_wp_error( $response ) ) {
                 $message = $response->get_error_message();
             } else {
-                $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
+                $message = __( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
             }
 
             /*$base_url = admin_url( 'plugins.php?page=' . AMP_ADS_LICENSE_PAGE );
