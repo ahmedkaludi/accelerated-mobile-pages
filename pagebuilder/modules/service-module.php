@@ -63,6 +63,16 @@ $css = '
 	color:{{ico_color}};
 	margin:{{icon_gapping}};
 }
+@media(max-width:425px){
+	{{module-class}}.service{
+		{{if_condition_check_for_pdng==1}}
+			padding:{{res_pdng}};
+		{{ifend_condition_check_for_pdng_1}}
+		{{if_condition_check_for_mrgn==1}}
+			margin:{{res_mrgn}};
+		{{ifend_condition_check_for_mrgn_1}}
+	}
+}
 ';
 return array(
 		'label' =>'Services',
@@ -302,6 +312,64 @@ return array(
 													'bottom'=>'0px'
 												),
 								'content_type'=>'css',
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_pdng",
+                                'label'     => 'Responsive Padding',
+                                'tab'       =>'advanced',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_pdng",
+								'label'		=>'Set Padding',
+								'tab'		=>'advanced',
+								'default'	=>array(
+													'top'=>'0px',
+													'right'=>'0px',
+													'bottom'=>'0px',
+													'left'=>'0px'
+												),
+								'content_type'=>'css',
+								'required'  => array('check_for_pdng'=>1),
+								
+							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_mrgn",
+                                'label'     => 'Responsive Margin',
+                                'tab'       =>'advanced',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'css',
+                            ),
+                            array(
+								'type'		=>'spacing',
+								'name'		=>"res_mrgn",
+								'label'		=>'Set Margin',
+								'tab'		=>'advanced',
+								'default'	=>
+				                            array(
+				                                'top'=>'0px',
+				                                'right'=>'auto',
+				                                'bottom'=>'0px',
+				                                'left'=>'auto',
+				                            ),
+								'content_type'=>'css',
+								'required'  => array('check_for_mrgn'=>1),
 							),
 
 			),
