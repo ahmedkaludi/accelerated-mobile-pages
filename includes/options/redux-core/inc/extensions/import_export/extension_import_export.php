@@ -117,7 +117,7 @@ namespace ReduxCore\ReduxFramework;
             public function add_section() {
                 $this->parent->sections[] = array(
                     'id'         => 'import/export',
-                    'title'      => __( 'Import / Export', 'redux-framework' ),
+                    'title'      => __( 'Import / Export', 'accelerated-mobile-pages' ),
                     'heading'    => '',
                     'icon'       => 'el el-refresh',
                     'customizer' => false,

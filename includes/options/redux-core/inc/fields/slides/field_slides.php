@@ -65,12 +65,12 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                     'description' => true,
                     'url' => true,
                 ),
-                'content_title' => __ ( 'Slide', 'redux-framework' )
+                'content_title' => __ ( 'Slide', 'accelerated-mobile-pages' )
             );
 
             $this->field = wp_parse_args ( $this->field, $defaults );
 
-            echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr ( sprintf ( __ ( 'New %s', 'redux-framework' ), $this->field[ 'content_title' ] ) ) . '">';
+            echo '<div class="redux-slides-accordion" data-new-content-title="' . esc_attr ( sprintf ( __ ( 'New %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) ) . '">';
 
             $x = 0;
 
@@ -123,14 +123,14 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
 
                     echo '<div class="redux_slides_add_remove">';
 
-                    echo '<span class="button media_upload_button" id="add_' . $x . '">' . __ ( 'Upload', 'redux-framework' ) . '</span>';
+                    echo '<span class="button media_upload_button" id="add_' . $x . '">' . __ ( 'Upload', 'accelerated-mobile-pages' ) . '</span>';
 
                     $hide = '';
                     if ( empty ( $slide[ 'image' ] ) || $slide[ 'image' ] == '' ) {
                         $hide = ' hide';
                     }
 
-                    echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $slide[ 'attachment_id' ] . '">' . __ ( 'Remove', 'redux-framework' ) . '</span>';
+                    echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $slide[ 'attachment_id' ] . '">' . __ ( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
 
                     echo '</div>' . "\n";
 
@@ -142,15 +142,15 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                         $title_type = "hidden";
                     }
 
-                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'title' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'title' ] ) : __ ( 'Title', 'redux-framework' );
+                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'title' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'title' ] ) : __ ( 'Title', 'accelerated-mobile-pages' );
                     echo '<li><input type="' . $title_type . '" id="' . $this->field[ 'id' ] . '-title_' . $x . '" name="' . $this->field[ 'name' ] . '[' . $x . '][title]' . $this->field['name_suffix'] . '" value="' . esc_attr ( $slide[ 'title' ] ) . '" placeholder="' . $placeholder . '" class="full-text slide-title" /></li>';
 
                     if ( $this->field[ 'show' ][ 'description' ] ) {
-                        $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'description' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'description' ] ) : __ ( 'Description', 'redux-framework' );
+                        $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'description' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'description' ] ) : __ ( 'Description', 'accelerated-mobile-pages' );
                         echo '<li><textarea name="' . $this->field[ 'name' ] . '[' . $x . '][description]' . $this->field['name_suffix'] . '" id="' . $this->field[ 'id' ] . '-description_' . $x . '" placeholder="' . $placeholder . '" class="large-text" rows="6">' . esc_attr ( $slide[ 'description' ] ) . '</textarea></li>';
                     }
 
-                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'url' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'url' ] ) : __ ( 'URL', 'redux-framework' );
+                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'url' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'url' ] ) : __ ( 'URL', 'accelerated-mobile-pages' );
                     if ( $this->field[ 'show' ][ 'url' ] ) {
                         $url_type = "text";
                     } else {
@@ -164,14 +164,14 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                     echo '<input type="hidden" class="upload" name="' . $this->field[ 'name' ] . '[' . $x . '][image]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-image_url_' . $x . '" value="' . $slide[ 'image' ] . '" readonly="readonly" />';
                     echo '<input type="hidden" class="upload-height" name="' . $this->field[ 'name' ] . '[' . $x . '][height]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-image_height_' . $x . '" value="' . $slide[ 'height' ] . '" />';
                     echo '<input type="hidden" class="upload-width" name="' . $this->field[ 'name' ] . '[' . $x . '][width]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-image_width_' . $x . '" value="' . $slide[ 'width' ] . '" /></li>';
-                    echo '<li><a href="javascript:void(0);" class="button deletion redux-slides-remove">' . __ ( 'Delete', 'redux-framework' ) . '</a></li>';
+                    echo '<li><a href="javascript:void(0);" class="button deletion redux-slides-remove">' . __ ( 'Delete', 'accelerated-mobile-pages' ) . '</a></li>';
                     echo '</ul></div></fieldset></div>';
                     $x ++;
                 }
             }
 
             if ( $x == 0 ) {
-                echo '<div class="redux-slides-accordion-group"><fieldset class="redux-field" data-id="' . $this->field[ 'id' ] . '"><h3><span class="redux-slides-header">' . esc_attr ( sprintf ( __ ( 'New %s', 'redux-framework' ), $this->field[ 'content_title' ] ) ) . '</span></h3><div>';
+                echo '<div class="redux-slides-accordion-group"><fieldset class="redux-field" data-id="' . $this->field[ 'id' ] . '"><h3><span class="redux-slides-header">' . esc_attr ( sprintf ( __ ( 'New %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) ) . '</span></h3><div>';
 
                 $hide = ' hide';
 
@@ -185,9 +185,9 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 echo '<div class="upload_button_div">';
 
                 //If the user has WP3.5+ show upload/remove button
-                echo '<span class="button media_upload_button" id="add_' . $x . '">' . __ ( 'Upload', 'redux-framework' ) . '</span>';
+                echo '<span class="button media_upload_button" id="add_' . $x . '">' . __ ( 'Upload', 'accelerated-mobile-pages' ) . '</span>';
 
-                echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][attachment_id]">' . __ ( 'Remove', 'redux-framework' ) . '</span>';
+                echo '<span class="button remove-image' . $hide . '" id="reset_' . $x . '" rel="' . $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][attachment_id]">' . __ ( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
 
                 echo '</div>' . "\n";
 
@@ -197,14 +197,14 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 } else {
                     $title_type = "hidden";
                 }
-                $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'title' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'title' ] ) : __ ( 'Title', 'redux-framework' );
+                $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'title' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'title' ] ) : __ ( 'Title', 'accelerated-mobile-pages' );
                 echo '<li><input type="' . $title_type . '" id="' . $this->field[ 'id' ] . '-title_' . $x . '" name="' . $this->field[ 'name' ] . '[' . $x . '][title]' . $this->field['name_suffix'] .'" value="" placeholder="' . $placeholder . '" class="full-text slide-title" /></li>';
 
                 if ( $this->field[ 'show' ][ 'description' ] ) {
-                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'description' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'description' ] ) : __ ( 'Description', 'redux-framework' );
+                    $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'description' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'description' ] ) : __ ( 'Description', 'accelerated-mobile-pages' );
                     echo '<li><textarea name="' . $this->field[ 'name' ] . '[' . $x . '][description]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-description_' . $x . '" placeholder="' . $placeholder . '" class="large-text" rows="6"></textarea></li>';
                 }
-                $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'url' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'url' ] ) : __ ( 'URL', 'redux-framework' );
+                $placeholder = ( isset ( $this->field[ 'placeholder' ][ 'url' ] ) ) ? esc_attr ( $this->field[ 'placeholder' ][ 'url' ] ) : __ ( 'URL', 'accelerated-mobile-pages' );
                 if ( $this->field[ 'show' ][ 'url' ] ) {
                     $url_type = "text";
                 } else {
@@ -217,10 +217,10 @@ if ( !class_exists ( 'ReduxFramework_slides' ) ) {
                 echo '<input type="hidden" class="upload-height" name="' . $this->field[ 'name' ] . '[' . $x . '][height]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-image_height_' . $x . '" value="" />';
                 echo '<input type="hidden" class="upload-width" name="' . $this->field[ 'name' ] . '[' . $x . '][width]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-image_width_' . $x . '" value="" /></li>';
                 echo '<input type="hidden" class="upload-thumbnail" name="' . $this->field[ 'name' ] . '[' . $x . '][thumb]' . $this->field['name_suffix'] .'" id="' . $this->field[ 'id' ] . '-thumb_url_' . $x . '" value="" /></li>';
-                echo '<li><a href="javascript:void(0);" class="button deletion redux-slides-remove">' . __ ( 'Delete', 'redux-framework' ) . '</a></li>';
+                echo '<li><a href="javascript:void(0);" class="button deletion redux-slides-remove">' . __ ( 'Delete', 'accelerated-mobile-pages' ) . '</a></li>';
                 echo '</ul></div></fieldset></div>';
             }
-            echo '</div><a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . $this->field[ 'id' ] . '-ul" rel-name="' . $this->field[ 'name' ] . '[title][]' . $this->field['name_suffix'] .'">' . sprintf ( __ ( 'Add %s', 'redux-framework' ), $this->field[ 'content_title' ] ) . '</a><br/>';
+            echo '</div><a href="javascript:void(0);" class="button redux-slides-add button-primary" rel-id="' . $this->field[ 'id' ] . '-ul" rel-name="' . $this->field[ 'name' ] . '[title][]' . $this->field['name_suffix'] .'">' . sprintf ( __ ( 'Add %s', 'accelerated-mobile-pages' ), $this->field[ 'content_title' ] ) . '</a><br/>';
         }
 
         /**

@@ -121,7 +121,7 @@ namespace ReduxCore\ReduxFramework;
                         if ( $this->value['background-color'] == "transparent" ) {
                             $tChecked = ' checked="checked"';
                         }
-                        echo '<label for="' . $this->field['id'] . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '-transparency" data-id="' . $this->field['id'] . '-color" value="1"' . $tChecked . '> ' . __( 'Transparent', 'redux-framework' ) . '</label>';
+                        echo '<label for="' . $this->field['id'] . '-transparency" class="color-transparency-check"><input type="checkbox" class="checkbox color-transparency redux-background-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '-transparency" data-id="' . $this->field['id'] . '-color" value="1"' . $tChecked . '> ' . __( 'Transparent', 'accelerated-mobile-pages' ) . '</label>';
                     }
 
                     if ( $this->field['background-repeat'] === true || $this->field['background-position'] === true || $this->field['background-attachment'] === true ) {
@@ -138,7 +138,7 @@ namespace ReduxCore\ReduxFramework;
                         'repeat-y'  => 'Repeat Vertically',
                         'inherit'   => 'Inherit',
                     );
-                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Repeat', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-repeat]" class="redux-select-item redux-background-input redux-background-repeat ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Repeat', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-repeat]" class="redux-select-item redux-background-input redux-background-repeat ' . $this->field['class'] . '">';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -154,7 +154,7 @@ namespace ReduxCore\ReduxFramework;
                         'content-box' => 'Content Box',
                         'padding-box' => 'Padding Box',
                     );
-                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Clip', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Clip', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-clip]" class="redux-select-item redux-background-input redux-background-clip ' . $this->field['class'] . '">';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -170,7 +170,7 @@ namespace ReduxCore\ReduxFramework;
                         'content-box' => 'Content Box',
                         'padding-box' => 'Padding Box',
                     );
-                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Origin', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Origin', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-origin]" class="redux-select-item redux-background-input redux-background-origin ' . $this->field['class'] . '">';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -185,7 +185,7 @@ namespace ReduxCore\ReduxFramework;
                         'cover'   => 'Cover',
                         'contain' => 'Contain',
                     );
-                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Size', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-repeat-select" data-placeholder="' . __( 'Background Size', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-size]" class="redux-select-item redux-background-input redux-background-size ' . $this->field['class'] . '">';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -200,7 +200,7 @@ namespace ReduxCore\ReduxFramework;
                         'scroll'  => 'Scroll',
                         'inherit' => 'Inherit',
                     );
-                    echo '<select id="' . $this->field['id'] . '-attachment-select" data-placeholder="' . __( 'Background Attachment', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-attachment]" class="redux-select-item redux-background-input redux-background-attachment ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-attachment-select" data-placeholder="' . __( 'Background Attachment', 'accelerataccelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-attachment]" class="redux-select-item redux-background-input redux-background-attachment ' . $this->field['class'] . '">';
                     echo '<option></option>';
                     foreach ( $array as $k => $v ) {
                         echo '<option value="' . $k . '"' . selected( $this->value['background-attachment'], $k, false ) . '>' . $v . '</option>';
@@ -220,7 +220,7 @@ namespace ReduxCore\ReduxFramework;
                         'right center'  => 'Right center',
                         'right bottom'  => 'Right Bottom',
                     );
-                    echo '<select id="' . $this->field['id'] . '-position-select" data-placeholder="' . __( 'Background Position', 'redux-framework' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-position]" class="redux-select-item redux-background-input redux-background-position ' . $this->field['class'] . '">';
+                    echo '<select id="' . $this->field['id'] . '-position-select" data-placeholder="' . __( 'Background Position', 'accelerated-mobile-pages' ) . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-position]" class="redux-select-item redux-background-input redux-background-position ' . $this->field['class'] . '">';
                     echo '<option></option>';
 
                     foreach ( $array as $k => $v ) {
@@ -274,7 +274,7 @@ namespace ReduxCore\ReduxFramework;
                         $hide = '';
                     }
 
-                    $placeholder = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : __( 'No media selected', 'redux-framework' );
+                    $placeholder = isset( $this->field['placeholder'] ) ? $this->field['placeholder'] : __( 'No media selected', 'accelerated-mobile-pages' );
 
                     echo '<input placeholder="' . $placeholder . '" type="text" class="redux-background-input ' . $hide . 'upload ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[background-image]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][background-image]" value="' . $this->value['background-image'] . '" />';
                     echo '<input type="hidden" class="upload-id ' . $this->field['class'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '[media][id]" id="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][media][id]" value="' . $this->value['media']['id'] . '" />';
@@ -311,14 +311,14 @@ namespace ReduxCore\ReduxFramework;
                     echo '<div class="upload_button_div">';
 
                     //If the user has WP3.5+ show upload/remove button
-                    echo '<span class="button redux-background-upload" id="' . $this->field['id'] . '-media">' . __( 'Upload', 'redux-framework' ) . '</span>';
+                    echo '<span class="button redux-background-upload" id="' . $this->field['id'] . '-media">' . __( 'Upload', 'accelerated-mobile-pages' ) . '</span>';
 
                     $hide = '';
                     if ( empty( $this->value['background-image'] ) || $this->value['background-image'] == '' ) {
                         $hide = ' hide';
                     }
 
-                    echo '<span class="button removeCSS redux-remove-background' . $hide . '" id="reset_' . $this->field['id'] . '" rel="' . $this->field['id'] . '">' . __( 'Remove', 'redux-framework' ) . '</span>';
+                    echo '<span class="button removeCSS redux-remove-background' . $hide . '" id="reset_' . $this->field['id'] . '" rel="' . $this->field['id'] . '">' . __( 'Remove', 'accelerated-mobile-pages' ) . '</span>';
 
                     echo '</div>';
                 }

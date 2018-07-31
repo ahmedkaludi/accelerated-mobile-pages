@@ -41,10 +41,10 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
                 $cb_disabled = ' selected';
             }
             //Label ON
-            $this->field['on'] = isset( $this->field['on'] ) ? $this->field['on'] : __( 'On', 'redux-framework' );
+            $this->field['on'] = isset( $this->field['on'] ) ? $this->field['on'] : __( 'On', 'accelerated-mobile-pages' );
 
             //Label OFF
-            $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'redux-framework' );
+            $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'accelerated-mobile-pages' );
             // Switch Text
             if ( isset($this->field['switch-text']) ) {
                 $class_on = 'switch-text switch-text-on hide';

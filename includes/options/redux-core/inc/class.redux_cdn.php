@@ -71,14 +71,14 @@
                             }
                         } else {
                             if ( ! self::is_enqueued( $handle, 'enqueued', $is_script ) ) {
-                                $msg = __( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'redux-framework' );
+                                $msg = __( 'Please wait a few minutes, then try refreshing the page. Unable to load some remotely hosted scripts.', 'accelerated-mobile-pages' );
                                 if ( self::$_parent->args['dev_mode'] ) {
-                                    $msg = sprintf( __( 'If you are developing offline, please download and install the <a href="%s" target="_blank">Redux Vendor Support</a> plugin/extension to bypass the our CDN and avoid this warning', 'redux-framework' ), 'https://github.com/reduxframework/redux-vendor-support' );
+                                    $msg = sprintf( __( 'If you are developing offline, please download and install the <a href="%s" target="_blank">Redux Vendor Support</a> plugin/extension to bypass the our CDN and avoid this warning', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-vendor-support' );
                                 }
 
                                 self::$_parent->admin_notices[] = array(
                                     'type'    => 'error',
-                                    'msg'     => '<strong>' . __( 'Redux Framework Warning', 'redux-framework' ) . '</strong><br/>' . sprintf( __( '%s CDN unavailable.  Some controls may not render properly.', 'redux-framework' ), $handle ) . '  ' . $msg,
+                                    'msg'     => '<strong>' . __( 'Redux Framework Warning', 'accelerated-mobile-pages' ) . '</strong><br/>' . sprintf( __( '%s CDN unavailable.  Some controls may not render properly.', 'accelerated-mobile-pages' ), $handle ) . '  ' . $msg,
                                     'id'      => $handle . $tran_key,
                                     'dismiss' => false,
                                 );
@@ -110,7 +110,7 @@
                     if ( ! self::$_set ) {
                         self::$_parent->admin_notices[] = array(
                             'type'    => 'error',
-                            'msg'     => sprintf( __( 'The <a href="%s">Vendor Support plugin</a> (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and <a href="%s">activated</a>', 'redux-framework' ), 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) ),
+                            'msg'     => sprintf( __( 'The <a href="%s">Vendor Support plugin</a> (or extension) is either not installed or not activated and thus, some controls may not render properly.  Please ensure that it is installed and <a href="%s">activated</a>', 'accelerated-mobile-pages' ), 'https://github.com/reduxframework/redux-vendor-support', admin_url( 'plugins.php' ) ),
                             'id'      => $handle . '23',
                             'dismiss' => false,
                         );
