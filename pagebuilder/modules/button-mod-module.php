@@ -33,6 +33,19 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 {{if_condition_button_repeat_check==1}}
 {{module-class}} .btn{margin:0 0 15px 0;}
 {{ifend_condition_button_repeat_check_1}}
+{{if_condition_check_for_resfont==1}}
+	{{module-class}} .btn-txt{
+		font-size:{{res-font-size}};
+	}
+{{ifend_condition_check_for_resfont_1}}
+{{if_condition_check_for_resic==1}}
+	{{module-class}} .btn-txt .ico-pic{
+		font-size: {{res-icon-size}};
+		position: relative;
+		top:5px;
+	}
+
+{{ifend_condition_check_for_resic_1}}
 }
 @media(max-width:600px){
 {{module-class}} .btn {display: flex;flex-direction: column;align-items: center;}
@@ -337,6 +350,52 @@ return array(
 								'content_type'=>'css',
 								'required'  => array('check_for_altrbtn'=>'1')
 							),
+						array(
+			                  'type'      =>'checkbox_bool',
+			                  'name'      =>"check_for_resfont",
+			                  'label'     =>'Responsive Font Size',
+			                  'tab'       =>'design',
+			                  'default'   =>0,
+			                  'options'   =>array(
+			                                  array(
+			                                      'label'=>'Yes',
+			                                      'value'=>1,
+			                                  )
+			                              ),
+			                  'content_type'=>'html',
+			              ),
+						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"res-font-size",		
+		 						'label'		=>'Text Font Size',
+		           				'tab'     =>'design',
+		 						'default'	=>'30px',	
+		           				'content_type'=>'css',
+		           				'required'  => array( 'check_for_resfont'=>'1')
+	 						),
+						array(
+			                  'type'      =>'checkbox_bool',
+			                  'name'      =>"check_for_resic",
+			                  'label'     =>'Responsive Icon Size',
+			                  'tab'       =>'design',
+			                  'default'   =>0,
+			                  'options'   =>array(
+			                                  array(
+			                                      'label'=>'Yes',
+			                                      'value'=>1,
+			                                  )
+			                              ),
+			                  'content_type'=>'html',
+			              ),
+						array(
+		 						'type'		=>'text',		
+		 						'name'		=>"res-icon-size",		
+		 						'label'		=>'Icon Font Size',
+		           				'tab'     =>'design',
+		 						'default'	=>'30px',	
+		           				'content_type'=>'css',
+		           				'required'  => array( 'check_for_resic'=>'1')
+	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
