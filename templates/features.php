@@ -628,6 +628,9 @@ function ampforwp_new_dir( $dir ) {
 		add_action('ampforwp_design_1_after_header','ampforwp_header_advert');
 
 		function ampforwp_header_advert() {
+			if( is_404() ){
+				return;
+			}
 			global $redux_builder_amp;
 			$optimize = '';
 			$is_dboc = '';
@@ -701,6 +704,9 @@ function ampforwp_new_dir( $dir ) {
 		add_action('amp_post_template_above_footer','ampforwp_footer_advert',10);
 
 		function ampforwp_footer_advert() {
+			if( is_404() ){
+				return;
+			}
 			global $redux_builder_amp;
 			$optimize = '';
 			$is_dboc = '';
