@@ -79,6 +79,17 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
                         array(
+                            'name'=>'bbPress For AMP',
+                            'desc'=>'Add bbPress Forum Compatibility to your AMP version',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$89',
+                            'url_link'=>'http://ampforwp.com/bbpress/#utm_source=options-panel&utm_medium=extension-tab_bbpress-for-wordpress&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'bbpress-for-amp/bbpress-for-amp.php',
+                            'item_name'=>'bbPress for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('bbpress-for-amp/bbpress-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Ninja Forms for AMP',
                             'desc'=>'Add Ninja Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
