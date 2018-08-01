@@ -5046,7 +5046,8 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Header Width', 'accelerated-mobile-pages'),
                     'default'  => '1100px',
                     'required' => array(
-                      array('customize-options','=',1)
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
                     )           
             ),
             array(
@@ -5056,7 +5057,8 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Header Height', 'accelerated-mobile-pages'),
                     'default'  => '60px',
                     'required' => array(
-                      array('customize-options','=',1)
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
                     )           
             ),
             array(
@@ -5066,7 +5068,8 @@ Redux::setSection( $opt_name, array(
                     'title' => __('Margin / Padding ', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
-                      array('customize-options','=',1)
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
                     ) 
             ),
             array(
@@ -5116,7 +5119,8 @@ Redux::setSection( $opt_name, array(
                     'title' => __('Border and Boxshadow', 'accelerated-mobile-pages'),
                     'default'   => 0,
                     'required' => array(
-                      array('customize-options','=',1)
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
                     ) 
             ),
 
@@ -5164,7 +5168,8 @@ Redux::setSection( $opt_name, array(
                     'rgba'  => 'rgba(255, 255, 255, 255)',
                     ),
                     'required' => array(
-                      array('customize-options','=',1)
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
                     )  
               ),
               array(
@@ -5189,8 +5194,9 @@ Redux::setSection( $opt_name, array(
                         'color'  => '#333',
                      ),
                     'required' => array(
-                        array('customize-options','=',1)
-                      )
+                        array('customize-options','=',1),
+                        array('header-type', '<' , '8')
+                    )
               ),
               array(
                     'class' => 'child_opt',
