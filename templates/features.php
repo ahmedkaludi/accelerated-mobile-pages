@@ -372,8 +372,8 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		return;
 	}
 		// AMPHTML when using custom page and then creating a blog page
-		add_action('amp_init','ampforwp_allow_homepage2');
-			function ampforwp_allow_homepage2() {
+		add_action('amp_init','ampforwp_allow_homepage_as_blog');
+			function ampforwp_allow_homepage_as_blog() {
 				add_action( 'wp', 'ampforwp_static_blog' , 11 );
 			}
 			function ampforwp_static_blog(){
@@ -384,9 +384,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 			function amp_paginated_post_modify_amphtml_for_staticpage($amp_url) {
 						$explode_url = explode('/', $amp_url);
-						unset($explode_url[6]); 
+						unset($explode_url[5]); 
 						$amp_endpoint = array('amp');
-						array_splice( $explode_url, 4, 0, $amp_endpoint );
+						array_splice( $explode_url, 3, 0, $amp_endpoint );
 						$amp_url = implode('/', $explode_url); 
  						return $amp_url;
 		}
