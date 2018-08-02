@@ -5165,7 +5165,7 @@ Redux::setSection( $opt_name, array(
                 'title'     => __('Header Background', 'accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
-                    'rgba'  => 'rgba(255, 255, 255, 255)',
+                    'color'  => '#fff',
                     ),
                     'required' => array(
                         array('customize-options','=',1),
@@ -5178,7 +5178,7 @@ Redux::setSection( $opt_name, array(
                     'title'     => __('Menu Background', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgba(20, 20, 22, 0.9)',
+                        'color'  => '#141416',
                          ),
                     'required' => array(
                         array('customize-options','=',1)
@@ -5204,7 +5204,7 @@ Redux::setSection( $opt_name, array(
                     'title'     => __('Menu Color', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgba(255, 255, 255, 0.8)',
+                        'color'  => '#ffffff',
                      ),
                     'required' => array(
                         array('customize-options','=',1)
@@ -5216,7 +5216,7 @@ Redux::setSection( $opt_name, array(
                     'title'     => __('Menu Border Color ', 'accelerated-mobile-pages'),
                     'type'      => 'color_rgba',
                     'default'   => array(
-                        'rgba'  => 'rgb(47, 47, 47, 1)',
+                        'color'  => '#2f2f2f',
                      ),
                     'required' => array(
                         array('customize-options','=',1)

@@ -210,6 +210,218 @@ jQuery(function($) {
         });
     }
     $(document).ready(function() {
+
+
+    $('#redux_builder_amp-header-type li.redux-image-select').on('click', function(){
+        var current_header = $( this ).find('input');
+        var current_header_type = $( current_header ).attr('value');
+        if ( current_header_type == 1 ) {
+            $('#swift-width-control').val('1100px');
+            $('#swift-height-control').val('60px');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#ffffff'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#ffffff');
+            $('#swift-background-scheme-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#ffffff');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
+
+            // Header Elements
+            $('#swift-element-color-control-color').val('#000000'); 
+            $('#swift-element-color-control-color').attr('data-current-color','#000000');
+            $('#swift-element-color-control-color').attr('data-color','rgb(0,0,0,1)');
+            $("input[data-id='swift-element-color-control-color']").val('#000000');
+            $("input[data-id='swift-element-color-control-rgba']").val('rgb(0,0,0,1)');
+            $("#redux_builder_amp-swift-element-color-control .sp-preview-inner").css('background-color','#000000');
+
+        };
+        if ( current_header_type == 2 ) {
+            $('#swift-width-control').val('1100px');
+            $('#swift-height-control').val('60px');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#ffffff'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#ffffff');
+            $('#swift-background-scheme-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#ffffff');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
+
+            // Header Elements
+            $('#swift-element-color-control-color').val('#000000'); 
+            $('#swift-element-color-control-color').attr('data-current-color','#000000');
+            $('#swift-element-color-control-color').attr('data-color','rgb(0,0,0,1)');
+            $("input[data-id='swift-element-color-control-color']").val('#000000');
+            $("input[data-id='swift-element-color-control-rgba']").val('rgb(0,0,0,1)');
+            $("#redux_builder_amp-swift-element-color-control .sp-preview-inner").css('background-color','#000000');
+
+        };
+        if ( current_header_type == 3 ) {
+            $('#swift-width-control').val('1100px');
+            $('#swift-height-control').val('60px');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#ffffff'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#ffffff');
+            $('#swift-background-scheme-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#ffffff');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
+
+            // Header Elements
+            $('#swift-element-color-control-color').val('#000000'); 
+            $('#swift-element-color-control-color').attr('data-current-color','#000000');
+            $('#swift-element-color-control-color').attr('data-color','rgb(0,0,0,1)');
+            $("input[data-id='swift-element-color-control-color']").val('#000000');
+            $("input[data-id='swift-element-color-control-rgba']").val('rgb(0,0,0,1)');
+            $("#redux_builder_amp-swift-element-color-control .sp-preview-inner").css('background-color','#000000');
+
+        };
+        if ( current_header_type == 4) {
+            // $('#ampforwp_themes_swift_h4menu_color-color').val('#fa0732'); 
+            $('#swift-width-control').val('1100px');
+            $('#swift-height-control').val('60px');
+
+            // Header 4 Desktop Menu Color
+            $('#ampforwp_themes_swift_h4menu_color-color').val('#ffffff'); 
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-current-color','#ffffff');
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-color']").val('#ffffff');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4menu_color .sp-preview-inner").css('background-color','#ffffff');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#000000'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#000000');
+            $('#swift-background-scheme-color').attr('data-color','rgb(0,0,0,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#000000');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(0,0,0,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#000000');
+
+            $('#ampforwp_themes_swift_h4menu_position-select').val('3').trigger('change.select2');
+            
+            
+             // $('#redux_builder_amp-swift-background-scheme-color .sp-preview-inner').css('background-color','#fa0732');
+            //$('#swift-background-scheme-color').val('#000');
+        };
+        if ( current_header_type == 5) {
+            $('#swift-width-control').val('90%');
+            $('#swift-height-control').val('auto');
+
+            $('#ampforwp_themes_swift_h4menu_position-select').val('1').trigger('change.select2');
+
+            // Header 5 Desktop Menu Color
+            $('#ampforwp_themes_swift_h4menu_color-color').val('#111111'); 
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-current-color','#111111');
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-color','rgb(17,17,17,1)');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-color']").val('#111111');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-rgba']").val('rgb(17,17,17,1)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4menu_color .sp-preview-inner").css('background-color','#111111');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#ffffff'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#ffffff');
+            $('#swift-background-scheme-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#ffffff');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
+
+        }
+        if ( current_header_type == 6) {
+            $('#swift-width-control').val('100%');
+            $('#swift-height-control').val('80px');
+
+            $('#ampforwp_themes_swift_h4menu_position-select').val('2').trigger('change.select2');
+            // Header 6 Desktop Menu Color
+            $('#ampforwp_themes_swift_h4menu_color-color').val('#111111'); 
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-current-color','#111111');
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-color','rgb(17,17,17,1)');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-color']").val('#111111');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-rgba']").val('rgb(17,17,17,1)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4menu_color .sp-preview-inner").css('background-color','#111111');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#ffffff'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#ffffff');
+            $('#swift-background-scheme-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#ffffff');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
+            $('#swift_hm_bdr_wdth').val('2px');
+            // Hambergur menu border color
+            $('#swift_hm_bdr_clr-color').val('#eeeeee'); 
+            $('#swift_hm_bdr_clr-color').attr('data-current-color','#eeeeee');
+            $('#swift_hm_bdr_clr-color').attr('data-color','rgb(238,238,238,1)');
+            $("input[data-id='swift_hm_bdr_clr-color']").val('#eeeeee');
+            $("input[data-id='swift_hm_bdr_clr-rgba']").val('rgb(238,238,238,1)');
+            $("#redux_builder_amp-swift_hm_bdr_clr .sp-preview-inner").css('background-color','#eeeeee');
+        }
+        if ( current_header_type == 7) {
+            $('#swift-width-control').val('90%');
+            $('#swift-height-control').val('auto');
+
+            // Header Background
+            $('#swift-background-scheme-color').val('#000000'); 
+            $('#swift-background-scheme-color').attr('data-current-color','#000000');
+            $('#swift-background-scheme-color').attr('data-color','rgb(0,0,0,1)');
+            $("input[data-id='swift-background-scheme-color']").val('#000000');
+            $("input[data-id='swift-background-scheme-rgba']").val('rgb(0,0,0,1)');
+            $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#000000');
+
+            // Header 7 Desktop Menu Color
+            $('#ampforwp_themes_swift_h4menu_color-color').val('#ffffff'); 
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-current-color','#ffffff');
+            $('#ampforwp_themes_swift_h4menu_color-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-color']").val('#ffffff');
+            $("input[data-id='ampforwp_themes_swift_h4menu_color-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4menu_color .sp-preview-inner").css('background-color','#ffffff');
+
+            $("#swift_h7_menulabel").val('Explore');
+            $('#swift_hm_bdr_wdth').val('1px');
+            // Hambergur menu border color
+            $('#swift_hm_bdr_clr-color').val('#cccccc'); 
+            $('#swift_hm_bdr_clr-color').attr('data-current-color','#cccccc');
+            $('#swift_hm_bdr_clr-color').attr('data-color','rgb(204,204,204,1)');
+            $("input[data-id='swift_hm_bdr_clr-color']").val('#cccccc');
+            $("input[data-id='swift_hm_bdr_clr-rgba']").val('rgb(204,204,204,1)');
+            $("#redux_builder_amp-swift_hm_bdr_clr .sp-preview-inner").css('background-color','#cccccc');
+
+            $('#ampforwp_themes_swift_h4cta').val('1');
+            $("#ampforwp_themes_swift_h4cta_text").val('Purchase');
+            $("#ampforwp_themes_swift_h4cta-brdr").val('1');
+
+            // Border-Color
+            $('#ampforwp_themes_swift_h4cta_brdrcolor-color').val('#ffffff80'); 
+            $('#ampforwp_themes_swift_h4cta_brdrcolor-color').attr('data-current-color','#ffffff80');
+            $('#ampforwp_themes_swift_h4cta_brdrcolor-color').attr('data-color','rgba(255,255,255,0.5)');
+            $("input[data-id='ampforwp_themes_swift_h4cta_brdrcolor-color']").val('#ffffff80');
+            $("input[data-id='ampforwp_themes_swift_h4cta_brdrcolor-rgba']").val('rgba(255,255,255,0.5)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4cta_brdrcolor .sp-preview-inner").css('background-color','#ffffff80');
+
+            $("#ampforwp_themes_swift_h4ctabrdrwd").val('1');
+            $("#ampforwp_themes_swift_h4cta_brdrds").val('20');
+
+            // CTA Text Color
+            $('#ampforwp_themes_swift_h4cta_txtcolor-color').val('#ffffff'); 
+            $('#ampforwp_themes_swift_h4cta_txtcolor-color').attr('data-current-color','#ffffff');
+            $('#ampforwp_themes_swift_h4cta_txtcolor-color').attr('data-color','rgb(255,255,255,1)');
+            $("input[data-id='ampforwp_themes_swift_h4cta_txtcolor-color']").val('#ffffff');
+            $("input[data-id='ampforwp_themes_swift_h4cta_txtcolor-rgba']").val('rgb(255,255,255,1)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4cta_txtcolor .sp-preview-inner").css('background-color','#ffffff');
+
+            //CTA Background Color
+            $('#ampforwp_themes_swift_h4cta_color-color').val('#ffffff00'); 
+            $('#ampforwp_themes_swift_h4cta_color-color').attr('data-current-color','#ffffff00');
+            $('#ampforwp_themes_swift_h4cta_color-color').attr('data-color','rgb(255,255,255,0)');
+            $("input[data-id='ampforwp_themes_swift_h4cta_color-color']").val('#ffffff00');
+            $("input[data-id='ampforwp_themes_swift_h4cta_color-rgba']").val('rgb(255,255,255,0)');
+            $("#redux_builder_amp-ampforwp_themes_swift_h4cta_color .sp-preview-inner").css('background-color','#ffffff00');
+        }
+    });
+
+
+
         if(getQueryStringValue('page')=='amp_options'){
             //Tab section implementation
             optionSectionDevision();
@@ -352,7 +564,7 @@ jQuery(function($) {
                 // Adding Default Font Family
                 $('#s2id_amp_font_selector-select a').removeClass('select2-default');
                 
-                $('#select2-chosen-3').html(redux_data.amp_font_selector);
+                //$('#select2-chosen-3').html(redux_data.amp_font_selector);
                 if(redux_data.amp_font_selector==''){
                     redux_data.amp_font_selector = 'Poppins'
                 }
