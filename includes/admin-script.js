@@ -349,6 +349,10 @@ jQuery(function($) {
             $("input[data-id='swift-background-scheme-rgba']").val('rgb(255,255,255,1)');
             $("#redux_builder_amp-swift-background-scheme .sp-preview-inner").css('background-color','#ffffff');
             $('#swift_hm_bdr_wdth').val('2px');
+
+            // Box shadow
+            $('#ampforwp_themes_swift_h4bxs').val('1');
+
             // Hambergur menu border color
             $('#swift_hm_bdr_clr-color').val('#eeeeee'); 
             $('#swift_hm_bdr_clr-color').attr('data-current-color','#eeeeee');
