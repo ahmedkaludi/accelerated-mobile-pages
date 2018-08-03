@@ -3554,6 +3554,13 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'ampforwp-subdomain-endpoint',
+                        'type'     => 'switch',
+                        'title'    => __('Use Subdomain As Endpoint', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('For Example amp.example.com','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
                         'title'    => __('Change Internal Links to AMP', 'accelerated-mobile-pages'),

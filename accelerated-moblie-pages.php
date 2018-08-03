@@ -467,7 +467,7 @@ function ampforwp_is_amp_endpoint() {
 		return ampforwp_is_non_amp();
 	}
 	else {
-		return false !== get_query_var( 'amp', false );
+		return apply_filters('ampforwp_is_amp_endpoint', false !== get_query_var( 'amp', false ) );
 	}
 }
 
@@ -568,7 +568,15 @@ if ( ! function_exists('ampforwp_init') ) {
 		}
 	}
 }
-
+// Subdomain as endpoint #2236
+add_action( 'init', 'ampforwp_subdomain_endpoint');
+if ( ! function_exists('ampforwp_subdomain_endpoint') ) {
+	function ampforwp_subdomain_endpoint(){
+		if ( true == ampforwp_get_setting('ampforwp-subdomain-endpoint') ){
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-subdomain.php';
+		}
+	}
+}
 
 function amp_update_db_check() {
 	global $redux_builder_amp;
