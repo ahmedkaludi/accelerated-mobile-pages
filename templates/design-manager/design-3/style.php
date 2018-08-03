@@ -39,26 +39,26 @@ amp-wistia-player {margin:5px 0px;}
     font-family: 'Roboto Slab';
     font-style: normal;
     font-weight: 400;
-    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Regular.ttf'); ?>');
+    src:  local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Regular.ttf')); ?>');
 }
 @font-face {
     font-family: 'Roboto Slab';
     font-style: normal;
     font-weight: 700;
-    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Bold.ttf'); ?>');
+    src:  local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/robotoslab/RobotoSlab-Bold.ttf')); ?>');
 }
 
 @font-face {
     font-family: 'PT Serif';
     font-style: normal;
     font-weight: 400;
-    src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Regular.ttf'); ?>');
+    src:  local('PT Serif'), local('PTSerif-Regular'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Regular.ttf')); ?>');
 }
 @font-face {
     font-family: 'PT Serif';
     font-style: normal;
     font-weight: 700;
-    src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Bold.ttf'); ?>');
+    src:  local('PT Serif Bold'), local('PTSerif-Bold'), url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__).'fonts/ptserif/PT_Serif-Web-Bold.ttf')); ?>');
 }
 
 /* Template Styles */
@@ -428,11 +428,11 @@ amp-user-notification button { background-color:  <?php echo esc_attr($redux_bui
 .amp-wp-article-content img { max-width: 100%;}
 @font-face {
   font-family: 'icomoon';
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>');
-  src:  url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot'); ?>') format('embedded-opentype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.ttf'); ?>') format('truetype'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.woff'); ?>') format('woff'),
-    url('<?php echo esc_url(plugin_dir_url(__FILE__) .'fonts/icomoon.svg'); ?>') format('svg');
+  src:  url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot')); ?>');
+  src:  url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__) .'fonts/icomoon.eot')); ?>') format('embedded-opentype'),
+    url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__) .'fonts/icomoon.ttf')); ?>') format('truetype'),
+    url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__) .'fonts/icomoon.woff')); ?>') format('woff'),
+    url('<?php echo esc_url(ampforwp_font_url(plugin_dir_url(__FILE__) .'fonts/icomoon.svg')); ?>') format('svg');
   font-weight: normal;
   font-style: normal;
 }

@@ -7951,3 +7951,10 @@ function ampforwp_rel_next_prev(){
         <link rel="next" href="<?php echo get_pagenum_link( $paged + 1 ); ?>" /><?php
     }
 }
+
+// Font URL controller
+if ( ! function_exists('ampforwp_font_url') ) {
+	function ampforwp_font_url($font_url){
+		return apply_filters('ampforwp_font_url', $font_url);
+	}
+}
