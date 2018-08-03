@@ -14,6 +14,7 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 			add_filter('ampforwp_is_amp_endpoint', array( $this , 'amp_subdomain_endpoint') );
 			add_filter('ampforwp_modify_rel_canonical', array( $this , 'amp_subdomain_amphtml') );
 			add_filter('ampforwp_font_url', array( $this , 'ampforwp_font_url') );
+			add_filter('ampforwp_url_controller', array( $this , 'ampforwp_url_controller') );
 		}
 
 		// Return true if there's AMP in subdomain (amp.example.com)
@@ -35,6 +36,15 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 		}
 
 		public function ampforwp_font_url( $url ) {
+			if ( false === strpos( $url, '://' . $this->amp . '.' ) ) {
+				$url = str_replace( $this->www, '://' . $this->amp . '.', $url );
+			}
+			return $url;
+		}
+
+		public function ampforwp_url_controller( $url ) {
+
+			$url = str_replace('/amp', '', $url);
 			if ( false === strpos( $url, '://' . $this->amp . '.' ) ) {
 				$url = str_replace( $this->www, '://' . $this->amp . '.', $url );
 			}
