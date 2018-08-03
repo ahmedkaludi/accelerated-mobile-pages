@@ -32,11 +32,7 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 
 			return $amphtml;
 		}
-
-		public function allowed_redirect_hosts($allowed) {
-			$allowed = 'amp.localhost/weekly';
-			return $allowed;
-		}
+		
 	}
 	// Initiate the Class
 	new AMPforWP_Subdomain_Endpoint();
