@@ -95,6 +95,9 @@ $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-1']['c
 .footer_menu ul li:first-child{ margin-left:0 }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
+a.btt:hover {
+    cursor: pointer;
+}
 /* Category 1 */
 .amp-category-block ul{ list-style-type:none }
 .amp-category-block-btn{ display: block; text-align: center; font-size: 13px; margin-top: 15px; border-bottom: 1px solid #f1f1f1; text-decoration: none; }

@@ -167,6 +167,9 @@ $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-3']['c
 .footer_menu ul li:first-child{ margin-left:0 }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
+a.btt:hover {
+    cursor: pointer;
+}
 <?php if ( is_singular() || $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
 /* Single */
 .single-post main{ margin: 20px 17px 17px 17px; }

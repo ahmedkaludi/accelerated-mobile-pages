@@ -806,6 +806,9 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 .cp-rgt .view-non-amp{
 	display:none;
 }
+a.btt:hover {
+    cursor: pointer;
+}
 <?php } //Menu Copy Right CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
