@@ -1131,7 +1131,7 @@ function ampforwp_new_dir( $dir ) {
 									)
 								);
 					if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
-						$ga_fields['vars']['anonymizeIP'] = 'true';
+						$ga_fields['vars']['anonymizeIP'] = 'set';
 					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
 					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields ); ?>
