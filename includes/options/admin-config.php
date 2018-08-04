@@ -4690,6 +4690,123 @@ Redux::setSection( $opt_name, array(
 //                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
+            array(
+                       'id' => 'header_section_3',
+                       'type' => 'section',
+                       'title' => __('Header Settings', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+            ),
+            // Call Now button
+             array(
+                    'id'       => 'ampforwp-callnow-button',
+                    'type'     => 'switch',
+                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'required' => array(
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'default'   => 0
+             ),
+             array(
+                    'id'        =>'enable-amp-call-numberfield',
+                 'class' => 'child_opt child_opt_arrow',
+                    'type'      => 'text',
+                    'required'  => array(
+                        array('ampforwp-callnow-button', '=' , '1'),
+                        array('amp-design-selector', '!=' , '1')
+                    ),
+                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
+                    'default'   => '',
+             ),
+             array(
+                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
+                    'type'      => 'switch',
+                    'title'     => __('Non-AMP link in Header', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle'  => __('If you want users in header to go to non-AMP website from the Header', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+            ),
+             array(
+                    'id'        => 'amp-opt-sticky-head',
+                    'type'      => 'switch',
+                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    ),
+                    'tooltip-subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
+                    'default'  => '0'
+            ),
+             array(
+                    'id'       => 'amp-design-3-search-feature',
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '3')
+                    ),
+                    'default'  => '0'
+            ),
+             
+             array(
+                    'id'       => 'amp-design-2-search-feature',
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '2')
+                    ),
+                    'default'  => '0'
+            ),
+
+             array(
+                    'id'       => 'amp-design-1-search-feature',
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '1')
+                    ),
+                    'default'  => '0'
+            ),
+            array(
+                    'id'       => 'amp-swift-search-feature',
+                    'type'     => 'switch',
+                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
+                    'required' => array(
+                        array('amp-design-selector', '=' , '4')
+                    ),
+                    'default'  => '1'
+            ),
+            array(
+                'id'        => 'amp-sticky-header', 
+                "type"      =>"switch",
+                'title'     =>"Sticky Header ",
+                'default'   => 0,
+                'required'  => array(
+                    array('amp-design-selector', '=' , '4')
+                )
+            ),
+             array(
+                    'id'        => 'amp-opt-color-rgba-headercolor',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#FFFFFF',
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
+              array(
+                    'id'        => 'amp-opt-color-rgba-headerelements',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Header Elements','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => ampforwp_get_element_default_color(),
+                    ),
+                    'required' => array(
+                      array('amp-design-selector', '=' , '3')
+                    )
+            ),
            array(
                        'id' => 'header_section_2',
                        'type' => 'section',
@@ -4902,123 +5019,7 @@ Redux::setSection( $opt_name, array(
                     'required' => array(array('amp-design-selector', '!=' , '4')),
 
             ),
-           array(
-                       'id' => 'header_section_3',
-                       'type' => 'section',
-                       'title' => __('Header Settings', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 1,
-            ),
-            // Call Now button
-             array(
-                    'id'       => 'ampforwp-callnow-button',
-                    'type'     => 'switch',
-                    'title'    => __('Call Now Button', 'accelerated-mobile-pages'),
-                    'true'      => 'true',
-                    'false'     => 'false',
-                    'required' => array(
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'default'   => 0
-             ),
-             array(
-                    'id'        =>'enable-amp-call-numberfield',
-                 'class' => 'child_opt child_opt_arrow',
-                    'type'      => 'text',
-                    'required'  => array(
-                        array('ampforwp-callnow-button', '=' , '1'),
-                        array('amp-design-selector', '!=' , '1')
-                    ),
-                    'title'     => __('Enter Phone Number', 'accelerated-mobile-pages'),
-                    'default'   => '',
-             ),
-             array(
-                    'id'        =>'amp-on-off-support-for-non-amp-home-page',
-                    'type'      => 'switch',
-                    'title'     => __('Non-AMP link in Header', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'  => __('If you want users in header to go to non-AMP website from the Header', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-            ),
-             array(
-                    'id'        => 'amp-opt-sticky-head',
-                    'type'      => 'switch',
-                    'title'     => __('Make Header UnSticky','accelerated-mobile-pages'), 
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    ),
-                    'tooltip-subtitle'     => __('Turning it ON will remove the sticky head from the design.', 'accelerated-mobile-pages' ),
-                    'default'  => '0'
-            ),
-             array(
-                    'id'       => 'amp-design-3-search-feature',
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '3')
-                    ),
-                    'default'  => '0'
-            ),
-             
-             array(
-                    'id'       => 'amp-design-2-search-feature',
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '2')
-                    ),
-                    'default'  => '0'
-            ),
-
-             array(
-                    'id'       => 'amp-design-1-search-feature',
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '1')
-                    ),
-                    'default'  => '0'
-            ),
-            array(
-                    'id'       => 'amp-swift-search-feature',
-                    'type'     => 'switch',
-                    'title'    => __( 'Search', 'accelerated-mobile-pages' ),
-                    'required' => array(
-                        array('amp-design-selector', '=' , '4')
-                    ),
-                    'default'  => '1'
-            ),
-            array(
-                'id'        => 'amp-sticky-header', 
-                "type"      =>"switch",
-                'title'     =>"Sticky Header ",
-                'default'   => 0,
-                'required'  => array(
-                    array('amp-design-selector', '=' , '4')
-                )
-            ),
-             array(
-                    'id'        => 'amp-opt-color-rgba-headercolor',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#FFFFFF',
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
-              array(
-                    'id'        => 'amp-opt-color-rgba-headerelements',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Header Elements','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => ampforwp_get_element_default_color(),
-                    ),
-                    'required' => array(
-                      array('amp-design-selector', '=' , '3')
-                    )
-            ),
+           
              // Tab 1 end    
              /* array(
                    'id' => 'header-tab-1-end',
