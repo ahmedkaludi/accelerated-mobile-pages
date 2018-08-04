@@ -7953,3 +7953,9 @@ if ( ! function_exists('ampforwp_font_url') ) {
 		return apply_filters('ampforwp_font_url', $font_url);
 	}
 }
+
+// Removing Marfeel plugin which was blocking internal pages of AMP #2423
+add_action('wp','ampforwp_remove_marfeel',9);
+function ampforwp_remove_marfeel(){
+remove_action('wp', 'render_marfeel_amp_content' );
+}
