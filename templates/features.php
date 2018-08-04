@@ -7872,15 +7872,7 @@ function ampforwp_modify_plugin_manager_options($sections){
 	return $sections;
 }
 
-// Get Settings from Redux #2177
-function ampforwp_get_setting( $opt_name='' ){
-	global $redux_builder_amp;
-	$opt_value = '';
-	if ( isset($redux_builder_amp[$opt_name]) ) {
-		$opt_value = $redux_builder_amp[$opt_name];
-	}
-	return $opt_value;
-}
+
 
 // Fallbacks for Vendor AMP #2287
 // Class AMP_Base_Sanitizer
