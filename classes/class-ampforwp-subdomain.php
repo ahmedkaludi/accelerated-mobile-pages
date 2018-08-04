@@ -15,6 +15,7 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 			add_filter('ampforwp_modify_rel_canonical', array( $this , 'amp_subdomain_amphtml') );
 			add_filter('ampforwp_font_url', array( $this , 'ampforwp_font_url') );
 			add_filter('ampforwp_url_controller', array( $this , 'ampforwp_url_controller') );
+			add_filter('amp_post_template_file', array( $this , 'amp_post_template_file'), 11 , 3 );
 		}
 
 		// Return true if there's AMP in subdomain (amp.example.com)
@@ -49,6 +50,18 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 				$url = str_replace( $this->www, '://' . $this->amp . '.', $url );
 			}
 			return $url;
+		}
+
+		public function amp_post_template_file( $file, $type, $post ) {
+			if ( 'single' == $type && is_front_page() && false == ampforwp_get_setting('amp-frontpage-select-option') ) {
+
+				$file = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector() .'/index.php';
+
+				if ( defined('AMPFORWP_CUSTOM_THEME') ) {
+					$file = AMPFORWP_CUSTOM_THEME . '/index.php';
+				}
+			}
+			return $file;
 		}
  
 	}
