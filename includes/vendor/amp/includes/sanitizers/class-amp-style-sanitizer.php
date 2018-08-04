@@ -22,7 +22,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 			return;
 		}
 
-		if ( $node->hasAttributes() && $node instanceof DOMElement ) {
+		if ( $node->hasAttributes() && $node instanceof \DOMElement ) {
 			$style = $node->getAttribute( 'style' );
 			$class = $node->getAttribute( 'class' );
 
