@@ -5286,6 +5286,122 @@ Redux::setSection( $opt_name, array(
                         array('header-type', '=' , '10')
                     )  
               ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_menu_sbfz', 
+                    "type"          => "text",
+                    'title'         => "Desktop Menu Font Size",
+                    'default'       => '17px',
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_menu_fbtwt', 
+                    "type"          => "text",
+                    'title'         => "Desktop Menu Font Weight",
+                    'default'       => '400',
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_menu_txtcolor', 
+                    "type"          => "color_rgba",
+                    'title'         => "Desktop Menu Text Color",
+                    'default'       => array(
+                                        'color'  => '#8898aa',
+                                        ),
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_menu_txt_hvrcolor', 
+                    "type"          => "color_rgba",
+                    'title'         => "Desktop Menu Text Hover Color",
+                    'default'       => array(
+                                        'color'  => '#32325d',
+                                        ),
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'    => 'child_opt',
+                    'id'       => 'h10-drpdwn',
+                    'type'     => 'switch',
+                    'title'    => __('Dropdown Support', 'accelerated-mobile-pages'),
+                    'true'      => 'true',
+                    'false'     => 'false',
+                    'default'   => '1',
+                    'required' => array( 
+                        array('customize-options','=',1), 
+                        array('header-type', '=' , '10') 
+
+                    ),
+            ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_submenu_txtcolor', 
+                    "type"          => "color_rgba",
+                    'title'         => "Desktop Sub Menu Text Color",
+                    'default'       => array(
+                                        'color'  => '#6772e5',
+                                        ),
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('h10-drpdwn', '=' , '1'), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_submenu_bgcolor', 
+                    "type"          => "color_rgba",
+                    'title'         => "Desktop Sub Menu Background Color",
+                    'default'       => array(
+                                        'color'  => '#ffffff',
+                                        ),
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('h10-drpdwn', '=' , '1'), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_submenu_bdrcolor', 
+                    "type"          => "color_rgba",
+                    'title'         => "Desktop Sub Menu Border Color",
+                    'default'       => array(
+                                        'color'  => '#DCDEED',
+                                        ),
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('h10-drpdwn', '=' , '1'), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
+            array(
+                    'class'         => 'child_opt',
+                    'id'            => 'h10swift_submenu_sbfz', 
+                    "type"          => "text",
+                    'title'         => "Desktop Sub Menu Font Size",
+                    'default'       => '16px',
+                    'required'      => array(
+                            array('customize-options','=',1), 
+                            array('h10-drpdwn', '=' , '1'), 
+                            array('header-type', '=' , '10') 
+                    ),
+                ),
             // Tab 2 end
             /*array(
                    'id' => 'header-tab-2-end',
