@@ -289,6 +289,34 @@ function amp_header_core(){
         $bodyClass = 'amp-archive';
     }
     $ampforwp_custom_post_page  =  ampforwp_custom_post_page();
+
+add_action('amp_post_template_head','ampforwp_sanitize_archive_desc');
+function ampforwp_sanitize_archive_desc(){
+
+    $description 	= get_the_archive_description();
+    $sanitizer = new AMPFORWP_Content( $description, array(), 
+			apply_filters( 'ampforwp_content_sanitizers',
+				array( 
+					'AMP_Style_Sanitizer' 		=> array(),
+					'AMP_Blacklist_Sanitizer' 	=> array(),
+					'AMP_Img_Sanitizer' 		=> array(),
+					'AMP_Video_Sanitizer' 		=> array(),
+					'AMP_Audio_Sanitizer' 		=> array(),
+					'AMP_Iframe_Sanitizer' 		=> array(
+						'add_placeholder' 		=> true,
+					)
+				) ) ); 
+		    		
+	$amp_component_scripts = $sanitizer->amp_scripts;
+		    	
+	if ( $sanitizer && $amp_component_scripts) {	
+		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
+			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
+		}
+	}   
+	
+}
+
     // Homepage
 	if ( is_home() ) {
 		
