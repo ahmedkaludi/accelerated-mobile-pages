@@ -54,9 +54,9 @@ $css = '
 }
 
 
-';
+'; 
 global $redux_builder_amp;
-if($redux_builder_amp['amp-rtl-select-option']){
+if(ampforwp_get_setting('amp-rtl-select-option')){
 	$css .= '/** RTL CSS **/
 	.blu-mod{
 	    margin: 0 0% 3% 3%;

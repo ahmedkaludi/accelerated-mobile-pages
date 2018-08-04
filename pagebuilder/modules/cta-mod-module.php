@@ -19,7 +19,7 @@ $css = '
 	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
 }';
 global $redux_builder_amp;
-if($redux_builder_amp['amp-rtl-select-option']){
+if(ampforwp_get_setting('amp-rtl-select-option')){
 $css .=	'
 /** RTL CSS **/
 .cta-mod .cta-btn { text-align: left;}
