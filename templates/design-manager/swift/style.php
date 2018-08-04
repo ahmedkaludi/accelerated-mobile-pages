@@ -1425,3 +1425,105 @@ a.lb-x{
 } 
 .amp-ad-wrapper{direction:ltr;}
 <?php } //RTL End ?>
+
+<?php //Header 10 CSS Starts 
+if($redux_builder_amp['header-type'] == '10'){?>
+	.header-10{
+		<?php if($redux_builder_amp['swifth10-background-scheme']['rgba']){?>
+			background: <?php echo $redux_builder_amp['swifth10-background-scheme']['rgba']?>;
+		<?php }  ?>
+	}
+	.header-10 .cntr{
+		<?php if( isset($redux_builder_amp['swifth10-width-control']) && $redux_builder_amp['swifth10-width-control']){?>
+			max-width:<?php echo $redux_builder_amp['swifth10-width-control']?>;
+		<?php }?>
+	}
+	.mbl-mnu{display:none;}
+	.head-10{
+		align-items: center;
+	    display: flex;
+	    border-bottom: 2px solid #DCDEED;
+	}
+	.h-logo{order:0;}
+	.cta{order:1;}
+	.dsk-mnu{
+	    flex-grow: 1;
+		text-align: center;
+    }
+	.dsk-mnu ul li{
+		display: inline-block;
+		font-size:17px;
+		font-weight:400;
+		margin-right: 30px;
+		text-align:center;
+	}
+	.dsk-mnu ul li a, .cta a{
+		color:#8898aa;
+	}
+	.dsk-mnu > ul > li > a{
+		padding:20px 0px;
+	}
+	.dsk-mnu ul li a:hover, .cta a:hover{
+		color:#32325d;
+	}
+	.dsk-mnu input{display:none;}
+	.amp-menu li.menu-item-has-children:after{display:none;}
+	.cta a:after{
+		content:"\e5c8";
+		display:inline-block;
+		font-family: 'icomoon';
+		position: relative;
+	    top: 2px;
+	    padding-left: 5px;
+	}
+	.dsk-mnu .amp-menu li.menu-item-has-children ul {
+	    background: #fff;
+	    left: -50%;
+	    position: absolute;
+	    top: 100%;
+	    transform: translateY(20px);
+	    transition: all .3s ease-in-out;
+	    visibility: hidden;
+	    width: 250px;
+	    z-index: 99;
+	    text-align: left;
+	    height: auto;
+	    opacity: 0;
+	    display:block;
+	    padding:0;
+	    margin:0;
+	}
+	.dsk-mnu ul li.menu-item-has-children:hover>ul {
+		opacity: 1;
+	    visibility: visible;
+	    transform: translateY(0px);
+	}
+	.dsk-mnu .amp-menu li.menu-item-has-children>ul>li{
+		padding:0
+	}
+	.dsk-mnu .amp-menu li .sub-menu li a{
+		padding:20px 0px;
+		box-shadow: 0px 0px 1px 0px #ccc;
+	}
+	.dsk-mnu .amp-menu li.menu-item-has-children ul li{
+		margin:0;
+	}
+	.dsk-mnu .amp-menu li.menu-item-has-children ul li ul{
+	    left: 100%;
+	    top: 0;
+	}
+	.dsk-mnu .amp-menu li.menu-item-has-children > ul:before{
+		content:"";
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 10px 10px 10px;
+		border-color: transparent transparent #fff transparent;
+		position: absolute;
+	    left: 0;
+	    right: 0;
+	    margin: 0 auto;
+	    top: -10px;
+	    z-index: 9;
+	}
+<?php } // Header 10 CSS Ends?>

@@ -365,6 +365,49 @@
     </div>
     <?php do_action('ampforwp_header_bottom_design4'); ?>
 </header>
+<?php } ?>
+<?php if($redux_builder_amp['header-type'] == '10'){ ?>
+    <header class="header-10">
+        <?php do_action('ampforwp_header_top_design4'); ?>
+        <input type="checkbox" id="offcanvas-menu" class="tg" />
+        <div class="hamb-mnu">
+            <aside class="m-ctr">
+                <div class="m-scrl">
+                    <div class="menu-heading clearfix">
+                        <label for="offcanvas-menu" class="c-btn"></label>
+                    </div><!--end menu-heading-->
+                    <?php if ( amp_menu(false) ) : ?>
+                        <nav class="m-menu">
+                           <?php amp_menu();?>
+                        </nav><!--end slide-menu -->
+                    <?php endif; ?>
+                    <?php do_action('ampforwp_after_amp_menu');?>
+                    <?php if ( $redux_builder_amp['menu-search'] ) { ?>
+                    <div class="m-srch">
+                        <?php amp_search();?>
+                    </div>
+                    <?php } ?>
+                </div><!-- /.m-srl -->
+            </aside><!--end menu-container-->
+            <label for="offcanvas-menu" class="fsc"></label>
+            <div class="cntr">
+                <div class="head-10">
+                    <div class="h-logo">
+                        <?php amp_logo(); ?>
+                    </div>
+                    <div class="dsk-mnu">
+                        <?php amp_menu();?>
+                    </div>
+                    <div class="mbl-mnu">
+                       <label for="offcanvas-menu" class="t-btn"></label>
+                    </div>
+                    <div class="cta">
+                        <a href="#">Sign in</a>
+                    </div>
+                </div><!-- /.head-10 -->
+            </div><!-- /.cntr -->
+        </div><!-- /.hamb-mnu -->
+    </header><!-- /. header-10 -->
 <?php }
 do_action("ampforwp_advance_header_layout_options");
  ?>

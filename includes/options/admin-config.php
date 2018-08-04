@@ -4680,6 +4680,10 @@ Redux::setSection( $opt_name, array(
                                 'alt'=>' Header 3 ',
                                 'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-3.png',
                                 ),
+                        '10' => array(
+                                'alt'=>' Header 10 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/head-1.png',
+                                ),
                     ),
                    'default'=> '1',
 //                   'max-width' => 200,
@@ -5255,7 +5259,33 @@ Redux::setSection( $opt_name, array(
                       array('customize-options','=',1)
                     )           
             ),
-            
+
+            // Header 10 Fileds are start from here
+            array(
+                    'id'       => 'swifth10-width-control',
+                    'class' => 'child_opt',
+                    'type'     => 'text',
+                    'title'    => __('Header Width', 'accelerated-mobile-pages'),
+                    'default'  => '1040px',
+                    'required' => array(
+                        array('customize-options','=',1),
+                        array('header-type', '=' , '10')
+                    )           
+            ),
+
+            array(
+                'class' => 'child_opt',
+                'id'        => 'swifth10-background-scheme',
+                'title'     => __('Header Background', 'accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'default'   => array(
+                    'color'  => '#E6EBF1',
+                    ),
+                    'required' => array(
+                        array('customize-options','=',1),
+                        array('header-type', '=' , '10')
+                    )  
+              ),
             // Tab 2 end
             /*array(
                    'id' => 'header-tab-2-end',
