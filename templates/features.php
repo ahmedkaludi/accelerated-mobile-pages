@@ -2773,6 +2773,9 @@ function ampforwp_gtm_support(){
 add_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
 function amp_gtm_add_gtm_support( $analytics ) {
 	global $redux_builder_amp;
+	$get_gtm_id = $redux_builder_amp['amp-gtm-id'];
+	$remove_spaces = str_replace(" ", "", $get_gtm_id); 
+
 	if ( ! is_array( $analytics ) ) {
 		$analytics = array();
 	}
@@ -2780,7 +2783,7 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
 		'attributes' => array(
 			'data-credentials' 	=> 'include',
-			'config'			=> 'https://www.googletagmanager.com/amp.json?id='. $redux_builder_amp['amp-gtm-id'] .'&gtm.url=SOURCE_URL'
+			'config'			=> 'https://www.googletagmanager.com/amp.json?id='. $remove_spaces .'&gtm.url=SOURCE_URL'
 		),
 		'config_data' => array(
 			'vars' => array(
