@@ -4913,7 +4913,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'signin-button',
-                'title'     => __('Button Customize', 'accelerated-mobile-pages'),
+                'title'     => __('Call To Action', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can do the customization here ','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -4923,7 +4923,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-text',
-                'title'     => __('Button Text', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Text', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can write your required text ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => 'Sign up free',
@@ -4933,7 +4933,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-link',
-                'title'     => __('Button Link', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Link', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can add the Link here ','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '#',
@@ -4943,7 +4943,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-style',
-                'title'     => __('Button Styles', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Styles', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can change the button here','accelerated-mobile-pages'),
                 'type'      => 'switch',
                 'default'   => '0',
@@ -4953,7 +4953,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-border-line',
-                'title'     => __('Button Border Line', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Border Line', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can change the button border line','accelerated-mobile-pages'),
                 'type'      => 'text',
                 'default'   => '2',
@@ -4963,7 +4963,7 @@ Redux::setSection( $opt_name, array(
               ),
             array(
                 'id'        => 'signin-button-text-color',
-                'title'     => __('Button Text Color', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('Choose the color for Button Texxt','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -4975,7 +4975,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                 'id'        => 'signin-button-border-color',
-                'title'     => __('Button Border Line Color', 'accelerated-mobile-pages'),
+                'title'     => __('CTA Border Line Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('Choose the color for Button Border Line','accelerated-mobile-pages'),
                 'type'      => 'color_rgba',
                 'default'   => array(
@@ -4987,7 +4987,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'border-type',
-                   'title'  => __('Border Type', 'accelerated-mobile-pages'),
+                   'title'  => __('CTA Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
