@@ -115,21 +115,6 @@ return array(
               'layout' => 'Layout'
             ),
 		'fields' => array(
-						array(    
-				            'type'    =>'layout-image-picker',
-				            'name'    =>"carousel_layout_type",
-				            'label'   =>"Select Layout",
-				            'tab'     =>'layout',
-				            'default' =>'1',    
-				            'options_details'=>array(
-				                            array(
-				                              'value'=>'1',
-				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
-				                            ),
-				                          ),
-				            'content_type'=>'html',
-				            ),
                         array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"width",		
