@@ -5,51 +5,78 @@ $output = '
 </amp-selector>
 ';
 $css = '
-{{if_condition_carousel_layout_type==1}}
-.amp-img{
+{{module-class}}{margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
+{{module-class}} .tab-img amp-img{
 	width:100%;
 	height:auto;
-	max-width:100%;
 }
-{{module-class}}{margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
-
-.ampTabContainer {
+{{module-class}} .ampTabContainer {
     display: flex;
     flex-wrap: wrap;
 }
-.tabs amp-selector [option][selected] {
+{{module-class}} .tabs amp-selector [option][selected] {
     cursor: pointer;
     outline:none;
     border-radius: 50px;
 }
-.tabs amp-selector [option][selected] h2{
-	color:#383E61;
-}
-.tabButton[selected] {
+{{module-class}} .tabButton[selected] {
     outline: none;
-    background:#EEF3F7;
+    background:{{hdng_bg_color}};
+    border-radius: 50px;
 }
-.tabButton h2{
-	color:#EEF3F7;
-	padding:15px;
+{{module-class}} .tabButton[selected] h2{
+	color:{{hdng_font_color}};
 }
-.tabButton {
+{{module-class}} .tabButton {
     list-style: none;
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
 } 
-.tabContent {
+{{module-class}} .tabContent {
     display: none;
     width: 100%;
     order: 1;
-    
 }
-.tabButton[selected]+.tabContent {
-    display: block;
-    margin-top:30px;
+{{module-class}} .tabButton h2{
+	color:{{hdng_bg_color}};
+	padding:15px;
+	font-size:{{hdng_fnt_sz}};
+	font-weight:{{hdng_font_type}};
+}
+{{module-class}} .tabButton[selected]+.tabContent {
+    display: grid;
+    margin-top: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0px 60px;
+    align-items:center;
+}
+{{module-class}} .tab-cntn h3{
+	color:{{tlt_font_color}};
+	font-size:{{tlt_fnt_sz}};
+	font-weight:{{tlt_font_type}};
+	line-height:1.4;
+	margin-bottom:30px;
+}
+{{module-class}} .tab-cntn{
+	color:{{cnt_font_color}};
+	font-size:{{cnt_fnt_sz}};
+	font-weight:{{cnt_font_type}};
+	line-height:1.4;
+}
+{{module-class}} .tab-cntn a{
+	color:{{btn_font_color}};
+	padding:10px 30px;
+	border-radius:50px;
+	border:2px solid {{btn_font_color}};
+	display: inline-block;
+	margin-top: 30px;
+	font-size:{{btn_fnt_sz}};
+	font-weight:{{btn_font_type}};
+	background:{{btn_bg_color}};
 }
 
+.
 ';
 
 return array(
@@ -81,11 +108,164 @@ return array(
                         array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"width",		
-	 						'label'		=>'Image Size',
+	 						'label'		=>'Tab Width',
 	           				 'tab'      =>'customizer',
 	 						'default'	=>'90%',	
 	           				'content_type'=>'css',
  						),
+	 					array(
+								'type'		=>'checkbox',
+								'name'		=>"image_layout",
+								'tab'		=>'customizer',
+								'default'	=>array('responsive'),
+								'options'	=>array(
+												array(
+													'label'=>'Responsive',
+													'value'=>'responsive',
+												),
+											),
+								'content_type'=>'html',
+						),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"hdng_fnt_sz",		
+		 						'label'		=>'Tab Heading Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'18px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'hdng_font_type',		
+	 							'label' =>"Tab Heading Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'600',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"hdng_font_color",
+								'label'		=>'Tab Heading Color',
+								'tab'		=>'design',
+								'default'	=>'#fff',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"hdng_bg_color",
+								'label'		=>'Tab Heading Background Color',
+								'tab'		=>'design',
+								'default'	=>'#8898aa',
+								'content_type'=>'css'
+							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"tlt_fnt_sz",		
+		 						'label'		=>'Tab Title Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'30px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'tlt_font_type',		
+	 							'label' =>"Tab Title Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'600',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"tlt_font_color",
+								'label'		=>'Tab Title Color',
+								'tab'		=>'design',
+								'default'	=>'#000',
+								'content_type'=>'css'
+							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"cnt_fnt_sz",		
+		 						'label'		=>'Tab Content Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'18px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'cnt_font_type',		
+	 							'label' =>"Tab Content Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'400',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"cnt_font_color",
+								'label'		=>'Tab Content Color',
+								'tab'		=>'design',
+								'default'	=>'#797f7f',
+								'content_type'=>'css'
+							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"btn_fnt_sz",		
+		 						'label'		=>'Tab Button Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'18px',	
+		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'btn_font_type',		
+	 							'label' =>"Tab Button Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'500',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"btn_font_color",
+								'label'		=>'Tab Button Color',
+								'tab'		=>'design',
+								'default'	=>'#797f7f',
+								'content_type'=>'css'
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"btn_bg_color",
+								'label'		=>'Tab Button Background Color',
+								'tab'		=>'design',
+								'default'	=>'#ffffff',
+								'content_type'=>'css'
+							),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -150,7 +330,7 @@ return array(
 		 						'name'		=>"tab_tlt",		
 		 						'label'		=>'Title',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'Title',	
+		 						'default'	=>'Make Something Amazing',	
 		           				'content_type'=>'html',
 	 						),
 	 						array(		
@@ -158,7 +338,7 @@ return array(
 		 						'name'		=>"content",		
 		 						'label'		=>'Content',
 		           				'tab'       =>'customizer',
-		 						'default'	=>'Description',	
+		 						'default'	=>'<p>We believe the best way to learn is by putting your skills to 			use.</p>',	
 		           				'content_type'=>'html',
 	 						),
 	 						array(		
