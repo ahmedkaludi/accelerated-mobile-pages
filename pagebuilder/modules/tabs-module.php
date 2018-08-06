@@ -13,6 +13,7 @@ $css = '
 {{module-class}} .ampTabContainer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 {{module-class}} .tabs amp-selector [option][selected] {
     cursor: pointer;
@@ -23,15 +24,17 @@ $css = '
     outline: none;
     background:{{hdng_bg_color}};
     border-radius: 50px;
+    
 }
 {{module-class}} .tabButton[selected] h2{
 	color:{{hdng_font_color}};
 }
 {{module-class}} .tabButton {
     list-style: none;
-    flex-grow: 1;
     text-align: center;
     cursor: pointer;
+    border-radius: 50px;
+    transition: 0.3s ease-in-out 0s;
 } 
 {{module-class}} .tabContent {
     display: none;
@@ -40,7 +43,7 @@ $css = '
 }
 {{module-class}} .tabButton h2{
 	color:{{hdng_bg_color}};
-	padding:15px;
+	padding:10px 20px;
 	font-size:{{hdng_fnt_sz}};
 	font-weight:{{hdng_font_type}};
 }
@@ -74,6 +77,28 @@ $css = '
 	font-size:{{btn_fnt_sz}};
 	font-weight:{{btn_font_type}};
 	background:{{btn_bg_color}};
+}
+
+/** Animation CSS **/
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInLeft {
+  from {opacity: 0;transform: translate3d(-0%, 0, 0);}
+  to {opacity: 1;transform: none;}
+}
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+@keyframes fadeInRight {
+  from {opacity: 0;transform: translate3d(0%, 0, 0);}
+  to {opacity: 1;transform: none;}
+}
+.fadeInRight {
+  animation-name: fadeInRight;
 }
 
 .
@@ -365,11 +390,11 @@ return array(
 								    <h2>{{tab_hdng}}</h2>
 								</div>
 								<div role="tabpanel" class="tabContent">
-									<div class="tab-img">
+									<div class="tab-img animate fadeInLeft">
 										{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
 										{{ifend_img_upload}}
 								    </div>
-								    <div class="tab-cntn">
+								    <div class="tab-cntn animate fadeInRight">
 								    	<h3>{{tab_tlt}}</h3>
 								    	{{content}}
 								    	<a href="{{btn_lnk}}">{{tab_btn}}</a>
