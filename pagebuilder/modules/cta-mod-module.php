@@ -2,7 +2,9 @@
 $output = '
 <div class="cta-tlt">
 	<h2>{{content_title}}</h2>
-	<div class="cta-dsc">{{hdng_descrp}}</div>
+	{{if_condition_check_for_hdng_desc==1}}
+		<div class="cta-dsc">{{hdng_descrp}}</div>
+	{{ifend_condition_check_for_hdng_desc_1}}
 </div>
 <div class="cta-btn">
 	<a  class="btn-txt" href="{{btn_link}}" {{if_condition_page_link_open==new_page}}target="_blank"{{ifend_condition_page_link_open_new_page}} {{if_cta_id}}id="{{cta_id}}"{{ifend_cta_id}}>{{button-text}}</a>
@@ -13,18 +15,23 @@ $css = '
 .cta-mod{margin:{{margin_css}};padding:{{padding_css}};display: inline-flex;width: 100%;align-items: center;}
 .cta-mod .cta-btn{width: 40%;text-align: right;}
 .cta-mod h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
+
 .cta-dsc{
 	font-size:{{hdng-text-size}};
 	line-height:1.3;
 	color:{{hdng_desc_color}};
+	margin-top: 5px;
 }
+
 .cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;
 	font-size: {{btn-text-size}};border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
 .cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
 @media(max-width:768px){
 	.cta-mod{display:inline-block;width:100%;text-align:center}
 	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
-	.cta-dsc {margin: 15px 0px 20px;}
+	
+		.cta-dsc {margin: 15px 0px 20px;}
+		
 }';
 global $redux_builder_amp;
 if(ampforwp_get_setting('amp-rtl-select-option')){
