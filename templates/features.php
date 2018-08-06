@@ -6051,7 +6051,7 @@ function ampforwp_url_purifier($url){
 			else{
 				$query_name = $wp_query->query['pagename'];
 			}
-	      if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) && ampforwp_is_query_post_same( $query_arg['q'],$query_name ) ){
+	      if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
            	 unset($query_arg['q']);
           }
 	      
