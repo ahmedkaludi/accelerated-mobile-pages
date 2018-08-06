@@ -190,6 +190,17 @@ $front_css = '
 {{ifend_condition_check_for_overlay_1}}
 {{ifend_condition_background_type_video}}
 
+{{if_condition_check_for_slant_trnsm==1}}
+	{{row-class}}.amppb-fluid{
+		position: relative;
+	    transform: skewY(-12deg);
+	    top: -170px;
+	}
+	{{row-class}}.amppb-fluid .amp_mod {
+		transform: skewY(12deg);
+	}
+{{ifend_condition_check_for_slant_trnsm_1}}
+
 @media(max-width:768px){
 	{{row-class}}.amppb-fluid{width:100%;}
 	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{max-width:90%;}
@@ -667,6 +678,21 @@ $containerCommonSettings = array(
 								'content_type'=>'css',
 	 							'output_format'=>'%default%'
 							),
+							array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_slant_trnsm",
+                                'label'     => 'Slant Transform Shape',
+                                'tab'       =>'design',
+                                'default'   =>0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+                                'required'  => array('background_type'=>'color')
+                            ),
 							array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
