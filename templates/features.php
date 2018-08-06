@@ -4706,8 +4706,10 @@ function is_category_amp_disabled(){
 		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
 			$all_tags = get_the_tags();
 			$tagsOnPost = array();
+			if ( $all_tags ) {
 			foreach ($all_tags as $tagskey => $tagsvalue) {
 				$tagsOnPost[] = $tagsvalue->term_id;
+			}
 			}
 			$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
 			
