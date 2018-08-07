@@ -49,7 +49,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				$amp_url = trailingslashit($amp_url.'page');
 			}
 			else
-				$amp_url = str_replace('/'.$this->paged, '', $amp_url);
+				$amp_url = str_replace('/'.$this->paged, '', $amp_url);	
 			?>
 			<amp-next-page>
 			  	<script type="application/json">
@@ -66,7 +66,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				        }
 				    ],
 				    "hideSelectors": [
-				        ".p-m-fl",".loop-pagination",".footer",".amp-wp-header",".pagination-holder",".amp-wp-footer"
+				        ".p-m-fl",".loop-pagination",".footer",".amp-wp-header",".pagination-holder",".amp-wp-footer","#headerwrap",".nav_container","#footer"
 				    ]
 		    	}
 			  	</script>
