@@ -364,7 +364,9 @@ foreach ($extension_listing_array as $key => $extension) {
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
         $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-activate">Activate</button>';
+        $license_status = '';
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
+            $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
              $currentStatus = 'active valid';
              $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">Deactivate</button>';
             if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
@@ -386,7 +388,7 @@ foreach ($extension_listing_array as $key => $extension) {
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
              <input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">';
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$license_status.'">';
              $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][success]" type="hidden" value="'.$allResponseData['success'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][license]" type="hidden" value="'.$allResponseData['license'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][item_name]" type="hidden" value="'.$allResponseData['item_name'].'">
