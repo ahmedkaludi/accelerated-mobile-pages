@@ -29,6 +29,19 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 	margin-left:5px;
 }
 {{ifend_condition_check_for_altrbtn_1}}
+{{if_condition_check_for_bxshdw==1}}
+{{module-class}} .btn-txt{ 
+	box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+{{if_condition_check_for_btn_hvr==1}}
+{{if_condition_check_for_bxshdw==1}}
+.btn a:focus, .btn a:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+    opacity: 0.8;
+}
+{{ifend_condition_check_for_btn_hvr_1}}
+
 @media(max-width:768px){
 {{if_condition_button_repeat_check==1}}
 {{module-class}} .btn{margin:0 0 15px 0;}
@@ -318,6 +331,34 @@ return array(
 								'content_type'=>'css',
 								'required'  => array('check_for_border'=>'1')
 							),
+	 					array(
+				                'type'    =>'checkbox_bool',
+				                'name'    =>"check_for_bxshdw",
+				                'label'   => 'Button Box shadow',
+				                'tab'   =>'design',
+				                'default' =>0,
+				                'options' =>array(
+				                        array(
+				                          'label'=>'Yes',
+				                          'value'=>1,
+				                        )
+				                      ),
+				                'content_type'=>'html',
+				            ),
+	 					array(
+				                'type'    =>'checkbox_bool',
+				                'name'    =>"check_for_btn_hvr",
+				                'label'   => 'Button Hover Effect',
+				                'tab'   =>'design',
+				                'default' =>0,
+				                'options' =>array(
+				                        array(
+				                          'label'=>'Yes',
+				                          'value'=>1,
+				                        )
+				                      ),
+				                'content_type'=>'html',
+				            ),
 	 					array(
 				                'type'    =>'checkbox_bool',
 				                'name'    =>"check_for_altrbtn",
