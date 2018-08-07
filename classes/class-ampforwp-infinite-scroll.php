@@ -66,9 +66,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				        }
 				    ],
 				    "hideSelectors": [
-				        ".p-m-fl",
-				        ".loop-pagination",
-				        ".footer"
+				        ".p-m-fl",".loop-pagination",".footer",".amp-wp-header",".pagination-holder",".amp-wp-footer"
 				    ]
 		    	}
 			  	</script>
@@ -79,7 +77,6 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 			// Change the next link to paged+3
 			// reason: amp-next-page will show the results for 3 pages
 			$next_link = preg_replace('/'.($paged+1).'/', ($paged+3), $next_link);
-
 			return $next_link;
 		}
 	}
