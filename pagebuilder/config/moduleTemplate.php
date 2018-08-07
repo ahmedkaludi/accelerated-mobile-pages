@@ -94,7 +94,7 @@ $front_css = '
     {{if_condition_size_align_type==custom}}
     	background-size: {{size_customize}};
     {{ifend_condition_size_align_type_custom}}
-    
+
     height: auto;
     background-position:{{align_type}};
     {{if_condition_check_for_parallax==1}}
@@ -209,11 +209,11 @@ $front_css = '
 {{if_condition_check_for_slant_trnsm==1}}
 	{{row-class}}.amppb-fluid{
 		position: relative;
-	    transform: skewY(-12deg);
+	    transform: skewY(-7deg);
 	    top: -170px;
 	}
 	{{row-class}}.amppb-fluid .amp_mod {
-		transform: skewY(12deg);
+		transform: skewY(7deg);
 	}
 {{ifend_condition_check_for_slant_trnsm_1}}
 
@@ -733,6 +733,24 @@ $containerCommonSettings = array(
                                             ),
                                 'content_type'=>'html',
                                 'required'  => array('background_type'=>'color')
+                            ),
+                            array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"top_align",		
+		 						'label'		=>'Top Adjustment',
+		           				 'tab'      =>'design',
+		 						'default'	=>'0px',	
+		           				'content_type'=>'css',
+                                'required'  => array('check_for_slant_trnsm'=>'1')
+                            ),
+                            array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"slant_rotate_top",		
+		 						'label'		=>'Slant Rotate',
+		           				 'tab'      =>'design',
+		 						'default'	=>'7',	
+		           				'content_type'=>'css',
+                                'required'  => array('check_for_slant_trnsm'=>'1')
                             ),
 							array(
 								'type'		=>'spacing',
