@@ -12,35 +12,33 @@ $output = '
 </div>
 ';
 $css = '
-.cta-mod{margin:{{margin_css}};padding:{{padding_css}};display: inline-flex;width: 100%;align-items: center;}
-.cta-mod .cta-btn{width: 40%;text-align: right;}
-.cta-mod h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
-
-.cta-dsc{
+{{module-class}}.cta-mod{margin:{{margin_css}};padding:{{padding_css}};display: inline-flex;width: 100%;align-items: center;}
+{{module-class}}.cta-mod .cta-btn{width: 40%;text-align: right;}
+{{module-class}}.cta-mod h2{font-size:{{text-size}};line-height:1.5;font-weight:normal;color:{{font_color_picker}};}
+{{module-class}} .cta-tlt{flex-grow: 1;}
+{{module-class}} .cta-dsc{
 	font-size:{{hdng-text-size}};
 	line-height:1.3;
 	color:{{hdng_desc_color}};
 	margin-top: 5px;
 }
-
-.cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;
+{{module-class}}.cta-mod .btn-txt{display: inline-block;color: {{txt_color_picker}};padding: 10px 20px;
 	font-size: {{btn-text-size}};border: 3px solid {{brd_color_picker}};font-weight: 500;background: {{bg_color_picker}};}
-.cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
+{{module-class}}.cta-mod .txt{display: block;color: {{subh_color_picker}};font-size: 16px;margin-top: 20px;}
 @media(max-width:768px){
-	.cta-mod{display:inline-block;width:100%;text-align:center}
-	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
-	
-		.cta-dsc {margin: 15px 0px 20px;}
+	{{module-class}}.cta-mod{display:inline-block;width:100%;text-align:center}
+	{{module-class}}.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
+	{{module-class}} .cta-dsc {margin: 15px 0px 20px;}
 		
 }';
 global $redux_builder_amp;
 if(ampforwp_get_setting('amp-rtl-select-option')){
 $css .=	'
 /** RTL CSS **/
-.cta-mod .cta-btn { text-align: left;}
+{{module-class}}.cta-mod .cta-btn { text-align: left;}
 @media(max-width:768px){
-	.cta-mod{display:inline-block;width:100%;text-align:center}
-	.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
+	{{module-class}}.cta-mod{display:inline-block;width:100%;text-align:center}
+	{{module-class}}.cta-mod .cta-btn{width: 100%;text-align: center;margin-top:15px;}
 }
 ';
 }
