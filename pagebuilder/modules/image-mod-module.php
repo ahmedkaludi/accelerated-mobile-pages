@@ -6,6 +6,7 @@ $output = '
 
 $css = '
 {{module-class}}{text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
+{{module-class}}.image-mod amp-img{z-index:1;}
 {{if_condition_check_for_fullwidth==1}}
 @media(max-width:425px){
 {{module-class}}{
