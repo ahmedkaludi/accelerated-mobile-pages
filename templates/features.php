@@ -7961,3 +7961,12 @@ add_action('wp','ampforwp_remove_marfeel',9);
 function ampforwp_remove_marfeel(){
 remove_action('wp', 'render_marfeel_amp_content' );
 }
+
+// uploading the images with SVG format #2431
+function ampforwp_upload_svg($file_types){
+$new_filetypes = array();
+$new_filetypes['svg'] = 'image/svg+xml';
+$file_types = array_merge($file_types, $new_filetypes );
+return $file_types;
+}
+add_action('upload_mimes', 'ampforwp_upload_svg');
