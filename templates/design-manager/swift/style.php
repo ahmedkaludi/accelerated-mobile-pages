@@ -1552,4 +1552,14 @@ if($redux_builder_amp['header-type'] == '10'){?>
 	    top: -10px;
 	    z-index: 9;
 	}
+@media(max-width:767px){
+	.head-10{padding:15px 0px;}
+	.mbl-mnu{
+		display:block;
+		flex-grow: 1;
+    	text-align: right;
+    	margin-right: 15px;
+	}
+	.dsk-mnu{display:none;}
+}
 <?php } // Header 10 CSS Ends?>
