@@ -249,12 +249,13 @@ function amp_pagination($args =array()) {
 		$args['next_text'] = 'Show more Posts';
 	}
     if ( $paged > 1 ) { 
-      $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
+      $pre_link = '<div class="left">'.apply_filters('ampforwp_previous_posts_link',get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ), $paged )  .'</div>';
     }
+    $next_link = '<div class="right">'. apply_filters('ampforwp_next_posts_link',get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ), $paged) .'</div>';
 
     if ( $wp_query->max_num_pages > 1 ) { 
 	    echo '<div class="loop-pagination">
-	      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
+	     	'.$next_link.'
 	        '.$pre_link.'
 	      <div class="clearfix"></div>
 	    </div>';

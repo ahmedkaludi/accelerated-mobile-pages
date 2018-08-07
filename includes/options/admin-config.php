@@ -3563,9 +3563,16 @@ Redux::setSection( $opt_name, array(
                         'default' => 0,
                     ),
                     array(
+                        'id'       => 'ampforwp-infinite-scroll',
+                        'type'     => 'switch',
+                        'title'    => __('Infinite Scroll (Experimental)', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Read more about it here: <a href="https://www.ampproject.org/docs/reference/components/amp-next-page" target="_blank">amp-next-page</a>','accelerated-mobile-pages'),
+                        'default' => 0,
+                    ),
+                    array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
-                        'title'    => __('Change Internal Links to AMP', 'accelerated-mobile-pages'),
+                        'title'    => __('Internal Links in AMP', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Enable if you want all your links inside the article to go to /amp/. All the outbound links will remain untouched.','accelerated-mobile-pages'),
                         'default' => 0,
                     ),

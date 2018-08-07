@@ -578,6 +578,15 @@ if ( ! function_exists('ampforwp_subdomain_endpoint') ) {
 	}
 }
 
+// Infinite scroll/ amp-next-page
+add_action('amp_init', 'ampforwp_initialise_classes');
+if ( ! function_exists('ampforwp_initialise_classes') ) {
+	function ampforwp_initialise_classes(){
+		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') ) {
+			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-infinite-scroll.php';
+		}
+	}
+}
 function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;

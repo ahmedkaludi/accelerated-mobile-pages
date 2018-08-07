@@ -346,6 +346,7 @@ function ampforwp_sanitize_archive_desc(){
 		<head>
 		<meta charset="utf-8"> 
 
+			<?php do_action('amp_experiment_meta', $thisTemplate); ?>
 		    <link rel="dns-prefetch" href="https://cdn.ampproject.org">
 		    <?php do_action( 'amp_meta', $thisTemplate ); ?>
 		    <?php 
