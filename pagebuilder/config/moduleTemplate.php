@@ -78,7 +78,29 @@ $front_css = '
 {{row-class}}{
 	background-image: url({{row_background_image}});
 	background-repeat: no-repeat;
-    background-size: cover;
+
+    {{if_condition_size_align_type==cover}}
+    	background-size: {{size_align_type}};
+    {{ifend_condition_size_align_type_cover}}
+
+    {{if_condition_size_align_type==auto}}
+    	background-size: {{size_align_type}};
+    {{ifend_condition_size_align_type_auto}}
+
+    {{if_condition_size_align_type==contain}}
+    	background-size: {{size_align_type}};
+    {{ifend_condition_size_align_type_contain}}
+
+    {{if_condition_size_align_type==custom}}
+    	background-size: {{size_customize}};
+    {{ifend_condition_size_align_type_custom}}
+
+
+
+
+
+
+
     height: auto;
     background-position:{{align_type}};
     {{if_condition_check_for_parallax==1}}
@@ -349,6 +371,31 @@ $containerCommonSettings = array(
 	 												'right'    =>'Right', 													),
 	 							'content_type'=>'css',
 	 							'required'  => array('background_type'=>'image')
+	 						),
+	 						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'size_align_type',		
+	 							'label' =>"Background Size",
+								'tab'     =>'customizer',
+	 							'default' =>'cover',
+	 							'options_details'=>array(
+	 												'cover'   =>'Cover',
+	 												'auto'    =>'Auto',
+	 												'contain' =>'Contain',
+	 												'custom' =>'Customize',
+	 												),
+	 							'content_type'=>'css',
+	 							'required'  => array('background_type'=>'image')
+	 						),
+	 						array(		
+	 							'type'	=>'text',		
+	 							'name'  =>'size_customize',		
+	 							'label' =>"Background Customize Size",
+								'tab'     =>'customizer',
+	 							'default' =>'50%',
+	 							'content_type'=>'css',
+	 							'required'  => array('background_type'=>'image'),
+	 							'required'  => array('size_align_type'=>'custom')
 	 						),
 	 						array(
 								'type'		=>'upload',
