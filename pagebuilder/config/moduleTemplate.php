@@ -94,13 +94,7 @@ $front_css = '
     {{if_condition_size_align_type==custom}}
     	background-size: {{size_customize}};
     {{ifend_condition_size_align_type_custom}}
-
-
-
-
-
-
-
+    
     height: auto;
     background-position:{{align_type}};
     {{if_condition_check_for_parallax==1}}
