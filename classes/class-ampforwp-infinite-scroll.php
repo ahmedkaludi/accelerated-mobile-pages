@@ -33,32 +33,40 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 		}
 
 		public function amp_next_page() { 
+			global $wp;
+			$amp_url = '';
 			if ( get_query_var( 'paged' ) ) {
 			    $this->paged = get_query_var('paged');
 			} elseif ( get_query_var( 'page' ) ) {
 			    $this->paged = get_query_var('page');
 			} else {
 			    $this->paged = 1;
-			} ?>
-
+			} 
+			if ( is_archive() || is_home() ) {
+				$amp_url = trailingslashit(home_url($wp->request));
+			}
+			if( $this->paged < 2 ) {
+				$amp_url = trailingslashit($amp_url.'page');
+			}
+			else
+				$amp_url = str_replace('/'.$this->paged, '', $amp_url);	
+			?>
 			<amp-next-page>
 			  	<script type="application/json">
 			    {
 			      	"pages": [{
 				          "title": "",
 				          "image": "",
-				          "ampUrl": "<?php echo esc_url(ampforwp_url_controller(get_home_url()).'page/'.($this->paged+1)) ?>"
+				          "ampUrl": "<?php echo esc_url($amp_url.($this->paged+1)) ?>"
 				        },
 				        {
 				          "title": "",
 				          "image": "",
-				          "ampUrl": "<?php echo esc_url(ampforwp_url_controller(get_home_url()).'page/'.($this->paged+2)) ?>"
+				          "ampUrl": "<?php echo esc_url($amp_url.($this->paged+2)) ?>"
 				        }
 				    ],
 				    "hideSelectors": [
-				        ".p-m-fl",
-				        ".loop-pagination",
-				        ".footer"
+				        ".p-m-fl",".loop-pagination",".footer",".amp-wp-header",".pagination-holder",".amp-wp-footer","#headerwrap",".nav_container","#footer"
 				    ]
 		    	}
 			  	</script>
@@ -66,11 +74,9 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 		<?php }
 
 		public function next_posts_link( $next_link , $paged ) {
-			$this->paged = $paged;
 			// Change the next link to paged+3
 			// reason: amp-next-page will show the results for 3 pages
 			$next_link = preg_replace('/'.($paged+1).'/', ($paged+3), $next_link);
-
 			return $next_link;
 		}
 	}
