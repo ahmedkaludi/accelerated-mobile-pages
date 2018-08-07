@@ -3,9 +3,17 @@ $output = '
 <div class="ln-fx">{{repeater}}</div>';
 $css = '
 .icons-mod{margin:{{margin_css}};padding:{{padding_css}};}
-.ln-fx{width:100%;display:inline-flex;}
-.ico-mod{display: flex;flex-direction: column;justify-content: space-between;margin: 0 auto;text-align: center;}
-.ico-mod .ico-pic{font-size:40px;display:inline-block;color:{{ico_color_picker}};background: {{bg_color_picker}};border-radius:{{border-size}};padding: 20px;}
+{{module-class}} .ln-fx{
+	width:100%;
+	display:inline-flex;
+	justify-content:{{align_type}};
+}
+{{module-class}} .ico-mod{display: flex;flex-direction: column;justify-content: space-between;
+	{{if_condition_align_type==center}}
+		margin: 0 auto;
+	{{ifend_condition_align_type_center}}
+	text-align: center;}
+{{module-class}} .ico-mod .ico-pic{font-size:40px;display:inline-block;color:{{ico_color_picker}};background: {{bg_color_picker}};border-radius:{{border-size}};padding: 20px;}
 ';
 return array(
 		'label' =>'Icons',
@@ -41,6 +49,18 @@ return array(
 								'default'	=>'#ffffff',
 								'content_type'=>'css'
 							),
+						array(
+	 							'type'	=>'select',		
+	 							'name'  =>'align_type',		
+	 							'label' =>"Icon Alignment",
+								'tab'     =>'design',
+	 							'default' =>'center',
+	 							'options_details'=>array(
+	 												'center'      =>'Center',
+	 												'flex-start'  =>'Left',
+	 												'flex-end'    =>'Right', 													),
+	 							'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
