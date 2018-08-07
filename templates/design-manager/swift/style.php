@@ -1472,15 +1472,15 @@ if($redux_builder_amp['header-type'] == '10'){?>
 		text-align:center;
 	}
 	.dsk-mnu ul li a, .cta a{
-		<?php if( $redux_builder_amp['h10swift_menu_txtcolor']['rgba'] ){ ?>
+		<?php if( isset($redux_builder_amp['h10swift_menu_txtcolor']['rgba']) && $redux_builder_amp['h10swift_menu_txtcolor']['rgba']){ ?>
 			color: <?php echo $redux_builder_amp['h10swift_menu_txtcolor']['rgba']?>;
-		<?php }  ?>
+		<?php } ?>
 	}
 	.dsk-mnu > ul > li > a{
 		padding:20px 0px;
 	}
 	.dsk-mnu ul li:hover a, .cta a:hover{
-		<?php if( $redux_builder_amp['h10swift_menu_txt_hvrcolor']['rgba'] ){ ?>
+		<?php if( isset($redux_builder_amp['h10swift_menu_txt_hvrcolor']['rgba']) && $redux_builder_amp['h10swift_menu_txt_hvrcolor']['rgba']){ ?>
 			color: <?php echo $redux_builder_amp['h10swift_menu_txt_hvrcolor']['rgba']?>;
 		<?php }  ?>
 	}
@@ -1551,6 +1551,11 @@ if($redux_builder_amp['header-type'] == '10'){?>
 	    margin: 0 auto;
 	    top: -10px;
 	    z-index: 9;
+	}
+	.t-btn:after{
+		<?php if( isset($redux_builder_amp['h10swift_menu_txtcolor']['rgba']) && $redux_builder_amp['h10swift_menu_txtcolor']['rgba']){ ?>
+			color: <?php echo $redux_builder_amp['h10swift_menu_txtcolor']['rgba']?>;
+		<?php } ?>
 	}
 @media(max-width:767px){
 	.head-10{padding:15px 0px;}
