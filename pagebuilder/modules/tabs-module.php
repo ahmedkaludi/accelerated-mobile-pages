@@ -43,7 +43,7 @@ $css = '
 }
 {{module-class}} .tabButton h2{
 	color:{{hdng_bg_color}};
-	padding:10px 20px;
+	padding: 2px 15px 5px 15px;
 	font-size:{{hdng_fnt_sz}};
 	font-weight:{{hdng_font_type}};
 }
@@ -101,6 +101,14 @@ $css = '
   animation-name: fadeInRight;
 }
 
+@media(max-width:600px){
+	{{module-class}} .tabButton[selected]+.tabContent{
+		grid-template-columns: 1fr;
+	}
+	{{module-class}} .tab-cntn{
+		margin-top:30px;
+	}
+}
 .
 ';
 
