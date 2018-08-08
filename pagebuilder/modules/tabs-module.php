@@ -101,9 +101,15 @@ $css = '
   animation-name: fadeInRight;
 }
 
+@media(max-width:768px){
+	{{module-class}} .tabButton {
+		margin-bottom:15px;
+	}
+}
 @media(max-width:600px){
 	{{module-class}} .tabButton[selected]+.tabContent{
 		grid-template-columns: 1fr;
+		margin-top:15px;
 	}
 	{{module-class}} .tab-cntn{
 		margin-top:30px;

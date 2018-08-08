@@ -68,6 +68,7 @@ font-size:{{text-size}}; border-radius:{{border-rds}}; color:{{font_color_picker
 	{{if_condition_check_for_altrbtn==1}}
 		{{module-class}} .alt-btn{margin-left:0px;}
 	{{ifend_condition_check_for_altrbtn_1}}
+	{{module-class}}.button-mod {text-align:center;}
 }
 ';
 return array(
