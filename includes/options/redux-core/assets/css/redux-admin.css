@@ -303,8 +303,8 @@ background: rgb(245, 246, 250);
 }
 #redux-defaults-section,
 #redux-defaults {
-	background: #f2f2f2;
-	color: #999;
+    background: #f2f2f2;
+    color: #999;
     border: 1px solid #f6f6fa;
 
 }
@@ -312,7 +312,7 @@ background: rgb(245, 246, 250);
 #redux-defaults:hover {
     border: 1px solid #e8e7e8;
     background: #f4f4f4;
-	color: #555
+    color: #555
 }
 
 
@@ -373,7 +373,7 @@ background: rgb(245, 246, 250);
   margin-bottom:20px;
 }
 #footer-thankyou {
-	display: none;
+    display: none;
 }
 img.ampforwp-post-builder-img{
     height: 72px

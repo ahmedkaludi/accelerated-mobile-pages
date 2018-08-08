@@ -28,8 +28,8 @@
 						<?php if (isset($redux_builder_amp['swift-social-position']) && 'above-content' == $redux_builder_amp['swift-social-position']){
 							ampforwp_swift_social_icons(); 
 						} ?>
-					<div class="cntn-wrp">
-						<div class="artl-cnt"><?php amp_content(); ?></div>
+					<div class="cntn-wrp artl-cnt">
+						<?php amp_content(); ?>
 					</div>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
@@ -206,7 +206,7 @@ do_action("ampforwp_single_design_type_handle");
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">
-								<div class="cntn-wrp">
+								<div class="cntn-wrp artl-cnt">
 									<?php amp_content(); ?>
 								</div>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>

@@ -677,7 +677,7 @@ var reduxOptionTab = function(){
 //reduxOptionTab();   
 
 $(".redux-ampforwp-ext-activate").click(function(){
-     var currentThis = $(this);
+    var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
     var newlicense = $('#redux_builder_amp_amp-license_'+plugin_id+'_license').val();
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
@@ -685,6 +685,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
         license = newlicense;
         $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val(license);
     }
+
     var item_name = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][item_name]"]').val();
     var store_url = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][store_url]"]').val();
     var plugin_active_path = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][plugin_active_path]"]').val();

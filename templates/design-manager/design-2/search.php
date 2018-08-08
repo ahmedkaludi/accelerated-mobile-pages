@@ -65,7 +65,7 @@
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
 
 				<?php
-				if(  ampforwp_check_excerpt() ) {
+				if( ampforwp_check_excerpt() ) {
 				 	if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{
