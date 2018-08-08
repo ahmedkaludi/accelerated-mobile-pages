@@ -231,6 +231,11 @@ $front_css = '
 		margin: {{res_mrgn}};
 	{{ifend_condition_check_for_mrgn_1}}
 }
+
+	{{row-class}}.amppb-fluid{
+		top:-90px;
+	}
+
 }
 ';
 $front_common_css = '.amppb-fluid .col{margin:0 auto;max-width:{{fluid-width}}; }
@@ -751,6 +756,31 @@ $containerCommonSettings = array(
 		 						'default'	=>'7',	
 		           				'content_type'=>'css',
                                 'required'  => array('check_for_slant_trnsm'=>'1')
+                            ),
+                            array(
+                                'type'      =>'checkbox_bool',
+                                'name'      =>"check_for_respn_align",
+                                'label'     => 'Responsive Top Adjustment',
+                                'tab'       =>'design',
+                                'default'   => 0,
+                                'options'   =>array(
+                                                array(
+                                                    'label'=>'Yes',
+                                                    'value'=>1,
+                                                )
+                                            ),
+                                'content_type'=>'html',
+                                'required'  => array('check_for_slant_trnsm'=>'1')
+                            ),
+                            array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"res_top_align",		
+		 						'label'		=>'Top Adjustment',
+		           				 'tab'      =>'design',
+		 						'default'	=>'0px',	
+		           				'content_type'=>'css',
+                                'required'  => array('check_for_slant_trnsm'=>'1',
+                                					 'check_for_respn_align'=>'1')
                             ),
 							array(
 								'type'		=>'spacing',

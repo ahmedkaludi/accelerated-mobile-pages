@@ -3,7 +3,7 @@ $output = '
 	{{repeater}}
 ';
 $css = '
-.list-mod{display: flex;flex-direction: column;flex: 1 0 25%;justify-content: space-between;margin:{{margin_css}};}
+.list-mod{display: flex;flex-direction: column;flex: 1 0 25%;justify-content: space-between;margin:{{margin_css}};max-width:{{lst-mod-wdth}};}
 .list-mod .li-mod .ico-pic{font-size:{{ico-size}};display:inline-block;color:{{ico_color_picker}};padding-right: 10px;position: relative;top: 2px;}
 .list-mod .li-txt{font-size:{{text-size}};line-height:1.5;color:{{text_color_picker}};}
 .li-mod{margin-bottom:15px;}
@@ -34,14 +34,6 @@ return array(
 		 						'default'	=>'23px',	
 		           				'content_type'=>'css',
 	 						),
-						array(		
-		 						'type'		=>'text',		
-		 						'name'		=>"text-size",		
-		 						'label'		=>'Font Size',
-		           				 'tab'     =>'design',
-		 						'default'	=>'22px',	
-		           				'content_type'=>'css',
-	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"ico_color_picker",
@@ -50,14 +42,30 @@ return array(
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"text-size",		
+		 						'label'		=>'Text Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'22px',	
+		           				'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'color-picker',
 								'name'		=>"text_color_picker",
-								'label'		=>'Font Color',
+								'label'		=>'Text Font Color',
 								'tab'		=>'design',
 								'default'	=>'#333',
 								'content_type'=>'css'
 							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"lst-mod-wdth",		
+		 						'label'		=>'Max Width',
+		           				 'tab'     =>'design',
+		 						'default'	=>'100%',	
+		           				'content_type'=>'css',
+	 						),
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
