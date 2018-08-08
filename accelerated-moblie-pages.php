@@ -579,7 +579,7 @@ if ( ! function_exists('ampforwp_subdomain_endpoint') ) {
 }
 
 // Infinite scroll/ amp-next-page
-add_action('amp_init', 'ampforwp_initialise_classes');
+add_action('pre_amp_render_post', 'ampforwp_initialise_classes');
 if ( ! function_exists('ampforwp_initialise_classes') ) {
 	function ampforwp_initialise_classes(){
 		if ( true == ampforwp_get_setting('ampforwp-infinite-scroll') ) {
