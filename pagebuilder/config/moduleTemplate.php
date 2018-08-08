@@ -106,6 +106,14 @@ $front_css = '
 
 {{row-class}}.amppb-fluid{width:{{fluid-width}};}
 {{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{margin:0 auto;max-width:{{fluid-wrapper}}; }
+
+{{if_condition_col_2_align==1}}
+	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{
+		display: flex;
+    	align-items: center;
+	}
+{{ifend_condition_col_2_align_1}}
+
 {{row-class}}.amppb-fixed .col {max-width:{{content-width}};width:{{fixed-width}};margin: 0 auto;}
 
 {{row-class}}{
@@ -231,6 +239,11 @@ $front_css = '
 		margin: {{res_mrgn}};
 	{{ifend_condition_check_for_mrgn_1}}
 }
+{{if_condition_col_2_align==1}}
+	{{row-class}}.amppb-fluid .col, {{row-class}}.amppb-fluid .col-2-wrap{
+		display: block;
+	}
+{{ifend_condition_col_2_align_1}}
 
 	{{row-class}}.amppb-fluid{
 		top:-90px;
@@ -723,6 +736,21 @@ $containerCommonSettings = array(
 											),
 								'content_type'=>'css',
 	 							'output_format'=>'%default%'
+							),
+							array(
+								'type'		=>'checkbox_bool',
+								'name'		=>"col_2_align",
+								'label'		=>'Column 2 Alignment at center',
+								'tab'		=>'design',
+								'default'	=> 0,
+								'options'	=>array(
+												array(
+													'label'=>'Yes',
+													'value'=>1, 
+												),
+											),
+								'content_type'=>'css',
+	 							
 							),
 							array(
                                 'type'      =>'checkbox_bool',
