@@ -3,10 +3,34 @@ $output = '
 	{{repeater}}
 ';
 $css = '
-{{module-class}}.list-mod{display: flex;flex-direction: column;flex: 1 0 25%;justify-content: space-between;margin:{{margin_css}};max-width:{{lst-mod-wdth}};}
+{{module-class}}.list-mod{display:flex;flex-wrap: wrap;margin:{{margin_css}};max-width:{{lst-mod-wdth}};}
 {{module-class}}.list-mod .li-mod .ico-pic{font-size:{{ico-size}};display:inline-block;color:{{ico_color_picker}};padding-right: 10px;position: relative;top: 2px;}
 {{module-class}}.list-mod .li-txt{font-size:{{text-size}};line-height:1.5;color:{{text_color_picker}};}
 {{module-class}}.li-mod{margin-bottom:15px;}
+
+{{module-class}} .li-mod{
+	margin: 0 15px 30px;
+    {{if_condition_dsgn_clmns==1_col}} 
+    	flex: 1 0 100%; 
+    {{ifend_condition_dsgn_clmns_1_col}};
+    {{if_condition_dsgn_clmns==2_col}} 
+    	flex: 1 0 40%; 
+    {{ifend_condition_dsgn_clmns_2_col}};
+    {{if_condition_dsgn_clmns==3_col}} 
+    	flex: 1 0 30%; 
+    {{ifend_condition_dsgn_clmns_3_col}};
+}
+@media(max-width:768px){
+	{{module-class}}.list-mod{
+		max-width:100%;
+	}
+}
+@media(max-width:425px){
+	{{module-class}} .li-mod{
+		flex: 1 0 100%;
+		margin-bottom: 15px;
+	}
+}
 ';
 return array(
 		'label' =>'Lists',
@@ -65,6 +89,19 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'100%',	
 		           				'content_type'=>'css',
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'dsgn_clmns',		
+	 							'label' =>"DIfferent Designs by Columns",
+								'tab'     =>'design',
+	 							'default' =>'1_col',
+	 							'options_details'=>array(
+	 												'1_col'    =>'1 Columns',
+	 												'2_col'    =>'2 Columns',
+	 												'3_col'    =>'3 Columns', 													),
+	 							'content_type'=>'css',
+	 							'required'  => array('blurb_layout_type'=>'1'),
 	 						),
 						array(
 								'type'		=>'spacing',
