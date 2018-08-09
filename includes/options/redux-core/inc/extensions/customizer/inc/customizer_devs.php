@@ -9,7 +9,7 @@ namespace ReduxCore\ReduxFramework;
          * @since      4.1.0
          * @see        WP_Customize_Section
          */
-        class Redux_Customizer_section_rAds extends WP_Customize_Section {
+        class Redux_Customizer_section_rAds extends \WP_Customize_Section {
 
             /**
              * Type of this section.
@@ -27,7 +27,7 @@ namespace ReduxCore\ReduxFramework;
             }
         }
 
-        class Redux_Customizer_Control_rAds extends WP_Customize_Control {
+        class Redux_Customizer_Control_rAds extends \WP_Customize_Control {
             public function render() {
             }
 

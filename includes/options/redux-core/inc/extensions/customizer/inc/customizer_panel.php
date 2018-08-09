@@ -8,7 +8,7 @@ namespace ReduxCore\ReduxFramework;
      * @since      4.1.0
      * @see        WP_Customize_Section
      */
-    class Redux_Customizer_Panel extends WP_Customize_Panel {
+    class Redux_Customizer_Panel extends \WP_Customize_Panel {
 
         /**
          * Type of this panel.

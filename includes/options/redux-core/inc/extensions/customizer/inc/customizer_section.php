@@ -9,7 +9,7 @@ namespace ReduxCore\ReduxFramework;
      * @since      4.1.0
      * @see        WP_Customize_Section
      */
-    class Redux_Customizer_Section extends WP_Customize_Section {
+    class Redux_Customizer_Section extends \WP_Customize_Section {
 
         /**
          * Type of this section.
