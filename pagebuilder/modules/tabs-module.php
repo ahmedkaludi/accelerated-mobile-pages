@@ -43,7 +43,7 @@ $css = '
 }
 {{module-class}} .tabButton h2{
 	color:{{hdng_bg_color}};
-	padding: 2px 15px 5px 15px;
+	padding: 4px 15px 5px 15px;
 	font-size:{{hdng_fnt_sz}};
 	font-weight:{{hdng_font_type}};
 }
