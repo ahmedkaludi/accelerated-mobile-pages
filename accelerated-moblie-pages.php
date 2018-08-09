@@ -565,6 +565,7 @@ if ( ! function_exists('ampforwp_init') ) {
 		// Remove the FrontPage query added by AMP to make our FrontPage/Homepage works
 		if ( is_plugin_active( 'amp/amp.php' )) {
 			remove_action( 'parse_query', 'amp_correct_query_when_is_front_page' );
+			remove_action( 'wp', 'amp_maybe_add_actions' );
 		}
 	}
 }
