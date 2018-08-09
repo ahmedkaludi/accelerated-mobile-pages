@@ -4383,6 +4383,7 @@ function ampforwp_view_nonamp(){
 		$current_amp_url 	= trailingslashit($current_amp_url);
 		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
 		$non_amp_url 	= str_replace($remove, '', $current_amp_url);
+		$page = "";
 	  	$query_arg_array = $wp->query_vars;
 	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
 		   $page = $wp->query_vars['page'];
