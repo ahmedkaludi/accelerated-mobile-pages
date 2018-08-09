@@ -255,10 +255,10 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 
 
 // Add Caption in the Gallery Image
-add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 3);
+add_filter('amp_gallery_images','AMPforWP\\AMPVendor\\ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
-	add_action('amp_post_template_css', 'ampforwp_additional_gallery_style');
-	add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
+	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_gallery_style');
+	add_filter('amp_post_template_data','AMPforWP\\AMPVendor\\ampforwp_carousel_bind_script');
 	return $images_markup;
 }
 
@@ -301,7 +301,7 @@ if( !function_exists('ampforwp_carousel_bind_script')){
 	}
 }
 
-add_filter('amp_thumbnail_images','ampforwp_new_thumbnail_images',10,3);
+add_filter('amp_thumbnail_images','AMPforWP\\AMPVendor\\ampforwp_new_thumbnail_images',10,3);
 function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
 	if(!isset($markup_arr['carousel_with_thumbnail_html'])){return '';}
 	$amp_thumb_image_buttons = '';
