@@ -72,7 +72,7 @@ if ( ! function_exists('AMPforWP\\AMPVendor\\amp_add_post_template_actions') ) {
 }
 if ( ! function_exists('AMPforWP\\AMPVendor\\amp_prepare_render') ) {
 	function amp_prepare_render() {
-		add_action( 'template_redirect', 'AMPforWP\\AMPVendor\\amp_render' );
+		add_action( 'template_redirect', 'AMPforWP\\AMPVendor\\amp_render', 0 );
 	}
 }
 if ( ! function_exists('AMPforWP\\AMPVendor\\amp_render') ) {
