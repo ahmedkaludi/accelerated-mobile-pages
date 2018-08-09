@@ -2,7 +2,7 @@
 namespace AMPforWP\AMPVendor;
 // Callbacks for adding AMP-related things to the admin.
 
-define( 'AMP_CUSTOMIZER_QUERY_VAR', 'customize_amp' );
+define( 'AMP_VENDOR_CUSTOMIZER_QUERY_VAR', 'customize_amp' );
 
 /**
  * Sets up the AMP template editor for the Customizer.
@@ -31,7 +31,7 @@ function amp_add_customizer_link() {
 	$menu_slug = add_query_arg( array(
 		'autofocus[panel]'         => AMP_Template_Customizer::PANEL_ID,
 		'return'                   => rawurlencode( admin_url() ),
-		AMP_CUSTOMIZER_QUERY_VAR   => true,
+		AMP_VENDOR_CUSTOMIZER_QUERY_VAR   => true,
 	), 'customize.php' );
 
 	// Add the theme page.

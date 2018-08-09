@@ -5874,7 +5874,7 @@ add_action('amp_post_template_footer','ampforwp_facebook_pixel',11);
 			}
 		}
 //90. Set Header last modified information
-add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader');
+add_action('template_redirect', 'ampforwp_addAmpLastModifiedHeader',12);
 function ampforwp_addAmpLastModifiedHeader($headers) {
 
     //Check if we are in a single post of any type (archive pages has not modified date)
