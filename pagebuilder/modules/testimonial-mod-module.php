@@ -40,9 +40,9 @@ return array(
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',
+              'layout' => 'Layout',
               'design'=>'Design',
-              'advanced' => 'Advanced',
-              'layout' => 'Layout'
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(    

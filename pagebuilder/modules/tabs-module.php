@@ -125,8 +125,8 @@ return array(
 		'tabs' => array(
               'customizer'=>'Content',
               'design'=>'Design',
+              'layout' => 'Layout',
               'advanced' => 'Advanced',
-              'layout' => 'Layout'
             ),
 		'fields' => array(
                         array(		

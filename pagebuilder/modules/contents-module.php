@@ -84,9 +84,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
     'default_tab'=> 'customizer',
     'tabs' => array(
               'customizer'=>'Content',
+              'layout' => 'Layout',
               'container_css'=>'Design',
-              'advanced' => 'Advanced',
-              'layout' => 'Layout'
+              'advanced' => 'Advanced'
             ),
  		'fields' => array(
             array(    
