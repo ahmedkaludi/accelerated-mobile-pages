@@ -4592,6 +4592,7 @@ Redux::setSection( $opt_name, array(
             ),
           array(
                     'id'    => 'gbl-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
                     'title' => __('Homepage Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 0,
@@ -4633,6 +4634,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'swift-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
                     'title' => __('Single Sidebar', 'accelerated-mobile-pages'),
                     'default'   => 1,
