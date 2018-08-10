@@ -130,7 +130,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'PWA For WordPress',
                             'desc'=>'Add Progressive Web App support for WordPress website',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
                             'price'=>'$89',
                             'url_link'=>'http://ampforwp.com/pwa/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
@@ -142,7 +142,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'bbPress For AMP',
                             'desc'=>'Add bbPress Forum Compatibility to your AMP version',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/bbp-icon.png',
                             'price'=>'$89',
                             'url_link'=>'http://ampforwp.com/bbpress/#utm_source=options-panel&utm_medium=extension-tab_bbpress-for-wordpress&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'bbpress-for-amp/bbpress-for-amp.php',
@@ -178,7 +178,7 @@ $extension_listing_array = array(
                         array(
                             'name'=> 'EDD for AMP',
                             'desc'=> 'EDD compatibility with AMP',
-                            'img_src'=> AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=> AMPFORWP_IMAGE_DIR . '/edd-icon.png',
                             'price'=> '$19',
                             'url_link'=>'https://ampforwp.com/edd-for-amp/',
                             'plugin_active_path'=> 'edd-for-amp/edd-for-amp.php',
@@ -189,8 +189,8 @@ $extension_listing_array = array(
 
                         array(
                             'name'=>'AMP Layouts',
-                            'desc'=>'layout system built for AMP that makes easy to create your own AMP templates.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
+                            'desc'=>'Design system built for AMP that makes easy to create your own AMP website.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amplayouts.png',
                             'price'=>'$89',
                             'url_link'=>'https://ampforwp.com/amp-layouts/',
                             'plugin_active_path'=> 'amp-layouts/amp-layouts.php',
@@ -228,7 +228,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'AMP Comments',
                             'desc'=>'You can now allow the same comment functionality on AMP.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
                             'price'=>'$29.99',
                             'url_link'=>'https://ampforwp.com/amp-comments/',
                             'plugin_active_path'=> 'amp-comments/amp-comments.php',
@@ -264,7 +264,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/sd-icon.png',
                             'price'=>'$29',
                             'url_link'=>'https://ampforwp.com/structuredata-for-wp/',
                             'plugin_active_path'=> 'structured-data-for-wp/structured-data-for-wp.php',
@@ -276,7 +276,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'Polylang For AMP',
                             'desc'=>'Polylang compatibility with AMP',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/polylang-icon.png',
                             'price'=>'$19',
                             'url_link'=>'https://ampforwp.com/polylang-for-amp/',
                             'plugin_active_path'=> 'polylang-for-amp/amp_polylang.php',
@@ -287,7 +287,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'WPML For AMP',
                             'desc'=>'WPML compatibility with AMP',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/wpml-icon.png',
                             'price'=>'$19',
                             'url_link'=>'https://ampforwp.com/wpml-for-amp/',
                             'plugin_active_path'=> 'wpml-for-amp/wpml_for_amp.php',
@@ -298,7 +298,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'AMP Teaser',
                             'desc'=>'AMP Teaser automatically clips the content based on your selection',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/teaser-icon.png',
                             'price'=>'$29',
                             'url_link'=>'https://ampforwp.com/amp-teaser/',
                             'plugin_active_path'=> 'amp-teaser/amp-teaser.php',
