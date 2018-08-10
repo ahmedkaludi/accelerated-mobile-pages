@@ -713,15 +713,16 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
-
 // Fallback for Redux class #2377
-if ( !class_exists('Redux') && class_exists('ReduxCore\\ReduxFramework\\Redux') ) {
+add_action('after_setup_theme', function(){	
+	if ( !class_exists('Redux') && class_exists('ReduxCore\\ReduxFramework\\Redux') ) {
 
-	class Redux extends ReduxCore\ReduxFramework\Redux
-	{
-		# Do nothing, it will inherit all the methods
+		class Redux extends ReduxCore\ReduxFramework\Redux
+		{
+			# Do nothing, it will inherit all the methods
+		}
 	}
-}
+});
 // Get Settings from Redux #2177
 function ampforwp_get_setting( $opt_name='' ){
 	global $redux_builder_amp;
