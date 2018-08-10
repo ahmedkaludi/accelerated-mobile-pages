@@ -322,7 +322,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				}
 			}
 			
-			if(function_exists('ampforwp_cpt_and_post_name_conflict_resolve') && !ampforwp_cpt_and_post_name_conflict_resolve()){
+			if(function_exists('ampforwp_page_cpt_same_slug') && !ampforwp_page_cpt_same_slug()){
 				$amp_url = user_trailingslashit($amp_url);	
 			}
 
@@ -7918,9 +7918,9 @@ if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
 // End Fallbacks for Vendor AMP
 
 // 	Custom Post Type Vs Post name(slug) Conflict #2374
-add_action('wp','ampforwp_cpt_and_post_name_conflict_resolve');
+add_action('pre_amp_render_post','ampforwp_page_cpt_same_slug');
 
-function ampforwp_cpt_and_post_name_conflict_resolve(){
+function ampforwp_page_cpt_same_slug(){
 	global $post;
 	$post_id = $conflict_slug = $is_slug_conflict = '';
 	$all_post_types = array();
