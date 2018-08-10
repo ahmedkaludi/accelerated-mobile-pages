@@ -4,7 +4,7 @@ use AMPforWP\AMPVendor\AMP_HTML_Utils;
 global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
-$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb');
+$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr');
 //$removeScriptComponent = array('amp-carousel');'
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
@@ -268,6 +268,13 @@ function amp_breadcrumb(){
 	}
 }
 
+// GDPR component 
+function amp_gdpr(){
+	global $loadComponent;
+	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] ) {
+		echo amp_gdpr_output();
+	}
+}
 //Get Core of AMP HTML
 function amp_header_core(){
 	$post_id = get_queried_object_id();
