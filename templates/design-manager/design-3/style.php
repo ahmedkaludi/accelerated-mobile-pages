@@ -149,11 +149,10 @@ pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14
 /* Footer */
 <?php 
 $footer_back_color = $redux_builder_amp['ampforwp-footer-background-color-3']['color'];
-?>
-#footer{ background: <?php echo $footer_back_color;
- if (empty($footer_back_color)) {?>
- #151515
- <?php } ?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
+if (empty($footer_back_color)) {
+ $footer_back_color = '#151515'; 
+} ?>
+#footer{ background: <?php echo $footer_back_color;?>; color: #eee; font-size: 13px; text-align: center; letter-spacing: 0.2px; padding: 35px 0 35px 0; margin-top: 30px; }
 #footer a{ color:#fff }
 #footer p:first-child{ margin-bottom: 12px; }
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
