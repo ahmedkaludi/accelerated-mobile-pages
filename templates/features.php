@@ -3827,10 +3827,10 @@ function ampforwp_add_modified_date($post_object){
 					echo esc_html(
 						sprintf(
 							_x( ampforwp_translation( $redux_builder_amp['amp-translator-modified-date-text'],'This article was last modified on ' ) . ' %s '  , '%s = human-readable time difference', 'accelerated-mobile-pages' ),
-							date( "F j, Y, g:i a" , $post_object->get( 'post_modified_timestamp' ) )
+							date_i18n( get_option( 'date_format' ) , $post_object->get( 'post_modified_timestamp' ) )
 						)
 					);
-				} ?>
+			echo get_the_modified_time();	} ?>
 			</p>
 		</div> <?php
 	}
