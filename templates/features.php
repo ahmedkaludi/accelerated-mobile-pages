@@ -7896,6 +7896,10 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 
 	}
 }
+// Class AMP_HTML_Utils
+if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
+	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
+}
 // Function is_amp_endpoint
 add_action('pre_amp_render_post', 'ampforwp_is_amp_endpoint_old');
 if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
@@ -7904,6 +7908,10 @@ if ( !function_exists('ampforwp_is_amp_endpoint_old') ) {
 			function is_amp_endpoint(){
 				return ampforwp_is_amp_endpoint();
 			}
+		}
+		// Class AMP_Post_Template
+		if ( ! class_exists('AMP_Post_Template') && class_exists('AMPforWP\\AMPVendor\\AMP_Post_Template') ) {
+			class AMP_Post_Template extends AMPforWP\AMPVendor\AMP_Post_Template{}
 		}
 	}
 }
