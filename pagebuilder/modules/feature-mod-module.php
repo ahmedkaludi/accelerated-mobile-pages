@@ -36,9 +36,9 @@ return array(
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',
+              'layouts'=> 'Layouts',
               'design'=>'Design',
-              'advanced' => 'Advanced',
-              'layouts'=> 'Layouts'
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(    

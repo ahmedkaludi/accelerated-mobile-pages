@@ -261,9 +261,9 @@ return array(
 		'default_tab'=> 'customizer',
 		'tabs' => array(
               'customizer'=>'Content',
+              'layout' => 'Layout',
               'design'=>'Design',
-              'advanced' => 'Advanced',
-              'layout' => 'Layout'
+              'advanced' => 'Advanced'
             ),
 		'fields' => array(
 						array(    
@@ -271,19 +271,9 @@ return array(
 				            'name'    =>"carousel_layout_type",
 				            'label'   =>"Select Layout",
 				            'tab'     =>'layout',
-				            'default' =>'1',    
+				            'default' =>'3',    
 				            'options_details'=>array(
-				                            array(
-				                              'value'=>'1',
-				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
-				                            ),
-				                            array(
-				                              'value'=>'2',
-				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
-				                            ),
-				                            array(
+				            				array(
 				                              'value'=>'3',
 				                              'label'=>'',
 				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-3.png'
@@ -292,6 +282,16 @@ return array(
 				                              'value'=>'4',
 				                              'label'=>'',
 				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-4.png'
+				                            ),
+				                            array(
+				                              'value'=>'2',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-2.png'
+				                            ),
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/slider-1.png'
 				                            ),
 				                          ),
 				            'content_type'=>'html',
