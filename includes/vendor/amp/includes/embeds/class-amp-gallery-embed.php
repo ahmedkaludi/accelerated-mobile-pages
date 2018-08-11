@@ -137,7 +137,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'scripts' => array()
 									),
 			'3' => array(
-						'main-html'=>'<div class="wrapper">{{with_images}}</div>
+						'main-html'=>'<div class="gal_w">{{with_images}}</div>
 						<amp-image-lightbox id="gallery-lightbox" layout="nodisplay">
 					      <div on="tap:gallery-lightbox.close" role="button"
 					          tabindex="0">
@@ -148,8 +148,8 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'image-with-caption-html'=>'',
 						'image-without-caption-html' =>'{{main_images}}',
 						'gallery_css' => '
-							.wrapper{display:inline-block;width:100%;clear:both;}
-							.wrapper amp-img{height:134px;width:200px;position: relative;float:left;margin: 0px 30px 30px 0px;}
+							.gal_w{display:inline-block;width:100%}
+							.gal_w amp-img{background:#f1f1f1;height:134px;width:150px;position: relative;float:left;margin:10px;}
 							.cls-btn{background:#0d0d0d;border:none;position: absolute;right: 10px;}
 							.cls-btn:after{content:"X";display:inline-block;color:#fff;font-size:20px;padding:20px;}
 							',
