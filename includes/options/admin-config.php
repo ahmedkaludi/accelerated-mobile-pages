@@ -3473,15 +3473,42 @@ Redux::setSection( $opt_name, array(
     ),
    )
 );
-
+// Custom Post types #2433
+add_filter('ampforwp_hide_bulk_cpt', 'ampforwp_cpt_hide_amp_bulk');
+function ampforwp_cpt_hide_amp_bulk($fields){
+    $extra_fields = array();
+    $custom_fields = array();
+    $post_types = get_option('ampforwp_custom_post_types');
+    if($post_types){
+        foreach ($post_types as $post_type) {
+            if( $post_type == 'post' || $post_type == 'page' ) {
+                continue;
+            }
+            $custom_fields[] = array(
+                       'id'       => 'amp-'.$post_type.'s-meta-default',
+                       'type'     => 'select',
+                       'title'    => __( 'Individual AMP '.$post_type.' (Bulk Edit)', 'accelerated-mobile-pages' ),
+                       'tooltip-subtitle' => __( 'Allows you to Show or Hide AMP for '.$post_type.' from All '.$post_type.'s, so it can be changed individually later. This option will change the Default value of AMP metabox in '.$post_type.'', 'accelerated-mobile-pages' ),
+                       'desc' => __( 'NOTE: Changes will overwrite the previous settings.', 'accelerated-mobile-pages' ),
+                       'options'  => array(
+                           'show' => __('Show by Default', 'accelerated-mobile-pages' ),
+                           'hide' => __('Hide by default', 'accelerated-mobile-pages' ),
+                       ),
+                       'default'  => 'show',
+                    );
+            $extra_fields = array_merge($extra_fields, $custom_fields);    
+        }
+    }
+    array_splice($fields, 2, 0,  $extra_fields);
+    return $fields;
+}
  // Hide AMP Bulk Tools
 Redux::setSection( $opt_name, array(
    'title'      => __( 'Hide AMP Bulk Tools', 'accelerated-mobile-pages' ),
    'id'         => 'hide-amp-section',
    'subsection' => true,
    'desc'       => 'Here are some Advanced options to help you exclude AMP from your prefered pages',
-   'fields'     => array(
-
+   'fields'     => apply_filters('ampforwp_hide_bulk_cpt',array(
                         array(
                            'id'       => 'amp-pages-meta-default',
                            'type'     => 'select',
@@ -3507,7 +3534,7 @@ Redux::setSection( $opt_name, array(
                            ),
                            'default'  => 'show',
                            'required'=>array('amp-on-off-for-all-posts','=','1'),
-                        ),           
+                        ),
                         array(
                         'id'        =>'hide-amp-categories',
                         'type'      => 'checkbox_hierarchy',
@@ -3527,6 +3554,7 @@ Redux::setSection( $opt_name, array(
                        ),
                     )   
                  )
+        )
     );
 
  // Advance Settings SECTION
