@@ -4357,7 +4357,10 @@ function ampforwp_view_nonamp(){
 	  	if ( $page >= '2') { 
 			$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
 		} 
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
+
+		$non_amp_url =  user_trailingslashit( $non_amp_url );
+		$non_amp_url =  add_query_arg('nonamp', '1', $non_amp_url );
+   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo  esc_url($non_amp_url); ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
  }
 
  //68. Facebook Instant Articles
@@ -7416,22 +7419,6 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 			}
 		}
 	}
-}
-
-// #1947 when nonamp=1 it should redirect to original link so that google
-add_action( 'wp', 'redirect_to_orginal_url' );
-function redirect_to_orginal_url(){
-	$url = ampforwp_amphtml_generator();
-	if($url){
-		if(isset($_REQUEST['nonamp']) && $_REQUEST['nonamp'] == '1'){
-		 wp_safe_redirect( get_permalink(), 301 );
-			exit;
-		}
-		else{
-			return;
-		}
-	}
-	return;
 }
 
 // Content Sneak Peek #2246
