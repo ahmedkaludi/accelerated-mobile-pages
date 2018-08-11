@@ -610,33 +610,7 @@ jQuery(function($) {
         });
 
 /*---------Google Fonts Ends -------*/
-
-
-        $('.redux-container').each(function() {
-            if (!$(this).hasClass('redux-no-sections')) {
-                $(this).find('.display_header').append('<span class="search-wrapper"><input  class="redux_field_search" name="" type="text" placeholder="Search the controls" style="display:none"/><span class="redux-amp-search-icon"><i class="dashicons-before dashicons-search"></i></span></span>');
-                $('.redux-amp-search-icon').click(function(){
-                    $('.redux_field_search').toggle('slide');
-                });
-                reduxOptionSearch();
-            }
-        });
-
-        $(".redux_field_search").keypress(function (evt) {
-            //Deterime where our character code is coming from within the event
-            var charCode = evt.charCode || evt.keyCode;
-            if (charCode  == 13) { //Enter key's keycode
-                return false;
-            }
-        });
-
-        if($(".amp-preview-button").length>0){
-            $(".amp-preview-button").click(function(){
-                var srcLink = $("#amp-preview-iframe").attr('data-src');
-               $("#amp-preview-iframe").html("<iframe  src='"+srcLink+"'></iframe>");
-            });
-        }
-        
+ 
     });
 var dataTabRequired = function(){
     $('[data-tab-required]').each(function(){
