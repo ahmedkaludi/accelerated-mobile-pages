@@ -2454,39 +2454,30 @@ function ampforwp_replace_title_tags() {
 
 			if ( ampforwp_is_front_page() ) {
 				//WPML Static Front Page Support for title and description with Yoast #1143
-
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				 if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active('wordpress-seo/wp-seo.php') ) {
-
+				if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) ) {
 				 	$ID = get_option( 'page_on_front' );
-				$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
-
-				$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
-				 }
-
+				}
 				else {
 					$ID = ampforwp_get_frontpage_id();
-					$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
-				
 				}
+				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );				
 			}
 			// Blog page 
 			if ( ampforwp_is_blog() ) {
 				$ID = ampforwp_get_blog_details('id');
 				$site_title = get_the_title( $ID ) . $sep . get_option( 'blogname' );
 			}
-
 			// Custom Front Page Title From Yoast SEO #1163
-			if ( class_exists('WPSEO_Meta_Columns') ) {
-				 	Global $redux_builder_amp;
-				 	$ID = ampforwp_get_frontpage_id();
-				 	if ( ampforwp_is_blog() ) {
-				 		$ID = ampforwp_get_blog_details('id');
-				 	}
-				 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
-				 	if ( $fixed_title ) {
-				 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
-				 	}
+			if ( class_exists('WPSEO_Meta_Columns') && (ampforwp_is_front_page() || ampforwp_is_blog()) ) {
+			 	$ID = ampforwp_get_frontpage_id();
+			 	if ( ampforwp_is_blog() ) {
+			 		$ID = ampforwp_get_blog_details('id');
+			 	}
+			 	$fixed_title = WPSEO_Meta::get_value( 'title', $ID );
+			 	if ( $fixed_title ) {
+			 		$site_title = apply_filters( 'wpseo_title', wpseo_replace_vars( $fixed_title, get_post( $ID, ARRAY_A ) )  );
+			 	}
 			}
 		}
 
