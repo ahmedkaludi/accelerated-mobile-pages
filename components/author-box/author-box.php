@@ -127,7 +127,7 @@ if ( isset($args['show_time']) ) {
         </div>
     </div>
 <?php 
-    if(is_singular() && true == $args['ads_below_the_author'] && 1 == $redux_builder_amp['ampforwp-standard-ads-7']){
+    if(is_singular() && ( isset($args['ads_below_the_author']) && true == $args['ads_below_the_author'] ) && 1 == ampforwp_get_setting('ampforwp-standard-ads-7')){
             do_action('ampforwp_below_author_box');
         }
 }
