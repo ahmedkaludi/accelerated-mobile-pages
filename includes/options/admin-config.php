@@ -1887,7 +1887,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'id'       => 'ampforwp-seo-aioseo',
                 'type'     => 'info',
                 'style'    => 'success',
-                'desc'     => __("All in One SEO works out of the Box with our plugin. It deosn't requires any extra config except Canonicals.", 'accelerated-mobile-pages'),
+                'desc'     => __("All in One SEO works out of the Box with our plugin. It doesn't requires any extra config except Canonicals.", 'accelerated-mobile-pages'),
                 'required' => array('ampforwp-seo-selection', '=', '2')
             ),
            array(
