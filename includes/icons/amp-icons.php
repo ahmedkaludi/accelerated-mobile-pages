@@ -776,6 +776,7 @@ return array( 'widgets' => '.icon-widgets:before { content: "\e1bd";}',
                 'youtube'=> '.icon-youtube:before {content: "\e947";}',
                 'hatenabookmark'=> '.icon-hatenabookmark:before {content: "\e948";}',
                 'pocket'=> '.icon-pocket:before {content: "\e949";}',
+                'messenger'=>'.icon-messenger:before {content: "\e948";}'
               );
 
 ?>    
