@@ -18,6 +18,8 @@ require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-playbuzz-sani
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-rule-spec.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-allowed-tags-generated.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-tag-and-attribute-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-gallery-block-sanitizer.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/sanitizers/class-amp-block-sanitizer.php' );
 
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-twitter-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-youtube-embed.php' );
@@ -31,6 +33,7 @@ require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-soundcloud-embed.
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-pinterest-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-wistia-embed.php' );
 require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-polldaddy-embed.php' );
+require_once( AMP__VENDOR__DIR__ . '/includes/embeds/class-amp-core-block-handler.php' );
 
 class AMP_Post_Template {
 	const SITE_ICON_SIZE = 32;
@@ -259,6 +262,7 @@ class AMP_Post_Template {
 
 			$amp_content = new AMP_Content( $new_post_content,
 				apply_filters( 'amp_content_embed_handlers', array(
+					'AMP_Core_Block_Handler' => array(),
 					'AMP_Twitter_Embed_Handler' => array(),
 					'AMP_YouTube_Embed_Handler' => array(),
 					'AMP_DailyMotion_Embed_Handler' => array(),
@@ -276,12 +280,14 @@ class AMP_Post_Template {
 					 'AMP_Style_Sanitizer' => array(),
 					 'AMP_Blacklist_Sanitizer' => array(),
 					 'AMP_Img_Sanitizer' => array(),
+					 'AMP_Gallery_Block_Sanitizer' => array(),
 					 'AMP_Video_Sanitizer' => array(),
 					 'AMP_Audio_Sanitizer' => array(),
 					 'AMP_Playbuzz_Sanitizer' => array(),
 					 'AMP_Iframe_Sanitizer' => array(
 						 'add_placeholder' => true,
 					 ),
+					 'AMP_Block_Sanitizer' => array(),
 				), $this->post ),
 				array(
 					'content_max_width' => $this->get( 'content_max_width' ),
