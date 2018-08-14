@@ -31,7 +31,7 @@ function ampforwp_framework_get_logo(){
           $alt = ampforwp_default_logo('alt')  ?>
           <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  >
 
-                <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="<?php echo ampforwp_default_logo('width'); ?>" height="<?php echo ampforwp_default_logo('height'); ?>" alt="<?php echo $alt; ?>" class="amp-logo" layout="responsive"></amp-img>
+                <amp-img src="<?php echo __( $redux_builder_amp['opt-media']['url'], 'accelerated-mobile-pages' ); ?>" width="<?php echo ampforwp_default_logo('width'); ?>" height="<?php echo ampforwp_default_logo('height'); ?>" alt="<?php echo $alt; ?>" class="amp-logo" layout="responsive"></amp-img>
 
           </a>
         <?php } else { if(is_single()){ ?>
