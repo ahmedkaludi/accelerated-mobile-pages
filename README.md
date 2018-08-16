@@ -185,6 +185,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 0.9.97.10 (17th August 2018) =
 * Fixed: Homepage build with AMP PageBuilder is displaying only when the checkbox of the Custom AMP editor is enabled #2350
+* Added: Create a new function to get the settings instead of calling it directly from global $redux_builder_amp everytime. `ampforwp_get_setting` created #2177
+
 
 
 = 0.9.97.9 (1st August 2018) =
