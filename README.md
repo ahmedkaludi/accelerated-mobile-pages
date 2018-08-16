@@ -183,6 +183,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.10 (17th August 2018) =
+* Fixed: Homepage build with AMP PageBuilder is displaying only when the checkbox of the Custom AMP editor is enabled #2350
+
+
 = 0.9.97.9 (1st August 2018) =
 * Minor Improvements
 
