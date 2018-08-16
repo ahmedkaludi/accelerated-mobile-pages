@@ -146,6 +146,9 @@ body .amp-loop-list-noimg .amp-wp-post-content{ width:100% }
 .footer_menu ul li:first-child{ margin-left:0 }
 .footer_menu ul li:last-child{ margin-right:0 }
 .footer_menu ul ul{ display:none }
+a.btt:hover {
+    cursor: pointer;
+}
 <?php if ( is_singular() || $redux_builder_amp['amp-frontpage-select-option'] && ampforwp_get_blog_details() == false ) { ?>
 /* Single */
 .single-post main{ margin: 20px 17px 17px 17px; }

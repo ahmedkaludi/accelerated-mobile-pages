@@ -7398,3 +7398,9 @@ function ampforwp_check_excerpt(){
  
 	return $value;
 }
+
+// Back to top 
+add_action( 'ampforwp_body_beginning' ,'ampforwp_back_to_top_markup');
+function ampforwp_back_to_top_markup(){
+	echo '<div id="backtotop"></div>';
+}

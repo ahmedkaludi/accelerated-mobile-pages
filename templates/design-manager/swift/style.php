@@ -341,7 +341,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	.comment-content p{font-size: 14px;color: #333;line-height: 22px;font-weight: 400;margin: 0;}
 	.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;width:40px;}
 
-	
+
 	@media (max-width: 480px){
 		blockquote p {font-size:20px;}
 	}
@@ -722,6 +722,9 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 }
 .cp-rgt .view-non-amp{
 	display:none;
+}
+a.btt:hover {
+    cursor: pointer;
 }
 <?php } //Menu Copy Right CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
