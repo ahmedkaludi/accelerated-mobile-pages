@@ -188,6 +188,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Create a new function to get the settings instead of calling it directly from global $redux_builder_amp everytime. `ampforwp_get_setting` created #2177
 * Fixed: Comments and share not loading on pages only in swift #2401
 * Fixed: Back to Top link not working in Swift Design #2404
+* Added: Ads Below the Author Area in Swift theme #2455
 
 
 = 0.9.97.9 (1st August 2018) =

@@ -33,7 +33,8 @@
 						<?php amp_author_box( 
 											array(	'avatar'=>true,
 													'avatar_size'=>60,
-													'author_description'=>true)
+													'author_description'=>true,
+													'ads_below_the_author'=>true)
 											); ?>
 					<?php } ?>
 					<?php amp_post_navigation();?>
@@ -418,7 +419,8 @@ do_action("ampforwp_single_design_type_handle");
 									<?php amp_author_box( 
 										array(	'avatar'=>true,
 												'avatar_size'=>60,
-												'author_description'=>true)
+												'author_description'=>true,
+												'ads_below_the_author'=>true)
 										); ?>
 								<?php } ?>
 								<?php amp_post_navigation();?>
