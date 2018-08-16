@@ -753,3 +753,13 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		return $value;
 	}
 }
+
+// Get Settings from Redux #2177
+function ampforwp_get_setting( $opt_name='' ){
+	global $redux_builder_amp;
+	$opt_value = '';
+	if ( isset($redux_builder_amp[$opt_name]) ) {
+		$opt_value = $redux_builder_amp[$opt_name];
+	}
+	return $opt_value;
+}
