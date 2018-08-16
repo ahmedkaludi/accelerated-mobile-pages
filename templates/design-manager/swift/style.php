@@ -316,6 +316,35 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
     <?php } ?>
+    blockquote{margin-bottom:20px;}
+	blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
+	blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
+	.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
+	.amp-comment-button .nocomments{color: #fff;display: block;padding: 7px 0px 8px 0px;}
+	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
+	.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
+	.form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
+	#respond p {margin: 12px 0;}
+	.amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
+	.comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
+	.cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
+	.cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}
+	.cmts ul{margin-top:16px;}
+	.cmts ul li{list-style: none;margin-bottom: 20px;padding-bottom: 20px;border-bottom: 1px solid #eee;}
+	.cmts .amp-comments-wrapper ul .children{margin-left:30px; }
+	.cmts .comment-author.vcard .says{display:none;}
+	.cmts .comment-author.vcard .fn{font-size: 12px;font-weight: 500;color: #333;}
+	.cmts .comment-metadata{font-size: 11px;margin-top: 8px;}
+	.amp-comments-wrapper ul li:hover .comment-meta .comment-metadata a{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;;}
+	.cmts .comment-metadata a{color: #999;}
+	.comment-content{margin-top:6px;width:100%;display:inline-block;}
+	.comment-content p{font-size: 14px;color: #333;line-height: 22px;font-weight: 400;margin: 0;}
+	.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;width:40px;}
+
+	
+	@media (max-width: 480px){
+		blockquote p {font-size:20px;}
+	}
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
