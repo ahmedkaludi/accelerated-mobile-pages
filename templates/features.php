@@ -2705,7 +2705,8 @@ function amp_gtm_add_gtm_support( $analytics ) {
 		$analytics = array();
 	}
 	$gtm_id 	= ampforwp_get_setting('amp-gtm-id');
-	$gtm_id 	= str_replace(" ", "", $gtm_id); 
+	$gtm_id 	= str_replace(" ", "", $gtm_id);
+	 
 	$analytics['amp-gtm-googleanalytics'] = array(
 		'type' => $redux_builder_amp['amp-gtm-analytics-type'],
 		'attributes' => array(
