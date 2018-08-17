@@ -50,7 +50,10 @@
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'
-		) ) ); ?>
+		) ) ); 
+		if ( function_exists( 'relevanssi_do_query' ) ) {
+			relevanssi_do_query( $q );
+		};?>
 
  		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
 

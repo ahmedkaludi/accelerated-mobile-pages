@@ -491,10 +491,3 @@ function ampforwp_allows_tag_sanitizer($sanitizer_classes){
 	$sanitizer_classes['AMP_Tag_And_Attribute_Sanitizer'] = array();
 	return $sanitizer_classes;
 };
-
-// Liberating Search from Relevanssi's Search Take Over
-add_action('amp_init', 'ampforwp_remove_relevanssi_search_takeover');
-function ampforwp_remove_relevanssi_search_takeover(){
-	remove_filter( 'the_posts', 'relevanssi_query', 99, 2 );
-	remove_filter( 'posts_request', 'relevanssi_prevent_default_request', 10, 2 );
-} 
