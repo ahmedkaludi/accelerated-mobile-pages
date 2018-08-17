@@ -32,7 +32,7 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
          */
         function render() {
 
-            $cb_enabled = $cb_disabled = ''; //no errors, please
+            $cb_enabled = $cb_disabled = $class_on = $class_off = $switch_text = ''; //no errors, please
             //
             //Get selected
             if ( (int) $this->value == 1 ) {
@@ -40,25 +40,28 @@ if ( ! class_exists( 'ReduxFramework_switch' ) ) {
             } else {
                 $cb_disabled = ' selected';
             }
-
             //Label ON
-            $this->field['on'] = isset( $this->field['on'] ) ? $this->field['on'] : __( 'On', 'redux-framework' );
+            $this->field['on'] = isset( $this->field['on'] ) ? $this->field['on'] : __( 'On', 'accelerated-mobile-pages' );
 
             //Label OFF
-            $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'redux-framework' );
-			
-			
-			 echo '<div class="switch-options">
-						<label class="ios7-switch">
-							<input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . $this->field['id'] . '">
-							<span></span>
-						</label>
-					';
-			echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $this->value . '" />';
-			echo '</div>';
+            $this->field['off'] = isset( $this->field['off'] ) ? $this->field['off'] : __( 'Off', 'accelerated-mobile-pages' );
+            // Switch Text
+            if ( isset($this->field['switch-text']) ) {
+                $class_on = 'switch-text switch-text-on hide';
+                $class_off = 'switch-text switch-text-off hide';
+                $switch_text = '<span class="'.$class_on.'">'.$this->field['on'].'</span><span class="'.$class_off.'">'.$this->field['off'].'</span>';
+            }           
+            
+            echo '<div class="switch-options">
+                        <label class="ios7-switch">
+                            <input class="switch-on-off" type="checkbox" '.($cb_enabled==' selected' ? 'checked' : '').' data-id="' . $this->field['id'] . '">
+                            <span></span>
+                        </label>
+                    ';
+            echo '<input type="hidden" class="checkbox checkbox-input ' . $this->field['class'] . '" id="' . $this->field['id'] . '" name="' . $this->field['name'] . $this->field['name_suffix'] . '" value="' . $this->value . '" />';
+            echo $switch_text;
+            echo '</div>';
 
-			
-			
             /* echo '<div class="switch-options">';
             echo '<label class="cb-enable' . $cb_enabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['on'] . '</span></label>';
             echo '<label class="cb-disable' . $cb_disabled . '" data-id="' . $this->field['id'] . '"><span>' . $this->field['off'] . '</span></label>';

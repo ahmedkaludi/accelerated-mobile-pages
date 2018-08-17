@@ -3046,7 +3046,7 @@ function ampforwp_talking_to_robots() {
 	  	}
   	}
   	// Meta Robots Tag From Yoast #1563
-  	if ( class_exists('WPSEO_Frontend') ) {
+  	if ( class_exists('WPSEO_Frontend') && false == ampforwp_get_setting('amp-inspection-tool') ) {
 		$class_instance = '';
 	    $class_instance = WPSEO_Frontend::get_instance();
 	    // robots() will return and print the meta robots tag
@@ -3054,15 +3054,15 @@ function ampforwp_talking_to_robots() {
 	    // Empty the above meta content to avoid duplicate meta robot tags
 	    $meta_content = '';
 	}
-  $meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
-  if ( isset($redux_builder_amp['amp-inspection-tool']) && true == $redux_builder_amp['amp-inspection-tool'] ) {
-  		$talk_to_robots = $meta_content = '';
-  }
-  if ( $meta_content ) {
-  	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
-  		echo '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';
-  	}
-  }
+	$meta_content = apply_filters('ampforwp_robots_meta', $meta_content);
+	if ( isset($redux_builder_amp['amp-inspection-tool']) && true == $redux_builder_amp['amp-inspection-tool'] ) {
+			$talk_to_robots = $meta_content = '';
+	}
+	if ( $meta_content ) {
+	  	if ( ( is_archive() && $talk_to_robots ) || is_singular() || is_home() ) {	
+	  		echo '<meta name="robots" content="' . esc_attr($meta_content) . '"/>';
+	  	}
+	}
 
 }
 
@@ -5002,7 +5002,7 @@ function ampforwp_dev_mode_remove_amphtml(){
 if ( ! function_exists('ampforwp_dev_mode_add_noindex') ) {
 	function ampforwp_dev_mode_add_noindex() {
 		global $redux_builder_amp;
-		if ( isset($redux_builder_amp['amp-inspection-tool']) && false == $redux_builder_amp['amp-inspection-tool'] ){ 
+		if ( isset( $redux_builder_amp['amp-inspection-tool'] ) && false == $redux_builder_amp['amp-inspection-tool'] ){ 
 			echo '<meta name="robots" content="noindex,nofollow"/>';
 		}
 	}

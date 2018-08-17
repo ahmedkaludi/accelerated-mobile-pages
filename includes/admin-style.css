@@ -719,3 +719,6 @@ visibility: hidden;
 #redux_builder_amp-hide-amp-categories .inner-child span:before{
     content: "- "
 }
+span.switch-text {
+    margin-left: 5px;
+}

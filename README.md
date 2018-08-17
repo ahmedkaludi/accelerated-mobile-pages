@@ -195,6 +195,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Add paginations meta tags #2343
 * Fixed: Updated the code of AMP renders with ?q after the /amp #2361
 * Added: Add support for Relevanssi search #2307
+* Added: Show index/noindex label when enabling the options in SEO Settings #2290
+
 
 
 = 0.9.97.9 (1st August 2018) =

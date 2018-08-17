@@ -1882,21 +1882,21 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'  => 0,
                'required'  => array('ampforwp-seo-selection', '=' , '2'),
            ),
-           array(
-                  'id' => 'ampforwp-seo-index-noindex-sub-section',
-                  'type' => 'section',
-                  'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
-                  'indent' => true,
-                  'layout_type' => 'accordion',
-                   'accordion-open'=> 1,
-              ),
-           array(
+            array(
+                'id' => 'ampforwp-seo-index-noindex-sub-section',
+                'type' => 'section',
+                'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1,
+            ),
+            array(
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => __('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __("You can read about it <a target='_blank' href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
                'default' => 1,
-           ),
+            ),
            array(
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
@@ -1906,6 +1906,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
@@ -1916,6 +1917,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-date-pages',
@@ -1926,6 +1928,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-category-pages',
@@ -1936,6 +1939,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-tag-pages',
@@ -1946,6 +1950,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
 
 
