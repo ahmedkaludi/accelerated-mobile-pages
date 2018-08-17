@@ -190,6 +190,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Back to Top link not working in Swift Design #2404
 * Added: Ads Below the Author Area in Swift theme #2455
 * Fixed: AMP should remove spaces from GTM ID automatically #2413
+* Fixed: Some Posts are not displaying in Blog page even when AMP is enabled from Post settings #2375
+
 
 
 = 0.9.97.9 (1st August 2018) =

@@ -40,14 +40,14 @@
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
-		$q = new WP_Query( array(
+		$q = new WP_Query( apply_filters('ampforwp_query_args', array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false,
 			'post_status'		  => 'publish'
-		) ); ?>
+		) ) ); ?>
 		<div class="amp-wp-content amp-archive-heading">
 		<h1 class="page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
  		</div>
