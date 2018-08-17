@@ -189,6 +189,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Comments and share not loading on pages only in swift #2401
 * Fixed: Back to Top link not working in Swift Design #2404
 * Added: Ads Below the Author Area in Swift theme #2455
+* Fixed: AMP should remove spaces from GTM ID automatically #2413
 
 
 = 0.9.97.9 (1st August 2018) =
