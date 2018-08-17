@@ -183,6 +183,20 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.10 (18th August 2018) =
+* Fixed: Homepage build with AMP PageBuilder is displaying only when the checkbox of the Custom AMP editor is enabled #2350
+* Added: Created a new function to get the settings instead of calling it directly from global $redux_builder_amp everytime. `ampforwp_get_setting` created #2177
+* Fixed: Comments and share not loading on pages only in swift #2401
+* Fixed: Back to Top link not working in Swift Design #2404
+* Added: Ads Below the Author Area in Swift theme #2455
+* Fixed: AMP should remove spaces from GTM ID automatically #2413
+* Fixed: Some Posts are not displaying in Blog page even when AMP is enabled from Post settings #2375
+* Fixed: Wrong AMPHTML when using static page as blog using custom-code/pagebuilder from reading settings #2396
+* Added: Add paginations meta tags #2343
+* Fixed: Updated the code of AMP renders with ?q after the /amp #2361
+* Added: Add support for Relevanssi search #2307
+* Added: Show index/noindex label when enabling the options in SEO Settings #2290
+
 = 0.9.97.9 (1st August 2018) =
 * Minor Improvements
 
