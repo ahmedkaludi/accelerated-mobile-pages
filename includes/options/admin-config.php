@@ -79,6 +79,17 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
                         array(
+                            'name'=>'bbPress For AMP',
+                            'desc'=>'Add bbPress Forum Compatibility to your AMP version',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$89',
+                            'url_link'=>'http://ampforwp.com/bbpress/#utm_source=options-panel&utm_medium=extension-tab_bbpress-for-wordpress&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'bbpress-for-amp/bbpress-for-amp.php',
+                            'item_name'=>'bbPress for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('bbpress-for-amp/bbpress-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Ninja Forms for AMP',
                             'desc'=>'Add Ninja Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
@@ -125,6 +136,18 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cache/ampforwp-cache.php')? 1 : 2),
                             'settingUrl'=>'{opt-go-amp-cache}',
+                        ),
+                        array(
+                            'name'=>'PWA For WordPress',
+                            'desc'=>'Add Progressive Web App support for WordPress website',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$89',
+                            'url_link'=>'http://ampforwp.com/pwa/#utm_source=options-panel&utm_medium=extension-tab_pwa-for-wordpress&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'pwa-for-wordpress/amp-pwa.php',
+                            'item_name'=>'PWA For WordPress',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('pwa-for-wordpress/amp-pwa.php')? 1 : 2),
+                            'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -174,19 +197,6 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
                             'settingUrl'=>'{amp-theme-settings}',
-                        ),
-
-                        array(
-                            'name'=>'AMP Layouts',
-                            'desc'=>'layout system built for AMP that makes easy to create your own AMP templates.',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
-                            'price'=>'$89',
-                            'url_link'=>'https://ampforwp.com/amp-layouts/',
-                            'plugin_active_path'=> 'amp-layouts/amp-layouts.php',
-                            'item_name'=>'AMP Layouts',
-                            'store_url'=>'https://accounts.ampforwp.com',
-                            'is_activated'=>(is_plugin_active('amp-layouts/amp-layouts.php')? 1 : 2),
-                            'settingUrl'=>'',
                         ),                      
 
                         array(
@@ -857,7 +867,10 @@ $single_extension_listing = '
 ';
 
 $upcomingLayoutsDesign = '';
-$layouts = ampforwp_upcomming_layouts_demo();
+$layouts = array();
+if( is_admin() ){
+    $layouts = ampforwp_upcomming_layouts_demo();
+}
 if(is_array($layouts)){
     foreach($layouts as $k=>$val){
     	$upcomingLayoutsDesign .=  '<div class="amp_layout_upcomming"> 
@@ -1983,7 +1996,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         return false;
     }
 
-    // Analytics SECTION
+ // Analytics SECTION
    Redux::setSection( $opt_name,    array(
                 'title' => __('Analytics'),
                 // 'icon' => 'el el-th-large',
@@ -2015,7 +2028,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         ),
                         'default'  => '1',
                     ),  
-
                 array(
                       'id' => 'ampforwp-analytics_1',
                       'type' => 'section',
@@ -2097,11 +2109,9 @@ Redux::setArgs( "redux_builder_amp", $args );
     /** 
      * Enter your Advanced Analytics code here
     */
-
     }
 }','accelerated-mobile-pages')
                     ),
-
                       //GTM
                         array(
                             'id'       => 'amp-use-gtm-option',
@@ -2166,12 +2176,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             array('amp-use-gtm-option', '=' , '1'),
                           ),
                         ),
-
-
                 array(
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                       'id' => 'ampforwp-analytics_2',
                       'type' => 'section',
                       'title' => __('General Analytics Providers', 'accelerated-mobile-pages'),
@@ -2180,9 +2185,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'accordion-open'=> 1, 
                   ),
                     array(
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                         'id'            =>'amp-fb-pixel',
                         'type'          => 'switch',
                         'title'         => __('Facebook Pixel','accelerated-mobile-pages'),
@@ -2202,9 +2204,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Segment Analytics',
                         'default' => ampforwp_get_default_analytics('2'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'       => 'sa-feild',
@@ -2212,7 +2211,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'    => __( 'Segment Analytics', 'accelerated-mobile-pages' ),
                         'tooltip-subtitle' => __( 'Enter your Segment Analytics Key.', 'accelerated-mobile-pages' ),
                         'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
                           array('ampforwp-Segment-switch', '=' , '1')
                         ),
                         'default'  => 'SEGMENT-WRITE-KEY',
@@ -2223,16 +2221,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Matomo (Piwik) Analytics',
                         'default' => ampforwp_get_default_analytics('3'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'pa-feild',
                           'type'     => 'text',
                           'title'    => __( ' Matomo (Piwik) Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Piwik-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://piwik.example.org/piwik.php?idsite=YOUR_SITE_ID&rec=1&action_name=TITLE&urlref=DOCUMENT_REFERRER&url=CANONICAL_URL&rand=RANDOM', 'accelerated-mobile-pages' ),
@@ -2245,9 +2239,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Quantcast Measurement',
                         'default' => ampforwp_get_default_analytics('4'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'            =>'amp-quantcast-analytics-code',
@@ -2263,9 +2254,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'comScore',
                         'default' => ampforwp_get_default_analytics('5'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                         'id'            =>'amp-comscore-analytics-code-c1',
@@ -2289,16 +2277,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Effective Measure',
                         'default' => ampforwp_get_default_analytics('6'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'eam-feild',
                           'type'     => 'text',
                           'title'    => __( 'Effective Measure Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Effective-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://s.effectivemeasure.net/d/6/i?pu=CANONICAL_URL&ru=DOCUMENT_REFERRER&rnd=RANDOM', 'accelerated-mobile-pages' ),
@@ -2311,16 +2295,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'StatCounter',
                         'default' => ampforwp_get_default_analytics('7'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                       array(
                           'id'       => 'sc-feild',
                           'type'     => 'text',
                           'title'    => __( 'StatCounter', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-StatCounter-switch', '=' , '1')
                           ),
                           'desc'     => __( 'Example: https://c.statcounter.com/PROJECT_ID/0/SECURITY_CODE/1/', 'accelerated-mobile-pages' ),
@@ -2333,16 +2313,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Histats Analytics',
                         'default' => ampforwp_get_default_analytics('8'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                        array(
                           'id'       => 'histats-feild',
                           'type'     => 'text',
                           'title'    => __( 'Histats Analytics', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Histats-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter your Histats Analytics ID.', 'accelerated-mobile-pages' ),
@@ -2355,9 +2331,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Yandex Metrika',
                         'default' => ampforwp_get_default_analytics('9'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                        array(
                         'id'            =>'amp-Yandex-Metrika-analytics-code',
@@ -2365,7 +2338,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'         => __('Yandex Metrika Analytics ID','accelerated-mobile-pages'),
                         'default'       => '',
                         'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Yandex-switch', '=' , '1')),
                         'tooltip-subtitle' => __( 'Enter your Counter ID.', 'accelerated-mobile-pages' ),
                       ),
@@ -2375,9 +2347,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Chartbeat Analytics',
                         'default' => ampforwp_get_default_analytics('10'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                   
                        array(
@@ -2386,7 +2355,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'title'         => __('Chartbeat Analytics ID','accelerated-mobile-pages'),
                         'default'       => '',
                         'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Chartbeat-switch', '=' , '1')),
                         'tooltip-subtitle' => __( 'Enter your Account ID.', 'accelerated-mobile-pages' ),
                       ),
@@ -2396,16 +2364,12 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'Alexa Metrics',
                         'default' => ampforwp_get_default_analytics('11'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                      array(
                           'id'       => 'ampforwp-alexa-account',
                           'type'     => 'text',
                           'title'    => __( 'Alexa Metrics Account', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Alexa-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter Account Number given by Alexa Metrics', 'accelerated-mobile-pages' ),
@@ -2416,7 +2380,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'type'     => 'text',
                           'title'    => __( 'Alexa Metrics Domain', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-Alexa-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the domain', 'accelerated-mobile-pages' ),
@@ -2428,26 +2391,20 @@ Redux::setArgs( "redux_builder_amp", $args );
                         'type'  => 'switch',
                         'title' => 'AFS Analytics',
                         'default' => ampforwp_get_default_analytics('12'),
-                        'required' => array(
-                          array('amp-use-gtm-option', '=' , '0'),
-                        ),
                     ),
                     array(
                           'id'       => 'ampforwp-afs-siteid',
                           'type'     => 'text',
                           'title'    => __( 'Website ID', 'accelerated-mobile-pages' ),
                           'required' => array(
-                            array('amp-use-gtm-option', '=' , '0'),
                             array('ampforwp-afs-analytics-switch', '=' , '1')
                           ),
                           'tooltip-subtitle' => __( 'Enter the Website ID', 'accelerated-mobile-pages' ),
                           'default'  => '',
                           'desc' => 'example: 00000003',
-                      ),   
-
-
-                        )
-            )
+                      ), 
+                    )
+             )
    );
     //Get options for Structured Data Type
     if( !function_exists('ampforwp_get_sd_types') ){
@@ -6029,7 +5986,15 @@ Redux::setSection( $opt_name, array(
              ),
 
          // Meta ON/OFF Pages
-             array(
+            array(
+                  'id'       => 'featured_image_swift_page',
+                  'type'     => 'switch',
+                  'default'  =>  '0',
+                  'title'    => __('Featured Image', 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => __('Enable Featured Image on Pages.'),
+                  'required' => array('amp-design-selector','=','4'),
+            ),
+            array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
                       'default'  =>  '0',

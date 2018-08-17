@@ -88,7 +88,7 @@
           <?php } 
           if ( '1' == $redux_builder_amp['ampforwp-footer-top-design3'] ) { ?>
             <p class="rightslink back-to-top">
-             <a href="#">
+             <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" >
                   <?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?> 
                 </a> </p> <?php } ?>
           <p class="rightslink">

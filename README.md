@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, google, plugin, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 4.9.5
-Stable tag: 0.9.97.2
+Tested up to: 4.9.8
+Stable tag: 0.9.97.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,59 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.10 (17th August 2018) =
+* Fixed: Homepage build with AMP PageBuilder is displaying only when the checkbox of the Custom AMP editor is enabled #2350
+* Added: Created a new function to get the settings instead of calling it directly from global $redux_builder_amp everytime. `ampforwp_get_setting` created #2177
+* Fixed: Comments and share not loading on pages only in swift #2401
+* Fixed: Back to Top link not working in Swift Design #2404
+* Added: Ads Below the Author Area in Swift theme #2455
+* Fixed: AMP should remove spaces from GTM ID automatically #2413
+* Fixed: Some Posts are not displaying in Blog page even when AMP is enabled from Post settings #2375
+* Fixed: Wrong AMPHTML when using static page as blog using custom-code/pagebuilder from reading settings #2396
+* Added: Add paginations meta tags #2343
+* Fixed: Updated the code of AMP renders with ?q after the /amp #2361
+
+
+
+= 0.9.97.9 (1st August 2018) =
+* Minor Improvements
+
+= 0.9.97.8 (24th July 2018) =
+* Fixed: AMP renders with ?q after the /amp #2361
+* Fixed: iThemes Sync can not connect to the site. #2380
+* Fixed: H1 to H6 styling is not reflecting in the Swift theme #2383
+* Fixed: Underline on Links function is not working. #2372
+* Fixed: WordPress Admin Color Scheme not applying #2390
+* Fixed: Breadcrumbs are not disabling when the sidebar template is selected #2376
+* Fixed: All the Images are Adding AMP at the End of their URL. #2391
+
+= 0.9.97.7 (18th July 2018) =
+* Fixed: PageBuilder not loading on frontpage #2360
+* Fixed: 500 error on somepages due to open wp_query by other plugins
+* Fixed: License key reupdating #2261 
+* Fixed: AMP renders with ?q after the /amp #2361
+
+= 0.9.97.6 (14th July 2018) =
+* Fixed: Error and Warning on Structured Data for Logo. #2360
+* Fixed: Category Bulk tool breaking meta boxes #2335
+
+= 0.9.97.5 (11th July 2018) =
+* Fixed: Title disappearing in Design 1,2,3 when legacy pagebuilder is enabled #2341
+* Fixed: ld+json getting a broken when special characters are added in the image. #2346
+* Fixed: Hide by Category Breaking post metabox #2330
+* Fixed: Hiding excerpt when global $redux_builder_amp is empty #2330
+* Fixed: When Google Tag Manager is enabled, only Google Analytics should get disabled but not other analytics. #2340
+
+= 0.9.97.4 (09th July 2018) =
+* Fixed: Huge Performance upgrade in the way fetching the logo url #2317
+* Fixed: Fatal Error due to unable to modify values in Structured Data Object #2327
+* Fixed: Seperate option for Featured Image in pages in Swift theme #2328
+* Fixed: `<p>` tags disabling where not wanted #2330
+* Fixed: Fatal error in contact form module while ninja form or gravity form plugins are not activated #2310
+* Fixed: Woo Commerce Category page not working properly #2333
+* Fixed: Few issues related to amp-facebook-comments #2300
+* Fixed: Limit number of Tags and Category to 500 in Hide AMP-Bulk tools #2336
 
 = 0.9.97 (27th June 2018) =
 * For more details check out [the blog post](https://ampforwp.com/0-9-97-released-strengthening-of-foundation-89th-update/)

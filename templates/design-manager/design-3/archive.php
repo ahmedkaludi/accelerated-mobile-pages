@@ -154,7 +154,7 @@ if ( get_query_var( 'paged' ) ) {
 
 
 				<?php
-				if( true == $redux_builder_amp['excerpt-option'] ) {
+				if( ampforwp_check_excerpt() ) {
 					if(has_excerpt()){
 						$content = get_the_excerpt();
 					}else{

@@ -45,7 +45,7 @@ if(is_plugin_active('amp-cf7/amp-cf7.php')){
 				));
 
 }
-if(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php')){
+if(is_plugin_active('amp-gravity-forms/amp-gravity-forms.php') && class_exists('RGFormsModel')){
 	$formSupported = array_merge($formSupported, array('gravityform'=>'Gravity Form'));
 
 	$apbGFforms = RGFormsModel::get_forms();
@@ -98,7 +98,7 @@ if(is_plugin_active('amp-wp-forms/amp-wpforms.php')){
 					'required'  => array('form_type' => 'wpforms'),
 				));
 }
-if(is_plugin_active('amp-ninja-forms/amp-ninja-forms.php')){
+if(is_plugin_active('amp-ninja-forms/amp-ninja-forms.php') && function_exists('Ninja_Forms')){
 	$formSupported = array_merge($formSupported, array('ninja_form'=>'Ninja Forms'));
 
 	$ninjaforms_modified = array();

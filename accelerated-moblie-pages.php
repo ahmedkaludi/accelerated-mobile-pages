@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.97.4
+Version: 0.9.97.10
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -19,7 +19,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.97.4');
+define('AMPFORWP_VERSION','0.9.97.10');
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
@@ -191,11 +191,14 @@ function ampforwp_add_custom_rewrite_rules() {
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
 
 
-	if( class_exists( 'WooCommerce' ) ) {
-		$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
-		
-		if ( $wc_permalinks ) {
-			$taxonomies = array_merge($taxonomies, $wc_permalinks);
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+  	if(!is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php' )) {
+		if( class_exists( 'WooCommerce' ) ) {
+			$wc_permalinks 	= get_option( 'woocommerce_permalinks' );
+			
+			if ( $wc_permalinks ) {
+				$taxonomies = array_merge($taxonomies, $wc_permalinks);
+			}
 		}
 	}
 
@@ -360,7 +363,7 @@ function ampforwp_parent_plugin_check() {
 		delete_option( 'ampforwp_parent_plugin_check');
 	}
 }
-if(!function_exists('ampforwp_upcomming_layouts_demo') && is_admin()){
+if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 	function ampforwp_upcomming_layouts_demo(){
 		return array(
 			array(	
@@ -749,4 +752,14 @@ if ( ! function_exists('ampforwp_customizer_is_enabled') ) {
 		}
 		return $value;
 	}
+}
+
+// Get Settings from Redux #2177
+function ampforwp_get_setting( $opt_name='' ){
+	global $redux_builder_amp;
+	$opt_value = '';
+	if ( isset($redux_builder_amp[$opt_name]) ) {
+		$opt_value = $redux_builder_amp[$opt_name];
+	}
+	return $opt_value;
 }

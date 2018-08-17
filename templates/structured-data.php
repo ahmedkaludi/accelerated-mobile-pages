@@ -2,6 +2,9 @@
 // Structured Data Type
 add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 1 );
 function ampforwp_structured_data_type( $metadata ) {
+	if ( !is_array($metadata) ) {
+		return $metadata;
+	}
 	global $redux_builder_amp, $post;
 	$post_types 	= '';
 	$set_sd_post 	= '';
@@ -22,7 +25,9 @@ function ampforwp_structured_data_type( $metadata ) {
         		if ( empty( $redux_builder_amp['ampforwp-sd-type-'.$post_type.''] ) && $redux_builder_amp['ampforwp-seo-yoast-description'] == 0 ) {
 					return;
 				}
-        		$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+				if(isset($metadata['@type']) && $metadata['@type']){
+        			$metadata['@type'] = $redux_builder_amp['ampforwp-sd-type-'.$post_type.''];
+        		}
         		return $metadata;
         	}
         }
@@ -36,14 +41,18 @@ function ampforwp_structured_data_type( $metadata ) {
 			return;
 	}
 	if ( isset( $post->post_type ) && 'post' == $post->post_type ) {
-		$metadata['@type'] = $set_sd_post;
+		if(isset($metadata['@type']) && $metadata['@type']){
+			$metadata['@type'] = $set_sd_post;
+		}
 	}
 
 	if ( (isset( $post->post_type ) && 'page' == $post->post_type) || ampforwp_is_front_page() || ampforwp_is_blog()) {
 		if ( empty( $set_sd_page )){
 			return;
 		}
-		$metadata['@type'] = $set_sd_page;
+		if(isset($metadata['@type']) && $metadata['@type']){
+			$metadata['@type'] = $set_sd_page;
+		}
 	} 
 
 	return $metadata;
@@ -52,9 +61,12 @@ function ampforwp_structured_data_type( $metadata ) {
 add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_video_thumb', 20, 1 );
 if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 	function ampforwp_structured_data_video_thumb( $metadata ) {
+		if ( !is_array($metadata) ) {
+    		return $metadata;
+    	}
 		global $redux_builder_amp, $post;
 		// VideoObject
-		if ( 'VideoObject' == $metadata['@type'] ) {
+		if ( isset($metadata['@type']) && 'VideoObject' == $metadata['@type'] ) {
 			$post_image_id = '';
 			$post_image_id = get_post_thumbnail_id( get_the_ID() );
 			$post_image = wp_get_attachment_image_src( $post_image_id, 'full' );
@@ -74,7 +86,7 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			$metadata['thumbnailUrl'] = $structured_data_video_thumb_url;
 		}
 		// Recipe
-		if ( 'Recipe' == $metadata['@type'] ) {
+		if ( isset($metadata['@type']) && 'Recipe' == $metadata['@type'] ) {
 			$metadata['name'] = $metadata['headline'];
 		}
 		return $metadata;
@@ -86,7 +98,7 @@ if ( ! function_exists('ampforwp_structured_data_product') ) {
 	function ampforwp_structured_data_product( $metadata ) {
 		global $redux_builder_amp, $post;
 		// Adding Product's Name and unsetting the Google unrecognized data for type Product
-		if ( 'Product' == $metadata['@type'] ) {
+		if ( isset($metadata['@type']) && 'Product' == $metadata['@type'] ) {
 			$metadata['name'] = $metadata['headline'];
 			unset($metadata['dateModified']);
 			unset($metadata['datePublished']);
