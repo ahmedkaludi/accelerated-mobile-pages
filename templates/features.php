@@ -398,6 +398,32 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		return;
 	}
 
+	// AMPHTML when using custom page and then creating a blog page
+	add_action('amp_init','ampforwp_allow_homepage_as_blog');
+	function ampforwp_allow_homepage_as_blog() {
+		add_action( 'wp', 'ampforwp_static_blog' , 11 );
+	}
+	function ampforwp_static_blog(){
+		global $page;
+		if ( ampforwp_is_front_page() && $page >= 2 && is_page() ) {
+			add_filter('ampforwp_modify_rel_canonical','ampforwp_modify_amphtml_static_blog');
+		}
+	}
+
+	function ampforwp_modify_amphtml_static_blog($amp_url) {
+		$explode_url = $amp_endpoint = $offset = "";
+
+		$explode_url 	= explode('/', $amp_url);
+		$explode_url 	= array_flip($explode_url);
+		unset($explode_url['amp']); 
+		$explode_url 	= array_flip($explode_url);
+		$amp_endpoint 	= array('amp');
+		$offset 		= count($explode_url) - 2; 
+		array_splice( $explode_url, $offset, 0, $amp_endpoint );
+		$amp_url 		= implode('/', $explode_url);
+		return $amp_url;
+	}
+
 	function ampforwp_home_archive_rel_canonical() {
 
 		$amp_url = "";
