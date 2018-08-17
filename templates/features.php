@@ -6912,7 +6912,7 @@ add_filter('ampforwp_post_content_filter', 'ampforwp_paginated_post_content');
 
 function ampforwp_paginated_post_content($content){
 	global $numpages;
-	if(is_single()){
+	if(is_single() || is_page()){
 		if ( get_query_var( 'paged' ) ) {
 			$paged = get_query_var('paged');
 		} elseif ( get_query_var( 'page' ) ) {
