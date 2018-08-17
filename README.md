@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Wrong AMPHTML when using static page as blog using custom-code/pagebuilder from reading settings #2396
 * Added: Add paginations meta tags #2343
 * Fixed: Updated the code of AMP renders with ?q after the /amp #2361
-
+* Added: Add support for Relevanssi search #2307
 
 
 = 0.9.97.9 (1st August 2018) =
