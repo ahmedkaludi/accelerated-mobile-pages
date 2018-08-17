@@ -192,6 +192,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: AMP should remove spaces from GTM ID automatically #2413
 * Fixed: Some Posts are not displaying in Blog page even when AMP is enabled from Post settings #2375
 * Fixed: Wrong AMPHTML when using static page as blog using custom-code/pagebuilder from reading settings #2396
+* Added: Add paginations meta tags #2343
 
 
 
