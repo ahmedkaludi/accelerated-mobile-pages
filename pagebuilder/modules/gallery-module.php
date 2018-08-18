@@ -11,7 +11,7 @@ $css = '
 {{module-class}} .amp_gallery_wrapper amp-img{max-width:{{width}};margin:0 2% 15px 2%;display: inline-block;vertical-align: middle;width:100%;}
 ';
 return array(
-		'label' =>'Gallery',
+		'label' =>'Logo',
 		'name' =>'gallery',
 		'default_tab'=> 'customizer',
 		'tabs' => array(

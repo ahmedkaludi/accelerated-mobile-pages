@@ -256,7 +256,7 @@ $css = '
 ';
 
 return array(
-		'label' =>'Slider',
+		'label' =>'Gallery / Slider',
 		'name' =>'slider-mod',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
