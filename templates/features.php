@@ -6938,6 +6938,7 @@ if ( ! function_exists('ampforwp_gdpr_init') ) {
 			// gdpr component 
 			add_action('amp_footer_link' , 'amp_gdpr' );
 		}
+	}
 }
 
 // #1696
