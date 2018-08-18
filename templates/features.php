@@ -245,10 +245,12 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		// #872 no-amphtml if selected as hide from settings
 		if(is_archive() && $redux_builder_amp['ampforwp-archive-support']){
 			if(is_tag() &&  is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
-				$all_tags = get_the_tags();
+				$all_tags 	= get_the_tags();
 				$tagsOnPost = array();
-				foreach ($all_tags as $tagskey => $tagsvalue) {
-					$tagsOnPost[] = $tagsvalue->term_id;
+				if ( $all_tags ) {
+					foreach ($all_tags as $tagskey => $tagsvalue) {
+						$tagsOnPost[] = $tagsvalue->term_id;
+					}
 				}
 				$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
 				
@@ -4591,7 +4593,7 @@ function ampforwp_posts_to_remove () {
 	}
 	if( is_array($redux_builder_amp['hide-amp-tags-bulk-option']) )	{
 		$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
-		$all_tags = get_the_tags(get_the_ID());
+		$all_tags 	= get_the_tags(get_the_ID());
 		$tagsOnPost = array();
 		if ( $all_tags ) {
 			foreach ($all_tags as $tagskey => $tagsvalue) {
@@ -4858,10 +4860,12 @@ function is_category_amp_disabled(){
 	$current_cats_ids = array();
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
-			$all_tags = get_the_tags();
+			$all_tags 	= get_the_tags();
 			$tagsOnPost = array();
-			foreach ($all_tags as $tagskey => $tagsvalue) {
-				$tagsOnPost[] = $tagsvalue->term_id;
+			if ( $all_tags ) {
+				foreach ($all_tags as $tagskey => $tagsvalue) {
+					$tagsOnPost[] = $tagsvalue->term_id;
+				}
 			}
 			$get_tags_checkbox =  array_keys(array_filter($redux_builder_amp['hide-amp-tags-bulk-option'])); 
 			
