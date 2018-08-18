@@ -273,6 +273,14 @@ if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
 	}
 }
 
+function ampforwp_plugin_info(){
+	$data = array();
+	$date = new DateTime();
+	$data = array('activation_data' => $date->getTimestamp() );
+	add_option( 'ampforwp_plugin_info', $data );
+}
+add_action('upgrader_process_complete','ampforwp_plugin_info' );
+
 register_activation_hook( __FILE__, 'ampforwp_rewrite_activation', 20 );
 function ampforwp_rewrite_activation() {
 
@@ -287,6 +295,7 @@ function ampforwp_rewrite_activation() {
 
     ampforwp_add_custom_post_support();
     ampforwp_add_custom_rewrite_rules();
+    ampforwp_plugin_info();
 
     // Flushing rewrite urls ONLY on activation
 	global $wp_rewrite;

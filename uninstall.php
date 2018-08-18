@@ -25,8 +25,8 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 						'ampforwp_installer_completed',
 						'redux_builder_amp-transients',
 						'widget_ampforwp_categories_widget',
-
-						);
+						'ampforwp_plugin_info'
+					);
 	$post_meta_array = array(
 							'use_ampforwp_page_builder',
 							'ampforwp_page_builder_enable',
