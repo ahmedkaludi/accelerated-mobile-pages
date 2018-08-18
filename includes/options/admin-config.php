@@ -279,7 +279,7 @@ $extension_listing_array = array(
                             'item_name'=>'AMP Stories',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-stories/ampforwp-stories.php')? 1 : 2),
-                            'settingUrl'=>'{opt-go-amp-cache}',
+                            'settingUrl'=>admin_url( 'edit.php?post_type=ampforwp_story' ),
                         ),
 
                         array(
