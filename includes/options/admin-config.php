@@ -2564,7 +2564,7 @@ function ampforwp_add_sd_fields($fields){
                       'id'       => 'amp-structured-data-logo',
                       'type'     => 'media',
                       'url'      => true,
-                      'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
+                      'title'    => __('General', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
             );
     $fields[] =   array(
@@ -2590,13 +2590,6 @@ function ampforwp_add_sd_fields($fields){
                     'tooltip-subtitle'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
                     'default' => '60',
                     'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
-            );
-    $fields[] =   array(
-                      'id'       => 'ampforwp-sd-multiple-images',
-                      'title'    => __('Multiple Images', 'accelerated-mobile-pages'),
-                      'type'     => 'switch',
-                      'default'  => 0,
-                      'subtitle' => 'Read more about it <a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">here</a>'
             );
     $fields[] =   array(
                       'id'      => 'amp-structured-data-placeholder-image',
@@ -2629,6 +2622,13 @@ function ampforwp_add_sd_fields($fields){
                       'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
                       'tooltip-subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
                       'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+            );
+    $fields[] =   array(
+                      'id'       => 'ampforwp-sd-multiple-images',
+                      'title'    => __('High-resolution Images', 'accelerated-mobile-pages'),
+                      'type'     => 'switch',
+                      'default'  => 0,
+                      'tooltip-subtitle' => 'For best results, provide multiple high-resolution images (minimum of 300,000 pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1 <a href="https://developers.google.com/search/docs/data-types/article#article_types" target="_blank">Read more</a>'
             );
     return $fields;
     }
