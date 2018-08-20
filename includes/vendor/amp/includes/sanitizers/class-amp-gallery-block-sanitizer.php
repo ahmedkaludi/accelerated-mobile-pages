@@ -79,6 +79,9 @@ class AMP_Gallery_Block_Sanitizer extends AMP_Base_Sanitizer {
 			}
 
 			$attributes      = AMP_DOM_Utils::get_node_attributes_as_assoc_array( $node );
+			if ( !isset($attributes['class']) || ( isset($attributes['class']) && ! preg_match('/wp-block-gallery/', $attributes['class']) ) ) {
+				continue;
+			}
 			$is_amp_lightbox = isset( $attributes['data-amp-lightbox'] ) && true === filter_var( $attributes['data-amp-lightbox'], FILTER_VALIDATE_BOOLEAN );
 			$is_amp_carousel = ! empty( $this->args['carousel_required'] ) || ( isset( $attributes['data-amp-carousel'] ) && true === filter_var( $attributes['data-amp-carousel'], FILTER_VALIDATE_BOOLEAN ) );
 
