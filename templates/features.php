@@ -7436,9 +7436,9 @@ if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 // Content Sneak Peek content
 function ampforwp_sneak_peek_content_modifier($content){
 	global $redux_builder_amp;
-	$content = '<div class="contentHidden" [class]="contentVisible ? \'show\' : \'contentHidden\'">' . $content . '</div>';
+	$content = '<div class="fd-h" [class]="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
 	$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
-	$content = $content . '<div class="fader-btn-container" [class]="contentVisible ? \'fader-btn-container hide\' : \'fader-btn-container\'"><button class="fader-btn" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation($redux_builder_amp['content-sneak-peek-btn-text'], 'Show Full Article').'</button></div>';
+	$content = $content . '<div class="fd-b-c" [class]="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation($redux_builder_amp['content-sneak-peek-btn-text'], 'Show Full Article').'</button></div>';
 
 	return $content;
 }
@@ -7449,11 +7449,9 @@ function ampforwp_sneak_peek_css(){
 	$height = $redux_builder_amp['content-sneak-peek-height'];
 	$btn_color = $redux_builder_amp['content-sneak-peek-btn-color']['color'];
 	$txt_color = $redux_builder_amp['content-sneak-peek-txt-color']['color'];?>
-
-	.contentHidden{height: <?php echo $height; ?>;overflow: hidden;}
-    .hide{display:none}
-    .fader-btn-container{text-align: center;}
-    .fader-btn-container .fader-btn {border: 1px solid #93abbc;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;line-height: 24px;padding: 8px 5px;width: 250px;background-color: <?php echo $btn_color; ?>; }
+	.fd-h{height: <?php echo $height; ?>;overflow: hidden;}
+    .fd-b-c{text-align: center;}
+    .fd-b-c .fd-b {border: 1px solid #93abbc;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;line-height: 24px;padding: 8px 5px;width: 250px;background-color: <?php echo $btn_color; ?>; }
 <?php }
 // Content Sneak Peek Scripts
 function ampforwp_sneak_peek_scripts($data) {
