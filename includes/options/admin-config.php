@@ -5809,7 +5809,7 @@ Redux::setSection( $opt_name, array(
         )
     ));
 $yoast_breadcrumbs = '';
-if ( function_exists('yoast_breadcrumb') ) {
+if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
     $yoast_breadcrumbs = array(
                           'id'       => 'ampforwp-yoast-bread-crumb',
                           'type'     => 'switch',
