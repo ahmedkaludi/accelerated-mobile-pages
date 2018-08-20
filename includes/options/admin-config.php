@@ -1256,13 +1256,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'  => '1'
             ),
            array(
-               'id'       => 'ampforwp-static-page-as-blog-test',
-               'type'     => 'switch',
-               'title'    => __('Static Page as Blog', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('Enable Static Page as Blog when you are using the static page as blog page.', 'accelerated-mobile-pages'),
-               'default'  => '0'
-            ),
-           array(
                 'id'        =>'amp-frontpage-select-option',
                 'type'      => 'switch',
                 'title'     => __('Custom Front Page', 'accelerated-mobile-pages'),
