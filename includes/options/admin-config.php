@@ -6200,7 +6200,7 @@ $single_page_options = array(
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',
-                'class' => 'child_opt',
+                    'class' => 'child_opt',
                     'title'    => __('Link to Non-AMP', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
@@ -6227,7 +6227,7 @@ $single_page_options = array(
                     'default'  => '3',
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -6583,7 +6583,7 @@ $single_page_options = array(
                     'class' => 'child_opt',
                     'title'    => __('YARPP Compatibility', 'accelerated-mobile-pages'),
                     'tooltip-subtitle' => __('Related post options can be used from the YARPP Plugin', 'accelerated-mobile-pages'),
-                    'default'  => 0,
+                    'default' => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
