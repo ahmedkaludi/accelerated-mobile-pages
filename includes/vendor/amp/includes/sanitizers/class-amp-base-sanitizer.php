@@ -8,10 +8,21 @@ abstract class AMP_Base_Sanitizer {
 	protected $dom;
 	protected $args;
 	protected $did_convert_elements = false;
+	/**
+	 * The root element used for sanitization. Either html or body.
+	 *
+	 * @var DOMElement
+	 */
+	protected $root_element;
 
 	public function __construct( $dom, $args = array() ) {
 		$this->dom = $dom;
 		$this->args = array_merge( $this->DEFAULT_ARGS, $args );
+		if ( ! empty( $this->args['use_document_element'] ) ) {
+			$this->root_element = $this->dom->documentElement;
+		} else {
+			$this->root_element = $this->dom->getElementsByTagName( 'body' )->item( 0 );
+		}
 	}
 
 	abstract public function sanitize();
