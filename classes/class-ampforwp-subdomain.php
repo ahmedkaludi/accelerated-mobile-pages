@@ -7,10 +7,11 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 	class AMPforWP_Subdomain_Endpoint
 	{
 	protected $www;	
-	protected $amp = 'amp';	
+	protected $amp;	
 		function __construct( )
 		{
 			$this->www = ( false === strpos( get_home_url() , '://www.') ) ? '://' : '://www.';
+			$this->amp = ampforwp_get_setting('ampforwp-subdomain-endpoint') ? ampforwp_get_setting('ampforwp-subdomain-endpoint') : 'amp';
 			add_filter('ampforwp_is_amp_endpoint', array( $this , 'amp_subdomain_endpoint') );
 			add_filter('ampforwp_modify_rel_canonical', array( $this , 'amp_subdomain_amphtml') );
 			add_filter('ampforwp_font_url', array( $this , 'ampforwp_font_url') );
@@ -20,7 +21,7 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 
 		// Return true if there's AMP in subdomain (amp.example.com)
 		public function amp_subdomain_endpoint( $bool ) {
-			if ( isset($_SERVER['HTTP_HOST']) && is_int(strpos($_SERVER['HTTP_HOST'], 'amp') ) ){
+			if ( isset($_SERVER['HTTP_HOST']) && is_int(strpos($_SERVER['HTTP_HOST'], $this->amp) ) ){
 				$bool = true;
 			}
 			return $bool;
