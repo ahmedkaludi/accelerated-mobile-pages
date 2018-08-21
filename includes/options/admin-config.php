@@ -7026,6 +7026,34 @@ $single_page_options = array(
         'subsection' => true,
         'fields'     => array(
         array(
+           'id' => 'social-chat',
+           'type' => 'section',
+           'title' => __('Chat', 'accelerated-mobile-pages'),
+           'indent' => true,
+           //'start'  => true,
+           //'label' => 'Tab 2',
+           'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+         ),
+        // Facebook chat ON/OFF
+          array(
+              'id'        =>  'enable-single-facebook-chat',
+              'type'      =>  'switch',
+              //'required'  => array('enable-single-social-icons', '=' , '1'),
+              'title'     =>  __('Facebook live chat', 'accelerated-mobile-pages'),
+              'default'   =>  false,
+          ),
+        // Facebook Page ID
+          array(
+               'id'       => 'amp-facebook-chat-username',
+               'title'    => __('Facebook Page ID', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => __('example: https://www.facebook.com/ampforwp/'),
+               'type'     => 'text',
+               'required'  => array('enable-single-facebook-chat', '=' , '1'),
+               'placeholder'  => __('Enter your facebook page id','accelerated-mobile-pages'),
+               'default'  => '',
+          ),
+        array(
            'id' => 'social-shre',
            'type' => 'section',
            'title' => __('Social Sharing', 'accelerated-mobile-pages'),
@@ -7071,24 +7099,6 @@ $single_page_options = array(
                'type'     => 'text',
                'required'  => array(array('enable-single-facebook-share', '=' , '1'),array('amp-design-selector', '!=' , '4')),
                'placeholder'  => __('Enter your facebook app id','accelerated-mobile-pages'),
-               'default'  => '',
-          ),
-          // Facebook chat ON/OFF
-          array(
-              'id'        =>  'enable-single-facebook-chat',
-              'type'      =>  'switch',
-              //'required'  => array('enable-single-social-icons', '=' , '1'),
-              'title'     =>  __('Facebook live chat', 'accelerated-mobile-pages'),
-              'default'   =>  false,
-          ),
-          // Facebook Page ID
-          array(
-               'id'       => 'amp-facebook-chat-username',
-               'title'    => __('Facebook Page ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('example: https://www.facebook.com/ampforwp/'),
-               'type'     => 'text',
-               'required'  => array('enable-single-facebook-chat', '=' , '1'),
-               'placeholder'  => __('Enter your facebook page id','accelerated-mobile-pages'),
                'default'  => '',
           ),
           // Twitter ON/OFF
