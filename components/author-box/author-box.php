@@ -68,7 +68,7 @@ if ( isset($args['show_time']) ) {
             if( null == $author_avatar_url ){
                $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             }
-            if( is_plugin_active( 'simple-author-box/simple-author-box.php' )){
+            if(class_exists('Simple_Author_Box')){
                 $avatar_sabox_url = '';
                 $avatar_sabox_url = get_the_author_meta( 'sabox-profile-image', $post_author->ID );
                 if($avatar_sabox_url){
