@@ -5563,10 +5563,11 @@ Redux::setSection( $opt_name, array(
                            array('amp-design-3-featured-slider', '=' , '1')
                         ),
                         'options'   => array(
+                            '0'     => 'Recent Posts',
                             '1'     => 'Categories',
                             '2'     => 'Tags'
                         ),
-                        'default'  => 'none'
+                        'default'  => '0'
                 ),
                  array(
                         'id'       => 'amp-design-3-category-selector',
