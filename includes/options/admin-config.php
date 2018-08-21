@@ -7011,6 +7011,20 @@ $single_page_options = array(
             )
     ));
 
+    //Social Icons Position
+    function ampforwp_social_icons_position($opt=''){
+        $redux_option = get_option('redux_builder_amp',true);
+        $positions = array('above-content' => 'Above Content','below-content' => 'Below Content');
+        $default = 'below-content';
+        if ( 4 == $redux_option['amp-design-selector'] ) {
+            $positions['default'] = 'Single Sidebar (left side)';
+            $default = 'default';
+        }
+        if ( 'default' == $opt )
+            return $default;
+        else
+            return $positions;
+    }
     // Social Section
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Social', 'accelerated-mobile-pages' ),
@@ -7061,13 +7075,8 @@ $single_page_options = array(
                 'id'       => 'swift-social-position',
                 'type'     => 'select',
                 'title'    => __( 'Position', 'accelerated-mobile-pages' ),
-                'options'  => array(
-                                'default' => 'Default ( Sidebar )',
-                                'above-content' => 'Above Content',
-                                'below-content' => 'Below Content'
-                                ),
-                'default'  => 'default',
-                'required' => array(array('amp-design-selector', '=', '4') )
+                'options'  => ampforwp_social_icons_position(),
+                'default'  => ampforwp_social_icons_position('default'),
             ), 
           // Facebook Like 
           array(
