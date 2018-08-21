@@ -273,7 +273,7 @@ $extension_listing_array = array(
                             'name'=>'AMP Stories',
                             'desc'=>'A Revolutionary new way to share your stories',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
-                            'price'=>'$89',
+                            'price'=>'$79',
                             'url_link'=>'http://ampforwp.com/amp-stories/#utm_source=options-panel&utm_medium=extension-tab_stories&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-stories/ampforwp-stories.php',
                             'item_name'=>'AMP Stories',
