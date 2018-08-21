@@ -6254,14 +6254,6 @@ $single_page_options = array(
                                 ),
             ),
             array(
-                       'id' => 'ampforwp-single_section_4',
-                       'type' => 'section',
-                       'title' => __('Inline Related Posts Settings', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 0,
-                ),
-            array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
                     'title'    => __('In-Content Related Post', 'accelerated-mobile-pages'),
