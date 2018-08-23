@@ -187,6 +187,29 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 				$amp_img_arr
 			);
 
+			//Small Thumbnail Images
+			$thumb_url = ampforwp_aq_resize( $image['url'], 120, 60, true, false ); //resize & crop the image
+	           if($thumb_url!=false){
+					$smallimage   =  $thumb_url[0];
+					$smallwidth   =  $thumb_url[1];
+					$smallheight  =  $thumb_url[2];
+	            }else{
+	            	$smallimage  = $image['url'];
+	            	$smallwidth = $image['width'];
+	            	$smallheight = $image['height'];
+	            }
+
+	        $amp_images_small[$key] = AMP_HTML_Utils::build_tag(
+				'amp-img',
+				array(
+					'src' => $smallimage,
+					'width' => $smallwidth,
+					'height' =>  $smallheight,
+					'layout' => 'fill',
+					'class'  => 'amp-carousel-img',
+				)
+			);
+
 			//Image markups loading
 			$returnHtml = '';
 			//Check if the attachment has caption or not
@@ -206,7 +229,6 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 				$returnHtml = isset($markup['image-without-caption-html'])? $markup['image-without-caption-html'] :'';
 				$returnHtml = str_replace('{{main_images}}', $amp_images[$key] , $returnHtml);
 			}
-
 			
 			$images[$key] = apply_filters('amp_gallery_images', $returnHtml, $image, $markup);
 		}// foreach Closed
@@ -227,7 +249,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 							),
 							implode( PHP_EOL, $images ));
 
-			$amp_carousel_with_thumbnail_nav = apply_filters('amp_thumbnail_images', $amp_images, $r, $markup);
+			$amp_carousel_with_thumbnail_nav = apply_filters('amp_thumbnail_images', $amp_images_small, $r, $markup);
 			$amp_carousel_thumbnail ='';
 			if(!empty($amp_carousel_with_thumbnail_nav)){
 				$amp_carousel_thumbnail = AMP_HTML_Utils::build_tag(
