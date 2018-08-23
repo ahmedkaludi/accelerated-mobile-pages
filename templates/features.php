@@ -7756,3 +7756,67 @@ if ( ! function_exists('ampforwp_fb_chat_css') ) {
 		}	 
 	<?php }
 }
+
+
+/*Amp app banner support Start #1314 */
+add_filter( 'amp_post_template_data','ampforwp_amp_app_banner_support' );
+if(!function_exists('ampforwp_amp_app_banner_support')){
+	function ampforwp_amp_app_banner_support( $data ){
+	global $redux_builder_amp;
+	
+	if(isset($redux_builder_amp['ampforwp-amp-app-banner']) && $redux_builder_amp['ampforwp-amp-app-banner'] == 1){
+		if ( empty( $data['amp_component_scripts']['amp-app-banner'] ) ) {
+				$data['amp_component_scripts']['amp-app-banner'] = 'https://cdn.ampproject.org/v0/amp-app-banner-0.1.js';
+			}
+		}
+	return $data;
+	}
+
+}
+
+add_action( 'amp_post_template_head' , 'ampforwp_amp_app_banner_action' );
+if( ! function_exists( 'ampforwp_amp_app_banner_action' ) ) {
+	function ampforwp_amp_app_banner_action() {
+		global $redux_builder_amp;
+		if( 1 == $redux_builder_amp['ampforwp-amp-app-banner'] ){
+			if( isset($redux_builder_amp['ampforwp-apple-app-id']) && $redux_builder_amp['ampforwp-apple-app-id']!='' ){
+			?>
+			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>, app-argument=medium://p/9ea61abf530f">
+			<?php }
+			if( isset($redux_builder_amp['ampforwp-app-manifest-path']) && $redux_builder_amp['ampforwp-app-manifest-path']!='' ){
+			?>
+			<link rel="manifest" href="<?php echo $redux_builder_amp['ampforwp-app-manifest-path'];?>">
+			<?php
+			}
+		}
+	}
+}
+
+
+add_action('amp_post_template_footer','ampforwp_amp_app_banner_markup');
+function ampforwp_amp_app_banner_markup(){
+	global $redux_builder_amp;
+	$banner_image = '';
+	if( 1 == $redux_builder_amp['ampforwp-amp-app-banner'] ) {
+		if( !isset( $redux_builder_amp['ampforwp-app-banner-image'] ) && $redux_builder_amp['ampforwp-app-banner-image'] =='' ){
+			$banner_image = $redux_builder_amp['opt-media']['url'];
+		}else{
+			$banner_image = $redux_builder_amp['ampforwp-app-banner-image']['url'];
+		}
+		?>
+		<amp-app-banner layout="nodisplay" id="banner">
+			<div id="banner-logo">
+			<amp-img src="<?php echo $banner_image;?>"
+			  width="50"
+			  height="43"
+			  layout="fixed"></amp-img>
+			</div>
+		    <div id="banner-text"><?php echo $redux_builder_amp['ampforwp-app-banner-text'];?></div>
+			<div id="banner-action">
+				<button class="ampstart-btn mr1 caps" open-button><?php echo $redux_builder_amp['ampforwp-app-banner-button-text'];?></button>
+			</div>
+		</amp-app-banner>
+		<?php
+	}
+}
+/*Amp app banner support End #1314 */

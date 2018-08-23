@@ -2006,7 +2006,79 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => __('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
+           /*Amp App Banner Options*/
+            array(
+                  'id' => 'ampforwp-amp-app-banner-section',
+                  'type' => 'section',
+                  'title' => __('App Banner Support', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+              ),
 
+            array(
+                'id'       => 'ampforwp-amp-app-banner',
+                'type'     => 'switch',
+                'title'     => __('Amp App Banner Support', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'     => __('To extend and promote the usage of the natively supported app banners on respective platforms. ex:- IOS, Android...etc'),
+                'default'  => 0
+            ),
+            array(
+                'id'        =>'ampforwp-apple-app-id',
+                'type'      => 'text',
+                'title'     => __('Apple Itunes App ID', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'placeholder'=> '828256236',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-apple-app-argument',
+                'type'      => 'text',
+                'title'     => __('Apple Itunes App Argument', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'placeholder'=> 'medium://p/9ea61abf530f',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-image',
+                'type'      => 'media',
+                'url'      => true,
+                'title'     => __('App Banner Image', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'tooltip-subtitle'=>__('Upload a Image for the AMP App Banner Logo. (Recommended logo size: 50X50)', 'accelerated-mobile-pages'),
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-text',
+                'type'      => 'text',
+                'title'     => __('App Banner Text', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => 'Learn more about AMP in the Medium App.',
+                'placeholder'=> '',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-banner-button-text',
+                'type'      => 'text',
+                'title'     => __('App Banner Button Text', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => 'View in app',
+                'placeholder'=> '',
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            array(
+                'id'        =>'ampforwp-app-manifest-path',
+                'type'      => 'text',
+                'title'     => __('App Manifest Path', 'accelerated-mobile-pages'),
+                'class' => 'child_opt child_opt_arrow',
+                'default'   => '',
+                'tooltip-subtitle'     => __( 'Provide the app manifest path Ex: https://ampbyexample.com/amp-app-banner-manifest.json', 'accelerated-mobile-pages' ),
+                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+            ),
+            /*Amp App Banner Options*/
        )
 
   )
