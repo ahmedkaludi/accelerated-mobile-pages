@@ -573,7 +573,7 @@ if ( ! function_exists('ampforwp_init') ) {
 add_action( 'init', 'ampforwp_subdomain_endpoint');
 if ( ! function_exists('ampforwp_subdomain_endpoint') ) {
 	function ampforwp_subdomain_endpoint(){
-		if ( true == ampforwp_get_setting('ampforwp-subdomain-endpoint') ){
+		if ( true == ampforwp_get_setting('ampforwp-subdomain') ){
 			require AMPFORWP_PLUGIN_DIR .'/classes/class-ampforwp-subdomain.php';
 		}
 	}
