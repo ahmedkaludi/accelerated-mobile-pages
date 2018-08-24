@@ -190,6 +190,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Text is breaking into next line while there is no space between the text in custom AMP Editor #2270
 * Fixed: IP Anonymization #2421
 * Added: Setka Editor Compatibility #2468
+* Fixed: In swift theme, when user ads the ad Above the Related Posts (Single Post); the content doesn't display #2311
+
 
 = 0.9.97.11 (21th August 2018) =
 * Minor Update
