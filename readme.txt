@@ -191,6 +191,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: IP Anonymization #2421
 * Added: Setka Editor Compatibility #2468
 * Fixed: In swift theme, when user ads the ad Above the Related Posts (Single Post); the content doesn't display #2311 and #2318
+* Added: Toggle controls are now accessible #1691
 
 
 = 0.9.97.11 (21th August 2018) =
