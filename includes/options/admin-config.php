@@ -7134,7 +7134,7 @@ $single_page_options = array(
                 'type'     => 'select',
                 'title'    => __( 'Position', 'accelerated-mobile-pages' ),
                 'options'  => array(
-                                'default' => 'Default ( Sidebar )',
+                                'default' => 'Single Sidebar (left side)',
                                 'above-content' => 'Above Content',
                                 'below-content' => 'Below Content'
                                 ),
