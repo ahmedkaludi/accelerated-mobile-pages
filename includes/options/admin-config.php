@@ -260,6 +260,19 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-cpt-subsection}',
                         ), 
+
+                        array(
+                            'name'=>'AMP Stories',
+                            'desc'=>'A Revolutionary new way to share your stories',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/amp-stories/#utm_source=options-panel&utm_medium=extension-tab_stories&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-stories/ampforwp-stories.php',
+                            'item_name'=>'AMP Stories',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-stories/ampforwp-stories.php')? 1 : 2),
+                            'settingUrl'=>admin_url( 'edit.php?post_type=ampforwp_story' ),
+                        ),
                         array(
                             'name'=>'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
