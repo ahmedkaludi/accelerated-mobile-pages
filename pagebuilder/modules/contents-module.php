@@ -385,6 +385,7 @@ function ampforwp_content_module_pagination($args, $fieldValues){
  function  ampforwp_cat_pagination_links($the_query,$fieldValues){
         $pagination_links = '';
         $pagination_text = 'pageno';
+        $queryUrl = esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) );
         if( isset($fieldValues['pagination']) && $fieldValues['pagination'] == 1){
       
         /*Pagination Sart*/
@@ -396,8 +397,12 @@ function ampforwp_content_module_pagination($args, $fieldValues){
         }
         $pagination_links .= '<div class="pagination">';
         if( $paged > 1){
-          $pagination_links .= "<a href = ".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=1> First </a>";
-          $pagination_links .= "<a href = ".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".($paged - 1)."> Prev </a>";
+          
+          $first_page = add_query_arg( array( $pagination_text => 1 ), $queryUrl );
+          $prev_page = add_query_arg( array( $pagination_text => $paged - 1 ), $queryUrl );
+
+          $pagination_links .= "<a href = ".$first_page."> First </a>";
+          $pagination_links .= "<a href = ".$prev_page."> Prev </a>";
         }
 
         $count = (integer) $fieldValues['show_no_page_links'];
@@ -407,21 +412,22 @@ function ampforwp_content_module_pagination($args, $fieldValues){
         $startPage = max( 1, $paged - $count);
         $endPage = min( $total_num_pages, $paged + $count);
         for($i = $startPage ; $i <= $endPage ; $i++){
-
           if( $paged == $i){
               $pagination_links .= "<a class='active' href='#/' >". $i ."</a>";
           }else{
-             $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=". $i ." >". $i ."</a>";
+            $allPages = add_query_arg( array( $pagination_text => $i ), $queryUrl );
+            $pagination_links .= "<a href =".$allPages." >". $i ."</a>";
           }
-          
-        
+
         }
 
-        if( $total_num_pages != 1 && $paged < $total_num_pages ){
-          $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".($paged + 1)." '> Next </a>";
+        if( $total_num_pages != 1 && $paged < $total_num_pages ){      
+          $next_page = add_query_arg( array( $pagination_text => $paged + 1 ), $queryUrl );
+          $pagination_links .= "<a href =".$next_page." '> Next </a>";
         }
         if( $total_num_pages != $paged ){
-          $pagination_links .= "<a href =".esc_url( ampforwp_url_controller(get_permalink(get_the_ID())) )."?$pagination_text=".$total_num_pages." '> Last </a>";
+          $next_page = add_query_arg( array( $pagination_text => $total_num_pages ), $queryUrl );
+          $pagination_links .= "<a href =".$next_page." > Last </a>";
         }
         $pagination_links .= '</div>';
         
