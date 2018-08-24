@@ -4244,13 +4244,74 @@ Redux::setSection( $opt_name, array(
                 )
             ),
 
-
-
-
-
-
-
-
+          array(
+                   'id' => 'general_sdbar',
+                   'type' => 'section',
+                   'title' => __('General', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+          array(
+                    'id'    => 'gnrl-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+          array(
+                    'id'    => 'gbl-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'switch',
+                    'title' => __('Homepage Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('gnrl-sidebar', '=' , '1') ),
+            ),
+            array(
+                    'id'        => 'sidebar-bgcolor',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#f7f7f7',
+                    ),
+                    'required' => array( array('gbl-sidebar', '=',1) )
+            ),
+            array(
+                    'id'       => 'sbr-heading-color',
+                    'type'     => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'    => __('Heading', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#333',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'sbr-text-color',
+                    'type'     => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'    => __('Text', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#333',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
+            array(
+                    'id'    => 'swift-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'switch',
+                    'title' => __('Single Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('single-design-type', '=' , '4'), 
+                                            array('gnrl-sidebar', '=' , '1'), 
+                                ),
+            ),
             
            array(
                        'id' => 'design-advanced',
@@ -5147,49 +5208,6 @@ Redux::setSection( $opt_name, array(
                         )
                 ),
                 array(
-                    'id'    => 'gbl-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'        => 'sidebar-bgcolor',
-                    'class' => 'child_opt child_opt_arrow',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#f7f7f7',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar', '=',1)
-                    )
-            ),
-            array(
-                    'id'       => 'sbr-heading-color',
-                    'type'     => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'    => __('Heading', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#333',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'sbr-text-color',
-                    'type'     => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'    => __('Text', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#333',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
-                array(
                        'id' => 'ampforwp-homepage-section-loop',
                        'type' => 'section',
                        'title' => __('Loop Display Controls', 'accelerated-mobile-pages'),
@@ -5251,13 +5269,6 @@ Redux::setSection( $opt_name, array(
 //                   'max-width' => 200,
 //                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'    => 'swift-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('single-design-type', '=' , '4') ),
             ),
             array(
                        'id' => 'ampforwp-single_section_2',

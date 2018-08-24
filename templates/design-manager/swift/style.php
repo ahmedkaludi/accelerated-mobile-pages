@@ -789,7 +789,7 @@ if (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-side
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
-if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar']) { ?>
+if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar') ) { ?>
 .b-w, .arch-dsgn{
 	display: flex;
 }
