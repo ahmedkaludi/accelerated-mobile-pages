@@ -559,7 +559,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     .tl-exc {font-size: 14px;margin-top: 3px;line-height: 22px;}
     .sp-rl {display: inline-block;width: 100%;}
     .srp .related_link{font-size:20px;line-height:1.4;font-weight:600;}
-    .sp-lt {width: 100%;margin-top: 20px;}
+    .sp-lt {width: 100%;margin-top: 20px;max-width:100%;}
     .sp-cnt{margin-top: 15px;}
     .rlp-image{width:200px;float:left;margin-right:15px;display: flex;flex-direction: column;}
     .rlp-cnt{display: flex;}
