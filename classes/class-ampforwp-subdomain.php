@@ -12,14 +12,23 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 		{
 			$this->www = ( false === strpos( get_home_url() , '://www.') ) ? '://' : '://www.';
 			$this->amp = ampforwp_get_setting('ampforwp-subdomain-endpoint') ? ampforwp_get_setting('ampforwp-subdomain-endpoint') : 'amp';
+			// Endpoint
 			add_filter('ampforwp_is_amp_endpoint', array( $this , 'amp_subdomain_endpoint') );
+			// AMPHTML
 			add_filter('ampforwp_modify_rel_canonical', array( $this , 'amp_subdomain_amphtml') );
+			// Font URLs
 			add_filter('ampforwp_font_url', array( $this , 'ampforwp_font_url') );
+			// URL Controller
 			add_filter('ampforwp_url_controller', array( $this , 'ampforwp_url_controller') );
+			// To load the proper file for Index 
 			add_filter('amp_post_template_file', array( $this , 'amp_post_template_file'), 11 , 3 );
+			// Next Posts Link
+			add_filter('ampforwp_next_posts_link', array( $this , 'next_posts_link') , 10 , 2 );
+			// Post Pagination links
+			add_filter('ampforwp_post_pagination_link', array( $this , 'next_posts_link') , 10 , 2 );
 		}
 
-		// Return true if there's AMP in subdomain (amp.example.com)
+		// Return true if there's a subdomain for AMP (eg: amp.example.com)
 		public function amp_subdomain_endpoint( $bool ) {
 			if ( isset($_SERVER['HTTP_HOST']) && is_int(strpos($_SERVER['HTTP_HOST'], $this->amp) ) ){
 				$bool = true;
@@ -63,6 +72,16 @@ if ( ! class_exists('AMPforWP_Subdomain_Endpoint') ) {
 				}
 			}
 			return $file;
+		}
+
+		public function next_posts_link( $url , $paged ) {
+
+			$url = str_replace('/amp', '', $url);
+			$url = str_replace('/?amp=1', '', $url);
+			if ( false === strpos( $url, '://' . $this->amp . '.' ) ) {
+				$url = str_replace( $this->www, '://' . $this->amp . '.', $url );
+			}
+			return $url;
 		}
  
 	}

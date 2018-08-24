@@ -3669,6 +3669,7 @@ Redux::setSection( $opt_name, array(
                     ),
                     array(
                         'id'       => 'ampforwp-subdomain-endpoint',
+                        'class'    => 'child_opt child_opt_arrow',
                         'type'     => 'text',
                         'title'    => __('Enter Subdomain', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('For Example m or amp','accelerated-mobile-pages'),
