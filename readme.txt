@@ -184,7 +184,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97.12 (24th August 2018) =
-* 
+* Fixed: Quote runs only in block post not on pages #2399
+
 
 = 0.9.97.11 (21th August 2018) =
 * Minor Update
