@@ -393,7 +393,7 @@ echo $fontFamily;?>
 
 
 
-.cntn-wrp{font-size:18px;color:#000;line-height:1.7;}
+.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-break: break-word;}
 .sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
 <?php // H1 - H6 Font Sizes 
 	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h1']){ ?>
@@ -436,6 +436,7 @@ echo $fontFamily;?>
 .has_thumbnail:hover .related_link a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .related_link{margin-top:10px;}
 .related_link a{color:#333;}
+.related_link p{word-break: break-word;}
 .amp-related-posts ul{list-style-type:none;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
