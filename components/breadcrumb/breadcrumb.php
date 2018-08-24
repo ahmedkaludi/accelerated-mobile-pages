@@ -8,9 +8,9 @@
         $archive_non_amp = 'nonamp';
     } ?>
     <div class="amp-wp-content breadcrumb"> <?php 
-    if ( isset($redux_builder_amp['ampforwp-yoast-bread-crumb']) && true == $redux_builder_amp['ampforwp-yoast-bread-crumb'] && function_exists('yoast_breadcrumb') ) {
-        yoast_breadcrumb('','', true);
-    } 
+    if ( ampforwp_yoast_breadcrumbs_output() ) {
+        echo ampforwp_yoast_breadcrumbs_output();
+    }
     else {
     // Settings
     $breadcrums_id      = 'breadcrumbs';

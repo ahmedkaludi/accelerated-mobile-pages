@@ -7399,8 +7399,8 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 				return $sep;
 			}
 			// Remove xmlns:v to avoid validation error
-			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_output');
-			function ampforwp_yoast_breadcrumbs_output($output){
+			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_modified_output');
+			function ampforwp_yoast_breadcrumbs_modified_output($output){
 				$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output);
 				return $output;
 			}
@@ -7416,6 +7416,15 @@ if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
 				$class = 'breadcrumbs';
 				return $class;
 			}
+		}
+	}
+}
+function ampforwp_yoast_breadcrumbs_output(){
+	if ( class_exists('WPSEO_Options') ){
+		$breadcrumb = '';
+		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
+			$breadcrumb = yoast_breadcrumb('','', false);
+			return $breadcrumb;
 		}
 	}
 }
