@@ -7142,6 +7142,15 @@ $single_page_options = array(
                 'default'  => 'default',
                 'required' => array(array('amp-design-selector', '=', '4') )
             ), 
+
+        // Social Share links to AMP
+          array(
+              'id'        =>  'ampforwp-social-share-amp',
+              'type'      =>  'switch',
+              'title'     =>  __('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ),
+
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
