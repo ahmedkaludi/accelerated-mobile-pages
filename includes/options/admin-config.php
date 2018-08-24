@@ -7106,7 +7106,7 @@ $single_page_options = array(
               'id'        =>  'enable-single-facebook-chat',
               'type'      =>  'switch',
               //'required'  => array('enable-single-social-icons', '=' , '1'),
-              'title'     =>  __('Facebook live chat', 'accelerated-mobile-pages'),
+              'title'     =>  __('Facebook Live Chat', 'accelerated-mobile-pages'),
               'default'   =>  false,
           ),
         // Facebook Page ID
