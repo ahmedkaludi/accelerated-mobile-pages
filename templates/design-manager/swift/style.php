@@ -405,6 +405,18 @@ echo $fontFamily;?>
 .sgl td {padding: 0.5em 1em;border: 1px solid #ddd;}
 .sgl tr:nth-child(odd) td {background: #f7f7f7;}
 
+<?php // Social Sharing Conditional CSS
+if($redux_builder_amp['swift-social-position'] == 'above-content'){?>
+.shr-txt{display:none;}
+.sp-athr{margin-top:0;}
+.sp-rt .ss-ic{padding-bottom: 10px;margin-bottom: 10px;border-bottom: none;}
+<?php } 
+if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
+.shr-txt{display:none;}
+.sp-athr{margin-top:0;}
+.sp-rt .ss-ic{padding-bottom: 10px;margin-bottom: 20px;}
+<?php } ?>
+
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo $redux_builder_amp['swift-color-scheme']['color']?>;margin-bottom: 20px;}
 
