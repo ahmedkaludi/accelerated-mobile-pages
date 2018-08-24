@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.11
+Stable tag: 0.9.97.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.12 (24th August 2018) =
+* 
+
+= 0.9.97.11 (21th August 2018) =
+* Minor Update
 
 = 0.9.97.10 (18th August 2018) =
 * Fixed: Homepage build with AMP PageBuilder is displaying only when the checkbox of the Custom AMP editor is enabled #2350
