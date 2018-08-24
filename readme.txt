@@ -188,6 +188,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Create a Sidebar option that can be used as global Sidebar #2388
 * Fixed: words are breaking and not readable #2441
 * Fixed: Text is breaking into next line while there is no space between the text in custom AMP Editor #2270
+* Fixed: IP Anonymization #2421
 
 = 0.9.97.11 (21th August 2018) =
 * Minor Update
