@@ -121,7 +121,7 @@ main .amp-wp-content{ margin-bottom: 12px;  padding: 15px; }
 .amp-wp-title{ margin-top: 0px; }
 h2.amp-wp-title{ line-height: 30px; }
 h2.amp-wp-title a{ font-weight: 300; color: #000; font-size: 20px; }
-h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; }
+h2.amp-wp-title , .amp-wp-post-content p{ margin: 0 0 0 5px; word-break: break-word;}
 /* For Excerpt */
 .amp-wp-post-content .large-screen-excerpt, .amp-wp-post-content .small-screen-excerpt {
 	display: block;
@@ -169,7 +169,7 @@ figcaption{ font-size: 11px; margin-bottom: 11px; background: #eee; padding: 6px
 .amp-wp-author-name:before{content:'By';}
 .amp-ad-wrapper{ text-align: center }
 .single-post main{ padding:12px 15% 10px 15% }
-.the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px; }
+.the_content p{ margin-top: 5px; color: #333; font-size: 15px; line-height: 26px; margin-bottom: 15px;word-break: break-word; }
 .amp-wp-tax-tag{ font-size: 13px; border: 0; display: inline-block; margin: 0.5em 0px 0.7em 0px; width: 100%; }
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-article-featured-image amp-img {margin: 0 auto;}
@@ -193,7 +193,7 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; max-width:
 .related_posts .related_link{ margin-top:18px; margin-bottom:10px; margin-right:10px }
 .related_posts .related_link a{ font-weight: 300; color: #000; font-size: 18px; }
 .related_posts ol li amp-img{ width:100px; float:left; margin-right:15px }
-.related_posts ol li p{ font-size: 12px; color: #999; line-height: 1.2; margin: 12px 0 0 0; }
+.related_posts ol li p{ font-size: 12px; color: #999; line-height: 1.2; margin: 12px 0 0 0;word-break: break-word;}
 .no_related_thumbnail{ padding: 15px 18px; }
 .no_related_thumbnail .related_link{ margin: 16px 18px 20px 19px; }
 <?php } }
