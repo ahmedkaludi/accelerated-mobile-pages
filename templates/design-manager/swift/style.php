@@ -813,11 +813,35 @@ if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar')
 .b-w .sdbr-right{
 	margin-top:30px;
 }
-@media(max-width:768px){
-.fbp-cnt{
-	width:100%;
+/** Custom Frontpage PB CSS **/
+.cntr.pgb{
+	max-width:1400px;
 }
-
+.pgb {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+}
+.pg-lft{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding-right: 30px;
+}
+.pgb .sdbr-right{
+	width:auto;
+}
+@media(max-width:768px){
+	.fbp-cnt{
+		width:100%;
+	}
+	.pg-lft{
+		width:100%;
+		padding:0;
+	}
+	.pgb {
+	    display: inline-block;
+	}
 }
 <?php }
 if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] ) || (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar'] ) ) { ?>
