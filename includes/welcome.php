@@ -74,7 +74,7 @@ function ampforwp_welcome_screen_content() {
 
 		    
 		    
-            <div class="getstarted_wrapper">
+            <div class="getstarted_wrapper nh-b">
             <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
 		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
@@ -335,6 +335,7 @@ function ampforwp_add_welcome_styling(){
 	?>
     <style>
     .getstarted_wrapper{ display: inline-block; margin: 0px 0px 5px 0px; }
+    .nh-b{display:block;}
     .getstarted_options{float: left; margin-right: 15px;
     background: #fff; border: 1px solid #ddd; padding: 5px 25px 10px 23px; border-radius: 2px;}
     .getstarted_links{float: right; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
@@ -451,6 +452,14 @@ function ampforwp_add_welcome_styling(){
 		    box-shadow: 1px 1px 5px rgba(221, 221, 221, 0.75);
 		    transition: 0.25s all;
 		} 
+		.amp_user_onboarding_choose ul{
+			border-bottom: 1px solid #eee;
+    		padding-bottom: 10px;
+		}
+		.amp_user_onboarding_choose ul li{
+			text-align:left;
+			margin-bottom: 10px;
+		}
 		.amp_user_onboarding_choose:hover{            
 		    box-shadow: 1px 1px 10px rgba(212, 212, 212, 1);
 		}
