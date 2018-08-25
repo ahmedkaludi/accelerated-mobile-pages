@@ -28,6 +28,12 @@ function ampforwp_check_amp_page_status() {
     /*
      * If certain conditions does not match then return early and exit from redirection
      */
+
+    // return if the current page is Feed page, as we don't need anything on feedpaged  #2309
+    if ( is_feed() ) {
+      return;
+    }
+
     // Homepage
     if ( ( ampforwp_is_home() || $current_location == $home_url ) && ! $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
       return;
