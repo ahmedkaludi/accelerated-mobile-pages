@@ -51,3 +51,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 24. ALTER black list sanitizer LINE no 37 Added Href internal links changes
 25. check added in class-amp-content.php on line no.107 #2173
 26. added htmlspecialchars($element->textContent); in includes/vendor/amp/includes/sanitizers/class-amp-blacklist-sanitizer.php line no 95 check #2346
+27. Class AMP_DOM_Utils updated #2445
