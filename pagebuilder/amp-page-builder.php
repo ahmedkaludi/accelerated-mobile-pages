@@ -296,7 +296,12 @@ function call_page_builder(){
 			    				'image',
 			    				'text'
 			    				);
-			    ksort($moduleTemplate);
+
+			    function pb_cmp_tosort($a, $b){
+			        return strcmp($a['label'], $b['label']);
+			    }
+
+			    usort($moduleTemplate, "pb_cmp_tosort");
 			    foreach ($moduleTemplate as $key => $module) {
 			    	if(in_array($key, $oldModules)){
 			    		continue;
