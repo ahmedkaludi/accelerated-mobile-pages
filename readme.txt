@@ -193,6 +193,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: In swift theme, when user ads the ad Above the Related Posts (Single Post); the content doesn't display #2311 and #2318
 * Added: Toggle controls are now accessible #1691
 * Added: Global Sidebar is now Connected with AMP Pagebuilder #2371
+* Fixed: #amp-user-notification1 Styling was loading even when disabled from option panel in swift #2400
+
 
 
 = 0.9.97.11 (21th August 2018) =

@@ -1172,9 +1172,12 @@ if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable
 if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>.amp_ad_5{margin: 10px 0px -17px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6'] ) { ?>.amp-ad-6{ margin: 0px 0px 20px 0px;}<?php } ?>
 .amp-ad-wrapper {margin-top: 10px; margin-bottom: 10px}
-#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
-#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
-amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
+<?php if( true == ampforwp_get_setting('amp-enable-notifications') ) {?>
+	#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
+	#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
+	amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
+<?php } // Notice bar CSS Ends?>
+
 <?php 
 
 //RTL Styles 
