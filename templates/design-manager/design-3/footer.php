@@ -30,57 +30,57 @@
 
             <?php global $redux_builder_amp;
             if ( $redux_builder_amp['enable-single-twittter-profile'] && '' !== $redux_builder_amp['enable-single-twittter-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-twittter-profile-url']); ?>" target ="_blank"><li class="icon-twitter"></li></a>
+              <a title="twitter profile" href="<?php echo esc_url($redux_builder_amp['enable-single-twittter-profile-url']); ?>" target ="_blank"><li class="icon-twitter"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-facebook-profile'] && '' !== $redux_builder_amp['enable-single-facebook-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-facebook-profile-url']); ?>" target ="_blank"><li class="icon-facebook"></li></a>
+              <a title="facebook profile" href="<?php echo esc_url($redux_builder_amp['enable-single-facebook-profile-url']); ?>" target ="_blank"><li class="icon-facebook"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-pintrest-profile'] && '' !== $redux_builder_amp['enable-single-pintrest-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-pintrest-profile-url']); ?>" target ="_blank"><li class="icon-pinterest"></li></a>
+              <a title="pinterest profile" href="<?php echo esc_url($redux_builder_amp['enable-single-pintrest-profile-url']); ?>" target ="_blank"><li class="icon-pinterest"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-google-plus-profile'] && '' !== $redux_builder_amp['enable-single-google-plus-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-google-plus-profile-url']); ?>" target ="_blank"><li class="icon-google-plus"></li></a>
+              <a title="google plus profile" href="<?php echo esc_url($redux_builder_amp['enable-single-google-plus-profile-url']); ?>" target ="_blank"><li class="icon-google-plus"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-linkdin-profile'] && '' !== $redux_builder_amp['enable-single-linkdin-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-linkdin-profile-url']); ?>" target ="_blank"><li class="icon-linkedin"></li></a>
+              <a title="linkedin profile" href="<?php echo esc_url($redux_builder_amp['enable-single-linkdin-profile-url']); ?>" target ="_blank"><li class="icon-linkedin"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-youtube-profile'] && '' !== $redux_builder_amp['enable-single-youtube-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-youtube-profile-url']); ?>" target ="_blank"><li class="icon-youtube-play"></li></a>
+              <a title="youtube profile" href="<?php echo esc_url($redux_builder_amp['enable-single-youtube-profile-url']); ?>" target ="_blank"><li class="icon-youtube-play"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-instagram-profile'] && '' !== $redux_builder_amp['enable-single-instagram-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-instagram-profile-url']); ?>" target ="_blank">  <li class="icon-instagram"></li></a>
+              <a title="instagram profile" href="<?php echo esc_url($redux_builder_amp['enable-single-instagram-profile-url']); ?>" target ="_blank">  <li class="icon-instagram"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-reddit-profile'] && '' !== $redux_builder_amp['enable-single-reddit-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-reddit-profile-url']); ?>" target ="_blank"><li class="icon-reddit-alien"></li></a>
+              <a title="reddit profile" href="<?php echo esc_url($redux_builder_amp['enable-single-reddit-profile-url']); ?>" target ="_blank"><li class="icon-reddit-alien"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-VKontakte-profile'] && '' !== $redux_builder_amp['enable-single-VKontakte-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-VKontakte-profile-url']); ?>" target ="_blank"><li class="icon-vk"></li></a>
+              <a title="vkontakte profile" href="<?php echo esc_url($redux_builder_amp['enable-single-VKontakte-profile-url']); ?>" target ="_blank"><li class="icon-vk"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-snapchat-profile'] && '' !== $redux_builder_amp['enable-single-snapchat-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-snapchat-profile-url']); ?>" target ="_blank"><li class="icon-snapchat-ghost"></li></a>
+              <a title="snapchat profile" href="<?php echo esc_url($redux_builder_amp['enable-single-snapchat-profile-url']); ?>" target ="_blank"><li class="icon-snapchat-ghost"></li></a>
               <?php } ?>
 
               <?php global $redux_builder_amp;
               if ( $redux_builder_amp['enable-single-Tumblr-profile'] && '' !== $redux_builder_amp['enable-single-Tumblr-profile-url'] ) { ?>
-              <a href="<?php echo esc_url($redux_builder_amp['enable-single-Tumblr-profile-url']); ?>" target ="_blank"><li class="icon-tumblr"></li></a>
+              <a title="tumblr profile" href="<?php echo esc_url($redux_builder_amp['enable-single-Tumblr-profile-url']); ?>" target ="_blank"><li class="icon-tumblr"></li></a>
               <?php } ?>
 
             </ul>
@@ -106,7 +106,7 @@
 
           <?php if ( true == $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
             <p class="poweredby">
-                <a href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>
+                <a title="AMP for WP" href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>
             </p>
           <?php } ?>
       </div>

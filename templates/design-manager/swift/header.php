@@ -28,53 +28,53 @@
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
-                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                            <a title="facebook" class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tw']){?>
                         <li>
-                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            <a title="twitter" class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                             </a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-gol']){?>
                         <li>
-                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                            <a title="google plus" class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-lk']){?>
                         <li>
-                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                            <a title="linkedin" class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
-                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                            <a title="pinterest" class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-yt']){?>
                         <li>
-                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                            <a title="youtube" class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-inst']){?>
                         <li>
-                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                            <a title="instagram" class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-vk']){?>
                         <li>
-                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                            <a title="vkontakte" class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-rd']){?>
                         <li>
-                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                            <a title="reddit" class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tbl']){?>
                         <li>
-                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                            <a title="tumblr" class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>
@@ -99,11 +99,11 @@
                 <div class="h-1">
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
-                            <a class="lb icon-search" href="#search"></a>
+                            <a title="search" class="lb icon-search" href="#search"></a>
                             <div class="lb-btn"> 
                                 <div class="lb-t" id="search">
                                    <?php amp_search();?>
-                                   <a class="lb-x" href="#"></a>
+                                   <a title="close" class="lb-x" href="#"></a>
                                 </div> 
                             </div>
                         </div><!-- /.search -->
@@ -115,7 +115,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                            <a title="call telephone" href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
                         </div>
                     <?php } ?> 
                 </div>
@@ -152,53 +152,53 @@
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
-                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                            <a title="facebook" class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tw']){?>
                         <li>
-                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            <a title="twitter" class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                             </a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-gol']){?>
                         <li>
-                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                            <a title="google plus" class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-lk']){?>
                         <li>
-                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                            <a title="linkedin" class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
-                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                            <a title="pinterest" class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-yt']){?>
                         <li>
-                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                            <a title="youtube" class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-inst']){?>
                         <li>
-                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                            <a title="instagram" class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-vk']){?>
                         <li>
-                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                            <a title="vkontakte" class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-rd']){?>
                         <li>
-                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                            <a title="reddit" class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tbl']){?>
                         <li>
-                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                            <a title="tumblr" class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>
@@ -233,7 +233,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                            <a title="call telephone" href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
                         </div>
                     <?php } ?>    
                 </div>
@@ -269,53 +269,53 @@
                     <ul>
                         <?php if($redux_builder_amp['enbl-fb']){?>
                         <li>
-                            <a class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
+                            <a title="facebook" class="s_fb" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-fb-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tw']){?>
                         <li>
-                            <a class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
+                            <a title="twitter" class="s_tw" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tw-prfl-url']); ?>">
                             </a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-gol']){?>
                         <li>
-                            <a class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
+                            <a title="google plus" class="s_gp" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-gol-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-lk']){?>
                         <li>
-                            <a class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
+                            <a title="linkedin" class="s_lk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-lk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-pt']){?>
                         <li>
-                            <a class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
+                            <a title="pinterest" class="s_pt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-pt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-yt']){?>
                         <li>
-                            <a class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
+                            <a title="youtube" class="s_yt" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-yt-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-inst']){?>
                         <li>
-                            <a class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
+                            <a title="instagram" class="s_inst" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-inst-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-vk']){?>
                         <li>
-                            <a class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
+                            <a title="vkontakte" class="s_vk" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-vk-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-rd']){?>
                         <li>
-                            <a class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
+                            <a title="reddit" class="s_rd" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-rd-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                         <?php if($redux_builder_amp['enbl-tbl']){?>
                         <li>
-                            <a class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
+                            <a title="tumblr" class="s_tbl" target="_blank" href="<?php echo esc_url($redux_builder_amp['enbl-tbl-prfl-url']); ?>"></a>
                         </li>
                         <?php } ?>
                     </ul>

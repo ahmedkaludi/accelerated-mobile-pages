@@ -15,10 +15,12 @@ function ampforwp_framework_get_search_form() {
 		}
 	  $form = '<form role="search" method="get" id="amp-search" class="amp-search" target="_top" action="' . $action_url  .'">
 				<div class="amp-search-wrapper">
-					<label class="screen-reader-text" for="s">' . $label . '</label>
+					<label aria-label="Type your query" class="screen-reader-text" for="s">' . $label . '</label>
 					<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hidden"/>
 					<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
-					<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					<label aria-label="Submit amp search" for="amp-search-submit" >
+						<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					</label>
 					<div class="overlay-search">
 					</div>
 				</div>
