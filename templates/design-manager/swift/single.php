@@ -73,7 +73,7 @@
 		            <?php } ?>
 		            <?php if($redux_builder_amp['rp_design_type'] == '1'){
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-					$my_query = related_post_loop_query();
+					$my_query = ampforwp_related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
 				  	<div class="srp">
 			            <ul class="clearfix">
@@ -115,7 +115,7 @@ do_action("ampforwp_single_design_type_handle");
 	?>
 <?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
        if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-		$my_query = related_post_loop_query();
+		$my_query = ampforwp_related_post_loop_query();
 	  	if( $my_query->have_posts() ) { $r_count = 1;?>
 	  	<div class="srp">
 	  		<div class="cntr">
@@ -351,7 +351,7 @@ do_action("ampforwp_single_design_type_handle");
 								</div>
 					            <?php
 					            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-								$my_query = related_post_loop_query();
+								$my_query = ampforwp_related_post_loop_query();
 							  	if( $my_query->have_posts() ) { $r_count = 1;?>
 							  	<div class="srp">
 							  		<?php ampforwp_related_post(); ?>

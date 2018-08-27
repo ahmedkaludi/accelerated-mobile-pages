@@ -8,7 +8,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
  	$show_image = (isset($argsdata['show_image']) ? $argsdata['show_image'] : true);
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
-	$my_query = related_post_loop_query();
+	$my_query = ampforwp_related_post_loop_query();
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 		if( $my_query->have_posts() ) { ?>
 			<div class="amp-related-posts">
@@ -43,7 +43,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 	} 
 }
 
-function yarpp_post_loop_query($reference_ID = null, $args = array()){
+function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
 		global $yarpp,$redux_builder_amp;
 		$posts = $yarpp->get_related( null, array());
 		if(!$posts){
@@ -59,7 +59,7 @@ function yarpp_post_loop_query($reference_ID = null, $args = array()){
 		return $posts;	
 }
 
-function related_post_loop_query(){
+function ampforwp_related_post_loop_query(){
 	global $post,  $redux_builder_amp;
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
@@ -120,8 +120,8 @@ function related_post_loop_query(){
 	}
 	$my_query = new wp_query( $args );
 
-	if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
-		$yarpp_query = yarpp_post_loop_query();
+	if( class_exists( 'YARPP' )){
+		$yarpp_query = ampforwp_yarpp_post_loop_query();
 		if( $yarpp_query ){
 			$my_query = $yarpp_query;
 		}

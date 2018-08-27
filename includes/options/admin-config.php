@@ -2945,15 +2945,15 @@ function ampforwp_add_sd_fields($fields){
                 'default'   => 0,
                 'required'  => array('ampforwp-amp-app-banner', '=' , '1')
             ),
-            array(
-                'id'        =>'ampforwp-app-banner-description',
-                'type'      => 'text',
-                'title'     => __('App Banner Description', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                'default'   => 'Learn AMP by Examples',
-                'placeholder'=> '',
-                'required'  => array(array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')),
-            ),
+            // array(
+            //     'id'        =>'ampforwp-app-banner-description',
+            //     'type'      => 'text',
+            //     'title'     => __('App Banner Description', 'accelerated-mobile-pages'),
+            //     'class' => 'child_opt child_opt_arrow',
+            //     'default'   => 'Learn AMP by Examples',
+            //     'placeholder'=> '',
+            //     'required'  => array(array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')),
+            // ),
             array(
                     'id'        => 'ampforwp-app-banner-background-color',
                     'title'     => __('App Banner Background Color', 'accelerated-mobile-pages'),
@@ -6788,7 +6788,7 @@ $single_page_options = array(
 );
 
 /*Yarpp enable option*/
-    if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+    if( class_exists('YARPP')){
         $yarpp_options = array(array(
                     'id'       => 'ampforwp-related-posts-yarpp-switch',
                     'type'     => 'switch',
