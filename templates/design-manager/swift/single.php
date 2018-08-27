@@ -189,7 +189,7 @@
 			            </div>
 		            <?php }
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-					$my_query = related_post_loop_query();
+					$my_query = ampforwp_related_post_loop_query();
 				  	if( $my_query->have_posts() ) { $r_count = 1;?>
 				  	<div class="srp">
 			            <ul class="clearfix">
@@ -430,7 +430,7 @@ do_action("ampforwp_single_design_type_handle");
 								</div>
 					            <?php
 					            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
-								$my_query = related_post_loop_query();
+								$my_query = ampforwp_related_post_loop_query();
 							  	if( $my_query->have_posts() ) { $r_count = 1;?>
 							  	<div class="srp">
 							  		<?php ampforwp_related_post(); ?>

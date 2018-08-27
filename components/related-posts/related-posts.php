@@ -8,7 +8,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
  	$show_image = (isset($argsdata['show_image']) ? $argsdata['show_image'] : true);
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
-	$my_query = related_post_loop_query();
+	$my_query = ampforwp_related_post_loop_query();
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 		if( $my_query->have_posts() ) { ?>
 			<div class="amp-related-posts">
@@ -43,12 +43,31 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 	} 
 }
 
-function related_post_loop_query(){
+function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
+		global $yarpp,$redux_builder_amp;
+		$posts = $yarpp->get_related( null, array());
+		if(!$posts){
+			return ;
+		}
+		foreach ($posts as $key => $value) {
+			$postsIds[] = $value->ID;
+		}
+		$args = array(
+		    'post__in' => $postsIds
+		);
+		$posts = new WP_Query($args);
+		return $posts;	
+}
+
+function ampforwp_related_post_loop_query(){
 	global $post,  $redux_builder_amp;
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
 	$args = null;
-
+	$orderby = 'ID';
+	    if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
+				$orderby = 'rand';
+			}
 	if($redux_builder_amp['ampforwp-single-select-type-of-related']==2){
 	    $categories = get_the_category($post->ID);
 		if ($categories) {
@@ -59,6 +78,7 @@ function related_post_loop_query(){
 				    'category__in' => $category_ids,
 				    'post__not_in' => array($post->ID),
 				    'posts_per_page'=> $int_number_of_related_posts,
+				    'orderby' => $orderby,
 				    'ignore_sticky_posts'=>1,
 						'has_password' => false ,
 						'post_status'=> 'publish'
@@ -77,10 +97,12 @@ function related_post_loop_query(){
 						   'tag__in' => $tag_ids,
 						    'post__not_in' => array($post->ID),
 						    'posts_per_page'=> $int_number_of_related_posts,
+						    'orderby' => $orderby,
 						    'ignore_sticky_posts'=>1,
 								'has_password' => false ,
 								'post_status'=> 'publish'
 						);
+
 		}
 	}
 	// Related Posts Based on Past few Days #2132
@@ -97,6 +119,14 @@ function related_post_loop_query(){
 					       		); 
 	}
 	$my_query = new wp_query( $args );
+
+	if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+		$yarpp_query = ampforwp_yarpp_post_loop_query();
+		if( $yarpp_query ){
+			$my_query = $yarpp_query;
+		}
+	}
+
 	return $my_query;
 }
 
@@ -145,7 +175,13 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 }
 
 function ampforwp_get_relatedpost_content($argsdata=array()){
-	$related_post_permalink = ampforwp_url_controller( get_permalink() ); ?>
+	global $redux_builder_amp;
+	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
+		$related_post_permalink = get_permalink();
+	} else {
+		$related_post_permalink = ampforwp_url_controller( get_permalink() );
+	}
+	?>
 	<div class="related_link">
         <a href="<?php echo esc_url( $related_post_permalink ); ?>"><?php the_title(); ?></a>
         <?php

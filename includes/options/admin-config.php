@@ -5308,13 +5308,7 @@ Redux::setSection( $opt_name, array(
         )
     ));
 
-   // Single Section
-  Redux::setSection( $opt_name, array(
-        'title'      => __( 'Single', 'accelerated-mobile-pages' ),
-//        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
-        'id'         => 'amp-single',
-        'subsection' => true,
-        'fields'     => array(
+$single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
                        'type' => 'section',
@@ -5344,6 +5338,7 @@ Redux::setSection( $opt_name, array(
 //                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
             ),
+            
             array(
                        'id' => 'ampforwp-single_section_2',
                        'type' => 'section',
@@ -5496,7 +5491,8 @@ Redux::setSection( $opt_name, array(
                     ),
                'default'  => '2',
                'required' => array( 
-                                array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                             ),
             ),
             array(
@@ -5514,7 +5510,7 @@ Redux::setSection( $opt_name, array(
                     'type'     => 'switch',
                 'class' => 'child_opt',
                     'title'    => __('Excerpt', 'accelerated-mobile-pages'),
-                    'default'  => 1,
+                    'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1') 
                                 ),
@@ -5522,7 +5518,7 @@ Redux::setSection( $opt_name, array(
             array(
                     'id'       => 'ampforwp-single-related-posts-link',
                     'type'     => 'switch',
-                'class' => 'child_opt',
+                    'class' => 'child_opt',
                     'title'    => __('Link to Non-AMP', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
@@ -5536,7 +5532,8 @@ Redux::setSection( $opt_name, array(
                     'title'    => __('Sort Related Posts Randomly', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
-                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
                                 ),
             ),
             array(
@@ -5547,7 +5544,8 @@ Redux::setSection( $opt_name, array(
                     'validate' => 'numeric',
                     'default'  => '3',
                     'required' => array( 
-                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -5558,7 +5556,8 @@ Redux::setSection( $opt_name, array(
                     'tooltip-subtitle' => __('Show Related Posts From Past Few Days', 'accelerated-mobile-pages'),
                     'default'  => 0,
                     'required' => array( 
-                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                                 ),
             ),
             array(
@@ -5569,17 +5568,10 @@ Redux::setSection( $opt_name, array(
                     'validate' => 'numeric',
                     'default'  => '7',
                     'required' => array( 
-                                    array('ampforwp-related-posts-days-switch', '=' , '1') 
+                                    array('ampforwp-related-posts-days-switch', '=' , '1'),
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
                                 ),
             ),
-            array(
-                       'id' => 'ampforwp-single_section_4',
-                       'type' => 'section',
-                       'title' => __('Inline Related Posts Settings', 'accelerated-mobile-pages'),
-                       'indent' => true,
-                       'layout_type' => 'accordion',
-                        'accordion-open'=> 0,
-                ),
             array(
                     'id'       => 'ampforwp-inline-related-posts',
                     'type'     => 'switch',
@@ -5591,15 +5583,13 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-inline-related-posts-type',
                     'type'     => 'select',
                     'title'    => __('In-content Related Post by', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                    'data'     => 'page',
+                    'class' => 'child_opt child_opt_arrow',
                     'options'  => array(
                         '1' => 'Tags',
                         '2' => 'Categories',
                     ),
                'default'  => '2',
                'required' => array( array('ampforwp-inline-related-posts', '=' , '1') ),
-
             ),
             array(
                     'id'       => 'ampforwp-inline-related-posts-order',
@@ -5782,14 +5772,75 @@ Redux::setSection( $opt_name, array(
 //              ),
 //
     $fields = array(
-    'id'   => 'info_normal',
-    'type' => 'info',
-    'class' => 'extension_banner_bg',
-    'desc' => $single_extension_listing )
-
-        ),
-
+        'id'   => 'info_normal',
+        'type' => 'info',
+        'class' => 'extension_banner_bg',
+        'desc' => $single_extension_listing 
+    )
+);
+/*Yarpp enable option*/
+    if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+        $yarpp_options = array(array(
+                    'id'       => 'ampforwp-related-posts-yarpp-switch',
+                    'type'     => 'switch',
+                    'class' => 'child_opt',
+                    'title'    => __('YARPP Compatibility', 'accelerated-mobile-pages'),
+                    'tooltip-subtitle' => __('Related post options can be used from the YARPP Plugin', 'accelerated-mobile-pages'),
+                    'default' => 0,
+                    'required' => array( 
+                                    array('ampforwp-single-related-posts-switch', '=' , '1') 
+                                ),
+            ));
+        array_splice($single_page_options, 23, 0, $yarpp_options);
+    }else{
+        foreach ($single_page_options as $key => $optionArray) {
+            if(isset($optionArray['id']) && $optionArray['id']=='ampforwp-number-of-related-posts'){
+                $requiredValues = $optionArray['required'];
+                foreach ($requiredValues as $reqkey => $reqValue) {
+                    if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
+                        unset($single_page_options[$key]['required'][$reqkey]);
+                    }
+                }
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-single-select-type-of-related'){
+                $requiredValues = $optionArray['required'];
+                foreach ($requiredValues as $reqkey => $reqValue) {
+                    if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
+                        unset($single_page_options[$key]['required'][$reqkey]);
+                    }
+                }
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-related-posts-days-switch'){
+                $requiredValues = $optionArray['required'];
+                foreach ($requiredValues as $reqkey => $reqValue) {
+                    if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
+                        unset($single_page_options[$key]['required'][$reqkey]);
+                    }
+                }
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-related-posts-days-text'){
+                $requiredValues = $optionArray['required'];
+                foreach ($requiredValues as $reqkey => $reqValue) {
+                    if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
+                        unset($single_page_options[$key]['required'][$reqkey]);
+                    }
+                }
+            }elseif(isset($optionArray['id']) && $optionArray['id']=='ampforwp-single-order-of-related-posts'){
+                $requiredValues = $optionArray['required'];
+                foreach ($requiredValues as $reqkey => $reqValue) {
+                    if($reqValue[0]=='ampforwp-related-posts-yarpp-switch'){
+                        unset($single_page_options[$key]['required'][$reqkey]);
+                    }
+                }
+            }
+        }
+    }
+   // Single Section
+  Redux::setSection( $opt_name, array(
+        'title'      => __( 'Single', 'accelerated-mobile-pages' ),
+//        'desc'       => __( 'Additional Options to control the look of Single  <a href="' . esc_url(admin_url('customize.php?autofocus[section]=amp_design&customize_amp=1')) .'"> Click here </a> ', 'accelerated-mobile-pages' ),
+        'id'         => 'amp-single',
+        'subsection' => true,
+        'fields'     => $single_page_options
     ) );
+
 
   // Footer Section
   Redux::setSection( $opt_name, array(
