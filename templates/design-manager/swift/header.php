@@ -223,7 +223,7 @@
                 <div class="h-2">
                     <?php if($redux_builder_amp['signin-button-text'] && $redux_builder_amp['signin-button-link']){?>
                     <div class="h-sing">
-                        <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo $redux_builder_amp['signin-button-text'] ?></a>
+                        <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo __($redux_builder_amp['signin-button-text'], 'accelerated-mobile-pages'); ?></a>
                     </div>
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
