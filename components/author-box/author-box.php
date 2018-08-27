@@ -85,7 +85,7 @@ if ( isset($args['show_time']) ) {
         // yoast author twitter handle
         $twitter = '';
         include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-        if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+        if (  class_exists('WPSEO_Frontend') ) {
             global $post;
             $twitter = get_the_author_meta( 'twitter', $post->post_author );
         }

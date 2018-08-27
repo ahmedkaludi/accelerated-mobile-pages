@@ -57,7 +57,7 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	            if ( $post_author ) {
 	            	// yoast author twitter handle
 			        	include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
-			            if ( is_plugin_active('wordpress-seo/wp-seo.php') ) {
+			            if (  class_exists('WPSEO_Frontend') ) {
 				        	global $post;
 				        	$twitter = get_the_author_meta( 'twitter', $post->post_author );
 				        } 
@@ -72,10 +72,10 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	                    <?php
 	                } 
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
-	               	echo  $post_author->description ;
 	               	if($twitter){
-	             			echo '<span><a href="https://twitter.com/'.$twitter.'" target="_blank">@'.$twitter.'</a></span>';
+	             			echo ' <span><a href="https://twitter.com/'.$twitter.'" target="_blank">(@'.$twitter.') - </a></span>';
 	             		}  
+	               	echo  $post_author->description ;
 	            } ?>
 	    </div>
 	</div> <?php
