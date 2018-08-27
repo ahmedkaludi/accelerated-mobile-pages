@@ -7836,6 +7836,62 @@ function ampforwp_amp_app_banner_markup(){
 		<?php
 	}
 }
+
+add_action('wp_ajax_ampforwp_amp_app_banner_manifest_json','ampforwp_amp_app_banner_manifest_json');
+function ampforwp_amp_app_banner_manifest_json(){
+	global $redux_builder_amp;
+		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
+		$siteUrl = site_url();
+		$ampUrl = ampforwp_url_controller($siteUrl);
+		$site_title = get_bloginfo( 'name' );
+		$site_description = get_bloginfo( 'description' );
+
+		$jsonFilePath = fopen(AMPFORWP_PLUGIN_DIR."/app-banner-manifest.json", "w");
+		$relatedApps = array();
+		$relatedApplications = array();
+		$relatedApplicationList = $redux_builder_amp['ampforwp-app-banner-related-applications'];
+
+		$relatedArray = explode(",",$relatedApplicationList);
+		foreach($relatedArray as $val){
+			$relatedApps['platform'] = 'play';
+			$relatedApps['id'] = $val;
+			array_push($relatedApplications,$relatedApps);
+		}
+		//$36x36 48x48 72x72 96x96 144x144 192x192
+		$iconArry = array();
+		$iconUrl = $redux_builder_amp['ampforwp-app-banner-icon']['url'];
+		$iconsList = array("36"=>"0.75","48"=>"1","72"=>"1.5","96"=>"2","144"=>"3","192"=>"4","512"=>"5");
+		$icons = array();
+		
+		foreach( $iconsList as $iconKey => $iconVal){
+			$thumbArry = ampforwp_aq_resize( $iconUrl, $iconKey , $iconKey , true, false );
+			$iconArry['src'] = $thumbArry[0];
+			$iconArry['sizes'] = $iconKey.'x'.$iconKey;
+			$iconArry['type'] = "image/png";
+			$iconArry['density'] = $iconVal;
+			array_push( $icons, $iconArry );
+		}
+		
+		$returnArray = array(
+					"name" => $site_title,
+					"short_name" => $site_title,
+					"description" => $site_description,
+					"start_url" => $ampUrl,
+					"display" => "standalone",
+					"background_color" => "#607D8B",
+					"theme_color" => "#607D8B",
+					"prefer_related_applications" => true,
+				  	'related_applications' => $relatedApplications,
+				  	"icons" => $icons,
+
+				);
+		$jsonData = json_encode($returnArray);
+		//$txt = "John Doe\n";
+		fwrite($jsonFilePath, $jsonData);
+		fclose($jsonFilePath);
+		echo "File created successfully.";
+		wp_die();
+}
 /*Amp app banner support End #1314 */
 
 

@@ -796,4 +796,17 @@ var redux_title_modify = function(){
 
 function getQueryStringValue (key) {  
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
-}  
+}
+
+jQuery(document).ready(function($){
+    $( "#ampforwp-creat-manifest" ).click(function() {
+        var data = {
+            'action': 'ampforwp_amp_app_banner_manifest_json',
+        };
+
+        // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+        jQuery.post(ajaxurl, data, function(response) {
+            alert(response);
+        });
+    });
+});
