@@ -100,7 +100,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
       <div id="header">
       <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
         <div class="hamburgermenu">
-            <button class="toast pull-left" on='tap:sidebar.toggle' name="Navigation" aria-label="Navigation"><span></span></button>
+            <button class="toast pull-left" on='tap:sidebar.toggle' aria-label="Navigation"><span></span></button>
         </div>
         <?php } ?>
         <div class="headerlogo">
