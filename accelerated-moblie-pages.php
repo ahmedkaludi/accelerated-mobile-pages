@@ -412,11 +412,8 @@ if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
 if ( is_admin() ) {
-	// Register all the main options
-	add_action('plugins_loaded', 'yarpp_compatibility_admin_options');
-	function yarpp_compatibility_admin_options(){
-		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	}
+	// Register all the main options	
+	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
 	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
 }
 
