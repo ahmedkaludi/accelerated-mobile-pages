@@ -53,7 +53,7 @@ if(!function_exists("ampforwp_module_templates")){
 }//If Fucntion check closed
 
 //Row Contents
-$output = '<section class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
+$output = '<section id={{row_id}} class="ap_m {{row_class}} {{grid_type}} {{if_condition_check_for_slant==1}}slant_clr{{ifend_condition_check_for_slant_1}}">
 	{{if_condition_background_type==video}}
 	<div class="amp_video">
 		<div class="amp-txt">
@@ -269,6 +269,14 @@ $containerCommonSettings = array(
 								'type'		=>'text',
 								'name'		=>"row_label",
 								'label'		=>'Row label',
+								'tab'    	=>'container_css',
+								'default'	=>'',
+								'content_type'=>'html',
+								),
+							array(
+								'type'		=>'text',
+								'name'		=>"row_id",
+								'label'		=>'Row ID',
 								'tab'    	=>'container_css',
 								'default'	=>'',
 								'content_type'=>'html',
