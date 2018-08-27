@@ -120,7 +120,7 @@ function ampforwp_related_post_loop_query(){
 	}
 	$my_query = new wp_query( $args );
 
-	if( class_exists( 'YARPP' )){
+	if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
 		$yarpp_query = ampforwp_yarpp_post_loop_query();
 		if( $yarpp_query ){
 			$my_query = $yarpp_query;
