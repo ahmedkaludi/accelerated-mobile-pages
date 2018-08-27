@@ -130,9 +130,11 @@ $front_css = '
 	
 	{{shadow}}
 }
-{{row-class}}.slant_clr{position:relative;}
+{{if_condition_check_for_slant==1}}
+{{row-class}}.st{position:relative;}
+{{ifend_condition_check_for_slant_1}}
 {{if_condition_check_for_enbtp==1}}
-{{row-class}}.slant_clr:before{
+{{row-class}}.st:before{
 	content:"";
 	height:110px;
 	width:100%;
@@ -151,7 +153,7 @@ $front_css = '
 {{ifend_condition_check_for_enbtp_1}}
 
 {{if_condition_check_for_enbbt==1}}
-{{row-class}}.slant_clr:after{
+{{row-class}}.st:after{
 	content:"";
 	height:110px;
 	width:100%;
