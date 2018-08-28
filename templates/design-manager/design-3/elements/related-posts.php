@@ -2,7 +2,7 @@
 global $post,  $redux_builder_amp;
 do_action('ampforwp_above_related_post',$this); //Above Related Posts
 $string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
-$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+$int_number_of_related_posts = (int)$string_number_of_related_posts;
 
 // declaring this variable here to prevent debug errors
 $args = null;
@@ -77,6 +77,12 @@ if ( isset($redux_builder_amp['ampforwp-related-posts-days-switch']) && true == 
 }
 if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] && $redux_builder_amp['ampforwp-single-select-type-of-related'] ){
 	$my_query = new wp_query( $args );
+	if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+		$yarpp_query = ampforwp_yarpp_post_loop_query();
+		if( $yarpp_query ){
+			$my_query = $yarpp_query;
+		}
+	}
 		if( $my_query->have_posts() ) { ?>
 			<div class="amp-wp-content relatedpost">
 			    <div class="related_posts">

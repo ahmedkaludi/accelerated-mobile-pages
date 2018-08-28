@@ -5418,6 +5418,26 @@ function ampforwp_add_advance_ga_fields($ga_fields){
 	return $ga_fields;	
 }
 
+function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
+		global $yarpp,$redux_builder_amp;
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
+		$int_number_of_related_posts = (int) $string_number_of_related_posts;
+		$posts = $yarpp->get_related( null, array());
+		if(!$posts){
+			return ;
+		}
+		foreach ($posts as $key => $value) {
+			$postsIds[] = $value->ID;
+		}
+		$args = array(
+			'posts_per_page' => $int_number_of_related_posts,
+		    'post__in' => $postsIds
+		);
+		$posts = new WP_Query($args);
+		return $posts;	
+}
+
+
 // 84. Inline Related Posts
 
 function ampforwp_inline_related_posts(){
@@ -5482,6 +5502,12 @@ function ampforwp_inline_related_posts(){
 					}
 			}//end of block for tags
 			$my_query = new wp_query( $args );
+			if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
+				$yarpp_query = ampforwp_yarpp_post_loop_query();
+				if( $yarpp_query ){
+					$my_query = $yarpp_query;
+				}
+			}
 					if( $my_query->have_posts() ) { 
 				$inline_related_posts = '<div class="amp-wp-content relatedpost">
 						    <div class="related_posts">
@@ -7774,7 +7800,6 @@ if ( ! function_exists('ampforwp_fb_chat_css') ) {
 	<?php }
 }
 
-
 /*Amp app banner support Start #1314 */
 add_filter( 'amp_post_template_data','ampforwp_amp_app_banner_support' );
 if(!function_exists('ampforwp_amp_app_banner_support')){
@@ -7799,12 +7824,9 @@ if( ! function_exists( 'ampforwp_amp_app_banner_action' ) ) {
 			if( isset($redux_builder_amp['ampforwp-apple-app-id']) && $redux_builder_amp['ampforwp-apple-app-id']!='' ){
 			?>
 			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>, app-argument=medium://p/9ea61abf530f">
-			<?php }
-			if( isset($redux_builder_amp['ampforwp-app-manifest-path']) && $redux_builder_amp['ampforwp-app-manifest-path']!='' ){
-			?>
-			<link rel="manifest" href="<?php echo $redux_builder_amp['ampforwp-app-manifest-path'];?>">
+			<?php }	?>
+				<link rel="manifest" href="<?php echo AMPFORWP_PLUGIN_DIR_URI.'app-banner-manifest.json';?>">
 			<?php
-			}
 		}
 	}
 }
@@ -7847,6 +7869,7 @@ function ampforwp_amp_app_banner_manifest_json(){
 		$site_description = get_bloginfo( 'description' );
 
 		$jsonFilePath = fopen(AMPFORWP_PLUGIN_DIR."/app-banner-manifest.json", "w");
+		if($jsonFilePath){
 		$relatedApps = array();
 		$relatedApplications = array();
 		$relatedApplicationList = $redux_builder_amp['ampforwp-app-banner-related-applications'];
@@ -7857,10 +7880,10 @@ function ampforwp_amp_app_banner_manifest_json(){
 			$relatedApps['id'] = $val;
 			array_push($relatedApplications,$relatedApps);
 		}
-		//$36x36 48x48 72x72 96x96 144x144 192x192
+		
 		$iconArry = array();
 		$iconUrl = $redux_builder_amp['ampforwp-app-banner-icon']['url'];
-		$iconsList = array("36"=>"0.75","48"=>"1","72"=>"1.5","96"=>"2","144"=>"3","192"=>"4","512"=>"5");
+		$iconsList = array("36"=>"0.75","48"=>"1","72"=>"1.5","96"=>"2","144"=>"3","192"=>"4","512"=>"");
 		$icons = array();
 		
 		foreach( $iconsList as $iconKey => $iconVal){
@@ -7868,7 +7891,11 @@ function ampforwp_amp_app_banner_manifest_json(){
 			$iconArry['src'] = $thumbArry[0];
 			$iconArry['sizes'] = $iconKey.'x'.$iconKey;
 			$iconArry['type'] = "image/png";
-			$iconArry['density'] = $iconVal;
+			if( $iconVal!='' ){
+				$iconArry['density'] = $iconVal;
+			}else{
+				unset($iconArry['density']);
+			}
 			array_push( $icons, $iconArry );
 		}
 		
@@ -7886,11 +7913,15 @@ function ampforwp_amp_app_banner_manifest_json(){
 
 				);
 		$jsonData = json_encode($returnArray);
-		//$txt = "John Doe\n";
+		
 		fwrite($jsonFilePath, $jsonData);
 		fclose($jsonFilePath);
-		echo "File created successfully.";
+		echo "App Manifest Created Successfully.";
 		wp_die();
+	}else{
+		echo "Unable to Create File.";
+		wp_die();
+	}
 }
 /*Amp app banner support End #1314 */
 
