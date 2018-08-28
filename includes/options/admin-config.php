@@ -2033,15 +2033,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'required'  => array('ampforwp-amp-app-banner', '=' , '1')
             ),
             array(
-                'id'        =>'ampforwp-apple-app-argument',
-                'type'      => 'text',
-                'title'     => __('Apple Itunes App Argument', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                'default'   => '',
-                'placeholder'=> 'medium://p/9ea61abf530f',
-                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
-            ),
-            array(
                 'id'        =>'ampforwp-app-banner-image',
                 'type'      => 'media',
                 'url'      => true,
@@ -2067,15 +2058,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                 'class' => 'child_opt child_opt_arrow',
                 'default'   => 'View in app',
                 'placeholder'=> '',
-                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
-            ),
-            array(
-                'id'        =>'ampforwp-app-manifest-path',
-                'type'      => 'text',
-                'title'     => __('App Manifest Path', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                'default'   => '',
-                'tooltip-subtitle'     => __( 'Provide the app manifest path Ex: https://ampbyexample.com/amp-app-banner-manifest.json', 'accelerated-mobile-pages' ),
                 'required'  => array('ampforwp-amp-app-banner', '=' , '1')
             ),
             /*Amp App Banner Options*/
@@ -2930,12 +2912,11 @@ function ampforwp_add_sd_fields($fields){
                 'required'  => array('ampforwp-amp-app-banner', '=' , '1')
             ),
             array(
-                'id'        =>'ampforwp-app-manifest',
-                'type'     => 'switch',
-                'title'     => __('Create App Manifest', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                'default'   => 0,
-                'required'  => array('ampforwp-amp-app-banner', '=' , '1')
+                'id'       =>'ampforwp-app-banner-manifest',
+                'type'     => 'raw',
+                'title'    => __('Create App Manifest', 'accelerated-mobile-pages'),
+                'subtitle' => __('', 'accelerated-mobile-pages'),
+                'desc'     => __('Below are the fields required to create App Manifest Json File', 'accelerated-mobile-pages')
             ),
             array(
                     'id'        => 'ampforwp-app-banner-background-color',
@@ -2946,7 +2927,7 @@ function ampforwp_add_sd_fields($fields){
                     'color'      => '#005be2',
                      ),
                     'required' => array(
-                        array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')
+                        array('ampforwp-amp-app-banner', '=' , '1')
                      )
             ),
             array(
@@ -2958,7 +2939,7 @@ function ampforwp_add_sd_fields($fields){
                     'color'      => '#005be2',
                      ),
                     'required' => array(
-                        array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')
+                        array('ampforwp-amp-app-banner', '=' , '1')
                      )
             ),
             array(
@@ -2966,10 +2947,10 @@ function ampforwp_add_sd_fields($fields){
                 'type'      => 'text',
                 'title'     => __('App Related Applications', 'accelerated-mobile-pages'),
                 'class' => 'child_opt child_opt_arrow',
-                'tooltip-subtitle'=>__('If your multiple related application ids, paste them with comma(',') separated', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'=>__('Add your multiple related application ids with comma(",") separated', 'accelerated-mobile-pages'),
                 'default'   => '',
                 'placeholder'=> 'com.medium.reader,com.example.reader',
-                'required'  => array(array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')),
+                'required'  => array(array('ampforwp-amp-app-banner', '=' , '1')),
             ),
             array(
                 'id'        =>'ampforwp-app-banner-icon',
@@ -2980,22 +2961,10 @@ function ampforwp_add_sd_fields($fields){
                 'default'   => '',
                 'tooltip-subtitle'=>__('Upload a Icon for the AMP App Banner Manifest. (Minimum size: 512X512)', 'accelerated-mobile-pages'),
                 'required'  => array(
-                        array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')
+                        array('ampforwp-amp-app-banner', '=' , '1')
                      )
             ),
-            array(
-                'id'        =>'ampforwp-app-banner-create-manifest',
-                'type'      => 'text',
-                'url'      => true,
-                'description' => '<input class="button-primary" id="ampforwp-creat-manifest" type="button" name="create_manifest" value="Create">',
-                'title'     => __('Create App Manifest', 'accelerated-mobile-pages'),
-                'class' => 'child_opt child_opt_arrow',
-                'default'   => '',
-                'required'  => array(
-                        array('ampforwp-amp-app-banner', '=' , '1'),array('ampforwp-app-manifest', '=' , '1')
-                     )
-            )
-            /*Amp App Banner Options*/
+            
        ),
 
    ) );

@@ -7823,7 +7823,7 @@ if( ! function_exists( 'ampforwp_amp_app_banner_action' ) ) {
 		if( 1 == $redux_builder_amp['ampforwp-amp-app-banner'] ){
 			if( isset($redux_builder_amp['ampforwp-apple-app-id']) && $redux_builder_amp['ampforwp-apple-app-id']!='' ){
 			?>
-			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>, app-argument=medium://p/9ea61abf530f">
+			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>">
 			<?php }	?>
 				<link rel="manifest" href="<?php echo AMPFORWP_PLUGIN_DIR_URI.'app-banner-manifest.json';?>">
 			<?php
@@ -7845,10 +7845,7 @@ function ampforwp_amp_app_banner_markup(){
 		?>
 		<amp-app-banner layout="nodisplay" id="banner">
 			<div id="banner-logo">
-			<amp-img src="<?php echo $banner_image;?>"
-			  width="50"
-			  height="43"
-			  layout="fixed"></amp-img>
+				<amp-img src="<?php echo $banner_image;?>" width="50" height="43" layout="fixed"></amp-img>
 			</div>
 		    <div id="banner-text"><?php echo $redux_builder_amp['ampforwp-app-banner-text'];?></div>
 			<div id="banner-action">
@@ -7859,7 +7856,7 @@ function ampforwp_amp_app_banner_markup(){
 	}
 }
 
-add_action('wp_ajax_ampforwp_amp_app_banner_manifest_json','ampforwp_amp_app_banner_manifest_json');
+//add_action('wp_ajax_ampforwp_amp_app_banner_manifest_json','ampforwp_amp_app_banner_manifest_json');
 function ampforwp_amp_app_banner_manifest_json(){
 	global $redux_builder_amp;
 		require AMPFORWP_PLUGIN_DIR  .'includes/vendor/aq_resizer.php';
@@ -7916,11 +7913,11 @@ function ampforwp_amp_app_banner_manifest_json(){
 		
 		fwrite($jsonFilePath, $jsonData);
 		fclose($jsonFilePath);
-		echo "App Manifest Created Successfully.";
-		wp_die();
+		// echo "App Manifest Created Successfully.";
+		// wp_die();
 	}else{
-		echo "Unable to Create File.";
-		wp_die();
+		// echo "Unable to Create File.";
+		// wp_die();
 	}
 }
 /*Amp app banner support End #1314 */

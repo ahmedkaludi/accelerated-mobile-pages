@@ -455,6 +455,13 @@ if(is_admin()){
 		}
 	}
 
+	add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_app_banner_manifest_create',10,2);
+	function ampforwp_app_banner_manifest_create($options, $changed_values){
+		if(isset($changed_values['ampforwp-amp-app-banner']) && $options['ampforwp-amp-app-banner'] == 1){
+			ampforwp_amp_app_banner_manifest_json();
+		}
+	}
+
 	add_filter("redux/options/redux_builder_amp/data/category_list_hierarchy", 'ampforwp_redux_category_list_hierarchy',10,1);
 	function ampforwp_redux_category_list_hierarchy($data){
 		if(!is_array($data)){ $data = array(); }// To avoid PHP Fatal error:  Cannot use string offset as an array
