@@ -7,7 +7,7 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
  	global $post,  $redux_builder_amp;
  	$show_image = (isset($argsdata['show_image']) ? $argsdata['show_image'] : true);
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
-	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$my_query = ampforwp_related_post_loop_query();
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 		if( $my_query->have_posts() ) { ?>
@@ -62,7 +62,7 @@ function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
 function ampforwp_related_post_loop_query(){
 	global $post,  $redux_builder_amp;
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
-	$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
 	$orderby = 'ID';
 	    if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
