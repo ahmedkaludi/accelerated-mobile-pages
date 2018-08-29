@@ -6769,8 +6769,14 @@ function ampforwp_is_non_amp( $type="" ) {
 		return false;
 	}*/
     // Removing the AMP on login register etc of Theme My Login plugin	
-    
-	if (function_exists('tml_register_default_actions')){
+	if (false === ampforwp_remove_login_tml() ){
+     return false;
+	}
+	return $non_amp;
+}
+
+function ampforwp_remove_login_tml(){
+if (function_exists('tml_register_default_actions')){
       $tml_pages = theme_my_login()->get_actions();
     if ( isset( $_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI']  ) {
       $current_page = $_SERVER['REQUEST_URI'];
@@ -6786,9 +6792,7 @@ function ampforwp_is_non_amp( $type="" ) {
         }
       }
  	}
-
-	return $non_amp;
-}
+ }
 
 // END Point
 function ampforwp_end_point_controller( $url, $check='' ) {

@@ -97,22 +97,9 @@ function ampforwp_check_amp_page_status() {
     }
 
     // Removing the AMP on login register etc of Theme My Login plugin
-    if (function_exists('tml_register_default_actions')){
-        $tml_pages = theme_my_login()->get_actions();
-    if ( isset( $_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI']  ) {
-        $current_page = $_SERVER['REQUEST_URI'];
-    }
-        $current_page = explode('/', $current_page);
-
-      if ( isset($tml_pages) && $tml_pages ) {
-        foreach ($tml_pages as $page) {
-          if ( in_array($page->get_slug(), $current_page)) {
-            return false;
-          }
-        }
-      }
+    if (false === ampforwp_remove_login_tml() ){
+    return;
   }
-
     wp_safe_redirect( $redirection_location );
     exit;
    
