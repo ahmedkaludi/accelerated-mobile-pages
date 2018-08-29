@@ -5438,6 +5438,30 @@ function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
 }
 
 
+function ampforwp_yarpp_loop_query_for_inline_related_posts($reference_ID = null, $args = array()){
+		global $yarpp,$redux_builder_amp;
+		$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-inline-related-posts'];
+		$int_number_of_related_posts = (int) $string_number_of_related_posts;
+		$posts = $yarpp->get_related( null, array());
+		if(!$posts){
+			return ;
+		}
+		foreach ($posts as $key => $value) {
+			$postsIds[] = $value->ID;
+		}
+		$orderby = 'ID';
+		if( isset( $redux_builder_amp['ampforwp-inline-related-posts-order'] ) && $redux_builder_amp['ampforwp-inline-related-posts-order'] ){
+			$orderby = 'rand';
+		}
+		$args = array(
+			'orderby' => $orderby,
+			'posts_per_page' => $int_number_of_related_posts,
+		    'post__in' => $postsIds
+		);
+		$posts = new WP_Query($args);
+		return $posts;
+}
+
 // 84. Inline Related Posts
 
 function ampforwp_inline_related_posts(){
@@ -5503,7 +5527,7 @@ function ampforwp_inline_related_posts(){
 			}//end of block for tags
 			$my_query = new wp_query( $args );
 			if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
-				$yarpp_query = ampforwp_yarpp_post_loop_query();
+				$yarpp_query = ampforwp_yarpp_loop_query_for_inline_related_posts();
 				if( $yarpp_query ){
 					$my_query = $yarpp_query;
 				}
