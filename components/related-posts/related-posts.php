@@ -43,22 +43,6 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 	} 
 }
 
-function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
-		global $yarpp,$redux_builder_amp;
-		$posts = $yarpp->get_related( null, array());
-		if(!$posts){
-			return ;
-		}
-		foreach ($posts as $key => $value) {
-			$postsIds[] = $value->ID;
-		}
-		$args = array(
-		    'post__in' => $postsIds
-		);
-		$posts = new WP_Query($args);
-		return $posts;	
-}
-
 function ampforwp_related_post_loop_query(){
 	global $post,  $redux_builder_amp;
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
