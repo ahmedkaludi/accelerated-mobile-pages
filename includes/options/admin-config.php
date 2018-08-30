@@ -3240,6 +3240,7 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'text',
                         'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
+                        'desc' => __('<a href="https://ampforwp.com/tutorials/article/how-to-enter-audience-network-placement-id-of-advertisement-in-the-instant-article/" target="_blank">Click here</a> on how to get Audience Network Placement Id.', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-ads', '=', 1)
                     ),
                     array(
