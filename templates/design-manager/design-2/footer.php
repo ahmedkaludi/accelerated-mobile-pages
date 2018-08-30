@@ -21,7 +21,7 @@
           </div>
         <?php } ?>
         <p> <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
-                    <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
+                    <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> 
                   <?php }
                   if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') {
                     if($redux_builder_amp['ampforwp-footer-top']=='1') { ?>
