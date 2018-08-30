@@ -5046,7 +5046,7 @@ Redux::setSection( $opt_name, array(
                                           'orderby' => 'name',
                                           'order'   => 'ASC'
                                           ) );
-
+      $categories_array = '';
       $categories_array = array();
        if ( $categories ) :
             foreach ($categories as $cat ) {
