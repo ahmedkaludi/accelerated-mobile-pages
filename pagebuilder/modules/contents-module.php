@@ -235,6 +235,16 @@ require_once  ABSPATH . WPINC . '/category.php';
                       $height = $new_height; 
                     }   
                   }
+
+                  if ( ampforwp_get_setting('ampforwp-retina-images') ) {
+                      $resolution = '';
+                      $resolution = 2;
+                      if(ampforwp_get_setting('ampforwp-retina-images-res')){
+                        $resolution = ampforwp_get_setting('ampforwp-retina-images-res');
+                      }
+                      $width = $width * $resolution;
+                      $height = $height * $resolution;
+                    }
                   try{
                     $thumb_url = ampforwp_aq_resize( $image, $width, $height, true, false ); //resize & crop the image
                    
