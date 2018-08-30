@@ -5440,7 +5440,7 @@ function ampforwp_inline_related_posts(){
 			            
 							if ( ampforwp_has_post_thumbnail() ) {
 								if( 4 == $redux_builder_amp['amp-design-selector'] ){
-									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false );
+									$thumb_url_2 = ampforwp_aq_resize( $thumb_url_2, 220 , 134 , true, false, true );
 									$inline_related_posts .= '<amp-img src="'.esc_url( $thumb_url_2[0] ).'" width="' . $thumb_url_2[1] . '" height="' . $thumb_url_2[2] . '" layout="responsive"></amp-img>';
 								}
 								else{
