@@ -5505,7 +5505,12 @@ function ampforwp_yarpp_post_loop_query($reference_ID = null, $args = array()){
 		foreach ($posts as $key => $value) {
 			$postsIds[] = $value->ID;
 		}
+		$orderby = 'ID';
+		if( isset( $redux_builder_amp['ampforwp-single-order-of-related-posts'] ) && $redux_builder_amp['ampforwp-single-order-of-related-posts'] ){
+			$orderby = 'rand';
+		}
 		$args = array(
+			'orderby' => $orderby,
 			'posts_per_page' => $int_number_of_related_posts,
 		    'post__in' => $postsIds
 		);

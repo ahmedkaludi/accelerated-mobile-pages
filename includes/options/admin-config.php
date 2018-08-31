@@ -5570,7 +5570,7 @@ $single_page_options = array(
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
+                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
