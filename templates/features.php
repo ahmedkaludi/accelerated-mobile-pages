@@ -7387,6 +7387,11 @@ function ampforwp_thrive_architect_content(){
 	}
 }
 function ampforwp_thrive_content($content){
+	$post_id = "";
+	if ( ampforwp_is_front_page() ){
+		$post_id = ampforwp_get_frontpage_id();
+		$content = get_post_field( 'post_content', $post_id ); 
+	}
 
 	$sanitizer_obj = new AMPFORWP_Content( $content,
 									array(), 
