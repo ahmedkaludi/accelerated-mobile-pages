@@ -607,7 +607,7 @@ function ampforwp_new_dir( $dir ) {
 	add_filter('amp_post_template_data','ampforwp_register_analytics_script', 20);
 	function ampforwp_register_analytics_script( $data ){ 
 		global $redux_builder_amp;
-		if( true == $redux_builder_amp['ampforwp-ga-switch'] || true == $redux_builder_amp['ampforwp-Segment-switch'] || true == $redux_builder_amp['ampforwp-Quantcast-switch'] || true == $redux_builder_amp['ampforwp-comScore-switch'] || true == $redux_builder_amp['ampforwp-Yandex-switch'] || true == $redux_builder_amp['ampforwp-Chartbeat-switch']|| true == $redux_builder_amp['ampforwp-Alexa-switch'] || true == $redux_builder_amp['ampforwp-afs-analytics-switch'] ) {
+		if( true == $redux_builder_amp['ampforwp-ga-switch'] || true == $redux_builder_amp['ampforwp-Segment-switch'] || true == $redux_builder_amp['ampforwp-Quantcast-switch'] || true == $redux_builder_amp['ampforwp-comScore-switch'] || true == $redux_builder_amp['ampforwp-Yandex-switch'] || true == $redux_builder_amp['ampforwp-Chartbeat-switch']|| true == $redux_builder_amp['ampforwp-Alexa-switch'] || true == $redux_builder_amp['ampforwp-afs-analytics-switch'] || true == $redux_builder_amp['ampforwp-adobe-analytics-switch'] ) {
 			
 			if ( empty( $data['amp_component_scripts']['amp-analytics'] ) ) {
 				$data['amp_component_scripts']['amp-analytics'] = 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js';
@@ -1348,7 +1348,32 @@ function ampforwp_new_dir( $dir ) {
 							</amp-analytics>
 						<!-- End AFS Analytics Javascript -->
 							<?php
-						}			
+						}
+						if ( isset($redux_builder_amp['ampforwp-adobe-analytics-switch']) && true == $redux_builder_amp['ampforwp-adobe-analytics-switch'] ) {	
+			$adobe_host = $redux_builder_amp['ampforwp-adobe-host'];
+			$adobe_reportsuiteid = $redux_builder_amp['ampforwp-adobe-reportsuiteid'];
+			?>
+						<!-- Start Adobe Analytics Support Javascript-->
+						<amp-analytics type="adobeanalytics">
+							<script type="application/json">
+									{
+									    
+										"vars": {
+											  "host": "<?php echo $adobe_host;?>",
+											  "reportSuites": "<?php echo $adobe_reportsuiteid;?>",
+										},
+										"triggers": {
+											  "pageLoad": {
+											    "on": "visible",
+											    "request": "pageView"
+											  },
+										}
+									}
+							</script>
+						</amp-analytics>
+						<!-- End Adobe Analytics Support Javascript --> 
+							<?php
+						}		
 		}//analytics function ends here
 	// For Setting up Google AMP Client ID API
 	add_action( 'amp_post_template_head' , 'ampforwp_analytics_clientid_api' );	
