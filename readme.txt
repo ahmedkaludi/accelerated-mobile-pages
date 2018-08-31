@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.12
+Stable tag: 0.9.97.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,23 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.14 (4th September 2018) =
+* Added: Adobe Analytics Support #887
+* Fixed: Same Icons loading for some extensions #2172
+* Fixed: Removed extra spacing from "Back to top" text #2349
+* Fixed: Retina featured images support for Homepage and arhvie loop images #2334
+* Fixed: When WooCommerce Product Slider is Installed , the Picture of Icons are not loading #2325
+* Added: Customizr Theme Lazy Loading compatiblity #2322
+* Fixed: "Save Module" button of AMP page Builder not displaying in OSX and in Safari #1943
+* Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
+* Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
+* Fixed: Notice Undefined variable categories_array #2486
+* Fixed: Need to add upscale parameter in-line related posts #2488
+* Fixed: Getting the warnings in Error log of Inc42 #2395
+
+= 0.9.97.13 (28th August 2018) =
+* Fixed: Fatal error in `ampforwp_related_post_loop_query()`
 
 = 0.9.97.12 (27th August 2018) =
 * Fixed: Quote runs only in block post not on pages #2399
