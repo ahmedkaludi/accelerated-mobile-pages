@@ -2137,7 +2137,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             'type'     => 'switch',
                             'title'    => __( 'Google Tag Manager', 'accelerated-mobile-pages' ),
                             'tooltip-subtitle' => __( 'Enable GTM Support in AMP.', 'accelerated-mobile-pages' ),
-                            'default'  => 1,
+                            'default'  => 0,
                         ),
                         array(
                             'class'=>'child_opt child_opt_arrow',
