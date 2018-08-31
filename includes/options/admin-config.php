@@ -2040,6 +2040,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             '10' => __('Chartbeat Analytics', 'accelerated-mobile-pages'),
                             '11' => __('Alexa Metrics', 'accelerated-mobile-pages'),
                             '12' => __('AFS Analytics', 'accelerated-mobile-pages'),
+                            '13' => __('Adobe Analytics', 'accelerated-mobile-pages'),
                         ),
                         'required' => array(
                           array('amp-use-gtm-option', '=' , '0'),
@@ -2420,7 +2421,42 @@ Redux::setArgs( "redux_builder_amp", $args );
                           'tooltip-subtitle' => __( 'Enter the Website ID', 'accelerated-mobile-pages' ),
                           'default'  => '',
                           'desc' => 'example: 00000003',
-                      ), 
+                      ),
+                    //Adobe Analytics
+                    array(
+                        'id' => 'ampforwp-adobe-analytics-switch',
+                        'type'  => 'switch',
+                        'title' => 'Adobe Analytics',
+                        'default' => ampforwp_get_default_analytics('13'),
+                        'required' => array(
+                          array('amp-use-gtm-option', '=' , '0'),
+                        ),
+                    ),
+                    array(
+                          'id'       => 'ampforwp-adobe-host',
+                          'type'     => 'text',
+                          'title'    => __( 'Host Name', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-adobe-analytics-switch', '=' , '1')
+                          ),
+                          'tooltip-subtitle' => __( 'Enter the Website domain', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                          'desc' => 'example: metrics.example.com',
+                    ),
+                    array(
+                          'id'       => 'ampforwp-adobe-reportsuiteid',
+                          'type'     => 'text',
+                          'title'    => __( 'ReportSuite ID', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                            array('amp-use-gtm-option', '=' , '0'),
+                            array('ampforwp-adobe-analytics-switch', '=' , '1')
+                          ),
+                          'tooltip-subtitle' => __( 'Enter the ReportSuite ID', 'accelerated-mobile-pages' ),
+                          'default'  => '',
+                          'desc' => 'example: 00000003',
+                    ),
+                    //Adobe Analytics
                     )
              )
    );
