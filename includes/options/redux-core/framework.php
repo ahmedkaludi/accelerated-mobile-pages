@@ -89,7 +89,7 @@
                 // See if Redux is a plugin or not
                 if ( strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_stylesheet_directory() ) ) !== false || strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( get_template_directory_uri() ) ) !== false || strpos( Redux_Helpers::cleanFilePath( __FILE__ ), Redux_Helpers::cleanFilePath( WP_CONTENT_DIR . '/themes/' ) ) !== false ) {
                     self::$_is_plugin = false;
-                } else {
+                } /*else {
                     // Check if plugin is a symbolic link, see if it's a plugin. If embedded, we can't do a thing.
                     if ( strpos( self::$_dir, ABSPATH ) === false ) {
                         if ( ! function_exists( 'get_plugins' ) ) {
@@ -107,7 +107,7 @@
                             self::$_is_plugin = false;
                         }
                     }
-                }
+                }*/
 
                 if ( self::$_is_plugin == true || self::$_as_plugin == true ) {
                     self::$_url = plugin_dir_url( __FILE__ );
