@@ -7410,3 +7410,35 @@ function ampforwp_sneak_peek_scripts($data) {
 	}
 	return $data;
 }
+
+// #1575 Thrive Content Support
+add_action('amp_init','ampforwp_thrive_architect_content');
+function ampforwp_thrive_architect_content(){
+	if(function_exists('tve_wp_action')){
+		add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
+	}
+}
+function ampforwp_thrive_content($content){
+	$post_id = "";
+	if ( ampforwp_is_front_page() ){
+		$post_id = ampforwp_get_frontpage_id();
+		$content = get_post_field( 'post_content', $post_id ); 
+	}
+
+	$sanitizer_obj = new AMPFORWP_Content( $content,
+									array(), 
+									apply_filters( 'ampforwp_content_sanitizers', 
+										array( 'AMP_Img_Sanitizer' => array(), 
+											'AMP_Blacklist_Sanitizer' => array(),
+											'AMP_Style_Sanitizer' => array(), 
+											'AMP_Video_Sanitizer' => array(),
+					 						'AMP_Audio_Sanitizer' => array(),
+					 						'AMP_Iframe_Sanitizer' => array(
+												 'add_placeholder' => true,
+											 ),
+										) 
+									) 
+								);
+				$content =  $sanitizer_obj->get_amp_content();
+	return $content;
+}
