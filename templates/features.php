@@ -7369,3 +7369,44 @@ function ampforwp_rel_next_prev(){
         <link rel="next" href="<?php echo get_pagenum_link( $paged + 1 ); ?>" /><?php
     }
 }
+
+// Content Sneak Peek #2246
+add_action('pre_amp_render_post', 'ampforwp_content_sneak_peek');
+if ( ! function_exists('ampforwp_content_sneak_peek') ) {
+	function ampforwp_content_sneak_peek() {
+		global $redux_builder_amp;
+		if ( isset($redux_builder_amp['content-sneak-peek']) && $redux_builder_amp['content-sneak-peek'] ) {		
+			add_filter('ampforwp_modify_the_content', 'ampforwp_sneak_peek_content_modifier');
+			add_action('amp_post_template_css','ampforwp_sneak_peek_css');
+			add_filter('amp_post_template_data','ampforwp_sneak_peek_scripts');
+		}
+
+	}
+}
+// Content Sneak Peek content
+function ampforwp_sneak_peek_content_modifier($content){
+	global $redux_builder_amp;
+	$content = '<div class="fd-h" [class]="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
+	$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
+	$content = $content . '<div class="fd-b-c" [class]="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation($redux_builder_amp['content-sneak-peek-btn-text'], 'Show Full Article').'</button></div>';
+
+	return $content;
+}
+// Content Sneak Peek Scripts css
+function ampforwp_sneak_peek_css(){
+	global $redux_builder_amp;
+	$height = $txt_color = $btn_color = '';
+	$height = $redux_builder_amp['content-sneak-peek-height'];
+	$btn_color = $redux_builder_amp['content-sneak-peek-btn-color']['color'];
+	$txt_color = $redux_builder_amp['content-sneak-peek-txt-color']['color'];?>
+	.fd-h{height: <?php echo $height; ?>;overflow: hidden;}
+    .fd-b-c{text-align: center;}
+    .fd-b-c .fd-b {border: 1px solid #93abbc;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;line-height: 24px;padding: 8px 5px;width: 250px;background-color: <?php echo $btn_color; ?>; }
+<?php }
+// Content Sneak Peek Scripts
+function ampforwp_sneak_peek_scripts($data) {
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+	}
+	return $data;
+}

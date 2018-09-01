@@ -5818,6 +5818,63 @@ $single_page_options = array(
                 'required' => array('swift_cnt_h6' , '=' , '1'),
                               array('swift_cnt' , '=' , '1')
             ),
+            array(
+               'id' => 'single-sneakp-section', 
+               'type' => 'section',
+               'title' => __('Content Sneak Peek', 'accelerated-mobile-pages'),
+               'indent' => true,
+               'layout_type' => 'accordion',
+                'accordion-open'=> 1,
+             ),
+            array(
+                'id'       => 'content-sneak-peek',
+                'type'     => 'switch',
+                //'class'    => 'child_opt',
+                'title'    => __('Content Sneak Peek', 'accelerated-mobile-pages'),
+                'default'  => 0,
+            ),
+            array(
+                'id'       => 'content-sneak-peek-height',
+                'type'     => 'text',
+                'class'    => 'child_opt',
+                'title'    => __('Content Height', 'accelerated-mobile-pages'),
+                'default'  => '600px',
+                'required' => array('content-sneak-peek' , '=' , '1'),
+            ),
+            array(
+                'id'       => 'content-sneak-peek-btn-text',
+                'type'     => 'text',
+                'class'    => 'child_opt',
+                'title'    => __('Button Text', 'accelerated-mobile-pages'),
+                'default'  => 'Show Full Article',
+                'required' => array('content-sneak-peek' , '=' , '1'),
+            ),
+            array(
+                'id'        => 'content-sneak-peek-txt-color',
+                'title'     => __('Text Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => __('Choose the color for button\'s text','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'class'    => 'child_opt',
+                'default'   => array(
+                'color'      => '#fff',
+                 ),
+                'required' => array(
+                    array('content-sneak-peek', '=' , '1')
+                 )
+            ),
+            array(
+                'id'        => 'content-sneak-peek-btn-color',
+                'title'     => __('Button Color', 'accelerated-mobile-pages'),
+                'tooltip-subtitle'  => __('Choose the color for button','accelerated-mobile-pages'),
+                'type'      => 'color_rgba',
+                'class'    => 'child_opt',
+                'default'   => array(
+                'color'      => '#000',
+                 ),
+                'required' => array(
+                    array('content-sneak-peek', '=' , '1')
+                 )
+            ),
 
 //             array(
 //                  'id' => 'ampforwp-comments-banner',
