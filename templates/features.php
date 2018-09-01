@@ -6781,6 +6781,16 @@ function ampforwp_is_non_amp( $type="" ) {
 		$non_amp = true;
 
 	}
+
+	// Convert AMP to WP issues fixed #2493
+	//Blogposts
+	if ( is_home()  && $redux_builder_amp['ampforwp-homepage-on-off-support'] ==false ) {
+      return;
+    }
+    // Pages
+		if ( is_page() && false == $redux_builder_amp['amp-on-off-for-all-pages'] ) {
+			return;
+		}
 	//check for theme
 	/*if ( 'Twenty Fifteen' != wp_get_theme() ) {
 		return false;
