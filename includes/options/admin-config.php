@@ -1811,6 +1811,9 @@ Redux::setArgs( "redux_builder_amp", $args );
             elseif ( is_plugin_active('all-in-one-seo-pack/all_in_one_seo_pack.php') ) {
                 $default = 2;
             }
+            elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
+                $default = 3;
+            }
             return $default;
         }
     }
