@@ -2608,7 +2608,7 @@ function ampforwp_add_sd_fields($fields){
           $fields[] = array(
                       'id' => 'ampforwp-sd_2',
                       'type' => 'section',
-                      'title' => __('Default Values Setup', 'accelerated-mobile-pages'),
+                      'title' => __('General Structured Data Settings', 'accelerated-mobile-pages'),
                       'indent' => true,
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
@@ -2618,7 +2618,7 @@ function ampforwp_add_sd_fields($fields){
                       'id'       => 'amp-structured-data-logo',
                       'type'     => 'media',
                       'url'      => true,
-                      'title'    => __('General', 'accelerated-mobile-pages'),
+                      'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
                       'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
             );
     $fields[] =   array(
