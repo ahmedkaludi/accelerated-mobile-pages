@@ -5669,7 +5669,8 @@ Redux::setSection( $opt_name, array(
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
-                                          'order'   => 'ASC'
+                                          'order'   => 'ASC',
+                                          'number'  => 500
                                           ) );
 
       $categories_array = array();
@@ -5688,7 +5689,8 @@ Redux::setSection( $opt_name, array(
     if(get_tags()){
         $tags = get_tags( array(
                                 'orderby' => 'name',
-                                'order'   => 'ASC'
+                                'order'   => 'ASC',
+                                'number'  => 500
                                 ) );/*print_r($tags);die;*/
         $tags_array = array();
         if( $tags ) :
