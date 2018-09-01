@@ -3986,6 +3986,16 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         'tooltip-subtitle'      => __('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.'),
                     ),
+                    array(
+                        'id'       => 'ampforwp-beta-testing',
+                        'type'     => 'info',
+                         'title'    => __('Beta Version'. sprintf(
+                                        '<a href="%s" target="_blank" class="button">%s</a>',
+                                        wp_nonce_url( admin_url( 'admin-post.php?action=ampforwp_beta' ), 'ampforwp_beta' ),
+                                        sprintf( 
+                                            __( 'Activate', 'accelerated-mobile-pages' ))
+                                    ), 'accelerated-mobile-pages'),
+                    ),
    ),
 
 ) );

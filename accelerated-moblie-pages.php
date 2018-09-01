@@ -411,10 +411,14 @@ if( !function_exists('ampforwp_upcomming_layouts_demo') ){
 
 require_once dirname( __FILE__ ).'/includes/options/redux-core/framework.php';
 require_once dirname( __FILE__ ).'/includes/options/extensions/loader.php';
-if ( is_admin() ) {
-	// Register all the main options	
-	require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
-	require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+add_action('after_setup_theme', 'ampforwp_include_options_file' );
+
+function ampforwp_include_options_file(){	
+	if ( is_admin() ) {
+		// Register all the main options	
+		require_once dirname( __FILE__ ).'/includes/options/admin-config.php';
+		require_once dirname( __FILE__ ).'/templates/report-bugs.php';
+	}
 }
 
 // Modules 
@@ -567,6 +571,7 @@ if ( ! function_exists('ampforwp_init') ) {
 			remove_action( 'parse_query', 'amp_correct_query_when_is_front_page' );
 			remove_action( 'wp', 'amp_maybe_add_actions' );
 		}
+		require AMPFORWP_PLUGIN_DIR.'/classes/class-ampforwp-beta.php';
 	}
 }
 // Subdomain as endpoint #2236
