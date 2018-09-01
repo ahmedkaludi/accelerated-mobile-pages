@@ -210,7 +210,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-social-line{background:#00b900}
 .amp-social-vk{background:#45668e}
 .amp-social-odnoklassniki{background:#ed812b}.amp-social-reddit{background:#ff4500}.amp-social-telegram{background:#61A8DE}.amp-social-tumblr{background:#35465c}.amp-social-digg{background:#005be2}.amp-social-stumbleupon{background:#eb4924}.amp-social-wechat{background:#7bb32e}.amp-social-viber{background:#8f5db7}.amp-social-hatena{background:#00a4de}.amp-social-pocket{background:#e8e8e8}
-.amp-social-facebook{background:#3b5998}.amp-fb-chat{background:#0084ff}.amp-social-twitter{background:#1da1f2}.amp-social-gplus{background:#dd4b39}.amp-social-email{background:#000000}.amp-social-pinterest{background:#bd081c}.amp-social-linkedin{background:#0077b5}.amp-social-whatsapp{background:#5cbe4a}
+.amp-social-facebook{background:#3b5998}.amp-social-twitter{background:#1da1f2}.amp-social-gplus{background:#dd4b39}.amp-social-email{background:#000000}.amp-social-pinterest{background:#bd081c}.amp-social-linkedin{background:#0077b5}.amp-social-whatsapp{background:#5cbe4a}
 .ampforwp-custom-social{display:inline-block; margin-bottom:5px}
 .amp-wp-tax-tag { list-style: none; display: inline-block; }
 figure{ margin: 0 0 20px 0; }

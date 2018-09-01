@@ -2178,13 +2178,6 @@ function ampforwp_sticky_social_icons(){
 			    	<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
 			    	<a title="facebook share" class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>
 			  	<?php } ?>
-			  	<?php if ( true == ampforwp_get_setting('enable-single-facebook-chat') ) { ?>
-					<a on="tap:amp-fb-chat" > 
-						<div class="amp-social-icon amp-fb-chat">
- 							<amp-img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIyMy4wNDEgMjIzLjA0MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjIzLjA0MSAyMjMuMDQxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI1NnB4IiBoZWlnaHQ9IjI1NnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMTExLjUyNCwwQzUwLjQ1NywwLDAuNzc0LDQ2Ljk1NCwwLjc3NCwxMDQuNjY5YzAsMzEuMDc3LDE0LjQ3Miw2MC4zNDYsMzkuNzA1LDgwLjNjMy4yNTEsMi41NzEsNy45NjcsMi4wMTksMTAuNTM1LTEuMjMgICBjMi41NjktMy4yNDksMi4wMTktNy45NjYtMS4yMy0xMC41MzVjLTIxLjYxMy0xNy4wOTItMzQuMDEtNDIuMDcyLTM0LjAxLTY4LjUzNEMxNS43NzQsNTUuMjI1LDU4LjcyNywxNSwxMTEuNTI0LDE1ICAgYzUyLjc5MywwLDk1Ljc0Myw0MC4yMjUsOTUuNzQzLDg5LjY2OWMwLDQ5LjQ0OC00Mi45NSw4OS42NzgtOTUuNzQzLDg5LjY3OGMtOS4yMDksMC0xOC4zMTktMS4yMjMtMjcuMDc2LTMuNjM1ICAgYy0xLjkxNS0wLjUyOC0zLjk2MS0wLjI3My01LjY4OCwwLjcwNWwtMzEuMDY0LDE3LjU5N2MtMy42MDQsMi4wNDItNC44NzEsNi42MTgtMi44MjksMTAuMjIzYzEuMzgsMi40MzcsMy45MTgsMy44MDUsNi41MzIsMy44MDUgICBjMS4yNTIsMCwyLjUyMi0wLjMxNCwzLjY4OS0wLjk3NmwyOC40Mi0xNi4wOTljOS4xMTIsMi4yNDQsMTguNTIxLDMuMzgsMjguMDE2LDMuMzhjNjEuMDY0LDAsMTEwLjc0My00Ni45NTgsMTEwLjc0My0xMDQuNjc4ICAgQzIyMi4yNjcsNDYuOTU0LDE3Mi41ODgsMCwxMTEuNTI0LDB6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMTE0LjY3LDcxLjg1Yy0yLjY1LTEuMjI5LTUuNzcyLTAuODA2LTguMDAyLDEuMDgzbC01Ny44OSw0OS4wNTZjLTMuMTYsMi42NzgtMy41NTEsNy40MS0wLjg3MywxMC41NyAgIGMyLjY3OCwzLjE2LDcuNDExLDMuNTUxLDEwLjU3LDAuODczbDQ1LjU0MS0zOC41OTF2MzUuODUyYzAsMi45MjEsMS42OTYsNS41NzcsNC4zNDcsNi44MDVjMS4wMDgsMC40NjcsMi4wODMsMC42OTUsMy4xNTIsMC42OTUgICBjMS43NDMsMCwzLjQ2OC0wLjYwNyw0Ljg1LTEuNzc4bDU3Ljg5NS00OS4wNTZjMy4xNi0yLjY3OCwzLjU1MS03LjQxLDAuODczLTEwLjU3MWMtMi42NzgtMy4xNi03LjQxLTMuNTUyLTEwLjU3LTAuODc0ICAgbC00NS41NDcsMzguNTkzVjc4LjY1NUMxMTkuMDE3LDc1LjczMywxMTcuMzIxLDczLjA3OCwxMTQuNjcsNzEuODV6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="50" height="20"/>
-		 				</div>
-					</a>
-				<?php } ?>
 			  	<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
 	          $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
 	          <amp-social-share type="twitter"
@@ -7787,6 +7780,13 @@ if ( ! function_exists('ampforwp_fb_chat_lightbox') ) {
 	function ampforwp_fb_chat_lightbox(){ 
 		global $redux_builder_amp;
 		$page_id = $redux_builder_amp['amp-facebook-chat-username']; ?>
+		<div class="fb-chat">
+			<a class="fb-chat-a" on="tap:amp-fb-chat" > 
+			<?php if ( 4 != ampforwp_get_setting('amp-design-selector') ) {?>
+				<amp-img class="fb-chat-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIyMy4wNDEgMjIzLjA0MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjIzLjA0MSAyMjMuMDQxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI1NnB4IiBoZWlnaHQ9IjI1NnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMTExLjUyNCwwQzUwLjQ1NywwLDAuNzc0LDQ2Ljk1NCwwLjc3NCwxMDQuNjY5YzAsMzEuMDc3LDE0LjQ3Miw2MC4zNDYsMzkuNzA1LDgwLjNjMy4yNTEsMi41NzEsNy45NjcsMi4wMTksMTAuNTM1LTEuMjMgICBjMi41NjktMy4yNDksMi4wMTktNy45NjYtMS4yMy0xMC41MzVjLTIxLjYxMy0xNy4wOTItMzQuMDEtNDIuMDcyLTM0LjAxLTY4LjUzNEMxNS43NzQsNTUuMjI1LDU4LjcyNywxNSwxMTEuNTI0LDE1ICAgYzUyLjc5MywwLDk1Ljc0Myw0MC4yMjUsOTUuNzQzLDg5LjY2OWMwLDQ5LjQ0OC00Mi45NSw4OS42NzgtOTUuNzQzLDg5LjY3OGMtOS4yMDksMC0xOC4zMTktMS4yMjMtMjcuMDc2LTMuNjM1ICAgYy0xLjkxNS0wLjUyOC0zLjk2MS0wLjI3My01LjY4OCwwLjcwNWwtMzEuMDY0LDE3LjU5N2MtMy42MDQsMi4wNDItNC44NzEsNi42MTgtMi44MjksMTAuMjIzYzEuMzgsMi40MzcsMy45MTgsMy44MDUsNi41MzIsMy44MDUgICBjMS4yNTIsMCwyLjUyMi0wLjMxNCwzLjY4OS0wLjk3NmwyOC40Mi0xNi4wOTljOS4xMTIsMi4yNDQsMTguNTIxLDMuMzgsMjguMDE2LDMuMzhjNjEuMDY0LDAsMTEwLjc0My00Ni45NTgsMTEwLjc0My0xMDQuNjc4ICAgQzIyMi4yNjcsNDYuOTU0LDE3Mi41ODgsMCwxMTEuNTI0LDB6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMTE0LjY3LDcxLjg1Yy0yLjY1LTEuMjI5LTUuNzcyLTAuODA2LTguMDAyLDEuMDgzbC01Ny44OSw0OS4wNTZjLTMuMTYsMi42NzgtMy41NTEsNy40MS0wLjg3MywxMC41NyAgIGMyLjY3OCwzLjE2LDcuNDExLDMuNTUxLDEwLjU3LDAuODczbDQ1LjU0MS0zOC41OTF2MzUuODUyYzAsMi45MjEsMS42OTYsNS41NzcsNC4zNDcsNi44MDVjMS4wMDgsMC40NjcsMi4wODMsMC42OTUsMy4xNTIsMC42OTUgICBjMS43NDMsMCwzLjQ2OC0wLjYwNyw0Ljg1LTEuNzc4bDU3Ljg5NS00OS4wNTZjMy4xNi0yLjY3OCwzLjU1MS03LjQxLDAuODczLTEwLjU3MWMtMi42NzgtMy4xNi03LjQxLTMuNTUyLTEwLjU3LTAuODc0ICAgbC00NS41NDcsMzguNTkzVjc4LjY1NUMxMTkuMDE3LDc1LjczMywxMTcuMzIxLDczLjA3OCwxMTQuNjcsNzEuODV6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" width="24" height="24"/>
+		<?php } ?>
+			</a>
+		</div>
 		<amp-lightbox id="amp-fb-chat" layout="nodisplay">
 				<div class="amp-fb-chat-wrap">
  				<amp-facebook-page width="310" height="310"
@@ -7847,8 +7847,16 @@ if ( ! function_exists('ampforwp_fb_chat_css') ) {
 		   width: 100%;
 		   height:100%;
 		   margin:0 auto;
-		}	 
-	<?php }
+		}
+		.fb-chat{position:fixed;top:70%;right:0;}
+		<?php if ( 4 == ampforwp_get_setting('amp-design-selector') ){ ?>
+			.fb-chat-a:after{content: "\e948";font-family:icomoon;font-size:30px;}
+			.fb-chat-a{color:#fff;background:#0084ff;padding:5px;border-radius:5px;display:inline-block;}
+			.fb-chat-btn{border:none;background:none}
+		<?php } else { ?>
+			.fb-chat-a{background-color:#0084ff;border-radius: 60%;padding:10px 10px 6px 10px;line-height:1;display:inline-block;}
+		<?php }	 
+	}
 }
 
 /*Amp app banner support Start #1314 */
@@ -7972,5 +7980,3 @@ function ampforwp_amp_app_banner_manifest_json(){
 	}
 }
 /*Amp app banner support End #1314 */
-
-

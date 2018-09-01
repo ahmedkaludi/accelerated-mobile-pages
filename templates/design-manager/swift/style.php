@@ -1251,10 +1251,6 @@ if(is_single() || is_page() ){ ?>
 .ss-ic ul li .s_fb{	color:#fff;background:#3b5998;}
 .s_fb:after{content: "\e92d";}
 <?php }
-if ( true == ampforwp_get_setting('enable-single-facebook-chat') ) { ?>
-	.ss-ic ul li .s_fb_chat{color:#fff;background:#0084ff;}
-	.s_fb_chat:after{content: "\e948";}
-<?php }  
 if($redux_builder_amp['enable-single-twitter-share'] || $redux_builder_amp['enbl-tw']){?>
 .s_tw{background:#1da1f2;}
 .s_tw:after{content: "\e942";}
