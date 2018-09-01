@@ -4507,7 +4507,7 @@ function ampforwp_post_paginated_link_generator( $i ) {
 // Modify the content to make Pagination work on Pages and FrontPage #2253
 add_filter('ampforwp_modify_the_content','ampforwp_post_paginated_content');
 function ampforwp_post_paginated_content($content){
-	if ( is_page() || ampforwp_is_front_page() ){
+	if ( is_singular() || ampforwp_is_front_page() ){
 		global $redux_builder_amp, $page, $multipage;
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		$ampforwp_the_content = $content;
@@ -7045,7 +7045,7 @@ add_filter('ampforwp_post_content_filter', 'ampforwp_paginated_post_content');
 
 function ampforwp_paginated_post_content($content){
 	global $numpages;
-	if(is_single()){
+	if(is_singular()){
 		if ( get_query_var( 'paged' ) ) {
 			$paged = get_query_var('paged');
 		} elseif ( get_query_var( 'page' ) ) {
