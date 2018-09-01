@@ -301,6 +301,7 @@ add_action('amp_post_template_head','ampforwp_sanitize_archive_desc');
 function ampforwp_sanitize_archive_desc(){
 
     $description 	= get_the_archive_description();
+    if ($description) {
     $sanitizer = new AMPFORWP_Content( $description, array(), 
 			apply_filters( 'ampforwp_content_sanitizers',
 				array( 
@@ -321,7 +322,7 @@ function ampforwp_sanitize_archive_desc(){
 			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
 		}
 	}   
-	
+	}
 }
 
     // Homepage
