@@ -187,15 +187,24 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Adobe Analytics Support #887
 * Fixed: Same Icons loading for some extensions #2172
 * Fixed: Removed extra spacing from "Back to top" text #2349
-* Fixed: Retina featured images support for Homepage and arhvie loop images #2334
-* Fixed: When WooCommerce Product Slider is Installed , the Picture of Icons are not loading #2325
-* Added: Customizr Theme Lazy Loading compatiblity #2322
+* Fixed: Retina featured images support for Homepage and archive loop images #2334
+* Fixed: When WooCommerce Product Slider is Installed, the Picture of Icons are not loading #2325
+* Added: Customizr Theme Lazy Loading compatibility #2322
 * Fixed: "Save Module" button of AMP page Builder not displaying in OSX and in Safari #1943
+* Fixed: Sort Related Posts Randomly Not Working in Swift theme #2308
 * Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
-* Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
+* Fixed: Retina Images option Improvement-II #2296
+* Fixed: Disable the look or check of redux framework #2293
+* Fixed: With Redux core plugin, AMP option panel design not loading #2258
+* Fixed: Issues with pagination #2253
+* Added: Thrive Architect Compatible #1575
 * Fixed: Notice Undefined variable categories_array #2486
 * Fixed: Need to add upscale parameter in-line related posts #2488
-* Fixed: Getting the warnings in Error log of Inc42 #2395
+* Fixed: Getting the warnings in error log due to global variable, not present #2395
+* Fixed: Google Analytic issue while setting up Run Installation wizard #2491
+* Added: Read more button AKA Content Sneak Peek feature for post #2246
+* Added: Yet Another Related Posts Plugin (YARPP) Support #551
+* Added: Showing related items/post in after nth paragraph #2246
 
 = 0.9.97.13 (28th August 2018) =
 * Fixed: Fatal error in `ampforwp_related_post_loop_query()`
