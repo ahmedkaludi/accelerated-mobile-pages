@@ -187,15 +187,16 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Adobe Analytics Support #887
 * Fixed: Same Icons loading for some extensions #2172
 * Fixed: Removed extra spacing from "Back to top" text #2349
-* Fixed: Retina featured images support for Homepage and arhvie loop images #2334
-* Fixed: When WooCommerce Product Slider is Installed , the Picture of Icons are not loading #2325
-* Added: Customizr Theme Lazy Loading compatiblity #2322
+* Fixed: Retina featured images support for Homepage and archive loop images #2334
+* Fixed: When WooCommerce Product Slider is Installed, the Picture of Icons are not loading #2325
+* Added: Customizr Theme Lazy Loading compatibility #2322
 * Fixed: "Save Module" button of AMP page Builder not displaying in OSX and in Safari #1943
-* Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
 * Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
 * Fixed: Notice Undefined variable categories_array #2486
 * Fixed: Need to add upscale parameter in-line related posts #2488
-* Fixed: Getting the warnings in Error log of Inc42 #2395
+* Fixed: Getting the warnings in Error log due to Global Variable, not present #2395
+* Fixed: Google Analytic issue while setting up Run Installation wizard #2491
+
 
 = 0.9.97.13 (28th August 2018) =
 * Fixed: Fatal error in `ampforwp_related_post_loop_query()`
