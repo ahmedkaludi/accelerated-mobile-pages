@@ -2088,6 +2088,8 @@ function ampforwp_remove_schema_data() {
 	
 	// Remove Filters added by third party plugin through class
 	if ( function_exists('ampforwp_remove_filters_for_class')) {
+		//Remove Filter For YARPP Related Post 
+		ampforwp_remove_filters_for_class('the_content', 'YARPP','the_content',1200);
 		//Remove Disallowed 'like' tag from facebook Like button by Ultimate Facebook
 		ampforwp_remove_filters_for_class( 'the_content', 'Wdfb_UniversalWorker', 'inject_facebook_button', 10 );
 		//Compatibility with Sassy Social Share Plugin
