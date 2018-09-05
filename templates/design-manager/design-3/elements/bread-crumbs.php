@@ -78,29 +78,46 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
                     echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><span class="bread-cat bread-custom-post-type-' . $post_type . '">' . $post_type_object->labels->name . '</span></li>';  
                 }
             }
-              
+            /*Breadcrumb with tags Start*/  
+            $tags_breadcrumbs = '';
+            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'tags'){
+                $post_tags = wp_get_post_tags($post->ID);
+                if(!empty($post_tags)){
+                    foreach( $post_tags as $post_obj){
+                        $tag_name = $post_obj->name;
+                        $tag_id = $post_obj->term_id;
+                        $tag_name = $post_obj->name;
+                        $tag_link = get_tag_link($tag_id);
+                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . $tag_id . ' item-tag-' . $tag_name . '"><a class="bread-tag bread-tag-' . $tag_id . ' bread-tag-' . $tag_name . '" href="' . esc_url(ampforwp_url_controller( $tag_link, $archive_non_amp )) . '" title="' . $tag_name . '">' . $tag_name . '</a></li>';                
+                    }
+                    echo $tags_breadcrumbs;
+                }
+            }
+
+            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'category'){
             // Get post category info
             $category = get_the_category();
              
-            if(!empty($category)) {
+                if(!empty($category)) {
 
-                // Get last category post is in
-                $last_category = array_values($category);
-                $last_category = end($last_category);
-                  $category_name = get_category($last_category);
-                // Get parent any categories and create array
-                $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
-                $cat_parents = explode(',',$get_cat_parents);
-                  
-                // Loop through parent categories and store in variable $cat_display
-                $cat_display = '';
-                foreach($cat_parents as $parents) {
-                    $cat_id = get_cat_ID( $parents);
-                    $cat_link = get_category_link($cat_id);
-                    $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )).'" title="' . $parents . '">' . $parents . '</a></li>';
+                    // Get last category post is in
+                    $last_category = array_values($category);
+                    $last_category = end($last_category);
+                      $category_name = get_category($last_category);
+                    // Get parent any categories and create array
+                    $get_cat_parents = rtrim(get_category_parents($last_category->term_id, false, ','),',');
+                    $cat_parents = explode(',',$get_cat_parents);
+                      
+                    // Loop through parent categories and store in variable $cat_display
+                    $cat_display = '';
+                    foreach($cat_parents as $parents) {
+                        $cat_id = get_cat_ID( $parents);
+                        $cat_link = get_category_link($cat_id);
+                        $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )).'" title="' . $parents . '">' . $parents . '</a></li>';
+                    }
                 }
             }
-              
+            /*Breadcrumb with tags End*/
             // If it's a custom post type within a custom taxonomy
             $taxonomy_exists = taxonomy_exists($custom_taxonomy);
             if(empty($last_category) && !empty($custom_taxonomy) && $taxonomy_exists) {

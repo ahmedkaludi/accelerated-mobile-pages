@@ -5419,6 +5419,20 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => __('Breadcrumbs', 'accelerated-mobile-pages'),
            ),
+          //Breadcrumb for Tags
+          array(
+                'class' => 'child_opt child_opt_arrow', 
+                'id'       => 'ampforwp-bread-crumb-type',
+                'type'     => 'select',
+                'tooltip-subtitle'     => __('Select option to enable breadcrumb with tags or category','accelerated-mobile-pages'),
+                'title'    => __('Select Breadcrumb Type', 'accelerated-mobile-pages'),
+                'options'  => array(
+                    'tags' => 'Tags',
+                    'category' => 'Category',
+                ),
+                'default'  => 'category',
+                'required' => array('ampforwp-bread-crumb' , '=' , 1),
+            ),
           //Categories  ON/OFF
          array(
               'id'       => 'ampforwp-cats-single',
