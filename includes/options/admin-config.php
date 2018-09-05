@@ -3035,6 +3035,7 @@ $forms_support[] =  array(
                 'id'        => 'wordpress-comments-support',
                 'tooltip-subtitle'  => __('Enable/Disable WordPress comments using this switch.', 'accelerated-mobile-pages'),
                 'type'      => 'switch',
+                'default'  => 1,
                 ),
                     array(
                         'class' => 'child_opt child_opt_arrow', 
