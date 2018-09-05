@@ -34,6 +34,7 @@ a{ color: #312C7E; text-decoration: none }
 amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
+.hide{display:none}
 @font-face {
     font-family: 'Roboto Slab';
     font-style: normal;
