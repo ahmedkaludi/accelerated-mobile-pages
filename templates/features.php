@@ -5508,7 +5508,7 @@ function ampforwp_generate_inline_related_posts($content){
 function  ampforwp_generate_inline_related_posts_by_paragraph($content){
 	global $redux_builder_amp;
 	$total_count = '';
-	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = (integer) ampforwp_get_setting('ampforwp-related-posts-after-number-of-paragraphs'); 
 
 	if(isset($int_number_of_paragraphs) && $int_number_of_paragraphs!=''){
 		if($int_number_of_paragraphs == 0){
@@ -5535,7 +5535,7 @@ function ampforwp_add_related_post_after_paragraph($matches)
 	global $redux_builder_amp;
 	static $count = 0;
 	$ret = '';
-	$int_number_of_paragraphs = (integer) $redux_builder_amp['ampforwp-related-posts-after-number-of-paragraphs'];
+	$int_number_of_paragraphs = (integer) ampforwp_get_setting('ampforwp-related-posts-after-number-of-paragraphs');
 	
   		$ret = $matches[1];
 
