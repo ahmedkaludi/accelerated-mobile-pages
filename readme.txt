@@ -203,7 +203,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Getting the warnings in error log due to global variable, not present #2395
 * Fixed: Google Analytic issue while setting up Run Installation wizard #2491
 * Added: Read more button AKA Content Sneak Peek feature for post #2246
-* Added: Yet Another Related Posts Plugin (YARPP) Support #551
 * Added: Showing related items/post in after nth paragraph #2246
 
 = 0.9.97.13 (28th August 2018) =
@@ -224,7 +223,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Blank Lines in HTML Source code #2445
 * Fixed: Optimize AMP pages on Google Lighthouse #2082
 * Fixed: RSS Feed is not working when AMP Takeover is enabled #2309
-* Fixed: Yet Another Related Posts Plugin (YARPP) support added for AMP #551
 
 = 0.9.97.11 (21th August 2018) =
 * Minor Update

@@ -448,8 +448,10 @@ do_action("ampforwp_single_design_type_handle");
 												</div>
 											<?php } ?>	
 											<div class="rlp-cnt">
+												<?php 
 												$show_excerpt_opt = $redux_builder_amp['ampforwp-single-related-posts-excerpt'];
-												<?php $argsdata = array(
+
+												$argsdata = array(
 														'show_author' => false,
 														'show_excerpt' => $show_excerpt_opt
 															);

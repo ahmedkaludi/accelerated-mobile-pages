@@ -5529,7 +5529,7 @@ $single_page_options = array(
                'default'  => '2',
                'required' => array( 
                                 array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
+                              //  array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                             ),
             ),
             array(
@@ -5570,7 +5570,7 @@ $single_page_options = array(
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -5582,7 +5582,7 @@ $single_page_options = array(
                     'default'  => '3',
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -5594,7 +5594,7 @@ $single_page_options = array(
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                                 ),
             ),
             array(
@@ -5606,7 +5606,7 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array( 
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
                                 ),
             ),
             array(
@@ -5893,7 +5893,7 @@ $single_page_options = array(
         'desc' => $single_extension_listing 
     )
 );
-/*Yarpp enable option*/
+/*Yarpp enable option
     if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
         $yarpp_options = array(array(
                     'id'       => 'ampforwp-related-posts-yarpp-switch',
@@ -5946,7 +5946,7 @@ $single_page_options = array(
                 }
             }
         }
-    }
+    }*/
    // Single Section
   Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'accelerated-mobile-pages' ),
