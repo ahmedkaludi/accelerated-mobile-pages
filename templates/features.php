@@ -7990,3 +7990,44 @@ function ampforwp_amp_app_banner_manifest_json(){
 	}
 }
 /*Amp app banner support End #1314 */
+
+// #2497 Ivory Search Compatibility Added
+add_filter('ampforwp_menu_content','ampforwp_modify_ivory_search');
+if( ! function_exists(' ampforwp_modify_ivory_search ') ){
+	function ampforwp_modify_ivory_search($menu){
+		$dom 		= '';
+		$nodes 		= '';
+		$num_nodes 	= '';
+		if( !empty( $menu ) ){
+			// Create a new document
+			$dom = new DOMDocument();
+			if( function_exists( 'mb_convert_encoding' ) ){
+				$menu = mb_convert_encoding($menu, 'HTML-ENTITIES', 'UTF-8');			
+			}
+			else{
+				$menu =  preg_replace( '/&.*?;/', 'x', $menu ); // multi-byte characters converted to X
+			}
+
+			// To Suppress Warnings
+			libxml_use_internal_errors(true);
+
+			$dom->loadHTML($menu);
+
+			libxml_use_internal_errors(false);
+
+			// get all the forms
+			$nodes 		= $dom->getElementsByTagName( 'form' );
+			$num_nodes 	= $nodes->length;
+			for ( $i = $num_nodes - 1; $i >= 0; $i-- ) {
+				$node 	= $nodes->item( $i );
+				// Set The Width and Height if there in none
+				if ( '' === $node->getAttribute( 'target' ) ) {
+					$node->setAttribute('target', '_top');
+				}
+				
+			}
+			$menu = $dom->saveHTML();
+		}
+		return $menu;
+	}
+}
