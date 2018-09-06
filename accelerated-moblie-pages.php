@@ -474,21 +474,33 @@ function ampforwp_is_amp_endpoint() {
 		return apply_filters('ampforwp_is_amp_endpoint', false !== get_query_var( 'amp', false ) );
 	}
 }
-
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 	class Ampforwp_Init {
 
 		public function __construct(){
 
+			require AMPFORWP_PLUGIN_DIR .'/includes/features/functions.php';
 			// Load Files required for the plugin to run
-			require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+			if(is_plugin_active('amp/amp.php')){
+				require_once AMPFORWP_PLUGIN_DIR."includes/features/amp_bridge.php";
+			}
+			else{
+				require AMPFORWP_PLUGIN_DIR .'/includes/includes.php';
+				// Redirection Code added
+				require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
 
-			// Redirection Code added
-			require AMPFORWP_PLUGIN_DIR.'/includes/redirect.php';
-
-			require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
-			new Ampforwp_Loader();
-
+				require AMPFORWP_PLUGIN_DIR .'/classes/class-init.php';
+				new Ampforwp_Loader();
+				
+			}
+			//Other Features
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/advertisement/ads-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/performance/performance-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-data-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-functions.php";
 		}
 	}
 }
@@ -683,10 +695,12 @@ if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
 	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', plugin_dir_path( __FILE__ )."/components"); 
 }
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
-require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
+if ( !is_plugin_active('amp/amp.php') ) {
+	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
+}
 
 /**
  * Redirects the old AMP URL to the new AMP URL.
@@ -736,4 +750,18 @@ function ampforwp_get_setting( $opt_name='' ){
 		$opt_value = $redux_builder_amp[$opt_name];
 	}
 	return $opt_value;
+}
+// Data Consent
+function ampforwp_get_data_consent(){
+	global $redux_builder_amp;
+	if($redux_builder_amp==null){
+		$redux_builder_amp = get_option('redux_builder_amp',true);
+	}
+	$dboc = false;
+	$is_dboc = '';
+	if(isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ){
+		
+				$dboc = true;
+	}
+	return $dboc;
 }
