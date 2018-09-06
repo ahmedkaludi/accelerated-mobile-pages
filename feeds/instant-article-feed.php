@@ -12,27 +12,27 @@
     <description><?php bloginfo_rss("description") ?></description>
     <lastBuildDate><?php echo mysql2date('c', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
     <language><?php bloginfo_rss( 'language' ); ?></language>
-
     <?php
-        global $redux_builder_amp;
-        $number_of_articles = '';
-        if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
-            $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
-            $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
-        }
-        else{
-            $number_of_articles = -1;
-        }
-        $args = array(
-            'post_status'           => 'publish',
-            'ignore_sticky_posts'   => 1,
-            'posts_per_page'        => $number_of_articles
-        );
-        $query = new WP_Query( $args );
-        while( $query->have_posts() ) :
-
-            $query->the_post();
-    ?>
+    global $redux_builder_amp;
+    $number_of_articles = $exclude_ids = '';
+    if( isset( $redux_builder_amp['ampforwp-fb-instant-article-posts'] ) && $redux_builder_amp['ampforwp-fb-instant-article-posts'] ){
+        $number_of_articles = $redux_builder_amp['ampforwp-fb-instant-article-posts'];
+        $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
+    }
+    else{
+        $number_of_articles = -1;
+    }
+    $exclude_ids = get_option('ampforwp_ia_exclude_post');
+    $ia_args = array(
+        'post__not_in'         => $exclude_ids,
+        'post_type'             => 'post',
+        'post_status'           => 'publish',
+        'ignore_sticky_posts'   => true,
+        'posts_per_page'        => $number_of_articles,
+    );
+    $ia_query = new WP_Query( $ia_args );
+    while( $ia_query->have_posts() ) :
+        $ia_query->the_post(); ?>
 
     <item>
         <title><?php the_title_rss() ?></title>
@@ -52,5 +52,6 @@
     </item>
 
     <?php endwhile; ?>
+    <?php wp_reset_postdata(); ?>
 </channel>
 </rss>

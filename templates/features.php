@@ -1940,9 +1940,10 @@ function ampforwp_title_meta_save( $post_id ) {
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
     $is_valid_nonce = ( isset( $_POST[ 'ampforwp_title_nonce' ] ) && wp_verify_nonce( $_POST[ 'ampforwp_title_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+    $is_valid_nonce_ia = ( isset( $_POST[ 'ampforwp_ia_nonce' ] ) && wp_verify_nonce( $_POST[ 'ampforwp_ia_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
 
     // Exits script depending on save status
-    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+    if ( $is_autosave || $is_revision || !$is_valid_nonce || !$is_valid_nonce_ia) {
         return;
     }
 
@@ -1951,7 +1952,10 @@ function ampforwp_title_meta_save( $post_id ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
     }
-
+    if( isset( $_POST[ 'ampforwp-ia-on-off' ] ) ) {
+        $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-ia-on-off' ] );
+        update_post_meta( $post_id, 'ampforwp-ia-on-off', $ampforwp_amp_status );
+    }
      if( isset( $_POST[ 'ampforwp-redirection-on-off' ] ) ) {
         $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
         update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
@@ -7398,3 +7402,62 @@ function ampforwp_thrive_content($content){
 				$content =  $sanitizer_obj->get_amp_content();
 	return $content;
 }
+// Instant Articles Meta Box
+add_action( 'add_meta_boxes', 'ampforwp_ia_meta_box' );
+if ( ! function_exists('ampforwp_ia_meta_box') ) {
+	function ampforwp_ia_meta_box() {
+		global $redux_builder_amp, $post;
+	    $user_level = '';
+	    $user_level = current_user_can( 'manage_options' );
+	    if (  isset( $redux_builder_amp['amp-meta-permissions'] ) && $redux_builder_amp['amp-meta-permissions'] == 'all' ) {
+	    	$user_level = true;
+	    }
+	    if ( $user_level ) { 
+		    if( true == $redux_builder_amp['fb-instant-article-switch'] && $post->post_type == 'post' ) {
+		    	add_meta_box( 'ampforwp_ia_meta', __( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
+		    }
+        }
+    }
+}
+// Callback function for Instant Articles Meta Box.
+function ampforwp_ia_meta_callback( $post ) {
+	global $redux_builder_amp;
+    wp_nonce_field( basename( __FILE__ ), 'ampforwp_ia_nonce' );
+    $ampforwp_stored_meta = get_post_meta( $post->ID );
+	if ( ! isset($ampforwp_stored_meta['ampforwp-ia-on-off'][0]) || $ampforwp_stored_meta['ampforwp-ia-on-off'][0] == 'hide-ia') {
+		$exclude_post_value = get_option('ampforwp_ia_exclude_post');
+		if ( $exclude_post_value == null ) {
+			$exclude_post_value[] = 0;
+		}
+		if ( $exclude_post_value ) {
+			if ( ! in_array( $post->ID, $exclude_post_value ) ) {
+				$exclude_post_value[] = $post->ID;
+				update_option('ampforwp_ia_exclude_post', $exclude_post_value);
+			}
+		}
+	} else {
+		$exclude_post_value = get_option('ampforwp_ia_exclude_post');
+		if ( $exclude_post_value == null ) {
+			$exclude_post_value[] = 0;
+		}
+		if ( $exclude_post_value ) {
+			if ( in_array( $post->ID, $exclude_post_value ) ) {
+				$exclude_ids = array_diff($exclude_post_value, array($post->ID) );
+				update_option('ampforwp_ia_exclude_post', $exclude_ids);
+			}
+		}
+
+	} ?>
+    <p>
+        <div class="prfx-row-content">
+            <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
+                <?php _e( 'Enable' )?>
+            </label>
+            <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-two">
+                <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-two" value="hide-ia" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
+                <?php _e( 'Disable' )?>
+            </label> 
+        </div>
+    </p>
+<?php }
