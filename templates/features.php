@@ -6271,7 +6271,7 @@ if( ! function_exists( 'ampforwp_full_post_date_loops' ) ){
 		if( $redux_builder_amp['ampforwp-post-date-format-text'] ){
 			$full_date = $redux_builder_amp['ampforwp-post-date-format-text'];
 			// Change the % days into the actual number of days
-			$full_date = str_replace('% days', $date, $full_date);
+			$full_date = str_replace('ago', ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago'), $full_date);
 		}
 	}
 	return $full_date;
