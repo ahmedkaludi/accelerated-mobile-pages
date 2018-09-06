@@ -4360,12 +4360,36 @@ function fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
 	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
 		add_feed('instant_articles', 'fb_instant_article_feed_function');
+		add_action( 'wp_head', 'ampforwp_fbia_meta_tags' );
 	}
 }
 
 function fb_instant_article_feed_function() {
 	add_filter('pre_option_rss_use_excerpt', '__return_zero');
 	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
+}
+
+if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
+	function ampforwp_fbia_meta_tags(){
+		global $redux_builder_amp;
+		$fb_page_id = '';
+		$fb_page_id = $redux_builder_amp['fb-instant-page-id'];
+		// Page ID meta Tag
+		if(  isset($redux_builder_amp['fb-instant-page-id']) && $redux_builder_amp['fb-instant-page-id'] ) { ?>		
+			<meta property="fb:pages" content="<?php echo esc_attr( $fb_page_id ); ?>" />
+		<?php }
+		$post = get_post();
+		// If there's no current post, return
+		if ( ! $post ) {
+			return;
+		}
+		$url = get_permalink();
+		$url = add_query_arg( 'ia_markup', '1', $url );
+		// ia markup meta tag
+		if( isset($redux_builder_amp['fb-instant-crawler-ingestion']) && $redux_builder_amp['fb-instant-crawler-ingestion'] ) { ?>
+			<meta property="ia:markup_url" content="<?php echo esc_url( $url ); ?>" />	
+		<?php }
+	}
 }
 
 // 69. Post Pagination #834 #857

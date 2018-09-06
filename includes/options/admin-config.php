@@ -3231,18 +3231,23 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                    array(
+                        'id'    => 'fb-instant-page-id',
+                        'type'  => 'text',
+                        'title' => __('Facebook Page ID', 'accelerated-mobile-pages'),
+                        'desc' => __('Follow <a href="https://www.facebook.com/instant_articles/signup" target="_blank">these instructions</a> to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
 
            array(
-                        'required'  => array('fb-instant-article-switch', '=', 1),
                        'id' => 'amp-fbia_2',
                        'type' => 'section',
                        'title' => __('Facebook Instant Articles Settings', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
+                       'required'  => array('fb-instant-article-switch', '=', 1),
             ),
-
-
                     array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
@@ -3308,6 +3313,13 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-analytics', '=', 1)
+                    ),
+                     array(
+                        'id'       => 'fb-instant-crawler-ingestion',
+                        'type' => 'switch',
+                        'title'    => __('Crawler Ingestion', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
                         'id'       => 'fbia-header-text-area',
