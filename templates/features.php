@@ -2107,6 +2107,9 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'amp_post_template_data', 'Bunyad_Theme_Amp', 'setup_data', 10 );
 		// Remove Jannah Image Lazy Load #2224
 		ampforwp_remove_filters_for_class( 'wp_get_attachment_image_attributes', 'TIELABS_FILTERS', 'lazyload_image_attributes', 8 );
+		// Social Share by Supsystic Compatibility #1509
+		ampforwp_remove_filters_for_class( 'the_content', 'SocialSharing_Projects_Handler', 'applyContentCallback', 10 );
+		ampforwp_remove_filters_for_class( 'amp_post_template_head', 'SocialSharing_Projects_Handler', 'addedStylesForAMP', 10 );
 		// Remove JPG, PNG Compression and Optimization Plugin Lazy Load #2322
 		ampforwp_remove_filters_for_class( 'the_content', 'Wp_Image_compression', 'filter_images', 200 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
