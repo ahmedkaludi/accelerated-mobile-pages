@@ -3298,12 +3298,39 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
+                        'id'       => 'fb-instant-article-ad-type',
+                        'type'      => 'select',
+                        'title'     => __('Select Advertisement Format', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'desc' => __('Select the type of advertising on Instant Article pages you want to display.', 'accelerated-mobile-pages'),
+                        'options'   => array(
+                            '1'     => 'Facebook Audience Network',
+                            '2'     => 'Custom iframe URL',
+                            '3'     => 'Custom Embed Code'
+                        ),
+                        'required'  => array('fb-instant-article-ads', '=', 1)
+                    ),
+                    array(
                         'id'       => 'fb-instant-article-ad-id',
                         'type'     => 'text',
                         'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
                         'desc' => __('<a href="https://ampforwp.com/tutorials/article/how-to-enter-audience-network-placement-id-of-advertisement-in-the-instant-article/" target="_blank">Click here</a> on how to get Audience Network Placement Id.', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-ads', '=', 1)
+                        'required'  => array('fb-instant-article-ad-type', '=', '1')
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-custom-iframe-ad',
+                        'type'     => 'text',
+                        'placeholder'=> 'https://www.adserver.com/ss',
+                        'title'    => __('Enter your Custom iframe ad source URL'),
+                        'required'  => array('fb-instant-article-ad-type', '=', '2')
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-custom-embed-ad',
+                        'type'     => 'textarea',
+                        'placeholder'=> '',
+                        'title'    => __('Enter your Custom Embed ad code'),
+                        'required'  => array('fb-instant-article-ad-type', '=', '3')
                     ),
                     array(
                         'id'       => 'fb-instant-article-ad-density-setup',
