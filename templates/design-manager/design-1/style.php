@@ -176,6 +176,11 @@ header, amp-sidebar, article, footer{ direction: rtl;}
 .comment-author{float: right;}
 .amp-ad-wrapper,.amp-wp-article amp-ad{ direction: ltr; }
 amp-carousel{direction: ltr;} .tt-lb{float:right;margin-left:5px;}
+.amp-wp-content.widget-wrapper{margin:20px auto;}
+.amp_widget_above_the_footer{direction:rtl;}
+@media(max-width:768px){
+.amp-wp-content.widget-wrapper{margin: 15px;}
+}
 <?php } ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
 .callnow{ position: relative; top: -27px; right: 100px; }

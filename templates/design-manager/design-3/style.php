@@ -386,6 +386,11 @@ amp-carousel{direction: ltr;}
 @keyframes opening{ 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(-60%, 0, 0) scale(0.8); } }
 @keyframes closing{ 0% { transform: translate3d(-60%, 0, 0) scale(0.8); } 100% { transform: translate3d(0, 0, 0) scale(1); } }
 @keyframes closingFix{ 0% { max-height: 100vh; overflow: hidden; } 100% { max-height: none; overflow: visible; } }
+.amp-wp-content.widget-wrapper{margin:20px auto;}
+.amp_widget_above_the_footer{direction:rtl;}
+@media(max-width:768px){
+.amp-wp-content.widget-wrapper{margin: 15px;}
+}
 <?php } ?>
 
 a {  color: <?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']) ?> }
