@@ -83,6 +83,32 @@
               <?php if ( isset($redux_builder_amp['fbia-footer-text-area']) && $redux_builder_amp['fbia-footer-text-area'] ) {
                   echo $redux_builder_amp['fbia-footer-text-area'];
               }?>
+              <?php if( isset($redux_builder_amp['ampforwp-ia-related-articles']) && true == $redux_builder_amp['ampforwp-ia-related-articles'] ) {
+                if ( ! empty( $categories ) ) { 
+                  $categories_ids = wp_list_pluck( $categories, 'term_id' );
+                  // Get the four latest posts.
+                  $query_args = array(
+                    'category__in'           => $categories_ids,
+                    'post__not_in'           => array( get_the_ID() ),
+                    'posts_per_page'         => 4, // FB uses 4 related articles.
+                    'ignore_sticky_posts'    => true, // Turn off sticky posts.
+                    'order'                  => 'DESC',
+                    'orderby'                => 'date',
+                    'no_found_rows'          => true,
+                    'post_type'              => get_post_type(),
+                    'post_status'            => 'publish',
+                  );
+                }
+                $related_articles_loop = new WP_Query( $query_args );
+                $related_articles = $related_articles_loop->get_posts();
+                if ( $related_articles_loop->have_posts() ) :?>
+                  <ul class="op-related-articles">
+                    <?php foreach ( $related_articles as $related_article ) : ?>
+                      <li><a href="<?php echo esc_url( get_permalink( $related_article ) ); ?>"></a></li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
+              <?php } ?>
               <?php if( true == $redux_builder_amp['ampforwp-instant-article-author-bio']){ ?>
                 <aside>
                   <p><?php the_author_meta('display_name'); ?></p> 

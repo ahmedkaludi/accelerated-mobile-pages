@@ -3266,6 +3266,16 @@ Redux::setSection( $opt_name, array(
                         'false'     => 'false',
                         'tooltip-subtitle' => __('Enable/Disable Author Bio', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'ampforwp-ia-related-articles',
+                        'type'      => 'switch',
+                        'title'     => __('Related Articles', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'tooltip-subtitle' => __('Show/Hide Related Articles', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
                     array(
                         'id'       => 'fb-instant-article-ads',
