@@ -6349,6 +6349,19 @@ $single_page_options = array(
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
          ),
+        // Social Icons Position [Swift] #1722
+            array(
+                'id'       => 'swift-social-position',
+                'type'     => 'select',
+                'title'    => __( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'default' => 'Single Sidebar (left side)',
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'default',
+                'required' => array(array('amp-design-selector', '=', '4') )
+            ), 
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
