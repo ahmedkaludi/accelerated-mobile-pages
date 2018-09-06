@@ -3258,9 +3258,19 @@ Redux::setSection( $opt_name, array(
                         'default'   => '50'
                     ),
                     array(
+                        'id'       => 'ampforwp-instant-article-author-meta',
+                        'type'      => 'switch',
+                        'title'     => __('Author Meta', 'accelerated-mobile-pages'),
+                        'default'   => 1, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'tooltip-subtitle' => __('Enable/Disable Author Meta', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
                         'id'       => 'ampforwp-instant-article-author-bio',
                         'type'      => 'switch',
-                        'title'     => __('Bio', 'accelerated-mobile-pages'),
+                        'title'     => __('Author Bio', 'accelerated-mobile-pages'),
                         'default'   => 0, 
                         'true'      => 'true',
                         'false'     => 'false',
