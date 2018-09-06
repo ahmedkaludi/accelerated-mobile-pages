@@ -9,15 +9,18 @@
         <!-- automatic ad placement -->
         <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo get_ia_ad_density(); ?>">
       <?php } ?>
+      <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
+          echo $redux_builder_amp['fbia-header-text-area'];
+      }?>
     </head>
     <body>
         <article>
             <header>
                 <!-- title -->
-				<h1><?php the_title(); ?></h1>
+        <h1><?php the_title(); ?></h1>
 
-				<!-- kicker -->
-				<h3 class="op-kicker">
+        <!-- kicker -->
+        <h3 class="op-kicker">
                    <?php $categories = get_the_category();
                    if ( ! empty( $categories ) ) {
                        echo esc_html( $categories[0]->name );   
@@ -25,22 +28,20 @@
                 </h3>
 
                 <!-- publication date/time -->
-				<time class="op-published" datetime="<?php echo get_the_date("c"); ?>"><?php echo get_the_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
+        <time class="op-published" datetime="<?php echo get_the_date("c"); ?>"><?php echo get_the_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
 
-				<!-- modification date/time -->
-				<time class="op-modified" datetime="<?php echo get_the_modified_date("c"); ?>"><?php echo get_the_modified_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
-        
-				<!-- author(s) -->
-                <address>
-                    <a><?php the_author_meta('display_name'); ?></a>
-                </address>
-        
-				<!-- cover -->
-				<?php if(has_post_thumbnail($post->ID)):
-					$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-					$attachment = get_post(get_post_thumbnail_id($post->ID));
-					$thumbnail_url = $thumb[0];
-				?>
+        <!-- modification date/time -->
+        <time class="op-modified" datetime="<?php echo get_the_modified_date("c"); ?>"><?php echo get_the_modified_date(get_option('date_format') . ", " . get_option('time_format')); ?></time>
+          <!-- author(s) -->
+            <address>
+                <a><?php the_author_meta('display_name'); ?></a>
+            </address>
+        <!-- cover -->
+        <?php if(has_post_thumbnail($post->ID)):
+          $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
+          $attachment = get_post(get_post_thumbnail_id($post->ID));
+          $thumbnail_url = $thumb[0];
+        ?>
                     <figure>
                         <img src="<?php echo $thumbnail_url; ?>" />
                         <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0):
@@ -50,7 +51,7 @@
                             }
                         endif; ?>
                     </figure>
-				<?php endif; ?>
+        <?php endif; ?>
                 <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){
                         if(isset($redux_builder_amp['fb-instant-article-ad-id']) && $redux_builder_amp['fb-instant-article-ad-id']){ ?>
                             <!-- facebook audience network ad -->
@@ -61,6 +62,9 @@
             </header>
 
             <!-- body -->
+            <?php if ( isset($redux_builder_amp['fbia-body-text-area']) && $redux_builder_amp['fbia-body-text-area'] ) {
+              echo $redux_builder_amp['fbia-body-text-area'];
+            }?>
             <?php
             global $more;
             // Make it 1 to allow the full article
@@ -76,6 +80,9 @@
                           </figure>
             <?php } } ?>
             <footer>
+              <?php if ( isset($redux_builder_amp['fbia-footer-text-area']) && $redux_builder_amp['fbia-footer-text-area'] ) {
+                  echo $redux_builder_amp['fbia-footer-text-area'];
+              }?>
               <?php if( true == $redux_builder_amp['ampforwp-instant-article-author-bio']){ ?>
                 <aside>
                   <p><?php the_author_meta('display_name'); ?></p> 

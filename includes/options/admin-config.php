@@ -3236,7 +3236,7 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1),
                        'id' => 'amp-fbia_2',
                        'type' => 'section',
-                       'title' => __('AMP Support', 'accelerated-mobile-pages'),
+                       'title' => __('Facebook Instant Articles Settings', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
@@ -3308,6 +3308,30 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-analytics', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-header-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Head Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Head Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-body-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Body Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Body Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-footer-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Footer Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Footer Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
     ),
    )
