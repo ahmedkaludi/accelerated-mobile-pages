@@ -235,6 +235,27 @@ function ampforwp_generate_meta_desc($json=""){
                     $desc = $genesis_description;
                 }
         }
+        // SEOPress
+        if ( is_plugin_active('wp-seopress/seopress.php') && 3 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+            $seopress_description = $seopress_options = '';
+                $seopress_options = get_option("seopress_titles_option_name");
+            if ( get_post_meta($post_id,'_seopress_titles_description',true) ) {
+                $seopress_description = get_post_meta($post_id,'_seopress_titles_description',true);
+            }
+            if ( ampforwp_is_home() || ampforwp_is_blog() ) {
+                $seopress_variables_array = array('%%sitetitle%%','%%tagline%%');
+                $seopress_replace_array = array( get_bloginfo('name'), get_bloginfo('description') );
+                $seopress_description = $seopress_options['seopress_titles_home_site_desc'];
+                $seopress_description = str_replace($seopress_variables_array, $seopress_replace_array, $seopress_description);
+
+            }
+            if ( is_archive() ) {
+                $seopress_description = get_term_meta(get_queried_object()->{'term_id'},'_seopress_titles_description',true);
+            }
+            if ( $seopress_description ) {
+                $desc = $seopress_description;
+            }
+        }
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
         $desc = preg_replace('/\[(.*?)\]/','', $desc);
