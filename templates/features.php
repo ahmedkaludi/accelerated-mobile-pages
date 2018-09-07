@@ -6047,7 +6047,7 @@ add_action('pre_amp_render_post', 'ampforwp_content_sneak_peek');
 if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 	function ampforwp_content_sneak_peek() {
 		global $redux_builder_amp;
-		if ( isset($redux_builder_amp['content-sneak-peek']) && $redux_builder_amp['content-sneak-peek'] ) {		
+		if ( isset($redux_builder_amp['content-sneak-peek']) && $redux_builder_amp['content-sneak-peek'] && is_single() && 'post' == get_post_type() ) {		
 			add_filter('ampforwp_modify_the_content', 'ampforwp_sneak_peek_content_modifier');
 			add_action('amp_post_template_css','ampforwp_sneak_peek_css');
 			add_filter('amp_post_template_data','ampforwp_sneak_peek_scripts');
@@ -6058,10 +6058,11 @@ if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 // Content Sneak Peek content
 function ampforwp_sneak_peek_content_modifier($content){
 	global $redux_builder_amp;
-	$content = '<div class="fd-h" [class]="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
-	$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
-	$content = $content . '<div class="fd-b-c" [class]="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation($redux_builder_amp['content-sneak-peek-btn-text'], 'Show Full Article').'</button></div>';
-
+	if ( strlen($content) >= 3000 ) {
+		$content = '<div class="fd-h" [class]="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
+		$content = $content . '<div id="fader" class="content-fader" [class]="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
+		$content = $content . '<div class="fd-b-c" [class]="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" [text]="contentVisible ? \'\' : \'Show Full Article\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation($redux_builder_amp['content-sneak-peek-btn-text'], 'Show Full Article').'</button></div>';
+	}
 	return $content;
 }
 // Content Sneak Peek Scripts css
