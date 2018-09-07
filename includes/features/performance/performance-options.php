@@ -31,6 +31,13 @@ use ReduxCore\ReduxFramework\Redux;
                'tooltip-subtitle'     => __('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
+           array(
+               'id'       => 'ampforwp_pwa_module',
+               'type'     => 'raw',
+               'title'     => __('PWA for wp', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'     => __('', 'accelerated-mobile-pages'),
+               'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? '<div class="update-message ampforwp-modules"><p> New PWA Module <button type="button" id="ampforwp-pwa-activation-call" class="button-link"> Enable </button></p></div>' : '<a href="'.admin_url('admin.php?page=pwaforwp').'">Go to settings</a>')
+           ),
 
        )
 

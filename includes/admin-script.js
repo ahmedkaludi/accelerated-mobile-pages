@@ -809,4 +809,36 @@ jQuery(document).ready(function($){
             alert(response);
         });
     });
-});
+
+    $('#ampforwp-pwa-activation-call, #ampforwp-structure-data-activation-call').click(function(){
+        if(pagenow == 'toplevel_page_amp_options'){
+            var self = $(this);
+            self.parents('div.update-message').addClass('updating-message');
+            var activate = '';
+            if($(this).attr('id')=='ampforwp-pwa-activation-call'){
+                activate = '&activate=pwa';
+            }else if($(this).attr('id')=='ampforwp-structure-data-activation-call'){
+                activate = '&activate=structure_data';
+            }
+            self.text('Updating...');
+            $.ajax({
+                url: ajaxurl,
+                type: 'post',
+                data: 'action=ampforwp_enable_pwa_module'+activate,
+                dataType: 'json',
+                success: function (response){
+                    if(response.status==200){
+                        self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
+                        self.parents('div.ampforwp-modules').addClass('updated-message')
+                         self.parents('div.ampforwp-modules').html('<a href="'+response.redirect_url+'">Go to settings</a>')
+                        
+                    }else{
+                        alert(response.message)
+                    }
+                    
+                }
+            });
+            
+        }
+    });
+});//(document).ready Closed

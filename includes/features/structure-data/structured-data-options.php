@@ -57,6 +57,44 @@ function ampforwp_add_sd_fields($fields){
            return $fields;
     }
     else {
+          $fields[] =    array(
+                            'id' => 'ampforwp-sd_modules_section',
+                            'type' => 'section',
+                            'title' => __('Structure Data module', 'accelerated-mobile-pages'),
+                            'indent' => true,
+                            'layout_type' => 'accordion',
+                            'accordion-open'=> 1, 
+                        );
+            $fields[] =   array(
+                      'id'       => 'ampforwp-sd-module',
+                      'type'     => 'raw',
+                      'title'    => __('Structure data module', 'accelerated-mobile-pages'),
+                      'content'  => '<div class="ampforwp-st-data-update">
+                                            New update available for Structure data
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <ul>
+                                                        <li>A</li>
+                                                        <li>B</li>
+                                                        <li>C</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-1">
+                                                    '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
+                                                        '
+                                                    <div class="update-message ampforwp-modules">
+                                                    <p> 
+                                                        <button type="button" id="ampforwp-structure-data-activation-call"  class="button-link"> Update </button>
+                                                    </p>
+                                                    </div>' :
+                                                        '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general').'">Go to settings</a>'
+                                                    )
+                                                    .'
+                                                </div>
+                                        </div>' 
+                                        
+            );
           $fields[] =         array(
                       'id' => 'ampforwp-sd_1',
                       'type' => 'section',
