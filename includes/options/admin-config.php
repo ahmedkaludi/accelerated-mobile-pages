@@ -4301,6 +4301,17 @@ Redux::setSection( $opt_name, array(
                          array('excerpt-option', '=' , '1'),
                      )                         
                 ),
+            // Excerpt length for Swift
+                array(
+                        'id'        =>'amp-swift-excerpt-len',
+                        'type'      =>'text',
+                        'tooltip-subtitle'  =>__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
+                        'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
+                        'required' => array(
+                         array('amp-design-selector', '=' , '4')),
+                        'validate'  =>'numeric',
+                        'default'   =>'20',
+                ),
  
              // Featured Time
                 array(

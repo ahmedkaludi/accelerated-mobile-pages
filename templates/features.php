@@ -6116,7 +6116,7 @@ function ampforwp_check_excerpt(){
 
 	$value = '';
 	$value =  ( isset( $redux_builder_amp['excerpt-option'] ) &&  $redux_builder_amp['excerpt-option'] ) ;
-	if ( null == $value ) {
+	if ( null === $value ) {
 		$value = '1';
 	}
 
