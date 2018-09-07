@@ -4349,8 +4349,19 @@ function ampforwp_view_nonamp(){
    if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
    	$ampforwp_backto_nonamp = '';
    }
-
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo esc_url($ampforwp_backto_nonamp); ?>" <?php echo $nofollow; ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?> </a> <?php  }
+		$current_amp_url = home_url( $wp->request );
+		$current_amp_url 	= trailingslashit($current_amp_url);
+		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
+		$non_amp_url 	= str_replace($remove, '', $current_amp_url);
+	  	$query_arg_array = $wp->query_vars;
+	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		   $page = $wp->query_vars['page'];
+	  	}
+	  	if ( $page >= '2') { 
+			$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
+		} 
+  		if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
+   
  }
 
  //68. Facebook Instant Articles
