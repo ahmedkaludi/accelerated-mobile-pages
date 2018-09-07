@@ -505,9 +505,10 @@ function ampforwp_remove_relevanssi_search_takeover(){
 } 
 
 // Total Plus compatibility #2511
-add_action('after_setup_theme', 'ampforwp_totalplus_comp' );
-if ( ! function_exists('ampforwp_totalplus_comp') ) {	
-	function ampforwp_totalplus_comp() {
-		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100); 
+add_action('current_screen', 'ampforwp_totalplus_comp_admin');
+function ampforwp_totalplus_comp_admin() {
+	$screen = get_current_screen();
+	if ( 'toplevel_page_amp_options' == $screen->base ) {
+		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100);
 	}
 }
