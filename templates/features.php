@@ -1632,7 +1632,11 @@ function ampforwp_replace_title_tags() {
 				$seopress_title = get_post_meta($post_id,'_seopress_titles_title',true);
 			}
 			if ( ampforwp_is_home() || ampforwp_is_blog() ) {
+				$seopress_titles_template_variables_array = array('%%sitetitle%%','%%tagline%%');
+				$seopress_titles_template_replace_array = array( get_bloginfo('name'), get_bloginfo('description') );
 				$seopress_title = $seopress_options['seopress_titles_home_site_title'];
+				$seopress_title = str_replace($seopress_titles_template_variables_array, $seopress_titles_template_replace_array, $seopress_title);
+
 			}
 			if ( is_archive() ) {
 				$seopress_title = get_term_meta(get_queried_object()->{'term_id'},'_seopress_titles_title',true);
