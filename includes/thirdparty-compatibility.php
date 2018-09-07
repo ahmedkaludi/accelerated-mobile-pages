@@ -503,3 +503,11 @@ function ampforwp_remove_relevanssi_search_takeover(){
 	remove_filter( 'the_posts', 'relevanssi_query', 99, 2 );
 	remove_filter( 'posts_request', 'relevanssi_prevent_default_request', 10, 2 );
 } 
+
+// Total Plus compatibility #2511
+add_action('after_setup_theme', 'ampforwp_totalplus_comp' );
+if ( ! function_exists('ampforwp_totalplus_comp') ) {	
+	function ampforwp_totalplus_comp() {
+		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100); 
+	}
+}
