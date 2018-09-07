@@ -51,7 +51,10 @@
 			    <div class="fsp-cnt">
 			    	<?php amp_loop_category(); ?>
 				    <?php amp_loop_title(); ?>
-				    <?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt(20); } ?>
+				    <?php if( ampforwp_check_excerpt() ) { 
+				    	if (true == ampforwp_get_setting('excerpt-option')) {
+				    	amp_loop_excerpt(20);
+				    	} } ?>
 				    <div class="pt-dt">
 				    	<?php amp_loop_date(); ?>
 				    </div>
