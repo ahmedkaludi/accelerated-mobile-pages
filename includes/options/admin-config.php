@@ -1679,9 +1679,31 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
     'subsection' => true,
     'fields'     => array(
         array(  
+                'id' => 'ampforwp-display-comments',
+                'type' => 'section',
+                'title' => __('Visibility', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1, 
+              ),
+              array(
+                         'id'       => 'ampforwp-display-on-pages',
+                         'type'     => 'switch',
+                         'title'    => __('Visibility on Pages', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1
+                     ),
+               array(
+                         'id'       => 'ampforwp-display-on-posts',
+                         'type'     => 'switch',
+                         'title'    => __('Visibility on Posts', 'accelerated-mobile-pages'),
+                         'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
+                         'default'  => 1
+                     ),
+        array(  
             'id' => 'ampforwp-comments',
             'type' => 'section',
-            'title' => __('Discussion', 'accelerated-mobile-pages'),
+            'title' => __('Integration', 'accelerated-mobile-pages'),
             'indent' => true,
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
@@ -1840,28 +1862,7 @@ if(is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) || is_plugin_a
                             array('ampforwp-spotim-comments-support', '=' , 1),
                          ),
                     ),
-            array(  
-                'id' => 'ampforwp-display-comments',
-                'type' => 'section',
-                'title' => __('Visibility', 'accelerated-mobile-pages'),
-                'indent' => true,
-                'layout_type' => 'accordion',
-                'accordion-open'=> 1, 
-              ),
-              array(
-                         'id'       => 'ampforwp-display-on-pages',
-                         'type'     => 'switch',
-                         'title'    => __('Visibility on Pages', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => __('Enable/Disable comments on pages using this switch.', 'accelerated-mobile-pages'),
-                         'default'  => 1
-                     ),
-               array(
-                         'id'       => 'ampforwp-display-on-posts',
-                         'type'     => 'switch',
-                         'title'    => __('Visibility on Posts', 'accelerated-mobile-pages'),
-                         'tooltip-subtitle' => __('Enable/Disable comments on posts using this switch.', 'accelerated-mobile-pages'),
-                         'default'  => 1
-                     ),
+            
                  )
 
 
