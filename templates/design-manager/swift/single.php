@@ -65,11 +65,13 @@
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
 			            </div>
-		            <?php } 
+		            <?php } ?>
+		            <?php if($redux_builder_amp['rp_design_type'] == '1'){ 
 		            if( true == $redux_builder_amp['swift-date'] ) { ?>
 			            <div class="post-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
 			            </div>
+
 		            <?php }
 		            if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
 					$my_query = ampforwp_related_post_loop_query();
@@ -103,7 +105,7 @@
 					      } ?>
 	      				</ul>
 	      			</div>
-		            <?php wp_reset_postdata(); } ?>
+		            <?php wp_reset_postdata(); } }?>
 				</div>
 				<?php } ?>
 		    </div>
@@ -112,6 +114,40 @@
 <?php } 
 do_action("ampforwp_single_design_type_handle");
 	?>
+<?php if($redux_builder_amp['rp_design_type'] == '2' || $redux_builder_amp['rp_design_type'] == '3'){
+       if ( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_builder_amp['ampforwp-single-related-posts-switch'] ) {
+		$my_query = ampforwp_related_post_loop_query();
+	  	if( $my_query->have_posts() ) { $r_count = 1;?>
+	  	<div class="srp">
+	  		<div class="cntr">
+	  		<?php ampforwp_related_post(); ?>
+	            <ul class="clearfix">
+			        <?php
+			          while( $my_query->have_posts() ) {
+			            $my_query->the_post();
+			        ?>
+			        <li class="<?php if ( has_post_thumbnail() ) { echo'has_thumbnail'; } else { echo 'no_thumbnail'; } ?>">
+			        	<?php if ( true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { if(ampforwp_has_post_thumbnail()){?>
+				            <div class="rlp-image">     
+				                 <?php ampforwp_get_relatedpost_image('full',array('image_crop'=>'true','image_crop_width'=>220,'image_crop_height'=>134) );?>
+							</div>
+						<?php } } ?>	
+						<div class="rlp-cnt">
+							<?php $argsdata = array(
+									'show_author' => false,
+									'show_excerpt' =>false
+										);
+							ampforwp_get_relatedpost_content($argsdata); ?> 
+				        </div>
+			        </li><?php
+	            			do_action('ampforwp_between_related_post',$r_count);
+	     							 $r_count++;
+			        }
+			      } ?>
+				</ul>
+			</div>
+		</div>
+    <?php wp_reset_postdata(); }  } ?>	
 <?php if($redux_builder_amp['single-design-type'] == '1' && isset($redux_builder_amp['ampforwp-swift-recent-posts']) && $redux_builder_amp['ampforwp-swift-recent-posts']=='1' && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 <div class="r-pf">
 	<div class="cntr">
