@@ -25,6 +25,8 @@ function ampforwp_footer() {
 	<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
   <amp-user-notification layout=nodisplay id="amp-user-notification1">
        <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
+       <?php if ( ampforwp_get_setting('amp-notice-bar-select-privacy-page') ){ ?><div class="amp-not-privacy"><span><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-more-privacy-info')); ?></span><a class="amp-not-privacy amp-not-page-link" href=<?php echo esc_url(get_permalink(ampforwp_get_setting('amp-notice-bar-select-privacy-page'))); ?> target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?></a> 
+        </div> <?php } ?>
        <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
   </amp-user-notification>
 <?php }

@@ -40,12 +40,12 @@ function ampforwp_notice_bar_options($opt_name){
            'class' => 'child_opt child_opt_arrow',
            'id'       => 'amp-notification-text',
            'title'    => __('Notice Content', 'accelerated-mobile-pages'),
-           'type'     => 'text',
+           'type'     => 'textarea',
            'required' => array('amp-enable-notifications', '=' , '1'),
            'default'  => __('This website uses cookies.','accelerated-mobile-pages'),
            'placeholder' => __('Enter Text here','accelerated-mobile-pages'),
            ),
-            array(
+           array(
            'class' => 'child_opt',
            'id'       => 'amp-accept-button-text',
            'title'    => __('Button Text', 'accelerated-mobile-pages'),
@@ -53,6 +53,34 @@ function ampforwp_notice_bar_options($opt_name){
            'required' => array('amp-enable-notifications', '=' , '1'),
            'default'  => __('Accept','accelerated-mobile-pages'),
            'placeholder' => __('Enter Text here','accelerated-mobile-pages'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-notice-bar-more-privacy-info',
+               'type'      => 'text',
+               'title'     => __('For More information', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
+               'default'   => 'For More information about Privacy',
+               'required' =>  array(  array('amp-enable-notifications', '=' , '1', ) ),
+           ),
+          
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-notice-bar-select-privacy-page',
+               'type'      => 'select',
+               'title'     => __('Select the Privacy Page', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the Privacy Page to display.', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'data'      => 'pages',
+               'required' => array('amp-enable-notifications', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-notice-bar-privacy-page-button-text',
+               'type'      => 'text',
+               'title'     => __('Privacy Page Button Text', 'accelerated-mobile-pages'),
+               'default'   => 'Click Here',
+               'required' => array('amp-enable-notifications', '=' , '1'),
            ),
 
            array(
