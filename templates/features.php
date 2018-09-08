@@ -4290,79 +4290,79 @@ function ampforwp_remove_sq_seo() {
 //67 View Non AMP
 function ampforwp_view_nonamp(){
 	global $redux_builder_amp, $post, $wp;
-  	$ampforwp_backto_nonamp = '';
-  	$nofollow 				= '';
-  if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
-  	$post_id = get_option('page_for_posts');
+  	$ampforwp_backto_nonamp =  $nofollow = $page = '';
+	if ( is_home() && get_option( 'page_for_posts' ) && get_queried_object_id() ) {
+		$post_id = get_option('page_for_posts');
 		if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post_id ));
-}
-  elseif ( is_home() ) {
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-       $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
-    else
-       $ampforwp_backto_nonamp = user_trailingslashit(home_url()) ;
-  }
-  if ( is_single() ){
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID )) ;
-  }
-  if ( is_page() ){
-    if($redux_builder_amp['amp-mobile-redirection']==1)
-        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
-    else
-      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
-  }
-  if( is_archive() || is_search() ) {
+	    $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post_id )).'?nonamp=1';
+	else
+	  $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post_id ));
+	}
+  	elseif ( is_home() ) {
+	    if($redux_builder_amp['amp-mobile-redirection']==1)
+	       $ampforwp_backto_nonamp = trailingslashit(home_url()).'?nonamp=1' ;
+	    else
+	       $ampforwp_backto_nonamp = user_trailingslashit(home_url()) ;
+	}
+  	if ( is_single() ){
+	    if($redux_builder_amp['amp-mobile-redirection']==1)
+	      $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1' ;
+	    else
+	      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID )) ;
+	}
+  	if ( is_page() ){
+	    if($redux_builder_amp['amp-mobile-redirection']==1)
+	        $ampforwp_backto_nonamp = trailingslashit(get_permalink( $post->ID )).'?nonamp=1';
+	    else
+	      $ampforwp_backto_nonamp = user_trailingslashit(get_permalink( $post->ID ));
+	}
+  	if( is_archive() || is_search() ) {
 
-    $permalink_structure 	= '';
-	$permalink_structure 	= get_option('permalink_structure');
+	    $permalink_structure 	= '';
+		$permalink_structure 	= get_option('permalink_structure');
 
-    if($redux_builder_amp['amp-mobile-redirection']==1){
-        $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
-        $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
-      }
-    else{
-        $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
-        $ampforwp_backto_nonamp = dirname($ampforwp_backto_nonamp);
-        $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
+		if($redux_builder_amp['amp-mobile-redirection']==1){
+		    $ampforwp_backto_nonamp = esc_url( untrailingslashit(home_url( $wp->request )).'?nonamp=1'  );
+		    $ampforwp_backto_nonamp = preg_replace('/\/amp\?nonamp=1/','/?nonamp=1',$ampforwp_backto_nonamp);
+		} else {
+	        $ampforwp_backto_nonamp = untrailingslashit( home_url( $wp->request ) );
+	        $ampforwp_backto_nonamp = dirname($ampforwp_backto_nonamp);
+	        $ampforwp_backto_nonamp = user_trailingslashit($ampforwp_backto_nonamp);
         
-        if('' == $permalink_structure){
-        	$ampforwp_backto_nonamp = site_url('?'.$wp->query_string);
-        	$ampforwp_backto_nonamp = remove_query_arg( 'amp', $ampforwp_backto_nonamp );
-        }
-      }
-      if ( is_search() ) {
-      	if ( ! empty( $permalink_structure ) ){
-      		$ampforwp_backto_nonamp = add_query_arg('s', $wp->query_vars['s'], $ampforwp_backto_nonamp);
-      	} 
-      }
-  }
+	        if('' == $permalink_structure){
+	        	$ampforwp_backto_nonamp = site_url('?'.$wp->query_string);
+	        	$ampforwp_backto_nonamp = remove_query_arg( 'amp', $ampforwp_backto_nonamp );
+	        }
+      	}
+		if ( is_search() ) {
+			if ( ! empty( $permalink_structure ) ){
+				$ampforwp_backto_nonamp = add_query_arg('s', $wp->query_vars['s'], $ampforwp_backto_nonamp);
+			} 
+		}
+  	}
   
-   if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
+   	if( true == $redux_builder_amp['ampforwp-nofollow-view-nonamp'] ){
    		$nofollow = 'rel="nofollow"';
-   }
-   if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
-   	$ampforwp_backto_nonamp = '';
-   }
-		$current_amp_url = home_url( $wp->request );
-		$current_amp_url 	= trailingslashit($current_amp_url);
-		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$non_amp_url 	= str_replace($remove, '', $current_amp_url);
-	  	$query_arg_array = $wp->query_vars;
-	  	if( array_key_exists( "page" , $query_arg_array  ) ) {
-		   $page = $wp->query_vars['page'];
-	  	}
-	  	if ( $page >= '2') { 
-			$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
-		} 
-  		if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
+   	}
+   	if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
+   		$ampforwp_backto_nonamp = '';
+   	}
+
+	$current_amp_url 	= home_url( $wp->request );
+	$current_amp_url 	= trailingslashit($current_amp_url);
+	$remove 			= '/'. AMPFORWP_AMP_QUERY_VAR;
+	$non_amp_url 		= str_replace($remove, '', $current_amp_url);
+	$query_arg_array 	= $wp->query_vars;
+	
+	if( array_key_exists( "page" , $query_arg_array  ) ) {
+		$page = $wp->query_vars['page'];
+	}
+	if ( $page >= '2') { 
+		$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
+	} 
+	if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
    
- }
+}
 
  //68. Facebook Instant Articles
 add_action('init', 'fb_instant_article_feed_generator');
