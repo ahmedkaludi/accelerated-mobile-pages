@@ -4932,7 +4932,7 @@ global $redux_builder_amp;
 
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
-	$current_cats_ids = array();
+	$current_cats_ids = $selected_cats = array();
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
 			$all_tags 	= get_the_tags();

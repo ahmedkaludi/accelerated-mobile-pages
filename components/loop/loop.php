@@ -82,27 +82,33 @@ function call_loops_standard($data=array()){
 	    $paged = 1;
 	}
 	
+	$qobj_taxonomy = $qobj_term_id = "";
+
 	if ( is_archive() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
+		if ( $qobj  ){
+			$qobj_taxonomy 	= $qobj->taxonomy;
+			$qobj_term_id 	= $qobj->term_id;
+		}
 		$args =  array(
 			'post_type'           => $post_type,
 			'orderby'             => 'date',
 			'ignore_sticky_posts' => 1,
 			'tax_query' => array(
-					        array(
-					          'taxonomy' => $qobj->taxonomy,
-					          'field' => 'id',
-					          'terms' => $qobj->term_id,
-					    //    using a slug is also possible
-					    //    'field' => 'slug', 
-					    //    'terms' => $qobj->name
-					        )
-					        ),
-			'paged'               => esc_attr($paged),
-			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
+				array(
+					'taxonomy' 	=> $qobj_taxonomy,
+					'field' 	=> 'id',
+					'terms' 	=> $qobj_term_id,
+					//    using a slug is also possible
+					//    'field' => 'slug', 
+					//    'terms' => $qobj->name
+		        )
+		    ),
+			'paged'         => esc_attr($paged),
+			'post__not_in' 	=> $exclude_ids,
+			'has_password' 	=> false ,
+			'post_status'	=> 'publish'
 		  );
 	}
 	if ( is_home() ) {
@@ -139,8 +145,8 @@ function call_loops_standard($data=array()){
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
+			'has_password' 		  => false ,
+			'post_status'		  => 'publish'
 		  );
 	}
 	if( is_single() ) {
@@ -153,8 +159,8 @@ function call_loops_standard($data=array()){
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
-			'has_password' => false ,
-			'post_status'=> 'publish'
+			'has_password' 		  => false ,
+			'post_status'		  => 'publish'
 		  );
 	}
 	if( isset( $data['post_to_show'] ) && $data['post_to_show']>0 ){
