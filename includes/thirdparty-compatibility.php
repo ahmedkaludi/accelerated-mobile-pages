@@ -414,7 +414,9 @@ if(!function_exists('ampforwp_findInternalUrl')){
 	    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
 	      // Skip the URL's that have edit link to it
 	      $parts = parse_url($url);
-	      parse_str($parts['query'], $query);
+	      if ( isset($parts['query']) && $parts['query']) {
+	      	parse_str($parts['query'], $query);
+	      }
 	      if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
 	          return $url;
 	      }
