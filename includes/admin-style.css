@@ -743,3 +743,10 @@ visibility: hidden;
 .ampforwp-st-data-update .row{width: 100%;}
 .ampforwp-st-data-update .col-3{width: 70%;float:left;}
 .ampforwp-st-data-update .col-1{width: 30%;float: left;}
+
+.afp{
+    background: #FFF59D;
+    padding: 8px 14px;
+    margin-top: 7px;
+    display: inline-block;
+}
