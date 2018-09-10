@@ -70,6 +70,9 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 				$re = '/<style type="text\/css">(.*?)<\/style>/';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
 				$returnData = preg_replace($re, $subst, $returnData);
+				$returnData = preg_replace(
+                '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
+                 '<iframe src="https://www.youtube.com/embed/$1" style="width:100%;height:360px;" ></iframe>', $returnData);
 			break;
 		}
 		return $returnData;
