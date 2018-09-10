@@ -1348,7 +1348,8 @@ if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable
 <?php if( true == $redux_builder_amp['amp-enable-notifications'] ) {?>
 	#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
 	#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
-	amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
+	amp-user-notification button {padding: 8px 10px;background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;color: #fff;margin-left: 5px;border: 0;}
+	amp-user-notification .amp-not-privacy{color:<?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;font-size: 15px;margin-left: 5px;}
 <?php } // Notice bar CSS Ends?>
 <?php 
 

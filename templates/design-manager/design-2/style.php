@@ -263,6 +263,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 #amp-user-notification1 p { display: inline-block; }
 amp-user-notification { padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
 amp-user-notification button { padding: 8px 10px; background: #000; color: #fff; margin-left: 5px; border: 0; }
+.amp-not-privacy{color:<?php echo sanitize_hex_color( $header_background_color ); ?>;text-decoration: none;font-size: 15px;margin-left: 2px;}
 amp-user-notification button:hover { cursor: pointer }
 <?php } ?>
 /* Responsive */

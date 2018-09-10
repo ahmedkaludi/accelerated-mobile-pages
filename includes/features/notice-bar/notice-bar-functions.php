@@ -4,7 +4,8 @@ if(is_plugin_active('amp/amp.php')){
 	function ampforwp_notification_bar_css(){?>
 		#amp-user-notification1 p { display: inline-block; margin: 20px 0px; }
 		#amp-user-notification1 { padding: 5px; text-align: center; background: #fff; border-top: 1px solid #005be2; }
-		amp-user-notification button { padding: 8px 10px; background: #005be2; color: #fff; margin-left: 5px; border: 0; }
+		amp-user-notification button { padding: 8px 10px; background: red; color: #fff; margin-left: 5px; border: 0; }
+		amp-user-notification a{background:red;}
 	<?php }
 	//add_action('amp_post_template_head' , 'ampforwp_load_geo_script_autoamp');
 	function ampforwp_load_geo_script_autoamp(){
@@ -25,8 +26,10 @@ function ampforwp_footer() {
 	<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
   <amp-user-notification layout=nodisplay id="amp-user-notification1">
        <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
-       <?php if ( ampforwp_get_setting('amp-notice-bar-select-privacy-page') ){ ?><div class="amp-not-privacy"><span><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-more-privacy-info')); ?></span><a class="amp-not-privacy amp-not-page-link" href=<?php echo esc_url(get_permalink(ampforwp_get_setting('amp-notice-bar-select-privacy-page'))); ?> target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?></a> 
-        </div> <?php } ?>
+       <?php if ( ampforwp_get_setting('amp-notice-bar-select-privacy-page') ){ ?>
+	       <a class="amp-not-privacy amp-not-page-link" href=<?php echo esc_url(get_permalink(ampforwp_get_setting('amp-notice-bar-select-privacy-page'))); ?> target="_blank"><?php echo esc_attr(ampforwp_get_setting('amp-notice-bar-privacy-page-button-text')); ?>
+	       </a> 
+        <?php } ?>
        <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
   </amp-user-notification>
 <?php }

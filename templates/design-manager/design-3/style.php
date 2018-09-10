@@ -380,6 +380,7 @@ table tr:hover td { background: #f2f2f2; background: -webkit-gradient(linear, le
 amp-user-notification{ padding: 5px; text-align: center; background: #fff; border-top: 1px solid; }
 amp-user-notification button{ padding: 8px 10px; background: #000; color: #fff; margin-left: 5px; border: 0; }
 amp-user-notification button:hover{ cursor: pointer }
+.amp-not-privacy{color:<?php echo esc_attr($redux_builder_amp['amp-opt-color-rgba-colorscheme']['color']); ?>;text-decoration: none;font-size: 15px;margin-left: 2px;}
 <?php } ?>
 .archive-heading{padding: 10px 15px 0 15px;}
 /* Responsive */

@@ -56,16 +56,6 @@ function ampforwp_notice_bar_options($opt_name){
            ),
            array(
                'class'  => 'child_opt',
-               'id'        =>'amp-notice-bar-more-privacy-info',
-               'type'      => 'text',
-               'title'     => __('For More information', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
-               'default'   => 'For More information about Privacy',
-               'required' =>  array(  array('amp-enable-notifications', '=' , '1', ) ),
-           ),
-          
-           array(
-               'class'  => 'child_opt',
                'id'        =>'amp-notice-bar-select-privacy-page',
                'type'      => 'select',
                'title'     => __('Select the Privacy Page', 'accelerated-mobile-pages'),
@@ -79,7 +69,7 @@ function ampforwp_notice_bar_options($opt_name){
                'id'        =>'amp-notice-bar-privacy-page-button-text',
                'type'      => 'text',
                'title'     => __('Privacy Page Button Text', 'accelerated-mobile-pages'),
-               'default'   => 'Click Here',
+               'default'   => 'Read More',
                'required' => array('amp-enable-notifications', '=' , '1'),
            ),
 
