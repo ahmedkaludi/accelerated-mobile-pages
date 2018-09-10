@@ -6078,9 +6078,20 @@ function ampforwp_sneak_peek_css(){
 	$height = $redux_builder_amp['content-sneak-peek-height'];
 	$btn_color = $redux_builder_amp['content-sneak-peek-btn-color']['color'];
 	$txt_color = $redux_builder_amp['content-sneak-peek-txt-color']['color'];?>
-	.fd-h{height: <?php echo $height; ?>;overflow: hidden;}
-    .fd-b-c{text-align: center;margin:20px 0px;}
-    .fd-b-c .fd-b {border: 1px solid #93abbc;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;line-height: 24px;padding: 8px 5px;width: 250px;background-color: <?php echo $btn_color; ?>;box-shadow: 0px 0px 200px 100px #ffffff; }
+	.fd-h{height: <?php echo $height; ?>;overflow: hidden;position: relative;}
+    .fd-b-c{text-align: center;margin: 0px 0px 30px 0px;}
+    .fd-b-c .fd-b {border:none;border-radius: 5px;color: <?php echo $txt_color; ?>;font-size: 16px;font-weight: 700;padding: 12px 32px 12px 32px;background-color: <?php echo $btn_color; ?>;
+    }
+    .fd-h:after {
+	    content: "";
+	    display: inline-block;
+	    position: absolute;
+	    background: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,1) 100%);
+	    width:100%;
+	    bottom: 0;
+	    top:auto;
+	    height:230px;
+	}
 <?php }
 // Content Sneak Peek Scripts
 function ampforwp_sneak_peek_scripts($data) {
