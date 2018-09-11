@@ -89,6 +89,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			for ( $i = $length - 1; $i >= 0; $i-- ) {
 				$element = $elements->item( $i );
 				// Allow script with application/ld+json #1958
+				if(is_null($element))continue; //Null check added.
 				if ( $element->hasAttributes() ) {
 					$attr = $element->getAttribute('type');
 					if ( '' !== $attr && 'application/ld+json' === $attr ) {
