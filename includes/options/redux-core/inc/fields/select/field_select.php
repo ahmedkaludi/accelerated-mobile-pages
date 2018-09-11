@@ -71,8 +71,10 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
             }
             //if
 
-            if ( ! empty( $this->field['options'] ) ) {
+            if ( ! empty( $this->field['options'] ) || ! empty( $this->field['ajax'] ) ) {
                 $multi = ( isset( $this->field['multi'] ) && $this->field['multi'] ) ? ' multiple="multiple"' : "";
+                $ajax = ( isset( $this->field['ajax'] ) && $this->field['ajax'] ) ? '-ajax' : ' ';
+                $action = ( isset( $this->field['data-action'] ) && $this->field['data-action'] ) ? 'data-action='.$this->field['data-action'] : ' ';
 
                 if ( ! empty( $this->field['width'] ) ) {
                     $width = ' style="' . $this->field['width'] . '"';
@@ -112,8 +114,29 @@ if ( ! class_exists( 'ReduxFramework_select' ) ) {
                 }
 
                 $sortable = ( isset( $this->field['sortable'] ) && $this->field['sortable'] ) ? ' select2-sortable"' : "";
-
-                echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="redux-select-item ' . $this->field['class'] . $sortable . '"' . $width . ' rows="6">';
+                echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="redux-select-item ' . 'redux-select-item'.$ajax. $this->field['class'] . $sortable . '"' . $width . ' rows="6" '.$action.'>';
+                $redux_options = get_option('redux_builder_amp');
+                $options = $new_options = array();
+                if ( isset($this->field['data']) && 'categories' ==  $this->field['data'] ) {
+                    $options = $redux_options['hide-amp-categories'];
+                    if ( is_array($options) ) {
+                        $options = array_keys(array_filter($options));
+                        foreach ($options as $option ) {
+                            echo '<option selected="selected" value="'.$option.'">'.get_the_category_by_ID($option).'</option>';
+                            $new_options[] = $option;
+                        }
+                    }
+                }
+                elseif ( isset($this->field['data']) && 'tags' ==  $this->field['data'] ) {
+                    $options = $redux_options['hide-amp-tags-bulk-option'];
+                    if ( is_array($options) ) {
+                        $options = array_keys(array_filter($options));
+                        foreach ($options as $option ) {
+                            echo '<option selected="selected" value="'.$option.'">'.get_tag($option)->name.'</option>';
+                        }
+                    }
+                }
+                
                 echo '<option></option>';
 
                 foreach ( $this->field['options'] as $k => $v ) {

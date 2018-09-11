@@ -1167,7 +1167,6 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'title'   => __('Custom Post Types', 'accelerated-mobile-pages'),
                     'tooltip-subtitle'   => __('Enable AMP Support on Custom Post Types', 'accelerated-mobile-pages'),
                     'multi'   => true,
-                    //'data' => 'post_type',
                     'options' => ampforwp_get_cpt_generated_post_types(),
                 );
     }
@@ -2137,12 +2136,35 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0, 
                         'data'      => 'category_list_hierarchy',
                         ), 
+                        'class'     => 'hide'
+                        ),
+                        array(
+                        'id'        =>'hide-amp-categories2',
+                        'type'      => 'select',
+                        'title'     => __('Select Categories to Hide AMP'),
+                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
+                        'multi'     => true, 
+                        'ajax'      => true, 
+                        'data-action'     => 'categories', 
+                        'data'      => 'categories',
+                        ),  
                         array(
                         'id'        =>'hide-amp-tags-bulk-option',
                         'type'      => 'checkbox',
                         'title'     => __('Select Tags to Hide AMP'),
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
                         'default'   => 0, 
+                        'data'      => 'tags',
+                        'class'      => 'hide'
+                       ),
+                    array(
+                        'id'        =>'hide-amp-tags-bulk-option2',
+                        'type'      => 'select',
+                        'title'     => __('Select Tags to Hide AMP'),
+                        'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected tags.', 'accelerated-mobile-pages' ),
+                        'multi'     => true,
+                        'ajax'      => true,
+                        'data-action' => 'tags', 
                         'data'      => 'tags',
 
                        ),

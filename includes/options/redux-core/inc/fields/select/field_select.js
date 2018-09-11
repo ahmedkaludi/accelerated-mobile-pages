@@ -67,14 +67,78 @@
                             $( this ).select2Sortable( default_params );
                         }
 
-                        $( this ).on(
+                       /* $( this ).on(
                             "change", function() {
                                 redux_change( $( $( this ) ) );
                                 $( this ).select2SortableOrder();
                             }
-                        );
+                        );*/
                     }
                 );
+
+                el.find( 'select.redux-select-item-ajax' ).each(function(){
+                    // multiple select with AJAX search
+                    var action = $( this ).attr('data-action');
+                    if ( $( this ).siblings( '.select2_params' ).size() > 0 ) {
+                            var select2_params = $( this ).siblings( '.select2_params' ).val();
+                            select2_params = JSON.parse( select2_params );
+                            default_params = $.extend( {}, default_params, select2_params );
+                        }
+                    $( this ).select2({
+                        allowClear: true,
+                        triggerChange: true,
+                        ajax: {
+                            url: ajaxurl, // AJAX URL is predefined in WordPress admin
+                            dataType: 'json',
+                            delay: 250, // delay in ms while typing when to perform a AJAX search
+                            data: function (params) {
+                                return {
+                                    q: params.term, // search query
+                                    action: action // AJAX action for admin-ajax.php
+                                };
+                            },
+                            processResults: function( data ) {
+                            var options = [];
+                            if ( data ) {
+             
+                                // data is the array of arrays, and each of them contains ID and the Label of the option
+                                $.each( data, function( index, text ) { // do not forget that "index" is just auto incremented value
+                                    options.push( { id: text[0], text: text[1]  } );
+                                });
+             
+                            }
+                            return {
+                                results: options
+                            };
+                            },
+                            cache: true
+                        },
+                        formatResult: function(data) {
+                            return data.title;
+                          },
+                          formatSelection: function(data) {
+                            return data.title;
+                          },
+                        matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())>=0; },
+                        sorter: function(data) {
+                            /* Sort data using lowercase comparison */
+                            return data.sort(function (a, b) {
+                                a = a.text.toLowerCase();
+                                b = b.text.toLowerCase();
+                                if (a > b) {
+                                    return 1;
+                                } else if (a < b) {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                        },
+                        minimumInputLength: 2 // the minimum of symbols to input before perform a search
+                    });
+
+                    $(this).parent('fieldset').find('.select2-container--default').css('width','100%');
+                    $(this).parent('fieldset').find('.select2-search__field').css('width','100%');
+                 });
             }
         );
     };
