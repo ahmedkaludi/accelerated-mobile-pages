@@ -114,7 +114,7 @@ if ( get_query_var( 'paged' ) ) {
 		</div>
 <?php } ?>
 <?php do_action('ampforwp_home_above_loop') ?>
-<main>
+<main<?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?> class="full-post"<?php } ?>>
 	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php $count = 1; ?>
 	<?php
@@ -161,6 +161,7 @@ if ( get_query_var( 'paged' ) ) {
 				} ?>
 
 			<div class="amp-wp-post-content">
+				<?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 0 ){ ?>
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 					if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
@@ -171,6 +172,7 @@ if ( get_query_var( 'paged' ) ) {
 					<?php } 
 					} ?>
                 </ul>
+                <?php } ?>
 				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 					<?php 
 						if( $is_full_content ){
@@ -238,11 +240,12 @@ if ( get_query_var( 'paged' ) ) {
 
               	if($redux_builder_amp['amp-design-selector'] == '3' && $redux_builder_amp['amp-design-3-featured-time'] == '1'){
                   		?>
+                <?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 0 ){ ?>
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
                     echo  $post_date ; ?></div><?php
-                }?>
+                } }?>
 
 		    </div>
             <div class="cb"></div>

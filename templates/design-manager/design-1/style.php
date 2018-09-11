@@ -236,3 +236,52 @@ if ( true == $redux_builder_amp['amp-pagination'] ) { ?>
 <?php }
 echo $redux_builder_amp['css_editor']; 
 //} ?>
+<?php // Full Content in Loop CSS
+if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
+.full-post .amp-wp-title{
+  margin-bottom: 25px;
+}
+.full-post .amp-wp-content p{
+  display:inline-block;
+}
+.full-post pre {
+    padding: 30px 15px;
+    background: #f7f7f7;
+    white-space: pre-wrap;
+    font-size: 14px;
+    color: #666666;
+    border-left: 3px solid;
+    border-color:<?php echo $redux_builder_amp['amp-opt-color-rgba-link-design1']['color']?>;
+    margin-bottom: 20px;
+}
+.full-post table {
+    color: #666;
+    font-size: 12px;
+    text-shadow: 1px 1px 0px #fff;
+    background: #eee;
+    margin: 0px;
+    width: 95%;
+}
+.full-post table td {
+    padding: 18px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+  }
+.full-post table {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+.full-post table tr:hover td {
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+}
+.full-post table a:active, .full-post table a:hover {
+    color: #bd5a35;
+    text-decoration: underline;
+}
+<?php } ?>

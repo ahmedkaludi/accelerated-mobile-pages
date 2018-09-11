@@ -22,7 +22,7 @@
 <?php $this->load_parts( array( 'header-bar' ) ); ?>
 <?php do_action( 'ampforwp_after_header', $this ); ?>
 <?php do_action('ampforwp_home_above_loop') ?>
-<main>
+<main<?php if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?> class="full-post"<?php } ?>>
 	<?php do_action('ampforwp_post_before_loop') ?>
 	<?php $count = 1; ?>
 
