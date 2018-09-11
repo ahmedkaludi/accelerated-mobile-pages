@@ -3276,10 +3276,9 @@ Redux::setSection( $opt_name, array(
                     'class' => 'child_opt child_opt_arrow',
                     'type'  => 'switch',
                     'title' => __('Single Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('single-design-type', '=' , '4'), 
-                                            array('gnrl-sidebar', '=' , '1'), 
-                                ),
+                    'default'   => 0,
+                    'required' => array('gnrl-sidebar', '=' , '1'), 
+                                
             ),
             
            array(
