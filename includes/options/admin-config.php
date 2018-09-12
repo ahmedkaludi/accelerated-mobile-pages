@@ -1403,6 +1403,9 @@ $tabs = array(
             elseif ( is_plugin_active('wp-seopress/seopress.php') ) {
                 $default = 3;
             }
+            elseif ( function_exists('genesis_title') ) {
+                $default = 4;
+            }
             return $default;
         }
     }
@@ -1450,7 +1453,8 @@ $tabs = array(
                 'options'  => array(
                     '1'    => 'Yoast',
                     '2'    => 'All in One SEO',
-                    '3'    => 'SEOPress'
+                    '3'    => 'SEOPress',
+                    '4'    => 'Genesis'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),

@@ -1573,7 +1573,7 @@ function ampforwp_replace_title_tags() {
 			$site_title = $redux_builder_amp['amp-translator-search-text'] . ' ' . get_search_query();
 		}
 		//Genesis #1013
-		if(function_exists('genesis_title')){
+		if( function_exists('genesis_title') && 4 == ampforwp_get_setting('ampforwp-seo-selection') ){
 			if(is_home() && is_front_page() && !$redux_builder_amp['amp-frontpage-select-option']){
 				// Determine the doctitle.
 			$genesis_title = genesis_get_seo_option( 'home_doctitle' ) ? genesis_get_seo_option( 'home_doctitle' ) : get_bloginfo( 'name' );
@@ -1625,7 +1625,7 @@ function ampforwp_replace_title_tags() {
 			}
 		}
 		// SEOPress
-		if ( is_plugin_active('wp-seopress/seopress.php') && 3 == $redux_builder_amp['ampforwp-seo-selection'] ) {
+		elseif ( is_plugin_active('wp-seopress/seopress.php') && 3 == $redux_builder_amp['ampforwp-seo-selection'] ) {
 			$seopress_title = $seopress_options = '';
 			$seopress_options = get_option("seopress_titles_option_name");
 			if ( get_post_meta($post_id,'_seopress_titles_title',true) ) {
