@@ -2116,7 +2116,6 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle' => __( 'Hide AMP from all the posts of a selected category.', 'accelerated-mobile-pages' ),
                         'default'   => 0, 
                         'data'      => 'category_list_hierarchy',
-                        ), 
                         'class'     => 'hide'
                         ),
                         array(
