@@ -67,11 +67,11 @@ function ampforwp_notice_bar_options($opt_name){
            array(
                'class'  => 'child_opt',
                'id'        =>'amp-notice-bar-select-privacy-page',
-               'type'      => 'select',
+               'type'      => 'text',
                'title'     => __('Select the Privacy Page', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __('Select the Privacy Page to display.', 'accelerated-mobile-pages'),
-               'default'   => 0,
-               'data'      => 'pages',
+               'default'   => '#',
+               //'data'      => 'pages',
                'required' => array('amp-enable-links', '=' , '1'),
            ),
            array(
