@@ -4236,6 +4236,17 @@ Redux::setSection( $opt_name, array(
                         'default'   =>'20',
                 ),
                 array(
+
+                        'id'        => 'excerpt-option-design-1',
+                        'type'      => 'switch',
+                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '1'),
+                         array('excerpt-option', '=' , '1'),
+                     )                        
+                ),
+                array(
                         'id'        => 'ampforwp-design1-cats-home',
                         'type'      => 'switch',
                         'title'     => __('Category label', 'accelerated-mobile-pages'),
@@ -4252,7 +4263,9 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
-                         array('amp-design-selector', '=' , '2')),
+                         array('amp-design-selector', '=' , '2'),   
+                         array('excerpt-option', '=' , '1')
+                     ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),
@@ -4297,10 +4310,23 @@ Redux::setSection( $opt_name, array(
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
                         'required' => array(
-                         array('amp-design-selector', '=' , '4')),
+                         array('amp-design-selector', '=' , '4'),
+                         array('excerpt-option', '=' , '1'),
+                     ),
                         'validate'  =>'numeric',
                         'default'   =>'20',
                 ),
+                array(
+                        'id'        => 'excerpt-option-design-4',
+                        'type'      => 'switch',
+                        'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
+                        'default'   => '0',
+                        'required' => array(
+                         array('amp-design-selector', '=' , '4'),
+                         array('excerpt-option', '=' , '1'),
+                     )                         
+                ),
+
  
              // Featured Time
                 array(
