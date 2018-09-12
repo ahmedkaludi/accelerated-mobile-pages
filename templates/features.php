@@ -6613,7 +6613,7 @@ if ( true == ampforwp_get_setting('amp-core-end-point') ){
 add_action( 'wp_ajax_categories', 'ampforwp_ajax_cats' );
 function ampforwp_ajax_cats(){
 	$return = array();
- 	$categories = get_categories(array('search'=> $_GET['q']));
+ 	$categories = get_categories(array('search'=> $_GET['q'],'number'=>500));
  	$categories_array = array();
    	if ( $categories ) :
         foreach ($categories as $cat ) {
@@ -6625,7 +6625,7 @@ function ampforwp_ajax_cats(){
 add_action( 'wp_ajax_tags', 'ampforwp_ajax_tags' );
 function ampforwp_ajax_tags(){
 	$return = array();
- 	$tags = get_tags(array('search'=> $_GET['q']));
+ 	$tags = get_tags(array('search'=> $_GET['q'],'number'=>500));
    	if ( $tags ) :
         foreach ($tags as $tag ) {
                 $return[] = array($tag->term_id,$tag->name);// array( Tag ID, tag Name )
