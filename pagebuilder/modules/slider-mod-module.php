@@ -111,24 +111,6 @@ $css = '
 .dots span:last-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};}
 .dots span:first-child{width:34px;height:34px;border-radius:34px;background-color:{{hdng__active_color}};
 	background-position:50% 50%;background-repeat:no-repeat;}
-.dots span:last-child:before{
-	content: ">";
-    display: inline-block;
-    color: #fff;
-    position: relative;
-    top: -1px;
-    font-weight: 500;
-    font-size: 22px;
-}
-.dots span:first-child:before{
-	content: "<";
-    display: inline-block;
-    color: #fff;
-    position: relative;
-    top: -1px;
-    font-weight: 500;
-    font-size: 22px;
-}
 @media(max-width:1000px){
 	.amp-sld3 {
 	    grid-template-columns: 360px 360px;
@@ -254,7 +236,57 @@ $css = '
 }
 {{ifend_condition_carousel_layout_type_4}}
 ';
-
+if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+		$css .='
+			.dots span:last-child:before{
+				content: "\25be";
+				transform: rotate(270deg);
+			    display: inline-block;
+			    color: #fff;
+			    position: relative;
+			    top: 2px;
+			    right: 0px;
+			    font-weight: 500;
+			    font-size: 22px;
+			}
+			.dots span:first-child:before{
+				content: "\25be";
+				transform: rotate(90deg);
+			    display: inline-block;
+			    color: #fff;
+			    position: relative;
+			    top: 2px;
+			    right: 3px;
+			    font-weight: 500;
+			    font-size: 22px;
+			} ';
+} else { 
+		$css .='
+			.dots span:last-child:before{
+				content: "\e313";
+			    font-family: "icomoon";
+			    transform: rotate(270deg);
+			    display: inline-block;
+			    color: #fff;
+			    position: relative;
+			    top: -1px;
+			    left:1px;
+			    font-weight: 500;
+			    font-size: 22px;
+			}
+			.dots span:first-child:before{
+				content: "\e313";
+			    font-family: "icomoon";
+			    transform: rotate(90deg);
+			    display: inline-block;
+			    color: #fff;
+			    position: relative;
+			    top: -1px;
+			    right: 1px;
+			    font-weight: 500;
+			    font-size: 22px;
+			}';
+	}
 return array(
 		'label' =>'Gallery / Slider',
 		'name' =>'slider-mod',
