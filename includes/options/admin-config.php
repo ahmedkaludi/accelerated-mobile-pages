@@ -338,9 +338,7 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('wpml-for-amp/wpml_for_amp.php')? 1: 2),
                         ),
-                        
-                        
-                    );
+                        );
 
 $extension_listing_array = apply_filters( 'ampforwp_extension_lists_filter', $extension_listing_array );
 $all_extensions_data = $extension_listing_array;
@@ -370,7 +368,6 @@ foreach ($extension_listing_array as $key => $extension) {
 
             $settingPageUrl = '<div class="extension-menu-call"><a href="'.$extension['settingUrl'].'" class="amp_extension_settings"><i class="dashicons-before dashicons-admin-generic"></i> Settings</a></div>';
         }
-
         $amplicense = '';
         $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $allResponseData = array('success'=>'',
@@ -424,7 +421,6 @@ foreach ($extension_listing_array as $key => $extension) {
         if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
             $pluginReview .= "<div class='afw-license-response-message'>".$selectedOption['amp-license'][$pathExploded]['message']."</div>";
         }
-        
     }
     $secondPageClickClass = '';
     if($extension['is_activated']==1 && strpos($ampforwp_extension_list_html, "Your Installed Extensions")===false){
@@ -447,14 +443,10 @@ foreach ($extension_listing_array as $key => $extension) {
 $extension_listing = '
 <div class="extension_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
-
-   
 '.$ampforwp_extension_list_html.'
-
 </ul>
 </div>
 ';
-
 // #2267
 function ampforwp_check_extensions(){
 	global $all_extensions_data;
@@ -466,8 +458,7 @@ function ampforwp_check_extensions(){
 			}
 		}
 	}
-	
-	return false;
+    return false;
 }
 
 $freepro_listing = '
@@ -765,7 +756,6 @@ $freepro_listing = '
     </div><!-- /. pvf -->
 </div><!-- /. fp-wr -->';
 
-
 $gettingstarted_extension_listing = '
 <div class="extension_listing getting_started_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
@@ -858,7 +848,6 @@ $gettingstarted_extension_listing = '
 </ul>
 </div>
 ';
-
 
 $single_extension_listing = '
 <div class="extension_listing single_ex_listing">
@@ -1018,10 +1007,7 @@ $args = array(
 
 Redux::setArgs( "redux_builder_amp", $args );
 
-
-
-
-    $tabs = array(
+$tabs = array(
         array(
             'id'      => 'redux-help-tab-1',
             'title'   => __( 'Theme Information 1', 'accelerated-mobile-pages' ),
@@ -1581,11 +1567,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'switch-text' => true,
                'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
-
-
        )
-
-  )
+)
 
   );
 
@@ -1927,9 +1910,7 @@ Redux::setSection( $opt_name, array(
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
             ),
-
-
-                    array(
+             array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
                         'title'     => __('Number of Posts', 'accelerated-mobile-pages'),
@@ -2992,17 +2973,13 @@ Redux::setSection( $opt_name, array(
                                     '.$upcomingLayoutsDesign.'
                                 </div>
                             </div>',
-                
-                
-            ),
+                    ),
             array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
                 'desc' => $amptfad
             ),
-
-            
             )
         ) );
 /*---------------------*/
@@ -3169,15 +3146,7 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '4')
                 )
             ),
-
-
-
-
-
-
-
-
-           array(
+             array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
                     'class'    => 'ampforwp-google-font-class',
@@ -4108,8 +4077,7 @@ Redux::setSection( $opt_name, array(
         )
       );
 
-
-  //code for fetching categories to show as a list in redux settings
+   //code for fetching categories to show as a list in redux settings
   // to avoid debug warnings when there are no posts #2367
   $categories_array = ''; 
     if(get_categories()){
@@ -4132,6 +4100,7 @@ Redux::setSection( $opt_name, array(
     //End of code for fetching categories to show as a list in redux settings
 
     // code for fetching tags to show as a list in the redux settings
+    $tags_array = '';
     if(get_tags()){
         $tags = get_tags( array(
                                 'orderby' => 'name',
@@ -6326,7 +6295,6 @@ $single_page_options = array(
           ),
         )
     ) );
-
 
     // Date SECTION
    Redux::setSection( $opt_name, array(
