@@ -244,7 +244,7 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    display: inline-block;
 			    color: #fff;
 			    position: relative;
-			    top: 2px;
+			    top: 3px;
 			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
@@ -255,8 +255,8 @@ if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['
 			    display: inline-block;
 			    color: #fff;
 			    position: relative;
-			    top: 2px;
-			    right: 3px;
+			    top: 3px;
+			    right: 0px;
 			    font-weight: 500;
 			    font-size: 22px;
 			} ';
