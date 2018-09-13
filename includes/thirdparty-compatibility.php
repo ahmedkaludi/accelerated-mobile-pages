@@ -394,18 +394,18 @@ if(!function_exists('ampforwp_findInternalUrl')){
 	    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
 	        return $url;
 	    }
-		$get_skip_meida_path = array();
+		$get_skip_media_path = array();
 		$skip_media_extensions = array();
-		$get_skip_meida_path = pathinfo($url);
+		$get_skip_media_path = pathinfo($url);
 		$skip_media_extensions = array('jpg','jpeg','gif','png');
 		if(isset($get_skip_media_path['extension'])){
-		if(!in_array($get_skip_meida_path['extension'],$skip_media_extensions)){
-			$skip_media_extensions[] = $get_skip_meida_path['extension'];
+		if(!in_array($get_skip_media_path['extension'],$skip_media_extensions)){
+			$skip_media_extensions[] = $get_skip_media_path['extension'];
 		}
 		}
 		$skip_media_extensions = apply_filters( 'ampforwp_internal_links_skip_media', $skip_media_extensions );
 		if(isset($get_skip_media_path['extension'])){
-		if(in_array($get_skip_meida_path['extension'],$skip_media_extensions)){
+		if(in_array($get_skip_media_path['extension'],$skip_media_extensions)){
 			return $url;
 		}
 		}
