@@ -3039,7 +3039,7 @@ function ampforwp_talking_to_robots() {
   }
   // All in One SEO #1720
   if ( class_exists('All_in_One_SEO_Pack') ) {
-  	$aios_class = $aios_meta = $aiosp_noindex = $aiosp_nofollow = '';
+  	$aios_class = $page = $opts = $aios_meta = $aiosp_noindex = $aiosp_nofollow = '';
   	$noindex       = 'index';
 	$nofollow      = 'follow';
   	$aios_class = new All_in_One_SEO_Pack();
