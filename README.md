@@ -183,7 +183,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.15 (10th September 2018) = 
+= 0.9.97.15 (13th September 2018) = 
 * Fixed: Pagination is not working on date archive #2289
 * Added: Options to show Social Icons in different places in Swift #1722 
 * Fixed: Localization string for "% days ago" not working for non-Latin languages #1491
@@ -197,6 +197,7 @@ We should have an option to display the business module
 * Fixed: Wrong url in Non-Amp Version link on blog posts page and category archives #2424
 * Fixed: The Consent.php path is getting index in Webmaster tool #2518
 
+* Fixed: Enabled WordPress Comments by default #1501
 
 = 0.9.97.14 (4th September 2018) =
 * Added: Adobe Analytics Support #887
