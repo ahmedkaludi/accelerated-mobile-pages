@@ -193,6 +193,7 @@ Appearance option for Related Posts
 We should have an option to display the business module 
 * Fixed: RTL not working with Footer properly #1655
 * Fixed: Proper implementation of the property of all in one SEO pro to avoid fatal error #2500
+* Fixed: Wrong url in Non-Amp Version link on blog posts page and category archives #2424
 * Fixed: The Consent.php path is getting index in Webmaster tool #2518
 = 0.9.97.14 (4th September 2018) =
 * Added: Adobe Analytics Support #887
