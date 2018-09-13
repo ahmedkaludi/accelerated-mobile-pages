@@ -190,7 +190,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Added: Social Share by Supsystic Compatibility #1509
 * Fixed: Duplicate h1 tags in Design One #1522
 Appearance option for Related Posts 
-We should have an option to display the business module 
 * Fixed: RTL not working with Footer properly #1655
 * Fixed: Proper implementation of the property of all in one SEO pro to avoid fatal error #2500
 * Fixed: Notice: Undefined index: extension in thirdparty-compatibility.php on line 401 - 406 #2496
