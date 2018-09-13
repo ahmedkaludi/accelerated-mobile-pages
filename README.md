@@ -197,6 +197,7 @@ We should have an option to display the business module
 * Fixed: Wrong url in Non-Amp Version link on blog posts page and category archives #2424
 * Fixed: The Consent.php path is getting index in Webmaster tool #2518
 
+* Fixed: Pagination not working after changing the pagination base #1485
 * Added: Breadcrumb with tag #1305 
 * Fixed: Enabled WordPress Comments by default #1501
 
