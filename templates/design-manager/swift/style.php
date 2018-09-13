@@ -1583,4 +1583,13 @@ if($redux_builder_amp['header-type'] == '10'){?>
 	}
 	.dsk-mnu{display:none;}
 }
-<?php } // Header 10 CSS Ends?>
+<?php } // Header 10 CSS Ends
+// image floats removed in mobile view #2525
+if(is_single()){?>
+@media(max-width:480px){
+.sp-rt .alignright , .sp-rt .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
+<?php } ?>

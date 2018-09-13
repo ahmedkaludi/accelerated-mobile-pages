@@ -246,4 +246,13 @@ if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
 .full-post table {display: flex;flex-wrap: wrap;overflow-x: auto;}
 .full-post table tr:hover td {background: #f2f2f2;background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);}
 .full-post table a:active, .full-post table a:hover {color: #bd5a35;text-decoration: underline;}
+<?php } 
+// image floats removed in mobile view #2525
+if(is_single()){?>
+@media(max-width:480px){
+.amp-wp-content .alignright , .amp-wp-content .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
 <?php } ?>

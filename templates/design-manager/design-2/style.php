@@ -376,4 +376,13 @@ if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
 .full-post h2.amp-wp-title a{font-weight: 600;margin: 0.7em 0px 0.6em 0px;font-size: 25px;color:#000; }
 .full-post .amp-featured-image .wp-caption-text{color: #696969;font-size: 11px;line-height: 15px;background: #eee;margin: 0;padding: .66em .75em;text-align: center;}
 .full-post .amp-wp-post-content p{margin: 0px;color: #333;font-size: 15px;line-height: 26px;margin-bottom: 15px;word-wrap: break-word;}
+<?php } 
+// image floats removed in mobile view #2525
+if(is_single()){?>
+@media(max-width:480px){
+.amp-wp-content .alignright , .amp-wp-content .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
 <?php } ?>
