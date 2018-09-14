@@ -97,6 +97,7 @@
                     <?php amp_logo(); ?>
                 </div><!-- /.logo -->
                 <div class="h-1">
+                    <?php do_action('ampforwp_push_notification_widget') ?>
                     <?php if( true == $redux_builder_amp['amp-swift-search-feature'] ){ ?>
                         <div class="h-srch h-ic">
                             <a title="search" class="lb icon-search" href="#search"></a>

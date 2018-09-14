@@ -5,7 +5,11 @@ add_action( 'ampforwp_body_beginning' , 'ampforwp_onesignal_notifications' , 11 
 if( ! function_exists( ' ampforwp_onesignal_notifications ' ) ){
 	function ampforwp_onesignal_notifications(){ 
 	global $redux_builder_amp;
-	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && !checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_singular()) ){
+	$checker = false;
+	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_singular()) ) || true == $redux_builder_amp['ampforwp-web-push-onesignal-header'] || true == $redux_builder_amp['ampforwp-web-push-onesignal-sticky'] ){
+		$checker = true;
+	}
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && $checker ){
 		$onesignal_domain 		= '';
 		$onesignal_domain_sw 	= '';
 		$onesignal_subdomain 	= '';
@@ -70,7 +74,14 @@ if(is_plugin_active('amp/amp.php')){
 	add_action('pre_amp_render_post', 'ampforwp_onesignal_notifications_widget_position');
 	if( ! function_exists( 'ampforwp_onesignal_notifications_widget_position' ) ){
 		function ampforwp_onesignal_notifications_widget_position(){
-			global $redux_builder_amp; 
+			global $redux_builder_amp;
+			if ( isset($redux_builder_amp['ampforwp-web-push-onesignal-header']) && $redux_builder_amp['ampforwp-web-push-onesignal-header'] ) {
+				add_action('ampforwp_push_notification_widget', 'ampforwp_onesignal_widget_swift'); 
+				add_action('ampforwp_call_button', 'ampforwp_onesignal_widget');
+			}
+			if ( isset($redux_builder_amp['ampforwp-web-push-onesignal-sticky']) && $redux_builder_amp['ampforwp-web-push-onesignal-sticky'] ) {
+				add_action('amp_post_template_footer','ampforwp_onesignal_sticky');
+			}
 			if( isset( $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] ) && true == $redux_builder_amp['ampforwp-web-push-onesignal-below-content'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){
 				add_action('ampforwp_after_post_content', 'ampforwp_onesignal_notifications_widget');
 			}
@@ -117,7 +128,11 @@ add_filter('amp_post_template_data', 'ampforwp_onesignal_notifications_script');
 if(!function_exists('ampforwp_onesignal_notifications_script')){
 	function ampforwp_onesignal_notifications_script( $data ){
 	global $redux_builder_amp;
-	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && !checkAMPforPageBuilderStatus(get_the_ID()) && ( ampforwp_is_front_page() || is_singular()) ){
+	$checker = false;
+	if ( (!checkAMPforPageBuilderStatus(get_the_ID()) && (ampforwp_is_front_page() || is_singular()) ) || true == $redux_builder_amp['ampforwp-web-push-onesignal-header'] || true == $redux_builder_amp['ampforwp-web-push-onesignal-sticky'] ){
+		$checker = true;
+	}
+	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && $checker ){
 		if ( empty( $data['amp_component_scripts']['amp-web-push'] ) ) {
 				$data['amp_component_scripts']['amp-web-push'] = 'https://cdn.ampproject.org/v0/amp-web-push-0.1.js';
 			}
@@ -137,6 +152,57 @@ if(!function_exists('ampforwp_onesignal_notifications_styling')){
     amp-web-push-widget button.unsubscribe {display: inline-flex; align-items: center; justify-content: center; height: 45px; border: 0; margin: 0; cursor: pointer; outline: none; font-size: 15px; font-weight: 400; background: #4a90e2; color: #fff; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; padding: 10px 15px;}
     amp-web-push-widget.amp-invisible{ display:none;}
     .amp-web-push-container{width: 245px; margin:0 auto}
+    .amp-web-push-bell-cn{width: 24px; margin:0 auto}
+    .icon-add_alert:after{content:"\e7f7"}
+    .amp-web-push-sticky{position:fixed;top:70%;right:0;}
+    .awp-sticky{background-color:#0084ff;border-radius: 60%;padding:10px 10px 6px 10px;line-height:1;display:inline-block;}
 <?php }
 	}	
 }
+// Onesignal Header Widget [ Swift ]
+function ampforwp_onesignal_widget_swift() { ?>
+	<div class="amp-web-push-bell-cn">
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="30" height="30">
+		  <a class="subscribe icon-add_alert" on="tap:amp-web-push.subscribe">
+		  </a>
+		</amp-web-push-widget>
+		<!-- An unsubscription widget -->
+		<amp-web-push-widget visibility="subscribed" layout="fixed" width="30" height="30">
+		   <a class="unsubscribe icon-add_alert" on="tap:amp-web-push.unsubscribe">
+		   </a>
+		</amp-web-push-widget>
+	</div>
+<?php }
+// Onesignal Header Widget
+function ampforwp_onesignal_widget() { ?>
+	<div class="amp-web-push-bell-cn">
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="30" height="30">
+		  <a class="subscribe" on="tap:amp-web-push.subscribe">
+		  	<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGZpbGw9IiMwMDAwMDAiID48cGF0aCBkPSJNMjUuMDc0IDIxLjM3NXYtOC41NjhjMC00LjQ2Mi0zLjIzLTguMTYyLTcuNDc0LTguOTE1di0uNjhjMC0uNTktLjQ3OC0xLjA2Ny0xLjA2Ni0xLjA2N2gtMS4wNjZjLS41OSAwLTEuMDY2LjQ3Ny0xLjA2NiAxLjA2NnYuNjg1Yy00LjIzNy43Ni03LjQ1MyA0LjQ1OC03LjQ1MyA4LjkxMnY4LjU2OGwtMy43NDMgMy4wM3YxLjcyOGgyNS41OXYtMS43M2wtMy43Mi0zLjAyOHptMi42NTUgMy42OUg0LjI3di0uMTUzbDMuNzQyLTMuMDN2LTkuMDc2YzAtNC40MSAzLjU4Ny03Ljk5NyA3Ljk5Ny03Ljk5N3M3Ljk5OCAzLjU4NiA3Ljk5OCA3Ljk5NnY5LjA3NWwzLjcyIDMuMDN2LjE1NXpNMTYgMjkuODU2YzEuNDcyIDAgMi42NjgtMS4xOTIgMi42NjgtMi42NjZoLTUuMzM1YzAgMS40NzMgMS4xOTUgMi42NjYgMi42NjcgMi42NjZ6Ij48L3BhdGg+PC9zdmc+" width="50" height="20" />
+		  </a>
+		</amp-web-push-widget>
+		<!-- An unsubscription widget -->
+		<amp-web-push-widget visibility="subscribed" layout="fixed" width="30" height="30">
+		   <a class="unsubscribe" on="tap:amp-web-push.unsubscribe">
+		   	<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGZpbGw9IiMwMDAwMDAiID48cGF0aCBkPSJNMjUuMDc0IDIxLjM3NXYtOC41NjhjMC00LjQ2Mi0zLjIzLTguMTYyLTcuNDc0LTguOTE1di0uNjhjMC0uNTktLjQ3OC0xLjA2Ny0xLjA2Ni0xLjA2N2gtMS4wNjZjLS41OSAwLTEuMDY2LjQ3Ny0xLjA2NiAxLjA2NnYuNjg1Yy00LjIzNy43Ni03LjQ1MyA0LjQ1OC03LjQ1MyA4LjkxMnY4LjU2OGwtMy43NDMgMy4wM3YxLjcyOGgyNS41OXYtMS43M2wtMy43Mi0zLjAyOHptMi42NTUgMy42OUg0LjI3di0uMTUzbDMuNzQyLTMuMDN2LTkuMDc2YzAtNC40MSAzLjU4Ny03Ljk5NyA3Ljk5Ny03Ljk5N3M3Ljk5OCAzLjU4NiA3Ljk5OCA3Ljk5NnY5LjA3NWwzLjcyIDMuMDN2LjE1NXpNMTYgMjkuODU2YzEuNDcyIDAgMi42NjgtMS4xOTIgMi42NjgtMi42NjZoLTUuMzM1YzAgMS40NzMgMS4xOTUgMi42NjYgMi42NjcgMi42NjZ6Ij48L3BhdGg+PC9zdmc+" width="50" height="20" />
+		   </a>
+		</amp-web-push-widget>
+	</div>
+<?php }
+
+// Onesignal Sticky Widget
+function ampforwp_onesignal_sticky(){ ?>
+	<div class="amp-web-push-bell-cn amp-web-push-sticky">
+		<amp-web-push-widget visibility="unsubscribed" layout="fixed" width="24" height="24">
+		  <a class="subscribe awp-sticky" on="tap:amp-web-push.subscribe">
+		  	<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGZpbGw9IiMwMDAwMDAiID48cGF0aCBkPSJNMjUuMDc0IDIxLjM3NXYtOC41NjhjMC00LjQ2Mi0zLjIzLTguMTYyLTcuNDc0LTguOTE1di0uNjhjMC0uNTktLjQ3OC0xLjA2Ny0xLjA2Ni0xLjA2N2gtMS4wNjZjLS41OSAwLTEuMDY2LjQ3Ny0xLjA2NiAxLjA2NnYuNjg1Yy00LjIzNy43Ni03LjQ1MyA0LjQ1OC03LjQ1MyA4LjkxMnY4LjU2OGwtMy43NDMgMy4wM3YxLjcyOGgyNS41OXYtMS43M2wtMy43Mi0zLjAyOHptMi42NTUgMy42OUg0LjI3di0uMTUzbDMuNzQyLTMuMDN2LTkuMDc2YzAtNC40MSAzLjU4Ny03Ljk5NyA3Ljk5Ny03Ljk5N3M3Ljk5OCAzLjU4NiA3Ljk5OCA3Ljk5NnY5LjA3NWwzLjcyIDMuMDN2LjE1NXpNMTYgMjkuODU2YzEuNDcyIDAgMi42NjgtMS4xOTIgMi42NjgtMi42NjZoLTUuMzM1YzAgMS40NzMgMS4xOTUgMi42NjYgMi42NjcgMi42NjZ6Ij48L3BhdGg+PC9zdmc+" width="24" height="24" />
+		  </a>
+		</amp-web-push-widget>
+		<!-- An unsubscription widget -->
+		<amp-web-push-widget visibility="subscribed" layout="fixed" width="24" height="24">
+		   <a class="unsubscribe" on="tap:amp-web-push.unsubscribe">
+		   	<amp-img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGZpbGw9IiMwMDAwMDAiID48cGF0aCBkPSJNMjUuMDc0IDIxLjM3NXYtOC41NjhjMC00LjQ2Mi0zLjIzLTguMTYyLTcuNDc0LTguOTE1di0uNjhjMC0uNTktLjQ3OC0xLjA2Ny0xLjA2Ni0xLjA2N2gtMS4wNjZjLS41OSAwLTEuMDY2LjQ3Ny0xLjA2NiAxLjA2NnYuNjg1Yy00LjIzNy43Ni03LjQ1MyA0LjQ1OC03LjQ1MyA4LjkxMnY4LjU2OGwtMy43NDMgMy4wM3YxLjcyOGgyNS41OXYtMS43M2wtMy43Mi0zLjAyOHptMi42NTUgMy42OUg0LjI3di0uMTUzbDMuNzQyLTMuMDN2LTkuMDc2YzAtNC40MSAzLjU4Ny03Ljk5NyA3Ljk5Ny03Ljk5N3M3Ljk5OCAzLjU4NiA3Ljk5OCA3Ljk5NnY5LjA3NWwzLjcyIDMuMDN2LjE1NXpNMTYgMjkuODU2YzEuNDcyIDAgMi42NjgtMS4xOTIgMi42NjgtMi42NjZoLTUuMzM1YzAgMS40NzMgMS4xOTUgMi42NjYgMi42NjcgMi42NjZ6Ij48L3BhdGg+PC9zdmc+" width="50" height="20" />
+		   </a>
+		</amp-web-push-widget>
+	</div>
+<?php }
