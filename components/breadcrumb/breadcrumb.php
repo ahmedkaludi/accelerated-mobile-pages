@@ -84,7 +84,6 @@
             
 			
             $tags_breadcrumbs = '';
-           if (isset($redux_builder_amp['ampforwp-bread-crumb-type']){
 			if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'tags'){
 				$post_tags = wp_get_post_tags($post->ID);
 				if(!empty($post_tags)){
@@ -98,8 +97,6 @@
 					echo $tags_breadcrumbs;
 				}
 			}
-        }
-           if (isset($redux_builder_amp['ampforwp-bread-crumb-type']){
 			if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'category'){
 			 // Get post category info
 				$category = get_the_category();
@@ -122,7 +119,7 @@
 					}
 				}
 			}
-			}
+			
             // If it's a custom post type within a custom taxonomy
             $taxonomy_exists = taxonomy_exists($custom_taxonomy);
             if(empty($last_category) && !empty($custom_taxonomy) && $taxonomy_exists) {
