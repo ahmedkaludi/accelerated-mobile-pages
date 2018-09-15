@@ -4563,10 +4563,19 @@ function element_layout_customizer(){
         if(empty($new_options['disabled'])){
             $new_options['disabled'] = array();
         }
-    return $new_options;
+        $add_new_options = array();
+        $add_new_options = array(
+            'addthis' => 'AddThis' 
+        );
+        $new_options['enabled'] = array_merge($new_options['enabled'],$add_new_options);
+        $offset = 4;
+        $new_options['enabled'] = array_slice($new_options['enabled'], 0, $offset, true) +
+                   array('addthis' => 'AddThis') +
+                   array_slice($new_options['enabled'], $offset, NULL, true);           
+        return $new_options;
 }
 $customizer_options = element_layout_customizer();
-// print_r($customizer_options['enabled']);die;
+
 $single_page_options = array(
                 array(
                        'id' => 'ampforwp-single_section_1',
@@ -5677,6 +5686,42 @@ $single_page_options = array(
                'placeholder'  => __('Enter your facebook page id','accelerated-mobile-pages'),
                'default'  => '',
           ),
+
+        // AddThis Support  
+        array(
+           'id' => 'add-this-support',
+           'type' => 'section',
+           'title' => __('AddThis Support', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+           'accordion-open'=> 1,
+         ), 
+        
+          array(
+              'id'        =>  'enable-add-this-option',
+              'type'      =>  'switch',
+              'title'     =>  __('Enable AddThis', 'accelerated-mobile-pages'),
+              'desc'=>'<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">Click Here</a> to know how to Install AddThis Share Buttons on AMP',
+              'default'   =>  false,
+          ),
+          array(
+               'id'       => 'add-this-pub-id',
+               'title'    => __('Enter Pub ID', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('enable-add-this-option', '=' , '1'),
+               'placeholder'  => __('ra-xxxxxxxxxx','accelerated-mobile-pages'),
+               'default'  => '',
+          ),
+          array(
+               'id'       => 'add-this-widget-id',
+               'title'    => __('Enter Widget ID', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('enable-add-this-option', '=' , '1'),
+               'placeholder'  => __('xxxx','accelerated-mobile-pages'),
+               'default'  => '',
+          ),
+
+         //End AddThis Support    
         array(
            'id' => 'social-shre',
            'type' => 'section',
