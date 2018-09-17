@@ -148,6 +148,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('pwa-for-wordpress/amp-pwa.php')? 1 : 2),
                             'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
+                        ), 
+                        array(
+                            'name'=>'AMP Popup',
+                            'desc'=>'Pop-Up Functionality for AMP in WordPress. Most easiest and the best way to include Pop-Up in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
+                            'price'=>'$39',
+                            'url_link'=>'#',
+                            'plugin_active_path'=> 'amp-popup/amp-popup.php',
+                            'item_name'=>'AMP Popup',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-popup/amp-popup.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -2625,6 +2636,7 @@ function ampforwp_add_sd_fields($fields){
         ),
     ) );
 
+
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
@@ -2775,7 +2787,22 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-       ),
+
+            array(
+            'id' => 'ampforwp-notice_popup',
+            'type' => 'section',
+            'title' => __('PopUp for AMP', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+                  ),
+           array(
+           'class' => 'child_opt child_opt_arrow',
+           'id'   => 'info_normal_amp_popup',
+           'type'     => 'info',
+            'desc' => '<a href="https://ampforwp.com/amp-popup/"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/popup_ext.png" width="560" height="85" /></a>',   
+           ),               
+       ),  
 
    ) );
 
