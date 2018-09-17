@@ -1056,7 +1056,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
                       sprintf( __( '  <h2 style="width: 150px;float: right;
     padding: 8px 11px;background: #4CAF50;
-    font-size: 13px;margin: -24px 0 0 10px;
+    font-size: 13px;margin: -40px 0 0 10px;
     border-radius: 5px;line-height: 22px;position:relative;top:30px"><a style="color: #fff;text-decoration: none;" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? <br /> Leave a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' )                      
 			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
             <div class="getstarted_options">
@@ -1076,6 +1076,12 @@ Redux::setArgs( "redux_builder_amp", $args );
 					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
 					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To\'s</a></li>
 				</ul>  
+            </div>
+            <div class="getstarted_options" style="padding-bottom: 33px;width: 16%;" >
+            <p><b>Get Stable Updates</b></p>
+                <ul class="getstarted_ul">
+                    <li style="list-style:none;"><a href="https://ampforwp.com/beta-test/" target="_blank">Become a Beta Tester and Help us Push Stable Updates</a></li>
+                </ul>  
             </div>
             <div class="clear"></div>
             </div>'

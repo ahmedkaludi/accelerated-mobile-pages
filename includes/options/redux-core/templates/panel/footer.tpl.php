@@ -48,7 +48,8 @@
                 <?php } ?>
 
             </div>
-        <?php } ?>
+        <?php } $beta_test_url = 'https://ampforwp.com/beta-test/';?>
+        <div class='beta_tester'><a href="<?php echo esc_url($beta_test_url);?>" target="_blank"><?php echo "Become a Beta Tester" ?></a></div>
 
         <div class="redux-action_bar">
             <span class="spinner"></span>
