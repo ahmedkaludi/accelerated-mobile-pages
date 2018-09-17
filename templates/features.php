@@ -5621,26 +5621,7 @@ function ampforwp_gallery_new_params($urls, $attachment_id ){
 		return $urls;	
 	}
 }
-// Add Caption in the Gallery Image
-add_filter('amp_gallery_images','ampforwp_new_gallery_images', 10, 2);
-function ampforwp_new_gallery_images($images, $image){
-	//Check if the attachment has caption or not
-	if(isset($image['caption']) && $image['caption'] != '' ){
-		add_filter('amp_post_template_data','ampforwp_carousel_bind_script');
-		add_action('amp_post_template_css', 'ampforwp_additional_style_carousel_caption');
-		// To enable the carousel magic
-		//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
-		add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
-		//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
-		$caption = $image['caption'];
-		// Append the caption with image
-		return '<figure><div class="ampforwp-gallery-item amp-carousel-container">'. $images . ' </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >'. wp_kses_data( $caption ) . '<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>';
-	}
-	else{
-		// If there is no caption
-		return '<div class="ampforwp-gallery-item amp-carousel-container">'. $images . '</div>';
-	}
-}
+
 if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
 	function ampforwp_additional_style_carousel_caption(){ ?>
     .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}

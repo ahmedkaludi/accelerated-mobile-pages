@@ -5992,6 +5992,41 @@ $single_page_options = array(
                               array('swift_cnt' , '=' , '1')
             ),
             array(
+                       'id' => 'ampforwp-single_section_5',
+                       'type' => 'section',
+                       'title' => __('WordPress Content Gallery', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                ),
+            array(
+                   'id'    => 'ampforwp-gallery-design-type',
+                   'title'  => __('Select Gallery Designs', 'accelerated-mobile-pages'),
+                   'class' => 'child_opt child_opt_arrow',
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Single Design 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-2.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-3.png'
+                                ),
+                        
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4'),
+                                 
+                                ),
+            ),
+            array(
                'id' => 'single-sneakp-section', 
                'type' => 'section',
                'title' => __('Content Sneak Peek', 'accelerated-mobile-pages'),
