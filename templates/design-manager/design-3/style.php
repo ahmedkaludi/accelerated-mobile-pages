@@ -88,6 +88,17 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
 .toggle-text:before{ content: "..."; font-size: 32px; position: ; font-family: georgia; line-height: 0px; margin-left: 0px; letter-spacing: 1px; top: -3px; position: relative; padding-right: 10px; }
 .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus{ display: inline-block; width: 100%; }
+.toggle-navigationv2{position:relative;}
+.cl-btn:after{
+    content: "x";
+    font-size: 16px;
+    color: #999;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-weight: normal;
+}
+.cl-btn{background: #131313;border:none;}
 <?php if ( ! is_singular() ) { ?>
 /* Pagination */
 .amp-wp-content.pagination-holder{ background: none; padding: 0; box-shadow: none; height: auto; min-height: auto; }
