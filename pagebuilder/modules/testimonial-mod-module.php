@@ -23,7 +23,7 @@ $css = '
 {{ifend_condition_testimonial_layout_type_1}}
 ';
 global $redux_builder_amp;
-if($redux_builder_amp['amp-rtl-select-option']){
+if(ampforwp_get_setting('amp-rtl-select-option')){
 $css .= '/** RTL CSS **/
 .testi-mod{margin: 0 0 2% 3%;}
 .testi-mod:nth-child(3),.testi-mod:nth-child(6),.testi-mod:nth-child(9){margin-left:0;}
