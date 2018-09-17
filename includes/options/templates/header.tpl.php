@@ -8,7 +8,7 @@
 	 * @package 	ReduxFramework/Templates
 	 * @version     3.5.4.18
 	 */
-    $tip_title = __( 'Developer Mode Enabled', 'redux-framework' );
+    $tip_title = __( 'Developer Mode Enabled', 'accelerated-mobile-pages' );
 
     if ( $this->parent->dev_mode_forced ) {
         $is_debug     = false;
@@ -17,23 +17,23 @@
         $debug_bit = '';
         if ( Redux_Helpers::isWpDebug() ) {
             $is_debug  = true;
-            $debug_bit = __( 'WP_DEBUG is enabled', 'redux-framework' );
+            $debug_bit = __( 'WP_DEBUG is enabled', 'accelerated-mobile-pages' );
         }
 
         $localhost_bit = '';
         if ( Redux_Helpers::isLocalHost() ) {
             $is_localhost  = true;
-            $localhost_bit = __( 'you are working in a localhost environment', 'redux-framework' );
+            $localhost_bit = __( 'you are working in a localhost environment', 'accelerated-mobile-pages' );
         }
 
         $conjunction_bit = '';
         if ( $is_localhost && $is_debug ) {
-            $conjunction_bit = ' ' . __( 'and', 'redux-framework' ) . ' ';
+            $conjunction_bit = ' ' . __( 'and', 'accelerated-mobile-pages' ) . ' ';
         }
 
-        $tip_msg = __( 'This has been automatically enabled because', 'redux-framework' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
+        $tip_msg = __( 'This has been automatically enabled because', 'accelerated-mobile-pages' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
     } else {
-        $tip_msg = __( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'redux-framework' );
+        $tip_msg = __( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'accelerated-mobile-pages' );
     }
 
 ?>
@@ -53,9 +53,9 @@
 	<div id="right-elements">
         <div class="links">
             <?php if ( uwl_fs()->is_not_paying() ) {  ?>
-                <span class="uwl-premium-message"><?php _e( '20+ awesome widgets, more widgets styling, premium support', 'kho' ); ?> <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>"><?php _e( 'upgrade Now!', 'kho' ); ?></a></span>
+                <span class="uwl-premium-message"><?php _e( '20+ awesome widgets, more widgets styling, premium support', 'accelerated-mobile-pages' ); ?> <a href="<?php echo uwl_fs()->get_upgrade_url(); ?>"><?php _e( 'upgrade Now!', 'accelerated-mobile-pages' ); ?></a></span>
             <?php } ?>
-            <a href="<?php echo admin_url( 'admin.php?page=uwl_options-contact' ); ?>" class="uwl-support" target="_blank"><?php _e( 'Support Request', 'kho' ); ?></a>
+            <a href="<?php echo admin_url( 'admin.php?page=uwl_options-contact' ); ?>" class="uwl-support" target="_blank"><?php _e( 'Support Request', 'accelerated-mobile-pages' ); ?></a>
         </div>
 
 		<?php if ( isset( $this->parent->args['share_icons'] ) ) : ?>

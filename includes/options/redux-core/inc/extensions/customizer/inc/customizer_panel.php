@@ -111,7 +111,7 @@
                 <div class="accordion-section-title" tabindex="0">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
-                        echo sprintf( __( 'You are customizing %s', 'redux-framework' ), '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' );
+                        echo sprintf( __( 'You are customizing %s', 'accelerated-mobile-pages' ), '<strong class="panel-title">' . esc_html( $this->title ) . '</strong>' );
                     ?></span>
                 </div>
                 <?php if ( ! empty( $this->description ) ) : ?>

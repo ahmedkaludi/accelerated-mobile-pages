@@ -682,9 +682,9 @@
                 );
 
                 $localize = array(
-                    'save_pending'   => __( 'You have changes that are not saved. Would you like to save them now?', 'redux-framework' ),
-                    'reset_confirm'  => __( 'Are you sure? Resetting will lose all custom values.', 'redux-framework' ),
-                    'preset_confirm' => __( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'redux-framework' ),
+                    'save_pending'   => __( 'You have changes that are not saved. Would you like to save them now?', 'accelerated-mobile-pages' ),
+                    'reset_confirm'  => __( 'Are you sure? Resetting will lose all custom values.', 'accelerated-mobile-pages' ),
+                    'preset_confirm' => __( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'accelerated-mobile-pages' ),
                     'opt_name'       => $this->args['opt_name'],
                     //'folds'             => $this->folds,
                     'options'        => $this->parent->options,
@@ -717,9 +717,9 @@
                 //wp_enqueue_style('redux-extension-customizer-css', $this->_extension_url . 'assets/css/customizer.css');
 
                 $localize = array(
-                    'save_pending'   => __( 'You have changes that are not saved.  Would you like to save them now?', 'redux-framework' ),
-                    'reset_confirm'  => __( 'Are you sure?  Resetting will lose all custom values.', 'redux-framework' ),
-                    'preset_confirm' => __( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'redux-framework' ),
+                    'save_pending'   => __( 'You have changes that are not saved.  Would you like to save them now?', 'accelerated-mobile-pages' ),
+                    'reset_confirm'  => __( 'Are you sure?  Resetting will lose all custom values.', 'accelerated-mobile-pages' ),
+                    'preset_confirm' => __( 'Your current options will be replaced with the values of this preset.  Would you like to proceed?', 'accelerated-mobile-pages' ),
                     'opt_name'       => $this->args['opt_name'],
                     //'folds'             => $this->folds,
                     'field'          => $this->parent->options,

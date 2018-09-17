@@ -1031,7 +1031,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setHelpTab( $opt_name, $tabs );
 
     // Set the help sidebar
-    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'admin_folder' );
+    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'accelerated-mobile-pages' );
     Redux::setHelpSidebar( $opt_name, $content );
 
 
@@ -4801,7 +4801,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'border-type',
-                   'title'  => __('Border Type', 'amptechtheme'),
+                   'title'  => __('Border Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',

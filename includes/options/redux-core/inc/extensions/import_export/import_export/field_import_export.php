@@ -105,7 +105,7 @@
 
                     <div id="redux-import-code-wrapper">
                         <p class="description" id="import-code-description">
-                            <?php echo esc_html( apply_filters( 'redux-import-file-description', __( 'Input your backup file below and hit Import to restore your sites options from a backup.', 'redux-framework' ) ) ); ?>
+                            <?php echo esc_html( apply_filters( 'redux-import-file-description', __( 'Input your backup file below and hit Import to restore your sites options from a backup.', 'accelerated-mobile-pages' ) ) ); ?>
                         </p>
                         <?php // $this->parent->args['opt_name'] is sanitized in the ReduxFramework class, no need to re-sanitize it. ?>
                         <textarea id="import-code-value" name="<?php echo $this->parent->args['opt_name']; ?>[import_code]" class="large-text noUpdate" rows="2"></textarea>

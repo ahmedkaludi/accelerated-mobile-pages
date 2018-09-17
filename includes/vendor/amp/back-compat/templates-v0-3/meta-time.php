@@ -3,7 +3,7 @@
 		<?php
 		echo esc_html(
 			sprintf(
-				_x( '%s ago', '%s = human-readable time difference', 'amp' ),
+				_x( '%s ago', '%s = human-readable time difference', 'accelerated-mobile-pages' ),
 				human_time_diff( $this->get( 'post_publish_timestamp' ), current_time( 'timestamp' ) )
 			)
 		);

@@ -558,12 +558,12 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	function ampforwp_makesvg( $args = array() ){
 		// Make sure $args are an array.
 		if ( empty( $args ) ) {
-			return __( 'Please define default parameters in the form of an array.', 'ampforwp_installer' );
+			return __( 'Please define default parameters in the form of an array.', 'accelerated-mobile-pages' );
 		}
 
 		// Define an icon.
 		if ( false === array_key_exists( 'icon', $args ) ) {
-			return __( 'Please define an SVG icon filename.', 'ampforwp_installer' );
+			return __( 'Please define an SVG icon filename.', 'accelerated-mobile-pages' );
 		}
 
 		// Set defaults.
