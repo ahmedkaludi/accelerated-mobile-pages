@@ -7497,3 +7497,20 @@ function ampforwp_ia_meta_callback( $post ) {
         </div>
     </p>
 <?php }
+
+// AMPforWP allowed html tags #1950
+function ampforwp_wp_kses_allowed_html(){
+	$allowed_html = '';
+	$allowed_html = wp_kses_allowed_html( 'post' );
+	if( $allowed_html ) {
+		foreach ( $allowed_html as $tag => $atts ) {
+	      	if ( is_array($atts) ){
+	        	unset($allowed_html[$tag]['style']);
+	      	}
+	      	if ( 'form' == $tag ) {
+	      		unset($allowed_html[$tag]);
+	      	}
+	    }
+  	}
+  	return $allowed_html; 
+}
