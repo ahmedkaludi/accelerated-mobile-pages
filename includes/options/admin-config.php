@@ -4057,6 +4057,14 @@ $e_commerce_support[] = array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                     array(
+                       'id'       => 'amp-translator-read-more',
+                       'type'     => 'text',
+                       'title'    => __('Read More', 'accelerated-mobile-pages'),
+                       'default'  => __('Read More','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                    ),
+                    array(
                        'id'       => 'amp-translator-via-text',
                        'type'     => 'text',
                        'title'    => __('via', 'accelerated-mobile-pages'),
@@ -5456,6 +5464,12 @@ Redux::setSection( $opt_name, array(
                         'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
                         'data'  => 'categories',
                         'multi'    => true
+                ),
+                array(
+                    'id'    => 'ampforwp-homepage-loop-readmore-link',
+                    'type'  => 'switch',
+                    'title' => __('Read More Link', 'accelerated-mobile-pages'),
+                    'default'   => 0,
                 ),
 
 
