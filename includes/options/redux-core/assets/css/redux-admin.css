@@ -1061,6 +1061,19 @@ background: linear-gradient(45deg, #E47B49 0%, #ea4c89 100%);
     margin-top: 15px;
 }
 
+.beta_tester {
+    float: left;
+    margin-top: 12px;
+    margin-left: 20px
+}
+.beta_tester a{
+    text-decoration: none;
+    color: #999;
+}
+.beta_tester a:hover{
+    text-decoration: underline;
+}
+
 @media(max-width:1366px){
     .pri-tb a{padding: 20px;}
     .amp-upg{padding: 60px 0px 0px 0px}

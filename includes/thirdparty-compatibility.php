@@ -394,24 +394,31 @@ if(!function_exists('ampforwp_findInternalUrl')){
 	    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
 	        return $url;
 	    }
-		$get_skip_meida_path = array();
-		$skip_media_extensions = array();
-		$get_skip_meida_path = pathinfo($url);
-		$skip_media_extensions = array('jpg','jpeg','gif','png');
-		if(!in_array($get_skip_meida_path['extension'],$skip_media_extensions)){
-			$skip_media_extensions[] = $get_skip_meida_path['extension'];
+		$get_skip_media_path 	= array();
+		$skip_media_extensions 	= array();
+		$get_skip_media_path 	= pathinfo($url);
+		$skip_media_extensions 	= array('jpg','jpeg','gif','png');
+
+		if ( isset( $get_skip_media_path['extension'] ) ){
+			if (! in_array( $get_skip_media_path['extension'], $skip_media_extensions ) ){
+				$skip_media_extensions[] = $get_skip_media_path['extension'];
+			}
 		}
 		$skip_media_extensions = apply_filters( 'ampforwp_internal_links_skip_media', $skip_media_extensions );
-		
-		if(in_array($get_skip_meida_path['extension'],$skip_media_extensions)){
-			return $url;
+
+		if ( isset( $get_skip_media_path['extension'] ) ){
+			if( in_array( $get_skip_media_path['extension'], $skip_media_extensions ) ) {
+				return $url;
+			}
 		}
 	    if($url=='#'){ return $url; }
 	    
 	    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
 	      // Skip the URL's that have edit link to it
 	      $parts = parse_url($url);
-	      parse_str($parts['query'], $query);
+	      if ( isset($parts['query']) && $parts['query']) {
+	      	parse_str($parts['query'], $query);
+	      }
 	      if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
 	          return $url;
 	      }

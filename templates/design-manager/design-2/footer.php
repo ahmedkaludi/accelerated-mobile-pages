@@ -31,7 +31,7 @@
                       ampforwp_view_nonamp();
                     }
                   }
-              global $allowed_html;
+              $allowed_html = ampforwp_wp_kses_allowed_html();
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
               ?>
         </p>

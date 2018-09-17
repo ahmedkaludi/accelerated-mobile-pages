@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.14
+Stable tag: 0.9.97.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,30 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 0.9.97.15 (13th September 2018) = 
+* Fixed: Pagination is not working on date archive #2289
+* Added: Options to show Social Icons in different places in Swift #1722 
+* Fixed: Localization string for "% days ago" not working for non-Latin languages #1491
+* Added: Social Share by Supsystic Compatibility #1509
+* Fixed: Duplicate h1 tags in Design One #1522
+* Added: 3 Appearance option for Related Posts in Swift theme #1545
+* Fixed: RTL not working with Footer properly #1655
+* Fixed: Proper implementation of the property of all in one SEO pro to avoid fatal error #2500
+* Fixed: Notice: Undefined index: extension in thirdparty-compatibility.php on line 401 - 406 #2496
+* Fixed: Wrong url in Non-Amp Version link on blog posts page and category archives #2424
+* Fixed: The Consent.php path is getting index in Webmaster tool #2518
+* Added: Option to add custom things in Instant Articles #1089
+* Added: Show/hide Instant Article on specific posts #1297
+* Added: Facebook Instant Articles (FBIA) Crawler Ingestion (ia:markup_url) tag #1474
+* Added: Facebook Instant Articles Meta Tag #1486
+* Added: Related posts for instant articles #1634
+* Added: Option to remove Author info from Instant Articles  #1483
+* Added: Facebook Instant Articles in each Catagory #1524
+* Added: Custom Facebook Instant Articles Ad option #1475
+* Fixed: Pagination not working after changing the pagination base #1485
+* Added: Breadcrumb with tag #1305 
+* Fixed: Enabled WordPress Comments by default #1501
+
 = 0.9.97.14 (4th September 2018) =
 * Added: Adobe Analytics Support #887
 * Fixed: Same Icons loading for some extensions #2172
@@ -203,7 +227,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Getting the warnings in error log due to global variable, not present #2395
 * Fixed: Google Analytic issue while setting up Run Installation wizard #2491
 * Added: Read more button AKA Content Sneak Peek feature for post #2246
-* Added: Yet Another Related Posts Plugin (YARPP) Support #551
 * Added: Showing related items/post in after nth paragraph #2246
 
 = 0.9.97.13 (28th August 2018) =
@@ -224,7 +247,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Blank Lines in HTML Source code #2445
 * Fixed: Optimize AMP pages on Google Lighthouse #2082
 * Fixed: RSS Feed is not working when AMP Takeover is enabled #2309
-* Fixed: Yet Another Related Posts Plugin (YARPP) support added for AMP #551
 
 = 0.9.97.11 (21th August 2018) =
 * Minor Update

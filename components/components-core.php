@@ -395,7 +395,7 @@ function amp_footer_core(){
 }
 
 function amp_non_amp_link(){
-	global $allowed_html;
+	$allowed_html = ampforwp_wp_kses_allowed_html();
     global $redux_builder_amp;
     echo '<span>' . wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) . '</span>' ;
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }

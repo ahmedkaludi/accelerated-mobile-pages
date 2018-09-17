@@ -1067,7 +1067,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
                       sprintf( __( '  <h2 style="width: 150px;float: right;
     padding: 8px 11px;background: #4CAF50;
-    font-size: 13px;margin: -24px 0 0 10px;
+    font-size: 13px;margin: -40px 0 0 10px;
     border-radius: 5px;line-height: 22px;position:relative;top:30px"><a style="color: #fff;text-decoration: none;" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? <br /> Leave a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' )                      
 			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
             <div class="getstarted_options">
@@ -1087,6 +1087,12 @@ Redux::setArgs( "redux_builder_amp", $args );
 					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
 					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To\'s</a></li>
 				</ul>  
+            </div>
+            <div class="getstarted_options" style="padding-bottom: 33px;width: 16%;" >
+            <p><b>Get Stable Updates</b></p>
+                <ul class="getstarted_ul">
+                    <li style="list-style:none;"><a href="https://ampforwp.com/beta-test/" target="_blank">Become a Beta Tester and Help us Push Stable Updates</a></li>
+                </ul>  
             </div>
             <div class="clear"></div>
             </div>'
@@ -3062,6 +3068,7 @@ $forms_support[] =  array(
                 'id'        => 'wordpress-comments-support',
                 'tooltip-subtitle'  => __('Enable/Disable WordPress comments using this switch.', 'accelerated-mobile-pages'),
                 'type'      => 'switch',
+                'default'  => 1,
                 ),
                     array(
                         'class' => 'child_opt child_opt_arrow', 
@@ -3257,18 +3264,23 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
+                    array(
+                        'id'    => 'fb-instant-page-id',
+                        'type'  => 'text',
+                        'title' => __('Facebook Page ID', 'accelerated-mobile-pages'),
+                        'desc' => __('Follow <a href="https://www.facebook.com/instant_articles/signup" target="_blank">these instructions</a> to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
 
            array(
-                        'required'  => array('fb-instant-article-switch', '=', 1),
                        'id' => 'amp-fbia_2',
                        'type' => 'section',
-                       'title' => __('AMP Support', 'accelerated-mobile-pages'),
+                       'title' => __('Facebook Instant Articles Settings', 'accelerated-mobile-pages'),
                        'indent' => true,
                        'layout_type' => 'accordion',
                        'accordion-open'=> 1,
+                       'required'  => array('fb-instant-article-switch', '=', 1),
             ),
-
-
                     array(
                         'id'       => 'ampforwp-fb-instant-article-posts',
                         'type'      => 'text',
@@ -3279,13 +3291,33 @@ Redux::setSection( $opt_name, array(
                         'default'   => '50'
                     ),
                     array(
+                        'id'       => 'ampforwp-instant-article-author-meta',
+                        'type'      => 'switch',
+                        'title'     => __('Author Meta', 'accelerated-mobile-pages'),
+                        'default'   => 1, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'tooltip-subtitle' => __('Enable/Disable Author Meta', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
                         'id'       => 'ampforwp-instant-article-author-bio',
                         'type'      => 'switch',
-                        'title'     => __('Bio', 'accelerated-mobile-pages'),
+                        'title'     => __('Author Bio', 'accelerated-mobile-pages'),
                         'default'   => 0, 
                         'true'      => 'true',
                         'false'     => 'false',
                         'tooltip-subtitle' => __('Enable/Disable Author Bio', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'ampforwp-ia-related-articles',
+                        'type'      => 'switch',
+                        'title'     => __('Related Articles', 'accelerated-mobile-pages'),
+                        'default'   => 0, 
+                        'true'      => 'true',
+                        'false'     => 'false',
+                        'tooltip-subtitle' => __('Show/Hide Related Articles', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),  
                     array(
@@ -3299,12 +3331,39 @@ Redux::setSection( $opt_name, array(
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
                     array(
+                        'id'       => 'fb-instant-article-ad-type',
+                        'type'      => 'select',
+                        'title'     => __('Select Advertisement Format', 'accelerated-mobile-pages'),
+                        'default'   => '1',
+                        'desc' => __('Select the type of advertising on Instant Article pages you want to display.', 'accelerated-mobile-pages'),
+                        'options'   => array(
+                            '1'     => 'Facebook Audience Network',
+                            '2'     => 'Custom iframe URL',
+                            '3'     => 'Custom Embed Code'
+                        ),
+                        'required'  => array('fb-instant-article-ads', '=', 1)
+                    ),
+                    array(
                         'id'       => 'fb-instant-article-ad-id',
                         'type'     => 'text',
                         'title'    => __('Enter your Audience Network Placement ID', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('You can find out more about this <a href="https://developers.facebook.com/docs/instant-articles/monetization/audience-network">here</a>. ', 'accelerated-mobile-pages'),
                         'desc' => __('<a href="https://ampforwp.com/tutorials/article/how-to-enter-audience-network-placement-id-of-advertisement-in-the-instant-article/" target="_blank">Click here</a> on how to get Audience Network Placement Id.', 'accelerated-mobile-pages'),
-                        'required'  => array('fb-instant-article-ads', '=', 1)
+                        'required'  => array('fb-instant-article-ad-type', '=', '1')
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-custom-iframe-ad',
+                        'type'     => 'text',
+                        'placeholder'=> 'https://www.adserver.com/ss',
+                        'title'    => __('Enter your Custom iframe ad source URL'),
+                        'required'  => array('fb-instant-article-ad-type', '=', '2')
+                    ),
+                    array(
+                        'id'       => 'fb-instant-article-custom-embed-ad',
+                        'type'     => 'textarea',
+                        'placeholder'=> '',
+                        'title'    => __('Enter your Custom Embed ad code'),
+                        'required'  => array('fb-instant-article-ad-type', '=', '3')
                     ),
                     array(
                         'id'       => 'fb-instant-article-ad-density-setup',
@@ -3334,6 +3393,37 @@ Redux::setSection( $opt_name, array(
                         'title'    => __('Enter your Analytics script code', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => __('Do not enter iframe tag. Find out more about support <a href="https://developers.facebook.com/docs/instant-articles/analytics">here</a> ', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-analytics', '=', 1)
+                    ),
+                     array(
+                        'id'       => 'fb-instant-crawler-ingestion',
+                        'type' => 'switch',
+                        'title'    => __('Crawler Ingestion', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Add ia:markup meta tag. Find out more about<a href="https://developers.facebook.com/docs/instant-articles/crawler-ingestion" target="_blank">here</a> ', 'accelerated-mobile-pages'),
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-header-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Head Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Head Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-body-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Body Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Body Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
+                    ),
+                    array(
+                        'id'       => 'fbia-footer-text-area',
+                        'type'     => 'textarea',
+                        'title'    => __('Custom HTML in Footer Tag', 'accelerated-mobile-pages'),
+                        'desc' => __('Add custom HTML in Footer Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'default'   => '',
+                        'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
     ),
    )
@@ -5446,6 +5536,20 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => __('Breadcrumbs', 'accelerated-mobile-pages'),
            ),
+          //Breadcrumb for Tags
+          array(
+                'class' => 'child_opt child_opt_arrow', 
+                'id'       => 'ampforwp-bread-crumb-type',
+                'type'     => 'select',
+                'tooltip-subtitle'     => __('Select option to enable breadcrumb with tags or category','accelerated-mobile-pages'),
+                'title'    => __('Select Breadcrumb Type', 'accelerated-mobile-pages'),
+                'options'  => array(
+                    'tags' => 'Tags',
+                    'category' => 'Category',
+                ),
+                'default'  => 'category',
+                'required' => array('ampforwp-bread-crumb' , '=' , 1),
+            ),
           //Categories  ON/OFF
          array(
               'id'       => 'ampforwp-cats-single',
@@ -5543,6 +5647,34 @@ $single_page_options = array(
                    'default'   => 1,
             ),
             array(
+                   'id'    => 'rp_design_type',
+                   'title'  => __('Related Post Designs', 'accelerated-mobile-pages'),
+                   'class' => 'child_opt child_opt_arrow',
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Single Design 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-2.png'
+                                ),
+                        // '3' => array(
+                        //         'alt'=>' Single Design With Sidebar ',
+                        //         'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/rlp-3.png'
+                        //         ),
+                        
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4'),
+                                 array('ampforwp-single-related-posts-switch', '=' , '1'),
+                                 array('single-design-type', '=' , '1')
+                                ),
+            ),
+            array(
                     'id'       => 'ampforwp-single-select-type-of-related',
                     'type'     => 'select',
                 'class' => 'child_opt child_opt_arrow',
@@ -5556,7 +5688,7 @@ $single_page_options = array(
                'default'  => '2',
                'required' => array( 
                                 array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
+                              //  array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                             ),
             ),
             array(
@@ -5597,7 +5729,7 @@ $single_page_options = array(
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -5609,7 +5741,7 @@ $single_page_options = array(
                     'default'  => '3',
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '1') 
                                 ),
             ),
             array(
@@ -5621,7 +5753,7 @@ $single_page_options = array(
                     'default'  => 0,
                     'required' => array( 
                                     array('ampforwp-single-related-posts-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '0')  
                                 ),
             ),
             array(
@@ -5633,7 +5765,7 @@ $single_page_options = array(
                     'default'  => '7',
                     'required' => array( 
                                     array('ampforwp-related-posts-days-switch', '=' , '1'),
-                                    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
+                                //    array('ampforwp-related-posts-yarpp-switch', '=' , '0') 
                                 ),
             ),
             array(
@@ -5920,7 +6052,7 @@ $single_page_options = array(
         'desc' => $single_extension_listing 
     )
 );
-/*Yarpp enable option*/
+/*Yarpp enable option
     if( is_plugin_active( 'yet-another-related-posts-plugin/yarpp.php' )){
         $yarpp_options = array(array(
                     'id'       => 'ampforwp-related-posts-yarpp-switch',
@@ -5973,7 +6105,7 @@ $single_page_options = array(
                 }
             }
         }
-    }
+    }*/
    // Single Section
   Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'accelerated-mobile-pages' ),
@@ -6337,6 +6469,19 @@ $single_page_options = array(
            'layout_type' => 'accordion',
             'accordion-open'=> 1,
          ),
+        // Social Icons Position [Swift] #1722
+            array(
+                'id'       => 'swift-social-position',
+                'type'     => 'select',
+                'title'    => __( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'default' => 'Single Sidebar (left side)',
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'default',
+                'required' => array(array('amp-design-selector', '=', '4') )
+            ), 
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',

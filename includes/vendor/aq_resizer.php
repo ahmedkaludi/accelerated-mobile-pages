@@ -190,7 +190,8 @@ if(!class_exists('Aq_Resize')) {
                 return $image;
             }
             catch (Aq_Exception $ex) {
-                error_log('Aq_Resize.process() error: ' . $ex->getMessage());
+                // Throwing errors for the images stored on CDN #2285
+                /*error_log('Aq_Resize.process() error: ' . $ex->getMessage());*/
 
                 if ($this->throwOnError) {
                     // Bubble up exception.

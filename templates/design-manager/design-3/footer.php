@@ -91,7 +91,7 @@
              <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a></p> <?php } ?>
           <p class="rightslink">
             <?php
-              global $allowed_html; 
+              $allowed_html = ampforwp_wp_kses_allowed_html(); 
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html );
               if ( '1' == $redux_builder_amp['amp-footer-link-non-amp-page'] ) {
                 if ( $redux_builder_amp['amp-translator-footer-text'] ) { ?> | <?php ampforwp_view_nonamp(); }

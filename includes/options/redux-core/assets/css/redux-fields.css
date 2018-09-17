@@ -104,3 +104,9 @@
     width:45% ;
     padding:0px 15px;
 }
+/*** Related Post Desings ***/
+#redux_builder_amp-rp_design_type ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}

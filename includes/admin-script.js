@@ -346,10 +346,10 @@ jQuery(function($) {
                 // Adding Default Font Family
                 $('#s2id_amp_font_selector-select a').removeClass('select2-default');
                 
-                $('#select2-chosen-3').html(redux_data.amp_font_selector);
                 if(redux_data.amp_font_selector==''){
                     redux_data.amp_font_selector = 'Poppins'
                 }
+                $('#s2id_amp_font_selector-select .select2-chosen').html(redux_data.amp_font_selector);
 
                 $('#amp_font_selector-select option[value="'+redux_data.amp_font_selector+'"]').attr("selected", "selected");
                 $('#amp_font_selector-select').select2('val',redux_data.amp_font_selector).trigger("change");

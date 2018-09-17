@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 0.9.97.14
+Version: 0.9.97.15
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -19,7 +19,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','0.9.97.14');
+define('AMPFORWP_VERSION','0.9.97.15');
 // any changes to AMP_QUERY_VAR should be refelected here
 function ampforwp_generate_endpoint(){
     $ampforwp_slug = '';
@@ -81,7 +81,7 @@ function ampforwp_get_the_page_id_blog_page(){
 
 // Add Custom Rewrite Rule to make sure pagination & redirection is working correctly
 function ampforwp_add_custom_rewrite_rules() {
-	global $redux_builder_amp;
+	global $redux_builder_amp, $wp_rewrite;
     // For Homepage
     add_rewrite_rule(
       'amp/?$',
@@ -90,7 +90,7 @@ function ampforwp_add_custom_rewrite_rules() {
     );
 	// For Homepage with Pagination
     add_rewrite_rule(
-        'amp/page/([0-9]{1,})/?$',
+        'amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
         'index.php?amp=1&paged=$matches[1]',
         'top'
     );
@@ -98,13 +98,13 @@ function ampforwp_add_custom_rewrite_rules() {
 	// For /Blog page with Pagination
 	if( ampforwp_name_blog_page() ) {
 	    add_rewrite_rule(
-	        ampforwp_name_blog_page(). '/amp/page/([0-9]{1,})/?$',
+	        ampforwp_name_blog_page(). '/amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
 	        'index.php?amp=1&paged=$matches[1]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
 	    // Pagination to work with Extensions like.hml
 	    add_rewrite_rule(
-	        ampforwp_name_blog_page(). '(.+?)/amp/page/([0-9]{1,})/?$',
+	        ampforwp_name_blog_page(). '(.+?)/amp/'.$wp_rewrite->pagination_base.'/([0-9]{1,})/?$',
 	        'index.php?amp=1&paged=$matches[2]&page_id=' .ampforwp_get_the_page_id_blog_page(),
 	        'top'
 	    );
@@ -117,7 +117,7 @@ function ampforwp_add_custom_rewrite_rules() {
         'top'
     );
     add_rewrite_rule(
-        'author\/([^/]+)\/amp\/page\/?([0-9]{1,})\/?$',
+        'author\/([^/]+)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
         'index.php?amp=1&author_name=$matches[1]&paged=$matches[2]',
         'top'
     );
@@ -137,7 +137,7 @@ function ampforwp_add_custom_rewrite_rules() {
     );
     // For category pages with Pagination
     add_rewrite_rule(
-      $rewrite_category.'/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      $rewrite_category.'/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
       'index.php?amp=1&category_name=$matches[1]&paged=$matches[2]',
       'top'
     );
@@ -148,7 +148,7 @@ function ampforwp_add_custom_rewrite_rules() {
 	$permalink_structure = preg_replace('/\//', '', $permalink_structure);
 	if ( $permalink_structure ) {
 	  	add_rewrite_rule(
-	      $permalink_structure.'\/'.$rewrite_category.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      $permalink_structure.'\/'.$rewrite_category.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
 	      'index.php?amp=1&category_name=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
@@ -168,19 +168,24 @@ function ampforwp_add_custom_rewrite_rules() {
     );
     // For tag pages with Pagination
     add_rewrite_rule(
-      $rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+      $rewrite_tag.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
       'index.php?amp=1&tag=$matches[1]&paged=$matches[2]',
       'top'
     );
     // For tag pages with Pagination (Custom Permalink Structure)
     if ( $permalink_structure ) {
 	  	add_rewrite_rule(
-	      $permalink_structure.'\/'.$rewrite_tag.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+	      $permalink_structure.'\/'.$rewrite_tag.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
 	      'index.php?amp=1&tag=$matches[1]&paged=$matches[2]',
 	      'top'
 	    );
   	}
-    
+    // Rewrite rule for date archive with pagination #2289
+  	add_rewrite_rule(
+      '([0-9]{4})/([0-9]{1,2})/amp/'.$wp_rewrite->pagination_base.'/?([0-9]{1,})/?$',
+      'index.php?year=$matches[1]&monthnum=$matches[2]&amp=1&paged=$matches[3]',
+      'top'
+    );
 	//Rewrite rule for custom Taxonomies
 	$args = array(
 	  		'public'   => true,
@@ -189,7 +194,6 @@ function ampforwp_add_custom_rewrite_rules() {
 	$output = 'names'; // or objects
 	$operator = 'and'; // 'and' or 'or'
 	$taxonomies = get_taxonomies( $args, $output, $operator ); 
-
 
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
   	if(!is_plugin_active('amp-woocommerce-pro/amp-woocommerce.php' )) {
@@ -213,7 +217,7 @@ function ampforwp_add_custom_rewrite_rules() {
 			    );
 			    // For Custom Taxonomies with pages
 			    add_rewrite_rule(
-			      $taxonomy.'\/(.+?)\/amp\/page\/?([0-9]{1,})\/?$',
+			      $taxonomy.'\/(.+?)\/amp\/'.$wp_rewrite->pagination_base.'\/?([0-9]{1,})\/?$',
 			      'index.php?amp&'.$taxonomy.'=$matches[1]&paged=$matches[2]',
 			      'top'
 			    );
@@ -221,7 +225,7 @@ function ampforwp_add_custom_rewrite_rules() {
 		}
 	}
 }
-add_action( 'init', 'ampforwp_add_custom_rewrite_rules' );
+add_action( 'init', 'ampforwp_add_custom_rewrite_rules', 25 );
 // add re-write rule for Products
 add_action( 'init', 'ampforwp_custom_rewrite_rules_for_product_category' );
 if ( ! function_exists('ampforwp_custom_rewrite_rules_for_product_category') ) {
