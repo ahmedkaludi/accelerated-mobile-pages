@@ -763,10 +763,15 @@ function rowData($container,$col,$moduleTemplate){
 							$show_no_of_posts = 3;
 						}
 						$args = array(
-								'cat' => $fieldValues['category_selection'],
+								//'cat' => $fieldValues['category_selection'],
 								'posts_per_page' => $show_no_of_posts,
 								'has_password' => false,
-								'post_status'=> 'publish'
+								'post_status'=> 'publish',
+								'tax_query' => array(
+													array(
+														'taxonomy'=>get_term($fieldValues['category_selection'])->taxonomy,
+														'field'=>'id',
+														'terms'=>$fieldValues['category_selection']) )
 							);
 						$args = apply_filters('ampforwp_content_module_args', $args, $fieldValues);
 						//The Query

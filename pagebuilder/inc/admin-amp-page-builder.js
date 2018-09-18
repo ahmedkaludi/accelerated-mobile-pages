@@ -473,6 +473,11 @@ Vue.component('fields-data',{
 	  		//this.callChangeEnvent();
 	  })
 	},
+	beforeMount: function(){
+		if ( this.field.ajax == true ) {
+			this.changeOnSelect();
+		}
+	},
 	computed: {
 		filteredIcons: function(){
 			var self=this;
@@ -651,6 +656,40 @@ Vue.component('fields-data',{
 				return false;
 			}
 			return false;
+		},
+
+		changeOnSelect: function(){ //event, field
+			var dataAjaxDep = this.field.ajax_dep;//currentSelectfield.getAttribute("data-ajax-dep");
+			var ajaxAction = this.field.ajax_action;//currentSelectfield.getAttribute("data-ajax-action");
+			this.$http.post(amppb_panel_options.ajaxUrl+'?action='+ajaxAction, 
+				{
+					'selected_val': this.field.default 
+				}
+				,{
+					headers:{
+						responseType:'json'
+					},
+					responseType:'json',
+					emulateHTTP:true,
+					emulateJSON:true,
+				}
+			).then(function(response){
+				response =response.body;
+				 if(response.success === true) {
+				 	var option_html = '';				 	
+				 	app.modalcontent.fields.forEach(function(modaldata, key){
+				 		if(modaldata.name==dataAjaxDep){
+				 			modaldata.options_details = response.data;
+				 		}
+				 	});
+				 }
+				
+			},
+			//errorCallback
+			function(){
+				alert('connection not establish');
+			});			
+
 		}
 
 	}

@@ -119,6 +119,26 @@ function ampforwp_icons_list_format(){
 	exit;
 }
 
+add_action( 'wp_ajax_ampforwp_pb_cats', 'ampforwp_pb_cats');
+function ampforwp_pb_cats(){
+	$cats = $taxs = array();
+	$post = '';
+	$post = $_POST['selected_val'];
+	$taxs = get_object_taxonomies( $post );
+	if(!empty($taxs)){
+ 		$cats = get_terms($taxs);
+	}
+	$return = array();
+	if($cats){
+		foreach ($cats as $key => $value) {
+			$return[$value->term_id] = $value->name;
+		}
+	}
+	$return['recent_option']= 'Recent Posts';
+	echo json_encode(array('success'=>true,'data'=>$return));
+	exit;
+}
+
 add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 

@@ -63,7 +63,9 @@ function ampforwp_content_module_pagination($args, $fieldValues){
 }
 {{ifend_condition_content_layout_type_1}}
 ';
-
+  $post_types = get_post_types(array('public'=>true));
+  $post_types = get_option('ampforwp_cpt_generated_post_types');
+  $post_types['post'] = 'post';
  $categories = get_categories( array(		
                    'orderby' => 'name',		
                    'order'   => 'ASC'		
@@ -75,8 +77,6 @@ function ampforwp_content_module_pagination($args, $fieldValues){
  	$categoriesArray[$category->term_id] = $categoryName;		
  	$options.= '<option value="'.$category->term_id.'">'.$categoryName.'</option>';		
  }		
-
-
 
  return array(		
  		'label' =>'Category',		
@@ -139,7 +139,20 @@ function ampforwp_content_module_pagination($args, $fieldValues){
                           'bottom'=>'0px'
                         ),
                 'content_type'=>'css',
-              ),  		
+              ),
+              array(    
+              'type'  =>'select',   
+              'name'  =>"post_type_selection",   
+              'label' =>"Select Post Type",
+              'tab'     =>'customizer',
+              'default' =>'post',    
+              'options' => $post_types,    
+              'options_details'=>$post_types ,
+              'content_type'=>'html',
+              'ajax'  => true,
+              'ajax_dep' => 'category_selection',
+              'ajax_action' => 'ampforwp_pb_cats'
+            ),    		
  						array(		
  							'type'	=>'select',		
  							'name'  =>"category_selection",		
