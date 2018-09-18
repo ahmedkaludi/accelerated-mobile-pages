@@ -283,7 +283,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 *
 	 * @param DOMElement $element Style element.
 	 */
-	private function process_style_element( DOMElement $element ) {
+	private function process_style_element( \DOMElement $element ) {
 		if ( $element->hasAttribute( 'amp-keyframes' ) ) {
 			$validity = $this->validate_amp_keyframe( $element );
 			if ( is_wp_error( $validity ) ) {
@@ -327,7 +327,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 	 *
 	 * @param DOMElement $element Link element.
 	 */
-	private function process_link_element( DOMElement $element ) {
+	private function process_link_element( \DOMElement $element ) {
 		$href = $element->getAttribute( 'href' );
 
 		// Allow font URLs.
@@ -420,7 +420,7 @@ class AMP_Style_Sanitizer extends AMP_Base_Sanitizer {
 		// This logic could be in AMP_Tag_And_Attribute_Sanitizer, but since it only applies to amp-keyframes it seems unnecessary.
 		$next_sibling = $style->nextSibling;
 		while ( $next_sibling ) {
-			if ( $next_sibling instanceof DOMElement ) {
+			if ( $next_sibling instanceof \DOMElement ) {
 				return new WP_Error( 'mandatory_last_child', __( 'amp-keyframes is not last element in body.', 'amp' ) );
 			}
 			$next_sibling = $next_sibling->nextSibling;
