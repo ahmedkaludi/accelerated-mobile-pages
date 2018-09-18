@@ -1356,8 +1356,16 @@ $tabs = array(
        'subsection' => true,
        'fields' => array( 
             array(
+               'id'       => 'ampforwp-pagebuilder',
+               'type'     => 'switch',
+               'title'    => __('AMPforWP PageBuilder', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => __('Enable or Disable the AMP PageBuilder', 'accelerated-mobile-pages'),
+               'default'  => true
+             ),
+            array(
                 'id'       => 'ampforwp-page-builder-info',
                 'type'     => 'raw',
+                'required' => array('ampforwp-pagebuilder', '=', true ),
                 'desc' => '<div style="background: #FFF9C4;
     display: inline-block;
     padding: 10px 20px;
@@ -1366,7 +1374,6 @@ $tabs = array(
     line-height: 1.6;
     position: absolute;
     left: 0px;
-    top: 15px;
     font-size: 15px;"><b>Introducing  AMP Page Builder 3.0</b>, Re-Engineered in Vue.js! <br /> <a href="https://ampforwp.com/tutorials/article/amp-page-builder-installation/" target="_blank">Learn how to use this Feature</a></div>
     
     <iframe style="position: absolute;left: 0px;margin-top: 67px;" width="600" height="400" src="https://www.youtube.com/embed/QTbkn2rHyqM" frameborder="0" allowfullscreen></iframe>

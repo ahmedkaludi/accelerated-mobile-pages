@@ -697,14 +697,16 @@ if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 if ( !is_plugin_active('amp/amp.php') ) {
-	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
 }
 if(is_admin()){
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/modules-upgrade.php' );
 }
-
+$redux_builder_amp = get_option('redux_builder_amp');
+if ( isset($redux_builder_amp['ampforwp-pagebuilder']) && true == $redux_builder_amp['ampforwp-pagebuilder'] ) {
+	require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
+}
 /**
  * Redirects the old AMP URL to the new AMP URL.
  * If post slug is updated the amp page with old post slug will be redirected to the updated url.
