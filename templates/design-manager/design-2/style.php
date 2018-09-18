@@ -386,3 +386,9 @@ if(is_single()){?>
 }
 }
 <?php } ?>
+<?php 
+if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
+.amp-ad-1,.amp-ad-2,.amp-ad-3,.amp-ad-4,.amp-ad-5,.amp-ad-6 {
+    max-width: 1000px;
+}
+<?php } ?>
