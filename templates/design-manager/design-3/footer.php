@@ -86,11 +86,11 @@
             </ul>
           </div>
           <?php } 
-          if ( '1' == $redux_builder_amp['ampforwp-footer-top-design3'] ) { ?>
-            <p class="rightslink back-to-top">
-             <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a></p> <?php } ?>
-          <p class="rightslink">
-            <?php
+          if ( '1' == $redux_builder_amp['ampforwp-footer-top-design3'] ) { 
+            ?><p class="rightslink back-to-top">
+                <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a></p><?php 
+          }
+          ?><p class="rightslink"><?php
               $allowed_html = ampforwp_wp_kses_allowed_html(); 
               echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_html );
               if ( '1' == $redux_builder_amp['amp-footer-link-non-amp-page'] ) {
@@ -98,15 +98,14 @@
                 else {
                   ampforwp_view_nonamp();
                 } 
-              } ?>
-          </p>
-          <?php do_action('amp_footer_link'); ?>
+              } 
+          ?></p><?php 
+          do_action('amp_footer_link');
 
-          <?php if ( true == $redux_builder_amp['amp-design-3-credit-link'] ) { ?>
-            <p class="poweredby">
+          if ( true == $redux_builder_amp['amp-design-3-credit-link'] ) { ?><p class="poweredby">
                 <a title="AMP for WP" href="https://ampforwp.com" rel="nofollow">Powered by AMPforWP</a>
-            </p>
-          <?php } ?>
+            </p><?php 
+          } ?>
       </div>
   </footer>
 </div><!--Design3 Ends-->

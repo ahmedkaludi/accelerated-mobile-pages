@@ -4367,8 +4367,8 @@ function ampforwp_view_nonamp(){
 	if ( $page >= '2') { 
 		$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
 	} 
-	if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
-   
+	if ( $ampforwp_backto_nonamp ) { ?><a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php
+	}
 }
 
  //68. Facebook Instant Articles
