@@ -52,3 +52,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 25. check added in class-amp-content.php on line no.107 #2173
 26. added htmlspecialchars($element->textContent); in includes/vendor/amp/includes/sanitizers/class-amp-blacklist-sanitizer.php line no 95 check #2346
 27. Class AMP_DOM_Utils updated #2445
+28. Class AMP_Gallery_Embed_Handler updated #1968

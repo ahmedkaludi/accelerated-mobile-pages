@@ -3,9 +3,40 @@
 	width:40%;
 	padding-right:30px;
 }
- /*** Related Post Desings ***/
-#redux_builder_amp-rp_design_type ul{
+
+/*** Related Post Desings ***/
+#redux_builder_amp-rp_design_type ul, #redux_builder_amp-ampforwp-gallery-design-type ul{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 30px;
+}
+.redux-image-select-selected{
+	position: relative;
+}
+.redux-image-select-selected:before{
+    content: " ";
+    display: block;
+    border: solid 20px rgb(19, 163, 21);
+    border-radius: 50px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+}
+.redux-image-select-selected:after{
+	content: " ";
+    display: block;
+    width: 0.3em;
+    height: 0.6em;
+    border: solid white;
+    border-width: 0 0.2em 0.2em 0;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    font-size: 20px
 }
