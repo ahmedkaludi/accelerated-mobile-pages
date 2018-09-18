@@ -382,6 +382,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		if ( $amp_url ) {
 			printf('<link rel="amphtml" href="%s" />', esc_url($amp_url));
+			printf('<meta name="generator" content="AMP for WP" />', esc_url($amp_url));
 		}
 
 	} //end of ampforwp_home_archive_rel_canonical()
@@ -3742,6 +3743,7 @@ function ampforwp_rel_canonical_home_archive(){
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
 		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
+		<meta name="generator" content="AMP for WP" />
 	<?php }
 
 	if(is_search()){
