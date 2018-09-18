@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.15
+Stable tag: 0.9.97.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,26 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.15 (13th September 2018) = 
+* Added: New Section to show 'change log' on Welcome Page #1753
+* Added: Allow HTML in footer section of translation panel in design 3 #1950
+Extending Default Gallery designs #1968
+* Added: Need to make the compatibility with The Voux theme #2263
+* Fixed: Special character "|" breaking the url in the twitter share #2264
+* Added: Read more button for post on blog page #2273
+* Fixed: Category Labels are Clickable on Swift Homepage even Archive support is off #2279
+* Fixed: Above Loop and Below Loop Sidebar Widget area is not connected with Swift theme #2280
+* Fixed: Aq_Resize.process() errors for images hosted on CDN #2285
+* Fixed: Convert to WP Option is displayed in Swift Theme, but not in Design 3. #2291
+* Fixed: Need to have only one text-domain in the string of the plugin #2292
+* Fixed: Bug in Facebook comments. #2300
+* Added: Beta Testing link in the Options panel #2302
+* Added: "X" button in the menu of D3 #2294
+* Fixed: AMP Take over is applying even on product when this option is enabled only for posts. #2304
+* Fixed: The Option Facebook App ID not necessary in the social icons of AMP panel when using Swift #2384
+* Fixed: Embeds not working in Archive Description #2402
+* Fixed: Spurious spaces in Footers #2521
 
 = 0.9.97.15 (13th September 2018) = 
 * Fixed: Pagination is not working on date archive #2289
