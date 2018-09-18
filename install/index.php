@@ -91,7 +91,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 									<div>
 									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-1.png" width="150" height="200" class="amp_install_theme_preview" id="design-1" style="'.($redux_builder_amp['amp-design-selector']==1 ? '': 'display:none' ).'">
 									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-2.png" width="150" height="200" class="amp_install_theme_preview" id="design-2" style="'.($redux_builder_amp['amp-design-selector']==2 ? '': 'display:none' ).'">
-									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.($redux_builder_amp['amp-design-selector']==4 ? '': 'display:none' ).'">
+	                                <img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/design-3.png" width="150" height="200" class="amp_install_theme_preview" id="design-3" style="'.($redux_builder_amp['amp-design-selector']==3 ? '': 'display:none' ).'">
+									<img src="'.AMPFORWP_PLUGIN_DIR_URI.'/images/swift.png" width="150" height="200" class="amp_install_theme_preview" id="design-4" style="'.($redux_builder_amp['amp-design-selector']==4 ? '': 'display:none' ).'">
 									</div>
  									</li>
 											   ',
