@@ -41,7 +41,7 @@ function ampforwp_nl2p($string, $only_if_no_html = TRUE) {
   return $string;
 }
 
-$readme_file = plugin_dir_path( __FILE__ ).'readme.txt';
+$readme_file = AMPFORWP_PLUGIN_DIR.'readme.txt';
 $readme = file_get_contents($readme_file);
 
 $readme = preg_replace('/`(.*?)`/', '<code>\\1</code>', $readme);

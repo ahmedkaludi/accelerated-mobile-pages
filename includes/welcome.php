@@ -87,8 +87,7 @@ function ampforwp_welcome_screen_content() {
  				<div class="amp_expert_user amp_user_onboarding_choose">
 	                <!--<div class="amp_user_avatar"></div>-->
 	                <!--<h3>Change log</h3>-->
-	                <?php require AMPFORWP_PLUGIN_DIR.'/change-log.php';?>
-	                <!--<a href="<?php echo admin_url('admin.php?tabid=opt-text-subsection&page=amp_options');?>">AMP Options Panel</a>-->
+	                <?php require AMPFORWP_PLUGIN_DIR.'/includes/change-log.php';?>
             	</div>
  			</div>
 
