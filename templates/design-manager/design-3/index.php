@@ -158,32 +158,14 @@ if ( get_query_var( 'paged' ) ) {
 					} ?>
                 </ul>
 				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
-
-
-				<?php
-				if( ampforwp_check_excerpt() ) {
+				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {
 						$class = 'small-screen-excerpt-design-3';
 					}
-					if(has_excerpt()){
-						$content = get_the_excerpt();
-					}else{
-						$content = get_the_content();
-					}
-					?>
-			        <p class="<?php echo $class; ?>">
-					<?php 
-						$excerpt_length		='';
-						$excerpt_length 	= $redux_builder_amp['amp-design-3-excerpt'];
-						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-						}
-						echo $final_content;
-				}
-
+					amp_loop_excerpt( ampforwp_get_setting('amp-design-3-excerpt'), 'p', $class );
+				} ?>
+				<?php
               	if($redux_builder_amp['amp-design-selector'] == '3' && $redux_builder_amp['amp-design-3-featured-time'] == '1'){
                   		?>
                 <div class="featured_time"><?php 

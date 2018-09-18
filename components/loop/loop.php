@@ -299,20 +299,26 @@ function amp_loop_date($args=array()){
     echo '<div class="loop-date">'.$post_date.'</div>';
 }
 
-function amp_loop_excerpt($no_of_words=15,$tag = 'p'){
+function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	//excerpt
 	global $post,$redux_builder_amp;
-	if(has_excerpt()){
+	if( has_excerpt() ) {
 		$content = get_the_excerpt();
-	}else{
+	} else {
 		$content = get_the_content();
 	}
-	$content =  strip_shortcodes( $content );
-	if(isset($redux_builder_amp['ampforwp-homepage-loop-readmore-link']) && $redux_builder_amp['ampforwp-homepage-loop-readmore-link'] == 1) {
-		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>';
+	$content = strip_shortcodes( $content );
 
-	}else{
-		echo '<'.$tag.'>'. wp_trim_words(  $content, $no_of_words ) .'</'.$tag.'>';
+	if ( ampforwp_is_home() ){
+		$content = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
+	} else {
+		$content = apply_filters('ampforwp_modify_archive_content', $content,  $excerpt_length );
+	}
+
+	if( ampforwp_get_setting('ampforwp-homepage-loop-readmore-link') == 1 ) {
+		echo '<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>';
+	} else {
+		echo '<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>';
 	}
 	
 }

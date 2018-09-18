@@ -123,24 +123,8 @@
 					}
 					$image_args = array("tag"=>'div',"tag_class"=>'home-post-image','image_size'=>'full','image_crop'=>'true','image_crop_width'=>$width,'image_crop_height'=>$height); ?>
 						<?php amp_loop_image($image_args); ?>
-					<?php }
-					
-						if( has_excerpt() ){
-							$content = get_the_excerpt();
-						}else{
-							$content = get_the_content();
-						} ?>
-					<p><?php global $redux_builder_amp;
-						if( ampforwp_check_excerpt() ) {
-							$excerpt_length = $redux_builder_amp['amp-design-1-excerpt'];
-							$final_content = "";					
-							$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-							if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-								$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-							}
-							echo $final_content;
-
-						}?></p>
+					<?php } ?>
+					<?php if( ampforwp_check_excerpt() ) { amp_loop_excerpt( ampforwp_get_setting('amp-design-1-excerpt') ); } ?>
 				</div>
 	        </div>
 	    <?php 

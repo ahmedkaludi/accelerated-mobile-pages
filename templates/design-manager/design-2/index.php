@@ -66,31 +66,13 @@
 				<?php } ?>
 
 			<div class="amp-wp-post-content">
-
 				<h2 class="amp-wp-title"><a href="<?php echo esc_url( $ampforwp_amp_post_url ); ?>"><?php the_title(); ?></a></h2>
-
-				<?php
-				if( ampforwp_check_excerpt() ) {
+				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt';
 					if ( true == $redux_builder_amp['excerpt-option-design-2'] ) {
 						$class = 'small-screen-excerpt';
 					}
-					if(has_excerpt()){
-						$content = get_the_excerpt();
-					}else{
-						$content = get_the_content();
-					}
-					?>
-			        <p class="<?php echo $class; ?>">
-					<?php 
-						$excerpt_length		='';
-						$excerpt_length 	= $redux_builder_amp['amp-design-2-excerpt'];
-						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-						}
-						echo $final_content;
+					amp_loop_excerpt( ampforwp_get_setting('amp-design-2-excerpt'), 'p', $class );
 				} ?>
 		    </div>
 		    <div class="amp-wp-meta">
