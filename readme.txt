@@ -202,6 +202,7 @@ Extending Default Gallery designs #1968
 * Fixed: The Option Facebook App ID not necessary in the social icons of AMP panel when using Swift #2384
 * Fixed: Embeds not working in Archive Description #2402
 * Fixed: Spurious spaces in Footers #2521
+* Fixed: Additional spaces Pagination div on article posts #2522
 
 = 0.9.97.15 (13th September 2018) = 
 * Fixed: Pagination is not working on date archive #2289
