@@ -1,4 +1,4 @@
-<?php global $redux_builder_amp; global $wp;  ?>
+<?php global $redux_builder_amp, $wp, $wp_query;  ?>
 <!doctype html>
 <html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
 <head>
@@ -172,18 +172,14 @@ if ( get_query_var( 'paged' ) ) {
 		         $count++;
 	endwhile;  ?>
 
-	<div class="amp-wp-content pagination-holder">
-
-
+	<div class="amp-wp-content pagination-holder">		
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( ampforwp_translation ($redux_builder_amp['amp-translator-show-more-posts-text'], 'Show more Posts') . ' &raquo;' ,0 ) ?></div>
-					<?php if ( $paged > 1 ) { ?>
-						<div class="prev"><?php previous_posts_link( '&laquo; '.ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts') ); ?></div>
-					<?php } ?>
+        	<?php
+        	 if ( get_next_posts_link('next', $wp_query->max_num_pages) ){ ?><div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Next') . ' &raquo;', $wp_query->max_num_pages ) ?></div><?php }?>
+        	<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Previous' ) ); ?></div><?php }?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
-
 	<?php endif; ?>
 	<?php wp_reset_postdata(); ?>
 	<?php do_action('ampforwp_post_after_loop') ?>

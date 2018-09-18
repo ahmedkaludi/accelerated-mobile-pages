@@ -81,11 +81,9 @@
 		         $count++;
 		 endwhile; ?>
 		<div class="amp-wp-content pagination-holder">
-
 			<div id="pagination">
-				<div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'],'Next' ) . ' &raquo;' , 0 ) ?></div>
-				<div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous') ); ?></div>
-
+				<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-next-text'] , 'Next') . ' &raquo;', $q->max_num_pages ) ?></div><?php }?>
+				<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-previous-text'], 'Previous' ) ); ?></div><?php }?>
 				<div class="clearfix"></div>
 			</div>
 		</div>
