@@ -3743,7 +3743,6 @@ function ampforwp_rel_canonical_home_archive(){
 			$amp_url = trailingslashit( $amp_url  . '?page=' . $page);
 		} ?>
 		<link rel="canonical" href="<?php echo user_trailingslashit( esc_url( apply_filters('ampforwp_modify_rel_url', $amp_url ) ) ) ?>">
-		<meta name="generator" content="AMP for WP" />
 	<?php }
 
 	if(is_search()){
