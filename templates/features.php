@@ -2163,10 +2163,12 @@ function ampforwp_remove_schema_data() {
 
 	// Facebook Button by BestWebSoft Compatibility #1740
 	remove_filter( 'the_content', 'fcbkbttn_display_button' );
-}
+
 	// Removing Voux theme's lazyloading #2263
 	remove_filter( 'the_content', 'thb_lazy_images_filter', 200 );
 	remove_filter( 'wp_get_attachment_image_attributes', 'thb_lazy_low_quality', 10, 3 );
+}
+	
 // 22. Removing author links from comments Issue #180
 if( ! function_exists( 'ampforwp_disable_comment_author_links' ) ) {
 	function ampforwp_disable_comment_author_links( $author_link ){
