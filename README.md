@@ -183,7 +183,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.15 (13th September 2018) = 
+= 0.9.97.16 (19th September 2018) = 
 * Added: New Section to show 'change log' on Welcome Page #1753
 * Added: Allow HTML in footer section of translation panel in design 3 #1950
 Extending Default Gallery designs #1968
