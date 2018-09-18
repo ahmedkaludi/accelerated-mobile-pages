@@ -6550,7 +6550,7 @@ $single_page_options = array(
           array(
                'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => __('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" target="_blank" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => __('Enter your facebook app id','accelerated-mobile-pages'),
