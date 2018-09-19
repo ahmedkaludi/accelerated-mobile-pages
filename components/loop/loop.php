@@ -244,18 +244,18 @@ function amp_pagination($args =array()) {
 	}
 	if(!isset($args['next_text']) || $args['next_text']==''){
 		$args['next_text'] = 'Show more Posts';
-	}
-    if ( $paged > 1 ) { 
-      $pre_link = '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
-    }
+	}?>
 
-    if ( $wp_query->max_num_pages > 1 ) { 
-	    echo '<div class="loop-pagination">
-	      <div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>
-	        '.$pre_link.'
-	      <div class="clearfix"></div>
-	    </div>';
-	}
+    <div class="loop-pagination"><?php
+	    if ( get_next_posts_link( $args['next_text'], $amp_q->max_num_pages ) ) { 
+	    	echo '<div class="right">'. get_next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , $args['next_text']), $amp_q->max_num_pages ) .'</div>';
+	    }
+	    if ( get_previous_posts_link() ) { 
+     		echo '<div class="left">'.get_previous_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], $args['previous_text'] ) ) .'</div>';
+    	}?>
+	    <div class="clearfix"></div>
+	</div><?php
+	
 }
 
 /***
