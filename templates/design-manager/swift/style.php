@@ -1593,7 +1593,12 @@ if(is_single()){?>
   margin:0 auto;
 }
 }
-<?php } ?>
+<?php 
+if (ampforwp_get_setting('ampforwp-cats-single') == false){?>
+.amp-category{
+	display:none;
+}
+<?php }} ?>
 <?php 
 if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
 .amp-ad-1,.amp-ad-2,.amp-ad-3,.amp-ad-4,.amp-ad-5,.amp-ad-6 {
