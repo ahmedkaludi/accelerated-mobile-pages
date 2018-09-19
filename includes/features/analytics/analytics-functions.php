@@ -24,6 +24,9 @@ function ampforwp_analytics() {
 		if ( isset($redux_builder_amp['ampforwp-ga-field-anonymizeIP']) && true == $redux_builder_amp['ampforwp-ga-field-anonymizeIP'] ) {
 			$ga_fields['vars']['anonymizeIP'] = 'true';
 		}
+		if ( ampforwp_get_setting('ampforwp-ga-field-linker') == true ) {
+			$ga_fields['vars']['linkers'] = 'true';
+		}
 		$ampforwp_ga_fields = json_encode( $ga_fields);
 		$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
 	 ?>
