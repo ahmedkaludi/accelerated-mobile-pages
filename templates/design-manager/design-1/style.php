@@ -44,7 +44,7 @@
   font-weight: 700;
     src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-BoldItalic.ttf');
 }
-.cb{clear:both}
+.clearfix, .cb{clear:both}
 .alignright{ float: right; }
 .alignleft{ float: left; }
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
