@@ -3096,9 +3096,9 @@ Redux::setSection( $opt_name, array(
                'type' => 'section',
                'title' => __('Typography', 'accelerated-mobile-pages'),
                'indent' => true,
-                'required' => array(
+                /*'required' => array(
                     array('amp-design-selector', '=' , '4')
-                ),
+                ),*/
                 'layout_type' => 'accordion',
                 'accordion-open'=> 1,
     ),
@@ -3108,9 +3108,9 @@ Redux::setSection( $opt_name, array(
                 'title'     =>__('Google Font API key','accelerated-mobile-pages'),
                 'tooltip-subtitle'  => __('You can get the Link <a target="_blank" href="https://developers.google.com/fonts/docs/developer_api?refresh=1&pli=1#APIKey">form here</a>','accelerated-mobile-pages'),
                 'default'   =>'',
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
+                // 'required' => array(
+                //     array('amp-design-selector', '=' , '4')
+                // )
 
             ),
 
@@ -3124,9 +3124,9 @@ Redux::setSection( $opt_name, array(
                     '1' => 'None',
                 ),
                 'default'  => '',
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
+                // 'required' => array(
+                //     array('amp-design-selector', '=' , '4')
+                // )
 
             ),
 
@@ -3141,9 +3141,9 @@ Redux::setSection( $opt_name, array(
                     '1' => 'none',
                 ),
                 'default'  => '',
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
+                // 'required' => array(
+                //     array('amp-design-selector', '=' , '4')
+                // )
 
             ),
           array(
@@ -3152,9 +3152,9 @@ Redux::setSection( $opt_name, array(
                 'class'     => 'hide',
                 'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
+                // 'required' => array(
+                //     array('amp-design-selector', '=' , '4')
+                // )
             ),
              array(
                     'id'       => 'content-font-family-enable',
@@ -3162,12 +3162,12 @@ Redux::setSection( $opt_name, array(
                     'class'    => 'ampforwp-google-font-class',
                     'title'    => __('Content Font Selector', 'accelerated-mobile-pages'),
                     'required' => array(
-                                    array('amp-design-selector', '=' , '4')
+                                   // array('amp-design-selector', '=' , '4')
                                     ),
                     'default'  => '0' ,
-                    'required' => array(
-                        array('amp-design-selector', '=' , '4')
-                    )   
+                    // 'required' => array(
+                    //     array('amp-design-selector', '=' , '4')
+                    // )   
             ),
           array(
                 'id'       => 'amp_font_selector_content_single',
@@ -3180,7 +3180,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4'),
+                    //array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1'),
                 )
 
@@ -3198,7 +3198,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 'default'  => '',
                 'required' => array(
-                    array('amp-design-selector', '=' , '4'),
+                   //array('amp-design-selector', '=' , '4'),
                     array('content-font-family-enable', '=' , '1')
                 )
 
@@ -3209,9 +3209,9 @@ Redux::setSection( $opt_name, array(
                 'class'     => 'hide',
                 'title'     =>__('Google Font Current Font','accelerated-mobile-pages'),
                 'default'   =>'',
-                'required' => array(
-                    array('amp-design-selector', '=' , '4')
-                )
+                // 'required' => array(
+                //     array('amp-design-selector', '=' , '4')
+                // )
             ),
 
           array(

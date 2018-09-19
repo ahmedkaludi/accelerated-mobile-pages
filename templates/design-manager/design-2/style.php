@@ -26,7 +26,8 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 	?>
 
 /* Global Styling */
-body{	background: #f1f1f1; font: 16px/1.4 Sans-serif; }
+body{ background: #f1f1f1; font: 16px/1.4 Sans-serif;<?php echo ampforwp_font_selector('body'); ?>}
+
 a {	color: #312C7E;	text-decoration: none }
 .clearfix, .cb { clear: both }
 amp-iframe{ max-width: 100%; margin-bottom : 20px; }
@@ -39,6 +40,7 @@ amp-wistia-player {margin:5px 0px;}
 
 /* Template Styles */
 .amp-wp-content, .amp-wp-title-bar div {
+	<?php echo ampforwp_font_selector('content'); ?>
     <?php if ( $content_max_width > 0 ) : ?>
     max-width: <?php echo sprintf( '%dpx', $content_max_width ); ?>;
     margin: 0 auto;
@@ -190,7 +192,7 @@ main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bot
 .amp-wp-content.post-pagination-meta{ max-width: 1030px; }
 .amp-wp-article-header.amp-wp-article-category.ampforwp-meta-taxonomy{ margin: 10px auto; max-width: 1030px; } .ampforwp_single_excerpt { margin-bottom:15px; font-size: 15px; text-align:center}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
-.single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 2px; font-size: 13px; color:#333; font-family: sans-serif; }
+.single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 2px; font-size: 13px; color:#333; font-family: sans-serif;<?php echo ampforwp_font_selector('body');?> }
 <?php if(is_single()){
 if( $redux_builder_amp['ampforwp-single-select-type-of-related'] ){ ?>
 /* Related Posts */

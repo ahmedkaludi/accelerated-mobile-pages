@@ -25,7 +25,7 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 .amp-wp-content.widget-wrapper { margin: 20px 17px 17px 17px;}
 
 /* Global Styling */
-body{ font: 16px/1.4 Sans-serif; }
+body{ font: 16px/1.4 Sans-serif; <?php echo ampforwp_font_selector('body'); ?>}
 a{ color: #312C7E; text-decoration: none }
 .clearfix, .cb{ clear: both }
 .alignleft{ margin-right: 12px; margin-bottom:5px; float: left; }
@@ -68,6 +68,7 @@ amp-wistia-player {margin:5px 0px;}
     max-width: <?php echo esc_attr( sprintf( '%dpx', $content_max_width ) ); ?>;
     margin: 0 auto;
     <?php endif; ?>
+    <?php echo ampforwp_font_selector('content'); ?>
 }
 .wp-block-image.aligncenter amp-img {
  margin: 0 auto;

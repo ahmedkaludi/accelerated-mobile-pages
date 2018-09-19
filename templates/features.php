@@ -6696,3 +6696,23 @@ function ampforwp_featured_video_plus_css(){
 	if( function_exists('get_the_post_video') ) {?>
 		.fvp-onload{display:none}
 <?php }}
+
+// Font Selector
+if( ! function_exists('ampforwp_font_selector') ) {
+	function ampforwp_font_selector( $container ) {
+		global $redux_builder_amp;
+		$fontFamily = '';
+		if(empty($container)) {
+			$container = 'body';
+		}
+		if ( 'content' == $container && ampforwp_get_setting('amp_font_selector_content_single') && 1 != ampforwp_get_setting('amp_font_selector_content_single') ) {
+			$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';"; 
+		}
+
+		if ( 'body' == $container && ampforwp_get_setting('amp_font_selector') && 1 != ampforwp_get_setting('amp_font_selector') ) {
+			$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."'";
+		}
+
+		return $fontFamily;
+	}
+}
