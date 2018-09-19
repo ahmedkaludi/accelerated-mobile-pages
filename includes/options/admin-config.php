@@ -3484,10 +3484,18 @@ Redux::setSection( $opt_name, array(
                        'layout_type' => 'accordion',
                         'accordion-open'=> 1,
             ),
+           array(
+                    'id'       => 'ampforwp-amp-menu-swift',
+                    'type'     => 'switch',
+                    'title'    => __('Navigation Menu', 'accelerated-mobile-pages'),
+                    'required' => array('amp-design-selector', '=' , '4'),
+                    'default'  => '1'         
+            ),
             array(
                     'id'    => 'menu-type',
                    'title'  => __('Menu Type', 'accelerated-mobile-pages'),
                    'type'   => 'image_select',
+                   'class' => 'child_opt',
                    'options'=> array(
                         '1' => array(
                                 'alt'=>' Menu overlay 1 ',
@@ -3497,23 +3505,30 @@ Redux::setSection( $opt_name, array(
                    'default'=> '1',
 //                   'max-width' => 200,
  //                   'max-height'=> 60,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
+                    'required' => array(
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-amp-menu-swift', '=' , '1')
+                    ),
              ),
             array(
                     'id'       => 'menu-search',
                     'type'     => 'switch',
+                    'class' => 'child_opt',
                     'title'    => __('Menu Search', 'accelerated-mobile-pages'),
                     'required' => array(
-                    array('amp-design-selector', '=' , '4')
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-amp-menu-swift', '=' , '1')
                     ),
                     'default'  => '1'         
             ),
             array(
                 'id'       => 'amp-swift-menu-cprt',
                 'type'     => 'switch',
+                'class' => 'child_opt',
                 'title'    => __( 'Menu Copyright', 'accelerated-mobile-pages' ),
                 'required' => array(
-                    array('amp-design-selector', '=' , '4')
+                    array('amp-design-selector', '=' , '4'),
+                    array('ampforwp-amp-menu-swift', '=' , '1')
                 ),
                 'default'  => '1'
             ),

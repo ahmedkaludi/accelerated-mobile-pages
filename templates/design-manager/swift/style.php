@@ -1605,3 +1605,8 @@ if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
     max-width: 1000px;
 }
 <?php } ?>
+<?php if(ampforwp_get_setting('ampforwp-amp-menu-swift') == false){?>
+.hamb-mnu .h-nav{
+	display:none;
+}
+<?php } ?>
