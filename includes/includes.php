@@ -10,11 +10,13 @@
 // 1.1 AMP Header menu
 if (! function_exists( 'ampforwp_menu') ) {
 	function ampforwp_menu() {
+	if(ampforwp_get_setting('ampforwp-amp-menu-swift') == true)	{
 	  register_nav_menus(
 	    array(
 	      'amp-menu' => __( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
+	}
 	}
 	add_action( 'init', 'ampforwp_menu' );
 }
