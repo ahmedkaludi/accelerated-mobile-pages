@@ -184,9 +184,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 == Changelog ==
 
 = 0.9.97.16 (19th September 2018) = 
+* Added: 3 Types of Gallery designs #1968
 * Added: New Section to show 'change log' on Welcome Page #1753
 * Added: Allow HTML in footer section of translation panel in design 3 #1950
-Extending Default Gallery designs #1968
 * Added: Need to make the compatibility with The Voux theme #2263
 * Fixed: Special character "|" breaking the url in the twitter share #2264
 * Added: Read more button for post on blog page #2273
