@@ -25,6 +25,9 @@ function ampforwp_framework_get_featured_image(){
 			if( $image ){			
 				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 			}
+			if( function_exists('get_the_post_video') ) {
+				$amp_html = ampforwp_featured_video_plus($amp_html);
+			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
 			$amp_img_src 	= ampforwp_cf_featured_image_src();
