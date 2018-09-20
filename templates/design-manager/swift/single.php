@@ -423,27 +423,12 @@ do_action("ampforwp_single_design_type_handle");
 				<?php if ( is_active_sidebar( 'swift-sidebar' ) ) : ?>
 				<div class="sdbr-right">
 					<?php 
-						ob_start();
-						dynamic_sidebar('swift-sidebar');
-						$swift_footer_widget = ob_get_contents();
-						ob_end_clean();
-						$sanitizer_obj = new AMPFORWP_Content( 
-											$swift_footer_widget,
-											array(), 
-											apply_filters( 'ampforwp_content_sanitizers', 
-												array( 'AMP_Img_Sanitizer' => array(), 
-													'AMP_Style_Sanitizer' => array(), 
-													'AMP_Blacklist_Sanitizer' => array(),
-													'AMP_Video_Sanitizer' => array(),
-							 						'AMP_Audio_Sanitizer' => array(),
-							 						'AMP_Iframe_Sanitizer' => array(
-														 'add_placeholder' => true,
-													 ),
-												) 
-											) 
-										);
-						 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
-			              echo do_shortcode($sanitized_footer_widget);
+					$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+					if ( $sanitized_sidebar) {
+						$sidebar_output = $sanitized_sidebar->get_amp_content();
+						$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+					}
+		            echo do_shortcode($sidebar_output);
 					?>
 				</div>
 			<?php endif; ?>

@@ -2373,9 +2373,9 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
 	    )  ), array('non-content'=>'non-content')
 	  );
   }
-
+  // Allow some blacklisted tags #1400
+  add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
-	add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
 	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
   }
   return $sanitized_sidebar;
@@ -2447,6 +2447,8 @@ function ampforwp_add_sidebar_data( $data ) {
 	$sanitized_data_below_loop 	 = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');
 	$sanitized_data_below_header = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
 	$sanitized_data_above_footer = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
+	$sanitized_data_swift_sidebar = ampforwp_sidebar_content_sanitizer('swift-sidebar');
+	$sanitized_data_swift_footer = ampforwp_sidebar_content_sanitizer('swift-footer-widget-area');
 
 	if ( $sanitized_data_above_loop ) {
 		// Add Scripts
@@ -2514,6 +2516,42 @@ function ampforwp_add_sidebar_data( $data ) {
 		// Add Styles
 		if ( $sanitized_data_above_footer->get_amp_styles() ) {
 			foreach ($sanitized_data_above_footer->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
+			}
+		}
+	}
+	if ( $sanitized_data_swift_sidebar ) {		
+		// Add Scripts
+		if ( $sanitized_data_swift_sidebar->get_amp_scripts() ) {
+			foreach ($sanitized_data_swift_sidebar->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_swift_sidebar->get_amp_styles() ) {
+			foreach ($sanitized_data_swift_sidebar->get_amp_styles() as $key => $value ) {
+				if( empty( $data['post_amp_styles'][$key] ) ){
+					$data['post_amp_styles'][$key]  = $value;
+				}
+			}
+		}
+	}
+	if ( $sanitized_data_swift_footer ) {		
+		// Add Scripts
+		if ( $sanitized_data_swift_footer->get_amp_scripts() ) {
+			foreach ($sanitized_data_swift_footer->get_amp_scripts() as $key => $value ) {
+				if( empty( $data['amp_component_scripts'][$key] ) ){
+					$data['amp_component_scripts'][$key]  = $value;
+				}
+			}
+		}
+		// Add Styles
+		if ( $sanitized_data_swift_footer->get_amp_styles() ) {
+			foreach ($sanitized_data_swift_footer->get_amp_styles() as $key => $value ) {
 				if( empty( $data['post_amp_styles'][$key] ) ){
 					$data['post_amp_styles'][$key]  = $value;
 				}

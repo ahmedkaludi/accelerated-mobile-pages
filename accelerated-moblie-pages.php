@@ -544,6 +544,13 @@ function ampforwp_bundle_core_amp_files(){
 	require_once( AMP__VENDOR__DIR__ . '/includes/admin/functions.php' );
 	require_once( AMP__VENDOR__DIR__ . '/includes/settings/class-amp-customizer-settings.php' );
 	require_once( AMP__VENDOR__DIR__ . '/includes/settings/class-amp-customizer-design-settings.php' );
+	// Widgets
+	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-categories.php' );
+	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-archives.php' );
+	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-media-video.php' );
+	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-recent-comments.php' );
+	require_once ( AMP__VENDOR__DIR__ . '/includes/widgets/class-amp-widget-text.php' );
+
 } 
 add_action('plugins_loaded','ampforwp_bundle_core_amp_files', 8);
 
@@ -769,4 +776,26 @@ function ampforwp_get_data_consent(){
 				$dboc = true;
 	}
 	return $dboc;
+}
+
+// Register widgets
+add_action('init', 'ampforwp_widgets',0);
+function ampforwp_widgets(){
+	add_action( 'widgets_init', 'register_widgets' );
+}
+function register_widgets() {
+	global $wp_widget_factory;
+	foreach ( $wp_widget_factory->widgets as $registered_widget ) {
+		$registered_widget_class_name = get_class( $registered_widget );
+		if ( ! preg_match( '/^WP_Widget_(.+)$/', $registered_widget_class_name, $matches ) ) {
+			continue;
+		}
+		$amp_class_name = 'AMP_Widget_' . $matches[1];
+		if ( ! class_exists( $amp_class_name ) || is_a( $amp_class_name, $registered_widget_class_name ) ) {
+			continue;
+		}
+
+		unregister_widget( $registered_widget_class_name );
+		register_widget( $amp_class_name );
+	}
 }
