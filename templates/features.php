@@ -2279,7 +2279,7 @@ function ampforwp_output_widget_content_above_loop() {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
 	}
-      if ( $sidebar_output) {  echo $sidebar_output ; }
+      if ( $sidebar_output) {  echo do_shortcode($sidebar_output) ; }
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
@@ -2292,7 +2292,7 @@ function ampforwp_output_widget_content_below_loop() {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
 	}
-    if ( $sidebar_output) : echo $sidebar_output;  endif; 
+    if ( $sidebar_output) : echo do_shortcode($sidebar_output);  endif; 
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );
@@ -2308,7 +2308,7 @@ function ampforwp_output_widget_content_below_the_header() {
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
 		   	<div class="amp_widget_below_the_header">
-		  	<?php echo $sidebar_output; ?> </div>
+		  	<?php echo do_shortcode($sidebar_output); ?> </div>
 	  	</div> 
 	<?php }
 }
@@ -2325,7 +2325,7 @@ function ampforwp_output_widget_content_above_the_footer() {
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
 			<div class="amp_widget_above_the_footer">
-			<?php echo $sidebar_output; ?> </div>
+			<?php echo do_shortcode($sidebar_output); ?> </div>
 		</div>
 	<?php }
 }

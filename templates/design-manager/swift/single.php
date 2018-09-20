@@ -443,7 +443,7 @@ do_action("ampforwp_single_design_type_handle");
 											) 
 										);
 						 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
-			              echo $sanitized_footer_widget;
+			              echo do_shortcode($sanitized_footer_widget);
 					?>
 				</div>
 			<?php endif; ?>

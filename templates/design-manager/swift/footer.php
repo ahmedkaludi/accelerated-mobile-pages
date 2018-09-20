@@ -32,7 +32,7 @@
 								);
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
 				 $sanitized_footer_widget = apply_filters('ampforwp_modify_sidebars_content',$sanitized_footer_widget); 
-	              echo $sanitized_footer_widget;
+	              echo do_shortcode($sanitized_footer_widget); 
 				?>
 			</div>
 		</div>
