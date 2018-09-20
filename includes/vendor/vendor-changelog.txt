@@ -56,3 +56,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 29. Converted the space into %20 on anchor links which have spaces on line number 166 and here is the github ticket #2465
 30. FTP protocol has been whitelisted in anchor tags #2477
 31. class-amp-style-sanitizer.php updated #2387
+32. Widgets folder added in Vendor amp/includes #1400 
