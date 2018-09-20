@@ -3616,7 +3616,7 @@ function ampforwp_posts_to_remove () {
 	    	return true;
 	    }
 	}
-	if( is_array($redux_builder_amp['hide-amp-tags-bulk-option2']) )	{
+	if( is_array(ampforwp_get_setting('hide-amp-tags-bulk-option2')))	{
 		$get_tags_checkbox =  array_values(array_filter($redux_builder_amp['hide-amp-tags-bulk-option2'])); 
 		$all_tags = get_the_tags(get_the_ID());
 		$tagsOnPost = array();
@@ -6446,7 +6446,7 @@ add_action( 'amp_post_template_head' , 'ampforwp_amp_app_banner_action' );
 if( ! function_exists( 'ampforwp_amp_app_banner_action' ) ) {
 	function ampforwp_amp_app_banner_action() {
 		global $redux_builder_amp;
-		if( 1 == $redux_builder_amp['ampforwp-amp-app-banner'] ){
+		if( 1 == ampforwp_get_setting('ampforwp-amp-app-banner') ){
 			if( isset($redux_builder_amp['ampforwp-apple-app-id']) && $redux_builder_amp['ampforwp-apple-app-id']!='' ){
 			?>
 			<meta name="apple-itunes-app" content="app-id=<?php echo $redux_builder_amp['ampforwp-apple-app-id'];?>">
@@ -6462,7 +6462,7 @@ add_action('amp_post_template_footer','ampforwp_amp_app_banner_markup');
 function ampforwp_amp_app_banner_markup(){
 	global $redux_builder_amp;
 	$banner_image = '';
-	if( 1 == $redux_builder_amp['ampforwp-amp-app-banner'] ) {
+	if( 1 == ampforwp_get_setting('ampforwp-amp-app-banner') ) {
 		if( !isset( $redux_builder_amp['ampforwp-app-banner-image'] ) && $redux_builder_amp['ampforwp-app-banner-image'] =='' ){
 			$banner_image = $redux_builder_amp['opt-media']['url'];
 		}else{
