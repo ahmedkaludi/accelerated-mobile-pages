@@ -6572,6 +6572,18 @@ if(!ampforwp_check_extensions()){
            ),
         )        
 ) );
+// System info
+    ob_start();
+    include(AMPFORWP_PLUGIN_DIR.'\includes\options\redux-core/inc/welcome/views/status_report.php');
+    $sys = ob_get_contents();
+    ob_get_clean();
+Redux::setSection( $opt_name, array(
+        'title'      => __( 'System Info', 'accelerated-mobile-pages' ),
+        'id'         => 'opt-system-info',
+        'subsection' => false,
+        'desc' => $sys,          
+        'icon' => 'el el-info-circle',
+    ) );
 
 Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extensions/demolink_image_select' );
 /*

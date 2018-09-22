@@ -753,3 +753,6 @@ visibility: hidden;
     margin-top: 7px;
     display: inline-block;
 }
+.redux_status_table.widefat{
+    clear: none;
+}
