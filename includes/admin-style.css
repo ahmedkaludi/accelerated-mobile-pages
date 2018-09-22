@@ -722,3 +722,10 @@ visibility: hidden;
 span.switch-text {
     margin-left: 5px;
 }
+#redux_builder_amp-ampforwp_pwa_module .redux_field_th{
+    padding: 0px 20% 0px 10px !important;
+    float: left;
+}
+.ampforwp-st-data-update .row{width: 100%;}
+.ampforwp-st-data-update .col-3{width: 70%;float:left;}
+.ampforwp-st-data-update .col-1{width: 30%;float: left;} 

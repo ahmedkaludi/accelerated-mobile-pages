@@ -602,3 +602,39 @@ var redux_title_modify = function(){
 function getQueryStringValue (key) {  
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 }  
+
+
+jQuery(document).ready(function($){
+
+    $('.ampforwp-activation-call-module-upgrade').click(function(){
+        if(pagenow == 'toplevel_page_amp_options'){// Check for current page
+            var self = $(this);
+            self.parents('div.update-message').addClass('updating-message');
+            var activate = '';
+            if($(this).attr('id')=='ampforwp-pwa-activation-call'){
+                activate = '&activate=pwa';
+            }else if($(this).attr('id')=='ampforwp-structure-data-activation-call'){
+                activate = '&activate=structure_data';
+            }
+            self.text('Updating...');
+            $.ajax({
+                url: ajaxurl,
+                type: 'post',
+                data: 'action=ampforwp_enable_modules_upgread'+activate,
+                dataType: 'json',
+                success: function (response){
+                    if(response.status==200){
+                        self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
+                        self.parents('div.ampforwp-modules').addClass('updated-message')
+                         self.parents('div.ampforwp-modules').html('<a href="'+response.redirect_url+'">Go to settings</a>')
+                        
+                    }else{
+                        alert(response.message)
+                    }
+                    
+                }
+            });
+            
+        }
+    });
+});//(document).ready Closed
