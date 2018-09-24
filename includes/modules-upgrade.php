@@ -123,7 +123,7 @@ function ampforwp_admin_notice_module_reference_install() {
     if($reference=='ampforwp'){
         switch( $page ){
             case 'pwaforwp':
-                $message = 'You are welcome AMP Upgread Modules of PWA for wp';
+                $message = 'AMPforWP PWA Module has been activated. You may configure it below:';
             break;
             case 'structured_data_options':
                 $message = 'You are welcome AMP Upgread Modules of schema and structured data for wp';

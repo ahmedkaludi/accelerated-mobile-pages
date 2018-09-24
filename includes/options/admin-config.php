@@ -2013,7 +2013,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => __('', 'accelerated-mobile-pages'),
                'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
                                 '<div class="ampforwp-recommendation-btn update-message ampforwp-modules button"><p><button type="button" id="ampforwp-pwa-activation-call" class="ampforwp-activation-call-module-upgrade button-link">Activate this Module</button></p></div>'
-                            : '<a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to settings</a>')
+                            : '<a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to PWA Settings</a>')
            ),
 
        )

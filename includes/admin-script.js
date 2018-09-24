@@ -626,7 +626,7 @@ jQuery(document).ready(function($){
                     if(response.status==200){
                         self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
                         self.parents('div.ampforwp-modules').addClass('updated-message')
-                         self.parents('div.ampforwp-modules').html('<a href="'+response.redirect_url+'">Go to settings</a>')
+                         self.parents('div.ampforwp-modules').html('<a href="'+response.redirect_url+'">Go to PWA Settings</a>')
                         
                     }else{
                         alert(response.message)

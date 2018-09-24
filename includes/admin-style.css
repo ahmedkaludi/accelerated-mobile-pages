@@ -735,7 +735,6 @@ span.switch-text {
     height: 29px;
     padding: 0px 80px 23px 7px;
     position: relative;
-    width: 175px;
 	top:-4px;
 }
 .ampforwp-recommendation-btn + .update-message p:before{
@@ -745,13 +744,15 @@ span.switch-text {
 	font-size: 18px;
 }
 .ampforwp-recommendation-btn .button-link{
-	    position: absolute;
     padding-left:6px;
-    /* width: 156px; */
     top: 0;
     text-decoration: none;
     font-size: 14px;
     top: 4px;
     letter-spacing: 0px;
     color: #2c2c2c;
+}
+.ampforwp-recommendation-btn a{
+    text-decoration: none;
+    color: #333;
 }
