@@ -10,7 +10,6 @@ Requires at least: 3.1
 Tested up to: 4.6
 License: GPLv3
 Text Domain: black-studio-tinymce-widget
-Domain Path: /languages
 */
 
 // Exit if accessed directly

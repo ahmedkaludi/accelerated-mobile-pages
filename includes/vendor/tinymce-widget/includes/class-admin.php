@@ -80,9 +80,9 @@ if ( ! class_exists( 'Black_Studio_TinyMCE_Admin' ) ) {
 		 * @return void
 		 * @since 2.0.0
 		 */
-		public function load_textdomain() {
+		/*public function load_textdomain() {
 			load_plugin_textdomain( 'black-studio-tinymce-widget', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
-		}
+		}*/
 
 		/**
 		 * Checks if the plugin admin code should be loaded

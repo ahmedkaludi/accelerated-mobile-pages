@@ -9,6 +9,7 @@ Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
 License: GPL2+
 Text Domain: accelerated-mobile-pages
+Domain Path: /languages/
 */
 
 // Exit if accessed directly.
@@ -31,8 +32,6 @@ function ampforwp_generate_endpoint(){
 }
 
 define('AMPFORWP_AMP_QUERY_VAR', apply_filters( 'amp_query_var', ampforwp_generate_endpoint() ) );
-
-load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
 
 // Rewrite the Endpoints after the plugin is activate, as priority is set to 11
 function ampforwp_add_custom_post_support() {
@@ -623,7 +622,7 @@ if ( ! function_exists('ampforwp_init') ) {
 
 		do_action( 'amp_init' );
 
-		load_plugin_textdomain( 'amp', false, plugin_basename( AMP__DIR__ ) . '/languages' );
+		load_plugin_textdomain( 'accelerated-mobile-pages', false, trailingslashit(AMPFORWP_PLUGIN_DIR) . 'languages' );
 
 		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
 		add_post_type_support( 'post', AMP_QUERY_VAR );

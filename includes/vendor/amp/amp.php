@@ -7,7 +7,6 @@
  * Author URI: https://automattic.com
  * Version: 0.4.2
  * Text Domain: amp
- * Domain Path: /languages/
  * License: GPLv2 or later
  */
 // Make sure the `amp` query var has an explicit value.
