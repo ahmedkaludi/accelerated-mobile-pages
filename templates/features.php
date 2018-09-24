@@ -7516,3 +7516,8 @@ function ampforwp_wp_kses_allowed_html(){
   	}
   	return $allowed_html; 
 }
+// Removing Marfeel plugin which was blocking internal pages of AMP #2423
+add_action('wp','ampforwp_remove_marfeel',9);
+function ampforwp_remove_marfeel(){
+remove_action('wp', 'render_marfeel_amp_content' );
+}
