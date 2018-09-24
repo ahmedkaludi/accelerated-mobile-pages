@@ -2570,7 +2570,7 @@ function ampforwp_add_sd_fields($fields){
              $fields[] =    array(
                                 'id' => 'ampforwp-sd_modules_section',
                                 'type' => 'section',
-                                'title' => __('Structure Data module', 'accelerated-mobile-pages'),
+                                'title' => __('Structured Data has been Improved!', 'accelerated-mobile-pages'),
                                 'indent' => true,
                                 'layout_type' => 'accordion',
                                 'accordion-open'=> 1, 
@@ -2578,26 +2578,23 @@ function ampforwp_add_sd_fields($fields){
                 $fields[] =   array(
                           'id'       => 'ampforwp-sd-module',
                           'type'     => 'raw',
-                          'title'    => __('Structure data module', 'accelerated-mobile-pages'),
                           'content'  => '<div class="ampforwp-st-data-update">
-                                                New update available for Structure data
+                                                New Update available for Structured data
                                                 <div class="row">
                                                     <div class="col-3">
                                                         <ul>
-                                                            <li>A</li>
-                                                            <li>B</li>
-                                                            <li>C</li>
+                                                            <li>Add Unlimited Schemas</li>
+                                                            <li>New Schema Types</li>
+                                                            <li>Advanced Structured data options</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-1">
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
                                                             '
-                                                        <div class="ampforwp-recommendation-btn update-message ampforwp-modules">
-                                                        <p> 
-                                                            New PWA Module
-                                                            <button type="button" id="ampforwp-structure-data-activation-call"  class="ampforwp-activation-call-module-upgrade button-link"> Enable </button>
-                                                        </p>
-                                                        </div>' :
+												<div class="ampforwp-recommendation-btn update-message ampforwp-modules button">
+												<p><button type="button" id="ampforwp-structure-data-activation-call"  class="ampforwp-activation-call-module-upgrade button-link">Upgrade for Free</button>
+												</p>
+												</div>' :
                                                             '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'">Go to settings</a>'
                                                         )
                                                         .'

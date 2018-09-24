@@ -726,10 +726,17 @@ span.switch-text {
     padding: 0px 20% 0px 10px !important;
     float: left;
 }
-.ampforwp-st-data-update .row{width: 100%;}
+.ampforwp-st-data-update .row{width: 100%;  font-size: 12px;}
 .ampforwp-st-data-update .col-3{width: 70%;float:left;}
 .ampforwp-st-data-update .col-1{width: 30%;float: left;} 
-
+.ampforwp-st-data-update .col-3 li:before {
+    content: "\f147";
+    font-family: dashicons;
+    position: relative;
+    top: 1px;
+    left: -2px;
+    color: #4CAF50;
+}
 .ampforwp-recommendation-btn{
 	display: inline-block;
     height: 29px;
@@ -755,4 +762,7 @@ span.switch-text {
 .ampforwp-recommendation-btn a{
     text-decoration: none;
     color: #333;
+}
+#section-ampforwp-sd_modules_section h3{
+	background:#FFF9C4 !important
 }
