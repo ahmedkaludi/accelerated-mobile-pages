@@ -1992,7 +1992,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
   // Performance SECTION
   Redux::setSection( $opt_name, array(
-        'title'      => __( 'PWA for wp', 'accelerated-mobile-pages' ),
+        'title'      => __( 'PWA', 'accelerated-mobile-pages' ),
         'id'         => 'pwa-for-wp',
         'desc'      => '',
         'subsection' => true,
@@ -2000,7 +2000,7 @@ Redux::setArgs( "redux_builder_amp", $args );
             array(
                   'id' => 'ampforwp-pwa-for-wp',
                   'type' => 'section',
-                  'title' => __('PWA for wp Module', 'accelerated-mobile-pages'),
+                  'title' => __('Progressive Web App (PWA)', 'accelerated-mobile-pages'),
                   'indent' => true,
                   'layout_type' => 'accordion',
                     'accordion-open'=> 1,
@@ -2009,10 +2009,10 @@ Redux::setArgs( "redux_builder_amp", $args );
            array(
                'id'       => 'ampforwp_pwa_module',
                'type'     => 'raw',
-               'title'     => __('PWA for wp', 'accelerated-mobile-pages'),
+               'title'     => __('PWA Support', 'accelerated-mobile-pages'),
                'tooltip-subtitle'     => __('', 'accelerated-mobile-pages'),
                'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
-                                '<div class="update-message ampforwp-modules"><p> New PWA Module <button type="button" id="ampforwp-pwa-activation-call" class="ampforwp-activation-call-module-upgrade button-link"> Enable </button></p></div>'
+                                '<div class="ampforwp-recommendation-btn update-message ampforwp-modules button"><p><button type="button" id="ampforwp-pwa-activation-call" class="ampforwp-activation-call-module-upgrade button-link">Activate this Module</button></p></div>'
                             : '<a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to settings</a>')
            ),
 
@@ -2592,7 +2592,7 @@ function ampforwp_add_sd_fields($fields){
                                                     <div class="col-1">
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
                                                             '
-                                                        <div class="update-message ampforwp-modules">
+                                                        <div class="ampforwp-recommendation-btn update-message ampforwp-modules">
                                                         <p> 
                                                             New PWA Module
                                                             <button type="button" id="ampforwp-structure-data-activation-call"  class="ampforwp-activation-call-module-upgrade button-link"> Enable </button>
