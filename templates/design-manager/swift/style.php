@@ -439,6 +439,15 @@ if($redux_builder_amp['swift-social-position'] == 'below-content'){?>
  // swift Content Heading Sizes Ends?>
 .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
+.m-ctr {
+position: fixed;
+overflow: scroll;
+}
+.m-scrl {
+display: inline-block;
+width: 100%;
+max-height: 94vh;
+}
 <?php if($redux_builder_amp['rp_design_type'] == '1'){?>
 	.srp{margin-top:20px;}
 	.srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
