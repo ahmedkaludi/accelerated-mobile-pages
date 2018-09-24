@@ -163,6 +163,11 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		$special_protocols = array( 'tel', 'sms' ); // these ones don't valid with `filter_var+FILTER_VALIDATE_URL`
 		$protocol = strtok( $href, ':' );
 
+		/* Convert space into %20 and esc url so it can work with the correct 
+		urls that have spaces */
+		if ( strpos($href, ' ') ){
+			$href = esc_url($href);
+		}
 		if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 			&& ! in_array( $protocol, $special_protocols, true ) ) {
 			return false;
