@@ -2380,19 +2380,19 @@ function ampforwp_add_proper_post_meta(){
 	if ( $check_custom_front_page == 'page' ) {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta_homepage' );
 		if(is_home()){
-			add_filter('wpseo_opengraph_title', 'custom_twitter_title_homepage');
-			add_filter('wpseo_twitter_title', 'custom_twitter_title_homepage');
+			add_filter('wpseo_opengraph_title', 'ampforwp_custom_twitter_title_homepage');
+			add_filter('wpseo_twitter_title', 'ampforwp_custom_twitter_title_homepage');
 	
 
-			add_filter('wpseo_opengraph_desc', 'custom_twitter_description_homepage');
-			add_filter('wpseo_twitter_description', 'custom_twitter_description_homepage');
+			add_filter('wpseo_opengraph_desc', 'ampforwp_custom_twitter_description_homepage');
+			add_filter('wpseo_twitter_description', 'ampforwp_custom_twitter_description_homepage');
 
-			add_filter('wpseo_opengraph_url', 'custom_og_url_homepage');
+			add_filter('wpseo_opengraph_url', 'ampforwp_custom_og_url_homepage');
 		
 
 		// This is causing the 2nd debug issue reported in #740
-		// add_filter('wpseo_twitter_image', 'custom_og_image_homepage');
-		add_filter('wpseo_opengraph_image', 'custom_og_image_homepage');
+		// add_filter('wpseo_twitter_image', 'ampforwp_custom_og_image_homepage');
+		add_filter('wpseo_opengraph_image', 'ampforwp_custom_og_image_homepage');
 	}
 	} else {
 		add_action( 'amp_post_template_head', 'ampforwp_custom_yoast_meta' );
@@ -2401,18 +2401,26 @@ function ampforwp_add_proper_post_meta(){
 add_action('pre_amp_render_post','ampforwp_add_proper_post_meta');
 
 
-function custom_twitter_title_homepage() {
-	
-		return  esc_attr( get_bloginfo( 'name' ) );
+function ampforwp_custom_twitter_title_homepage() {
+		//Added the opengraph for frontpage in AMP #2454
+		if(ampforwp_is_front_page()){
+			$get_title = ampforwp_get_setting('amp-frontpage-select-option-pages');
+			return get_the_title($get_title);
+ 		}
+ 		return  esc_attr( get_bloginfo( 'name' ) );
 }
-function custom_twitter_description_homepage() {
-	
+function ampforwp_custom_twitter_description_homepage() {
+	if(ampforwp_is_front_page()){
+			$get_excerpt = ampforwp_get_setting('amp-frontpage-select-option-pages');
+			return wp_trim_words(get_post_field('post_content', $get_excerpt), 26);
+			
+	}
 	return  esc_attr( get_bloginfo( 'description' ) );
 }
-function custom_og_url_homepage() {
+function ampforwp_custom_og_url_homepage() {
 	return esc_url( get_bloginfo( 'url' ) );
 }
-function custom_og_image_homepage() {
+function ampforwp_custom_og_image_homepage() {
 	if ( class_exists('WPSEO_Options') ) {
 		$options = WPSEO_Options::get_option( 'wpseo_social' );
 		return  $options['og_default_image'] ;
