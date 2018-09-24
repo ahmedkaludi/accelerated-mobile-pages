@@ -55,7 +55,7 @@ if ( get_query_var( 'paged' ) ) {
 		      echo $delay; ?> >
 		<?php
 		  global $redux_builder_amp;
-		  if( isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ){
+		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '1' ) && (isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ) ){
 		    $args = array(
 		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
 		                   'posts_per_page' => $num_posts,
@@ -65,6 +65,14 @@ if ( get_query_var( 'paged' ) ) {
 		  } else {
 		    //if user does not give a category
 		    $args = array(
+		                   'posts_per_page' => $num_posts,
+		                   'has_password' => false ,
+		                   'post_status'=> 'publish'
+		                 );
+		    }
+		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '2') && ( isset($redux_builder_amp['amp-design-3-tag-selector']) && $redux_builder_amp['amp-design-3-tag-selector'] ) ){
+		  	$args = array(
+		                   'tag__in' => $redux_builder_amp['amp-design-3-tag-selector'],
 		                   'posts_per_page' => $num_posts,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
