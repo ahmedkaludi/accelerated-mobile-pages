@@ -368,12 +368,26 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 				global $sitepress_settings, $wp;
 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
 				  	if( is_singular() ){
+				  		$active_langs = $sitepress_settings['active_languages'];
+				  		$found == '';
 						$wpml_url =get_permalink( get_queried_object_id() );
-						$explode_url = explode('/', $wpml_url);
+						$untrail_wpml_url = untrailingslashit($wpml_url);
+						$explode_url = explode('/', $untrail_wpml_url);
 						$append_amp = 'amp';
-						array_splice( $explode_url, 5, 0, $append_amp );
-						$impode_url = implode('/', $explode_url);
-						$amp_url = untrailingslashit($impode_url);
+						foreach ($active_langs as $active_lang) {
+							foreach($explode_url as $a) {
+							     if (stripos('?lang='.$active_lang ,$a) !== false){
+							        	$amp_url = add_query_arg('amp','1',$wpml_url);
+							        	$found = 'found';
+							        	break 2;
+							 	}
+							}
+						}
+						if($found == ''){
+							array_splice( $explode_url, count($explode_url), 0, $append_amp );
+							$impode_url = implode('/', $explode_url);
+							$amp_url = untrailingslashit($impode_url);
+						}
 				    }
 				    if ( is_home()  || is_archive() ){
 				        global $wp;
@@ -382,13 +396,47 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 						$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
 						$query_arg_array = $wp->query_vars;
 						if( array_key_exists( 'paged' , $query_arg_array ) ) {
-							array_splice( $explode_path, -3, 0, $inserted );
+							$active_langs = $sitepress_settings['active_languages'];
+							 $found = '';
+							foreach ($active_langs as $active_lang) {
+								 
+								foreach($explode_path as $a) {
+								     if (stripos('?lang='.$active_lang ,$a) !== false){
+								        	$amp_url = add_query_arg('amp','1',$current_archive_url);
+								        	$found = 'found';
+								        	break 2;
+								 	}
+								}
+
+							 }
+							if($found == ''){
+								array_splice( $explode_path, count($explode_path), 0, $inserted );
+								$impode_url = implode('/', $explode_path);
+								$amp_url = $impode_url;
+							 
+							}
 						}
 						else{
-							array_splice( $explode_path, -1, 0, $inserted );
+							$active_langs = $sitepress_settings['active_languages'];
+							 $found = '';
+							foreach ($active_langs as $active_lang) {
+								 
+								foreach($explode_path as $a) {
+								     if (stripos('?lang='.$active_lang ,$a) !== false){
+
+								     	$amp_url = add_query_arg('amp','1',$current_archive_url);
+								        $found = 'found';
+								        break 2;
+								 	}
+								}
+							 }
+							if($found == ''){
+								array_splice( $explode_path, count($explode_path), 0, $inserted );
+								$impode_url = implode('/', $explode_path);
+								$amp_url = $impode_url;
+							 
+							}
 						}
-						$impode_url = implode('/', $explode_path);
-						$amp_url = $impode_url;
 				    }
 				}
 			}
@@ -6336,11 +6384,37 @@ function ampforwp_url_controller( $url, $nonamp = '' ) {
  			}
  		else {
  				$new_url = user_trailingslashit( trailingslashit( $url ) . AMPFORWP_AMP_QUERY_VAR);
- 			}
+ 			// WPML COMPATIBILITY FOR LOOP 
+ 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	 			if( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' )){
+					global $sitepress_settings;
+	 				if($sitepress_settings[ 'language_negotiation_type' ] == 3){
+					        $current_archive_url = untrailingslashit($url);
+							$explode_path  	= explode("/",$current_archive_url);
+							$inserted 		= array(AMPFORWP_AMP_QUERY_VAR);
+							$query_arg_array = $wp->query_vars;
+							$active_langs = $sitepress_settings['active_languages'];
+							$found = '';
+							foreach ($active_langs as $active_lang) {
+								foreach($explode_path as $a) {
+								     if (stripos('?lang='.$active_lang ,$a) !== false){
+								        	$new_url = add_query_arg('amp','1',$current_archive_url);
+								        	$found = 'found';
+								        	break 2;
+								 	}
+								}
+							 }
+							if($found == ''){
+								array_splice( $explode_path, count($explode_path), 0, $inserted );
+								$impode_url = implode('/', $explode_path);
+								$new_url = $impode_url;
+							}
+						}
+					}
+ 				}
 	} else {
 		$new_url = add_query_arg( 'amp', '1', $url );
 	}
-
 	return esc_url( $new_url );
 }
 // 99. Merriweather Font Management
