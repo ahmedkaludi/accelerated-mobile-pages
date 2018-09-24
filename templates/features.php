@@ -6506,7 +6506,7 @@ function ampforwp_default_logo_data() {
 	$logo_alt		= '';
 
 	$logo_id = get_theme_mod( 'custom_logo' );
-	if( empty( $logo_id ) ) {
+	if(isset($redux_builder_amp['opt-media']['id']) && empty( $logo_id ) ) {
 		$logo_id = (integer) $redux_builder_amp['opt-media']['id'];
 	}
 
