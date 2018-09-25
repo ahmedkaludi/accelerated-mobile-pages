@@ -625,8 +625,14 @@ jQuery(document).ready(function($){
                 success: function (response){
                     if(response.status==200){
                         self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
-                        self.parents('div.ampforwp-modules').addClass('updated-message')
-                         self.parents('div.ampforwp-modules p').html('<a href="'+response.redirect_url+'">Go to Settings</a>')
+                        self.parents('div.ampforwp-modules').addClass('updated-message');
+                        var msgplug = '';
+                        if(self.attr('id')=='ampforwp-pwa-activation-call'){
+                            msgplug = 'PWA';
+                        }else if(self.attr('id')=='ampforwp-structure-data-activation-call'){
+                            msgplug = 'Structure Data';
+                        }
+                         self.parents('div.ampforwp-modules p').html('<a href="'+response.redirect_url+'">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
                         
                     }else{
                         alert(response.message)
@@ -640,6 +646,7 @@ jQuery(document).ready(function($){
     //import default Settings
     $("#finalized-import-structure-data-from-amp").click(function(){
         var self = $(this);
+        self.text("please wait...");
         $.ajax({
           url : ajaxurl,
           method : "POST",

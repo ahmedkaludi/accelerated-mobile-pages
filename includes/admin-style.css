@@ -726,8 +726,16 @@ span.switch-text {
     padding: 0px 20% 0px 10px !important;
     float: left;
 }
+.ampforwp-st-data-update{
+    color: #000;
+    font-size: 16px;
+}
 .ampforwp-st-data-update .row{width: 100%;  font-size: 12px;}
-.ampforwp-st-data-update .col-3{width: 70%;float:left;}
+.ampforwp-st-data-update .col-3{
+    width: 70%;
+    float: left;
+    font-size: 14px;
+    color: #333;}
 .ampforwp-st-data-update .col-1{width: 30%;float: left;} 
 .ampforwp-st-data-update .col-3 li:before {
     content: "\f147";
@@ -786,11 +794,22 @@ span.switch-text {
     text-decoration: none;
     color: #333;
 }
+.ampforwp-recommendation-btn:active{
+    background: #eee;
+    border-color: #999;
+    box-shadow: inset 0 2px 5px -3px rgba(0,0,0,.5);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+}
 #section-ampforwp-sd_modules_section h3{
 	background:#FFF9C4 !important
 }
 .amp_recommend_learnmore {
     position: relative;
+    font-size: 14px;
     top: 7px;
     left: 12px;
+}
+#finalized-import-structure-data-from-amp{
+    margin-left:8px;vertical-align: baseline
 }

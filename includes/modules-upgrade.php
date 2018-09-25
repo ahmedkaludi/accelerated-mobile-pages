@@ -126,7 +126,7 @@ function ampforwp_admin_notice_module_reference_install() {
                 $message = 'AMPforWP PWA Module has been activated. You may configure it below:';
             break;
             case 'structured_data_options':
-                $message = 'You are welcome AMP Upgread Modules of schema and structured data for wp';
+                $message = 'AMPforWP Structured data Module has been Upgraded. You may configure it below:';
             break;
         }
     }
@@ -158,7 +158,7 @@ function ampforwp_update_notice_structure_data(){
     //if(is_object($screen) && $screen->base == 'saswp_page_structured_data_options'){
         echo ' <div class="notice notice-error is-dismissible">
             <p>
-                Thank you For updating <strong>Structured Data</strong> <button type="button" id="finalized-import-structure-data-from-amp">Finish Setup</button>
+            <strong>AMPforWP Structured Data Module</strong> Upgrade requires one last step <button class="button button-primary" type="button" id="finalized-import-structure-data-from-amp">Finish Setup</button>
             </p>
         </div>';
     //}
