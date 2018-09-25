@@ -637,4 +637,26 @@ jQuery(document).ready(function($){
             
         }
     });
+    //import default Settings
+    $("#finalized-import-structure-data-from-amp").click(function(){
+        var self = $(this);
+        $.ajax({
+          url : ajaxurl,
+          method : "POST",
+          dataType: 'json',
+          data: { 
+            action: "ampforwp_import_structure_data",
+            from: 'ampforwp_basic_settings'
+          },
+          success: function(data){ 
+                console.log(data);
+              if(data.status==200){
+                self.text("Migration completed please wait...");
+                location.reload(); 
+              }else{
+                alert(data.message)
+              }
+          }
+    });
+  });
 });//(document).ready Closed
