@@ -1522,6 +1522,9 @@ function ampforwp_replace_title_tags() {
 		global $redux_builder_amp, $post;
 		$site_title = '';
 		$genesis_title = '';
+		if ( !$post ) {
+			return;
+		}
 		$post_id = $post->ID;
 		if ( ampforwp_is_front_page() ) {
 				$post_id = ampforwp_get_frontpage_id();
@@ -6303,6 +6306,9 @@ add_action('pre_amp_render_post','ampforwp_page_cpt_same_slug');
 
 function ampforwp_page_cpt_same_slug(){
 	global $post;
+	if( !$post ){
+		return;
+	} 
 	$post_id = $conflict_slug = $is_slug_conflict = '';
 	$all_post_types = array();
 	$post_id = get_the_ID();

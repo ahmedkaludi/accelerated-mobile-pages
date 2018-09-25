@@ -75,7 +75,8 @@ function ampforwp_get_the_page_id_blog_page(){
 	$output = "";
 	if ( ampforwp_name_blog_page() ) {
 		$page = get_page_by_path( ampforwp_name_blog_page() );
-		$output = $page->ID;
+		if( $page )
+			$output = $page->ID;
 	}
 
 	return $output;
