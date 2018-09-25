@@ -4594,6 +4594,12 @@ function element_layout_customizer(){
         $new_options['enabled'] = array_slice($new_options['enabled'], 0, $offset, true) +
                    array('addthis' => 'AddThis') +
                    array_slice($new_options['enabled'], $offset, NULL, true);           
+        $add_new_options = array(
+            'ad7' => 'Ad7',
+            'ad8' => 'Ad8'
+        );
+
+        $new_options['disabled'] = array_merge($new_options['disabled'],$add_new_options);
         return $new_options;
 }
 $customizer_options = element_layout_customizer();

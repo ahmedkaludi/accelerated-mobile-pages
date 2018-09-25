@@ -19,7 +19,7 @@ if ( is_customize_preview() ) {
 
 	// Adding default Value
 	if ($data['elements'] == '') {
-	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1,addthis:1";
+	 	$data['elements'] = "bread_crumbs:1,meta_info:1,title:1,featured_image:1,content:1,meta_taxonomy:1,social_icons:1,comments:1,related_posts:1,addthis:1,ad7:1,ad8:1";
 	}
 
 	if( isset( $data['elements'] ) || ! empty( $data['elements'] ) ){
@@ -64,6 +64,12 @@ if ( is_customize_preview() ) {
 					case 'addthis':		
 							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_addthis' );
 							break;
+					case 'ad7':		
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_ad7' );
+							break;
+					case 'ad8':		
+							add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_ad8' );
+							break;					
 				}
 			}
 	}
@@ -284,6 +290,35 @@ add_filter( 'amp_post_template_file', 'ampforwp_design_element_addthis', 10, 3 )
 function ampforwp_design_element_addthis( $file, $type, $post ) {
 	if ( 'ampforwp-addthis' === $type ) {
 		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/addthis.php' ;
+	}
+	return $file;
+}
+
+//Ad7
+function ampforwp_add_element_ad7( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-ad7';
+	return $meta_parts;
+}
+
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_ad7', 10, 3 );
+
+function ampforwp_design_element_ad7( $file, $type, $post ) {
+	if ( 'ampforwp-ad7' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/ad7.php' ;
+	}
+	return $file;
+}
+//Ad8
+function ampforwp_add_element_ad8( $meta_parts ) {
+	$meta_parts[] = 'ampforwp-ad8';
+	return $meta_parts;
+}
+
+add_filter( 'amp_post_template_file', 'ampforwp_design_element_ad8', 10, 3 );
+
+function ampforwp_design_element_ad8( $file, $type, $post ) {
+	if ( 'ampforwp-ad8' === $type ) {
+		$file = AMPFORWP_PLUGIN_DIR . 'templates/design-manager/design-'. ampforwp_design_selector() .'/elements/ad8.php' ;
 	}
 	return $file;
 }
