@@ -184,7 +184,7 @@ function ampforwp_import_structure_data(){
             $ampforwp_sd_type_pages = $redux_builder_amp['ampforwp-sd-type-pages'];
             $postarr = array(
                   'post_type'=>'saswp',
-                  'post_title'=>'Amp Page Type',
+                  'post_title'=>'Ampforwp Page Type (migrated)',
                   'post_status'=>'publish',
                      );
             $insertedPageId = wp_insert_post(  $postarr );
@@ -203,7 +203,7 @@ function ampforwp_import_structure_data(){
             }
             $postarr = array(
                       'post_type'=>'saswp',
-                      'post_title'=>'Amp Post Type',
+                      'post_title'=>'Ampforwp Post Type (migrated)',
                       'post_status'=>'publish',
                         );
             $insertedPageId = wp_insert_post(  $postarr );
