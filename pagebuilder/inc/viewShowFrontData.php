@@ -539,7 +539,7 @@ function amppb_post_content($content){
 							$replace .= 'ap_r_'.$rowsData['id'];
 						}
 						if(isset($rowsData['data'][$field['name']]) && !is_array($rowsData['data'][$field['name']])){
-							$replace .= $rowsData['data'][$field['name']];
+							$replace .= " ".$rowsData['data'][$field['name']];
 						}else{
 							$replace .= '';
 						}
