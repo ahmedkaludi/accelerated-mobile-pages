@@ -5156,9 +5156,6 @@ $single_page_options = array(
                    'default'=> '1',
 //                   'max-width' => 200,
 //                   'max-height'=> 60,
-                   'required' => array( array('amp-design-selector', '=' , '4'),
-                                 
-                                ),
             ),
             array(
                'id' => 'single-sneakp-section', 
