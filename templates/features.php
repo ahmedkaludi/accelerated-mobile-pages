@@ -2732,10 +2732,19 @@ function ampforwp_change_default_amp_post_meta() {
 			}
 			// Check and Run only if the value has been changed, else return
 			if ( get_option('ampforwp_default_'.$post_type.'s_to') !== $post_checker ) {
-			// Get all the pages and update the post meta
-				$posts = get_posts(array('post_type'=>$post_type));
-				foreach($posts as $post){
-				    update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
+				// Get all the pages and update the post meta
+				if( 'page' == $post_type ) {
+				    $pages = get_pages(array());
+				    foreach($pages as $page){
+				        update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+				    }
+				}
+				// Get all the pages and update the post meta
+				else {
+					$posts = get_posts(array('post_type'=>$post_type));
+					foreach($posts as $post){
+					    update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
+					}
 				}
 				// Update the option as the process has been done and update an option
 				update_option('ampforwp_default_'.$post_type.'s_to', $post_checker);
