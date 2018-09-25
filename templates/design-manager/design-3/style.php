@@ -80,11 +80,32 @@ amp-sidebar{ width: 280px; background: #131313; font-family: 'Roboto Slab', seri
 .toggle-navigationv2 ul li a{ padding: 10px 15px 10px 20px; display: inline-block; font-size: 14px; color:#eee; width:94% }
 .amp-menu li{position:relative}
 .toggle-navigationv2 ul li a:hover{background:#666;color:#fff}
-.amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
+.amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#666;position:relative;
+}
+.amp-menu li.menu-item-has-children .sub-menu li a span:before{
+    content: '\25b8';
+    position: relative;
+    left: -6px;
+    font-size: 10px;
+    color: #a9a9a9;
+    top: -2px;
+    z-index: 10000;
+    line-height: 1;
+}
+.amp-menu li.menu-item-has-children .sub-menu li a{
+      padding: 15px 0px 15px 20px;
+}
+.amp-menu li.menu-item-has-children .sub-menu .sub-menu li a{
+    padding: 15px 0px 15px 30px;
+}
+
 .amp-menu li.menu-item-has-children ul ul{background:#444}
 .amp-menu li.menu-item-has-children ul ul ul{background:#666}
-.amp-menu li.menu-item-has-children:hover > ul{display:block}
-.amp-menu li.menu-item-has-children:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:0;z-index:10000;line-height:1}
+
+.amp-menu input{display:none}
+.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 12px 20px 10px 30px;right:0;font-size:13px;color:#ccc;top:6px;z-index:10000;line-height:1}
+
 .toggle-navigationv2 .social_icons{ margin-top: 25px; border-top: 1px solid #555; padding: 25px 0px; color: #fff; width: 100%; }
 .menu-all-pages-container:after{ content: ""; clear: both }
 .toggle-text{ color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; display: inherit; text-align: center; }
