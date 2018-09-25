@@ -738,13 +738,31 @@ span.switch-text {
     color: #4CAF50;
 }
 .ampforwp-recommendation-btn{
-	display: inline-block;
-    height: 29px;
-    padding: 0px 80px 23px 7px;
-    position: relative;
-	top:-4px;
+	
+
+    color: #555;
+    border-color: #ccc;
+    background: #f7f7f7;
+    box-shadow: 0 1px 0 #ccc;
+    vertical-align: top;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 26px;
+    height: 28px;
+    margin: 0;
+    padding: 0 10px 1px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+
 }
-.ampforwp-recommendation-btn + .update-message p:before{
+.ampforwp-recommendation-btn .update-message p:before{
 	
     position: absolute;
     top: 5px;

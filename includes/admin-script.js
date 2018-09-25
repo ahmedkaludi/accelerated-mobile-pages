@@ -609,7 +609,7 @@ jQuery(document).ready(function($){
     $('.ampforwp-activation-call-module-upgrade').click(function(){
         if(pagenow == 'toplevel_page_amp_options'){// Check for current page
             var self = $(this);
-            self.parents('div.update-message').addClass('updating-message');
+            self.parents('div.update-message').addClass('updating-message').removeClass('div.update-message');
             var activate = '';
             if($(this).attr('id')=='ampforwp-pwa-activation-call'){
                 activate = '&activate=pwa';
@@ -626,7 +626,7 @@ jQuery(document).ready(function($){
                     if(response.status==200){
                         self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
                         self.parents('div.ampforwp-modules').addClass('updated-message')
-                         self.parents('div.ampforwp-modules').html('<a href="'+response.redirect_url+'">Go to PWA Settings</a>')
+                         self.parents('div.ampforwp-modules p').html('<a href="'+response.redirect_url+'">Go to Settings</a>')
                         
                     }else{
                         alert(response.message)
