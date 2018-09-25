@@ -2014,7 +2014,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
                                 '<div class="ampforwp-recommendation-btn update-message ampforwp-modules"><p><button type="button" id="ampforwp-pwa-activation-call" class="ampforwp-activation-call-module-upgrade button-link">Activate this Module</button></p></div>'
                             : '<div class="col-wrapper">
-                                    <div class="ampforwp-recommendation-btn updated-message"><p><a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to PWA Settings</a></p></div> <a href="#">Learn more</a>
+                                    <div class="ampforwp-recommendation-btn updated-message"><p><a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to PWA Settings</a></p></div> <a class="amp_recommend_learnmore" href="#" target="_blank">Learn more</a>
                                 </div>
                             ')
            ),
@@ -2600,8 +2600,8 @@ function ampforwp_add_sd_fields($fields){
 												</p>
 												</div>' :
                                                             '<div class="ampforwp-recommendation-btn updated-message"><p><a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'">Go to settings</a></p></div>
-                                                            <div style="padding-left:10%;padding-top:10px;"><a href="#">Learn more</a></div>'
-                                                        )
+                                                            <div style="padding-left:10%;padding-top:10px;"><a href="#" class="amp_recommend_learnmore" target="_blank" target="_blank">Learn more</a></div>'
+                                                        ) 
                                                         .'
                                                     </div>
                                             </div>' 

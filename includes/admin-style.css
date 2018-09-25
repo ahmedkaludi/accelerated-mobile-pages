@@ -738,8 +738,6 @@ span.switch-text {
     color: #4CAF50;
 }
 .ampforwp-recommendation-btn{
-	
-
     color: #555;
     border-color: #ccc;
     background: #f7f7f7;
@@ -749,9 +747,9 @@ span.switch-text {
     text-decoration: none;
     font-size: 13px;
     line-height: 26px;
-    height: 28px;
+    height: 32px;
     margin: 0;
-    padding: 0 10px 1px;
+    padding: 1px 12px 1px 8px;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -759,14 +757,21 @@ span.switch-text {
     border-radius: 3px;
     white-space: nowrap;
     box-sizing: border-box;
-
-
 }
 .ampforwp-recommendation-btn .update-message p:before{
 	
     position: absolute;
     top: 5px;
-	font-size: 18px;
+    font-size: 18px;
+    
+}
+.ampforwp-recommendation-btn.updated-message p:before{
+    color:#79ba49;
+    content: '\f147';
+    left: -3px;
+    position: relative;
+    font-size: 26px;
+    top: -1px;
 }
 .ampforwp-recommendation-btn .button-link{
     padding-left:6px;
@@ -783,4 +788,9 @@ span.switch-text {
 }
 #section-ampforwp-sd_modules_section h3{
 	background:#FFF9C4 !important
+}
+.amp_recommend_learnmore {
+    position: relative;
+    top: 7px;
+    left: 12px;
 }
