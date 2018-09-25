@@ -25,7 +25,7 @@ namespace ReduxCore\ReduxFramework;
     $sysinfo = Redux_Helpers::compileSystemStatus( false, true );
 
 ?>
-<div class="wrap about-wrap redux-status">
+<div class="wrap about-wrap redux-status" id="ampforwp-sys-info">
    
 
     <?php //$this->actions(); ?>
