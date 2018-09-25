@@ -95,7 +95,7 @@ if(is_plugin_active('amp/amp.php')){
 }
 
 
-if( ! function_exists(' ampforwp_onesignal_notifications_widget') ){
+if( ! function_exists('ampforwp_onesignal_notifications_widget') ){
 	function ampforwp_onesignal_notifications_widget(){
 	global $redux_builder_amp;
 	if(isset($redux_builder_amp['ampforwp-web-push-onesignal']) && $redux_builder_amp['ampforwp-web-push-onesignal'] && !checkAMPforPageBuilderStatus(get_the_ID()) ){ ?>
