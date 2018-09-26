@@ -607,16 +607,16 @@ function getQueryStringValue (key) {
 jQuery(document).ready(function($){
 
     $('.ampforwp-activation-call-module-upgrade').click(function(){
-        if(pagenow == 'toplevel_page_amp_options'){// Check for current page
+        if(pagenow == 'toplevel_page_amp_options' && $(this).hasClass('ampforwp-activation-call-module-upgrade')){// Check for current page
             var self = $(this);
-            self.parents('div.update-message').addClass('updating-message').removeClass('div.update-message');
+            self.addClass('updating-message').removeClass('div.update-message');
             var activate = '';
             if($(this).attr('id')=='ampforwp-pwa-activation-call'){
                 activate = '&activate=pwa';
             }else if($(this).attr('id')=='ampforwp-structure-data-activation-call'){
                 activate = '&activate=structure_data';
             }
-            self.text('Updating...');
+            self.find('p').text('Updating...');
             $.ajax({
                 url: ajaxurl,
                 type: 'post',
@@ -624,16 +624,16 @@ jQuery(document).ready(function($){
                 dataType: 'json',
                 success: function (response){
                     if(response.status==200){
-                        self.parents('div.ampforwp-modules').removeClass('update-message updating-message')
-                        self.parents('div.ampforwp-modules').addClass('updated-message');
+                        self.removeClass('update-message updating-message')
+                        self.addClass('updated-message');
                         var msgplug = '';
                         if(self.attr('id')=='ampforwp-pwa-activation-call'){
                             msgplug = 'PWA';
                         }else if(self.attr('id')=='ampforwp-structure-data-activation-call'){
                             msgplug = 'Structure Data';
                         }
-                         self.parents('div.ampforwp-modules p').html('<a href="'+response.redirect_url+'">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
-                        
+                         self.find('p').html('<a href="'+response.redirect_url+'">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+                        self.removeClass('ampforwp-activation-call-module-upgrade');
                     }else{
                         alert(response.message)
                     }

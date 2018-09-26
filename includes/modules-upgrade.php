@@ -107,6 +107,7 @@ function ampforwp_enable_modules_upgread(){
         //Do's After Activation of plugins
        if($currentActivateModule=='structure_data'){
             update_option('ampforwp_structure_data_module_upgread', true );
+            ampforwp_import_structure_data();
        }
        echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>$redirectSettingsUrl ) );
     }else{
@@ -146,30 +147,13 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
  *
  */
 //On module upgrade
-add_action('plugins_loaded', 'ampforwp_schema_upgraded');
-function ampforwp_schema_upgraded(){
-    $moduleStatus = get_option("ampforwp_structure_data_module_upgread");
-    if($moduleStatus != 'migrated' && is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ){
-        add_action('admin_notices', 'ampforwp_update_notice_structure_data');
-    }
-}
-function ampforwp_update_notice_structure_data(){
-    //$screen = get_current_screen();
-    //if(is_object($screen) && $screen->base == 'saswp_page_structured_data_options'){
-        echo ' <div class="notice notice-error is-dismissible">
-            <p>
-            <strong>AMPforWP Structured Data Module</strong> Upgrade requires one last step <button class="button button-primary" type="button" id="finalized-import-structure-data-from-amp">Finish Setup</button>
-            </p>
-        </div>';
-    //}
-}
-
-add_action("wp_ajax_ampforwp_import_structure_data", "ampforwp_import_structure_data");
 function ampforwp_import_structure_data(){
     global $redux_builder_amp;
+    if(get_option('ampforwp_structure_data_module_upgread')=='migrated'){
+        return false;
+    }
     $sd_data_update = array();
-    switch($_REQUEST['from']){
-        case 'ampforwp_basic_settings':
+        //Structure Data
             $sd_data_update['sd-data-logo-ampforwp'] = $redux_builder_amp['amp-structured-data-logo'];
             $sd_data_update['saswp-logo-width'] = $redux_builder_amp['ampforwp-sd-logo-width'];
             $sd_data_update['saswp-logo-height'] = $redux_builder_amp['ampforwp-sd-logo-height'];
@@ -182,9 +166,19 @@ function ampforwp_import_structure_data(){
             $sd_data_update['saswp-for-wordpress'] = 0;
             $ampforwp_sd_type_posts = $redux_builder_amp['ampforwp-sd-type-posts'];
             $ampforwp_sd_type_pages = $redux_builder_amp['ampforwp-sd-type-pages'];
+            //Delete previous posts
+            $posts = get_posts( array(
+                'numberposts' => -1,
+                'post_type' => 'saswp',
+                'post_status' => 'any' ) );
+
+            foreach ( $posts as $post ){
+                wp_delete_post( $post->ID, true );
+            }
+
             $postarr = array(
                   'post_type'=>'saswp',
-                  'post_title'=>'Ampforwp Page Type (migrated)',
+                  'post_title'=>'Page (Migrated from AMPforWP)',
                   'post_status'=>'publish',
                      );
             $insertedPageId = wp_insert_post(  $postarr );
@@ -203,27 +197,25 @@ function ampforwp_import_structure_data(){
             }
             $postarr = array(
                       'post_type'=>'saswp',
-                      'post_title'=>'Ampforwp Post Type (migrated)',
+                      'post_title'=>'Post (Migrated from AMPforWP)',
                       'post_status'=>'publish',
                         );
             $insertedPageId = wp_insert_post(  $postarr );
             if($insertedPageId){
-            $post_data_array  = array(
-                                  array(
-                                      'key_1'=>'post_type',
-                                      'key_2'=>'equal',
-                                      'key_3'=>'post',
-                                    )
-                                  );
-            $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
-            update_post_meta( $insertedPageId, 'data_array', $post_data_array);
-            update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_posts);
-            update_post_meta( $insertedPageId, 'schema_options', $schema_options_array);
+                $post_data_array  = array(
+                                      array(
+                                          'key_1'=>'post_type',
+                                          'key_2'=>'equal',
+                                          'key_3'=>'post',
+                                        )
+                                      );
+                $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
+                update_post_meta( $insertedPageId, 'data_array', $post_data_array);
+                update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_posts);
+                update_post_meta( $insertedPageId, 'schema_options', $schema_options_array);
             }
-        break;
-    }
+       
     update_option('sd_data', $sd_data_update);
     update_option('ampforwp_structure_data_module_upgread','migrated');
-    echo json_encode(array("status"=>200,"message"=>"data imported successfully"));
-    wp_die();
+    return true;
 }   
