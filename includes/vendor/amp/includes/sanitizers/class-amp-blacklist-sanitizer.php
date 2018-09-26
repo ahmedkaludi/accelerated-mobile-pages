@@ -169,10 +169,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			$href = esc_url($href);
 		}
 
-		if ( false === filter_var( $href, FILTER_VALIDATE_URL )
+		/*if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 			&& ! in_array( $protocol, $special_protocols, true ) ) {
 			return false;
-		}
+		}*/
 
 		if ( ! in_array( $protocol, $valid_protocols, true ) ) {
 			return false;
