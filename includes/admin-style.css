@@ -724,7 +724,8 @@ span.switch-text {
 }
 #redux_builder_amp-ampforwp_pwa_module .redux_field_th{
     padding: 0px 20% 0px 10px !important;
-    float: left;
+    float: left;    top: 5px;
+    position: relative;
 }
 .ampforwp-st-data-update{
     color: #000;
@@ -732,7 +733,7 @@ span.switch-text {
 }
 .ampforwp-st-data-update .row{width: 100%;  font-size: 12px;}
 .ampforwp-st-data-update .col-3{
-    width: 70%;
+    width: 45%;
     float: left;
     font-size: 14px;
     color: #333;}
@@ -772,6 +773,9 @@ span.switch-text {
     top: 5px;
     font-size: 18px;
     
+}
+.ampforwp-recommendation-btn p:before{
+    margin-right: 4px; content: "\f463"
 }
 .ampforwp-recommendation-btn.updated-message p:before{
     color:#79ba49;
