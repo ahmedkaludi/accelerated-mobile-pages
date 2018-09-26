@@ -106,7 +106,6 @@ function ampforwp_enable_modules_upgread(){
        ampforwp_enable_plugins_modules($plugins); 
         //Do's After Activation of plugins
        if($currentActivateModule=='structure_data'){
-            update_option('ampforwp_structure_data_module_upgread', true );
             ampforwp_import_structure_data();
        }
        echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>$redirectSettingsUrl ) );
@@ -166,16 +165,7 @@ function ampforwp_import_structure_data(){
             $sd_data_update['saswp-for-wordpress'] = 0;
             $ampforwp_sd_type_posts = $redux_builder_amp['ampforwp-sd-type-posts'];
             $ampforwp_sd_type_pages = $redux_builder_amp['ampforwp-sd-type-pages'];
-            //Delete previous posts
-            $posts = get_posts( array(
-                'numberposts' => -1,
-                'post_type' => 'saswp',
-                'post_status' => 'any' ) );
-
-            foreach ( $posts as $post ){
-                wp_delete_post( $post->ID, true );
-            }
-
+           
             $postarr = array(
                   'post_type'=>'saswp',
                   'post_title'=>'Page (Migrated from AMPforWP)',
@@ -190,6 +180,19 @@ function ampforwp_import_structure_data(){
                                       'key_3'=>'page',
                                     )
                                   );
+            if(defined('SASWP_VERSION') && version_compare(SASWP_VERSION,'1.0.2', '>=')){
+                $post_data_array = array();                                       
+                $post_data_array['group-0'] =array(
+                                                'data_array' => array(
+                                                            array(
+                                                            'key_1' => 'post_type',
+                                                            'key_2' => 'equal',
+                                                            'key_3' => 'page',
+                                                  )
+                                                )               
+                                               );
+            }
+            
             $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
             update_post_meta( $insertedPageId, 'data_array', $post_data_array);
             update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_pages);
@@ -209,6 +212,18 @@ function ampforwp_import_structure_data(){
                                           'key_3'=>'post',
                                         )
                                       );
+                if(defined('SASWP_VERSION') && version_compare(SASWP_VERSION,'1.0.2', '>=')){
+                    $post_data_array = array();                                       
+                    $post_data_array['group-0'] =array(
+                                                    'data_array' => array(
+                                                                array(
+                                                                'key_1' => 'post_type',
+                                                                'key_2' => 'equal',
+                                                                'key_3' => 'post',
+                                                      )
+                                                    )               
+                                                   );
+                }
                 $schema_options_array = array('isAccessibleForFree'=>False,'notAccessibleForFree'=>0,'paywall_class_name'=>'');
                 update_post_meta( $insertedPageId, 'data_array', $post_data_array);
                 update_post_meta( $insertedPageId, 'schema_type', $ampforwp_sd_type_posts);
