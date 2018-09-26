@@ -2014,9 +2014,9 @@ Redux::setArgs( "redux_builder_amp", $args );
                'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
                                 '<div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-pwa-activation-call"> <p>Activate this Module</p></div>'
                             : '<div class="col-wrapper">
-                                    <div class="ampforwp-recommendation-btn updated-message"><p><a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'">Go to PWA Settings</a> </p></div> <a class="amp_recommend_learnmore" href="#" target="_blank">Learn more</a>
+                                   <a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Go to PWA Settings</p></div> </a> 
                                 </div>
-                            ')
+                            ').'<a class="amp_recommend_learnmore" href="#" target="_blank">Learn more</a>'
            ),
 
        )
@@ -2584,21 +2584,21 @@ function ampforwp_add_sd_fields($fields){
                           'content'  => '<div class="ampforwp-st-data-update">
                                                 '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 'New Update available for Structured data:': 'Thank you for upgrading the Structured data').'
                                                 <div class="row">
-                                                    <div class="col-3">
+                                                    
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? '
-                                                        <ul>
+                                                        <div class="col-3"><ul>
                                                             <li>Add Unlimited Schemas</li>
                                                             <li>New Schema Types</li>
                                                             <li>Advanced Structured data options</li>
-                                                        </ul> ' : '<ul></ul>')
-                                                    .'</div>
+                                                        </ul> </div>' : '')
+                                                    .'
                                                     <div class="col-1">
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
                                                             '
 												        <div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-structure-data-activation-call">
 												            <p>Upgrade for Free</p>
 												        </div>' :
-                                                            '<div class="ampforwp-recommendation-btn updated-message"><p><a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'">Go to Structure Data settings</a></p></div>'
+                                                            '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'
                                                         )
                                                         .'
                                                          &nbsp;<a href="#" class="amp_recommend_learnmore" target="_blank">Learn more</a>
