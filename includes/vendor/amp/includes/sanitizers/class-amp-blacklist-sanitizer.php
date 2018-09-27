@@ -169,6 +169,10 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 			$href = esc_url($href);
 		}
 
+		/*  Why the code is commented?
+		 *  Issue was with multibyte string.
+		 *  For more info check: https://github.com/ahmedkaludi/accelerated-mobile-pages/issues/2556
+		*/
 		/*if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 			&& ! in_array( $protocol, $special_protocols, true ) ) {
 			return false;
