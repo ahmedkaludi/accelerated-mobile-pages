@@ -2089,11 +2089,19 @@ function ampforwp_cpt_hide_amp_bulk($fields){
 }
  // Hide AMP Bulk Tools
 Redux::setSection( $opt_name, array(
-   'title'      => __( 'Hide AMP Bulk Tools', 'accelerated-mobile-pages' ),
+   'title'      => __( 'Tools', 'accelerated-mobile-pages' ),
    'id'         => 'hide-amp-section',
    'subsection' => true,
    'desc'       => 'Here are some Advanced options to help you exclude AMP from your prefered pages',
    'fields'     => apply_filters('ampforwp_hide_bulk_cpt',array(
+                        array(
+                           'id' => 'amp-pages-tools',
+                           'type' => 'section',
+                           'title' => __('Hide AMP Bulk Tools', 'accelerated-mobile-pages'),
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                            'accordion-open'=> 0,
+                         ),
                         array(
                            'id'       => 'amp-pages-meta-default',
                            'type'     => 'select',
@@ -2148,7 +2156,7 @@ Redux::setSection( $opt_name, array(
                         'data'      => 'tags',
                         'class'      => 'hide'
                        ),
-                    array(
+                        array(
                         'id'        =>'hide-amp-tags-bulk-option2',
                         'type'      => 'select',
                         'title'     => __('Select Tags to Hide AMP'),
@@ -2159,7 +2167,40 @@ Redux::setSection( $opt_name, array(
                         'data'      => 'tags',
 
                        ),
-                    )   
+                        array(
+                           'id' => 'amp-version-rollback',
+                           'type' => 'section',
+                           'title' => __('Rollback to Previous Version', 'accelerated-mobile-pages'),
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                            'accordion-open'=> 1,
+                         ),
+                        array(
+                            'id'       => 'amp-tollback-btn',
+                            'type'     => 'text',
+                            'title'    => __('Rollback Version', 'accelerated-mobile-pages'),
+                            'default'   => 'Rollback'
+                        ),
+                        array(
+                           'id' => 'amp-beta-testing',
+                           'type' => 'section',
+                           'title' => __('Become a Beta Tester', 'accelerated-mobile-pages'),
+                           'indent' => true,
+                           'layout_type' => 'accordion',
+                            'accordion-open'=> 1,
+                         ),
+                       array(
+                            'id'       => 'amp-beta-link',
+                            'type'     => 'select',
+                            'title'    => __('Beta Tester', 'accelerated-mobile-pages'),
+                            'options'  => array(
+                                '1'    => 'Enable',
+                                '2'    => 'Disable'
+                            ),
+                            'default'  => '1',
+                        ),
+                    )
+                       
                  )
         )
     );
