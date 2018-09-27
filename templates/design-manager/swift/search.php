@@ -7,6 +7,10 @@ amp_header() ?>
 	<div class="arch-dsgn">
 		<div class="arch-psts">
 			<?php amp_loop_template(); ?>
+			<?php 
+			if (empty(amp_loop_template())){
+				echo ampforwp_translation(ampforwp_get_setting('amp-translator-search-no-found'), 'It seems we can\'t find what you\'re looking for. ');
+			}?>
 			<?php amp_pagination(); ?>
 		</div>
 		<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
