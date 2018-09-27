@@ -5646,6 +5646,12 @@ $single_page_options = array(
                   'required' => array('amp-design-selector','=','4'),
             ),
             array(
+                      'id'       => 'page_sidebar',
+                      'type'     => 'switch',
+                      'default'  =>  '0',
+                      'title'    => __('Sidebar', 'accelerated-mobile-pages'),
+                  ),
+            array(
                       'id'       => 'meta_page',
                       'type'     => 'switch',
                       'default'  =>  '0',
