@@ -13,7 +13,7 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		add_action( 'amp_customizer_enqueue_preview_scripts', array( __CLASS__, 'enqueue_customizer_preview_scripts' ) );
 	}
 
-	public static function register_customizer_settings( $wp_customize ) {
+	public function register_customizer_settings( $wp_customize ) {
 
 		/* Add Settings */
 		$wp_customize->add_setting(
@@ -210,7 +210,7 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 	 * Utility: Default Services to use in customizer default value
 	 * @return string
 	 */
-	static public function ampforwp_controls_default(){
+	public function ampforwp_controls_default(){
 		$default = array();
 		$services = self::ampforwp_controls();
 		foreach( $services as $service ){
