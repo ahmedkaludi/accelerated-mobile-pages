@@ -2284,7 +2284,12 @@ function ampforwp_output_widget_content_above_loop() {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
 	}
-      if ( $sidebar_output) {  echo do_shortcode($sidebar_output) ; }
+      if ( $sidebar_output ) { ?>
+	   	<div class="amp-wp-content widget-wrapper">
+		   	<div class="amp_widget_above_loop">
+		  	<?php echo do_shortcode($sidebar_output); ?> </div>
+	  	</div> 
+	<?php }
 }
 
 add_action( 'ampforwp_home_below_loop' , 'ampforwp_output_widget_content_below_loop' );
@@ -2297,7 +2302,12 @@ function ampforwp_output_widget_content_below_loop() {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
 	}
-    if ( $sidebar_output) : echo do_shortcode($sidebar_output);  endif; 
+    if ( $sidebar_output ) { ?>
+	   	<div class="amp-wp-content widget-wrapper">
+		   	<div class="amp_widget_below_loop">
+		  	<?php echo do_shortcode($sidebar_output); ?> </div>
+	  	</div> 
+	<?php } 
 }
 
 add_action( 'ampforwp_after_header' , 'ampforwp_output_widget_content_below_the_header' );

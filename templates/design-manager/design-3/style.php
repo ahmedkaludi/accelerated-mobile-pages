@@ -21,9 +21,6 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
   $header_color            = $get_customizer->get_customizer_setting( 'header_color' );
   ?>
 
-/*  Widgets styling */
-.amp-wp-content.widget-wrapper { margin: 20px 17px 17px 17px;}
-
 /* Global Styling */
 body{ font: 16px/1.4 Sans-serif; <?php echo ampforwp_font_selector('body'); ?>}
 a{ color: #312C7E; text-decoration: none }
