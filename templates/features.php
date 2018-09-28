@@ -5095,6 +5095,10 @@ function ampforwp_default_logo_data() {
 		$logo_url = $imageDetail[0];
 		$image[0] = $imageDetail[1];
 		$image[1] = $imageDetail[2];
+		if ( 0 === $image[1] ) {
+			$image[0] = '190';
+			$image[1] = '36';
+		}
 	}
 
 	$logo_alt = get_post_meta( $logo_id, '_wp_attachment_image_alt', true);
