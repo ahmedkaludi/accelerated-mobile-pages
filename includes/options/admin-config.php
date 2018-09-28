@@ -5281,7 +5281,7 @@ Redux::setSection( $opt_name, array(
                             '1'     => 'Categories',
                             '2'     => 'Tags'
                         ),
-                        'default'  => '0'  
+                        'default'  => '1'  
                 ),
                  array(
                         'id'       => 'amp-design-3-category-selector',
