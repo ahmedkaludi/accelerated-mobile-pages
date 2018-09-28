@@ -17,33 +17,6 @@ use ReduxCore\ReduxFramework\Redux;
         }
     }
  
-if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
-    add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
-    function ampforwp_add_extra_fields($fields){
-        $post_types = '';
-        $custom_fields = array();
-        $extra_fields = array();
-        $post_types = get_option('ampforwp_custom_post_types');
-        if($post_types){
-            foreach ($post_types as $post_type) {
-                if( $post_type == 'post' || $post_type == 'page' ) {
-                            continue;
-                }
-                $custom_fields[] = array(
-                  'id'       => 'ampforwp-sd-type-'. $post_type,
-                  'type'     => 'select',
-                  'title'    => __($post_type, 'accelerated-mobile-pages'),
-                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
-                  'options'  =>  ampforwp_get_sd_types(),
-                  'default'  => 'BlogPosting',
-                );
-                $extra_fields = array_merge($extra_fields, $custom_fields);
-            }
-        }
-        array_splice($fields, 2, 0,  $extra_fields);
-        return $fields;
-     }
-}
 
 add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_sd_fields');
 function ampforwp_add_sd_fields($fields){ 
@@ -194,7 +167,33 @@ function ampforwp_add_sd_fields($fields){
     return $fields;
     }
 }
-
+if( ! is_plugin_active('structured-data-for-wp/structured-data-for-wp.php') ) {
+    add_filter('ampforwp_sd_custom_fields', 'ampforwp_add_extra_fields');
+    function ampforwp_add_extra_fields($fields){
+        $post_types = '';
+        $custom_fields = array();
+        $extra_fields = array();
+        $post_types = get_option('ampforwp_custom_post_types');
+        if($post_types){
+            foreach ($post_types as $post_type) {
+                if( $post_type == 'post' || $post_type == 'page' ) {
+                            continue;
+                }
+                $custom_fields[] = array(
+                  'id'       => 'ampforwp-sd-type-'. $post_type,
+                  'type'     => 'select',
+                  'title'    => __($post_type, 'accelerated-mobile-pages'),
+                  'tooltip-subtitle' => __('Select the Structured Data Type for '.$post_type, 'accelerated-mobile-pages'),
+                  'options'  =>  ampforwp_get_sd_types(),
+                  'default'  => 'BlogPosting',
+                );
+                $extra_fields = array_merge($extra_fields, $custom_fields);
+            }
+        }
+        array_splice($fields, 3, 0,  $extra_fields);
+        return $fields;
+     }
+}
 
 // Structured Data
 function ampforwp_structure_data_options($opt_name){
