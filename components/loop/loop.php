@@ -414,7 +414,7 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			if(isset($redux_builder_amp['amp-design-selector'] ) && $redux_builder_amp['amp-design-selector'] != 4){
+			if(isset($redux_builder_amp['amp-design-selector'] ) && $redux_builder_amp['amp-design-selector'] == 3){
 				echo '<'.$tag.' class="loop-img '.$tag_class.'">';
 				echo '<a href="'.$imageLink.'">';
 				echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" srcset="'.$thumbnail_srcset.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
