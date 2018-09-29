@@ -3359,10 +3359,12 @@ function ampforwp_view_nonamp(){
    	$ampforwp_backto_nonamp = '';
    }
 
-  		$current_amp_url = home_url( $wp->request );
-		$current_amp_url 	= trailingslashit($current_amp_url);
-		$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
-		$non_amp_url 	= str_replace($remove, '', $current_amp_url);
+  		$amp_url = $_SERVER['REQUEST_URI'];
+		$amp_url = explode('/', $amp_url);
+		$amp_url = array_flip($amp_url);
+		unset($amp_url['amp']);
+		$non_amp_url = array_flip($amp_url);
+		$non_amp_url = implode('/', $non_amp_url);
 		$page = "";
 	  	$query_arg_array = $wp->query_vars;
 	  	if( array_key_exists( "page" , $query_arg_array  ) ) {

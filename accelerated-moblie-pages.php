@@ -183,6 +183,12 @@ function ampforwp_add_custom_rewrite_rules() {
 	      'top'
 	    );
   	}
+  	// Rewrite rule for date archive
+  	add_rewrite_rule(
+      '([0-9]{4})/([0-9]{1,2})\/amp\/?$',
+      'index.php?year=$matches[1]&monthnum=$matches[2]&amp=1',
+      'top'
+    );
     // Rewrite rule for date archive with pagination #2289
   	add_rewrite_rule(
       '([0-9]{4})/([0-9]{1,2})/amp/'.$wp_rewrite->pagination_base.'/?([0-9]{1,})/?$',
@@ -211,6 +217,11 @@ function ampforwp_add_custom_rewrite_rules() {
 
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
+		add_rewrite_rule(
+	      '(.+?)\/amp/?$',
+	      'index.php?amp&post_type=$matches[1]&page=$matches[1]&pagename=$matches[1]',
+	      'top'
+	    );
 		foreach ( $taxonomies  as $key => $taxonomy ) { 
 			if ( ! empty( $taxonomy ) ) {
 			    add_rewrite_rule(
