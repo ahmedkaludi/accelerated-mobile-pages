@@ -117,6 +117,7 @@ global $savedlayoutTemplate;
                                                     ?>
                                                     <img src="<?php echo $lay[$firstLayout]['preview_img']; ?>" @click="viewSpacialLayouts($event);"
                                                     data-info='<?php echo json_encode($lay); ?>'
+                                                    data-name='<?php echo $layoutName; ?>'
                                                     data-heading="<?php echo ucfirst($layoutName); ?>">
                                                     <?php } ?>
                                                 </div>
@@ -130,6 +131,7 @@ global $savedlayoutTemplate;
                                                         }else{
                                                         ?>
                                                         <button type="button" class="button button-lg"@click="viewSpacialLayouts($event);" data-info='<?php echo json_encode($lay); ?>'
+                                                        data-idname='<?php echo $layoutName; ?>'
                                                         data-heading="<?php echo ucfirst($layoutName); ?>">View Layout</button>
                                                         <?php } ?>
                                                     </div>
@@ -149,7 +151,7 @@ global $savedlayoutTemplate;
                                             <div class="amppb-layout-bottom">
                                                 <div class="amppb-layout-button">
                                                     <a target="_blank" :href="layout.preview_demo" class="amp_l_preview_button button" >Preview</a>
-                                                    <button type="button" class="amp_l_preview_button button" :data-layout='layout.layout_json'@click="importLayout($event)">Import</button>
+                                                    <button type="button" class="amp_l_preview_button button" :data-layoutname='innerLayoutsIdname' :data-layout='layout.layout_json' @click="importLayout($event)" >Import</button>
                                                 </div>
                                             </div>
                                         </div>
