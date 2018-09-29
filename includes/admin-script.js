@@ -912,8 +912,8 @@ $("#single-design-type_2").attr('checked', true);
 }); 
 
 jQuery(window).on("YoastSEO:ready",function(){
-ExamplePlugin = function() {
-  YoastSEO.app.registerPlugin( 'examplePlugin', {status: 'ready'} );
+AmpForWpYoastAnalysis = function() {
+  YoastSEO.app.registerPlugin( 'ampForWpYoastAnalysis', {status: 'ready'} );
 
   /**
    * @param modification    {string}    The name of the filter
@@ -923,7 +923,7 @@ ExamplePlugin = function() {
    *                                    associated with a particular filter are called. Lower numbers
    *                                    correspond with earlier execution.
    */
-  YoastSEO.app.registerModification( 'content', this.myContentModification, 'examplePlugin', 5 );
+  YoastSEO.app.registerModification( 'content', this.myContentModification, 'ampForWpYoastAnalysis', 5 );
 }
 
     /**
@@ -931,7 +931,7 @@ ExamplePlugin = function() {
      *
      * @param data The data to modify
      */
-    ExamplePlugin.prototype.myContentModification = function(data) {
+    AmpForWpYoastAnalysis.prototype.myContentModification = function(data) {
         var pbdata  = $('#amp-page-builder-ready').val();
         var takeover = redux_data['ampforwp-amp-takeover'];
         var pb = redux_data['ampforwp-pagebuilder'];
@@ -941,5 +941,5 @@ ExamplePlugin = function() {
         }
         return data;
     };
-    new ExamplePlugin();
+    new AmpForWpYoastAnalysis();
 }); 
