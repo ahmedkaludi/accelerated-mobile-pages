@@ -8,6 +8,7 @@ require_once( AMP__DIR__ . '/includes/sanitizers/class-amp-base-sanitizer.php' )
  * See following for blacklist:
  *     https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#html-tags
  */
+include_once('class-amp-base-sanitizer.php');
 class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 	const PATTERN_REL_WP_ATTACHMENT = '#wp-att-([\d]+)#';
 
