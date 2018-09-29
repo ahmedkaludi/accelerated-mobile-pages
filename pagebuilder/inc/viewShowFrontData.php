@@ -509,7 +509,6 @@ function amppb_post_content($content){
 		}
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
-	$layoutNameClass = get_post_meta($postId,'amp-page-builder-layout-name',true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
@@ -524,8 +523,7 @@ function amppb_post_content($content){
 			if(isset($previousData['settingdata']) && isset($previousData['settingdata']['front_class'])){
 				$mainContentClass = $previousData['settingdata']['front_class'];
 			}
-
-			$html = '<div class="amp_pb '.$layoutNameClass.' '.$mainContentClass.'">';
+			$html = '<div class="amp_pb '.$mainContentClass.'">';
 			$previousData = sortByIndex($previousData['rows']);
 
 			//rander its html

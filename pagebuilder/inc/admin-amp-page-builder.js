@@ -20,7 +20,6 @@ Vue.component('amp-pagebuilder-modal', {
   		importLayoutfromFile: '',
   		innerLayouts: '',
   		innerLayoutsHeading: '',
-  		innerLayoutsIdname: '',
   		ampb_script_textarea: (app.mainContent.settingdata['scripts_data']? app.mainContent.settingdata['scripts_data']: ''),
   		ampb_style_textarea: (app.mainContent.settingdata['style_data']? app.mainContent.settingdata['style_data']:'')
   	}
@@ -107,7 +106,6 @@ Vue.component('amp-pagebuilder-modal', {
 		var response = confirm("Replace current layout. \n Do you want to import new layout?");
 		if(response){
 			app.mainContent = JSON.parse(event.target.getAttribute('data-layout'));
-			app.layoutNameId = event.target.getAttribute('data-layoutname');
 			app.call_default_functions();
 		}
 		this.hidePageBuilderPopUp();
@@ -115,12 +113,10 @@ Vue.component('amp-pagebuilder-modal', {
 	viewSpacialLayouts: function(event){
 		this.innerLayouts = JSON.parse(event.target.getAttribute('data-info'));
 		this.innerLayoutsHeading = event.target.getAttribute('data-heading');
-		this.innerLayoutsIdname = event.target.getAttribute('data-idname');
 	},
 	loadLayOutFolder: function(){
 		this.innerLayouts = '';
 		this.innerLayoutsHeading = '';
-		this.innerLayoutsIdname = '';
 	},
   }
 })
@@ -801,7 +797,6 @@ var app = new Vue({
     moduledrag: false,
     pagebuilderContent: ' <p class="dummy amppb-rows-message">Welcome to AMP Page Builder.</p>',
     mainContent: {},
-    layoutNameId: '',
     mainContent_Save: JSON.stringify(this.mainContent),
   },
   methods: {

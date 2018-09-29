@@ -80,7 +80,6 @@ function call_page_builder(){
 	
 
 	$previousData = get_post_meta($postId,'amp-page-builder');
-	$layoutNameClass = get_post_meta($postId,'amp-page-builder-layout-name',true);
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
 	
@@ -144,7 +143,6 @@ function call_page_builder(){
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
 	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php echo $previousData; ?>'>
-	        <input type="hidden" name="amp-page-builder-layout-name" id="amp-page-builder-template-name" class="amp-data" v-model="layoutNameId" value="<?php echo $layoutNameClass; ?>">
 	        <?php /* This is where we gonna add & manage rows */ ?>
 			<div id="sorted_rows" class="amppb-rows drop" >
 				<drop class="drop" :class="{'row-dropping':rowOverDrop}" @drop="handleDrop" @dragover="rowOverDrop = true"
