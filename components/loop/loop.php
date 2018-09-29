@@ -85,26 +85,25 @@ function call_loops_standard($data=array()){
 	if ( is_archive() ) {
 		$exclude_ids = get_option('ampforwp_exclude_post');
 		$qobj = get_queried_object();
-		if(!is_date()){
-				$args =  array(
-					'post_type'           => $post_type,
-					'orderby'             => 'date',
-					'ignore_sticky_posts' => 1,
-					'tax_query' => array(
-							        array(
-							          'taxonomy' => $qobj->taxonomy,
-							          'field' => 'id',
-							          'terms' => $qobj->term_id,
-							    //    using a slug is also possible
-							    //    'field' => 'slug', 
-							    //    'terms' => $qobj->name
-							        )
-							        ),
-					'paged'               => esc_attr($paged),
-					'post__not_in' 		  => $exclude_ids,
-					'has_password' => false ,
-					'post_status'=> 'publish'
-				  );
+		if( !is_date() ){
+				$args = array(
+							'post_type'           => $post_type,
+							'orderby'             => 'date',
+							'ignore_sticky_posts' => 1,
+							'paged'               => esc_attr($paged),
+							'post__not_in' 		  => $exclude_ids,
+							'has_password' => false ,
+							'post_status'=> 'publish'
+						 );
+			if ( is_category() || is_taxonomy($qobj->taxonomy) ) {
+				$args['tax_query'] = array(
+						        		array(
+								          'taxonomy' => $qobj->taxonomy,
+								          'field' => 'id',
+								          'terms' => $qobj->term_id,
+								        ),
+									);
+			}
 		}
 		if(is_date()){
 			$year     	= get_query_var('year');

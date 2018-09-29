@@ -211,6 +211,11 @@ function ampforwp_add_custom_rewrite_rules() {
 
 	$taxonomies = apply_filters( 'ampforwp_modify_rewrite_tax', $taxonomies );
 	if ( $taxonomies ) {
+		add_rewrite_rule(
+	      '(.+?)\/amp/?$',
+	      'index.php?amp&post_type=$matches[1]',
+	      'top'
+	    );
 		foreach ( $taxonomies  as $key => $taxonomy ) { 
 			if ( ! empty( $taxonomy ) ) {
 			    add_rewrite_rule(
