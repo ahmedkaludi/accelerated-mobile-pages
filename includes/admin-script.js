@@ -910,3 +910,36 @@ $("#single-design-type_2").attr('checked', true);
 });
 
 }); 
+
+jQuery(window).on("YoastSEO:ready",function(){
+ExamplePlugin = function() {
+  YoastSEO.app.registerPlugin( 'examplePlugin', {status: 'ready'} );
+
+  /**
+   * @param modification    {string}    The name of the filter
+   * @param callable        {function}  The callable
+   * @param pluginName      {string}    The plugin that is registering the modification.
+   * @param priority        {number}    (optional) Used to specify the order in which the callables
+   *                                    associated with a particular filter are called. Lower numbers
+   *                                    correspond with earlier execution.
+   */
+  YoastSEO.app.registerModification( 'content', this.myContentModification, 'examplePlugin', 5 );
+}
+
+    /**
+     * Adds some text to the data...
+     *
+     * @param data The data to modify
+     */
+    ExamplePlugin.prototype.myContentModification = function(data) {
+        var pbdata  = $('#amp-page-builder-ready').val();
+        var takeover = redux_data['ampforwp-amp-takeover'];
+        var pb = redux_data['ampforwp-pagebuilder'];
+        var pb2 = $('input[name="ampforwp_page_builder_enable"]').val();
+        if ( takeover == 1 && pb == 1 && 'yes' == pb2 ) {
+            data = pbdata;
+        }
+        return data;
+    };
+    new ExamplePlugin();
+}); 
