@@ -3358,11 +3358,12 @@ function ampforwp_view_nonamp(){
    if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && $redux_builder_amp['ampforwp-amp-takeover'] ) {
    	$ampforwp_backto_nonamp = '';
    }
-
+        $amp_url = "";
   		$amp_url = $_SERVER['REQUEST_URI'];
 		$amp_url = explode('/', $amp_url);
 		$amp_url = array_flip($amp_url);
 		unset($amp_url['amp']);
+		$non_amp_url = "";
 		$non_amp_url = array_flip($amp_url);
 		$non_amp_url = implode('/', $non_amp_url);
 		$page = "";
