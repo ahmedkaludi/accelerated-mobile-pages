@@ -3399,9 +3399,7 @@ if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
 	function ampforwp_fbia_meta_tags(){
 		global $redux_builder_amp;
 		$fb_page_id = '';
-		if(ampforwp_get_setting('fb-instant-page-id')){
-		$fb_page_id = $redux_builder_amp['fb-instant-page-id'];
-		}
+		$fb_page_id = ampforwp_get_setting('fb-instant-page-id');
 		// Page ID meta Tag
 		if(  isset($redux_builder_amp['fb-instant-page-id']) && $redux_builder_amp['fb-instant-page-id'] ) { ?>		
 			<meta property="fb:pages" content="<?php echo esc_attr( $fb_page_id ); ?>" />
