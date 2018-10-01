@@ -304,7 +304,7 @@ function call_page_builder(){
 			        return strcmp($a['label'], $b['label']);
 			    }
 
-			    usort($moduleTemplate, "pb_cmp_tosort");
+				uasort($moduleTemplate, 'pb_cmp_tosort');
 			    foreach ($moduleTemplate as $key => $module) {
 			    	if(in_array($key, $oldModules)){
 			    		continue;
