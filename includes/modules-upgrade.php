@@ -149,7 +149,7 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
 //On module upgrade
 function ampforwp_import_structure_data(){
     global $redux_builder_amp;
-    if(get_option('ampforwp_structure_data_module_upgread')=='migrated'){
+    if(get_option('ampforwp_structure_data_module_upgrade')=='migrated'){
         return false;
     }
     $sd_data_update = array();
@@ -232,6 +232,6 @@ function ampforwp_import_structure_data(){
             }
        
     update_option('sd_data', $sd_data_update);
-    update_option('ampforwp_structure_data_module_upgread','migrated');
+    update_option('ampforwp_structure_data_module_upgrade','migrated');
     return true;
 }   
