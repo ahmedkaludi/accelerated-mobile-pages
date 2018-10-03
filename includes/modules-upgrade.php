@@ -18,14 +18,17 @@ function ampforwp_enable_plugins_modules($plugins)
 }
 function ampforwp_plugin_download($url, $path) 
 {
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $data = curl_exec($ch);
-    curl_close($ch);
-    if(file_put_contents($path, $data))
+    
+    $response = wp_remote_get( $url );
+    if ( is_array( $response ) ) {
+      $body = $response['body']; // use the content
+      if(file_put_contents($path, $body))
             return true;
-    else
+        else
             return false;
+    }else{
+        return false;
+    }
 }
 function ampforwp_plugin_unpack($args, $target)
 {
@@ -39,7 +42,6 @@ function ampforwp_plugin_unpack($args, $target)
                                     $fstream = zip_entry_read($entry, zip_entry_filesize($entry));
                                     file_put_contents($file_path, $fstream );
                                     chmod($file_path, 0777);
-                                    //echo "save: ".$file_path."<br />";
                             }
                             zip_entry_close($entry);
                     }
@@ -47,7 +49,6 @@ function ampforwp_plugin_unpack($args, $target)
                             if(zip_entry_name($entry)){
                                     mkdir($file_path);
                                     chmod($file_path, 0777);
-                                    //echo "create: ".$file_path."<br />";
                             }
                     }
             }
