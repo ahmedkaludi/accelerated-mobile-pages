@@ -733,6 +733,9 @@ require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
+if(is_admin()){
+require_once(  AMPFORWP_PLUGIN_DIR. '/includes/modules-upgrade.php');
+}
 require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 
 /**
