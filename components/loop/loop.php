@@ -95,7 +95,7 @@ function call_loops_standard($data=array()){
 							'has_password' => false ,
 							'post_status'=> 'publish'
 						 );
-			if ( is_category() || is_taxonomy($qobj->taxonomy) ) {
+			if ( is_category() || ( isset($qobj->taxonomy) && taxonomy_exists($qobj->taxonomy)) ) {
 				$args['tax_query'] = array(
 						        		array(
 								          'taxonomy' => $qobj->taxonomy,
