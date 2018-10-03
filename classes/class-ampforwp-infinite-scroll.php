@@ -173,7 +173,7 @@ if( ! class_exists('AMPforWP_Infinite_Scroll') ) {
 				$classes = array(".relatedpost",".footer_wrapper",".pagination-holder");
 			}
 			if ( 4 == $design ) {
-				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination");
+				$classes = array(".p-m-fl",".loop-pagination",".footer",".r-pf",".srp ul",".srp h3","#pagination",".h_m_w");
 			}
 
 			return json_encode($classes);
