@@ -120,7 +120,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		$carousel_markup_all = array(
 			'1'=>array(
 						'main-html'=>'{{with_carousel}}',
-						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
+						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'gallery_css' => '',
 
@@ -128,7 +128,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 									),
 			'2' => array(
 						'main-html'=>'{{with_carousel}} {{with_carousel_thumbnail}}',
-						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption :openbrack:class:closebrack:="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span :openbrack:text:closebrack:="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
+						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
 						'gallery_css' => '
@@ -159,7 +159,6 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 									),
 		);
 
-
 		$carousel_markup_all = apply_filters("ampforwp_manage_gallery_markup", $carousel_markup_all);
 		//Default markup
 		$markup =  $carousel_markup_all[1];
@@ -167,9 +166,7 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		if( isset($redux_builder_amp['ampforwp-gallery-design-type']) &&  isset($carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type'] ] ) ){
 			$markup =  $carousel_markup_all[$redux_builder_amp['ampforwp-gallery-design-type']];
 		}
-		/*Filter*/
 
-		
 		$amp_images = array();
 		foreach ( $args['images'] as $key => $image ) {
 			$amp_img_arr = array(
@@ -217,14 +214,14 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 			//Check if the attachment has caption or not
 			if(isset($image['caption']) && $image['caption'] != '' && isset($markup['image-with-caption-html']) && $markup['image-with-caption-html'] != ''){
 				// To enable the carousel magic
-				//add_action('ampforwp_after_header','ampforwp_carousel_class_magic', 999, 1);
-				add_filter('ampforwp_modify_the_content','ampforwp_carousel_class_magic');
-				//add_action('below_the_header_design_1','ampforwp_carousel_class_magic', 999, 1);
 				$caption = $image['caption'];
 				// Append the caption with image
 				$returnHtml = isset($markup['image-with-caption-html'])? $markup['image-with-caption-html']:'';
 				$returnHtml = str_replace('{{main_images}}', $amp_images[$key] , $returnHtml);
 				$returnHtml = str_replace('{{main_images_caption}}', wp_kses_data( $caption ), $returnHtml);
+				// Replace the openbrack with [ and closebrack with ]
+				$returnHtml = str_replace('{{openbrack}}', '[', $returnHtml);
+				$returnHtml = str_replace('{{closebrack}}', ']', $returnHtml);
 			}
 			elseif( isset($markup['image-without-caption-html']) ){
 				// If there is no caption
@@ -234,8 +231,6 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 			
 			$images[$key] = apply_filters('amp_gallery_images', $returnHtml, $image, $markup);
 		}// foreach Closed
-
-
 
 		//replacements
 			$r = rand(1,100);
@@ -277,17 +272,14 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 	}
 }// Class closed
 
-
 // Add Caption in the Gallery Image
 add_filter('amp_gallery_images','AMPforWP\\AMPVendor\\ampforwp_new_gallery_images', 10, 3);
 function ampforwp_new_gallery_images($images_markup, $image, $markup_arr){
 	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_gallery_style');
 	add_filter('amp_post_template_data','AMPforWP\\AMPVendor\\ampforwp_carousel_bind_script');
+	add_action('amp_post_template_css', 'AMPforWP\\AMPVendor\\ampforwp_additional_style_carousel_caption');
 	return $images_markup;
 }
-
-
-
 
 if( ! function_exists( 'ampforwp_additional_gallery_style' ) ){
 	function ampforwp_additional_gallery_style(){
@@ -338,3 +330,42 @@ function ampforwp_new_thumbnail_images($amp_images, $uniqueid, $markup_arr){
 	}
 	return $amp_thumb_image_buttons;
 }
+
+if( ! function_exists( 'ampforwp_additional_style_carousel_caption' ) ){
+	function ampforwp_additional_style_carousel_caption(){ ?>
+    .collapsible-captions {--caption-height: 32px; --image-height: 100%; --caption-padding:1rem; --button-size: 28px; --caption-color: #f5f5f5;; --caption-bg-color: #111;}
+    .collapsible-captions * {
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      box-sizing: border-box;
+    }
+    .collapsible-captions .amp-carousel-container  {position: relative; width: 100%;}
+    .collapsible-captions amp-img img {object-fit: contain; }
+    .collapsible-captions figure { margin: 0; padding: 0; }
+    .collapsible-captions figcaption { position: absolute; bottom: 0;width: 100%;
+      max-height: var(--caption-height);margin-bottom:0;
+      line-height: var(--caption-height);
+      padding: 0 var(--button-size) 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: max-height 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      color: var(--caption-color);
+      background: rgba(0, 0, 0, 0.6);   
+    }
+    .collapsible-captions figcaption.expanded {
+      line-height: inherit;
+      white-space: normal;
+      text-overflow: auto;
+      max-height: 100px;
+      overflow: auto;
+    }
+    .collapsible-captions figcaption:focus { outline: none; border: none; }
+    .collapsible-captions figcaption span { display: block; position: absolute;
+      top: calc((var(--caption-height) - var(--button-size)) / 2);
+      right: 2px; width: var(--button-size); height: var(--button-size);
+      line-height: var(--button-size); text-align: center; font-size: 12px; color: inherit;
+      cursor: pointer; }
+	figcaption{ margin-bottom: 20px; }
+<?php }
+ }
