@@ -195,11 +195,11 @@ add_action('amp_post_template_css','amp_social_styles',11);
 function amp_social_styles(){ ?>
 @font-face {
   font-family: 'icomoon';
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot');
-  src:  url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.eot') format('embedded-opentype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf') format('truetype'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.woff') format('woff'),
-    url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.svg') format('svg');
+  src:  url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot');
+  src:  url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.eot') format('embedded-opentype'),
+    url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.ttf') format('truetype'),
+    url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.woff') format('woff'),
+    url('<?php echo ampforwp_font_url(plugin_dir_url(__FILE__)) ?>fonts/icomoon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
