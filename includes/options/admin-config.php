@@ -42,6 +42,7 @@ global $all_extensions_data;
 $extension_listing_array = array(
                         array(
                             'name'=>'Advanced AMP ADS',
+                            'label' => 'Advanced AMP ADS', 
                             'desc'=>'Add Advertisement directly in the content',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'$29',
@@ -54,6 +55,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'AMP Cache',
+                            'label' => 'AMP Cache',
                             'desc'=>'AMP Cache is a Revolutionary Cache System for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
                             'price'=>'$89',
@@ -66,6 +68,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'AMP Comments',
+                            'label' => 'AMP Comments',
                             'desc'=>'You can now allow the same comment functionality on AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
                             'price'=>'$29.99',
@@ -79,6 +82,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'ACF for AMP',
+                            'label' => 'ACF for AMP',
                             'desc'=>'Easily add ACF support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/acf.png',
                             'price'=>'$29',
@@ -91,6 +95,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'AMP Layouts',
+                            'label' => 'AMP Layouts',
                             'desc'=>'Design system built for AMP that makes easy to create your own AMP website.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/amplayouts.png',
                             'price'=>'$89',
@@ -103,6 +108,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'AMP Teaser',
+                            'label' => 'AMP Teaser',
                             'desc'=>'AMP Teaser automatically clips the content based on your selection',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/teaser-icon.png',
                             'price'=>'$29',
@@ -115,6 +121,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'AMP WooCommerce Pro',
+                            'label' => 'AMP WooCommerce Pro',
                             'desc'=>'Advanced WooCommerce in AMP in two clicks.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/woo.png',
                             'price'=>'$79',
@@ -127,6 +134,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'ADS for WP',
+                            'label' => 'ADS for WP',
                             'desc'=>'We are innovating in the Ads space by creating a Lightweight, Easy & Feature Rich Ad solution',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'Free',
@@ -139,6 +147,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'bbPress For AMP',
+                            'label' => 'B bPress For AMP',
                             'desc'=>'Add bbPress Forum Compatibility to your AMP version',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/bbp-icon.png',
                             'price'=>'$89',
@@ -150,6 +159,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
+                            'label' => 'Call To Action (CTA)',
                             'desc'=>'Higher Visibility & More Conversions',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
                             'price'=>'$29',
@@ -162,6 +172,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Contact Form 7',
+                            'label' => 'Contact Form 7',
                             'desc'=>'Add Contact Us Form in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cf7.png',
                             'price'=>'$39',
@@ -174,6 +185,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Custom Post Type',
+                            'label' => 'Custom Post Type',
                             'desc'=>'Enable Custom Post type support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
                             'price'=>'$19',
@@ -186,6 +198,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=> 'EDD for AMP',
+                            'label' => 'EDD for AMP',
                             'desc'=> 'EDD compatibility with AMP',
                             'img_src'=> AMPFORWP_IMAGE_DIR . '/edd-icon.png',
                             'price'=> '$19',
@@ -197,6 +210,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Email Opt-in Forms',
+                            'label' => 'Email Opt-in Forms',
                             'desc'=>'Capture Leads with Email Subscription.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
                             'price'=>'$79',
@@ -209,6 +223,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Gravity Forms',
+                            'label' => 'Gravity Forms',
                             'desc'=>'Add Gravity Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/gf.png',
                             'price'=>'$79',
@@ -221,6 +236,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Newspaper AMP Theme',
+                            'label' => 'Newspaper AMP Theme',
                             'desc'=>'Advanced News Magazine theme built for AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
                             'price'=>'$49',
@@ -233,6 +249,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Ninja Forms for AMP',
+                            'label' => 'Ninja Forms for AMP',
                             'desc'=>'Add Ninja Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
                             'price'=>'$79',
@@ -245,6 +262,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Polylang For AMP',
+                            'label' => 'Polylang For AMP',
                             'desc'=>'Polylang compatibility with AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/polylang-icon.png',
                             'price'=>'$19',
@@ -256,6 +274,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'PWA For WordPress',
+                            'label' => 'PWA For WordPress',
                             'desc'=>'Add Progressive Web App support for WordPress website',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
                             'price'=>'$89',
@@ -268,6 +287,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'Star Ratings',
+                            'label' => 'Star Ratings',
                             'desc'=>'Star Review Ratings for AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/star.png',
                             'price'=>'$19',
@@ -280,6 +300,7 @@ $extension_listing_array = array(
                         ),
                             array(
                             'name'=>'AMP Stories',
+                            'label' => 'AMP Stories',
                             'desc'=>'A Revolutionary new way to share your stories',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
                             'price'=>'$79',
@@ -293,6 +314,7 @@ $extension_listing_array = array(
 
                         array(
                             'name'=>'Structured Data for WP',
+                            'label' => 'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/sd-icon.png',
                             'price'=>'$29',
@@ -305,6 +327,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'View All Extensions',
+                            'label' => 'z view',
                             'desc'=>'See all the extensions available for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
                             'price'=>'FREE',
@@ -317,6 +340,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'WP Forms for AMP',
+                            'label' => 'WP Forms for AMP',
                             'desc'=>'Add WP Forms Support in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/wpf.png',
                             'price'=>'$79',
@@ -329,6 +353,7 @@ $extension_listing_array = array(
                         ),
                         array(
                             'name'=>'WPML For AMP',
+                            'label' => 'WPML For AMP',
                             'desc'=>'WPML compatibility with AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/wpml-icon.png',
                             'price'=>'$19',
@@ -347,7 +372,7 @@ $ampforwp_nameOfUser = "";
 $ampforwp_is_productActivated = false;
 function ampforwp_sort_extension_array($a, $b){
     if ($a['is_activated'] == $b['is_activated']) {
-        return 0;
+        return strcmp($a['label'], $b['label']);
     }
     return ($a['is_activated'] < $b['is_activated']) ? -1 : 1;
 }
