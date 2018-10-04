@@ -5395,7 +5395,7 @@ function ampforwp_is_non_amp( $type="" ) {
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
 	    if( $supported_types_for_takeover ){
 	            $current_type = get_post_type(get_the_ID());
-	            if(!in_array($current_type, $supported_types_for_takeover)){ 
+	            if(!in_array($current_type, $supported_types_for_takeover) && !is_404()){ 
 	              return ;
 	            }
 	    }
