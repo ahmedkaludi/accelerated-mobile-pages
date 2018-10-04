@@ -2029,7 +2029,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                             : '<div class="col-wrapper">
                                    <a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Go to PWA Settings</p></div> </a> 
                                 </div>
-                            ').'<a class="amp_recommend_learnmore" href="#" target="_blank">Learn more</a>'
+                            ').'<a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-pwa-for-wp-and-why-its-included-in-the-amp/" target="_blank">Learn more</a>'
            ),
 
        )
@@ -2614,7 +2614,7 @@ function ampforwp_add_sd_fields($fields){
                                                             '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'
                                                         )
                                                         .'
-                                                         &nbsp;<a href="#" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                                         &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
                                                     </div>
                                             </div>' 
                                             
