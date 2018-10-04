@@ -365,6 +365,10 @@ if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_build
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';"; }  
 echo $fontFamily;?>
 }
+table {
+    display: -webkit-box;
+    overflow-x: auto;
+}
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
 .artl-cnt a{
 	text-decoration: underline;
