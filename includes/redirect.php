@@ -215,7 +215,7 @@ function ampforwp_page_template_redirect() {
     }
   }
 }
-add_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
+add_action( 'template_redirect', 'ampforwp_page_template_redirect', 10 );
 
 
 add_action( 'template_redirect', 'ampforwp_page_template_redirect_archive', 10 );
