@@ -14,7 +14,7 @@
 	          $structured_data_main_logo = $redux_builder_amp['opt-media']['url'];
 	        }
 	        if (! empty( $redux_builder_amp['amp-structured-data-logo']['url'] ) ) {
-	          $structured_data_logo = $redux_builder_amp['amp-structured-data-logo']['url'];
+	          $structured_data_logo = __($redux_builder_amp['amp-structured-data-logo']['url'], 'accelerated-mobile-pages');
 	        }
 	        if ( $structured_data_logo ) {
 	          $structured_data_logo = $structured_data_logo;
@@ -72,7 +72,7 @@
 			if ( $post_image_check == false) {
 
 				if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
-					$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+					$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 				}
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
@@ -87,7 +87,7 @@
 			}
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
-					$structured_data_image = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+					$structured_data_image = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
 
@@ -165,7 +165,7 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 			$page = '';
 			// placeholder Image area
 			if (! empty( $redux_builder_amp['amp-structured-data-placeholder-image']['url'] ) ) {
-				$structured_data_image_url = $redux_builder_amp['amp-structured-data-placeholder-image']['url'];
+				$structured_data_image_url = __($redux_builder_amp['amp-structured-data-placeholder-image']['url'], 'accelerated-mobile-pages');
 			}
 			$structured_data_image =  $structured_data_image_url; //  Placeholder Image URL
 			$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']); //  Placeholder Image width
@@ -313,7 +313,7 @@ if ( ! function_exists('ampforwp_structured_data_video_thumb') ) {
 			// If there's no featured image, take default from settings
 			if ( false == $post_image ) {
 				if ( ! empty( $redux_builder_amp['amporwp-structured-data-video-thumb-url']['url'] ) ) {
-						$structured_data_video_thumb_url = $redux_builder_amp['amporwp-structured-data-video-thumb-url']['url'];
+						$structured_data_video_thumb_url = __($redux_builder_amp['amporwp-structured-data-video-thumb-url']['url'], 'accelerated-mobile-pages');
 					}
 			}
 			// If featured image is present, take it as thumbnail
