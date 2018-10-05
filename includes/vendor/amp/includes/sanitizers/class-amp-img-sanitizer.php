@@ -151,6 +151,7 @@ class AMP_Img_Sanitizer extends AMP_Base_Sanitizer {
 				case 'class':
 				case 'srcset':
 				case 'sizes':
+				case 'itemprop':
 				case 'on':
 				case 'role':
 				case 'tabindex':
