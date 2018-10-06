@@ -11,10 +11,10 @@
   if ($depth > 0 && $has_children > 0 )
     {
     $column += 1;
-    $output .= "\n$indent<input type=\"checkbox\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
+    $output .= "\n$indent<input type=\"hidden\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
   }else{
     $column += 1;
-    $output .= "\n$indent<input type=\"checkbox\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
+    $output .= "\n$indent<input type=\"hidden\" id=\"drop-$column\"><label for=\"drop-$column\" class=\"toggle\"></label><ul class=\"sub-menu\">\n";
     
   }
   }
