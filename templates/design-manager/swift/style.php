@@ -329,6 +329,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
     blockquote{margin-bottom:20px;}
 	blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
 	blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
+	<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 	.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
 	.amp-comment-button .nocomments{color: #fff;display: block;padding: 7px 0px 8px 0px;}
 	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
@@ -350,7 +351,7 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 	.comment-content{margin-top:6px;width:100%;display:inline-block;}
 	.comment-content p{font-size: 14px;color: #333;line-height: 22px;font-weight: 400;margin: 0;}
 	.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;width:40px;}
-
+	<?php } ?>
 	
 	@media (max-width: 480px){
 		blockquote p {font-size:20px;}
