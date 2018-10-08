@@ -346,7 +346,7 @@ amp-user-notification button { background-color:  <?php echo sanitize_hex_color(
 @media (min-width: 320px) and (max-width: 767px) {.tablepress { display: inline-block; overflow-x: scroll; } }
 <?php }  ?>
 .design_2_wrapper .amp-loop-list .amp-wp-meta {display: none;}
-<?php if(!is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 && ! checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
+<?php if(!is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 && !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
 .breadcrumb{line-height: 1;margin-bottom:6px;}
 .breadcrumb ul, .category-single ul, .breadcrumb div{padding:0; margin:0;}
 .breadcrumb ul li, .breadcrumbs span{display:inline;}
