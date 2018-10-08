@@ -1120,6 +1120,25 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 	font-size:15px;
 	line-height:1.4;
 }
+<?php // Back to Top CSS //
+if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
+	.btt{
+		position: fixed;
+	    bottom: 10px;
+	    right: 10px;
+	    padding: 10px;
+	    background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+	    color: #fff;
+	    border-radius: 5px;
+	}
+	.btt:before{
+		content: "\e316";
+    	font-family: 'icomoon';
+		display:block;
+		font-size: 20px;
+    	font-weight: 600;
+	}
+<?php } ?>
 <?php /*** New footer Features ***/
 if( isset($redux_builder_amp['footer-customize-options']) && true ==  $redux_builder_amp['footer-customize-options']) { ?>
 .f-w{
