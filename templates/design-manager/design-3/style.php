@@ -281,8 +281,7 @@ figcaption{ font-size: 11px; line-height: 1.6; margin-bottom: 11px; background: 
 main .amp-wp-content.featured-image-content{ padding: 0px; border: 0; margin-bottom: 0; box-shadow: none }
 .amp-wp-content .amp-wp-article-featured-image amp-img {margin: 0 auto;}
 .single-post .amp-wp-article-content amp-img{ max-width:100% }
-<?php } ?>
-<?php if ( is_single() && ! checkAMPforPageBuilderStatus(get_the_ID()) ) {
+<?php if ( is_single() ) {
  if ( $redux_builder_amp['ampforwp-single-select-type-of-related'] ) { ?>
 /* Related Posts */
 main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0px 0 0 0; margin:1.8em auto 1.5em auto }
@@ -300,7 +299,6 @@ main .amp-wp-content.relatedpost{ background: none; box-shadow: none; padding:0p
 .related-post_image amp-img{ width: 144%; left: -20%; }
 <?php }
 } ?>
-<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
 /* Comments */
 .page-numbers{ padding: 9px 10px; background: #fff; font-size: 14px; }
 .comment-body .comment-content{ font-family:'PT Serif', serif; margin-top: 2px; }
