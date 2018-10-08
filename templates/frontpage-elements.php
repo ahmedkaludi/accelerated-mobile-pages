@@ -211,6 +211,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 	$amp_custom_content_enable = get_post_meta( $post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
 	<main>
 		<article class="amp-wp-article">
+			<div class="amp-wp-article-content">
 			<?php do_action( 'ampforwp_design_3_frontpage_title', $template ); ?>
 			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
 			<?php 	$featured_image = $template->get( 'featured_image' );
@@ -280,6 +281,7 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
 			<div class="amp-wp-content post-pagination-meta">
 				<?php $template->load_parts( apply_filters( 'amp_post_template_meta_parts', array( 'meta-taxonomy' ) ) ); ?>
 			</div>
+		</div>
 		</article>
 	</main>
 	<?php 
