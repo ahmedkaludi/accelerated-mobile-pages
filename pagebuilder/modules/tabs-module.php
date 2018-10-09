@@ -1,10 +1,18 @@
 <?php 
 $output = '
+{{if_condition_tabs_layout_type==1}}
 <amp-selector role="tablist" layout="container" class="ampTabContainer">
 	{{repeater_tab_content}}
 </amp-selector>
+{{ifend_condition_tabs_layout_type_1}}
+{{if_condition_tabs_layout_type==2}}
+<amp-selector role="tablist" layout="container" class="ampTabContainer">
+  {{repeater_tab2_content}}
+</amp-selector>
+{{ifend_condition_tabs_layout_type_2}}
 ';
 $css = '
+{{if_condition_tabs_layout_type==1}}
 {{module-class}}{margin:{{margin_css}};padding:{{padding_css}};width:{{width}}}
 {{module-class}} .tab-img amp-img{
 	width:100%;
@@ -115,7 +123,47 @@ $css = '
 		margin-top:30px;
 	}
 }
-.
+{{ifend_condition_tabs_layout_type_1}}
+
+{{if_condition_tabs_layout_type==2}}
+{{module-class}}{margin:{{margin_css}};padding:{{padding_css}}}
+{{module-class}} .ampTabContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    {{module-class}}.tabs .tabButton[selected] {
+        outline: none;
+        background: {{tb2_hdng_bg_color}};
+        color:#333;
+    }
+    {{module-class}}.tabs amp-selector [option]{
+    	background:#eee;
+    	color:{{tb2_hdng_font_color}};
+    }
+    {{module-class}}.tabs .tabButton {
+        list-style: none;
+        flex-grow: 1;
+        text-align: center;
+        cursor: pointer;
+        font-size: {{tb2_hdng_fnt_sz}};
+    	font-weight: {{tb2_hdng_font_type}};
+    }
+    {{module-class}}.tabs .tabContent {
+        display: none;
+        width: 100%;
+        order: 1; 
+        border: 1px solid #ccc;
+    	padding: 15px 10px 15px 20px;
+    	font-size:{{tb2_cnt_fnt_sz}};
+    	line-height:1.3;
+    	font-weight:{{tb2_cnt_font_type}};
+    	color:{{tb2_cnt_font_color}};
+    }
+    {{module-class}}.tabs .tabButton[selected]+.tabContent {
+        display: block;
+    }
+    {{module-class}}.tabs .tabContent p{margin:0;}
+{{ifend_condition_tabs_layout_type_2}}
 ';
 
 return array(
@@ -129,6 +177,27 @@ return array(
               'advanced' => 'Advanced',
             ),
 		'fields' => array(
+						array(    
+				            'type'    =>'layout-image-picker',
+				            'name'    =>"tabs_layout_type",
+				            'label'   =>"Select Layout",
+				            'tab'     =>'layout',
+				            'default' =>'1',    
+				            'options_details'=>array(
+				                            array(
+				                              'value'=>'1',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/blur-mod-1.png'
+				                            ),
+				                            array(
+				                              'value'=>'2',
+				                              'label'=>'',
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/blur-mod-1.png'
+				                            ),
+				                          ),
+				            'content_type'=>'html',
+				            ),
+						// Tab1 Fileds started here //
                         array(		
 	 						'type'		=>'text',		
 	 						'name'		=>"width",		
@@ -136,6 +205,7 @@ return array(
 	           				 'tab'      =>'customizer',
 	 						'default'	=>'90%',	
 	           				'content_type'=>'css',
+	           				'required'  => array('tabs_layout_type'=> 1)
  						),
 	 					array(
 								'type'		=>'checkbox',
@@ -149,6 +219,7 @@ return array(
 												),
 											),
 								'content_type'=>'html',
+								'required'  => array('tabs_layout_type'=> 1)
 						),
 						array(		
 		 						'type'		=>'text',		
@@ -157,6 +228,7 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(		
 	 							'type'	=>'select',		
@@ -172,6 +244,7 @@ return array(
                                     '700'  	=>'Bold',
                                 ),
 	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(
 								'type'		=>'color-picker',
@@ -179,7 +252,8 @@ return array(
 								'label'		=>'Tab Heading Color',
 								'tab'		=>'design',
 								'default'	=>'#fff',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
 						array(
 								'type'		=>'color-picker',
@@ -187,7 +261,8 @@ return array(
 								'label'		=>'Tab Heading Background Color',
 								'tab'		=>'design',
 								'default'	=>'#8898aa',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
 						array(		
 		 						'type'		=>'text',		
@@ -196,6 +271,7 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'30px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(		
 	 							'type'	=>'select',		
@@ -211,6 +287,7 @@ return array(
                                     '700'  	=>'Bold',
                                 ),
 	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(
 								'type'		=>'color-picker',
@@ -218,7 +295,8 @@ return array(
 								'label'		=>'Tab Title Color',
 								'tab'		=>'design',
 								'default'	=>'#000',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
 						array(		
 		 						'type'		=>'text',		
@@ -227,6 +305,7 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(		
 	 							'type'	=>'select',		
@@ -242,6 +321,7 @@ return array(
                                     '700'  	=>'Bold',
                                 ),
 	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(
 								'type'		=>'color-picker',
@@ -249,7 +329,8 @@ return array(
 								'label'		=>'Tab Content Color',
 								'tab'		=>'design',
 								'default'	=>'#797f7f',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
 						array(		
 		 						'type'		=>'text',		
@@ -258,6 +339,7 @@ return array(
 		           				 'tab'     =>'design',
 		 						'default'	=>'18px',	
 		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(		
 	 							'type'	=>'select',		
@@ -273,6 +355,7 @@ return array(
                                     '700'  	=>'Bold',
                                 ),
 	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 1)
 	 						),
 						array(
 								'type'		=>'color-picker',
@@ -280,7 +363,8 @@ return array(
 								'label'		=>'Tab Button Color',
 								'tab'		=>'design',
 								'default'	=>'#797f7f',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
 						array(
 								'type'		=>'color-picker',
@@ -288,8 +372,90 @@ return array(
 								'label'		=>'Tab Button Background Color',
 								'tab'		=>'design',
 								'default'	=>'#ffffff',
-								'content_type'=>'css'
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 1)
 							),
+
+						// Tab2 Fileds started here //
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"tb2_hdng_fnt_sz",		
+		 						'label'		=>'Tab Heading Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'17px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 2)
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'tb2_hdng_font_type',		
+	 							'label' =>"Tab Heading Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'600',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 2)
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"tb2_hdng_font_color",
+								'label'		=>'Tab Heading Color',
+								'tab'		=>'design',
+								'default'	=>'#222',
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 2)
+							),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"tb2_hdng_bg_color",
+								'label'		=>'Tab Heading Background Color',
+								'tab'		=>'design',
+								'default'	=>'#ccc',
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 2)
+							),
+						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"tb2_cnt_fnt_sz",		
+		 						'label'		=>'Tab Content Font Size',
+		           				 'tab'     =>'design',
+		 						'default'	=>'16px',	
+		           				'content_type'=>'css',
+		           				'required'  => array('tabs_layout_type'=> 2)
+	 						),
+						array(		
+	 							'type'	=>'select',		
+	 							'name'  =>'tb2_cnt_font_type',		
+	 							'label' =>"Tab Content Font Weight",
+								'tab'     =>'design',
+	 							'default' =>'400',
+	 							'options_details'=>array(
+                                    '300'   =>'Light',
+                                    '400'  	=>'Regular',
+                                    '500'  	=>'Medium',
+                                    '600'  	=>'Semi Bold',
+                                    '700'  	=>'Bold',
+                                ),
+	 							'content_type'=>'css',
+	 							'required'  => array('tabs_layout_type'=> 2)
+	 						),
+						array(
+								'type'		=>'color-picker',
+								'name'		=>"tb2_cnt_font_color",
+								'label'		=>'Tab Content Color',
+								'tab'		=>'design',
+								'default'	=>'#797f7f',
+								'content_type'=>'css',
+								'required'  => array('tabs_layout_type'=> 2)
+							),
+
+						// Global Fields //
 						array(
 								'type'		=>'spacing',
 								'name'		=>"margin_css",
@@ -332,6 +498,7 @@ return array(
 		'repeater'=>array(
 	          'tab'=>'customizer',
 	          'fields'=>array(
+	          				// Tab 1 Fileds //
 	          				array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"tab_hdng",		
@@ -339,6 +506,7 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Tab Heading',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 			                array(		
 		 						'type'		=>'upload',		
@@ -347,6 +515,7 @@ return array(
 		           				'tab'     =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
 
 	 						),
 	 						array(		
@@ -356,6 +525,7 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Make Something Amazing',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 	 						array(		
 		 						'type'		=>'text-editor',		
@@ -364,6 +534,7 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'<p>We believe the best way to learn is by putting your skills to 			use.</p>',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 	 						array(		
 		 						'type'		=>'text',		
@@ -372,6 +543,7 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'Button',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
 	 						),
 	 						array(		
 		 						'type'		=>'text',		
@@ -380,29 +552,54 @@ return array(
 		           				'tab'       =>'customizer',
 		 						'default'	=>'#',	
 		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 1)
+	 						),
+	 						// Tab 2 Fileds //
+	 						array(		
+		 						'type'		=>'text',		
+		 						'name'		=>"tab_hdng2",		
+		 						'label'		=>'Tab Heading',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Tab Heading',	
+		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 2)
+	 						),
+	 						array(		
+		 						'type'		=>'text-editor',		
+		 						'name'		=>"tab_content2",		
+		 						'label'		=>'Tab Content',
+		           				'tab'       =>'customizer',
+		 						'default'	=>'Add your content Here....',	
+		           				'content_type'=>'html',
+		           				'required'  => array('tabs_layout_type'=> 2)
 	 						),
 	              ),
 	          'front_template'=>
 	          		array(
 	          			"tab_content" => 
-								'<div role="tab"class="tabButton" {{if_condition_repeater_unique==0}}selected{{ifend_condition_repeater_unique_0}} option="{{repeater_unique}}">
-								    <h2>{{tab_hdng}}</h2>
-								</div>
-								<div role="tabpanel" class="tabContent">
-									<div class="tab-img animate fadeInLeft">
-										{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
-										{{ifend_img_upload}}
-								    </div>
-								    <div class="tab-cntn animate fadeInRight">
-								    	<h3>{{tab_tlt}}</h3>
-								    	{{content}}
-								    	<a href="{{btn_lnk}}">{{tab_btn}}</a>
-								    </div>
-								</div>
-								',
-						
-			      
-			      
+								'{{if_condition_tabs_layout_type==1}}
+									<div role="tab"class="tabButton" {{if_condition_repeater_unique==0}}selected{{ifend_condition_repeater_unique_0}} option="{{repeater_unique}}">
+									    <h2>{{tab_hdng}}</h2>
+									</div>
+									<div role="tabpanel" class="tabContent">
+										<div class="tab-img animate fadeInLeft">
+											{{if_img_upload}}<amp-img src="{{img_upload}}" width="{{image_width}}" height="{{image_height}}" {{if_image_layout}}layout="{{image_layout}}"{{ifend_image_layout}} alt="{{image_alt}}"></amp-img>
+											{{ifend_img_upload}}
+									    </div>
+									    <div class="tab-cntn animate fadeInRight">
+									    	<h3>{{tab_tlt}}</h3>
+									    	{{content}}
+									    	<a href="{{btn_lnk}}">{{tab_btn}}</a>
+									    </div>
+									</div>
+								{{ifend_condition_tabs_layout_type_1}}',
+
+					"tab2_content" => 
+								'{{if_condition_tabs_layout_type==2}}
+									<div role="tab" class="tabButton" selected option="a">{{tab_hdng2}}</div>
+									<div role="tabpanel" class="tabContent">{{tab_content2}}</div>
+								{{ifend_condition_tabs_layout_type_2}}
+								',			      
 	          		)
 	        	
 	          ),
