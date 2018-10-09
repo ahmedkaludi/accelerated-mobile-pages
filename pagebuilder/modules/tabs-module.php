@@ -596,7 +596,8 @@ return array(
 
 					"tab2_content" => 
 								'{{if_condition_tabs_layout_type==2}}
-									<div role="tab" class="tabButton" selected option="a">{{tab_hdng2}}</div>
+									<div role="tab" class="tabButton" {{if_condition_repeater_unique==0}}selected{{ifend_condition_repeater_unique_0}} 
+									option="a">{{tab_hdng2}}</div>
 									<div role="tabpanel" class="tabContent">{{tab_content2}}</div>
 								{{ifend_condition_tabs_layout_type_2}}
 								',			      
