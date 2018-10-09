@@ -42,10 +42,17 @@
 
     $output .= $indent . '<li' . $id . $value . $class_names .'>';
 
-    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    $atts = array();
+    $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+    $atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+    $atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+    $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+    $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+
+    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr(  $atts['title'] ) .'"' : '';
+    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $atts['target']     ) .'"' : '';
+    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $atts['rel']        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $atts['href']        ) .'"' : '';
 
     // Check if menu item is in main menu
     if ( $depth == 0 && $has_children > 0  ) {
