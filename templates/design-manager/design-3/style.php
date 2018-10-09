@@ -615,3 +615,22 @@ if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
     max-width: 1000px;
 }
 <?php } ?>
+<?php // Back to Top CSS //
+if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
+  .btt{
+    position: fixed;
+      bottom: 10px;
+      right: 10px;
+      padding: 10px;
+      background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+      color: #fff;
+      border-radius: 5px;
+  }
+  .btt:before{
+    content: '^';
+    display:block;
+    font-size: 20px;
+    font-weight: 600;
+    color:#fff;
+  }
+<?php } ?>
