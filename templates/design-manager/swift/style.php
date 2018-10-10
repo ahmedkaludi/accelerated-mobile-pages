@@ -1125,7 +1125,7 @@ if(isset($redux_builder_amp['ftr2-gapping'])){
 if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
 	.btt{
 		position: fixed;
-	    bottom: 10px;
+	    bottom: 50px;
 	    right: 10px;
 	    padding: 10px;
 	    background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;

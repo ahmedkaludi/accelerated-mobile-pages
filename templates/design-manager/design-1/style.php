@@ -306,7 +306,7 @@ if (ampforwp_get_setting('enable-amp-ads-resp-1')){?>
 if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
   .btt{
     position: fixed;
-      bottom: 10px;
+      bottom: 50px;
       right: 10px;
       padding: 9px 10px 6px 10px;
       background: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
@@ -314,10 +314,12 @@ if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
       border-radius: 5px;
   }
   .btt:before{
-    content: '^';
+    content: '\25be';
     display:block;
     font-size: 20px;
     font-weight: 600;
     color:#fff;
+    line-height: 1;
+    transform: rotate(180deg);
   }
 <?php } ?>
