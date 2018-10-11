@@ -288,7 +288,7 @@ if( $redux_builder_amp['ampforwp-full-post-in-loop'] == 1 ){ ?>
 .full-post table a:active, .full-post table a:hover {color: #bd5a35;text-decoration: underline;}
 <?php } 
 // image floats removed in mobile view #2525
-if(is_single()){?>
+if(is_singular()){?>
 @media(max-width:480px){
 .amp-wp-content .alignright , .amp-wp-content .alignleft {
   float:none;
