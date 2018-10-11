@@ -84,7 +84,7 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
             }
             
             $tags_breadcrumbs = '';
-            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'tags'){
+            if(ampforwp_get_setting('ampforwp-bread-crumb-type') == 'tags'){
                 $post_tags = wp_get_post_tags($post->ID);
                 if(!empty($post_tags)){
                     foreach( $post_tags as $post_obj){
@@ -98,7 +98,7 @@ if ( isset($redux_builder_amp['ampforwp-bread-crumb']) && 1 == $redux_builder_am
                 }
             }
             
-            if($redux_builder_amp['ampforwp-bread-crumb-type'] == 'category'){
+            if(ampforwp_get_setting('ampforwp-bread-crumb-type') == 'category'){
             // Get post category info
             $category = get_the_category();
              
