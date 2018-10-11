@@ -4325,6 +4325,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                         'id'        =>'amp-design-1-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
@@ -4338,6 +4339,7 @@ Redux::setSection( $opt_name, array(
                 array(
 
                         'id'        => 'excerpt-option-design-1',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
@@ -4359,6 +4361,7 @@ Redux::setSection( $opt_name, array(
             // Excerpt Length for design2 #1122
                 array(
                         'id'        =>'amp-design-2-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
@@ -4372,6 +4375,7 @@ Redux::setSection( $opt_name, array(
                 array(
 
                         'id'        => 'excerpt-option-design-2',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
@@ -4384,6 +4388,7 @@ Redux::setSection( $opt_name, array(
             // Excerpt Length for design3 #1122
                  array(
                         'id'        =>'amp-design-3-excerpt',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 10','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
@@ -4395,6 +4400,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                         'id'        => 'excerpt-option-design-3',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
@@ -4406,6 +4412,7 @@ Redux::setSection( $opt_name, array(
             // Excerpt length for Swift
                 array(
                         'id'        =>'amp-swift-excerpt-len',
+                        'class' => 'child_opt',
                         'type'      =>'text',
                         'tooltip-subtitle'  =>__('Enter the number of words Eg: 20','accelerated-mobile-pages'),
                         'title'     =>__('Excerpt Length','accelerated-mobile-pages'),
@@ -4418,6 +4425,7 @@ Redux::setSection( $opt_name, array(
                 ),
                 array(
                         'id'        => 'excerpt-option-design-4',
+                        'class' => 'child_opt',
                         'type'      => 'switch',
                         'title'     => __('Excerpt on Small Screens', 'accelerated-mobile-pages'),
                         'default'   => '0',
