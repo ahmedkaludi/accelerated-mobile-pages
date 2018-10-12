@@ -8,9 +8,10 @@ amp_header() ?>
 		<div class="arch-psts">
 			<?php amp_loop_template(); ?>
 			<?php 
-			if (empty(amp_loop_template())){
-				echo ampforwp_translation(ampforwp_get_setting('amp-translator-search-no-found'), 'It seems we can\'t find what you\'re looking for. ');
-			}?>
+			if (empty(amp_loop_template())){?>
+				<div class="cntn-wrp">
+				<p style="margin-top: 10px"><?php echo ampforwp_translation(ampforwp_get_setting('amp-translator-search-no-found'), 'It seems we can\'t find what you\'re looking for.'); }?></p>
+			    </div>
 			<?php amp_pagination(); ?>
 		</div>
 		<?php if(isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] == '1'){ ?>
