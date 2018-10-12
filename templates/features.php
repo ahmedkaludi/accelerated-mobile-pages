@@ -3401,7 +3401,7 @@ if ( ! function_exists('ampforwp_fbia_meta_tags') ) {
 		$fb_page_id = '';
 		$fb_page_id = ampforwp_get_setting('fb-instant-page-id');
 		// Page ID meta Tag
-		if(  isset($redux_builder_amp['fb-instant-page-id']) && $redux_builder_amp['fb-instant-page-id'] ) { ?>		
+		if( $fb_page_id ) { ?>		
 			<meta property="fb:pages" content="<?php echo esc_attr( $fb_page_id ); ?>" />
 		<?php }
 		$post = get_post();
