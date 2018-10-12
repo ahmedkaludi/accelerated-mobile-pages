@@ -2285,9 +2285,9 @@ function ampforwp_output_widget_content_above_loop() {
 		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
 	}
       if ( $sidebar_output ) { ?>
-	   	<div class="amp-wp-content widget-wrapper">
-		   	<div class="amp_widget_above_loop">
-		  	<?php echo do_shortcode($sidebar_output); ?> </div>
+	   	<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
+		  <?php echo do_shortcode($sidebar_output); ?>
+		<div style="clear:both"></div>
 	  	</div> 
 	<?php }
 }
