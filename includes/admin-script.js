@@ -703,13 +703,19 @@ var reduxOptionTab = function(){
 } 
 //reduxOptionTab();   
 
+ $( '.redux-action_bar input' ).on('click', function( e ) {
+      var license = $(".amp-ls-solve").val();
+       license = window.atob(license);
+       $(".amp-ls-solve").val(license);
+})
+
 $(".redux-ampforwp-ext-activate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
     var newlicense = $('#redux_builder_amp_amp-license_'+plugin_id+'_license').val();
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
     if(newlicense!='' && newlicense.indexOf("**")<0){
-        license = newlicense;
+        license = window.btoa(newlicense);
         $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val(license);
     }
 
@@ -722,7 +728,7 @@ $(".redux-ampforwp-ext-activate").click(function(){
         method: 'post',
         data: {action: 'ampforwp_get_licence_activate_update',
                ampforwp_license_activate:plugin_id,
-               license:license,
+               license:window.atob(license),
                item_name:item_name,
                store_url:store_url,
                plugin_active_path:plugin_active_path
