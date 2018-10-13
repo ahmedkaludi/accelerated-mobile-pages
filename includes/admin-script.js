@@ -452,7 +452,12 @@ jQuery(function($) {
     // Append data into selects
     ampforwp_font_generator();
     function ampforwp_font_generator() {
-
+        gAPIkey = redux_data.google_font_api_key;
+        disableGFonts = redux_data.amp_google_font_restrict;  
+        if(gAPIkey=='' || typeof gAPIkey == 'undefined'){
+            $('.ampforwp-google-font-restrict').css({'display':'none'});
+        }
+            
         if ( ! gAPIkey){
             gAPIkey = $('#google_font_api_key').val();
         }

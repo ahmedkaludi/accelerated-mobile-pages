@@ -494,7 +494,7 @@ function amppb_validateCss($css){
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
 	
-	return autoCompileLess($css);;
+	return autoCompileLess($css);
 }
 
 function autoCompileLess($css)
@@ -510,13 +510,39 @@ function autoCompileLess($css)
     $css = preg_replace('/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si', '', $css);
 
     // add groups of media query at the end of CSS
-    $final = $css." \n";
+    $css = $css." \n";
     foreach ($completeCssMinifies as $id => $val)
     {
-        $final .= "\n" . '@media' . $id . '{' . $val . '}' . "\n";
+        $css .= "\n" . '@media' . $id . '{' . $val . '}' . "\n";
     }
+    //Remove multiple Spaces
+    //padding:\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?;
+    /*$css = preg_replace_callback(
+    //"/(margin|padding):\s*?(\d*px)\s*(\d*px)\s*(\d*px)\s*(\d*px)\s*?\s*;/",
+    "/(margin|padding):\s*?(\d*(|px))\s*(\d*(|px))\s*(\d*(|px))\s*(\d*(|px))\s*?\s*;/",
+    function($m) {
+    	if(count($m)==4){
+        	$m[2] = trim($m[2]);
+        	$m[3] = trim($m[3]);
+        	$m[4] = trim($m[4]);
+        	$m[5] = trim($m[5]);
+        	if(($m[2]==$m[4]) && $m[3] == $m[5]){
+        		if(trim($parts[0])==trim($m[1])){
+        			return $m[1].":".$m[2].";";
+        		}else{
+        			return $m[1].":".$m[2]." ".$m[3].";";
+        		}
+        	}else{
+        		return $m[0];
+        	}
+        }else{
+        	return $m[0];
+        }
+
+    },
+    $css);*/
     // save CSS with groups of media query
-    return $final;
+    return $css;
 }
 
 
@@ -802,7 +828,7 @@ function rowData($container,$col,$moduleTemplate){
 								'post_status'=> 'publish',
 								'tax_query' => array(
 													array(
-														'taxonomy'=>get_term($fieldValues['category_selection'])->taxonomy,
+														'taxonomy'=>(isset($fieldValues['category_selection']))?get_term($fieldValues['category_selection'])->taxonomy: '',
 														'field'=>'id',
 														'terms'=>$fieldValues['category_selection']) )
 							);
