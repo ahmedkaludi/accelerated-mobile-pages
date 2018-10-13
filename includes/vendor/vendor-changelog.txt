@@ -59,3 +59,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 32. Widgets folder added in Vendor amp/includes #1400 
 33. `filter_var` check removed to handel MB strings from class-amp-blacklist-sanitizer.php #2556
 34. Added itemprop attribute in amp-img #2585
+35. Mobile detect library added from https://github.com/serbanghita/Mobile-Detect

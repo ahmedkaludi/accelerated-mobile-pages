@@ -2256,6 +2256,16 @@ Redux::setSection( $opt_name, array(
 
                     ),
                     array(
+                        'id'       => 'amp-mobile-redirection-tabs',
+                        'class'    => 'child_opt child_opt_arrow',
+                        'type'     => 'switch',
+                        'title'    => __('Tablets', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle' => __('Enable/Disable Mobile redirection for Tablets.','accelerated-mobile-pages'),
+                        'default' => 1,
+                        'required' => array( 'amp-mobile-redirection', '=' , 1 )
+
+                    ),
+                    array(
                         'id'       => 'ampforwp-subdomain',
                         'type'     => 'switch',
                         'title'    => __('Use Subdomain As Endpoint', 'accelerated-mobile-pages'),
