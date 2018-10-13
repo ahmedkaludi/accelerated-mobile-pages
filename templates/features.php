@@ -683,8 +683,6 @@ function ampforwp_new_dir( $dir ) {
 				  $content = preg_replace('/readability=[^>]*/', '', $content);
 				  // removing color from span tag
 				  $content = preg_replace('/<span(.*?)(color=".*?")(.*?)>/', '<span$1$3>', $content);
-				  // removing alt from a tag
-				  $content = preg_replace('/<a(.*?)(alt=".*?")(.*?)>/', '<a$1$3>', $content);
 				  // removing sl-processed attribute
 				  $content = preg_replace('/(<[^>]+) sl-processed=".*?"/', '$1', $content);
 				  // ga-on
