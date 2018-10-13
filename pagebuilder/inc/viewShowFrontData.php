@@ -126,7 +126,7 @@ add_action('amp_post_template_css','amp_pagebuilder_content_styles',100);
 function amp_pagebuilder_content_styles(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-
+	$completeCssOfPB = '';
 	$postId = (is_object($post)? $post->ID: '');
 	if( ampforwp_is_front_page() ) {
 		$postId = ampforwp_get_frontpage_id();
@@ -142,7 +142,7 @@ function amp_pagebuilder_content_styles(){
 	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 
-	echo '.amp_pb{display: inline-block;width: 100%;}
+	$completeCssOfPB .= '.amp_pb{display: inline-block;width: 100%;}
 .row{display: inline-flex;width: 100%;}
 .col-2{width:50%;float:left;}
 .cb{clear:both;}
@@ -274,7 +274,7 @@ function amp_pagebuilder_content_styles(){
 						//}
 						$rowCss = ampforwp_replaceIfContentConditional($rowfield['name'], $replaceRow, $rowCss);
 					}
-					echo amppb_validateCss($rowCss);
+					$completeCssOfPB .= $rowCss;
 				}//Row Settings Css foreach closed
 
 				if(count($container)>0){
@@ -398,7 +398,7 @@ function amp_pagebuilder_content_styles(){
 
 							$completeCss = ampforwp_replaceIfContentConditional($modulefield['name'], $replaceModule, $completeCss);
 						}
-						echo amppb_validateCss($completeCss);
+						$completeCssOfPB .= $completeCss; // amppb_validateCss($completeCss);
 						
 						//For Repeater Fields
 						$repeaterFieldsCss = '';
@@ -463,7 +463,7 @@ function amp_pagebuilder_content_styles(){
 			              }//If Check for Fall back
 			              
 			            }//If for Module is repeater or not
-			            echo $repeaterFieldsCss;
+			            $completeCssOfPB .= $repeaterFieldsCss;
 
 
 
@@ -471,7 +471,7 @@ function amp_pagebuilder_content_styles(){
 
 					//For Comon CSS
 					if(count($moduleCommonCss)>0){
-						echo implode(" ", $moduleCommonCss);
+						$completeCssOfPB .= implode(" ", $moduleCommonCss);
 					}
 					
 				}//ic container check closed
@@ -483,17 +483,42 @@ function amp_pagebuilder_content_styles(){
 		}//if closed  count($previousData['rows'])>0
 
 		if(isset($previousData['settingdata']['style_data']) && $previousData['settingdata']['style_data']!=""){
-			echo amppb_validateCss($previousData['settingdata']['style_data']);
+			$completeCssOfPB .= $previousData['settingdata']['style_data'];
 		}
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
+	echo amppb_validateCss($completeCssOfPB);
 } 
 function amppb_validateCss($css){
 	$css = str_replace(array('.amppb-fluid','.amppb-fixed'), array('.ap-fl','.ap-fi'), $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
 	$css = preg_replace('/(?:[^\r\n,{}]+)(?:,(?=[^}]*{,)|\s*{[\s]*})/', "", $css);
-	return $css;
+	
+	return autoCompileLess($css);;
 }
+
+function autoCompileLess($css)
+{
+	$completeCssMinifies = array();
+    preg_match_all("/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si",$css,$matches,PREG_SET_ORDER);//$MatchingString now hold all strings matching $pattern.
+    foreach ($matches as $key => $value) {
+    	preg_match('/@media\s*(.*?)\s*{/', $value[0], $data);
+    	if(!isset($completeCssMinifies[$data[1]])){ $completeCssMinifies[$data[1]] = ''; }
+    	$completeCssMinifies[$data[1]] .= trim($value[2]);
+    }
+    // delete media query of cache
+    $css = preg_replace('/@media\b[^{]*({((?:[^{}]+|(?1))*)})/si', '', $css);
+
+    // add groups of media query at the end of CSS
+    $final = $css." \n";
+    foreach ($completeCssMinifies as $id => $val)
+    {
+        $final .= "\n" . '@media' . $id . '{' . $val . '}' . "\n";
+    }
+    // save CSS with groups of media query
+    return $final;
+}
+
 
 function amppb_post_content($content){
 	global $post,  $redux_builder_amp;
