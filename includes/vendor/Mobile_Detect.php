@@ -20,7 +20,7 @@
  *
  * @version 2.8.33
  */
-class Mobile_Detect
+class AMPforWP_Mobile_Detect
 {
     /**
      * Mobile detection type.

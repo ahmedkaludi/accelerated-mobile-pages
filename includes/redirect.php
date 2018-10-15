@@ -142,7 +142,7 @@ function ampforwp_page_template_redirect() {
     $mobile_detect = $isTablet = '';
     require_once AMPFORWP_PLUGIN_DIR.'/includes/vendor/Mobile_Detect.php';
     // instantiate the Mobile detect class
-    $mobile_detect = new Mobile_Detect;
+    $mobile_detect = new AMPforWP_Mobile_Detect;
     $isTablet = $mobile_detect->isTablet();
     if ( false == ampforwp_get_setting('amp-mobile-redirection-tabs') ) {
       $isTablet = ! $mobile_detect->isTablet();
