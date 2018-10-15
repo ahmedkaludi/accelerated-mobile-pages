@@ -223,7 +223,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-social-reddit{background:#ff4500}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-telegram-share') ) { ?>
-.amp-social-telegram{background:#0088cc}
+.amp-social-telegram{background:#61A8DE}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
 .amp-social-tumblr{background:#35465c}
