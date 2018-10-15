@@ -268,3 +268,25 @@ function ampforwp_redirect_to_orginal_url(){
   }
   return;
 }
+//Auto redirect /amp to ?amp when 'Change End Point to ?amp' option is enabled #2480
+add_action('template_redirect', 'ampforwp_redirect_proper_qendpoint' );
+function ampforwp_redirect_proper_qendpoint($current_url){
+ 
+if ( true == ampforwp_get_setting('amp-core-end-point') ){ 
+
+  $current_url = $_SERVER['REQUEST_URI'];
+  $current_url = explode('/', $current_url);
+  $check    =  AMPFORWP_AMP_QUERY_VAR;
+   if (in_array( $check  , $current_url ) ) {
+      $check = array($check);
+      $current_url = array_flip($current_url);
+      unset($current_url['amp']);
+      $current_url = array_flip($current_url);
+      $current_url = implode('/', $current_url);
+      $current_url = add_query_arg( 'amp', '1', $current_url);
+      wp_safe_redirect( $current_url );
+      exit;
+    }
+
+}
+}
