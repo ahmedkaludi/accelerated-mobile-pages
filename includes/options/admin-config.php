@@ -1482,6 +1482,7 @@ $tabs = array(
                 'id'       => 'ampforwp-seo-selection',
                 'type'     => 'select',
                 'title'    => __('Select SEO Plugin', 'accelerated-mobile-pages'),
+                'placeholder' => 'Select the SEO Plugin',
                 'options'  => array(
                     '1'    => 'Yoast',
                     '2'    => 'All in One SEO',
