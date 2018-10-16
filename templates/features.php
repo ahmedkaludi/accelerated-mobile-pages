@@ -3573,7 +3573,7 @@ function ampforwp_post_paginated_content($content){
 		$ampforwp_new_content = $ampforwp_the_content = $checker = '';
 		$ampforwp_the_content = $content;
 		$checker = preg_match('/<!--nextpage-->/', $ampforwp_the_content);
-		if ( 1 === $checker ) {
+		if ( 1 === $checker && true == ampforwp_get_setting('amp-pagination') ) {
 			$multipage = 1;		
 			$ampforwp_new_content = explode('<!--nextpage-->', $ampforwp_the_content);
 		    $queried_var = get_query_var('page');
