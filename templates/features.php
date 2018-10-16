@@ -2389,7 +2389,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   // Allow some blacklisted tags #1400
   add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
-	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
+	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar',do_shortcode());
   }
   return $sanitized_sidebar;
 }
