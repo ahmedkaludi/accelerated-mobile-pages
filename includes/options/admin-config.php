@@ -5301,14 +5301,13 @@ Redux::setSection( $opt_name, array(
 
 
   //code for fetching categories to show as a list in redux settings
+    $categories_array = array();
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
                                           'order'   => 'ASC',
                                           'number'  => 500
                                           ) );
-      $categories_array = '';
-      $categories_array = array();
        if ( $categories ) :
             foreach ($categories as $cat ) {
                     $cat_id = $cat->cat_ID;
@@ -5321,13 +5320,13 @@ Redux::setSection( $opt_name, array(
     //End of code for fetching categories to show as a list in redux settings
 
     // code for fetching tags to show as a list in the redux settings
+    $tags_array = array();
     if(get_tags()){
         $tags = get_tags( array(
                                 'orderby' => 'name',
                                 'order'   => 'ASC',
                                 'number'  => 500
                                 ) );
-        $tags_array = array();
         if( $tags ) :
             foreach( $tags as $tag ){
                 $tag_id = $tag->term_id;
