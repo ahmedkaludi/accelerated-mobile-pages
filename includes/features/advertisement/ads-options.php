@@ -391,6 +391,7 @@
                 'desc'  => __('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
+                'required' =>array('amp-design-selector', '!=' , '4')
             ),
                 array(
                         'class' => 'child_opt child_opt_arrow',
@@ -447,6 +448,7 @@
                 'desc'  => __('Place wherever you want by going to Design -> Single option', 'accelerated-mobile-pages'),
                 'true'      => 'Enabled',
                 'false'     => 'Disabled',
+                'required' =>array('amp-design-selector', '!=' , '4')
             ),
                 array(
                         'class' => 'child_opt child_opt_arrow',
