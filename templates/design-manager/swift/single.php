@@ -29,7 +29,14 @@
 							ampforwp_swift_social_icons(); 
 						} ?>
 					<div class="cntn-wrp artl-cnt">
-						<?php amp_content(); ?>
+					<?php amp_content(); 
+					if( ampforwp_get_setting('enable-add-this-option') ) {
+					global $redux_builder_amp;
+					$data_pub_id = ampforwp_get_setting('add-this-pub-id');
+					$data_widget_id = ampforwp_get_setting('add-this-widget-id');
+					$amp_addthis = '<amp-addthis width="320" height="92" data-pub-id="'.$data_pub_id.'" data-widget-id="'.$data_widget_id.'"></amp-addthis>';
+					echo $amp_addthis;
+					}?>
 					</div>
 					<?php if (isset($redux_builder_amp['swift-social-position']) && 'below-content' == $redux_builder_amp['swift-social-position']){
 						ampforwp_swift_social_icons(); 
