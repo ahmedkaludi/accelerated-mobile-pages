@@ -25,8 +25,9 @@ function ampforwp_framework_get_featured_image(){
 			if( $image ){			
 				$amp_html = "<amp-img src='$image[0]' width='$image[1]' height='$image[2]' layout=responsive alt='$alt'></amp-img>";
 			}
-			if( function_exists('get_the_post_video') ) {
-				$amp_html = ampforwp_featured_video_plus($amp_html);
+			// Featured Video Plus Compatibility #2394
+			if( function_exists('get_the_post_video') && get_the_post_video() ) {
+				$amp_html = ampforwp_content_sanitizer( get_the_post_video() );
 			}
 		}
 		elseif ( ampforwp_is_custom_field_featured_image() ) {
