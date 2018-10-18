@@ -1,4 +1,4 @@
- <?php
+<?php
  use ReduxCore\ReduxFramework\Redux;
 
  function ampforwp_admin_advertisement_options($opt_name){

@@ -1,4 +1,4 @@
- <?php 
+<?php 
  add_amp_theme_support('AMP-gdpr');
  //  Some Extra Styling for Admin area
 add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_styling' );
