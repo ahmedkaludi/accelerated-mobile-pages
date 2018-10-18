@@ -36,7 +36,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 		if($node->nodeName=='a' && $node->hasAttribute('href')){
 			$href = $node->getAttribute('href');
-			$node->setAttribute('href',ampforwp_findInternalUrl($href));
+			$node->setAttribute('href', \ampforwp_findInternalUrl($href));
 		}
 		
 		// Some nodes may contain valid content but are themselves invalid.
