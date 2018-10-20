@@ -4209,6 +4209,7 @@ Redux::setSection( $opt_name, array(
     //End of code for fetching categories to show as a list in redux settings
 
     // code for fetching tags to show as a list in the redux settings
+    $tags_array = '';
     $tags_array = array();
     if(get_tags()){
         $tags = get_tags( array(
