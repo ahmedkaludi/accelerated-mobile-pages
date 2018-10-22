@@ -457,6 +457,7 @@ var reduxOptionTab = function(){
 $(".redux-ampforwp-ext-activate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
+    var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
     var newlicense = $('#redux_builder_amp_amp-license_'+plugin_id+'_license').val();
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
 
@@ -477,7 +478,8 @@ $(".redux-ampforwp-ext-activate").click(function(){
                license:license,
                item_name:item_name,
                store_url:store_url,
-               plugin_active_path:plugin_active_path
+               plugin_active_path:plugin_active_path,
+               verify_nonce: secure_nonce
                 },
         dataType: 'json',
         success: function(response){
@@ -510,13 +512,16 @@ function deactivatelicence(){
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
+    var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
     currentThis.html("Please Wait...");
     $deactivateConfirm = confirm("Are you sure you want to Deactivate ?");
     if($deactivateConfirm){
         $.ajax({
             url: ajaxurl,
             method: 'post',
-            data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id},
+            data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id,
+                verify_nonce: secure_nonce
+                },
             dataType: 'json',
             success: function(response){
                 currentThis.parents("li").find('.afw-license-response-message').remove();
@@ -609,6 +614,7 @@ jQuery(document).ready(function($){
     $('.ampforwp-activation-call-module-upgrade').click(function(){
         if(pagenow == 'toplevel_page_amp_options' && $(this).hasClass('ampforwp-activation-call-module-upgrade')){// Check for current page
             var self = $(this);
+            var nonce = self.attr('data-secure');
             self.addClass('updating-message').removeClass('div.update-message');
             var activate = '';
             if($(this).attr('id')=='ampforwp-pwa-activation-call'){
@@ -620,7 +626,7 @@ jQuery(document).ready(function($){
             $.ajax({
                 url: ajaxurl,
                 type: 'post',
-                data: 'action=ampforwp_enable_modules_upgread'+activate,
+                data: 'action=ampforwp_enable_modules_upgread'+activate+'&verify_nonce='+nonce,
                 dataType: 'json',
                 success: function (response){
                     if(response.status==200){

@@ -79,6 +79,10 @@ function ampforwp_plugin_activate($installer)
 }
  add_action('wp_ajax_ampforwp_enable_modules_upgread', 'ampforwp_enable_modules_upgread');
 function ampforwp_enable_modules_upgread(){
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     $plugins = array();
     $redirectSettingsUrl = '';
     $currentActivateModule = $_REQUEST['activate'];

@@ -6,13 +6,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function ampforwp_get_licence_activate_update(){
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        die;
+    }
     $selectedOption = get_option('redux_builder_amp',true);
     if($_POST){
-        $ampforwp_license_activate = $_POST['ampforwp_license_activate'];
-        $license = $_POST['license'];
-        $item_name = $_POST['item_name'];
-        $store_url = $_POST['store_url'];
-        $plugin_active_path = $_POST['plugin_active_path'];
+        $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
+        $license = sanitize_text_field($_POST['license']);
+        $item_name = sanitize_text_field($_POST['item_name']);
+        $store_url = sanitize_text_field($_POST['store_url']);
+        $plugin_active_path = sanitize_text_field($_POST['plugin_active_path']);
         $status = 300;
         if($license==""){
             $message = "Please Enter valid license key";
@@ -142,7 +151,14 @@ add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licenc
 ***********************************************/
 
 function ampforwp_deactivate_license() {
-
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) ) {
+        return ;
+    }
     // listen for our activate button to be clicked
     if( isset( $_POST['ampforwp_license_deactivate'] ) ) {
 

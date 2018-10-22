@@ -444,7 +444,7 @@ foreach ($extension_listing_array as $key => $extension) {
             $ampforwp_extension_list_html .= "</ul><h3 style='display:block;'>All Extensions</h3><ul>";  
             $secondPageClickClass = 'goToSecondPage';
     }
-    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.' '.$secondPageClickClass.'" data-ext-details=\''.json_encode($extension).'\'>
+    $ampforwp_extension_list_html .= '<li class="first '.$currentStatus.' '.$secondPageClickClass.'" data-ext-details=\''.json_encode($extension).'\' data-ext-secure="'.wp_create_nonce('verify_extension').'">
         '.$onclickUrl.'
         <div class="align_left"><img src="'.$extension['img_src'].'" /></div>
         <div class="extension_desc">
@@ -2025,7 +2025,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'type'     => 'raw',
                'title'     => __('PWA Support', 'accelerated-mobile-pages'),
                'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
-                                '<div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-pwa-activation-call"> <p>Activate this Module</p></div>'
+                                '<div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-pwa-activation-call" data-secure="'.wp_create_nonce('verify_module').'"> <p>Activate this Module</p></div>'
                             : '<div class="col-wrapper">
                                    <a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Go to PWA Settings</p></div> </a> 
                                 </div>
@@ -2608,7 +2608,7 @@ function ampforwp_add_sd_fields($fields){
                                                     <div class="col-1">
                                                         '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
                                                             '
-												        <div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-structure-data-activation-call">
+												        <div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-structure-data-activation-call" data-secure="'.wp_create_nonce('verify_module').'">
 												            <p>Upgrade for Free</p>
 												        </div>' :
                                                             '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'
