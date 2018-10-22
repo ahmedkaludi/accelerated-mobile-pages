@@ -147,6 +147,7 @@ $css = '
         cursor: pointer;
         font-size: {{tb2_hdng_fnt_sz}};
     	font-weight: {{tb2_hdng_font_type}};
+    	padding:10px;
     }
     {{module-class}}.tabs .tabContent {
         display: none;
