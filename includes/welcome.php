@@ -1,4 +1,10 @@
-<?php add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect' );
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+ 
+add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect' );
 function ampforwp_welcome_screen_do_activation_redirect() {
   // Bail if no activation redirect
     if ( ! get_transient( 'ampforwp_welcome_screen_activation_redirect' ) ) {

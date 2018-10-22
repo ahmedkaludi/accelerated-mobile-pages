@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_headlines');
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_filter_dom');
 add_filter( 'ampforwp_fbia_content', 'ampforwp_fbia_address_tag');

@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function ampforwp_strposOffset($search, $string, $offset)
 {
     /*** explode the string ***/

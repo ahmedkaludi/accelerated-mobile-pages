@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings {
 	const NEW_COLOR_SCHEME = 'light';
 

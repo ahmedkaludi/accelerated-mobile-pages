@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /*Sidebar Nav menu Walker Start*/
   class Ampforwp_Walker_Nav_Menu extends Walker_Nav_Menu {
 

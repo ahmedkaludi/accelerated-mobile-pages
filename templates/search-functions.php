@@ -1,6 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // 46. search search search everywhere #615
-
 add_action('pre_amp_render_post','ampforwp_search_related_functions',12);
 function ampforwp_search_related_functions(){
 	global $redux_builder_amp;

@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //Remove ResponsifyWP #1131
 add_action('plugins_loaded', 'ampforwp_filter_remove_function_responsifywp');
 function ampforwp_filter_remove_function_responsifywp(){

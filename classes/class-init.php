@@ -1,4 +1,10 @@
-<?php if ( ! class_exists( 'Ampforwp_Loader', false ) ) {
+<?php 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+if ( ! class_exists( 'Ampforwp_Loader', false ) ) {
 	class Ampforwp_Loader {
 		public function __construct() {
 			$this->load_required_files();

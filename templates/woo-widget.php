@@ -1,4 +1,9 @@
-<?php class AMPFORWP_Woo_Widget extends WP_Widget {
+<?php 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+class AMPFORWP_Woo_Widget extends WP_Widget {
 
   // Set up the widget name and description.
   public function __construct() {

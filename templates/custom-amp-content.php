@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Adding Custom meta Sanitizer to sanitize the custom content added throught tinymce post meta
 add_filter( 'amp_post_template_data', 'ampforwp_custom_post_content_sanitizer', 10, 2 );
 

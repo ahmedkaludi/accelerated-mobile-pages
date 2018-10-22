@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Sortable multi check boxes custom control.
  * @since 0.1.0

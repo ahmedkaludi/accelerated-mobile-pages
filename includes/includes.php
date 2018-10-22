@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /* This file will contain all the extra code that works like a supporting.
 1. Register AMP menu
 	1.1 AMP Header menu

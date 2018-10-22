@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /* Save post meta on the 'save_post' hook. */
 add_action( 'save_post', 'amppb_save_post', 10, 2 );
 /**

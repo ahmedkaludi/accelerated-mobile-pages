@@ -1,4 +1,10 @@
-<?php class ampforwp_pointers {
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+ 
+class ampforwp_pointers {
 	const DISPLAY_VERSION = 'v1.0';
 	function __construct () {
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));

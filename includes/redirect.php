@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Redirection for Homepage and Archive Pages when Turned Off from options panel
 function ampforwp_check_amp_page_status() {
   global $redux_builder_amp, $wp;

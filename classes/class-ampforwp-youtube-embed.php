@@ -1,4 +1,11 @@
-<?php require_once AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php';
+<?php
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+require_once AMP__DIR__ . '/includes/embeds/class-amp-base-embed-handler.php';
 
 // Much of this class is borrowed from Jetpack embeds
 class AMPforWP_YouTube_Embed_Handler extends AMP_Base_Embed_Handler {

@@ -1,4 +1,8 @@
 <?php 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $ampforwp_cpt_plugin_check = is_plugin_active( 'amp-custom-post-type/amp-custom-post-type.php' );
 if ( false == $ampforwp_cpt_plugin_check ) {   

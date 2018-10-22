@@ -1,5 +1,8 @@
 <?php
-
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Title         : Aqua Resizer
  * Description   : Resizes WordPress images on the fly

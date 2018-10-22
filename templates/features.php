@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /* This file will contain all the Extra FEATURES.
 0.9. AMP Design Manager Files
 	1. Add Home REL canonical
