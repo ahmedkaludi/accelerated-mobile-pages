@@ -2280,7 +2280,7 @@ function ampforwp_output_widget_content_above_loop() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-loop');	
     if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output)); 
 	}
       if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
@@ -2298,7 +2298,7 @@ function ampforwp_output_widget_content_below_loop() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-loop');	
  if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output); 
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output)); 
 	}
     if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
@@ -2316,7 +2316,7 @@ function ampforwp_output_widget_content_below_the_header() {
 	 $sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-below-header');
      if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content(); 
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output));
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
@@ -2333,7 +2333,7 @@ function ampforwp_output_widget_content_above_the_footer() {
 	$sanitized_sidebar = ampforwp_sidebar_content_sanitizer('ampforwp-above-footer');
 	if ( $sanitized_sidebar) {
 		$sidebar_output = $sanitized_sidebar->get_amp_content();
-		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',$sidebar_output);
+		$sidebar_output = apply_filters('ampforwp_modify_sidebars_content',do_shortcode($sidebar_output));
 	}
 	if ( $sidebar_output ) { ?>
 	   	<div class="amp-wp-content widget-wrapper">
@@ -2389,7 +2389,7 @@ function ampforwp_sidebar_content_sanitizer($sidebar){
   // Allow some blacklisted tags #1400
   add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
   if ( is_active_widget(false,false,'search') && $sanitized_sidebar) {
-	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar',do_shortcode());
+	add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
   }
   return $sanitized_sidebar;
 }
