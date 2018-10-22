@@ -171,7 +171,7 @@ global $savedlayoutTemplate;
                                 <div class="amppb-modal-col-2">
                                     <div class="exportcompleteData">
                                         <iframe id="amppb-panels-export-iframe" style="display: none;" name="amppb-panels-export-iframe"></iframe>
-                                        <form action="<?php echo admin_url('admin-ajax.php?action=amppb_export_layout_data') ?>" target="amppb-panels-export-iframe"  method="post">
+                                        <form action="<?php echo admin_url('admin-ajax.php?action=amppb_export_layout_data&verify_nonce='.wp_create_nonce('verify_pb')) ?>" target="amppb-panels-export-iframe"  method="post">
                                             <label class="import-export-label">Export Current Layout</label>
                                             <button type="submit" class="button button-primary button-large">
                                                 Export

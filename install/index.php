@@ -413,6 +413,14 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	
 	function ampforwp_save_steps_data(){
+		if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'ampforwp_install_nonce' ) ) {
+	        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+	        die;
+	    }
+		// Exit if the user does not have proper permissions
+		if(! current_user_can( 'manage_options' ) ) {
+			return ;
+		}
 		$redux_builder_amp = get_option('redux_builder_amp');
 		if($redux_builder_amp!=''){
 			foreach($_POST as $postKey=>$postValue){

@@ -45,7 +45,8 @@ Vue.component('amp-pagebuilder-modal', {
 		var saveLayoutData = {
 							action: 'amppb_save_layout_data',
 							layoutname:this.save_layout.name,
-							layoutdata: JSON.stringify(this.currentLayoutData)
+							layoutdata: JSON.stringify(this.currentLayoutData),
+							verify_nonce: amppb_panel_options.secure_nonce
 							};
 		this.$http.post(amppb_panel_options.ajaxUrl+'?action=amppb_save_layout_data', 
 						saveLayoutData,
@@ -555,7 +556,7 @@ Vue.component('fields-data',{
 				console.log(jQuery(currentSelectfield).parents('p'))
 				jQuery(currentSelectfield).parents('p').find('img').attr('src','../wp-includes/images/spinner.gif');
 			}
-		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id, 
+		        this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_get_image&id='+the_id+'&verify_nonce='+amppb_panel_options.secure_nonce, 
 						{}
 						,{
 							headers:{
@@ -1031,7 +1032,7 @@ var app = new Vue({
 		},
 		amppb_startFunction: function(event){
 			var postId = event.target.getAttribute('data-postId');
-			this.$http.post(amppb_panel_options.ajaxUrl+'?action=enable_amp_pagebuilder', 
+			this.$http.post(amppb_panel_options.ajaxUrl+'?action=enable_amp_pagebuilder&verify_nonce='+amppb_panel_options.secure_nonce, 
 				{
 					postId
 				}
@@ -1060,7 +1061,7 @@ var app = new Vue({
 		ampforwp_icon_list: function(){
 			if(this.startPagebuilder==1){
 
-				this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_icons_list_format', 
+				this.$http.post(amppb_panel_options.ajaxUrl+'?action=ampforwp_icons_list_format&verify_nonce='+amppb_panel_options.secure_nonce, 
 					{}
 					,{
 						headers:{

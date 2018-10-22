@@ -1,16 +1,44 @@
 <?php
-add_action('wp_ajax_amppb_color_picker',function(){
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+add_action('wp_ajax_amppb_color_picker','amppb_color_picker');
+function amppb_color_picker(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+	// Exit if the user does not have proper permissions
+	if(! current_user_can( 'manage_options' ) ) {
+	return ;
+	}
 	wp_enqueue_style( 'wp-color-picker' );
 	echo '<input type="text" value="#bada55" class="color-field"/><script>$(\'.color-field\').wpColorPicker()</script>';
+}
 
-});
-
-add_action('wp_ajax_amppb_textEditor', function(){
+add_action('wp_ajax_amppb_textEditor', 'amppb_textEditor');
+function amppb_textEditor(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+   // Exit if the user does not have proper permissions
+	if(! current_user_can( 'manage_options' ) ) {
+	return ;
+	}
    echo wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
-});
+}
 
 add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
 function enable_amp_pagebuilder(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+	// Exit if the user does not have proper permissions
+	if(! current_user_can( 'manage_options' ) ) {
+		return ;
+	}
 	if(isset($_POST['postId'])){
 		$postId = $_POST['postId'];
 	}else{
@@ -27,6 +55,14 @@ function enable_amp_pagebuilder(){
 
 add_action( 'wp_ajax_amppb_export_layout_data', 'amppb_export_layout_data');
 function amppb_export_layout_data(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+	// Exit if the user does not have proper permissions
+	if(! current_user_can( 'manage_options' ) ) {
+		return ;
+	}
 	header( 'content-type: application/json' );
 	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
 	
@@ -37,6 +73,15 @@ function amppb_export_layout_data(){
 }
 add_action( 'wp_ajax_amppb_save_layout_data', 'amppb_save_layout_data');
 function amppb_save_layout_data(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+	// Exit if the user does not have proper permissions
+	if(! current_user_can( 'manage_options' ) ) {
+		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        die;
+	}
 	$layoutname = $_POST['layoutname'];
 	$layoutdata = $_POST['layoutdata'];
 	$postarr = array(
@@ -74,6 +119,10 @@ function amppb_save_layout_data(){
 // Ajax action to refresh the user image
 add_action( 'wp_ajax_ampforwp_get_image', 'ampforwp_get_image');
 function ampforwp_get_image() {
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     if(isset($_GET['id']) ){
 		if(strpos($_GET['id'],",") !== false){
 			$get_ids = explode(",", $_GET['id']);
@@ -110,6 +159,10 @@ function ampforwp_get_image() {
 
 add_action( 'wp_ajax_ampforwp_icons_list_format', 'ampforwp_icons_list_format');
 function ampforwp_icons_list_format(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 
 	foreach ($amp_icons_css_array as $key=>$value ) {
@@ -123,6 +176,10 @@ add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 
 function ampforwp_dynaminc_css() {
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
     header("Content-type: text/css; charset: UTF-8");
 	foreach ($amp_icons_css_array as $key=>$value ) {

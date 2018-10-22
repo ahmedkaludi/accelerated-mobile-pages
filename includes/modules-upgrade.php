@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function ampforwp_enable_plugins_modules($plugins)
 {
     $args = array(
-            'path' => ABSPATH.'wp-content/plugins/',
+            'path' => WP_PLUGIN_DIR .'/',
             'preserve_zip' => false
     );
      foreach($plugins as $plugin)
