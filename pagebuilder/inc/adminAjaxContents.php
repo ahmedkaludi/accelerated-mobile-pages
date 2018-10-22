@@ -9,7 +9,7 @@ function amppb_color_picker(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'manage_options' ) ) {
+	if(! current_user_can( 'editor' ) ) {
 	return ;
 	}
 	wp_enqueue_style( 'wp-color-picker' );
@@ -23,7 +23,7 @@ function amppb_textEditor(){
         die;
     }
    // Exit if the user does not have proper permissions
-	if(! current_user_can( 'manage_options' ) ) {
+	if(! current_user_can( 'editor' ) ) {
 	return ;
 	}
    echo wp_editor( '', 'My_TextAreaID_22',      $settings = array( 'tinymce'=>true, 'textarea_name'=>'name77', 'wpautop' =>false,   'media_buttons' => true ,   'teeny' => false, 'quicktags'=>true, )   );    exit;
@@ -36,8 +36,9 @@ function enable_amp_pagebuilder(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'manage_options' ) ) {
-		return ;
+	if(! current_user_can( 'editor' ) ) {
+		echo json_encode(array("status"=>300,"message"=>'User do not have access'));
+        die;
 	}
 	if(isset($_POST['postId'])){
 		$postId = $_POST['postId'];
@@ -60,8 +61,9 @@ function amppb_export_layout_data(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'manage_options' ) ) {
-		return ;
+	if(! current_user_can( 'editor' ) ) {
+		echo json_encode(array("status"=>300,"message"=>'User do not have access'));
+        die;
 	}
 	header( 'content-type: application/json' );
 	header( 'Content-Disposition: attachment; filename=layout-' . date( 'dmY' ) . '.json' );
@@ -78,7 +80,7 @@ function amppb_save_layout_data(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'manage_options' ) ) {
+	if(! current_user_can( 'editor' )  ) {
 		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
         die;
 	}
