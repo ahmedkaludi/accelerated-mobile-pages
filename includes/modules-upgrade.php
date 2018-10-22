@@ -3,6 +3,10 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 function ampforwp_enable_plugins_modules($plugins)
 {
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     $args = array(
             'path' => WP_PLUGIN_DIR .'/',
             'preserve_zip' => false
@@ -18,7 +22,10 @@ function ampforwp_enable_plugins_modules($plugins)
 }
 function ampforwp_plugin_download($url, $path) 
 {
-    
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     $response = wp_remote_get( $url );
     if ( is_array( $response ) ) {
       $body = $response['body']; // use the content
@@ -32,6 +39,10 @@ function ampforwp_plugin_download($url, $path)
 }
 function ampforwp_plugin_unpack($args, $target)
 {
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     if($zip = zip_open($target))
     {
             while($entry = zip_read($zip)){
@@ -61,6 +72,10 @@ function ampforwp_plugin_unpack($args, $target)
 }
 function ampforwp_plugin_activate($installer)
 {
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     $current = get_option('active_plugins');
     $plugin = plugin_basename(trim($installer));
      if(!in_array($plugin, $current))
