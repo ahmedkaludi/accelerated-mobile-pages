@@ -21,7 +21,7 @@
 
 // Exit if accessed directly
     if ( ! defined( 'ABSPATH' ) ) {
-        die;
+        exit;
     }
 
     if ( ! class_exists( 'ReduxFramework_extension_vendor_support' ) ) {

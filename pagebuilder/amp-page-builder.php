@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	echo "Silence is golden"; 
+	exit; 
 }
 
 // Identifies the current plugin version.
