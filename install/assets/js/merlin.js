@@ -221,21 +221,32 @@ jQuery(document).ready(function($) {
                 e.preventDefault();
                 var button = $(this);
                 var id = button.parents('li').find('#process_custom_images');
-                wp.media.editor.send.attachment = function(props, attachment) {
-					
-					var saveValues = {
-						url: attachment.url,
-						id: attachment.id,
-						height: attachment.height,
-						width: attachment.width,
-						thumbnail: attachment.sizes.thumbnail.url,
-					}
+
+                // Define image_frame as wp.media object
+                image_frame = wp.media({
+                           title: 'Select Logo',
+                           multiple : false,
+                           library : {
+                                type : 'image',
+                            }
+                       });
+                image_frame.open(button);
+                image_frame.on('close',function() {
+                  // On close, get selections and save to the hidden input
+                  // plus other AJAX stuff to refresh the image preview
+                  var attachment =  image_frame.state().get('selection').first().toJSON();
+                   var saveValues = {
+                        url: attachment.url,
+                        id: attachment.id,
+                        height: attachment.height,
+                        width: attachment.width,
+                        thumbnail: attachment.sizes.thumbnail.url,
+                    }
                     id.val(JSON.stringify(saveValues));
-					button.parents('li').find('img').remove();
-					button.parents('li').append("<br><br><img src='"+attachment.url+"' width='100' height='100'>");
-                };
-                wp.media.editor.open(button);
-                return false;
+                    button.parents('li').find('img').remove();
+                    button.parents('li').append("<br><br><img src='"+attachment.url+"' width='100' height='100'>");
+               });
+               return false;
             });
         }
     }
