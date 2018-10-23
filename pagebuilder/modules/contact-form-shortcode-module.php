@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 {{if_condition_form_type==contact-form-7}}
 [contact-form-7 id="{{cf7_form_id}}"]

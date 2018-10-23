@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '<{{header_type}} class="h-txt">{{content_title}}</{{header_type}}>';
 $css = '
 {{module-class}}{width:100%;text-align:{{align_type}};margin:{{margin_css}};padding:{{padding_css}};}

@@ -1,4 +1,7 @@
-<?php $output = '<div class="amp_pb_module amp_btn {{css_class}}">
+<?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
+$output = '<div class="amp_pb_module amp_btn {{css_class}}">
 <a href="{{button_link}}">{{button_txt}}</a></div>';
 return array(
 		'label' =>'Button',
