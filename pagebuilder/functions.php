@@ -26,7 +26,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
     //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
         wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
-        wp_enqueue_style('ampforwp-dynamic-css', admin_url('admin-ajax.php?action=ampforwp_dynaminc_css&verify_nonce='. wp_create_nonce('verify_pb') ), array(), AMPFORWP_VERSION, 'all' );
+        wp_enqueue_style('ampforwp-dynamic-css', wp_nonce_url(admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), 'verify_pb', 'verify_nonce' ), array(), AMPFORWP_VERSION, 'all' );
         wp_enqueue_media();
         //To add page
         if ( ! class_exists( '_WP_Editors', false ) ) {

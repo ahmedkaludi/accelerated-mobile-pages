@@ -170,6 +170,10 @@ function ampforwp_icons_list_format(){
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
     }
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        die;
+	}
 	$amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
 
 	foreach ($amp_icons_css_array as $key=>$value ) {
@@ -183,9 +187,13 @@ add_action( 'wp_ajax_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 add_action( 'wp_ajax_nopriv_ampforwp_dynaminc_css', 'ampforwp_dynaminc_css' );
 
 function ampforwp_dynaminc_css() {
-	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
+	if(!isset($_REQUEST['verify_nonce']) || !wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_pb' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
+    }
+    if(!is_admin()){
+    	echo json_encode(array("status"=>300,"message"=>'user not valid'));
+        die;	
     }
     $amp_icons_css_array = include AMPFORWP_PLUGIN_DIR .'includes/icons/amp-icons.php';
     header("Content-type: text/css; charset: UTF-8");
