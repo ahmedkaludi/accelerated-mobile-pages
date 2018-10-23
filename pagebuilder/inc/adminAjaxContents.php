@@ -126,6 +126,10 @@ function ampforwp_get_image() {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
         die;
     }
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        die;
+	}
     if(isset($_GET['id']) ){
 		if(strpos($_GET['id'],",") !== false){
 			$get_ids = explode(",", $_GET['id']);
