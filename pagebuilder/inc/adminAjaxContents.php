@@ -36,8 +36,9 @@ function enable_amp_pagebuilder(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'editor' ) ) {
-		echo json_encode(array("status"=>300,"message"=>'User do not have access'));
+	// check user permissions
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+    	echo json_encode(array("status"=>300,"message"=>'User do not have access'));
         die;
 	}
 	if(isset($_POST['postId'])){
@@ -61,7 +62,7 @@ function amppb_export_layout_data(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'editor' ) ) {
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
 		echo json_encode(array("status"=>300,"message"=>'User do not have access'));
         die;
 	}
@@ -80,7 +81,7 @@ function amppb_save_layout_data(){
         die;
     }
 	// Exit if the user does not have proper permissions
-	if(! current_user_can( 'editor' )  ) {
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
 		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
         die;
 	}
