@@ -1,4 +1,6 @@
 <?php
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '{{if_selected_image}}<amp-img src="{{selected_image}}" class="{{css_class}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"  alt="{{image_alt}}"></amp-img>{{ifend_selected_image}}';
 return array(
 		'label' =>'Image',

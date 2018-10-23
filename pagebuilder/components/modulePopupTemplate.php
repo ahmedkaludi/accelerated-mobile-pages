@@ -1,3 +1,5 @@
+<?php // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <!-- template for the modal component -->
 <script type="x/template" id="amp-pagebuilder-module-modal-template">
      <transition name="amp-pagebuilder-module-modal">

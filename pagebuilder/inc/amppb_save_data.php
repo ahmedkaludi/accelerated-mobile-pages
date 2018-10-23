@@ -17,6 +17,9 @@ function amppb_save_post( $post_id, $post ){
     if ( ! isset( $request['amppb_nonce'] ) || ! wp_verify_nonce( $request['amppb_nonce'], 'amppb_nonce_action' ) ){
         return $post_id;
     }
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+         return $post_id;
+    }
     /* Do not save on autosave */
     if ( defined('DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
         return $post_id;

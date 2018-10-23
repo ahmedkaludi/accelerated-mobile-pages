@@ -1,4 +1,6 @@
- <script type="text/x-template" id="fields-data-template">
+<?php // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<script type="text/x-template" id="fields-data-template">
     <div class="amp-form-control" :id="field.name" data-type="text" v-if="field.type=='text' && (field.tab==defaulttab || repeater==1)" :data-require="JSON.stringify(field.required)" v-show="fieldShowHideCheck(field)">
         
         <div class="form-label">{{field.label}}</div>

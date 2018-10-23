@@ -1,4 +1,5 @@
-<?php
+<?php // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit; 
 $arraySetting = array(
                    'tabs'=> array(
                                 'layout'=>'Layout Directory',

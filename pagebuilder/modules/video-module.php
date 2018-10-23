@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 	{{if_condition_video_option==custom}}
 	<amp-video width="{{width}}" height="{{height}}" src="{{video_upload_link}}"

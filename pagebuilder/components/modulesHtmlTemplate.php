@@ -1,4 +1,5 @@
-
+<?php // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <script type="text/x-template" id="module-data-template">
 		<?php $i=0;
     		foreach ($moduleTemplate as $key => $module) {

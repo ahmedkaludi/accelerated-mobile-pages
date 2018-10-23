@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 add_filter( 'amp_post_template_data', 'ampforwp_framework_pagebuilder_accordions_scripts' );
 function ampforwp_framework_pagebuilder_accordions_scripts( $data ) {
 

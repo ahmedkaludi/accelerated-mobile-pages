@@ -1,4 +1,6 @@
 <?php
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 return array(
     'name'=> 'Pricing Page',
     'preview_demo'=>'https://ampforwp.com/demo/amp-pagebuilder/pricing/amp/',
