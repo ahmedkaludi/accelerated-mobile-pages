@@ -10,10 +10,10 @@ $old_plugin = AMPFORWP_MAIN_PLUGIN_DIR.'amp-category-base-remover/amp-category-b
 if ( is_plugin_active( $old_plugin ) ) {
     //plugin is activated
 	deactivate_plugins($old_plugin);
-	add_action( 'admin_notices', 'plugin_catagory_base_removed_admin_notice__success' );
+	add_action( 'admin_notices', 'ampforwp_catagory_base_removal_admin_notice' );
 } 
 
-function plugin_catagory_base_removed_admin_notice__success(){
+function ampforwp_catagory_base_removal_admin_notice(){
 	?>
 	<div class="notice notice-success is-dismissible">
         <p><?php esc_html_e( 'AMP Category Base URL Remover plugin has De-activated, <br> Category removal option is added in our core plugin <a href="#">Click here to view details</a>', 'accelerated-mobile-pages' ); ?></p>
@@ -22,8 +22,8 @@ function plugin_catagory_base_removed_admin_notice__success(){
 }
 
 
- add_action( 'current_screen', 'this_screen_own' );
- function this_screen_own(){
+ add_action( 'current_screen', 'ampforwp_dependency_script' );
+ function ampforwp_dependency_script(){
 	$current_screen = get_current_screen(); 
 	 if( $current_screen->id === "plugin-install" ) {
 		

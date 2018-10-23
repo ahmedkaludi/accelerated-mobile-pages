@@ -4442,17 +4442,17 @@ function ampforwp_view_nonamp(){
 }
 
  //68. Facebook Instant Articles
-add_action('init', 'fb_instant_article_feed_generator');
+add_action('init', 'ampforwp_fb_instant_article_feed_generator');
  
-function fb_instant_article_feed_generator() {
+function ampforwp_fb_instant_article_feed_generator() {
 	global $redux_builder_amp;
 	if( isset($redux_builder_amp['fb-instant-article-switch']) && $redux_builder_amp['fb-instant-article-switch'] ) {	
-		add_feed('instant_articles', 'fb_instant_article_feed_function');
+		add_feed('instant_articles', 'ampforwp_fb_instant_article_feed_function');
 		add_action( 'wp_head', 'ampforwp_fbia_meta_tags' );
 	}
 }
 
-function fb_instant_article_feed_function() {
+function ampforwp_fb_instant_article_feed_function() {
 	add_filter('pre_option_rss_use_excerpt', '__return_zero');
 	load_template( AMPFORWP_PLUGIN_DIR . '/feeds/instant-article-feed.php' );
 }

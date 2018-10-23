@@ -3320,7 +3320,7 @@ $forms_support[] =  array(
                  )
  ) );
 
-function fb_instant_article() {
+function ampforwp_fb_instant_article() {
     $feedname = '';
     $fb_instant_article_feed = ''; 
     $input = ''; 
@@ -3359,7 +3359,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fb-instant-article-feed-url',
                         'type' => 'info',
                         'style' => 'critical',
-                        'desc' => fb_instant_article(),
+                        'desc' => ampforwp_fb_instant_article(),
                         'title'    => __('Facebook Instant Articles Feed URL', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),

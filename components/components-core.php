@@ -32,14 +32,14 @@ function add_amp_theme_support($componentName){
 	if($supportComponent){
 		if(in_array($componentName, $supportComponent)){
 			$loadComponent[$componentName] = true;
-			loadComponents($componentName);
+			ampforwp_loadComponents($componentName);
 			return true;
 		}
 	}
 	return false;
 }
 //Include the Component file
-function loadComponents($componentName){
+function ampforwp_loadComponents($componentName){
 	global $wpdb;
 	if(empty($componentName)) return '';
 	$componentName = str_replace("AMP-", "", $componentName);
