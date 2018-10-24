@@ -5,11 +5,12 @@ function ampforwp_enable_plugins_modules($plugins)
 {
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
-        die;
+        exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        return ;
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
     }
     $args = array(
             'path' => WP_PLUGIN_DIR .'/',
@@ -28,11 +29,12 @@ function ampforwp_plugin_download($url, $path)
 {
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
-        die;
+        exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        return ;
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
     }
     $response = wp_remote_get( $url );
     if ( is_array( $response ) ) {
@@ -49,11 +51,12 @@ function ampforwp_plugin_unpack($args, $target)
 {
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
-        die;
+        exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        return ;
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
     }
     if($zip = zip_open($target))
     {
@@ -86,11 +89,12 @@ function ampforwp_plugin_activate($installer)
 {
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
-        die;
+        exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        return ;
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
     }
     $current = get_option('active_plugins');
     $plugin = plugin_basename(trim($installer));
@@ -112,15 +116,16 @@ function ampforwp_plugin_activate($installer)
 function ampforwp_enable_modules_upgread(){
     if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
         echo json_encode(array("status"=>300,"message"=>'Request not valid'));
-        die;
+        exit();
     }
     // Exit if the user does not have proper permissions
     if(! current_user_can( 'manage_options' ) ) {
-        return ;
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
     }
     $plugins = array();
     $redirectSettingsUrl = '';
-    $currentActivateModule = $_REQUEST['activate'];
+    $currentActivateModule = sanitize_text_field( wp_unslash($_REQUEST['activate']));
     switch($currentActivateModule){
         case 'pwa': 
             $plugins[] = array(
@@ -158,11 +163,12 @@ function ampforwp_enable_modules_upgread(){
 
 function ampforwp_admin_notice_module_reference_install() {
     // Exit if the user does not have proper permissions
-    if(! current_user_can( 'manage_options' ) ) {
+    if(! current_user_can( 'manage_options' ) && !is_admin() ) {
         return ;
     }
-    $reference = isset($_GET['reference']) ? $_GET['reference'] : '';
-    $page = isset($_GET['page']) ? $_GET['page'] : '';
+
+    $reference = isset($_GET['reference']) ? sanitize_text_field( wp_unslash($_GET['reference'])) : '';
+    $page = isset($_GET['page']) ? sanitize_text_field( wp_unslash($_GET['page'])) : '';
     $message = '';
     if($reference=='ampforwp'){
         switch( $page ){

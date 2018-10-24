@@ -10,13 +10,15 @@ add_action( 'save_post', 'amppb_save_post', 10, 2 );
  */
 function amppb_save_post( $post_id, $post ){
  
-    /* Stripslashes Submitted Data */
-    $request = stripslashes_deep( $_POST );
  
     /* Verify/validate */
     if ( ! isset( $request['amppb_nonce'] ) || ! wp_verify_nonce( $request['amppb_nonce'], 'amppb_nonce_action' ) ){
         return $post_id;
     }
+    
+    /* Stripslashes Submitted Data */
+    $request = stripslashes_deep( $_POST );
+
     if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
          return $post_id;
     }

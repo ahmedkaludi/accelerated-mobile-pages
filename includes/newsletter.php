@@ -28,7 +28,7 @@ class ampforwp_pointers {
 		global $pagenow;
 		global $current_user;
 		$tour = array ();
-        $tab = isset($_GET['tab']) ? $_GET['tab'] : '';
+        $tab = isset($_GET['tab']) ? sanitize_text_field( wp_unslash($_GET['tab'])) : '';
 		$function = '';
 		$button2 = '';
 		$options = array ();

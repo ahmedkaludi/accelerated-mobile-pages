@@ -21,7 +21,7 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
     	$user_level = true;
     }
 
-    if ( $user_level ) {
+    if ( $user_level && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ) {
 		// Page builder for posts
 	  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
 	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
@@ -49,12 +49,12 @@ function amp_content_pagebuilder_title_callback( $post ){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 	}
 	//Disable page builder
-	if(isset($_GET['ramppb']) && $_GET['ramppb']=='1'){
+	if(isset($_GET['ramppb']) && sanitize_text_field( wp_unslash($_GET['ramppb']))=='1'){
 		delete_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 		delete_post_meta($amp_current_post_id, 'ampforwp_page_builder_enable','yes');
 	}
 	//Enable page builder
-	if(isset($_GET['use_amp_pagebuilder']) && $_GET['use_amp_pagebuilder']=='1'){
+	if(isset($_GET['use_amp_pagebuilder']) && sanitize_text_field( wp_unslash($_GET['use_amp_pagebuilder']))=='1'){
 		update_post_meta($amp_current_post_id, 'use_ampforwp_page_builder','yes');
 	}
 	
@@ -74,7 +74,7 @@ function call_page_builder(){
 		$postId = $post->ID;
 	}
 	if(isset($_GET['post_id'])){
-		$postId = $_GET['post_id'];
+		$postId = sanitize_text_field( wp_unslash($_GET['post_id']));
 	}
 	add_thickbox();
 	
