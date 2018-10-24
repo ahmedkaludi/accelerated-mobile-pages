@@ -62,27 +62,27 @@ if ( isset($args['show_time']) ) {
 }
 
  ?>
-    <div class="amp-author <?php echo $class; ?>">
+    <div class="amp-author <?php echo esc_attr($class); ?>">
         <?php if ( $avatar ) {
     $author_avatar_url = ampforwp_get_wp_user_avatar();
     if( null == $author_avatar_url ){
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
     } ?>
-        <div class="amp-author-image <?php echo $author_image_wrapper; ?>">
+        <div class="amp-author-image <?php echo esc_html($author_image_wrapper); ?>">
             <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
-        <?php echo '<div class="author-details '. $author_wrapper_class .'">';
+        <?php echo '<div class="author-details '. esc_attr($author_wrapper_class) .'">';
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
             if ( function_exists('coauthors_posts_links') ) {
-                echo '<span class="author-name">' .$author_prefix . $author_link . ' </span>';
+                echo '<span class="author-name">' . esc_html($author_prefix) . esc_url($author_link) . ' </span>';
             }
             else {
-                echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+                echo '<span class="author-name">' . esc_html($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
             }
         }
         else
-            echo '<span class="author-name">' . $author_prefix . esc_html( $author_name ) . '</span>';
+            echo '<span class="author-name">' . esc_html($author_prefix) . esc_html( $author_name ) . '</span>';
 
         //to show date and time
         if ( $show_date || $show_time ) {
@@ -96,7 +96,7 @@ if ( isset($args['show_time']) ) {
          echo '</span>';
         }
         if ( $author_description ) {
-        	echo "<p>".$post_author->description."</p>";
+        	echo "<p>". esc_html($post_author->description)."</p>";
         } ?>
         </div>
     </div>
