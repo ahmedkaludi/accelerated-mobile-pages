@@ -177,7 +177,7 @@ if (empty($footer_back_color)) {
 #footer .social_icons{ margin: 0px 20px 25px 20px; border-bottom: 1px solid #3c3c3c; padding-bottom: 25px; }
 #footer p{ margin: 0 }
 .back-to-top{padding-bottom: 8px;}
-.rightslink, #footer .rightslink a{ font-size:13px; color:#999 }
+.rightslink, #footer .rightslink a{ font-size:13px; color:#fff }
 .poweredby{ padding-top:10px; font-size:10px; }
 #footer .poweredby a{ color:#666 }
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
