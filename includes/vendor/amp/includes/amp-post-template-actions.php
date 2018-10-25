@@ -80,7 +80,7 @@ function amp_post_template_add_analytics_script( $data ) {
 	return $data;
 }
 
-add_action( 'amp_post_template_footer', 'AMPforWP\\AMPVendor\\amp_post_template_add_analytics_data' );
+add_action( 'ampforwp_body_beginning', 'AMPforWP\\AMPVendor\\amp_post_template_add_analytics_data' );
 function amp_post_template_add_analytics_data( $amp_template ) {
 	$analytics_entries = $amp_template->get( 'amp_analytics' );
 	if ( empty( $analytics_entries ) ) {
