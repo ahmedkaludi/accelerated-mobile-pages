@@ -492,6 +492,7 @@ function amp_pagebuilder_content_styles(){
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 function amppb_validateCss($css){
+	$css = esc_html($css);
 	$css = preg_replace('/@media([^\r\n,{}]+){\s*}/', "", $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
