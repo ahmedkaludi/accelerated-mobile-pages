@@ -5,7 +5,7 @@ function ampforwp_framework_get_comments(){
 	$display_comments_on = ampforwp_get_comments_status();
 	if ( $display_comments_on ) {
 		if ( $redux_builder_amp['ampforwp-facebook-comments-support']  ) { 
-		 	echo esc_html(ampforwp_framework_get_facebook_comments()); 
+		 	echo ampforwp_framework_get_facebook_comments(); 
 		}
 
 		if ( $redux_builder_amp['ampforwp-disqus-comments-support'] )  {
@@ -32,7 +32,7 @@ function ampforwp_framework_get_comments(){
 					
 					if ( $comments ) { ?>
 						<div id="comments" class="amp-comments-wrapper">
-				            <h3><span><?php echo esc_html(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' ))?></span></h3>
+				            <h3><span><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'], 'View Comments' )?></span></h3>
 				            <ul><?php
 								// Display the list of comments
 								function ampforwp_custom_translated_comment($comment, $args, $depth){
@@ -51,11 +51,11 @@ function ampforwp_framework_get_comments(){
 			         						<?php } ?>
 												<div class="comment-author vcard">
 													 <?php
-													 printf(__('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>')), esc_html(get_comment_author_link())) ?>
+													 printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
 												</div>
 												<div class="comment-metadata">
-													<a href="<?php echo esc_url(htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) )) ?>">
-														<?php printf( esc_html(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time()))?>
+													<a href="<?php echo htmlspecialchars( trailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
+														<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at %2$s') , get_comment_date(),  get_comment_time())?>
 													</a>
 													<?php edit_comment_link(  ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' )  ) ?>
 												</div>
@@ -69,7 +69,7 @@ function ampforwp_framework_get_comments(){
 						                          		'AMP_Video_Sanitizer' => array(),
 						                          		'AMP_Style_Sanitizer' => array() ) ) );
 						                         $sanitized_comment_content =  $sanitizer->get_amp_content();
-						                          echo esc_html(make_clickable( $sanitized_comment_content ));   ?>
+						                          echo make_clickable( $sanitized_comment_content );   ?>
 											</div>
 										<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth); ?>
 										</article>
@@ -106,9 +106,9 @@ function ampforwp_framework_get_comments(){
 					if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 						<div class="amp-comment-button">
 							<?php if ( comments_open() ) { ?>
-						    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" rel="nofollow"><?php echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  )); ?></a> <?php
+						    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 							} else {
-								echo "<p class='nocomments'>". esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  )) ." </p>";
+								echo "<p class='nocomments'>". ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
 							}?>
 						</div> <?php 
 					}?>
@@ -171,14 +171,14 @@ function ampforwp_framework_get_disqus_comments(){
 		?>
 		<section class="amp-disqus-comments">
 			<amp-iframe
-				height=<?php echo esc_attr($height) ?>
-				width=<?php echo esc_attr($width) ?>
-				layout="<?php echo esc_attr($layout) ?>"
+				height=<?php echo $height ?>
+				width=<?php echo $width ?>
+				layout="<?php echo $layout ?>"
 				sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
 				frameborder="0"
 				<?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>
-				src="<?php echo esc_url($disqus_url) ?>" >
-				<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo esc_html_e('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
+				src="<?php echo $disqus_url ?>" >
+				<div overflow tabindex="0" role="button" aria-label="Read more"><?php echo __('Disqus Comments Loading...','accelerated-mobile-pages') ?></div>
 			</amp-iframe>
 		</section>
 	<?php
@@ -200,7 +200,7 @@ function ampforwp_framework_get_vuukle_comments(){
 	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.$srcUrl.'">
 
 		<div overflow tabindex="0" role="button" aria-label="Show comments">Show comments</div>';
-	echo esc_html($vuukle_html);
+	echo $vuukle_html;
 }
 
 function ampforwp_framework_get_spotim_comments(){
@@ -217,7 +217,7 @@ function ampforwp_framework_get_spotim_comments(){
 	  <amp-img placeholder height="815" layout="fill" src="//amp.spot.im/loader.png"></amp-img>
 	  <div overflow class="spot-im-amp-overflow" tabindex="0" role="button" aria-label="Read more">Load more...</div>
 	</amp-iframe>';
-	echo esc_html($spotim_html);
+	echo $spotim_html;
 }
 
 // Comments Scripts
