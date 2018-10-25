@@ -7608,9 +7608,16 @@ function ampforwp_wp_kses_allowed_html(){
 	$allowed_html = $allowed_normal_html = $allowed_amp_html = array();
 	$allowed_normal_html = wp_kses_allowed_html( 'post' );
 	if ( class_exists('AMP_Allowed_Tags_Generated') ) {
-		$allowed_amp_html = AMP_Allowed_Tags_Generated::get_allowed_tags();
+		$allowed_amp_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();
+		$allowed_atts = AMP_Allowed_Tags_Generated::get_allowed_attributes();
+		foreach ($allowed_atts as $att => $value) {
+			$allowed_atts[$att] = true;
+		}
+		foreach ($allowed_amp_tags as $amp_tag => $values ) {
+				$allowed_amp_tags[$amp_tag] = $allowed_atts;
+		}
 	}
-	$allowed_html = array_merge_recursive($allowed_normal_html, $allowed_amp_html);
+	$allowed_html = array_merge_recursive($allowed_normal_html, $allowed_amp_tags);
 	if( $allowed_html ) {
 		foreach ( $allowed_html as $tag => $atts ) {
 	      	if ( is_array($atts) ){

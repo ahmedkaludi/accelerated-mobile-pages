@@ -501,7 +501,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 		}		
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
-	echo ampforwp_wp_kses($ampforwp_the_content);
+	echo $ampforwp_the_content; // amphtml content, no kses
 	do_action('ampforwp_after_post_content',$thisTemplate); ?>
 <?php }
 

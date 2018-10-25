@@ -39,7 +39,7 @@ function amp_archive_title(){
 		    }
 				if($paged <= '1') {?>
 					<div class="amp-archive-desc">
-						<?php echo ampforwp_wp_kses($arch_desc); ?>
+						<?php echo $arch_desc;// amphtml content, no kses ?>
 				    </div> <?php
 				}
 			}
