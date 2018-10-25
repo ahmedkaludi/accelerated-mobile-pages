@@ -343,6 +343,7 @@ if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
       color: #fff;
       border-radius: 5px;
   }
+  .btt:hover{color:#fff;}
   .btt:before{
     content: '\25be';
     display:block;
