@@ -16,7 +16,7 @@ function ampforwp_get_licence_activate_update(){
         die;
     }
     $selectedOption = get_option('redux_builder_amp',true);
-    if($_POST){
+    if($_SERVER['REQUEST_METHOD']=='POST'){
         $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
         $license = sanitize_text_field($_POST['license']);
         $item_name = sanitize_text_field($_POST['item_name']);
@@ -159,16 +159,18 @@ function ampforwp_deactivate_license() {
     if(! current_user_can( 'manage_options' ) ) {
         return ;
     }
+
     // listen for our activate button to be clicked
     if( isset( $_POST['ampforwp_license_deactivate'] ) ) {
 
+        $ampforwp_license_deactivate = sanitize_text_field( wp_unslash($_POST['ampforwp_license_deactivate']));
         // retrieve the license from the database
         $selectedOption = get_option('redux_builder_amp',true);
         $license = '';//trim( get_option( 'amp_ads_license_key' ) );
         $pluginItemName = '';
         $pluginItemStoreUrl = '';
         if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-           $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
+           $pluginsDetail = $selectedOption['amp-license'][$ampforwp_license_deactivate];
            $license = $pluginsDetail['license'];
            $pluginItemName = $pluginsDetail['item_name'];
            $pluginItemStoreUrl = $pluginsDetail['store_url'];
@@ -198,7 +200,7 @@ function ampforwp_deactivate_license() {
             $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 
             wp_redirect( $redirect );*/
-            echo json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']], "dsc"=>$pluginItemStoreUrl));
+            echo json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$ampforwp_license_deactivate], "dsc"=>$pluginItemStoreUrl));
             exit();
         }else{
             $message = 'Plugin deactivated successfully';
@@ -212,8 +214,8 @@ function ampforwp_deactivate_license() {
             delete_option( 'amp_ads_license_status' );
         }
         if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-           $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']]['status']= 'invalid';
-           $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']]['license']= '';
+           $selectedOption['amp-license'][$ampforwp_license_deactivate]['status']= 'invalid';
+           $selectedOption['amp-license'][$ampforwp_license_deactivate]['license']= '';
            update_option( 'redux_builder_amp', $selectedOption );
         }
         echo json_encode(array('status'=>200,"message"=>$message));
@@ -235,17 +237,21 @@ add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license'
 *************************************/
 
 function ampforwp_check_extension_license() {
-
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     global $wp_version;
 
     //$license = trim( get_option( 'amp_ads_license_key' ) );
+    $plugin_name = sanitize_text_field( wp_unslash($_POST['ampforwp_license_deactivate']));
 
     $selectedOption = get_option('redux_builder_amp',true);
     $license = '';//trim( get_option( 'amp_ads_license_key' ) );
     $pluginItemName = '';
     $pluginItemStoreUrl = '';
     if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-       $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
+       $pluginsDetail = $selectedOption['amp-license'][$plugin_name];
        $license = $pluginsDetail['license'];
        $pluginItemName = $pluginsDetail['item_name'];
        $pluginItemStoreUrl = $pluginsDetail['store_url'];

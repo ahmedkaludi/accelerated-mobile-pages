@@ -77,13 +77,13 @@ function ampforwp_welcome_screen_content() {
                 <div class="amp_user_avatar"></div>
                 <h3>I'm a New User!</h3>
                 <p>We have recommend you to go through AMP installation wizard which helps setup the Basic AMP and get started immediatly.</p>
-                <a href="<?php echo admin_url('plugins.php?page=ampforwptourinstaller&ampforwp_install=1');?>">Run Installation Wizard</a>
+                <a href="<?php echo esc_url(wp_nonce_url(admin_url('plugins.php?page=ampforwptourinstaller&ampforwp_install=1'), '_wpnonce'));?>">Run Installation Wizard</a>
             </div>
             <div class="amp_expert_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
                 <h3>I'm an Experienced User!</h3>
                 <p>We have many settings in Options Panel to help you setup the AMP perfectly to according to your taste & needs.</p>
-                <a href="<?php echo admin_url('admin.php?tabid=opt-text-subsection&page=amp_options');?>">AMP Options Panel</a>                    
+                <a href="<?php echo esc_url(admin_url('admin.php?tabid=opt-text-subsection&page=amp_options'));?>">AMP Options Panel</a>                    
             </div>
 			
             <div class="clear"></div>

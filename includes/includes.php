@@ -55,4 +55,12 @@ function ampforwp_add_admin_styling(){
     wp_localize_script( 'ampforwp_admin_js', 'redux_data', $redux_builder_amp );
 
     wp_enqueue_script( 'ampforwp_admin_js' );
-} ?>
+}
+
+add_action( 'admin_enqueue_scripts', 'ampforwp_add_admin_upgread_script' );
+function ampforwp_add_admin_upgread_script($hook){
+	if('toplevel_page_amp_options'==$hook){
+		wp_enqueue_script( 'ampforwp_admin_module_upgreade', untrailingslashit(AMPFORWP_PLUGIN_DIR_URI) . '/includes/module-upgrade.js', array( 'jquery', 'updates' ), AMPFORWP_VERSION, true );
+	}
+}
+ ?>

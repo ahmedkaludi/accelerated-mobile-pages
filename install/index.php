@@ -131,20 +131,20 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	}
 
 	function ampforwp_instller_admin_init(){
-		if(isset($_GET['ampforwp_install']) && $_GET['ampforwp_install']=='1' && is_admin()){
+		if(isset($_GET['ampforwp_install'], $_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') && $_GET['ampforwp_install']=='1' && is_admin()){
 			ampforwp_steps_call();			
 		}
 	}
 	
 	function ampforwp_steps_call(){
 		global $ampforwp_install_config;
-		if ( empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
+		if ( !wp_verify_nonce($_GET['_wpnonce'], '_wpnonce') || empty( $_GET['page'] ) || $ampforwp_install_config['installerpage'] !== $_GET['page'] ) {
 			return;
 		}
 		 if ( ob_get_length() ) {
 			ob_end_clean();
 		} 
-		$step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) :  $ampforwp_install_config['start_steps'] ;
+		$step = isset( $_GET['step'] ) ? sanitize_text_field( wp_unslash(sanitize_key( $_GET['step'] ) ) ) :  $ampforwp_install_config['start_steps'] ;
 		$title = $ampforwp_install_config['steps'][$step]['title'];
 		$ampforwp_install_config['current_step']['step_id'] = $step;
 		
@@ -172,10 +172,6 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				<?php
 				// Content Handlers.
 				$show_content = true;
-
-				if ( ! empty( $_REQUEST['save_step'] ) && isset( $ampforwp_install_config['current_step']['steps'] ) ) {
-					//ampforwp_save_steps_data();
-				}
 
 				if ( $show_content ) {
 					ampforwp_show_steps_body();
