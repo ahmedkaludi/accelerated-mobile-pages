@@ -77,6 +77,6 @@ if(is_array($matches) && count($matches)>2){
     }
 }
 
-echo ampforwp_nl2p($readme,false);
+echo ampforwp_wp_kses(ampforwp_nl2p($readme,false));
 
 ?>

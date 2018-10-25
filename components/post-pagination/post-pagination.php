@@ -77,7 +77,7 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	 */
 	$html = apply_filters( 'ampforwp_framework_get_post_pagination', $output, $args );
 		if ( $r['echo'] ) {
-			echo $html;
+			echo ampforwp_wp_kses($html);
 		}
 		return $html;
 }
@@ -155,5 +155,5 @@ function amp_paginated_post_rel_canonical(){
 	    $new_canonical_url = trailingslashit($new_canonical_url);
 		$post_paginated_page = get_query_var('page');
 		if($post_paginated_page){?>
-			<link rel="canonical" href="<?php echo $new_canonical_url.$post_paginated_page ?>/" /><?php  } 
+			<link rel="canonical" href="<?php echo esc_url($new_canonical_url.$post_paginated_page) ?>/" /><?php  } 
 }

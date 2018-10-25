@@ -77,7 +77,7 @@ function amp_icon_css(){
 
 	// Add @font-face for Design-1,2,3
 	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) { ?>
-		@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>icomoon/icomoon.ttf');}
+		@font-face {font-family: 'icomoon';font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo esc_url(plugin_dir_url(__FILE__)) ?>icomoon/icomoon.ttf');}
 		[class^="icon-"], [class*=" icon-"] {font-family: 'icomoon';speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 	<?php }
 }
@@ -145,7 +145,7 @@ function amp_excerpt( $no_of_words=15 ) {
 				} else {
 					$content = get_the_content();
 				}
-				echo wp_trim_words( strip_shortcodes( $content ) , $no_of_words ); 
+				echo ampforwp_wp_kses(wp_trim_words( strip_shortcodes( $content ) , $no_of_words )); 
 			?></p>
 <?php
     }
@@ -160,7 +160,7 @@ function amp_menu($echo=true){
 				return amp_menu_html($echo);
 			}
 			else
-				echo amp_menu_html($echo);
+				echo ampforwp_wp_kses(amp_menu_html($echo));
 		}
 	}
 
@@ -230,7 +230,7 @@ function amp_comments( ){
 function amp_post_navigation( ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-post-navigation']) && $loadComponent['AMP-post-navigation']==true){
-		echo ampforwp_framework_get_post_navigation( );
+		echo ampforwp_wp_kses(ampforwp_framework_get_post_navigation());
 	}
 }
 
@@ -238,7 +238,7 @@ function amp_post_navigation( ){
 function amp_related_posts($argsdata = array()){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-related-posts']) && $loadComponent['AMP-related-posts']==true){
-		echo ampforwp_framework_get_related_posts( $argsdata);
+		echo ampforwp_wp_kses(ampforwp_framework_get_related_posts( $argsdata));
 	}
 }
 
@@ -262,7 +262,7 @@ function amp_call_now(){
 function amp_breadcrumb(){
 	global $loadComponent;
 	if ( isset($loadComponent['AMP-breadcrumb']) && true == $loadComponent['AMP-breadcrumb'] ) {
-		echo amp_breadcrumb_output();
+		echo ampforwp_wp_kses(amp_breadcrumb_output());
 	}
 }
 
@@ -347,7 +347,7 @@ function amp_header_core(){
     	$bodyClass .= ' rtl ';
     }
 	?><!doctype html>
-	<html <?php echo ampforwp_amp_nonamp_convert('amp '); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
+	<html <?php echo esc_attr(ampforwp_amp_nonamp_convert('amp ')); ?><?php echo AMP_HTML_Utils::build_attributes_string( $thisTemplate->get( 'html_tag_attributes' ) ); ?>>
 		<head>
 		<meta charset="utf-8"> 
 
@@ -432,7 +432,7 @@ function amp_non_amp_link(){
 function amp_back_to_top_link(){
 	 global $redux_builder_amp;
     if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
-        <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> 
+        <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a> 
       <?php }
 }
 
@@ -501,7 +501,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 		}		
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
-	echo $ampforwp_the_content;
+	echo ampforwp_wp_kses($ampforwp_the_content);
 	do_action('ampforwp_after_post_content',$thisTemplate); ?>
 <?php }
 
@@ -512,7 +512,7 @@ function amp_date( $args=array() ) {
     	$args = array('format' => 'traditional');
     }
     if ( (isset($args['format']) && $args['format'] == 'traditional') || 'time' == $args ) {
-      $post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+      $post_date = get_the_date() . ' '. get_the_time();
         } else {
           $post_date = human_time_diff(
                     get_the_time('U', get_the_ID() ), 
@@ -524,10 +524,10 @@ function amp_date( $args=array() ) {
 	    	$post_date = date($args['custom_format'],get_the_time('U', get_the_ID() ));
 	    }
         if ( 'date' == $args || 'time' == $args ) {
-          echo $post_date .' ';
+          echo esc_attr($post_date) .' ';
         }
         else
-          echo '<div class="loop-date">'.$post_date.'</div>';
+          echo '<div class="loop-date">'.esc_attr($post_date).'</div>';
 }
 
 //Load font Compoment
@@ -591,13 +591,13 @@ function amp_author_meta( $args ) {
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
-        <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+        <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size); ?>" height="<?php echo esc_attr($avatar_size); ?>" layout="fixed"></amp-img> 
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
     	$amp_html_sanitizer = new AMPFORWP_Content( $avatar_img, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array() ) ) );
 	    $amp_html =  $amp_html_sanitizer->get_amp_content();
-		echo $amp_html;
+		echo ampforwp_wp_kses($amp_html);
      } 
 	 
 }

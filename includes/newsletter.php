@@ -91,7 +91,7 @@ class ampforwp_pointers {
 				var wp_pointers_tour_opts = <?php echo json_encode ($options); ?>, setup;
 				wp_pointers_tour_opts = $.extend (wp_pointers_tour_opts, {
 					buttons: function (event, t) {
-						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo $button1; ?>' + '</a>');
+						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo ampforwp_wp_kses($button1); ?>' + '</a>');
 						button_2= jQuery ('#pointer-close.button');
 						button.bind ('click.pointer', function () {
 							t.element.pointer ('close');
@@ -109,9 +109,9 @@ class ampforwp_pointers {
 					}
 				});
 				setup = function () {
-					$('<?php echo $id; ?>').pointer(wp_pointers_tour_opts).pointer('open');
+					$('<?php echo esc_attr($id); ?>').pointer(wp_pointers_tour_opts).pointer('open');
 					<?php if ($button2) { ?>
-						jQuery ('#pointer-close').after ('<a id="pointer-primary" class="button-primary">' + '<?php echo $button2; ?>' + '</a>');
+						jQuery ('#pointer-close').after ('<a id="pointer-primary" class="button-primary">' + '<?php echo ampforwp_wp_kses($button2); ?>' + '</a>');
 						jQuery ('#pointer-primary').click (function () {
 							<?php echo $function; ?>
 						});

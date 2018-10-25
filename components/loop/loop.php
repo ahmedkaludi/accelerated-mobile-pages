@@ -39,7 +39,7 @@ function amp_archive_title(){
 		    }
 				if($paged <= '1') {?>
 					<div class="amp-archive-desc">
-						<?php echo $arch_desc ; ?>
+						<?php echo ampforwp_wp_kses($arch_desc); ?>
 				    </div> <?php
 				}
 			}
@@ -55,7 +55,7 @@ function amp_archive_title(){
 		if( !empty( $cat_childs ) ){
 			echo "<div class='amp-sub-archives'><ul>";
 			foreach ($cat_childs as $cat_child ) {
-				 echo '<li><a href="' . get_term_link( $cat_child ) . '">' . $cat_child->name . '</a></li>'; 
+				 echo '<li><a href="' . esc_url(get_term_link( $cat_child )) . '">' . esc_attr($cat_child->name) . '</a></li>'; 
 			}
 			echo "</ul></div>";
 		}
@@ -65,7 +65,7 @@ function amp_archive_title(){
 		if(function_exists('ampforwp_translation')){
 			$label = ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:');
 		}
-		echo '<h3 class="amp-loop-label">'.$label . '  ' . get_search_query().'</h3>';
+		echo '<h3 class="amp-loop-label">'.esc_attr($label) . '  ' . esc_attr(get_search_query()).'</h3>';
 	}
 }
 
@@ -271,9 +271,9 @@ function amp_loop_title($data=array()){
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
 	}
-	echo '<'.$tag.' '.$attributes.'>';
+	echo ampforwp_wp_kses('<'.$tag.' '.$attributes.'>');
 		if(!isset($data['link']) ){
-			echo '<a href="'. amp_loop_permalink(true) .'">';
+			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
 	echo the_title('','',false);
 	
@@ -289,14 +289,14 @@ function amp_loop_date($args=array()){
     	$args['format'] = 'traditional';
     }
 	if(isset($args['format']) && $args['format']=='traditional'){
-		$post_date = esc_html( get_the_date() ) . ' '.esc_html( get_the_time());
+		$post_date = get_the_date() . ' '. get_the_time();
     }else{
     	$post_date =  human_time_diff(
     						get_the_time('U', get_the_ID() ), 
     						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
     						'ago');
     }
-    echo '<div class="loop-date">'.$post_date.'</div>';
+    echo '<div class="loop-date">'.esc_attr($post_date).'</div>';
 }
 
 function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
@@ -316,16 +316,16 @@ function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	}
 
 	if( ampforwp_get_setting('ampforwp-homepage-loop-readmore-link') == 1 ) {
-		echo '<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>';
+		echo ampforwp_wp_kses('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>');
 	} else {
-		echo '<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>';
+		echo ampforwp_wp_kses('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>');
 	}
 	
 }
 
 function amp_loop_all_content($tag = 'p'){
 	$fullContent = strip_shortcodes( get_the_content() );
-	echo '<'.$tag.'>'. $fullContent .'</'.$tag.'>';
+	echo ampforwp_wp_kses('<'.$tag.'>'. $fullContent .'</'.$tag.'>');
 }
 
 function amp_loop_permalink($return,$amp_query_var ='amp'){
@@ -334,10 +334,10 @@ function amp_loop_permalink($return,$amp_query_var ='amp'){
 		return ampforwp_url_controller( get_permalink() ) ;
 	}
 	if ( isset($redux_builder_amp['ampforwp-single-related-posts-link']) && true == $redux_builder_amp['ampforwp-single-related-posts-link'] ) {
-		echo get_permalink();
+		echo esc_url(get_permalink());
 	}
 	else
-		echo ampforwp_url_controller( get_permalink() );
+		echo esc_url(ampforwp_url_controller( get_permalink() ));
 }
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
@@ -411,9 +411,9 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			echo '<'.$tag.' class="loop-img '.$tag_class.'">';
-			echo '<a href="'.$imageLink.'">';
-			echo '<amp-img src="'. $thumb_url .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo ampforwp_wp_kses('<'.$tag.' class="loop-img '.$tag_class.'">');
+			echo '<a href="'.esc_url($imageLink).'">';
+			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
 			echo '</a>';
 			echo '</'.$tag.'>';
 		}
@@ -427,9 +427,9 @@ function amp_loop_category(){
 		echo ' <ul class="loop-category">';
 			foreach((get_the_category()) as $category) {
 				if ( false == $redux_builder_amp['ampforwp-archive-support'] ) {
-				echo '<li class="amp-cat-'. $category->term_id.'">'. $category->cat_name.'</li>';
+				echo '<li class="amp-cat-'. esc_attr($category->term_id).'">'. esc_attr($category->cat_name).'</li>';
 				}else{
-				echo '<li class="amp-cat-'. $category->term_id.'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. $category->cat_name.'</a></li>';	
+				echo '<li class="amp-cat-'. esc_attr($category->term_id).'"><a href="'.esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )).'">'. esc_attr($category->cat_name).'</a></li>';
 				}
 			}
 		echo '</ul>';

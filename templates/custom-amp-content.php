@@ -122,8 +122,8 @@ function amp_content_sidebar_callback( $post ) {
   $amp_content_sidebar = get_post_meta($current_post_id, 'ampforwp_custom_sidebar_select', true);
   $amp_content_sidebar = esc_attr($amp_content_sidebar); ?>
   <select name="ampforwp_custom_sidebar_select" id="ampforwp-sidebars-page-sidebar-name">
-      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'none' ); ?> value="none"><?php _e( 'None', 'accelerated-mobile-pages' ); ?></option>
-      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'layout-builder' ); ?> value="layout-builder"><?php _e( 'Page Builder (AMP)', 'accelerated-mobile-pages' ); ?></option>
+      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'none' ); ?> value="none"><?php esc_attr_e( 'None', 'accelerated-mobile-pages' ); ?></option>
+      <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'layout-builder' ); ?> value="layout-builder"><?php esc_attr_e( 'Page Builder (AMP)', 'accelerated-mobile-pages' ); ?></option>
   </select>
 <p>Assign an AMP Page Builder Widget Area which will be used AMP page.<br /><a href="https://ampforwp.com/tutorials/page-builder">(Need Help?)</a></p>
 
@@ -147,8 +147,8 @@ function amp_content_editor_title_callback( $post ) {
     <label for="meta-checkbox">
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
-    		<?php echo __( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
-        <?php echo __('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
+    		<?php esc_attr_e( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
+        <?php esc_attr_e('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
     </label>
 
   <!--HTML content Ends here-->
