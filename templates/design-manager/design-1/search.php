@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex,nofollow"/>
@@ -55,13 +55,13 @@
 			relevanssi_do_query( $q );
 		};?>
 
- 		<h1 class="amp-wp-content page-title"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' ) . '  ' . get_search_query();?></h1>
+ 		<h1 class="amp-wp-content page-title"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-text'], 'You searched for:' )) . '  ' . get_search_query();?></h1>
 
  		<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		        <h1 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() );?>"><?php the_title() ?></a></h1>
+		        <h1 class="amp-wp-title"><a href="<?php echo esc_url(ampforwp_url_controller( get_permalink() ));?>"><?php the_title() ?></a></h1>
 
 				<div class="amp-wp-content-loop">
 
@@ -69,7 +69,7 @@
 						<time> <?php 
 								$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     			$post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    			echo  $post_date ; ?>
+                    			echo  esc_attr($post_date) ; ?>
                     	 </time>
 		          </div>
 
@@ -97,7 +97,7 @@
 		    </div>
 		<?php else: ?>
 			<div class="amp-wp-content amp-wp-article-header amp-loop-list">
-				<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. '); ?>
+				<?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. ')); ?>
 				<div class="cb"></div>
 			</div>
 		<?php endif; ?> <?php wp_reset_postdata(); ?>

@@ -29,7 +29,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			<?php }
 		} ?>	   
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
-			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
+			<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
 	    $data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>

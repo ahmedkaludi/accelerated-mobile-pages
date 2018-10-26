@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">
@@ -47,13 +47,13 @@
 			$q = new WP_Query( $filtered_args ); 
 			$blog_title = ampforwp_get_blog_details('title');
 			if( ampforwp_is_blog() && $blog_title){  ?>
-				<h1 class="page-title"><?php echo $blog_title ?></h1>
+				<h1 class="page-title"><?php echo esc_attr($blog_title) ?></h1>
 			<?php }
 			
 				
 			 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
 		        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
-		        	<h1 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php echo ampforwp_url_controller( $ampforwp_post_url ); ?>"><?php the_title() ?></a></h1>
+		        	<h1 class="amp-wp-title"><?php  $ampforwp_post_url = get_permalink(); ?><a href="<?php echo esc_url(ampforwp_url_controller( $ampforwp_post_url )); ?>"><?php the_title() ?></a></h1>
 
 					<div class="amp-wp-content-loop">
 						<div class="amp-wp-meta">
@@ -64,13 +64,13 @@
 			              <time> <?php
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    			echo  $post_date ;?>
+                    			echo  esc_attr($post_date) ;?>
                     		</time> <?php
 			 		 		}
 			 		 	if( isset($redux_builder_amp['ampforwp-design1-cats-home']) && $redux_builder_amp['ampforwp-design1-cats-home'] ) {
 			 		 		foreach((get_the_category()) as $category) { ?>
 			 		 		<ul class="amp-wp-tags">
-					   			<li class="amp-cat-<?php echo $category->term_id;?>"> <?php echo  '  ' . $category->cat_name ?> </li> </ul>
+					   			<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"> <?php echo  '  ' . esc_attr($category->cat_name) ?> </li> </ul>
 							<?php }
 						} ?>
 					</div>

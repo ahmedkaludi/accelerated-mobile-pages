@@ -13,7 +13,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			 if( is_single()) { ?>
 				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
-				echo ampforwp_get_author_details( $post_author , 'meta-info' );
+				echo ampforwp_wp_kses(ampforwp_get_author_details( $post_author , 'meta-info' ));
 			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
 				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
@@ -32,7 +32,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){
 				$date = get_the_modified_date( get_option( 'date_format' )) . ', ' . get_the_modified_time() ;
 			}
-			echo apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date );
+			echo esc_attr(apply_filters('ampforwp_modify_post_date', ampforwp_translation($redux_builder_amp['amp-translator-on-text'], 'On') . ' ' . $date ));
 			}?>
 		</time>
 	</div>

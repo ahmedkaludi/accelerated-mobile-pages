@@ -11,7 +11,7 @@ do_action('ampforwp_above_the_title',$this); ?>
 			if(has_excerpt()){ ?>
 				<div class="ampforwp_single_excerpt">
 					<?php $content = get_the_excerpt();
-					echo $content; ?>
+					echo ampforwp_wp_kses($content); ?>
 				</div>
 			<?php }
 			}

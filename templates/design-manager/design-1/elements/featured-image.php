@@ -23,7 +23,7 @@ if($featured_image || ( ampforwp_is_custom_field_featured_image() && ampforwp_cf
 		if( $amp_html ) {	
 			?>
 			<figure class="amp-wp-article-featured-image wp-caption">
-				<?php echo $amp_html; // amphtml content; no kses ?>
+				<?php echo ampforwp_wp_kses($amp_html); // amphtml content; no kses ?>
 				<?php if ( $caption ) : ?>
 					<p class="wp-caption-text">
 						<?php echo wp_kses_data( $caption ); ?>
