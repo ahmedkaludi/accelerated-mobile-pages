@@ -32,7 +32,7 @@
 								);
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
 				 $sanitized_footer_widget = apply_filters('ampforwp_modify_sidebars_content',$sanitized_footer_widget); 
-	              echo $sanitized_footer_widget;
+	              echo $sanitized_footer_widget; // amphtml content, no kses
 				?>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 	              $menu = apply_filters('ampforwp_menu_content', $menu);
 	              $sanitizer_obj = new AMPFORWP_Content( $menu, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
 	              $sanitized_menu =  $sanitizer_obj->get_amp_content();
-	              echo $sanitized_menu; ?>
+	              echo ampforwp_wp_kses($sanitized_menu); ?>
 	           </nav>
 			</div>
 			<?php } }?>
@@ -134,7 +134,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
 		<li>
-			<a title="tumblr share" class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo $amp_permalink ?>"></a>
+			<a title="tumblr share" class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo esc_url($amp_permalink) ?>"></a>
 		</li>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-telegram-share']){?>

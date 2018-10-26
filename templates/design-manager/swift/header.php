@@ -110,12 +110,12 @@
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
                         <div class="h-shop h-ic">
-                            <a href="<?php echo ampforwp_wc_cart_page_url(); ?>" class="icon-shopping-cart"></a>
+                            <a href="<?php echo esc_url(ampforwp_wc_cart_page_url()); ?>" class="icon-shopping-cart"></a>
                         </div>
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a title="call telephone" href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                            <a title="call telephone" href="tel:<?php echo esc_url($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?> 
                 </div>
@@ -223,7 +223,7 @@
                 <div class="h-2">
                     <?php if($redux_builder_amp['signin-button-text'] && $redux_builder_amp['signin-button-link']){?>
                     <div class="h-sing">
-                        <a target="_blank" href="<?php echo $redux_builder_amp['signin-button-link']?>"><?php echo $redux_builder_amp['signin-button-text'] ?></a>
+                        <a target="_blank" href="<?php echo esc_url($redux_builder_amp['signin-button-link'])?>"><?php echo esc_attr($redux_builder_amp['signin-button-text']) ?></a>
                     </div>
                     <?php } ?>
                     <?php if( isset( $redux_builder_amp['amp-swift-cart-btn'] ) && true == $redux_builder_amp['amp-swift-cart-btn'] ) { ?>
@@ -353,7 +353,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                            <a href="tel:<?php echo esc_url($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>
                     <div class="h-nav">
