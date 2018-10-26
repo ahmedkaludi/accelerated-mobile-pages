@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
@@ -48,7 +48,7 @@
  		} 
  		$blog_title = ampforwp_get_blog_details('title');
 		if( ampforwp_is_blog() && $blog_title){  ?>
-			<h1 class="page-title"><?php echo $blog_title ?></h1>
+			<h1 class="page-title"><?php echo esc_attr($blog_title) ?></h1>
 		<?php }	
  	  if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
 		$ampforwp_amp_post_url = ampforwp_url_controller( get_permalink() ); ?>
@@ -80,7 +80,7 @@
 			              <time> <?php
                           		$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                    				 $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    			echo  $post_date ; ?>
+                    			echo  esc_attr($post_date) ; ?>
                    		 </time>
                    		 <?php $post_author = $this->get( 'post_author' ); ?>
                    		 <div class="amp-wp-author-name">

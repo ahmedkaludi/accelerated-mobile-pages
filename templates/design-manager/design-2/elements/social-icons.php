@@ -29,7 +29,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 			<?php }
 		} ?>	   
 		<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
-			<amp-social-share type="facebook"    data-param-app_id="<?php echo $redux_builder_amp['amp-facebook-app-id']; ?>" width="50" height="28"></amp-social-share>
+			<amp-social-share type="facebook" data-param-app_id="<?php echo esc_attr($redux_builder_amp['amp-facebook-app-id']); ?>" width="50" height="28"></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-twitter-share'] == true)  {
 			$data_param_data = $redux_builder_amp['enable-single-twitter-share-handle'];?>
@@ -37,7 +37,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 												width="50"
 												height="28"
 												data-param-url=""
-                        						data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+                        						data-param-text="TITLE <?php echo esc_url($permalink).' '.esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data )?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

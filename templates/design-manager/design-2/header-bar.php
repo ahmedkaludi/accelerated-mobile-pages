@@ -13,7 +13,7 @@
 
 <?php if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforwp-amp-menu']){ ?>
 <div on='tap:sidebar.toggle' aria-label="Navigation" role="button" tabindex="0" class="nav_container">
-	<a href="#" class="toggle-text"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'], 'Navigate' ); ?></a>
+	<a href="#" class="toggle-text"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-navigate-text'], 'Navigate' )); ?></a>
 </div>
 
 <amp-sidebar id='sidebar'
@@ -37,7 +37,7 @@
           $menu_html_content = apply_filters('ampforwp_menu_content',$menu_html_content);
           $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
           $sanitized_menu =  $sanitizer_obj->get_amp_content();
-          echo $sanitized_menu; 
+          echo ampforwp_wp_kses($sanitized_menu); 
           ?>
         </nav>
         <?php do_action('ampforwp_after_amp_menu'); ?>
