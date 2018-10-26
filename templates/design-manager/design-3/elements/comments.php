@@ -5,7 +5,6 @@
 	if ( isset($redux_builder_amp['wordpress-comments-support']) && $redux_builder_amp['wordpress-comments-support']==true ) {
 		$enable_comments =  true;
 	}
-
 	$display_comments_on = ampforwp_get_comments_status();
 	if ( $enable_comments && $display_comments_on ) { ?>
 		<div id="comments" class="ampforwp-comment-wrapper"> <?php 
@@ -22,7 +21,7 @@
 				$comment_nums = " ($comment_nums) " ?>
 
 				<div class="amp-wp-content comments_list">
-			        <h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' ). $comment_nums?></h3>
+			        <h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). $comment_nums?></h3>
 			        <ul> <?php // Display the list of comments
 						function ampforwp_custom_translated_comment($comment, $args, $depth){
 							global $redux_builder_amp;
@@ -39,14 +38,14 @@
 									<footer class="comment-meta">
 									   <?php if($comment_author_img_url){ ?>
 			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
-			 							<?php }   ?>         							
+			 							<?php } ?>         							
 										<div class="comment-author vcard">
-											<?php  printf(__('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>'), get_comment_author_link()) ?>
+											<?php  printf(__(ampforwp_wp_kses('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>')), get_comment_author_link()) ?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
-											<a href="<?php echo htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
-												<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at  %2$s') , get_comment_date(),  get_comment_time())?>
+											<a href="<?php echo esc_url(htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) )) ?>">
+												<?php printf( esc_attr(ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at  %2$s') ), get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link( ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' ) ) ?>
 										</div>
@@ -64,7 +63,7 @@
 					                  	  	'AMP_Style_Sanitizer' => array()
 			                          	 ) ) );
 			                        	$sanitized_comment_content = $sanitizer->get_amp_content();
-			                        	echo make_clickable( $sanitized_comment_content ); ?>      
+			                        	echo ampforwp_wp_kses(make_clickable( $sanitized_comment_content )); ?>      
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .comment-body -->
@@ -100,9 +99,9 @@
 			if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 				<div class="comment-button-wrapper">
 					<?php if ( comments_open() ) { ?>
-				    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 					} else { 
-						echo "<p class='nocomments'>".ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
+						echo "<p class='nocomments'>".esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  )) ." </p>";
 					}?>
 				</div> <?php 
 			} ?>
