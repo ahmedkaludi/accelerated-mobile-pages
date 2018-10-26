@@ -187,7 +187,7 @@ amp-carousel{direction: ltr;} .tt-lb{float:right;margin-left:5px;}
 <?php } ?>
 <?php if ($redux_builder_amp['ampforwp-callnow-button']) { ?>
 .callnow{ position: relative; top: -27px; right: 100px; }
-.callnow a:before { content: ""; position: absolute; right: 23px; width: 5px; height: 11px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo $redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']; ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
+.callnow a:before { content: ""; position: absolute; right: 23px; width: 5px; height: 11px; border-width: 6px 0 6px 3px; border-style: solid; border-color:<?php echo ampforwp_sanitize_color($redux_builder_amp['amp-opt-color-rgba-colorscheme-call']['color']); ?>; background: transparent; transform: rotate(-30deg); box-sizing: initial; border-top-left-radius: 3px 5px; border-bottom-left-radius: 3px 5px; }
 <?php } ?>
 <?php
 if ( class_exists('TablePress') ) { ?>
