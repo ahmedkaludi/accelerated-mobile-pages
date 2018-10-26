@@ -119,7 +119,7 @@ function ampforwp_gdpr_css(){
 		    display: inline-block;
 		}
 		#footer .gdpr_fmi a{
-			color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+			color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;
 		} 
 		@media(max-width:768px){
 			.gdpr_w{width: 85%;margin:0 auto;padding:1.5rem;}

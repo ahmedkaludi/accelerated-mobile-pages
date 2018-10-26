@@ -1,7 +1,7 @@
 <?php header('Content-Type: ' . feed_content_type('rss2') . '; charset=' . get_option('blog_charset'), true);
     $more = 1;
 
-    echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
+    echo esc_html('<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>');
 ?>
 
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -10,7 +10,7 @@
     <title><?php bloginfo_rss('name'); ?></title>
     <link><?php bloginfo_rss('url') ?></link>
     <description><?php bloginfo_rss("description") ?></description>
-    <lastBuildDate><?php echo mysql2date('c', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
+    <lastBuildDate><?php echo esc_attr(mysql2date('c', get_lastpostmodified('GMT'), false)); ?></lastBuildDate>
     <language><?php bloginfo_rss( 'language' ); ?></language>
     <?php
     global $redux_builder_amp;
@@ -50,7 +50,7 @@
         <title><?php the_title_rss() ?></title>
         <link><?php the_permalink_rss() ?></link>
         <guid><?php the_guid(); ?></guid>
-        <pubDate><?php echo mysql2date('c', get_post_time('c', true), false); ?></pubDate>
+        <pubDate><?php echo esc_attr(mysql2date('c', get_post_time('c', true), false)); ?></pubDate>
         <?php if ( true == $redux_builder_amp['ampforwp-instant-article-author-meta'] ) { ?>
             <author><?php the_author() ?></author>
         <?php } ?>

@@ -54,7 +54,7 @@
 
 
 		
-		echo $before_widget;
+		echo ampforwp_wp_kses($before_widget);
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_btn">';
         
 		foreach( $features as $feature ) {
@@ -82,10 +82,10 @@
 		$sanitized_output 		= $sanitizer->get_amp_content();
 
 		if( $sanitized_output ) {  
-			echo $sanitized_output;
+			echo ampforwp_wp_kses($sanitized_output);
 		} 
 
-		echo $after_widget;
+		echo ampforwp_wp_kses($after_widget);
 
 	} // end widget
 
@@ -139,39 +139,39 @@
 		        foreach( $features as $feature ) {
 		            if ( isset( $feature['title'] ) || isset( $feature['description'] ) ) { ?>
 		            <div class="widget">
-		            	<div class="widget-top"><div class="widget-title"><h3><?php echo $feature['title'];?><span class="in-widget-title"></span></h3></div>
+		            	<div class="widget-top"><div class="widget-title"><h3><?php echo esc_attr($feature['title']);?><span class="in-widget-title"></span></h3></div>
 		            	</div>
 
 			            <div class="widget-inside">
 			            <div class="widget-content">
 							<p>
-								<label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>"><?php _e( 'Button Text:' ); ?></label>
-                                <input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-title'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][title]'; ?>" type="text" value="<?php echo $feature['title']; ?>" /> </p>
+								<label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][title]'; ?>"><?php esc_attr_e( 'Button Text:' ); ?></label>
+                                <input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-title'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][title]'; ?>" type="text" value="<?php echo esc_attr($feature['title']); ?>" /> </p>
 
-                            <p><label for="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][url]'; ?>"><?php _e( 'Url:' ); ?></label>
-								<input class="widefat" id="<?php echo $this->get_field_id( 'features' ) .'-'. $c.'-url'; ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][url]'; ?>" type="text" value="<?php echo $feature['url']; ?>" />
+                            <p><label for="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][url]'; ?>"><?php esc_attr_e( 'Url:' ); ?></label>
+								<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'features' )) .'-'. $c.'-url'; ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][url]'; ?>" type="text" value="<?php echo esc_attr($feature['url']); ?>" />
 							</p>
 
 
-							<p><label><?php _e('URL Target:'); ?> </label><br />
-                        <label class="radio_label" for="<?php echo $this->get_field_id('id') . "-on"; ?>"><?php _e('New Tab'); ?> </label> 
-                            <input class="widefat" id="<?php echo $this->get_field_id('id') . "-on";  ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][radio]'; ?>" type="radio" value="radio-on"  <?php if ( $feature['radio'] == 'radio-on'): ?> checked <?php endif ?> />						
+							<p><label><?php esc_attr_e('URL Target:'); ?> </label><br />
+                        <label class="radio_label" for="<?php echo esc_attr($this->get_field_id('id')) . "-on"; ?>"><?php esc_attr_e('New Tab'); ?> </label> 
+                            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('id')) . "-on";  ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][radio]'; ?>" type="radio" value="radio-on"  <?php if ( $feature['radio'] == 'radio-on'): ?> checked <?php endif ?> />						
  
-                        <label class="radio_label" for="<?php echo $this->get_field_id('id') . "-off"; ?>"> <?php _e('Current'); ?> </label>	 						
+                        <label class="radio_label" for="<?php echo esc_attr($this->get_field_id('id')) . "-off"; ?>"> <?php esc_attr_e('Current'); ?> </label>	 						
 
-								<input class="widefat" id="<?php echo $this->get_field_id('id') . "-off";  ?>" name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][radio]'; ?>" type="radio" value="radio-off"  <?php if ( $feature['radio'] ==  'radio-off' || $feature['radio'] ==  ''): ?> checked <?php endif ?> /> 
+								<input class="widefat" id="<?php echo $this->get_field_id('id') . "-off";  ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][radio]'; ?>" type="radio" value="radio-off"  <?php if ( $feature['radio'] ==  'radio-off' || $feature['radio'] ==  ''): ?> checked <?php endif ?> /> 
 							</p>
 <!-- done -->	
 							<p>
-								<label for="<?php echo $this->get_field_id('id') . "-size"; ?>"> <?php _e('Select Size:'); ?> </label>
-								<select id="<?php echo $this->get_field_id('id') . "-size"; ?>" class="widefat"  name="<?php echo $this->get_field_name( 'features' ) . '['.$c.'][size]'; ?>">
+								<label for="<?php echo esc_attr($this->get_field_id('id')) . "-size"; ?>"> <?php esc_attr_e('Select Size:'); ?> </label>
+								<select id="<?php echo esc_attr($this->get_field_id('id')) . "-size"; ?>" class="widefat"  name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][size]'; ?>">
 								    <option value="1" <?php selected( $feature['size'], 1 ); ?>>Small</option>
 								    <option value="2" <?php selected( $feature['size'], 2 ); ?>>Medium</option>
 								    <option value="3" <?php selected( $feature['size'], 3 ); ?>>Large</option>
 								</select>
 							</p>		
 
-							<p>	<a class="ampforwp-button-remove delete button left"><?php _e('Remove Feature','accelerated-mobile-pages')?></a> </p>
+							<p>	<a class="ampforwp-button-remove delete button left"><?php esc_attr_e('Remove Feature','accelerated-mobile-pages')?></a> </p>
 						</div>
 						</div>
 					</div>
@@ -182,7 +182,7 @@
 		    }  ?>
 		</span>
 
-	<a class="ampforwp-button-add button left">  <?php _e('Add Feature','accelerated-mobile-pages'); ?> </a>
+	<a class="ampforwp-button-add button left">  <?php esc_attr_e('Add Feature','accelerated-mobile-pages'); ?> </a>
 <p>	</p>
 		<?php 
 

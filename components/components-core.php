@@ -270,7 +270,7 @@ function amp_breadcrumb(){
 function amp_gdpr(){
 	global $loadComponent;
 	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] ) {
-		echo amp_gdpr_output();
+		echo ampforwp_wp_kses(amp_gdpr_output());
 	}
 }
 
