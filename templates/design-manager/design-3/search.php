@@ -69,7 +69,7 @@
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
 				if($thumb_url){
 				?>
-					<div class="home-post_image"><a href="<?php echo esc_url(ampforwp_url_controller( get_permalink() )); ?>"><amp-img layout="responsive" src=<?php echo esc_url($thumb_url); ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> ></amp-img></a></div>
+					<div class="home-post_image"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"><amp-img layout="responsive" src=<?php echo esc_url($thumb_url); ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> ></amp-img></a></div>
 				<?php } 
 				} ?>
 
@@ -77,14 +77,14 @@
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 						if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
-						<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo esc_attr($category->cat_name) ?></a></li>
+						<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><a href="<?php echo ampforwp_url_controller( get_category_link( $category->term_id ) ); ?>" ><?php echo esc_attr($category->cat_name) ?></a></li>
 					<?php }
 					else { ?>
 					   <li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><?php echo esc_attr($category->cat_name) ?></li>
 					<?php }
 					} ?> 
                 </ul>
-				<h2 class="amp-wp-title"><a href="<?php echo esc_url(ampforwp_url_controller( get_permalink() )); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {

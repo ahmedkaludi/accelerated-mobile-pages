@@ -578,7 +578,7 @@ function amp_author_meta( $args ) {
 	$post_author = get_userdata($post->post_author);
 	$author_link = get_author_posts_url($post_author->ID);
 	if ( $author_name ) {
-		echo ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $post_author->display_name ).'</a>';
+		echo ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $post_author->display_name ).'</a>';
  	}
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );

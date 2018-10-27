@@ -4892,7 +4892,7 @@ function ampforwp_visit_amp_in_admin_bar($admin_bar) {
 	    'parent' => 'site-name',
 	    'id'     => 'view-amp',
 	    'title'  => 'Visit AMP',
-	    'href'   => esc_url(ampforwp_url_controller( get_home_url() )),
+	    'href'   => ampforwp_url_controller( get_home_url() ),
 	    'meta'   => false
 	);
 	$admin_bar->add_node( $args );       
@@ -5876,7 +5876,7 @@ if( ! function_exists( 'ampforwp_view_amp_admin_bar' ) ) {
 					$wp_admin_bar->add_node(array(
 						'id'    => 'ampforwp-view-amp',
 						'title' => 'View ' . esc_html($post_type_title) . ' (AMP)' ,
-						'href'  => esc_url(ampforwp_url_controller( get_permalink( $post->ID ) ))
+						'href'  => ampforwp_url_controller( get_permalink( $post->ID ) )
 					));
 				}
 			}

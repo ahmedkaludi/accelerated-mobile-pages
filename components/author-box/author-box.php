@@ -78,7 +78,7 @@ if ( isset($args['show_time']) ) {
                 echo '<span class="author-name">' .esc_attr($author_prefix) . esc_attr($author_link) . ' </span>';
             }
             else {
-                echo '<span class="author-name">' .esc_attr($author_prefix) . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+                echo '<span class="author-name">' .esc_attr($author_prefix) . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $author_name ).'</a></span>';
             }
         }
         else

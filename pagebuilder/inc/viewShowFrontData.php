@@ -790,7 +790,7 @@ function rowData($container,$col,$moduleTemplate){
 						if(trim($fieldValues['category_selection']) != 'recent_option'){
 						  $catName = get_cat_name($fieldValues['category_selection']);
 						  $cat_link = get_category_link($fieldValues['category_selection']);
-						  $cat_link = esc_url(ampforwp_url_controller($cat_link));
+						  $cat_link = ampforwp_url_controller($cat_link);
 						}
 						$moduleFrontHtml = str_replace('{{content_category_title}}', urldecode($catName), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{content_category_link}}', $cat_link, $moduleFrontHtml);

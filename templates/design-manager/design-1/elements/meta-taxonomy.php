@@ -13,7 +13,7 @@
 				<span><?php global $redux_builder_amp; printf(esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' )); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
 					if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] &&  isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-							echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. esc_url(ampforwp_url_controller( get_category_link( $cat->term_id ) )) .'" > '. $cat->name .'</a></span>');//#934
+							echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
 						} else {
 							 echo '<span>'. esc_attr($cat->name) .'</span>';
 						}
@@ -33,7 +33,7 @@
 							 		}
 						foreach ($ampforwp_tags as $tag) {
 							if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-	                				echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. esc_url(ampforwp_url_controller( get_tag_link( $tag->term_id ) )).'" >'.$tag->name .'</a></span>');//#934
+	                				echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
 							} else {
 							 	echo ('<span>'.esc_attr($tag->name).'</span>');
 						}

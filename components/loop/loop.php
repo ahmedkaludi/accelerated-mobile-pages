@@ -316,7 +316,7 @@ function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	}
 
 	if( ampforwp_get_setting('ampforwp-homepage-loop-readmore-link') == 1 ) {
-		echo ('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>');
+		echo ('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. ampforwp_url_controller(get_permalink($post->ID)) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>');
 	} else {
 		echo ('<'.$tag.' class="'.esc_attr($class).'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>');
 	}
@@ -337,7 +337,7 @@ function amp_loop_permalink($return,$amp_query_var ='amp'){
 		echo esc_url(get_permalink());
 	}
 	else
-		echo esc_url(ampforwp_url_controller( get_permalink() ));
+		echo ampforwp_url_controller( get_permalink() );
 }
 function amp_loop_image( $data=array() ) {
 	global $ampLoopData, $counterOffset, $redux_builder_amp;
@@ -429,7 +429,7 @@ function amp_loop_category(){
 				if ( false == $redux_builder_amp['ampforwp-archive-support'] ) {
 				echo '<li class="amp-cat-'. esc_attr($category->term_id).'">'. esc_attr($category->cat_name).'</li>';
 				}else{
-				echo '<li class="amp-cat-'. esc_attr($category->term_id).'"><a href="'.esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )).'">'. esc_attr($category->cat_name).'</a></li>';
+				echo '<li class="amp-cat-'. esc_attr($category->term_id).'"><a href="'.ampforwp_url_controller( get_category_link( $category->term_id ) ).'">'. esc_attr($category->cat_name).'</a></li>';
 				}
 			}
 		echo '</ul>';

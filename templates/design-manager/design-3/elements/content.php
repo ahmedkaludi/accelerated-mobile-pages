@@ -53,7 +53,7 @@
                 <?php $next_post = get_next_post();
                     if (!empty( $next_post )) { ?>
                     <span><?php global $redux_builder_amp; echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-next-read-text'], 'Next Read' )); ?></span> <a href="<?php echo 
-                    esc_url(ampforwp_url_controller( get_permalink( $next_post->ID ) )); ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
+                    ampforwp_url_controller( get_permalink( $next_post->ID ) ); ?>"><?php echo $next_post->post_title; ?> &raquo;</a> <?php
                     } ?>
 				</div>
 			</div>

@@ -85,7 +85,7 @@ if ( get_query_var( 'paged' ) ) {
 		         $category_posts->the_post();
 		?>
 		      <div>
-                  <a href="<?php echo esc_url(ampforwp_url_controller( get_the_permalink() )); ?>">
+                  <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
                   	<?php if ( ampforwp_has_post_thumbnail() ) { 
 						$thumb_url = ampforwp_get_post_thumbnail();
 						if($thumb_url){
@@ -158,14 +158,14 @@ if ( get_query_var( 'paged' ) ) {
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 					if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
-						<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo esc_attr($category->cat_name) ?></a></li>
+						<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><a href="<?php echo ampforwp_url_controller( get_category_link( $category->term_id ) ); ?>" ><?php echo esc_attr($category->cat_name) ?></a></li>
 					<?php }
 					else { ?>
 					   <li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><?php echo esc_attr($category->cat_name) ?></li>
 					<?php } 
 					} ?>
                 </ul>
-				<h2 class="amp-wp-title"><a href="<?php echo esc_url(ampforwp_url_controller( get_the_permalink() )); ?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
 				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {

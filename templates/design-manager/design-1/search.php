@@ -61,7 +61,7 @@
 
 	        <div class="amp-wp-content amp-wp-article-header amp-loop-list">
 
-		        <h1 class="amp-wp-title"><a href="<?php echo esc_url(ampforwp_url_controller( get_permalink() ));?>"><?php the_title() ?></a></h1>
+		        <h1 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_permalink());?>"><?php the_title() ?></a></h1>
 
 				<div class="amp-wp-content-loop">
 
