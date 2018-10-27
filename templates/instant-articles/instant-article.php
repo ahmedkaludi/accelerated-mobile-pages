@@ -7,10 +7,10 @@
       <meta property="op:markup_version" content="v1.0">
       <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){ ?>
         <!-- automatic ad placement -->
-        <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo esc_html(ampforwp_get_ia_ad_density()); ?>">
+        <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo esc_attr(ampforwp_get_ia_ad_density()); ?>">
       <?php } ?>
       <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
-          echo esc_html($redux_builder_amp['fbia-header-text-area']);
+          echo $redux_builder_amp['fbia-header-text-area'];
       }?>
     </head>
     <body>
