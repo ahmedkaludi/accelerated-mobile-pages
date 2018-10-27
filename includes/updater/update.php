@@ -221,8 +221,6 @@ function ampforwp_deactivate_license() {
     }
 }
 add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license' );
-//add_action( 'admin_init', 'ampforwp_deactivate_license');
-
 
 /************************************
 * this illustrates how to check if
@@ -257,7 +255,7 @@ function ampforwp_check_extension_license() {
         'edd_action' => 'check_license',
         'license' => $license,
         'item_name' => urlencode( $pluginItemName ),
-        'url'       => home_url()
+        'url'       => esc_url(home_url())
     );
 
     // Call the custom API.
@@ -289,7 +287,7 @@ function ampforwp_admin_notices() {
                 $message = urldecode( $_GET['message'] );
                 ?>
                 <div class="error">
-                    <p><?php echo $message; ?></p>
+                    <p><?php echo wp_kses_post( $message); ?></p>
                 </div>
                 <?php
                 break;
@@ -324,9 +322,9 @@ function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
 
         $api_params = array(
             'edd_action'    => 'check_license',
-            'license'       => $license,
+            'license'       => esc_attr($license),
             'item_name'     => urlencode( $item_name ),
-            'url'           => home_url()
+            'url'           => esc_url(home_url())
         );
 
         // Call the custom API.
