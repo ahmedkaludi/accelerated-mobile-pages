@@ -40,10 +40,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
     $id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
 
-    $has_children = $wpdb->get_var("SELECT COUNT(meta_id)
+    $has_children = $wpdb->get_var($wpdb->prepare("SELECT COUNT(meta_id)
                             FROM {$wpdb->prefix}postmeta
                             WHERE meta_key='_menu_item_menu_item_parent'
-                            AND meta_value='".$item->ID."'");
+                            AND meta_value='%d'", $item->ID) );
 
     $output .= $indent . '<li' . $id . $value . $class_names .'>';
 
