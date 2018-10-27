@@ -163,9 +163,9 @@ if ( ! class_exists( 'Black_Studio_TinyMCE_Admin_Pointer' ) ) {
 				'options' => array(
 					'content' => sprintf( '<h3>%s</h3> <p>%s</p>',
 						/* translators: title for the dismissable admin pointer tooltip (same as plugin name) */
-						__( 'Black Studio TinyMCE Widget', 'black-studio-tinymce-widget' ),
+						esc_html__( 'Black Studio TinyMCE Widget', 'black-studio-tinymce-widget' ),
 						/* translators: text for the dismissable admin pointer tooltip */
-						__( 'The Visual Editor widget allows you to insert rich text and media objects in your sidebars', 'black-studio-tinymce-widget' )
+						esc_html__( 'The Visual Editor widget allows you to insert rich text and media objects in your sidebars', 'black-studio-tinymce-widget' )
 					),
 					'position' => array( 'edge' => 'left', 'align' => 'middle' )
 				)

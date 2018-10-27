@@ -88,25 +88,25 @@ function ampforwp_custom_content_meta_register() {
 
     if ( $user_level ) {
         if ( $redux_builder_amp['amp-on-off-for-all-posts'] ) {
-          add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
+          add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'post','normal', 'default' );
         }
 
         if ( $redux_builder_amp['amp-on-off-for-all-pages'] ) {
-          add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
+          add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor','accelerated-mobile-pages' ), 'amp_content_editor_title_callback', 'page','normal', 'default' );
         }
         // Custom AMP Editor for Custom Post Types
         $post_types = ampforwp_get_all_post_types();
         if ( $post_types ) {
           foreach ( $post_types  as $post_type ) {
             if ( 'post' !== $post_type && 'page' !== $post_type ) {
-              add_meta_box( 'custom_content_editor', __( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', $post_type ,'normal', 'default' );
+              add_meta_box( 'custom_content_editor', esc_html__( 'Custom AMP Editor', 'accelerated-mobile-pages' ), 'amp_content_editor_title_callback', $post_type ,'normal', 'default' );
             }
           }
         }
 
         // Assign Pagebuilder Meta Box // Legecy pagebuilder
         if ( $redux_builder_amp['ampforwp-content-builder'] ) {
-          add_meta_box( 'custom_content_sidebar', __( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
+          add_meta_box( 'custom_content_sidebar', esc_html__( 'AMP Page Builder', 'accelerated-mobile-pages' ), 'amp_content_sidebar_callback', 'page','side', 'default' );
         }  
     }
 

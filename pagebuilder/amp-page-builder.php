@@ -24,14 +24,14 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
     if ( $user_level && ( current_user_can('edit_posts') || current_user_can('edit_pages') ) ) {
 		// Page builder for posts
 	  	if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'post' , 'normal', 'default' );
 	  	}
 	  	// Page builder for pages
 	  	if ( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  'page' , 'normal', 'default' );
 	  	}
 	  	if( (isset($redux_builder_amp['ampforwp-custom-type']) && is_array($redux_builder_amp['ampforwp-custom-type'] ) ) && in_array($post_type, $redux_builder_amp['ampforwp-custom-type']) ){
-	  		add_meta_box( 'pagebilder_content', __( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
+	  		add_meta_box( 'pagebilder_content', esc_html__( 'AMP Page Builder', 'amp-page-builder' ), 'amp_content_pagebuilder_title_callback',  $post_type , 'normal', 'default' );
 	  	}
 	  	
 	}
@@ -378,8 +378,8 @@ function create_posttype_amppb_layout(){
 	register_post_type( 'amppb_layout',
 	    array(
 	      'labels' => array(
-		        'name' => __( 'AMP Layouts' ),
-		        'singular_name' => __( 'AMP Layout' )
+		        'name' => esc_html__( 'AMP Layouts' ),
+		        'singular_name' => esc_html__( 'AMP Layout' )
 		      ),
 	    /*'public' => true,
       	'has_archive' => false,*/

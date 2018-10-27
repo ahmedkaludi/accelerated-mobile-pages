@@ -1685,15 +1685,15 @@ function ampforwp_title_custom_meta() {
           }
           // Posts
 	      if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
-	        add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
+	        add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', 'post','side' );      
 	      }
 	      // Pages
           if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
-              add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
+              add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback','page','side' );
           }
           // Custom Post Types
           if( $post_type !== 'page' && $post_type !== 'post' ) {
-            add_meta_box( 'ampforwp_title_meta', __( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
+            add_meta_box( 'ampforwp_title_meta', esc_html__( 'Show AMP for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback', $post_type,'side' );          
           }
           
           }
@@ -1811,19 +1811,19 @@ function ampforwp_mobile_redirection() {
 	         // Posts
 	         if( $redux_builder_amp['amp-on-off-for-all-posts'] && $post_type == 'post' ) {
 	        	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
-	        		add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', 'post','side' );
+	        		add_meta_box( 'ampforwp_title_meta_redir', esc_html__( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', 'post','side' );
 	        	}
 	        }
 	        // Pages
           	if( $redux_builder_amp['amp-on-off-for-all-pages'] && $post_type == 'page' ) {
 	          	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
-		          	add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
+		          	add_meta_box( 'ampforwp_title_meta_redir', esc_html__( 'Mobile Redirection for Current Page?' ,'accelerated-mobile-pages'), 'ampforwp_title_callback_redirection','page','side' );
 	               }
 	            }
 	          // Custom Post Types
 	         if( $post_type !== 'page' && $post_type !== 'post' ) {
 	        	if ( $redux_builder_amp['amp-mobile-redirection'] ) {
-	        		add_meta_box( 'ampforwp_title_meta_redir', __( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
+	        		add_meta_box( 'ampforwp_title_meta_redir', esc_html__( 'Mobile Redirection for Current Page?','accelerated-mobile-pages' ), 'ampforwp_title_callback_redirection', $post_type,'side' );
 	        		}
 	        	}
           	}
@@ -7329,7 +7329,7 @@ if ( ! function_exists('ampforwp_ia_meta_box') ) {
 	    }
 	    if ( $user_level ) { 
 		    if( true == $redux_builder_amp['fb-instant-article-switch'] && $post->post_type == 'post' ) {
-		    	add_meta_box( 'ampforwp_ia_meta', __( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
+		    	add_meta_box( 'ampforwp_ia_meta', esc_html__( 'Show Instant Article for Current Post?','accelerated-mobile-pages' ), 'ampforwp_ia_meta_callback', 'post','side' );      
 		    }
         }
     }

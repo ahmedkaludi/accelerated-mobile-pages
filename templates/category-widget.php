@@ -9,9 +9,9 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
   public function __construct() {
     $widget_options = array(
       'classname' => 'ampforwp_categories_widget',
-       'description' => __('This Widget adds categories where necessary in AMP Pages','accelerated-mobile-pages')
+       'description' => esc_html__('This Widget adds categories where necessary in AMP Pages','accelerated-mobile-pages')
      );
-    parent::__construct( 'ampforwp_categories_widget', __('AMP Categories Module','accelerated-mobile-pages'), $widget_options );
+    parent::__construct( 'ampforwp_categories_widget', esc_html__('AMP Categories Module','accelerated-mobile-pages'), $widget_options );
   }
 
 

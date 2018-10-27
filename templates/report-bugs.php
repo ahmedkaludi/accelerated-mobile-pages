@@ -3,11 +3,11 @@ if ( ! function_exists( 'ampforwp_reporting_bugs' ) ) {
 	function ampforwp_reporting_bugs($sections){
 
 $sections[] = array(
-      'title'      => __( 'Send Feedback', 'accelerated-mobile-pages' ),
+      'title'      => esc_html__( 'Send Feedback', 'accelerated-mobile-pages' ),
       // 'id'         => 'opt-structured-data',
       // 'subsection' => true,
       'icon' => 'el el-group',
-      'desc'  => "<p>".__("<strong>We need your help in improving this plugin!</strong></p>
+      'desc'  => "<p>".esc_html__("<strong>We need your help in improving this plugin!</strong></p>
 <p>We take every issue and bug report very seriously. Me and my team personally goes through your feedback and works hard on solving them.</p>",'accelerated-mobile-pages')."
 <p>
 <a href='https://ampforwp.com/support/' style='background: #E91E63;
