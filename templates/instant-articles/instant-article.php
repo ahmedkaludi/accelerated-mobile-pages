@@ -7,10 +7,10 @@
       <meta property="op:markup_version" content="v1.0">
       <?php if (isset($redux_builder_amp['fb-instant-article-ads']) && $redux_builder_amp['fb-instant-article-ads'] ){ ?>
         <!-- automatic ad placement -->
-        <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo ampforwp_get_ia_ad_density(); ?>">
+        <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=<?php echo esc_html(ampforwp_get_ia_ad_density()); ?>">
       <?php } ?>
       <?php if ( isset($redux_builder_amp['fbia-header-text-area']) && $redux_builder_amp['fbia-header-text-area'] ) {
-          echo $redux_builder_amp['fbia-header-text-area'];
+          echo esc_html($redux_builder_amp['fbia-header-text-area']);
       }?>
     </head>
     <body>
@@ -45,7 +45,7 @@
           $thumbnail_url = $thumb[0];
         ?>
                     <figure>
-                        <img src="<?php echo $thumbnail_url; ?>" />
+                        <img src="<?php echo esc_url($thumbnail_url); ?>" />
                         <?php if (strlen(apply_filters("the_content", $attachment->post_excerpt)) > 0):
                             if ( $attachment->post_excerpt ) { ?>
                                 <figcaption><?php echo apply_filters("the_content", $attachment->post_excerpt); ?></figcaption>
@@ -59,7 +59,7 @@
                         if(isset($redux_builder_amp['fb-instant-article-ad-id']) && $redux_builder_amp['fb-instant-article-ad-id']){ ?>
                             <!-- facebook audience network ad -->
                             <figure class="op-ad">
-                                <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=<?php echo ampforwp_get_ia_placement_id(); ?>&adtype=banner300x250"></iframe>
+                                <iframe width="300" height="250" style="border:0; margin:0;" src="https://www.facebook.com/adnw_request?placement=<?php echo esc_attr(ampforwp_get_ia_placement_id()); ?>&adtype=banner300x250"></iframe>
                             </figure>
                     <?php } }
                     elseif(isset($redux_builder_amp['fb-instant-article-ad-type']) && '2' === $redux_builder_amp['fb-instant-article-ad-type']){
