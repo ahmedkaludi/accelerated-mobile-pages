@@ -7605,7 +7605,7 @@ function ampforwp_ia_meta_callback( $post ) {
 
 // AMPforWP allowed html tags #1950
 function ampforwp_wp_kses_allowed_html(){
-	$allowed_html = $allowed_normal_html = $allowed_amp_html = array();
+	$allowed_html = $allowed_normal_html = $allowed_amp_tags = array();
 	$allowed_normal_html = wp_kses_allowed_html( 'post' );
 	if ( class_exists('AMP_Allowed_Tags_Generated') ) {
 		$allowed_amp_tags = AMP_Allowed_Tags_Generated::get_allowed_tags();

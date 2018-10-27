@@ -20,7 +20,8 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   }
 
   // Redirect to welcome page
-  wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
+  wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), esc_url(admin_url( 'admin.php' ) )) );
+  exit();
 }
 
 // add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );		
@@ -36,9 +37,10 @@ function ampforwp_welcome_screen_do_activation_redirect_parent() {
 		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {		
 			return;		
 		}		
-			
-		// Redirect to welcome page		
-		wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );		
+
+		// Redirect to welcome page	
+		wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), esc_url(admin_url( 'admin.php' ) )) );
+		exit();
 			
 	 	update_option( 'ampforwp_parent_plugin_check', true );		
 }			
@@ -62,8 +64,6 @@ function ampforwp_add_welcome_pages($sections){
 function ampforwp_welcome_screen_content() {
   ?>
   	<div class="wrap">
-	    <?php // echo ampforwp_plugin_parent_activation(); ?>
-
 	    <div class="clear"></div>
 
 	    <div class="ampforwp-post-installtion-instructions">
@@ -128,224 +128,6 @@ function ampforwp_welcome_screen_content() {
 		</div>
 
 	</div> <?php
-}
-
-function ampforwp_plugin_parent_activation() {
-
-	add_thickbox(); // @since 1.0.53
-
-	include( ABSPATH . "wp-admin/includes/plugin-install.php" );
-	global $tabs, $tab, $paged, $type, $term;
-	$tabs = array();
-	$tab = "slug";
-	$per_page = 1;
-	$args = array
-    (
-        "slug"      => "amp",
-		"page" 		=> $paged,
-		"per_page" 	=> $per_page,
-		"fields" 	=> array( "last_updated" => true, "short_description" => true,  "downloaded" => false, "icons" => true ),
-		//"locale" 	=> get_locale(),
-	);
-	$args = apply_filters( "install_plugins_table_api_args_$tab", $args );
-    $api = plugins_api( "plugin_information", $args );
-	$item = $api;
-
-	$plugins_allowedtags = array(
-		'a' => array( 'href' => array(), 'title' => array(), 'target' => array() ),
-		'abbr' => array( 'title' => array() ), 'acronym' => array( 'title' => array() ),
-		'code' => array(), 'pre' => array(), 'em' => array(), 'strong' => array(),
-		'div' => array( 'class' => array() ), 'span' => array( 'class' => array() ),
-		'p' => array(), 'ul' => array(), 'ol' => array(), 'li' => array(),
-		'h1' => array(), 'h2' => array(), 'h3' => array(), 'h4' => array(), 'h5' => array(), 'h6' => array(),
-		'img' => array( 'src' => array(), 'class' => array(), 'alt' => array() )
-		);
-
-	?>
-	<form id="plugin-filter">
-
-		<div class="wrap">
-			<div class="ampforwp-pre-installtion-instructions">
-				<h1 style="color:#388E3C;font-weight:500"><i class="dashicons dashicons-warning"></i><?php echo __('Almost done. One last step remaining.</h1>
-				<p><b>This plugin requires the following plugin: <i>AMP</i></b></p>
-				<p>Automattic, the company behind WordPress has created a framework for AMP (also known as Default AMP plugin) which we are using as the core.</p><p>To complete the installation, you just need to click on the \'Finish Installation\' button and default AMP plugin will be installed. Remember, to activate the plugin and you will be redirected to this screen again.</p>','accelerated-mobile-pages') ?>
-				<div id="ampforwp-network-status"></div>
-			</div>
-
-		<div style="margin-top:30px;" class="wp-list-table widefat plugin-install">
-			<div id="the-list">
-
-				<?php
-				function ampforwp_plugin_activation_link($plugin) {
-				    $activateUrl = sprintf(admin_url('plugins.php?action=activate&plugin=%s&plugin_status=all&paged=1&s'), $plugin);
-				    // change the plugin request to the plugin to pass the nonce check
-				    $_REQUEST['plugin'] = $plugin;
-				    $activateUrl = wp_nonce_url($activateUrl, 'activate-plugin_' . $plugin, '_wpnonce');
-
-				    return $activateUrl;
-				}
-
-//				foreach ( (array) $item as $plugin ) {
-                    $plugin = $item;
-					if ( is_object( $plugin ) ) {
-						$plugin = (array) $plugin;
-					}
-
-					$title = wp_kses( $plugin['name'], $plugins_allowedtags );
-					// Remove any HTML from the description.
-					$description = strip_tags( $plugin['short_description'] );
-					$version = wp_kses( $plugin['version'], $plugins_allowedtags );
-
-					$name = strip_tags( $title . ' ' . $version );
-
-					$author = wp_kses( $plugin['author'], $plugins_allowedtags );
-					if ( ! empty( $author ) ) {
-						$author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
-					}
-
-					$action_links = array();
-
-					if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
-						$status = install_plugin_install_status( $plugin );
-
-						if ( $status['status'] == 'latest_installed' && is_plugin_inactive( $status['file'] ) ) {
-							$status['activation'] = 'not_activated';
-						} elseif ( $status['status'] == 'latest_installed' && is_plugin_active( $status['file'] ) ) {
-						 	$status['activation'] = 'activated';
-
-						} elseif ( $status['status'] == 'update_available' && is_plugin_active( $status['file'] ) ) {
-						 	$status['activation'] = 'activated_update_required';
-
-						} else {
-							$status['activation'] = 'not_installed';
-						}
-
-						$activation_link = ampforwp_plugin_activation_link($status['file']);
-
-						switch ( $status['status'] ) {
-							case 'install':
-								if ( $status['url'] ) {
-									/* translators: 1: Plugin name and version. */
-									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Install %s now','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Install Now','accelerated-mobile-pages' ) . '</a>';
-								}
-
-								break;
-							case 'update_available':
-								if ( $status['url'] ) {
-									/* translators: 1: Plugin name and version */
-									$action_links[] = '<a class="button ampforwp-button-update" href="' . $status['url'] . '" aria-label="' . esc_attr( sprintf( __( 'Update %s now','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Update Now','accelerated-mobile-pages' ) . '</a>';
-								}
-
-								break;
-							case 'latest_installed':
-								if ( $status['activation'] == 'not_activated') {
-									$action_links[] = '<a class="install-now button-secondary ampforwp-button-install" href="' . $activation_link . '" aria-label="' . esc_attr( sprintf( __( 'Activate %s ','accelerated-mobile-pages' ), $name ) ) . '">' . __( 'Activate','accelerated-mobile-pages' ) . '</a>';
-								}
-								break;
-							case 'newer_installed':
-								$action_links[] = '<span class="button button-disabled" title="' . esc_attr__( 'This plugin is already installed and is up to date','accelerated-mobile-pages' ) . ' ">' . _x( 'Installed', 'plugin','accelerated-mobile-pages' ) . '</span>';
-								break;
-						}
-					}
-
-					$details_link   = self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] .
-										'&amp;TB_iframe=true&amp;width=750&amp;height=550' );
-
-					/* translators: 1: Plugin name and version. */
-					$action_links[] = '<a href="' . esc_url( $details_link ) . '" class="thickbox" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '">' . __( 'More Details','accelerated-mobile-pages' ) . '</a>';
-
-					if ( !empty( $plugin['icons']['svg'] ) ) {
-						$plugin_icon_url = $plugin['icons']['svg'];
-					} elseif ( !empty( $plugin['icons']['2x'] ) ) {
-						$plugin_icon_url = $plugin['icons']['2x'];
-					} elseif ( !empty( $plugin['icons']['1x'] ) ) {
-						$plugin_icon_url = $plugin['icons']['1x'];
-					} else {
-						$plugin_icon_url = $plugin['icons']['default'];
-					}
-
-					/**
-					 * Filter the install action links for a plugin.
-					 *
-					 * @since 2.7.0
-					 *
-					 * @param array $action_links An array of plugin action hyperlinks. Defaults are links to Details and Install Now.
-					 * @param array $plugin       The plugin currently being listed.
-					 */
-					$action_links = apply_filters( 'plugin_install_action_links', $action_links, $plugin );
-				?>
-				<div class="plugin-card drop-shadow lifted" >
-					<div class="plugin-card-top" style="min-height: 135px !important;">
-		            <?php if ( isset( $plugin["slug"] ) && $plugin["slug"] == 'easy-media-gallery' ) {echo '<div class="most_popular"></div>';} ?>
-						<span href="<?php echo esc_url( $details_link ); ?>" class="thickbox plugin-icon"><img width="128" height="128" src="<?php echo esc_attr( $plugin_icon_url ) ?>" /></span>
-						<div class="name column-name" style="margin-right: 20px !important;">
-							<h4><?php echo $title; ?></h4>
-						</div>
-						<div class="desc column-description" style="margin-right: 20px !important;">
-							<p><?php echo $description; ?></p>
-							<p class="authors"><?php echo __('by Automattic','accelerated-mobile-pages') ?></p>
-						</div>
-					</div>
-					<div class="ampforwp-button-con">
-						<?php
-							if ( $action_links ) {
-								echo '<ul class="ampforwp-plugin-action-buttons ampforwp-custom-btn">';
-									echo '<li>' . $action_links[0] . '</li>';
-								echo '</ul>';
-							} ?>
-					</div>
-				</div>
-				<?php
-//				} ?>
-
-		     	</div>
-			</div>
-		</div>
-	</form>
-
-	<?php
-}
-
-// add_action('admin_footer','ampforwp_offline_admin_notice');
-function ampforwp_offline_admin_notice() {
-
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-
-	if ( $amp_plugin_activation_check ) { ?>
-		<style>
-            #layout-builder h2{
-                    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMxNHB4IiBoZWlnaHQ9IjMxNXB4IiB2aWV3Qm94PSIwIDAgMzE0IDMxNSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDEgKDM1MzI2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSIjODI4NzhjIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIyNjA3MSIgZmlsbD0iIzgyODc4YyI+CiAgICAgICAgICAgIDxnIGlkPSJDYXBhXzEiPgogICAgICAgICAgICAgICAgPGcgaWQ9Il94MzJfNDAuX1Bvd2VyIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTU3LjAwNywwIEM3MC4yOTIsMCAwLDcwLjI5MiAwLDE1Ny4wMDcgQzAsMjQzLjcxNSA3MC4yOTIsMzE0LjAxNCAxNTcuMDA3LDMxNC4wMTQgQzI0My43MTYsMzE0LjAxNCAzMTQuMDE0LDI0My43MTUgMzE0LjAxNCwxNTcuMDA3IEMzMTQuMDE0LDcwLjI5MiAyNDMuNzE2LDAgMTU3LjAwNywwIFogTTE1Ny4wMDcsMjgyLjYxMiBDODcuNjM0LDI4Mi42MTIgMzEuNDAyLDIyNi4zNzIgMzEuNDAyLDE1Ny4wMDcgQzMxLjQwMiw4Ny42MzQgODcuNjM0LDMxLjQwMiAxNTcuMDA3LDMxLjQwMiBDMjI2LjM3MSwzMS40MDIgMjgyLjYxMSw4Ny42MzQgMjgyLjYxMSwxNTcuMDA3IEMyODIuNjEyLDIyNi4zNzIgMjI2LjM3MiwyODIuNjEyIDE1Ny4wMDcsMjgyLjYxMiBaIE0yMDQuMTExLDE0MS4zNjggTDE2My40NzksMTQxLjUzMyBDMTU5LjEzOSwxNDEuNTUzIDE1Ny41NDQsMTM4LjYyMyAxNTkuOTA1LDEzNC45NzkgTDIwMy4zOTcsNjguMTA5IEMyMDguMTI2LDYwLjg0MSAyMDYuOTg0LDU5LjkyMiAyMDAuODYxLDY2LjA1MyBMMTA1LjMwNSwxNjEuNiBDOTkuMTcyLDE2Ny43MzIgMTAxLjIzMiwxNzIuNjc2IDEwOS45MDYsMTcyLjY0MSBMMTQyLjY3OSwxNzIuNTA4IEMxNTEuMzQ3LDE3Mi40NzIgMTU0LjU1MiwxNzguMzM1IDE0OS44MjQsMTg1LjYwNSBMMTA2LjMzNCwyNTIuNDc3IEMxMDMuOTcyLDI1Ni4xMTIgMTA0LjU0MiwyNTYuNTgxIDEwNy42MiwyNTMuNTI3IEwxNzUuOTE1LDE4NS43MTcgQzE3OC45ODgsMTgyLjY1OSAxODMuOTUsMTc3LjY4NiAxODYuOTgzLDE3NC41OTYgTDIwOC43ODgsMTUyLjQ4NSBDMjE0Ljg3NSwxNDYuMzE3IDIxMi43NzUsMTQxLjMzIDIwNC4xMTEsMTQxLjM2OCBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+") !important;
-    background-size: 20px;
-    background-repeat: no-repeat;
-    background-position: 6px;
-    padding-left: 35px !important;
-            }
-			.dashboard_page_ampforwp-welcome-page .plugin-card.drop-shadow.lifted,
-			.ampforwp-pre-installtion-instructions{display: none;}
-		</style>
-	<?php } else { ?>
-		<style>
-			.ampforwp-post-installtion-instructions{ display: none; }
-		</style>
-	<?php }
-    $current_screen = get_current_screen();
-     if( $current_screen ->id === "dashboard_page_ampforwp-welcome-page" ) {?>
-    	<script>
-      (function(){
-        const statusContainer = document.getElementById('ampforwp-network-status');
-    		if(! navigator.onLine) {
-    			statusContainer.innerHTML = __("<h1 style='color:#E91E63'> You seems to have been Offline. Please connect to network to continue the installation.</h1>",'accelerated-mobile-pages');
-            } else {
-              if( statusContainer ) {
-            	statusContainer.innerHTML =  "";
-              }
-            }
-      })();
-
-    	</script>
-  <?php } ?>
-	<?php
 }
 
 add_action('admin_footer','ampforwp_add_welcome_styling');
