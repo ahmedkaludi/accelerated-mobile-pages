@@ -38,6 +38,9 @@ function ampforwp_pagebuilder_content_meta_register($post_type){
 }
 
 function amp_content_pagebuilder_title_callback( $post ){
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+         return ;
+    }
 	global $post;
 	$amp_current_post_id = $post->ID;
 	$content 		= get_post_meta ( $amp_current_post_id, 'ampforwp_custom_content_editor', true );

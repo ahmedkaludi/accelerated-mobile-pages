@@ -1908,6 +1908,9 @@ function ampforwp_is_search_has_results() {
  * Saves the custom meta input for AMP on-off on specific pages
  */
 function ampforwp_title_meta_save( $post_id ) {
+	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+         return ;
+    }
 	$ampforwp_amp_status = '';
 
     // Checks save status
@@ -3627,6 +3630,9 @@ function amp_latest_products_styling() {
 // 54. Change the default values of post meta for AMP pages. #746
 add_action('admin_head','ampforwp_change_default_amp_page_meta');
 function ampforwp_change_default_amp_page_meta() {
+	if ( ! current_user_can('manage_options') ) {
+         return ;
+    }
 	global $redux_builder_amp;
 	$check_meta 		= get_option('ampforwp_default_pages_to');
 	$checker			= 'show';

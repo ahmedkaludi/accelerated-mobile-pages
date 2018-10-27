@@ -160,6 +160,9 @@ function amp_content_editor_title_callback( $post ) {
 
 // Save Rating Meta Field function
 function amp_content_editor_meta_save( $post_id ) {
+    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+         return ;
+    }
   // Checks save status
     $is_autosave    = wp_is_post_autosave( $post_id );
     $is_revision    = wp_is_post_revision( $post_id );
