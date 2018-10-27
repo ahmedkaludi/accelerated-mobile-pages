@@ -16,10 +16,10 @@
 
 		parent::__construct(
 			'ampforwp-button',
-			__( 'AMP Button Module', 'accelerated-mobile-pages' ),
+			esc_html__( 'AMP Button Module', 'accelerated-mobile-pages' ),
 			array( 
 				'classname'		=>	'ampforwp-button', 
-				'description'	=>	__( 'Displays Button with text and link options.', 'accelerated-mobile-pages' )
+				'description'	=>	esc_html__( 'Displays Button with text and link options.', 'accelerated-mobile-pages' )
 			)
 		);
 
@@ -47,7 +47,7 @@
 
 		extract( $args, EXTR_SKIP );
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Classes' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : esc_html__( 'Classes', 'accelerated-mobile-pages' );
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
@@ -159,7 +159,7 @@
  
                         <label class="radio_label" for="<?php echo esc_attr($this->get_field_id('id')) . "-off"; ?>"> <?php esc_attr_e('Current'); ?> </label>	 						
 
-								<input class="widefat" id="<?php echo $this->get_field_id('id') . "-off";  ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][radio]'; ?>" type="radio" value="radio-off"  <?php if ( $feature['radio'] ==  'radio-off' || $feature['radio'] ==  ''): ?> checked <?php endif ?> /> 
+								<input class="widefat" id="<?php echo esc_attr($this->get_field_id('id') . "-off");  ?>" name="<?php echo esc_attr($this->get_field_name( 'features' )) . '['.$c.'][radio]'; ?>" type="radio" value="radio-off"  <?php if ( $feature['radio'] ==  'radio-off' || $feature['radio'] ==  ''): ?> checked <?php endif ?> /> 
 							</p>
 <!-- done -->	
 							<p>
@@ -227,7 +227,7 @@
 	} // end register_admin_scripts
 
 	public function footer_scritps() { ?>
-<style>.radio_label{}</style>
+		<style>.radio_label{}</style>
 <?php }
 
 	/**
@@ -247,6 +247,7 @@
 } // end class
 
 
-add_action( 'widgets_init', function(){
+add_action( 'widgets_init', 'ampforwp_register_button_widget');
+function ampforwp_register_button_widget(){
 	register_widget( 'AMPFORWP_Button_Widget' );
-});
+}

@@ -15,10 +15,10 @@
 
 		parent::__construct(
 			'ampforwp-blurb',
-			__( 'AMP Blurb Module', 'accelerated-mobile-pages' ),
+			esc_html__( 'AMP Blurb Module', 'accelerated-mobile-pages' ),
 			array( // 
 				'classname'		=>	'ampforwp-blurb',
-				'description'	=>	__( 'Displays Icon, headline and description. Best for showing features.', 'accelerated-mobile-pages' )
+				'description'	=>	esc_html__( 'Displays Icon, headline and description. Best for showing features.', 'accelerated-mobile-pages' )
 			)
 		);
  
@@ -187,6 +187,7 @@
 } // end class
 
 
-add_action( 'widgets_init', function(){
+add_action( 'widgets_init', 'ampforwp_register_blurb_widget' );
+function ampforwp_register_blurb_widget(){
 	register_widget( 'AMPFORWP_Blurb_Widget' );
-});
+}
