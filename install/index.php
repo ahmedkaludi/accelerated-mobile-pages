@@ -5,6 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /**
  * Merlin WP
+ * Version 1.2.2
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ * copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
+ * http://www.opensource.org/licenses/mit-license.php
+ * Licensed GPLv3 for open source use
+ *
+ * Thanks to Merlin WP Team, Richard Tabor, from ThemeBeans.com for some excellent contributions!
+ *
+ *
+ * Merlin WP
  * Better WordPress Theme Onboarding
  *
  * The following code is a derivative work from the

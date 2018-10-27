@@ -1,15 +1,24 @@
 <?php
-/*
-Plugin Name: Black Studio TinyMCE Widget
-Plugin URI: https://wordpress.org/plugins/black-studio-tinymce-widget/
-Description: Adds a new "Visual Editor" widget type based on the native WordPress TinyMCE editor.
-Version: 2.3.2
-Author: Black Studio
-Author URI: http://www.blackstudio.it
-Requires at least: 3.1
-Tested up to: 4.6
-License: GPLv3
-Text Domain: black-studio-tinymce-widget
+/**
+ * Black Studio TinyMCE Widget plugin
+ * Version 2.3.2
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *  GPLv3
+ *
+ * Thanks to Black Studio Team for some excellent contributions!
+ *
+ *
+ * Plugin Name: Black Studio TinyMCE Widget
+ * Plugin URI: https://wordpress.org/plugins/black-studio-tinymce-widget/
+ * Description: Adds a new "Visual Editor" widget type based on the native WordPress TinyMCE editor.
+ * Version: 2.3.2
+ * Author: Black Studio
+ * Author URI: http://www.blackstudio.it
+ * Requires at least: 3.1
+ * Tested up to: 4.6
+ * License: GPLv3
+ * Text Domain: black-studio-tinymce-widget
 */
 
 // Exit if accessed directly
