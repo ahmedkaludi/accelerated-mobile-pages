@@ -24,10 +24,6 @@
  
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 
-		// Add static written Jquery
-		// add_action( 'admin_footer', array( $this, 'footer_scritps') );
-
-
 	} // end constructor
 
 	/*--------------------------------------------------*/
@@ -51,13 +47,13 @@
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
 
-        echo ampforwp_wp_kses($before_widget);
+        echo esc_html($before_widget);
         
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_blurb">';
         
 		if ( $title ) {
             $output .=  '<div class="amp_module_title"><span>';
-            $output .=  $title;
+            $output .=  esc_html( $title );
             $output .=  '</span></div>';
             }
 
@@ -66,11 +62,11 @@
 		foreach( $features as $feature ) {
 			$output .= '<div class="clmn">';
 				if ( $feature['image'] ) {
-					$output .= '<img src="'. $feature['image'] .'" height="80" width="80" alt="" />';
+					$output .= '<img src="'. esc_url($feature['image']) .'" height="80" width="80" alt="" />';
 				} 
                 $output .= '<div class="amp_cb_content">';
-                $output .= '<h4>'.$feature['title'].'</h4>';
-				$output .= '<p>'.$feature['description'].'</p>';
+                $output .= '<h4>'.esc_html( $feature['title']).'</h4>';
+				$output .= '<p>' .esc_html( $feature['description']).'</p>';
 				$output .= '</div>';
 			$output .= '</div>';
 		}
@@ -80,10 +76,10 @@
 		$sanitized_output 		= $sanitizer->get_amp_content();
 
 		if( $sanitized_output ) {  
-			echo ampforwp_wp_kses($sanitized_output);
+			echo $sanitized_output; // amphtml content, no kses
 		} 
 
-		echo ampforwp_wp_kses($after_widget);
+		echo esc_html($after_widget);
 
 	} // end widget
 
