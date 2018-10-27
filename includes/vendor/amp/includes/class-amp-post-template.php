@@ -118,7 +118,7 @@ class AMP_Post_Template {
 		if ( isset( $this->data[ $property ]  ) ) {
 			return $this->data[ $property ] = $value ;
 		} else {
-			_doing_it_wrong( __METHOD__, sprintf( __( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
+			_doing_it_wrong( __METHOD__, sprintf( esc_html__( 'Called for non-existant key ("%s").', 'amp' ), esc_html( $property ) ), '0.1' );
 		}
 
 		return $value;
@@ -240,8 +240,8 @@ class AMP_Post_Template {
 
 			$comments_link_url = get_comments_link( $this->ID );
 			$comments_link_text = $comments_open
-				? __( 'Leave a Comment', 'amp' )
-				: __( 'View Comments', 'amp' );
+				? esc_html__( 'Leave a Comment', 'amp' )
+				: esc_html__( 'View Comments', 'amp' );
 
 			$this->add_data( array(
 				'comments_link_url' => $comments_link_url,

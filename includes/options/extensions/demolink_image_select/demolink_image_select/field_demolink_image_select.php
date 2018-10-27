@@ -77,7 +77,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                 }
 
                 // Process placeholder
-                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : __( 'Select an item', 'redux-framework' );
+                $placeholder = ( isset( $this->field['placeholder'] ) ) ? esc_attr( $this->field['placeholder'] ) : esc_html__( 'Select an item', 'redux-framework' );
 
                 if ( isset( $this->field['select2'] ) ) { // if there are any let's pass them to js
                     $select2_params = json_encode( $this->field['select2'] );
@@ -187,7 +187,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
             } else {
 
                 // No options specified.  Really?
-                echo '<strong>' . __( 'No items of this type were found.', 'redux-framework' ) . '</strong>';
+                echo '<strong>' . esc_html__( 'No items of this type were found.', 'redux-framework' ) . '</strong>';
             }
         } //function
 
