@@ -271,7 +271,7 @@ function amp_loop_title($data=array()){
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
 	}
-	echo ampforwp_wp_kses('<'.$tag.' '.esc_attr($attributes).'>');
+	echo '<'.esc_attr($tag).' '.esc_attr($attributes).'>';
 		if(!isset($data['link']) ){
 			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
