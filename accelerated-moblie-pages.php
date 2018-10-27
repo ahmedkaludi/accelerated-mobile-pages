@@ -670,7 +670,7 @@ function ampforwp_ampwptheme_notice() {
 	if ( ('AMP WordPress Theme' == $theme->name || 'AMP WordPress Theme' == $theme->parent_theme) && true != get_option('ampforwp_theme_notice') ) {    
 		add_thickbox(); ?>
 		<div id="some" class="notice-warning settings-error notice is-dismissible">
-			<span style="margin: 0.5em 0.5em 0 0">AMP WordPress Theme is installed</span><br>
+			<span style="margin: 0.5em 0.5em 0 0"><?php echo esc_html__('AMP WordPress Theme is installed', 'accelerated-mobile-pages'); ?></span><br>
 			<span style="margin: 0.5em 0.5em 0 0"><?php echo esc_html__('One Last Step Required:', 'accelerated-mobile-pages'); ?> <a href="#TB_inline?width=600&height=550&inlineId=my-content-id" class="thickbox"><?php echo esc_html__('Finish Setup', 'accelerated-mobile-pages') ?></a></span><br>
 		</div>
 		<div id="my-content-id" style="display:none;">
