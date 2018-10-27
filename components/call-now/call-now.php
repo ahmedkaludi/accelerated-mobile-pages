@@ -1,4 +1,5 @@
 <?php
+/*TODO: Check the usage of call-now component, or we are using #55 from features.php #2652*/
 add_action('amp_call_button','amp_call_button_html_output');
 function amp_call_button_html_output(){
 	global $redux_builder_amp;
