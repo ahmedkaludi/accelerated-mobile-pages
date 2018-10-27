@@ -495,8 +495,8 @@ if ( is_admin() ) {
  			if ( ! isset($plugin))
  				$plugin = plugin_basename(__FILE__);
  				if ( $plugin === $plugin_file ) {
- 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . __('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . __('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . __('Pro', 'accelerated-mobile-pages') . '</a>' );
- 					
+ 					$settings = array( 'settings' => '<a href="admin.php?page=amp_options&tab=8">' . esc_html__('Settings', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/extensions/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=features">' . esc_html__('Premium Features', 'accelerated-mobile-pages') . '</a> | <a href="https://ampforwp.com/membership/#utm_source=plugin-panel&utm_medium=plugin-extension&utm_campaign=pro">' . esc_html__('Pro', 'accelerated-mobile-pages') . '</a>' );
+
 					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 					$actions = array_merge( $actions, $settings );
  				}
@@ -561,7 +561,7 @@ function ampforwp_bundle_core_amp_files(){
 
 	define( 'AMP__FILE__', __FILE__ );
 	if ( ! defined('AMP__DIR__') ) {
-		define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+		define( 'AMP__DIR__', AMPFORWP_PLUGIN_DIR . 'includes/vendor/amp/' );
 	}
 	if ( ! defined('AMP_QUERY_VAR') ){
 		define('AMP_QUERY_VAR', 'amp');
@@ -617,7 +617,7 @@ if ( ! function_exists('ampforwp_init') ) {
 		}
 
 		if ( ! defined('AMP__DIR__') ) {
-			define( 'AMP__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
+			define( 'AMP__DIR__', AMPFORWP_PLUGIN_DIR . 'includes/vendor/amp/' );
 		}
 
 		do_action( 'amp_init' );
@@ -727,7 +727,7 @@ function ampforwp_update_notice() {
 <?php }
 }
 if ( ! defined('AMP_FRAMEWORK_COMOPNENT_DIR_PATH') ) {
-	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', plugin_dir_path( __FILE__ )."/components"); 
+	define('AMP_FRAMEWORK_COMOPNENT_DIR_PATH', AMPFORWP_PLUGIN_DIR ."/components"); 
 }
 require_once( AMP_FRAMEWORK_COMOPNENT_DIR_PATH . '/components-core.php' );
 require_once(  AMPFORWP_PLUGIN_DIR. 'pagebuilder/amp-page-builder.php' );
