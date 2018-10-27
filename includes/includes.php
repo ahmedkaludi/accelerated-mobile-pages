@@ -17,7 +17,7 @@ if (! function_exists( 'ampforwp_menu') ) {
 	function ampforwp_menu() {
 	  register_nav_menus(
 	    array(
-	      'amp-menu' => __( 'AMP Menu','accelerated-mobile-pages' ),
+	      'amp-menu' => esc_html__( 'AMP Menu','accelerated-mobile-pages' ),
 	    )
 	  );
 	}
@@ -30,7 +30,7 @@ if ( ! function_exists( 'ampforwp_footermenu') ) {
 	function ampforwp_footermenu() {
 		register_nav_menus(
 			array(
-			  'amp-footer-menu' => __( 'AMP Footer Menu','accelerated-mobile-pages' ),
+			  'amp-footer-menu' => esc_html__( 'AMP Footer Menu','accelerated-mobile-pages' ),
 			)
 		);
 	}

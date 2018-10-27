@@ -40,9 +40,9 @@ class ampforwp_pointers {
 			$file_error = true;
 
 			$id = '#toplevel_page_amp_options';  // Define ID used on page html element where we want to display pointer
-			$content = '<h3>' . sprintf (__('You are awesome for using AMP!', 'accelerated-mobile-pages'), self::DISPLAY_VERSION) . '</h3>';
-			$content .= __('<p>Do you want the latest on <b>AMP update</b> before others and some best resources on AMP in a single email? - Free just for users of AMP!</p>', 'accelerated-mobile-pages');
-            $content .= __('
+			$content = '<h3>' . sprintf (esc_html__('You are awesome for using AMP!', 'accelerated-mobile-pages'), self::DISPLAY_VERSION) . '</h3>';
+			$content .= esc_html__('<p>Do you want the latest on <b>AMP update</b> before others and some best resources on AMP in a single email? - Free just for users of AMP!</p>', 'accelerated-mobile-pages');
+            $content .= esc_html__('
             <!-- Begin MailChimp Signup Form -->
             <style type="text/css">
             .wp-pointer-buttons{ padding:0; overflow: hidden; }
@@ -76,7 +76,7 @@ class ampforwp_pointers {
 				);
 		}
 		if ($show_pointer) {
-			$this->ampforwp_pointer_script ($id, $options, __('No Thanks', 'accelerated-mobile-pages'), $button2, $function);
+			$this->ampforwp_pointer_script ($id, $options, esc_html__('No Thanks', 'accelerated-mobile-pages'), $button2, $function);
 		}
 	}
 	function get_admin_url($page, $tab) {
