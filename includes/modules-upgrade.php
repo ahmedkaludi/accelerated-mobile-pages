@@ -25,7 +25,7 @@ function ampforwp_enable_modules_upgread(){
                                         'paged'         => '1',
                                         '_wpnonce'      => wp_create_nonce( 'activate-plugin_pwa-for-wp' ),
                                     ),
-                        network_admin_url( 'plugins.php' )
+                        esc_url(network_admin_url( 'plugins.php' ))
                         );
             $plugins[] = array(
                             'name' => 'pwa-for-wp',
@@ -67,7 +67,7 @@ function ampforwp_enable_modules_upgread(){
         break;
     }
     if(count($plugins)>0){
-       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>$redirectSettingsUrl , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
+       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>esc_url($redirectSettingsUrl) , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
     }else{
         echo json_encode(array("status"=>300, "message"=>"Modules not Found"));
     }
