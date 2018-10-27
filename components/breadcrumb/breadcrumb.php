@@ -22,10 +22,10 @@
     if ( !ampforwp_polylang_front_page() && !is_front_page() ) {
        
         // Build the breadcrums
-        echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
+        echo '<ul id="' . esc_attr($breadcrums_id) . '" class="' . esc_attr($breadcrums_class) . '">';
            
         // Home page 
-        echo '<li class="item-home"><a class="bread-link bread-home" href="' . esc_url(ampforwp_url_controller( get_home_url('', '/'), $home_non_amp )) . '" title="' . $home_title . '">' . $home_title . '</a></li>';
+        echo '<li class="item-home"><a class="bread-link bread-home" href="' . ampforwp_url_controller( get_home_url('', '/'), $home_non_amp ) . '" title="' . esc_attr($home_title) . '">' . esc_html($home_title) . '</a></li>';
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() && !is_author() ) {
 
@@ -38,7 +38,7 @@
                 $author_url= get_author_posts_url($userdata->ID);
                 $author_url = trailingslashit($author_url);
                 // Display author name
-                echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><a class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '" href="'. esc_url(ampforwp_url_controller( $author_url, $archive_non_amp )). '">' . 'Author: ' . $userdata->display_name . '</a></li>';
+                echo '<li class="item-current item-current-' . esc_attr($userdata->user_nicename) . '"><a class="bread-current bread-current-' . esc_attr($userdata->user_nicename) . '" title="' . esc_attr($userdata->display_name) . '" href="'. ampforwp_url_controller( $author_url, $archive_non_amp ). '">' . 'Author: ' . esc_html($userdata->display_name) . '</a></li>';
 
         } else if ( is_archive() && is_tax() && !is_category() && !is_tag() ) {
               
@@ -51,15 +51,15 @@
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' .esc_url(ampforwp_url_controller( $post_type_archive, $archive_non_amp )) . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>'; 
+                    echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_html($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><span class="bread-cat bread-custom-post-type-' . $post_type . '">' . $post_type_object->labels->name . '</span></li>';  
+                    echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><span class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '">' . esc_html($post_type_object->labels->name) . '</span></li>';  
                 }             
             }
               
             $custom_tax_name = get_queried_object()->name;
-            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . $custom_tax_name . '</strong></li>';
+            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . esc_html($custom_tax_name) . '</strong></li>';
         } else if ( is_single() ) {
               
             // If post is a custom post type
@@ -71,10 +71,10 @@
                 $post_type_object = get_post_type_object($post_type);
                 $post_type_archive = get_post_type_archive_link($post_type);
                 if ( false != $post_type_archive){
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' .esc_url(ampforwp_url_controller( $post_type_archive, $archive_non_amp )) . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>'; 
+                    echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><a class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '" href="' .ampforwp_url_controller( $post_type_archive, $archive_non_amp ) . '" title="' . esc_attr($post_type_object->labels->name) . '">' . esc_html($post_type_object->labels->name) . '</a></li>'; 
                 }
                 else {
-                    echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><span class="bread-cat bread-custom-post-type-' . $post_type . '">' . $post_type_object->labels->name . '</span></li>';  
+                    echo '<li class="item-cat item-custom-post-type-' . esc_attr($post_type) . '"><span class="bread-cat bread-custom-post-type-' . esc_attr($post_type) . '">' . esc_html($post_type_object->labels->name) . '</span></li>';  
                 }
             }
             /*Breadcrumb with tags Start*/
@@ -87,7 +87,7 @@
                         $tag_id = $post_obj->term_id;
                         $tag_name = $post_obj->name;
                         $tag_link = get_tag_link($tag_id);
-                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . $tag_id . ' item-tag-' . $tag_name . '"><a class="bread-tag bread-tag-' . $tag_id . ' bread-tag-' . $tag_name . '" href="' . esc_url(ampforwp_url_controller( $tag_link, $archive_non_amp )) . '" title="' . $tag_name . '">' . $tag_name . '</a></li>';                
+                        $tags_breadcrumbs .= '<li class="item-tag item-tag-' . esc_attr($tag_id) . ' item-tag-' . esc_attr($tag_name) . '"><a class="bread-tag bread-tag-' . esc_attr($tag_id) . ' bread-tag-' . esc_attr($tag_name) . '" href="' . ampforwp_url_controller( $tag_link, $archive_non_amp ) . '" title="' . esc_attr($tag_name) . '">' . esc_html($tag_name) . '</a></li>';                
                     }
                     echo $tags_breadcrumbs;
                 }
@@ -110,7 +110,7 @@
                     foreach($cat_parents as $parents) {
                         $cat_id = get_cat_ID( $parents);
                         $cat_link = get_category_link($cat_id);
-                        $cat_display .= '<li class="item-cat item-cat-' . $cat_id . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $parents. '" href="'. esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )).'" title="' . $parents . '">' . $parents . '</a></li>';
+                        $cat_display .= '<li class="item-cat item-cat-' . esc_attr($cat_id) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($parents). '" href="'. ampforwp_url_controller( $cat_link, $archive_non_amp ).'" title="' . esc_attr($parents) . '">' . esc_html($parents) . '</a></li>';
                     }
                 }
             }
@@ -137,7 +137,7 @@
             // Else if post is in a custom taxonomy
             } else if(!empty($cat_id)) {
                   
-                echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . esc_url(ampforwp_url_controller( $cat_link, $archive_non_amp )) . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';                
+                echo '<li class="item-cat item-cat-' . esc_attr($cat_id) . ' item-cat-' . esc_attr($cat_nicename) . '"><a class="bread-cat bread-cat-' . esc_attr($cat_id) . ' bread-cat-' . esc_attr($cat_nicename) . '" href="' . ampforwp_url_controller( $cat_link, $archive_non_amp ) . '" title="' . esc_attr($cat_name) . '">' . esc_html($cat_name) . '</a></li>';                
             }  
               
         } else if ( is_category() ) {
@@ -158,7 +158,7 @@
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . esc_url(ampforwp_url_controller( get_permalink( $ancestor ), $archive_non_amp ))  . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
+                    $parents .= '<li class="item-parent item-parent-' . esc_attr($ancestor) . '"><a class="bread-parent bread-parent-' . esc_attr($ancestor) . '" href="' . ampforwp_url_controller( get_permalink( $ancestor ), $archive_non_amp )  . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
                 }
                    
                 // Display parent pages
@@ -182,51 +182,51 @@
             $get_term_name  = $terms[0]->name;
                
             // Display the tag name
-            echo '<li class="item-current item-tag-' . $get_term_id . ' item-tag-' . $get_term_slug . '"><strong class="bread-current bread-tag-' . $get_term_id . ' bread-tag-' . $get_term_slug . '">' . $get_term_name . '</strong></li>';          
+            echo '<li class="item-current item-tag-' . esc_attr($get_term_id) . ' item-tag-' . esc_attr($get_term_slug) . '"><strong class="bread-current bread-tag-' . esc_attr($get_term_id) . ' bread-tag-' . esc_attr($get_term_slug) . '">' . esc_html($get_term_name) . '</strong></li>';          
         } elseif ( is_day() ) {
                
             // Day archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . '</a></li>';
+            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . '</a></li>';
             
             // Month link
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
+            echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </a></li>';
             
                
             // Day display
-            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
+            echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
                
         } else if ( is_month() ) {
                
             // Month Archive
                
             // Year link
-            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </a></li>';
+            echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </a></li>';
             
             // Month display
-            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives') . ' </strong></li>';
+            echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')) . ' </strong></li>';
                
         } else if ( is_year() ) {
                
             // Display year archive
-            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives'). ' </strong></li>';
+            echo '<li class="item-current item-current-' . get_the_time('Y') . '"><strong class="bread-current bread-current-' . get_the_time('Y') . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-archives-text'], 'Archives')). ' </strong></li>';
                
         }   else if ( get_query_var('paged') ) {
 
             // Paginated archives
-            echo '<li class="item-current item-current-' . get_query_var('paged') . '"><strong class="bread-current bread-current-' . get_query_var('paged') . '" title="Page ' . get_query_var('paged') . '">'. ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page') . ' ' . get_query_var('paged') . '</strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_query_var('paged')) . '"><strong class="bread-current bread-current-' . esc_attr(get_query_var('paged')) . '" title="Page ' . esc_attr(get_query_var('paged')) . '">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-page-text'], 'Page')) . ' ' . esc_html(get_query_var('paged')) . '</strong></li>';
                
         } else if ( is_search() ) {
            
             // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">
-            ' . ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for') . ': ' . get_search_query() . '</strong></li>';
+            echo '<li class="item-current item-current-' . esc_attr(get_search_query()) . '"><strong class="bread-current bread-current-' . esc_attr(get_search_query()) . '" title="Search results for: ' . esc_attr(get_search_query()) . '">
+            ' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-breadcrumbs-search-text'], 'Search results for')) . ': ' . esc_html(get_search_query()) . '</strong></li>';
            
         } elseif ( is_404() ) {
                
             // 404 page
-            echo '<li>' . ampforwp_translation($redux_builder_amp['amp-translator-error-404-text'], 'Error 404') . '</li>';
+            echo '<li>' . esc_html(ampforwp_translation($redux_builder_amp['amp-translator-error-404-text'], 'Error 404')) . '</li>';
         } 
         echo '</ul>';
       
