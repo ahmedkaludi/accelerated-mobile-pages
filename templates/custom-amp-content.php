@@ -148,7 +148,7 @@ function amp_content_editor_title_callback( $post ) {
     	<p>
         <input type="checkbox" name="ampforwp_custom_content_editor_checkbox" id="meta-checkbox" value="yes" <?php if ( isset ( $amp_content_on_off ) ) checked( $amp_content_on_off, 'yes' ); ?> />
     		<?php esc_attr_e( 'Use This Content as AMP Content','accelerated-mobile-pages' )?>   </p>
-        <?php esc_attr_e('<p>If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.</p>','accelerated-mobile-pages') ?>
+        <p><?php esc_attr_e('If you want to add some special tags, then please use normal HTML into this area, it will automatically convert them into AMP compatible tags.','accelerated-mobile-pages') ?></p>
     </label>
 
   <!--HTML content Ends here-->
