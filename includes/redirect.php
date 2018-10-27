@@ -15,7 +15,7 @@ function ampforwp_check_amp_page_status() {
       $redirection_location = trailingslashit($redirection_location );
       
       $redirection_location = dirname($redirection_location);
-      wp_safe_redirect( $redirection_location );
+      wp_safe_redirect( esc_url($redirection_location) );
       exit;
     }
   }
