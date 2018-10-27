@@ -58,11 +58,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												"</sidebar>",
 												)
 											, $ampData);
-				/*$returnData = preg_replace("/<style>(.*?)<\/style>/i", function($match){
-					
-										$match[0] .= '.cntr img{width:100%;height:auto;}';
-																	return $match[0];
-																}, $returnData);*/
+
 				$nonampCss = '
 				.cntr img{width:100%;height:auto !important;}
 				img{height:auto;}
