@@ -20,7 +20,7 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   }
 
   // Redirect to welcome page
-  wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), esc_url(admin_url( 'admin.php' ) )) );
+  wp_safe_redirect( esc_url( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) ) );
   exit();
 }			
 
