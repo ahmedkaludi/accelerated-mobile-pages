@@ -255,27 +255,6 @@ jQuery(function($) {
                 allFonts.push({fontFamily: values[i].family }); 
             }
 
-
-           // var output =  data.items.find('Basic');
-           // console.log ( output );
-
-
-            // let selectedFontDetails = data.items.find((o, i) => {
-
-            //     if (o.family === 'Keania One') {
-            //         //arr[i] = { name: 'new string', value: 'this', other: 'that' };
-            //         return data.items[i]; // stop searching
-            //     }
-            // });
-
-            // We have all the Font details from Google API in object selectedFontDetails
-            //console.log(selectedFontDetails);
-
-
-            // We have all the font names in the an array allFonts
-            //console.log( allFonts );
-
-
             // Creating a select 
             var s = $('<select/>');
 
@@ -286,10 +265,6 @@ jQuery(function($) {
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
-
-            //console.log( values.length);
-            //console.log( values[0].family );
-            //console.table(  values);
             
             $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
@@ -302,7 +277,6 @@ jQuery(function($) {
                         $('#amp_font_type-select').html('<option></option>').trigger('change');
                     }
 
-                   // console.log( data.items[select] );
 
                     //if ( data.items[select] ) {
                         $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
@@ -333,11 +307,6 @@ jQuery(function($) {
 
     }
 
-        function amp_font_selector_select_change(){
-
-               
-        }
-
         $(window).load(function() {
             if($("#google_font_api_key").length>0){
                 $("#google_font_api_key").after("<input type='submit' value='Verify'>");
@@ -362,8 +331,7 @@ jQuery(function($) {
                // fontData = JSON.parse(fontData);
                console.log(fontData);
                 if (! fontData.variants) {
-                    //$('.select2-search-choice').remove();
-                    //$('#amp_font_type-select').html('<option></option>');
+               
 
                     for (var i in fontData.variants) {
                         $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>")).trigger('change');
@@ -382,7 +350,6 @@ jQuery(function($) {
                         $('#amp_font_type-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                         $('#amp_font_type_content_single-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                     }
-                    //$('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                 }
             }
         });
