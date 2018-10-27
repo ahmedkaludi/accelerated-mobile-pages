@@ -98,7 +98,7 @@ function ampforwp_check_amp_page_status() {
       $redirection_location = $home_url;
     }
 
-    wp_safe_redirect( $redirection_location );
+    wp_safe_redirect( esc_url($redirection_location) );
     exit;
    
   }
@@ -235,7 +235,7 @@ function ampforwp_page_template_redirect() {
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
 
           if ( $url_to_redirect ) {
-            wp_redirect( $url_to_redirect , 301 );
+            wp_redirect( esc_url($url_to_redirect) , 301 );
             exit();
           }
           

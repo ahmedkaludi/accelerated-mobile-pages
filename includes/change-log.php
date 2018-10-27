@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
+// This file only loads once on welcome page
 function ampforwp_strposOffset($search, $string, $offset)
 {
     /*** explode the string ***/
