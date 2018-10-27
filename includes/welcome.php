@@ -22,42 +22,18 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   // Redirect to welcome page
   wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), esc_url(admin_url( 'admin.php' ) )) );
   exit();
-}
-
-// add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );		
-function ampforwp_welcome_screen_do_activation_redirect_parent() {		
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );		
-		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );		
-			
-		// Bail if option is already set or plugin is deactivated		
-		if ( get_option( 'ampforwp_parent_plugin_check' ) || $amp_plugin_activation_check == false ) {		
-		return;		
-		}					
-		// Bail if activating from network, or bulk		
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {		
-			return;		
-		}		
-
-		// Redirect to welcome page	
-		wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), esc_url(admin_url( 'admin.php' ) )) );
-		exit();
-			
-	 	update_option( 'ampforwp_parent_plugin_check', true );		
 }			
 
 add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
 function ampforwp_add_welcome_pages($sections){
-	
-	
 	$sections[] = array(
-		'page_title'=> __('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
-		'menu_title'=>__('Welcome to AMP','accelerated-mobile-pages'),
+		'page_title'=> esc_html__('Welcome To AMPforWP plugin','accelerated-mobile-pages'),
+		'menu_title'=>esc_html__('Welcome to AMP','accelerated-mobile-pages'),
 		'page_permissions'=>'manage_options',
 		'menu_slug' => 'ampforwp-welcome-page',
 		'callback' => 'ampforwp_welcome_screen_content',
 		'custom_amp_menu'   => true
 	);
-	//array_splice($sections,10,0,$newsection);
 	return $sections;
 }
 
@@ -68,22 +44,22 @@ function ampforwp_welcome_screen_content() {
 
 	    <div class="ampforwp-post-installtion-instructions">
 
-		    <h1 class="amp_installed_heading"><?php echo __('AMP is now Installed!','accelerated-mobile-pages') ?></h1>
-			<div class="amp_installed_text"><p><?php echo __('Thank you so much for installing the AMPforWP plugin!','accelerated-mobile-pages') ?></p>
-			<p><?php echo __('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p></div>
+		    <h1 class="amp_installed_heading"><?php echo esc_html__('AMP is now Installed!','accelerated-mobile-pages') ?></h1>
+			<div class="amp_installed_text"><p><?php echo esc_html__('Thank you so much for installing the AMPforWP plugin!','accelerated-mobile-pages') ?></p>
+			<p><?php echo esc_html__('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p></div>
 			<div class="getstarted_wrapper">
             <div class="amp_user_onboarding">
             <div class="amp_new_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
-                <h3>I'm a New User!</h3>
-                <p>We have recommend you to go through AMP installation wizard which helps setup the Basic AMP and get started immediatly.</p>
-                <a href="<?php echo esc_url(wp_nonce_url(admin_url('plugins.php?page=ampforwptourinstaller&ampforwp_install=1'), '_wpnonce'));?>">Run Installation Wizard</a>
+                <h3><?php echo esc_html__("I'm a New User!","accelerated-mobile-pages") ?></h3>
+                <p><?php echo esc_html__("We have recommend you to go through AMP installation wizard which helps setup the Basic AMP and get started immediatly.","accelerated-mobile-pages") ?></p>
+                <a href="<?php echo esc_url(wp_nonce_url(admin_url('plugins.php?page=ampforwptourinstaller&ampforwp_install=1'), '_wpnonce'));?>"><?php echo esc_html__("Run Installation Wizard","accelerated-mobile-pages") ?></a>
             </div>
             <div class="amp_expert_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
-                <h3>I'm an Experienced User!</h3>
-                <p>We have many settings in Options Panel to help you setup the AMP perfectly to according to your taste & needs.</p>
-                <a href="<?php echo esc_url(admin_url('admin.php?tabid=opt-text-subsection&page=amp_options'));?>">AMP Options Panel</a>                    
+                <h3><?php echo esc_html__("I'm an Experienced User!","accelerated-mobile-pages") ?></h3>
+                <p><?php echo esc_html__("We have many settings in Options Panel to help you setup the AMP perfectly to according to your taste & needs.","accelerated-mobile-pages") ?></p>
+                <a href="<?php echo esc_url(admin_url('admin.php?tabid=opt-text-subsection&page=amp_options'));?>"><?php echo esc_html__("AMP Options Panel","accelerated-mobile-pages") ?></a>                    
             </div>
 			
             <div class="clear"></div>
@@ -101,25 +77,25 @@ function ampforwp_welcome_screen_content() {
 		    
             <div class="getstarted_wrapper nh-b">
             <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
-		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
+		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo esc_html__('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
-			<div class="amp_installed_text"><p><?php echo __('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p></div>
+			<div class="amp_installed_text"><p><?php echo esc_html__('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p></div>
             <div class="getstarted_options">
-            <p><b>Getting Started</b></p>
+            <p><b><?php echo esc_html__("Getting Started","accelerated-mobile-pages") ?></b></p>
 				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/tutorials/article-categories/installation-updating/" target="_blank">Installation &amp; Setup</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/settings-options/" target="_blank">Settings &amp; Options</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/" target="_blank">Setup AMP</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/page-builder/" target="_blank">Page Builder</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/installation-updating/" target="_blank"><?php echo esc_html__("Installation &amp; Setup","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/settings-options/" target="_blank"><?php echo esc_html__("Settings &amp; Options","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/setup-amp/" target="_blank"><?php echo esc_html__("Setup AMP","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/page-builder/" target="_blank"><?php echo esc_html__("Page Builder","accelerated-mobile-pages") ?></a></li>
 				</ul>  
             </div>
             <div class="getstarted_options">
-            <p><b>Useful Links</b></p>
+            <p><b><?php echo esc_html__("Useful Links","accelerated-mobile-pages") ?></b></p>
 				<ul class="getstarted_ul">
-					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank">Extensions &amp; Themes Docs</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/extending/" target="_blank">Developers Docs</a></li>
-					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
-					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To's</a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extension/" target="_blank"><?php echo esc_html__("Extensions &amp; Themes Docs","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/extending/" target="_blank"><?php echo esc_html__("Developers Docs","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank"><?php echo esc_html__("Create a Custom Theme for AMP","accelerated-mobile-pages") ?></a></li>
+					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank"><?php echo esc_html__("General How To's","accelerated-mobile-pages") ?></a></li>
 				</ul>  
             </div>
             <div class="clear"></div>
