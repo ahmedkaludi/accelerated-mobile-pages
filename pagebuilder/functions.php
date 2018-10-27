@@ -25,8 +25,8 @@ function amppbbase_admin_scripts( $hook_suffix ){
     	&& in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ){
     //if($post_type=='post' || $post_type=='page'){
  	    /* Enqueue CSS & JS For Page Builder */
-        wp_enqueue_style( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css', array(), AMPFORWP_VERSION );
-        wp_enqueue_style('ampforwp-dynamic-css', wp_nonce_url(admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), 'verify_pb', 'verify_nonce' ), array(), AMPFORWP_VERSION, 'all' );
+        wp_enqueue_style( 'amppb-admin', esc_url(AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.css'), array(), AMPFORWP_VERSION );
+        wp_enqueue_style('ampforwp-dynamic-css', (wp_nonce_url(admin_url('admin-ajax.php?action=ampforwp_dynaminc_css'), 'verify_pb', 'verify_nonce' )), array(), AMPFORWP_VERSION, 'all' );
         wp_enqueue_media();
         //To add page
         if ( ! class_exists( '_WP_Editors', false ) ) {
@@ -36,11 +36,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
         $amp_current_post_id = $postId = get_the_ID();
             
 			
-			 wp_enqueue_script( 'vuejs', AMP_PAGE_BUILDER_URL. 'inc/assets/vue/vue.min.js', array(),AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuejs-resource', AMP_PAGE_BUILDER_URL. 'inc/assets/vuejs-resource/vue-resource.min.js', array(), AMPFORWP_VERSION, true);//For Http Clients
-			wp_enqueue_script( 'vueSortable', AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/Sortable.min.js', array(), AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuedraggable', AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/vuedraggable.min.js' ,array(),AMPFORWP_VERSION, true);
-			wp_enqueue_script( 'vuedropdrag', AMP_PAGE_BUILDER_URL. 'inc/assets/vue-drag-drop/vue-drag-drop.browser.js', array(), AMPFORWP_VERSION, true);
+			 wp_enqueue_script( 'vuejs', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue/vue.min.js'), array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuejs-resource', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vuejs-resource/vue-resource.min.js'), array(), AMPFORWP_VERSION, true);//For Http Clients
+			wp_enqueue_script( 'vueSortable', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/Sortable.min.js'), array(), AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedraggable', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue.draggable/vuedraggable.min.js') ,array(),AMPFORWP_VERSION, true);
+			wp_enqueue_script( 'vuedropdrag', esc_url(AMP_PAGE_BUILDER_URL. 'inc/assets/vue-drag-drop/vue-drag-drop.browser.js'), array(), AMPFORWP_VERSION, true);
 			
 			 wp_register_script( 'amppb-admin', AMP_PAGE_BUILDER_URL. 'inc/admin-amp-page-builder.js', array(
 						'jquery',
@@ -99,7 +99,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 				}
 			}
 			$components_options = array(
-									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
+									"ajaxUrl"=>esc_url(admin_url( 'admin-ajax.php' )),
 									"secure_nonce" => wp_create_nonce('verify_pb'),
 									"savedLayouts"=>$allPostLayout,
 									"startPagebuilder"=>(get_post_meta($postId,'use_ampforwp_page_builder',true)=='yes'? 1:0),
