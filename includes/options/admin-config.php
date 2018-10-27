@@ -3324,7 +3324,7 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0, 
                         'true'      => 'true',
                         'false'     => 'false',
-                        'desc' => esc_html__('Re-Save permalink when you enable this option, please have a look <a href="https://ampforwp.com/flush-rewrite-urls/">here</a> on how to do it', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Re-Save permalink when you enable this option, please have a look', 'accelerated-mobile-pages').' <a href="https://ampforwp.com/flush-rewrite-urls/">'.esc_html__('here', 'accelerated-mobile-pages').'</a> '.esc_html__('on how to do it', 'accelerated-mobile-pages'),
                     ),    
                     array(
                         'id'       => 'fb-instant-article-feed-url',
@@ -4279,10 +4279,10 @@ Redux::setSection( $opt_name, array(
                 'class' => 'amp-design-selector',
                 'type'     => 'demolink_image_select',
                 'title'    => esc_html__( 'Themes Selector', 'accelerated-mobile-pages' ),
-                'subtitle' => esc_html__( 'Select your design from dropdown or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
+                'subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ).' or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
-    border-radius: 30px;" target="_blank">View More AMP Themes →</a>', 'accelerated-mobile-pages' ),
+    border-radius: 30px;" target="_blank">View More AMP Themes →</a>',
                 'options'  => $themeDesign,
                 'default'  => '4'
                 ),
