@@ -697,15 +697,15 @@ function ampforwp_new_dir( $dir ) {
 
 	add_action('ampforwp_global_after_footer','ampforwp_footer');
 	function ampforwp_footer() {
-			global $redux_builder_amp; ?>
-		<!--Plugin Version :<?php echo (AMPFORWP_VERSION); ?> -->
-	<?php if($redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0) ) { ?>
-		<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
-	  <amp-user-notification layout=nodisplay id="amp-user-notification1">
-	       <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
-	       <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
-	  </amp-user-notification>
-	<?php }
+		global $redux_builder_amp; ?>
+		<!--Plugin Version :<?php echo esc_attr(AMPFORWP_VERSION); ?> --><?php 
+		if($redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0) ) { ?>
+			<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
+			<amp-user-notification layout=nodisplay id="amp-user-notification1">
+			   <p><?php echo $redux_builder_amp['amp-notification-text']; ?> </p>
+			   <button on="tap:amp-user-notification1.dismiss"><?php echo $redux_builder_amp['amp-accept-button-text']; ?></button>
+			</amp-user-notification><?php 
+		}
 	}
 
 	// 8. Add Main tag as a Wrapper
