@@ -599,7 +599,7 @@ function ampforwp_modify_amp_activatation_link( $actions, $plugin_file ) {
 	if ( $plugin == $plugin_file ) {
 		add_thickbox();
 		unset($actions['activate']);
-		$amp_activate = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\'AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts. \')">Activate</span>';
+		$amp_activate = '<span style="cursor:pointer;color:#0089c8" class="warning_activate_amp" onclick="alert(\''.esc_html__('AMP is already bundled with AMPforWP. Please do not install this plugin with AMPforWP to avoid conflicts', 'accelerated-mobile-pages'). '\')">Activate</span>';
 		array_unshift ($actions,$amp_activate);
 	} 
  	return $actions;
@@ -643,13 +643,13 @@ if ( ! function_exists('ampforwp_init') ) {
 function amp_update_db_check() {
 	global $redux_builder_amp;
 	$ampforwp_current_version = AMPFORWP_VERSION;
-	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" ) {
+	if ( isset( $_GET['ampforwp-dismiss-theme'] ) && trim( $_GET['ampforwp-dismiss-theme']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
 		update_option( 'ampforwp_theme_notice', true );
 		wp_redirect("admin.php?page=amp_options");
 	}
    	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
 
-   		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" ) {
+   		if ( isset( $_GET['ampforwp-dismiss'] ) && trim( $_GET['ampforwp-dismiss']) === "ampforwp_dismiss_admin_notices" && wp_verify_nonce($_GET['ampforwp_notice'], 'ampforwp_notice') ) {
 			update_option( 'AMPforwp_db_version', $ampforwp_current_version );
 			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
 		}
@@ -671,12 +671,12 @@ function ampforwp_ampwptheme_notice() {
 		add_thickbox(); ?>
 		<div id="some" class="notice-warning settings-error notice is-dismissible">
 			<span style="margin: 0.5em 0.5em 0 0">AMP WordPress Theme is installed</span><br>
-			<span style="margin: 0.5em 0.5em 0 0">One Last Step Required: <a href="#TB_inline?width=600&height=550&inlineId=my-content-id" class="thickbox">Finish Setup</a></span><br>
+			<span style="margin: 0.5em 0.5em 0 0"><?php echo esc_html__('One Last Step Required:', 'accelerated-mobile-pages'); ?> <a href="#TB_inline?width=600&height=550&inlineId=my-content-id" class="thickbox"><?php echo esc_html__('Finish Setup', 'accelerated-mobile-pages') ?></a></span><br>
 		</div>
 		<div id="my-content-id" style="display:none;">
 	     <p>
 	     	<iframe width="100%" height="480" src="https://www.youtube.com/embed/" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-			<a href="<?php echo esc_url(add_query_arg( 'ampforwp-dismiss-theme', 'ampforwp_dismiss_admin_notices' )) ?>">Take me to the Options Panel</a>
+			<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'ampforwp-dismiss-theme', 'ampforwp_dismiss_admin_notices' ), 'ampforwp_notice', 'ampforwp_notice' ) ) ?>"><?php echo esc_html__('Take me to the Options Panel', 'accelerated-mobile-pages'); ?></a>
 	     </p>
 		</div>
 	<?php }
@@ -699,7 +699,7 @@ function ampforwp_ampwptheme_notice() {
 	if ( $plugin_manager_active || $amp_plugin_manager_active ) {
 		$screen = get_current_screen();
 		if ( '1.0' == $amp_plugin_manager_version  && 'plugins' === $screen->base) { ?>
-			<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b>Attention:</b> AMPforWP Plugin Manager requires an upgrade. Please <b><a href="https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice" target="_blank">Download &amp; install the latest version</a></b> for free.
+			<div id="ampforwp_pluginmanager" class="notice-warning settings-error notice is-dismissible"><p><b><?php echo esc_html__(' Attention','accelerated-mobile-pages'); ?>:</b> <?php echo esc_html__(' AMPforWP Plugin Manager requires an upgrade. Please','accelerated-mobile-pages'); ?> <b><a href="https://ampforwp.com/plugins-manager/?update=plugins-manager#utm_source=plugin-page&utm_medium=plugin-manager-update&utm_campaign=update-notice" target="_blank"><?php echo esc_html__('Download &amp; install the latest version', 'accelerated-mobile-pages'); ?></a></b> <?php echo esc_html__('for free','accelerated-mobile-pages'); ?>.
 				</p>
 			</div>
 		<?php }
@@ -714,14 +714,14 @@ function ampforwp_update_notice() {
     <div class="notice-success notice is-dismissible amp-update-notice">
         <div class="amp-update-notice-text-box">
         	<img src="data:image/png;base64,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" width="128" height="128" />
-	 		<div class="amp-update-notice-text"> <?php echo esc_attr('AMP has been updated to '.$ampforwp_current_version, 'accelerated-mobile-pages' ); ?></div>
-	    	<a href="https://ampforwp.com/new/" target="_blank" href="admin.php?page=acmforwp_update">What's New?</a> 
+	 		<div class="amp-update-notice-text"> <?php echo esc_html__('AMP has been updated to '.$ampforwp_current_version, 'accelerated-mobile-pages' ); ?></div>
+	    	<a href="https://ampforwp.com/new/" target="_blank" href="admin.php?page=acmforwp_update"><?php echo esc_html__('What\'s New ?', 'accelerated-mobile-pages');?></a> 
     	</div>
 		<div class="amp-update-notice-dismiss">
-        	<a title="Close this Notification" href="<?php echo esc_url(add_query_arg( 'ampforwp-dismiss', 'ampforwp_dismiss_admin_notices' )) ?>">X</a>
+        	<a title="Close this Notification" href="<?php echo esc_url( wp_nonce_url(add_query_arg( 'ampforwp-dismiss', 'ampforwp_dismiss_admin_notices' ), 'ampforwp_notice', 'ampforwp_notice') ) ?>">X</a>
     	</div> 
 		<div class="amp-update-notice-review-box">
-			<a class="star_icon" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post" target="_blank"> Appreciate it?  <br> <span title="Give Us 5 Star">Leave a Review →</span></a>
+			<a class="star_icon" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#new-post" target="_blank"> <?php echo esc_html__('Appreciate it?','accelerated-mobile-pages')?>  <br> <span title="Give Us 5 Star"><?php echo esc_html__('Leave a Review', 'accelerated-mobile-pages') ?> →</span></a>
 		</div>
 	</div>
 <?php }
