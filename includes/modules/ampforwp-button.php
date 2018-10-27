@@ -73,7 +73,7 @@
                 $size = "l_btn";
             }
             //Corrected the URL in button module and breaking of desing and link issue #951 & #972
-            $output .= '<a href="'.esc_url($feature['url']).'" class="' . $size . '" target="' . $target . '" >'. $feature['title'] .'</a>';
+            $output .= '<a href="'.esc_url($feature['url']).'" class="' . esc_attr($size) . '" target="' . esc_attr($target) . '" >'. esc_html($feature['title']) .'</a>';
 		}
         $output .= '</div>';
         
@@ -82,10 +82,10 @@
 		$sanitized_output 		= $sanitizer->get_amp_content();
 
 		if( $sanitized_output ) {  
-			echo ampforwp_wp_kses($sanitized_output);
+			echo $sanitized_output; // amphtml content, no kses
 		} 
 
-		echo ampforwp_wp_kses($after_widget);
+		echo esc_html($after_widget);
 
 	} // end widget
 
@@ -182,8 +182,7 @@
 		    }  ?>
 		</span>
 
-	<a class="ampforwp-button-add button left">  <?php esc_attr_e('Add Feature','accelerated-mobile-pages'); ?> </a>
-<p>	</p>
+	<a class="ampforwp-button-add button left">  <?php esc_attr_e('Add Feature','accelerated-mobile-pages'); ?> </a><p>	</p>
 		<?php 
 
 	} // end form
@@ -193,56 +192,16 @@
 	/*--------------------------------------------------*/
 
 	/**
-	 * Fired when the plugin is activated.
-	 *
-	 * @param		boolean	$network_wide	True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
-	 */
-	public function activate( $network_wide ) {
-
-	} // end activate
-
-	/**
-	 * Fired when the plugin is deactivated.
-	 *
-	 * @param	boolean	$network_wide	True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-	 */
-	public function deactivate( $network_wide ) {
-
-	} // end deactivate
-
-	/**
-	 * Registers and enqueues admin-specific styles.
-	 */
-	public function register_admin_styles() {
-
-	} // end register_admin_styles
-
-	/**
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
-
 		wp_enqueue_script( 'ampforwp-builder-script',  plugins_url('/modules/js/amp.js' , dirname(__FILE__) ) , array( 'jquery' ), false, true );
 
 	} // end register_admin_scripts
 
 	public function footer_scritps() { ?>
-		<style>.radio_label{}</style>
-<?php }
-
-	/**
-	 * Registers and enqueues widget-specific styles.
-	 */
-	public function register_widget_styles() {
-
-	} // end register_widget_styles
-
-	/**
-	 * Registers and enqueues widget-specific scripts.
-	 */
-	public function register_widget_scripts() {
-
-	} // end register_widget_scripts
+		<style>.radio_label{}</style> <?php 
+	}
 
 } // end class
 
