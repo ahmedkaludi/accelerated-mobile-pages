@@ -271,7 +271,7 @@ function amp_loop_title($data=array()){
 	if(isset($data['attributes']) && $data['attributes']!=""){
 		$attributes = $data['attributes'];
 	}
-	echo ampforwp_wp_kses('<'.$tag.' '.$attributes.'>');
+	echo ampforwp_wp_kses('<'.$tag.' '.esc_attr($attributes).'>');
 		if(!isset($data['link']) ){
 			echo '<a href="'. esc_url(amp_loop_permalink(true)) .'">';
 		}
@@ -316,16 +316,16 @@ function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
 	}
 
 	if( ampforwp_get_setting('ampforwp-homepage-loop-readmore-link') == 1 ) {
-		echo ampforwp_wp_kses('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>');
+		echo ('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .' '.'<a href="'. esc_url(ampforwp_url_controller(get_permalink($post->ID))) . '">'. ampforwp_translation($redux_builder_amp['amp-translator-read-more'],'Read More') . '</a></'.$tag.'>');
 	} else {
-		echo ampforwp_wp_kses('<'.$tag.' class="'.$class.'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>');
+		echo ('<'.$tag.' class="'.esc_attr($class).'">'. wp_trim_words(  $content, $excerpt_length ) .'</'.$tag.'>');
 	}
 	
 }
 
 function amp_loop_all_content($tag = 'p'){
 	$fullContent = strip_shortcodes( get_the_content() );
-	echo ampforwp_wp_kses('<'.$tag.'>'. $fullContent .'</'.$tag.'>');
+	echo ('<'.$tag.'>'. $fullContent .'</'.$tag.'>');
 }
 
 function amp_loop_permalink($return,$amp_query_var ='amp'){
@@ -411,11 +411,11 @@ function amp_loop_image( $data=array() ) {
 				$imageClass			= $changesInImageData["image_class"];
 				$imageLink			= $changesInImageData["image_link"];
 			}
-			echo ampforwp_wp_kses('<'.$tag.' class="loop-img '.$tag_class.'">');
+			echo '<'.esc_attr($tag).' class="loop-img '.esc_attr($tag_class).'">';
 			echo '<a href="'.esc_url($imageLink).'">';
-			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.$thumb_width.'" height="'.$thumb_height.'" '. $layout_responsive .' class="'.$imageClass.'"></amp-img>';
+			echo '<amp-img src="'. esc_url($thumb_url) .'" width="'.esc_attr($thumb_width).'" height="'.esc_attr($thumb_height).'" '. esc_attr($layout_responsive) .' class="'.esc_attr($imageClass).'"></amp-img>';
 			echo '</a>';
-			echo '</'.$tag.'>';
+			echo '</'.esc_attr($tag).'>';
 		}
      } 
 } 

@@ -8,18 +8,18 @@ if(!function_exists('ampforwp_framework_get_sideabr')){
 		unset($data['action']);
 		switch(strtolower($action)) {
 			case 'start':
-				echo ampforwp_wp_kses(ampforwp_sideber_begin($data));
+				echo (ampforwp_sideber_begin($data));
 				do_action('amp_sidebar_start');
 				break;
 			case 'end':
 				do_action('amp_sidebar_end');
-				echo ampforwp_wp_kses(ampforwp_sideber_end());
+				echo (ampforwp_sideber_end());
 				break;
 			case 'open-button':
-				echo ampforwp_wp_kses(ampforwp_sidebar_opening_button($data));
+				echo (ampforwp_sidebar_opening_button($data));
 				break;
 			case 'close-button':
-				echo ampforwp_wp_kses(ampforwp_sidebar_close_button($data));
+				echo (ampforwp_sidebar_close_button($data));
 				break;
 			default:
 				echo 'action not found';
@@ -64,7 +64,7 @@ function ampforwp_sideber_begin($data=array()){
 	}else{
 		$attribute = "id='sidebar' layout='nodisplay' side='right'";
 	}
-	return '<amp-sidebar '. $attribute .'>';
+	return '<amp-sidebar '. esc_attr($attribute) .'>';
 }
 
 function ampforwp_sideber_end(){

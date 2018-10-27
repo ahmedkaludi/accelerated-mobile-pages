@@ -6,18 +6,18 @@ function ampforwp_framework_get_search_form() {
 		$amp_query_variable = '';
 		$amp_query_variable_val = '';
 		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
-		$action_url = esc_url( get_bloginfo('url') );
+		$action_url = ( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
 		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
 		if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
 			$amp_query_variable = 'amp';
 			$amp_query_variable_val = '1';
 		}
-	  $form = '<form role="search" method="get" id="amp-search" class="amp-search" target="_top" action="' . $action_url  .'">
+	  $form = '<form role="search" method="get" id="amp-search" class="amp-search" target="_top" action="' . esc_url($action_url)  .'">
 				<div class="amp-search-wrapper">
-					<label aria-label="Type your query" class="screen-reader-text" for="s">' . $label . '</label>
-					<input type="text" placeholder="AMP" value="'.$amp_query_variable_val.'" name="'.$amp_query_variable.'" class="hidden"/>
-					<input type="text" placeholder="'.$placeholder.'" value="' . get_search_query() . '" name="s" id="s" />
+					<label aria-label="Type your query" class="screen-reader-text" for="s">' . esc_html__($label,'accelerated-mobile-pages') . '</label>
+					<input type="text" placeholder="AMP" value="'.esc_attr($amp_query_variable_val).'" name="'.esc_attr($amp_query_variable).'" class="hidden"/>
+					<input type="text" placeholder="'.esc_attr($placeholder).'" value="' . esc_attr(get_search_query()) . '" name="s" id="s" />
 					<label aria-label="Submit amp search" for="amp-search-submit" >
 						<input type="submit" class="icon-search" id="amp-search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
 					</label>
@@ -25,7 +25,7 @@ function ampforwp_framework_get_search_form() {
 					</div>
 				</div>
 				</form>';
-	    echo ampforwp_wp_kses($form);	    
+	    echo $form;	    
 }
 ampforwp_add_scripts();
 function ampforwp_add_scripts(){

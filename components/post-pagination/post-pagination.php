@@ -96,7 +96,7 @@ function ampforwp_framework_get_post_paginated_link( $i, $args = '' ) {
 	$post = get_post();
 	$query_args = array();
 	if ( isset($args) ) {
-		$class = "class='$args'";
+		$class = "class='".esc_attr($args)."'";
 	}
 	if ( 1 == $i ) {
 		$url = get_permalink();
@@ -129,7 +129,7 @@ function amp_paginated_post_modify_amphtml($url) {
 			if($post_paginated_page){
 				$url = get_permalink();
 				$new_url = $url."$post_paginated_page/?amp";
-				return $new_url;
+				return esc_url($new_url);
 			}
 		} 
 	return $url;
