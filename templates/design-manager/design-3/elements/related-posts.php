@@ -115,7 +115,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 										}else{
 											$content = get_the_content();
 										} ?>
-				                    <p class="<?php echo esc_attr($class); ?>"><?php echo ampforwp_wp_kses(wp_trim_words( strip_shortcodes( $content ) , '15' )); ?></p>
+				                    <p class="<?php echo esc_attr($class); ?>"><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
 				                <?php } ?>    
 			                </div>
 		            		</li>

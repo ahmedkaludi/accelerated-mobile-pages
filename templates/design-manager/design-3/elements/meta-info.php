@@ -10,10 +10,10 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 <?php if ( $post_author ) : ?>
 	<div class="amp-wp-meta amp-wp-byline">
   <?php if ( is_single() ) { 
-    echo ampforwp_wp_kses(ampforwp_get_author_details( $post_author , 'meta-info' )); 
+    echo ampforwp_get_author_details( $post_author , 'meta-info' ); 
   } ?>
 <?php if( is_page() && $redux_builder_amp['meta_page'] ) {
-    echo ampforwp_wp_kses(ampforwp_get_author_details( $post_author , 'meta-info' ));
+    echo ampforwp_get_author_details( $post_author , 'meta-info' );
     } ?>
 <?php 
 if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single']) {

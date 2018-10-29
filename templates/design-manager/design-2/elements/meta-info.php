@@ -11,7 +11,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 	<div class="amp-wp-meta amp-wp-byline">
 		<?php 
 		if(is_single() || ( is_page() && $redux_builder_amp['meta_page'] ) ) {
-			echo ampforwp_wp_kses(ampforwp_get_author_details( $post_author , 'meta-info' )); ?>
+			echo ampforwp_get_author_details( $post_author , 'meta-info' ); ?>
 		<li class="amp-wp-meta-date"> <?php global $redux_builder_amp;
 		$date = get_the_date( get_option( 'date_format' ) );
 		if( 2 == $redux_builder_amp['ampforwp-post-date-global'] ){

@@ -76,7 +76,7 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
                   } else {
                     $content = get_the_content();
                   } ?>
-                  <span class="ampforwp_cat_wdgt_excerpt_text"><?php echo ampforwp_wp_kses(wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  )); ?></span>
+                  <span class="ampforwp_cat_wdgt_excerpt_text"><?php echo wp_trim_words( strip_tags( strip_shortcodes( $content ) ) , '15'  ); ?></span>
                 </div> <?php
               } ?>
 
@@ -88,15 +88,15 @@ class AMPFORWP_Categories_Widget extends WP_Widget {
         //show more link
         if( $ampforwp_category_link === 'yes' && ! empty( $ampforwp_category_id ) ) {
           
-          $category_link =  '<a class="amp-category-block-btn" href="'.ampforwp_url_controller(get_category_link( $ampforwp_category_id) ).'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+          $category_link =  '<a class="amp-category-block-btn" href="'.ampforwp_url_controller(get_category_link( $ampforwp_category_id) ).'">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)')).'</a>';
         } else {
-          $category_link =   '<a class="amp-category-block-btn" href="'.ampforwp_url_controller( home_url() ).'">'. ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)').'</a>';
+          $category_link =   '<a class="amp-category-block-btn" href="'.ampforwp_url_controller( home_url() ).'">'. esc_html(ampforwp_translation($redux_builder_amp['amp-translator-show-more-text'], 'View More Posts (Widget Button)')).'</a>';
         } 
         if( $ampforwp_category_link === 'no' ) {
             $category_link = '';
         }
 
-        echo  ampforwp_wp_kses($category_link);
+        echo  $category_link;
 
         echo '</ul> <div class="cb"></div> </div>';
 

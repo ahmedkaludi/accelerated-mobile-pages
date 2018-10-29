@@ -52,9 +52,6 @@
 
 		$features = ( ! empty( $instance['features'] ) ) ? $instance['features'] : array();
 
-
-		
-		echo ampforwp_wp_kses($before_widget);
         $output .= '<div class="amp-wp-content amp_cb_module amp_cb_btn">';
         
 		foreach( $features as $feature ) {
@@ -84,8 +81,6 @@
 		if( $sanitized_output ) {  
 			echo $sanitized_output; // amphtml content, no kses
 		} 
-
-		echo esc_html($after_widget);
 
 	} // end widget
 

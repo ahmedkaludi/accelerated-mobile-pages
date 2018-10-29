@@ -13,7 +13,7 @@ if ( is_single() || (is_page() && $redux_builder_amp['meta_page']) ) : ?>
 			 if( is_single()) { ?>
 				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>
 				<?php  
-				echo ampforwp_wp_kses(ampforwp_get_author_details( $post_author , 'meta-info' ));
+				echo ampforwp_get_author_details( $post_author , 'meta-info' );
 			  } 
 			 if( is_page() && $redux_builder_amp['meta_page'] ) { 	?>
 				<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_image); ?>" width="24" height="24" layout="fixed"></amp-img>

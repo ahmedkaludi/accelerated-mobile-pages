@@ -28,7 +28,7 @@ if(isset($redux_builder_amp['ampforwp-amp-menu']) && $redux_builder_amp['ampforw
         $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
         $sanitizer_obj = new AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
         $sanitized_menu =  $sanitizer_obj->get_amp_content();
-        echo ampforwp_wp_kses($sanitized_menu); 
+        echo $sanitized_menu; // amphtml content, no kses
         ?>     
       </nav>
       <?php } 

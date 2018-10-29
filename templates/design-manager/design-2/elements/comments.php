@@ -40,7 +40,7 @@
 			 								<amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($comment_author_img_url); ?>" width="40" height="40" layout="fixed" class="comment-author-img"></amp-img>
 			 							<?php } ?>         							
 										<div class="comment-author vcard">
-											<?php  printf(__(ampforwp_wp_kses('<b class="fn">%s</b> <span class="says">'.ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says').':</span>')), get_comment_author_link()) ?>
+											<?php  printf(__('<b class="fn">%s</b> <span class="says">'.esc_html(ampforwp_translation($redux_builder_amp['amp-translator-says-text'],'says')).':</span>'), get_comment_author_link()) ?>
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
@@ -63,7 +63,7 @@
 					                  	  	'AMP_Style_Sanitizer' => array()
 			                          	 ) ) );
 			                        	$sanitized_comment_content = $sanitizer->get_amp_content();
-			                        	echo ampforwp_wp_kses(make_clickable( $sanitized_comment_content )); ?>      
+			                        	echo make_clickable( $sanitized_comment_content );// amphtml content, no kses ?>      
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .comment-body -->
