@@ -23,7 +23,7 @@ wp_reset_postdata(); ?>
     <?php } ?>
 		<h2><?php echo esc_attr( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt"><?php
-			$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td>';
+			$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
       echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_tags );
  		?></p><p class="back-to-top">
     <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { 

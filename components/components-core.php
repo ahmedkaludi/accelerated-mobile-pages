@@ -416,7 +416,7 @@ function amp_footer_core(){
 }
 
 function amp_non_amp_link(){
-	$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td>'; 
+	$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; 
     global $redux_builder_amp;
     echo '<span>' . strip_tags(($redux_builder_amp['amp-translator-footer-text'],$allowed_tags) . '</span>' ;
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }

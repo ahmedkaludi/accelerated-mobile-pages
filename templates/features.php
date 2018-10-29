@@ -7382,7 +7382,12 @@ function ampforwp_ia_meta_callback( $post ) {
     </p>
 <?php }
 
-// AMPforWP allowed html tags #1950
+/* AMPforWP allowed html tags #1950
+ * ampforwp_wp_kses_allowed_html()
+ * This fucntion can be heavy for sanitizing items.
+ * As it scans though all the generated AMP tags and attributes.
+ * Use it cautiously.
+ */ 
 function ampforwp_wp_kses_allowed_html(){
 	$allowed_html = $allowed_normal_html = $allowed_amp_tags = array();
 	$allowed_normal_html = wp_kses_allowed_html( 'post' );
