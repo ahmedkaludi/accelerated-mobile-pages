@@ -39,7 +39,7 @@ function amppb_save_post( $post_id, $post ){
     $submitted_data = isset( $request['amp-page-builder'] ) ?  $request['amp-page-builder']  : null;
     $submitted_data = (str_replace("'", "&apos;", $submitted_data));
     $submitted_data = wp_slash($submitted_data);
-    
+    $submitted_data = wp_filter_post_kses($submitted_data);
     /* New data submitted, No previous data, create it  */
     if ( $submitted_data && '' == $saved_data ){
         add_post_meta( $post_id, 'amp-page-builder', $submitted_data, true );
