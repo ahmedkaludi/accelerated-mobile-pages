@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.19
+Stable tag: 0.9.97.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.20 (29th October 2018) =
+* Fixed: Plugin Vulnerability #2650
 
 = 0.9.97.19 (4th October 2018) =
 * Fixed: Tables overflow not working in swift theme #2392
