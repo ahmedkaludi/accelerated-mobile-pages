@@ -4405,7 +4405,7 @@ function ampforwp_post_pagination( $args = '' ) {
 	$html = apply_filters( 'ampforwp_post_pagination', $output, $args );
 	if($redux_builder_amp['amp-pagination']) {
 		if ( $r['echo'] ) {
-			echo ampforwp_wp_kses($html);
+			echo $html;
 		}
 		return $html;
 	}	
