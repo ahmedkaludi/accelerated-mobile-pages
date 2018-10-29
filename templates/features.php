@@ -1187,7 +1187,7 @@ function ampforwp_new_dir( $dir ) {
 							<script type="application/json">
 							{
 							  "vars": {
-							    "writeKey": "<?php echo $redux_builder_amp['sa-feild']; ?>",
+							    "writeKey": "<?php echo esc_attr($redux_builder_amp['sa-feild']); ?>",
 									"name": "<?php the_title(); ?>"
 							  }
 							}
@@ -1207,7 +1207,7 @@ function ampforwp_new_dir( $dir ) {
 								<script type="application/json">
 								{
 								  "vars": {
-								    "pcode": "<?php echo $redux_builder_amp['amp-quantcast-analytics-code']; ?>",
+								    "pcode": "<?php echo esc_attr($redux_builder_amp['amp-quantcast-analytics-code']); ?>",
 										"labels": [ "AMPProject" ]
 								  }
 								}
@@ -1222,8 +1222,8 @@ function ampforwp_new_dir( $dir ) {
 								<script type="application/json">
 								{
 								  "vars": {
-								    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
-								    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
+								    "c1": "<?php echo esc_attr($redux_builder_amp['amp-comscore-analytics-code-c1']); ?>",
+								    "c2": "<?php echo esc_attr($redux_builder_amp['amp-comscore-analytics-code-c2']); ?>"
 								  }
 								}
 								</script>
@@ -1264,7 +1264,7 @@ function ampforwp_new_dir( $dir ) {
     					<script type="application/json"> 
       					  { 
             					"vars": { 
-               							 "counterId": "<?php echo $redux_builder_amp['amp-Yandex-Metrika-analytics-code']; ?>" 
+               							 "counterId": "<?php echo esc_attr($redux_builder_amp['amp-Yandex-Metrika-analytics-code']); ?>" 
           								  }, 
            						 "triggers": { 
              							   "notBounce": { 
@@ -1306,8 +1306,8 @@ function ampforwp_new_dir( $dir ) {
 								<script type="application/json">
 								{
 								  "vars": {
-								    "atrk_acct": "<?php echo $redux_builder_amp['ampforwp-alexa-account']; ?>",
-								    "domain": "<?php echo $redux_builder_amp['ampforwp-alexa-domain']; ?>"
+								    "atrk_acct": "<?php echo esc_attr($redux_builder_amp['ampforwp-alexa-account']); ?>",
+								    "domain": "<?php echo esc_attr($redux_builder_amp['ampforwp-alexa-domain']); ?>"
 								  }
 								}
 								</script>
@@ -1344,8 +1344,8 @@ function ampforwp_new_dir( $dir ) {
 								<script type="application/json">
 								{
 								  "vars": {
-								    "server": "<?php echo $afs_server; ?>",
-								    "websiteid": "<?php echo $afs_account; ?>"
+								    "server": "<?php echo esc_attr($afs_server); ?>",
+								    "websiteid": "<?php echo esc_attr($afs_account); ?>"
 								    "title": "<?php echo esc_attr(get_the_title()); ?>"
 								    "url": "<?php echo esc_url(get_the_permalink()); ?>"
 								  }
@@ -1365,8 +1365,8 @@ function ampforwp_new_dir( $dir ) {
 									{
 									    
 										"vars": {
-											  "host": "<?php echo $adobe_host;?>",
-											  "reportSuites": "<?php echo $adobe_reportsuiteid;?>",
+											  "host": "<?php echo esc_attr($adobe_host);?>",
+											  "reportSuites": "<?php echo esc_attr($adobe_reportsuiteid);?>",
 										},
 										"triggers": {
 											  "pageLoad": {
@@ -1753,11 +1753,11 @@ function ampforwp_title_callback( $post ) {
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
                 <input type="radio" name="ampforwp-amp-on-off" id="ampforwp-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'default' ); ?>>
-                <?php esc_html_e( 'Show' )?>
+                <?php esc_html_e( 'Show', 'accelerated-mobile-pages' )?>
             </label>
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-two">
                 <input type="radio" name="ampforwp-amp-on-off" id="ampforwp-on-off-meta-radio-two" value="hide-amp" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-amp-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-amp-on-off'][0], 'hide-amp' ); ?>>
-                <?php esc_html_e( 'Hide' )?>
+                <?php esc_html_e( 'Hide', 'accelerated-mobile-pages' )?>
             </label>
              <?php
              if($post->post_status == 'publish') {
@@ -1871,11 +1871,11 @@ function ampforwp_title_callback_redirection( $post ) {
         <div class="prfx-row-content">
             <label for="meta-redirection-radio-one">
                 <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-one" value="enable"  checked="checked" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'enable' ); ?>>
-                <?php esc_html_e( 'Enable' )?>
+                <?php esc_html_e( 'Enable', 'accelerated-mobile-pages' )?>
             </label>
             <label for="meta-redirection-radio-two">
                 <input type="radio" name="ampforwp-redirection-on-off" id="meta-redirection-radio-two" value="disable" <?php if ( isset ( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'] ) ) checked( $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0], 'disable' ); ?>>
-                <?php esc_html_e( 'Disable' )?>
+                <?php esc_html_e( 'Disable', 'accelerated-mobile-pages' )?>
             </label>
         </div>
     </p>
@@ -7372,11 +7372,11 @@ function ampforwp_ia_meta_callback( $post ) {
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
                 <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-one" value="default"  checked="checked" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'default' ); ?>>
-                <?php esc_html_e( 'Enable' )?>
+                <?php esc_html_e( 'Enable', 'accelerated-mobile-pages' )?>
             </label>
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-two">
                 <input type="radio" name="ampforwp-ia-on-off" id="ampforwp-on-off-meta-radio-two" value="hide-ia" <?php if ( isset ( $ampforwp_stored_meta['ampforwp-ia-on-off'] ) ) checked( $ampforwp_stored_meta['ampforwp-ia-on-off'][0], 'hide-ia' ); ?>>
-                <?php esc_html_e( 'Disable' )?>
+                <?php esc_html_e( 'Disable', 'accelerated-mobile-pages' )?>
             </label> 
         </div>
     </p>

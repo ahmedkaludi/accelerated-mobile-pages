@@ -227,7 +227,6 @@ if ( ! class_exists( 'ReduxFramework_amp_slider' ) ) {
         function enqueue() {
 
             $min = '';//Redux_Functions::isMin();
-			//echo ReduxFramework::$_url;die;
             wp_enqueue_style( 'select2-css' );
 
             wp_enqueue_style(

@@ -754,7 +754,6 @@ function rowData($container,$col,$moduleTemplate){
 						}
 					}
 				}//If for Module is repeater or not
-				//echo $moduleFrontHtml;die;
 				
 				switch($moduleName){
 					case 'gallery_image':
@@ -797,7 +796,6 @@ function rowData($container,$col,$moduleTemplate){
 
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
-						//print_r($moduleFrontHtml);die;
 						/* Restore original Post Data */
 						wp_reset_postdata();
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {

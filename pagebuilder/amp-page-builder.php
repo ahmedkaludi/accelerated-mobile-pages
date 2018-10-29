@@ -91,7 +91,6 @@ function call_page_builder(){
 	$totalRows = 1;
 	$totalmodules = 1;
 	if(!empty($previousData)){
-		//echo ' sdcds '.json_encode($previousData);die;
 		$jsonData = json_decode($previousData,true);
 		if(count($jsonData['rows'])>0){
 			$totalRows = $jsonData['totalrows'];

@@ -22,7 +22,6 @@ $author_link = get_author_posts_url($post_author->ID);
 if ( function_exists('coauthors_posts_links') ) {
     $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
-//var_dump($and);die;
 $author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {

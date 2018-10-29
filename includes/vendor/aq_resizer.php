@@ -276,7 +276,6 @@ if(!function_exists('ampforwp_aq_resize')) {
                         1 => $width,
                         2 => $height
                     );
-            //print_r(jetpack_photon_url( $url, $args ));die;
             return $image;
         } else {
             $aq_resize = Aq_Resize::getInstance();
