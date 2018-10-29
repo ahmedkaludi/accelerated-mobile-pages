@@ -40,7 +40,7 @@ function ampforwp_framework_get_featured_image(){
 		} 
 		if( $amp_html ){ ?>
 			<figure class="amp-featured-image"> <?php  
-				echo ampforwp_wp_kses($amp_html);
+				echo $amp_html;
 				 if ( $caption ) : ?>
 					<p class="wp-caption-text">
 						<?php echo wp_kses_data( $caption ); ?>

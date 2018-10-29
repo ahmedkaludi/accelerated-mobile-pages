@@ -77,7 +77,7 @@ function ampforwp_framework_get_post_pagination( $args = '' ) {
 	 */
 	$html = apply_filters( 'ampforwp_framework_get_post_pagination', $output, $args );
 		if ( $r['echo'] ) {
-			echo ampforwp_wp_kses($html);
+			echo ($html);
 		}
 		return $html;
 }

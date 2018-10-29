@@ -296,7 +296,7 @@ function amp_loop_date($args=array()){
     						current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],
     						'ago');
     }
-    echo '<div class="loop-date">'.esc_attr($post_date).'</div>';
+    echo '<div class="loop-date">'.esc_html($post_date).'</div>';
 }
 
 function amp_loop_excerpt($excerpt_length = 15,$tag = 'p', $class = ''){
