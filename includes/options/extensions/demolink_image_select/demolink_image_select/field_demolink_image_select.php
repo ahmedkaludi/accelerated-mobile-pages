@@ -142,7 +142,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 						}
 
 						// Add the option tag, with values.
-						echo '<option value="' . $v['img'] . '" ' . $selected . '>' . $v['alt'] . '</option>';
+						echo '<option value="' . esc_url($v['img']) . '" ' . $selected . '>' . esc_html($v['alt']) . '</option>';
 					}
 					// Add a bean
                     $x ++;
@@ -174,9 +174,9 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
                     if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
                         $demo = $this->field['options'][ $arrNum - 1 ]['demo_link'];
                     }
-                    echo '<img src=' . $this->field['options'][ $arrNum - 1 ]['img'] . ' class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
+                    echo '<img src=' . esc_url($this->field['options'][ $arrNum - 1 ]['img']) . ' class="redux-preview-image" id="image_' . $this->field['id'] . '"  onclick="return window.open(\''.$demo.'\')">'; 
                     if (isset($this->field['options'][ $arrNum - 1 ]['demo_link'])) {
-                        echo '<a href="'. $demo .'" id="theme-selected-demo-link" target="_blank">  
+                        echo '<a href="'. esc_url($demo) .'" id="theme-selected-demo-link" target="_blank">  
                                 Demo 
                             </a>';
                     }
@@ -217,7 +217,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
 
             wp_enqueue_script(
                 'field-demolink-select-image-js',
-               $this->extension_url .'field_demolink_image_select.js',
+               esc_url($this->extension_url .'field_demolink_image_select.js'),
                 array('jquery', 'select2-js', 'redux-js'),
                 $this->time,
                 true
@@ -226,7 +226,7 @@ if ( ! class_exists( 'ReduxFramework_demolink_image_select' ) ) {
             if ($this->parent->args['dev_mode']) {
                 wp_enqueue_style(
                     'redux-field-select-image-css',
-                   $this->extension_url .'field_demolink_image_select.css',
+                   esc_url($this->extension_url .'field_demolink_image_select.css'),
                     array(),
                     $this->time,
                     'all'
