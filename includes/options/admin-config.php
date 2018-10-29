@@ -4876,7 +4876,7 @@ Redux::setSection( $opt_name, array(
                     'id'       => 'ampforwp-amp-menu',
                     'type'     => 'switch',
                     'title'    => esc_html__('Navigation Menu', 'accelerated-mobile-pages'),
-                    'desc'       => esc_html__( 'Add Menus to your AMP pages by clicking on this <a href="'.trailingslashit(get_admin_url()).'nav-menus.php?action=locations">link</a>' , 'accelerated-mobile-pages'),
+                    'desc'       => esc_html__( 'Add Menus to your AMP pages by clicking on this ', 'accelerated-mobile-pages').'<a href="'.esc_url(trailingslashit(get_admin_url())).'nav-menus.php?action=locations">'.esc_html__('link', 'accelerated-mobile-pages').'</a>' ,
                     'tooltip-subtitle' => esc_html__('Enable/Disable Menu from header', 'accelerated-mobile-pages'),
                     'true'      => 'true',
                     'false'     => 'false',
