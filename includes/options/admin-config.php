@@ -3338,7 +3338,7 @@ Redux::setSection( $opt_name, array(
                         'id'    => 'fb-instant-page-id',
                         'type'  => 'text',
                         'title' => esc_html__('Facebook Page ID', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('Follow <a href="https://www.facebook.com/instant_articles/signup" target="_blank">these instructions</a> to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Follow ','accelerated-mobile-pages').'<a href="https://www.facebook.com/instant_articles/signup" target="_blank">'.esc_html__('these instructions.','accelerated-mobile-pages').'</a>'.esc_html__(' to sign up to Instant Articles and get your Facebook Page ID.', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
 
@@ -3475,7 +3475,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fbia-header-text-area',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Custom HTML in Head Tag', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('Add custom HTML in Head Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Add custom HTML in Head Tag in Instant Articles Markup. Click','accelerated-mobile-pages').' <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">'.esc_html__('here', 'accelerated-mobile-pages').'</a>'. esc_html__(' for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
@@ -3483,7 +3483,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fbia-body-text-area',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Custom HTML in Body Tag', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('Add custom HTML in Body Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Add custom HTML in Body Tag in Instant Articles Markup. Click','accelerated-mobile-pages').' <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">'.esc_html__('here', 'accelerated-mobile-pages').'</a>'. esc_html__(' for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
@@ -3491,7 +3491,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'fbia-footer-text-area',
                         'type'     => 'textarea',
                         'title'    => esc_html__('Custom HTML in Footer Tag', 'accelerated-mobile-pages'),
-                        'desc' => esc_html__('Add custom HTML in Footer Tag in Instant Articles Markup. Click <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">here</a> for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
+                        'desc' => esc_html__('Add custom HTML in Footer Tag in Instant Articles Markup. Click','accelerated-mobile-pages').' <a href="https://developers.facebook.com/docs/instant-articles/guides/articlecreate" target="_blank">'.esc_html__('here', 'accelerated-mobile-pages').'</a>'. esc_html__(' for more info on Instant Articles Markup', 'accelerated-mobile-pages'),
                         'default'   => '',
                         'required'  => array('fb-instant-article-switch', '=', 1)
                     ),
