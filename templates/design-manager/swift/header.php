@@ -115,7 +115,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a title="call telephone" href="tel:<?php echo esc_url($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
+                            <a title="call telephone" href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?> 
                 </div>
@@ -233,7 +233,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a title="call telephone" href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield'];?>"></a>
+                            <a title="call telephone" href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>    
                 </div>
@@ -353,7 +353,7 @@
                     <?php } ?>
                     <?php if ( true == $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
                         <div class="h-call h-ic">
-                            <a href="tel:<?php echo esc_url($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
+                            <a href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']);?>"></a>
                         </div>
                     <?php } ?>
                     <div class="h-nav">
