@@ -158,7 +158,7 @@
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<li class="item-parent item-parent-' . esc_attr($ancestor) . '"><a class="bread-parent bread-parent-' . esc_attr($ancestor) . '" href="' . ampforwp_url_controller( get_permalink( $ancestor ), $archive_non_amp )  . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
+                    $parents .= '<li class="item-parent item-parent-' . esc_attr($ancestor) . '"><a class="bread-parent bread-parent-' . esc_attr($ancestor) . '" href="' . ampforwp_url_controller( get_permalink( $ancestor ), $archive_non_amp )  . '" title="' . esc_attr(get_the_title($ancestor)) . '">' .esc_html( get_the_title($ancestor)) . '</a></li>';
                 }
                    
                 // Display parent pages
