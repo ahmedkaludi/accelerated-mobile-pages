@@ -49,11 +49,6 @@ function ampforwp_url_base_rewrite_rules(){
 	if( isset($redux_builder_amp['ampforwp-tag-base-removal-link']) ) {
 		$tagBaseRewrite = $redux_builder_amp['ampforwp-tag-base-removal-link'];
 	}
-	/* $catagoryStatusChanges = get_option('AMP-category-base-removal-status');
-	if($catagoryStatusChanges==$categoryBaseRewrite){
-		update_option('AMP-category-base-removal-status',$categoryBaseRewrite);
-		$wp_rerite->flush_rules( $hard );
-	} */
 	if($categoryBaseRewrite === '1'){
 		add_action( 'created_category', 'amp_flush_rewrite_rules', 999 );
 		add_action( 'edited_category', 'amp_flush_rewrite_rules', 999 );

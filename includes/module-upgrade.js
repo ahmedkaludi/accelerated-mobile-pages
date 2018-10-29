@@ -45,11 +45,6 @@ jQuery(document).ready(function($){
     	if (typeof url === 'undefined' || !url) {
             return;
         }
-       /* var parts = url.split("?");
-        var url = parts[0];
-        var dataString = parts[1].replace("&#038;", '&');
-        console.log(parts[0]);
-        console.log(parts[1]);*/
          self.text( 'Activating...' );
     	 jQuery.ajax(
             {
