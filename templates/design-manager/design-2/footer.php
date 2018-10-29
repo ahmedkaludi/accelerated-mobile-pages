@@ -30,8 +30,8 @@
                     ampforwp_view_nonamp();
                   }
               }
-              $allowed_html = ampforwp_wp_kses_allowed_html();
-              echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer'),$allowed_html);
+              $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td>'; 
+              echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_tags );
         ?></p>
         <?php do_action('amp_footer_link'); ?>
       </div>

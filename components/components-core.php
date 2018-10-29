@@ -416,9 +416,9 @@ function amp_footer_core(){
 }
 
 function amp_non_amp_link(){
-	$allowed_html = ampforwp_wp_kses_allowed_html();
+	$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td>'; 
     global $redux_builder_amp;
-    echo '<span>' . wp_kses($redux_builder_amp['amp-translator-footer-text'],$allowed_html) . '</span>' ;
+    echo '<span>' . strip_tags(($redux_builder_amp['amp-translator-footer-text'],$allowed_tags) . '</span>' ;
     if($redux_builder_amp['amp-footer-link-non-amp-page']=='1') { ampforwp_view_nonamp(); }
 }
 

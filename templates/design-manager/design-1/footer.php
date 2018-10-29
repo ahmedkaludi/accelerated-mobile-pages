@@ -23,8 +23,8 @@ wp_reset_postdata(); ?>
     <?php } ?>
 		<h2><?php echo esc_attr( $this->get( 'blog_name' ) ); ?></h2>
 		<p class="copyright_txt"><?php
-			$allowed_html = ampforwp_wp_kses_allowed_html();
-			echo wp_kses( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer' ) , $allowed_html) ;
+			$allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td>';
+      echo strip_tags( ampforwp_translation($redux_builder_amp['amp-translator-footer-text'], 'Footer') ,$allowed_tags );
  		?></p><p class="back-to-top">
     <?php if($redux_builder_amp['ampforwp-footer-top']=='1') { 
         ?><a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top')); ?></a><?php 
