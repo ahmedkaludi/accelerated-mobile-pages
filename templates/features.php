@@ -6516,7 +6516,7 @@ if(!function_exists('ampforwp_amp_app_banner_support')){
 	function ampforwp_amp_app_banner_support( $data ){
 	global $redux_builder_amp;
 	
-	if(isset($redux_builder_amp['ampforwp-amp-app-banner']) && $redux_builder_amp['ampforwp-amp-app-banner'] == 1){
+	if(ampforwp_get_setting('ampforwp-amp-app-banner') == 1){
 		if ( empty( $data['amp_component_scripts']['amp-app-banner'] ) ) {
 				$data['amp_component_scripts']['amp-app-banner'] = 'https://cdn.ampproject.org/v0/amp-app-banner-0.1.js';
 			}
