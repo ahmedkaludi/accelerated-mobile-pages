@@ -41,15 +41,20 @@ function ampforwp_analytics() {
 		}//code ends for supporting Google Analytics
 
 	// 10.2 Analytics Support added for segment.com
-	if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
+	if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { 
+		$segment = $redux_builder_amp['sa-feild']; 
+		$segment_fields = array(
+						'vars'=>array(
+							'writeKey'=>$segment,
+							'name'=>get_the_title()
+							),
+					);
+		$ampforwp_segment_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_segment_fields );
+		$ampforwp_segment_fields = json_encode( $segment_fields);
+					?>
 		<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="segment">
-			<script type="application/json">
-			{
-			  "vars": {
-			    "writeKey": "<?php global $redux_builder_amp; echo $redux_builder_amp['sa-feild']; ?>",
-					"name": "<?php echo the_title(); ?>"
-			  }
-			}
+		<script type="application/json">
+			<?php echo $ampforwp_segment_fields ?>
 			</script>
 		</amp-analytics>
 		<?php
@@ -61,31 +66,44 @@ function ampforwp_analytics() {
 		<?php }
 
 		// 10.4 Analytics Support added for quantcast
-			if ( true == $redux_builder_amp['ampforwp-Quantcast-switch'] ) { ?>
+			if ( true == $redux_builder_amp['ampforwp-Quantcast-switch'] ) { 
+				$quantcast = $redux_builder_amp['amp-quantcast-analytics-code'];
+				$quantcast_fields = array(
+						'vars'=>array(
+							'pcode'=>$quantcast,
+							'labels'=>[ "AMPProject" ]
+							),
+					); 
+				$ampforwp_quantcast_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_quantcast_fields );
+				$ampforwp_quantcast_fields = json_encode( $quantcast_fields);
+
+				?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="quantcast">
 						<script type="application/json">
-						{
-						  "vars": {
-						    "pcode": "<?php echo $redux_builder_amp['amp-quantcast-analytics-code']; ?>",
-								"labels": [ "AMPProject" ]
-						  }
-						}
+							<?php echo $ampforwp_quantcast_fields ?>
 						</script>
 					</amp-analytics>
 					<?php
 				}
 
 		// 10.5 Analytics Support added for comscore
-			if ( true == $redux_builder_amp['ampforwp-comScore-switch'] ) { ?>
+			if ( true == $redux_builder_amp['ampforwp-comScore-switch'] ) { 
+			$comscore_c1 = $redux_builder_amp['amp-comscore-analytics-code-c1'];
+			$comscore_c2 = $redux_builder_amp['amp-comscore-analytics-code-c2'];
+
+				$comscore_fields = array(
+						'vars'=>array(
+							'c1'=>$comscore_c1,
+							'c2'=>$comscore_c2
+							),
+					); 
+				$ampforwp_comscore_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_comscore_fields );
+				$ampforwp_comscore_fields = json_encode( $comscore_fields);
+				?>
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="comscore">
 						<script type="application/json">
-						{
-						  "vars": {
-						    "c1": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c1']; ?>",
-						    "c2": "<?php echo $redux_builder_amp['amp-comscore-analytics-code-c2']; ?>"
-						  }
-						}
-						</script>
+							<?php echo $ampforwp_comscore_fields ?>
+					    </script>
 					</amp-analytics>
 					<?php
 				}
@@ -118,57 +136,78 @@ function ampforwp_analytics() {
 		<?php }
 
 	// 10.9 Analytics Support added for Yandex Metrika Analytics
-		if ( true == $redux_builder_amp['ampforwp-Yandex-switch'] ){ ?>
+		if ( true == $redux_builder_amp['ampforwp-Yandex-switch'] ){ 
+		$yandex = $redux_builder_amp['amp-Yandex-Metrika-analytics-code'];
+		$yandex_fields = array(
+						'vars'=>array(
+							'counterId'=>$yandex,
+							),
+						'triggers'=> array(
+							'notBounce'=> array(
+								'on'=>'timer',
+							'timerSpec'=> array(	
+								'immediate'=>'false',
+								'interval'=>'15',
+								'maxTimerLength'=>'16',
+							),
+						'request'=>'notBounce'
+						)
+						
+						)
+					); 
+				$ampforwp_yandex_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_yandex_fields );
+				$ampforwp_yandex_fields = json_encode( $yandex_fields);
+				?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="metrika"> 
 				<script type="application/json"> 
-					  { 
-    					"vars": { 
-       							 "counterId": "<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Yandex-Metrika-analytics-code']; ?>" 
-  								  }, 
-   						 "triggers": { 
-     							   "notBounce": { 
-          								  "on": "timer", 
-          								  "timerSpec": { 
-               							  "immediate": false, 
-                						  "interval": 15, 
-              							  "maxTimerLength": 16 
-          							  					}, 
-           						   "request": "notBounce" 
-       											 } 
-   									  } 
-				   } 
+					<?php echo $ampforwp_yandex_fields ?>
 				</script> 
 				</amp-analytics> 
 				<?php }//code ends for supporting Yandex Metrika Analytics
 
 	// 10.10 Analytics Support added for Chartbeat Analytics
-		if ( true == $redux_builder_amp['ampforwp-Chartbeat-switch'] ){ ?>
+		if ( true == $redux_builder_amp['ampforwp-Chartbeat-switch'] ){
+		$chartbeat = $redux_builder_amp['amp-Chartbeat-analytics-code'];
+		$chartbeat_fields = array(
+						'vars'=>array(
+							'accountId'=>$chartbeat,
+							'title'=>get_the_title(),
+							'authors'=>get_the_author_meta('display_name'),
+							'dashboardDomain'=>site_url()
+
+							),
+					
+					); 
+				$ampforwp_chartbeat_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_chartbeat_fields );
+				$ampforwp_chartbeat_fields = json_encode( $chartbeat_fields);
+		 ?>
 				<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="chartbeat">
 					 <script type="application/json">
-					 {
-						'vars': {
-							'accountId':"<?php global $redux_builder_amp; echo $redux_builder_amp['amp-Chartbeat-analytics-code']; ?>",
-							'title': "<?php the_title(); ?>",
-								'authors': "<?php the_author_meta('display_name');?>",      
-							'dashboardDomain': "<?php echo site_url();?>"        
-								  }
-					 }
+					 <?php echo $ampforwp_chartbeat_fields ?>
 					 </script>
 				</amp-analytics>
 				<?php
 			}//code ends for supporting Chartbeat Analytics
 
 	// 10.11 Analytics Support added for Alexa Metrics
-			if ( true == $redux_builder_amp['ampforwp-Alexa-switch'] ) { ?>
+			if ( true == $redux_builder_amp['ampforwp-Alexa-switch'] ) {
+				$alexa = $redux_builder_amp['ampforwp-alexa-account'];
+				$domain = $redux_builder_amp['ampforwp-alexa-domain'];
+				$alexa_fields = array(
+						'vars'=>array(
+							'atrk_acct'=>$alexa,
+							'domain'=>$domain
+							),
+					
+					); 
+				$ampforwp_alexa_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_alexa_fields );
+				$ampforwp_alexa_fields = json_encode( $alexa_fields);
+
+			 ?>
 				<!-- Start Alexa AMP Certify Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="alexametrics">
 						<script type="application/json">
-						{
-						  "vars": {
-						    "atrk_acct": "<?php echo $redux_builder_amp['ampforwp-alexa-account']; ?>",
-						    "domain": "<?php echo $redux_builder_amp['ampforwp-alexa-domain']; ?>"
-						  }
-						}
+						<?php echo $ampforwp_alexa_fields ?>
 						</script>
 					</amp-analytics>
 				<!-- End Alexa AMP Certify Javascript -->
@@ -197,18 +236,23 @@ function ampforwp_analytics() {
 				if ($afs_account > 899999)
 					$afs_server = 'www9';
 				if ($afs_account > 999999)
-					$afs_server = 'www10'; ?>
+					$afs_server = 'www10';
+				$afs_fields = array(
+						'vars'=>array(
+							'server'=>$afs_server,
+							'websiteid'=>$afs_account,
+							'title'=>get_the_title(),
+							'url'=>site_url()
+							),
+					
+					); 
+				$ampforwp_afs_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_afs_fields );
+				$ampforwp_afs_fields = json_encode( $afs_fields);
+					 ?>
 				<!-- Start AFS Analytics Javascript -->
 					<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="afsanalytics">
 						<script type="application/json">
-						{
-						  "vars": {
-						    "server": "<?php echo $afs_server; ?>",
-						    "websiteid": "<?php echo $afs_account; ?>"
-						    "title": "<?php echo esc_attr(get_the_title()); ?>"
-						    "url": "<?php echo esc_url(get_the_permalink()); ?>"
-						  }
-						}
+						 <?php echo $ampforwp_afs_fields ?> 
 						</script>
 					</amp-analytics>
 				<!-- End AFS Analytics Javascript -->
