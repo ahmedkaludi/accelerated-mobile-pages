@@ -53,6 +53,10 @@
 	} else{
 		$amp_permalink = get_the_permalink();
 	}
+	if(ampforwp_get_setting('enable-single-twitter-share-link')){
+			$amp_permalink = wp_get_shortlink();
+		}
+
 if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
 	<ul>

@@ -9,11 +9,10 @@ if ( ampforwp_get_setting('ampforwp-social-share-amp')  ) {
 }
 if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social']) && true == $redux_builder_amp['ampforwp-page-social']) ) { 
 	$permalink = '';
-	if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
-		$permalink = $amp_permalink;
-	}
-	else
-		$permalink = wp_get_shortlink();
+	if(ampforwp_get_setting('enable-single-twitter-share-link')){
+			$amp_permalink = wp_get_shortlink();
+		}
+		
 	?>
 <?php do_action('ampforwp_before_social_icons_hook',$this); ?>
 	<div class="ampforwp-social-icons">
@@ -38,7 +37,7 @@ if ( is_single() || (is_page() && isset($redux_builder_amp['ampforwp-page-social
 				width="50"
 				height="28"
 				data-param-url=""
-				data-param-text="TITLE <?php echo $permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
+				data-param-text="TITLE <?php echo $amp_permalink.' '.ampforwp_translation( $redux_builder_amp['amp-translator-via-text'], 'via' ).' '.$data_param_data ?>"
 			></amp-social-share>
 		<?php } ?>
 		<?php if($redux_builder_amp['enable-single-gplus-share'] == true)  { ?>

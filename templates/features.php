@@ -1258,11 +1258,11 @@ function ampforwp_sticky_social_icons(){
 				$image = ampforwp_get_post_thumbnail( 'url', 'full' );
 			}
 			$permalink = '';
-			if(isset($redux_builder_amp['enable-single-twitter-share-link']) && $redux_builder_amp['enable-single-twitter-share-link']){
-				$permalink = $amp_permalink;
-			}
-			else
-				$permalink = wp_get_shortlink();
+			if(ampforwp_get_setting('enable-single-twitter-share-link')){
+			$permalink = wp_get_shortlink();
+		}
+		else
+			$permalink = $amp_permalink;
 			?>
 			 <div class="sticky_social">
 				<?php if($redux_builder_amp['enable-single-facebook-share'] == true)  { ?>
