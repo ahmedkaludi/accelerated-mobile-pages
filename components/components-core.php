@@ -479,7 +479,7 @@ function amp_loop_template(){
 // The Content
 function amp_content($post_id= ''){ 
 global $redux_builder_amp, $post;
-
+$ampforwp_metas = array();
 
 if ( empty( $post_id )) {
 	
@@ -493,8 +493,9 @@ if ( ampforwp_is_front_page() ) {
 }
 
 $thisTemplate = new AMP_Post_Template($post_id); ?>
-    <?php do_action('ampforwp_before_post_content',$thisTemplate); 
-	$amp_custom_content_enable = get_post_meta( $thisTemplate->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
+    <?php do_action('ampforwp_before_post_content',$thisTemplate);
+    $ampforwp_metas = json_decode(get_post_meta($thisTemplate->get( 'post_id' ),'ampforwp-post-metas',true),true); 
+	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
 	// Normal Content
 	if ( ! $amp_custom_content_enable ) {
 			$ampforwp_the_content = $thisTemplate->get( 'post_amp_content' ); // amphtml content; no kses

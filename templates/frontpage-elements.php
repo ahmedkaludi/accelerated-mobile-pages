@@ -32,7 +32,8 @@ function ampforwp_design_1_frontpage_content( $template, $post_id ){
  	$post_id = get_option('page_on_front');
  	
 	 }
-	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
+ 	$ampforwp_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
+	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];?>
 	<article class="amp-wp-article">
 
 		<?php if( $redux_builder_amp['ampforwp-title-on-front-page'] ) { ?>
@@ -124,7 +125,8 @@ function ampforwp_design_2_frontpage_content($template, $post_id){
  		$post_id = get_option('page_on_front'); 	
  	} 
  	do_action( 'ampforwp_design_2_frontpage_title', $template ); 
-	$amp_custom_content_enable = get_post_meta($post_id, 'ampforwp_custom_content_editor_checkbox', true); ?>
+	$ampforwp_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
+	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox']; ?>
 			<?php do_action('ampforwp_before_featured_image_hook', $template ); ?>
 		<?php 	$featured_image = $template->get( 'featured_image' );
 			if ( $featured_image )  {
@@ -208,7 +210,8 @@ function ampforwp_design_3_frontpage_content($template, $post_id){
  	$post_id = get_option('page_on_front');
  	
  	}
-	$amp_custom_content_enable = get_post_meta( $post_id, 'ampforwp_custom_content_editor_checkbox', true);?>
+	$ampforwp_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
+	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];?>
 	<main>
 		<article class="amp-wp-article">
 			<div class="amp-wp-article-content">

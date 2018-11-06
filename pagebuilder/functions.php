@@ -48,9 +48,11 @@ function amppbbase_admin_scripts( $hook_suffix ){
 						'vuedropdrag' 
 					),AMPFORWP_VERSION, true );  
 					
-					
+			$ampforwp_metas = array();
+			$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+			$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];			
 			$previousData = get_post_meta($postId,'amp-page-builder');
-			$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+			//$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
 			$previousData = isset($previousData[0])? $previousData[0]: null;
 			
 			$previousData = (str_replace("'", "", $previousData));
@@ -78,7 +80,7 @@ function amppbbase_admin_scripts( $hook_suffix ){
 			wp_localize_script( 'amppb-admin', 'amppb_data',$previousData);
 
 
-			$allPostLayout = array();
+			$allPostLayout = $ampforwp_metas = array();
 			$args = array(
 						'posts_per_page'   => -1,
 						'orderby'          => 'date',
@@ -94,11 +96,12 @@ function amppbbase_admin_scripts( $hook_suffix ){
 											);
 				}
 			}
+			$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
 			$components_options = array(
 									"ajaxUrl"=>admin_url( 'admin-ajax.php' ),
 									"savedLayouts"=>$allPostLayout,
-									"startPagebuilder"=>(get_post_meta($postId,'use_ampforwp_page_builder',true)=='yes'? 1:0),
-									"checkedPageBuilder"=>get_post_meta($postId,'ampforwp_page_builder_enable', true),
+									"startPagebuilder"=>($ampforwp_metas['use_ampforwp_page_builder']=='yes'? 1:0),
+									"checkedPageBuilder"=>$ampforwp_metas['ampforwp_page_builder_enable'],
 									);
 			wp_localize_script( 'amppb-admin', 'amppb_panel_options',$components_options);
 			wp_enqueue_script('amppb-admin');

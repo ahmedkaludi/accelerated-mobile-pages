@@ -17,11 +17,11 @@ function amppb_save_post( $post_id, $post ){
     if ( defined('DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
         return $post_id;
     }
-    
+    $ampforwp_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
     /* == Save, Delete, or Update Page Builder Data == */
- 
-    $ampforwp_pagebuilder_enable = isset( $request['ampforwp_page_builder_enable'] ) ?  $request['ampforwp_page_builder_enable']  : null;
-    update_post_meta( $post_id, 'ampforwp_page_builder_enable', $ampforwp_pagebuilder_enable );
+    
+    $ampforwp_metas['ampforwp_page_builder_enable'] = isset( $_POST['ampforwp_page_builder_enable'] ) ?  $_POST['ampforwp_page_builder_enable']  : null;
+    update_post_meta($post_id,'ampforwp-post-metas', json_encode($ampforwp_metas));
     
     /* Get (old) saved page builder data */
     $saved_data = get_post_meta( $post_id, 'amp-page-builder', true );

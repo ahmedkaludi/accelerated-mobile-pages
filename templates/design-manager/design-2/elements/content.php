@@ -5,7 +5,8 @@
 		do_action('ampforwp_before_post_content',$this) //Post before Content here ?>
 
 			<?php
-			$amp_custom_content_enable = get_post_meta( $this->get( 'post_id' ) , 'ampforwp_custom_content_editor_checkbox', true);
+			$ampforwp_metas = json_decode(get_post_meta($this->get( 'post_id' ),'ampforwp-post-metas',true),true);
+			$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
 
 			// Normal Front Page Content
 			if ( ! $amp_custom_content_enable ) {

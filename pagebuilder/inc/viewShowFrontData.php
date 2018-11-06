@@ -19,7 +19,8 @@ function amp_pagebuilder_content(){
 		}
 	}
   	if( empty( $postId ) ) return;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+  	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	
 	if (ampforwp_empty_content(get_post($postId)->post_content) && $ampforwp_pagebuilder_enable=='yes') { 
 		$arr['ID'] = get_post($postId)->ID;
@@ -45,14 +46,14 @@ add_action('amp_post_template_head','ampforwp_pagebuilder_header_html_output',11
 function ampforwp_pagebuilder_header_html_output(){
 	//To load css of modules which are in use
 	global $redux_builder_amp, $moduleTemplate, $post, $containerCommonSettings;
-
 	$postId = (is_object($post)? $post->ID: '');
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
 	if( ampforwp_is_front_page() ){
 		$postId = ampforwp_get_frontpage_id();
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
@@ -72,7 +73,8 @@ function amp_pagebuilder_script_loader($scriptData){
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$previousData = (str_replace("'", "", $previousData));
 		$previousData = json_decode($previousData,true);
@@ -139,7 +141,8 @@ function amp_pagebuilder_content_styles(){
 	}
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 
 	$completeCssOfPB .= '.amp_pb{display: inline-block;width: 100%;}
@@ -563,7 +566,8 @@ function amppb_post_content($content){
 	$previousData = get_post_meta($postId,'amp-page-builder');
 	$layoutNameClass = get_post_meta($postId,'amp-page-builder-layout-name',true);
 	$previousData = isset($previousData[0])? $previousData[0]: null;
-	$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	$ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 
 

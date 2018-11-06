@@ -11,13 +11,16 @@ add_action('wp_ajax_amppb_textEditor', function(){
 
 add_action("wp_ajax_enable_amp_pagebuilder", "enable_amp_pagebuilder");
 function enable_amp_pagebuilder(){
+	$ampforwp_metas = array();
 	if(isset($_POST['postId'])){
 		$postId = $_POST['postId'];
 	}else{
 		echo json_encode(array('status'=>"500", 'Message'=>"post id not found"));
 	}
-	if(isset($postId) && get_post_meta($postId,'use_ampforwp_page_builder', true)!=='yes'){
-		update_post_meta($postId, 'use_ampforwp_page_builder','yes');
+	$ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+	if(isset($postId) && $ampforwp_metas['use_ampforwp_page_builder'] !== 'yes'){
+		update_post_meta($postId,'ampforwp-post-metas', json_encode($ampforwp_metas));
+		//update_post_meta($postId, 'use_ampforwp_page_builder','yes');
 		echo json_encode(array('status'=>200, 'Message'=>"Pagebuilder Started successfully"));
 	}else{
 		echo json_encode(array('status'=>200, 'Message'=>"Pagebuilder Started successfully"));

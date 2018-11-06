@@ -285,7 +285,10 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
         if ( ampforwp_is_blog() ) {
         	$post_id = ampforwp_get_blog_details('id');
         }
-        $ampforwp_amp_post_on_off_meta = get_post_meta( $post_id,'ampforwp-amp-on-off',true);
+
+        $amp_metas = json_decode(get_post_meta( $post_id,'ampforwp-post-metas',true), true );
+        $ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
+
         if ( ( is_singular() || ampforwp_is_blog() ) && $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
           //dont Echo anything
         } else {
@@ -780,8 +783,10 @@ add_action( 'add_meta_boxes', 'ampforwp_title_custom_meta' );
  */
 function ampforwp_title_callback( $post ) {
 	global $redux_builder_amp;
+	$ampforwp_stored_meta = array();
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID );
+    $ampforwp_stored_meta = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
+    $ampforwp_stored_meta['ampforwp-amp-on-off'] = array($ampforwp_stored_meta['ampforwp-amp-on-off']);
     $preview_query_args = array();
 	$preview_link = $list_of_posts = $skip_this_post = '';
 	$preview_query_args = array(AMPFORWP_AMP_QUERY_VAR => 1);
@@ -917,8 +922,9 @@ add_action( 'add_meta_boxes', 'ampforwp_mobile_redirection' );
  */
 function ampforwp_title_callback_redirection( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_title_nonce' );
-    $ampforwp_redirection_stored_meta = get_post_meta( $post->ID );
-
+    $ampforwp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
+    $ampforwp_post_metas['ampforwp-redirection-on-off'] = array($ampforwp_post_metas['ampforwp-redirection-on-off']);
+    $ampforwp_redirection_stored_meta = $ampforwp_post_metas;
     	// TODO: Move the data storage code, to Save meta Box area as it is not a good idea to update an option everytime, try adding this code inside ampforwp_title_meta_save()
     	// This code needs a rewrite.
 		if ( !isset($ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0]) || $ampforwp_redirection_stored_meta['ampforwp-redirection-on-off'][0] == 'disable') {
@@ -965,9 +971,11 @@ function ampforwp_title_callback_redirection( $post ) {
 function ampforwp_meta_redirection_status(){
 	global $post;
 	$ampforwp_redirection_post_on_off_meta = '';
+	$ampforwp_post_metas = array();
 
 	if ( ! is_404() && ampforwp_is_search_has_results() ) {
-		$ampforwp_redirection_post_on_off_meta = get_post_meta( $post->ID,'ampforwp-redirection-on-off',true);
+		$ampforwp_post_metas = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
+    	$ampforwp_redirection_post_on_off_meta = $ampforwp_post_metas['ampforwp-redirection-on-off'];
 	}
 
 	if ( empty( $ampforwp_redirection_post_on_off_meta ) ) {
@@ -988,7 +996,8 @@ function ampforwp_is_search_has_results() {
  */
 function ampforwp_title_meta_save( $post_id ) {
 	$ampforwp_amp_status = '';
-
+	$amp_post_metas = array();
+	$amp_post_metas = json_decode(get_post_meta( $post_id,'ampforwp-post-metas',true), true );
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
@@ -1003,16 +1012,19 @@ function ampforwp_title_meta_save( $post_id ) {
     // Checks for radio buttons and saves if needed
     if( isset( $_POST[ 'ampforwp-amp-on-off' ] ) ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-amp-on-off' ] );
-        update_post_meta( $post_id, 'ampforwp-amp-on-off', $ampforwp_amp_status );
+        $amp_post_metas['ampforwp-amp-on-off'] = $ampforwp_amp_status;
+        update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
     }
     if( isset( $_POST[ 'ampforwp-ia-on-off' ] ) ) {
         $ampforwp_amp_status = sanitize_text_field( $_POST[ 'ampforwp-ia-on-off' ] );
-        update_post_meta( $post_id, 'ampforwp-ia-on-off', $ampforwp_amp_status );
+        $amp_post_metas['ampforwp-ia-on-off'] = $ampforwp_amp_status;
+        update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
     }
 
      if( isset( $_POST[ 'ampforwp-redirection-on-off' ] ) ) {
         $ampforwp_redirection_status = sanitize_text_field( $_POST[ 'ampforwp-redirection-on-off' ] );
-        update_post_meta( $post_id, 'ampforwp-redirection-on-off', $ampforwp_redirection_status );
+        $amp_post_metas['ampforwp-redirection-on-off'] = $ampforwp_redirection_status;
+        update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
     }
 
 }
@@ -1021,7 +1033,8 @@ add_action( 'save_post', 'ampforwp_title_meta_save' );
 add_filter('amp_frontend_show_canonical','ampforwp_hide_amp_for_specific_pages');
 function ampforwp_hide_amp_for_specific_pages($input){
 		global $post;
-		$ampforwp_amp_status = get_post_meta($post->ID, 'ampforwp-amp-on-off', true);
+		$amp_metas = json_decode(get_post_meta($post->ID, 'ampforwp-post-metas', true), true);
+		$ampforwp_amp_status = $amp_metas['ampforwp-amp-on-off'];
 		if ( $ampforwp_amp_status == 'hide-amp' ) {
 			$input = false;
 		}
@@ -1124,7 +1137,8 @@ function ampforwp_remove_schema_data() {
  
 
 	// Thrive Content Builder
-	$amp_custom_content_enable = get_post_meta( get_the_ID() , 'ampforwp_custom_content_editor_checkbox', true);
+	$ampforwp_metas = json_decode(get_post_meta(get_the_ID(),'ampforwp-post-metas',true),true);
+	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
 	if ($amp_custom_content_enable == 'yes') {
 		remove_filter( 'the_content', 'tve_editor_content', 10 );
 	}
@@ -1684,7 +1698,8 @@ function ampforwp_frontpage_title_markup () {
 // 28. Properly removes AMP if turned off from Post panel
 add_filter( 'amp_skip_post', 'ampforwp_skip_amp_post', 10, 3 );
 function ampforwp_skip_amp_post( $skip, $post_id, $post ) {
-	$ampforwp_amp_post_on_off_meta = get_post_meta( $post->ID , 'ampforwp-amp-on-off' , true );
+	$amp_metas = json_decode(get_post_meta( $post->ID , 'ampforwp-post-metas' , true ),true);
+	$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
 	if( $ampforwp_amp_post_on_off_meta === 'hide-amp' ) {
 		$skip = true;
 	}
@@ -2725,9 +2740,11 @@ function amp_latest_products_styling() {
 }
 
 // 54. Change the default values of post meta for Posts, Pages and CPTs
-add_action('admin_head','ampforwp_change_default_amp_post_meta');
+add_action('admin_head','ampforwp_change_default_amp_post_meta',12);
 function ampforwp_change_default_amp_post_meta() {
 	global $redux_builder_amp;
+	$amp_post_metas = array();
+	$amp_post_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
 	$post_types = ampforwp_get_all_post_types();
 	if ( $post_types ) {
 		foreach ($post_types as $post_type ) {
@@ -2746,14 +2763,18 @@ function ampforwp_change_default_amp_post_meta() {
 				if( 'page' == $post_type ) {
 				    $pages = get_pages(array());
 				    foreach($pages as $page){
-				        update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
+						$amp_post_metas['ampforwp-amp-on-off'] = $meta_value_to_upate;
+						update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+				        //update_post_meta($page->ID,'ampforwp-amp-on-off', $meta_value_to_upate);
 				    }
 				}
 				// Get all the pages and update the post meta
 				else {
 					$posts = get_posts(array('post_type'=>$post_type));
 					foreach($posts as $post){
-					    update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
+						$amp_post_metas['ampforwp-amp-on-off'] = $meta_value_to_upate;
+						update_post_meta( $post_id, 'ampforwp-post-metas', json_encode($amp_post_metas) );
+					    //update_post_meta($post->ID,'ampforwp-amp-on-off', $post_meta_to_update);
 					}
 				}
 				// Update the option as the process has been done and update an option
@@ -5403,7 +5424,8 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_feed() ) {
 			return false;
 		}
-		$ampforwp_amp_post_on_off_meta = get_post_meta( get_the_ID(),'ampforwp-amp-on-off',true);
+		$amp_metas = json_decode(get_post_meta( get_the_ID(),'ampforwp-post-metas',true), true );
+		$ampforwp_amp_post_on_off_meta = $amp_metas['ampforwp-amp-on-off'];
 		if($ampforwp_amp_post_on_off_meta == 'hide-amp'){
 			return false;	
 		}
@@ -6052,8 +6074,10 @@ if ( ! function_exists('ampforwp_ia_meta_box') ) {
 // Callback function for Instant Articles Meta Box.
 function ampforwp_ia_meta_callback( $post ) {
 	global $redux_builder_amp;
+	$ampforwp_stored_meta = array();
     wp_nonce_field( basename( __FILE__ ), 'ampforwp_ia_nonce' );
-    $ampforwp_stored_meta = get_post_meta( $post->ID );
+    $ampforwp_stored_meta = json_decode(get_post_meta( $post->ID,'ampforwp-post-metas', true ), true);
+    $ampforwp_stored_meta['ampforwp-ia-on-off'] = array($ampforwp_stored_meta['ampforwp-ia-on-off']);
 	if ( ! isset($ampforwp_stored_meta['ampforwp-ia-on-off'][0]) || $ampforwp_stored_meta['ampforwp-ia-on-off'][0] == 'hide-ia') {
 		$exclude_post_value = get_option('ampforwp_ia_exclude_post');
 		if ( $exclude_post_value == null ) {
@@ -6722,8 +6746,9 @@ function checkAMPforPageBuilderStatus($postId){
 	if ( empty(  $postId ) ) {
     return false;
   }
-  
-  $ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
+  $ampforwp_metas = json_decode(get_post_meta($postId,'ampforwp-post-metas',true),true);
+  $ampforwp_pagebuilder_enable = $ampforwp_metas['ampforwp_page_builder_enable'];
+  //$ampforwp_pagebuilder_enable = get_post_meta($postId,'ampforwp_page_builder_enable', true);
   
 	if( $ampforwp_pagebuilder_enable=='yes'){
 		return true;
@@ -6797,4 +6822,58 @@ function ampforwp_rev_slider_embed($data) {
 		$data['AMP_Rev_Slider_Embed_Handler'] = array();
 	}
 	return $data;
+}
+
+// Post Metas
+add_action('save_post','ampforwp_post_metas', 10, 2);
+if ( ! function_exists('ampforwp_post_metas') ) {
+	function ampforwp_post_metas($post_id,$post){
+		$post_metas = array();
+		$post_metas = json_decode(get_post_meta($post_id,'ampforwp-post-metas',true),true);
+		// If metas array is empty, then add the previous metas in it
+		if( !isset($post_metas['ampforwp-amp-on-off'] ) || null == $post_metas['ampforwp-amp-on-off'] ) {
+			$post_metas['ampforwp-amp-on-off'] = get_post_meta($post_id,'ampforwp-amp-on-off',true);
+		}
+		if( !isset($post_metas['ampforwp-redirection-on-off'] ) || null == $post_metas['ampforwp-redirection-on-off'] ) {
+			$post_metas['ampforwp-redirection-on-off'] = get_post_meta($post_id,'ampforwp-redirection-on-off',true);
+		}
+		if( !isset($post_metas['ampforwp-ia-on-off'] ) || null == $post_metas['ampforwp-ia-on-off'] ) {
+			$post_metas['ampforwp-ia-on-off'] = get_post_meta($post_id,'ampforwp-ia-on-off',true);
+		}
+		if( !isset($post_metas['use_ampforwp_page_builder'] ) || null == $post_metas['use_ampforwp_page_builder'] ) {
+			$post_metas['use_ampforwp_page_builder'] = get_post_meta($post_id,'use_ampforwp_page_builder',true);
+		}
+		if( !isset($post_metas['ampforwp_page_builder_enable'] ) || null == $post_metas['ampforwp_page_builder_enable'] ) {
+			$post_metas['ampforwp_page_builder_enable'] = get_post_meta($post_id,'ampforwp_page_builder_enable',true);
+		}
+		if( !isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) || null == $post_metas['ampforwp_custom_content_editor_checkbox'] ) {
+			$post_metas['ampforwp_custom_content_editor_checkbox'] = get_post_meta($post_id,'ampforwp_custom_content_editor_checkbox',true);
+		}
+		if( !isset($post_metas['ampforwp_custom_content_editor'] ) || null == $post_metas['ampforwp_custom_content_editor'] ) {
+			$post_metas['ampforwp_custom_content_editor'] = get_post_meta($post_id,'ampforwp_custom_content_editor',true);
+		}
+		update_post_meta($post_id, 'ampforwp-post-metas', json_encode($post_metas));	
+		// Delete the previous metas
+		if( isset($post_metas['ampforwp-amp-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-amp-on-off');
+		}
+		if( isset($post_metas['ampforwp-redirection-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-redirection-on-off');
+		}
+		if( isset($post_metas['ampforwp-ia-on-off'] ) ) {
+			delete_post_meta($post_id,'ampforwp-ia-on-off');
+		}
+		if( isset($post_metas['use_ampforwp_page_builder'] ) ) {
+			delete_post_meta($post_id,'use_ampforwp_page_builder');
+		}
+		if( isset($post_metas['ampforwp_page_builder_enable'] ) ) {
+			delete_post_meta($post_id,'ampforwp_page_builder_enable');
+		}
+		if( isset($post_metas['ampforwp_custom_content_editor_checkbox'] ) ) {
+			delete_post_meta($post_id,'ampforwp_custom_content_editor_checkbox');
+		}
+		if( isset($post_metas['ampforwp_custom_content_editor'] ) ) {
+			delete_post_meta($post_id,'ampforwp_custom_content_editor');
+		}
+	}
 }
