@@ -188,12 +188,12 @@ return array(
 				                            array(
 				                              'value'=>'1',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/blur-mod-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/tabs-1.png'
 				                            ),
 				                            array(
 				                              'value'=>'2',
 				                              'label'=>'',
-				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/blur-mod-1.png'
+				                              'demo_image'=> AMPFORWP_PLUGIN_DIR_URI.'/images/tabs-2.png'
 				                            ),
 				                          ),
 				            'content_type'=>'html',
