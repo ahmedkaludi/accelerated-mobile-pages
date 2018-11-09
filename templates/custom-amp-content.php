@@ -124,7 +124,7 @@ function amp_content_sidebar_callback( $post ) {
       <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'none' ); ?> value="none"><?php _e( 'None', 'accelerated-mobile-pages' ); ?></option>
       <option <?php if ( isset ( $amp_content_sidebar ) ) selected( $amp_content_sidebar, 'layout-builder' ); ?> value="layout-builder"><?php _e( 'Page Builder (AMP)', 'accelerated-mobile-pages' ); ?></option>
   </select>
-<p>Assign an AMP Page Builder Widget Area which will be used AMP page.<br /><a href="https://ampforwp.com/tutorials/page-builder">(Need Help?)</a></p>
+<p>Assign an AMP Page Builder Widget Area which will be used AMP page.<br /><a href="https://ampforwp.com/tutorials/article/install-setup-newspaper-theme-amp/">(Need Help?)</a></p>
 
   <?php 
 }
