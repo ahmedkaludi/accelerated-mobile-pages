@@ -6877,3 +6877,11 @@ if ( ! function_exists('ampforwp_post_metas') ) {
 		}
 	}
 }
+
+#1160 Embedly Sanitizer 
+add_filter( 'amp_content_sanitizers', 'ampforwp_embedly_sanitizer', 10, 1 );
+function ampforwp_embedly_sanitizer( $sanitizer_classes ) {
+  require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-embedly-sanitizer.php' );
+  $sanitizer_classes[ 'AMPforWP_Embedly_Sanitizer' ] = array(); 
+  return $sanitizer_classes;
+}
