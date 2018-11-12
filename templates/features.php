@@ -2914,7 +2914,7 @@ function ampforwp_comment_button_url(){
 
   		$button_url = $button_url. '#commentform';
   	}
-  return $button_url; 
+  return esc_url( apply_filters( 'ampforwp_url_controller', $button_url ) );
 }
 
 // 60. Remove Category Layout modification code added by TagDiv #842 and #796
@@ -3396,7 +3396,7 @@ function ampforwp_view_nonamp(){
 
 		$non_amp_url =  user_trailingslashit( $non_amp_url );
 		$non_amp_url =  add_query_arg('nonamp', '1', $non_amp_url );
-   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo  esc_url($non_amp_url); ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php  }
+   if ( $ampforwp_backto_nonamp ) { ?> <a class="view-non-amp" href="<?php echo  esc_url($non_amp_url); ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;apply_filters('ampforwp_modify_view_non_amp_link',$non_amp_url);?></a> <?php  }
  }
 
  //68. Facebook Instant Articles
