@@ -161,6 +161,17 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-popup/amp-popup.php')? 1 : 2),
                         ),
                         array(
+                            'name'=>'Page Builder For AMP',
+                            'desc'=>'Page Builder Functionality for AMP in WordPress. Most easiest and the best way to include Page Builder in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
+                            'price'=>'Free',
+                            'url_link'=>'http://ampforwp.com/page-builder-compatibility-for-amp/#utm_source=options-panel&utm_medium=extension-tab_pagebuilder-for-amp&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'pagebuilder-for-amp/pagebuilder-for-amp.php',
+                            'item_name'=>'Page Builder for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('pagebuilder-for-amp/pagebuilder-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Call To Action (CTA)',
                             'desc'=>'Higher Visibility & More Conversions',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/mac-click.png',
