@@ -181,8 +181,48 @@ function ampforwp_analytics_options($opt_name){
                             'tooltip-subtitle'  => 'Eg: UA-XXXXXX-Y',
                   // 'validate' => 'not_empty',
                               'required' => array(
-                              array('amp-use-gtm-option', '=' , '1')),
+                              array('amp-use-gtm-option', '=' , '1'),
+                              array('ampforwp-gtm-field-advance-switch', '=' , '0')),
                         ),
+                        array(
+                          'class' => 'child_opt',
+                          'id'       => 'ampforwp-gtm-field-advance-switch',
+                          'type'     => 'switch',
+                          'title'    => __( 'Advanced Google Analytics', 'accelerated-mobile-pages' ),
+                          'required' => array(
+                              array('amp-use-gtm-option', '=' , '1'),
+                        ),
+                          'default'  => 0,
+                      ),
+                        array(
+                          'class' => 'child_opt',
+                        'id'       => 'ampforwp-gtm-field-advance',
+                        'type'     => 'ace_editor',
+                        'title'    => __('Analytics Code in JSON Format', 'accelerated-mobile-pages'),
+                        'tooltip-subtitle'    => __('Tutorial: <a href="https://ampforwp.com/tutorials/article/add-advanced-google-analytics-amp/" target="_blank">How To Add Advanced Google Analytics in AMP?</a>', 'accelerated-mobile-pages'),
+                        'required' => array(
+                            array('amp-use-gtm-option', '=' , '1'),
+                            array('ampforwp-gtm-field-advance-switch', '=' , '1')
+                        ),
+                        'mode'     => 'javascript',
+                        'theme'    => 'monokai',
+                        'desc'     => '',
+                        'default'  => __('{
+    "vars": {
+        "account": "UA-xxxxxxx-x"  /*Replace this with your Tracking ID*/
+    },
+    "triggers": {
+        "trackPageview": {
+            "on": "visible",
+            "request": "pageview"
+        }
+    /** 
+     * Enter your Advanced Analytics code here
+    */
+
+    }
+}','accelerated-mobile-pages')
+                    ),
                         array(
                           'class' => 'child_opt',
                           'id'       => 'ampforwp-gtm-field-anonymizeIP',
