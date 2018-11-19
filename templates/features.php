@@ -665,7 +665,7 @@ function ampforwp_new_dir( $dir ) {
 		if($redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0) ) { ?>
 			<!-- Thanks to @nicholasgriffintn for Cookie Notification Code-->
 			<amp-user-notification layout=nodisplay id="amp-user-notification1">
-			   <p><?php echo esc_attr($redux_builder_amp['amp-notification-text']); ?> </p>
+			   <p><?php $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>'; echo strip_tags($redux_builder_amp['amp-notification-text'],$allowed_tags); ?> </p>
 			   <button on="tap:amp-user-notification1.dismiss"><?php echo esc_attr($redux_builder_amp['amp-accept-button-text']); ?></button>
 			</amp-user-notification><?php 
 		}
