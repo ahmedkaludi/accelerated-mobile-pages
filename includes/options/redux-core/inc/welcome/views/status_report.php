@@ -343,7 +343,7 @@ namespace ReduxCore\ReduxFramework;
                 $posting['wp_remote_post']['note'] = esc_html__( 'wp_remote_post() failed. Many advanced features may not function. Contact your hosting provider.', 'redux-framework' );
 
                 if ( $sysinfo['wp_remote_post_error'] ) {
-                    $posting['wp_remote_post']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), redux_clean( $sysinfo['wp_remote_post_error'] ) );
+                    $posting['wp_remote_post']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), ampforwp_redux_clean( $sysinfo['wp_remote_post_error'] ) );
                 }
 
                 $posting['wp_remote_post']['success'] = false;
@@ -357,7 +357,7 @@ namespace ReduxCore\ReduxFramework;
             } else {
                 $posting['wp_remote_get']['note'] = esc_html__( 'wp_remote_get() failed. This is needed to get information from remote servers. Contact your hosting provider.', 'redux-framework' );
                 if ( $sysinfo['wp_remote_get_error'] ) {
-                    $posting['wp_remote_get']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), redux_clean( $sysinfo['wp_remote_get_error'] ) );
+                    $posting['wp_remote_get']['note'] .= ' ' . sprintf( __( 'Error: %s', 'redux-framework' ), ampforwp_redux_clean( $sysinfo['wp_remote_get_error'] ) );
                 }
 
                 $posting['wp_remote_get']['success'] = false;
