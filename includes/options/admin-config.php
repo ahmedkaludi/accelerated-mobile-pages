@@ -6673,16 +6673,12 @@ if(!ampforwp_check_extensions()){
            ),
         )        
 ) );
-// System info
-    ob_start();
-    require_once AMPFORWP_PLUGIN_DIR.'includes/options/redux-core/inc/welcome/views/status_report.php';
-    $sys = ob_get_contents();
-    ob_get_clean();
+
 Redux::setSection( $opt_name, array(
         'title'      => __( 'System Info', 'accelerated-mobile-pages' ),
         'id'         => 'opt-system-info',
         'subsection' => false,
-        'desc' => $sys,          
+        'desc' => ampforwp_system_info(),          
         'icon' => 'el el-info-circle',
     ) );
 

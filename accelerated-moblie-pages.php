@@ -835,3 +835,24 @@ function ampforwp_get_all_post_types(){
 
     return $post_types;
 }
+
+// System info
+function ampforwp_system_info($mode=''){
+    ob_start();
+    require AMPFORWP_PLUGIN_DIR.'includes/options/redux-core/inc/welcome/views/status_report.php';
+    $sys = ob_get_contents();
+    ob_get_clean();
+    if ( 'json' == $mode ) {	
+	    $sys = preg_replace("/<script type=\"text\/javascript\">(.*?)<\/script>/si","",$sys);
+	    $sys = preg_replace("/(\s\s)*|\n+/","",$sys);
+	    $sys = str_replace(array("'",'"'), array("\'", '\"'), nl2br($sys));
+	    return strip_tags($sys);
+    }
+    return $sys;
+}
+
+if( ! function_exists('ampforwp_redux_clean') ) {
+    function ampforwp_redux_clean( $var ) {
+        return sanitize_text_field( $var );
+    }
+}

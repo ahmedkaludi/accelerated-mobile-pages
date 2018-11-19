@@ -9,18 +9,6 @@ namespace ReduxCore\ReduxFramework;
     }
 
     global $wpdb;
-    if( ! function_exists('redux_get_support_object') ) {
-        function redux_get_support_object() {
-            $obj = array();
-
-        }
-    }
-
-    if( ! function_exists('redux_clean') ) {
-        function redux_clean( $var ) {
-            return sanitize_text_field( $var );
-        }
-    }
 
     $sysinfo = Redux_Helpers::compileSystemStatus( false, true );
 
