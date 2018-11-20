@@ -122,8 +122,9 @@ if ( isset($args['show_time']) ) {
          echo '</span>';
         }
         if ( $author_description ) {
-        	echo "<p>".$post_author->description."</p>";
-        } ?>
+            $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
+            echo "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
+        }?>
         </div>
     </div>
 <?php 
