@@ -85,8 +85,8 @@ function amppb_save_layout_data(){
 		echo json_encode(array("status"=>300,"message"=>'User not have authority'));
         die;
 	}
-	$layoutname = $_POST['layoutname'];
-	$layoutdata = $_POST['layoutdata'];
+	$layoutname = sanitize_text_field($_POST['layoutname']);
+	$layoutdata = sanitize_text_field($_POST['layoutdata']);
 	$postarr = array(
 				'post_title'   =>$layoutname,
 				'post_content' =>$layoutdata,
