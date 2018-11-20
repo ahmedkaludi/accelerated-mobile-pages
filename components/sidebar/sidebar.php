@@ -64,7 +64,7 @@ function ampforwp_sideber_begin($data=array()){
 	}else{
 		$attribute = "id='sidebar' layout='nodisplay' side='right'";
 	}
-	return '<amp-sidebar '. esc_attr($attribute) .'>';
+	return '<amp-sidebar '. $attribute .'>';
 }
 
 function ampforwp_sideber_end(){
