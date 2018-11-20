@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 0.9.97.21 (21st November 2018) =
+* Fixed: Sanitation of user contents before save #2679
+* Fixed: Menu is Not working in Minimal Blogging theme (0.9.97.20) #2667
+* Fixed: Author bio not showing proper link #2674
+* Fixed: HTML not being rendered on cookie consent notifications #2671
+* Fixed: Telephone link not working
+
 = 0.9.97.20 (29th October 2018) =
 * Fixed: Plugin Vulnerability #2650
 

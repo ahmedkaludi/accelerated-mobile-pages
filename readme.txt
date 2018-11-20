@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.20
+Stable tag: 0.9.97.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,7 +184,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.20 (29th October 2018) =
-* Fixed: Plugin Vulnerability #2650
+= 0.9.97.21 (21st November 2018) =
+* Fixed: Sanitation of user contents before save #2679
+* Fixed: Menu is Not working in Minimal Blogging theme (0.9.97.20) #2667
+* Fixed: Author bio not showing proper link #2674
+* Fixed: HTML not being rendered on cookie consent notifications #2671
+* Fixed: Telephone link not working
 
 Full changelog available in changelog.txt
