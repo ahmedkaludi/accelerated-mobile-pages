@@ -154,7 +154,7 @@ $extension_listing_array = array(
                             'desc'=>'Pop-Up Functionality for AMP in WordPress. Most easiest and the best way to include Pop-Up in AMP.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
                             'price'=>'$39',
-                            'url_link'=>'#',
+                            'url_link'=>'https://ampforwp.com/amp-popup/',
                             'plugin_active_path'=> 'amp-popup/amp-popup.php',
                             'item_name'=>'AMP Popup',
                             'store_url'=>'https://accounts.ampforwp.com',
@@ -206,6 +206,17 @@ $extension_listing_array = array(
                             'item_name'=>'EDD for AMP',
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('edd-for-amp/edd-for-amp.php')? 1 : 2),
+                        ),
+                        array(
+                            'name'=>'Facebook Chat For AMP',
+                            'desc'=>'Facebook Chat for AMP in WordPress. Most easiest and the best way to include Facebook Chat in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/comments.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/facebook-chat-for-amp/',
+                            'plugin_active_path'=> 'facebook-chat-for-amp/facebook-chat-for-amp.php',
+                            'item_name'=>'Facebook Chat For AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('facebook-chat-for-amp/facebook-chat-for-amp.php')? 1 : 2),
                         ),
 
                         array(
