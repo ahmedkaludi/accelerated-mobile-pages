@@ -499,7 +499,7 @@ $freepro_listing = '
         <span class="ov"></span>
     </div>
     <div class="fp-cnt">
-            <h1>Upgrade to Pro</h1>
+            <h1>Upgrade to Pro <span>@ 50% off</span></h1>
             <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
             <a class="buy" href="#upgrade">BUY NOW</a>
     </div>
@@ -666,9 +666,10 @@ $freepro_listing = '
             </div>
             <div class="pri-lst">
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2018&download_id=24570&edd_options[price_id]=1&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
                         <h5>PERSONAL</h5>
-                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="amt strikethrough"><sup>$</sup>149</span>
+                        <span class="amt"><sup>$</sup>74.5</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">1 Site License</span>
                         <span class="e">E-mail support</span>
@@ -678,9 +679,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb rec">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2018&discount=BFCM2018&download_id=24570&edd_options[price_id]=2&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
                         <h5>MULTIPLE</h5>
-                        <span class="amt"><sup>$</sup>199</span>
+                        <span class="amt strikethrough"><sup>$</sup>199</span>
+                        <span class="amt"><sup>$</sup>99.5</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">3 Site License</span>
                         <span class="e">E-mail support</span>
@@ -691,9 +693,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&discount=BFCM2018&edd_options[price_id]=3&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
                         <h5>WEBMASTER</h5>
-                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="amt strikethrough"><sup>$</sup>249</span>
+                        <span class="amt"><sup>$</sup>124.5</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">10 Site License</span>
                         <span class="e">E-mail support</span>
@@ -703,9 +706,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&discount=BFCM2018&download_id=24570&edd_options[price_id]=4&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
                         <h5>FREELANCER</h5>
-                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="amt strikethrough"><sup>$</sup>299</span>
+                        <span class="amt"><sup>$</sup>149.5</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">25 Site License</span>
                         <span class="e">E-mail support</span>
@@ -715,9 +719,10 @@ $freepro_listing = '
                     </a>
                 </div>
                 <div class="pri-tb">
-                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&discount=BFCM2018&edd_options[price_id]=5&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
                         <h5>AGENCY</h5>
-                        <span class="amt"><sup>$</sup>499</span>
+                        <span class="amt strikethrough"><sup>$</sup>499</span>
+                        <span class="amt"><sup>$</sup>249.5</span>
                         <span class="bil">Billed Annually</span>
                         <span class="s">Unlimited</span>
                         <span class="e">E-mail support</span>
@@ -7277,7 +7282,7 @@ if(!ampforwp_check_extensions()){
         'id'         => 'opt-choose',
         'subsection' => false,
        'desc' => $freepro_listing,
-        'icon' => 'el el-heart',
+        'icon' => 'el el-gift',
     ) );
 }
 
