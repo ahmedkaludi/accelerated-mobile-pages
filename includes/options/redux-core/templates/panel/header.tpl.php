@@ -66,8 +66,9 @@
             <?php if ( ! empty( $this->parent->args['display_version'] ) ) { ?>
                 <span><?php echo wp_kses_post( $this->parent->args['display_version'] ); ?></span>
             <?php } ?>
-
         </div>
+        <!-- Black Friday/Cyber Monday Banner -->
+        <a href="https://ampforwp.com/festive-season/#utm_source=options-panel&utm_medium=banner&utm_campaign=BFCM2018" target="__blank"><img src="<?php echo AMPFORWP_IMAGE_DIR . '/banner.png'?>" layout="responsive" style="width: 100%;height: auto"></a>
     <?php } ?>
 
     <div class="clear"></div>
