@@ -6677,7 +6677,19 @@ if(!ampforwp_check_extensions()){
            ),
         )        
 ) );
-
+// System info
+function ampforwp_system_info(){
+    ob_start();
+    require AMPFORWP_PLUGIN_DIR.'includes/options/redux-core/inc/welcome/views/status_report.php';
+    $sys = ob_get_contents();
+    ob_get_clean();
+    return $sys;
+}
+if( ! function_exists('ampforwp_redux_clean') ) {
+    function ampforwp_redux_clean( $var ) {
+        return sanitize_text_field( $var );
+    }
+}
 Redux::setSection( $opt_name, array(
         'title'      => __( 'System Info', 'accelerated-mobile-pages' ),
         'id'         => 'opt-system-info',
