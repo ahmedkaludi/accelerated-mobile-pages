@@ -4292,7 +4292,7 @@ Redux::setSection( $opt_name, array(
                           array('amp-design-3-featured-slider', '=' , '1'),
                           array('amp-design-3-featured-content', '=' , '2'),
                         ),
-                        'multi'     => true,
+                        //'multi'     => true,
                         'ajax'      => true,
                         'data-action' => 'tags', 
                         'data'      => 'tags',
