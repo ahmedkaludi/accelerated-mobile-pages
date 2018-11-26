@@ -4286,12 +4286,16 @@ Redux::setSection( $opt_name, array(
                         'type'     => 'select',
                         'class'    => 'child_opt',
                         'title'    => __( 'Featured Slider from Tags', 'accelerated-mobile-pages' ),
-                        'options'  => $tags_array,
+                        //'options'  => $tags_array,
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
                           array('amp-design-3-featured-slider', '=' , '1'),
                           array('amp-design-3-featured-content', '=' , '2'),
                         ),
+                        'multi'     => true,
+                        'ajax'      => true,
+                        'data-action' => 'tags', 
+                        'data'      => 'tags',
                 ),
                  array(
                         'id'        =>'ampforwp-featur-slider-num-posts',
