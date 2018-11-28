@@ -6826,3 +6826,11 @@ add_action('pre_amp_render_post','ampforwp_goodlife_css');
 function ampforwp_goodlife_css(){
 	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
 }
+//Remove anchor link from images when lightbox is enabled #2695
+if(true == ampforwp_get_setting('ampforwp-amp-img-lightbox')){
+add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox' );
+}
+function ampforwp_remove_ahref_lightbox( $content ) {
+	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
+	return $updated_content;
+} 
