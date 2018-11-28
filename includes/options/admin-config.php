@@ -4220,25 +4220,6 @@ Redux::setSection( $opt_name, array(
     }
     //End of code for fetching categories to show as a list in redux settings
 
-    // code for fetching tags to show as a list in the redux settings
-    $tags_array = '';
-    $tags_array = array();
-    if(get_tags()){
-        $tags = get_tags( array(
-                                'orderby' => 'name',
-                                'order'   => 'ASC',
-                                'number'  => 500
-                                ) );/*print_r($tags);die;*/
-        if( $tags ) :
-            foreach( $tags as $tag ){
-                $tag_id = $tag->term_id;
-                $key = "".$tag_id;
-                // building associative array of ID-tag_name
-                $tags_array[ $key ] = $tag->name;
-            }
-        endif;
-    }
-    // End of code for fetching tags to show as a list in redux settings
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
     $ampforwp_home_loop['post'] = 'Posts';
