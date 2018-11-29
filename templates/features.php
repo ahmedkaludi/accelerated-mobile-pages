@@ -5374,7 +5374,6 @@ function ampforwp_is_non_amp( $type="" ) {
 	if (""===$type  && isset( $redux_builder_amp['ampforwp-amp-takeover']) && true == $redux_builder_amp['ampforwp-amp-takeover'] ) {
 		$non_amp = true;
 
-		
 		// Check for Posts
 		if ( is_single() && false == $redux_builder_amp['amp-on-off-for-all-posts'] ) {
 			return false;
@@ -5391,12 +5390,16 @@ function ampforwp_is_non_amp( $type="" ) {
 		if ( is_home() && false == $redux_builder_amp['ampforwp-homepage-on-off-support'] ) {
 			return false;
 		}
+		// Search #2681
+		if ( is_search() && ( (4 == ampforwp_get_setting('amp-design-selector') && false == ampforwp_get_setting('amp-swift-search-feature') )  ) ){
+			return false;
+		}
 		// Enabling AMP Takeover only when selected in Custom Post Type
 		$supported_types_for_takeover = array();
 	    $supported_types_for_takeover = ampforwp_get_all_post_types();
 	    if( $supported_types_for_takeover ){
 	            $current_type = get_post_type(get_the_ID());
-	            if(!in_array($current_type, $supported_types_for_takeover) && !is_404()){ 
+	            if(!in_array($current_type, $supported_types_for_takeover) && !is_404() && !is_search() ){ 
 	              return ;
 	            }
 	    }
@@ -6833,4 +6836,4 @@ add_filter( 'the_content', 'ampforwp_remove_ahref_lightbox' );
 function ampforwp_remove_ahref_lightbox( $content ) {
 	$updated_content = preg_replace("/<a[^>]+\>(<img[^>]+\>)<\/a>/i", '$1', $content);
 	return $updated_content;
-} 
+}
