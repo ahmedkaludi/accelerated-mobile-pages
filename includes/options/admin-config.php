@@ -1091,23 +1091,16 @@ $tabs = array(
     }
 
     Redux::setSection( $opt_name, array(
-        'title'  => __( 'Basic Field', 'accelerated-mobile-pages' ),
-        'id'     => 'basic',
-        'desc'   => __( 'Basic field with no subsections.', 'accelerated-mobile-pages' ),
-        'icon'   => 'el el-home',
+        'title' => __( 'Settings', 'accelerated-mobile-pages' ),
+        'id'    => 'basic',
         'fields' => array(
             array(
                 'id'       => 'opt-blank',
-                'title'    => __( 'Example Text', 'accelerated-mobile-pages' ),
-                'desc'     => __( 'Example description.', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => __( 'Example subtitle.', 'accelerated-mobile-pages' ),
+                'type'     => 'raw',
+                'title'    => __( '', 'accelerated-mobile-pages' ),
+                'desc'     => __( '', 'accelerated-mobile-pages' ),
             )
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title' => __( 'Settings', 'accelerated-mobile-pages' ),
-        'id'    => 'basic',
+        ),
         'desc'  => __( '<div class="amp-faq">Thank you for using Accelerated Mobile Pages plugin. '. ' ' .
 
                       sprintf( __( '  <h2 style="width: 150px;float: right;
