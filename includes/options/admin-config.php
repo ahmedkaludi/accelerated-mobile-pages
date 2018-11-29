@@ -1095,6 +1095,7 @@ $tabs = array(
         'id'     => 'basic',
         'desc'   => __( 'Basic field with no subsections.', 'accelerated-mobile-pages' ),
         'icon'   => 'el el-home',
+        'type'   => 'argument',
         'fields' => array(
             array(
                 'id'       => 'opt-blank',
