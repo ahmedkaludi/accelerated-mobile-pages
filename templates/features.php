@@ -617,7 +617,8 @@ function ampforwp_new_dir( $dir ) {
 				 $content = preg_replace('#<badge.*?>(.*?)</badge>#i', '', $content);
 				 $content = preg_replace('#<plusone.*?>(.*?)</plusone>#i', '', $content);
 				 $content = preg_replace('#<col.*?>#i', '', $content);
-				 $content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);
+				 //Removed because class is being removed from table #2699
+				 /*$content = preg_replace('#<table.*?>#i', '<table width="100%">', $content);*/
 				 /* Removed So Inline style can work
 				 $content = preg_replace('#<style scoped.*?>(.*?)</style>#i', '', $content); */
 				 $content = preg_replace('/href="javascript:void*/', ' ', $content);
