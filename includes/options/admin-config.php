@@ -6673,7 +6673,7 @@ if(!ampforwp_check_extensions()){
 // System info
 function ampforwp_system_info(){
     ob_start();
-    require AMPFORWP_PLUGIN_DIR.'includes/options/redux-core/inc/welcome/views/status_report.php';
+    require_once AMPFORWP_PLUGIN_DIR.'includes/options/redux-core/inc/welcome/views/status_report.php';
     $sys = ob_get_contents();
     ob_get_clean();
     return $sys;
