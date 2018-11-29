@@ -49,27 +49,24 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												),
 											array(
 												"img",
-												"<style>",
+												"<style type=\"text/css\">",
 												"<sidebar ",
 												"</sidebar>",
 												)
 											, $ampData);
-				/*$returnData = preg_replace("/<style>(.*?)<\/style>/i", function($match){
-					
-										$match[0] .= '.cntr img{width:100%;height:auto;}';
-																	return $match[0];
-																}, $returnData);*/
+
 				$nonampCss = '
 				.cntr img{width:auto;height:auto !important;}
 				img{height:auto;}
 				.amp-featured-image img{width:100%;height:auto;}
 				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-				.image-mod img{width:100%}
-				
+				.image-mod img{width:100%;}
 				';
-				$re = '/<style type="text\/css">(.*?)<\/style>/';
+				$re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
 				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
 				$returnData = preg_replace($re, $subst, $returnData);
+
+
 				$returnData = preg_replace(
                 '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
                  '<iframe src="https://www.youtube.com/embed/$1" style="width:100%;height:360px;" ></iframe>', $returnData);
