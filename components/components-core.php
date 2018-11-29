@@ -493,7 +493,13 @@ if ( ampforwp_is_front_page() ) {
 }
 
 $thisTemplate = new AMP_Post_Template($post_id); ?>
-    <?php do_action('ampforwp_before_post_content',$thisTemplate);
+    <?php 
+    if ( 1 == $redux_builder_amp['amp-design-selector']  ) {
+		do_action('ampforwp_inside_post_content_before',$thisTemplate); 
+	}
+	else{
+		do_action('ampforwp_before_post_content',$thisTemplate);
+	} 
     $ampforwp_metas = json_decode(get_post_meta($thisTemplate->get( 'post_id' ),'ampforwp-post-metas',true),true); 
 	$amp_custom_content_enable = $ampforwp_metas['ampforwp_custom_content_editor_checkbox'];
 	// Normal Content
