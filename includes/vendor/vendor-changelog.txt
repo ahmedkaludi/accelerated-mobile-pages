@@ -54,3 +54,4 @@ Reason: To extend the functionality of sidebars and Pagebuilder
 27. Class AMP_DOM_Utils updated #2445
 28. Class AMP_Gallery_Embed_Handler updated #1968
 29. Converted the space into %20 on anchor links which have spaces on line number 166 and here is the github ticket #2465
+30. FTP protocol has been whitelisted in anchor tags #2477
