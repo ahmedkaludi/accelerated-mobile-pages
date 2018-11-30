@@ -163,7 +163,9 @@ if ( !class_exists ( 'ReduxFramework_checkbox_hierarchy' ) ) {
                         '[' => '_',
                         ']' => ''
                     ) ) . '_' . array_search ( $category->term_id, array_keys ( $this->field[ 'options' ] ) ) . '">';
+                    if($this->field[ 'name' ]){
                     echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . $this->field[ 'name' ] . '[' . $category->term_id . ']' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ $category->term_id ] . '" ' . '/>';
+                    }
                     echo '<input type="checkbox" class="checkbox ' . $this->field[ 'class' ] . '" id="' . strtr ( $this->parent->args[ 'opt_name' ] . '[' . $this->field[ 'id' ] . '][' . $category->term_id . ']', array(
                         '[' => '_',
                         ']' => ''
