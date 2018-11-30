@@ -65,6 +65,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('amp-cf7/amp-cf7.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-cf7-subsection}',
+                        ), 
+                        array(
+                            'name'=>'Caldera Forms for AMP',
+                            'desc'=>'Add Caldera Form in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cf.png',
+                            'price'=>'$',
+                            'url_link'=>'http://ampforwp.com/caldera-form-for-amp',
+                            'plugin_active_path'=> 'caldera-form-for-amp/caldera-form-for-amp.php',
+                            'item_name'=>'Caldera Forms for AMP',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('caldera-form-for-amp/caldera-form-for-amp.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Gravity Forms',
