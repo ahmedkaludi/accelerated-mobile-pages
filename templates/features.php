@@ -7432,3 +7432,11 @@ add_action('wp','ampforwp_remove_marfeel',9);
 function ampforwp_remove_marfeel(){
 remove_action('wp', 'render_marfeel_amp_content' );
 }
+// Total Plus compatibility #2511
+add_action('current_screen', 'ampforwp_totalplus_comp_admin');
+function ampforwp_totalplus_comp_admin() {
+	$screen = get_current_screen();
+	if ( 'toplevel_page_amp_options' == $screen->base ) {
+		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100);
+	}
+}
