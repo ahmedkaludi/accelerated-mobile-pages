@@ -1072,23 +1072,16 @@ Redux::setArgs( "redux_builder_amp", $args );
      */
 
     Redux::setSection( $opt_name, array(
-        'title'  => esc_html__( 'Basic Field', 'accelerated-mobile-pages' ),
-        'id'     => 'basic',
-        'desc'   => esc_html__( 'Basic field with no subsections.', 'accelerated-mobile-pages' ),
-        'icon'   => 'el el-home',
+        'title' => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
+        'id'    => 'basic',
         'fields' => array(
             array(
                 'id'       => 'opt-blank',
-                'title'    => esc_html__( 'Example Text', 'accelerated-mobile-pages' ),
-                'desc'     => esc_html__( 'Example description.', 'accelerated-mobile-pages' ),
-                'tooltip-subtitle' => esc_html__( 'Example subtitle.', 'accelerated-mobile-pages' ),
+                'type'     => 'raw',
+                'title'    => '',
+                'desc'     => '',
             )
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title' => esc_html__( 'Settings', 'accelerated-mobile-pages' ),
-        'id'    => 'basic',
+        ),
         'desc'  =>  '<div class="amp-faq">'.esc_html__('Thank you for using Accelerated Mobile Pages plugin.', 'accelerated-mobile-pages'). ' ' .
           '  <h2 style="width: 150px;float: right;
     padding: 8px 11px;background: #4CAF50;
