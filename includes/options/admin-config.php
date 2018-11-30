@@ -405,7 +405,6 @@ foreach ($extension_listing_array as $key => $extension) {
 
             $settingPageUrl = '<div class="extension-menu-call"><a href="'.$extension['settingUrl'].'" class="amp_extension_settings"><i class="dashicons-before dashicons-admin-generic"></i> Settings</a></div>';
         }
-
         $amplicense = '';
         $onclickUrl = $amp_license_response = $allResponseData = $onclickUrlclose= '';
         $allResponseData = array('success'=>'',
@@ -456,8 +455,7 @@ foreach ($extension_listing_array as $key => $extension) {
         $pluginReview .= $verify. "<br/>".$amp_license_response;
         if(isset($selectedOption['amp-license'][$pathExploded]['message']) && $selectedOption['amp-license'][$pathExploded]['message']!=""){
             $pluginReview .= "<div class='afw-license-response-message'>".$selectedOption['amp-license'][$pathExploded]['message']."</div>";
-        }
-        
+        }      
     }
     $secondPageClickClass = '';
     if($extension['is_activated']==1 && strpos($ampforwp_extension_list_html, "Your Installed Extensions")===false){
@@ -479,15 +477,11 @@ foreach ($extension_listing_array as $key => $extension) {
 
 $extension_listing = '
 <div class="extension_listing">
-<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
-
-   
+<p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p> 
 '.$ampforwp_extension_list_html.'
-
 </ul>
 </div>
 ';
-
 // #2267
 function ampforwp_check_extensions(){
 	global $all_extensions_data;
@@ -498,8 +492,7 @@ function ampforwp_check_extensions(){
 				return true;
 			}
 		}
-	}
-	
+	}	
 	return false;
 }
 
@@ -802,8 +795,6 @@ $freepro_listing = '
         </div><!-- /.faq -->
     </div><!-- /. pvf -->
 </div><!-- /. fp-wr -->';
-
-
 $gettingstarted_extension_listing = '
 <div class="extension_listing getting_started_listing">
 <p style="font-size:13px">Take your AMP to the next level with these premium extensions which gives you advanced features.</p>
@@ -1050,12 +1041,7 @@ $args = array(
 
 );
 
-
 Redux::setArgs( "redux_builder_amp", $args );
-
-
-
-
     $tabs = array(
         array(
             'id'      => 'redux-help-tab-1',
@@ -2003,12 +1989,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'required'  => array('amp-inspection-tool', '=' , '0'),
                'switch-text' => true,
            ),
-
-
        )
-
   )
-
   );
 
   // Performance SECTION
@@ -2069,11 +2051,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'     => esc_html__('Improve the Page Speed and Loading time with Minification option', 'accelerated-mobile-pages'),
                'default'  => 0
            ),
-
        )
-
   )
-
   );
 
   function ampforwp_get_default_analytics($param=""){
@@ -2739,7 +2718,6 @@ function ampforwp_add_sd_fields($fields){
         'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array()
         ),
     ) );
-
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
@@ -4325,18 +4303,14 @@ Redux::setSection( $opt_name, array(
                                 <div class="amp_layouts_container">
                                     '.$upcomingLayoutsDesign.'
                                 </div>
-                            </div>',
-                
-                
+                            </div>',               
             ),
             array(
                 'id'   => 'info_theme_framework',
                 'type' => 'info',
                 'style' => 'success',
                 'desc' => $amptfad
-            ),
-
-            
+            ),            
             )
         ) );
 /*---------------------*/
@@ -4503,7 +4477,6 @@ Redux::setSection( $opt_name, array(
                     array('amp-design-selector', '=' , '4')
                 )
             ),
-
            array(
                     'id'       => 'content-font-family-enable',
                     'type'     => 'switch',
@@ -5282,6 +5255,7 @@ Redux::setSection( $opt_name, array(
     //End of code for fetching categories to show as a list in redux settings
 
     // code for fetching tags to show as a list in the redux settings
+    $tags_array = '';
     if(get_tags()){
         $tags = get_tags( array(
                                 'orderby' => 'name',
@@ -7165,7 +7139,6 @@ $single_page_options = array(
           ),
         )
     ) );
-
 
     // Date SECTION
    Redux::setSection( $opt_name, array(
