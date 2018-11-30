@@ -369,6 +369,7 @@ table {
     display: -webkit-box;
     overflow-x: auto;
 }
+p.nocomments {padding: 10px;color: #fff;}
 <?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
 .artl-cnt a{
 	text-decoration: underline;
