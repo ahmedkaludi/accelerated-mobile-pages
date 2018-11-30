@@ -7443,3 +7443,11 @@ function ampforwp_totalplus_comp_admin() {
 		remove_action('admin_enqueue_scripts', 'total_plus_admin_scripts', 100);
 	}
 }
+// uploading the images with SVG format #2431
+function ampforwp_upload_svg($file_types){
+$new_filetypes = array();
+$new_filetypes['svg'] = 'image/svg+xml';
+$file_types = array_merge($file_types, $new_filetypes );
+return $file_types;
+}
+add_action('upload_mimes', 'ampforwp_upload_svg');
