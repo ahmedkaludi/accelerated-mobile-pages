@@ -14,7 +14,6 @@ function ampforwp_framework_get_logo(){
         } else {
                  if($redux_builder_amp['ampforwp-homepage-on-off-support']) {
                     $ampforwp_home_url = ampforwp_url_controller( get_bloginfo('url') );
-                    //$ampforwp_home_url = user_trailingslashit( trailingslashit( get_bloginfo('url') ) . AMPFORWP_AMP_QUERY_VAR );
                  } else {
                         if( $redux_builder_amp['amp-mobile-redirection'] ) {
                           $ampforwp_home_url = trailingslashit( get_bloginfo('url') ).'?nonamp=1';
@@ -29,9 +28,9 @@ function ampforwp_framework_get_logo(){
           $alt = $logo_url = "";
           $alt      = ampforwp_default_logo('alt'); 
           $logo_url = __( $redux_builder_amp['opt-media']['url'], 'accelerated-mobile-pages' ); 
-          ?><a href="<?php echo esc_url( $ampforwp_home_url ); ?>" <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>><amp-img src="<?php echo esc_url( $logo_url );  ?>" width="<?php echo ampforwp_default_logo('width'); ?>" height="<?php echo ampforwp_default_logo('height'); ?>" alt="<?php echo esc_attr($alt); ?>" class="amp-logo" layout="responsive"></amp-img></a><?php } else { if(is_single()){ ?>
+          ?><a href="<?php echo esc_url( $ampforwp_home_url ); ?>" <?php if($set_rel_to_noamp){ echo esc_attr(' rel="nofollow"'); } ?>><amp-img src="<?php echo esc_url( $logo_url );  ?>" width="<?php echo esc_attr(ampforwp_default_logo('width')); ?>" height="<?php echo esc_attr(ampforwp_default_logo('height')); ?>" alt="<?php echo esc_attr($alt); ?>" class="amp-logo" layout="responsive"></amp-img></a><?php } else { if(is_single()){ ?>
           <h2> <?php } else{?><h1><?php }?>
-          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo ' rel="nofollow"'; } ?>  ><?php bloginfo('name'); ?></a><?php if(is_single()){?></h2><?php } else{?></h1><?php }
+          <a href="<?php echo esc_url( $ampforwp_home_url ); ?>"  <?php if($set_rel_to_noamp){ echo esc_attr(' rel="nofollow"'); } ?>  ><?php bloginfo('name'); ?></a><?php if(is_single()){?></h2><?php } else{?></h1><?php }
          } ?></div>
  <?php }
 
@@ -48,6 +47,6 @@ if( !function_exists( 'amp_framework_logo_styles' ) ){
   }
    $width .= 'px';
    ?>
-    .amp-logo amp-img{width:<?php echo $max_width; ?>}
+    .amp-logo amp-img{width:<?php echo esc_attr($max_width); ?>}
  <?php }
 }

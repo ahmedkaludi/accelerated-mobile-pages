@@ -22,7 +22,6 @@ $author_link = get_author_posts_url($post_author->ID);
 if ( function_exists('coauthors_posts_links') ) {
     $author_link = coauthors_posts_links($and_text,$and_text,null,null,false);
 }
-//var_dump($and);die;
 $author_image_wrapper = '';
 
 if ( isset($args['avatar']) ) {
@@ -69,20 +68,20 @@ if ( isset($args['show_time']) ) {
        $author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
     } ?>
         <div class="amp-author-image <?php echo $author_image_wrapper; ?>">
-            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+            <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?>src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo esc_attr($avatar_size); ?>" height="<?php echo esc_attr($avatar_size); ?>" layout="fixed"></amp-img> 
         </div>
         <?php } ?>
-        <?php echo '<div class="author-details '. $author_wrapper_class .'">';
+        <?php echo '<div class="author-details '. esc_attr($author_wrapper_class) .'">';
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
             if ( function_exists('coauthors_posts_links') ) {
-                echo '<span class="author-name">' .$author_prefix . $author_link . ' </span>';
+                echo '<span class="author-name">' .esc_attr($author_prefix) . esc_attr($author_link) . ' </span>';
             }
             else {
-                echo '<span class="author-name">' .$author_prefix . ' <a href="'. esc_url(ampforwp_url_controller($author_link)).'"> ' .esc_html( $author_name ).'</a></span>';
+                echo '<span class="author-name">' .esc_attr($author_prefix) . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $author_name ).'</a></span>';
             }
         }
         else
-            echo '<span class="author-name">' . $author_prefix . esc_html( $author_name ) . '</span>';
+            echo '<span class="author-name">' . esc_attr($author_prefix) . esc_html( $author_name ) . '</span>';
 
         //to show date and time
         if ( $show_date || $show_time ) {
@@ -96,7 +95,8 @@ if ( isset($args['show_time']) ) {
          echo '</span>';
         }
         if ( $author_description ) {
-        	echo "<p>".$post_author->description."</p>";
+            $allowed_tags = '<p><a><b><strong><i><u><ul><ol><li><h1><h2><h3><h4><h5><h6><table><tr><th><td><em><span>';
+        	echo "<p>".strip_tags($post_author->description,$allowed_tags)."</p>";
         } ?>
         </div>
     </div>

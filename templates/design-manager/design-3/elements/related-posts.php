@@ -81,7 +81,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 			<div class="amp-wp-content relatedpost">
 			    <div class="related_posts">
 					<ol class="clearfix">
-						<span class="related-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></span>
+						<span class="related-title"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )); ?></span>
 						<?php
 				    	while( $my_query->have_posts() ) {
 						    $my_query->the_post();
@@ -98,7 +98,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 							$thumb_width  	= ampforwp_get_post_thumbnail('width');
 							$thumb_height 	= ampforwp_get_post_thumbnail('height');
 							if( $thumb_url && true == $redux_builder_amp['ampforwp-single-related-posts-image'] ) { ?>
-				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> layout="responsive"></amp-img>
+				            	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> layout="responsive"></amp-img>
 							<?php } 
 							}?>
 	                  		</a>
@@ -115,7 +115,7 @@ if( isset($redux_builder_amp['ampforwp-single-related-posts-switch']) && $redux_
 										}else{
 											$content = get_the_content();
 										} ?>
-				                    <p class="<?php echo $class; ?>"><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
+				                    <p class="<?php echo esc_attr($class); ?>"><?php echo wp_trim_words( strip_shortcodes( $content ) , '15' ); ?></p>
 				                <?php } ?>    
 			                </div>
 		            		</li>

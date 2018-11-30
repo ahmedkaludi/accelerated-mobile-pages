@@ -1,5 +1,6 @@
 <?php 
-
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '<amp-ad class="amp-ad-1"
 			type="adsense"
 			{{if_condition_ad_size_option==300x250}}width="300"{{ifend_condition_ad_size_option_300x250}}

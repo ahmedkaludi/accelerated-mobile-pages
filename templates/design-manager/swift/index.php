@@ -77,7 +77,7 @@
 									) 
 								);
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
-	              echo $sanitized_footer_widget;
+	              echo $sanitized_footer_widget; // amphtml content, no kses
 			?>
 		</div>
 	<?php } ?>

@@ -1,4 +1,6 @@
 <?php		
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 require_once  ABSPATH . WPINC . '/category.php';
  $output = '{{if_condition_content_layout_type==1}}
             <div class="pb_mod cat_mod"><h4>{{content_title}}</h4>   

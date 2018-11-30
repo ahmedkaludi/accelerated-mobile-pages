@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex,nofollow"/>
@@ -58,7 +58,7 @@
 		}; ?>
 
      <?php global $redux_builder_amp; ?>
- 		<h1 class="amp-wp-content page-title archive-heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?></h1>
+ 		<h1 class="amp-wp-content page-title archive-heading"><?php echo esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query());?></h1>
 
 	<?php if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();?>
 
@@ -69,7 +69,7 @@
 				$thumb_height 	= ampforwp_get_post_thumbnail('height');
 				if($thumb_url){
 				?>
-					<div class="home-post_image"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"><amp-img layout="responsive" src=<?php echo esc_url($thumb_url); ?> width=<?php echo $thumb_width; ?> height=<?php echo $thumb_height; ?> ></amp-img></a></div>
+					<div class="home-post_image"><a href="<?php echo ampforwp_url_controller( get_permalink() ); ?>"><amp-img layout="responsive" src=<?php echo esc_url($thumb_url); ?> width=<?php echo esc_attr($thumb_width); ?> height=<?php echo esc_attr($thumb_height); ?> ></amp-img></a></div>
 				<?php } 
 				} ?>
 
@@ -77,10 +77,10 @@
                 <ul class="amp-wp-tags">
 					<?php foreach((get_the_category()) as $category) { 
 						if ( true == $redux_builder_amp['ampforwp-archive-support'] ) { ?>
-						<li class="amp-cat-<?php echo $category->term_id;?>"><a href="<?php echo esc_url(ampforwp_url_controller( get_category_link( $category->term_id ) )); ?>" ><?php echo $category->cat_name ?></a></li>
+						<li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><a href="<?php echo ampforwp_url_controller( get_category_link( $category->term_id ) ); ?>" ><?php echo esc_attr($category->cat_name) ?></a></li>
 					<?php }
 					else { ?>
-					   <li class="amp-cat-<?php echo $category->term_id;?>"><?php echo $category->cat_name ?></li>
+					   <li class="amp-cat-<?php echo esc_attr($category->term_id);?>"><?php echo esc_attr($category->cat_name) ?></li>
 					<?php }
 					} ?> 
                 </ul>
@@ -95,7 +95,7 @@
                 <div class="featured_time"><?php 
                 	$post_date =  human_time_diff( get_the_time('U', get_the_ID() ), current_time('timestamp') ) .' '. ampforwp_translation( $redux_builder_amp['amp-translator-ago-date-text'],'ago' );
                     $post_date = apply_filters('ampforwp_modify_post_date',$post_date);
-                    echo  $post_date ; ?>
+                    echo esc_attr($post_date); ?>
                 </div>
 		    </div>
             <div class="cb"></div>
@@ -115,7 +115,7 @@
 	</div>
 	<?php else : ?>
 		<div class="amp-wp-content">
- 			<?php echo ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. '); ?>
+ 			<?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-search-no-found'], 'It seems we can\'t find what you\'re looking for. ')); ?>
  		</div>
 
 	<?php endif; ?>

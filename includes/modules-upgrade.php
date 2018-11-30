@@ -1,100 +1,63 @@
 <?php
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
-function ampforwp_enable_plugins_modules($plugins)
-{
-    $args = array(
-            'path' => ABSPATH.'wp-content/plugins/',
-            'preserve_zip' => false
-    );
-     foreach($plugins as $plugin)
-    {
-            $is_downloaded = ampforwp_plugin_download($plugin['path'], $args['path'].$plugin['name'].'.zip');
-            if($is_downloaded){
-                ampforwp_plugin_unpack($args, $args['path'].$plugin['name'].'.zip');
-                ampforwp_plugin_activate($plugin['install']);
-            }
-    }
-}
-function ampforwp_plugin_download($url, $path) 
-{
-    
-    $response = wp_remote_get( $url );
-    if ( is_array( $response ) ) {
-      $body = $response['body']; // use the content
-      if(file_put_contents($path, $body))
-            return true;
-        else
-            return false;
-    }else{
-        return false;
-    }
-}
-function ampforwp_plugin_unpack($args, $target)
-{
-    if($zip = zip_open($target))
-    {
-            while($entry = zip_read($zip)){
-                    $is_file = substr(zip_entry_name($entry), -1) == '/' ? false : true;
-                    $file_path = $args['path'].zip_entry_name($entry);
-                    if($is_file){
-                            if(zip_entry_open($zip,$entry,"r")){
-                                    $fstream = zip_entry_read($entry, zip_entry_filesize($entry));
-                                    file_put_contents($file_path, $fstream );
-                                    chmod($file_path, 0777);
-                            }
-                            zip_entry_close($entry);
-                    }
-                    else{
-                            if(zip_entry_name($entry)){
-                                    mkdir($file_path);
-                                    chmod($file_path, 0777);
-                            }
-                    }
-            }
-            zip_close($zip);
-    }
-    if($args['preserve_zip'] === false)
-    {
-            unlink($target);
-    }
-}
-function ampforwp_plugin_activate($installer)
-{
-    $current = get_option('active_plugins');
-    $plugin = plugin_basename(trim($installer));
-     if(!in_array($plugin, $current))
-    {
-            $current[] = $plugin;
-            sort($current);
-            do_action('activate_plugin', trim($plugin));
-            update_option('active_plugins', $current);
-            do_action('activate_'.trim($plugin));
-            do_action('activated_plugin', trim($plugin));
-            return true;
-    }
-    else{
-        return false;
-    }
-}
  add_action('wp_ajax_ampforwp_enable_modules_upgread', 'ampforwp_enable_modules_upgread');
 function ampforwp_enable_modules_upgread(){
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        exit();
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'install_plugins' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
+    }
     $plugins = array();
     $redirectSettingsUrl = '';
-    $currentActivateModule = $_REQUEST['activate'];
+    $currentActivateModule = sanitize_text_field( wp_unslash($_REQUEST['activate']));
     switch($currentActivateModule){
         case 'pwa': 
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'pwa-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'activate-plugin_pwa-for-wp' ),
+                                    ),
+                        esc_url(network_admin_url( 'plugins.php' ))
+                        );
             $plugins[] = array(
                             'name' => 'pwa-for-wp',
-                            'path' => 'https://downloads.wordpress.org/plugin/pwa-for-wp.zip',
+                            'path_' => 'https://downloads.wordpress.org/plugin/pwa-for-wp.zip',
+                            'path' => $nonceUrl,
                             'install' => 'pwa-for-wp/pwa-for-wp.php',
                         );
             $redirectSettingsUrl = admin_url('admin.php?page=pwaforwp&reference=ampforwp');
         break;
         case 'structure_data':
+            $nonceUrl = add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'schema-and-structured-data-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => wp_create_nonce( 'schema-and-structured-data-for-wp' ),
+                                    ),
+                        network_admin_url( 'plugins.php' )
+                        );
             $plugins[] = array(
                             'name' => 'schema-and-structured-data-for-wp',
-                            'path' => 'https://downloads.wordpress.org/plugin/schema-and-structured-data-for-wp.zip',
+                            'path_' => 'https://downloads.wordpress.org/plugin/schema-and-structured-data-for-wp.zip',
+                            'path' =>  add_query_arg(
+                                    array(
+                                        'action'        => 'activate',
+                                        'plugin'        => 'schema-and-structured-data-for-wp',
+                                        'plugin_status' => 'all',
+                                        'paged'         => '1',
+                                        '_wpnonce'      => $nonceUrl,
+                                    )
+                                    ),
                             'install' => 'schema-and-structured-data-for-wp/structured-data-for-wp.php',
                         );
             $redirectSettingsUrl = admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp');
@@ -104,22 +67,21 @@ function ampforwp_enable_modules_upgread(){
         break;
     }
     if(count($plugins)>0){
-       ampforwp_enable_plugins_modules($plugins); 
-        //Do's After Activation of plugins
-       if($currentActivateModule=='structure_data'){
-            ampforwp_import_structure_data();
-       }
-       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>$redirectSettingsUrl ) );
+       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>esc_url($redirectSettingsUrl) , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
     }else{
         echo json_encode(array("status"=>300, "message"=>"Modules not Found"));
     }
     wp_die();
 } 
 
-
 function ampforwp_admin_notice_module_reference_install() {
-    $reference = isset($_GET['reference']) ? $_GET['reference'] : '';
-    $page = isset($_GET['page']) ? $_GET['page'] : '';
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) && !is_admin() ) {
+        return ;
+    }
+
+    $reference = isset($_GET['reference']) ? sanitize_text_field( wp_unslash($_GET['reference'])) : '';
+    $page = isset($_GET['page']) ? sanitize_text_field( wp_unslash($_GET['page'])) : '';
     $message = '';
     if($reference=='ampforwp'){
         switch( $page ){
@@ -147,7 +109,17 @@ add_action( 'admin_notices', 'ampforwp_admin_notice_module_reference_install' );
  *
  */
 //On module upgrade
+add_action('wp_ajax_ampforwp_import_modules_scema', 'ampforwp_import_structure_data');
 function ampforwp_import_structure_data(){
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_module' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        exit();
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'install_plugins' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+        exit();
+    }
     global $redux_builder_amp;
     if(get_option('ampforwp_structure_data_module_upgrade')=='migrated'){
         return false;

@@ -1,6 +1,6 @@
 <?php global $redux_builder_amp; global $wp;  ?>
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.ampproject.org">
@@ -26,7 +26,7 @@
 	$amp_component_scripts = $sanitizer->amp_scripts;
 	if ( $sanitizer && $amp_component_scripts) {	
 		foreach ($amp_component_scripts as $ampforwp_service => $ampforwp_js_file) { ?>
-			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo $ampforwp_js_file; ?>" async></script> <?php
+			<script custom-element="<?php echo $ampforwp_service; ?>"  src="<?php echo esc_url($ampforwp_js_file); ?>" async></script> <?php
 		}
 	}?>
 	<style amp-custom>
@@ -71,7 +71,7 @@
 		    }
 				if($paged <= '1') {?>
 					<div class="amp-wp-content taxonomy-description">
-						<?php echo $arch_desc ; ?>
+						<?php echo $arch_desc;// amphtml content, No kses ?>
 				  </div> <?php
 				}
 			}
@@ -86,7 +86,7 @@
 	 			if(!empty($cat_childs)){
 	 				echo "<div class='amp-sub-archives'><ul>";
 	 				foreach ($cat_childs as $cat_child ) {
-	 					 echo '<li><a href="' . get_term_link( $cat_child ) . '">' . $cat_child->name . '</a></li>'; 
+	 					 echo '<li><a href="' . esc_url(get_term_link( $cat_child )) . '">' . esc_attr($cat_child->name) . '</a></li>'; 
 	 				}
 	 				echo "</ul></div>";
 	 			}

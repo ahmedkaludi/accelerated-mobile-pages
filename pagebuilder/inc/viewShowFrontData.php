@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /***
 Show Front Data
 ****/
@@ -488,6 +492,8 @@ function amp_pagebuilder_content_styles(){
 	}//If Closed  $previousData!="" && $ampforwp_pagebuilder_enable=='yes'
 } 
 function amppb_validateCss($css){
+	$css = (esc_html($css));
+	$css = str_replace('&quot;', '"', $css);
 	$css = preg_replace('/@media([^\r\n,{}]+){\s*}/', "", $css);
 	$css = preg_replace('/(([a-z -]*:(\s)*;))/', "", $css);
 	$css = preg_replace('/((;[\s\n;]*;))/', ";", $css);
@@ -544,6 +550,7 @@ function amppb_post_content($content){
 						}else{
 							$replace .= '';
 						}
+						$replace = esc_attr($replace);
 						if(! is_array($field['name']) && $field['content_type']=='html'){
 							$rowStartTemplate = str_replace('{{'.$field['name'].'}}', $replace, $rowStartTemplate);
 						}
@@ -659,6 +666,10 @@ function rowData($container,$col,$moduleTemplate){
 													$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
 												}
 											}
+											$imageUrl = esc_url($imageUrl);
+											$imageWidth = esc_attr($imageWidth);
+											$imageHeight = esc_attr($imageHeight);
+											$image_alt = esc_html($image_alt);
 
 											$repeaterFrontTemplate = str_replace(
 														'{{'.$moduleField['name'].'}}', 
@@ -701,6 +712,9 @@ function rowData($container,$col,$moduleTemplate){
 													);
 											$repeaterFrontTemplate = ampforwp_replaceIfContentConditional($moduleField['name'], $imageUrl, $repeaterFrontTemplate);
 										}else{
+											if($moduleField['type']=="text"){
+												$replace = esc_html($replace);
+											}
 											$replace = nl2br($replace);
 											$repeaterFrontTemplate = str_replace(
 														'{{'.$moduleField['name'].'}}', 
@@ -714,7 +728,7 @@ function rowData($container,$col,$moduleTemplate){
 										$repeaterUniqueId++;
 									}
 								}
-								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', $moduleField['name'].'_'.$repeaterVarIndex, $repeaterFrontTemplate);
+								$repeaterFrontTemplate = str_replace('{{repeater-module-class}}', esc_attr($moduleField['name'].'_'.$repeaterVarIndex), $repeaterFrontTemplate);
 								
 								$repeaterFields .= $repeaterFrontTemplate;
 
@@ -740,7 +754,6 @@ function rowData($container,$col,$moduleTemplate){
 						}
 					}
 				}//If for Module is repeater or not
-				//echo $moduleFrontHtml;die;
 				
 				switch($moduleName){
 					case 'gallery_image':
@@ -776,14 +789,13 @@ function rowData($container,$col,$moduleTemplate){
 						if(trim($fieldValues['category_selection']) != 'recent_option'){
 						  $catName = get_cat_name($fieldValues['category_selection']);
 						  $cat_link = get_category_link($fieldValues['category_selection']);
-						  $cat_link = esc_url(ampforwp_url_controller($cat_link));
+						  $cat_link = ampforwp_url_controller($cat_link);
 						}
 						$moduleFrontHtml = str_replace('{{content_category_title}}', urldecode($catName), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{content_category_link}}', $cat_link, $moduleFrontHtml);
 
 						$moduleFrontHtml = str_replace('{{content_title}}', urldecode($fieldValues['content_title']), $moduleFrontHtml);
 						$moduleFrontHtml = str_replace('{{category_selection}}', $totalLoopHtml, $moduleFrontHtml);
-						//print_r($moduleFrontHtml);die;
 						/* Restore original Post Data */
 						wp_reset_postdata();
 						if(isset($moduleTemplate[$contentArray['type']]['fields']) && count($moduleTemplate[$contentArray['type']]['fields']) > 0) {
@@ -827,6 +839,11 @@ function rowData($container,$col,$moduleTemplate){
 												$image_alt = (isset($imageDetails['alt'])? $imageDetails['alt']: "");
 											}
 										}
+										$imageUrl    = esc_url($imageUrl);
+										$imageWidth  = esc_attr($imageWidth);
+										$imageHeight = esc_attr($imageHeight);
+										$image_alt   = esc_html($image_alt);
+
 										$moduleFrontHtml = str_replace(
 													'{{'.$field['name'].'}}', 
 													 $imageUrl, 

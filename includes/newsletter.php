@@ -1,4 +1,10 @@
-<?php class ampforwp_pointers {
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+ 
+class ampforwp_pointers {
 	const DISPLAY_VERSION = 'v1.0';
 	function __construct () {
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
@@ -22,7 +28,7 @@
 		global $pagenow;
 		global $current_user;
 		$tour = array ();
-        $tab = isset($_GET['tab']) ? $_GET['tab'] : '';
+        $tab = isset($_GET['tab']) ? sanitize_text_field( wp_unslash($_GET['tab'])) : '';
 		$function = '';
 		$button2 = '';
 		$options = array ();
@@ -34,9 +40,9 @@
 			$file_error = true;
 
 			$id = '#toplevel_page_amp_options';  // Define ID used on page html element where we want to display pointer
-			$content = '<h3>' . sprintf (__('You are awesome for using AMP!', 'accelerated-mobile-pages'), self::DISPLAY_VERSION) . '</h3>';
-			$content .= __('<p>Do you want the latest on <b>AMP update</b> before others and some best resources on AMP in a single email? - Free just for users of AMP!</p>', 'accelerated-mobile-pages');
-            $content .= __('
+			$content = '<h3>' . sprintf (esc_html__('You are awesome for using AMP!', 'accelerated-mobile-pages'), self::DISPLAY_VERSION) . '</h3>';
+			$content .= '<p>' . esc_html__('Do you want the latest update on', 'accelerated-mobile-pages') . '<b>' . esc_html__(' AMP ', 'accelerated-mobile-pages') . '</b>' . esc_html__('before others and some best resources on AMP in a single email? - Free just for users of AMP!', 'accelerated-mobile-pages').'</p>';
+            $content .= '
             <!-- Begin MailChimp Signup Form -->
             <style type="text/css">
             .wp-pointer-buttons{ padding:0; overflow: hidden; }
@@ -50,7 +56,7 @@
 
 					<input type="text" value="' . esc_attr( $current_user->user_email ) . '" name="fields[email]" class="form-control" placeholder="Email*"  style="      width: 180px;    padding: 6px 5px;">
 
-					<input type="text" name="fields[company]" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_attr( get_home_url() ) . '">
+					<input type="text" name="fields[company]" class="form-control" placeholder="Website" hidden style=" display:none; width: 168px; padding: 6px 5px;" value="' . esc_url( get_home_url() ) . '">
 
 					<input type="hidden" name="ml-submit" value="1" />
 	            	</div>
@@ -63,14 +69,14 @@
 	            		<input type="submit" value="Subscribe" name="subscribe" id="pointer-close" class="button mc-newsletter-sent" style=" background: #0085ba; border-color: #006799; padding: 0px 16px; text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799; height: 30px; margin-top: 1px; color: #fff; box-shadow: 0 1px 0 #006799;">
             		</div>
             	</form>
-            </div>','accelerated-mobile-pages');
+            </div>';
 			$options = array (
 				'content' => $content,
 				'position' => array ('edge' => 'left', 'align' => 'left')
 				);
 		}
 		if ($show_pointer) {
-			$this->ampforwp_pointer_script ($id, $options, __('No Thanks', 'accelerated-mobile-pages'), $button2, $function);
+			$this->ampforwp_pointer_script ($id, $options, esc_html__('No Thanks', 'accelerated-mobile-pages'), $button2, $function);
 		}
 	}
 	function get_admin_url($page, $tab) {
@@ -85,7 +91,7 @@
 				var wp_pointers_tour_opts = <?php echo json_encode ($options); ?>, setup;
 				wp_pointers_tour_opts = $.extend (wp_pointers_tour_opts, {
 					buttons: function (event, t) {
-						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo $button1; ?>' + '</a>');
+						button= jQuery ('<a id="pointer-close" class="button-secondary">' + '<?php echo wp_kses_post($button1); ?>' + '</a>');
 						button_2= jQuery ('#pointer-close.button');
 						button.bind ('click.pointer', function () {
 							t.element.pointer ('close');
@@ -103,9 +109,9 @@
 					}
 				});
 				setup = function () {
-					$('<?php echo $id; ?>').pointer(wp_pointers_tour_opts).pointer('open');
+					$('<?php echo esc_attr($id); ?>').pointer(wp_pointers_tour_opts).pointer('open');
 					<?php if ($button2) { ?>
-						jQuery ('#pointer-close').after ('<a id="pointer-primary" class="button-primary">' + '<?php echo $button2; ?>' + '</a>');
+						jQuery ('#pointer-close').after ('<a id="pointer-primary" class="button-primary">' + '<?php echo wp_kses_post($button2); ?>' + '</a>');
 						jQuery ('#pointer-primary').click (function () {
 							<?php echo $function; ?>
 						});

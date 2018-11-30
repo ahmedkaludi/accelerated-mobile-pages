@@ -1,4 +1,11 @@
 <?php
+/*!
+ * AMP v0.4.2
+ * https://github.com/automattic/amp-wp
+ *
+ * Licensed GPLv2 or later
+ */
+ 
 /**
  * Plugin Name: AMP
  * Description: Add AMP support to your WordPress site.

@@ -255,27 +255,6 @@ jQuery(function($) {
                 allFonts.push({fontFamily: values[i].family }); 
             }
 
-
-           // var output =  data.items.find('Basic');
-           // console.log ( output );
-
-
-            // let selectedFontDetails = data.items.find((o, i) => {
-
-            //     if (o.family === 'Keania One') {
-            //         //arr[i] = { name: 'new string', value: 'this', other: 'that' };
-            //         return data.items[i]; // stop searching
-            //     }
-            // });
-
-            // We have all the Font details from Google API in object selectedFontDetails
-            //console.log(selectedFontDetails);
-
-
-            // We have all the font names in the an array allFonts
-            //console.log( allFonts );
-
-
             // Creating a select 
             var s = $('<select/>');
 
@@ -286,10 +265,6 @@ jQuery(function($) {
                $('#amp_font_selector-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
                $('#amp_font_selector_content_single-select').append($('<option value="'+ fontDetail +'" data-font-number="'+ i +'"> '+ fontDetail  +' </option>'));
             }
-
-            //console.log( values.length);
-            //console.log( values[0].family );
-            //console.table(  values);
             
             $('#amp_font_selector-select, #amp_font_selector_content_single-select').on('change', function() {
                 var select = $('option:selected', this).attr('data-font-number');
@@ -302,7 +277,6 @@ jQuery(function($) {
                         $('#amp_font_type-select').html('<option></option>').trigger('change');
                     }
 
-                   // console.log( data.items[select] );
 
                     //if ( data.items[select] ) {
                         $('#google_current_font_data').val( JSON.stringify(data.items[select]) );
@@ -333,11 +307,6 @@ jQuery(function($) {
 
     }
 
-        function amp_font_selector_select_change(){
-
-               
-        }
-
         $(window).load(function() {
             if($("#google_font_api_key").length>0){
                 $("#google_font_api_key").after("<input type='submit' value='Verify'>");
@@ -362,8 +331,7 @@ jQuery(function($) {
                // fontData = JSON.parse(fontData);
                console.log(fontData);
                 if (! fontData.variants) {
-                    //$('.select2-search-choice').remove();
-                    //$('#amp_font_type-select').html('<option></option>');
+               
 
                     for (var i in fontData.variants) {
                         $('#amp_font_type-select').append($("<option value='"+ fontData.variants[i] +"' > "+fontData.variants[i]+"</option>")).trigger('change');
@@ -382,7 +350,6 @@ jQuery(function($) {
                         $('#amp_font_type-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                         $('#amp_font_type_content_single-select option[value='+redux_data.amp_font_type[i]+']').attr('selected','selected').trigger('change');
                     }
-                    //$('#amp_font_type-select').select2('val',redux_data.amp_font_type)
                 }
             }
         });
@@ -457,6 +424,7 @@ var reduxOptionTab = function(){
 $(".redux-ampforwp-ext-activate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
+    var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
     var newlicense = $('#redux_builder_amp_amp-license_'+plugin_id+'_license').val();
     var license = $('input[name="redux_builder_amp[amp-license]['+plugin_id+'][license]"]').val();
 
@@ -477,7 +445,8 @@ $(".redux-ampforwp-ext-activate").click(function(){
                license:license,
                item_name:item_name,
                store_url:store_url,
-               plugin_active_path:plugin_active_path
+               plugin_active_path:plugin_active_path,
+               verify_nonce: secure_nonce
                 },
         dataType: 'json',
         success: function(response){
@@ -510,13 +479,16 @@ function deactivatelicence(){
 $(".redux-ampforwp-ext-deactivate").click(function(){
     var currentThis = $(this);
     var plugin_id = currentThis.attr("id");
+    var secure_nonce = currentThis.parents("li").attr('data-ext-secure');
     currentThis.html("Please Wait...");
     $deactivateConfirm = confirm("Are you sure you want to Deactivate ?");
     if($deactivateConfirm){
         $.ajax({
             url: ajaxurl,
             method: 'post',
-            data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id},
+            data: {action: 'ampforwp_deactivate_license', ampforwp_license_deactivate:plugin_id,
+                verify_nonce: secure_nonce
+                },
             dataType: 'json',
             success: function(response){
                 currentThis.parents("li").find('.afw-license-response-message').remove();
@@ -603,67 +575,3 @@ function getQueryStringValue (key) {
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 }  
 
-
-jQuery(document).ready(function($){
-
-    $('.ampforwp-activation-call-module-upgrade').click(function(){
-        if(pagenow == 'toplevel_page_amp_options' && $(this).hasClass('ampforwp-activation-call-module-upgrade')){// Check for current page
-            var self = $(this);
-            self.addClass('updating-message').removeClass('div.update-message');
-            var activate = '';
-            if($(this).attr('id')=='ampforwp-pwa-activation-call'){
-                activate = '&activate=pwa';
-            }else if($(this).attr('id')=='ampforwp-structure-data-activation-call'){
-                activate = '&activate=structure_data';
-            }
-            self.find('p').text('Updating...');
-            $.ajax({
-                url: ajaxurl,
-                type: 'post',
-                data: 'action=ampforwp_enable_modules_upgread'+activate,
-                dataType: 'json',
-                success: function (response){
-                    if(response.status==200){
-                        self.removeClass('update-message updating-message')
-                        self.addClass('updated-message');
-                        var msgplug = '';
-                        if(self.attr('id')=='ampforwp-pwa-activation-call'){
-                            msgplug = 'PWA';
-                        }else if(self.attr('id')=='ampforwp-structure-data-activation-call'){
-                            msgplug = 'Structure Data';
-                        }
-                         self.find('p').html('<a href="'+response.redirect_url+'">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
-                        self.removeClass('ampforwp-activation-call-module-upgrade');
-                    }else{
-                        alert(response.message)
-                    }
-                    
-                }
-            });
-            
-        }
-    });
-    //import default Settings
-    $("#finalized-import-structure-data-from-amp").click(function(){
-        var self = $(this);
-        self.text("please wait...");
-        $.ajax({
-          url : ajaxurl,
-          method : "POST",
-          dataType: 'json',
-          data: { 
-            action: "ampforwp_import_structure_data",
-            from: 'ampforwp_basic_settings'
-          },
-          success: function(data){ 
-                console.log(data);
-              if(data.status==200){
-                self.text("Migration completed please wait...");
-                location.reload(); 
-              }else{
-                alert(data.message)
-              }
-          }
-    });
-  });
-});//(document).ready Closed

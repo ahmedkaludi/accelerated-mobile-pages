@@ -1,4 +1,7 @@
-<?php $output = '<div class="amp_pb_module amp_text {{css_class}}">
+<?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
+$output = '<div class="amp_pb_module amp_text {{css_class}}">
 <p>{{text_editor}}</p>
 </div>';
 return array(

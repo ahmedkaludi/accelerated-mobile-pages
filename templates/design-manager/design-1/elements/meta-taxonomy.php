@@ -10,12 +10,12 @@
 	<?php $ampforwp_categories = get_the_terms( $this->ID, 'category' );
 		if ( $ampforwp_categories ) : ?>
 		<div class="amp-wp-meta amp-wp-tax-category">
-				<span><?php global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' ); ?></span>
+				<span><?php global $redux_builder_amp; printf(esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-categories-text'], 'Categories:' ) .' ' )); ?></span>
 				<?php foreach ($ampforwp_categories as $cat ) {
 					if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] &&  isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-							echo ('<span class="amp-cat-'.$cat->term_id.'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
+							echo ('<span class="amp-cat-'.esc_attr($cat->term_id).'"><a href="'. ampforwp_url_controller( get_category_link( $cat->term_id ) ) .'" > '. $cat->name .'</a></span>');//#934
 						} else {
-							 echo '<span>'. $cat->name .'</span>';
+							 echo '<span>'. esc_attr($cat->name) .'</span>';
 						}
 			} ?>
 		</div>
@@ -29,17 +29,17 @@
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
 				<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
 					<?php  if($redux_builder_amp['amp-rtl-select-option']==0) {
-					  		 printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' );
+					  		 printf( esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ));
 							 		}
 						foreach ($ampforwp_tags as $tag) {
 							if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-	                				echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
+	                				echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
 							} else {
-							 	echo ('<span>'.$tag->name.'</span>');
+							 	echo ('<span>'.esc_attr($tag->name).'</span>');
 						}
 						}
 						if($redux_builder_amp['amp-rtl-select-option']) {
-						  	echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
+						  	echo '<span class="tt-lb">'.esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
 						}?>
 				</div>
 	<?php endif; }?>
@@ -61,7 +61,7 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	            		$author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 70 ) );
 	            	}
 	                if ( $author_avatar_url ) { ?>
-	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
+	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                } 
 	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );

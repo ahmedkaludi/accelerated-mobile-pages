@@ -111,7 +111,7 @@ function ampforwp_related_post(){
 	global $redux_builder_amp;
 	do_action('ampforwp_above_related_post'); //Above Related Posts
 	?>
-   <h3 class="amp-related-posts-title"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' ); ?></h3>
+   <h3 class="amp-related-posts-title"><?php echo esc_html(ampforwp_translation( $redux_builder_amp['amp-translator-related-text'], 'Related Post' )); ?></h3>
 <?php } 
 
 function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() ){
@@ -152,7 +152,7 @@ function ampforwp_get_relatedpost_image( $imagetype ='thumbnail', $data=array() 
 			}
 	    
 	     if ( $thumb_url && $show_image ) { ?>
-	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo $thumb_width; ?>" height="<?php echo $thumb_height; ?>" layout="responsive"></amp-img>
+	    	<amp-img src="<?php echo esc_url( $thumb_url ); ?>" width="<?php echo esc_attr($thumb_width); ?>" height="<?php echo esc_attr($thumb_height); ?>" layout="responsive"></amp-img>
 		<?php }
 		} ?>
     </a>
@@ -178,7 +178,7 @@ function ampforwp_get_relatedpost_content($argsdata=array()){
 					$content = get_the_content();
 				}
 		?><p><?php 
-		echo wp_trim_words( strip_shortcodes( $content ) , '15' ); 
+		echo (wp_trim_words( strip_shortcodes( $content ) , '15' )); 
 		?></p><?php 
 		} 
 		$show_author = (isset($argsdata['show_author'])? $argsdata['show_author'] : true);

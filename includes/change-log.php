@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+// This file only loads once on welcome page
 function ampforwp_strposOffset($search, $string, $offset)
 {
     /*** explode the string ***/
@@ -72,6 +77,6 @@ if(is_array($matches) && count($matches)>2){
     }
 }
 
-echo ampforwp_nl2p($readme,false);
+echo ampforwp_wp_kses(ampforwp_nl2p($readme,false));
 
 ?>

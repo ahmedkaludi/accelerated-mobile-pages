@@ -39,7 +39,7 @@
 	    
 		//Filter to modify the Content
 		$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);
-	    echo $ampforwp_the_content;			
+	    echo $ampforwp_the_content; // amphtml content, no kses			
 		do_action('ampforwp_after_post_content',$this) ; ?>
 	</div>
 	<!--Post Next-Previous Links-->

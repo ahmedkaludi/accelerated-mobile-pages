@@ -1,10 +1,11 @@
 <?php
+/*TODO: Check the usage of call-now component, or we are using #55 from features.php #2652*/
 add_action('amp_call_button','amp_call_button_html_output');
 function amp_call_button_html_output(){
 	global $redux_builder_amp;
 	if ( $redux_builder_amp['ampforwp-callnow-button'] ) { ?>
 		<div class="amp-phone">
-			<a href="tel:<?php echo $redux_builder_amp['enable-amp-call-numberfield']; ?>"></a>
+			<a href="tel:<?php echo esc_attr($redux_builder_amp['enable-amp-call-numberfield']); ?>"></a>
 		</div> <?php
   }
 }

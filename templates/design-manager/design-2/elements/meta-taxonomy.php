@@ -8,20 +8,20 @@
 				<?php
 				//if RTL is OFF
 				if(!$redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; printf( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' );
+					printf( esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ));
 							}
 
 				foreach ($ampforwp_tags as $tag) {
 				if( isset($redux_builder_amp['ampforwp-archive-support']) && $redux_builder_amp['ampforwp-archive-support'] && isset($redux_builder_amp['ampforwp-cats-tags-links-single']) && $redux_builder_amp['ampforwp-cats-tags-links-single']) {
-					   echo ('<span class="amp-tag-'.$tag->term_id.'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.$tag->name .'</a></span>');//#934
+					   echo ('<span class="amp-tag-'.esc_attr($tag->term_id).'"><a href="'. ampforwp_url_controller( get_tag_link( $tag->term_id ) ).'" >'.esc_attr($tag->name) .'</a></span>');//#934
           		} else {
-                      echo ('<span>'.$tag->name .'</span>');
+                      echo ('<span>'.esc_attr($tag->name) .'</span>');
           			}
 				}
 
 				//if RTL is ON
 				if($redux_builder_amp['amp-rtl-select-option']) {
-						 global $redux_builder_amp; echo '<span class="tt-lb">'.( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
+					echo '<span class="tt-lb">'.esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
 							}
 				?>
 
@@ -44,11 +44,11 @@ if( array_key_exists( 'amp-author-description' , $redux_builder_amp ) && is_sing
 	            		$author_avatar_url = get_avatar_url( $post_author->user_email, array( 'size' => 70 ) );
 	            	}
 	                if ( $author_avatar_url ) { ?>
-	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo $author_avatar_url; ?>" width="70" height="70" layout="fixed"></amp-img>
+	                    <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="70" height="70" layout="fixed"></amp-img>
 	                    <?php
 	                }
-	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );  
-	             	echo  $post_author->description ; ?>
+	                echo ampforwp_get_author_details( $post_author , 'meta-taxonomy' );
+	             	echo $post_author->description; ?>
 
 	        <?php } ?>
 	    </div>

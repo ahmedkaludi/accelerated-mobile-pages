@@ -1,6 +1,19 @@
 <?php
-
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
+ * Aqua Resizer plugin
+ * Version 1.2.2
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://sam.zoy.org/wtfpl/
+ *
+ * Thanks to Aqua Resizer Team for some excellent contributions!
+ *
+ *
  * Title         : Aqua Resizer
  * Description   : Resizes WordPress images on the fly
  * Version       : 1.2.2
@@ -263,7 +276,6 @@ if(!function_exists('ampforwp_aq_resize')) {
                         1 => $width,
                         2 => $height
                     );
-            //print_r(jetpack_photon_url( $url, $args ));die;
             return $image;
         } else {
             $aq_resize = Aq_Resize::getInstance();

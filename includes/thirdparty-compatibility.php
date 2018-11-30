@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 //Remove ResponsifyWP #1131
 add_action('plugins_loaded', 'ampforwp_filter_remove_function_responsifywp');
 function ampforwp_filter_remove_function_responsifywp(){
@@ -20,8 +24,8 @@ function ampforwp_removing_sassy_social_share(){
 
 // Remove Schema theme Lazy Load #1170
 
-add_action('pre_amp_render_post','schema_lazy_load_remover');
-function schema_lazy_load_remover(){
+add_action('pre_amp_render_post','ampforwp_schema_lazy_load_remover');
+function ampforwp_schema_lazy_load_remover(){
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
 }
@@ -54,11 +58,7 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
 												"</sidebar>",
 												)
 											, $ampData);
-				/*$returnData = preg_replace("/<style>(.*?)<\/style>/i", function($match){
-					
-										$match[0] .= '.cntr img{width:100%;height:auto;}';
-																	return $match[0];
-																}, $returnData);*/
+
 				$nonampCss = '
 				.cntr img{width:100%;height:auto !important;}
 				img{height:auto;}

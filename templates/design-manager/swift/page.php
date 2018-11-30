@@ -35,7 +35,7 @@ amp_header(); ?>
 									) 
 								);
 								$sanitized_content =  $sanitizer_obj->get_amp_content();
-					            echo $sanitized_content;?>
+					            echo $sanitized_content; // amphtml content, no kses?>
 							</div>
 						<?php } ?>
 					</div><!-- /.cntr -->
@@ -46,7 +46,7 @@ amp_header(); ?>
 			<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ 
 			if( is_page() && isset($redux_builder_amp['ampforwp-page-social']) && $redux_builder_amp['ampforwp-page-social'] ) { ?>
 				<div class="ss-ic">
-					<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
+					<span class="shr-txt"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' )); ?></span>
 					<ul>
 						<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 						<li>

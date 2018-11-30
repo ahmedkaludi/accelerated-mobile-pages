@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 {{if_condition_carousel_layout_type==1}}
 	<amp-carousel width="400" height="300" layout="responsive" type="slides" autoplay delay="{{delay}}">

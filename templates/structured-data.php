@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 // Structured Data Type
 add_filter( 'amp_post_template_metadata', 'ampforwp_structured_data_type', 20, 1 );
 function ampforwp_structured_data_type( $metadata ) {

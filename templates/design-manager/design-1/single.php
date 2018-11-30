@@ -1,5 +1,5 @@
 <!doctype html>
-<html amp <?php echo AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) ); ?>>
+<html amp <?php echo esc_attr(AMP_HTML_Utils::build_attributes_string( $this->get( 'html_tag_attributes' ) )); ?>>
 <head>
 	<meta charset="utf-8">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org">

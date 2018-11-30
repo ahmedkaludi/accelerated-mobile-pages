@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if ( is_customize_preview() ) {
 	// Load all the elements in the customizer as we want all the elements in design-manager
 	add_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );

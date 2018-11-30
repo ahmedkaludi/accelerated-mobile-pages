@@ -6,13 +6,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function ampforwp_get_licence_activate_update(){
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'User not have authority'));
+        die;
+    }
     $selectedOption = get_option('redux_builder_amp',true);
-    if($_POST){
-        $ampforwp_license_activate = $_POST['ampforwp_license_activate'];
-        $license = $_POST['license'];
-        $item_name = $_POST['item_name'];
-        $store_url = $_POST['store_url'];
-        $plugin_active_path = $_POST['plugin_active_path'];
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $ampforwp_license_activate = sanitize_text_field($_POST['ampforwp_license_activate']);
+        $license = sanitize_text_field($_POST['license']);
+        $item_name = sanitize_text_field($_POST['item_name']);
+        $store_url = sanitize_text_field($_POST['store_url']);
+        $plugin_active_path = sanitize_text_field($_POST['plugin_active_path']);
         $status = 300;
         if($license==""){
             $message = "Please Enter valid license key";
@@ -42,7 +51,7 @@ function ampforwp_get_licence_activate_update(){
                     if ( is_wp_error( $response ) ) {
                         $message = $response->get_error_message();
                     } else {
-                        $message = __( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
+                        $message = esc_html__( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
                     }
 
                 } else {
@@ -52,7 +61,7 @@ function ampforwp_get_licence_activate_update(){
                         switch( $license_data->error ) {
                             case 'expired' :
                                 $message = sprintf(
-                                    __( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
+                                    esc_html__( 'Your license key expired on %s.', 'accelerated-mobile-pages' ),
                                     date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
                                 );
                                 $message .= "<a href='".$store_url."/checkout-2/?edd_license_key=16ed15c13524cc7e00346eeb3f76e412'>Renew Link</a>";
@@ -60,35 +69,35 @@ function ampforwp_get_licence_activate_update(){
 
                             case 'revoked' :
 
-                                $message = __( 'Your license key has been disabled.', 'accelerated-mobile-pages' );
+                                $message = esc_html__( 'Your license key has been disabled.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'missing' :
-                                $message = __( 'Invalid license.', 'accelerated-mobile-pages' );
+                                $message = esc_html__( 'Invalid license.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'invalid' :
                             case 'site_inactive' :
 
-                                $message = __( 'Your license is not active for this URL.', 'accelerated-mobile-pages' );
+                                $message = esc_html__( 'Your license is not active for this URL.', 'accelerated-mobile-pages' );
                                 break;
 
                             case 'item_name_mismatch' :
 
                                 $message = sprintf( 
-                                    __( 'This appears to be an invalid license key for %s.', 'accelerated-mobile-pages' ),
+                                    esc_html__( 'This appears to be an invalid license key for %s.', 'accelerated-mobile-pages' ),
                                     $item_name
                                 );
                                 break;
 
                             case 'no_activations_left':
 
-                                $message = __( 'Your license key has reached its activation limit.', 'accelerated-mobile-pages' );
+                                $message = esc_html__( 'Your license key has reached its activation limit.', 'accelerated-mobile-pages' );
                                 break;
 
                             default :
 
-                                $message = __( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
+                                $message = esc_html__( 'An error occurred, please try again.', 'accelerated-mobile-pages' );
                                 break;
                         }
 
@@ -142,17 +151,26 @@ add_action( 'wp_ajax_ampforwp_get_licence_activate_update', 'ampforwp_get_licenc
 ***********************************************/
 
 function ampforwp_deactivate_license() {
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
+    // Exit if the user does not have proper permissions
+    if(! current_user_can( 'manage_options' ) ) {
+        return ;
+    }
 
     // listen for our activate button to be clicked
     if( isset( $_POST['ampforwp_license_deactivate'] ) ) {
 
+        $ampforwp_license_deactivate = sanitize_text_field( wp_unslash($_POST['ampforwp_license_deactivate']));
         // retrieve the license from the database
         $selectedOption = get_option('redux_builder_amp',true);
         $license = '';//trim( get_option( 'amp_ads_license_key' ) );
         $pluginItemName = '';
         $pluginItemStoreUrl = '';
         if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-           $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
+           $pluginsDetail = $selectedOption['amp-license'][$ampforwp_license_deactivate];
            $license = $pluginsDetail['license'];
            $pluginItemName = $pluginsDetail['item_name'];
            $pluginItemStoreUrl = $pluginsDetail['store_url'];
@@ -175,14 +193,10 @@ function ampforwp_deactivate_license() {
             if ( is_wp_error( $response ) ) {
                 $message = $response->get_error_message();
             } else {
-                $message = __( 'An error occurred, please try again.', 'advanced-amp-ads' );
+                $message = esc_html__( 'An error occurred, please try again.', 'advanced-amp-ads' );
             }
 
-            /*$base_url = admin_url( 'plugins.php?page=' . AMP_ADS_LICENSE_PAGE );
-            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
-
-            wp_redirect( $redirect );*/
-            echo json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']], "dsc"=>$pluginItemStoreUrl));
+            echo json_encode(array('status'=>500,"message"=>$message,"test"=>$selectedOption['amp-license'][$ampforwp_license_deactivate], "dsc"=>$pluginItemStoreUrl));
             exit();
         }else{
             $message = 'Plugin deactivated successfully';
@@ -196,8 +210,8 @@ function ampforwp_deactivate_license() {
             delete_option( 'amp_ads_license_status' );
         }
         if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-           $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']]['status']= 'invalid';
-           $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']]['license']= '';
+           $selectedOption['amp-license'][$ampforwp_license_deactivate]['status']= 'invalid';
+           $selectedOption['amp-license'][$ampforwp_license_deactivate]['license']= '';
            update_option( 'redux_builder_amp', $selectedOption );
         }
         echo json_encode(array('status'=>200,"message"=>$message));
@@ -207,8 +221,6 @@ function ampforwp_deactivate_license() {
     }
 }
 add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license' );
-//add_action( 'admin_init', 'ampforwp_deactivate_license');
-
 
 /************************************
 * this illustrates how to check if
@@ -219,17 +231,21 @@ add_action( 'wp_ajax_ampforwp_deactivate_license', 'ampforwp_deactivate_license'
 *************************************/
 
 function ampforwp_check_extension_license() {
-
+    if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'verify_extension' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
     global $wp_version;
 
     //$license = trim( get_option( 'amp_ads_license_key' ) );
+    $plugin_name = sanitize_text_field( wp_unslash($_POST['ampforwp_license_deactivate']));
 
     $selectedOption = get_option('redux_builder_amp',true);
     $license = '';//trim( get_option( 'amp_ads_license_key' ) );
     $pluginItemName = '';
     $pluginItemStoreUrl = '';
     if( isset($selectedOption['amp-license']) && "" != $selectedOption['amp-license']){
-       $pluginsDetail = $selectedOption['amp-license'][$_POST['ampforwp_license_deactivate']];
+       $pluginsDetail = $selectedOption['amp-license'][$plugin_name];
        $license = $pluginsDetail['license'];
        $pluginItemName = $pluginsDetail['item_name'];
        $pluginItemStoreUrl = $pluginsDetail['store_url'];
@@ -239,7 +255,7 @@ function ampforwp_check_extension_license() {
         'edd_action' => 'check_license',
         'license' => $license,
         'item_name' => urlencode( $pluginItemName ),
-        'url'       => home_url()
+        'url'       => esc_url(home_url())
     );
 
     // Call the custom API.
@@ -271,7 +287,7 @@ function ampforwp_admin_notices() {
                 $message = urldecode( $_GET['message'] );
                 ?>
                 <div class="error">
-                    <p><?php echo $message; ?></p>
+                    <p><?php echo wp_kses_post( $message); ?></p>
                 </div>
                 <?php
                 break;
@@ -306,13 +322,12 @@ function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
 
         $api_params = array(
             'edd_action'    => 'check_license',
-            'license'       => $license,
+            'license'       => esc_attr($license),
             'item_name'     => urlencode( $item_name ),
-            'url'           => home_url()
+            'url'           => esc_url(home_url())
         );
 
         // Call the custom API.
-        //$response = wp_remote_post( AMP_ADS_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
         $response = wp_remote_post( $store_url, array( 'timeout' => 15, 'body' => $api_params ) );
 
         if ( is_wp_error( $response ) )
@@ -330,10 +345,7 @@ function ampforwp_set_plugin_limit( $force=false, $license_data='', $data) {
     } else if( isset( $license_data->license_limit ) ) {
         // Using the license_limit to define how many plugins can be tracked
         $limit = $license_data->license_limit;
-    }
-    
-    //update_option( 'amp_ads_license_limit', intval( $limit ) );
-    
+    }    
     return $limit;
     
 }

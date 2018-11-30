@@ -1,4 +1,6 @@
 <?php
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '<div class="amp_pb_module amp_blurb {{css_class}}"><img src="{{blurb_image}}" width="{{image_width}}" height="{{image_height}}" layout="responsive"/>
 <h4>{{text_title}}</h4>
 <p>{{text_description}}</p>

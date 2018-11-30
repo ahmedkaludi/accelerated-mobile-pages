@@ -45,7 +45,7 @@ class AMP_Customizer_Design_Settings {
 
 	public function register_customizer_ui( $wp_customize ) {
 		$wp_customize->add_section( 'amp_design', array(
-			'title' => __( 'Design', 'accelerated-mobile-pages' ),
+			'title' => esc_html__( 'Design', 'accelerated-mobile-pages' ),
 			'panel' => AMP_Template_Customizer::PANEL_ID,
 		) );
 
@@ -53,7 +53,7 @@ class AMP_Customizer_Design_Settings {
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control( $wp_customize, 'amp_header_color', array(
 				'settings'   => 'amp_customizer[header_color]',
-				'label'    => __( 'Header Text Color', 'accelerated-mobile-pages' ),
+				'label'    => esc_html__( 'Header Text Color', 'accelerated-mobile-pages' ),
 				'section'  => 'amp_design',
 				'priority' => 10,
 			) )
@@ -63,7 +63,7 @@ class AMP_Customizer_Design_Settings {
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control( $wp_customize, 'amp_header_background_color', array(
 				'settings'   => 'amp_customizer[header_background_color]',
-				'label'    => __( 'Header Background & Link Color', 'accelerated-mobile-pages' ),
+				'label'    => esc_html__( 'Header Background & Link Color', 'accelerated-mobile-pages' ),
 				'section'  => 'amp_design',
 				'priority' => 20,
 			) )
@@ -72,7 +72,7 @@ class AMP_Customizer_Design_Settings {
 		// Background color scheme
 		$wp_customize->add_control( 'amp_color_scheme', array(
 			'settings'   => 'amp_customizer[color_scheme]',
-			'label'      => __( 'Color Scheme', 'accelerated-mobile-pages' ),
+			'label'      => esc_html__( 'Color Scheme', 'accelerated-mobile-pages' ),
 			'section'    => 'amp_design',
 			'type'       => 'radio',
 			'priority'   => 30,
@@ -109,8 +109,8 @@ class AMP_Customizer_Design_Settings {
 
 	protected static function get_color_scheme_names() {
 		return array(
-			'light'   => __( 'Light', 'accelerated-mobile-pages' ),
-			'dark'    => __( 'Dark', 'accelerated-mobile-pages' ),
+			'light'   => esc_html__( 'Light', 'accelerated-mobile-pages' ),
+			'dark'    => esc_html__( 'Dark', 'accelerated-mobile-pages' ),
 		);
 	}
 

@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings {
 	const NEW_COLOR_SCHEME = 'light';
 
@@ -28,17 +32,6 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 			)
 		);
 
-		// $wp_customize->add_setting(
-		// 	'ampforwp_design[amp_design_type]', /* option name */
-		// 	array(
-		// 		'default'         	=> '3',
-		// 		'transport'        	=> 'postMessage',
-		// 		'type'             	=> 'option',
-		// 		'capability'       	=> 'manage_options',
-		// 		'priority'			=> 10,
-		// 	)
-		// );
-
 	}
 
 	public function register_customizer_ui( $wp_customize ) {
@@ -57,26 +50,13 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 				array(
 					'section'     	=> 'amp_design',
 					'settings'    	=> 'ampforwp_design[elements]',
-					'label'       	=> __( 'Design Manager', 'accelerated-mobile-pages' ),
-					'description' 	=> __( 'Enable and reorder Design Elements.', 'accelerated-mobile-pages' ),
+					'label'       	=> esc_html__( 'Design Manager', 'accelerated-mobile-pages' ),
+					'description' 	=> esc_html__( 'Enable and reorder Design Elements.', 'accelerated-mobile-pages' ),
 					'choices'     	=> $choices,
 					'priority'		=> 9,
 				)
 			)
 		);
-
-		// Current AMP Design
-		// $wp_customize->add_control( 'ampforwp_design[amp_design_type]', array(
-		// 	'settings'   => 'ampforwp_design[amp_design_type]',
-		// 	'label'      => __( 'Current AMP Design', 'ampforwp' ),
-		// 	'section'    => 'amp_design',
-		// 	'type'       => 'select',
-		// 	'priority'   => 30,
-		// 	'choices'    => array(
-		// 		'1' => 'one',
-		// 		'2' => 'two',
-		// 		'3' => 'three' ),
-		// ));
 	}
 
 	public static function enqueue_customizer_preview_scripts() {
@@ -153,53 +133,53 @@ class AMPFORWP_Customizer_Design_Contols extends AMP_Customizer_Design_Settings 
 		/* Meta info */
 		$services['meta_info'] = array(
 			'id'       => 'meta_info',
-			'label'    => __( 'Meta info', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Meta info', 'accelerated-mobile-pages' ),
 		);
 
 		/* title */
 		$services['title'] = array(
 			'id'       => 'title',
-			'label'    => __( 'Title', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Title', 'accelerated-mobile-pages' ),
 		);
 		/* Breadcrumbs */
 		$services['bread_crumbs'] = array(
 			'id'       => 'bread_crumbs',
-			'label'    => __( 'Breadcrumb', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Breadcrumb', 'accelerated-mobile-pages' ),
 		);
 		/* Featured Image */
 		$services['featured_image'] = array(
 			'id'       => 'featured_image',
-			'label'    => __( 'Featured Image', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Featured Image', 'accelerated-mobile-pages' ),
 		);
 
 		/* The Content */
 		$services['content'] = array(
 			'id'       => 'content',
-			'label'    => __( 'The Content', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'The Content', 'accelerated-mobile-pages' ),
 		);
 
 		/* Meta Taxonomy */
 		$services['meta_taxonomy'] = array(
 			'id'       => 'meta_taxonomy',
-			'label'    => __( 'Categories and Tags', 'accelerated-mobile-pages'),
+			'label'    => esc_html__( 'Categories and Tags', 'accelerated-mobile-pages'),
 		);
 
 		/* Social Icons */
 		$services['social_icons'] = array(
 			'id'       => 'social_icons',
-			'label'    => __( 'Social Icons', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Social Icons', 'accelerated-mobile-pages' ),
 		);
 
 		/* Comments */
 		$services['comments'] = array(
 			'id'       => 'comments',
-			'label'    => __( 'Comments', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Comments', 'accelerated-mobile-pages' ),
 		);
 
 		/* Related Posts */
 		$services['related_posts'] = array(
 			'id'       => 'related_posts',
-			'label'    => __( 'Related Posts', 'accelerated-mobile-pages' ),
+			'label'    => esc_html__( 'Related Posts', 'accelerated-mobile-pages' ),
 		);
 
 		return apply_filters( 'ampforwp_controls', $services );

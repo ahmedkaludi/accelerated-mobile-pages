@@ -21,7 +21,7 @@
 				$comment_nums = " ($comment_nums) " ?>
 
 				<div class="amp-wp-content comments_list">
-			        <h3><?php echo ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' ). $comment_nums?></h3>
+			        <h3><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-view-comments-text'] , 'View Comments' )). esc_attr($comment_nums)?></h3>
 			        <ul> <?php // Display the list of comments
 						function ampforwp_custom_translated_comment($comment, $args, $depth){
 							global $redux_builder_amp;
@@ -44,7 +44,7 @@
 										</div>
 										<!-- .comment-author -->
 										<div class="comment-metadata">
-											<a href="<?php echo htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) ) ?>">
+											<a href="<?php echo esc_url(htmlspecialchars( untrailingslashit( get_comment_link( $comment->comment_ID ) ) )) ?>">
 												<?php printf( ampforwp_translation( ('%1$s '. ampforwp_translation($redux_builder_amp['amp-translator-at-text'],'at').' %2$s'), '%1$s at  %2$s') , get_comment_date(),  get_comment_time())?>
 											</a>
 											<?php edit_comment_link( ampforwp_translation( $redux_builder_amp['amp-translator-Edit-text'], 'Edit' ) ) ?>
@@ -63,7 +63,7 @@
 					                  	  	'AMP_Style_Sanitizer' => array()
 			                          	 ) ) );
 			                        	$sanitized_comment_content = $sanitizer->get_amp_content();
-			                        	echo make_clickable( $sanitized_comment_content ); ?>      
+			                        	echo make_clickable( $sanitized_comment_content );// amphtml content, no kses ?>      
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .comment-body -->
@@ -99,9 +99,9 @@
 			if ( ! defined( 'AMP_COMMENTS_VERSION' ) ) { ?>
 				<div class="comment-button-wrapper">
 					<?php if ( comments_open() ) { ?>
-				    	<a href="<?php echo ampforwp_comment_button_url(); ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
+				    	<a href="<?php echo esc_url(ampforwp_comment_button_url()); ?>" rel="nofollow"><?php echo  ampforwp_translation( $redux_builder_amp['amp-translator-leave-a-comment-text'], 'Leave a Comment'  ); ?></a> <?php
 					} else { 
-						echo "<p class='nocomments'>".ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  ) ." </p>";
+						echo "<p class='nocomments'>".esc_attr(ampforwp_translation( $redux_builder_amp['amp-translator-comments-closed'], 'Comments are closed'  )) ." </p>";
 					}?>
 				</div> <?php 
 			} ?>

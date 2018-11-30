@@ -6,7 +6,7 @@
     $reject   = $redux_builder_amp['amp-gdpr-compliance-reject-text'];
     $settings   = $redux_builder_amp['amp-gdpr-compliance-settings-text'];
     $user_data  = $redux_builder_amp['amp-gdpr-compliance-textarea'];
-    $form_url   = admin_url('admin-ajax.php?action=amp_consent_submission');
+    $form_url   = admin_url('admin-ajax.php?action=amp_consent_submission&verify_nonce='.wp_create_nonce('amp_consent'));
     $form_url   = preg_replace('#^https?:#', '', $form_url);
     $more_info  = $redux_builder_amp['amp-gdpr-compliance-for-more-privacy-info'];
     $privacy_page = '';
@@ -119,7 +119,7 @@ function ampforwp_gdpr_css(){
 		    display: inline-block;
 		}
 		#footer .gdpr_fmi a{
-			color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;
+			color: <?php echo ampforwp_sanitize_color($redux_builder_amp['swift-color-scheme']['color']); ?>;
 		} 
 		@media(max-width:768px){
 			.gdpr_w{width: 85%;margin:0 auto;padding:1.5rem;}
@@ -235,11 +235,15 @@ function ampforwp_gdpr_css(){
 }
 
 function amp_consent_submission(){
+	if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'amp_consent' ) ) {
+        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+        die;
+    }
 	$current_url = $site_url = $site_host = $amp_site = '';
 	$current_url 	= wp_get_referer();
 	$site_url 		= parse_url( get_site_url() );
 	$site_host 		= $site_url['host'];
 	$amp_site 		= $site_url['scheme'] . '://' . $site_url['host'];
-	header("AMP-Access-Control-Allow-Source-Origin: $amp_site ");
-	header("AMP-Redirect-To: $current_url ");
+	header("AMP-Access-Control-Allow-Source-Origin: esc_url($amp_site) ");
+	header("AMP-Redirect-To: esc_url($current_url) ");
 }

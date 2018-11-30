@@ -49,27 +49,27 @@ function ampforwp_swift_social_icons(){
 	}
 	?>
 	<div class="ss-ic">
-						<span class="shr-txt"><?php echo ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' ); ?></span>
+						<span class="shr-txt"><?php echo esc_attr(ampforwp_translation($redux_builder_amp['amp-translator-share-text'], 'Share' )); ?></span>
 						<ul>
 							<?php if($redux_builder_amp['enable-single-facebook-share']){?>
 							<li>
-								<a class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_fb" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-twitter-share']){?>
 							<li>
-								<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo $amp_permalink; ?>&text=<?php echo esc_attr(rawurlencode(get_the_title())); ?>">
+								<a class="s_tw" target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(rawurlencode(get_the_title())); ?>">
 								</a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-gplus-share']){?>
 							<li>
-								<a class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_gp" target="_blank" href="https://plus.google.com/share?url=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-email-share']){?>
 							<li>
-								<a class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_em" target="_blank" href="mailto:?subject=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&body=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-pinterest-share']){
@@ -83,72 +83,72 @@ function ampforwp_swift_social_icons(){
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-linkedin-share']){?>
 							<li>
-								<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_lk" target="_blank" href="https://www.linkedin.com/shareArticle?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-whatsapp-share']){?>
 							<li>
-								<a class="s_wp" target="_blank" href="whatsapp://send?text=<?php echo $amp_permalink; ?>" data-action="share/whatsapp/share"></a>
+								<a class="s_wp" target="_blank" href="whatsapp://send?text=<?php echo esc_url($amp_permalink); ?>" data-action="share/whatsapp/share"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-vk-share']){?>
 							<li>
-								<a class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_vk" target="_blank" href="http://vk.com/share.php?url=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-odnoklassniki-share']){?>
 							<li>
-								<a class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_od" target="_blank" href="https://ok.ru/dk?st.cmd=addShare&st._surl=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-reddit-share']){?>
 							<li>
-								<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_rd" target="_blank" href="https://reddit.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-tumblr-share']){?>
 							<li>
-								<a class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_tb" target="_blank" href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-telegram-share']){?>
 							<li>
-								<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php echo $amp_permalink; ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_tg" target="_blank" href="https://telegram.me/share/url?url=<?php echo esc_url($amp_permalink); ?>&text=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-digg-share']){?>
 							<li>
-								<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_dg" target="_blank" href="http://digg.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-stumbleupon-share']){?>
 							<li>
-								<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_su" target="_blank" href="http://www.stumbleupon.com/submit?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-wechat-share']){?>
 							<li>
-								<a class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_wc" target="_blank" href="http://api.addthis.com/oexchange/0.8/forward/wechat/offer?url=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['enable-single-viber-share']){?>
 							<li>
-								<a class="s_vb" target="_blank" href="viber://forward?text=<?php echo $amp_permalink; ?>"></a>
+								<a class="s_vb" target="_blank" href="viber://forward?text=<?php echo esc_url($amp_permalink); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 							<li>
-								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
+								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 							</li>
 							<?php } ?>
 							<?php if ( isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder_amp['enable-single-hatena-bookmarks']){?>
 							<li>
-								<a class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if ( isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp['enable-single-pocket-share']){?>
 							<li>
-								<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php echo $amp_permalink; ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+								<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php echo esc_url($amp_permalink); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>

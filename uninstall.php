@@ -73,11 +73,4 @@ if(isset($redux_builder_amp['ampforwp-delete-on-uninstall']) && $redux_builder_a
 			}
 		}
 	}
-	 
-	
-	// drop a custom database table
-	/*global $wpdb;
-	$wpdb->query("");*/
-
 }
-

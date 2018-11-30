@@ -1,4 +1,8 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 global $redux_builder_amp;
 add_filter( 'amp_post_template_data', 'ampforwp_add_design3_required_fonts' );
 function ampforwp_add_design3_required_fonts( $data ) {

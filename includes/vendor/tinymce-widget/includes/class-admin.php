@@ -243,7 +243,7 @@ if ( ! class_exists( 'Black_Studio_TinyMCE_Admin' ) ) {
 				'activate_events' => $activate_events,
 				'deactivate_events' => $deactivate_events,
 				/* translators: error message shown when a duplicated widget ID is detected */
-				'error_duplicate_id' => __( 'ERROR: Duplicate widget ID detected. To avoid content loss, please create a new widget with the same content and then delete this one.', 'black-studio-tinymce-widget' )
+				'error_duplicate_id' => esc_html__( 'ERROR: Duplicate widget ID detected. To avoid content loss, please create a new widget with the same content and then delete this one.', 'black-studio-tinymce-widget' )
 			);
 			wp_localize_script( apply_filters( 'black-studio-tinymce-widget-script', 'tinymce-widget' ), 'bstw_data', $data );
 		}
@@ -331,17 +331,17 @@ if ( ! class_exists( 'Black_Studio_TinyMCE_Admin' ) ) {
 		public function init_links() {
 			$this->links = array(
 				/* translators: text used for plugin home link */
-				'https://wordpress.org/plugins/black-studio-tinymce-widget/' => __( 'Home', 'black-studio-tinymce-widget' ),
+				'https://wordpress.org/plugins/black-studio-tinymce-widget/' => esc_html__( 'Home', 'black-studio-tinymce-widget' ),
 				/* translators: text used for support faq link */
-				'https://wordpress.org/plugins/black-studio-tinymce-widget/faq/' => __( 'FAQ', 'black-studio-tinymce-widget' ),
+				'https://wordpress.org/plugins/black-studio-tinymce-widget/faq/' => esc_html__( 'FAQ', 'black-studio-tinymce-widget' ),
 				/* translators: text used for support forum link */
-				'https://wordpress.org/support/plugin/black-studio-tinymce-widget' => __( 'Support', 'black-studio-tinymce-widget' ),
+				'https://wordpress.org/support/plugin/black-studio-tinymce-widget' => esc_html__( 'Support', 'black-studio-tinymce-widget' ),
 				/* translators: text used for reviews link */
-				'https://wordpress.org/support/view/plugin-reviews/black-studio-tinymce-widget' => __( 'Rate', 'black-studio-tinymce-widget' ),
+				'https://wordpress.org/support/view/plugin-reviews/black-studio-tinymce-widget' => esc_html__( 'Rate', 'black-studio-tinymce-widget' ),
 				/* translators: text used for follow on twitter link */
-				'https://twitter.com/blackstudioita' => __( 'Follow', 'black-studio-tinymce-widget' ),
+				'https://twitter.com/blackstudioita' => esc_html__( 'Follow', 'black-studio-tinymce-widget' ),
 				/* translators: text used for donation link */
-				'http://www.blackstudio.it/en/wordpress-plugins/black-studio-tinymce-widget/' => __( 'Donate', 'black-studio-tinymce-widget' ),
+				'http://www.blackstudio.it/en/wordpress-plugins/black-studio-tinymce-widget/' => esc_html__( 'Donate', 'black-studio-tinymce-widget' ),
 			);
 		}
 

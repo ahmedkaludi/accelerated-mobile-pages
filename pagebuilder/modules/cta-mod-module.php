@@ -1,4 +1,6 @@
 <?php 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) exit;
 $output = '
 <div class="cta-tlt">
 	<h2>{{content_title}}</h2>
