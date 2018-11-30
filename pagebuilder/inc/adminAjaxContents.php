@@ -149,6 +149,11 @@ function ampforwp_get_image() {
 			$image = wp_get_attachment_image( $_GET['id'], 'full', false, array( 'id' => 'ampforwp-preview-image' ) );
 			$image_src = ampforwp_get_attachment_id($_GET['id'],'thumbnail');
 			$image_src_full = ampforwp_get_attachment_id($_GET['id'],'full');
+			$svg = pathinfo($image_src_full[0], PATHINFO_EXTENSION) == 'svg' ? true : false;
+			if ( $svg ) {
+				$image_src_full[1] = 50;
+				$image_src_full[2] = 50;
+			}
 			$data = array(
 				'image'    => $image,
 				'detail'   => $image_src,
