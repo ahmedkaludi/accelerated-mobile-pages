@@ -4267,7 +4267,11 @@ function ampforwp_view_nonamp(){
 	if ( $page >= '2') { 
 		$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
 	} 
-	$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
+
+	if ( ampforwp_get_setting('amp-mobile-redirection') ) {
+		$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
+	}
+
 	if ( $ampforwp_backto_nonamp ) { ?><a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php
 	}
 }
