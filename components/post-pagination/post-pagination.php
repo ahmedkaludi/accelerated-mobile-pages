@@ -123,7 +123,7 @@ function ampforwp_framework_get_post_paginated_link( $i, $args = '' ) {
 
 add_filter('ampforwp_modify_rel_canonical','amp_paginated_post_modify_amphtml');
 function amp_paginated_post_modify_amphtml($url) {
-	if(is_single()){
+	if( is_single() && false == ampforwp_get_setting('ampforwp-amp-takeover') ){
 			$post_paginated_page='';
 			$post_paginated_page = get_query_var('page');
 			if($post_paginated_page){

@@ -4455,7 +4455,9 @@ function ampforwp_post_paginated_link_generator( $i ) {
 		$url = get_preview_post_link( $post, $query_args, $url );
 
 	}
-	$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+	if ( false == ampforwp_get_setting('ampforwp-amp-takeover') ) {
+		$url = add_query_arg(AMPFORWP_AMP_QUERY_VAR,'1',$url);
+	}
 	return '<a href="' . esc_url( $url ) . '">';
 }
 // Modify the content to make Pagination work on Pages and FrontPage #2253
