@@ -4251,7 +4251,7 @@ function ampforwp_view_nonamp(){
    	}
 
 	$amp_url = "";
-	$amp_url = $_SERVER['REQUEST_URI'];
+	$amp_url = untrailingslashit( home_url( $wp->request ) );
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
 	unset($amp_url['amp']);
@@ -4266,6 +4266,7 @@ function ampforwp_view_nonamp(){
 	if ( $page >= '2') { 
 		$non_amp_url = trailingslashit( $non_amp_url  . '?page=' . $page);
 	} 
+	$non_amp_url = add_query_arg('nonamp','1',$non_amp_url);
 	if ( $ampforwp_backto_nonamp ) { ?><a class="view-non-amp" href="<?php echo user_trailingslashit( esc_url($non_amp_url) ) ?>" <?php echo esc_attr($nofollow); ?>><?php echo esc_html( $redux_builder_amp['amp-translator-non-amp-page-text'] ) ;?></a> <?php
 	}
 }
