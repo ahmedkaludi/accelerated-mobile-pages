@@ -7114,13 +7114,18 @@ function ampforwp_vuukle_comments_markup() {
 	}
 	$display_comments_on = false;
 	$display_comments_on = ampforwp_get_comments_status();
-
+	$siteUrl = trim(site_url(), '/');  
+	  if (!preg_match('#^http(s)?://#', $siteUrl)) {
+	      $siteUrl = 'http://' . $siteUrl;
+	  }
+	$urlParts = parse_url($siteUrl);
+	$siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
 	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
 	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
-	$srcUrl = add_query_arg('host' ,site_url(), $srcUrl);
+	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
 	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
 	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
-	$srcUrl = add_query_arg('title' , $post->post_title, $srcUrl); 
+	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl); 
 
 	$vuukle_html ='';
 	if ( $display_comments_on ) {
@@ -7135,11 +7140,7 @@ function ampforwp_add_vuukle_scripts( $data ) {
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
-	if ( 4 != $redux_builder_amp['amp-design-selector']
-		 && isset($redux_builder_amp['ampforwp-vuukle-comments-support'])
-		 && $redux_builder_amp['ampforwp-vuukle-comments-support']
-		 && $display_comments_on  && comments_open() 
-		) {
+	if ( ampforwp_get_setting('ampforwp-vuukle-comments-support') && $display_comments_on) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 			}

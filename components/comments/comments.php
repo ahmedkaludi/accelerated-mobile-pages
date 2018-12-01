@@ -191,12 +191,18 @@ function ampforwp_framework_get_vuukle_comments(){
 	if( isset($redux_builder_amp['ampforwp-vuukle-comments-apiKey']) && $redux_builder_amp['ampforwp-vuukle-comments-apiKey'] !== ""){
 		$apiKey = $redux_builder_amp['ampforwp-vuukle-comments-apiKey'];
 	}
+	$siteUrl = trim(site_url(), '/');  
+	  if (!preg_match('#^http(s)?://#', $siteUrl)) {
+	      $siteUrl = 'http://' . $siteUrl;
+	  }
+    $urlParts = parse_url($siteUrl);
+    $siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
 	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
 	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
-	$srcUrl = add_query_arg('host' ,site_url(), $srcUrl);
+	$srcUrl = add_query_arg('host' ,$siteUrl, $srcUrl);
 	$srcUrl = add_query_arg('id' , $post->ID, $srcUrl);
 	$srcUrl = add_query_arg('apiKey' , $apiKey, $srcUrl); 
-	$srcUrl = add_query_arg('title' , $post->post_title, $srcUrl);  
+	$srcUrl = add_query_arg('title' , urlencode($post->post_title), $srcUrl);  
 	$vuukle_html = '<amp-iframe width="600" height="350" layout="responsive" sandbox="allow-scripts allow-same-origin allow-modals allow-popups allow-forms" resizable frameborder="0" src="'.esc_url($srcUrl).'">
 
 		<div overflow tabindex="0" role="button" aria-label="Show comments">Show comments</div>';
