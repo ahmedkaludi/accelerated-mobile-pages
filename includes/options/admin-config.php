@@ -308,7 +308,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'AMP Stories',
                             'desc'=>'A Revolutionary new way to share your stories',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-stories.png',
                             'price'=>'$79',
                             'url_link'=>'https://ampforwp.com/amp-stories/#utm_source=options-panel&utm_medium=extension-tab_stories&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'amp-stories/ampforwp-stories.php',
@@ -320,7 +320,7 @@ $extension_listing_array = array(
                         array(
                             'name'=>'Shortcodes Ultimate',
                             'desc'=>'This is an extension of Shortcodes Ultimate plugin for AMP Compatibility',
-                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/amp-SU.png',
                             'price'=>'$19',
                             'url_link'=>'https://ampforwp.com/shortcodes-ultimate/#utm_source=options-panel&utm_medium=extension-tab_shortcodes_ultimate&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'shortcodes-ultimate-for-amp/shortcodes-ultimate-for-amp.php',
