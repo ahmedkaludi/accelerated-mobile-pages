@@ -415,7 +415,9 @@ if(!function_exists('ampforwp_findInternalUrl')){
 			}
 		}
 	    if($url=='#'){ return $url; }
-	    
+	   	if(strpos($url, "#")!==false){
+	        return $url;
+	    }
 	    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
 	      // Skip the URL's that have edit link to it
 	      $parts = parse_url($url);
@@ -425,17 +427,12 @@ if(!function_exists('ampforwp_findInternalUrl')){
 	      if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
 	          return $url;
 	      }
-
 	      $qmarkAmp = (isset($redux_builder_amp['amp-core-end-point']) ? $redux_builder_amp['amp-core-end-point']: false );//amp-core-end-point
 	      if ( $qmarkAmp ){
 	      	$url = add_query_arg( 'amp', '1', $url);
 			return $url;
 	      }
-
-	      if(strpos($url, "#")!==false){
-	        $url = explode("#",$url);
-	        $url = trailingslashit($url[0]).user_trailingslashit(AMPFORWP_AMP_QUERY_VAR).'#'.$url[1];
-	      }else{
+		  else{
 	      	if ( get_option('permalink_structure') ) {
 		      	if ( strpos($url, "?") && strpos($url, "=") ){
 		      		$url = explode('?', $url);
